@@ -4,105 +4,114 @@ import HexStickerGallery from "../components/HexStickerGallery.astro";
 
 // Function to fetch stickers from GitHub
 async function fetchStickers() {
-  const LOGOS_REPO = 'nf-core/logos';
-  const BRANCH = 'master';
-  const BASE_URL = `https://raw.githubusercontent.com/${LOGOS_REPO}/${BRANCH}/hexagon-stickers`;
+    const LOGOS_REPO = "nf-core/logos";
+    const BRANCH = "master";
+    const BASE_URL = `https://raw.githubusercontent.com/${LOGOS_REPO}/${BRANCH}/hexagon-stickers`;
 
-  // Categories to fetch
-  const categories = ['pipelines', 'hero', 'hackathons', 'champions', 'mentorships', 'teams'];
-  const stickers = [];
+    // Categories to fetch
+    const categories = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams"];
+    const stickers = [];
 
-  for (const category of categories) {
-    try {
-      // Special handling for pipelines category
-      if (category === 'pipelines') {
-        // Fetch pipeline directories
-        const response = await fetch(`https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}?ref=${BRANCH}`);
+    for (const category of categories) {
+        try {
+            // Special handling for pipelines category
+            if (category === "pipelines") {
+                // Fetch pipeline directories
+                const response = await fetch(
+                    `https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}?ref=${BRANCH}`,
+                );
 
-        if (!response.ok) {
-          console.error(`Failed to fetch ${category} directories: ${response.statusText}`);
-          continue;
+                if (!response.ok) {
+                    console.error(`Failed to fetch ${category} directories: ${response.statusText}`);
+                    continue;
+                }
+
+                const directories = await response.json();
+
+                // Filter to only include directories
+                const pipelineDirs = Array.isArray(directories)
+                    ? directories.filter((item) => item.type === "dir")
+                    : [];
+
+                // Process each pipeline directory
+                for (const dir of pipelineDirs) {
+                    const pipelineName = dir.name;
+
+                    // Fetch PNG files from the pipeline directory
+                    const pngResponse = await fetch(
+                        `https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}/${pipelineName}?ref=${BRANCH}`,
+                    );
+
+                    if (!pngResponse.ok) {
+                        console.error(`Failed to fetch ${pipelineName} stickers: ${pngResponse.statusText}`);
+                        continue;
+                    }
+
+                    const pngFiles = await pngResponse.json();
+
+                    // Filter for dark PNG files
+                    const darkPngFiles = Array.isArray(pngFiles)
+                        ? pngFiles.filter((file) => file.name.endsWith("-dark.png"))
+                        : [];
+
+                    // If no dark PNG found, try any PNG
+                    const filesToUse =
+                        darkPngFiles.length > 0
+                            ? darkPngFiles
+                            : Array.isArray(pngFiles)
+                              ? pngFiles.filter((file) => file.name.endsWith(".png"))
+                              : [];
+
+                    if (filesToUse.length > 0) {
+                        const file = filesToUse[0]; // Use the first PNG file found
+                        const imageUrl = `${BASE_URL}/${category}/${pipelineName}/${file.name}`;
+
+                        stickers.push({
+                            name: pipelineName,
+                            imageUrl,
+                            alt: `${pipelineName} pipeline`,
+                            category,
+                            link: `https://github.com/nf-core/${pipelineName}`,
+                            description: `${pipelineName} pipeline sticker`,
+                        });
+                    }
+                }
+            } else {
+                // Standard handling for other categories
+                const response = await fetch(
+                    `https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}?ref=${BRANCH}`,
+                );
+
+                if (!response.ok) {
+                    console.error(`Failed to fetch ${category} stickers: ${response.statusText}`);
+                    continue;
+                }
+
+                const files = await response.json();
+
+                // Process only PNG files
+                const pngFiles = Array.isArray(files) ? files.filter((file) => file.name.endsWith(".png")) : [];
+
+                for (const file of pngFiles) {
+                    const name = file.name.replace(".png", "");
+                    const imageUrl = `${BASE_URL}/${category}/${file.name}`;
+
+                    stickers.push({
+                        name,
+                        imageUrl,
+                        alt: name,
+                        category,
+                        link: `https://nf-co.re`, // Default link
+                        description: `${name} sticker from ${category} category`, // Default description
+                    });
+                }
+            }
+        } catch (error) {
+            console.error(`Error fetching ${category} stickers:`, error);
         }
-
-        const directories = await response.json();
-
-        // Filter to only include directories
-        const pipelineDirs = Array.isArray(directories)
-          ? directories.filter(item => item.type === 'dir')
-          : [];
-
-        // Process each pipeline directory
-        for (const dir of pipelineDirs) {
-          const pipelineName = dir.name;
-
-          // Fetch PNG files from the pipeline directory
-          const pngResponse = await fetch(`https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}/${pipelineName}?ref=${BRANCH}`);
-
-          if (!pngResponse.ok) {
-            console.error(`Failed to fetch ${pipelineName} stickers: ${pngResponse.statusText}`);
-            continue;
-          }
-
-          const pngFiles = await pngResponse.json();
-
-          // Filter for dark PNG files
-          const darkPngFiles = Array.isArray(pngFiles)
-            ? pngFiles.filter(file => file.name.endsWith('-dark.png'))
-            : [];
-
-          // If no dark PNG found, try any PNG
-          const filesToUse = darkPngFiles.length > 0
-            ? darkPngFiles
-            : (Array.isArray(pngFiles) ? pngFiles.filter(file => file.name.endsWith('.png')) : []);
-
-          if (filesToUse.length > 0) {
-            const file = filesToUse[0]; // Use the first PNG file found
-            const imageUrl = `${BASE_URL}/${category}/${pipelineName}/${file.name}`;
-
-            stickers.push({
-              name: pipelineName,
-              imageUrl,
-              alt: `${pipelineName} pipeline`,
-              category,
-              link: `https://github.com/nf-core/${pipelineName}`,
-              description: `${pipelineName} pipeline sticker`
-            });
-          }
-        }
-      } else {
-        // Standard handling for other categories
-        const response = await fetch(`https://api.github.com/repos/${LOGOS_REPO}/contents/hexagon-stickers/${category}?ref=${BRANCH}`);
-
-        if (!response.ok) {
-          console.error(`Failed to fetch ${category} stickers: ${response.statusText}`);
-          continue;
-        }
-
-        const files = await response.json();
-
-        // Process only PNG files
-        const pngFiles = Array.isArray(files) ? files.filter(file => file.name.endsWith('.png')) : [];
-
-        for (const file of pngFiles) {
-          const name = file.name.replace('.png', '');
-          const imageUrl = `${BASE_URL}/${category}/${file.name}`;
-
-          stickers.push({
-            name,
-            imageUrl,
-            alt: name,
-            category,
-            link: `https://nf-co.re`, // Default link
-            description: `${name} sticker from ${category} category` // Default description
-          });
-        }
-      }
-    } catch (error) {
-      console.error(`Error fetching ${category} stickers:`, error);
     }
-  }
 
-  return stickers;
+    return stickers;
 }
 
 // Fetch stickers directly
