@@ -110,7 +110,7 @@ tools = tools.map((tool) => {
 const versioned_tools = tools.filter((tool) => tool.id.split("/")[0] === version_tag_name);
 const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split("/")[1]))];
 const sections: SidebarEntry[] = section_names
-    .filter((entry) => entry !== "index.md")
+    .filter((entry) => entry !== "index")
     .map((entry) => {
         return {
             type: "group",
@@ -119,14 +119,14 @@ const sections: SidebarEntry[] = section_names
             href:
                 "/docs/nf-core-tools/api_reference/" +
                 versioned_tools
-                    .find((tool_entry) => tool_entry.id.endsWith("index.md") && tool_entry.id.split("/")[1] === entry)
+                    .find((tool_entry) => tool_entry.id.endsWith("index") && tool_entry.id.split("/")[1] === entry)
                     ?.id.replace(/index\.md$/, "index")
                     .replace("docs/", ""),
             collapsed: true,
             isCurrent: false,
             entries: versioned_tools
                 .filter((child) => child.id.split("/")[1] === entry && child.id.split("/")[2])
-                .filter((child) => child.id.split("/")[2] !== "index.md")
+                .filter((child) => child.id.split("/")[2] !== "index")
                 .map((tool_entry) => {
                     if (tool_entry.id.split("/").length === 3) {
                         return {
@@ -160,7 +160,7 @@ const sections: SidebarEntry[] = section_names
                                               grand_child.id.split("/")[2] === tool_entry.id.split("/")[2] &&
                                               grand_child.id.split("/")[3],
                                       )
-                                      .filter((grand_child) => grand_child.id.split("/")[3] !== "index.md")
+                                      .filter((grand_child) => grand_child.id.split("/")[3] !== "index")
                                       .map((grand_child) => {
                                           return {
                                               type: "link",
