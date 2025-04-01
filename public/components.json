@@ -1479,6 +1479,109 @@
       ]
     },
     {
+      "name": "agat_spextractsequences",
+      "path": "modules/nf-core/agat/spextractsequences/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_spextractsequences",
+        "description": "This script extracts sequences in fasta format according to features described\nin a gff file.\n",
+        "keywords": [
+          "genomics",
+          "gff",
+          "extract",
+          "fasta",
+          "sequence",
+          "feature"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/tools/agat_sp_extract_sequences.html",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:AGAT"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "gxf": {
+                "type": "file",
+                "description": "Input GFF3/GTF file",
+                "pattern": "*.{gff,gff3,gtf}"
+              }
+            }
+          ],
+          [
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input FASTA file",
+                "pattern": "*.{fa,fsa,faa,fasta}"
+              }
+            }
+          ],
+          [
+            {
+              "config": {
+                "type": "file",
+                "description": "Input agat config file. By default AGAT takes as input agat_config.yaml file from the working directory if any, otherwise it takes the orignal agat_config.yaml shipped with AGAT. To get the agat_config.yaml locally type: \"agat config --expose\". The --config option gives you the possibility to use your own AGAT config file (located elsewhere or named differently).\n",
+                "pattern": "*.yaml"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "Output FASTA file.",
+                  "pattern": "*.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "agat_spfilterbyorfsize",
       "path": "modules/nf-core/agat/spfilterbyorfsize/meta.yml",
       "type": "module",
@@ -11925,7 +12028,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -12890,7 +12993,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "viralrecon",
@@ -13273,7 +13376,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -13612,7 +13715,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -14671,10 +14774,6 @@
         {
           "name": "raredisease",
           "version": "2.4.0"
-        },
-        {
-          "name": "variantbenchmarking",
-          "version": "1.1.0"
         }
       ]
     },
@@ -14961,7 +15060,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "viralrecon",
@@ -15242,7 +15341,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "viralrecon",
@@ -15417,7 +15516,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -16141,7 +16240,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -17628,7 +17727,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "viralrecon",
@@ -42841,7 +42940,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -69532,6 +69631,112 @@
       }
     },
     {
+      "name": "gatk4_unmarkduplicates",
+      "path": "modules/nf-core/gatk4/unmarkduplicates/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_unmarkduplicates",
+        "description": "This tool locates and unmark the marked duplicate reads in a BAM or SAM file, where duplicate reads are defined as originating from a single fragment of DNA.",
+        "keywords": [
+          "bam",
+          "gatk4",
+          "unmarkduplicates"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools with a primary focus on variant discovery and genotyping. Its powerful processing engine and high-performance computing features make it capable of taking on projects of any size.",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/articles/360036367192-UnmarkDuplicates",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Marked duplicates BAM file",
+                "pattern": "*.{bam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_UnmarkDuplicates.{bam}"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_UnmarkDuplicates.{bam}"
+                }
+              }
+            ]
+          },
+          {
+            "bai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_UnmarkDuplicates.{bam.bai}"
+                }
+              },
+              {
+                "${prefix}.bai": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*_UnmarkDuplicates.{bam.bai}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nikhil",
+          "@anoronh4",
+          "@mikefeixu",
+          "@ajodeh-juma",
+          "@FriederikeHanssen",
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@mikefeixu"
+        ]
+      }
+    },
+    {
       "name": "gatk4_variantfiltration",
       "path": "modules/nf-core/gatk4/variantfiltration/meta.yml",
       "type": "module",
@@ -80827,6 +81032,10 @@
           "version": "4.0.0"
         },
         {
+          "name": "spatialxe",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.3"
         },
@@ -82696,7 +82905,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -82820,7 +83029,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -83037,9 +83246,124 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
+    },
+    {
+      "name": "helitronscanner_scan",
+      "path": "modules/nf-core/helitronscanner/scan/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "helitronscanner_scan",
+        "description": "HelitronScanner scanHead and scanTail tools for Helitron transposons in genomes",
+        "keywords": [
+          "genomics",
+          "helitron",
+          "scanner"
+        ],
+        "tools": [
+          {
+            "helitronscanner": {
+              "description": "HelitronScanner uncovers a large overlooked cache of Helitron transposons in many genomes",
+              "homepage": "https://sourceforge.net/projects/helitronscanner",
+              "documentation": "https://sourceforge.net/projects/helitronscanner",
+              "tool_dev_url": "https://sourceforge.net/projects/helitronscanner",
+              "doi": "10.1073/pnas.1410068111",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome data to scan for Helitrons",
+                "pattern": "*.{fa,fsa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "command": {
+                "type": "string",
+                "description": "Command to execute. One of [ 'head', 'tail' ]"
+              }
+            }
+          ],
+          [
+            {
+              "lcv_filepath": {
+                "type": "file",
+                "description": "LCV file path. If not provided by setting it to [], the LCV file packaged with the module will be used",
+                "pattern": "*.lcvs",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "buffer_size": {
+                "type": "integer",
+                "description": "Genome slice size (use negative or zero for non-buffer, i.e. treat every whole chromosome)"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "scan": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.$command": {
+                  "type": "file",
+                  "description": "Head or tail file depending on the command",
+                  "pattern": "*.$command",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
     },
     {
       "name": "hhsuite_reformat",
@@ -103004,7 +103328,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -116850,7 +117174,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -131580,7 +131904,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -132272,7 +132596,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -150125,7 +150449,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -150650,7 +150974,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -176607,7 +176931,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -176744,7 +177068,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -177054,7 +177378,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -177694,7 +178018,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -178545,7 +178869,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -179034,7 +179358,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -179460,7 +179784,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "viralrecon",
@@ -179609,7 +179933,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -179757,7 +180081,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -184214,6 +184538,212 @@
       ]
     },
     {
+      "name": "trnascanse",
+      "path": "modules/nf-core/trnascanse/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "trnascanse",
+        "description": "Detection of tRNA sequences using covariance models",
+        "keywords": [
+          "covariance models",
+          "trna",
+          "genome annotation"
+        ],
+        "tools": [
+          {
+            "trnascanse": {
+              "description": "tRNA detection in large-scale genomic sequences",
+              "homepage": "http://lowelab.ucsc.edu/tRNAscan-SE/help.html",
+              "documentation": "http://lowelab.ucsc.edu/tRNAscan-SE/help.html",
+              "tool_dev_url": "https://github.com/UCSC-LoweLab/tRNAscan-SE",
+              "doi": "10.1093/nar/gkab688",
+              "licence": [
+                "GPL v3",
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:trnascan-se"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file for tRNA annotation. Can be gzipped.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV summary output of tRNA annotations",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "tRNAScan-SE log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.stats": {
+                  "type": "file",
+                  "description": "Unstructured results file describing tRNA annotations",
+                  "pattern": "*.stats",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "(optional) FASTA output of annotated tRNA sequences\n",
+                  "pattern": "*.fasta.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.gff": {
+                  "type": "file",
+                  "description": "(optional) GFF annotation of tRNA sequences in input fasta\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.bed"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "(optional) BED annotation of tRNA sequences in input fasta\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
+    },
+    {
       "name": "trust4",
       "path": "modules/nf-core/trust4/meta.yml",
       "type": "module",
@@ -184760,7 +185290,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -186101,7 +186631,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -195787,7 +196317,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -197333,7 +197863,9 @@
           "@pinin4fjords",
           "@bjlang",
           "@caraiz2001",
-          "@suzannejin"
+          "@suzannejin",
+          "@delfiterradas",
+          "@sofiromano"
         ],
         "maintainers": [
           "@pinin4fjords",
@@ -204901,6 +205433,12 @@
             }
           },
           {
+            "val_discard_trimmed": {
+              "type": "boolean",
+              "description": "Structure: val(discard_trimmed)\nSpecify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
+            }
+          },
+          {
             "val_save_trimmed_fail": {
               "type": "boolean",
               "description": "Structure: val(save_trimmed_fail)\nSpecify true to save files that failed to pass trimming thresholds ending in `*.fail.fastq.gz`\n"
@@ -205924,7 +206462,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -206277,7 +206815,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -206570,7 +207108,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
