@@ -223,9 +223,9 @@ Skip features. See <https://nf-co.re/docs/nf-core-tools/pipelines/create> for a 
 
 Pipeline version
 
-#### `get(item: str, default: Any = None) → Any{:python}`
-
 #### _`validator{:python}`_`outdir_to_str{:python}`_»_`{:python}`[_outdir_](#nf_core.utils.NFCoreTemplateConfig.outdir)
+
+#### `get(item: str, default: Any = None) → Any{:python}`
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
@@ -925,7 +925,8 @@ Disable updating specific modules/subworkflows (when repository_type is pipeline
 
 #### `model_dump(**kwargs) → Dict[str, Any]{:python}`
 
-Usage docs: <https://docs.pydantic.dev/2.10/concepts/serialization/#modelmodel_dump>
+!!! abstract “Usage Documentation”
+: [model_dump](../concepts/serialization#modelmodel_dump)
 
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
 
@@ -943,6 +944,8 @@ Generate a dictionary representation of the model, optionally specifying which f
   - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
   - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
     “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
+  - **fallback** – A function to call when an unknown value is encountered. If not provided,
+    a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError] error is raised.
   - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
 - **Returns:**
   A dictionary representation of the model.
