@@ -43,8 +43,8 @@ const { eventPath, showCount = false } = Astro.props;
 // Get location pages for the current event
 const locationPages = (await getCollection("events"))
     .filter((page) => {
-        const pagePath = page.id.split("/");
-        return !pagePath[pagePath.length - 1].includes("index.mdx") && pagePath.slice(0, -1).join("/") === eventPath;
+        const pagePath = page.filePath?.split("/");
+        return !pagePath?.[pagePath.length - 1].includes("index.mdx") && pagePath?.slice(0, -1).join("/") === eventPath;
     })
     .map((page) => {
         const country = page.data.locations?.[0]?.country;
