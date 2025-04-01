@@ -1,6 +1,4 @@
 ---
-import { undefined } from 'astro:schema';
-
 /**
  * HexSticker.astro
  * A component for displaying hexagonal stickers with visual effects
@@ -17,7 +15,6 @@ interface Props {
 const { imageUrl, alt, category = "uncategorized", link, description } = Astro.props;
 
 const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
-
 ---
 
 <div

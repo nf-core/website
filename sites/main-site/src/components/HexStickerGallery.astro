@@ -14,7 +14,7 @@ interface StickerData {
 interface Props {
     stickers: {
         rendered: {
-            metadata: StickerData
+            metadata: StickerData;
         };
     }[];
 }
@@ -22,7 +22,7 @@ interface Props {
 const { stickers = [] } = Astro.props;
 
 // Filter out any stickers with undefined categories
-const validStickers = stickers.filter(sticker => sticker && sticker.rendered?.metadata.category);
+const validStickers = stickers.filter((sticker) => sticker && sticker.rendered?.metadata.category);
 
 // Get unique categories while preserving the order they first appear in the stickers array
 const uniqueCategories = [...new Set(validStickers.map((sticker) => sticker.rendered.metadata.category))];
@@ -33,7 +33,7 @@ const stickersByCategory = uniqueCategories.reduce(
         acc[category] = validStickers.filter((sticker) => sticker.rendered.metadata.category === category);
         return acc;
     },
-    {} as Record<string, Props['stickers']>,
+    {} as Record<string, Props["stickers"]>,
 );
 
 // Function to format category name for display
@@ -58,61 +58,66 @@ const hasValidStickers = validStickers.length > 0;
     !hasValidStickers ? (
         <div class="alert alert-info">
             Loading stickers... If this message persists, please check the GitHub repository at
-            <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer">nf-core/logos</a>.
+            <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer">
+                nf-core/logos
+            </a>
+            .
         </div>
     ) : (
         <div class="sticker-gallery w-100">
             <div class="sticker-info text-center mb-2">
                 <p class="mb-0">
-                    To find instructions on how to make your own hex sticker and for all the source images seen here, go to
-                    <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer" class="fw-medium">
-                        nf-core/logos <i class="fas fa-external-link-alt fa-xs ms-1"></i>
+                    To find instructions on how to make your own hex sticker and for all the source images seen here, go
+                    to
+                    <a
+                        href="https://github.com/nf-core/logos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="fw-medium"
+                    >
+                        nf-core/logos <i class="fas fa-external-link-alt fa-xs ms-1" />
                     </a>
                 </p>
             </div>
             <nav class="category-nav mb-2" aria-label="Sticker categories">
                 <div class="d-flex flex-wrap justify-content-center gap-2">
-                    {
-                        categoryIds.map(({ id, name }) => (
-                            <a href={`#${id}`} class="btn btn-outline-success" aria-label={`Jump to ${name}`}>
-                                {name}
-                            </a>
-                        ))
-                    }
+                    {categoryIds.map(({ id, name }) => (
+                        <a href={`#${id}`} class="btn btn-outline-success" aria-label={`Jump to ${name}`}>
+                            {name}
+                        </a>
+                    ))}
                 </div>
             </nav>
 
-            {
-                uniqueCategories.map((category, index) => (
-                    <section class="category-section mb-3" id={`category-${category}`}>
-                        <h2 class="category-heading mb-1 d-flex align-items-center justify-content-center text-success">
-                            {formatCategoryName(category)}
-                            <a href="#top" class="back-to-top ms-2" title="Back to top" aria-label="Back to top">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="16"
-                                    height="16"
-                                    fill="currentColor"
-                                    class="bi bi-arrow-up-circle"
-                                    viewBox="0 0 16 16"
-                                    aria-hidden="true"
-                                >
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
-                                    />
-                                </svg>
-                            </a>
-                        </h2>
-                        <HexGrid class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
-                            {stickersByCategory[category].map((sticker) => (
-                                <HexSticker {...sticker.rendered.metadata} />
-                            ))}
-                        </HexGrid>
-                        {index < uniqueCategories.length - 1 && <hr class="category-divider my-2" />}
-                    </section>
-                ))
-            }
+            {uniqueCategories.map((category, index) => (
+                <section class="category-section mb-3" id={`category-${category}`}>
+                    <h2 class="category-heading mb-1 d-flex align-items-center justify-content-center text-success">
+                        {formatCategoryName(category)}
+                        <a href="#top" class="back-to-top ms-2" title="Back to top" aria-label="Back to top">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-arrow-up-circle"
+                                viewBox="0 0 16 16"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                                />
+                            </svg>
+                        </a>
+                    </h2>
+                    <HexGrid class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
+                        {stickersByCategory[category].map((sticker) => (
+                            <HexSticker {...sticker.rendered.metadata} />
+                        ))}
+                    </HexGrid>
+                    {index < uniqueCategories.length - 1 && <hr class="category-divider my-2" />}
+                </section>
+            ))}
         </div>
     )
 }
