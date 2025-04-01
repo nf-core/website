@@ -1,5 +1,7 @@
 import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
+import type { AstroConfig } from 'astro';
+import { githubFileLoader } from '@utils/loaders';
 
 const events = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/events' }),
@@ -223,10 +225,79 @@ const hackathonProjects = defineCollection({
         }),
 });
 
+const stickers = defineCollection({
+    loader: githubFileLoader({
+        org: 'nf-core',
+        repo: 'logos',
+        ref: 'master',
+        path: /^hexagon-stickers\/.+\.png$/,
+        getDates: false,
+        processors: {
+            png: async (text: string, config: AstroConfig, filepath?: string) => {
+                if (!filepath) {
+                    console.log("filepath is undefined");
+                    return {
+                        html: '',
+                        metadata: {}
+                    };
+                }
+                // skip template and preview images
+                if (filepath.includes('-TEMPLATE-') || filepath.includes('-preview')) {
+                    console.log("skipping template or preview image", filepath);
+                    return {
+                        html: '',
+                        metadata: {}
+                    };
+                }
+                // Extract category and name from the file path
+                const pathMatch = filepath.match(/^hexagon-stickers\/([^/]+)(?:\/([^/]+))?\/[^/]+\.png$/);
+                if (!pathMatch) {
+                    return {
+                        html: '',
+                        metadata: {
+                            name: 'unknown',
+                            category: 'other',
+                            imageUrl: '',
+                            alt: 'Unknown sticker',
+                            link: 'https://nf-co.re',
+                            description: 'Unknown sticker'
+                        }
+                    };
+                }
+
+                const [, category, subdir] = pathMatch;
+                const name = subdir || category;
+                const imageUrl = `https://raw.githubusercontent.com/nf-core/logos/master/${filepath}`;
+
+                return {
+                    html: '',
+                    metadata: {
+                        name,
+                        category,
+                        imageUrl,
+                        alt: `${name} sticker`,
+                        link: subdir ? `https://github.com/nf-core/${name}` : 'https://nf-co.re',
+                        description: subdir ? `${name} pipeline sticker` : `${name} sticker`
+                    }
+                };
+            }
+        }
+    }),
+    schema: z.object({
+        name: z.string(),
+        category: z.string(),
+        imageUrl: z.string(),
+        alt: z.string(),
+        link: z.string().url(),
+        description: z.string()
+    })
+});
+
 export const collections = {
     events,
     about,
     blog,
     'special-interest-groups': specialInterestGroups,
     'hackathon-projects': hackathonProjects,
+    stickers
 };
