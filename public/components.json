@@ -141538,14 +141538,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "TSV-format table of genes associated with differential expression \ninformation as compiled from the propd results\n",
+                  "description": "TSV-format table of genes associated with differential expression\ninformation as compiled from the propd results\n",
                   "pattern": "*.propd.genewise.tsv"
                 }
               },
               {
                 "*.propd.genewise.tsv": {
                   "type": "file",
-                  "description": "TSV-format table of genes associated with differential expression \ninformation as compiled from the propd results\n",
+                  "description": "TSV-format table of genes associated with differential expression\ninformation as compiled from the propd results\n",
                   "pattern": "*.propd.genewise.tsv"
                 }
               }
@@ -141592,14 +141592,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "(Optional) TSV-format table of the native propd pairwise results. This \ntable contains the differential proportionality values associated to \neach pair of genes.\n",
+                  "description": "(Optional) TSV-format table of the native propd pairwise results. This\ntable contains the differential proportionality values associated to\neach pair of genes.\n",
                   "pattern": "*.propd.pairwise.tsv"
                 }
               },
               {
                 "*.propd.pairwise.tsv": {
                   "type": "file",
-                  "description": "(Optional) TSV-format table of the native propd pairwise results. This \ntable contains the differential proportionality values associated to \neach pair of genes.\n",
+                  "description": "(Optional) TSV-format table of the native propd pairwise results. This\ntable contains the differential proportionality values associated to\neach pair of genes.\n",
                   "pattern": "*.propd.pairwise.tsv"
                 }
               }
@@ -141610,14 +141610,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "(Optional) TSV-format table of the filtered propd pairwise results. This\ntable contains the pairs of genes with significant differential \nproportionality values.\n",
+                  "description": "(Optional) TSV-format table of the filtered propd pairwise results. This\ntable contains the pairs of genes with significant differential\nproportionality values.\n",
                   "pattern": "*.propd.pairwise_filtered.tsv"
                 }
               },
               {
                 "*.propd.pairwise_filtered.tsv": {
                   "type": "file",
-                  "description": "(Optional) TSV-format table of the filtered propd pairwise results. This\ntable contains the pairs of genes with significant differential \nproportionality values.\n",
+                  "description": "(Optional) TSV-format table of the filtered propd pairwise results. This\ntable contains the pairs of genes with significant differential\nproportionality values.\n",
                   "pattern": "*.propd.pairwise_filtered.tsv"
                 }
               }
@@ -141628,14 +141628,14 @@
               {
                 "meta": {
                   "type": "file",
-                  "description": "(Optional) CSV-format table of the adjacency matrix defining a graph, with \nedges (1) associated to pairs of genes that are significantly differentially\nproportional.\n",
+                  "description": "(Optional) CSV-format table of the adjacency matrix defining a graph, with\nedges (1) associated to pairs of genes that are significantly differentially\nproportional.\n",
                   "pattern": "*.propd.adjacency.csv"
                 }
               },
               {
                 "*.propd.adjacency.csv": {
                   "type": "file",
-                  "description": "(Optional) CSV-format table of the adjacency matrix defining a graph, with \nedges (1) associated to pairs of genes that are significantly differentially\nproportional.\n",
+                  "description": "(Optional) CSV-format table of the adjacency matrix defining a graph, with\nedges (1) associated to pairs of genes that are significantly differentially\nproportional.\n",
                   "pattern": "*.propd.adjacency.csv"
                 }
               }
@@ -172530,6 +172530,18 @@
               }
             },
             {
+              "slide": {
+                "type": "string",
+                "description": "Visium slide ID used for the sample."
+              }
+            },
+            {
+              "area": {
+                "type": "string",
+                "description": "Visium slide capture area used for the sample."
+              }
+            },
+            {
               "cytaimage": {
                 "type": "file",
                 "description": "CytAssist instrument captured eosin stained Brightfield tissue image with fiducial\nframe in TIFF format. The size of this image is set at 3k in both dimensions and this image should\nnot be modified any way before passing it as input to either Space Ranger or Loupe Browser.\n",
@@ -189111,7 +189123,39 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing run and contrast information. This can be used at the\nworkflow level to pass optional parameters to the module, e.g.\n[\n  contrast_id: 'treatment_mCherry_hND6',\n  contrast_variable: 'treatment',\n  contrast_reference: 'mCherry',\n  contrast_target: 'hND6',\n  formula: '~ treatment + (1 | sample_number)'\n]\nPlus mandatory `id` and other fields created along the run.\n"
+                "description": "Groovy Map containing run and contrast information.\n"
+              }
+            },
+            {
+              "contrast_variable": {
+                "type": "string",
+                "description": "The column in the sample sheet that should be used to define groups for\ncomparison\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "string",
+                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
+              }
+            },
+            {
+              "target": {
+                "type": "string",
+                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+              }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Mandatory) R formula string used for modeling, e.g. '~ treatment + (1 | sample_number)'."
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing study-wide metadata related to the sample sheet\nand matrix\n"
               }
             },
             {
@@ -189124,7 +189168,7 @@
             {
               "counts": {
                 "type": "file",
-                "description": "Raw TSV or CSV format expression matrix with count data by row and samples\nby column\n",
+                "description": "TSV or CSV format expression matrix with genes as rows and samples as columns.\n",
                 "ontologies": []
               }
             }
@@ -189144,6 +189188,28 @@
                   "type": "file",
                   "description": "TSV-format table of differential expression information as output by Dream\n",
                   "pattern": "*.dream.results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "model": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Metadata map passed through from input."
+                }
+              },
+              {
+                "*.dream.model.txt": {
+                  "type": "file",
+                  "description": "R model description text file.\n",
+                  "pattern": "*.dream.model.txt",
                   "ontologies": []
                 }
               }
@@ -189156,7 +189222,11 @@
                   "type": "file",
                   "description": "File containing software versions",
                   "pattern": "versions.yml",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
