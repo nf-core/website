@@ -59910,10 +59910,10 @@
           {
             "barcodes": [
               {
-                "${db_name}/usher_barcodes.csv": {
+                "${db_name}/usher_barcodes.feather": {
                   "type": "file",
                   "description": "File containing lineage defining barcodes",
-                  "pattern": "*barcodes.csv"
+                  "pattern": "*barcodes.feather"
                 }
               }
             ]
@@ -139577,12 +139577,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.log"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
                 }
               },
               {
-                "*.log": {
+                "*.portcullis.log": {
                   "type": "file",
                   "description": "Log file containing Portcullis execution details, processing steps, and filtering statistics",
                   "pattern": "*.log",
@@ -139596,19 +139595,18 @@
             ]
           },
           {
-            "bed": [
+            "pass_junctions_bed": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.bed"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
                 }
               },
               {
-                "*.bed": {
+                "*.pass.junctions.bed": {
                   "type": "file",
                   "description": "Filtered splice junction coordinates in BED format, containing genomic coordinates of valid splice junctions after filtering out false positives\n",
-                  "pattern": "*.bed",
+                  "pattern": "*.pass.junctions.bed",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3003"
@@ -139619,22 +139617,109 @@
             ]
           },
           {
-            "tab": [
+            "pass_junctions_tab": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.tab"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
                 }
               },
               {
-                "*.tab": {
-                  "type": "map",
+                "*.pass.junctions.tab": {
+                  "type": "file",
                   "description": "Tabular representation of filtered splice junctions with additional metrics including junction scores, read support, and filtering decision data\n",
-                  "pattern": "*.tab",
+                  "pattern": "*.pass.junctions.tab",
                   "ontologies": [
                     {
                       "eadam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "intron_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.intron.gff3": {
+                  "type": "file",
+                  "description": "Output intron-based junctions in GFF format.\n",
+                  "pattern": "*.intron.gff3",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "exon_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.exon.gff3": {
+                  "type": "file",
+                  "description": "Output exon-based junctions in GFF format.\n",
+                  "pattern": "*.exon.gff3",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "spliced_bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "BAM file after filtering original BAM file by removing alignments associated with bad junctions\n",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "spliced_bai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bai": {
+                  "type": "file",
+                  "description": "Index of the output BAM file\n",
+                  "pattern": "*.bai",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
                     }
                   ]
                 }
@@ -139662,7 +139747,8 @@
           "@jblancoheredia"
         ],
         "maintainer": [
-          "@jblancoheredia"
+          "@jblancoheredia",
+          "@anoronh4"
         ]
       }
     },
