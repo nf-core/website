@@ -7,30 +7,30 @@ on:
   workflow_dispatch:
     inputs:
       nfcore_ref:
-        description: "Version of nf-core/tools to use"
+        description: 'Version of nf-core/tools to use'
         type: string
-        default: "3.2.0"
+        default: '3.2.0'
       testpipeline:
         type: boolean
         description: Only run on nf-core/testpipeline?
         required: true
       runners:
-        description: "Runners to test on"
+        description: 'Runners to test on'
         type: choice
         options:
-          - "ubuntu-latest"
-          - "self-hosted"
-        default: "self-hosted"
+          - 'ubuntu-latest'
+          - 'self-hosted'
+        default: 'self-hosted'
       force_pr:
-        description: "Force a PR to be created"
+        description: 'Force a PR to be created'
         type: boolean
         default: false
       pipeline:
-        description: "Pipeline to sync"
+        description: 'Pipeline to sync'
         type: string
-        default: "all"
+        default: 'all'
       debug:
-        description: "Enable debug/verbose mode (true or false)"
+        description: 'Enable debug/verbose mode (true or false)'
         type: boolean
         default: false
 
@@ -41,7 +41,7 @@ concurrency:
 
 jobs:
   get-pipelines:
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
@@ -66,7 +66,7 @@ jobs:
     needs: get-pipelines
     # use the github runner on release otherwise use the runner given by the input if it is dispatched manually, run on github if it is a rerun or on self-hosted by default
     # runs-on: ${{github.event_name == 'release' && 'self-hosted' || github.event.inputs.runners || github.run_number > 1 && 'ubuntu-latest' || 'self-hosted' }}
-    runs-on: "ubuntu-latest"
+    runs-on: 'ubuntu-latest'
     strategy:
       matrix: ${{fromJson(needs.get-pipelines.outputs.matrix)}}
       fail-fast: false
@@ -83,12 +83,12 @@ jobs:
           ref: dev
           token: ${{ secrets.sangertolsoft_access_token }}
           path: sanger-tol/${{ matrix.pipeline }}
-          fetch-depth: "0"
+          fetch-depth: '0'
 
       - name: Set up Python 3.12
         uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
         with:
-          python-version: "3.12"
+          python-version: '3.12'
 
       - name: Install python dependencies
         run: |
@@ -98,7 +98,7 @@ jobs:
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v2
         with:
-          version: "latest-everything"
+          version: 'latest-everything'
 
       - name: Set Git default branch from nextflow.config and set git default branch to that or "master"
 
