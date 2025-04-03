@@ -7,6 +7,7 @@ startTime: "13:00+01:00"
 endDate: "2025-04-01"
 endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/nhrm3M1Fsg8
+embedAt: "variantbenchmarking"
 locations:
   - name: Online
     links:
