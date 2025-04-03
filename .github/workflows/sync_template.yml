@@ -59,12 +59,13 @@ jobs:
           else
             curl -O https://pipelines.tol.sanger.ac.uk/pipeline_names.json
           fi
+          cat pipeline_names.json
           echo "matrix=$(cat pipeline_names.json)" >> $GITHUB_OUTPUT
 
   sync:
     runs-on: 'ubuntu-latest'
     strategy:
-      matrix: ${{fromJson(needs.get-pipelines.outputs.matrix)}}
+      matrix: ${{ fromJson(needs.get-pipelines.outputs.matrix) }}
       fail-fast: false
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
