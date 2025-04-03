@@ -83,4 +83,4 @@ We tried to mitigate this by adding a summary of the tests in the GitHub Actions
 
 Both of these strategies already removed quite a bit of waiting time and hopefully in the future we can return to another hackathon tradition instead:
 
-![Waiting for PR review](../../../assets/images/blog/state-of-nf-core-CI/pr-review-waiting-meme.png)
+![Bernie Sanders meme with the caption: "I am once again asking for PR reviews"](../../../assets/images/blog/state-of-nf-core-CI/pr-review-bernie-meme.png)
