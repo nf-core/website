@@ -24,7 +24,7 @@ Over the years we have been working on improving the situation applying differen
 
 ## 1. Self-hosted runners
 
-Due to a generous donation of AWS credits, we are in theory able to run these tests on self-hosted runners on AWS.
+Thanks to a generous donation of AWS credits, we are in theory able to run these tests on self-hosted runners on AWS.
 
 We first [launched instances manually, based on demand](https://github.com/nf-core/tools/issues/1940).
 This was a good first step, removing a bit of the pressure during hackathons.
@@ -61,6 +61,6 @@ This is especially useful for modules/subworkflows/pipelines that trigger a larg
 Instead of running all tests one after the other, nf-test will now split up the tests into multiple jobs and run them in parallel based on given maximum number of shards.
 We also added [a logic](https://github.com/nf-core/modules/blob/master/.github/actions/get-shards/action.yml) to automatically detect the number of shards needed based on the number of tests and the `max_shard_size` parameter.
 
-Both of these strategies already removed already quite a bit of waiting time and hopefully in the future we can return to another hackathon tradition instead:
+Both of these strategies already removed quite a bit of waiting time and hopefully in the future we can return to another hackathon tradition instead:
 
 ![Waiting for PR review](../../../assets/images/blog/state-of-nf-core-CI/pr-review-waiting-meme.png)
