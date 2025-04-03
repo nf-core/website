@@ -1,0 +1,136 @@
+# cloned from https://github.com/nf-core/tools/blob/main/.github/workflows/sync.yml
+
+name: Sync template
+on:
+  # release:
+  #   types: [published]
+  workflow_dispatch:
+    inputs:
+      nfcore_ref:
+        description: "Version of nf-core/tools to use"
+        type: string
+        default: "3.2.0"
+      testpipeline:
+        type: boolean
+        description: Only run on nf-core/testpipeline?
+        required: true
+      runners:
+        description: "Runners to test on"
+        type: choice
+        options:
+          - "ubuntu-latest"
+          - "self-hosted"
+        default: "self-hosted"
+      force_pr:
+        description: "Force a PR to be created"
+        type: boolean
+        default: false
+      pipeline:
+        description: "Pipeline to sync"
+        type: string
+        default: "all"
+      debug:
+        description: "Enable debug/verbose mode (true or false)"
+        type: boolean
+        default: false
+
+# Cancel if a newer run is started
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  get-pipelines:
+    runs-on: "ubuntu-latest"
+    outputs:
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
+    steps:
+      - id: set-matrix
+        run: |
+          if [ "${{ github.event.inputs.testpipeline }}" == "true" ]; then
+            echo '{"pipeline":["testpipeline"]}' > pipeline_names.json
+          elif [ "${{ github.event.inputs.pipeline }}" != "all" ] && [ "${{ github.event.inputs.pipeline }}" != "" ]; then
+            curl -O https://pipelines.tol.sanger.ac.uk/pipeline_names.json
+            # check if the pipeline exists
+            if ! grep -q "\"${{ github.event.inputs.pipeline }}\"" pipeline_names.json; then
+              echo "Pipeline ${{ github.event.inputs.pipeline }} does not exist"
+              exit 1
+            fi
+            echo '{"pipeline":["${{ github.event.inputs.pipeline }}"]}' > pipeline_names.json
+          else
+            curl -O https://pipelines.tol.sanger.ac.uk/pipeline_names.json
+          fi
+          echo "matrix=$(cat pipeline_names.json)" >> $GITHUB_OUTPUT
+
+  sync:
+    needs: get-pipelines
+    # use the github runner on release otherwise use the runner given by the input if it is dispatched manually, run on github if it is a rerun or on self-hosted by default
+    # runs-on: ${{github.event_name == 'release' && 'self-hosted' || github.event.inputs.runners || github.run_number > 1 && 'ubuntu-latest' || 'self-hosted' }}
+    runs-on: "ubuntu-latest"
+    strategy:
+      matrix: ${{fromJson(needs.get-pipelines.outputs.matrix)}}
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        name: Check out nf-core/tools
+        with:
+          ref: ${{ github.event.inputs.nfcore_ref }}
+
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        name: Check out sanger-tol/${{ matrix.pipeline }}
+        with:
+          repository: sanger-tol/${{ matrix.pipeline }}
+          ref: dev
+          token: ${{ secrets.sangertolsoft_access_token }}
+          path: sanger-tol/${{ matrix.pipeline }}
+          fetch-depth: "0"
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
+        with:
+          python-version: "3.12"
+
+      - name: Install python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install .
+
+      - name: Install Nextflow
+        uses: nf-core/setup-nextflow@v2
+        with:
+          version: "latest-everything"
+
+      - name: Set Git default branch from nextflow.config and set git default branch to that or "master"
+
+        run: |
+          pushd sanger-tol/${{ matrix.pipeline }}
+          defaultBranch=$(grep -B5 -A5 "nextflowVersion" nextflow.config | grep "defaultBranch" | cut -d"=" -f2 | sed "s/'//g")
+          if [ -z "$defaultBranch" ]; then
+            defaultBranch="main"
+          fi
+          popd
+          echo "Default branch: $defaultBranch"
+          echo "defaultBranch=$defaultBranch" >> GITHUB_OUTPUT
+          git config --global init.defaultBranch $defaultBranch
+
+      - name: Run synchronisation
+        # if: github.repository == 'nf-core/tools'
+        env:
+          GITHUB_AUTH_TOKEN: ${{ secrets.sangertolsoft_access_token }}
+        run: |
+          git config --global user.email "105875386+sanger-tolsoft@users.noreply.github.com"
+          git config --global user.name "sanger-tolsoft"
+          nf-core --log-file sync_log_${{ matrix.pipeline }}.txt \
+            ${{ github.event.inputs.debug == 'true' && '--verbose' || '' }} \
+            pipelines sync -d sanger-tol/${{ matrix.pipeline }} \
+            --from-branch dev \
+            --pull-request \
+            --username sanger-tolsoft \
+            --github-repository sanger-tol/${{ matrix.pipeline }}
+
+      - name: Upload sync log file artifact
+        if: ${{ always() }}
+        uses: actions/upload-artifact@b4b15b8c7c6ac21ea08fcf65892d2ee8f75cf882 # v4
+        with:
+          name: sync_log_${{ matrix.pipeline }}
+          path: sync_log_${{ matrix.pipeline }}.txt
