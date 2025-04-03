@@ -116,6 +116,7 @@ jobs:
             ${{ github.event.inputs.debug == 'true' && '--verbose' || '' }} \
             pipelines sync -d sanger-tol/${{ matrix.pipeline }} \
             --from-branch dev \
+            --pull-request \
             --username sanger-tolsoft \
             --github-repository sanger-tol/${{ matrix.pipeline }}
 
