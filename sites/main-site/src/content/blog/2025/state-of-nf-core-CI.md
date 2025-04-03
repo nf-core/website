@@ -75,6 +75,9 @@ Let's look at the tests for the [FASTQC module](https://github.com/nf-core/modul
 To handle this scaling, we added [a sharding step](https://github.com/nf-core/modules/blob/master/.github/actions/get-shards/action.yml) to the CI workflows, that first gets the number of triggered tests by running nf-test in dry-run-mode.
 We then use this number to set the number of shards needed based on the number of tests and the `max_shard_size` parameter, which gives us a bit more control over the number of runners used and to avoid idle runners.
 
+The disadvantage of this approach is that it is not immediately clear which tests failed during a run, one needs to instead go through the logs of the different jobs.
+We tried to mitigate this by adding a summary of the tests in the GitHub Actions, but this needs some more polishing.
+
 ### A different waiting game
 
 Both of these strategies already removed quite a bit of waiting time and hopefully in the future we can return to another hackathon tradition instead:
