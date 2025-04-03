@@ -75,6 +75,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install nf-core==${{ github.event.inputs.nfcore_ref }}
+          pip install prettier==3.3.3
 
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v2
