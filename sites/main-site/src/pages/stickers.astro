@@ -16,11 +16,11 @@ stickersCollection = stickersCollection.filter(
         ),
 );
 
-const CATGEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams"];
+const CATEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams"];
 // sort stickersCollection by category
 stickersCollection.sort((a, b) => {
-    const aIndex = CATGEGORIES.indexOf(a.rendered.metadata.category);
-    const bIndex = CATGEGORIES.indexOf(b.rendered.metadata.category);
+    const aIndex = CATEGORIES.indexOf(a.rendered?.metadata?.category as string);
+    const bIndex = CATEGORIES.indexOf(b.rendered?.metadata?.category as string);
     return aIndex - bIndex;
 });
 ---
