@@ -2,6 +2,14 @@ import { z, defineCollection } from 'astro:content';
 import { glob } from 'astro/loaders';
 import type { AstroConfig } from 'astro';
 import { githubFileLoader } from '@utils/loaders';
+import { octokit } from "@components/octokit.js";
+
+const teams = await octokit.request('GET /orgs/{org}/teams', {
+    org: 'nf-core',
+    headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+    }
+});
 
 const events = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/events' }),
@@ -268,6 +276,20 @@ const stickers = defineCollection({
                 const [, category, subdir] = pathMatch;
                 const name = subdir || category;
                 const imageUrl = `https://raw.githubusercontent.com/nf-core/logos/master/${filepath}`;
+                let description = subdir ? `${name} pipeline sticker` : '';
+                if (category === 'pipelines') {
+                    const response = await octokit.request('GET /repos/{owner}/{repo}', {
+                        owner: 'nf-core',
+                        repo: name,
+                        headers: {
+                            'X-GitHub-Api-Version': '2022-11-28'
+                        }
+                    });
+                    description = response.data.description || description;
+                }
+                if (category === 'teams') {
+                    description = teams.data.find((team) => team.name === filepath.split('/').pop()?.replace("nf-core-", "").replace(".png", ""))?.description || description;
+                }
 
                 return {
                     html: '',
@@ -277,7 +299,7 @@ const stickers = defineCollection({
                         imageUrl,
                         alt: `${name} sticker`,
                         link: subdir ? `https://github.com/nf-core/${name}` : 'https://nf-co.re',
-                        description: subdir ? `${name} pipeline sticker` : `${name} sticker`
+                        description
                     }
                 };
             }
