@@ -178971,11 +178971,11 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information. Caller can be one of the tools: delly, manta, melt, wham\ne.g. [ id:'test', caller:\"delly\" ]\n"
               }
             },
             {
-              "vcf": {
+              "input": {
                 "type": "file",
                 "description": "A gzipped VCF file to be standardized",
                 "pattern": "*.vcf.gz"
@@ -178984,7 +178984,13 @@
           ],
           [
             {
-              "fasta_fai": {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test2' ]\n"
+              }
+            },
+            {
+              "fai": {
                 "type": "file",
                 "description": "Optional fasta index file that specifies the contigs to be used in the VCF header (defaults to all contigs of GRCh37)",
                 "pattern": "*.fai"
@@ -178994,18 +179000,18 @@
         ],
         "output": [
           {
-            "standardized_vcf": [
+            "vcf": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', caller:\"delly\" ]\n"
                 }
               },
               {
-                "*.std.vcf.gz": {
+                "*.vcf.gz": {
                   "type": "file",
                   "description": "A gzipped version of the standardized VCF file",
-                  "pattern": "*.std.vcf.gz"
+                  "pattern": "*.vcf.gz"
                 }
               }
             ]
