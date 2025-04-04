@@ -58,10 +58,10 @@ jobs:
       fail-fast: false
     steps:
     - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-        name: Check out nf-core/tools
-        with:
-          repository: nf-core/tools
-          ref: ${{ github.event.inputs.nfcore_ref }}
+      name: Check out nf-core/tools
+      with:
+        repository: nf-core/tools
+        ref: ${{ github.event.inputs.nfcore_ref }}
 
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         name: Check out sanger-tol/${{ matrix.pipeline }}
