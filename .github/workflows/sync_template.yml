@@ -2,29 +2,12 @@
 
 name: Sync template
 on:
-  # release:
-  #   types: [published]
   workflow_dispatch:
     inputs:
       nfcore_ref:
         description: 'Version of nf-core/tools to use'
         type: string
         default: '3.2.0'
-      testpipeline:
-        type: boolean
-        description: Only run on nf-core/testpipeline?
-        required: true
-      runners:
-        description: 'Runners to test on'
-        type: choice
-        options:
-          - 'ubuntu-latest'
-          - 'self-hosted'
-        default: 'self-hosted'
-      force_pr:
-        description: 'Force a PR to be created'
-        type: boolean
-        default: false
       pipeline:
         description: 'Pipeline to sync'
         type: string
@@ -33,6 +16,10 @@ on:
         description: 'Enable debug/verbose mode (true or false)'
         type: boolean
         default: false
+      make_pr:
+        description: 'Make a PR for the sync (true or false)'
+        type: boolean
+        default: true
 
 # Cancel if a newer run is started
 concurrency:
@@ -60,13 +47,12 @@ jobs:
           else
             curl -O https://pipelines.tol.sanger.ac.uk/pipeline_names.json
           fi
+          cat pipeline_names.json
           echo "matrix=$(cat pipeline_names.json)" >> $GITHUB_OUTPUT
 
   sync:
-    needs: get-pipelines
-    # use the github runner on release otherwise use the runner given by the input if it is dispatched manually, run on github if it is a rerun or on self-hosted by default
-    # runs-on: ${{github.event_name == 'release' && 'self-hosted' || github.event.inputs.runners || github.run_number > 1 && 'ubuntu-latest' || 'self-hosted' }}
     runs-on: 'ubuntu-latest'
+    needs: get-pipelines
     strategy:
       matrix: ${{fromJson(needs.get-pipelines.outputs.matrix)}}
       fail-fast: false
@@ -74,6 +60,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
         name: Check out nf-core/tools
         with:
+          repository: nf-core/tools
           ref: ${{ github.event.inputs.nfcore_ref }}
 
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
@@ -90,17 +77,24 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+
+      - name: Install Prettier
+        run: |
+          npm install -g prettier@3.3.3
+
       - name: Install python dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install .
+          pip install nf-core==${{ github.event.inputs.nfcore_ref }}
 
       - name: Install Nextflow
         uses: nf-core/setup-nextflow@v2
         with:
           version: 'latest-everything'
 
-      - name: Set Git default branch from nextflow.config and set git default branch to that or "master"
+      - name: Set Git default branch from nextflow.config and set git default branch to that or "main"
 
         run: |
           pushd sanger-tol/${{ matrix.pipeline }}
@@ -114,7 +108,6 @@ jobs:
           git config --global init.defaultBranch $defaultBranch
 
       - name: Run synchronisation
-        # if: github.repository == 'nf-core/tools'
         env:
           GITHUB_AUTH_TOKEN: ${{ secrets.sangertolsoft_access_token }}
         run: |
@@ -124,7 +117,7 @@ jobs:
             ${{ github.event.inputs.debug == 'true' && '--verbose' || '' }} \
             pipelines sync -d sanger-tol/${{ matrix.pipeline }} \
             --from-branch dev \
-            --pull-request \
+            ${{ github.event.inputs.make_pr == 'true'  && '--pull-request' || '' }} \
             --username sanger-tolsoft \
             --github-repository sanger-tol/${{ matrix.pipeline }}
 
