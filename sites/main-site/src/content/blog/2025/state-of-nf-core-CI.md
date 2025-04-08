@@ -52,9 +52,13 @@ We first [launched instances manually, based on demand](https://github.com/nf-co
 This was a good first step, removing a bit of the pressure during hackathons.
 But this didn't scale well, and we soon reached the runner limit also outside of hackathons.
 
-This lead us to search for automatically scaling solutions. After a bit of trial we had a working solution using [philips-labs/terraform-aws-github-runner/](https://github.com/philips-labs/terraform-aws-github-runner). By using the "infrastructure as code" tool called [terraform](https://www.terraform.io/) we were able to set up AWS Lambda functions, that automatically create and destroy AWS EC2 instances with predefined configurations.
+### AWS instances managed by terraform
+
+This lead us to search for automatically scaling solutions. After a bit of trial we had a working solution using [philips-labs/terraform-aws-github-runner/](https://github.com/philips-labs/terraform-aws-github-runner).
+By using the "infrastructure as code" tool called [terraform](https://www.terraform.io/) we were able to set up AWS Lambda functions, that automatically create and destroy AWS EC2 instances with predefined configurations.
 These functions were triggered by a webhook to GitHub to trigger these functions.
-It did the automatic scaling for us, and we didn't need to add any extra setting files in the different nf-core repositories, like other approaches would have required. We just needed to install the specific GitHub App in the repositories and specify `runs-on: "self-hosted"{:yml}` instead of `runs-on: "ubuntu-latest"{:yml}` in the GitHub Actions workflows.
+It did the automatic scaling for us, and we didn't need to add any extra setting files in the different nf-core repositories, like other approaches would have required.
+We just needed to install the specific GitHub App in the repositories and specify `runs-on: "self-hosted"{:yml}` instead of `runs-on: "ubuntu-latest"{:yml}` in the GitHub Actions workflows.
 During the Barcelona hackathon in September 2024 we even managed to [add GPU-enabled runners](https://github.com/nf-core/actions-runners/pull/10), which allowed us to test and add GPU-based tools like [parabricks](https://docs.nvidia.com/clara/parabricks/latest/index.html) to nf-core/modules and nf-core pipelines (e.g. [nf-core/sarek](https://github.com/nf-core/sarek/issues/1853)).
 
 However, the self-hosted runners solution hasn't been perfect.
