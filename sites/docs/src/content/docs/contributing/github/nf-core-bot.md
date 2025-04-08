@@ -12,6 +12,8 @@ You trigger these commands by adding a comment to the Pull Request starting with
 Not all repositories have the same commands available.
 :::
 
+# Available commands
+
 ## `@nf-core-bot fix linting`
 
 Anytime prettier complains about some incorrect code formatting, you can trigger a fix by adding the following comment to the Pull Request:
