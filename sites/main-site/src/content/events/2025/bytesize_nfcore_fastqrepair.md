@@ -3,9 +3,9 @@ title: "Bytesize: nf-core/fastqrepair"
 subtitle: Tommaso Mazza, IRCCS Casa Sollievo della Sofferenza - Mendel
 type: talk
 startDate: "2025-05-13"
-startTime: "13:00+01:00"
+startTime: "13:00+02:00"
 endDate: "2025-05-13"
-endTime: "13:30+01:00"
+endTime: "13:30+02:00"
 locations:
   - name: Online
     links:
