@@ -54,7 +54,7 @@ But this didn't scale well, and we soon reached the runner limit also outside of
 
 This lead us to search for automatically scaling solutions. After a bit of trial we had a working solution using [philips-labs/terraform-aws-github-runner/](https://github.com/philips-labs/terraform-aws-github-runner). By using the "infrastructure as code" tool called [terraform](https://www.terraform.io/) we were able to set up AWS Lambda functions, that automatically create and destroy AWS EC2 instances with predefined configurations.
 These functions were triggered by a webhook to GitHub to trigger these functions.
-It did the automatic scaling for us, and we didn't need to add any extra setting files in the different nf-core repositories, like other approaches would have required. We just needed to install the specific GitHub App in the repositories and specify `runs-on: "self-hosted"` instead of `runs-on: "ubuntu-latest"` in the GitHub Actions workflows.
+It did the automatic scaling for us, and we didn't need to add any extra setting files in the different nf-core repositories, like other approaches would have required. We just needed to install the specific GitHub App in the repositories and specify `runs-on: "self-hosted"{:yml}` instead of `runs-on: "ubuntu-latest"{:yml}` in the GitHub Actions workflows.
 During the Barcelona hackathon in September 2024 we even managed to [add GPU-enabled runners](https://github.com/nf-core/actions-runners/pull/10), which allowed us to test and add GPU-based tools like [parabricks](https://docs.nvidia.com/clara/parabricks/latest/index.html) to nf-core/modules and nf-core pipelines (e.g. [nf-core/sarek](https://github.com/nf-core/sarek/issues/1853)).
 
 However, the self-hosted runners solution hasn't been perfect.
@@ -78,13 +78,19 @@ Switching to the new solution was as simple as changing:
 ```
 
 And if we wanted to add GPU-enabled runners, we just specify a different runner in the workflow.
-Because we were already at it and because of the great effort by other nf-core members on adding `linux/arm64` containers to nf-core/modules, we also could quickly add ARM-based CI runners to the [nf-core/rnaseq pipeline tests](https://github.com/nf-core/rnaseq/pull/1530).
+RunsOn furthermore allowed us to quickly support the initiative to add `linux/arm64` containers to nf-core/modules,
+which was a great effort by other nf-core members, by adding a ARM-based runners to the tests, e.g. to the [nf-core/rnaseq pipeline tests](https://github.com/nf-core/rnaseq/pull/1530).
 
 An additional benefit compared to the previous terraform setup is that we now use spot instances, which are both cheaper and faster to start up.
 
-There were still some issues where the runners behaved differently compared to the GitHub-hosted runners.
+There were still some issues where the runners behaved differently compared to the GitHub-hosted runners:
 
-- We had problems accessing some public AWS resources (setting `aws.client.anonymous = true{:groovy}` in the `nextflow.config` fixed this)
+- We had problems accessing some public AWS resource. We fixed this by setting:
+
+```groovy title="nextflow.config"
+aws.client.anonymous = true
+```
+
 - Dependencies were missing for `setup-apptainer` (which was fixed by the [runsOn developer](https://github.com/runs-on/runs-on/releases/tag/v2.7.0)).
 
 But overall this new runner setup works really well.
