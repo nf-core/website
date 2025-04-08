@@ -96,10 +96,12 @@ This release added the option to split up the tests into multiple jobs using the
 Instead of running all tests one after the other, nf-test will now distribute the tests into multiple jobs and run them in parallel based on given maximum number of shards.
 This is especially useful for modules/subworkflows/pipelines that trigger a large number of tests.
 
-Let's look at the tests for the [FASTQC module](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test) as an example. This module contains 12 tests, e.g. `sarscov2 single-end [fastq]`,`sarscov2 paired-end [fastq]` and their stub versions (and it is also included in 2 subworkflows, which would get tested during an update).
-With sharding enabled, we can now run, for example, 4 shards/jobs in parallel, each with 3 tests and the tests from the subworkflows distributed over them.
-This greatly reduces the number of separate GitHub Actions runners that we need to launch,
-which helps with concurrency limits and the resulting queue time.
+Let's look at the tests for the [FASTQC module](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test) as an example.
+This module contains 12 tests, e.g. `sarscov2 single-end [fastq]`,`sarscov2 paired-end [fastq]` and their stub versions (and it is also included in 2 subworkflows, which would get tested during an update).
+Without sharding, we would run all 12 tests sequentially, which can take quite a while.
+With sharding, we can now run, for example, 4 shards/jobs in parallel, each with 3 tests and the tests from the subworkflows distributed over them.
+This will not lower the number of needed GitHub Actions runners, but we tackled that problem with self-hosted runners.
+Sharding will instead reduce the time it takes to run the tests for a single PR.
 
 To handle this scaling, we added [a sharding step](https://github.com/nf-core/modules/blob/master/.github/actions/get-shards/action.yml) to the CI workflows, that first gets the number of triggered tests by running nf-test in dry-run-mode.
 We then use this number to set the number of shards needed based on the number of tests and the `max_shard_size` parameter, which gives us a bit more control over the number of runners used and to avoid idle runners.
@@ -109,6 +111,6 @@ We tried to mitigate this by adding a summary of the tests in the GitHub Actions
 
 ### A different waiting game
 
-Both of these strategies already removed quite a bit of waiting time and hopefully in the future we can return to another hackathon tradition instead:
+Both of these strategies already removed quite a bit of waiting time and hopefully in the future we can return to another hackathon evergreen meme:
 
 ![Bernie Sanders meme with the caption: "I am once again asking for PR reviews"](../../../assets/images/blog/state-of-nf-core-CI/pr-review-bernie-meme.png)
