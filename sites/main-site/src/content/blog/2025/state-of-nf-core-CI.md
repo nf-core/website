@@ -3,7 +3,7 @@ title: "State of the nf-core CI"
 subtitle: "Run, CI, Run!"
 headerImage: "https://images.unsplash.com/photo-1643279614844-afb7200c0095"
 headerImageAlt: "A small child running between trees in a thick forest."
-pubDate: 2025-04-04T12:00:00+01:00
+pubDate: 2025-04-09T12:00:00+01:00
 authors:
   - "mashehu"
 label:
