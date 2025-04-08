@@ -33445,9 +33445,15 @@
               }
             },
             {
-              "model": {
+              "packaged_model": {
+                "type": "string",
+                "description": "string containing the name of a prepackaged Clair3 model full list of models and their descriptions is provided at https://github.com/HKU-BAL/Clair3?tab=readme-ov-file#pre-trained-models"
+              }
+            },
+            {
+              "user_model": {
                 "type": "directory",
-                "description": "collection of files used in a trained Clair3 model"
+                "description": "directory containing Clair3 model files"
               }
             },
             {
@@ -80080,7 +80086,8 @@
             {
               "\"bins/*\"": {
                 "type": "file",
-                "description": "bins"
+                "description": "A list of one or more bins in FASTA format for classification",
+                "pattern": "*.{fasta,fna,fas,fa}{,.gz}"
               }
             }
           ],
@@ -80092,9 +80099,10 @@
               }
             },
             {
-              "\"database/*\"": {
+              "db": {
                 "type": "file",
-                "description": "GTDB database"
+                "description": "Path to a directory containing a GDTB database, as uncompressed from from the 'full package' gtdbdtk_data.tar.gz file.\nYou can give the 'release<version number>' directory here.\nMust contain the 'metadata' subdirectory\n",
+                "pattern": "release[0-9]+/"
               }
             }
           ],
@@ -135569,6 +135577,217 @@
       }
     },
     {
+      "name": "plink2_hwe",
+      "path": "modules/nf-core/plink2/hwe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_hwe",
+        "description": "Filters plink bfiles or pfiles with maf filters",
+        "keywords": [
+          "plink2",
+          "filter",
+          "samples",
+          "variants",
+          "hwe",
+          "qualty"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK binary genotype table file or PLINK 2 binary genotype table file",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK extended MAP file or PLINK 2 variant information file",
+                "pattern": "*.{bim,pvar}"
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample information file or PLINK 2 sample information file",
+                "pattern": "*.{fam,psam}"
+              }
+            }
+          ],
+          [
+            {
+              "hwe": {
+                "type": "float",
+                "description": "Threshold to use for maf filtering"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "PLINK binary allelic genotype table",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bim": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bim": {
+                  "type": "file",
+                  "description": "PLINK extended map file",
+                  "pattern": "*.bim",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "fam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fam": {
+                  "type": "file",
+                  "description": "PLINK sample information file",
+                  "pattern": "*.fam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "pgen": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pgen": {
+                  "type": "file",
+                  "description": "PLINK 2 binary genotype table",
+                  "pattern": "*.pgen",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "pvar": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pvar": {
+                  "type": "file",
+                  "description": "PLINK 2 variant information file",
+                  "pattern": "*.pvar",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "psam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.psam": {
+                  "type": "file",
+                  "description": "PLINK 2 sample information file",
+                  "pattern": "*.psam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jodennehy"
+        ],
+        "maintainers": [
+          "@jodennehy"
+        ]
+      }
+    },
+    {
       "name": "plink2_indeppairwise",
       "path": "modules/nf-core/plink2/indeppairwise/meta.yml",
       "type": "module",
@@ -146245,6 +146464,439 @@
           "version": "2.3.0"
         }
       ]
+    },
+    {
+      "name": "ragtag_patch",
+      "path": "modules/nf-core/ragtag/patch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ragtag_patch",
+        "description": "Homology-based assembly patching: Make continuous joins and fill gaps in 'target.fa' using sequences from 'query.fa'",
+        "keywords": [
+          "assembly",
+          "consensus",
+          "ragtag",
+          "patch"
+        ],
+        "tools": [
+          {
+            "ragtag": {
+              "description": "Fast reference-guided genome assembly scaffolding",
+              "homepage": "https://github.com/malonge/RagTag/wiki",
+              "documentation": "https://github.com/malonge/RagTag/wiki",
+              "tool_dev_url": "https://github.com/malonge/RagTag",
+              "doi": "10.1186/s13059-022-02823-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:ragtag"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "target": {
+                "type": "file",
+                "description": "Target assembly",
+                "pattern": "*.{fasta,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Query assembly",
+                "pattern": "*.{fasta,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "exclude": {
+                "type": "file",
+                "description": "list of target sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "skip": {
+                "type": "file",
+                "description": "list of query sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "patch_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the patched assembly",
+                  "pattern": "*.patch.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "patch_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.agp": {
+                  "type": "file",
+                  "description": "AGP file defining how ragtag.patch.fasta is built",
+                  "pattern": "*.patch.agp"
+                }
+              }
+            ]
+          },
+          {
+            "patch_components_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.comps.fasta": {
+                  "type": "file",
+                  "description": "The split target assembly and the renamed query assembly combined into one FASTA file. This file contains all components in ragtag.patch.agp",
+                  "pattern": "*.comps.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "assembly_alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ragtag.patch.asm.*": {
+                  "type": "file",
+                  "description": "Assembly alignment files",
+                  "pattern": "*.ragtag.patch.asm.*"
+                }
+              }
+            ]
+          },
+          {
+            "target_splits_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ctg.agp": {
+                  "type": "file",
+                  "description": "An AGP file defining how the target assembly was split at gaps",
+                  "pattern": "*.ctg.agp"
+                }
+              }
+            ]
+          },
+          {
+            "target_splits_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ctg.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the target assembly split at gaps",
+                  "pattern": "*.ctg.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "qry_rename_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.rename.agp": {
+                  "type": "file",
+                  "description": "An AGP file defining the new names for query sequences",
+                  "pattern": "*.rename.agp"
+                }
+              }
+            ]
+          },
+          {
+            "qry_rename_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.rename.fasta": {
+                  "type": "file",
+                  "description": "A FASTA file with the original query sequence, but with new names",
+                  "pattern": "*.rename.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "stderr": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.err": {
+                  "type": "file",
+                  "description": "Standard error logging for all external RagTag commands",
+                  "pattern": "*.patch.err"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nschan"
+        ],
+        "maintainers": [
+          "@nschan"
+        ]
+      }
+    },
+    {
+      "name": "ragtag_scaffold",
+      "path": "modules/nf-core/ragtag/scaffold/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ragtag_scaffold",
+        "description": "Scaffolding is the process of ordering and orienting draft assembly (query)\nsequences into longer sequences. Gaps (stretches of \"N\" characters) are placed\nbetween adjacent query sequences to indicate the presence of unknown sequence.\nRagTag uses whole-genome alignments to a reference assembly to scaffold query sequences.\nRagTag does not alter input query sequence in any way and only orders and orients sequences, joining them with gaps.\n",
+        "keywords": [
+          "scaffolding",
+          "ragtag",
+          "assembly",
+          "genome"
+        ],
+        "tools": [
+          {
+            "ragtag": {
+              "description": "Fast reference-guided genome assembly scaffolding",
+              "homepage": "https://github.com/malonge/RagTag/wiki",
+              "documentation": "https://github.com/malonge/RagTag/wiki",
+              "tool_dev_url": "https://github.com/malonge/RagTag",
+              "doi": "10.1186/s13059-022-02823-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:ragtag"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "Assembly to be scaffolded",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Reference assembly",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "exclude": {
+                "type": "file",
+                "description": "list of target sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "skip": {
+                "type": "file",
+                "description": "list of query sequences to leave unplaced",
+                "pattern": "*.txt"
+              }
+            },
+            {
+              "hard_skip": {
+                "type": "file",
+                "description": "list of query headers to leave unplaced and exclude from 'chr0' ('-C')",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "corrected_assembly": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the patched assembly",
+                  "pattern": "*.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "corrected_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.agp": {
+                  "type": "file",
+                  "description": "agp file defining how corrected_assembly is built",
+                  "pattern": "*.agp"
+                }
+              }
+            ]
+          },
+          {
+            "corrected_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.stats": {
+                  "type": "file",
+                  "description": "Statistics on the scaffold",
+                  "pattern": "*.stats"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nschan"
+        ],
+        "maintainers": [
+          "@nschan"
+        ]
+      }
     },
     {
       "name": "rapidnj",
@@ -179963,6 +180615,94 @@
         ],
         "authors": [
           "@jiahang1234",
+          "@sofstam"
+        ],
+        "maintainers": [
+          "@sofstam"
+        ]
+      }
+    },
+    {
+      "name": "sylphtax_merge",
+      "path": "modules/nf-core/sylphtax/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sylphtax_merge",
+        "description": "Merge multiple taxonomic profiles from sylphtaxt/taxprof into a tsv table",
+        "keywords": [
+          "sylph",
+          "metagenomics",
+          "merge"
+        ],
+        "tools": [
+          {
+            "sylphtax": {
+              "description": "Integrating taxonomic information into the sylph metagenome profiler.",
+              "homepage": "https://github.com/bluenote-1577/sylph-tax?tab=readme-ov-file",
+              "documentation": "https://sylph-docs.github.io/sylph-tax/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "sylphtax_reports": {
+                "type": "file",
+                "description": "Output taxonomic profile from sylph-tax taxprof command.",
+                "pattern": "*.{sylphmpa}"
+              }
+            }
+          ],
+          [
+            {
+              "data_type": {
+                "type": "string",
+                "description": "Can be ANI, relative abundance, or sequence abundance."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Output profile with the merged taxonomic profiles in tsv format.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
           "@sofstam"
         ],
         "maintainers": [
