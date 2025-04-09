@@ -13,7 +13,7 @@ label:
 ## Introduction
 
 In order to scale the nf-core organisation, we make heavy use of automation.
-Every repository has a `.github/workflows/` directory with a set of YAML files that configure automated
+With the coming tools release, every repository will have a `.github/workflows/` directory with a set of YAML files that configure automated
 workflows using [GitHub Actions](https://github.com/features/actions).
 These do all kinds of things, the most visible being to run continuous integration (CI) tests every time
 you open a pull-request or push to `master`.
