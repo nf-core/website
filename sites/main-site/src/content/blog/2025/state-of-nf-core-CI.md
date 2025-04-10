@@ -121,7 +121,7 @@ We tried to mitigate this by adding a summary of the tests in the GitHub Actions
 
 Thanks to the work by [@GallVp](https://github.com/GallVp), [@sateeshperi](https://github.com/sateeshperi),
 [@edmundmiller](https://github.com/edmundmiller), [@adamrtalbot](https://github.com/adamrtalbot), [@mirpedrol](https://github.com/mirpedrol),
-[@maxulysse](https://github.com/maxulysse) and [@mashehu](https://github.com/mashehu)
+[@maxulysse](https://github.com/maxulysse), and [@mashehu](https://github.com/mashehu),
 we now have this dynamic sharding step in the CI workflows for
 [nf-core/modules](https://github.com/nf-core/modules/blob/ab281000d296e2a6ab4efceb14c1151bd3a326da/.github/actions/get-shards/action.yml) and in the
 upcoming [pipeline template](https://github.com/nf-core/tools/blob/ae7760bcff980809f6dabdcaa96209b60a3d2d5a/nf_core/pipeline-template/.github/actions/get-shards/action.yml) for nf-core/tools 3.3.0.
