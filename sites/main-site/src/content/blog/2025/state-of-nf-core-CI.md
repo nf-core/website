@@ -28,8 +28,8 @@ a lot of manual code checks and providing fast feedback to developers.
 Of course, when something works well, we tend to use it a lot.
 This is certainly true with GitHub actions and nf-core.
 
-An average pull-request in nf-core/modules can kick off up to 20 automated jobs,
-while pipelines like nf-core/viralrecon start 178 jobs per PR.
+An average pull-request in nf-core/modules can kick off up to 20 automated jobs.
+PRs for nf-core pipelines can start up even more jobs.
 The nf-core GitHub organisation has an allocation of 60 action runners
 (this already includes a double allocation for open source projects).
 
