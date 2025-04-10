@@ -1,6 +1,7 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import { remote_workflows as pipelines } from "@public/pipelines.json";
+import GitHubActionTrigger from "@components/GitHubActionTrigger.svelte";
 
 // sort pipelines by name
 pipelines.sort((a, b) => a.name.localeCompare(b.name));
@@ -154,11 +155,18 @@ pipelines.sort((a, b) => {
                         data-bs-placement="top">T push</th
                     >
                     <th
-                        colspan="4"
+                        colspan="2"
                         class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-validation plugin in nextflow.config"
+                        title="nf-validation plugin should not be in nextflow.config"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Plugins: nf-validation</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        title="nf-schema plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-schema</th
                     >
                     <th
                         colspan="4"
@@ -199,29 +207,32 @@ pipelines.sort((a, b) => {
                         );
                         return (
                             <tr class:list={[{ archived: pipeline.archived, collapse: pipeline.archived }]}>
-                                <td class="text-nowrap">
+                                <td class="text-nowrap d-flex align-items-center justify-content-between">
                                     {pipeline.name}
-                                    {pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-archive text-info"
-                                            title="archived"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length > 1 && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-check text-success"
-                                            title="released"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length === 1 && !pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-wrench text-warning"
-                                            title="under development"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
+                                    <span class="d-flex align-items-center">
+                                        {pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-archive text-info"
+                                                title="archived"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length > 1 && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-check text-success"
+                                                title="released"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length === 1 && !pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-wrench text-warning"
+                                                title="under development"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {/* <GitHubActionTrigger client:idle pipelineName={pipeline.name} /> */}
+                                    </span>
                                 </td>
                                 {/* Released */}
                                 {getCell(
@@ -442,34 +453,55 @@ pipelines.sort((a, b) => {
                                     "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}
+                                {
+                                    // nf-validation should be in the nextflow.config
+                                    getCell(
+                                        pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                            plugin.startsWith("nf-validation"),
+                                        )
+                                            ? 0
+                                            : 1,
+                                        pipeline.repository_url + "/blob/master/nextflow.config",
+                                        `nf-validation plugin not in nextflow.config in master`,
+                                    )
+                                }
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-validation"),
+                                    )
+                                        ? 0
+                                        : 1,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-validation plugin not in nextflow.config in dev",
+                                )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/master/nextflow.config",
-                                    `nf-validation plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-validation"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
+                                    `nf-schema plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
                                     " border-start ",
                                 )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/master/nextflow.config",
-                                    "nf-validation plugin must be pinned",
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-validation plugin in nextflow.config in dev",
+                                    "nf-schema plugin in nextflow.config in dev",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-validation plugin must be pinned",
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.master_nextflow_config_plugins?.some((plugin) =>
@@ -505,6 +537,9 @@ pipelines.sort((a, b) => {
                 }
             </tbody>
         </table>
+        <span class="text-muted archived show">
+            and {pipelines.filter((pipeline) => pipeline.archived).length} archived pipelines
+        </span>
     </div>
 
     <div class="btn-row">
@@ -512,24 +547,20 @@ pipelines.sort((a, b) => {
             class="btn btn-primary mb-5 ms-3"
             title="Refresh data via manual dispatch of GitHub Action (from the `main` branch) to update the pipelines.json file."
             data-bs-toggle="tooltip"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
+            href="https://github.com/nf-core/website/actions/workflows/build-json-files.yml"
             >Refresh data via GitHub Action</a
         >
         <a
             class="btn btn-outline-secondary mb-5 ms-3 show-archived"
             title="Show hidden archived pipelines"
             data-bs-toggle="collapse"
-            data-bs-target=".archived"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
-            >Show archived pipelines</a
+            data-bs-target=".archived">Show archived pipelines</a
         >
         <a
             class="btn btn-outline-secondary mb-5 ms-3 archived collapse hide-archived"
             title="Show hidden archived pipelines"
             data-bs-toggle="collapse"
-            data-bs-target=".archived"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
-            >Hide archived pipelines</a
+            data-bs-target=".archived">Hide archived pipelines</a
         >
     </div>
 </PageLayout>

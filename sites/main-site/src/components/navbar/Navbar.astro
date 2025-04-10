@@ -13,7 +13,7 @@ import Search from "@components/navbar/Search.svelte";
 import { findCurrentGroup } from "@utils/functions";
 import BlogPostLabel from "@components/navbar/BlogPostLabel.svelte";
 import type { SidebarEntry } from "@utils/types";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 
 export interface Props {
     navTocHeadings?: object[];
@@ -199,10 +199,10 @@ if (onGoingEvents?.length > 0) {
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/stickers/">Stickers</a></li>
                         <li><a class="dropdown-item" href="/governance/">Governance</a></li>
                         <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
-                        <li><a class="dropdown-item" href="/shop/">Shop</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="/publications/">Publications</a></li>
                         <li><a class="dropdown-item" href="/stats/">Statistics</a></li>

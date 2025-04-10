@@ -1,13 +1,20 @@
 ---
 import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
-import { getCollection, type CollectionEntry } from "astro:content";
-import { createLinkOrGroup } from "@utils/functions";
+import { getCollection, type CollectionEntry, render } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
     const api_reference: CollectionEntry<"api_reference">[] = await getCollection("api_reference");
-    const versions = [...new Set(api_reference.map((entry) => entry.id.split("/")[0]))].sort((a, b) => {
+
+    const versions = [
+        ...new Set(
+            api_reference.map((entry) => entry.filePath?.replace("src/content/api_reference/", "").split("/")[0]),
+        ),
+    ].sort((a, b) => {
+        if (!a || !b) {
+            return 0;
+        }
         const a_version = a.split(".").map((entry) => parseInt(entry));
         const b_version = b.split(".").map((entry) => parseInt(entry));
         for (let i = 0; i < a_version.length; i++) {
@@ -31,11 +38,15 @@ export async function getStaticPaths() {
         return 0;
     });
     let api_reference_path = api_reference.map((entry: CollectionEntry<"api_reference">) => {
-        const version = entry.id.split("/")[0];
+        const version = entry.filePath?.replace("src/content/api_reference/", "").split("/")[0];
         return {
             params: {
                 version: version,
-                slug: entry.id.replace(`${version}/`, "").replace(/\.md$/, "").replace("/index", "/"),
+                slug: entry.filePath
+                    ?.replace("src/content/api_reference/", "")
+                    .replace(`${version}/`, "")
+                    .replace(/\.md$/, "")
+                    .replace("/index", "/"),
             },
             props: { entry: entry, versions: versions },
         };
@@ -53,7 +64,8 @@ export async function getStaticPaths() {
 // 2. For your template, you can get the entry directly from the prop
 const { entry, versions } = Astro.props;
 const { version } = Astro.params;
-let { headings, Content } = await entry.render();
+let { headings, Content } = await render(entry);
+
 const title = "nf-core/tools API documentation";
 const version_tag_name = version === "latest" ? versions[1] : version;
 const subtitle =
@@ -62,7 +74,7 @@ const subtitle =
 
 const module_name = headings[0].text;
 headings.map((heading) => {
-    // remove everything inside paranthesis
+    // remove everything inside parenthesis
     heading.text = heading.text.replace(/\(.*\)/, "()");
     // remove module name from headings
     heading.text = heading.text.replace(module_name + ".", "");
@@ -75,7 +87,8 @@ headings.map((heading) => {
 // try to figure out github URL to the source file from file path
 let md_github_url = "";
 const base_url = `https://github.com/nf-core/tools/blob/${version_tag_name}/nf_core/`;
-const file_name = entry.id?.split("/").pop()?.replace(".md", ".py") || "";
+const file_name =
+    entry.filePath?.replace("src/content/api_reference/", "").split("/").pop()?.replace(".md", ".py") || "";
 // check if entry.id contains "pipeline_lint_tests"
 if (entry.id.includes("pipeline_lint_tests")) {
     md_github_url = base_url + "lint/" + file_name;
@@ -87,11 +100,17 @@ if (entry.id.includes("pipeline_lint_tests")) {
     md_github_url = base_url + file_name;
 }
 
-const tools: CollectionEntry<"api_reference">[] = await getCollection("api_reference");
+let tools: CollectionEntry<"api_reference">[] = await getCollection("api_reference");
+// replace tools.id with tools.filePath
+tools = tools.map((tool) => {
+    tool.id = tool.filePath?.replace("src/content/api_reference/", "").replace(/\.[^/.]+$/, "") || "";
+    return tool;
+});
+// filter tools by version_
 const versioned_tools = tools.filter((tool) => tool.id.split("/")[0] === version_tag_name);
 const section_names = [...new Set(versioned_tools.map((entry) => entry.id.split("/")[1]))];
 const sections: SidebarEntry[] = section_names
-    .filter((entry) => entry !== "index.md")
+    .filter((entry) => entry !== "index")
     .map((entry) => {
         return {
             type: "group",
@@ -100,14 +119,14 @@ const sections: SidebarEntry[] = section_names
             href:
                 "/docs/nf-core-tools/api_reference/" +
                 versioned_tools
-                    .find((tool_entry) => tool_entry.id.endsWith("index.md") && tool_entry.id.split("/")[1] === entry)
+                    .find((tool_entry) => tool_entry.id.endsWith("index") && tool_entry.id.split("/")[1] === entry)
                     ?.id.replace(/index\.md$/, "index")
                     .replace("docs/", ""),
             collapsed: true,
             isCurrent: false,
             entries: versioned_tools
                 .filter((child) => child.id.split("/")[1] === entry && child.id.split("/")[2])
-                .filter((child) => child.id.split("/")[2] !== "index.md")
+                .filter((child) => child.id.split("/")[2] !== "index")
                 .map((tool_entry) => {
                     if (tool_entry.id.split("/").length === 3) {
                         return {
@@ -141,7 +160,7 @@ const sections: SidebarEntry[] = section_names
                                               grand_child.id.split("/")[2] === tool_entry.id.split("/")[2] &&
                                               grand_child.id.split("/")[3],
                                       )
-                                      .filter((grand_child) => grand_child.id.split("/")[3] !== "index.md")
+                                      .filter((grand_child) => grand_child.id.split("/")[3] !== "index")
                                       .map((grand_child) => {
                                           return {
                                               type: "link",

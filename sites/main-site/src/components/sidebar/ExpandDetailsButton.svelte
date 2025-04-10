@@ -1,5 +1,5 @@
 <script lang="ts">
-    let expanded = false;
+    let expanded = $state(false);
 
     function ToggleDetails() {
         expanded = !expanded;
@@ -15,13 +15,13 @@
     }
 </script>
 
-<button class="btn btn-sm btn-outline-secondary expand-details w-100" on:click={ToggleDetails}>
+<button class="btn btn-sm btn-outline-secondary expand-details w-100" onclick={ToggleDetails}>
     <span class="">
         {#if expanded}
-            <i class="fa-solid fa-arrows-to-line" />
+            <i class="fa-solid fa-arrows-to-line"></i>
             Hide details
         {:else}
-            <i class="fa-solid fa-arrows-from-line" />
+            <i class="fa-solid fa-arrows-from-line"></i>
             Show details
         {/if}
     </span></button
