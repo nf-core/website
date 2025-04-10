@@ -37,7 +37,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] Make sure that all of the CI tests are passing - this is a special case PR and the tests are different
 - [ ] Request PR reviews from at least two people on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL)
   - [ ] If a first release, one review must come from one core or maintainers team member - feel free to ping the two teams on slack under your post on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
-  - [ ] For any other release, one review can come from a member of the same development team, but we strongly recommend the second to be an another external/neutral person from the community 
+  - [ ] For any other release, one review can come from a member of the same development team, but we strongly recommend the second to be an another external/neutral person from the community
   - [ ] While you're waiting for reviews on your PR, review another community member's release PR (see pinned message in the channel above)
 - [ ] Once your PR approved by two reviewers, merge your PR into `master`/`main`
   - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
