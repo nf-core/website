@@ -67286,6 +67286,88 @@
       ]
     },
     {
+      "name": "gatk4_modelsegments",
+      "path": "modules/nf-core/gatk4/modelsegments/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_modelsegments",
+        "description": "Converts copy number ratios (and optonally allelic counts) to copy number segments",
+        "keywords": [
+          "copyratios",
+          "modelsegments",
+          "gatk4"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "Denoised copy ratios in hdf5 format.",
+                "pattern": "*.{hdf5}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "segmented": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.modelFinal.seg": {
+                  "type": "file",
+                  "description": "Copy number ratio segments.",
+                  "pattern": "*.{seg}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
+    },
+    {
       "name": "gatk4_mutect2",
       "path": "modules/nf-core/gatk4/mutect2/meta.yml",
       "type": "module",
@@ -139999,6 +140081,14 @@
                 "type": "file",
                 "description": "fastq/fastq.gz file",
                 "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "custom_adapters": {
+                "type": "file",
+                "description": "Text file containing custom adapters"
               }
             }
           ]
