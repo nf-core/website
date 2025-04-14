@@ -21729,7 +21729,7 @@
                 }
               },
               {
-                "${meta.id}": {
+                "${prefix}": {
                   "type": "directory",
                   "description": "Output directory containing blast database files",
                   "pattern": "*"
@@ -21756,7 +21756,8 @@
         "maintainers": [
           "@joseespinosa",
           "@drpatelh",
-          "@vagkaratzas"
+          "@vagkaratzas",
+          "@DLBPointon"
         ]
       },
       "pipelines": [
@@ -86594,6 +86595,164 @@
       ]
     },
     {
+      "name": "hmmer_jackhmmer",
+      "path": "modules/nf-core/hmmer/jackhmmer/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hmmer_jackhmmer",
+        "description": "iterative searches to detect distant homologs by refining an HMM profile from hits",
+        "keywords": [
+          "HMM",
+          "homologs",
+          "iterative model refinement"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models",
+              "homepage": "http://hmmer.org/",
+              "documentation": "http://hmmer.org/documentation.html",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:hmmer3"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "One or multiple amino acid sequences from which to start building a model iteratively (one model per input sequence)",
+                "pattern": "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}"
+              }
+            },
+            {
+              "seqdb": {
+                "type": "file",
+                "description": "Database of sequences in FASTA format",
+                "pattern": "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}"
+              }
+            },
+            {
+              "write_align": {
+                "type": "boolean",
+                "description": "Flag to save optional alignment output. Specify with 'true' to save."
+              }
+            },
+            {
+              "write_target": {
+                "type": "boolean",
+                "description": "Flag to save optional per target summary. Specify with 'true' to save."
+              }
+            },
+            {
+              "write_domain": {
+                "type": "boolean",
+                "description": "Flag to save optional per domain summary. Specify with 'true' to save."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt.gz": {
+                  "type": "file",
+                  "description": "Human readable output summarizing hmmsearch results",
+                  "pattern": "*.{txt.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional multiple sequence alignment (MSA) in Stockholm format",
+                  "pattern": "*.{sto.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "target_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbl.gz": {
+                  "type": "file",
+                  "description": "Optional tabular (space-delimited) summary of per-target output",
+                  "pattern": "*.{tbl.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "domain_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.domtbl.gz": {
+                  "type": "file",
+                  "description": "Optional tabular (space-delimited) summary of per-domain output",
+                  "pattern": "*.{domtbl.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "hmtnote_annotate",
       "path": "modules/nf-core/hmtnote/annotate/meta.yml",
       "type": "module",
@@ -110857,6 +111016,85 @@
       ]
     },
     {
+      "name": "metaspace_converter",
+      "path": "modules/nf-core/metaspace/converter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metaspace_converter",
+        "description": "Export METASPACE datasets to AnnData and SpatialData objects",
+        "keywords": [
+          "anndata",
+          "spatialdata",
+          "metabolomics",
+          "mass spectrometry",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "metaspace_converter": {
+              "description": "Python package to download and convert datasets from the METASPACE knowledge base to common formats for single-cell and spatial omics analysis",
+              "homepage": "https://metaspace2020.github.io/metaspace-converter/",
+              "documentation": "https://metaspace2020.github.io/metaspace-converter/",
+              "tool_dev_url": "https://github.com/metaspace2020/metaspace-converter",
+              "licence": [
+                "Apache 2.0 license"
+              ],
+              "identifier": "biotools:metaspace"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "ds_id": {
+                "type": "string",
+                "description": "METASPACE dataset ID"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "AnnData_object": [
+              {
+                "AnnData_${ds_id}.h5ad": {
+                  "type": "file",
+                  "description": "AnnData object in .h5ad format. Obs are single pixels and vars are metabolites"
+                }
+              }
+            ]
+          },
+          {
+            "SpatialData_object": [
+              {
+                "SpatialData_${ds_id}.zarr": {
+                  "type": "directory",
+                  "description": "SpatialData format in .zarr format"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@bisho2122"
+        ],
+        "maintainers": [
+          "@bisho2122"
+        ]
+      }
+    },
+    {
       "name": "metaspace_download",
       "path": "modules/nf-core/metaspace/download/meta.yml",
       "type": "module",
@@ -113166,7 +113404,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -113323,7 +113562,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -113446,7 +113686,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -113550,7 +113791,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
