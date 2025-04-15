@@ -1,5 +1,5 @@
 ---
-title: 'nf-test: Example assertions'
+title: "nf-test: Example assertions"
 subtitle: A guide to using nf-test assertions for testing nf-core pipelines.
 parentWeight: 20
 ---
@@ -154,11 +154,19 @@ process {
 }
 ```
 
-## Additional cases:
+5. **Include a stub test and capture versions directly**: Each module should include a stub test. You can directly capture the content of the versions YAML file in the snapshot for better readability.
 
-4. **Handling Inconsistent md5sum**: Use specific content checks for elements with inconsistent md5sums.
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(
+        process.out,
+        path(process.out.versions[0]).yaml
+    ).match() }
+)
+```
 
-5. **Module/Process Truth Verification**: Ensure snapshots accurately reflect the module/process functionality.
+---
 
 # Different Types of Assertions
 
@@ -389,24 +397,24 @@ When using nf-test in conjunction with container technologies like Docker, Singu
 
 3. **Pin Software Versions:**
 
-   In your container definitions (Dockerfile, Singularity recipe, Conda environment file), explicitly pin software versions, including dependencies. This step reduces the chances of discrepancies due to updates or changes in the software.
+   In your container definitions (Dockerfile, Singularity recipe, Conda environment file), explicitly pin software versions, including dependencies. This practice reduces the likelihood of discrepancies due to unexpected updates or changes in software behavior.
 
 4. **Isolate Non-Deterministic Elements:**
 
-   Identify elements in your workflow that are inherently non-deterministic (such as timestamps or random number generation) and isolate them. Consider mocking these elements or designing your tests to accommodate such variability.
+   Identify and isolate elements in your workflow that are inherently non-deterministic (such as timestamps, random number generation, or file paths). Consider mocking these elements, using fixed seeds for random processes, or designing your tests to accommodate such variability through pattern matching or partial comparisons.
 
-5. **Reproducibility in Conda Environments:**
-   For Conda environments, use `conda list --explicit` to generate a list of all packages with their exact versions and builds. This approach ensures that you can recreate the identical environment later.
+5. **Ensure Reproducibility in Conda Environments:**
+   For Conda environments, use `conda list --explicit > environment.lock.yml` to generate a detailed list of all packages with their exact versions and builds. This approach ensures that you can recreate the identical environment later, minimizing test inconsistencies.
 
 6. **Review Container Caching Mechanisms:**
 
-   Be cautious with container caching mechanisms. Sometimes, cached layers in Docker might lead to using outdated versions of software or dependencies. Ensure that your caching strategy does not inadvertently introduce inconsistencies.
+   Be cautious with container caching mechanisms. Cached layers in Docker might lead to using outdated versions of software or dependencies. Consider using the `--no-cache` flag when building containers for testing, or implement a consistent caching strategy that doesn't compromise reproducibility.
 
-7. **Consistent Filesystem Paths:**
+7. **Maintain Consistent Filesystem Paths:**
 
-   Ensure that paths within the container and in the testing environment are consistent. Variations in paths can sometimes lead to unexpected behavior and hash mismatches.
+   Ensure that paths within the container and in the testing environment are consistent. Absolute vs. relative paths or variations in path structure can lead to unexpected behavior and hash mismatches. When possible, use path normalization in your test assertions.
 
-8. **Regularly Update and Test:**
-   Regularly update your containers and environment specifications, and re-run tests to ensure that everything continues to work as expected. This practice helps identify and resolve issues arising from environmental changes over time.
+8. **Implement Regular Updates and Testing:**
+   Regularly update your containers and environment specifications, and re-run tests to ensure continued functionality. Schedule periodic reviews of your test environment to identify and resolve issues arising from environmental changes, dependency updates, or modifications to underlying infrastructure.
 
-By following these tips, you can mitigate the risks of encountering mismatched hashes due to environment-specific issues in Docker, Singularity, and Conda when using nf-test for your Nextflow pipelines.
+By following these guidelines, you can significantly reduce the risks of encountering mismatched hashes and other environment-specific issues when using nf-test with Docker, Singularity, and Conda in your Nextflow pipelines.
