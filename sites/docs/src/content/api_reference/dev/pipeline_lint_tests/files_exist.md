@@ -19,7 +19,6 @@ Files that _must_ be present:
 .gitattributes
 .gitignore
 .nf-core.yml
-.editorconfig
 .prettierignore
 .prettierrc.yml
 .github/.dockstore.yml
@@ -29,7 +28,9 @@ Files that _must_ be present:
 .github/ISSUE_TEMPLATE/feature_request.yml
 .github/PULL_REQUEST_TEMPLATE.md
 .github/workflows/branch.yml
-.github/workflows/ci.yml
+.github/workflows/nf-test.yml
+.github/actions/get-shards/action.yml
+.github/actions/nf-test/action.yml
 .github/workflows/linting_comment.yml
 .github/workflows/linting.yml
 [LICENSE, LICENSE.md, LICENCE, LICENCE.md]  # NB: British / American spelling
@@ -50,7 +51,9 @@ docs/README.md
 docs/usage.md
 nextflow_schema.json
 nextflow.config
+nf-test.config
 README.md
+tests/default.nf.test
 ```
 
 Files that _should_ be present:
@@ -62,6 +65,7 @@ conf/base.config
 conf/igenomes.config
 .github/workflows/awstest.yml
 .github/workflows/awsfulltest.yml
+ro-crate-metadata.json
 ```
 
 Files that _must not_ be present, due to being renamed or removed in the template:

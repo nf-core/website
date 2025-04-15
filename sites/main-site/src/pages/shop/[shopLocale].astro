@@ -1,6 +1,6 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import { spreadshopLocales } from '../../config';
+import PageLayout from "@layouts/PageLayout.astro";
+import { spreadshopLocales } from "../../config";
 
 export function getStaticPaths() {
     return spreadshopLocales.map((data) => ({
@@ -22,21 +22,21 @@ const domain = Astro.props.domain;
     mainpage_container={false}
 >
     <div id="nf-core-shop-embed" class="text-center mt-5">
-        <a href={'https://nf-core.myspreadshop.' + domain}>nf-core</a>
+        <a href={"https://nf-core.myspreadshop." + domain}>nf-core</a>
     </div>
     <script define:vars={{ shopLocale, domain }}>
         window.spread_shop_config = {
-            shopName: 'nf-core',
+            shopName: "nf-core",
             locale: shopLocale,
-            prefix: 'https://nf-core.myspreadshop.' + domain,
-            baseId: 'nf-core-shop-embed',
+            prefix: "https://nf-core.myspreadshop." + domain,
+            baseId: "nf-core-shop-embed",
         };
     </script>
 
     <script
         is:inline
         type="text/javascript"
-        src={'https://nf-core.myspreadshop.' + domain + '/shopfiles/shopclient/shopclient.nocache.js'}></script>
+        src={"https://nf-core.myspreadshop." + domain + "/shopfiles/shopclient/shopclient.nocache.js"}></script>
 </PageLayout>
 
 <style is:global>
@@ -69,7 +69,7 @@ const domain = Astro.props.domain;
         background-color: var(--bs-green) !important;
         border-color: var(--bs-green) !important;
     }
-    a[href='#!/about'] {
+    a[href="#!/about"] {
         display: none !important;
     }
 </style>

@@ -1,4 +1,4 @@
-# nf_core.schema
+# nf_core.pipelines.schema
 
 Code to deal with pipeline JSON Schema
 
@@ -178,3 +178,5 @@ Returns: Number of parameters found
 
 Extra validation command for linting.
 Checks that the schema “$id”, “title” and “description” attributes match the pipeline config.
+
+### `nf_core.pipelines.schema.strip_required(node){:python}`
