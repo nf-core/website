@@ -195,7 +195,6 @@ assertAll(
 )
 ```
 
----
 
 # Different Types of Assertions
 
