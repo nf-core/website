@@ -25605,10 +25605,29 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "annotation_dir": {
-                "type": "file",
-                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n",
-                "pattern": "*.{vcf,vcf.gz}"
+                "type": "directory",
+                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "prescored_dir": {
+                "type": "directory",
+                "description": "Path to folder containing prescored files.\nThis folder contains the uncompressed files that would otherwise be in data/prescored/${GENOME_BUILD}_${VERSION}/ folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
               }
             }
           ]
@@ -144560,14 +144579,16 @@
               "intervals": {
                 "type": "file",
                 "description": "BED file of target intervals, generated from IntervalFile.R\n",
-                "pattern": "{*.bed,*.txt}"
+                "pattern": "{*.bed,*.txt}",
+                "ontologies": []
               }
             },
             {
               "coverage": {
                 "type": "file",
                 "description": "Coverage file generated from Coverage.R",
-                "pattern": "*.txt"
+                "pattern": "*.txt",
+                "ontologies": []
               }
             }
           ],
@@ -144575,7 +144596,8 @@
             {
               "normal_db": {
                 "type": "file",
-                "description": "normal pannel database"
+                "description": "normal pannel database",
+                "ontologies": []
               }
             }
           ],
@@ -144593,9 +144615,8 @@
             "pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing copy number plots\n",
-                  "pattern": "*.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144611,9 +144632,8 @@
             "local_optima_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing local optima plots\n",
-                  "pattern": "*_local_optima.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144629,9 +144649,8 @@
             "seg": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Tab-delimited file containing segmentation results\n",
-                  "pattern": "*_dnacopy.seg"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144647,9 +144666,8 @@
             "genes_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing gene copy number calls. Optional\n",
-                  "pattern": "*_genes.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144665,20 +144683,12 @@
             "amplification_pvalues_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "*_amplification_pvalues.csv": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
-                }
-              },
-              {
-                "ues_csv": {
                   "type": "file",
                   "description": "CSV file containing amplification p-values. Optional\n",
                   "pattern": "*_amplification_pvalues.csv"
@@ -144690,9 +144700,8 @@
             "vcf_gz": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "GZipped VCF file containing SNV calls. Optional\n",
-                  "pattern": "*.vcf.gz"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144708,9 +144717,8 @@
             "variants_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing SNV calls. Optional\n",
-                  "pattern": "*_variants.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144726,9 +144734,8 @@
             "loh_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing LOH calls. Optional\n",
-                  "pattern": "*_loh.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144744,9 +144751,8 @@
             "chr_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing chromosome plots. Optional\n",
-                  "pattern": "*_chromosomes.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144762,9 +144768,8 @@
             "segmentation_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing segmentation plots. Optional\n",
-                  "pattern": "*_segmentation.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144799,7 +144804,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -191490,6 +191500,12 @@
               "formula": {
                 "type": "string",
                 "description": "(Mandatory) R formula string used for modeling, e.g. '~ treatment + (1 | sample_number)'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional) Literal string passed to `limma::makeContrasts`, e.g. 'treatmenthND6 - treatmentmCherry'."
               }
             }
           ],
