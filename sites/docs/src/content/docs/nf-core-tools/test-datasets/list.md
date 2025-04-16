@@ -9,6 +9,11 @@ parentWeight: 30
 The `nf-core test-datasets list` subcommand provides functionality to list existing test-datasets for pipelines and modules from the commandline.
 Test-datasets are hosted on the on the [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) github repository.
 
+:::note
+Not all files found on github can be listed with this subcommand.
+Some auxiliary files like `README`, or `LICENSE` as well as all files starting with `.` are always ignored.
+:::
+
 ## Listing a file tree
 
 The following example lists the first entries of the file tree with test inputs for a pipeline (cut off after 25 lines of output).
@@ -21,6 +26,10 @@ head: 25
 -->
 
 ![`nf-core test-datasets list -b mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+
+:::note
+To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
+:::
 
 ## Output options
 
