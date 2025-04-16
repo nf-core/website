@@ -7,9 +7,8 @@ parentWeight: 30
 ---
 
 <!-- RICH-CODEX
-working_dir: tmp/nf-core-test-datasets
+working_dir: tmp/nf-core-nextbigthing
+head: 25
 -->
-
-![`nf-core subworkflows list remote`](/images/tools/nf-core-subworkflows-list-remote.svg)
 
 ![`nf-core test-datasets list-branches`](/images/tools/nf-core-test-datasets-list-branches.svg)
