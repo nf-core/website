@@ -14,7 +14,9 @@ Test-datasets are hosted on the on the [nf-core/test-datasets](https://github.co
 The subcommand fetches, filters and searches through the filetree of a branch of the test-dataset repository and prompts the user for a query, that can be tab-autocompleted.
 A branch name to limit the search to is always required and if none is specified via the command line, the user will also be prompted to enter one.
 
-![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-subworkflows-list-remote.svg)
+<!-- TODO: Does this work? This command prompts for user input and does not terminate. -->
+
+![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-test-datasets-search.svg)
 
 :::note
 Not all files found on github can be listed and searched with this subcommand.
