@@ -30,4 +30,4 @@ To improve usability branch names can be entered via a tab-autocompletion. Alter
 ## Reusing the test-data files
 
 As output from this subcommand, download links can be obtained or include statements for use in nf-core pipelines generated.
-This uses the same flags `-u / --generate-dl-url` and `-p / --generate-nf-path` as the [`list` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
+This uses the same flags `-u`/`--generate-dl-url` and `-p`/`--generate-nf-path` as the [`list` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
