@@ -85279,7 +85279,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -85299,7 +85299,7 @@
             {
               "graph": {
                 "type": "directory",
-                "description": "Path to prepared graph with hla-la --acton prepareGraph"
+                "description": "Path to prepared graph with hla-la --action prepareGraph"
               }
             }
           ]
@@ -85310,13 +85310,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}": {
+                "results": {
                   "type": "file",
-                  "description": "results file"
+                  "description": "Results file"
                 }
               }
             ]
@@ -85326,14 +85326,31 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction.bam*": {
+                "results/extraction.bam": {
                   "type": "file",
                   "description": "Extraction BAM file",
-                  "pattern": "*.bam*"
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "extraction_index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "results/extraction.bam.bai": {
+                  "type": "file",
+                  "description": "Extraction BAM index file",
+                  "pattern": "*.bam.bai"
                 }
               }
             ]
@@ -85343,11 +85360,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction_mapped.bam": {
+                "results/extraction_mapped.bam": {
                   "type": "file",
                   "description": "Extraction mapped BAM file",
                   "pattern": "*.bam"
@@ -85360,11 +85377,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction_unmapped.bam": {
+                "results/extraction_unmapped.bam": {
                   "type": "file",
                   "description": "Extraction unmapped BAM file",
                   "pattern": "*.bam"
@@ -85377,11 +85394,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/hla/*": {
+                "results/hla/*": {
                   "type": "file",
                   "description": "HLA results"
                 }
@@ -85393,11 +85410,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/*.fastq": {
+                "results/*.fastq": {
                   "type": "file",
                   "description": "Fastq file",
                   "pattern": "*.fastq"
@@ -85410,11 +85427,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/reads_per_level.txt": {
+                "results/reads_per_level.txt": {
                   "type": "file",
                   "description": "Reads per level",
                   "pattern": "*.txt"
@@ -85427,14 +85444,31 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/remapped_with_a.bam*": {
+                "results/remapped_with_a.bam": {
                   "type": "file",
                   "description": "Remapped BAM file",
-                  "pattern": "*.bam*"
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "remapped_index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "results/remapped_with_a.bam.bai": {
+                  "type": "file",
+                  "description": "Remapped BAM index file",
+                  "pattern": "*.bam.bai"
                 }
               }
             ]
