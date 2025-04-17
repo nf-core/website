@@ -2030,7 +2030,13 @@
         "maintainers": [
           "@Juke34"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_spmergeannotations",
@@ -3942,6 +3948,203 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "amulety_antiberty",
+      "path": "modules/nf-core/amulety/antiberty/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_antiberty",
+        "description": "A module to create antiberty embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_antiberty.tsv": {
+                  "type": "file",
+                  "description": "TSV with Antiberty embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
+      "name": "amulety_translate",
+      "path": "modules/nf-core/amulety/translate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_translate",
+        "description": "A module to translate BCR and TCR nucleotide sequences into amino acid sequences using amulety and igblast.",
+        "keywords": [
+          "immunology",
+          "BCR",
+          "TCR",
+          "translation",
+          "amino acid",
+          "nucleotide",
+          "immunoinformatics"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          },
+          {
+            "igblast": {
+              "description": "A tool for immunoglobulin (IG, BCR) and T cell receptor (TCR) V domain sequences blasting.",
+              "homepage": "https://www.ncbi.nlm.nih.gov/igblast/",
+              "documentation": "https://ncbi.github.io/igblast/",
+              "tool_dev_url": "https://github.com/ncbi/igblast",
+              "doi": "10.1093/nar/gkt382",
+              "licence": [
+                "United States Government Work"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "reference_igblast": {
+                "type": "file",
+                "description": "Built reference databases for igblast"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "repertoire_translated": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_translated.tsv": {
+                  "type": "file",
+                  "description": "TSV with BCR/TCR amino acid sequences in AIRR rearrangement format",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
     },
     {
       "name": "angsd_contamination",
@@ -12023,6 +12226,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         },
@@ -12317,6 +12524,10 @@
         {
           "name": "raredisease",
           "version": "2.4.0"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -14045,7 +14256,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "bcftools_pluginsetgt",
@@ -15053,6 +15270,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -17722,6 +17943,10 @@
           "version": "dev"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "tfactivity",
           "version": "dev"
         },
@@ -18386,6 +18611,10 @@
         {
           "name": "radseq",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "ssds",
@@ -21697,7 +21926,7 @@
                 }
               },
               {
-                "${meta.id}": {
+                "${prefix}": {
                   "type": "directory",
                   "description": "Output directory containing blast database files",
                   "pattern": "*"
@@ -21724,7 +21953,8 @@
         "maintainers": [
           "@joseespinosa",
           "@drpatelh",
-          "@vagkaratzas"
+          "@vagkaratzas",
+          "@DLBPointon"
         ]
       },
       "pipelines": [
@@ -23906,7 +24136,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "hgtseq",
@@ -23922,7 +24152,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -24610,7 +24840,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "radseq",
@@ -25467,10 +25697,29 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "annotation_dir": {
-                "type": "file",
-                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n",
-                "pattern": "*.{vcf,vcf.gz}"
+                "type": "directory",
+                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "prescored_dir": {
+                "type": "directory",
+                "description": "Path to folder containing prescored files.\nThis folder contains the uncompressed files that would otherwise be in data/prescored/${GENOME_BUILD}_${VERSION}/ folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
               }
             }
           ]
@@ -26244,6 +26493,10 @@
           "version": "dev"
         },
         {
+          "name": "hlatyping",
+          "version": "2.1.0"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -26293,7 +26546,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -33445,9 +33698,15 @@
               }
             },
             {
-              "model": {
+              "packaged_model": {
+                "type": "string",
+                "description": "string containing the name of a prepackaged Clair3 model full list of models and their descriptions is provided at https://github.com/HKU-BAL/Clair3?tab=readme-ov-file#pre-trained-models"
+              }
+            },
+            {
+              "user_model": {
                 "type": "directory",
-                "description": "collection of files used in a trained Clair3 model"
+                "description": "directory containing Clair3 model files"
               }
             },
             {
@@ -40944,10 +41203,6 @@
           "version": "1.0.0"
         },
         {
-          "name": "hlatyping",
-          "version": "2.0.0"
-        },
-        {
           "name": "isoseq",
           "version": "2.0.0"
         },
@@ -40994,10 +41249,6 @@
         {
           "name": "rnasplice",
           "version": "1.0.4"
-        },
-        {
-          "name": "rnavar",
-          "version": "1.0.0"
         },
         {
           "name": "scnanoseq",
@@ -42289,7 +42540,18 @@
               "bam": {
                 "type": "file",
                 "description": "BAM/CRAM/SAM file",
-                "pattern": "*.{bam,cram,sam}"
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
               }
             }
           ],
@@ -42298,7 +42560,12 @@
               "fasta": {
                 "type": "file",
                 "description": "OPTIONAL FASTA reference file",
-                "pattern": "*.{fasta,fna,fa}"
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1332"
+                  }
+                ]
               }
             }
           ],
@@ -42307,7 +42574,12 @@
               "fai": {
                 "type": "file",
                 "description": "OPTIONAL FASTA index file from samtools faidx",
-                "pattern": "*.{fai}"
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1332"
+                  }
+                ]
               }
             }
           ],
@@ -51402,6 +51674,10 @@
           "version": "dev"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         },
@@ -51722,6 +51998,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -55282,7 +55562,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "genomeannotator",
@@ -55318,7 +55598,7 @@
         },
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "liverctanalysis",
@@ -55430,7 +55710,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -57537,13 +57817,7 @@
         "maintainers": [
           "@sruthipsuresh"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "fastquorum",
-          "version": "1.1.0"
-        }
-      ]
+      }
     },
     {
       "name": "fgbio_zipperbams",
@@ -60063,6 +60337,209 @@
       }
     },
     {
+      "name": "fusioncatcher_build",
+      "path": "modules/nf-core/fusioncatcher/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fusioncatcher_build",
+        "description": "Build references for fusioncatcher",
+        "keywords": [
+          "references",
+          "fusions",
+          "rna"
+        ],
+        "tools": [
+          {
+            "fusioncatcher": {
+              "description": "Build genome for fusioncatcher",
+              "homepage": "https://github.com/ndaniel/fusioncatcher/",
+              "documentation": "https://github.com/ndaniel/fusioncatcher/blob/master/doc/manual.md",
+              "tool_dev_url": "https://github.com/ndaniel/fusioncatcher/",
+              "doi": "10.1101/011650",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "reference": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "file",
+                  "description": "Diretory containing the fusioncatcher reference files"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "fusioncatcher_fusioncatcher",
+      "path": "modules/nf-core/fusioncatcher/fusioncatcher/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fusioncatcher_fusioncatcher",
+        "description": "FusionCatcher searches for novel/known somatic fusion genes, translocations, and chimeras in RNA-seq data",
+        "keywords": [
+          "fusion",
+          "rna",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "fusioncatcher": {
+              "description": "FusionCatcher searches for novel/known somatic fusion genes, translocations, and chimeras in RNA-seq data",
+              "homepage": "https://github.com/ndaniel/fusioncatcher",
+              "documentation": "https://github.com/ndaniel/fusioncatcher/wiki",
+              "tool_dev_url": "https://github.com/ndaniel/fusioncatcher",
+              "doi": "10.1101/011650v1",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:fusioncatcher"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastqs": {
+                "type": "list",
+                "description": "A list of input fastq files",
+                "pattern": "*.{fastq,fq}.gz"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Directory containing fusioncatcher reference files"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fusions": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.fusion-genes.txt": {
+                  "type": "file",
+                  "description": "The detected fusions in the input files",
+                  "pattern": "*.fusion-genes.txt"
+                }
+              }
+            ]
+          },
+          {
+            "summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.summary.txt": {
+                  "type": "file",
+                  "description": "The generated summary",
+                  "pattern": "*.summary.txt"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "The Fusioncatcher log",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "galah",
       "path": "modules/nf-core/galah/meta.yml",
       "type": "module",
@@ -61932,7 +62409,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -62440,7 +62917,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -62573,7 +63050,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -63501,7 +63978,13 @@
           "@hseabolt",
           "@maxulysse"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "gatk4_composestrtablefile",
@@ -63921,7 +64404,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -66175,7 +66658,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -66276,7 +66759,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -66474,7 +66957,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -66890,7 +67373,7 @@
       "pipelines": [
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -66899,10 +67382,6 @@
         {
           "name": "rnafusion",
           "version": "3.0.2"
-        },
-        {
-          "name": "rnavar",
-          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -67267,7 +67746,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -67278,6 +67757,88 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "gatk4_modelsegments",
+      "path": "modules/nf-core/gatk4/modelsegments/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_modelsegments",
+        "description": "Converts copy number ratios (and optonally allelic counts) to copy number segments",
+        "keywords": [
+          "copyratios",
+          "modelsegments",
+          "gatk4"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "counts": {
+                "type": "file",
+                "description": "Denoised copy ratios in hdf5 format.",
+                "pattern": "*.{hdf5}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "segmented": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.modelFinal.seg": {
+                  "type": "file",
+                  "description": "Copy number ratio segments.",
+                  "pattern": "*.{seg}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
     },
     {
       "name": "gatk4_mutect2",
@@ -69346,7 +69907,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -69924,7 +70485,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -74980,7 +75541,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -80080,7 +80641,8 @@
             {
               "\"bins/*\"": {
                 "type": "file",
-                "description": "bins"
+                "description": "A list of one or more bins in FASTA format for classification",
+                "pattern": "*.{fasta,fna,fas,fa}{,.gz}"
               }
             }
           ],
@@ -80092,9 +80654,10 @@
               }
             },
             {
-              "\"database/*\"": {
+              "db": {
                 "type": "file",
-                "description": "GTDB database"
+                "description": "Path to a directory containing a GDTB database, as uncompressed from from the 'full package' gtdbdtk_data.tar.gz file.\nYou can give the 'release<version number>' directory here.\nMust contain the 'metadata' subdirectory\n",
+                "pattern": "release[0-9]+/"
               }
             }
           ],
@@ -80945,7 +81508,7 @@
         },
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "isoseq",
@@ -81025,7 +81588,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -86246,6 +86809,164 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "hmmer_jackhmmer",
+      "path": "modules/nf-core/hmmer/jackhmmer/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hmmer_jackhmmer",
+        "description": "iterative searches to detect distant homologs by refining an HMM profile from hits",
+        "keywords": [
+          "HMM",
+          "homologs",
+          "iterative model refinement"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models",
+              "homepage": "http://hmmer.org/",
+              "documentation": "http://hmmer.org/documentation.html",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:hmmer3"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "One or multiple amino acid sequences from which to start building a model iteratively (one model per input sequence)",
+                "pattern": "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}"
+              }
+            },
+            {
+              "seqdb": {
+                "type": "file",
+                "description": "Database of sequences in FASTA format",
+                "pattern": "*.{fasta,fna,faa,fa,fasta.gz,fna.gz,faa.gz,fa.gz}"
+              }
+            },
+            {
+              "write_align": {
+                "type": "boolean",
+                "description": "Flag to save optional alignment output. Specify with 'true' to save."
+              }
+            },
+            {
+              "write_target": {
+                "type": "boolean",
+                "description": "Flag to save optional per target summary. Specify with 'true' to save."
+              }
+            },
+            {
+              "write_domain": {
+                "type": "boolean",
+                "description": "Flag to save optional per domain summary. Specify with 'true' to save."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt.gz": {
+                  "type": "file",
+                  "description": "Human readable output summarizing hmmsearch results",
+                  "pattern": "*.{txt.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sto.gz": {
+                  "type": "file",
+                  "description": "Optional multiple sequence alignment (MSA) in Stockholm format",
+                  "pattern": "*.{sto.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "target_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbl.gz": {
+                  "type": "file",
+                  "description": "Optional tabular (space-delimited) summary of per-target output",
+                  "pattern": "*.{tbl.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "domain_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.domtbl.gz": {
+                  "type": "file",
+                  "description": "Optional tabular (space-delimited) summary of per-domain output",
+                  "pattern": "*.{domtbl.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "hmtnote_annotate",
@@ -95499,7 +96220,13 @@
         "maintainers": [
           "@sofstam"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kmcp_index",
@@ -95602,7 +96329,13 @@
         "maintainers": [
           "@sofstam"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "kmcp_merge",
@@ -99817,6 +100550,256 @@
           "version": "1.5.0"
         }
       ]
+    },
+    {
+      "name": "links",
+      "path": "modules/nf-core/links/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "links",
+        "description": "LINKS is a genomics application for scaffolding genome assemblies with long reads,\nsuch as those produced by Oxford Nanopore Technologies Ltd. \nIt can be used to scaffold high-quality draft genome assemblies with any long sequences \n(eg. ONT reads, PacBio reads, other draft genomes, etc). \nIt is also used to scaffold contig pairs linked by ARCS/ARKS.\nThis module is for LINKS >=2.0.0 and does not support MPET input.\n",
+        "keywords": [
+          "scaffold",
+          "long-reads",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "links": {
+              "description": "Long Interval Nucleotide K-mer Scaffolder",
+              "homepage": "https://www.bcgsc.ca/resources/software/links",
+              "documentation": "https://github.com/bcgsc/LINKS",
+              "tool_dev_url": "https://github.com/bcgsc/LINKS",
+              "doi": "10.1186/s13742-015-0076-3",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "(Multi-)fasta file containing the draft assembly",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "fastq file(s) containing the long reads to be used for scaffolding",
+                "pattern": "*.{fq,fastq,fq.gz,fastq.gz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "text file; Logs execution time / errors / pairing stats.",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "pairing_distribution": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.pairing_distribution.csv": {
+                  "type": "file",
+                  "description": "comma-separated file; 1st column is the calculated distance\nfor each pair (template) with reads that assembled logically\nwithin the same contig. 2nd column is the number of pairs at\nthat distance.\n",
+                  "pattern": "*.pairing_distribution.csv"
+                }
+              }
+            ]
+          },
+          {
+            "pairing_issues": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`  \n"
+                }
+              },
+              {
+                "*.pairing_issues": {
+                  "type": "file",
+                  "description": "text file; Lists all pairing issues encountered between contig\npairs and illogical/out-of-bounds pairing.\n",
+                  "pattern": "*.pairing_issues"
+                }
+              }
+            ]
+          },
+          {
+            "scaffolds_csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.scaffolds": {
+                  "type": "file",
+                  "description": "comma-separated file; containing the new scaffold(s)",
+                  "pattern": "*.scaffolds"
+                }
+              }
+            ]
+          },
+          {
+            "scaffolds_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.scaffolds.fa": {
+                  "type": "file",
+                  "description": "fasta file of the new scaffold sequence",
+                  "pattern": "*.scaffolds.fa"
+                }
+              }
+            ]
+          },
+          {
+            "bloom": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.bloom": {
+                  "type": "file",
+                  "description": "Bloom filter created by shredding the -f input\ninto k-mers of size -k\n",
+                  "pattern": "*.bloom"
+                }
+              }
+            ]
+          },
+          {
+            "scaffolds_graph": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.gv": {
+                  "type": "file",
+                  "description": "scaffold graph (for visualizing merges), can be rendered \nin neato, graphviz, etc\n",
+                  "pattern": "*.gv"
+                }
+              }
+            ]
+          },
+          {
+            "assembly_correspondence": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.assembly_correspondence.tsv": {
+                  "type": "file",
+                  "description": "correspondence file lists the scaffold ID,\ncontig ID, original_name, #linking kmer pairs,\nlinks ratio, gap or overlap\n",
+                  "pattern": "*.assembly_correspondence.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "simplepair_checkpoint": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.simplepair_checkpoint.tsv": {
+                  "type": "file",
+                  "description": "checkpoint file, contains info to rebuild datastructure for .gv graph",
+                  "pattern": "*.simplepair_checkpoint.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "tigpair_checkpoint": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.tigpair_checkpoint.tsv": {
+                  "type": "file",
+                  "description": "if -b BASNAME.tigpair_checkpoint.tsv is present, \nLINKS will skip the kmer pair extraction and contig pairing stages.\nDelete this file to force LINKS to start at the beginning.\nThis file can be used to: \n1) quickly test parameters (-l min. links / -a min. links ratio), \n2) quickly recover from crash,\n3) explore very large kmer spaces,\n4) scaffold with output of ARCS\n",
+                  "pattern": "*.tigpair_checkpoint.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nschan"
+        ],
+        "maintainers": [
+          "@nschan"
+        ]
+      }
     },
     {
       "name": "lissero",
@@ -110249,6 +111232,85 @@
       ]
     },
     {
+      "name": "metaspace_converter",
+      "path": "modules/nf-core/metaspace/converter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metaspace_converter",
+        "description": "Export METASPACE datasets to AnnData and SpatialData objects",
+        "keywords": [
+          "anndata",
+          "spatialdata",
+          "metabolomics",
+          "mass spectrometry",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "metaspace_converter": {
+              "description": "Python package to download and convert datasets from the METASPACE knowledge base to common formats for single-cell and spatial omics analysis",
+              "homepage": "https://metaspace2020.github.io/metaspace-converter/",
+              "documentation": "https://metaspace2020.github.io/metaspace-converter/",
+              "tool_dev_url": "https://github.com/metaspace2020/metaspace-converter",
+              "licence": [
+                "Apache 2.0 license"
+              ],
+              "identifier": "biotools:metaspace"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "ds_id": {
+                "type": "string",
+                "description": "METASPACE dataset ID"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "AnnData_object": [
+              {
+                "AnnData_${ds_id}.h5ad": {
+                  "type": "file",
+                  "description": "AnnData object in .h5ad format. Obs are single pixels and vars are metabolites"
+                }
+              }
+            ]
+          },
+          {
+            "SpatialData_object": [
+              {
+                "SpatialData_${ds_id}.zarr": {
+                  "type": "directory",
+                  "description": "SpatialData format in .zarr format"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@bisho2122"
+        ],
+        "maintainers": [
+          "@bisho2122"
+        ]
+      }
+    },
+    {
       "name": "metaspace_download",
       "path": "modules/nf-core/metaspace/download/meta.yml",
       "type": "module",
@@ -112558,7 +113620,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -112715,7 +113778,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -112838,7 +113902,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -112942,7 +114007,8 @@
           "@atrigila"
         ],
         "maintainers": [
-          "@atrigila"
+          "@atrigila",
+          "@lpantano"
         ]
       },
       "pipelines": [
@@ -115321,6 +116387,10 @@
           "version": "dev"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         },
@@ -117191,7 +118261,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "funcscan",
@@ -117223,7 +118293,7 @@
         },
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "isoseq",
@@ -117403,7 +118473,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -124999,7 +126069,7 @@
       "pipelines": [
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -133102,6 +134172,10 @@
           "version": "3.18.0"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sammyseq",
           "version": "dev"
         },
@@ -135471,6 +136545,209 @@
       }
     },
     {
+      "name": "plink2_filter",
+      "path": "modules/nf-core/plink2/filter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_filter",
+        "description": "Filters plink bfiles or pfiles with filters such as maf or var",
+        "keywords": [
+          "plink2",
+          "filter",
+          "samples",
+          "variants",
+          "missingness",
+          "qualty"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK binary genotype table file or PLINK 2 binary genotype table file",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK extended MAP file or PLINK 2 variant information file",
+                "pattern": "*.{bim,pvar}"
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample information file or PLINK 2 sample information file",
+                "pattern": "*.{fam,psam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "PLINK binary allelic genotype table",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bim": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bim": {
+                  "type": "file",
+                  "description": "PLINK extended map file",
+                  "pattern": "*.bim",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "fam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fam": {
+                  "type": "file",
+                  "description": "PLINK sample information file",
+                  "pattern": "*.fam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "pgen": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pgen": {
+                  "type": "file",
+                  "description": "PLINK 2 binary genotype table",
+                  "pattern": "*.pgen",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "pvar": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pvar": {
+                  "type": "file",
+                  "description": "PLINK 2 variant information file",
+                  "pattern": "*.pvar",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "psam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.psam": {
+                  "type": "file",
+                  "description": "PLINK 2 sample information file",
+                  "pattern": "*.psam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jodennehy"
+        ],
+        "maintainers": [
+          "@jodennehy"
+        ]
+      }
+    },
+    {
       "name": "plink2_het",
       "path": "modules/nf-core/plink2/het/meta.yml",
       "type": "module",
@@ -135565,6 +136842,217 @@
         ],
         "maintainers": [
           "@RuthEberhardt"
+        ]
+      }
+    },
+    {
+      "name": "plink2_hwe",
+      "path": "modules/nf-core/plink2/hwe/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plink2_hwe",
+        "description": "Filters plink bfiles or pfiles with maf filters",
+        "keywords": [
+          "plink2",
+          "filter",
+          "samples",
+          "variants",
+          "hwe",
+          "qualty"
+        ],
+        "tools": [
+          {
+            "plink2": {
+              "description": "Whole genome association analysis toolset, designed to perform a range\nof basic, large-scale analyses in a computationally efficient manner\n",
+              "homepage": "http://www.cog-genomics.org/plink/2.0/",
+              "documentation": "http://www.cog-genomics.org/plink/2.0/general_usage",
+              "doi": "10.1186/s13742-015-0047-8",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK binary genotype table file or PLINK 2 binary genotype table file",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK extended MAP file or PLINK 2 variant information file",
+                "pattern": "*.{bim,pvar}"
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample information file or PLINK 2 sample information file",
+                "pattern": "*.{fam,psam}"
+              }
+            }
+          ],
+          [
+            {
+              "hwe": {
+                "type": "float",
+                "description": "Threshold to use for maf filtering"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bed": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "PLINK binary allelic genotype table",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bim": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bim": {
+                  "type": "file",
+                  "description": "PLINK extended map file",
+                  "pattern": "*.bim",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "fam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fam": {
+                  "type": "file",
+                  "description": "PLINK sample information file",
+                  "pattern": "*.fam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "pgen": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pgen": {
+                  "type": "file",
+                  "description": "PLINK 2 binary genotype table",
+                  "pattern": "*.pgen",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "pvar": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pvar": {
+                  "type": "file",
+                  "description": "PLINK 2 variant information file",
+                  "pattern": "*.pvar",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "psam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.psam": {
+                  "type": "file",
+                  "description": "PLINK 2 sample information file",
+                  "pattern": "*.psam",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": []
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jodennehy"
+        ],
+        "maintainers": [
+          "@jodennehy"
         ]
       }
     },
@@ -139579,6 +141067,14 @@
                 "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
               }
             }
+          ],
+          [
+            {
+              "custom_adapters": {
+                "type": "file",
+                "description": "Text file containing custom adapters"
+              }
+            }
           ]
         ],
         "output": [
@@ -143175,14 +144671,16 @@
               "intervals": {
                 "type": "file",
                 "description": "BED file of target intervals, generated from IntervalFile.R\n",
-                "pattern": "{*.bed,*.txt}"
+                "pattern": "{*.bed,*.txt}",
+                "ontologies": []
               }
             },
             {
               "coverage": {
                 "type": "file",
                 "description": "Coverage file generated from Coverage.R",
-                "pattern": "*.txt"
+                "pattern": "*.txt",
+                "ontologies": []
               }
             }
           ],
@@ -143190,7 +144688,8 @@
             {
               "normal_db": {
                 "type": "file",
-                "description": "normal pannel database"
+                "description": "normal pannel database",
+                "ontologies": []
               }
             }
           ],
@@ -143208,9 +144707,8 @@
             "pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing copy number plots\n",
-                  "pattern": "*.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143226,9 +144724,8 @@
             "local_optima_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing local optima plots\n",
-                  "pattern": "*_local_optima.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143244,9 +144741,8 @@
             "seg": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Tab-delimited file containing segmentation results\n",
-                  "pattern": "*_dnacopy.seg"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143262,9 +144758,8 @@
             "genes_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing gene copy number calls. Optional\n",
-                  "pattern": "*_genes.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143280,20 +144775,12 @@
             "amplification_pvalues_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "*_amplification_pvalues.csv": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
-                }
-              },
-              {
-                "ues_csv": {
                   "type": "file",
                   "description": "CSV file containing amplification p-values. Optional\n",
                   "pattern": "*_amplification_pvalues.csv"
@@ -143305,9 +144792,8 @@
             "vcf_gz": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "GZipped VCF file containing SNV calls. Optional\n",
-                  "pattern": "*.vcf.gz"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143323,9 +144809,8 @@
             "variants_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing SNV calls. Optional\n",
-                  "pattern": "*_variants.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143341,9 +144826,8 @@
             "loh_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing LOH calls. Optional\n",
-                  "pattern": "*_loh.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143359,9 +144843,8 @@
             "chr_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing chromosome plots. Optional\n",
-                  "pattern": "*_chromosomes.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143377,9 +144860,8 @@
             "segmentation_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing segmentation plots. Optional\n",
-                  "pattern": "*_segmentation.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -143414,7 +144896,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -146245,6 +147732,439 @@
           "version": "2.3.0"
         }
       ]
+    },
+    {
+      "name": "ragtag_patch",
+      "path": "modules/nf-core/ragtag/patch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ragtag_patch",
+        "description": "Homology-based assembly patching: Make continuous joins and fill gaps in 'target.fa' using sequences from 'query.fa'",
+        "keywords": [
+          "assembly",
+          "consensus",
+          "ragtag",
+          "patch"
+        ],
+        "tools": [
+          {
+            "ragtag": {
+              "description": "Fast reference-guided genome assembly scaffolding",
+              "homepage": "https://github.com/malonge/RagTag/wiki",
+              "documentation": "https://github.com/malonge/RagTag/wiki",
+              "tool_dev_url": "https://github.com/malonge/RagTag",
+              "doi": "10.1186/s13059-022-02823-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:ragtag"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "target": {
+                "type": "file",
+                "description": "Target assembly",
+                "pattern": "*.{fasta,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Query assembly",
+                "pattern": "*.{fasta,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "exclude": {
+                "type": "file",
+                "description": "list of target sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "skip": {
+                "type": "file",
+                "description": "list of query sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "patch_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the patched assembly",
+                  "pattern": "*.patch.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "patch_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.agp": {
+                  "type": "file",
+                  "description": "AGP file defining how ragtag.patch.fasta is built",
+                  "pattern": "*.patch.agp"
+                }
+              }
+            ]
+          },
+          {
+            "patch_components_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.comps.fasta": {
+                  "type": "file",
+                  "description": "The split target assembly and the renamed query assembly combined into one FASTA file. This file contains all components in ragtag.patch.agp",
+                  "pattern": "*.comps.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "assembly_alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ragtag.patch.asm.*": {
+                  "type": "file",
+                  "description": "Assembly alignment files",
+                  "pattern": "*.ragtag.patch.asm.*"
+                }
+              }
+            ]
+          },
+          {
+            "target_splits_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ctg.agp": {
+                  "type": "file",
+                  "description": "An AGP file defining how the target assembly was split at gaps",
+                  "pattern": "*.ctg.agp"
+                }
+              }
+            ]
+          },
+          {
+            "target_splits_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.ctg.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the target assembly split at gaps",
+                  "pattern": "*.ctg.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "qry_rename_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.rename.agp": {
+                  "type": "file",
+                  "description": "An AGP file defining the new names for query sequences",
+                  "pattern": "*.rename.agp"
+                }
+              }
+            ]
+          },
+          {
+            "qry_rename_fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.rename.fasta": {
+                  "type": "file",
+                  "description": "A FASTA file with the original query sequence, but with new names",
+                  "pattern": "*.rename.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "stderr": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.patch.err": {
+                  "type": "file",
+                  "description": "Standard error logging for all external RagTag commands",
+                  "pattern": "*.patch.err"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nschan"
+        ],
+        "maintainers": [
+          "@nschan"
+        ]
+      }
+    },
+    {
+      "name": "ragtag_scaffold",
+      "path": "modules/nf-core/ragtag/scaffold/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ragtag_scaffold",
+        "description": "Scaffolding is the process of ordering and orienting draft assembly (query)\nsequences into longer sequences. Gaps (stretches of \"N\" characters) are placed\nbetween adjacent query sequences to indicate the presence of unknown sequence.\nRagTag uses whole-genome alignments to a reference assembly to scaffold query sequences.\nRagTag does not alter input query sequence in any way and only orders and orients sequences, joining them with gaps.\n",
+        "keywords": [
+          "scaffolding",
+          "ragtag",
+          "assembly",
+          "genome"
+        ],
+        "tools": [
+          {
+            "ragtag": {
+              "description": "Fast reference-guided genome assembly scaffolding",
+              "homepage": "https://github.com/malonge/RagTag/wiki",
+              "documentation": "https://github.com/malonge/RagTag/wiki",
+              "tool_dev_url": "https://github.com/malonge/RagTag",
+              "doi": "10.1186/s13059-022-02823-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:ragtag"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "Assembly to be scaffolded",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Reference assembly",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "exclude": {
+                "type": "file",
+                "description": "list of target sequences to ignore",
+                "pattern": "*.txt"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "skip": {
+                "type": "file",
+                "description": "list of query sequences to leave unplaced",
+                "pattern": "*.txt"
+              }
+            },
+            {
+              "hard_skip": {
+                "type": "file",
+                "description": "list of query headers to leave unplaced and exclude from 'chr0' ('-C')",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "corrected_assembly": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.fasta": {
+                  "type": "file",
+                  "description": "FASTA file containing the patched assembly",
+                  "pattern": "*.fasta"
+                }
+              }
+            ]
+          },
+          {
+            "corrected_agp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.agp": {
+                  "type": "file",
+                  "description": "agp file defining how corrected_assembly is built",
+                  "pattern": "*.agp"
+                }
+              }
+            ]
+          },
+          {
+            "corrected_stats": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.stats": {
+                  "type": "file",
+                  "description": "Statistics on the scaffold",
+                  "pattern": "*.stats"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nschan"
+        ],
+        "maintainers": [
+          "@nschan"
+        ]
+      }
     },
     {
       "name": "rapidnj",
@@ -151511,6 +153431,93 @@
       }
     },
     {
+      "name": "s4pred_runmodel",
+      "path": "modules/nf-core/s4pred/runmodel/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "s4pred_runmodel",
+        "description": "Prediction of a protein's secondary structure from its amino acid sequence",
+        "keywords": [
+          "protein",
+          "secondary structure",
+          "prediction"
+        ],
+        "tools": [
+          {
+            "s4pred": {
+              "description": "Accurate prediction of a protein's secondary structure from its amino acid sequence",
+              "homepage": "https://github.com/psipred/s4pred",
+              "documentation": "https://github.com/psipred/s4pred",
+              "tool_dev_url": "https://github.com/psipred/s4pred",
+              "doi": "10.1093/bioinformatics/btab491",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "protein FASTA file containing one or more amino acid sequences to predict their respective secondary structures",
+                "pattern": "*.{fasta,fa,fas,fna,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "preds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "A folder with all the prediction outputs",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "sageproteomics_sage",
       "path": "modules/nf-core/sageproteomics/sage/meta.yml",
       "type": "module",
@@ -153543,7 +155550,7 @@
         },
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "rnadnavar",
@@ -153849,6 +155856,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -154247,11 +156258,11 @@
       "pipelines": [
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -154440,7 +156451,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "mag",
@@ -154460,7 +156471,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "pangenome",
@@ -154496,7 +156507,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -155149,10 +157160,6 @@
           "version": "2.2.0"
         },
         {
-          "name": "oncoanalyser",
-          "version": "1.0.0"
-        },
-        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -155178,7 +157185,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -155452,7 +157459,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -155852,7 +157859,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -156209,7 +158216,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "hicar",
@@ -156233,7 +158240,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -156901,7 +158908,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "pacvar",
@@ -156941,7 +158948,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -157168,7 +159175,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -157460,6 +159467,10 @@
           "version": "dev"
         },
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "cutandrun",
           "version": "3.2.2"
         },
@@ -157473,7 +159484,7 @@
         },
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "phaseimpute",
@@ -170860,6 +172871,10 @@
       },
       "pipelines": [
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sarek",
           "version": "3.5.1"
         },
@@ -171027,6 +173042,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
         {
           "name": "sarek",
           "version": "3.5.1"
@@ -174892,7 +176911,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralintegration",
@@ -175015,7 +177034,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "references",
@@ -175043,7 +177062,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scrnaseq",
@@ -175111,7 +177130,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "star_starsolo",
@@ -179971,6 +181996,94 @@
       }
     },
     {
+      "name": "sylphtax_merge",
+      "path": "modules/nf-core/sylphtax/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sylphtax_merge",
+        "description": "Merge multiple taxonomic profiles from sylphtaxt/taxprof into a tsv table",
+        "keywords": [
+          "sylph",
+          "metagenomics",
+          "merge"
+        ],
+        "tools": [
+          {
+            "sylphtax": {
+              "description": "Integrating taxonomic information into the sylph metagenome profiler.",
+              "homepage": "https://github.com/bluenote-1577/sylph-tax?tab=readme-ov-file",
+              "documentation": "https://sylph-docs.github.io/sylph-tax/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "sylphtax_reports": {
+                "type": "file",
+                "description": "Output taxonomic profile from sylph-tax taxprof command.",
+                "pattern": "*.{sylphmpa}"
+              }
+            }
+          ],
+          [
+            {
+              "data_type": {
+                "type": "string",
+                "description": "Can be ANI, relative abundance, or sequence abundance."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Output profile with the merged taxonomic profiles in tsv format.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sofstam"
+        ],
+        "maintainers": [
+          "@sofstam"
+        ]
+      }
+    },
+    {
       "name": "sylphtax_taxprof",
       "path": "modules/nf-core/sylphtax/taxprof/meta.yml",
       "type": "module",
@@ -180342,7 +182455,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -180486,7 +182599,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -188075,6 +190188,10 @@
           "version": "1.0.4"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         }
@@ -188766,7 +190883,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -189475,6 +191592,12 @@
               "formula": {
                 "type": "string",
                 "description": "(Mandatory) R formula string used for modeling, e.g. '~ treatment + (1 | sample_number)'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional) Literal string passed to `limma::makeContrasts`, e.g. 'treatmenthND6 - treatmentmCherry'."
               }
             }
           ],
@@ -197884,7 +200007,7 @@
       "pipelines": [
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -198001,7 +200124,7 @@
       "pipelines": [
         {
           "name": "hlatyping",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -199442,6 +201565,10 @@
           "version": "3.18.0"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sammyseq",
           "version": "dev"
         },
@@ -200210,6 +202337,10 @@
           "version": "1.0.4"
         },
         {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
+        {
           "name": "sammyseq",
           "version": "dev"
         },
@@ -200478,6 +202609,10 @@
         {
           "name": "rnasplice",
           "version": "1.0.4"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -204412,6 +206547,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         }
       ]
     },
@@ -206127,6 +208266,10 @@
       },
       "pipelines": [
         {
+          "name": "scdownstream",
+          "version": "dev"
+        },
+        {
           "name": "scrnaseq",
           "version": "4.0.0"
         }
@@ -206759,7 +208902,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "fetchngs",
@@ -206776,6 +208919,10 @@
         {
           "name": "genomeqc",
           "version": "dev"
+        },
+        {
+          "name": "hlatyping",
+          "version": "2.1.0"
         },
         {
           "name": "isoseq",
@@ -206851,7 +208998,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "pacvar",
@@ -206928,6 +209075,10 @@
         {
           "name": "rnaseq",
           "version": "3.18.0"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -207112,7 +209263,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "fetchngs",
@@ -207129,6 +209280,10 @@
         {
           "name": "genomeqc",
           "version": "dev"
+        },
+        {
+          "name": "hlatyping",
+          "version": "2.1.0"
         },
         {
           "name": "isoseq",
@@ -207204,7 +209359,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "pacvar",
@@ -207281,6 +209436,10 @@
         {
           "name": "rnaseq",
           "version": "3.18.0"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -207444,6 +209603,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "drugresponseeval",
           "version": "1.0.0"
         },
@@ -207453,7 +209616,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "funcscan",
@@ -207462,6 +209625,10 @@
         {
           "name": "genomeassembler",
           "version": "1.0.1"
+        },
+        {
+          "name": "hlatyping",
+          "version": "2.1.0"
         },
         {
           "name": "lncpipe",
@@ -207520,6 +209687,10 @@
           "version": "1.3.1"
         },
         {
+          "name": "oncoanalyser",
+          "version": "2.0.0"
+        },
+        {
           "name": "pacvar",
           "version": "1.0.1"
         },
@@ -207574,6 +209745,10 @@
         {
           "name": "rnaseq",
           "version": "3.18.0"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sammyseq",
@@ -207715,10 +209890,6 @@
           "version": "1.5.0"
         },
         {
-          "name": "drop",
-          "version": "dev"
-        },
-        {
           "name": "epitopeprediction",
           "version": "2.3.1"
         },
@@ -207749,10 +209920,6 @@
         {
           "name": "mhcquant",
           "version": "2.6.0"
-        },
-        {
-          "name": "oncoanalyser",
-          "version": "1.0.0"
         },
         {
           "name": "proteinfold",
@@ -207901,6 +210068,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -208107,6 +210278,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.1.0"
+        },
         {
           "name": "sarek",
           "version": "3.5.1"
