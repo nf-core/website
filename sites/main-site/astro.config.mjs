@@ -9,7 +9,6 @@ import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
 import { defineConfig, envField, fontProviders } from 'astro/config';
-import { FontaineTransform } from 'fontaine';
 import { h } from 'hastscript';
 import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -52,7 +51,7 @@ export default defineConfig({
 	},
     experimental: {
         fonts: [{
-            provider: fontProviders.google(),
+            provider: fontProviders.fontsource(),
             name: "Inter",
             cssVariable: "--font-inter",
             fallbacks: ["sans-serif"]
