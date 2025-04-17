@@ -2,6 +2,12 @@
 import ParameterItem from "./ComponentParamItem.astro";
 
 const { params, depth = 0 } = Astro.props;
+
+interface Props {
+    params: any[];
+    depth?: number;
+}
+// console.log("params", params);
 ---
 
 {
