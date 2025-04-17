@@ -34,7 +34,7 @@ To improve usability branch names can be entered via a tab-autocompletion. Alter
 ## Output options
 
 As default output, a table listing the filenames is printed, but download urls or nextflow import statements to reuse the test files can also be generated.
-This is possible via the flags `-u / --generate-dl-url` and `-p / --generate-nf-path` as in the [`search` subcommand](/docs/nf-core-tools/test-datasets/search).
+This is possible via the flags `-u`/`--generate-dl-url` and `-p`/`--generate-nf-path` as in the [`search` subcommand](/docs/nf-core-tools/test-datasets/search).
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
