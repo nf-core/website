@@ -163633,20 +163633,20 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
               "input": {
                 "type": "file",
-                "description": "BAM/CRAM file from alignment",
+                "description": "BAM/CRAM file(s) from alignment",
                 "pattern": "*.{bam,cram}"
               }
             },
             {
               "input_index": {
                 "type": "file",
-                "description": "BAI/CRAI file from alignment",
+                "description": "BAI/CRAI file(s) from alignment",
                 "pattern": "*.{bai,crai}"
               }
             },
@@ -163929,21 +163929,28 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
-              "bam": {
+              "input": {
                 "type": "file",
-                "description": "BAM file.",
-                "pattern": "*.bam"
+                "description": "One or more BAM or CRAM files.",
+                "pattern": "*.{bam,cram}"
               }
             },
             {
-              "bai": {
+              "input_index": {
                 "type": "file",
-                "description": "BAI file",
-                "pattern": "*.bai"
+                "description": "Indices for the input files",
+                "pattern": "*.{bai,crai}"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "bed or interval_list file containing interval in the reference that will be used in the analysis. Only recommended for large WGS data, else the overhead may not be worth the additional parallelisation.",
+                "pattern": "*.{bed,interval_list}"
               }
             }
           ],
@@ -163985,17 +163992,10 @@
               }
             },
             {
-              "cosmic": {
+              "dbsnp": {
                 "type": "file",
                 "description": "Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "cosmic_tbi": {
-                "type": "file",
-                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz.tbi"
               }
             }
           ],
@@ -164007,14 +164007,7 @@
               }
             },
             {
-              "pon": {
-                "type": "file",
-                "description": "Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "pon_tbi": {
+              "dbsnp_tbi": {
                 "type": "file",
                 "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz.tbi"
@@ -164029,17 +164022,10 @@
               }
             },
             {
-              "dbsnp": {
+              "pon": {
                 "type": "file",
                 "description": "Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "dbsnp_tbi": {
-                "type": "file",
-                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz.tbi"
               }
             }
           ],
@@ -164051,10 +164037,40 @@
               }
             },
             {
-              "interval": {
+              "pon_tbi": {
                 "type": "file",
-                "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
-                "pattern": "*.{bed,interval_list}"
+                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+                "pattern": "*.vcf.gz.tbi"
+              }
+            }
+          ],
+          [
+            {
+              "meta8": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "cosmic": {
+                "type": "file",
+                "description": "Catalogue of Somatic Mutations in Cancer (COSMIC) VCF file.",
+                "pattern": "*.vcf.gz"
+              }
+            }
+          ],
+          [
+            {
+              "meta9": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "cosmic_tbi": {
+                "type": "file",
+                "description": "Index of the Catalogue of Somatic Mutations in Cancer (COSMIC) VCF file.",
+                "pattern": "*.vcf.gz.tbi"
               }
             }
           ]
@@ -164065,7 +164081,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -164082,7 +164098,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
                 }
               },
               {
