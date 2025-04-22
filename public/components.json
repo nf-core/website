@@ -120211,6 +120211,162 @@
       ]
     },
     {
+      "name": "nail_search",
+      "path": "modules/nf-core/nail/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "nail_search",
+        "description": "nail search is a fast and scalable tool for searching protein sequences against protein databases",
+        "keywords": [
+          "alignment",
+          "HMM",
+          "fasta",
+          "protein"
+        ],
+        "tools": [
+          {
+            "nail": {
+              "description": "Profile Hidden Markov Model (pHMM) biological sequence alignment tool",
+              "homepage": "https://github.com/TravisWheelerLab/nail",
+              "documentation": "https://github.com/TravisWheelerLab/nail",
+              "tool_dev_url": "https://github.com/TravisWheelerLab/nail",
+              "doi": "10.1101/2024.01.27.577580",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:nail"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Input query file",
+                "pattern": "*.{hmm,fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3949"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "target": {
+                "type": "file",
+                "description": "Input target file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "write_align": {
+                "type": "boolean",
+                "description": "Flag to save optional alignment output. Specify with 'true' to save."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{txt}"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{txt}"
+                }
+              }
+            ]
+          },
+          {
+            "target_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "results.tbl"
+                }
+              },
+              {
+                "${prefix}.tbl": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "results.tbl"
+                }
+              }
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ali"
+                }
+              },
+              {
+                "${prefix}.ali": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ali"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "nanocomp",
       "path": "modules/nf-core/nanocomp/meta.yml",
       "type": "module",
@@ -162472,7 +162628,7 @@
             ]
           },
           {
-            "index": [
+            "tbi": [
               {
                 "meta": {
                   "type": "map",
@@ -163690,7 +163846,7 @@
             ]
           },
           {
-            "vcf_tbi": [
+            "tbi": [
               {
                 "meta": {
                   "type": "file",
