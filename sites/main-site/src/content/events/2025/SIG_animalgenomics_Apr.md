@@ -7,10 +7,11 @@ startDate: "2025-04-16"
 startTime: "16:00+01:00"
 endDate: "2025-04-16"
 endTime: "17:00+01:00"
+youtubeEmbed: https://youtu.be/2oUtnGGmjss
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/2oUtnGGmjss
 ---
 
 # Integrated annotation and analysis of genomic features reveal new functional elements in the developing zebrafish and other models
