@@ -2,7 +2,7 @@
 title: nf-core/cellpainting kickoff
 category: pipelines
 slack: https://nfcore.slack.com/archives/C08H9MWG06T
-image: "/assets/images/events/2025/hackathon-may/cell-painting.jpg"
+image: "/assets/images/events/2025/hackathon-boston/cell-painting.jpg"
 image_alt: meme comparing traditional bioimage tools with OME tools for large scale processing
 leaders:
   kenibrewer:
