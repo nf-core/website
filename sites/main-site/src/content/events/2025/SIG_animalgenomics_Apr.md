@@ -1,6 +1,6 @@
 ---
 title: "#animal-genomics: April Meeting"
-subtitle: Damir Baranasic (MRC, London Institute of Medical Sciences)
+subtitle: Damir Baranasic (MRC, London Institute of Medical Sciences, UK)
 
 type: talk
 startDate: "2025-04-16"
