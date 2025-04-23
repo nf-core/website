@@ -3950,6 +3950,98 @@
       ]
     },
     {
+      "name": "amulety_antiberta2",
+      "path": "modules/nf-core/amulety/antiberta2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_antiberta2",
+        "description": "A module to create antiberta2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with antiberta2 embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
       "name": "amulety_antiberty",
       "path": "modules/nf-core/amulety/antiberty/meta.yml",
       "type": "module",
@@ -4013,9 +4105,101 @@
                 }
               },
               {
-                "*_antiberty.tsv": {
+                "*.tsv": {
                   "type": "file",
                   "description": "TSV with Antiberty embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
+      "name": "amulety_esm2",
+      "path": "modules/nf-core/amulety/esm2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_esm2",
+        "description": "A module to create esm2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with esm2 embeddings.",
                   "pattern": "*.tsv"
                 }
               }
@@ -197519,6 +197703,98 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "vuegen",
+      "path": "modules/nf-core/vuegen/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vuegen",
+        "description": "The VueGen nf-core module is designed to automate report generation from outputs produced by other modules, subworkflows, or pipelines. The module integrates the VueGen Python library and customizes it for compatibility with the Nextflow environment. VueGen automates the creation of reports from bioinformatics outputs, supporting formats like PDF, HTML, DOCX, ODT, PPTX, Reveal.js, Jupyter notebooks, and Streamlit web applications.\n",
+        "keywords": [
+          "reports",
+          "data-visualization",
+          "streamlit",
+          "quarto"
+        ],
+        "tools": [
+          {
+            "vuegen": {
+              "description": "The VueGen nf-core module is designed to automate report generation from outputs produced by other modules, subworkflows, or pipelines. The module integrates the VueGen Python library and customizes it for compatibility with the Nextflow environment. VueGen automates the creation of reports from bioinformatics outputs, supporting formats like PDF, HTML, DOCX, ODT, PPTX, Reveal.js, Jupyter notebooks, and Streamlit web applications.\n",
+              "homepage": "https://github.com/Multiomics-Analytics-Group/vuegen",
+              "documentation": "https://vuegen.readthedocs.io/",
+              "tool_dev_url": "https://github.com/Multiomics-Analytics-Group/vuegen",
+              "doi": "10.1101/2025.03.05.641152",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "input_type": {
+                "type": "string",
+                "pattern": "^(config|directory)$",
+                "description": "Specifies whether the input is a configuration file ('config') or a directory ('directory')."
+              }
+            }
+          ],
+          [
+            {
+              "input_path": {
+                "type": "file",
+                "description": "Path to the input directory or configuration file used by VueGen."
+              }
+            }
+          ],
+          [
+            {
+              "report_type": {
+                "type": "string",
+                "pattern": "^(streamlit|html|pdf|docx|odt|revealjs|pptx|jupyter)$",
+                "description": "The type of report to generate. Options include 'streamlit', 'html', 'pdf', 'docx', 'odt', 'revealjs', 'pptx', and 'jupyter'."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output_folder": [
+              {
+                "*report": {
+                  "type": "directory",
+                  "description": "The output directory containing the generated report files.\n- If `report_type` is 'streamlit', a 'streamlit_report' directory is created, containing subfolders for each section with Python scripts corresponding to the web application's pages.\n- For other report types, a 'quarto_report' directory is generated, containing a Quarto Markdown (qmd) file that structures the entire report.\n",
+                  "pattern": "*report"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sayalaruano",
+          "@enryH",
+          "@albsantosdel"
+        ],
+        "maintainers": [
+          "@sayalaruano",
+          "@enryH",
+          "@albsantosdel"
         ]
       }
     },
