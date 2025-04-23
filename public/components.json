@@ -4134,6 +4134,98 @@
       }
     },
     {
+      "name": "amulety_balmpaired",
+      "path": "modules/nf-core/amulety/balmpaired/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_balmpaired",
+        "description": "A module to create BALM paired embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with BALM paired embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
       "name": "amulety_esm2",
       "path": "modules/nf-core/amulety/esm2/meta.yml",
       "type": "module",
@@ -93598,6 +93690,199 @@
       }
     },
     {
+      "name": "jellyfish_count",
+      "path": "modules/nf-core/jellyfish/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jellyfish_count",
+        "description": "Efficiently counts k-mers from DNA sequencing reads using a fast, memory-efficient, parallelized algorithm",
+        "keywords": [
+          "k-mer",
+          "DNA",
+          "substrings"
+        ],
+        "tools": [
+          {
+            "jellyfish": {
+              "description": "Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence",
+              "homepage": "https://github.com/gmarcais/Jellyfish",
+              "documentation": "https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md",
+              "tool_dev_url": "https://github.com/gmarcais/Jellyfish",
+              "doi": "10.1093/bioinformatics/btr011",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:jellyfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Nucleotide sequences in FASTA format",
+                "pattern": "*.{fasta,fa,fna,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "kmer_length": {
+                "type": "integer",
+                "description": "k-mer size to use"
+              }
+            }
+          ],
+          [
+            {
+              "size": {
+                "type": "string",
+                "description": "Specifies the memory hash size (in bytes) to allocate for the k-mer counting hash table (e.g., '100M').\nA mean estimation could be carried with this formula: 'genome size + (genome size * coverage * kmer-length * error rate)'\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "jf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.jf": {
+                  "type": "file",
+                  "description": "Jellyfish binary k-mer database",
+                  "pattern": "*.jf"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "jellyfish_dump",
+      "path": "modules/nf-core/jellyfish/dump/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jellyfish_dump",
+        "description": "Dumps the results from a jellyfish binary file into a human readable format",
+        "keywords": [
+          "k-mer",
+          "DNA",
+          "substrings"
+        ],
+        "tools": [
+          {
+            "jellyfish": {
+              "description": "Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence",
+              "homepage": "https://github.com/gmarcais/Jellyfish",
+              "documentation": "https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md",
+              "tool_dev_url": "https://github.com/gmarcais/Jellyfish",
+              "doi": "10.1093/bioinformatics/btr011",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:jellyfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "jf": {
+                "type": "file",
+                "description": "Jellyfish binary k-mer database",
+                "pattern": "*.jf"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${extension}": {
+                  "type": "file",
+                  "description": "Human readable k-mer database in fasta format, or in 2-column space delimited format if the -c argument is provided",
+                  "pattern": "*.{fa,txt}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "jupyternotebook",
       "path": "modules/nf-core/jupyternotebook/meta.yml",
       "type": "module",
@@ -153457,6 +153742,132 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "rtgtools_svdecompose",
+      "path": "modules/nf-core/rtgtools/svdecompose/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rtgtools_svdecompose",
+        "description": "The svdecompose tool of RTG tools. It is used to decompose structural variants to BNDs",
+        "keywords": [
+          "svdecompose",
+          "structural",
+          "vcf",
+          "rtg-tools"
+        ],
+        "tools": [
+          {
+            "rtgtools": {
+              "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
+              "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
+              "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "A VCF with called variants to decompose variants",
+                "pattern": "*.{vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "The index of the VCF with called variants to decompose variants",
+                "pattern": "*.{vcf.gz.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file with SVTYPE BND variants",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Index of VCF file with SVTYPE BND variants",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
         ]
       }
     },
