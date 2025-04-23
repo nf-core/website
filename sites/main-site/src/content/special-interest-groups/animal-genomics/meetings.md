@@ -11,6 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+|             Jun 18, 2025 | Ángela Canovas (University of Guelph, Canada)                                                              | [June Meeting](/events/2025/SIG_animalgenomics_Jun)         |
 |             May 21, 2025 | James Reecy (Iowa State University, US)                                                              | [May Meeting](/events/2025/SIG_animalgenomics_May)         |
 |             Apr 16, 2025 | Damir Baranasic (MRC, London Institute of Medical Sciences, UK)                                                              | [April Meeting](/events/2025/SIG_animalgenomics_Apr)         |
 |             Mar 19, 2025 | Christopher Tuggle (Iowa State University, USA)                                                                              | [March Meeting](/events/2025/SIG_animalgenomics_Mar)         |
