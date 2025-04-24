@@ -206872,6 +206872,12 @@
               "type": "boolean",
               "description": "Skip deduplication of aligned reads\n"
             }
+          },
+          {
+            "use_gpu": {
+              "type": "boolean",
+              "description": "Use GPU for alignment\n"
+            }
           }
         ],
         "output": [
@@ -206950,7 +206956,8 @@
           "@sateeshperi"
         ],
         "maintainers": [
-          "@sateeshperi"
+          "@sateeshperi",
+          "@gallvp"
         ]
       },
       "pipelines": [
