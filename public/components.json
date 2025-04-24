@@ -38,7 +38,12 @@
               "scaffold": {
                 "type": "file",
                 "description": "Fasta file containing scaffold",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -47,7 +52,12 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA reference file",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -65,7 +75,8 @@
                 "*.abacas*": {
                   "type": "file",
                   "description": "List containing abacas output files\n[ 'test.abacas.bin', 'test.abacas.fasta', 'test.abacas.gaps',\n'test.abacas.gaps.tab', 'test.abacas.nucmer.delta',\n'test.abacas.nucmer.filtered.delta', 'test.abacas.nucmer.tiling',\n'test.abacas.tab', 'test.abacas.unused.contigs.out',\n'test.abacas.MULTIFASTA.fa' ]\n",
-                  "pattern": "*.{abacas}*"
+                  "pattern": "*.{abacas}*",
+                  "ontologies": []
                 }
               }
             ]
@@ -76,7 +87,8 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": []
                 }
               }
             ]
@@ -133291,6 +133303,89 @@
       }
     },
     {
+      "name": "picard_collectalignmentsummarymetrics",
+      "path": "modules/nf-core/picard/collectalignmentsummarymetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "picard_collectalignmentsummarymetrics",
+        "description": "Collect metrics about the alignment summary of a paired-end library.",
+        "keywords": [
+          "metrics",
+          "alignment",
+          "statistics",
+          "bam"
+        ],
+        "tools": [
+          {
+            "picard": {
+              "description": "Java tools for working with NGS data in the BAM format",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
+              "tool_dev_url": "https://github.com/broadinstitute/picard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:picard_tools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "metrics": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Standard alignment summary metrics",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mikefeixu",
+          "@FerriolCalvet"
+        ],
+        "maintainers": [
+          "@mikefeixu"
+        ]
+      }
+    },
+    {
       "name": "picard_collecthsmetrics",
       "path": "modules/nf-core/picard/collecthsmetrics/meta.yml",
       "type": "module",
@@ -178595,6 +178690,148 @@
           "version": "1.1.0"
         }
       ]
+    },
+    {
+      "name": "starfusion_build",
+      "path": "modules/nf-core/starfusion/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "starfusion_build",
+        "description": "Download STAR-fusion genome resource required to run STAR-Fusion caller",
+        "keywords": [
+          "download",
+          "starfusion",
+          "build"
+        ],
+        "tools": [
+          {
+            "star-fusion": {
+              "description": "Fusion calling algorithm for RNAseq data",
+              "homepage": "https://github.com/STAR-Fusion/",
+              "documentation": "https://github.com/STAR-Fusion/STAR-Fusion/wiki/installing-star-fusion",
+              "tool_dev_url": "https://github.com/STAR-Fusion/STAR-Fusion",
+              "doi": "10.1186/s13059-019-1842-9",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Metadata map",
+                "required": true
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input FASTA file",
+                "pattern": "*.{fa,fasta}",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Second metadata map",
+                "required": true
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Input GTF (Gene Transfer Format) file",
+                "pattern": "*.gtf",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "fusion_annot_lib": {
+                "type": "file",
+                "description": "Fusion annotation library file containing known fusion genes",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/topic_0203"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "dfam_species": {
+                "type": "string",
+                "description": "Dfam species name"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "reference": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Metadata map"
+                }
+              },
+              {
+                "${prefix}_genome_lib_build_dir": {
+                  "type": "directory",
+                  "description": "Genome library build directory",
+                  "pattern": "*_genome_lib_build_dir"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@praveenraj2018",
+          "@martings",
+          "@alanmmobbs93",
+          "@delfiterradas",
+          "@sofiromano"
+        ],
+        "maintainers": [
+          "@praveenraj2018"
+        ]
+      }
     },
     {
       "name": "stecfinder",
