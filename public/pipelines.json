@@ -1,6 +1,161 @@
 {
     "remote_workflows": [
         {
+            "id": 898820321,
+            "node_id": "R_kgDONZLo4Q",
+            "name": "abotyper",
+            "full_name": "nf-core/abotyper",
+            "private": false,
+            "description": "A pipeline for characterising the Human Blood Group and Red Cell Antigens using Oxford Nanopore third-generation sequencing data.",
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/abotyper",
+            "created_at": "2024-12-05T05:11:42Z",
+            "updated_at": "2025-04-24T06:54:41Z",
+            "pushed_at": "2025-04-24T06:52:21Z",
+            "homepage": null,
+            "size": 1454,
+            "stargazers_count": 0,
+            "watchers_count": 0,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": false,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 0,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 0,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [],
+            "visibility": "public",
+            "forks": 0,
+            "open_issues": 0,
+            "watchers": 0,
+            "default_branch": "dev",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": true,
+            "allow_rebase_merge": true,
+            "allow_auto_merge": true,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": false,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "disabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "disabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_non_provider_patterns": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 0,
+            "subscribers_count": 2,
+            "team_contributors_permission_push": false,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": false,
+            "team_core_permission_admin": false,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
+            "master_restrict_push": -1,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
+            "dev_restrict_push": -1,
+            "TEMPLATE_branch_exists": true,
+            "TEMPLATE_branch_protection_up_to_date": -1,
+            "TEMPLATE_branch_protection_status_checks": -1,
+            "TEMPLATE_branch_protection_required_reviews": -1,
+            "TEMPLATE_branch_protection_require_codeowner_review": -1,
+            "TEMPLATE_branch_protection_require_non_stale_review": -1,
+            "TEMPLATE_branch_protection_enforce_admins": -1,
+            "TEMPLATE_restrict_push": -1,
+            "has_required_topics": false,
+            "open_pr_count": 0,
+            "repository_url": "https://github.com/nf-core/abotyper",
+            "contributors": [
+                {
+                    "name": "fmobegi",
+                    "count": 34,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/16131975?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "490bd1620f54ea8e44773290424a8d8d4e8997ce",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/abotyper/compare/490bd1620f54ea8e44773290424a8d8d4e8997ce...undefined",
+            "commits_to_dev": 30,
+            "is_DSL2": true,
+            "has_nf_test": false,
+            "has_nf_test_dev": false,
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.1.1"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": null
+            },
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.1.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": null
+            },
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2025-04-24T05:26:38Z",
+                    "tag_sha": "490bd1620f54ea8e44773290424a8d8d4e8997ce",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "fastqc",
+                            "minimap2_align",
+                            "multiqc",
+                            "samtools_coverage",
+                            "samtools_flagstat",
+                            "samtools_mpileup",
+                            "samtools_stats"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
             "id": 160348245,
             "node_id": "MDEwOlJlcG9zaXRvcnkxNjAzNDgyNDU=",
             "name": "airrflow",
@@ -22716,14 +22871,14 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 3,
+            "open_issues_count": 4,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 3,
+            "open_issues": 4,
             "watchers": 8,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -22803,7 +22958,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": false,
-            "open_pr_count": 1,
+            "open_pr_count": 2,
             "repository_url": "https://github.com/nf-core/meerpipe",
             "contributors": [
                 {
@@ -26495,7 +26650,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 93,
+            "forks_count": 94,
             "archived": false,
             "disabled": false,
             "open_issues_count": 56,
@@ -26509,7 +26664,7 @@
                 "qc"
             ],
             "visibility": "public",
-            "forks": 93,
+            "forks": 94,
             "open_issues": 56,
             "watchers": 199,
             "default_branch": "master",
@@ -26543,7 +26698,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 93,
+            "network_count": 94,
             "subscribers_count": 154,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -27236,9 +27391,9 @@
             "url": "https://api.github.com/repos/nf-core/nascent",
             "created_at": "2018-11-15T15:46:09Z",
             "updated_at": "2025-04-04T04:27:41Z",
-            "pushed_at": "2025-04-23T03:20:47Z",
+            "pushed_at": "2025-04-24T03:49:11Z",
             "homepage": "https://nf-co.re/nascent",
-            "size": 9034,
+            "size": 9030,
             "stargazers_count": 19,
             "watchers_count": 19,
             "language": "Nextflow",
@@ -27681,8 +27836,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-04-23T01:56:06Z",
-                    "tag_sha": "a012bf3e047a6f01d0c5287b1463a2ea9f5f1e06",
+                    "published_at": "2025-04-24T03:48:41Z",
+                    "tag_sha": "31f35f7365d055488fd04544290768afb19668f6",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -37088,7 +37243,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 750,
+            "forks_count": 751,
             "archived": false,
             "disabled": false,
             "open_issues_count": 84,
@@ -37100,7 +37255,7 @@
                 "rna-seq"
             ],
             "visibility": "public",
-            "forks": 750,
+            "forks": 751,
             "open_issues": 84,
             "watchers": 1016,
             "default_branch": "master",
@@ -37136,7 +37291,7 @@
                     "status": "disabled"
                 }
             },
-            "network_count": 750,
+            "network_count": 751,
             "subscribers_count": 175,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -44498,7 +44653,7 @@
             "url": "https://api.github.com/repos/nf-core/scrnaseq",
             "created_at": "2019-04-08T13:12:00Z",
             "updated_at": "2025-04-23T15:09:26Z",
-            "pushed_at": "2025-04-09T09:15:57Z",
+            "pushed_at": "2025-04-24T06:43:27Z",
             "homepage": "https://nf-co.re/scrnaseq",
             "size": 45591,
             "stargazers_count": 265,
@@ -44513,7 +44668,7 @@
             "forks_count": 188,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 64,
+            "open_issues_count": 66,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -44530,7 +44685,7 @@
             ],
             "visibility": "public",
             "forks": 188,
-            "open_issues": 64,
+            "open_issues": 66,
             "watchers": 265,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -44628,7 +44783,7 @@
             "TEMPLATE_branch_protection_enforce_admins": -1,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "repository_url": "https://github.com/nf-core/scrnaseq",
             "contributors": [
                 {
