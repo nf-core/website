@@ -12,7 +12,6 @@ Test-datasets are hosted on the on the [nf-core/test-datasets](https://github.co
 The `nf-core test-datasets list-branches` subcommand allows listing the relevant branches of this repository.
 
 <!-- RICH-CODEX
-working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
