@@ -3950,6 +3950,98 @@
       ]
     },
     {
+      "name": "amulety_antiberty",
+      "path": "modules/nf-core/amulety/antiberty/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_antiberty",
+        "description": "A module to create antiberty embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_antiberty.tsv": {
+                  "type": "file",
+                  "description": "TSV with Antiberty embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
       "name": "amulety_translate",
       "path": "modules/nf-core/amulety/translate/meta.yml",
       "type": "module",
@@ -25605,10 +25697,29 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "annotation_dir": {
-                "type": "file",
-                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n",
-                "pattern": "*.{vcf,vcf.gz}"
+                "type": "directory",
+                "description": "Path to folder containing the vcf files with precomputed CADD scores.\nThis folder contains the uncompressed files that would otherwise be in data/annotation folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "prescored_dir": {
+                "type": "directory",
+                "description": "Path to folder containing prescored files.\nThis folder contains the uncompressed files that would otherwise be in data/prescored/${GENOME_BUILD}_${VERSION}/ folder as described in https://github.com/kircherlab/CADD-scripts/#manual-installation.\n"
               }
             }
           ]
@@ -57267,6 +57378,143 @@
       }
     },
     {
+      "name": "fgbio_copyumifromreadname",
+      "path": "modules/nf-core/fgbio/copyumifromreadname/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgbio_copyumifromreadname",
+        "description": "Copies the UMI at the end of a bam files read name to the RX tag.",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "fgbio": {
+              "description": "A set of tools for working with genomic and high throughput sequencing data, including UMIs",
+              "homepage": "http://fulcrumgenomics.github.io/fgbio/",
+              "documentation": "http://fulcrumgenomics.github.io/fgbio/tools/latest/CallDuplexConsensusReads.html",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgbio",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fgbio"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index for bam file",
+                "pattern": "*.{bai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "bai": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bai": {
+                  "type": "file",
+                  "description": "Index for bam file",
+                  "pattern": "*.{bai}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
       "name": "fgbio_fastqtobam",
       "path": "modules/nf-core/fgbio/fastqtobam/meta.yml",
       "type": "module",
@@ -85168,7 +85416,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -85188,7 +85436,7 @@
             {
               "graph": {
                 "type": "directory",
-                "description": "Path to prepared graph with hla-la --acton prepareGraph"
+                "description": "Path to prepared graph with hla-la --action prepareGraph"
               }
             }
           ]
@@ -85199,13 +85447,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}": {
+                "results": {
                   "type": "file",
-                  "description": "results file"
+                  "description": "Results file"
                 }
               }
             ]
@@ -85215,14 +85463,31 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction.bam*": {
+                "results/extraction.bam": {
                   "type": "file",
                   "description": "Extraction BAM file",
-                  "pattern": "*.bam*"
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "extraction_index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "results/extraction.bam.bai": {
+                  "type": "file",
+                  "description": "Extraction BAM index file",
+                  "pattern": "*.bam.bai"
                 }
               }
             ]
@@ -85232,11 +85497,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction_mapped.bam": {
+                "results/extraction_mapped.bam": {
                   "type": "file",
                   "description": "Extraction mapped BAM file",
                   "pattern": "*.bam"
@@ -85249,11 +85514,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/extraction_unmapped.bam": {
+                "results/extraction_unmapped.bam": {
                   "type": "file",
                   "description": "Extraction unmapped BAM file",
                   "pattern": "*.bam"
@@ -85266,11 +85531,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/hla/*": {
+                "results/hla/*": {
                   "type": "file",
                   "description": "HLA results"
                 }
@@ -85282,11 +85547,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/*.fastq": {
+                "results/*.fastq": {
                   "type": "file",
                   "description": "Fastq file",
                   "pattern": "*.fastq"
@@ -85299,11 +85564,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/reads_per_level.txt": {
+                "results/reads_per_level.txt": {
                   "type": "file",
                   "description": "Reads per level",
                   "pattern": "*.txt"
@@ -85316,14 +85581,31 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "${meta.id}/remapped_with_a.bam*": {
+                "results/remapped_with_a.bam": {
                   "type": "file",
                   "description": "Remapped BAM file",
-                  "pattern": "*.bam*"
+                  "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "remapped_index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "results/remapped_with_a.bam.bai": {
+                  "type": "file",
+                  "description": "Remapped BAM index file",
+                  "pattern": "*.bam.bai"
                 }
               }
             ]
@@ -119929,6 +120211,162 @@
       ]
     },
     {
+      "name": "nail_search",
+      "path": "modules/nf-core/nail/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "nail_search",
+        "description": "nail search is a fast and scalable tool for searching protein sequences against protein databases",
+        "keywords": [
+          "alignment",
+          "HMM",
+          "fasta",
+          "protein"
+        ],
+        "tools": [
+          {
+            "nail": {
+              "description": "Profile Hidden Markov Model (pHMM) biological sequence alignment tool",
+              "homepage": "https://github.com/TravisWheelerLab/nail",
+              "documentation": "https://github.com/TravisWheelerLab/nail",
+              "tool_dev_url": "https://github.com/TravisWheelerLab/nail",
+              "doi": "10.1101/2024.01.27.577580",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:nail"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "query": {
+                "type": "file",
+                "description": "Input query file",
+                "pattern": "*.{hmm,fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3949"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "target": {
+                "type": "file",
+                "description": "Input target file",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "write_align": {
+                "type": "boolean",
+                "description": "Flag to save optional alignment output. Specify with 'true' to save."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{txt}"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{txt}"
+                }
+              }
+            ]
+          },
+          {
+            "target_summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "results.tbl"
+                }
+              },
+              {
+                "${prefix}.tbl": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "results.tbl"
+                }
+              }
+            ]
+          },
+          {
+            "alignments": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ali"
+                }
+              },
+              {
+                "${prefix}.ali": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.ali"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "nanocomp",
       "path": "modules/nf-core/nanocomp/meta.yml",
       "type": "module",
@@ -144560,14 +144998,16 @@
               "intervals": {
                 "type": "file",
                 "description": "BED file of target intervals, generated from IntervalFile.R\n",
-                "pattern": "{*.bed,*.txt}"
+                "pattern": "{*.bed,*.txt}",
+                "ontologies": []
               }
             },
             {
               "coverage": {
                 "type": "file",
                 "description": "Coverage file generated from Coverage.R",
-                "pattern": "*.txt"
+                "pattern": "*.txt",
+                "ontologies": []
               }
             }
           ],
@@ -144575,7 +145015,8 @@
             {
               "normal_db": {
                 "type": "file",
-                "description": "normal pannel database"
+                "description": "normal pannel database",
+                "ontologies": []
               }
             }
           ],
@@ -144593,9 +145034,8 @@
             "pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing copy number plots\n",
-                  "pattern": "*.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144611,9 +145051,8 @@
             "local_optima_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing local optima plots\n",
-                  "pattern": "*_local_optima.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144629,9 +145068,8 @@
             "seg": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Tab-delimited file containing segmentation results\n",
-                  "pattern": "*_dnacopy.seg"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144647,9 +145085,8 @@
             "genes_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing gene copy number calls. Optional\n",
-                  "pattern": "*_genes.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144665,20 +145102,12 @@
             "amplification_pvalues_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "*_amplification_pvalues.csv": {
-                  "type": "file",
-                  "description": "CSV file containing amplification p-values. Optional\n",
-                  "pattern": "*_amplification_pvalues.csv"
-                }
-              },
-              {
-                "ues_csv": {
                   "type": "file",
                   "description": "CSV file containing amplification p-values. Optional\n",
                   "pattern": "*_amplification_pvalues.csv"
@@ -144690,9 +145119,8 @@
             "vcf_gz": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "GZipped VCF file containing SNV calls. Optional\n",
-                  "pattern": "*.vcf.gz"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144708,9 +145136,8 @@
             "variants_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing SNV calls. Optional\n",
-                  "pattern": "*_variants.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144726,9 +145153,8 @@
             "loh_csv": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "CSV file containing LOH calls. Optional\n",
-                  "pattern": "*_loh.csv"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144744,9 +145170,8 @@
             "chr_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing chromosome plots. Optional\n",
-                  "pattern": "*_chromosomes.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144762,9 +145187,8 @@
             "segmentation_pdf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "PDF file containing segmentation plots. Optional\n",
-                  "pattern": "*_segmentation.pdf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -144799,7 +145223,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -162199,7 +162628,7 @@
             ]
           },
           {
-            "index": [
+            "tbi": [
               {
                 "meta": {
                   "type": "map",
@@ -163417,7 +163846,7 @@
             ]
           },
           {
-            "vcf_tbi": [
+            "tbi": [
               {
                 "meta": {
                   "type": "file",
@@ -163497,20 +163926,20 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
               "input": {
                 "type": "file",
-                "description": "BAM/CRAM file from alignment",
+                "description": "BAM/CRAM file(s) from alignment",
                 "pattern": "*.{bam,cram}"
               }
             },
             {
               "input_index": {
                 "type": "file",
-                "description": "BAI/CRAI file from alignment",
+                "description": "BAI/CRAI file(s) from alignment",
                 "pattern": "*.{bai,crai}"
               }
             },
@@ -163793,21 +164222,28 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information.\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'test' ]\n"
               }
             },
             {
-              "bam": {
+              "input": {
                 "type": "file",
-                "description": "BAM file.",
-                "pattern": "*.bam"
+                "description": "One or more BAM or CRAM files.",
+                "pattern": "*.{bam,cram}"
               }
             },
             {
-              "bai": {
+              "input_index": {
                 "type": "file",
-                "description": "BAI file",
-                "pattern": "*.bai"
+                "description": "Indices for the input files",
+                "pattern": "*.{bai,crai}"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "bed or interval_list file containing interval in the reference that will be used in the analysis. Only recommended for large WGS data, else the overhead may not be worth the additional parallelisation.",
+                "pattern": "*.{bed,interval_list}"
               }
             }
           ],
@@ -163849,17 +164285,10 @@
               }
             },
             {
-              "cosmic": {
+              "dbsnp": {
                 "type": "file",
                 "description": "Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "cosmic_tbi": {
-                "type": "file",
-                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz.tbi"
               }
             }
           ],
@@ -163871,14 +164300,7 @@
               }
             },
             {
-              "pon": {
-                "type": "file",
-                "description": "Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "pon_tbi": {
+              "dbsnp_tbi": {
                 "type": "file",
                 "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz.tbi"
@@ -163893,17 +164315,10 @@
               }
             },
             {
-              "dbsnp": {
+              "pon": {
                 "type": "file",
                 "description": "Single Nucleotide Polymorphism database (dbSNP) file",
                 "pattern": "*.vcf.gz"
-              }
-            },
-            {
-              "dbsnp_tbi": {
-                "type": "file",
-                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
-                "pattern": "*.vcf.gz.tbi"
               }
             }
           ],
@@ -163915,10 +164330,40 @@
               }
             },
             {
-              "interval": {
+              "pon_tbi": {
                 "type": "file",
-                "description": "bed or interval_list file containing interval in the reference that will be used in the analysis",
-                "pattern": "*.{bed,interval_list}"
+                "description": "Index of the Single Nucleotide Polymorphism database (dbSNP) file",
+                "pattern": "*.vcf.gz.tbi"
+              }
+            }
+          ],
+          [
+            {
+              "meta8": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "cosmic": {
+                "type": "file",
+                "description": "Catalogue of Somatic Mutations in Cancer (COSMIC) VCF file.",
+                "pattern": "*.vcf.gz"
+              }
+            }
+          ],
+          [
+            {
+              "meta9": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "cosmic_tbi": {
+                "type": "file",
+                "description": "Index of the Catalogue of Somatic Mutations in Cancer (COSMIC) VCF file.",
+                "pattern": "*.vcf.gz.tbi"
               }
             }
           ]
@@ -163929,7 +164374,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -163946,7 +164391,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -191490,6 +191935,12 @@
               "formula": {
                 "type": "string",
                 "description": "(Mandatory) R formula string used for modeling, e.g. '~ treatment + (1 | sample_number)'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional) Literal string passed to `limma::makeContrasts`, e.g. 'treatmenthND6 - treatmentmCherry'."
               }
             }
           ],
