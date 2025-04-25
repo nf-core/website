@@ -96539,10 +96539,21 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "fasta file",
-                "pattern": "*.{fa,fasta}"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -96559,10 +96570,16 @@
           {
             "report": [
               {
-                "report.txt": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.report.txt": {
                   "type": "file",
                   "description": "Text file containing unique-kmers.py execution report",
-                  "pattern": "report.txt"
+                  "pattern": "*.report.txt"
                 }
               }
             ]
@@ -96570,10 +96587,16 @@
           {
             "kmers": [
               {
-                "kmers.txt": {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.kmers.txt": {
                   "type": "file",
                   "description": "Text file containing number of kmers",
-                  "pattern": "kmers.txt"
+                  "pattern": "*.kmers.txt"
                 }
               }
             ]
@@ -201643,7 +201666,7 @@
               "description": "Channel with input data for differential analysis",
               "structure": [
                 {
-                  "meta_input": {
+                  "meta": {
                     "type": "map",
                     "description": "Metadata map"
                   }
@@ -201680,9 +201703,9 @@
               "description": "Channel with sample information",
               "structure": [
                 {
-                  "meta_exp": {
+                  "meta": {
                     "type": "map",
-                    "description": "Experiment metadata map"
+                    "description": "Metadata map"
                   }
                 },
                 {
@@ -201699,9 +201722,9 @@
               "description": "Channel with transcript length information",
               "structure": [
                 {
-                  "meta_exp": {
+                  "meta": {
                     "type": "map",
-                    "description": "Experiment metadata map"
+                    "description": "Metadata map"
                   }
                 },
                 {
@@ -201718,9 +201741,9 @@
               "description": "Channel with control features information",
               "structure": [
                 {
-                  "meta_exp": {
+                  "meta": {
                     "type": "map",
-                    "description": "Experiment metadata map"
+                    "description": "Metadata map"
                   }
                 },
                 {
@@ -201737,27 +201760,45 @@
               "description": "Channel with contrast information",
               "structure": [
                 {
-                  "meta_contrast": {
+                  "meta": {
                     "type": "map",
-                    "description": "Contrast metadata map"
+                    "description": "Metadata map"
                   }
                 },
                 {
-                  "contrast_variable": {
-                    "type": "value",
-                    "description": "Contrast variable"
+                  "meta_contrast": {
+                    "type": "map",
+                    "description": "Map with all the contrast info, such as contrast\nid, variable, reference, target, etc.\n"
+                  }
+                },
+                {
+                  "variable": {
+                    "type": "list",
+                    "description": "List of contrast variable"
                   }
                 },
                 {
                   "reference": {
-                    "type": "value",
-                    "description": "Reference level"
+                    "type": "list",
+                    "description": "List of reference level"
                   }
                 },
                 {
                   "target": {
-                    "type": "value",
-                    "description": "Target level"
+                    "type": "list",
+                    "description": "List of target level"
+                  }
+                },
+                {
+                  "formula": {
+                    "type": "list",
+                    "description": "List of contrast formula"
+                  }
+                },
+                {
+                  "comparison": {
+                    "type list": null,
+                    "description": "List of contrast comparison"
                   }
                 }
               ]
@@ -205103,7 +205144,7 @@
               "description": "Channel with the input data for functional analysis.",
               "structure": [
                 {
-                  "meta_input": {
+                  "meta": {
                     "type": "map",
                     "description": "Metadata map"
                   }
@@ -205140,27 +205181,45 @@
               "description": "Channel with contrast information",
               "structure": [
                 {
-                  "meta_contrast": {
+                  "meta": {
                     "type": "map",
-                    "description": "Contrast metadata map"
+                    "description": "Metadata map"
                   }
                 },
                 {
-                  "contrast_variable": {
-                    "type": "value",
-                    "description": "Contrast variable"
+                  "meta_contrast": {
+                    "type": "map",
+                    "description": "Map with all the contrast info, such as contrast\nid, variable, reference, target, etc.\n"
+                  }
+                },
+                {
+                  "variable": {
+                    "type": "list",
+                    "description": "List of contrast variable"
                   }
                 },
                 {
                   "reference": {
-                    "type": "value",
-                    "description": "Reference level"
+                    "type": "list",
+                    "description": "List of reference level"
                   }
                 },
                 {
                   "target": {
-                    "type": "value",
-                    "description": "Target level"
+                    "type": "list",
+                    "description": "List of target level"
+                  }
+                },
+                {
+                  "formula": {
+                    "type": "list",
+                    "description": "List of contrast formula"
+                  }
+                },
+                {
+                  "comparison": {
+                    "type list": null,
+                    "description": "List of contrast comparison"
                   }
                 }
               ]
