@@ -10954,7 +10954,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -16226,7 +16226,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -16428,7 +16428,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -29547,7 +29547,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -32106,7 +32106,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -53634,7 +53634,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "taxprofiler",
@@ -55605,7 +55605,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -55830,7 +55830,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -60123,7 +60123,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -97865,7 +97865,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "detaxizer",
@@ -107852,7 +107852,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -118897,7 +118897,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -135095,6 +135095,107 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "picard_meanqualitybycycle",
+      "path": "modules/nf-core/picard/meanqualitybycycle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "picard_meanqualitybycycle",
+        "description": "Collect metrics about the mean quality by cycle of a paired-end library.",
+        "keywords": [
+          "metrics",
+          "alignment",
+          "mean",
+          "statistics",
+          "bam"
+        ],
+        "tools": [
+          {
+            "picard": {
+              "description": "Java tools for working with NGS data in the BAM format",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
+              "tool_dev_url": "https://github.com/broadinstitute/picard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:picard_tools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "metrics": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Values used by Picard to generate chart.",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "pdf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pdf": {
+                  "type": "file",
+                  "description": "Chart in PDF format",
+                  "pattern": "*.pdf"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mikefeixu",
+          "@FerriolCalvet"
+        ],
+        "maintainers": [
+          "@mikefeixu"
+        ]
+      }
     },
     {
       "name": "picard_mergesamfiles",
@@ -155668,7 +155769,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -167650,7 +167751,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "pathogensurveillance",
@@ -169239,7 +169340,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -191998,7 +192099,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "differentialabundance",
@@ -204754,7 +204855,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -207924,7 +208025,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -210172,7 +210273,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -210537,7 +210638,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -210906,7 +211007,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
