@@ -38,7 +38,12 @@
               "scaffold": {
                 "type": "file",
                 "description": "Fasta file containing scaffold",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -47,7 +52,12 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA reference file",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -65,7 +75,8 @@
                 "*.abacas*": {
                   "type": "file",
                   "description": "List containing abacas output files\n[ 'test.abacas.bin', 'test.abacas.fasta', 'test.abacas.gaps',\n'test.abacas.gaps.tab', 'test.abacas.nucmer.delta',\n'test.abacas.nucmer.filtered.delta', 'test.abacas.nucmer.tiling',\n'test.abacas.tab', 'test.abacas.unused.contigs.out',\n'test.abacas.MULTIFASTA.fa' ]\n",
-                  "pattern": "*.{abacas}*"
+                  "pattern": "*.{abacas}*",
+                  "ontologies": []
                 }
               }
             ]
@@ -76,7 +87,8 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": []
                 }
               }
             ]
@@ -3950,6 +3962,98 @@
       ]
     },
     {
+      "name": "amulety_antiberta2",
+      "path": "modules/nf-core/amulety/antiberta2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_antiberta2",
+        "description": "A module to create antiberta2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with antiberta2 embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
       "name": "amulety_antiberty",
       "path": "modules/nf-core/amulety/antiberty/meta.yml",
       "type": "module",
@@ -4013,9 +4117,193 @@
                 }
               },
               {
-                "*_antiberty.tsv": {
+                "*.tsv": {
                   "type": "file",
                   "description": "TSV with Antiberty embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
+      "name": "amulety_balmpaired",
+      "path": "modules/nf-core/amulety/balmpaired/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_balmpaired",
+        "description": "A module to create BALM paired embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with BALM paired embeddings.",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@ggabernet"
+        ],
+        "maintainers": [
+          "@ggabernet"
+        ]
+      }
+    },
+    {
+      "name": "amulety_esm2",
+      "path": "modules/nf-core/amulety/esm2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "amulety_esm2",
+        "description": "A module to create esm2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "keywords": [
+          "embeddings",
+          "BCR",
+          "antibody",
+          "GPU-accelerated",
+          "immunoinformatics",
+          "immunology"
+        ],
+        "tools": [
+          {
+            "amulety": {
+              "description": "Python package to create embeddings of BCR and TCR amino acid sequences.",
+              "homepage": "https://amulety.readthedocs.io/en/latest/",
+              "documentation": "https://amulety.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/immcantation/amulety",
+              "doi": "10.1101/2025.03.21.644583",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "tsv": {
+                "type": "file",
+                "description": "TSV with BCR/TCR nucleotide sequences in AIRR rearrangement format",
+                "pattern": "*.{tsv}"
+              }
+            }
+          ],
+          [
+            {
+              "chain": {
+                "type": "string",
+                "description": "The chain to use for the embeddings. Can be either 'H' (heavy) or 'HL' (heavy + light, for single-cell data).\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "embedding": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV with esm2 embeddings.",
                   "pattern": "*.tsv"
                 }
               }
@@ -10666,7 +10954,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -15938,7 +16226,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -16140,7 +16428,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -29259,7 +29547,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -31818,7 +32106,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -53346,7 +53634,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "taxprofiler",
@@ -55317,7 +55605,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -55489,6 +55777,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "airrflow",
           "version": "4.2.0"
         },
@@ -55538,7 +55830,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -59831,7 +60123,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -93414,6 +93706,199 @@
       }
     },
     {
+      "name": "jellyfish_count",
+      "path": "modules/nf-core/jellyfish/count/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jellyfish_count",
+        "description": "Efficiently counts k-mers from DNA sequencing reads using a fast, memory-efficient, parallelized algorithm",
+        "keywords": [
+          "k-mer",
+          "DNA",
+          "substrings"
+        ],
+        "tools": [
+          {
+            "jellyfish": {
+              "description": "Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence",
+              "homepage": "https://github.com/gmarcais/Jellyfish",
+              "documentation": "https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md",
+              "tool_dev_url": "https://github.com/gmarcais/Jellyfish",
+              "doi": "10.1093/bioinformatics/btr011",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:jellyfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Nucleotide sequences in FASTA format",
+                "pattern": "*.{fasta,fa,fna,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "kmer_length": {
+                "type": "integer",
+                "description": "k-mer size to use"
+              }
+            }
+          ],
+          [
+            {
+              "size": {
+                "type": "string",
+                "description": "Specifies the memory hash size (in bytes) to allocate for the k-mer counting hash table (e.g., '100M').\nA mean estimation could be carried with this formula: 'genome size + (genome size * coverage * kmer-length * error rate)'\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "jf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.jf": {
+                  "type": "file",
+                  "description": "Jellyfish binary k-mer database",
+                  "pattern": "*.jf"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "jellyfish_dump",
+      "path": "modules/nf-core/jellyfish/dump/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "jellyfish_dump",
+        "description": "Dumps the results from a jellyfish binary file into a human readable format",
+        "keywords": [
+          "k-mer",
+          "DNA",
+          "substrings"
+        ],
+        "tools": [
+          {
+            "jellyfish": {
+              "description": "Jellyfish is a tool for fast, memory-efficient counting of k-mers in DNA. A k-mer is a substring of length k, and counting the occurrences of all such substrings is a central step in many analyses of DNA sequence",
+              "homepage": "https://github.com/gmarcais/Jellyfish",
+              "documentation": "https://github.com/gmarcais/Jellyfish/blob/master/doc/Readme.md",
+              "tool_dev_url": "https://github.com/gmarcais/Jellyfish",
+              "doi": "10.1093/bioinformatics/btr011",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:jellyfish"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "jf": {
+                "type": "file",
+                "description": "Jellyfish binary k-mer database",
+                "pattern": "*.jf"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${extension}": {
+                  "type": "file",
+                  "description": "Human readable k-mer database in fasta format, or in 2-column space delimited format if the -c argument is provided",
+                  "pattern": "*.{fa,txt}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "jupyternotebook",
       "path": "modules/nf-core/jupyternotebook/meta.yml",
       "type": "module",
@@ -97380,7 +97865,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "detaxizer",
@@ -107367,7 +107852,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -113000,6 +113485,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "bacass",
           "version": "2.4.0"
         },
@@ -118355,6 +118844,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "airrflow",
           "version": "4.2.0"
         },
@@ -118404,7 +118897,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -132810,6 +133303,89 @@
       }
     },
     {
+      "name": "picard_collectalignmentsummarymetrics",
+      "path": "modules/nf-core/picard/collectalignmentsummarymetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "picard_collectalignmentsummarymetrics",
+        "description": "Collect metrics about the alignment summary of a paired-end library.",
+        "keywords": [
+          "metrics",
+          "alignment",
+          "statistics",
+          "bam"
+        ],
+        "tools": [
+          {
+            "picard": {
+              "description": "Java tools for working with NGS data in the BAM format",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
+              "tool_dev_url": "https://github.com/broadinstitute/picard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:picard_tools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "metrics": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Standard alignment summary metrics",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mikefeixu",
+          "@FerriolCalvet"
+        ],
+        "maintainers": [
+          "@mikefeixu"
+        ]
+      }
+    },
+    {
       "name": "picard_collecthsmetrics",
       "path": "modules/nf-core/picard/collecthsmetrics/meta.yml",
       "type": "module",
@@ -134519,6 +135095,107 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "picard_meanqualitybycycle",
+      "path": "modules/nf-core/picard/meanqualitybycycle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "picard_meanqualitybycycle",
+        "description": "Collect metrics about the mean quality by cycle of a paired-end library.",
+        "keywords": [
+          "metrics",
+          "alignment",
+          "mean",
+          "statistics",
+          "bam"
+        ],
+        "tools": [
+          {
+            "picard": {
+              "description": "Java tools for working with NGS data in the BAM format",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
+              "tool_dev_url": "https://github.com/broadinstitute/picard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:picard_tools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "metrics": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Values used by Picard to generate chart.",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "pdf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pdf": {
+                  "type": "file",
+                  "description": "Chart in PDF format",
+                  "pattern": "*.pdf"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mikefeixu",
+          "@FerriolCalvet"
+        ],
+        "maintainers": [
+          "@mikefeixu"
+        ]
+      }
     },
     {
       "name": "picard_mergesamfiles",
@@ -153277,6 +153954,132 @@
       }
     },
     {
+      "name": "rtgtools_svdecompose",
+      "path": "modules/nf-core/rtgtools/svdecompose/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rtgtools_svdecompose",
+        "description": "The svdecompose tool of RTG tools. It is used to decompose structural variants to BNDs",
+        "keywords": [
+          "svdecompose",
+          "structural",
+          "vcf",
+          "rtg-tools"
+        ],
+        "tools": [
+          {
+            "rtgtools": {
+              "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
+              "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
+              "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "A VCF with called variants to decompose variants",
+                "pattern": "*.{vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "The index of the VCF with called variants to decompose variants",
+                "pattern": "*.{vcf.gz.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file with SVTYPE BND variants",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Index of VCF file with SVTYPE BND variants",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "rtgtools_vcfeval",
       "path": "modules/nf-core/rtgtools/vcfeval/meta.yml",
       "type": "module",
@@ -154966,7 +155769,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -156313,6 +157116,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.0.0"
         }
@@ -157418,6 +158225,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "abotyper",
+          "version": "dev"
+        },
         {
           "name": "atacseq",
           "version": "2.1.2"
@@ -158684,6 +159495,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -159408,6 +160223,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "abotyper",
+          "version": "dev"
+        },
         {
           "name": "atacseq",
           "version": "2.1.2"
@@ -166932,7 +167751,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "pathogensurveillance",
@@ -168521,7 +169340,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -177972,6 +178791,148 @@
           "version": "1.1.0"
         }
       ]
+    },
+    {
+      "name": "starfusion_build",
+      "path": "modules/nf-core/starfusion/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "starfusion_build",
+        "description": "Download STAR-fusion genome resource required to run STAR-Fusion caller",
+        "keywords": [
+          "download",
+          "starfusion",
+          "build"
+        ],
+        "tools": [
+          {
+            "star-fusion": {
+              "description": "Fusion calling algorithm for RNAseq data",
+              "homepage": "https://github.com/STAR-Fusion/",
+              "documentation": "https://github.com/STAR-Fusion/STAR-Fusion/wiki/installing-star-fusion",
+              "tool_dev_url": "https://github.com/STAR-Fusion/STAR-Fusion",
+              "doi": "10.1186/s13059-019-1842-9",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Metadata map",
+                "required": true
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input FASTA file",
+                "pattern": "*.{fa,fasta}",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Second metadata map",
+                "required": true
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Input GTF (Gene Transfer Format) file",
+                "pattern": "*.gtf",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "fusion_annot_lib": {
+                "type": "file",
+                "description": "Fusion annotation library file containing known fusion genes",
+                "required": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/topic_0203"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "dfam_species": {
+                "type": "string",
+                "description": "Dfam species name"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "reference": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Metadata map"
+                }
+              },
+              {
+                "${prefix}_genome_lib_build_dir": {
+                  "type": "directory",
+                  "description": "Genome library build directory",
+                  "pattern": "*_genome_lib_build_dir"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@praveenraj2018",
+          "@martings",
+          "@alanmmobbs93",
+          "@delfiterradas",
+          "@sofiromano"
+        ],
+        "maintainers": [
+          "@praveenraj2018"
+        ]
+      }
     },
     {
       "name": "stecfinder",
@@ -191138,7 +192099,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "differentialabundance",
@@ -197523,6 +198484,98 @@
       }
     },
     {
+      "name": "vuegen",
+      "path": "modules/nf-core/vuegen/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vuegen",
+        "description": "The VueGen nf-core module is designed to automate report generation from outputs produced by other modules, subworkflows, or pipelines. The module integrates the VueGen Python library and customizes it for compatibility with the Nextflow environment. VueGen automates the creation of reports from bioinformatics outputs, supporting formats like PDF, HTML, DOCX, ODT, PPTX, Reveal.js, Jupyter notebooks, and Streamlit web applications.\n",
+        "keywords": [
+          "reports",
+          "data-visualization",
+          "streamlit",
+          "quarto"
+        ],
+        "tools": [
+          {
+            "vuegen": {
+              "description": "The VueGen nf-core module is designed to automate report generation from outputs produced by other modules, subworkflows, or pipelines. The module integrates the VueGen Python library and customizes it for compatibility with the Nextflow environment. VueGen automates the creation of reports from bioinformatics outputs, supporting formats like PDF, HTML, DOCX, ODT, PPTX, Reveal.js, Jupyter notebooks, and Streamlit web applications.\n",
+              "homepage": "https://github.com/Multiomics-Analytics-Group/vuegen",
+              "documentation": "https://vuegen.readthedocs.io/",
+              "tool_dev_url": "https://github.com/Multiomics-Analytics-Group/vuegen",
+              "doi": "10.1101/2025.03.05.641152",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "input_type": {
+                "type": "string",
+                "pattern": "^(config|directory)$",
+                "description": "Specifies whether the input is a configuration file ('config') or a directory ('directory')."
+              }
+            }
+          ],
+          [
+            {
+              "input_path": {
+                "type": "file",
+                "description": "Path to the input directory or configuration file used by VueGen."
+              }
+            }
+          ],
+          [
+            {
+              "report_type": {
+                "type": "string",
+                "pattern": "^(streamlit|html|pdf|docx|odt|revealjs|pptx|jupyter)$",
+                "description": "The type of report to generate. Options include 'streamlit', 'html', 'pdf', 'docx', 'odt', 'revealjs', 'pptx', and 'jupyter'."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "output_folder": [
+              {
+                "*report": {
+                  "type": "directory",
+                  "description": "The output directory containing the generated report files.\n- If `report_type` is 'streamlit', a 'streamlit_report' directory is created, containing subfolders for each section with Python scripts corresponding to the web application's pages.\n- For other report types, a 'quarto_report' directory is generated, containing a Quarto Markdown (qmd) file that structures the entire report.\n",
+                  "pattern": "*report"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sayalaruano",
+          "@enryH",
+          "@albsantosdel"
+        ],
+        "maintainers": [
+          "@sayalaruano",
+          "@enryH",
+          "@albsantosdel"
+        ]
+      }
+    },
+    {
       "name": "wfmash",
       "path": "modules/nf-core/wfmash/meta.yml",
       "type": "module",
@@ -203802,7 +204855,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -206185,6 +207238,12 @@
               "type": "boolean",
               "description": "Skip deduplication of aligned reads\n"
             }
+          },
+          {
+            "use_gpu": {
+              "type": "boolean",
+              "description": "Use GPU for alignment\n"
+            }
           }
         ],
         "output": [
@@ -206263,7 +207322,8 @@
           "@sateeshperi"
         ],
         "maintainers": [
-          "@sateeshperi"
+          "@sateeshperi",
+          "@gallvp"
         ]
       },
       "pipelines": [
@@ -206965,7 +208025,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         }
       ]
     },
@@ -209160,6 +210220,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "airrflow",
           "version": "4.2.0"
         },
@@ -209209,7 +210273,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -209521,6 +210585,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "airrflow",
           "version": "4.2.0"
         },
@@ -209570,7 +210638,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
@@ -209894,6 +210962,10 @@
       },
       "pipelines": [
         {
+          "name": "abotyper",
+          "version": "dev"
+        },
+        {
           "name": "airrflow",
           "version": "4.2.0"
         },
@@ -209935,7 +211007,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.0"
+          "version": "1.6.1"
         },
         {
           "name": "denovotranscript",
