@@ -16,4 +16,4 @@ working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
-![`nf-core test-datasets list-branches`](/images/tools/nf-core-test-datasets-list-branches.svg)
+![`nf-core test-datasets list-branches`](/images/tools/nf-core-test-datasets-list-branches.png)

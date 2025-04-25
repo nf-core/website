@@ -21,7 +21,7 @@ A branch name to limit the search to is always required and if none is specified
 
 <!-- TODO: Does this work? This command prompts for user input and does not terminate. -->
 
-![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-test-datasets-search.svg)
+![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-test-datasets-search.png)
 
 :::note
 To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
