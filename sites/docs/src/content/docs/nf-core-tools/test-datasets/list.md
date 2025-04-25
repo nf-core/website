@@ -25,7 +25,7 @@ working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
-![`nf-core test-datasets list -b mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+![`nf-core test-datasets list -b mag`](/images/tools/nf-core-test-datasets-list-mag.png)
 
 :::note
 To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
@@ -41,4 +41,4 @@ working_dir: tmp/nf-core-nextbigthing
 head: 6
 -->
 
-![nf-core test-datasets list -b mag -u](/images/tools/nf-core-test-datasets-list-url-out.svg)
+![nf-core test-datasets list -b mag -u](/images/tools/nf-core-test-datasets-list-url-out.png)
