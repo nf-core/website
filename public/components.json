@@ -16831,13 +16831,7 @@
         "authors": [
           "@davidecarlson"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "sammyseq",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bedtools_bamtobed",
@@ -146991,15 +146985,6 @@
                 "pattern": "{VDR,EGFR,RYR1}"
               }
             }
-          ],
-          [
-            {
-              "assembly_version": {
-                "type": "string",
-                "description": "Genome assembly version to use.",
-                "pattern": "{GRCh37,GRCh38}"
-              }
-            }
           ]
         ],
         "output": [
@@ -147034,10 +147019,10 @@
           }
         ],
         "authors": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ],
         "maintainers": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ]
       }
     },
@@ -147103,23 +147088,6 @@
                 "type": "file",
                 "description": "Reference genome file",
                 "pattern": "*.{fasta,fa,fna,fasta.gz,fa.gz,fna.gz}"
-              }
-            }
-          ],
-          [
-            {
-              "pgx_genes": {
-                "type": "list",
-                "description": "List of PGx genes supported by PyPGx to include in variant calling."
-              }
-            }
-          ],
-          [
-            {
-              "assembly_version": {
-                "type": "string",
-                "description": "Genome assembly version to use for variant calling.",
-                "pattern": "{GRCh37,GRCh38}"
               }
             }
           ]
@@ -147218,31 +147186,16 @@
               "bam": {
                 "type": "file",
                 "description": "Input BAM file",
-                "pattern": "*.{bam}"
+                "pattern": "*.{bam}",
+                "ontologies": []
               }
             },
             {
               "bai": {
                 "type": "file",
                 "description": "Input BAM index file",
-                "pattern": "*.{bam.bai}"
-              }
-            }
-          ],
-          [
-            {
-              "pgx_genes": {
-                "type": "list",
-                "description": "List of PGx genes supported by PyPGx to include in variant calling."
-              }
-            }
-          ],
-          [
-            {
-              "assembly_version": {
-                "type": "string",
-                "description": "Genome assembly version to use.",
-                "pattern": "{GRCh37,GRCh38}"
+                "pattern": "*.{bam.bai}",
+                "ontologies": []
               }
             }
           ]
@@ -147272,17 +147225,22 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
           }
         ],
         "authors": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ],
         "maintainers": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ]
       }
     },
@@ -147368,14 +147326,6 @@
                 "description": "Path to the pypgx resource bundle (https://github.com/sbslee/pypgx-bundle)."
               }
             }
-          ],
-          [
-            {
-              "assembly_version": {
-                "type": "string",
-                "description": "Genome assembly version to use."
-              }
-            }
           ]
         ],
         "output": [
@@ -147440,10 +147390,10 @@
           }
         ],
         "authors": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ],
         "maintainers": [
-          "@jorivansteenbrugge"
+          "@jorisvansteenbrugge"
         ]
       }
     },
