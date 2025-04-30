@@ -125,7 +125,7 @@ Through this automated mechanism we hope it will make the nf-core/modules (our m
 
 Finally, we briefly looked at a neat [little repository](https://github.com/FloWuenne/megatest-resource-optimization/tree/main/optimized_configs) that Florian (who unfortunately sent his apologies) has made that includes optimised resource-usage configuration files for nf-core pipelines AWS megatests.
 
-This was after observations that many pipeline's megatest configurations could be rather wasteful in over- or under-requesting resources for AWS - resulting in wasted costs and energy by using larger spot instances than necessary or causing unnecessary retries (sad 🐻‍❄️).
+This was after observations that many pipeline megatest configurations could be rather wasteful in over- or under-requesting resources on AWS (and in general), resulting in wasted costs and energy by requesting more cpus and memory than their processes actually use (sad 🐻‍❄️).
 
 We discussed whether there should be an automation to generate an optimised config and updating a pipeline's `test_full` config with the optimised config, or some other mechanism to incorporate these into our pipelines.
 
