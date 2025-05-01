@@ -4051,7 +4051,13 @@
         "maintainers": [
           "@ggabernet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.3.0"
+        }
+      ]
     },
     {
       "name": "amulety_antiberty",
@@ -4143,7 +4149,13 @@
         "maintainers": [
           "@ggabernet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.3.0"
+        }
+      ]
     },
     {
       "name": "amulety_balmpaired",
@@ -4235,7 +4247,13 @@
         "maintainers": [
           "@ggabernet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.3.0"
+        }
+      ]
     },
     {
       "name": "amulety_esm2",
@@ -4327,7 +4345,13 @@
         "maintainers": [
           "@ggabernet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.3.0"
+        }
+      ]
     },
     {
       "name": "amulety_translate",
@@ -4432,7 +4456,13 @@
         "maintainers": [
           "@ggabernet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "airrflow",
+          "version": "4.3.0"
+        }
+      ]
     },
     {
       "name": "angsd_contamination",
@@ -26740,7 +26770,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "bacass",
@@ -29816,7 +29846,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "scrnaseq",
@@ -30234,7 +30264,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         }
       ]
     },
@@ -41846,10 +41876,6 @@
         {
           "name": "rnasplice",
           "version": "1.0.4"
-        },
-        {
-          "name": "sammyseq",
-          "version": "dev"
         },
         {
           "name": "viralrecon",
@@ -55591,7 +55617,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "bacass",
@@ -55776,7 +55802,7 @@
         },
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "ampliseq",
@@ -91727,7 +91753,7 @@
             {
               "alignment": {
                 "type": "file",
-                "description": "Input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format (-s)",
+                "description": "One or more input alignment file in PHYLIP, FASTA, NEXUS, CLUSTAL or MSF format or a directory of such files (-s)",
                 "pattern": "*.{fasta,fas,fa,mfa,phy,aln,nex,nexus,msf}"
               }
             },
@@ -118866,7 +118892,7 @@
         },
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "ampliseq",
@@ -153639,6 +153665,344 @@
       ]
     },
     {
+      "name": "rtgtools_bndeval",
+      "path": "modules/nf-core/rtgtools/bndeval/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rtgtools_bndeval",
+        "description": "The bndeval tool of RTG tools. It is used to evaluate called BND type of variants for agreement with a BND baseline variant set",
+        "keywords": [
+          "benchmarking",
+          "vcf",
+          "rtg-tools",
+          "bnd-eval",
+          "structural-variants"
+        ],
+        "tools": [
+          {
+            "rtgtools": {
+              "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
+              "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
+              "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
+              "licence": [
+                "BSD"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "query_vcf": {
+                "type": "file",
+                "description": "A VCF with called variants to benchmark against the standard",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "query_vcf_tbi": {
+                "type": "file",
+                "description": "The index of the VCF file with called variants to benchmark against the standard",
+                "pattern": "*.{vcf.gz.tbi, vcf.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_vcf": {
+                "type": "file",
+                "description": "A standard VCF to compare against",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_vcf_tbi": {
+                "type": "file",
+                "description": "The index of the standard VCF to compare against",
+                "pattern": "*.{vcf.gz.tbi, vcf.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "regions_bed": {
+                "type": "file",
+                "description": "A BED file containing the regions where bndeval will evaluate every fully and partially overlapping variant (optional) This input should be used to provide the regions used by the analysis",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tp_vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tp.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file for the true positive variants",
+                  "pattern": "*.tp.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "tp_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tp.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The index of the VCF file for the true positive variants",
+                  "pattern": "*.tp.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fn_vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fn.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file for the false negative variants",
+                  "pattern": "*.fn.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fn_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fn.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The index of the VCF file for the false negative variants",
+                  "pattern": "*.fn.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fp_vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fp.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file for the false positive variants",
+                  "pattern": "*.fp.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fp_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fp.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The index of the VCF file for the false positive variants",
+                  "pattern": "*.fp.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "baseline_vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tp-baseline.vcf.gz": {
+                  "type": "file",
+                  "description": "A VCF file for the true positive variants from the baseline",
+                  "pattern": "*.tp-baseline.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "baseline_tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tp-baseline.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The index of the VCF file for the true positive variants from the baseline",
+                  "pattern": "*.tp-baseline.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "weighted_roc": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.weighted_roc.tsv.gz": {
+                  "type": "file",
+                  "description": "TSV files containing weighted ROC data for all variants",
+                  "pattern": "*.weighted_snp_roc.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "summary": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.summary.txt": {
+                  "type": "file",
+                  "description": "A TXT file containing the summary of the evaluation",
+                  "pattern": "*.summary.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
+        ]
+      }
+    },
+    {
       "name": "rtgtools_format",
       "path": "modules/nf-core/rtgtools/format/meta.yml",
       "type": "module",
@@ -166999,6 +167363,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pathogensurveillance",
+          "version": "dev"
+        },
         {
           "name": "proteinannotator",
           "version": "dev"
@@ -188604,12 +188972,6 @@
           ],
           [
             {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
               "fasta": {
                 "type": "file",
                 "description": "Path to the fasta file coordinate and sequence of V/D/J/C genes"
@@ -188617,12 +188979,6 @@
             }
           ],
           [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
             {
               "vdj_reference": {
                 "type": "file",
@@ -188632,39 +188988,21 @@
           ],
           [
             {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "barcode_read": {
+              "cell_barcode_read": {
                 "type": "string",
-                "description": "Read containing barcode (either R1 or R2)"
+                "description": "Read containing cell barcode (either R1 or R2)"
               }
             }
           ],
           [
-            {
-              "meta5": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
             {
               "umi_read": {
                 "type": "string",
-                "description": "Read containing barcode (either R1 or R2)"
+                "description": "Read containing umi barcode (either R1 or R2)"
               }
             }
           ],
           [
-            {
-              "meta6": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
             {
               "barcode_whitelist": {
                 "type": "file",
@@ -188831,7 +189169,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         }
       ]
     },
@@ -210248,7 +210586,7 @@
         },
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "ampliseq",
@@ -210613,7 +210951,7 @@
         },
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "ampliseq",
@@ -210990,7 +211328,7 @@
         },
         {
           "name": "airrflow",
-          "version": "4.2.0"
+          "version": "4.3.0"
         },
         {
           "name": "ampliseq",
