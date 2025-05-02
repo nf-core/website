@@ -24,7 +24,7 @@ Every help is welcome.
 ## Goals
 
 - **Establishing ideas**
-	- We would like to establish the best tools that people need for their work. We will do an open discussion to choose all the features that may be needed.
+  - We would like to establish the best tools that people need for their work. We will do an open discussion to choose all the features that may be needed.
 - **Build missing modules.**
   - Most tools are not present in nf-core. Check the [samplesheet](https://docs.google.com/spreadsheets/d/1snEbtzyogTF4fM2gFnxUGUFZsQCHhvb3vOAGBmciFzU/edit?gid=0#gid=0) for tool ideas.
 - **Test data.**
