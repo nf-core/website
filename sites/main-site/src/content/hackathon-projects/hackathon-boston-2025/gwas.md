@@ -31,4 +31,3 @@ Every help is welcome.
   - Identify data for use in unit tests.
 - **Buidling the pipeline.**
   - We aim to build with basic pipeline to deal with SNPs and univariate tratis. We will expand on this in the future.
-
