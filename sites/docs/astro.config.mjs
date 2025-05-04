@@ -97,6 +97,9 @@ export default defineConfig({
         assetsPrefix: 'https://nf-core-docs.netlify.app/',
     },
     vite: {
+        server: {
+            allowedHosts: ["4321-nfcore-website-i86p925tidn.ws-eu118.gitpod.io"]
+          },
         css: {
             preprocessorOptions: {
                 scss: {

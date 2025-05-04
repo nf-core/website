@@ -202,6 +202,8 @@ def toolBibliographyText() {
 }
 ```
 
+A full highly complex example can be seen in the nf-core/taxprofiler pipeline [here](https://github.com/nf-core/taxprofiler/blob/970bdc21556eb98135a0abe4766580b8d8556895/subworkflows/local/utils_nfcore_taxprofiler_pipeline/main.nf#L155-L240).
+
 ## Activated rendering of text in MultiQC
 
 Once the pipeline developer has built the dynamic text strings (and optionally updated the boilerplate YAML code), they can activate the functionality by uncommenting the [two lines](https://github.com/nf-core/tools/blob/059473c2e138aecfb451f2f848265767761d798a/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf#L294-L296) that includes `meta["tool_citations"]` and `meta["tool_bibliography"]` in the subworkflow.
