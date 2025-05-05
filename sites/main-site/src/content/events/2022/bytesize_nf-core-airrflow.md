@@ -6,8 +6,8 @@ startDate: "2022-10-25"
 startTime: "13:00+02:00"
 endDate: "2022-10-25"
 endTime: "13:30+02:00"
+embedAt: "airrflow"
 youtubeEmbed: https://www.youtube.com/watch?v=CrJgxVRVlqY
-embedAt: airrflow
 locations:
   - name: Online
     links:
