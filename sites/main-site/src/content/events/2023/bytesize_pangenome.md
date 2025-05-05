@@ -4,8 +4,8 @@ subtitle: Simon Heumos, QBiC, University of Tübingen
 type: talk
 startDate: "2023-11-07"
 startTime: "13:00+01:00"
+embedAt: "pangenome"
 youtubeEmbed: https://www.youtube.com/watch?v=cTfPWKzTqms
-embedAt: pangenome
 endDate: "2023-11-07"
 endTime: "13:30+01:00"
 locations:
