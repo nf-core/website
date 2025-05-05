@@ -29903,7 +29903,7 @@
               }
             },
             {
-              "gex_fastqs   ": {
+              "gex_fastqs": {
                 "type": "file",
                 "description": "FASTQ files",
                 "pattern": "*.fastq.gz"
@@ -29918,7 +29918,7 @@
               }
             },
             {
-              "vdj_fastqs   ": {
+              "vdj_fastqs": {
                 "type": "file",
                 "description": "FASTQ files",
                 "pattern": "*.fastq.gz"
@@ -29933,7 +29933,7 @@
               }
             },
             {
-              "ab_fastqs    ": {
+              "ab_fastqs": {
                 "type": "file",
                 "description": "FASTQ files",
                 "pattern": "*.fastq.gz"
@@ -29948,7 +29948,7 @@
               }
             },
             {
-              "beam_fastqs  ": {
+              "beam_fastqs": {
                 "type": "file",
                 "description": "FASTQ files",
                 "pattern": "*.fastq.gz"
@@ -29963,7 +29963,7 @@
               }
             },
             {
-              "cmo_fastqs   ": {
+              "cmo_fastqs": {
                 "type": "file",
                 "description": "FASTQ files",
                 "pattern": "*.fastq.gz"
@@ -41565,10 +41565,6 @@
         {
           "name": "scnanoseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "spatialxe",
-          "version": "dev"
         },
         {
           "name": "ssds",
@@ -84265,6 +84261,128 @@
           "version": "1.2.0"
         }
       ]
+    },
+    {
+      "name": "helitronscanner_draw",
+      "path": "modules/nf-core/helitronscanner/draw/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "helitronscanner_draw",
+        "description": "HelitronScanner draw tool for Helitron transposons in genomes",
+        "keywords": [
+          "genomics",
+          "helitron",
+          "scanner"
+        ],
+        "tools": [
+          {
+            "helitronscanner": {
+              "description": "HelitronScanner uncovers a large overlooked cache of Helitron transposons in many genomes",
+              "homepage": "https://sourceforge.net/projects/helitronscanner",
+              "documentation": "https://sourceforge.net/projects/helitronscanner",
+              "tool_dev_url": "https://sourceforge.net/projects/helitronscanner",
+              "doi": "10.1073/pnas.1410068111",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome data to scan for Helitrons",
+                "pattern": "*.{fa,fsa,fasta}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "head": {
+                "type": "file",
+                "description": "Output of the HelitronScanner head command",
+                "pattern": "*.{head}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tail": {
+                "type": "file",
+                "description": "Output of the HelitronScanner tail command",
+                "pattern": "*.{tail}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "draw": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{draw}"
+                }
+              },
+              {
+                "*.draw": {
+                  "type": "map",
+                  "description": "The draw output from HelitronScanner\n",
+                  "pattern": "*.{draw}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp",
+          "@jguhlin"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
     },
     {
       "name": "helitronscanner_scan",
@@ -149800,6 +149918,94 @@
       }
     },
     {
+      "name": "repeatmasker_rmouttogff3",
+      "path": "modules/nf-core/repeatmasker/rmouttogff3/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "repeatmasker_rmouttogff3",
+        "description": "A utility script to assist to convert old RepeatMasker *.out files to version 3 gff files.",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "repeatmasker": {
+              "description": "RepeatMasker is a program that screens DNA sequences for interspersed\nrepeats and low complexity DNA sequences\n",
+              "homepage": "https://www.repeatmasker.org/",
+              "documentation": "https://www.repeatmasker.org/webrepeatmaskerhelp.html",
+              "tool_dev_url": "https://github.com/rmhubley/RepeatMasker",
+              "licence": [
+                "Open Software License v. 2.1"
+              ],
+              "identifier": "biotools:repeatmasker"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "out": {
+                "type": "file",
+                "description": "RepeatMasker out file",
+                "pattern": "*.{out}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "gff3": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.gff3": {
+                  "type": "file",
+                  "description": "Sorted BAM/CRAM/SAM file",
+                  "pattern": "*.{gff3}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "repeatmodeler_builddatabase",
       "path": "modules/nf-core/repeatmodeler/builddatabase/meta.yml",
       "type": "module",
@@ -183822,6 +184028,154 @@
       }
     },
     {
+      "name": "syri",
+      "path": "modules/nf-core/syri/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "syri",
+        "description": "Syri compares alignments between two chromosome-level assemblies and identifies synteny and structural rearrangements.",
+        "keywords": [
+          "genomics",
+          "synteny",
+          "rearrangements",
+          "chromosome"
+        ],
+        "tools": [
+          {
+            "syri": {
+              "description": "Synteny and rearrangement identifier between whole-genome assemblies",
+              "homepage": "https://github.com/schneebergerlab/syri",
+              "documentation": "https://github.com/schneebergerlab/syri",
+              "tool_dev_url": "https://github.com/schneebergerlab/syri",
+              "doi": "10.1186/s13059-019-1911-0",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": "biotools:SyRI"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "infile": {
+                "type": "file",
+                "description": "File containing alignment coordinates",
+                "pattern": "*.{table, sam, bam, paf}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "query_fasta": {
+                "type": "file",
+                "description": "Query genome for the alignments",
+                "pattern": "*.{fasta}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference_fasta": {
+                "type": "file",
+                "description": "Reference genome for the alignments",
+                "pattern": "*.{fasta}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "file_type": {
+                "type": "string",
+                "description": "Input file type which is one of  T: Table, S: SAM, B: BAM, P: PAF\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "syri": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*syri.out": {
+                  "type": "file",
+                  "description": "Syri output file",
+                  "pattern": "*syri.{out}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "error": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.error.log": {
+                  "type": "file",
+                  "description": "Error log if syri fails. This error log enables the pipeline to detect if syri has failed due to one of its\nknown limitations and pass the information to the user in a user-friendly manner such as a HTML report\n",
+                  "pattern": "*.error.{log}",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@GallVp"
+        ],
+        "maintainers": [
+          "@GallVp"
+        ]
+      }
+    },
+    {
       "name": "tabix_bgzip",
       "path": "modules/nf-core/tabix/bgzip/meta.yml",
       "type": "module",
@@ -192536,6 +192890,10 @@
         },
         {
           "name": "spatialvi",
+          "version": "dev"
+        },
+        {
+          "name": "spatialxe",
           "version": "dev"
         },
         {
