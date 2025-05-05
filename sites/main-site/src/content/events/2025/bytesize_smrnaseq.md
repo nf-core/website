@@ -7,6 +7,7 @@ startTime: "13:00+01:00"
 endDate: "2025-02-11"
 endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/Tbb1BFnSyeM
+embedAt: smrnaseq
 locations:
   - name: Online
     links:

@@ -7,6 +7,7 @@ startTime: "13:00+01:00"
 endDate: "2024-03-12"
 endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/DGHq8Lpwh8Q
+embedAt: metatdenovo
 locations:
   - name: Online
     links:
