@@ -20,11 +20,7 @@ The following example lists the first entries of the file tree with test inputs 
 A branch name is always required to avoid a high number of requests against the github API.
 If no branch name is specified via the command line, the user will be prompted to enter one.
 
-<!-- RICH-CODEX
-head: 25
--->
-
-![`nf-core test-datasets list -b mag`](/images/tools/nf-core-test-datasets-list-mag.png)
+![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
 
 :::note
 To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
@@ -35,8 +31,4 @@ To improve usability branch names can be entered via a tab-autocompletion. Alter
 As default output, a table listing the filenames is printed, but download urls or nextflow import statements to reuse the test files can also be generated.
 This is possible via the flags `-u`/`--generate-dl-url` and `-p`/`--generate-nf-path` as in the [`search` subcommand](/docs/nf-core-tools/test-datasets/search).
 
-<!-- RICH-CODEX
-head: 6
--->
-
-![nf-core test-datasets list -b mag -u](/images/tools/nf-core-test-datasets-list-url-out.png)
+![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
