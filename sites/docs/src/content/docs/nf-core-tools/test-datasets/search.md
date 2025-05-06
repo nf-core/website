@@ -19,7 +19,7 @@ Some auxiliary files like `README`, or `LICENSE` as well as all files starting w
 The subcommand fetches, filters and searches through the filetree of a branch of the test-dataset repository and prompts the user for a query, that can be tab-autocompleted.
 A branch name to limit the search to is always required and if none is specified via the command line, the user will also be prompted to enter one.
 
-![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-test-datasets-search.png)
+![`nf-core test-datasets search --branch mag`](/images/tools/nf-core-test-datasets-search.svg)
 
 :::note
 To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
