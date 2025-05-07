@@ -7,6 +7,7 @@ startTime: "13:00+02:00"
 endDate: "2025-04-08"
 endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/RZW1Srh1_cY
+embedAt: proteinfamilies
 locations:
   - name: Online
     links:
