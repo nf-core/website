@@ -6,10 +6,12 @@ startDate: "2025-04-08"
 startTime: "13:00+02:00"
 endDate: "2025-04-08"
 endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/RZW1Srh1_cY
+embedAt: proteinfamilies
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/RZW1Srh1_cY
 ---
 
 In this week's bytesize talk, Evangelos ([@vagkaratzas](https://github.com/vagkaratzas)) is going to introduce the nf-core pipeline nf-core/proteinfamilies.
