@@ -15,8 +15,8 @@ export interface Props {
 let { title, description, image = "/social_img.png", docSearchTags = [], viewTransitions = false } = Astro.props;
 
 // remove all html tags from title and description
-title = title.replaceAll(/<[^>]*>?/g, "");
-description = description.replaceAll(/<[^>]*>?/g, "");
+title = title?.replaceAll(/<[^>]*>?/g, "");
+description = description?.replaceAll(/<[^>]*>?/g, "");
 ---
 
 <!-- Global Metadata -->
