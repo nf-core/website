@@ -81084,10 +81084,11 @@
               }
             },
             {
-              "\"bins/*\"": {
+              "bins/*": {
                 "type": "file",
                 "description": "A list of one or more bins in FASTA format for classification",
-                "pattern": "*.{fasta,fna,fas,fa}{,.gz}"
+                "pattern": "*.{fasta,fna,fas,fa}{,.gz}",
+                "ontologies": []
               }
             }
           ],
@@ -81102,7 +81103,8 @@
               "db": {
                 "type": "file",
                 "description": "Path to a directory containing a GDTB database, as uncompressed from from the 'full package' gtdbdtk_data.tar.gz file.\nYou can give the 'release<version number>' directory here.\nMust contain the 'metadata' subdirectory\n",
-                "pattern": "release[0-9]+/"
+                "pattern": "release[0-9]+/",
+                "ontologies": []
               }
             }
           ],
@@ -81119,23 +81121,47 @@
               "mash_db": {
                 "type": "file",
                 "description": "The local copy of the Mash sketch database used by GTDB-tk if `ani_screen` mode is used (optional)",
-                "pattern": "*.msh"
+                "pattern": "*.msh",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3911"
+                  }
+                ]
               }
             }
           ]
         ],
         "output": [
           {
+            "gtdb_outdir": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false,  assembler:'spades' ]\n",
+                  "pattern": "*"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "map",
+                  "description": "All files output by GTDB-Tk",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
             "summary": [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false,  assembler:'spades' ]\n",
+                  "pattern": "*.{summary.tsv}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.summary.tsv": {
-                  "type": "file",
+                "${prefix}/classify/*.summary.tsv": {
+                  "type": "map",
                   "description": "A TSV summary file for the classification",
                   "pattern": "*.{summary.tsv}"
                 }
@@ -81147,14 +81173,15 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{classify.tree}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.classify.tree.gz": {
-                  "type": "file",
-                  "description": "NJ or UPGMA tree in Newick format produced from a multiple sequence alignment",
-                  "pattern": "*.{classify.tree.gz}"
+                "${prefix}/classify/*.classify.tree": {
+                  "type": "map",
+                  "description": "Groovy Map NJ or UPGMA trees in Newick format produced from a multiple sequence\nalignment\n",
+                  "pattern": "*.{classify.tree}"
                 }
               }
             ]
@@ -81164,12 +81191,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{markers_summary.tsv}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.markers_summary.tsv": {
-                  "type": "file",
+                "${prefix}/identify/*.markers_summary.tsv": {
+                  "type": "map",
                   "description": "A TSV summary file lineage markers used for the classification.",
                   "pattern": "*.{markers_summary.tsv}"
                 }
@@ -81181,12 +81209,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{msa.fasta.gz}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.msa.fasta.gz": {
-                  "type": "file",
+                "${prefix}/align/*.msa.fasta.gz": {
+                  "type": "map",
                   "description": "Multiple sequence alignments file.",
                   "pattern": "*.{msa.fasta.gz}"
                 }
@@ -81198,12 +81227,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{user_msa.fasta.gz}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.user_msa.fasta.gz": {
-                  "type": "file",
+                "${prefix}/align/*.user_msa.fasta.gz": {
+                  "type": "map",
                   "description": "Multiple sequence alignments file for the user-provided files.",
                   "pattern": "*.{user_msa.fasta.gz}"
                 }
@@ -81215,13 +81245,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{filtered.tsv}"
                 }
               },
               {
-                "gtdbtk.${prefix}.*.filtered.tsv": {
-                  "type": "file",
-                  "description": "A list of genomes with an insufficient number of amino acids in MSA..",
+                "${prefix}/align/*.filtered.tsv": {
+                  "type": "map",
+                  "description": "A list of genomes with an insufficient number of amino acids in MSA",
                   "pattern": "*.{filtered.tsv}"
                 }
               }
@@ -81232,12 +81263,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{failed_genomes.tsv}"
                 }
               },
               {
-                "gtdbtk.${prefix}.failed_genomes.tsv": {
-                  "type": "file",
+                "${prefix}/identify/*.failed_genomes.tsv": {
+                  "type": "map",
                   "description": "A TSV summary of the genomes which GTDB-tk failed to classify.",
                   "pattern": "*.{failed_genomes.tsv}"
                 }
@@ -81249,12 +81281,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{log}"
                 }
               },
               {
-                "gtdbtk.${prefix}.log": {
-                  "type": "file",
+                "${prefix}/${prefix}.log": {
+                  "type": "map",
                   "description": "GTDB-tk log file",
                   "pattern": "*.{log}"
                 }
@@ -81270,8 +81303,8 @@
                 }
               },
               {
-                "gtdbtk.${prefix}.warnings.log": {
-                  "type": "file",
+                "${prefix}/${prefix}.warnings.log": {
+                  "type": "map",
                   "description": "GTDB-tk warnings log file",
                   "pattern": "*.{warnings.log}"
                 }
@@ -81284,7 +81317,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -81292,6 +81330,7 @@
         ],
         "authors": [
           "@skrakau",
+          "@prototaxites",
           "@abhi18av"
         ],
         "maintainers": [
@@ -81305,6 +81344,165 @@
           "version": "3.4.0"
         }
       ]
+    },
+    {
+      "name": "gtdbtk_gtdbtoncbimajorityvote",
+      "path": "modules/nf-core/gtdbtk/gtdbtoncbimajorityvote/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gtdbtk_gtdbtoncbimajorityvote",
+        "description": "Converts the output classifications of GTDB-TK from GTDB taxonomy to NCBI taxonomy",
+        "keywords": [
+          "gtdb taxonomy",
+          "ncbi taxonomy",
+          "taxonomic classification",
+          "conversion",
+          "taxonomy",
+          "classification",
+          "genome taxonomy database",
+          "bacteria",
+          "archaea"
+        ],
+        "tools": [
+          {
+            "gtdbtk": {
+              "description": "GTDB-Tk is a software toolkit for assigning objective taxonomic classifications to bacterial and archaeal genomes based on the Genome Database Taxonomy GTDB.",
+              "homepage": "https://ecogenomics.github.io/GTDBTk/",
+              "documentation": "https://ecogenomics.github.io/GTDBTk/",
+              "tool_dev_url": "https://github.com/Ecogenomics/GTDBTk",
+              "doi": "10.1093/bioinformatics/btz848",
+              "licence": [
+                "GNU General Public v3 (GPL v3)"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gtdbtk_outdir": {
+                "type": "file",
+                "description": "All the output files from GTDB-Tk",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "gtdbtk_prefix": {
+                "type": "string",
+                "description": "The prefix used when running gtdbtk/classifywf. If using output from the nf-core module,\nthis defaults to \"${meta.id}\".\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "ar53_metadata": {
+                "type": "file",
+                "description": "GTDB ar53 metadata file (from https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/)",
+                "pattern": "*.tsv.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bac120_metadata": {
+                "type": "file",
+                "description": "GTDB bac120 metadata file (from https://data.ace.uq.edu.au/public/gtdb/data/releases/latest/)",
+                "pattern": "*.tsv.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.ncbi.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.ncbi.tsv": {
+                  "type": "map",
+                  "description": "TSV map for input genomes, mapping GTDB classification taxonomy to NCBI taxonomic lineages",
+                  "pattern": "*.ncbi.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
     },
     {
       "name": "gtfsort",
@@ -157303,6 +157501,88 @@
       }
     },
     {
+      "name": "samtools_bgzip",
+      "path": "modules/nf-core/samtools/bgzip/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_bgzip",
+        "description": "Outputs a FASTA file compressed with the BGZF algorithm",
+        "keywords": [
+          "fasta",
+          "BGZF",
+          "bgzip"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file, compressed or not.",
+                "pattern": "*.{fa,fa.gz,fa.bz2,fa.xz,fasta,fasta.gz,fasta.bz2,fasta.xz}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "*.{fa.gz,fasta.gz}"
+                }
+              },
+              {
+                "${output}": {
+                  "type": "map",
+                  "description": "A FASTA file compressed with the BGZF algorithm.  It will be\nthe original file if it was already BGZF-compressed.\n",
+                  "pattern": "*.{fa.gz,fasta.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@charles-plessy"
+        ],
+        "maintainers": [
+          "@charles-plessy"
+        ]
+      }
+    },
+    {
       "name": "samtools_calmd",
       "path": "modules/nf-core/samtools/calmd/meta.yml",
       "type": "module",
@@ -182342,7 +182622,7 @@
           ],
           [
             {
-              "meta2": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing FASTA information\nid: should be the identification number for alignment file and should be the same used to create BWA index files\ne.g. [ id:'fasta' ]\n"
               }
@@ -182357,7 +182637,7 @@
           ],
           [
             {
-              "meta3": {
+              "meta4": {
                 "type": "map",
                 "description": "Groovy Map containing BWA information\nid: should be the identification number same as fasta file\ne.g. [ id:'bwa' ]\n"
               }
@@ -182365,14 +182645,14 @@
             {
               "bwa_index": {
                 "type": "file",
-                "description": "BWA genome index files",
+                "description": "BWA genome index files. Note that this tool requires the bwa index files to be of the format `prefix.suffix.amb`, where `prefix.suffix` is the full name of the fasta file, not just the prefix.",
                 "pattern": "Directory containing BWA index *.{amb,ann,bwt,pac,sa}"
               }
             }
           ],
           [
             {
-              "meta4": {
+              "meta5": {
                 "type": "map",
                 "description": "Groovy Map containing dbSNP information\nid: should be the identification number for dbSNP files\ne.g. [ id:'test' ]\n"
               }
@@ -182387,7 +182667,7 @@
           ],
           [
             {
-              "meta4": {
+              "meta6": {
                 "type": "map",
                 "description": "Groovy Map containing dbSNP information\nid: should be the identification number for dbSNP files\ne.g. [ id:'test' ]\n"
               }
@@ -182402,7 +182682,7 @@
           ],
           [
             {
-              "meta5": {
+              "meta7": {
                 "type": "map",
                 "description": "Groovy Map containing regions information\nid: should be the identification number for regions\ne.g. [ id:'test' ]\n"
               }
