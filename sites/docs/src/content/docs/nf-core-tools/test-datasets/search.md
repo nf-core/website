@@ -17,6 +17,7 @@ Some auxiliary files like `README`, or `LICENSE` as well as all files starting w
 ## Search a branch for a data file
 
 The subcommand fetches, filters and searches through the filetree of a branch of the test-dataset repository and prompts the user for a query, that can be tab-autocompleted.
+A query can be specified as a command line argument to pre-populate the search field and if the query is unambiguous return the matching file without prompting.
 A branch name to limit the search to is always required and if none is specified via the command line, the user will also be prompted to enter one.
 
 ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
