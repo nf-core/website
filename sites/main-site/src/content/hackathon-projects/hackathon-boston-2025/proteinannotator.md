@@ -3,7 +3,7 @@ title: Annotate all the proteins with proteinannotator!
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C084HP11VPF"
 intro_video: ""
-image: "assets/images/events/2025/hackathon-boston/proteinannotator-annotate-all-the-proteins.jpg"
+image: "/assets/images/events/2025/hackathon-boston/proteinannotator-moar-proteinanotator-modules.jpg"
 image_alt: nf-core proteinannotator hackathon
 leaders:
   olgabot:
