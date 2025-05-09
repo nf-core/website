@@ -41,7 +41,7 @@ So far, we have these PRs in progress that we could use your help on!
 - [#9](https://github.com/nf-core/proteinannotator/pull/9): [InterProScan](https://interproscan-docs.readthedocs.io/) -- Started by @olgabot, will work on during the hackathon -- **looking for contributors to update InterProScan on nf-core/modules**
 - [#14](https://github.com/nf-core/proteinannotator/pull/14): Convert Fasta to Parquet files to compute amino acid composition stats using [FastaToParquet](https://github.com/heuermh/dishevelled-bio/blob/352ff5578a11a8b84755fc7b251362ee3adb847f/tools/src/main/java/org/dishevelled/bio/tools/FastaToParquet.java#L73) from [heuermh/dishevelled-bio](https://github.com/heuermh/dishevelled-bio), started by @hueuermh
 - [#17](https://github.com/nf-core/proteinannotator/pull/17): UniProt's [UniFire](https://gitlab.ebi.ac.uk/uniprot-public/unifire) -- [Instructions](https://www.ebi.ac.uk/training/events/annotate-your-proteins-uniprot-functional-annotation-system-unifire/), started at the March hackathon and **looking for more contributors!**
-  - This may end up needing to be written as its own *subworkflow* because the UniFire container from EBI runs its own internal pipeline that duplicates work, e.g. it runs InterProScan internally and uses the output from that for further analysis
+  - This may end up needing to be written as its own _subworkflow_ because the UniFire container from EBI runs its own internal pipeline that duplicates work, e.g. it runs InterProScan internally and uses the output from that for further analysis
 - [#18](https://github.com/nf-core/proteinannotator/pull/18): [DIAMOND-blastp](https://github.com/bbuchfink/diamond), started at the March hackathon and **looking for more contributors!**
 
 ## TODO annotation tools
