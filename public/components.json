@@ -15863,6 +15863,10 @@
       },
       "pipelines": [
         {
+          "name": "epitopeprediction",
+          "version": "3.0.0"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.0.0"
         },
@@ -26643,6 +26647,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "epitopeprediction",
+          "version": "3.0.0"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         },
@@ -26664,7 +26672,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -34427,7 +34435,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -53800,7 +53808,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -82131,7 +82139,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.1"
+          "version": "3.0.0"
         },
         {
           "name": "evexplorer",
@@ -84809,7 +84817,13 @@
         "maintainers": [
           "@vagkaratzas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "proteinfamilies",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "hicap",
@@ -86993,7 +87007,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -87111,7 +87125,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -87609,7 +87623,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -104856,7 +104870,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -116413,7 +116427,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -116508,7 +116522,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -116722,7 +116736,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -116987,7 +117001,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -119827,7 +119841,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.1"
+          "version": "3.0.0"
         },
         {
           "name": "evexplorer",
@@ -119995,7 +120009,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -164358,7 +164372,7 @@
                 }
               },
               {
-                "$prefix": {
+                "${prefix}": {
                   "type": "file",
                   "description": "The per locus coverage with no partition.",
                   "pattern": "${sample_id}"
@@ -164395,7 +164409,7 @@
                 "${prefix}.${partitions_output}_interval_statistics": {
                   "type": "file",
                   "description": "The statistics for PARTITION_GROUP library, aggregated by interval.",
-                  "pattern": "${sample_id}.interval_statistics"
+                  "pattern": "${sample_id}_interval_statistics"
                 }
               }
             ]
@@ -164412,7 +164426,7 @@
                 "${prefix}.${partitions_output}_cumulative_coverage_counts": {
                   "type": "file",
                   "description": "Contains the histogram of loci with depth larger than x.",
-                  "pattern": "${sample_id}.interval_statistics"
+                  "pattern": "${sample_id}_cumulative_coverage_counts"
                 }
               }
             ]
@@ -164429,7 +164443,7 @@
                 "${prefix}.${partitions_output}_cumulative_coverage_proportions": {
                   "type": "file",
                   "description": "Contains the normalized histogram of loci with depth larger than x.",
-                  "pattern": "${sample_id}.interval_statistics"
+                  "pattern": "${sample_id}_cumulative_coverage_proportions"
                 }
               }
             ]
@@ -164446,14 +164460,7 @@
                 "${prefix}.${partitions_output}_interval_summary": {
                   "type": "file",
                   "description": "The summary for PARTITION_GROUP library, aggregated by interval.",
-                  "pattern": "${sample_id}.interval_summary"
-                }
-              },
-              {
-                "_summary": {
-                  "type": "file",
-                  "description": "The summary for PARTITION_GROUP library, aggregated by interval.",
-                  "pattern": "${sample_id}.interval_summary"
+                  "pattern": "${sample_id}_interval_summary"
                 }
               }
             ]
@@ -165629,7 +165636,7 @@
           ],
           [
             {
-              "meta1": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -165644,7 +165651,7 @@
           ],
           [
             {
-              "meta2": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -165659,7 +165666,7 @@
           ],
           [
             {
-              "meta3": {
+              "meta4": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -165673,7 +165680,7 @@
           ],
           [
             {
-              "meta4": {
+              "meta5": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -168328,7 +168335,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -176182,7 +176189,13 @@
           "@SusiJo",
           "@jonasscheid"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "epitopeprediction",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "snpsites",
@@ -194187,7 +194200,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -212395,7 +212408,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.1"
+          "version": "3.0.0"
         },
         {
           "name": "evexplorer",
@@ -212543,7 +212556,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -212768,7 +212781,7 @@
         },
         {
           "name": "epitopeprediction",
-          "version": "2.3.1"
+          "version": "3.0.0"
         },
         {
           "name": "evexplorer",
@@ -212916,7 +212929,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -213140,6 +213153,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "epitopeprediction",
+          "version": "3.0.0"
+        },
+        {
           "name": "fastqrepair",
           "version": "1.0.0"
         },
@@ -213257,7 +213274,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "rangeland",
@@ -213421,10 +213438,6 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
-        },
-        {
-          "name": "epitopeprediction",
-          "version": "2.3.1"
         },
         {
           "name": "evexplorer",
