@@ -5,7 +5,7 @@ slack: https://nfcore.slack.com/archives/CJDV0UWH2
 image: "/assets/images/events/2025/hackathon-boston/bacass.jpg"
 image_alt: meme of everybody getting a genome from any data
 leaders:
-  LorenaPantano:
+  lpantano:
     name: Lorena Pantano
     slack: https://nfcore.slack.com/team/UJA66THFY
 ---
