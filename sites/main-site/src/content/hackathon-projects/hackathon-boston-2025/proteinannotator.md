@@ -11,7 +11,7 @@ leaders:
     slack: "https://nfcore.slack.com/archives/D08JCBP586S"
 ---
 
-This project will add modules to the nf-core/proteinannotator pipeline.
+This project will add modules to the nf-core/proteinannotator pipeline, building towards a 1.0.0 release!
 
 ## Vision
 
