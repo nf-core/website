@@ -120,13 +120,14 @@ E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `sam
 ### Types of meta fields
 
 Modules MUST NOT use 'custom' hardcoded `meta` fields.
+This means both that they should not be referred to within the module as expected input, nor generate new fields as output.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
 Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
 
 :::info{title="Rationale" collapse}
 Modules should be written to allow as much flexibility to pipeline developers as possible.
 
-Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
+Hardcoding `meta` fields in a module both as input and output will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
 As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
