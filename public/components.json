@@ -147955,7 +147955,7 @@
                 }
               },
               {
-                "pydamage_results/*_pydamage_results.csv": {
+                "${prefix}_pydamage_results.csv": {
                   "type": "file",
                   "description": "PyDamage results as csv files",
                   "pattern": "*.csv"
@@ -148051,7 +148051,7 @@
                 }
               },
               {
-                "pydamage_results/pydamage_filtered_results.csv": {
+                "${prefix}_pydamage_filtered_results.csv": {
                   "type": "file",
                   "description": "PyDamage filtered results as csv file",
                   "pattern": "*.csv"
@@ -153306,6 +153306,138 @@
           "version": "1.5.0"
         }
       ]
+    },
+    {
+      "name": "rnaquast",
+      "path": "modules/nf-core/rnaquast/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rnaquast",
+        "description": "Assess the quality of an RNAseq assembly with or without a reference genome",
+        "keywords": [
+          "rna assembly",
+          "rnaseq",
+          "de novo",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "rnaquast": {
+              "description": "rnaQUAST is a tool for evaluating RNA-Seq assemblies using reference genome and gene database. In addition, rnaQUAST is also capable of estimating gene database coverage by raw reads and de novo quality assessment using third-party software.",
+              "homepage": "https://github.com/ablab/rnaquast",
+              "documentation": "https://github.com/ablab/rnaquast",
+              "tool_dev_url": "https://github.com/ablab/rnaquast",
+              "doi": "10.1093/bioinformatics/btw218",
+              "licence": [
+                "GPL v2-or-later"
+              ],
+              "identifier": "biotools:rnaQUAST"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Specifies the transcriptome assembly FASTA file(s) to be evaluated.",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Provides the reference genome FASTA file against which transcripts will be aligned.",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Supplies the reference gene annotation file in GTF format for evaluating transcript accuracy and completeness.",
+                "pattern": "*.{gff,gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2305"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${prefix}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "roary",
@@ -163569,7 +163701,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -163594,11 +163726,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "*.csv": {
+                "${prefix}/*.csv": {
                   "type": "file",
                   "description": "generated files",
                   "pattern": "*.csv"
@@ -163611,11 +163743,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "*.h5": {
+                "${prefix}/*.h5": {
                   "type": "file",
                   "description": "model file",
                   "pattern": "*.h5"
@@ -163628,30 +163760,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "output_prerecluster_bins/*.fa": {
+                "${prefix}/output_bins/*.fa.gz": {
                   "type": "file",
                   "description": "precluster fasta files",
-                  "pattern": "*.fa"
-                }
-              }
-            ]
-          },
-          {
-            "recluster_fasta": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "output_recluster_bins/*.fa": {
-                  "type": "file",
-                  "description": "recluster fasta files",
                   "pattern": "*.fa"
                 }
               }
@@ -163662,11 +163777,11 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "*.tsv": {
+                "${prefix}/*.tsv": {
                   "type": "file",
                   "description": "information of bins",
                   "pattern": "*.tsv"
