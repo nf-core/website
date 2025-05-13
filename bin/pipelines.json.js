@@ -170,7 +170,7 @@ export const writePipelinesJson = async () => {
           });
         data[`${branch}_branch_exists`] = branch_exists;
       } catch (err) {
-        console.warn(`Failed to fetch ${branch} branch`, err);
+        console.warn(`Failed to fetch ${branch} branch`, err.response.data.message, err.response.url);
       }
 
       if (branch !== 'TEMPLATE') {
@@ -191,7 +191,7 @@ export const writePipelinesJson = async () => {
             rules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
           data[`${branch}_branch_protection_enforce_admins`] = rules?.data?.enforce_admins?.enabled ?? -1;
         } catch (err) {
-          console.log(`Failed to fetch ${branch} branch protection`, err);
+          console.log(`Failed to fetch ${branch} branch protection`, err.response.data.message, err.response.url);
         }
       } else {
         // Template branch protection rules
@@ -207,7 +207,7 @@ export const writePipelinesJson = async () => {
               ? true
               : false;
         } catch (err) {
-          console.log(`Failed to fetch ${branch} branch push restrictions`, err);
+          console.log(`Failed to fetch ${branch} branch push restrictions`, err.response.data.message, err.response.url);
         }
       }
     }
@@ -361,7 +361,7 @@ export const writePipelinesJson = async () => {
             let parsedManifest = response.match(/manifest\s*{([^}]*)}/s)[0];
             // convert to object
             let manifest = {};
-            manifest['defaultBranch'] = parsedManifest.match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
+            manifest['defaultBranch'] = parsedManifest.match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/)?.[1];
             return manifest;
           }
           return {};
