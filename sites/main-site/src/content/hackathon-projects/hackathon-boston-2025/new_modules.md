@@ -17,4 +17,4 @@ This project focuses on creating new and updating existing nf-core modules.
 - Create new nf-core modules
 - Improve existing nf-core modules
 
-_We welcome contributors of all experience levels, though tasks will be much easier for those who have already contributed modules to the nf-core project._
+_We welcome contributors of all experience levels, though tasks will be much easier for those who have already contributed modules to the nf-core/modules repository._
