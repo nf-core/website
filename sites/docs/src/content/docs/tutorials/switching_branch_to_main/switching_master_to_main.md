@@ -10,7 +10,6 @@ This tutorial will guide you through changing the pipeline default branch form `
 
 - Admin rights on the GitHub repository where the change is taking place
 - nf-core tools
-  - It is recommended that the version match the version of the template in your pipeline
 
 :::warning
 Make sure you are on using the same version of nf-core/tools as the template version of your branch (you can see the version in `.nf-core.yml`).
