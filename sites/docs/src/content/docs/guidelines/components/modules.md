@@ -122,7 +122,7 @@ E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `sam
 Modules MUST NOT use 'custom' hardcoded `meta` fields.
 This means both that they should not be referred to within the module as expected input, nor generate new fields as output.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
-Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team on slack under the #modules channel.
+Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
 :::info{title="Rationale" collapse}
 Modules should be written to allow as much flexibility to pipeline developers as possible.
