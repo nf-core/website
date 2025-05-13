@@ -1,5 +1,5 @@
 ---
-title: New modules
+title: Add and improve nf-core modules
 category: components
 slack: https://nfcore.slack.com/archives/CJRH30T6V
 image: "/assets/images/events/2025/hackathon-boston/module_meme.png"
