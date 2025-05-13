@@ -16,6 +16,5 @@ This project focuses on creating new and updating existing nf-core modules.
 
 - Create new nf-core modules
 - Improve existing nf-core modules
-- _For people who are familiar Nextflow and nf-core module development._
 
-_We welcome contributors of all experience levels._
+_We welcome contributors of all experience levels, though tasks will be much easier for those who have already contributed modules to the nf-core project._
