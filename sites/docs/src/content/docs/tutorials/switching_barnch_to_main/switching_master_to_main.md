@@ -8,7 +8,7 @@ This tutorial will guide you through changing the pipeline default branch form `
 
 ## Prequisites
 
-- Admin rights on the GitHub repository where the change taking place
+- Admin rights on the GitHub repository where the change is taking place
 - nf-core tools
   - It is recommended that the version match the version of the template in your pipeline
 
@@ -18,15 +18,16 @@ This tutorial will guide you through changing the pipeline default branch form `
 
 ## Instructions
 
-1. Open your repository on GitHub (make sure you're on master)
+1. Open your repository on GitHub (make sure you're on `master`)
 2. Go to the `branches` page (to the right of the `branches` drop down where it says 'master')
 
 ![image](https://hackmd.io/_uploads/rkc8GXJWgx.png)
 
 3. Under the default branch section of the page, press the triple dot menu on the `master` branch row, and press 'Rename branch'
 
-> [NOTE]
-> You will need permissions to change this setting. If you don't have permission, ask the @core-team to do it for you.
+:::note
+You will need permissions to change this setting. If you don't have permission, ask the @core-team to do it for you.
+:::
 
 ![image](https://hackmd.io/_uploads/Bkpdz7kWlg.png)
 
