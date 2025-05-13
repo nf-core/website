@@ -17,8 +17,7 @@ It includes the pipeline name and version, the exact command executed, and when 
 
 By providing the exact command and version, we improve user reproducibility when reporting their methods (instead of vaguely saying we executed pipeline X with version Y, without any parameter information).
 
-Furthermore, the sheer number of tools in complex pipelines can put users off from giving credit to the authors of each tool.
-Therefore providing the text with relevant citations for the user 'out of the box' increases the chance of every author receiving credit where credit is due.
+Providing the text with relevant citations for the user 'out of the box', also increases the chance of the authors of every tool in the pipeline receiving credit where credit is due.
 
 This guide describes how a pipeline developer can customise this text snippet so that the text and citations of only the executed tools in the run are added to the text.
 
