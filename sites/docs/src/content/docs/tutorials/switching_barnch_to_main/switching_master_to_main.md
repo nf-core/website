@@ -22,7 +22,7 @@ This will avoid adding other changes not needed for the branch name switch.
 1. Open your repository on GitHub (make sure you're on `master`)
 2. Go to the `branches` page (to the right of the `branches` drop down where it says 'master')
 
-<img width=80% alt="Branches button" src="/images/tutorials/training/branches_button.png">
+<img width=80% alt="Branches button" src="/images/tutorials/switching_master_to_main/branches_button.png">
 
 3. Under the default branch section of the page, press the triple dot menu on the `master` branch row, and press 'Rename branch'
 
@@ -30,7 +30,7 @@ This will avoid adding other changes not needed for the branch name switch.
 You will need permissions to change this setting. If you don't have permission, ask the @core-team to do it for you.
 :::
 
-<img width=80% alt="Rename branch button" src="/images/tutorials/training/rename_branch_button.png">
+<img width=80% alt="Rename branch button" src="/images/tutorials/switching_master_to_main/rename_branch_button.png">
 
 4.  Rename `master` to `main`
 5.  Press the 'learn more' text, and copy and paste the displayed instructions somewhere safe.
@@ -39,7 +39,7 @@ You will need permissions to change this setting. If you don't have permission, 
 These instructions will be usefur for all pipeline contributors.
 :::
 
-<img width=80% alt="Learn more button" src="/images/tutorials/training/learn_more_button.png">
+<img width=80% alt="Learn more button" src="/images/tutorials/switching_master_to_main/learn_more_button.png">
 
 6. Press 'Rename branch'
 7. Go back to 'Code' tab to verify you are now on `main`
