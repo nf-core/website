@@ -886,6 +886,18 @@ Bases: `BaseModel`
                ],
                "default": null,
                "title": "Local Component Structure"
+            },
+            "rocrate_readme_sync": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Rocrate Readme Sync"
             }
          },
          "title": "NFCoreYamlLintConfig",
@@ -1374,6 +1386,18 @@ schema for linting config in .nf-core.yml should cover:
          ],
          "default": null,
          "title": "Local Component Structure"
+      },
+      "rocrate_readme_sync": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Rocrate Readme Sync"
       }
    }
 }
@@ -1403,6 +1427,7 @@ schema for linting config in .nf-core.yml should cover:
   - [`pipeline_todos (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
   - [`plugin_includes (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
   - [`readme (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.readme)
+  - [`rocrate_readme_sync (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.rocrate_readme_sync)
   - [`schema_description (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_description)
   - [`schema_lint (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_lint)
   - [`schema_params (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_params)
@@ -1497,6 +1522,10 @@ Lint for nextflow plugin
 #### _`field{:python}`_`readme{:python}`_: bool | List\[str] | None_`{:python}`_= None_
 
 Lint the README.md file
+
+#### _`field{:python}`_`rocrate_readme_sync{:python}`_: bool | None_`{:python}`_= None_
+
+Lint for README.md and rocrate.json sync
 
 #### _`field{:python}`_`schema_description{:python}`_: bool | None_`{:python}`_= None_
 
