@@ -44,7 +44,7 @@ These instructions will be usefur for all pipeline contributors.
 6. Press 'Rename branch'
 7. Go back to 'Code' tab to verify you are now on `main`
 8. In your local IDE (e.g. VSCode) make sure you're on the `dev` branch
-9. Run `git pull` to ensure you have the `main` branch locally
+9. Run `git fetch upstream` to ensure you have the `main` branch locally
 10. Change your `git` config to `main` with:
 
     ```bash
