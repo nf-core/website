@@ -161225,7 +161225,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -161244,6 +161244,12 @@
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
             {
               "fasta": {
                 "type": "file",
