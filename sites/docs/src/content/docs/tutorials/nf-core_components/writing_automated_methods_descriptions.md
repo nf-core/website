@@ -16,8 +16,7 @@ This section of the report has a text in typical scientific 'materials and metho
 It includes the pipeline name and version, the exact command executed, and when supported by a pipeline, a dynamically generated text of all the citation information of the tools used in that particular run of the pipeline.
 
 By providing the exact command and version, we improve user reproducibility when reporting their methods (instead of vaguely saying we executed pipeline X with version Y, without any parameter information).
-
-Providing the text with relevant citations for the user 'out of the box', also increases the chance of the authors of every tool in the pipeline receiving credit where credit is due.
+Furthermore, providing the text with relevant citations for the user 'out of the box' also increases the chance of the authors of every tool in the pipeline receiving credit where credit is due.
 
 This guide describes how a pipeline developer can customise this text snippet so that the text and citations of only the executed tools in the run are added to the text.
 
