@@ -58,7 +58,7 @@ These instructions will be usefur for all pipeline contributors.
 
 12. Still on `dev`, run `nf-core pipelines sync`
 13. Change to a new branch `git switch -c default-branch-change`
-14. Follow the merge TEMPLATE instructions, i.e. `git merge TEMPLATE`
+14. Follow the TEMPLATE merge instructions, i.e. `git merge TEMPLATE`
 
 :::note
 If you don't want any other template changes, make sure to use `nf-core/tools` version that matches the template version in your pipeline
