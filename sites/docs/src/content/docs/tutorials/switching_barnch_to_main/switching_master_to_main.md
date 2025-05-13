@@ -12,9 +12,10 @@ This tutorial will guide you through changing the pipeline default branch form `
 - nf-core tools
   - It is recommended that the version match the version of the template in your pipeline
 
-> [!WARNING]
-> Make sure you are on using same version of nf-core/tools as the template version of your branch.
-> This will avoid adding other changes not needed for the branch name switch.
+:::warning
+Make sure you are on using the same version of nf-core/tools as the template version of your branch (you can see the version in `.nf-core.yml`).
+This will avoid adding other changes not needed for the branch name switch.
+:::
 
 ## Instructions
 
