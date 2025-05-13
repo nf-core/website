@@ -45,51 +45,45 @@ These instructions will be usefur for all pipeline contributors.
 7. Go back to 'Code' tab to verify you are now on `main`
 8. In your local IDE (e.g. VSCode) make sure you're on the `dev` branch
 9. Run `git pull` to ensure you have the `main` branch locally
-10. Check your `git` config to see what is your current default branch (it should report `master`):
-
-    ```bash
-    git config --global init.defaultBranch
-    ```
-
-11. Change it to `main` with :
+10. Change your `git` config to `main` with:
 
     ```bash
     git config --global init.defaultBranch main
     ```
 
-12. Check your `git` config again to check it change (it should now report `main`):
+11. Check your `git` config again to check it change (it should now report `main`):
 
     ```bash
     git config --global init.defaultBranch
     ```
 
-13. Still on `dev`, run `nf-core pipelines sync`
-14. Change to a new branch `git switch -c default-branch-change`
-15. Follow the merge TEMPLATE instructions, i.e. `git merge TEMPLATE`
+12. Still on `dev`, run `nf-core pipelines sync`
+13. Change to a new branch `git switch -c default-branch-change`
+14. Follow the merge TEMPLATE instructions, i.e. `git merge TEMPLATE`
 
 :::note
 If you don't want any other template changes, make sure to use `nf-core/tools` version that matches the template version in your pipeline
 :::
 
-18. Resolve merge conflicts
+15. Resolve merge conflicts
 
 :::tip
 If it's the ROcrate file, you can accept all incoming chagnes
 :::
 
-19. Check that all references of your pipelines' `msater` is now `main` using a global repository search in your IDE
+16. Check that all references of your pipelines' `msater` is now `main` using a global repository search in your IDE
 
 :::warning
 Make sure not to modify references of master in links to other repositories!
 If in doubt, ask on the nf-core slack!
 :::
 
-20. Run `nf-core pipelines lint` to check you didn't break anything
-21. Commit and merge `git add -am 'Change default branch'
-22. Push the changes `git push`
-23. On GitHub make a new PR against `dev`
-24. Review PR to check all links and `nextflow.config` manifest say `main`
-25. Review and merge :tada:
+17. Run `nf-core pipelines lint` to check you didn't break anything
+18. Commit and merge `git add -am 'Change default branch'
+19. Push the changes `git push`
+20. On GitHub make a new PR against `dev`
+21. Review PR to check all links and `nextflow.config` manifest say `main`
+22. Review and merge :tada:
 
 ## Post-change instructions
 
