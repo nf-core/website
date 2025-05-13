@@ -134519,6 +134519,21 @@
                 "pattern": "*.{bam,cram,sam}"
               }
             }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file",
+                "pattern": "*.{fasta}"
+              }
+            }
           ]
         ],
         "output": [
@@ -195541,7 +195556,7 @@
         "tools": [
           {
             "varlociraptor": {
-              "description": "Flexible, uncertainty-aware variant calling with parameter free filtration via FDR control.",
+              "description": "Flexible, uncertainty-aware variant calling with parameter free\nfiltration via FDR control.\n",
               "homepage": "https://varlociraptor.github.io/docs/estimating/",
               "documentation": "https://varlociraptor.github.io/docs/calling/",
               "tool_dev_url": "https://github.com/varlociraptor/varlociraptor",
@@ -195623,40 +195638,6 @@
         ],
         "output": [
           {
-            "bcf_gz": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.bcf.gz": {
-                  "type": "file",
-                  "description": "BCF file containing sample observations",
-                  "pattern": "*.bcf.gz"
-                }
-              }
-            ]
-          },
-          {
-            "vcf_gz": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.vcf.gz": {
-                  "type": "file",
-                  "description": "Compressed VCF file containing sample observations",
-                  "pattern": "*.vcf.gz"
-                }
-              }
-            ]
-          },
-          {
             "bcf": [
               {
                 "meta": {
@@ -195669,23 +195650,6 @@
                   "type": "file",
                   "description": "BCF file containing sample observations",
                   "pattern": "*.bcf"
-                }
-              }
-            ]
-          },
-          {
-            "vcf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.vcf": {
-                  "type": "file",
-                  "description": "VCF file containing sample observations",
-                  "pattern": "*.vcf"
                 }
               }
             ]
@@ -213278,6 +213242,10 @@
           "version": "3.0.0"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "fastqrepair",
           "version": "1.0.0"
         },
@@ -213559,10 +213527,6 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
-        },
-        {
-          "name": "evexplorer",
-          "version": "dev"
         },
         {
           "name": "fetchngs",
