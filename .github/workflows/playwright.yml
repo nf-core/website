@@ -2,7 +2,7 @@ name: Playwright Tests
 on:
   pull_request:
     paths:
-      - 'sites/**'
+      - "sites/**"
 
 # Cancel if a newer run is started
 concurrency:
@@ -15,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      - uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4
+      - uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
         with:
           node-version: 18
-          cache: 'npm'
+          cache: "npm"
       - name: Install dependencies
         run: npm ci
       - name: Install Playwright Browsers
@@ -27,7 +27,7 @@ jobs:
         uses: jakepartusch/wait-for-netlify-action@f1e137043864b9ab9034ae3a5adc1c108e3f1a48 # v1.4
         id: waitFor200
         with:
-          site_name: 'nf-core-main-site'
+          site_name: "nf-core-main-site"
           max_timeout: 180 # 3 Minutes
       - name: determine the changed directory
         id: determine_changed_directory
@@ -40,8 +40,8 @@ jobs:
             npm run test -w sites/main-site
           # done
         env:
-          PLAYWRIGHT_TEST_BASE_URL: 'https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app'
-      - uses: actions/upload-artifact@6f51ac03b9356f520e9adb1b1b7802705f340c2b # v4
+          PLAYWRIGHT_TEST_BASE_URL: "https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app"
+      - uses: actions/upload-artifact@4cec3d8aa04e39d1a68397de0c4cd6fb9dce8ec1 # v4
         if: always()
         with:
           name: playwright-report

@@ -1,12 +1,13 @@
 ---
-title: 'Bytesize: nf-core/nascent'
+title: "Bytesize: nf-core/nascent"
 subtitle: Edmund Miller - University of Texas at Dallas, USA
 type: talk
-startDate: '2022-11-01'
-startTime: '13:00+01:00'
-endDate: '2022-11-01'
-endTime: '13:30+01:00'
+startDate: "2022-11-01"
+startTime: "13:00+01:00"
+endDate: "2022-11-01"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=chayGGPTnfM
+embedAt: "nascent"
 locations:
   - name: Online
     links:

@@ -22,9 +22,6 @@ First of all, you need to have Nextflow installed on your system.
 We do this by installing it locally on a machine that _does_ have an internet connection, and then transferring to the offline system.
 
 - Start by [installing Nextflow locally](https://nextflow.io/docs/latest/getstarted.html#installation).
-  :::warning
-  do _not_ use the `-all` package, as this does not allow the use of custom plugins.
-  :::
 - Kick off a pipeline locally so that Nextflow fetches the required plugins. It does not need to run to completion.
 - Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
 - In your Nextflow configuration file, specify each plugin that you downloaded, both name and version, including default plugins. This will prevent Nextflow from trying to download newer versions of plugins.
@@ -61,7 +58,7 @@ For more information, see the [documentation for `nf-core pipelines download`](/
 
 Some pipelines require reference genomes and have built-in integration with AWS-iGenomes.
 If you wish to use these references, you must download and transfer them to your offline cluster.
-Once transferred, follow the [reference genomes documentation](/docs/usage/reference_genomes/reference_genomes.md) to configure the base path for the references.
+Once transferred, follow the [reference genomes documentation](/docs/usage/reference_genomes) to configure the base path for the references.
 
 ## Bytesize talk
 

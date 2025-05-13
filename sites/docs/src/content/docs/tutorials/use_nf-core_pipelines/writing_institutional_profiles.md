@@ -196,12 +196,14 @@ params {
 }
 ```
 
-:::note{collapse title="Note on older nf-core pipelines"}
+:::note{title="Note on older nf-core pipelines"}
 
-If using older pipelines, you will also need to specify the `max_*` series of params (now not used in the pipeline template).
+If you expect users to use older versions of pipelines, we strongly recommend to also specify the `max_*` series of params as below.
 
-These are used by nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster.
-These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to). For example:
+These parameters are used by older nf-core pipelines to limit the automatic resubmission of resource-related failed jobs to ensure submitted retries do not exceed the maximum available on your cluster (Nextflow now supports this natively using `resourceLimits`, see below).
+These values should be the ones you found for the largest node of your cluster (i.e., the largest node a user's job can be submitted to).
+These values should match those specified in the `resourceLimits` section of the `process` scope.
+For example:
 
 ```nextflow
 params {

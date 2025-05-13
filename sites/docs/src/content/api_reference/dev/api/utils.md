@@ -223,9 +223,9 @@ Skip features. See <https://nf-co.re/docs/nf-core-tools/pipelines/create> for a 
 
 Pipeline version
 
-#### `get(item: str, default: Any = None) → Any{:python}`
-
 #### _`validator{:python}`_`outdir_to_str{:python}`_»_`{:python}`[_outdir_](#nf_core.utils.NFCoreTemplateConfig.outdir)
+
+#### `get(item: str, default: Any = None) → Any{:python}`
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
@@ -659,7 +659,7 @@ Bases: `BaseModel`
                "default": null,
                "title": "Nfcore Components"
             },
-            "actions_ci": {
+            "actions_nf_test": {
                "anyOf": [
                   {
                      "type": "boolean"
@@ -669,7 +669,7 @@ Bases: `BaseModel`
                   }
                ],
                "default": null,
-               "title": "Actions Ci"
+               "title": "Actions Nf Test"
             },
             "actions_awstest": {
                "anyOf": [
@@ -706,6 +706,18 @@ Bases: `BaseModel`
                ],
                "default": null,
                "title": "Pipeline Todos"
+            },
+            "pipeline_if_empty_null": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Pipeline If Empty Null"
             },
             "plugin_includes": {
                "anyOf": [
@@ -862,6 +874,30 @@ Bases: `BaseModel`
                ],
                "default": null,
                "title": "Included Configs"
+            },
+            "local_component_structure": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Local Component Structure"
+            },
+            "rocrate_readme_sync": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Rocrate Readme Sync"
             }
          },
          "title": "NFCoreYamlLintConfig",
@@ -913,7 +949,8 @@ Disable updating specific modules/subworkflows (when repository_type is pipeline
 
 #### `model_dump(**kwargs) → Dict[str, Any]{:python}`
 
-Usage docs: <https://docs.pydantic.dev/2.10/concepts/serialization/#modelmodel_dump>
+!!! abstract “Usage Documentation”
+: [model_dump](../concepts/serialization#modelmodel_dump)
 
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
 
@@ -931,6 +968,8 @@ Generate a dictionary representation of the model, optionally specifying which f
   - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
   - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
     “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
+  - **fallback** – A function to call when an unknown value is encountered. If not provided,
+    a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError] error is raised.
   - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
 - **Returns:**
   A dictionary representation of the model.
@@ -1120,7 +1159,7 @@ schema for linting config in .nf-core.yml should cover:
          "default": null,
          "title": "Nfcore Components"
       },
-      "actions_ci": {
+      "actions_nf_test": {
          "anyOf": [
             {
                "type": "boolean"
@@ -1130,7 +1169,7 @@ schema for linting config in .nf-core.yml should cover:
             }
          ],
          "default": null,
-         "title": "Actions Ci"
+         "title": "Actions Nf Test"
       },
       "actions_awstest": {
          "anyOf": [
@@ -1167,6 +1206,18 @@ schema for linting config in .nf-core.yml should cover:
          ],
          "default": null,
          "title": "Pipeline Todos"
+      },
+      "pipeline_if_empty_null": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Pipeline If Empty Null"
       },
       "plugin_includes": {
          "anyOf": [
@@ -1323,6 +1374,30 @@ schema for linting config in .nf-core.yml should cover:
          ],
          "default": null,
          "title": "Included Configs"
+      },
+      "local_component_structure": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Local Component Structure"
+      },
+      "rocrate_readme_sync": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Rocrate Readme Sync"
       }
    }
 }
@@ -1332,12 +1407,13 @@ schema for linting config in .nf-core.yml should cover:
 * **Fields:**
   - [`actions_awsfulltest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awsfulltest)
   - [`actions_awstest (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_awstest)
-  - [`actions_ci (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_ci)
+  - [`actions_nf_test (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_nf_test)
   - [`actions_schema_validation (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_schema_validation)
   - [`base_config (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.base_config)
   - [`files_exist (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
   - [`files_unchanged (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
   - [`included_configs (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.included_configs)
+  - [`local_component_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.local_component_structure)
   - [`merge_markers (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
   - [`modules_config (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_config)
   - [`modules_json (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_json)
@@ -1346,10 +1422,12 @@ schema for linting config in .nf-core.yml should cover:
   - [`nextflow_config (bool | List[str | Dict[str, List[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
   - [`nfcore_components (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
   - [`nfcore_yml (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
+  - [`pipeline_if_empty_null (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
   - [`pipeline_name_conventions (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_name_conventions)
   - [`pipeline_todos (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
   - [`plugin_includes (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
   - [`readme (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.readme)
+  - [`rocrate_readme_sync (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.rocrate_readme_sync)
   - [`schema_description (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_description)
   - [`schema_lint (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_lint)
   - [`schema_params (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_params)
@@ -1365,7 +1443,7 @@ Lint all required files to run full tests on AWS
 
 Lint all required files to run tests on AWS
 
-#### _`field{:python}`_`actions_ci{:python}`_: bool | None_`{:python}`_= None_
+#### _`field{:python}`_`actions_nf_test{:python}`_: bool | None_`{:python}`_= None_
 
 Lint all required files to use GitHub Actions CI
 
@@ -1388,6 +1466,10 @@ List of files that should not be changed
 #### _`field{:python}`_`included_configs{:python}`_: bool | None_`{:python}`_= None_
 
 Lint for included configs
+
+#### _`field{:python}`_`local_component_structure{:python}`_: bool | None_`{:python}`_= None_
+
+Lint local components use correct structure mirroring remote
 
 #### _`field{:python}`_`merge_markers{:python}`_: bool | List\[str] | None_`{:python}`_= None_
 
@@ -1421,6 +1503,10 @@ Lint all required files to use nf-core modules and subworkflows
 
 Lint nf-core.yml
 
+#### _`field{:python}`_`pipeline_if_empty_null{:python}`_: bool | None_`{:python}`_= None_
+
+Lint for ifEmpty(null) statements
+
 #### _`field{:python}`_`pipeline_name_conventions{:python}`_: bool | None_`{:python}`_= None_
 
 Lint for pipeline name conventions
@@ -1436,6 +1522,10 @@ Lint for nextflow plugin
 #### _`field{:python}`_`readme{:python}`_: bool | List\[str] | None_`{:python}`_= None_
 
 Lint the README.md file
+
+#### _`field{:python}`_`rocrate_readme_sync{:python}`_: bool | None_`{:python}`_= None_
+
+Lint for README.md and rocrate.json sync
 
 #### _`field{:python}`_`schema_description{:python}`_: bool | None_`{:python}`_= None_
 
@@ -1636,6 +1726,18 @@ Returns the most recent container versions by default.
   - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
 
 ### `nf_core.utils.get_first_available_path(directory: Path | str, paths: List[str]) → Path | None{:python}`
+
+### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
+
+Check if the repo contains the requested commit_id, and expand it to long form if necessary.
+
+- **Parameters:**
+  - **pipeline** (_str_) – GitHub repo username/repo
+  - **commit_id** – The requested commit ID (SHA). It can be in standard long/short form, or any length.
+- **Returns:**
+  String or None
+- **Return type:**
+  commit_id
 
 ### `nf_core.utils.get_repo_releases_branches(pipeline, wfs){:python}`
 

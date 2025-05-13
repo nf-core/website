@@ -1,0 +1,24 @@
+---
+import Project from "@components/event/HackathonProjects/Project.astro";
+import { getCollection } from "astro:content";
+
+const { eventPath } = Astro.props;
+
+export interface Props {
+    eventPath?: string;
+}
+
+let projects = await getCollection("hackathon-projects");
+
+if (eventPath) {
+    projects = projects.filter((project) => project.id.startsWith(eventPath));
+}
+// sort projects by data.category
+projects.sort((a, b) => {
+    return a.data.category.localeCompare(b.data.category);
+});
+---
+
+<div>
+    {projects.map((project) => <Project id={project.id} {...project.data} />)}
+</div>

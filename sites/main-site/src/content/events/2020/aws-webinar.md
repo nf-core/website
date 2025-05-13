@@ -1,11 +1,11 @@
 ---
-title: 'AWS In Spotlight Webinar Series'
-subtitle: 'AWS In Spotlight: Research'
+title: "AWS In Spotlight Webinar Series"
+subtitle: "AWS In Spotlight: Research"
 type: talk
-startDate: '2020-10-14'
-startTime: '10:00+02:00'
-endDate: '2020-10-14'
-endTime: '11:00+02:00'
+startDate: "2020-10-14"
+startTime: "10:00+02:00"
+endDate: "2020-10-14"
+endTime: "11:00+02:00"
 locations:
   - name: Online
     links:

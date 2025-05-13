@@ -101,6 +101,13 @@ blockquote {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.main-content figure img:has(+ figcaption) {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
 
 .main-content figcaption {
   font-size: 0.9rem;
@@ -298,12 +305,12 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) {
+    &:not([data-line-numbers]):not(.hljs) {
       & > span {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
+        padding-left: 1em;
+        padding-right: 1em;
         &[data-highlighted-line] {
-          padding-left: calc(1.5em - 2px);
+          padding-left: calc(1em - 2px);
         }
       }
     }
@@ -314,7 +321,7 @@ code:not(pre code),
         counter-increment: line;
         content: counter(line);
         display: inline-block;
-        width: 1.75rem;
+        width: 1.5rem;
         margin-right: 1rem;
         padding-right: 0.5rem;
         text-align: right;
@@ -1302,7 +1309,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
     }
   }
   pre .copy-code-button {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.75rem;
     margin-right: 0.425rem;
     &.single-line {
@@ -1499,7 +1506,7 @@ div.mermaid {
   .main-content pre code {
     border: 1px solid $border-color-dark;
   }
-  .main-content figcaption {
+  .main-content figcaption, .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
   }
