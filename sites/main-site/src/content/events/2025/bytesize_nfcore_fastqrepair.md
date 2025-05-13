@@ -7,7 +7,7 @@ startTime: "13:00+02:00"
 endDate: "2025-05-13"
 endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/Hjb6doI3n6o
-embedAt:fastqrepair
+embedAt: fastqrepair
 locations:
   - name: Online
     links:
