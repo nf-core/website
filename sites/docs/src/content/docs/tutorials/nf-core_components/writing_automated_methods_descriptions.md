@@ -1,12 +1,11 @@
 ---
 title: Writing pipeline methods text for MultiQC
 subtitle: How to write the automated pipeline methods text for MultiQC reports
-parentWeight: 10
 ---
 
 ## Background
 
-One of the ways that nf-core pipelines tries to support reproducible analysis and providing proper credit to the wider bioinformatics community is by providing automation for the generation of 'methods texts' that can be used in scientific publications.
+One of the ways that nf-core pipelines support reproducible analysis and providing proper credit to the wider bioinformatics community is by providing automation for the generation of 'methods texts' that can be used in scientific publications.
 
 At the end of every nf-core pipeline's MultiQC report, you will find a section entitled _nf-core/<pipeline> Methods description_.
 
@@ -14,20 +13,20 @@ At the end of every nf-core pipeline's MultiQC report, you will find a section e
 _Example screenshot of the automated methods text from [nf-core/taxprofiler](https://nf-co.re/taxprofiler/1.2.2/results/taxprofiler/results-80d2fcce1daeb95c69f16832ca253dbaeac8a11e/multiqc/?file=multiqc_report.html)_
 
 This section of the report has a text in typical scientific 'materials and methods' style prose (a methods text and a references section) that a user can directly copy and pasted into draft scientific journal articles.
-It includes the pipeline name and version, the exact command executed, and when supported by a pipeline, dynamically generate a text of all the citation information of the tools used in that particular run of the pipeline.
+It includes the pipeline name and version, the exact command executed, and when supported by a pipeline, a dynamically generated text of all the citation information of the tools used in that particular run of the pipeline.
 
-By providing the exact command and version, we maximise user reproducibility when reporting their methods (instead of vaguely saying we executed pipeline X with version Y, without any parameter information).
+By providing the exact command and version, we improve user reproducibility when reporting their methods (instead of vaguely saying we executed pipeline X with version Y, without any parameter information).
 
 Furthermore, the sheer number of tools in complex pipelines can put users off from giving credit to the authors of each tool.
 Therefore providing the text with relevant citations for the user 'out of the box' increases the chance of every author receiving credit where credit is due.
 
-This guide describes how a pipeline developer can customise this text so that the sentences and citations of only tools executed in the run are added to the text.
+This guide describes how a pipeline developer can customise this text snippet so that the text and citations of only the executed tools in the run are added to the text.
 
 ## Overview
 
 Within the nf-core template, boilerplate code for a minimal version of this section of the MultiQC report (pipeline name and version, nf-core/Nextflow citations, and the run command) is included.
 
-This boilerplate code is comes from two sections in the nf-core pipeline structure:
+This boilerplate code comes from two sections in the nf-core pipeline structure:
 
 - [`assets/methods_description_template.yml`](https://github.com/nf-core/tools/blob/af02d91fdafd5937c658a837fa868cc8ad7de4fb/nf_core/pipeline-template/assets/methods_description_template.yml)
 - [`subworkflows/local/utils_nfcore_<pipeline_name>/main.nf`](https://github.com/nf-core/tools/blob/059473c2e138aecfb451f2f848265767761d798a/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf)
@@ -54,7 +53,7 @@ The more useful file for most developers is the tool citation and bibliography [
 
 Here, a pipeline developer can access pipeline-level parameters to dynamically construct sentence strings that then are pulled into the YAML file as described above.
 
-Typically, the pipeline developer will write an overall sentence in string fragments in the [`toolCitationText()` function](https://github.com/nf-core/tools/blob/e6497bcdf8660b7029bd739f890c2d73e87dd867/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf#L240-L254) that describes the different sections of the pipeline, and then based on different `params` set by the user, will add to this string additional information.
+Typically, the pipeline developer will write an overall sentence in string fragments in the [`toolCitationText()` function](https://github.com/nf-core/tools/blob/e6497bcdf8660b7029bd739f890c2d73e87dd867/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf#L240-L254) that describes the different sections of the pipeline, and then, based on different `params` set by the user, will add additional information to this string.
 
 In parallel, the same conditions will be replicated in the [`toolBibliographyText()` function](https://github.com/nf-core/tools/blob/e6497bcdf8660b7029bd739f890c2d73e87dd867/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf#L256-L268)
 
@@ -64,7 +63,7 @@ For example, lets say a pipeline uses the tool `fastp` for the preprocessing of 
 
 By default, the boilerplate text will simply say:
 
-```nextflow
+```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
 def toolCitationText() {
     def citation_text = [
             "Tools used in the workflow included:",
@@ -103,7 +102,7 @@ It is critical that for any time a citation is added to `toolCitationText()`, th
 
 For example, the boilerplate:
 
-```nextflow
+```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"{% endif %}
@@ -115,7 +114,7 @@ def toolBibliographyText() {
 
 Becomes:
 
-```nextflow
+```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             params.run_fastp ? "<li>Chen, S., Zhou, Y., Chen, Y., & Gu, J. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics , 34(17), i884–i890. <a href=\"https://doi.org/10.1093/bioinformatics/bty560\">10.1093/bioinformatics/bty560</a></li>" : "",
@@ -134,9 +133,9 @@ Each entry to `toolBibliographyText()` MUST be a wrapped in a HTML `<li>` tag, t
 
 The leading sentence and condition can also be made more descriptive for more complex pipelines.
 
-For example, in a case where there was three different preprocessing steps, and there were mutually exclusive options for some of these preprocessing steps, the text could instead read:
+For example, in a case where there were three different preprocessing steps, and there were mutually exclusive options for some of these preprocessing steps, the text could instead read:
 
-```nextflow
+```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
 def toolCitationText() {
     def text_seq_qc = [
         "Sequencing quality control with",
@@ -172,9 +171,9 @@ So if a user specified `--preprocessing_qc_tool falco`, `--shortread_qc_tool ada
 
 > Tools used in the workflow included: Sequencing quality control with Falco (de Sena Brandine and Smith 2021). Short read preprocessing was performed with AdapterRemoval (Schubert et al. 2016). Pipeline results statistics were summarised with MultiQC (Ewewls et al. 2016).
 
-The corresponding `toolBibliographyText()` function be:
+The corresponding `toolBibliographyText()` function would be:
 
-```nextflow
+```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
 def toolBibliographyText() {
     def text_seq_qc = [
         params.preprocessing_qc_tool == "falco"  ? "<li>de Sena Brandine, G., & Smith, A. D. (2021). Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research, 8(1874), 1874.  <a href=\"https://doi.org/10.12688/f1000research.21142.2\">10.12688/f1000research.21142.2</li>" : "",
@@ -212,4 +211,4 @@ To test, simply run the pipeline, and check the end of the MultiQC report!
 
 ## Summary
 
-This short document describes how nf-core pipelines generate methods texts that can maximise both user reproducibility and fair bioinformatic citating of software used in pipelines.
+This short document describes how nf-core pipelines generate methods texts that can improve both user reproducibility and fair bioinformatic citating of software used in pipelines.
