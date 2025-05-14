@@ -12,5 +12,5 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-This week, Julian Flesch [@JulianFlesch](https://github.com/JulianFlesch) is going to introduce a new subcommand of the nf-core CLI: `nf-core test-datasets`.
+This week, Julian Flesch [@JulianFlesch](https://github.com/JulianFlesch) is going to introduce a new subcommand of the nf-core CLI: `nf-core test-datasets`. The new tools subcommand `test-datasets` enables interactively searching the nf-core/test-datasets repository to find files and their respective download links to test-run your bioinformatics workflows.
 
