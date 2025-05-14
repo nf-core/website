@@ -46293,21 +46293,24 @@
               "input": {
                 "type": "file",
                 "description": "BAM/CRAM file",
-                "pattern": "*.bam/cram"
+                "pattern": "*.bam/cram",
+                "ontologies": []
               }
             },
             {
               "index": {
                 "type": "file",
                 "description": "Index of BAM/CRAM file",
-                "pattern": "*.bai/crai"
+                "pattern": "*.bai/crai",
+                "ontologies": []
               }
             },
             {
               "intervals": {
                 "type": "file",
                 "description": "Interval file for targeted regions",
-                "pattern": "*.bed"
+                "pattern": "*.bed",
+                "ontologies": []
               }
             }
           ],
@@ -46322,7 +46325,8 @@
               "fasta": {
                 "type": "file",
                 "description": "The reference fasta file",
-                "pattern": "*.fasta"
+                "pattern": "*.fasta",
+                "ontologies": []
               }
             }
           ],
@@ -46337,7 +46341,8 @@
               "fai": {
                 "type": "file",
                 "description": "Index of reference fasta file",
-                "pattern": "*.fai"
+                "pattern": "*.fai",
+                "ontologies": []
               }
             }
           ],
@@ -46351,7 +46356,8 @@
             {
               "gzi": {
                 "type": "file",
-                "description": "GZI index of reference fasta file"
+                "description": "GZI index of reference fasta file",
+                "ontologies": []
               }
             }
           ],
@@ -46367,7 +46373,8 @@
               "par_bed": {
                 "type": "file",
                 "description": "BED file containing PAR regions",
-                "pattern": "*.bed"
+                "pattern": "*.bed",
+                "ontologies": []
               }
             }
           ]
@@ -46410,11 +46417,11 @@
               {
                 "meta": {
                   "type": "list",
-                  "description": "Tuple containing sample metadata\n"
+                  "description": "Optional variant calls from the small model, if enabled, in tfrecord format\n"
                 }
               },
               {
-                "${prefix}_call_variant_outputs.examples.tfrecord-*-of-*.gz\",  arity: \"0..*": {
+                "${prefix}_call_variant_outputs.examples.tfrecord-*-of-*.gz": {
                   "type": "list",
                   "description": "Optional variant calls from the small model, if enabled, in tfrecord format\n"
                 }
@@ -46427,7 +46434,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing the DeepVariant software version",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -56470,6 +56482,97 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "fastqutils_info",
+      "path": "modules/nf-core/fastqutils/info/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastqutils_info",
+        "description": "Performs quality control of FASTQ files",
+        "keywords": [
+          "sort",
+          "example",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "fastqutils": {
+              "description": "Validation and manipulation of FASTQ files, scRNA-seq barcode pre-processing and UMI quantification.",
+              "homepage": "https://github.com/nunofonseca/fastq_utils",
+              "documentation": "https://github.com/nunofonseca/fastq_utils",
+              "tool_dev_url": "https://github.com/nunofonseca/fastq_utils",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "pattern": "*.{fastq,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_25722"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Contains info if process ran successfully"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
     },
     {
       "name": "fasttree",
@@ -99736,6 +99839,23 @@
                   "type": "file",
                   "description": "Pairwise alignment in BAM format (optional)",
                   "pattern": "*.bam"
+                }
+              }
+            ]
+          },
+          {
+            "bed_gz": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bed.gz": {
+                  "type": "file",
+                  "description": "Gzipped pairwise alignment in BED format (optional)",
+                  "pattern": "*.bed.gz"
                 }
               }
             ]
@@ -213897,6 +214017,16 @@
           {
             "reports": {
               "description": "html reports\nStructure: [ path(html) ]\n"
+            }
+          },
+          {
+            "summary": {
+              "description": "html reports\nStructure: [ path(csv) ]\n"
+            }
+          },
+          {
+            "genes_txt": {
+              "description": "html reports\nStructure: [ path(txt) ]\n"
             }
           },
           {
