@@ -1,92 +1,82 @@
 ---
-title: "Transitioning from `master` to `main` branches in pipelines"
-subtitle: Guide on how to switch a pipeline from the default branch `master` to `main`
+title: "Best Practices for renaming 'master' to 'main' in pipelines"
+subtitle: How to switch your pipelines default branch from 'master' to 'main'
 weight: 20
 ---
 
-This tutorial will guide you through changing the pipeline default branch form `master` to `main`.
+This guide shows you how to change your pipeline default branch from `master` to `main`.
 
 ## Prequisites
 
-- Admin rights on the GitHub repository where the change is taking place
+- Admin privileges for the GitHub repository where the change is taking place
 - nf-core tools
 
 :::warning
-Make sure you are on using the same version of nf-core/tools as the template version of your branch (you can see the version in `.nf-core.yml`).
-This will avoid adding other changes not needed for the branch name switch.
+Ensure that your version of `nf-core/tools` matches the pipeline's template version by checking the `.nf-core.yml` file. This prevents introducing unrelated changes and keeps the update limited to switching the default branch from `master` to `main`.
 :::
 
 ## Instructions
 
-1. Open your repository on GitHub (make sure you're on `master`)
-2. Go to the `branches` page (to the right of the `branches` drop down where it says 'master')
+1. Open your repository on GitHub. Make sure you're viewing the `master` branch.
+2. Select Branches. It's located to the right of the branch dropdown that shows `master`.
 
 <img width=80% alt="Branches button" src="/images/tutorials/switching_master_to_main/branches_button.png">
 
-3. Under the default branch section of the page, press the triple dot menu on the `master` branch row, and press 'Rename branch'
+3. In the **Default** branch section, find the `master` branch and select the **More options** (three-dot) menu, then select **Rename branch**.
 
 :::note
-You will need permissions to change this setting. If you don't have permission, ask the @core-team to do it for you.
+You will need permissions to change this setting. If you don't have permission, ask the @core-team for help on Slack.
 :::
 
 <img width=80% alt="Rename branch button" src="/images/tutorials/switching_master_to_main/rename_branch_button.png">
 
-4.  Rename `master` to `main`
-5.  Press the 'learn more' text, and copy and paste the displayed instructions somewhere safe.
+4.  Rename `master` to `main`.
+5.  Select the **learn more**, then copy the displayed instructions and save them somewhere safe.
 
 :::note
-These instructions will be usefur for all pipeline contributors.
+These instructions will be useful for all pipeline contributors, so keep this to one side until the end of this tutorial!
 :::
 
 <img width=80% alt="Learn more button" src="/images/tutorials/switching_master_to_main/learn_more_button.png">
 
-6. Press 'Rename branch'
-7. Go back to 'Code' tab to verify you are now on `main`
-8. In your local IDE (e.g. VSCode) make sure you're on the `dev` branch
+6. Select **Rename branch**.
+7. Select the **Code** tab and verify you are now on `main`
+8. In your local IDE (e.g., VS Code), ensure you are on the `dev` branch
 9. Run `git fetch upstream` to ensure you have the `main` branch locally
-10. Change your `git` config to `main` with:
-
-    ```bash
-    git config --global init.defaultBranch main
-    ```
-
-11. Check your `git` config again to check it change (it should now report `main`):
-
-    ```bash
-    git config --global init.defaultBranch
-    ```
-
-12. Still on `dev`, run `nf-core pipelines sync`
-13. Change to a new branch `git switch -c default-branch-change`
-14. Follow the TEMPLATE merge instructions, i.e. `git merge TEMPLATE`
+10. Run `git config --global init.defaultBranch main` to change your `git` config to `main`.
+11. Run `git config --global init.defaultBranch` to check your `git` config again,  it should now report `main`.
+12. While still on `dev`, run `nf-core pipelines sync`
+13. Run `git switch -c default-branch-change` to switch to a new branch.
+14. Follow the TEMPLATE merge instructions, i.e., `git merge TEMPLATE`.
 
 :::note
-If you don't want any other template changes, make sure to use `nf-core/tools` version that matches the template version in your pipeline
+If you don't want any other template changes, make sure to use the `nf-core/tools` version that matches the template version in your pipeline.
 :::
 
 15. Resolve merge conflicts
 
 :::tip
-If it's the ROcrate file, you can accept all incoming chagnes
+If it's the ROcrate JSON file, you can accept all incoming change.
 :::
 
-16. Check that all references of your pipelines' `msater` is now `main` using a global repository search in your IDE
+16. Run a global repository search in your IDE to check that references of your pipelines `master` are now `main`.
 
 :::warning
 Make sure not to modify references of master in links to other repositories!
-If in doubt, ask on the nf-core slack!
+If in doubt, ask on the nf-core Slack!
 :::
 
-17. Run `nf-core pipelines lint` to check you didn't break anything
-18. Commit and merge `git add -am 'Change default branch'
-19. Push the changes `git push`
-20. On GitHub make a new PR against `dev`
-21. Review PR to check all links and `nextflow.config` manifest say `main`
-22. Review and merge :tada:
+17. Run `nf-core pipelines lint` to check you didn't break anything.
+18. Run `git add -am 'Change default branch' to commit and merge.
+19. Run `git push` to push changes.
+20. On GitHub, make a new PR against `dev`
+21. Review the PR to check all relevant links and the `nextflow.config` manifest say `main`
+22. Request a community review on #request-review on Slack, and once you have an approval...
+23. ... merge! :tada:
 
 ## Post-change instructions
 
-1. Inform all your collaborators (on slack, etc.) that the default branch has changed, and that they should update their clones and forks, i.e.:
+1. Inform all your collaborators (on Slack, etc.) that the default branch has changed, and that they should update their clones and forks, i.e.:
 
    ```bash
    git branch -m master main
@@ -95,4 +85,4 @@ If in doubt, ask on the nf-core slack!
    git remote set-head origin -a
    ```
 
-2. Update your own clones and forks
+2. Update your own clones and forks using the above commands.
