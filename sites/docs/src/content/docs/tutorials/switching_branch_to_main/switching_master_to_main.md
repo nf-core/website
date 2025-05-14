@@ -67,7 +67,7 @@ If in doubt, ask on the nf-core Slack!
 :::
 
 17. Run `nf-core pipelines lint` to check you didn't break anything.
-18. Run `git add -am 'Change default branch' to commit and merge.
+18. Run `git add -am 'Change default branch'` to commit and merge.
 19. Run `git push` to push changes.
 20. On GitHub, make a new PR against `dev`
 21. Review the PR to check all relevant links and the `nextflow.config` manifest say `main`
