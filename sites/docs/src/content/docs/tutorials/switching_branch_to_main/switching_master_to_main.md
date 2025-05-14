@@ -44,7 +44,7 @@ These instructions will be useful for all pipeline contributors, so keep this to
 8. In your local IDE (e.g., VS Code), ensure you are on the `dev` branch
 9. Run `git fetch upstream` to ensure you have the `main` branch locally
 10. Run `git config --global init.defaultBranch main` to change your `git` config to `main`.
-11. Run `git config --global init.defaultBranch` to check your `git` config again,  it should now report `main`.
+11. Run `git config --global init.defaultBranch` to check your `git` config again, it should now report `main`.
 12. While still on `dev`, run `nf-core pipelines sync`
 13. Run `git switch -c default-branch-change` to switch to a new branch.
 14. Follow the TEMPLATE merge instructions, i.e., `git merge TEMPLATE`.
