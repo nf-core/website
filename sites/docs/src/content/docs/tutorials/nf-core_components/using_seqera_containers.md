@@ -4,7 +4,11 @@ subtitle: "Step by step guide to using Seqera Containers in nf-core modules"
 weight: 30
 ---
 
-[Seqera Containers](https://seqera.io/containers) simplifies the container creation process for nf-core modules. The following steps will guide you through obtaining both Docker and Singularity containers from the Seqera website to properly configure your module for integration with nf-core workflows.
+[Seqera Containers](https://seqera.io/containers) simplifies the container creation process for nf-core modules. 
+They are currently supported by nf-core as an alternative to the default `biocontainers` source, however in the future Seqera Containers will be made the default source of containers for all nf-core modules.
+For more context see [this](https://nf-co.re/blog/2024/seqera-containers-part-1) blog post.
+
+The following steps will guide you through obtaining both Docker and Singularity containers from the Seqera website to properly configure your module for integration with nf-core workflows. 
 
 0. (Optional, but recommended) test building the `environment.yml` locally to ensure that the packages and their versions are compatible:
 
@@ -14,7 +18,12 @@ weight: 30
 
 1. Go to [https://seqera.io/containers/](https://seqera.io/containers/)
 2. Add all the packages in the search bar (you can copy paste e.g. `conda-forge::<tool>=<version>` from your `environment.yml` file, to make sure you have exactly the right channels/versions).
-3. Make sure container setting is on `Docker`.
+
+    :::warning
+    Remember that nf-core modules SHOULD only have a single tool (and its dependencies) per module!
+    Only add additional tools when necessary.
+    :::
+3. Make sure 'Container setting' is on `Docker`.
 4. Press 'Get Container'.
 5. Copy the displayed URL and put it on the last line of your module's `main.nf` container definition (this does _not_ have a `https://` at the beginning!).
 6. Repeat steps 2-5.
