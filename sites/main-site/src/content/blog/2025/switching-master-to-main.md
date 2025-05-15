@@ -6,10 +6,10 @@ headerImage: "https://images.unsplash.com/photo-1548710332-f65936b2ba27"
 headerImageAlt: "branch with green leave"
 embedHeaderImage: true
 authors:
-    - "mirpedrol"
-    - "jfy133"
+  - "mirpedrol"
+  - "jfy133"
 label:
-    - "pipelines"
+  - "pipelines"
 ---
 
 # nf-core goes woke!
@@ -24,12 +24,13 @@ So for Gen Z we have made a short video and for Millenials and older, a document
 
 - Watch the video:
 
-    <video
-        src="assets/images/blog/switching-master-to-main/screen-capture.mp4"
-        width="320"
-        height="240"
-        controls
-    ></video>
+  <video
+  src="assets/images/blog/switching-master-to-main/screen-capture.mp4"
+  width="320"
+  height="240"
+  controls
+
+  > </video>
 
 - Read the [Documentation](https://nf-co.re/docs/tutorials/switching_branch_to_main/switching_master_to_main)
 
