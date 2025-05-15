@@ -26,10 +26,8 @@ The following steps will guide you through obtaining both Docker and Singularity
 3. Make sure 'Container setting' is on `Docker`.
 4. Press 'Get Container'.
 5. Copy the displayed URL and put it on the last line of your module's `main.nf` container definition (this does _not_ have a `https://` at the beginning!).
-6. Repeat steps 2-5.
-7. Switch the 'Container settings' to `Singularity`.
-8. Press 'Get container'.
-9. :grey_exclamation: Tick the `HTTPS` checkbox.
-10. Copy the URL (_with_ the `https://community-cr-prod<...>` at the beginning), and put it on the middle line of your module's `main.nf` definition.
-11. Repeat steps 8-10.
+6. Switch the 'Container settings' to `Singularity`.
+7. Press 'Get container'.
+8. :grey_exclamation: Tick the `HTTPS` checkbox.
+9. Copy the URL (_with_ the `https://community-cr-prod<...>` at the beginning), and put it on the middle line of your module's `main.nf` definition.
 
