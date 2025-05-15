@@ -1,12 +1,12 @@
 ---
-title: "Best Practices for renaming 'master' to 'main' in pipelines"
-subtitle: How to switch your pipelines default branch from 'master' to 'main'
+title: "Best Practices for renaming `master` to `main` in pipelines"
+subtitle: How to switch your pipelines default branch from `master` to `main`
 weight: 20
 ---
 
 This guide shows you how to change your pipeline default branch from `master` to `main`.
 
-## Prequisites
+## Prerequisites
 
 - Admin privileges for the GitHub repository where the change is taking place
 - nf-core tools
