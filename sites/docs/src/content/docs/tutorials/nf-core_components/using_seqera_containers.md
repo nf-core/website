@@ -6,11 +6,11 @@ weight: 30
 
 0. (Optional, but recommended) test building the `environment.yml` locally to ensure that the packages and their versions are compatible:
 
-```bash
-conda env create -f environment.yml
-```
+    ```bash
+    conda env create -f environment.yml
+    ```
 
-1. Go to https://seqera.io/containers/
+1. Go to [https://seqera.io/containers/](https://seqera.io/containers/)
 2. Add all the packages in the search bar (you can copy paste e.g. `conda-forge::<tool>=<version>` from your `environment.yml` file, to make sure you have exactly the right channels/versions).
 3. Make sure container setting is on `Docker`.
 4. Press 'Get Container'.
