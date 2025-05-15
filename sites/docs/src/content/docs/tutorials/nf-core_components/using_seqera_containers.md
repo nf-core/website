@@ -33,6 +33,3 @@ The following steps will guide you through obtaining both Docker and Singularity
 10. Copy the URL (_with_ the `https://community-cr-prod<...>` at the beginning), and put it on the middle line of your module's `main.nf` definition.
 11. Repeat steps 8-10.
 
-:::note
-See the blog post about our [Migration from Biocontainers to Seqera Containers](https://nf-co.re/blog/2024/seqera-containers-part-1) for more information on why we are using Seqera Containers and how they compare to Biocontainers.
-:::
