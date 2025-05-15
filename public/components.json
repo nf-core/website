@@ -27141,6 +27141,14 @@
                 ]
               }
             }
+          ],
+          [
+            {
+              "bin_suffix": {
+                "type": "string",
+                "description": "Suffix to search for in the input files when `bins` is a directory."
+              }
+            }
           ]
         ],
         "output": [
@@ -113627,6 +113635,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing database information\ne.g. [ id:'test']\n"
+              }
+            },
+            {
               "db": {
                 "type": "file",
                 "description": "A database formatted for MIDAS",
@@ -113654,7 +113668,7 @@
                 }
               },
               {
-                "results/*": {
+                "${prefix}/*": {
                   "type": "file",
                   "description": "A directory of results from MIDAS run",
                   "pattern": "*"
@@ -117212,7 +117226,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "proteinannotator",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mmseqs_taxonomy",
@@ -119433,6 +119453,10 @@
         {
           "name": "multiplesequencealign",
           "version": "1.1.0"
+        },
+        {
+          "name": "proteinannotator",
+          "version": "dev"
         }
       ]
     },
