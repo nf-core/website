@@ -4,7 +4,9 @@ subtitle: "Step by step guide to using Seqera Containers in nf-core modules"
 weight: 30
 ---
 
-[Seqera Containers](https://seqera.io/containers) simplifies the container creation process for nf-core modules. The following steps will guide you through obtaining both Docker and Singularity containers from the Seqera website to properly configure your module for integration with nf-core workflows. 0. (Optional, but recommended) test building the `environment.yml` locally to ensure that the packages and their versions are compatible:
+[Seqera Containers](https://seqera.io/containers) simplifies the container creation process for nf-core modules. The following steps will guide you through obtaining both Docker and Singularity containers from the Seqera website to properly configure your module for integration with nf-core workflows. 
+
+0. (Optional, but recommended) test building the `environment.yml` locally to ensure that the packages and their versions are compatible:
 
     ```bash
     conda env create -f environment.yml
