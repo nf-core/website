@@ -4,6 +4,38 @@ import type { AstroConfig } from 'astro';
 import { githubFileLoader } from '@utils/loaders';
 import { octokit } from "@components/octokit.js";
 
+// Define reusable schemas for common validation patterns
+const commonSchemas = {
+    semver: z.string().regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
+        message: 'Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)',
+    }),
+    dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
+        message: 'Date must be in the format YYYY-MM-DD',
+    }),
+    timeWithOffset: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
+        message: 'Time must be in the format HH:MM+|-HH:MM where the +/-HH:MM is the UTC offset',
+    }),
+    containerRuntime: z.enum([
+        'Apptainer',
+        'Charliecloud',
+        'Docker',
+        'Podman',
+        'Sarus',
+        'Shifter',
+        'Singularity',
+    ]),
+    environment: z.enum([
+        'Conda',
+        'Spack',
+        'Wave'
+    ]),
+    reference: z.object({
+        title: z.string(),
+        description: z.string(),
+        url: z.string().url()
+    })
+};
+
 const teams = await octokit.request('GET /orgs/{org}/teams', {
     org: 'nf-core',
     headers: {
@@ -109,6 +141,128 @@ const about = defineCollection({
         minHeadingDepth: z.number().optional(),
         maxHeadingDepth: z.number().optional(),
     }),
+});
+
+const advisory = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/advisories' }),
+    schema: z
+        .object({
+            title: z.string(),
+            subtitle: z.string(),
+            slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+            category: z.array(z.enum(['pipelines', 'modules', 'subworkflows', 'configuration'])),
+            advisory_type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific advice', 'other'])),
+            severity: z.enum(['low', 'medium', 'high', 'critical']),
+            published_date: commonSchemas.dateFormat,
+            reporter: z
+                .array(z.string())
+                .or(z.array(z.record(z.string())))
+                .optional(),
+            reviewer: z
+                .array(z.string())
+                .or(z.array(z.record(z.string())))
+                .optional(),
+            // pipelines is an array of pipeline names strings or an array of objects with pipeline name and versions
+            pipelines: z
+                .union([
+                    z.array(z.string()),
+                    z.array(
+                        z.object({
+                            name: z.string(),
+                            versions: z.array(commonSchemas.semver),
+                        })
+                    )
+                ])
+                .optional()
+                .transform((data) => {
+                    if (!data) return data;
+
+                    // If it's an array of pipeline names, sort by name
+                    if (data.every(item => typeof item === 'string')) {
+                        return (data as string[]).sort();
+                    }
+
+                    // If it's an array of pipeline names and versions, sort by name as well
+                    return (data as Array<{name: string, versions: string[]}>).sort((a, b) =>
+                        a.name.localeCompare(b.name)
+                    );
+                }),
+            modules: z
+                .array(z.string())
+                .optional()
+                .transform((data) => {
+                    // sort the modules by name
+                    return data?.sort();
+                }),
+            subworkflows: z
+                .array(z.string())
+                .optional()
+                .transform((data) => {
+                    // sort the subworkflows by name
+                    return data?.sort();
+                }),
+            configuration: z
+                .array(z.string())
+                .optional()
+                .transform((data) => {
+                    // sort the configuration by name
+                    return data?.sort();
+                }),
+            nextflow_versions: z.array(commonSchemas.semver).optional(),
+            nextflow_executors: z.array(
+                z.enum([
+                    'AWS Batch',
+                    'Azure Batch',
+                    'Bridge',
+                    'Flux Executor',
+                    'Google Cloud Batch',
+                    'Google Life Sciences',
+                    'HTCondor',
+                    'HyperQueue',
+                    'Kubernetes',
+                    'Local',
+                    'LSF',
+                    'Moab',
+                    'NQSII',
+                    'OAR',
+                    'PBS/Torque',
+                    'PBS Pro',
+                    'SGE',
+                    'SLURM'
+                ])
+            ).optional(),
+            // software_dependencies is an reference to the commonSchemas.containerRuntime or commonSchemas.environment, optionally with versions.
+            software_dependencies: z
+            .union([
+                z.array(z.union([commonSchemas.containerRuntime, commonSchemas.environment])),
+                z.array(
+                    z.object({
+                        name: z.union([commonSchemas.containerRuntime, commonSchemas.environment]),
+                        versions: z.array(commonSchemas.semver),
+                    })
+                )
+            ])
+            .optional(),
+            references: z.array(commonSchemas.reference).optional(),
+        })
+        .refine((data) => {
+            if (data.severity === 'critical' && !data.advisory_type.includes('security')) {
+                throw new Error('Only security advisories can have critical severity. Other types can be high at maximum.');
+            }
+            if (data.category.includes('pipelines') && !data.pipelines) {
+                throw new Error('`pipelines` must be set if `category` is `pipelines`.');
+            }
+            if (data.category.includes('modules') && !data.modules) {
+                throw new Error('Affected `modules` must be named set if `category` is `modules`.');
+            }
+            if (data.category.includes('subworkflows') && !data.subworkflows) {
+                throw new Error('Affected `subworkflows` must be named set if `category` is `subworkflows`.');
+            }
+            if (data.category.includes('configuration') && !data.configuration) {
+                throw new Error('Affected `configuration` must be given if `category` is `configuration`.');
+            }
+            return true;
+        }),
 });
 
 const blog = defineCollection({
