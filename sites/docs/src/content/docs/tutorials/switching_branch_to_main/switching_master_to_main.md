@@ -18,7 +18,7 @@ Ensure that your version of `nf-core/tools` matches the pipeline's template vers
 ## Instructions
 
 1. Open your repository on GitHub. Make sure you're viewing the `master` branch.
-2. Select Branches. It's located to the right of the branch dropdown that shows `master`.
+2. Select **Branches**. It's located to the right of the branch dropdown that shows `master`.
 
 <img width=80% alt="Branches button" src="/images/tutorials/switching_master_to_main/branches_button.png">
 
@@ -40,20 +40,20 @@ These instructions will be useful for all pipeline contributors, so keep this to
 <img width=80% alt="Learn more button" src="/images/tutorials/switching_master_to_main/learn_more_button.png">
 
 6. Select **Rename branch**.
-7. Select the **Code** tab and verify you are now on `main`
-8. In your local IDE (e.g., VS Code), ensure you are on the `dev` branch
-9. Run `git fetch upstream` to ensure you have the `main` branch locally
+7. Select the **Code** tab and verify you are now on `main`.
+8. In your local IDE (e.g., VS Code), ensure you are on the `dev` branch.
+9. Run `git fetch upstream` to ensure you have the `main` branch locally.
 10. Run `git config --global init.defaultBranch main` to change your `git` config to `main`.
 11. Run `git config --global init.defaultBranch` to check your `git` config again, it should now report `main`.
-12. While still on `dev`, run `nf-core pipelines sync`
+12. While still on `dev`, run `nf-core pipelines sync`.
 13. Run `git switch -c default-branch-change` to switch to a new branch.
-14. Follow the TEMPLATE merge instructions, i.e., `git merge TEMPLATE`.
+14. Run `git merge TEMPLATE`.
 
 :::note
 If you don't want any other template changes, make sure to use the `nf-core/tools` version that matches the template version in your pipeline.
 :::
 
-15. Resolve merge conflicts
+15. Resolve merge conflicts.
 
 :::tip
 If it's the ROcrate JSON file, you can accept all incoming change.
@@ -69,8 +69,8 @@ If in doubt, ask on the nf-core Slack!
 17. Run `nf-core pipelines lint` to check you didn't break anything.
 18. Run `git add -am 'Change default branch'` to commit and merge.
 19. Run `git push` to push changes.
-20. On GitHub, make a new PR against `dev`
-21. Review the PR to check all relevant links and the `nextflow.config` manifest say `main`
+20. On GitHub, make a new PR against `dev`.
+21. Review the PR to check all relevant links and the `nextflow.config` manifest say `main`.
 22. Request a community review on #request-review on Slack, and once you have an approval...
 23. ... merge! :tada:
 
