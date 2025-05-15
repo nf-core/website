@@ -124,9 +124,8 @@ const advisory = defineCollection({
         .object({
             title: z.string(),
             subtitle: z.string(),
-            slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
             category: z.array(z.enum(['pipelines', 'modules', 'subworkflows', 'configuration'])),
-            advisory_type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific advice', 'other'])),
+            advisory_type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other'])),
             severity: z.enum(['low', 'medium', 'high', 'critical']),
             published_date: commonSchemas.dateFormat,
             reporter: z
