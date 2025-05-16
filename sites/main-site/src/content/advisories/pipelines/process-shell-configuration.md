@@ -11,12 +11,12 @@ reporter:
 reviewer:
   - ewels
   - MatthiasZepper
- pipelines:
-  - rnaseq
-    versions:
-      - 3.16.1
-      - 3.17.0
-      - 3.18.0
+pipelines:
+- name: rnaseq
+  versions:
+    - 3.16.1
+    - 3.17.0
+    - 3.18.0
 modules:
 subworkflows:
 configuration:

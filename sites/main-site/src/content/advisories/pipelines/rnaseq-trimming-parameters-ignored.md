@@ -8,11 +8,11 @@ publishedDate: "2023-01-13"
 reporter:
  - MatthiasZepper
 reviewer:
- pipelines:
-  - rnaseq
-    versions:
-      - 3.10
-      - 3.10.1
+pipelines:
+- name: rnaseq
+  versions:
+    - 3.10
+    - 3.10.1
 modules:
 subworkflows:
 configuration:
