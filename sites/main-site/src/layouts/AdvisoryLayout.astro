@@ -1,49 +1,51 @@
 ---
-import EventListing from "@components/event/EventListing.svelte";
+import AdvisoryListing from "@components/advisory/AdvisoryListing.svelte";
 import PageLayout from "@layouts/PageLayout.astro";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 import { type CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 
-const { title, subtitle, events, currentFilters } = Astro.props;
+const { title, subtitle, advisories, currentFilters } = Astro.props;
 export interface Props {
     title: string;
     subtitle: string;
     currentFilters: { name: string }[];
-    events: CollectionEntry<"events">[];
+    advisories: CollectionEntry<"advisories">[];
 }
 
-events
-    .map((event) => {
-        if (event.data.title.toLowerCase().match("bytesize")) {
-            event.data.type = "bytesize";
-        }
-        return event;
-    })
+advisories
     .sort((a, b) => {
-        if (!a.data.start || !b.data.start) return 0;
-        return a.data.start.getTime() - b.data.start.getTime();
+        if (!a.data.publishDate || !b.data.publishDate) return 0;
+        return a.data.publishDate.getTime();
     });
 
-const searchEvents = (search) => {
+const searchAdvisories = (search) => {
     const searchTerms = search.toLowerCase().split(" ");
-    return events.filter((event) => {
-        const eventString = JSON.stringify(event.data).toLowerCase();
-        return searchTerms.every((term) => eventString.includes(term));
+    return advisories.filter((advisory) => {
+        const advisoryString = JSON.stringify(advisory.data).toLowerCase();
+        return searchTerms.every((term) => advisoryString.includes(term));
     });
 };
 
-const filterEvents = (type) => {
-    return events.filter((event) => event.data.type === type);
+const filterAdvisories = (type) => {
+    return advisories.filter((advisory) => advisory.data.type === type);
 };
 
-let currentEvents = events.filter((event) => {
-    const today = new Date();
-    if (!event.data.start || !event.data.end) return false;
-    return event.data.start < today && event.data.end > today;
+const currentAdvisory = advisories.filter((advisories) => {
+    // Calculate date 3 months ago
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+    const threeMonthsAgoTime = threeMonthsAgo.getTime();
+
+    // Check if advisory was published within the last 3 months
+    const publishDateUnix = advisories.data.publishDate?.getTime();
+
+    if (publishDateUnix && publishDateUnix >= threeMonthsAgoTime) {
+        return true;
+    }
 });
 
-const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishDate.getFullYear()))].sort((a, b) => b - a);
 
 const sections: SidebarEntry[] = years.map((year) => {
     return {
@@ -51,13 +53,13 @@ const sections: SidebarEntry[] = years.map((year) => {
         label: year.toString(),
         href: "#year-" + year,
         collapsed: true,
-        entries: events
-            .filter((event) => event.data.start?.getFullYear() === year)
-            .map((event) => {
+        entries: advisories
+            .filter((advisory) => advisory.data.publishDate?.getFullYear() === year)
+            .map((advisory) => {
                 return {
                     type: "link",
-                    label: event.data.title,
-                    href: "#event-" + event.id,
+                    label: advisory.data.title,
+                    href: "#advisory-" + advisory.id,
                     isCurrent: false,
                 };
             }),
@@ -76,7 +78,7 @@ const sections: SidebarEntry[] = years.map((year) => {
         </div>
 
         <div class="col">
-            <EventListing {events} {currentEvents} {currentFilters} client:load />
+            <AdvisoryListing {advisories} {currentAdvisories} {currentFilters} client:load />
         </div>
     </div>
 </PageLayout>
