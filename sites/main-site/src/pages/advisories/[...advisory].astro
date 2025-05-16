@@ -1,0 +1,179 @@
+---
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import VideoTranscript from "@components/VideoTranscript.svelte";
+import Admonition from "@components/Admonition.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
+import ListModals from "@components/advisory/HackathonProjects/ListModals.astro";
+
+export async function getStaticPaths() {
+    const advisories = await getCollection("advisories");
+    return advisories.map((advisory) => ({
+        params: {
+            advisory: advisory.id.replace(/\.[^/.]+$/, ""),
+        },
+        props: {
+            advisory: advisory,
+            advisories: advisories,
+        },
+    }));
+}
+const { advisory, advisories } = Astro.props;
+const title = advisory.data.title;
+const subtitle = advisory.data.subtitle;
+let frontmatter = advisory.data;
+const { headings, Content } = await render(advisory);
+
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/advisories/" + advisory.id + ".md";
+
+let video = advisory.data.youtubeEmbed;
+// convert video to array if it is string
+if (typeof video === "string") {
+    video = [video];
+}
+const ids = video?.map(
+    (v) =>
+        v
+            .replace("https://www.youtube.com/watch?v=", "")
+            .replace("https://youtu.be/", "")
+            .replace("https://www.youtube.com/embed/", "")
+            .split("&list")[0],
+);
+// Check if maxres thumbnail is available
+let posters = await Promise.all(
+    Array.from(ids || []).map(async (id) => {
+        const maxresPoster = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+        const response = await fetch(maxresPoster);
+        if (response.status === 404) {
+            return `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
+        }
+        return maxresPoster;
+    }),
+);
+
+advisories
+    .map((advisory) => {
+        if (advisory.data.title.toLowerCase().match("bytesize")) {
+            advisory.data.type = "bytesize";
+        }
+        return advisory;
+    })
+    .filter((advisory) => advisory.data.type === frontmatter.type)
+    .sort((a, b) => {
+        return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
+    });
+
+const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">[]) => {
+    advisories.forEach((advisory) => {
+        const parts = advisory.id.replace(/\.[^/.]+$/, "").split("/");
+        let currentLevel = sections;
+
+        parts.forEach((part, i) => {
+            part = part.replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
+            const existingEntry = currentLevel.find(
+                (entry) => entry.label === part || entry.label === advisory.data.title,
+            );
+
+            if (existingEntry) {
+                if (existingEntry.type === "group") {
+                    // workaround for index files in nested advisories, where another element could already have created the group
+                    if (/index\.(md|mdx)$/.test(advisory.id) && i === parts.length - 1) {
+                        existingEntry.href = "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.isCurrent = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.collapsed = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                    }
+                    currentLevel = existingEntry.entries;
+                }
+            } else {
+                const lastPart = i === parts.length - 1;
+                let title = lastPart ? (advisory.data.shortTitle ?? advisory.data.title) : part;
+                const newEntry = createLinkOrGroup(
+                    parts.slice(0, i + 1).join("_"),
+                    title,
+                    "/advisories/" + advisory.id.replace(/\.[^/.]+$/, ""),
+                    lastPart,
+                    Astro.url.pathname,
+                );
+                currentLevel.push(newEntry);
+
+                if (newEntry.type === "group" && newEntry.entries) {
+                    currentLevel = newEntry.entries;
+                }
+            }
+        });
+    });
+};
+const years = [...new Set(advisories.map((advisory) => advisory.data.start.getFullYear()))].sort((a, b) => b - a);
+let sections: SidebarEntry[] = years.map((year) => {
+    return {
+        id: year.toString(),
+        label: year.toString(),
+        entries: [],
+        type: "group",
+        collapsed: true,
+    };
+});
+addEntriesToSection(sections, advisories);
+// sort .entries by date
+sections.forEach((year) => {
+    year.entries.sort((a, b) => {
+        const advisoryA = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href);
+        const advisoryB = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href);
+        return advisoryB.data.startDate - advisoryA.data.startDate;
+    });
+});
+---
+
+{frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    advisory_header={frontmatter}
+    headings={headings}
+    sections={sections}
+    leftSidebar={true}
+    docSearchTags={[
+        { name: "page_type", content: "advisory" },
+        { name: "page_subtype", content: frontmatter.type },
+    ]}
+    viewTransitions={true}
+>
+    {
+        title.trim().toLowerCase().startsWith("bytesize") && (
+            <Admonition
+                title="tip"
+                titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
+                collapse={true}
+            >
+                <p class="small text-body-secondary">
+                    Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
+                    pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
+                    <a href="https://nfcore.slack.com/channels/bytesize">
+                        <code>#bytesize</code>
+                    </a>{" "}
+                    Slack channel!
+                </p>
+            </Admonition>
+        )
+    }
+    <Content />
+    {
+        ids &&
+            ids.map((id, i) => (
+                <VideoTranscript id={id} client:idle>
+                    <YouTube id={id} poster={posters[i]} />
+                </VideoTranscript>
+            ))
+    }
+    {
+        frontmatter.hackathonProjectListModals && (
+            <ListModals slot="post-footer" advisoryPath={frontmatter.hackathonProjectListModals} />
+        )
+    }
+</MarkdownTocLayout>

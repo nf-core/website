@@ -16,7 +16,7 @@ export async function getStaticPaths() {
         }),
     );
     // reduce advisories to unique advisory types
-    const advisory_types = [...new Set(advisories.map((advisory) => advisory.data.advisory_type)), "incompatibility"];
+    const advisory_types = [...new Set(advisories.map((advisory) => advisory.data.type)), "incompatibility"];
 
     return advisory_types.map((advisory_type) => {
         return {
