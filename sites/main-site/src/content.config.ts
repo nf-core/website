@@ -449,5 +449,6 @@ export const collections = {
     blog,
     'special-interest-groups': specialInterestGroups,
     'hackathon-projects': hackathonProjects,
-    stickers
+    stickers,
+    advisories: advisory
 };
