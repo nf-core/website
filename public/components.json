@@ -99592,7 +99592,7 @@
               {
                 "*.tsv": {
                   "type": "file",
-                  "description": "Alignment summary for MultiQC",
+                  "description": "Summary reporting the total alignment length (including gaps) and the\npercent identity computed with and without taking gaps in\nconsideration (because there is no standard definition of percent\nidentity).\n",
                   "pattern": "*.tsv"
                 }
               }
