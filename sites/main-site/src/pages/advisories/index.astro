@@ -1,0 +1,28 @@
+---
+import advisoryLayout from "@layouts/advisoryLayout.astro";
+import { getCollection } from "astro:content";
+import { markdown } from "@astropub/md";
+let advisories = await getCollection("advisories");
+
+advisories = advisories.filter((advisory) => {
+    return advisory.id.split("/").length === 2;
+});
+
+advisories = await Promise.all(
+    advisories.map(async (advisory) => {
+        advisory.data.subtitle = String(await markdown(advisory.data.subtitle));
+        return advisory;
+    }),
+);
+
+const title = "advisories";
+const subtitle = "Details of nf-core advisories";
+const advisory_types = ['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other'];
+const filters = advisory_types.map((type) => {
+    return {
+        name: type,
+    };
+});
+---
+
+<advisoryLayout {advisories} {title} {subtitle} currentFilters={filters} />
