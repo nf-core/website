@@ -1,0 +1,87 @@
+---
+import AdvisoryBannerElement from "@components/advisories/AdvisoryBannerElement.svelte";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { markdown } from "@astropub/md";
+
+let advisories: CollectionEntry<"advisories">[] = await getCollection("advisories");
+advisories = await Promise.all(
+    advisories.map(async (advisories) => {
+        advisories.data.subtitle = `${await markdown(advisories.data.subtitle)}`;
+        return advisories;
+    }),
+);
+let now = new Date().getTime();
+advisories = advisories.sort((a, b) => {
+    if (!a.data.start || !b.data.start) return 0;
+    return a.data.start.getTime() - b.data.start.getTime();
+});
+
+advisories = advisories.filter((advisories) => {
+    return advisories.id.split("/").length === 2;
+});
+const currentAdvisory = advisories.filter((advisories) => {
+    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingAdvisorys.svelte to be sure to have all advisories created during the daily static build
+    const advisories_start_unix =
+        advisories.data.announcement?.start && !advisories.data.announcement.text
+            ? new Date(advisories.data.announcement.start).getTime()
+            : advisories.data.start?.getTime();
+    const advisories_end_unix = advisories.data.end?.getTime();
+
+    // increase time window to a week for advisories longer than 5 hours
+    if (advisories_end_unix - advisories_start_unix > 5 * 60 * 60 * 1000) {
+        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingAdvisorys.svelte for the same reason as above
+    }
+    if (advisories_start_unix < now + time_window && now < advisories_end_unix) {
+        return true;
+    }
+});
+
+const advisories_type_classes = {
+    known_regression: "success",
+    incompatibility: "warning",
+    security: "alert",
+    performance: "success",
+    data_corruption: "primary",
+    scientific_advice: "secondary",
+    other: "secondary",
+};
+const advisories_type_icons = {
+    known_regression: "fa-solid fa-apple-core",
+    incompatibility: "fa-solid fa-apple-core",
+    security: "fa-solid fa-apple-core",
+    performance: "fa-solid fa-apple-core",
+    data_corruption: "fa-solid fa-apple-core",
+    scientific_advice: "fa-solid fa-apple-core",
+    other: "fa-solid fa-apple-core",
+};
+---
+
+{
+    currentAdvisory.length > 0 && (
+        <div>
+            <div class="current-advisories-container bg-body-secondary">
+                <AdvisoryBannerElement
+                    advisories_time_category={"ongoing"}
+                    advisories={currentAdvisory}
+                    {advisories_type_classes}
+                    {advisories_type_icons}
+                    client:load
+                />
+            </div>
+            <div class="triangle-down bg-body-secondary d-none " />
+        </div>
+    )
+}
+<style lang="scss">
+    @import "@styles/_variables.scss";
+    .current-advisories-container:has(.ongoing-advisories, .upcoming-advisories) ~ .triangle-down {
+        display: block !important;
+    }
+
+    @include media-breakpoint-down(md) {
+        .mainpage-subheader-heading {
+            padding-top: 2rem;
+        }
+    }
+</style>
