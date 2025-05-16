@@ -42,6 +42,25 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
 2.  [ ] Check that large files cannot be reduced or subsetted.
 3.  [ ] Select **Amazon S3-managed keys (SSE-S3)** and create the pipeline directory in the S3 bucket.
 
+## Repository transfer to nf-core organisation
+
+1. Request ownership of the repo to be transferred from the dev
+    - If under a organisation repo: ask dev to add the core team member as a co-owner
+    - If under a user repo: ask dev to directly transfer ownship to core team member's private account
+2. Transfer the repository to the nf-core organisation
+    - Go to repository settings
+    - Bottom of General page
+    - Press 'Transfer' next to 'Transfer ownership'
+    - Keep repository name as is (assuming it's correct based on approved name on proposal)
+3. Set the repository settings on the repository now that is now under the nf-core organisation
+    1. Ask Matthias for the repository ruleset JSON files (still under active development)
+    2. Go to repository settings
+    3. Go to Rules page (under code and automation)
+    4. Press 'New ruleset'
+    5. Press 'Import a ruleset', select a JSON
+    6. Press 'Create' at the bottom of the page (do not modifiy anything)
+    7. Repeat 3.5-3.6 for each ruleset JSON
+
 ## Activating Zenodo archiving of a new pipeline
 
 Instructions for setting up Zenodo DOIs.
