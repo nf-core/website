@@ -13,26 +13,23 @@ advisories = await Promise.all(
 );
 let now = new Date().getTime();
 advisories = advisories.sort((a, b) => {
-    if (!a.data.start || !b.data.start) return 0;
-    return a.data.start.getTime() - b.data.start.getTime();
+    if (!a.data.publishDate || !b.data.publishDate) return 0;
+    return b.data.publishDate.getTime() - a.data.publishDate.getTime();
 });
 
 advisories = advisories.filter((advisories) => {
     return advisories.id.split("/").length === 2;
 });
 const currentAdvisory = advisories.filter((advisories) => {
-    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingAdvisorys.svelte to be sure to have all advisories created during the daily static build
-    const advisories_start_unix =
-        advisories.data.announcement?.start && !advisories.data.announcement.text
-            ? new Date(advisories.data.announcement.start).getTime()
-            : advisories.data.start?.getTime();
-    const advisories_end_unix = advisories.data.end?.getTime();
+    // Calculate date 3 months ago
+    const threeMonthsAgo = new Date();
+    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
+    const threeMonthsAgoTime = threeMonthsAgo.getTime();
 
-    // increase time window to a week for advisories longer than 5 hours
-    if (advisories_end_unix - advisories_start_unix > 5 * 60 * 60 * 1000) {
-        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingAdvisorys.svelte for the same reason as above
-    }
-    if (advisories_start_unix < now + time_window && now < advisories_end_unix) {
+    // Check if advisory was published within the last 3 months
+    const publishDateUnix = advisories.data.publishDate?.getTime();
+
+    if (publishDateUnix && publishDateUnix >= threeMonthsAgoTime) {
         return true;
     }
 });
@@ -47,13 +44,13 @@ const advisories_type_classes = {
     other: "secondary",
 };
 const advisories_type_icons = {
-    known_regression: "fa-solid fa-apple-core",
-    incompatibility: "fa-solid fa-apple-core",
-    security: "fa-solid fa-apple-core",
-    performance: "fa-solid fa-apple-core",
-    data_corruption: "fa-solid fa-apple-core",
-    scientific_advice: "fa-solid fa-apple-core",
-    other: "fa-solid fa-apple-core",
+    known_regression: "fa-solid fa-bug",
+    incompatibility: "fa-solid fa-exclamation-triangle",
+    security: "fa-solid fa-shield-alt",
+    performance: "fa-solid fa-tachometer-alt",
+    data_corruption: "fa-solid fa-database",
+    scientific_advice: "fa-solid fa-microscope",
+    other: "fa-solid fa-info-circle",
 };
 ---
 
@@ -75,7 +72,7 @@ const advisories_type_icons = {
 }
 <style lang="scss">
     @import "@styles/_variables.scss";
-    .current-advisories-container:has(.ongoing-advisories, .upcoming-advisories) ~ .triangle-down {
+    .current-advisories-container:has(.ongoing-advisories) ~ .triangle-down {
         display: block !important;
     }
 
