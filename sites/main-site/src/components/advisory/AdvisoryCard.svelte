@@ -1,6 +1,6 @@
 <script lang="ts">
-    import VideoButton from "@components/VideoButton.svelte";
     import type { CollectionEntry } from "astro:content";
+    import { formatDistanceToNow } from "date-fns";
 
     export let frontmatter: CollectionEntry<"advisories">["data"];
     export let slug: string = "";
@@ -12,11 +12,31 @@
     const advisories_type_classes = {
         known_regression: "success",
         incompatibility: "warning",
-        security: "alert",
+        security: "danger",
         performance: "success",
         data_corruption: "primary",
         scientific_advice: "secondary",
         other: "secondary",
+        // Severity levels
+        low: "success",
+        medium: "warning",
+        high: "danger",
+        critical: "danger"
+    };
+
+    const advisories_type_icons = {
+        known_regression: "fa-bug",
+        incompatibility: "fa-exclamation-triangle",
+        security: "fa-shield-alt",
+        performance: "fa-tachometer-alt",
+        data_corruption: "fa-database",
+        scientific_advice: "fa-flask",
+        other: "fa-info-circle",
+        // Severity levels
+        low: "fa-arrow-down",
+        medium: "fa-minus",
+        high: "fa-arrow-up",
+        critical: "fa-exclamation-circle"
     };
 
     const type_class = advisories_type_classes[type];
@@ -39,16 +59,25 @@
                 class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
                 class:justify-content-md-end={!narrow}
             >
-                <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                ToDo
-                </p>
+                <div class="d-flex flex-wrap gap-1">
+                    {#each frontmatter.type as type}
+                        <span class={"badge bg-" + advisories_type_classes[type] + " small"}
+                            ><i class={advisories_type_icons[type] + " me-1"} aria-hidden="true"></i>
+                            {type}</span
+                        >
+                    {/each}
+                    <span class={"badge bg-" + advisories_type_classes[frontmatter.severity] + " small"}
+                        ><i class={advisories_type_icons[frontmatter.severity] + " me-1"} aria-hidden="true"></i>
+                        {frontmatter.severity}</span
+                    >
+                </div>
             </div>
         </div>
     </div>
     <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
         <div class="d-flex align-items-center justify-content-between">
             <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
-            ToDo II
+                Published {formatDistanceToNow(new Date(frontmatter.publishedDate))} ago
             </p>
             <div
                 class="btn-group float-end"
