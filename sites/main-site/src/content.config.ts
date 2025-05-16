@@ -125,9 +125,9 @@ const advisory = defineCollection({
             title: z.string(),
             subtitle: z.string(),
             category: z.array(z.enum(['pipelines', 'modules', 'subworkflows', 'configuration'])),
-            advisory_type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other'])),
+            type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other'])),
             severity: z.enum(['low', 'medium', 'high', 'critical']),
-            published_date: commonSchemas.dateFormat,
+            publishedDate: commonSchemas.dateFormat,
             reporter: z
                 .array(z.string())
                 .or(z.array(z.record(z.string())))
@@ -182,8 +182,8 @@ const advisory = defineCollection({
                     // sort the configuration by name
                     return data?.sort();
                 }),
-            nextflow_versions: z.array(commonSchemas.semver).optional(),
-            nextflow_executors: z.array(
+            nextflowVersions: z.array(commonSchemas.semver).optional(),
+            nextflowExecutors: z.array(
                 z.enum([
                     'AWS Batch',
                     'Azure Batch',
@@ -206,7 +206,7 @@ const advisory = defineCollection({
                 ])
             ).optional(),
             // software_dependencies is an reference to the commonSchemas.containerRuntime or commonSchemas.environment, optionally with versions.
-            software_dependencies: z
+            softwareDependencies: z
             .union([
                 z.array(z.union([commonSchemas.containerRuntime, commonSchemas.environment])),
                 z.array(
@@ -220,7 +220,7 @@ const advisory = defineCollection({
             references: z.array(commonSchemas.reference).optional(),
         })
         .refine((data) => {
-            if (data.severity === 'critical' && !data.advisory_type.includes('security')) {
+            if (data.severity === 'critical' && !data.type.includes('security')) {
                 throw new Error('Only security advisories can have critical severity. Other types can be high at maximum.');
             }
             if (data.category.includes('pipelines') && !data.pipelines) {
