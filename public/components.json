@@ -8064,7 +8064,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -55881,10 +55881,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "drop",
-          "version": "dev"
-        },
-        {
           "name": "evexplorer",
           "version": "dev"
         },
@@ -75514,13 +75510,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "pairgenomealign",
-          "version": "2.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "gfatools_gfa2fa",
@@ -99499,7 +99489,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -99620,7 +99610,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -99708,7 +99698,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100042,7 +100032,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100130,7 +100120,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100320,7 +100310,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100436,7 +100426,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -120114,7 +120104,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -120238,6 +120228,10 @@
         },
         {
           "name": "ssds",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -158495,7 +158489,10 @@
           {
             "samtools": {
               "description": "Tools for dealing with SAM, BAM and CRAM files",
-              "documentation": "http://www.htslib.org/doc/1.1/samtools.html",
+              "homepage": "http://www.htslib.org",
+              "documentation": "https://www.htslib.org/doc/samtools.html",
+              "tool_dev_url": "https://github.com/samtools/samtools",
+              "doi": "10.1093/bioinformatics/btp352",
               "licence": [
                 "MIT"
               ],
@@ -158550,14 +158547,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_{1,2}.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_{1,2}.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "R1 and R2 FASTQ files\n",
                   "pattern": "*_{1,2}.fq.gz"
                 }
               }
@@ -158568,14 +158564,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_interleaved.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_interleaved.fq": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "Interleaved paired end FASTQ files\n",
                   "pattern": "*_interleaved.fq.gz"
                 }
               }
@@ -158586,14 +158581,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_other.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_other.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "FASTQ files with reads where the READ1 and READ2 FLAG bits set are either both set or both unset.\n",
                   "pattern": "*_other.fq.gz"
                 }
               }
@@ -158604,14 +158598,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_singleton.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_singleton.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "FASTQ files with singleton reads.\n",
                   "pattern": "*_singleton.fq.gz"
                 }
               }
@@ -158630,11 +158623,6 @@
           }
         ],
         "authors": [
-          "@lescai",
-          "@maxulysse",
-          "@matthdsm"
-        ],
-        "maintainers": [
           "@lescai",
           "@maxulysse",
           "@matthdsm"
@@ -160505,6 +160493,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "drop",
+          "version": "dev"
         },
         {
           "name": "genomeassembler",
@@ -169439,7 +169431,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -212778,7 +212770,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -212886,6 +212878,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -213155,7 +213151,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -213263,6 +213259,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -213508,7 +213508,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -213596,6 +213596,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
