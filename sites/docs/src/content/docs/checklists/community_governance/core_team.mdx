@@ -42,6 +42,38 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
 2.  [ ] Check that large files cannot be reduced or subsetted.
 3.  [ ] Select **Amazon S3-managed keys (SSE-S3)** and create the pipeline directory in the S3 bucket.
 
+## Making custom docker containers for modules
+
+Instructions for adding custom docker containers to the nf-core [https://quay.io](https://quay.io/organization/nf-core) organisation.
+
+These instructions require the person building and pushing the container has push rights to the organisation.
+**Only core members may have this access**, and new core members should request access from existing members.
+
+1. Check with the module author that there is really no way to have a conda/bioconda/biocontainer route
+2. Ask the module author to:
+    - Place a `Dockerfile` alongside the module (sub)directories
+    - Add a `README.md` describing why the container is needed, and provide instructions for building the container
+    - (Optional) add a `.gitgnore` file to ensure build artefacts are not pushed with the `Dockerfile` and `README.md`
+3. Core team member ensures they have correctly authenticated their docker for pushing to `quay.io`
+
+    ```bash
+    docker login --username <QUAY_USER_NAME> quay.io
+    ```
+
+4. Core team member builds container with instructions with appropriate tag, e.g.
+
+    ```bash
+    docker build . -t quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+5. Core team member pushes the container
+
+    ```bash
+    docker push quay.io/nf-core/<TOOL>:8.0.0
+    ```
+
+6. Send instructions to dev to use the new container URL in the module.
+
 ## Activating Zenodo archiving of a new pipeline
 
 Instructions for setting up Zenodo DOIs.
