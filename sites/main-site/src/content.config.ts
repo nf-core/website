@@ -118,7 +118,7 @@ const about = defineCollection({
     }),
 });
 
-const advisory = defineCollection({
+const advisories = defineCollection({
     loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/advisories' }),
     schema: z
         .object({
@@ -450,5 +450,5 @@ export const collections = {
     'special-interest-groups': specialInterestGroups,
     'hackathon-projects': hackathonProjects,
     stickers,
-    advisories: advisory
+    advisories
 };
