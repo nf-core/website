@@ -123570,7 +123570,7 @@
           ],
           [
             {
-              "adapters_database_meta": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
               }
@@ -123593,7 +123593,7 @@
                 }
               },
               {
-                "${meta.id}.vecscreen.out": {
+                "${prefix}.vecscreen.out": {
                   "type": "file",
                   "description": "VecScreen report file. This can be in different formats depending on the value of the optional -f  parameter. 0 = HTML format, with alignments. 1 = HTML format, no alignments. 2 = Text list, with alignments. 3 = Text list, no alignments. default = 0",
                   "pattern": "*.vecscreen.out"
@@ -145549,6 +145549,12 @@
           },
           {
             "session_info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+                }
+              },
               {
                 "*.R_sessionInfo.log": {
                   "type": "file",
