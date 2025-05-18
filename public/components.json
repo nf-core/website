@@ -56767,7 +56767,8 @@
             {
               "assembly": {
                 "type": "file",
-                "description": "assembly fasta file"
+                "description": "assembly fasta file",
+                "ontologies": []
               }
             }
           ]
@@ -56785,7 +56786,8 @@
                 "*.cleaned_sequences.fa.gz": {
                   "type": "file",
                   "description": "Cleaned assembly in fasta format",
-                  "pattern": "*.{cleaned_sequences.fa.gz}"
+                  "pattern": "*.{cleaned_sequences.fa.gz}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56802,7 +56804,8 @@
                 "*.fcs_adaptor_report.txt": {
                   "type": "file",
                   "description": "Report of identified adaptors",
-                  "pattern": "*.{fcs_adaptor_report.txt}"
+                  "pattern": "*.{fcs_adaptor_report.txt}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56819,7 +56822,8 @@
                 "*.fcs_adaptor.log": {
                   "type": "file",
                   "description": "Log file",
-                  "pattern": "*.{fcs_adaptor.log}"
+                  "pattern": "*.{fcs_adaptor.log}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56836,7 +56840,8 @@
                 "*.pipeline_args.yaml": {
                   "type": "file",
                   "description": "Run arguments",
-                  "pattern": "*.{pipeline_args.yaml}"
+                  "pattern": "*.{pipeline_args.yaml}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56853,7 +56858,8 @@
                 "*.skipped_trims.jsonl": {
                   "type": "file",
                   "description": "Skipped trim information",
-                  "pattern": "*.{skipped_trims.jsonl}"
+                  "pattern": "*.{skipped_trims.jsonl}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56864,7 +56870,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
