@@ -31,7 +31,7 @@ references:
       description: Pull-request that fixed the underlying issue in the nf-core pipeline template
       url: https://github.com/nf-core/tools/pull/3416
   -   title: Announcement regarding the issue on nf-core Slack
-      decription: Detailed description by Phil Ewels regarding the matter and suggestions for resolution
+      description: Detailed report by Phil Ewels regarding the matter and suggestions for resolution
       url: https://nfcore.slack.com/archives/CE6P95170/p1747302440656339
 ---
 
