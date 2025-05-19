@@ -1,11 +1,13 @@
 ---
 import ExportAdvisoryButton from "@components/advisories/ExportAdvisoryButton.svelte";
-import LocalDateTime from "@components/advisories/LocalDateTime.svelte";
+import LocalDateTime from "@components/events/LocalDateTime.svelte";
+import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
 const { frontmatter } = Astro.props;
-const start = frontmatter.start;
-const end = frontmatter.end;
-const locations = frontmatter.locations || [];
+const publishedDate = frontmatter.publishedDate;
+const category = frontmatter.category;
+const type = frontmatter.type;
+const severity = frontmatter.severity;
 
 function getLinkIcon(link) {
     if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
@@ -28,16 +30,45 @@ function getLinkIcon(link) {
 
     return "fas fa-link";
 }
+
+function getSeverityClass(severity) {
+    return `text-${advisories_type_classes[severity] || 'secondary'}`;
+}
+
+function getTypeIcon(type) {
+    return advisories_type_icons[type] || 'fa-circle-info';
+}
 ---
 
 <div class="">
     <div class="row row-cols-1 row-cols-md-2">
         <div class="col">
             <dl>
-                <dt>Advisory start:</dt>
-                <dd><LocalDateTime date={start} client:visible /></dd>
-                <dt>Advisory end:</dt>
-                <dd><LocalDateTime date={end} client:visible /></dd>
+                <dt>Published:</dt>
+                <dd><LocalDateTime date={publishedDate} client:visible /></dd>
+                <dt>Severity:</dt>
+                <dd>
+                    <span class={getSeverityClass(severity)}>
+                        <i class={`fa-solid ${getTypeIcon(type)} me-1`} />
+                        {severity.charAt(0).toUpperCase() + severity.slice(1)}
+                    </span>
+                </dd>
+                <dt>Type:</dt>
+                <dd>
+                    {type.map((t) => (
+                        <span class="badge bg-secondary me-1">
+                            {t.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                        </span>
+                    ))}
+                </dd>
+                <dt>Category:</dt>
+                <dd>
+                    {category.map((c) => (
+                        <span class="badge bg-primary me-1">
+                            {c.charAt(0).toUpperCase() + c.slice(1)}
+                        </span>
+                    ))}
+                </dd>
             </dl>
 
             {
@@ -48,80 +79,102 @@ function getLinkIcon(link) {
         </div>
         <div class="col">
             <dl>
-                <dt>Locations:</dt>
-                <dd>
-                    <ul class="list-unstyled">
-                        {
-                            locations?.map((location) => {
-                                const locationLinks = Array.isArray(location.links) ? location.links : [location.links];
-
-                                return (
-                                    <li class="list-item">
-                                        <ul>
-                                            <li>
-                                                <strong>
-                                                    {location.name}
-                                                    {location.geoCoordinates && (
-                                                        <span>
-                                                            :
-                                                            <a
-                                                                class="m-1 ms-auto  btn btn-sm btn-outline-light"
-                                                                href={`https://www.openstreetmap.org/?mlat=${location.geoCoordinates[0]}&mlon=${location.geoCoordinates[1]}&zoom=16#map=16/${location.geoCoordinates[0]}/${location.geoCoordinates[1]}`}
-                                                                target="_blank"
-                                                            >
-                                                                <i class="fa-duotone fa-map-pin me-1" />
-                                                                See on map
-                                                            </a>
-                                                        </span>
-                                                    )}
-                                                </strong>
-                                                <ul class="list-unstyled">
-                                                    <li>
-                                                        {location.address && (
-                                                            <ul>
-                                                                <li>
-                                                                    <span>{location.address}</span>
-                                                                </li>
-                                                            </ul>
-                                                        )}
-                                                        {locationLinks && locationLinks[0] && (
-                                                            <ul>
-                                                                {locationLinks.map((loc) => {
-                                                                    return (
-                                                                        <li class="list-item">
-                                                                            <a class="text-white underline" href={loc}>
-                                                                                {loc}
-                                                                            </a>
-                                                                        </li>
-                                                                    );
-                                                                })}
-                                                            </ul>
-                                                        )}
-                                                    </li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                );
-                            })
-                        }
-                    </ul>
-                </dd>
                 {
-                    frontmatter.links && frontmatter.links.length > 0 && (
+                    frontmatter.pipelines && frontmatter.pipelines.length > 0 && (
                         <>
-                            <dt>{frontmatter.links?.length === 1 ? "Link" : "Links"}:</dt>
+                            <dt>Affected Pipelines:</dt>
                             <dd>
-                                {frontmatter.links?.map((link) => {
-                                    const iconClass = getLinkIcon(link);
-                                    return (
-                                        <span class="d-inline-block me-1">
-                                            <a class="text-white" target="_blank" href={link}>
-                                                {iconClass && <i class={iconClass} />}
+                                <ul class="list-unstyled">
+                                    {frontmatter.pipelines.map((pipeline) => (
+                                        <li>
+                                            {typeof pipeline === 'string' ? (
+                                                <a href={`https://github.com/nf-core/${pipeline}`} target="_blank" class="text-white">
+                                                    {pipeline}
+                                                </a>
+                                            ) : (
+                                                <div>
+                                                    <a href={`https://github.com/nf-core/${pipeline.name}`} target="_blank" class="text-white">
+                                                        {pipeline.name}
+                                                    </a>
+                                                    <span class="ms-2">
+                                                        Versions: {pipeline.versions.join(', ')}
+                                                    </span>
+                                                </div>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.modules && frontmatter.modules.length > 0 && (
+                        <>
+                            <dt>Affected Modules:</dt>
+                            <dd>
+                                <ul class="list-unstyled">
+                                    {frontmatter.modules.map((module) => (
+                                        <li>
+                                            <a href={`https://github.com/nf-core/modules/tree/master/modules/${module}`} target="_blank" class="text-white">
+                                                {module}
                                             </a>
-                                        </span>
-                                    );
-                                })}
+                                        </li>
+                                    ))}
+                                </ul>
+                            </dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.subworkflows && frontmatter.subworkflows.length > 0 && (
+                        <>
+                            <dt>Affected Subworkflows:</dt>
+                            <dd>
+                                <ul class="list-unstyled">
+                                    {frontmatter.subworkflows.map((subworkflow) => (
+                                        <li>
+                                            <a href={`https://github.com/nf-core/modules/tree/master/subworkflows/${subworkflow}`} target="_blank" class="text-white">
+                                                {subworkflow}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.configuration && frontmatter.configuration.length > 0 && (
+                        <>
+                            <dt>Affected Configuration:</dt>
+                            <dd>
+                                <ul class="list-unstyled">
+                                    {frontmatter.configuration.map((config) => (
+                                        <li>{config}</li>
+                                    ))}
+                                </ul>
+                            </dd>
+                        </>
+                    )
+                }
+                {
+                    frontmatter.references && frontmatter.references.length > 0 && (
+                        <>
+                            <dt>References:</dt>
+                            <dd>
+                                <ul class="list-unstyled">
+                                    {frontmatter.references.map((ref) => (
+                                        <li>
+                                            <a href={ref.url} target="_blank" class="text-white">
+                                                {ref.title}
+                                            </a>
+                                            {ref.description && (
+                                                <span class="ms-2 text-muted">- {ref.description}</span>
+                                            )}
+                                        </li>
+                                    ))}
+                                </ul>
                             </dd>
                         </>
                     )
