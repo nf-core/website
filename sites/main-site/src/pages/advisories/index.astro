@@ -1,12 +1,8 @@
 ---
-import advisoryLayout from "@layouts/AdvisoryLayout.astro";
+import advisoryLayout from "@layouts/advisoryLayout.astro";
 import { getCollection } from "astro:content";
 import { markdown } from "@astropub/md";
 let advisories = await getCollection("advisories");
-
-advisories = advisories.filter((advisory) => {
-    return advisory.id.split("/").length === 2;
-});
 
 advisories = await Promise.all(
     advisories.map(async (advisory) => {
