@@ -78,7 +78,7 @@ const sections: SidebarEntry[] = years.map((year) => {
         </div>
 
         <div class="col">
-            <AdvisoryListing {advisories} {currentAdvisories} {currentFilters} client:load />
+            <AdvisoryListing {advisories} {currentFilters} client:load />
         </div>
     </div>
 </PageLayout>
