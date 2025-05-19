@@ -3,6 +3,7 @@ import AdvisoryBannerElement from "@components/advisories/AdvisoryBannerElement.
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { markdown } from "@astropub/md";
+import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
 let advisories: CollectionEntry<"advisories">[] = await getCollection("advisories");
 advisories = await Promise.all(
@@ -13,8 +14,8 @@ advisories = await Promise.all(
 );
 let now = new Date().getTime();
 advisories = advisories.sort((a, b) => {
-    if (!a.data.publishDate || !b.data.publishDate) return 0;
-    return b.data.publishDate.getTime() - a.data.publishDate.getTime();
+    if (!a.data.publishedDate || !b.data.publishedDate) return 0;
+    return b.data.publishedDate.getTime() - a.data.publishedDate.getTime();
 });
 
 advisories = advisories.filter((advisories) => {
@@ -27,32 +28,9 @@ const currentAdvisory = advisories.filter((advisories) => {
     const threeMonthsAgoTime = threeMonthsAgo.getTime();
 
     // Check if advisory was published within the last 3 months
-    const publishDateUnix = advisories.data.publishDate?.getTime();
-
-    if (publishDateUnix && publishDateUnix >= threeMonthsAgoTime) {
-        return true;
-    }
+    const publishedDateUnix = advisories.data.publishedDate?.getTime();
+    return publishedDateUnix && publishedDateUnix >= threeMonthsAgoTime;
 });
-
-const advisories_type_classes = {
-    known_regression: "success",
-    incompatibility: "warning",
-    security: "alert",
-    performance: "success",
-    data_corruption: "primary",
-    scientific_advice: "secondary",
-    other: "secondary",
-};
-const advisories_type_icons = {
-    known_regression: "fa-solid fa-bug",
-    incompatibility: "fa-solid fa-exclamation-triangle",
-    security: "fa-solid fa-shield-alt",
-    performance: "fa-solid fa-tachometer-alt",
-    data_corruption: "fa-solid fa-database",
-    scientific_advice: "fa-solid fa-microscope",
-    other: "fa-solid fa-info-circle",
-};
----
 
 {
     currentAdvisory.length > 0 && (

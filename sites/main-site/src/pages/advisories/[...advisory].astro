@@ -82,7 +82,7 @@ sections.forEach((year) => {
     year.entries.sort((a, b) => {
         const advisoryA = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href);
         const advisoryB = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href);
-        return advisoryB.data.publishDateUnix;
+        return advisoryB.data.publishedDateUnix;
     });
 });
 ---
