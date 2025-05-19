@@ -47,10 +47,8 @@
     );
 
     const filterByType = (advisories: CollectionEntry<"advisories">) => {
-        if ($CurrentFilter.find((f) => advisories.data.type.includes(f.name as typeof advisories.data.type[number]))) {
-            return true;
-        }
-        return false;
+        if ($CurrentFilter.length === 0) return true;
+        return $CurrentFilter.some((f) => advisories.data.type.includes(f.name as typeof advisories.data.type[number]));
     };
 
     const searchAdvisories = (advisories: CollectionEntry<"advisories">) => {
@@ -99,7 +97,6 @@
                     <AdvisoryCard
                         frontmatter={advisories.data}
                         slug={advisories.id}
-                        type={advisories.data.type[0]}
                         time_category="current"
                     />
                 {/each}
@@ -116,7 +113,6 @@
                         <AdvisoryCard
                             frontmatter={advisories.data}
                             slug={advisories.id}
-                            type={advisories.data.type[0]}
                             time_category="past"
                         />
                     {/each}

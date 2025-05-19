@@ -28,7 +28,7 @@ const searchAdvisories = (search) => {
 };
 
 const filterAdvisories = (type) => {
-    return advisories.filter((advisory) => advisory.data.type === type);
+    return advisories.filter((advisory) => advisory.data.type.includes(type));
 };
 
 const currentAdvisory = advisories.filter((advisories) => {

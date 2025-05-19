@@ -15,16 +15,21 @@ export async function getStaticPaths() {
             return advisory;
         }),
     );
-    // reduce advisories to unique advisory types
-    const advisory_types = [...new Set(advisories.map((advisory) => advisory.data.type)), "incompatibility"];
+    // Get all unique advisory types from all advisories
+    const advisory_types = [...new Set(advisories.flatMap((advisory) => advisory.data.type))];
 
     return advisory_types.map((advisory_type) => {
+        // Filter advisories that include this type
+        const filteredAdvisories = advisories.filter(advisory =>
+            advisory.data.type.includes(advisory_type)
+        );
+
         return {
             params: {
                 advisory_type: advisory_type,
             },
             props: {
-                advisories: advisories,
+                advisories: filteredAdvisories,
             },
         };
     });
@@ -33,7 +38,7 @@ const { advisories } = Astro.props;
 const { advisory_type } = Astro.params;
 
 const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
-const subtitle = advisory_type + "-related advisories pertaining to nf-core software.";
+const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
 ---
 
 <advisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]} />
