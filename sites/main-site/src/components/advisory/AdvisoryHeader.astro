@@ -35,6 +35,14 @@ function getSeverityClass(severity) {
     return `text-${advisories_type_classes[severity] || 'secondary'}`;
 }
 
+function getSeverityIcon(severity) {
+    return advisories_type_icons[severity] || 'fa-circle-info';
+}
+
+function getTypeClass(type) {
+    return advisories_type_classes[type] || 'secondary';
+}
+
 function getTypeIcon(type) {
     return advisories_type_icons[type] || 'fa-circle-info';
 }
@@ -49,14 +57,15 @@ function getTypeIcon(type) {
                 <dt>Severity:</dt>
                 <dd>
                     <span class={getSeverityClass(severity)}>
-                        <i class={`fa-solid ${getTypeIcon(type)} me-1`} />
+                        <i class={`fa-solid ${getSeverityIcon(severity)} me-1`} />
                         {severity.charAt(0).toUpperCase() + severity.slice(1)}
                     </span>
                 </dd>
                 <dt>Type:</dt>
                 <dd>
                     {type.map((t) => (
-                        <span class="badge bg-secondary me-1">
+                        <span class={`badge bg-${getTypeClass(t)} me-1`}>
+                            <i class={`fa-solid ${getTypeIcon(t)} me-1`} />
                             {t.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                         </span>
                     ))}

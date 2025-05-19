@@ -66,7 +66,7 @@ const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">
         });
     });
 };
-const years = [...new Set(advisories.map((advisory) => advisory.data.start.getFullYear()))].sort((a, b) => b - a);
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort((a, b) => b - a);
 let sections: SidebarEntry[] = years.map((year) => {
     return {
         id: year.toString(),
@@ -82,7 +82,7 @@ sections.forEach((year) => {
     year.entries.sort((a, b) => {
         const advisoryA = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href);
         const advisoryB = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href);
-        return advisoryB.data.publishedDateUnix;
+        return advisoryB.data.publishedDate.getTime() - advisoryA.data.publishedDate.getTime();
     });
 });
 ---
@@ -98,7 +98,7 @@ sections.forEach((year) => {
     leftSidebar={true}
     docSearchTags={[
         { name: "page_type", content: "advisory" },
-        { name: "page_subtype", content: frontmatter.type },
+        ...frontmatter.type.map(type => ({ name: "page_subtype", content: type }))
     ]}
     viewTransitions={true}
 >
