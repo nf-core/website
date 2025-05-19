@@ -15,8 +15,8 @@ export interface Props {
 
 advisories
     .sort((a, b) => {
-        if (!a.data.publishDate || !b.data.publishDate) return 0;
-        return a.data.publishDate.getTime();
+        if (!a.data.publishedDate || !b.data.publishedDate) return 0;
+        return a.data.publishedDate.getTime();
     });
 
 const searchAdvisories = (search) => {
@@ -38,14 +38,14 @@ const currentAdvisory = advisories.filter((advisories) => {
     const threeMonthsAgoTime = threeMonthsAgo.getTime();
 
     // Check if advisory was published within the last 3 months
-    const publishDateUnix = advisories.data.publishDate?.getTime();
+    const publishedDateUnix = advisories.data.publishedDate?.getTime();
 
-    if (publishDateUnix && publishDateUnix >= threeMonthsAgoTime) {
+    if (publishedDateUnix && publishedDateUnix >= threeMonthsAgoTime) {
         return true;
     }
 });
 
-const years = [...new Set(advisories.map((advisory) => advisory.data.publishDate.getFullYear()))].sort((a, b) => b - a);
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort((a, b) => b - a);
 
 const sections: SidebarEntry[] = years.map((year) => {
     return {
@@ -54,7 +54,7 @@ const sections: SidebarEntry[] = years.map((year) => {
         href: "#year-" + year,
         collapsed: true,
         entries: advisories
-            .filter((advisory) => advisory.data.publishDate?.getFullYear() === year)
+            .filter((advisory) => advisory.data.publishedDate?.getFullYear() === year)
             .map((advisory) => {
                 return {
                     type: "link",
