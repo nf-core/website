@@ -24,18 +24,20 @@ Follow these steps to obtain both Docker and Singularity containers from the Seq
    Only add additional tools when necessary.
    :::
 
-3. Set **Container setting**  to `Docker`.
+3. Set **Container setting** to `Docker`.
 4. Select **Get Container**.
 5. Copy the generated container URL and add it to the last line of the container definition in your module’s `main.nf` file.
 
-    :::note
-    The URL does not include `https://` at the beginning. Copy it exactly as shown.
-    :::
+   :::note
+   The URL does not include `https://` at the beginning. Copy it exactly as shown.
+   :::
+
 6. Change the **Container settings** to `Singularity`.
 7. Select **Get container**.
 8. :grey_exclamation: Select the **HTTPS** checkbox.
 
-    :::note
-    This checkbox appears only after the container has been successfully built.
-    :::
+   :::note
+   This checkbox appears only after the container has been successfully built.
+   :::
+
 9. Copy the generated URL (including the `https://community-cr-prod...` prefix) and add it to the middle line of the container definition in your module’s `main.nf` file.
