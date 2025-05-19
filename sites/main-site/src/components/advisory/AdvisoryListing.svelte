@@ -8,20 +8,21 @@
     interface Props {
         advisories?: CollectionEntry<"advisories">[];
         currentFilters: { name: string }[];
-        currentAdvisory: CollectionEntry<"advisories">[];
     }
 
-    let { advisories = [], currentFilters, currentAdvisory = $bindable() }: Props = $props();
+    let { advisories = [], currentFilters }: Props = $props();
 
-    let filteredAdvisorys = $state(advisories);
+    let filteredAdvisories = $state(advisories);
+    let currentAdvisories = $state<CollectionEntry<"advisories">[]>([]);
+
     const filterByType = (advisories: CollectionEntry<"advisories">) => {
-        if ($CurrentFilter.find((f) => f.name === advisories.data.type)) {
+        if ($CurrentFilter.find((f) => f.name == advisories.data.type)) {
             return true;
         }
         return false;
     };
 
-    const searchAdvisorys = (advisories: CollectionEntry<"advisories">) => {
+    const searchAdvisories = (advisories: CollectionEntry<"advisories">) => {
         if ($SearchQuery === "") {
             return true;
         }
@@ -45,8 +46,8 @@
         return advisories.data.start !== undefined && advisories.data.end !== undefined;
     }
 
-    let futureAdvisorys = $derived(
-        filteredAdvisorys
+    let futureAdvisories = $derived(
+        filteredAdvisories
             .filter(hasRequiredDates)
             .filter((advisories) => {
                 const today = new Date();
@@ -60,8 +61,8 @@
             }),
     );
 
-    let pastAdvisorys = $derived(
-        filteredAdvisorys
+    let pastAdvisories = $derived(
+        filteredAdvisories
             .filter((advisories) => {
                 const today = new Date();
                 return advisories.data.end && advisories.data.end < today;
@@ -74,19 +75,19 @@
             }),
     );
 
-    let currentAdvisorysFiltered = $derived(
-        filteredAdvisorys.filter((advisories) => {
+    let currentAdvisoriesFiltered = $derived(
+        filteredAdvisories.filter((advisories) => {
             const today = new Date();
             return advisories.data.start && advisories.data.start < today && advisories.data.end && advisories.data.end > today;
         }),
     );
 
     $effect(() => {
-        filteredAdvisorys = advisories.filter(filterByType).filter(searchAdvisorys);
+        filteredAdvisories = advisories.filter(filterByType).filter(searchAdvisories);
     });
 
     $effect(() => {
-        currentAdvisorys = currentAdvisorysFiltered;
+        currentAdvisories = currentAdvisoriesFiltered;
     });
 
     const advisories_type_classes = {
@@ -126,10 +127,10 @@
 <div>
     <FilterBar filter={advisories_types} displayStyle={[]} sortBy={[]} filterName={() => "Advisory type"}></FilterBar>
     <div class="advisories">
-        {#if currentAdvisorys.length > 0}
+        {#if currentAdvisories.length > 0}
             <div class="mb-3 col-12">
                 <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Currently ongoing</h2>
-                {#each currentAdvisorys as advisories (advisories.id)}
+                {#each currentAdvisories as advisories (advisories.id)}
                     <AdvisoryCard
                         frontmatter={advisories.data}
                         slug={advisories.id}
@@ -143,8 +144,8 @@
             <div class="d-flex flex-column">
                 <div class="mb-3">
                     <h2><i class="fa-duotone fa-calendar-day me-3"></i>Upcoming advisories</h2>
-                    {#if futureAdvisorys && futureAdvisorys.length > 0}
-                        {#each futureAdvisorys as advisories (advisories.id)}
+                    {#if futureAdvisories && futureAdvisories.length > 0}
+                        {#each futureAdvisories as advisories (advisories.id)}
                             <AdvisoryCard
                                 frontmatter={advisories.data}
                                 slug={advisories.id}
@@ -158,8 +159,8 @@
                 </div>
                 <div class="mb-3">
                     <h2><i class="fa-duotone fa-calendar-check me-3"></i>Past advisories</h2>
-                    {#each pastAdvisorys as advisories, idx (advisories.id)}
-                        {#if hasYearChanged(pastAdvisorys, idx)}
+                    {#each pastAdvisories as advisories, idx (advisories.id)}
+                        {#if hasYearChanged(pastAdvisories, idx)}
                             <h3 id={"year-" + advisories.data.start?.getFullYear()}>{advisories.data.start?.getFullYear()}</h3>
                         {/if}
                         <AdvisoryCard
