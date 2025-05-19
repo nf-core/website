@@ -1,4 +1,5 @@
 export const advisories_type_classes = {
+    // Advisory types
     known_regression: "success",
     incompatibility: "warning",
     security: "danger",
@@ -14,6 +15,7 @@ export const advisories_type_classes = {
 } as const;
 
 export const advisories_type_icons = {
+    // Advisory types
     known_regression: "fa-bug",
     incompatibility: "fa-exclamation-triangle",
     security: "fa-shield-alt",
@@ -28,10 +30,21 @@ export const advisories_type_icons = {
     critical: "fa-exclamation-circle"
 } as const;
 
-export const advisories_types = Object.keys(advisories_type_classes).map((type) => {
+// Only include actual advisory types, not severity levels
+const advisory_types = [
+    'known_regression',
+    'incompatibility',
+    'security',
+    'performance',
+    'data_corruption',
+    'scientific_advice',
+    'other'
+] as const;
+
+export const advisories_types = advisory_types.map((type) => {
     return {
         name: type,
-        class: advisories_type_classes[type as keyof typeof advisories_type_classes],
-        icon: advisories_type_icons[type as keyof typeof advisories_type_icons],
+        class: advisories_type_classes[type],
+        icon: advisories_type_icons[type],
     };
 });
