@@ -176683,10 +176683,10 @@
                 }
               },
               {
-                "*-ancestry.tsv": {
+                "*.somalier-ancestry.tsv": {
                   "type": "file",
                   "description": "TSV with ancestry information for query and labelled samples.",
-                  "pattern": "*.{-ancestry.tsv}"
+                  "pattern": "*.somalier-ancestry.tsv"
                 }
               }
             ]
@@ -176700,10 +176700,10 @@
                 }
               },
               {
-                "*-ancestry.html": {
+                "*.somalier-ancestry.html": {
                   "type": "file",
                   "description": "html file with ancestry information for query and labelled samples.",
-                  "pattern": "*.{-ancestry.html}"
+                  "pattern": "*.somalier-ancestry.html"
                 }
               }
             ]
@@ -208001,13 +208001,13 @@
         ],
         "components": [
           "fcs/fcsadaptor",
-          "fcs/fcsgx"
+          "fcsgx/rungx"
         ],
         "input": [
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              "description": "Groovy Map containing sample information\nwith taxonomy ID of the expected organism\ne.g. [ id:'test', taxid:'id' ]\n"
             }
           },
           {
@@ -208015,6 +208015,18 @@
               "type": "file",
               "description": "assembly fasta file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "database": {
+              "type": "directory",
+              "description": "Directory containing the FCS-GX database"
+            }
+          },
+          {
+            "ramdisk_path": {
+              "type": "string",
+              "description": "Path to RAM disk for improved performance (optional)"
             }
           }
         ],
