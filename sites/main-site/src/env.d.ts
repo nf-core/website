@@ -8,10 +8,10 @@ declare module 'astro:content' {
       data: {
         title: string;
         subtitle: string;
-        category: ('pipelines' | 'modules' | 'subworkflows' | 'configuration')[];
-        type: ('known_regression' | 'incompatibility' | 'security' | 'performance' | 'data_corruption' | 'scientific_advice' | 'other')[];
+        category: ('pipelines' | 'modules' | 'subworkflows' | 'configuration') | ('pipelines' | 'modules' | 'subworkflows' | 'configuration')[];
+        type: ('known_regression' | 'incompatibility' | 'security' | 'performance' | 'data_corruption' | 'scientific_advice' | 'other') | ('known_regression' | 'incompatibility' | 'security' | 'performance' | 'data_corruption' | 'scientific_advice' | 'other')[];
         severity: 'low' | 'medium' | 'high' | 'critical';
-        publishedDate: string;
+        publishedDate: Date;
         reporter?: (string | Record<string, string>)[];
         reviewer?: (string | Record<string, string>)[];
         pipelines?: string[] | Array<{name: string; versions: string[]}>;

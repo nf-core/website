@@ -6,7 +6,11 @@ import { octokit } from "@components/octokit.js";
 
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
-    semver: z.string().regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
+    // semver lenient allows for 1.0 instead of enforcing 1.0.0
+    semver_lenient: z.string().regex(/^(\d+\.\d+(?:\.\d+)?)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
+        message: 'Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)',
+    }),
+    semver_strict: z.string().regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
         message: 'Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)',
     }),
     dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
@@ -124,30 +128,35 @@ const advisories = defineCollection({
         .object({
             title: z.string(),
             subtitle: z.string(),
-            category: z.array(z.enum(['pipelines', 'modules', 'subworkflows', 'configuration'])),
-            type: z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other'])),
+            category: z.union([
+                z.enum(['pipelines', 'modules', 'subworkflows', 'configuration']),
+                z.array(z.enum(['pipelines', 'modules', 'subworkflows', 'configuration']))
+            ]).transform(val => Array.isArray(val) ? val : [val]),
+            type: z.union([
+                z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other']),
+                z.array(z.enum(['known_regression', 'incompatibility', 'security', 'performance', 'data_corruption','scientific_advice', 'other']))
+            ]).transform(val => Array.isArray(val) ? val : [val]),
             severity: z.enum(['low', 'medium', 'high', 'critical']),
-            publishedDate: commonSchemas.dateFormat,
-            reporter: z
-                .array(z.string())
+            publishedDate: commonSchemas.dateFormat.transform((date) => new Date(date)),
+            reporter: z.nullable(
+                z.array(z.string())
                 .or(z.array(z.record(z.string())))
-                .optional(),
+                ),
             reviewer: z
                 .array(z.string())
                 .or(z.array(z.record(z.string())))
                 .optional(),
             // pipelines is an array of pipeline names strings or an array of objects with pipeline name and versions
-            pipelines: z
-                .union([
+            pipelines: z.nullable(
+                z.union([
                     z.array(z.string()),
                     z.array(
                         z.object({
                             name: z.string(),
-                            versions: z.array(commonSchemas.semver),
+                            versions: z.array(commonSchemas.semver_lenient),
                         })
                     )
-                ])
-                .optional()
+                ]))
                 .transform((data) => {
                     if (!data) return data;
 
@@ -161,29 +170,29 @@ const advisories = defineCollection({
                         a.name.localeCompare(b.name)
                     );
                 }),
-            modules: z
-                .array(z.string())
-                .optional()
+            modules: z.nullable(
+                z.array(z.string()))
                 .transform((data) => {
+                    if (!data) return data;
                     // sort the modules by name
                     return data?.sort();
                 }),
-            subworkflows: z
-                .array(z.string())
-                .optional()
+            subworkflows: z.nullable(
+                z.array(z.string()))
                 .transform((data) => {
+                    if (!data) return data;
                     // sort the subworkflows by name
                     return data?.sort();
                 }),
-            configuration: z
-                .array(z.string())
-                .optional()
+            configuration: z.nullable(
+                z.array(z.string()))
                 .transform((data) => {
+                    if (!data) return data;
                     // sort the configuration by name
                     return data?.sort();
                 }),
-            nextflowVersions: z.array(commonSchemas.semver).optional(),
-            nextflowExecutors: z.array(
+            nextflowVersions: z.nullable(z.array(commonSchemas.semver_strict)),
+            nextflowExecutors: z.nullable(z.array(
                 z.enum([
                     'AWS Batch',
                     'Azure Batch',
@@ -203,21 +212,19 @@ const advisories = defineCollection({
                     'PBS Pro',
                     'SGE',
                     'SLURM'
-                ])
-            ).optional(),
+                ]))),
             // software_dependencies is an reference to the commonSchemas.containerRuntime or commonSchemas.environment, optionally with versions.
-            softwareDependencies: z
-            .union([
+            softwareDependencies: z.nullable(
+            z.union([
                 z.array(z.union([commonSchemas.containerRuntime, commonSchemas.environment])),
                 z.array(
                     z.object({
                         name: z.union([commonSchemas.containerRuntime, commonSchemas.environment]),
-                        versions: z.array(commonSchemas.semver),
+                        versions: z.array(commonSchemas.semver_lenient),
                     })
                 )
-            ])
-            .optional(),
-            references: z.array(commonSchemas.reference).optional(),
+            ])),
+            references: z.nullable(z.array(commonSchemas.reference)),
         })
         .refine((data) => {
             if (data.severity === 'critical' && !data.type.includes('security')) {
