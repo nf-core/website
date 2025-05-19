@@ -72,17 +72,15 @@
                                     >
                                     <span class="ms-1 my-auto">
                                         {#each advisory.data.type as type}
-                                            <span class={"badge bg-" + advisories_type_classes[type] + " small me-1"}
-                                                ><i class={advisories_type_icons[type] + " me-1"} aria-hidden="true"
-                                                ></i>
-                                                {type}</span
-                                            >
+                                            <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
+                                                <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
+                                                {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                                            </span>
                                         {/each}
-                                        <span class={"badge bg-" + advisories_type_classes[advisory.data.severity] + " small"}
-                                            ><i class={advisories_type_icons[advisory.data.severity] + " me-1"} aria-hidden="true"
-                                            ></i>
-                                            {advisory.data.severity}</span
-                                        >
+                                        <span class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}>
+                                            <i class={`${advisories_type_icons[advisory.data.severity]} me-1`} aria-hidden="true"></i>
+                                            {advisory.data.severity.charAt(0).toUpperCase() + advisory.data.severity.slice(1)}
+                                        </span>
                                     </span>
                                 </h5>
                                 <p class="lead mb-1">
@@ -131,15 +129,15 @@
                             >
                             <span class="ms-1">
                                 {#each advisory.data.type as type}
-                                    <span class={"badge bg-" + advisories_type_classes[type] + " small me-1"}
-                                        ><i class={advisories_type_icons[type] + " me-1"} aria-hidden="true"></i>
-                                        {type}</span
-                                    >
+                                    <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
+                                        <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
+                                        {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                                    </span>
                                 {/each}
-                                <span class={"badge bg-" + advisories_type_classes[advisory.data.severity] + " small"}
-                                    ><i class={advisories_type_icons[advisory.data.severity] + " me-1"} aria-hidden="true"></i>
-                                    {advisory.data.severity}</span
-                                >
+                                <span class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}>
+                                    <i class={`${advisories_type_icons[advisory.data.severity]} me-1`} aria-hidden="true"></i>
+                                    {advisory.data.severity.charAt(0).toUpperCase() + advisory.data.severity.slice(1)}
+                                </span>
                             </span>
                         </p>
                         <div class="small mb-1 mx-3 d-flex flex-column">

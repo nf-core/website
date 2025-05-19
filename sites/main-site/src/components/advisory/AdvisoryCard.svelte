@@ -4,16 +4,15 @@
 
     export let frontmatter: CollectionEntry<"advisories">["data"];
     export let slug: string = "";
-    export let type: string = "";
     export let time_category: string = "";
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
     import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
-    const type_class = advisories_type_classes[type];
+    const type_class = advisories_type_classes[frontmatter.type[0]];
 </script>
 
-<div class={"card mb-3 rounded-0 rounded-end " + type} style="border-left-color:var(--bs-{type_class});">
+<div class={"card mb-3 rounded-0 rounded-end " + frontmatter.type[0]} style="border-left-color:var(--bs-{type_class});">
     <div class="card-body">
         <div class="card-title">
             <h4 id={"advisories-" + slug.split("/")[1]} class:h5={narrow}>
@@ -32,15 +31,15 @@
             >
                 <div class="d-flex flex-wrap gap-1">
                     {#each frontmatter.type as type}
-                        <span class={"badge bg-" + advisories_type_classes[type] + " small"}
-                            ><i class={advisories_type_icons[type] + " me-1"} aria-hidden="true"></i>
-                            {type}</span
-                        >
+                        <span class={`badge bg-${advisories_type_classes[type]} small`}>
+                            <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
+                            {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                        </span>
                     {/each}
-                    <span class={"badge bg-" + advisories_type_classes[frontmatter.severity] + " small"}
-                        ><i class={advisories_type_icons[frontmatter.severity] + " me-1"} aria-hidden="true"></i>
-                        {frontmatter.severity}</span
-                    >
+                    <span class={`badge bg-${advisories_type_classes[frontmatter.severity]} small`}>
+                        <i class={`${advisories_type_icons[frontmatter.severity]} me-1`} aria-hidden="true"></i>
+                        {frontmatter.severity.charAt(0).toUpperCase() + frontmatter.severity.slice(1)}
+                    </span>
                 </div>
             </div>
         </div>
