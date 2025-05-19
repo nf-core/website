@@ -5,9 +5,6 @@ import { markdown } from "@astropub/md";
 
 export async function getStaticPaths() {
     let advisories = await getCollection("advisories");
-    advisories = advisories.filter((advisory) => {
-        return advisory.id.replace(/\.[^/.]+$/, "").split("/").length === 2;
-    });
 
     advisories = await Promise.all(
         advisories.map(async (advisory) => {
@@ -17,12 +14,14 @@ export async function getStaticPaths() {
     );
     // Get all unique advisory types from all advisories
     const advisory_types = [...new Set(advisories.flatMap((advisory) => advisory.data.type))];
+    console.log("Available advisory types:", advisory_types);
 
     return advisory_types.map((advisory_type) => {
         // Filter advisories that include this type
         const filteredAdvisories = advisories.filter(advisory =>
             advisory.data.type.includes(advisory_type)
         );
+        console.log(`Advisories for type ${advisory_type}:`, filteredAdvisories.length);
 
         return {
             params: {
@@ -36,6 +35,9 @@ export async function getStaticPaths() {
 }
 const { advisories } = Astro.props;
 const { advisory_type } = Astro.params;
+
+console.log("Current advisory_type:", advisory_type);
+console.log("Number of advisories for this type:", advisories.length);
 
 const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
 const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
