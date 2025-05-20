@@ -1,5 +1,5 @@
 ---
-import advisoryLayout from "@layouts/advisoryLayout.astro";
+import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
 import { getCollection } from "astro:content";
 import { markdown } from "@astropub/md";
 let advisories = await getCollection("advisories");
@@ -22,4 +22,4 @@ const filters = advisory_types.map((type) => {
 });
 ---
 
-<advisoryLayout {advisories} {title} {subtitle} currentFilters={filters} />
+<AdvisoryLayout {advisories} {title} {subtitle} currentFilters={filters} />
