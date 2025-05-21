@@ -30905,7 +30905,8 @@
               "bcl": {
                 "type": "file",
                 "description": "Base call files",
-                "pattern": "*.bcl.bgzf"
+                "pattern": "*.bcl.bgzf",
+                "ontologies": []
               }
             }
           ],
@@ -30914,7 +30915,12 @@
               "csv": {
                 "type": "file",
                 "description": "Sample sheet",
-                "pattern": "*.csv"
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             }
           ]
@@ -30926,7 +30932,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -30937,14 +30948,12 @@
                 "${bcl.getSimpleName(": {
                   "type": "file",
                   "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
-                }
-              },
-              {
-                "/*.fastq.gz": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -63610,7 +63619,7 @@
             {
               "known_sites": {
                 "type": "file",
-                "description": "VCF files with known sites for indels / snps (optional)",
+                "description": "VCF files with known sites for indels / snps",
                 "pattern": "*.vcf.gz"
               }
             }
@@ -63625,7 +63634,7 @@
             {
               "known_sites_tbi": {
                 "type": "file",
-                "description": "Tabix index of the known_sites (optional)",
+                "description": "Tabix index of the known_sites",
                 "pattern": "*.vcf.gz.tbi"
               }
             }
