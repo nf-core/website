@@ -158,16 +158,9 @@ export const writePipelinesJson = async () => {
     }
 
     // Get branch existence & protection rules
-    for (const branch of [data.default_branch, "dev", "TEMPLATE"]) {
+    for (const branch of ["master", "main", "dev", "TEMPLATE"]) {
       // Initialize to -1 (unknown)
       data[`${branch}_branch_exists`] = -1;
-      data[`${branch}_branch_protection_up_to_date`] = -1;
-      data[`${branch}_branch_protection_status_checks`] = -1;
-      data[`${branch}_branch_protection_required_reviews`] = -1;
-      data[`${branch}_branch_protection_require_codeowner_review`] = -1;
-      data[`${branch}_branch_protection_require_non_stale_review`] = -1;
-      data[`${branch}_branch_protection_enforce_admins`] = -1;
-      data[`${branch}_restrict_push`] = -1;
 
       // Check if branch exists
       try {
@@ -185,14 +178,15 @@ export const writePipelinesJson = async () => {
             throw err;
           });
         data[`${branch}_branch_exists`] = branch_exists;
+        if (!branch_exists) {
+          continue;
+        }
       } catch (err) {
         console.warn(`Failed to fetch ${branch} branch`, err);
       }
 
       // Check if there is a ruleSet for the branch
       const ruleSet = ruleSetData.find((r) => {
-        console.log(r.data);
-        console.log(r.data.conditions.ref_name.include[0]);
         return r.data.conditions.ref_name.include[0] === "refs/heads/" + branch;
       })?.data;
       console.log("ruleSet", ruleSet);
@@ -201,17 +195,14 @@ export const writePipelinesJson = async () => {
           ?.required_status_checks;
         const pull_request_rule = ruleSet.rules.find((rule) => rule.type === "pull_request")?.parameters;
         console.log("status_checks", required_status_checks);
-        data[`${branch}_branch_protection_status_checks`] =
-          required_status_checks?.contexts?.includes("nf-core") &&
-          required_status_checks?.contexts?.includes("pre-commit")
-            ? 1
-            : 0;
-        data[`${branch}_branch_protection_required_reviews`] = pull_request_rule?.required_approving_review_count;
-        data[`${branch}_branch_protection_require_codeowner_review`] = pull_request_rule?.require_code_owner_review;
-        data[`${branch}_branch_protection_require_non_stale_review`] = pull_request_rule?.dismiss_stale_reviews_on_push;
+        data[`${branch}_branch_protection_status_checks`] = required_status_checks?.map(check => check.context)??-1;
+        console.log("pull_request_rule", pull_request_rule);
+        data[`${branch}_branch_protection_required_reviews`] = pull_request_rule?.required_approving_review_count ?? -1;
+        data[`${branch}_branch_protection_require_codeowner_review`] = pull_request_rule?.require_code_owner_review ?? -1;
+        data[`${branch}_branch_protection_require_non_stale_review`] = pull_request_rule?.dismiss_stale_reviews_on_push ?? -1;
         data[`${branch}_branch_protection_enforce_admins`] = ruleSet.rules.find(
           (rule) => rule.type === "enforce_admins",
-        )?.parameters.enabled;
+        )?.parameters.enabled ?? -1;
         // if all of the above are 1, then the branch protection is up to date
         const protectionChecks = ['status_checks', 'required_reviews', 'require_codeowner_review', 'require_non_stale_review', 'enforce_admins'];
         data[`${branch}_branch_protection_up_to_date`] = protectionChecks.every(check => data[`${branch}_branch_protection_${check}`] === 1);
@@ -384,37 +375,36 @@ export const writePipelinesJson = async () => {
     //  plugins {
     // id 'nf-validation' // Validation of pipeline parameters and creation of an input channel from a sample sheet
     // }
-    for (const branch of ["master", "dev"]) {
-      data[`${branch}_nextflow_config_plugins`] = await getGitHubFile(name, "nextflow.config", branch).then(
+    for (const branch of ["master", "main", "dev"]) {
+      if(!`${branch}_branch_exists`) {
+        continue;
+      }
+      const nextflowConfig = await getGitHubFile(name, "nextflow.config", branch).then(
         (response) => {
           if (response) {
-            // use regex to find all plugins in nextflow.config
+            // Parse plugins
             const plugins = response.match(/plugins\s*{([^}]*)}/s);
-            if (plugins) {
-              return plugins[1]
-                .split("\n")
-                .filter((line) => line.includes("id"))
-                .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]);
+            const pluginsList = plugins ? plugins[1]
+              .split("\n")
+              .filter((line) => line.includes("id"))
+              .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]) : [];
+
+            // Parse manifest
+            const parsedManifest = response.match(/manifest\s*{([^}]*)}/s);
+            const manifest = {};
+            if (parsedManifest) {
+              const defaultBranchMatch = parsedManifest[0].match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
+              manifest.defaultBranch = defaultBranchMatch;
             }
-            return plugins;
+
+            return { plugins: pluginsList, manifest };
           }
-          return [];
-        },
+          return { plugins: [], manifest: {} };
+        }
       );
-      // get manifest from nextflow.config
-      data[`${branch}_nextflow_config_manifest`] = await getGitHubFile(name, "nextflow.config", branch).then(
-        (response) => {
-          if (response) {
-            // use regex to find all plugins in nextflow.config
-            let parsedManifest = response.match(/manifest\s*{([^}]*)}/s)[0];
-            // convert to object
-            let manifest = {};
-            manifest["defaultBranch"] = parsedManifest.match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
-            return manifest;
-          }
-          return {};
-        },
-      );
+
+      data[`${branch}_nextflow_config_plugins`] = nextflowConfig.plugins;
+      data[`${branch}_nextflow_config_manifest`] = nextflowConfig.manifest;
     }
 
     new_releases = await Promise.all(
