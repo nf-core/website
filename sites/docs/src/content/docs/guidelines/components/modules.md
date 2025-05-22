@@ -274,13 +274,9 @@ process {
 
 ### Capturing STDOUT and STDERR
 
-In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes.
-Use the shell command `tee` to simultaneously capture and preserve the streams.
-This allows for the streams to be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow encounters an error.
+In some cases, you may need to save STDOUT and STDERR to a file, for example, for reporting or debugging purposes. The `tee` shell command allows you to simultaneously capture and preserve these streams.
 
-This also ensures that they are captured by Nextflow.
-
-If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
+This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error. This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error. The stream output is preserved in the process's `.command.log` and `.command.err` files. If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
 ```groovy {7-8}
 script:
@@ -289,13 +285,18 @@ tool \\
   --input $input \\
   --threads $task.cpus \\
   --output_prefix $prefix \\
-  2> >( tee ${prefix}.stderr.log >&2 ) \\
+  2>| >( tee ${prefix}.stderr.log >&2 ) \\
   | tee ${prefix}.stdout.log
 """
 ```
 
-Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the corresponding streams as well.
-Since a timeout may mean execution is aborted, it may make most sense to have background tasks do that.
+:::tip{title="Reason for forced stream redirect" collapse}
+
+Nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
+
+:::
+
+Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well. For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
 
 ```groovy {3-4}
 script:
@@ -303,6 +304,7 @@ script:
 tail -F stored_stderr.log >&2 &
 tail -F stored_stdout.log &
 tool arguments
+wait
 """
 ```
 
