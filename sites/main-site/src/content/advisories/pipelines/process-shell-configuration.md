@@ -12,11 +12,76 @@ reviewer:
   - ewels
   - MatthiasZepper
 pipelines:
+- name: ampliseq
+  versions:
+  - 2.12.0
+- name: airrflow
+  versions:
+  - 4.2.0
+- name: bacass
+  versions:
+  - 2.4.0
+- name: crisprseq
+  versions:
+  - 2.3.0
+- name: demo
+  versions:
+  - 1.0.1
+- name: demultiplex
+  versions:
+  - 1.5.3
+  - 1.5.4
+- name: denovotranscript
+  versions:
+   - 1.1.0
+- name: detaxizer
+  versions:
+   - 1.1.0
+- name: fastquorum
+  versions:
+  - 1.1.0
+- name: mag
+  versions:
+   - 3.2.0
+   - 3.2.1
+   - 3.3.0
+- name: metapep
+  versions:
+  - 1.0.0
+- name: methylseq
+  versions:
+    - 2.7.0
+    - 2.7.1
+    - 3.0.0
+- name: nanostring
+   - 1.3.1
 - name: rnaseq
   versions:
     - 3.16.1
     - 3.17.0
     - 3.18.0
+- name: pairgenomealign
+  versions:
+    - 1.1.1
+- name: phaseimpute
+  versions:
+    - 1.0.0
+- name: rangeland
+  versions:
+   - 1.0.0
+- name: sarek
+  versions:
+    - 3.5.0
+- name: scrnaseq
+  versions:
+    - 3.0.0
+- name: smrnaseq
+    versions:
+    - 2.4.0
+- name: taxprofiler
+   versions:
+   - 1.2.1
+   - 1.2.2
 modules:
 subworkflows:
 configuration:
@@ -45,4 +110,4 @@ If you're seeing this above error you have a few options. In order of difficulty
 
 - Use an older version of Nextflow (24.10.6 or earlier)
 - Use a Nextflow config file that overwrites the invalid config syntax locally (see thread for details :thread:)
-- Use an older version of the pipeline that has nf-core/tools template < 3.0.0, thus was published before 2024-10-08. The issue was fixed and published in the template on 2025-01-27, so pipeline versions released after that day are presumably not affected either.
+- Use an older version of the pipeline that has nf-core/tools template < 3.0.0, thus was published before 2024-10-08. The issue was fixed and published in the template 3.1.2 on 2025-01-27, so pipeline versions released after that day are mostly not affected either, unless they were published with an older template. Additionally, some pipelines already incorporate a manual fix, so even though released during that period, pixelator v1.4.0 and references 0.1 already incorporate the required change.
