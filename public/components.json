@@ -645,7 +645,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -5776,6 +5776,442 @@
       ]
     },
     {
+      "name": "antismash_antismash",
+      "path": "modules/nf-core/antismash/antismash/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "antismash_antismash",
+        "description": "antiSMASH allows the rapid genome-wide identification, annotation\nand analysis of secondary metabolite biosynthesis gene clusters.\n",
+        "keywords": [
+          "secondary metabolites",
+          "BGC",
+          "biosynthetic gene cluster",
+          "genome mining",
+          "NRPS",
+          "RiPP",
+          "antibiotics",
+          "prokaryotes",
+          "bacteria",
+          "eukaryotes",
+          "fungi",
+          "antismash"
+        ],
+        "tools": [
+          {
+            "antismash": {
+              "description": "antiSMASH - the antibiotics and Secondary Metabolite Analysis SHell",
+              "homepage": "https://docs.antismash.secondarymetabolites.org",
+              "documentation": "https://docs.antismash.secondarymetabolites.org",
+              "tool_dev_url": "https://github.com/antismash/antismash",
+              "doi": "10.1093/nar/gkab335",
+              "licence": [
+                "AGPL v3"
+              ],
+              "identifier": "biotools:antismash"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "sequence_input": {
+                "type": "file",
+                "description": "Nucleotide sequence file (annotated)",
+                "pattern": "*.{gbk, gb, gbff, genbank, embl, fasta, fna}"
+              }
+            }
+          ],
+          [
+            {
+              "databases": {
+                "type": "directory",
+                "description": "Downloaded AntiSMASH databases (e.g. in the AntiSMASH installation directory\n\"data/databases\")\n",
+                "pattern": "*/"
+              }
+            }
+          ],
+          [
+            {
+              "gff": {
+                "type": "file",
+                "description": "Optional GFF3 file containing premade annotations of the input sequence",
+                "pattern": "*.gff"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "clusterblast_file": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/clusterblast/*_c*.txt": {
+                  "type": "file",
+                  "description": "Output of ClusterBlast algorithm",
+                  "pattern": "clusterblast/*_c*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "html_accessory_files": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/{css,images,js}": {
+                  "type": "directory",
+                  "description": "Accessory files for the HTML output",
+                  "pattern": "{css/,images/,js/}"
+                }
+              }
+            ]
+          },
+          {
+            "knownclusterblast_html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/knownclusterblast/region*/ctg*.html": {
+                  "type": "file",
+                  "description": "Tables with MIBiG hits in HTML format",
+                  "pattern": "knownclusterblast/region*/ctg*.html"
+                }
+              }
+            ]
+          },
+          {
+            "knownclusterblast_dir": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/knownclusterblast/": {
+                  "type": "directory",
+                  "description": "Directory with MIBiG hits",
+                  "pattern": "knownclusterblast/"
+                }
+              }
+            ]
+          },
+          {
+            "knownclusterblast_txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/knownclusterblast/*_c*.txt": {
+                  "type": "file",
+                  "description": "Tables with MIBiG hits",
+                  "pattern": "knownclusterblast/*_c*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "svg_files_clusterblast": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/svg/clusterblast*.svg": {
+                  "type": "file",
+                  "description": "SVG images showing the % identity of the aligned hits against their queries",
+                  "pattern": "svg/clusterblast*.svg"
+                }
+              }
+            ]
+          },
+          {
+            "svg_files_knownclusterblast": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/svg/knownclusterblast*.svg": {
+                  "type": "file",
+                  "description": "SVG images showing the % identity of the aligned hits against their queries",
+                  "pattern": "svg/knownclusterblast*.svg"
+                }
+              }
+            ]
+          },
+          {
+            "gbk_input": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.gbk": {
+                  "type": "file",
+                  "description": "Nucleotide sequence and annotations in GenBank format; converted from input file",
+                  "pattern": "*.gbk"
+                }
+              }
+            ]
+          },
+          {
+            "json_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.json": {
+                  "type": "file",
+                  "description": "Nucleotide sequence and annotations in JSON format; converted from GenBank file (gbk_input)",
+                  "pattern": "*.json"
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.log": {
+                  "type": "file",
+                  "description": "Contains all the logging output that antiSMASH produced during its run",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          },
+          {
+            "zip": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.zip": {
+                  "type": "file",
+                  "description": "Contains a compressed version of the output folder in zip format",
+                  "pattern": "*.zip"
+                }
+              }
+            ]
+          },
+          {
+            "gbk_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*region*.gbk": {
+                  "type": "file",
+                  "description": "Nucleotide sequence and annotations in GenBank format; one file per antiSMASH hit",
+                  "pattern": "*region*.gbk"
+                }
+              }
+            ]
+          },
+          {
+            "clusterblastoutput": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/clusterblastoutput.txt": {
+                  "type": "file",
+                  "description": "Raw BLAST output of known clusters previously predicted by antiSMASH using the built-in ClusterBlast algorithm",
+                  "pattern": "clusterblastoutput.txt"
+                }
+              }
+            ]
+          },
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/index.html": {
+                  "type": "file",
+                  "description": "Graphical web view of results in HTML format",
+                  "patterN": "index.html"
+                }
+              }
+            ]
+          },
+          {
+            "knownclusterblastoutput": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/knownclusterblastoutput.txt": {
+                  "type": "file",
+                  "description": "Raw BLAST output of known clusters of the MIBiG database",
+                  "pattern": "knownclusterblastoutput.txt"
+                }
+              }
+            ]
+          },
+          {
+            "json_sideloading": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/regions.js": {
+                  "type": "file",
+                  "description": "Sideloaded annotations of protoclusters and/or subregions (see antiSMASH documentation \"Annotation sideloading\")",
+                  "pattern": "regions.js"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jasmezz"
+        ],
+        "maintainers": [
+          "@jasmezz",
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "antismash_antismashdownloaddatabases",
+      "path": "modules/nf-core/antismash/antismashdownloaddatabases/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "antismash_antismashdownloaddatabases",
+        "description": "antiSMASH allows the rapid genome-wide identification, annotation and analysis of secondary metabolite biosynthesis gene clusters. This module downloads the antiSMASH databases for conda and docker/singularity runs.",
+        "keywords": [
+          "secondary metabolites",
+          "BGC",
+          "biosynthetic gene cluster",
+          "genome mining",
+          "NRPS",
+          "RiPP",
+          "antibiotics",
+          "prokaryotes",
+          "bacteria",
+          "eukaryotes",
+          "fungi",
+          "antismash",
+          "database"
+        ],
+        "tools": [
+          {
+            "antismash": {
+              "description": "antiSMASH - the antibiotics and Secondary Metabolite Analysis SHell",
+              "homepage": "https://docs.antismash.secondarymetabolites.org",
+              "documentation": "https://docs.antismash.secondarymetabolites.org",
+              "tool_dev_url": "https://github.com/antismash/antismash",
+              "doi": "10.1093/nar/gkab335",
+              "licence": [
+                "AGPL v3"
+              ],
+              "identifier": "biotools:antismash"
+            }
+          }
+        ],
+        "input": [],
+        "output": [
+          {
+            "database": [
+              {
+                "antismash_db": {
+                  "type": "directory",
+                  "description": "Download directory for antiSMASH databases",
+                  "pattern": "antismash_db"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@jasmezz"
+        ],
+        "maintainers": [
+          "@jasmezz",
+          "@jfy133"
+        ]
+      }
+    },
+    {
       "name": "antismash_antismashlite",
       "path": "modules/nf-core/antismash/antismashlite/meta.yml",
       "type": "module",
@@ -6599,7 +7035,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "proteinfold",
@@ -8064,7 +8500,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -11561,7 +11997,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "metatdenovo",
@@ -12541,7 +12977,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnavar",
@@ -12841,7 +13277,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnavar",
@@ -12959,7 +13395,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "viralrecon",
@@ -13518,7 +13954,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantbenchmarking",
@@ -13634,7 +14070,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "pacvar",
@@ -13897,7 +14333,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "tbanalyzer",
@@ -14240,7 +14676,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantbenchmarking",
@@ -14255,6 +14691,168 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bcftools_pluginfilltags",
+      "path": "modules/nf-core/bcftools/pluginfilltags/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_pluginfilltags",
+        "description": "Compute and fill various INFO tags",
+        "keywords": [
+          "info",
+          "bcftools",
+          "tags",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "bcftools": {
+              "description": "BCFtools is a set of utilities that manipulate variant calls in the Variant Call Format (VCF) and its binary counterpart BCF. All commands work transparently with both VCFs and BCFs, both uncompressed and BGZF-compressed.  Most commands accept VCF, bgzipped VCF and BCF with filetype detected automatically even when streaming from a pipe. Indexed VCF and BCF will work in all situations. Un-indexed VCF and BCF and streams will work in most, but not all situations.",
+              "homepage": "https://samtools.github.io/bcftools/howtos/index.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args",
+              "identifier": "biotools:bcftools"
+            }
+          },
+          {
+            "bcftools plugin fill-tags": {
+              "description": "Bcftools plugins are tools that can be used with bcftools to manipulate variant calls in Variant Call Format (VCF) and BCF. The fill-tags plugin compute and fill various INFO tags",
+              "homepage": "https://samtools.github.io/bcftools/howtos/plugins.html",
+              "documentation": "https://samtools.github.io/bcftools/bcftools.html#plugin",
+              "tool_dev_url": "https://github.com/samtools/bcftools",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args2",
+              "identifier": "biotools:bcftools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "The input file in variant calling format to be inspected.\ne.g. 'file.vcf.gz'\n",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "The tab index for the VCF file to be inspected.\ne.g. 'file.tbi'\n"
+              }
+            }
+          ],
+          [
+            {
+              "regions": {
+                "type": "file",
+                "description": "Optionally, restrict the operation to regions listed in this file.\ne.g. 'file.vcf'\n"
+              }
+            }
+          ],
+          [
+            {
+              "targets": {
+                "type": "file",
+                "description": "Optionally, restrict the operation to regions listed in this file (doesn't rely upon index files)\ne.g. 'file.vcf'\n"
+              }
+            }
+          ],
+          [
+            {
+              "samples": {
+                "type": "file",
+                "description": "Optionally, list of samples (first column) and tab-separated list of populations (second column)\ne.g. 'file.vcf'\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.{vcf,vcf.gz,bcf,bcf.gz}": {
+                  "type": "file",
+                  "description": "VCF output file containing added INFO/INFO field",
+                  "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Alternative VCF file tabix index",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
+            "csi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Default VCF file coordinate sorted index",
+                  "pattern": "*.csi"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LouisLeNezet"
+        ],
+        "maintainers": [
+          "@LouisLeNezet"
+        ]
+      }
     },
     {
       "name": "bcftools_pluginimputeinfo",
@@ -15308,7 +15906,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -15449,7 +16047,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -15583,7 +16181,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -16039,7 +16637,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "phaseimpute",
@@ -16051,7 +16649,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "tbanalyzer",
@@ -17412,7 +18010,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnaseq",
@@ -18811,7 +19409,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "tfactivity",
@@ -19675,6 +20273,99 @@
         ],
         "maintainers": [
           "@matthdsm"
+        ]
+      }
+    },
+    {
+      "name": "bioformats2raw",
+      "path": "modules/nf-core/bioformats2raw/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bioformats2raw",
+        "description": "Java application to convert image file formats, including .mrxs, to an intermediate Zarr structure compatible with the OME-NGFF specification.",
+        "keywords": [
+          "zarr",
+          "ome-ngff",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "bioformats2raw": {
+              "description": "Java application to convert image file formats, including .mrxs, to an intermediate Zarr structure compatible with the OME-NGFF specification.",
+              "homepage": "https://github.com/glencoesoftware/bioformats2raw",
+              "documentation": "https://github.com/glencoesoftware/bioformats2raw",
+              "tool_dev_url": "https://github.com/glencoesoftware/bioformats2raw",
+              "licence": [
+                "GPL-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "image": {
+                "type": "file",
+                "description": "bioformats supported image file format",
+                "pattern": "*.{tif,tiff,svs,mrxs}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "omezarr": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*ome.zarr": {
+                  "type": "directory",
+                  "description": "OME-Zarr fileset for image data storage. Specification can be found at https://ngff.openmicroscopy.org/latest/#storage-format",
+                  "pattern": "*{ome.zarr}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3915"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CaroAMN"
+        ],
+        "maintainers": [
+          "@CaroAMN"
         ]
       }
     },
@@ -22833,6 +23524,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "crisprseq",
           "version": "2.3.0"
         },
@@ -22977,6 +23672,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "coproid",
+          "version": "2.0.0"
         },
         {
           "name": "crisprseq",
@@ -23956,6 +24655,10 @@
           "version": "dev"
         },
         {
+          "name": "mag",
+          "version": "4.0.0"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "dev"
         }
@@ -24484,7 +25187,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -24755,7 +25458,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -25168,7 +25871,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -25435,7 +26138,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -25538,7 +26241,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -25754,7 +26457,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -26084,7 +26787,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -26672,11 +27375,11 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -26826,7 +27529,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -27619,14 +28322,14 @@
               "db": {
                 "type": "string",
                 "description": "Which database to download",
-                "pattern": "nr|gtdb"
+                "pattern": "nr|GTDB"
               }
             }
           ]
         ],
         "output": [
           {
-            "rawdb": [
+            "fasta": [
               {
                 "meta": {
                   "type": "map",
@@ -27634,13 +28337,101 @@
                 }
               },
               {
-                "${prefix}/": {
-                  "type": "directory",
-                  "description": "Directory containing all the required NCBI Nr or GTDB database files required for building into a CAT database",
-                  "pattern": "${db}/",
+                "${prefix}/*.${db}.gz": {
+                  "type": "file",
+                  "description": "FASTA file containing all the NCBI NR or GTDB sequences",
+                  "pattern": "*.${db}.gz",
                   "ontologies": [
                     {
-                      "edam": "http://edamontology.org/data_1049"
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "names": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/*.names.dmp": {
+                  "type": "file",
+                  "description": "NCBI taxonomy-style names.dmp text file",
+                  "pattern": "*.names.dmp",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "nodes": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/*.nodes.dmp": {
+                  "type": "file",
+                  "description": "NCBI taxonomy-style nodes.dmp text file",
+                  "pattern": "*.nodes.dmp",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "acc2tax": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/*accession2taxid*.gz": {
+                  "type": "file",
+                  "description": "NCBI taxonomy names accession to taxonomy file",
+                  "pattern": "*accession2taxid*",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/*.log": {
+                  "type": "file",
+                  "description": "Log file of the download process",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
                     }
                   ]
                 }
@@ -30812,7 +31603,8 @@
               "bcl": {
                 "type": "file",
                 "description": "Base call files",
-                "pattern": "*.bcl.bgzf"
+                "pattern": "*.bcl.bgzf",
+                "ontologies": []
               }
             }
           ],
@@ -30821,7 +31613,12 @@
               "csv": {
                 "type": "file",
                 "description": "Sample sheet",
-                "pattern": "*.csv"
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             }
           ]
@@ -30833,7 +31630,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -30844,14 +31646,12 @@
                 "${bcl.getSimpleName(": {
                   "type": "file",
                   "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
-                }
-              },
-              {
-                "/*.fastq.gz": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -31469,7 +32269,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -31573,7 +32373,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -31657,7 +32457,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -31775,7 +32575,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -31921,7 +32721,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -32057,7 +32857,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -33041,7 +33841,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -33515,7 +34315,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -34443,7 +35243,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -36307,7 +37107,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -36394,7 +37194,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -37546,7 +38346,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -37653,7 +38453,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -37770,7 +38570,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -37871,7 +38671,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -37964,7 +38764,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -40348,6 +41148,88 @@
       }
     },
     {
+      "name": "cowpy",
+      "path": "modules/nf-core/cowpy/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cowpy",
+        "description": "Print any text in a cow or other characters",
+        "keywords": [
+          "cowpy",
+          "hello",
+          "ascii_art"
+        ],
+        "tools": [
+          {
+            "cowpy": {
+              "description": "Print any text in a cow or other characters",
+              "homepage": "https://github.com/jeffbuttars/cowpy",
+              "documentation": "https://github.com/jeffbuttars/cowpy",
+              "tool_dev_url": "https://github.com/jeffbuttars/cowpy",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "text": {
+                "type": "file",
+                "description": "text file",
+                "pattern": "*.{txt}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.txt"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
+        ]
+      }
+    },
+    {
       "name": "crabz_compress",
       "path": "modules/nf-core/crabz/compress/meta.yml",
       "type": "module",
@@ -40873,6 +41755,10 @@
         {
           "name": "deepmodeloptim",
           "version": "dev"
+        },
+        {
+          "name": "mag",
+          "version": "4.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -42946,7 +43832,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "coproid",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "dastool_dastool",
@@ -43248,7 +44140,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -43351,7 +44243,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -46892,7 +47784,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -50729,7 +51621,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -52106,7 +52998,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -52321,7 +53213,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -53305,7 +54197,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -53683,6 +54575,112 @@
       ]
     },
     {
+      "name": "falint",
+      "path": "modules/nf-core/falint/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "falint",
+        "description": "A fasta linter/validator",
+        "keywords": [
+          "fasta",
+          "validation",
+          "genome"
+        ],
+        "tools": [
+          {
+            "falint": {
+              "description": "A Fasta linter/validator",
+              "homepage": "https://github.com/GallVp/fa-lint",
+              "documentation": "https://github.com/GallVp/fa-lint",
+              "tool_dev_url": "https://github.com/GallVp/fa-lint",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing file information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta file",
+                "pattern": "*.fasta",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "success_log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing file information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.success.log": {
+                  "type": "file",
+                  "description": "Log file for successful validation",
+                  "pattern": "*.success.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "error_log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing file information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.error.log": {
+                  "type": "file",
+                  "description": "Log file for failed validation",
+                  "pattern": "*.error.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@gallvp"
+        ],
+        "maintainers": [
+          "@gallvp"
+        ]
+      }
+    },
+    {
       "name": "famsa_align",
       "path": "modules/nf-core/famsa/align/meta.yml",
       "type": "module",
@@ -53824,7 +54822,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -55644,6 +56642,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "demultiplex",
           "version": "1.6.1"
         },
@@ -55661,7 +56663,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "nascent",
@@ -55677,7 +56679,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "riboseq",
@@ -55857,6 +56859,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "crisprseq",
           "version": "2.3.0"
         },
@@ -55879,10 +56885,6 @@
         {
           "name": "detaxizer",
           "version": "1.1.0"
-        },
-        {
-          "name": "drop",
-          "version": "dev"
         },
         {
           "name": "evexplorer",
@@ -55942,7 +56944,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -56010,7 +57012,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "readsimulator",
@@ -56771,7 +57773,8 @@
             {
               "assembly": {
                 "type": "file",
-                "description": "assembly fasta file"
+                "description": "assembly fasta file",
+                "ontologies": []
               }
             }
           ]
@@ -56789,7 +57792,8 @@
                 "*.cleaned_sequences.fa.gz": {
                   "type": "file",
                   "description": "Cleaned assembly in fasta format",
-                  "pattern": "*.{cleaned_sequences.fa.gz}"
+                  "pattern": "*.{cleaned_sequences.fa.gz}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56806,7 +57810,8 @@
                 "*.fcs_adaptor_report.txt": {
                   "type": "file",
                   "description": "Report of identified adaptors",
-                  "pattern": "*.{fcs_adaptor_report.txt}"
+                  "pattern": "*.{fcs_adaptor_report.txt}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56823,7 +57828,8 @@
                 "*.fcs_adaptor.log": {
                   "type": "file",
                   "description": "Log file",
-                  "pattern": "*.{fcs_adaptor.log}"
+                  "pattern": "*.{fcs_adaptor.log}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56840,7 +57846,8 @@
                 "*.pipeline_args.yaml": {
                   "type": "file",
                   "description": "Run arguments",
-                  "pattern": "*.{pipeline_args.yaml}"
+                  "pattern": "*.{pipeline_args.yaml}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56857,7 +57864,8 @@
                 "*.skipped_trims.jsonl": {
                   "type": "file",
                   "description": "Skipped trim information",
-                  "pattern": "*.{skipped_trims.jsonl}"
+                  "pattern": "*.{skipped_trims.jsonl}",
+                  "ontologies": []
                 }
               }
             ]
@@ -56868,7 +57876,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -58620,7 +59633,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -60449,7 +61462,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "radseq",
@@ -63404,7 +64417,7 @@
             {
               "known_sites": {
                 "type": "file",
-                "description": "VCF files with known sites for indels / snps (optional)",
+                "description": "VCF files with known sites for indels / snps",
                 "pattern": "*.vcf.gz"
               }
             }
@@ -63419,7 +64432,7 @@
             {
               "known_sites_tbi": {
                 "type": "file",
-                "description": "Tabix index of the known_sites (optional)",
+                "description": "Tabix index of the known_sites",
                 "pattern": "*.vcf.gz.tbi"
               }
             }
@@ -63594,7 +64607,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -64192,7 +65205,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -64944,7 +65957,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -65231,7 +66244,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -65377,7 +66390,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -65917,7 +66930,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -66825,7 +67838,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -67509,7 +68522,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnavar",
@@ -68076,7 +69089,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -68294,7 +69307,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -68638,7 +69651,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -68792,7 +69805,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -69126,7 +70139,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -69503,7 +70516,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -69591,7 +70604,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -69716,7 +70729,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "tbanalyzer",
@@ -69939,7 +70952,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -70313,7 +71326,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -71033,7 +72046,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -73710,7 +74723,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -73797,7 +74810,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -73899,7 +74912,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -74001,7 +75014,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -74070,7 +75083,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "phageannotator",
@@ -74379,7 +75392,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "phageannotator",
@@ -75514,13 +76527,7 @@
         "maintainers": [
           "@mahesh-panchal"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "pairgenomealign",
-          "version": "2.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "gfatools_gfa2fa",
@@ -77727,7 +78734,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -78753,6 +79760,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "diseasemodulediscovery",
+          "version": "dev"
         }
       ]
     },
@@ -81452,7 +82463,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -81915,7 +82926,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -82015,7 +83026,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -82131,7 +83142,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -82274,7 +83285,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -83558,7 +84569,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -83739,7 +84750,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -84924,7 +85935,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -87110,7 +88121,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -87228,7 +88239,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -87726,7 +88737,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -87971,7 +88982,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -98346,6 +99357,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "demultiplex",
           "version": "1.6.1"
         },
@@ -98661,7 +99676,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -99096,7 +100111,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -99197,7 +100212,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -99499,7 +100514,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -99620,7 +100635,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -99708,7 +100723,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -99803,6 +100818,21 @@
                 "type": "file",
                 "description": "Genome index file needed for CRAM conversion when the genome file was compressed with the BGZF algorithm.",
                 "pattern": "*.gzi"
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "dict": {
+                "type": "file",
+                "description": "Samtools dictionary of the genome file.",
+                "pattern": "*.dict"
               }
             }
           ]
@@ -100042,7 +101072,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100130,7 +101160,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100291,7 +101321,7 @@
               {
                 "*.tsv": {
                   "type": "file",
-                  "description": "Alignment summary for MultiQC",
+                  "description": "Summary reporting the total alignment length (including gaps) and the\npercent identity computed with and without taking gaps in\nconsideration (because there is no standard definition of percent\nidentity).\n",
                   "pattern": "*.tsv"
                 }
               }
@@ -100320,7 +101350,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -100436,7 +101466,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -104981,7 +106011,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -106404,7 +107434,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -108317,7 +109347,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -109264,7 +110294,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -111647,7 +112677,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -111815,7 +112845,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -111962,7 +112992,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -116544,7 +117574,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -116639,7 +117669,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -116853,7 +117883,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -116932,7 +117962,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -117118,7 +118148,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -118087,7 +119117,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -119937,6 +120967,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -119967,6 +121001,10 @@
         {
           "name": "detaxizer",
           "version": "1.1.0"
+        },
+        {
+          "name": "diseasemodulediscovery",
+          "version": "dev"
         },
         {
           "name": "drop",
@@ -120038,7 +121076,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -120114,7 +121152,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -120142,7 +121180,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfold",
@@ -120162,7 +121200,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "readsimulator",
@@ -120238,6 +121276,10 @@
         },
         {
           "name": "ssds",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -122500,7 +123542,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -122859,7 +123901,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -122989,7 +124031,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -123576,7 +124618,7 @@
           ],
           [
             {
-              "adapters_database_meta": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
               }
@@ -123599,7 +124641,7 @@
                 }
               },
               {
-                "${meta.id}.vecscreen.out": {
+                "${prefix}.vecscreen.out": {
                   "type": "file",
                   "description": "VecScreen report file. This can be in different formats depending on the value of the optional -f  parameter. 0 = HTML format, with alignments. 1 = HTML format, no alignments. 2 = Text list, with alignments. 3 = Text list, no alignments. default = 0",
                   "pattern": "*.vecscreen.out"
@@ -124637,7 +125679,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -133130,7 +134172,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -134412,7 +135454,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -134863,7 +135905,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -135127,7 +136169,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "ssds",
@@ -135398,7 +136440,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnafusion",
@@ -136189,7 +137231,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantbenchmarking",
@@ -136391,7 +137433,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnaseq",
@@ -136811,7 +137853,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -137282,7 +138324,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -143463,7 +144505,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "taxprofiler",
@@ -143596,7 +144638,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "methylong",
@@ -144870,7 +145912,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "metapep",
@@ -145174,7 +146216,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -145555,6 +146597,12 @@
           },
           {
             "session_info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing additional information.\nmeta.id can be used to name the output files.\n[id: 'test', ...]\n"
+                }
+              },
               {
                 "*.R_sessionInfo.log": {
                   "type": "file",
@@ -148132,8 +149180,12 @@
       },
       "pipelines": [
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -148229,7 +149281,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -149041,7 +150093,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -149457,6 +150509,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
         {
           "name": "spatialvi",
           "version": "dev"
@@ -152111,7 +153167,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -152230,7 +153286,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -155649,7 +156705,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantbenchmarking",
@@ -156300,7 +157356,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "variantbenchmarking",
@@ -157290,7 +158346,13 @@
         "maintainers": [
           "@maxibor"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "coproid",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "sambamba_flagstat",
@@ -158495,7 +159557,10 @@
           {
             "samtools": {
               "description": "Tools for dealing with SAM, BAM and CRAM files",
-              "documentation": "http://www.htslib.org/doc/1.1/samtools.html",
+              "homepage": "http://www.htslib.org",
+              "documentation": "https://www.htslib.org/doc/samtools.html",
+              "tool_dev_url": "https://github.com/samtools/samtools",
+              "doi": "10.1093/bioinformatics/btp352",
               "licence": [
                 "MIT"
               ],
@@ -158550,14 +159615,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_{1,2}.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_{1,2}.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "R1 and R2 FASTQ files\n",
                   "pattern": "*_{1,2}.fq.gz"
                 }
               }
@@ -158568,14 +159632,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_interleaved.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_interleaved.fq": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "Interleaved paired end FASTQ files\n",
                   "pattern": "*_interleaved.fq.gz"
                 }
               }
@@ -158586,14 +159649,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_other.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_other.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "FASTQ files with reads where the READ1 and READ2 FLAG bits set are either both set or both unset.\n",
                   "pattern": "*_other.fq.gz"
                 }
               }
@@ -158604,14 +159666,13 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*_singleton.fq.gz"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "*_singleton.fq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "type": "file",
+                  "description": "FASTQ files with singleton reads.\n",
                   "pattern": "*_singleton.fq.gz"
                 }
               }
@@ -158630,11 +159691,6 @@
           }
         ],
         "authors": [
-          "@lescai",
-          "@maxulysse",
-          "@matthdsm"
-        ],
-        "maintainers": [
           "@lescai",
           "@maxulysse",
           "@matthdsm"
@@ -159556,7 +160612,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "methylong",
@@ -159592,7 +160648,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -160507,6 +161563,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "genomeassembler",
           "version": "1.0.1"
         },
@@ -160859,6 +161919,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -160940,7 +162004,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "readsimulator",
@@ -161216,6 +162280,21 @@
                 "pattern": "*.fai"
               }
             }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "gzi": {
+                "type": "file",
+                "description": "Index of the compressed reference file the CRAM was created with (optional)",
+                "pattern": "*.gzi"
+              }
+            }
           ]
         ],
         "output": [
@@ -161324,6 +162403,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "fastquorum",
           "version": "1.2.0"
         },
@@ -161345,7 +162428,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -161982,6 +163065,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "cutandrun",
           "version": "3.2.2"
         },
@@ -162047,7 +163134,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "riboseq",
@@ -162282,7 +163369,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "riboseq",
@@ -162623,7 +163710,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -164232,7 +165319,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -164371,7 +165458,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -165060,7 +166147,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -165285,7 +166372,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -165442,7 +166529,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -165693,7 +166780,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -166492,7 +167579,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -167518,7 +168605,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -168632,7 +169719,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -168983,6 +170070,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mag",
+          "version": "4.0.0"
+        },
         {
           "name": "pathogensurveillance",
           "version": "dev"
@@ -169439,7 +170530,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -169526,7 +170617,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "metatdenovo",
@@ -171375,6 +172466,23 @@
             ]
           },
           {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tbi": {
+                  "type": "file",
+                  "description": "Index file for the merged VCF/BCF file.\n",
+                  "pattern": "*.tbi"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -172558,6 +173666,12 @@
               "assay_files": {
                 "type": "file",
                 "description": "List of TSV-format matrix files representing different measures for the same samples (e.g. raw and normalised).\n"
+              }
+            },
+            {
+              "variable": {
+                "type": "string",
+                "description": "Variable to use for the contrast variable in the plots.\n"
               }
             }
           ]
@@ -174549,7 +175663,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -176674,10 +177788,10 @@
                 }
               },
               {
-                "*-ancestry.tsv": {
+                "*.somalier-ancestry.tsv": {
                   "type": "file",
                   "description": "TSV with ancestry information for query and labelled samples.",
-                  "pattern": "*.{-ancestry.tsv}"
+                  "pattern": "*.somalier-ancestry.tsv"
                 }
               }
             ]
@@ -176691,10 +177805,10 @@
                 }
               },
               {
-                "*-ancestry.html": {
+                "*.somalier-ancestry.html": {
                   "type": "file",
                   "description": "html file with ancestry information for query and labelled samples.",
-                  "pattern": "*.{-ancestry.html}"
+                  "pattern": "*.somalier-ancestry.html"
                 }
               }
             ]
@@ -177288,7 +178402,13 @@
         "maintainers": [
           "@MeriamOs"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "coproid",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "sourmash_compare",
@@ -178482,7 +179602,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "metatdenovo",
@@ -181308,14 +182428,33 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Annotated VCF file",
+                  "pattern": "*.{vcf.gz}"
                 }
               },
               {
-                "*.gz": {
-                  "type": "file",
-                  "description": "annotated VCF with keys STR_STATUS, NormalMax and PathologicMin",
+                "*.vcf.gz": {
+                  "type": "map",
+                  "description": "Annotated VCF file",
                   "pattern": "*.{vcf.gz}"
+                }
+              }
+            ]
+          },
+          {
+            "tbi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Index of the annotated VCF file",
+                  "pattern": "*.{vcf.gz.tbi}"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "map",
+                  "description": "Index of the annotated VCF file",
+                  "pattern": "*.{vcf.gz.tbi}"
                 }
               }
             ]
@@ -181342,7 +182481,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -183954,7 +185093,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -184091,7 +185230,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -185729,7 +186868,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -185874,7 +187013,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "rnadnavar",
@@ -186018,7 +187157,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -188605,7 +189744,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -188727,7 +189866,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -188868,7 +190007,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "sarek",
@@ -190609,7 +191748,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "sammyseq",
@@ -192911,7 +194050,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -194436,6 +195575,10 @@
           "version": "2.1.0"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "cutandrun",
           "version": "3.2.2"
         },
@@ -194465,7 +195608,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "metatdenovo",
@@ -194497,7 +195640,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfold",
@@ -194509,7 +195652,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "riboseq",
@@ -194945,7 +196088,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -195503,40 +196646,6 @@
         ],
         "output": [
           {
-            "bcf_gz": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.bcf.gz": {
-                  "type": "file",
-                  "description": "BCF file containing sample observations",
-                  "pattern": "*.bcf.gz"
-                }
-              }
-            ]
-          },
-          {
-            "vcf_gz": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.vcf.gz": {
-                  "type": "file",
-                  "description": "Compressed VCF file containing sample observations",
-                  "pattern": "*.vcf.gz"
-                }
-              }
-            ]
-          },
-          {
             "bcf": [
               {
                 "meta": {
@@ -195549,23 +196658,6 @@
                   "type": "file",
                   "description": "BCF file containing sample observations",
                   "pattern": "*.bcf"
-                }
-              }
-            ]
-          },
-          {
-            "vcf": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.vcf": {
-                  "type": "file",
-                  "description": "VCF file containing sample observations",
-                  "pattern": "*.vcf"
                 }
               }
             ]
@@ -195968,7 +197060,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -196311,7 +197403,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         }
       ]
     },
@@ -198358,7 +199450,13 @@
         "maintainers": [
           "@manifestoso"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "2.5.0"
+        }
+      ]
     },
     {
       "name": "vg_construct",
@@ -203396,7 +204494,13 @@
         "maintainers": [
           "@leoisl"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "coproid",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "yahs",
@@ -207786,7 +208890,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -207992,13 +209096,13 @@
         ],
         "components": [
           "fcs/fcsadaptor",
-          "fcs/fcsgx"
+          "fcsgx/rungx"
         ],
         "input": [
           {
             "meta": {
               "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              "description": "Groovy Map containing sample information\nwith taxonomy ID of the expected organism\ne.g. [ id:'test', taxid:'id' ]\n"
             }
           },
           {
@@ -208006,6 +209110,18 @@
               "type": "file",
               "description": "assembly fasta file",
               "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "database": {
+              "type": "directory",
+              "description": "Directory containing the FCS-GX database"
+            }
+          },
+          {
+            "ramdisk_path": {
+              "type": "string",
+              "description": "Path to RAM disk for improved performance (optional)"
             }
           }
         ],
@@ -212605,6 +213721,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -212643,6 +213763,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "diseasemodulediscovery",
+          "version": "dev"
         },
         {
           "name": "drop",
@@ -212706,7 +213830,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -212778,7 +213902,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -212806,7 +213930,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfold",
@@ -212818,7 +213942,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "readsimulator",
@@ -212886,6 +214010,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -212982,6 +214110,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -213020,6 +214152,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "diseasemodulediscovery",
+          "version": "dev"
         },
         {
           "name": "drop",
@@ -213083,7 +214219,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -213155,7 +214291,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -213183,7 +214319,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfold",
@@ -213195,7 +214331,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "readsimulator",
@@ -213263,6 +214399,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
@@ -213363,6 +214503,10 @@
           "version": "dev"
         },
         {
+          "name": "coproid",
+          "version": "2.0.0"
+        },
+        {
           "name": "createpanelrefs",
           "version": "dev"
         },
@@ -213397,6 +214541,10 @@
         {
           "name": "detaxizer",
           "version": "1.1.0"
+        },
+        {
+          "name": "diseasemodulediscovery",
+          "version": "dev"
         },
         {
           "name": "drop",
@@ -213448,7 +214596,7 @@
         },
         {
           "name": "mag",
-          "version": "3.4.0"
+          "version": "4.0.0"
         },
         {
           "name": "magmap",
@@ -213508,7 +214656,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "pangenome",
@@ -213536,7 +214684,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "rangeland",
@@ -213544,7 +214692,7 @@
         },
         {
           "name": "raredisease",
-          "version": "2.4.0"
+          "version": "2.5.0"
         },
         {
           "name": "references",
@@ -213596,6 +214744,10 @@
         },
         {
           "name": "spatialxe",
+          "version": "dev"
+        },
+        {
+          "name": "stableexpression",
           "version": "dev"
         },
         {
