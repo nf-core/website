@@ -71,13 +71,13 @@ These instructions require the person building and pushing the container to have
 5. Push the built container image:
 
     ```bash
-    docker push quay.io/nf-core/<TOOL>:8.0.0
+    docker push quay.io/nf-core/<TOOL>:<VERSION>
     ```
 
 6. Share the container reference with the module author so they can update the module:
 
     ```nextflow
-    container "nf-core/antismash:8.0.0"
+    container "nf-core/<TOOL>:<VERSION>"
     ```
 
     :::note
