@@ -46,40 +46,42 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
 
 Instructions for adding custom docker containers to the nf-core [https://quay.io](https://quay.io/organization/nf-core) organisation.
 
-These instructions require the person building and pushing the container has push rights to the organisation.
+:::note
+These instructions require the person building and pushing the container to have push rights to the organization.
 **Only core members may have this access**, and new core members should request access from existing members.
+:::
 
-1. Check with the module author that there is really no way to have a conda/bioconda/biocontainer route
+1. Check with the module author to ensure there is no available solution via Conda, Bioconda, or BioContainers.
 2. Ask the module author to:
     - Place a `Dockerfile` alongside the module (sub)directories
     - Add a `README.md` describing why the container is needed, and provide instructions for building the container
     - (Optional) add a `.gitgnore` file to ensure build artefacts are not pushed with the `Dockerfile` and `README.md`
-3. Core team member ensures they have correctly authenticated their docker for pushing to `quay.io`
+3. Ensure Docker is correctly authenticated for pushing to `quay.io`.
 
     ```bash
     docker login --username <QUAY_USER_NAME> quay.io
     ```
 
-4. Core team member builds container with instructions with appropriate tag, e.g.
+4. Build the Docker image locally and tag it appropriately:
 
     ```bash
     docker build . -t quay.io/nf-core/<TOOL>:<VERSION>
     ```
 
-5. Core team member pushes the container
+5. Push the built container image:
 
     ```bash
     docker push quay.io/nf-core/<TOOL>:8.0.0
     ```
 
-6. Send instructions to dev to use the new container URL in the module.
+6. Share the container reference with the module author so they can update the module:
 
     ```nextflow
     container "nf-core/antismash:8.0.0"
     ```
 
     :::note
-    This replaces the entire docker/singularity condition.
+    This replaces the entire Docker/Singularity condition in the module.
     :::
 
 ## Activating Zenodo archiving of a new pipeline
