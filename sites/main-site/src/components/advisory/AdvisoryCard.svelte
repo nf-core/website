@@ -9,10 +9,10 @@
     export let narrow: boolean = false;
     import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
-    const type_class = advisories_type_classes[frontmatter.type[0]];
+    const severity_class = advisories_type_classes[frontmatter.severity];
 </script>
 
-<div class={"card mb-3 rounded-0 rounded-end " + frontmatter.type[0]} style="border-left-color:var(--bs-{type_class});">
+<div class={"card mb-3 rounded-0 rounded-end " + frontmatter.severity} style="border-left-color:var(--bs-{severity_class});">
     <div class="card-body">
         <div class="card-title">
             <h4 id={"advisories-" + slug.split("/")[1]} class:h5={narrow}>
