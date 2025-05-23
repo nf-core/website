@@ -1,7 +1,9 @@
 ---
 title: .command.run Permission denied
 subtitle: Nextflow versions after 24.10.6 are incompatible with certain nf-core pipelines published in 2024 and early 2025.
-category: pipelines
+category:
+ - pipelines
+ - configuration
 type: incompatibility
 severity: high
 publishedDate: "2025-05-15"
@@ -54,6 +56,7 @@ pipelines:
     - 2.7.1
     - 3.0.0
 - name: nanostring
+  versions:
    - 1.3.1
 - name: rnaseq
   versions:
@@ -76,10 +79,10 @@ pipelines:
   versions:
     - 3.0.0
 - name: smrnaseq
-    versions:
+  versions:
     - 2.4.0
 - name: taxprofiler
-   versions:
+  versions:
    - 1.2.1
    - 1.2.2
 modules:

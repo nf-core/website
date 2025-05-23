@@ -11,8 +11,8 @@ advisories = await Promise.all(
     }),
 );
 
-const title = "advisories";
-const subtitle = "Details of nf-core advisories";
+const title = "Advisories";
+const subtitle = "Regressions, incompatibilities and security announcements";
 // Get all unique advisory types from all advisories
 const advisory_types = [...new Set(advisories.flatMap((advisory) => advisory.data.type))];
 const filters = advisory_types.map((type) => {

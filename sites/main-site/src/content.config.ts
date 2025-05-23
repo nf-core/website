@@ -239,9 +239,6 @@ const advisories = defineCollection({
             if (data.category.includes('subworkflows') && !data.subworkflows) {
                 throw new Error('Affected `subworkflows` must be named set if `category` is `subworkflows`.');
             }
-            if (data.category.includes('configuration') && !data.configuration) {
-                throw new Error('Affected `configuration` must be given if `category` is `configuration`.');
-            }
             return true;
         }),
 });
