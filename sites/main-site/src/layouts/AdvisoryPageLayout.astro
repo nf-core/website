@@ -2,8 +2,8 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
-import SidebarToc from "@components/sidebar/SidebarToc.svelte";
 import AdvisoryHeader from "@components/advisory/AdvisoryHeader.astro";
+import AdvisoryImpact from "@components/advisory/AdvisoryImpact.astro";
 import "katex/dist/katex.min.css";
 import type { SidebarEntry } from "@utils/types";
 
@@ -22,8 +22,6 @@ export interface Props {
         name: string;
         content: string;
     }[];
-    minHeadingDepth?: number;
-    maxHeadingDepth?: number;
     image?: string;
     doubleNavbar?: boolean;
     sidebarTitle?: string;
@@ -41,8 +39,6 @@ const {
     viewTransitions = false,
     meta_title = "",
     docSearchTags = [],
-    minHeadingDepth = 1,
-    maxHeadingDepth = 4,
     image,
     doubleNavbar = true,
     sidebarTitle = "",
@@ -116,22 +112,11 @@ if (showRightSidebar) {
             {
                 showRightSidebar && (
                     <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
-                        <SidebarToc
-                            headings={headings}
-                            minNumHeadings={minNumHeadings}
-                            minHeadingDepth={minHeadingDepth}
-                            maxHeadingDepth={maxHeadingDepth}
-                            client:idle
-                        >
-                            <slot slot="rightSidebarTop" name="right-sidebar-top" />
-                            <slot slot="defaultContent" name="right-sidebar-bottom" />
-                            <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">
-                                <i class="fas fa-pencil-alt" /> Edit this page
-                            </a>
-                        </SidebarToc>
+                        <AdvisoryImpact frontmatter={advisory_header} />
                     </div>
                 )
             }
+
             {
                 leftSidebar && (
                     <div
@@ -168,8 +153,7 @@ if (showRightSidebar) {
         height: auto;
     }
 
-    .sidebar-left,
-    .sidebar-right {
+    .sidebar-left {
         max-width: 25rem;
     }
 
