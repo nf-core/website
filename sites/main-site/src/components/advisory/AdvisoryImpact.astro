@@ -1,0 +1,143 @@
+---
+interface Props {
+    frontmatter: {
+        pipelines?: string[];
+        subworkflows?: string[];
+        modules?: string[];
+        configuration?: string[];
+    };
+}
+
+const { frontmatter } = Astro.props;
+
+const hasImpact = frontmatter.pipelines?.length ||
+                 frontmatter.subworkflows?.length ||
+                 frontmatter.modules?.length ||
+                 frontmatter.configuration?.length;
+---
+
+{hasImpact && (
+    <div class="advisory-impact">
+        <h2 class="h4 mb-3">Impact</h2>
+        <div class="impact-grid">
+            {frontmatter.pipelines?.length > 0 && (
+                <div class="impact-section">
+                    <h3 class="h5 mb-2">
+                        <i class="fas fa-project-diagram me-2"></i>
+                        Affected Pipelines
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        {frontmatter.pipelines.map((pipeline) => (
+                            <li>
+                                <a href={`/pipelines/${pipeline}`} class="text-decoration-none">
+                                    <code>{pipeline}</code>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            {frontmatter.subworkflows?.length > 0 && (
+                <div class="impact-section">
+                    <h3 class="h5 mb-2">
+                        <i class="fas fa-sitemap me-2"></i>
+                        Affected Subworkflows
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        {frontmatter.subworkflows.map((subworkflow) => (
+                            <li>
+                                <a href={`/subworkflows/${subworkflow}`} class="text-decoration-none">
+                                    <code>{subworkflow}</code>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            {frontmatter.modules?.length > 0 && (
+                <div class="impact-section">
+                    <h3 class="h5 mb-2">
+                        <i class="fas fa-cube me-2"></i>
+                        Affected Modules
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        {frontmatter.modules.map((module) => (
+                            <li>
+                                <a href={`/modules/${module}`} class="text-decoration-none">
+                                    <code>{module}</code>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+
+            {frontmatter.configuration?.length > 0 && (
+                <div class="impact-section">
+                    <h3 class="h5 mb-2">
+                        <i class="fas fa-cogs me-2"></i>
+                        Affected Configuration
+                    </h3>
+                    <ul class="list-unstyled mb-0">
+                        {frontmatter.configuration.map((config) => (
+                            <li>
+                                <code>{config}</code>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
+        </div>
+    </div>
+)}
+
+<style lang="scss">
+    .advisory-impact {
+        background-color: var(--bs-body-bg);
+        border-radius: 0.5rem;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        border: 1px solid var(--bs-border-color);
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .impact-section {
+            h3 {
+                color: var(--bs-body-color);
+                font-size: 1.1rem;
+                i {
+                    color: var(--bs-primary);
+                }
+            }
+
+            ul {
+                li {
+                    margin-bottom: 0.5rem;
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+                }
+            }
+
+            code {
+                background-color: var(--bs-tertiary-bg);
+                padding: 0.2rem 0.4rem;
+                border-radius: 0.25rem;
+                font-size: 0.9rem;
+            }
+
+            a {
+                &:hover {
+                    text-decoration: underline !important;
+                }
+            }
+        }
+    }
+</style>
