@@ -1,0 +1,107 @@
+---
+interface Reference {
+    title: string;
+    description: string;
+    url: string;
+}
+
+interface Props {
+    references?: Reference[];
+}
+
+const { references } = Astro.props;
+
+function getLinkIcon(url: string) {
+    if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(url)) {
+        return "fab fa-youtube";
+    } else if (/^(https?:\/\/)?(www\.)?zoom\.us\/.+$/gi.test(url)) {
+        return "fab fa-zoom-us";
+    } else if (/^(https?:\/\/)?(www\.)?bilibili\.com\/.+$/gi.test(url)) {
+        return "fab fa-bilibili";
+    } else if (/^(https?:\/\/)?(www\.)?github\.com\/.+$/gi.test(url)) {
+        return "fab fa-github";
+    } else if (/^(https?:\/\/)?(www\.)?linkedin\.com\/.+$/gi.test(url)) {
+        return "fab fa-linkedin";
+    } else if (/^(https?:\/\/)?(www\.)?twitter\.com\/.+$/gi.test(url)) {
+        return "fab fa-twitter";
+    } else if (/^(https?:\/\/)?(www\.)?(docs\.google\.com)\/.+$/gi.test(url)) {
+        return "fab fa-google-drive";
+    } else if (/^(https?:\/\/)?(www\.)?(slideshare\.net)\/.+$/gi.test(url)) {
+        return "fab fa-slideshare";
+    }
+    return "fas fa-link";
+}
+---
+
+{references?.length > 0 && (
+    <div class="advisory-references">
+        <h2 class="h4 mb-3">References</h2>
+        <ul class="list-unstyled mb-0">
+            {references.map((ref) => (
+                <li class="reference-item mb-3">
+                    <a href={ref.url} target="_blank" rel="noopener noreferrer" class="reference-link">
+                        <i class={`${getLinkIcon(ref.url)} me-2`}></i>
+                        <span class="reference-title">{ref.title}</span>
+                    </a>
+                    {ref.description && (
+                        <p class="reference-description mb-0 mt-1">
+                            {ref.description}
+                        </p>
+                    )}
+                </li>
+            ))}
+        </ul>
+    </div>
+)}
+
+<style lang="scss">
+    .advisory-references {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--bs-border-color);
+
+        h2 {
+            color: var(--bs-body-color);
+            font-size: 1.5rem;
+        }
+
+        .reference-item {
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        .reference-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bs-body-color);
+            text-decoration: none;
+            transition: color 0.2s ease-in-out;
+
+            i {
+                color: var(--bs-primary);
+                width: 1.25rem;
+                text-align: center;
+            }
+
+            &:hover {
+                color: var(--bs-primary);
+                text-decoration: none;
+
+                .reference-title {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .reference-title {
+            font-weight: 500;
+        }
+
+        .reference-description {
+            color: var(--bs-body-color-secondary);
+            font-size: 0.95rem;
+            padding-left: 2.25rem; // Aligns with the title (icon width + margin)
+        }
+    }
+</style>
