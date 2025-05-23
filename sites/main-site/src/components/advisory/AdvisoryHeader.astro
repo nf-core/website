@@ -8,7 +8,6 @@ interface Props {
         severity: string;
         type: string[];
         category: string[];
-        references?: string[];
     };
 }
 
@@ -85,7 +84,7 @@ function getTypeIcon(type) {
         <div class="text-end">
             <a href="#" class="btn btn-outline-secondary btn-sm" onclick="window.print(); return false;">
                 <i class="fas fa-download me-1"></i>
-                Export
+                Download
             </a>
         </div>
     </div>
@@ -116,23 +115,6 @@ function getTypeIcon(type) {
                     </span>
                 ))}
             </dd>
-
-            {frontmatter.references?.length > 0 && (
-                <>
-                    <dt>References</dt>
-                    <dd>
-                        <ul class="list-unstyled mb-0">
-                            {frontmatter.references.map((ref) => (
-                                <li>
-                                    <a href={ref} target="_blank" rel="noopener noreferrer">
-                                        {ref}
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </dd>
-                </>
-            )}
         </dl>
     </div>
 </div>
