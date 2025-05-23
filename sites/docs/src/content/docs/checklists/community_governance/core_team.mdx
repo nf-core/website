@@ -61,6 +61,48 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
     6. Select **Create** at the bottom of the page. Do not modify any fields.
     7. Repeat the import (step 5) and create (step 6) steps for each JSON file provided.
 
+## Making custom docker containers for modules
+
+Instructions for adding custom docker containers to the nf-core [https://quay.io](https://quay.io/organization/nf-core) organisation.
+
+:::note
+These instructions require the person building and pushing the container to have push rights to the organization.
+**Only core members may have this access**, and new core members should request access from existing members.
+:::
+
+1. Check with the module author to ensure there is no available solution via Conda, Bioconda, or BioContainers.
+2. Ask the module author to:
+    - Place a `Dockerfile` alongside the module (sub)directories
+    - Add a `README.md` describing why the container is needed, and provide instructions for building the container
+    - (Optional) add a `.gitgnore` file to ensure build artefacts are not pushed with the `Dockerfile` and `README.md`
+3. Ensure Docker is correctly authenticated for pushing to `quay.io`.
+
+    ```bash
+    docker login --username <QUAY_USER_NAME> quay.io
+    ```
+
+4. Build the Docker image locally and tag it appropriately:
+
+    ```bash
+    docker build . -t quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+5. Push the built container image:
+
+    ```bash
+    docker push quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+6. Share the container reference with the module author so they can update the module:
+
+    ```groovy
+    container "nf-core/<TOOL>:<VERSION>"
+    ```
+
+    :::note
+    This replaces the entire Docker/Singularity condition in the module.
+    :::
+
 ## Activating Zenodo archiving of a new pipeline
 
 Instructions for setting up Zenodo DOIs.
