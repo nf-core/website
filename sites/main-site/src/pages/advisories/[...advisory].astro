@@ -1,5 +1,5 @@
 ---
-import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import AdvisoryPageLayout from "@layouts/AdvisoryPageLayout.astro";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
@@ -88,7 +88,7 @@ sections.forEach((year) => {
 ---
 
 {frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
-<MarkdownTocLayout
+<AdvisoryPageLayout
     title={title}
     subtitle={subtitle}
     md_github_url={md_github_url}
@@ -101,6 +101,7 @@ sections.forEach((year) => {
         ...frontmatter.type.map(type => ({ name: "page_subtype", content: type }))
     ]}
     viewTransitions={true}
+    sidebarTitle="Advisories"
 >
     <Content />
-</MarkdownTocLayout>
+</AdvisoryPageLayout>
