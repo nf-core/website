@@ -4,6 +4,7 @@ import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 import AdvisoryHeader from "@components/advisory/AdvisoryHeader.astro";
 import AdvisoryImpact from "@components/advisory/AdvisoryImpact.astro";
+import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
 import "katex/dist/katex.min.css";
 import type { SidebarEntry } from "@utils/types";
 
@@ -106,6 +107,7 @@ if (showRightSidebar) {
                             <slot />
                         </MarkdownWrapper>
                     </div>
+                    <AdvisoryReferences references={advisory_header.references} />
                 </div>
             </div>
 
@@ -153,7 +155,8 @@ if (showRightSidebar) {
         height: auto;
     }
 
-    .sidebar-left {
+    .sidebar-left,
+    .sidebar-right {
         max-width: 25rem;
     }
 
