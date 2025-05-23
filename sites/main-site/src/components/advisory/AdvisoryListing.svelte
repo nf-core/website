@@ -92,7 +92,7 @@
     <div class="advisories">
         {#if currentAdvisories.length > 0}
             <div class="mb-3 col-12">
-                <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Currently ongoing</h2>
+                <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Recent advisories</h2>
                 {#each currentAdvisories as advisories (advisories.id)}
                     <AdvisoryCard
                         frontmatter={advisories.data}
