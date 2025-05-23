@@ -1,14 +1,14 @@
 export const advisories_type_classes = {
     // Advisory types
-    known_regression: "success",
+    known_regression: "dark",
     incompatibility: "warning",
     security: "danger",
     performance: "success",
     data_corruption: "primary",
-    scientific_advice: "secondary",
+    scientific_advice: "info",
     other: "secondary",
     // Severity levels
-    low: "success",
+    low: "primary",
     medium: "warning",
     high: "danger",
     critical: "danger"
