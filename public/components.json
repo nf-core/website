@@ -27493,7 +27493,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "circdna",
@@ -43568,7 +43568,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "crisprseq",
@@ -53676,7 +53676,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -53790,7 +53790,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -56828,7 +56828,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "atacseq",
@@ -56840,7 +56840,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -57582,7 +57582,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bamtofastq",
+          "version": "2.2.0"
+        }
+      ]
     },
     {
       "name": "fasttree",
@@ -62456,10 +62462,27 @@
                 }
               },
               {
-                "*.vcf": {
+                "*.vcf.gz": {
                   "type": "file",
                   "description": "The resulting VCF file containing the genotypes",
-                  "pattern": "*.vcf"
+                  "pattern": "*.vcf.gz"
+                }
+              }
+            ]
+          },
+          {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The resulting index of the VCF file containing the genotypes",
+                  "pattern": "*.vcf.gz.tbi"
                 }
               }
             ]
@@ -63190,7 +63213,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -63282,7 +63305,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -63460,7 +63483,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -87917,7 +87940,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -88008,7 +88031,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -88113,7 +88136,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -88231,7 +88254,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -99350,7 +99373,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "bacass",
@@ -120244,6 +120267,187 @@
       ]
     },
     {
+      "name": "msisensorpro_pro",
+      "path": "modules/nf-core/msisensorpro/pro/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "msisensorpro_pro",
+        "description": "MSIsensor-pro/pro is a tool used to evaluate MSI using single (tumor) sample sequencing data",
+        "keywords": [
+          "msisensor-pro",
+          "pro",
+          "micro-satellite"
+        ],
+        "tools": [
+          {
+            "msisensorpro": {
+              "description": "Microsatellite Instability (MSI) detection using high-throughput sequencing data.",
+              "homepage": "https://github.com/xjtu-omics/msisensor-pro",
+              "documentation": "https://github.com/xjtu-omics/msisensor-pro/wiki",
+              "tool_dev_url": "https://github.com/xjtu-omics/msisensor-pro",
+              "doi": "10.1016/j.gpb.2020.02.001",
+              "licence": [
+                "Custom Licence"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "sorted BAM/CRAM file",
+                "pattern": "*.{bam,cram}"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "index file for input",
+                "pattern": "*.{bai,crai}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "list": {
+                "type": "file",
+                "description": "micro-satellite list",
+                "pattern": "*.{list}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "reference genome used to create micro-satellite list",
+                "pattern": "*.{fasta}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "index file for reference fasta",
+                "pattern": "*.{fai}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "summary_msi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "file",
+                  "description": "txt file containing summary of results"
+                }
+              }
+            ]
+          },
+          {
+            "all_msi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_all": {
+                  "type": "file",
+                  "description": "txt file containing all results"
+                }
+              }
+            ]
+          },
+          {
+            "dis_msi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_dis": {
+                  "type": "file",
+                  "description": "txt file containing the allele length distribution"
+                }
+              }
+            ]
+          },
+          {
+            "unstable_msi": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_unstable": {
+                  "type": "file",
+                  "description": "txt file containing unstable micro-satellite sites"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Tuur-ds"
+        ],
+        "maintainers": [
+          "@Tuur-ds"
+        ]
+      }
+    },
+    {
       "name": "msisensorpro_scan",
       "path": "modules/nf-core/msisensorpro/scan/meta.yml",
       "type": "module",
@@ -120940,7 +121144,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "bacass",
@@ -120948,7 +121152,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -138527,7 +138731,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "genomeqc",
@@ -159723,7 +159927,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hlatyping",
@@ -160608,7 +160812,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -161282,7 +161486,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -161564,7 +161768,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -161924,7 +162128,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -162420,7 +162624,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -163325,7 +163529,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -163694,7 +163898,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "circdna",
@@ -189647,6 +189851,10 @@
         {
           "name": "mhcquant",
           "version": "3.0.0"
+        },
+        {
+          "name": "ribomsqc",
+          "version": "dev"
         }
       ]
     },
@@ -195584,7 +195792,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "atacseq",
@@ -200867,7 +201075,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "crisprseq",
@@ -201178,7 +201386,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         }
       ]
     },
@@ -201549,7 +201757,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         }
       ]
     },
@@ -209887,7 +210095,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "phyloplace",
@@ -213722,7 +213930,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "bacass",
@@ -213730,7 +213938,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cellpainting",
@@ -213979,6 +214187,10 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "ribomsqc",
+          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -214111,7 +214323,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "bacass",
@@ -214119,7 +214331,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cellpainting",
@@ -214368,6 +214580,10 @@
         {
           "name": "reportho",
           "version": "1.0.1"
+        },
+        {
+          "name": "ribomsqc",
+          "version": "dev"
         },
         {
           "name": "riboseq",
@@ -214512,11 +214728,15 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.13.0"
+          "version": "2.14.0"
         },
         {
           "name": "bacass",
           "version": "2.4.0"
+        },
+        {
+          "name": "bamtofastq",
+          "version": "2.2.0"
         },
         {
           "name": "cellpainting",
@@ -214727,6 +214947,10 @@
           "version": "0.1"
         },
         {
+          "name": "ribomsqc",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -214869,10 +215093,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "bamtofastq",
-          "version": "2.1.1"
-        },
         {
           "name": "chipseq",
           "version": "2.1.0"
