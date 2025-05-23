@@ -1,7 +1,10 @@
 ---
+import PipelineImpact from './PipelineImpact.astro';
+import SubworkflowImpact from './SubworkflowImpact.astro';
+
 interface Props {
     frontmatter: {
-        pipelines?: string[];
+        pipelines?: Array<string | { name: string; versions: string[] }>;
         subworkflows?: string[];
         modules?: string[];
         configuration?: string[];
@@ -22,19 +25,7 @@ const hasImpact = frontmatter.pipelines?.length ||
         <div class="impact-grid">
             {frontmatter.pipelines?.length > 0 && (
                 <div class="impact-section">
-                    <h3 class="h5 mb-2">
-                        <i class="fas fa-project-diagram me-2"></i>
-                        Affected Pipelines
-                    </h3>
-                    <ul class="list-unstyled mb-0">
-                        {frontmatter.pipelines.map((pipeline) => (
-                            <li>
-                                <a href={`/pipelines/${pipeline}`} class="text-decoration-none">
-                                    <code>{pipeline}</code>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <PipelineImpact pipelines={frontmatter.pipelines} />
                 </div>
             )}
 
@@ -44,15 +35,7 @@ const hasImpact = frontmatter.pipelines?.length ||
                         <i class="fas fa-sitemap me-2"></i>
                         Affected Subworkflows
                     </h3>
-                    <ul class="list-unstyled mb-0">
-                        {frontmatter.subworkflows.map((subworkflow) => (
-                            <li>
-                                <a href={`/subworkflows/${subworkflow}`} class="text-decoration-none">
-                                    <code>{subworkflow}</code>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <SubworkflowImpact subworkflows={frontmatter.subworkflows} />
                 </div>
             )}
 
@@ -104,7 +87,7 @@ const hasImpact = frontmatter.pipelines?.length ||
 
         .impact-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
         }
 
@@ -114,15 +97,6 @@ const hasImpact = frontmatter.pipelines?.length ||
                 font-size: 1.1rem;
                 i {
                     color: var(--bs-primary);
-                }
-            }
-
-            ul {
-                li {
-                    margin-bottom: 0.5rem;
-                    &:last-child {
-                        margin-bottom: 0;
-                    }
                 }
             }
 
