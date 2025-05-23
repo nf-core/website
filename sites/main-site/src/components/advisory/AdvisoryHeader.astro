@@ -57,7 +57,7 @@ function getTypeIcon(type) {
                 <dt>Severity:</dt>
                 <dd>
                     <span class={getSeverityClass(severity)}>
-                        <i class={`fa-solid ${getSeverityIcon(severity)} me-1`} />
+                        <i class={`${getSeverityIcon(severity)} me-1`} />
                         {severity.charAt(0).toUpperCase() + severity.slice(1)}
                     </span>
                 </dd>
@@ -65,7 +65,7 @@ function getTypeIcon(type) {
                 <dd>
                     {type.map((t) => (
                         <span class={`badge bg-${getTypeClass(t)} me-1`}>
-                            <i class={`fa-solid ${getTypeIcon(t)} me-1`} />
+                            <i class={`${getTypeIcon(t)} me-1`} />
                             {t.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
                         </span>
                     ))}
