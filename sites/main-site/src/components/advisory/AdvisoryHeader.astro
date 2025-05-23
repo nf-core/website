@@ -2,11 +2,38 @@
 import LocalDateTime from "@components/event/LocalDateTime.svelte";
 import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
+interface Props {
+    frontmatter: {
+        publishedDate: Date;
+        severity: string;
+        type: string[];
+        category: string[];
+        references?: string[];
+    };
+}
+
 const { frontmatter } = Astro.props;
-const publishedDate = frontmatter.publishedDate;
-const category = frontmatter.category;
-const type = frontmatter.type;
-const severity = frontmatter.severity;
+
+const severityColors = {
+    critical: "danger",
+    high: "warning",
+    medium: "info",
+    low: "success",
+} as const;
+
+const typeColors = {
+    security: "danger",
+    bug: "warning",
+    enhancement: "info",
+    deprecation: "secondary",
+} as const;
+
+const categoryColors = {
+    pipeline: "primary",
+    module: "success",
+    subworkflow: "info",
+    configuration: "warning",
+} as const;
 
 function getLinkIcon(link) {
     if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
@@ -48,147 +75,97 @@ function getTypeIcon(type) {
 ---
 
 <div class="advisory-header">
-    <div class="row row-cols-1 row-cols-md-2">
-        <div class="col">
-            <dl>
-                <dt>Published:</dt>
-                <dd><LocalDateTime date={publishedDate} client:visible /></dd>
-                <dt>Severity:</dt>
-                <dd>
-                    <span class={getSeverityClass(severity)}>
-                        <i class={`${getSeverityIcon(severity)} me-1`} />
-                        {severity.charAt(0).toUpperCase() + severity.slice(1)}
-                    </span>
-                </dd>
-                <dt>Type:</dt>
-                <dd>
-                    {type.map((t) => (
-                        <span class={`badge bg-${getTypeClass(t)} me-1`}>
-                            <i class={`${getTypeIcon(t)} me-1`} />
-                            {t.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
-                        </span>
-                    ))}
-                </dd>
-                <dt>Category:</dt>
-                <dd>
-                    {category.map((c) => (
-                        <span class="badge bg-primary me-1">
-                            {c.charAt(0).toUpperCase() + c.slice(1)}
-                        </span>
-                    ))}
-                </dd>
+    <div class="d-flex justify-content-between align-items-start mb-3">
+        <div>
+            <dl class="mb-0">
+                <dt>Published</dt>
+                <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
             </dl>
         </div>
-        <div class="col">
-            <dl>
-                {
-                    frontmatter.pipelines && frontmatter.pipelines.length > 0 && (
-                        <>
-                            <dt>Affected Pipelines:</dt>
-                            <dd>
-                                <ul class="list-unstyled">
-                                    {frontmatter.pipelines.map((pipeline) => (
-                                        <li>
-                                            {typeof pipeline === 'string' ? (
-                                                <a href={`https://github.com/nf-core/${pipeline}`} target="_blank" class="text-white">
-                                                    {pipeline}
-                                                </a>
-                                            ) : (
-                                                <div>
-                                                    <a href={`https://github.com/nf-core/${pipeline.name}`} target="_blank" class="text-white">
-                                                        {pipeline.name}
-                                                    </a>
-                                                    <span class="ms-2">
-                                                        Versions: {pipeline.versions.join(', ')}
-                                                    </span>
-                                                </div>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </dd>
-                        </>
-                    )
-                }
-                {
-                    frontmatter.modules && frontmatter.modules.length > 0 && (
-                        <>
-                            <dt>Affected Modules:</dt>
-                            <dd>
-                                <ul class="list-unstyled">
-                                    {frontmatter.modules.map((module) => (
-                                        <li>
-                                            <a href={`https://github.com/nf-core/modules/tree/master/modules/${module}`} target="_blank" class="text-white">
-                                                {module}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </dd>
-                        </>
-                    )
-                }
-                {
-                    frontmatter.subworkflows && frontmatter.subworkflows.length > 0 && (
-                        <>
-                            <dt>Affected Subworkflows:</dt>
-                            <dd>
-                                <ul class="list-unstyled">
-                                    {frontmatter.subworkflows.map((subworkflow) => (
-                                        <li>
-                                            <a href={`https://github.com/nf-core/modules/tree/master/subworkflows/${subworkflow}`} target="_blank" class="text-white">
-                                                {subworkflow}
-                                            </a>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </dd>
-                        </>
-                    )
-                }
-                {
-                    frontmatter.configuration && frontmatter.configuration.length > 0 && (
-                        <>
-                            <dt>Affected Configuration:</dt>
-                            <dd>
-                                <ul class="list-unstyled">
-                                    {frontmatter.configuration.map((config) => (
-                                        <li>{config}</li>
-                                    ))}
-                                </ul>
-                            </dd>
-                        </>
-                    )
-                }
-                {
-                    frontmatter.references && frontmatter.references.length > 0 && (
-                        <>
-                            <dt>References:</dt>
-                            <dd>
-                                <ul class="list-unstyled">
-                                    {frontmatter.references.map((ref) => (
-                                        <li>
-                                            <a href={ref.url} target="_blank" class="text-white">
-                                                {ref.title}
-                                            </a>
-                                            {ref.description && (
-                                                <span class="ms-2 text-muted">- {ref.description}</span>
-                                            )}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </dd>
-                        </>
-                    )
-                }
-            </dl>
+        <div class="text-end">
+            <a href="#" class="btn btn-outline-secondary btn-sm" onclick="window.print(); return false;">
+                <i class="fas fa-download me-1"></i>
+                Export
+            </a>
         </div>
     </div>
 
-    <div class="d-flex justify-content-center justify-content-md-start"></div>
+    <div class="advisory-metadata">
+        <dl>
+            <dt>Severity</dt>
+            <dd>
+                <span class={`badge bg-${severityColors[frontmatter.severity as keyof typeof severityColors]}`}>
+                    {frontmatter.severity}
+                </span>
+            </dd>
+
+            <dt>Type</dt>
+            <dd>
+                {frontmatter.type.map((type) => (
+                    <span class={`badge bg-${typeColors[type as keyof typeof typeColors]} me-1`}>
+                        {type}
+                    </span>
+                ))}
+            </dd>
+
+            <dt>Category</dt>
+            <dd>
+                {frontmatter.category.map((cat) => (
+                    <span class={`badge bg-${categoryColors[cat as keyof typeof categoryColors]} me-1`}>
+                        {cat}
+                    </span>
+                ))}
+            </dd>
+
+            {frontmatter.references?.length > 0 && (
+                <>
+                    <dt>References</dt>
+                    <dd>
+                        <ul class="list-unstyled mb-0">
+                            {frontmatter.references.map((ref) => (
+                                <li>
+                                    <a href={ref} target="_blank" rel="noopener noreferrer">
+                                        {ref}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+                    </dd>
+                </>
+            )}
+        </dl>
+    </div>
 </div>
+
 <style lang="scss">
-    .dropdown-menu {
-        z-index: 100;
+    .advisory-header {
+        dl {
+            margin-bottom: 0;
+        }
+
+        dt {
+            font-weight: 600;
+            color: var(--bs-body-color);
+            margin-bottom: 0.25rem;
+        }
+
+        dd {
+            margin-bottom: 1rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .badge {
+            font-size: 0.875rem;
+            padding: 0.35em 0.65em;
+        }
+
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
     }
 </style>
