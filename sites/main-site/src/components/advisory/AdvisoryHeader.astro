@@ -1,6 +1,5 @@
 ---
-import ExportAdvisoryButton from "@components/advisories/ExportAdvisoryButton.svelte";
-import LocalDateTime from "@components/events/LocalDateTime.svelte";
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
 import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
 const { frontmatter } = Astro.props;
@@ -48,7 +47,7 @@ function getTypeIcon(type) {
 }
 ---
 
-<div class="">
+<div class="advisory-header">
     <div class="row row-cols-1 row-cols-md-2">
         <div class="col">
             <dl>
@@ -79,12 +78,6 @@ function getTypeIcon(type) {
                     ))}
                 </dd>
             </dl>
-
-            {
-                !frontmatter.hideExportButton && (
-                    <ExportAdvisoryButton frontmatter={frontmatter} add_class="btn-outline-light col" client:idle />
-                )
-            }
         </div>
         <div class="col">
             <dl>
