@@ -1,0 +1,295 @@
+---
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
+import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
+import {
+    formatAdvisoryType,
+    formatAdvisoryCategory,
+    getAdvisoryTypeIcon,
+    getAdvisoryTypeClass,
+    getAdvisorySeverityIcon,
+    getAdvisorySeverityClass,
+    getAdvisoryCategoryIcon,
+    getAdvisoryMetadataItems,
+} from "./advisoryUtils";
+
+interface Props {
+    frontmatter: {
+        publishedDate: Date;
+        severity: string;
+        type: string[];
+        category: string[];
+        reporter: Array<string | Record<string, string>> | null;
+        reviewer?: Array<string | Record<string, string>>;
+        nextflowVersions?: string[] | null;
+        nextflowExecutors?: string[] | null;
+        softwareDependencies?: Array<string | { name: string; versions?: string[] }> | string | null;
+    };
+}
+
+const { frontmatter } = Astro.props;
+const metadataItems = getAdvisoryMetadataItems(frontmatter);
+
+function getLinkIcon(link) {
+    if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
+        return "fab fa-youtube";
+    } else if (/^(https?:\/\/)?(www\.)?zoom\.us\/.+$/gi.test(link)) {
+        return "fab fa-zoom-us";
+    } else if (/^(https?:\/\/)?(www\.)?bilibili\.com\/.+$/gi.test(link)) {
+        return "fab fa-bilibili";
+    } else if (/^(https?:\/\/)?(www\.)?github\.com\/.+$/gi.test(link)) {
+        return "fab fa-github";
+    } else if (/^(https?:\/\/)?(www\.)?linkedin\.com\/.+$/gi.test(link)) {
+        return "fab fa-linkedin";
+    } else if (/^(https?:\/\/)?(www\.)?twitter\.com\/.+$/gi.test(link)) {
+        return "fab fa-twitter";
+    } else if (/^(https?:\/\/)?(www\.)?(docs\.google\.com)\/.+$/gi.test(link)) {
+        return "fab fa-google-drive";
+    } else if (/^(https?:\/\/)?(www\.)?(slideshare\.net)\/.+$/gi.test(link)) {
+        return "fab fa-slideshare";
+    }
+
+    return "fas fa-link";
+}
+
+function getSeverityClass(severity) {
+    return `text-${advisories_type_classes[severity] || "secondary"}`;
+}
+
+function getSeverityIcon(severity) {
+    return advisories_type_icons[severity] || "fa-circle-info";
+}
+
+function getTypeClass(type) {
+    return advisories_type_classes[type] || "secondary";
+}
+
+function getTypeIcon(type) {
+    return advisories_type_icons[type] || "fa-circle-info";
+}
+
+function getReporterInfo(reporter: string | Record<string, string>) {
+    if (typeof reporter === "string") {
+        return { username: reporter, affiliation: "" };
+    }
+    return { username: Object.keys(reporter)[0], affiliation: Object.values(reporter)[0] };
+}
+
+function getReviewerInfo(reviewer: string | Record<string, string>) {
+    if (typeof reviewer === "string") {
+        return { username: reviewer, affiliation: "" };
+    }
+    return { username: Object.keys(reviewer)[0], affiliation: Object.values(reviewer)[0] };
+}
+---
+
+<div class="advisory-header">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <dl class="mb-0">
+                        <dt>Published</dt>
+                        <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="advisory-metadata">
+                <dl>
+                    <dt>Severity</dt>
+                    <dd>
+                        <span class={`badge bg-${getAdvisorySeverityClass(frontmatter.severity)}`}>
+                            <i class={`${getAdvisorySeverityIcon(frontmatter.severity)} me-1`}></i>
+                            {formatAdvisoryType(frontmatter.severity)}
+                        </span>
+                    </dd>
+
+                    <dt>Type</dt>
+                    <dd>
+                        {
+                            frontmatter.type.map((type) => (
+                                <span class={`badge bg-${getAdvisoryTypeClass(type)} me-1`}>
+                                    <i class={`${getAdvisoryTypeIcon(type)} me-1`} />
+                                    {formatAdvisoryType(type)}
+                                </span>
+                            ))
+                        }
+                    </dd>
+
+                    <dt>Category</dt>
+                    <dd>
+                        {
+                            frontmatter.category.map((cat) => (
+                                <span class="category-item me-2">
+                                    <i class={`fa-solid ${getAdvisoryCategoryIcon(cat)} me-1`} />
+                                    {formatAdvisoryCategory(cat)}
+                                </span>
+                            ))
+                        }
+                    </dd>
+
+                    {
+                        metadataItems.length > 0 && (
+                            <>
+                                <dt>Technical Details</dt>
+                                <dd>
+                                    {metadataItems.map((item) => (
+                                        <span class="metadata-item me-3 mt-2">
+                                            <i class={`fas ${item.icon} me-1`} />
+                                            {item.label}: {item.value}
+                                        </span>
+                                    ))}
+                                </dd>
+                            </>
+                        )
+                    }
+                </dl>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="advisory-contributors">
+                {
+                    frontmatter.reporter && (
+                        <div class="mb-3">
+                            <dt>Reported by</dt>
+                            <dd>
+                                {frontmatter.reporter.map((reporter) => {
+                                    const info = getReporterInfo(reporter);
+                                    return (
+                                        <div class="me-1">
+                                            <GitHubProfilePictureExtended
+                                                client:load
+                                                username={info.username}
+                                                affiliation={info.affiliation}
+                                                size={45}
+                                                wrapperClasses="advisory-profile"
+                                                labelClasses="d-none"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </dd>
+                        </div>
+                    )
+                }
+                {
+                    frontmatter.reviewer && (
+                        <div>
+                            <dt>Reviewed by</dt>
+                            <dd>
+                                {frontmatter.reviewer.map((reviewer) => {
+                                    const info = getReviewerInfo(reviewer);
+                                    return (
+                                        <div class="me-1">
+                                            <GitHubProfilePictureExtended
+                                                client:load
+                                                username={info.username}
+                                                affiliation={info.affiliation}
+                                                size={45}
+                                                wrapperClasses="advisory-profile"
+                                                labelClasses="d-none"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </dd>
+                        </div>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style lang="scss">
+    .advisory-header {
+        dl {
+            margin-bottom: 0;
+        }
+
+        dt {
+            font-weight: 600;
+            color: var(--bs-body-color);
+            margin-bottom: 0.25rem;
+        }
+
+        dd {
+            margin-bottom: 1rem;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+
+        .badge {
+            font-size: 0.875rem;
+            padding: 0.35em 0.65em;
+            font-weight: 500;
+        }
+
+        a {
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .advisory-contributors {
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+
+            dt {
+                margin-bottom: 0.25rem;
+            }
+
+            dd {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            :global(.advisory-profile) {
+                .btn {
+                    padding: 0;
+                    border: none;
+                    background: none;
+
+                    &:hover {
+                        transform: scale(1.05);
+                        transition: transform 0.2s ease-in-out;
+                    }
+                }
+
+                img {
+                    border-radius: 50%;
+                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                }
+            }
+        }
+
+        .category-item {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bs-body-color);
+            font-size: 0.95rem;
+
+            i {
+                color: var(--bs-primary);
+                padding-left: 1rem;
+            }
+        }
+
+        .metadata-item {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bs-body-color);
+            font-size: 0.9rem;
+
+            i {
+                color: var(--bs-primary);
+                padding-left: 1rem;
+            }
+        }
+    }
+</style>
