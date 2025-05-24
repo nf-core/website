@@ -1,6 +1,6 @@
 ---
-import PipelineImpact from './PipelineImpact.astro';
-import OtherImpact from './OtherImpact.astro';
+import PipelineImpact from "./PipelineImpact.astro";
+import OtherImpact from "./OtherImpact.astro";
 
 interface Props {
     frontmatter: {
@@ -13,57 +13,60 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const hasImpact = frontmatter.pipelines?.length ||
-                 frontmatter.subworkflows?.length ||
-                 frontmatter.modules?.length ||
-                 frontmatter.configuration?.length;
+const hasImpact =
+    frontmatter.pipelines?.length ||
+    frontmatter.subworkflows?.length ||
+    frontmatter.modules?.length ||
+    frontmatter.configuration?.length;
 ---
 
-{hasImpact && (
-    <div class="advisory-impact">
-        <h2 class="h4 mb-3">Impact</h2>
-        <div class="impact-grid">
-            {frontmatter.pipelines?.length > 0 && (
-                <div class="impact-section">
-                    <PipelineImpact pipelines={frontmatter.pipelines} />
-                </div>
-            )}
+{
+    hasImpact && (
+        <div class="advisory-impact">
+            <h2 class="h4 mb-3">Impact</h2>
+            <div class="impact-grid">
+                {frontmatter.pipelines?.length > 0 && (
+                    <div class="impact-section">
+                        <PipelineImpact pipelines={frontmatter.pipelines} />
+                    </div>
+                )}
 
-            {frontmatter.subworkflows?.length > 0 && (
-                <div class="impact-section">
-                    <OtherImpact
-                        items={frontmatter.subworkflows}
-                        title="Affected subworkflows"
-                        icon="fa-sitemap"
-                        urlPrefix="/subworkflows"
-                    />
-                </div>
-            )}
+                {frontmatter.subworkflows?.length > 0 && (
+                    <div class="impact-section">
+                        <OtherImpact
+                            items={frontmatter.subworkflows}
+                            title="Affected subworkflows"
+                            icon="fa-sitemap"
+                            urlPrefix="/subworkflows"
+                        />
+                    </div>
+                )}
 
-            {frontmatter.modules?.length > 0 && (
-                <div class="impact-section">
-                    <OtherImpact
-                        items={frontmatter.modules}
-                        title="Affected Modules"
-                        icon="fa-cube"
-                        urlPrefix="/modules"
-                    />
-                </div>
-            )}
+                {frontmatter.modules?.length > 0 && (
+                    <div class="impact-section">
+                        <OtherImpact
+                            items={frontmatter.modules}
+                            title="Affected Modules"
+                            icon="fa-cube"
+                            urlPrefix="/modules"
+                        />
+                    </div>
+                )}
 
-            {frontmatter.configuration?.length > 0 && (
-                <div class="impact-section">
-                    <OtherImpact
-                        items={frontmatter.configuration}
-                        title="Affected Configuration"
-                        icon="fa-cogs"
-                        urlPrefix="/configs"
-                    />
-                </div>
-            )}
+                {frontmatter.configuration?.length > 0 && (
+                    <div class="impact-section">
+                        <OtherImpact
+                            items={frontmatter.configuration}
+                            title="Affected Configuration"
+                            icon="fa-cogs"
+                            urlPrefix="/configs"
+                        />
+                    </div>
+                )}
+            </div>
         </div>
-    </div>
-)}
+    )
+}
 
 <style lang="scss">
     .advisory-impact {

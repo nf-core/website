@@ -33,26 +33,24 @@ function getLinkIcon(url: string) {
 }
 ---
 
-{references?.length > 0 && (
-    <div class="advisory-references">
-        <h2 class="h4 mb-3">References</h2>
-        <ul class="list-unstyled mb-0">
-            {references.map((ref) => (
-                <li class="reference-item mb-3">
-                    <a href={ref.url} target="_blank" rel="noopener noreferrer" class="reference-link">
-                        <i class={`${getLinkIcon(ref.url)} me-2`}></i>
-                        <span class="reference-title">{ref.title}</span>
-                    </a>
-                    {ref.description && (
-                        <p class="reference-description mb-0 mt-1">
-                            {ref.description}
-                        </p>
-                    )}
-                </li>
-            ))}
-        </ul>
-    </div>
-)}
+{
+    references?.length > 0 && (
+        <div class="advisory-references">
+            <h2 class="h4 mb-3">References</h2>
+            <ul class="list-unstyled mb-0">
+                {references.map((ref) => (
+                    <li class="reference-item mb-3">
+                        <a href={ref.url} target="_blank" rel="noopener noreferrer" class="reference-link">
+                            <i class={`${getLinkIcon(ref.url)} me-2`} />
+                            <span class="reference-title">{ref.title}</span>
+                        </a>
+                        {ref.description && <p class="reference-description mb-0 mt-1">{ref.description}</p>}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    )
+}
 
 <style lang="scss">
     .advisory-references {
