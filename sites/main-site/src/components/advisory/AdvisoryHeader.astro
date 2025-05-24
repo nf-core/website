@@ -2,6 +2,15 @@
 import LocalDateTime from "@components/event/LocalDateTime.svelte";
 import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
+import {
+    formatAdvisoryType,
+    formatAdvisoryCategory,
+    getAdvisoryTypeIcon,
+    getAdvisoryTypeClass,
+    getAdvisorySeverityIcon,
+    getAdvisorySeverityClass,
+    getAdvisoryCategoryIcon
+} from "./advisoryUtils";
 
 interface Props {
     frontmatter: {
@@ -85,40 +94,30 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                 <dl>
                     <dt>Severity</dt>
                     <dd>
-                        <span class={`badge bg-${advisories_type_classes[frontmatter.severity as keyof typeof advisories_type_classes]}`}>
-                            {frontmatter.severity}
+                        <span class={`badge bg-${getAdvisorySeverityClass(frontmatter.severity)}`}>
+                            <i class={`${getAdvisorySeverityIcon(frontmatter.severity)} me-1`}></i>
+                            {formatAdvisoryType(frontmatter.severity)}
                         </span>
                     </dd>
 
                     <dt>Type</dt>
                     <dd>
                         {frontmatter.type.map((type) => (
-                            <span class={`badge bg-${advisories_type_classes[type as keyof typeof advisories_type_classes]} me-1`}>
-                                {type}
+                            <span class={`badge bg-${getAdvisoryTypeClass(type)} me-1`}>
+                                <i class={`${getAdvisoryTypeIcon(type)} me-1`}></i>
+                                {formatAdvisoryType(type)}
                             </span>
                         ))}
                     </dd>
 
                     <dt>Category</dt>
                     <dd>
-                        {frontmatter.category.map((cat) => {
-                            const getIcon = (category: string) => {
-                                switch(category) {
-                                    case 'pipelines': return 'fa-project-diagram';
-                                    case 'modules': return 'fa-object-group';
-                                    case 'subworkflows': return 'fa-sitemap';
-                                    case 'configuration': return 'fa-cogs';
-                                    default: return 'fa-cogs';
-                                }
-                            };
-                            const icon = getIcon(cat);
-                            return (
-                                <span class="category-item me-2">
-                                    <i class={`fa-solid ${icon} me-1`}></i>
-                                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
-                                </span>
-                            );
-                        })}
+                        {frontmatter.category.map((cat) => (
+                            <span class="category-item me-2">
+                                <i class={`fa-solid ${getAdvisoryCategoryIcon(cat)} me-1`}></i>
+                                {formatAdvisoryCategory(cat)}
+                            </span>
+                        ))}
                     </dd>
                 </dl>
             </div>
