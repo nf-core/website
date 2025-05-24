@@ -9,7 +9,8 @@ import {
     getAdvisoryTypeClass,
     getAdvisorySeverityIcon,
     getAdvisorySeverityClass,
-    getAdvisoryCategoryIcon
+    getAdvisoryCategoryIcon,
+    getAdvisoryMetadataItems
 } from "./advisoryUtils";
 
 interface Props {
@@ -20,10 +21,14 @@ interface Props {
         category: string[];
         reporter: Array<string | Record<string, string>> | null;
         reviewer?: Array<string | Record<string, string>>;
+        nextflowVersions?: string[] | null;
+        nextflowExecutors?: string[] | null;
+        softwareDependencies?: Array<string | { name: string; versions?: string[] }> | string | null;
     };
 }
 
 const { frontmatter } = Astro.props;
+const metadataItems = getAdvisoryMetadataItems(frontmatter);
 
 function getLinkIcon(link) {
     if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
@@ -119,6 +124,20 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                             </span>
                         ))}
                     </dd>
+
+                    {metadataItems.length > 0 && (
+                        <>
+                            <dt>Technical Details</dt>
+                            <dd>
+                                {metadataItems.map((item) => (
+                                    <span class="metadata-item me-3">
+                                        <i class={`fas ${item.icon} me-1`}></i>
+                                        {item.label} {item.value}
+                                    </span>
+                                ))}
+                            </dd>
+                        </>
+                    )}
                 </dl>
             </div>
         </div>
@@ -247,6 +266,17 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
             i {
                 color: var(--bs-primary);
                 padding-left: 1rem;
+            }
+        }
+
+        .metadata-item {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bs-body-color);
+            font-size: 0.9rem;
+
+            i {
+                color: var(--bs-primary);
             }
         }
     }
