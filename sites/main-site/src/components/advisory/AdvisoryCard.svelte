@@ -40,7 +40,7 @@
                     <div class="mt-2 text-muted small">
                         {#if frontmatter.category}
                             <span class="me-3">
-                                <i class="fas fa-layer-group me-1" aria-hidden="true"></i>
+                                <i class="fas fa-tags me-1" aria-hidden="true"></i>
                                 {frontmatter.category.map((cat) => formatAdvisoryCategory(cat)).join(", ")}
                             </span>
                         {/if}
