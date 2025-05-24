@@ -18,9 +18,7 @@ export async function getStaticPaths() {
 
     return advisory_types.map((advisory_type) => {
         // Filter advisories that include this type
-        const filteredAdvisories = advisories.filter(advisory =>
-            advisory.data.type.includes(advisory_type)
-        );
+        const filteredAdvisories = advisories.filter((advisory) => advisory.data.type.includes(advisory_type));
         console.log(`Advisories for type ${advisory_type}:`, filteredAdvisories.length);
 
         return {
@@ -43,4 +41,4 @@ const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
 const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
 ---
 
-<advisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]} />
+<advisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]}></advisoryLayout>

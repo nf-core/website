@@ -6,14 +6,14 @@ type: known_regression
 severity: low
 publishedDate: "2023-01-13"
 reporter:
- - MatthiasZepper
+  - MatthiasZepper
 reviewer:
- - MatthiasZepper
+  - MatthiasZepper
 pipelines:
-- name: rnaseq
-  versions:
-    - "3.10.0"
-    - "3.10.1"
+  - name: rnaseq
+    versions:
+      - "3.10.0"
+      - "3.10.1"
 modules:
 subworkflows:
 configuration:
