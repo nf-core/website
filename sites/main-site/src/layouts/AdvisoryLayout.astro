@@ -1,9 +1,8 @@
 ---
 import AdvisoryListing from "@components/advisory/AdvisoryListing.svelte";
 import PageLayout from "@layouts/PageLayout.astro";
-import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
 import { type CollectionEntry } from "astro:content";
-import type { SidebarEntry } from "@utils/types";
 
 const { title, subtitle, advisories, currentFilters } = Astro.props;
 export interface Props {
@@ -44,27 +43,6 @@ const currentAdvisory = advisories.filter((advisories) => {
         return true;
     }
 });
-
-const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort((a, b) => b - a);
-
-const sections: SidebarEntry[] = years.map((year) => {
-    return {
-        type: "group",
-        label: year.toString(),
-        href: "#year-" + year,
-        collapsed: true,
-        entries: advisories
-            .filter((advisory) => advisory.data.publishedDate?.getFullYear() === year)
-            .map((advisory) => {
-                return {
-                    type: "link",
-                    label: advisory.data.title,
-                    href: "#advisory-" + advisory.id,
-                    isCurrent: false,
-                };
-            }),
-    };
-});
 ---
 
 <PageLayout
@@ -73,8 +51,8 @@ const sections: SidebarEntry[] = years.map((year) => {
     viewTransitions={true}
 >
     <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <SidebarNav items={sections} />
+        <div class="col-12 col-md-2">
+            <AdvisorySidebar {advisories} />
         </div>
 
         <div class="col">
