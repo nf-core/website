@@ -25,13 +25,17 @@ const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
     </button>
     <div id={sectionId} class="collapse show">
         <ul class="list-unstyled mb-0">
-            {items.map((item) => (
-                <li class="impact-item">
-                    <a href={`${urlPrefix}/${item}`} class="text-decoration-none">
-                        <code class="item-name" title={item}>{item}</code>
-                    </a>
-                </li>
-            ))}
+            {
+                items.map((item) => (
+                    <li class="impact-item">
+                        <a href={`${urlPrefix}/${item}`} class="text-decoration-none">
+                            <code class="item-name" title={item}>
+                                {item}
+                            </code>
+                        </a>
+                    </li>
+                ))
+            }
         </ul>
     </div>
 </div>
@@ -123,12 +127,12 @@ const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
 
 <script>
     // Handle the collapse button text update
-    document.querySelectorAll('.collapse-button').forEach(button => {
-        button.addEventListener('click', () => {
-            const isExpanded = button.getAttribute('aria-expanded') === 'true';
-            const span = button.querySelector('span');
+    document.querySelectorAll(".collapse-button").forEach((button) => {
+        button.addEventListener("click", () => {
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            const span = button.querySelector("span");
             if (span) {
-                span.textContent = isExpanded ? 'Show affected items' : 'Hide affected items';
+                span.textContent = isExpanded ? "Show affected items" : "Hide affected items";
             }
         });
     });

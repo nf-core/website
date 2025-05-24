@@ -12,11 +12,10 @@ export interface Props {
     advisories: CollectionEntry<"advisories">[];
 }
 
-advisories
-    .sort((a, b) => {
-        if (!a.data.publishedDate || !b.data.publishedDate) return 0;
-        return a.data.publishedDate.getTime();
-    });
+advisories.sort((a, b) => {
+    if (!a.data.publishedDate || !b.data.publishedDate) return 0;
+    return a.data.publishedDate.getTime();
+});
 
 const searchAdvisories = (search) => {
     const searchTerms = search.toLowerCase().split(" ");
