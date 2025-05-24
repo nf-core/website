@@ -85,7 +85,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
 
 <div class="advisory-header">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9">
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
                     <dl class="mb-0">
@@ -130,9 +130,9 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                             <dt>Technical Details</dt>
                             <dd>
                                 {metadataItems.map((item) => (
-                                    <span class="metadata-item me-3">
+                                    <span class="metadata-item me-3 mt-2">
                                         <i class={`fas ${item.icon} me-1`}></i>
-                                        {item.label} {item.value}
+                                        {item.label}:  {item.value}
                                     </span>
                                 ))}
                             </dd>
@@ -141,7 +141,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                 </dl>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
             <div class="advisory-contributors">
                 {frontmatter.reporter && (
                     <div class="mb-3">
@@ -262,6 +262,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
             display: inline-flex;
             align-items: center;
             color: var(--bs-body-color);
+            font-size: 0.95rem;
 
             i {
                 color: var(--bs-primary);
@@ -277,6 +278,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
 
             i {
                 color: var(--bs-primary);
+                padding-left: 1rem;
             }
         }
     }
