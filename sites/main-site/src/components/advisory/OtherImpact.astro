@@ -1,10 +1,13 @@
 ---
 interface Props {
-    subworkflows: string[];
+    items: string[];
+    title: string;
+    icon: string;
+    urlPrefix: string;
 }
 
-const { subworkflows } = Astro.props;
-const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 9)}`;
+const { items, title, icon, urlPrefix } = Astro.props;
+const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
 <div class="collapsible-section">
@@ -15,15 +18,17 @@ const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 
         data-bs-toggle="collapse"
         data-bs-target={`#${sectionId}`}
     >
-        <i class="fas fa-chevron-down me-2"></i>
-        <span>Show affected subworkflows</span>
+        <h3 class="h5 mb-2">
+            <i class={`fas ${icon} me-2`}></i>
+            {title}
+        </h3>
     </button>
     <div id={sectionId} class="collapse show">
         <ul class="list-unstyled mb-0">
-            {subworkflows.map((subworkflow) => (
-                <li class="subworkflow-impact-item">
-                    <a href={`/subworkflows/${subworkflow}`} class="text-decoration-none">
-                        <code class="subworkflow-name" title={subworkflow}>{subworkflow}</code>
+            {items.map((item) => (
+                <li class="impact-item">
+                    <a href={`${urlPrefix}/${item}`} class="text-decoration-none">
+                        <code class="item-name" title={item}>{item}</code>
                     </a>
                 </li>
             ))}
@@ -54,10 +59,10 @@ const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 
                 h3 {
                     color: var(--bs-primary);
                 }
+            }
 
-                i {
-                    transform: translateX(2px);
-                }
+            &:active {
+                transform: translateY(1px);
             }
 
             h3 {
@@ -74,7 +79,7 @@ const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 
             }
 
             &[aria-expanded="false"] {
-                i.fa-chevron-down {
+                i {
                     transform: rotate(-90deg);
                 }
             }
@@ -85,13 +90,13 @@ const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 
         }
     }
 
-    .subworkflow-impact-item {
+    .impact-item {
         margin-bottom: 0.5rem;
         &:last-child {
             margin-bottom: 0;
         }
 
-        .subworkflow-name {
+        .item-name {
             background-color: var(--bs-tertiary-bg);
             padding: 0.2rem 0.4rem;
             border-radius: 0.25rem;
@@ -123,7 +128,7 @@ const sectionId = `subworkflow-impact-${Math.random().toString(36).substring(2, 
             const isExpanded = button.getAttribute('aria-expanded') === 'true';
             const span = button.querySelector('span');
             if (span) {
-                span.textContent = isExpanded ? 'Show affected subworkflows' : 'Hide affected subworkflows';
+                span.textContent = isExpanded ? 'Show affected items' : 'Hide affected items';
             }
         });
     });
