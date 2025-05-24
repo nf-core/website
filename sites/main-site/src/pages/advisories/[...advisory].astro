@@ -27,63 +27,84 @@ const md_github_url =
     "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/advisories/" + advisory.id + ".md";
 
 const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">[]) => {
-    advisories.forEach((advisory) => {
-        const parts = advisory.id.replace(/\.[^/.]+$/, "").split("/");
-        let currentLevel = sections;
+    // First, group advisories by year
+    const advisoriesByYear = advisories.reduce((acc, advisory) => {
+        const year = advisory.data.publishedDate.getFullYear();
+        if (!acc[year]) {
+            acc[year] = [];
+        }
+        acc[year].push(advisory);
+        return acc;
+    }, {} as Record<number, CollectionEntry<"advisories">[]>);
 
-        parts.forEach((part, i) => {
-            part = part.replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
-            const existingEntry = currentLevel.find(
-                (entry) => entry.label === part || entry.label === advisory.data.title,
-            );
+    // Then, for each year, add the advisories to the corresponding section
+    Object.entries(advisoriesByYear).forEach(([year, yearAdvisories]) => {
+        const yearSection = sections.find(section => section.id === year);
+        if (!yearSection) return;
 
-            if (existingEntry) {
-                if (existingEntry.type === "group") {
-                    // workaround for index files in nested advisories, where another element could already have created the group
-                    if (/index\.(md|mdx)$/.test(advisory.id) && i === parts.length - 1) {
-                        existingEntry.href = "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
-                        existingEntry.isCurrent = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
-                        existingEntry.collapsed = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
-                    }
-                    currentLevel = existingEntry.entries;
-                }
-            } else {
-                const lastPart = i === parts.length - 1;
-                let title = lastPart ? (advisory.data.shortTitle ?? advisory.data.title) : part;
-                const newEntry = createLinkOrGroup(
-                    parts.slice(0, i + 1).join("_"),
-                    title,
-                    "/advisories/" + advisory.id.replace(/\.[^/.]+$/, ""),
-                    lastPart,
-                    Astro.url.pathname,
+        yearAdvisories.forEach((advisory) => {
+            const parts = advisory.id.replace(/\.[^/.]+$/, "").split("/");
+            let currentLevel = yearSection.entries;
+
+            // Skip the year part if it exists in the path
+            const startIndex = parts[0] === year.toString() ? 1 : 0;
+
+            for (let i = startIndex; i < parts.length; i++) {
+                const part = parts[i].replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
+                const existingEntry = currentLevel.find(
+                    (entry) => entry.label === part || entry.label === advisory.data.title,
                 );
-                currentLevel.push(newEntry);
 
-                if (newEntry.type === "group" && newEntry.entries) {
-                    currentLevel = newEntry.entries;
+                if (existingEntry) {
+                    if (existingEntry.type === "group") {
+                        if (/index\.(md|mdx)$/.test(advisory.id) && i === parts.length - 1) {
+                            existingEntry.href = "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                            existingEntry.isCurrent = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                            existingEntry.collapsed = Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                        }
+                        currentLevel = existingEntry.entries;
+                    }
+                } else {
+                    const lastPart = i === parts.length - 1;
+                    let title = lastPart ? (advisory.data.shortTitle ?? advisory.data.title) : part;
+                    const newEntry = createLinkOrGroup(
+                        parts.slice(startIndex, i + 1).join("_"),
+                        title,
+                        "/advisories/" + advisory.id.replace(/\.[^/.]+$/, ""),
+                        lastPart,
+                        Astro.url.pathname,
+                    );
+                    currentLevel.push(newEntry);
+
+                    if (newEntry.type === "group" && newEntry.entries) {
+                        currentLevel = newEntry.entries;
+                    }
                 }
             }
         });
     });
 };
+
 const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort((a, b) => b - a);
-let sections: SidebarEntry[] = years.map((year) => {
-    return {
-        id: year.toString(),
-        label: year.toString(),
-        entries: [],
-        type: "group",
-        collapsed: true,
-    };
-});
+let sections: SidebarEntry[] = years.map((year) => ({
+    id: year.toString(),
+    label: year.toString(),
+    entries: [],
+    type: "group",
+    collapsed: true,
+}));
+
 addEntriesToSection(sections, advisories);
+
 // sort .entries by date
 sections.forEach((year) => {
-    year.entries.sort((a, b) => {
-        const advisoryA = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href);
-        const advisoryB = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href);
-        return advisoryB.data.publishedDate.getTime() - advisoryA.data.publishedDate.getTime();
-    });
+    if (year.entries && year.entries.length > 0) {
+        year.entries.sort((a, b) => {
+            const advisoryA = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href);
+            const advisoryB = advisories.find((advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href);
+            return advisoryB.data.publishedDate.getTime() - advisoryA.data.publishedDate.getTime();
+        });
+    }
 });
 ---
 
