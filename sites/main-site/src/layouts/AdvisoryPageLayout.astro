@@ -1,12 +1,12 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
-import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
 import AdvisoryHeader from "@components/advisory/AdvisoryHeader.astro";
 import AdvisoryImpact from "@components/advisory/AdvisoryImpact.astro";
 import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
 import "katex/dist/katex.min.css";
-import type { SidebarEntry } from "@utils/types";
+import type { CollectionEntry } from "astro:content";
 
 export interface Props {
     title: string;
@@ -16,7 +16,7 @@ export interface Props {
     advisory_header: any;
     leftSidebar?: boolean;
     rightSidebar?: boolean;
-    sections?: SidebarEntry[];
+    advisories?: CollectionEntry<"advisories">[];
     viewTransitions?: boolean;
     meta_title?: string;
     docSearchTags?: {
@@ -36,7 +36,7 @@ const {
     advisory_header,
     leftSidebar,
     rightSidebar = true,
-    sections = [],
+    advisories = [],
     viewTransitions = false,
     meta_title = "",
     docSearchTags = [],
@@ -90,7 +90,6 @@ if (showRightSidebar) {
     subfooter={true}
     mainpage_container={false}
     navTocHeadings={headings}
-    sections={sections}
     docSearchTags={docSearchTags}
     viewTransitions={viewTransitions}
     image={image}
@@ -121,18 +120,8 @@ if (showRightSidebar) {
 
             {
                 leftSidebar && (
-                    <div
-                        class={`col-12 col-xl-${leftSidebarWidth} sticky-top-under d-none d-xl-inline sidebar-left order-1`}
-                    >
-                        {sidebarTitle && (
-                            <a
-                                href={sections[0].href?.split("/").slice(0, 2).join("/").split("#")[0]}
-                                class="sidebar-title text-decoration-none"
-                            >
-                                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-                            </a>
-                        )}
-                        <SidebarNav items={sections} />
+                    <div class={`col-12 col-xl-${leftSidebarWidth} order-1`}>
+                        <AdvisorySidebar {advisories} {sidebarTitle} />
                     </div>
                 )
             }
