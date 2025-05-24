@@ -67,19 +67,29 @@
                         <div class="w-100 row align-items-center">
                             <div class="col-8 py-lg-2 text-lg-start">
                                 <h5 class="pt-2 pb-0 pb-lg-1">
-                                    <a href={"advisories/" + advisory.id + "/"} class="text-success text-decoration-none"
-                                        >{advisory.data.title}</a
+                                    <a
+                                        href={"advisories/" + advisory.id + "/"}
+                                        class="text-success text-decoration-none">{advisory.data.title}</a
                                     >
                                     <span class="ms-1 my-auto">
                                         {#each advisory.data.type as type}
                                             <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
                                                 <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
-                                                {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                                                {type
+                                                    .split("_")
+                                                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                                    .join(" ")}
                                             </span>
                                         {/each}
-                                        <span class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}>
-                                            <i class={`${advisories_type_icons[advisory.data.severity]} me-1`} aria-hidden="true"></i>
-                                            {advisory.data.severity.charAt(0).toUpperCase() + advisory.data.severity.slice(1)}
+                                        <span
+                                            class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}
+                                        >
+                                            <i
+                                                class={`${advisories_type_icons[advisory.data.severity]} me-1`}
+                                                aria-hidden="true"
+                                            ></i>
+                                            {advisory.data.severity.charAt(0).toUpperCase() +
+                                                advisory.data.severity.slice(1)}
                                         </span>
                                     </span>
                                 </h5>
@@ -131,11 +141,17 @@
                                 {#each advisory.data.type as type}
                                     <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
                                         <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
-                                        {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                                        {type
+                                            .split("_")
+                                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+                                            .join(" ")}
                                     </span>
                                 {/each}
                                 <span class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}>
-                                    <i class={`${advisories_type_icons[advisory.data.severity]} me-1`} aria-hidden="true"></i>
+                                    <i
+                                        class={`${advisories_type_icons[advisory.data.severity]} me-1`}
+                                        aria-hidden="true"
+                                    ></i>
                                     {advisory.data.severity.charAt(0).toUpperCase() + advisory.data.severity.slice(1)}
                                 </span>
                             </span>
@@ -143,10 +159,13 @@
                         <div class="small mb-1 mx-3 d-flex flex-column">
                             <a
                                 href={"advisories/" + advisory.id + "/"}
-                                class="text-secondary-emphasis text-decoration-none mb-2">Published {formatDistanceToNow(new Date(advisory.data.publishedDate))} ago</a
+                                class="text-secondary-emphasis text-decoration-none mb-2"
+                                >Published {formatDistanceToNow(new Date(advisory.data.publishedDate))} ago</a
                             >
                             <div class="btn-group text-nowrap" role="group" aria-label="Advisory details">
-                                <a href={"advisories/" + advisory.id + "/"} class="btn btn-outline-success"> Advisory Details </a>
+                                <a href={"advisories/" + advisory.id + "/"} class="btn btn-outline-success">
+                                    Advisory Details
+                                </a>
                             </div>
                         </div>
                     </div>

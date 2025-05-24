@@ -24,7 +24,7 @@
             // Check if advisory was published within the last 3 months
             const publishedDateUnix = advisories.data.publishedDate?.getTime();
             return publishedDateUnix && publishedDateUnix >= threeMonthsAgoTime;
-        })
+        }),
     );
 
     let pastAdvisories = $derived(
@@ -43,12 +43,14 @@
                 const dateA = a.data.publishedDate?.getTime() ?? 0;
                 const dateB = b.data.publishedDate?.getTime() ?? 0;
                 return dateB - dateA; // Sort by most recent first
-            })
+            }),
     );
 
     const filterByType = (advisories: CollectionEntry<"advisories">) => {
         if ($CurrentFilter.length === 0) return true;
-        return $CurrentFilter.some((f) => advisories.data.type.includes(f.name as typeof advisories.data.type[number]));
+        return $CurrentFilter.some((f) =>
+            advisories.data.type.includes(f.name as (typeof advisories.data.type)[number]),
+        );
     };
 
     const searchAdvisories = (advisories: CollectionEntry<"advisories">) => {
@@ -74,7 +76,10 @@
     });
 
     function hasYearChanged(advisories, idx) {
-        if (idx === 0 || advisories[idx].data.publishedDate?.getFullYear() !== advisories[idx - 1].data.publishedDate?.getFullYear()) {
+        if (
+            idx === 0 ||
+            advisories[idx].data.publishedDate?.getFullYear() !== advisories[idx - 1].data.publishedDate?.getFullYear()
+        ) {
             return true;
         }
         return false;
@@ -94,11 +99,7 @@
             <div class="mb-3 col-12">
                 <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Recent advisories</h2>
                 {#each currentAdvisories as advisories (advisories.id)}
-                    <AdvisoryCard
-                        frontmatter={advisories.data}
-                        slug={advisories.id}
-                        time_category="current"
-                    />
+                    <AdvisoryCard frontmatter={advisories.data} slug={advisories.id} time_category="current" />
                 {/each}
             </div>
         {/if}
@@ -108,13 +109,11 @@
                     <h2><i class="fa-duotone fa-calendar-check me-3"></i>Past advisories</h2>
                     {#each pastAdvisories as advisories, idx (advisories.id)}
                         {#if hasYearChanged(pastAdvisories, idx)}
-                            <h3 id={"year-" + advisories.data.publishedDate?.getFullYear()}>{advisories.data.publishedDate?.getFullYear()}</h3>
+                            <h3 id={"year-" + advisories.data.publishedDate?.getFullYear()}>
+                                {advisories.data.publishedDate?.getFullYear()}
+                            </h3>
                         {/if}
-                        <AdvisoryCard
-                            frontmatter={advisories.data}
-                            slug={advisories.id}
-                            time_category="past"
-                        />
+                        <AdvisoryCard frontmatter={advisories.data} slug={advisories.id} time_category="past" />
                     {/each}
                 </div>
             </div>

@@ -11,7 +11,9 @@ export interface Props {
 const { advisories, sidebarTitle = "Advisories" } = Astro.props;
 
 // Get unique years and sort them in descending order
-const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort((a, b) => b - a);
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort(
+    (a, b) => b - a,
+);
 
 // Create sections for each year
 const sections: SidebarEntry[] = years.map((year) => {
@@ -35,11 +37,13 @@ const sections: SidebarEntry[] = years.map((year) => {
 ---
 
 <div class="sidebar-left sticky-top-under d-none d-md-inline pt-1">
-    {sidebarTitle && (
-        <a href="/advisories" class="sidebar-title text-decoration-none">
-            <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
-        </a>
-    )}
+    {
+        sidebarTitle && (
+            <a href="/advisories" class="sidebar-title text-decoration-none">
+                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+            </a>
+        )
+    }
     <SidebarNav items={sections} />
 </div>
 
