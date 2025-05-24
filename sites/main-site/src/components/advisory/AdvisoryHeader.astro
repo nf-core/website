@@ -16,27 +16,6 @@ interface Props {
 
 const { frontmatter } = Astro.props;
 
-const severityColors = {
-    critical: "danger",
-    high: "warning",
-    medium: "info",
-    low: "success",
-} as const;
-
-const typeColors = {
-    security: "danger",
-    bug: "warning",
-    enhancement: "info",
-    deprecation: "secondary",
-} as const;
-
-const categoryColors = {
-    pipeline: "primary",
-    module: "success",
-    subworkflow: "info",
-    configuration: "warning",
-} as const;
-
 function getLinkIcon(link) {
     if (/^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/gi.test(link)) {
         return "fab fa-youtube";
@@ -106,7 +85,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                 <dl>
                     <dt>Severity</dt>
                     <dd>
-                        <span class={`badge bg-${severityColors[frontmatter.severity as keyof typeof severityColors]}`}>
+                        <span class={`badge bg-${advisories_type_classes[frontmatter.severity as keyof typeof advisories_type_classes]}`}>
                             {frontmatter.severity}
                         </span>
                     </dd>
@@ -114,7 +93,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                     <dt>Type</dt>
                     <dd>
                         {frontmatter.type.map((type) => (
-                            <span class={`badge bg-${typeColors[type as keyof typeof typeColors]} me-1`}>
+                            <span class={`badge bg-${advisories_type_classes[type as keyof typeof advisories_type_classes]} me-1`}>
                                 {type}
                             </span>
                         ))}
@@ -122,11 +101,24 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
 
                     <dt>Category</dt>
                     <dd>
-                        {frontmatter.category.map((cat) => (
-                            <span class={`badge bg-${categoryColors[cat as keyof typeof categoryColors]} me-1`}>
-                                {cat}
-                            </span>
-                        ))}
+                        {frontmatter.category.map((cat) => {
+                            const getIcon = (category: string) => {
+                                switch(category) {
+                                    case 'pipelines': return 'fa-project-diagram';
+                                    case 'modules': return 'fa-object-group';
+                                    case 'subworkflows': return 'fa-sitemap';
+                                    case 'configuration': return 'fa-cogs';
+                                    default: return 'fa-cogs';
+                                }
+                            };
+                            const icon = getIcon(cat);
+                            return (
+                                <span class="category-item me-2">
+                                    <i class={`fa-solid ${icon} me-1`}></i>
+                                    {cat.charAt(0).toUpperCase() + cat.slice(1)}
+                                </span>
+                            );
+                        })}
                     </dd>
                 </dl>
             </div>
@@ -204,6 +196,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
         .badge {
             font-size: 0.875rem;
             padding: 0.35em 0.65em;
+            font-weight: 500;
         }
 
         a {
@@ -244,6 +237,17 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                     border-radius: 50%;
                     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
                 }
+            }
+        }
+
+        .category-item {
+            display: inline-flex;
+            align-items: center;
+            color: var(--bs-body-color);
+
+            i {
+                color: var(--bs-primary);
+                padding-left: 1rem;
             }
         }
     }
