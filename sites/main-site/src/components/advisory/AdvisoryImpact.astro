@@ -1,6 +1,6 @@
 ---
 import PipelineImpact from './PipelineImpact.astro';
-import SubworkflowImpact from './SubworkflowImpact.astro';
+import OtherImpact from './OtherImpact.astro';
 
 interface Props {
     frontmatter: {
@@ -31,45 +31,34 @@ const hasImpact = frontmatter.pipelines?.length ||
 
             {frontmatter.subworkflows?.length > 0 && (
                 <div class="impact-section">
-                    <h3 class="h5 mb-2">
-                        <i class="fas fa-sitemap me-2"></i>
-                        Affected Subworkflows
-                    </h3>
-                    <SubworkflowImpact subworkflows={frontmatter.subworkflows} />
+                    <OtherImpact
+                        items={frontmatter.subworkflows}
+                        title="Affected subworkflows"
+                        icon="fa-sitemap"
+                        urlPrefix="/subworkflows"
+                    />
                 </div>
             )}
 
             {frontmatter.modules?.length > 0 && (
                 <div class="impact-section">
-                    <h3 class="h5 mb-2">
-                        <i class="fas fa-cube me-2"></i>
-                        Affected Modules
-                    </h3>
-                    <ul class="list-unstyled mb-0">
-                        {frontmatter.modules.map((module) => (
-                            <li>
-                                <a href={`/modules/${module}`} class="text-decoration-none">
-                                    <code>{module}</code>
-                                </a>
-                            </li>
-                        ))}
-                    </ul>
+                    <OtherImpact
+                        items={frontmatter.modules}
+                        title="Affected Modules"
+                        icon="fa-cube"
+                        urlPrefix="/modules"
+                    />
                 </div>
             )}
 
             {frontmatter.configuration?.length > 0 && (
                 <div class="impact-section">
-                    <h3 class="h5 mb-2">
-                        <i class="fas fa-cogs me-2"></i>
-                        Affected Configuration
-                    </h3>
-                    <ul class="list-unstyled mb-0">
-                        {frontmatter.configuration.map((config) => (
-                            <li>
-                                <code>{config}</code>
-                            </li>
-                        ))}
-                    </ul>
+                    <OtherImpact
+                        items={frontmatter.configuration}
+                        title="Affected Configuration"
+                        icon="fa-cogs"
+                        urlPrefix="/configs"
+                    />
                 </div>
             )}
         </div>
