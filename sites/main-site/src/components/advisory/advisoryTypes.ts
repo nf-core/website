@@ -11,7 +11,7 @@ export const advisories_type_classes = {
     low: "primary",
     medium: "warning",
     high: "danger",
-    critical: "danger"
+    critical: "danger",
 } as const;
 
 export const advisories_type_icons = {
@@ -27,18 +27,18 @@ export const advisories_type_icons = {
     low: "fa-solid fa-arrow-down",
     medium: "fa-solid fa-minus",
     high: "fa-solid fa-arrow-up",
-    critical: "fa-solid fa-exclamation-circle"
+    critical: "fa-solid fa-exclamation-circle",
 } as const;
 
 // Only include actual advisory types, not severity levels
 const advisory_types = [
-    'known_regression',
-    'incompatibility',
-    'security',
-    'performance',
-    'data_corruption',
-    'scientific_advice',
-    'other'
+    "known_regression",
+    "incompatibility",
+    "security",
+    "performance",
+    "data_corruption",
+    "scientific_advice",
+    "other",
 ] as const;
 
 export const advisories_types = advisory_types.map((type) => {
