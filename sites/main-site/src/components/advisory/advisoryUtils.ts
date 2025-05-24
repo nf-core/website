@@ -27,7 +27,7 @@ export function getAdvisorySeverityClass(severity: string): string {
 export function getAdvisoryCategoryIcon(category: string): string {
     switch(category) {
         case 'pipelines': return 'fa-project-diagram';
-        case 'modules': return 'fa-object-group';
+        case 'modules': return 'fa-cube';
         case 'subworkflows': return 'fa-sitemap';
         case 'configuration': return 'fa-cogs';
         default: return 'fa-cogs';
