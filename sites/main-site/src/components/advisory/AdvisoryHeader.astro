@@ -1,6 +1,7 @@
 ---
 import LocalDateTime from "@components/event/LocalDateTime.svelte";
 import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
 
 interface Props {
     frontmatter: {
@@ -8,6 +9,8 @@ interface Props {
         severity: string;
         type: string[];
         category: string[];
+        reporter: Array<string | Record<string, string>> | null;
+        reviewer?: Array<string | Record<string, string>>;
     };
 }
 
@@ -71,51 +74,111 @@ function getTypeClass(type) {
 function getTypeIcon(type) {
     return advisories_type_icons[type] || 'fa-circle-info';
 }
+
+function getReporterInfo(reporter: string | Record<string, string>) {
+    if (typeof reporter === 'string') {
+        return { username: reporter, affiliation: '' };
+    }
+    return { username: Object.keys(reporter)[0], affiliation: Object.values(reporter)[0] };
+}
+
+function getReviewerInfo(reviewer: string | Record<string, string>) {
+    if (typeof reviewer === 'string') {
+        return { username: reviewer, affiliation: '' };
+    }
+    return { username: Object.keys(reviewer)[0], affiliation: Object.values(reviewer)[0] };
+}
 ---
 
 <div class="advisory-header">
-    <div class="d-flex justify-content-between align-items-start mb-3">
-        <div>
-            <dl class="mb-0">
-                <dt>Published</dt>
-                <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
-            </dl>
+    <div class="row">
+        <div class="col-md-8">
+            <div class="d-flex justify-content-between align-items-start mb-3">
+                <div>
+                    <dl class="mb-0">
+                        <dt>Published</dt>
+                        <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <div class="advisory-metadata">
+                <dl>
+                    <dt>Severity</dt>
+                    <dd>
+                        <span class={`badge bg-${severityColors[frontmatter.severity as keyof typeof severityColors]}`}>
+                            {frontmatter.severity}
+                        </span>
+                    </dd>
+
+                    <dt>Type</dt>
+                    <dd>
+                        {frontmatter.type.map((type) => (
+                            <span class={`badge bg-${typeColors[type as keyof typeof typeColors]} me-1`}>
+                                {type}
+                            </span>
+                        ))}
+                    </dd>
+
+                    <dt>Category</dt>
+                    <dd>
+                        {frontmatter.category.map((cat) => (
+                            <span class={`badge bg-${categoryColors[cat as keyof typeof categoryColors]} me-1`}>
+                                {cat}
+                            </span>
+                        ))}
+                    </dd>
+                </dl>
+            </div>
         </div>
-        <div class="text-end">
-            <a href="#" class="btn btn-outline-secondary btn-sm" onclick="window.print(); return false;">
-                <i class="fas fa-download me-1"></i>
-                Download
-            </a>
+        <div class="col-md-4">
+            <div class="advisory-contributors">
+                {frontmatter.reporter && (
+                    <div class="mb-3">
+                        <dt>Reported by</dt>
+                        <dd>
+                            {frontmatter.reporter.map((reporter) => {
+                                const info = getReporterInfo(reporter);
+                                return (
+                                    <div class="me-1">
+                                        <GitHubProfilePictureExtended
+                                            client:load
+                                            username={info.username}
+                                            affiliation={info.affiliation}
+                                            size={45}
+                                            wrapperClasses="advisory-profile"
+                                            labelClasses="d-none"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </dd>
+                    </div>
+                )}
+                {frontmatter.reviewer && (
+                    <div>
+                        <dt>Reviewed by</dt>
+                        <dd>
+                            {frontmatter.reviewer.map((reviewer) => {
+                                const info = getReviewerInfo(reviewer);
+                                return (
+                                    <div class="me-1">
+                                        <GitHubProfilePictureExtended
+                                            client:load
+                                            username={info.username}
+                                            affiliation={info.affiliation}
+                                            size={45}
+                                            wrapperClasses="advisory-profile"
+                                            labelClasses="d-none"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </dd>
+                    </div>
+                )}
+            </div>
         </div>
-    </div>
-
-    <div class="advisory-metadata">
-        <dl>
-            <dt>Severity</dt>
-            <dd>
-                <span class={`badge bg-${severityColors[frontmatter.severity as keyof typeof severityColors]}`}>
-                    {frontmatter.severity}
-                </span>
-            </dd>
-
-            <dt>Type</dt>
-            <dd>
-                {frontmatter.type.map((type) => (
-                    <span class={`badge bg-${typeColors[type as keyof typeof typeColors]} me-1`}>
-                        {type}
-                    </span>
-                ))}
-            </dd>
-
-            <dt>Category</dt>
-            <dd>
-                {frontmatter.category.map((cat) => (
-                    <span class={`badge bg-${categoryColors[cat as keyof typeof categoryColors]} me-1`}>
-                        {cat}
-                    </span>
-                ))}
-            </dd>
-        </dl>
     </div>
 </div>
 
@@ -147,6 +210,40 @@ function getTypeIcon(type) {
             text-decoration: none;
             &:hover {
                 text-decoration: underline;
+            }
+        }
+
+        .advisory-contributors {
+            padding: 0.75rem;
+            border-radius: 0.375rem;
+
+            dt {
+                margin-bottom: 0.25rem;
+            }
+
+            dd {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 0.25rem;
+                margin-bottom: 0.5rem;
+            }
+
+            :global(.advisory-profile) {
+                .btn {
+                    padding: 0;
+                    border: none;
+                    background: none;
+
+                    &:hover {
+                        transform: scale(1.05);
+                        transition: transform 0.2s ease-in-out;
+                    }
+                }
+
+                img {
+                    border-radius: 50%;
+                    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                }
             }
         }
     }
