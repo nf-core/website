@@ -1,15 +1,22 @@
 <script lang="ts">
     import type { CollectionEntry } from "astro:content";
     import { formatDistanceToNow } from "date-fns";
+    import {
+        formatAdvisoryType,
+        formatAdvisoryCategory,
+        getAdvisoryTypeIcon,
+        getAdvisoryTypeClass,
+        getAdvisorySeverityIcon,
+        getAdvisorySeverityClass
+    } from "./advisoryUtils";
 
     export let frontmatter: CollectionEntry<"advisories">["data"];
     export let slug: string = "";
     export let time_category: string = "";
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
-    import { advisories_type_classes, advisories_type_icons } from "./advisoryTypes";
 
-    const severity_class = advisories_type_classes[frontmatter.severity];
+    const severity_class = getAdvisorySeverityClass(frontmatter.severity);
 </script>
 
 <a href={"/advisories/" + slug + "/"} class="advisory-card-link">
@@ -29,7 +36,7 @@
                     {#if frontmatter.category}
                         <span class="me-3">
                             <i class="fas fa-layer-group me-1" aria-hidden="true"></i>
-                            {frontmatter.category.map(cat => cat.charAt(0).toUpperCase() + cat.slice(1)).join(', ')}
+                            {frontmatter.category.map(cat => formatAdvisoryCategory(cat)).join(', ')}
                         </span>
                     {/if}
                     {#if frontmatter.nextflowVersions}
@@ -67,14 +74,14 @@
             </p>
             <div class="d-flex flex-wrap gap-1 mb-3 justify-content-end">
                 {#each frontmatter.type as type}
-                    <span class={`badge bg-${advisories_type_classes[type]} small`}>
-                        <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
-                        {type.split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ')}
+                    <span class={`badge bg-${getAdvisoryTypeClass(type)} small`}>
+                        <i class={`${getAdvisoryTypeIcon(type)} me-1`} aria-hidden="true"></i>
+                        {formatAdvisoryType(type)}
                     </span>
                 {/each}
-                <span class={`badge bg-${advisories_type_classes[frontmatter.severity]} small`}>
-                    <i class={`${advisories_type_icons[frontmatter.severity]} me-1`} aria-hidden="true"></i>
-                    {frontmatter.severity.charAt(0).toUpperCase() + frontmatter.severity.slice(1)}
+                <span class={`badge bg-${getAdvisorySeverityClass(frontmatter.severity)} small`}>
+                    <i class={`${getAdvisorySeverityIcon(frontmatter.severity)} me-1`} aria-hidden="true"></i>
+                    {formatAdvisoryType(frontmatter.severity)}
                 </span>
             </div>
         </div>
