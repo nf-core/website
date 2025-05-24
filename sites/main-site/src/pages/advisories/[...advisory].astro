@@ -115,8 +115,8 @@ sections.forEach((year) => {
     md_github_url={md_github_url}
     advisory_header={frontmatter}
     headings={headings}
-    sections={sections}
     leftSidebar={true}
+    advisories={advisories}
     docSearchTags={[
         { name: "page_type", content: "advisory" },
         ...frontmatter.type.map(type => ({ name: "page_subtype", content: type }))
