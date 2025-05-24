@@ -7,7 +7,8 @@
         getAdvisoryTypeIcon,
         getAdvisoryTypeClass,
         getAdvisorySeverityIcon,
-        getAdvisorySeverityClass
+        getAdvisorySeverityClass,
+        getAdvisoryMetadataItems
     } from "./advisoryUtils";
 
     export let frontmatter: CollectionEntry<"advisories">["data"];
@@ -17,6 +18,7 @@
     export let narrow: boolean = false;
 
     const severity_class = getAdvisorySeverityClass(frontmatter.severity);
+    const metadataItems = getAdvisoryMetadataItems(frontmatter);
 </script>
 
 <a href={"/advisories/" + slug + "/"} class="advisory-card-link">
@@ -31,7 +33,7 @@
             {#if showDescription}
                 <p class="mb-4">{@html frontmatter.subtitle}</p>
             {/if}
-            {#if frontmatter.category || frontmatter.nextflowVersions || frontmatter.nextflowExecutors || frontmatter.softwareDependencies}
+            {#if frontmatter.category || metadataItems.length > 0}
                 <div class="mt-2 text-muted small">
                     {#if frontmatter.category}
                         <span class="me-3">
@@ -39,30 +41,12 @@
                             {frontmatter.category.map(cat => formatAdvisoryCategory(cat)).join(', ')}
                         </span>
                     {/if}
-                    {#if frontmatter.nextflowVersions}
+                    {#each metadataItems as item}
                         <span class="me-3">
-                            <i class="fas fa-code-branch me-1" aria-hidden="true"></i>
-                            Nextflow {frontmatter.nextflowVersions.join(', ')}
+                            <i class={`fas ${item.icon} me-1`} aria-hidden="true"></i>
+                            {item.label} {item.value}
                         </span>
-                    {/if}
-                    {#if frontmatter.nextflowExecutors}
-                        <span class="me-3">
-                            <i class="fas fa-server me-1" aria-hidden="true"></i>
-                            {frontmatter.nextflowExecutors.join(', ')}
-                        </span>
-                    {/if}
-                    {#if frontmatter.softwareDependencies}
-                        <span>
-                            <i class="fas fa-object-group me-1" aria-hidden="true"></i>
-                            {#if Array.isArray(frontmatter.softwareDependencies)}
-                                {frontmatter.softwareDependencies.map(dep =>
-                                    typeof dep === 'string' ? dep : `${dep.name} ${dep.versions ? '(' + dep.versions.join(', ') + ')' : ''}`
-                                ).join(', ')}
-                            {:else}
-                                {frontmatter.softwareDependencies}
-                            {/if}
-                        </span>
-                    {/if}
+                    {/each}
                 </div>
             {/if}
         </div>
