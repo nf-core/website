@@ -6,8 +6,8 @@ subtitle: Process for proposing major new nf-core projects
 # Summary
 
 1. Got a big idea? Post it on [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) for quick feedback.
-2. Create an issue on nf-core/proposals using the RFC template, explaining **_what_** you want to do.
-3. Once approved by the core team, open a PR with a full RFC text as markdown, extending the issue with details on **_how_** it should be implemented.
+2. Create an **issue** on [nf-core/proposals](https://github.com/nf-core/proposals) using [the RFC template](https://github.com/nf-core/proposals/issues/new?template=new_rfc.yml), explaining **_what_** you want to do.
+3. Once approved by the core team, open a **PR** on [nf-core/proposals](https://github.com/nf-core/proposals) with a full RFC text as markdown, extending the issue with details on **_how_** it should be implemented.
 4. Start development and update the RFC PR as needed as you go along.
 5. Once the new feature ships, the RFC PR is merged and the markdown used for future reference.
 
@@ -26,7 +26,7 @@ The nf-core ‘Request for Comment’ (RFC) process is designed to give the comm
 </dl>
 
 :::note
-**You are not alone as a champion!** If this is your first time writing an RFC or design document, our maintainer team will be available to work with you and guide you through this process.
+**You are not alone as a champion!** If this is your first time writing an RFC or design document, our maintainers team will guide you through this process.
 :::
 
 ## Scope
@@ -57,11 +57,12 @@ Projects that are smaller in scope should typically be raised as a new issue on 
 
 ### Goal
 
-Provide a space for informal, low-barrier discussions around ideas and potential improvements to nf-core. This stage is useful for gathering early feedback and assessing community interest from the community, maintainers, and other stakeholders.
+Provide a space for informal, low-barrier discussions around ideas and potential improvements to nf-core.
+This stage is useful for gathering early feedback and assessing community interest from the community, maintainers, and other stakeholders.
 
 ### Requirements
 
-None! Anyone can suggest anything. Proposals should be applicable to the whole community (not pipeline-specific) and large enough to warrant an RFC and associated discussion (not “fix a typo”).
+None! Anyone can suggest anything. Proposals should be applicable to the whole community (not pipeline-specific) and [large enough to warrant an RFC](#scope) and associated discussion (not “fix a typo”).
 
 :::tip
 A suggestion is optional - you can go straight to step 2, but the requirements here are very few so it can help to gauge initial reactions before putting work into a proposal.
