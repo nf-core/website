@@ -182,7 +182,7 @@ export const writePipelinesJson = async () => {
           continue;
         }
       } catch (err) {
-        console.warn(`Failed to fetch ${branch} branch`, err);
+        console.warn(`Failed to fetch ${branch} branch`, err.response.data.message, err.response.url);
       }
 
       // Check if there is a ruleSet for the branch
@@ -229,7 +229,7 @@ export const writePipelinesJson = async () => {
             branchRules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
           data[`${branch}_branch_protection_enforce_admins`] = branchRules?.data?.enforce_admins?.enabled ?? -1;
         } catch (err) {
-          console.log(`Failed to fetch ${branch} branch protection`, err);
+          console.log(`Failed to fetch ${branch} branch protection`, err.response.data.message, err.response.url);
         }
       } else {
         // Template branch protection rules
@@ -245,7 +245,7 @@ export const writePipelinesJson = async () => {
               ? true
               : false;
         } catch (err) {
-          console.log(`Failed to fetch ${branch} branch push restrictions`, err);
+          console.log(`Failed to fetch ${branch} branch push restrictions`, err.response.data.message, err.response.url);
         }
       }
     }
