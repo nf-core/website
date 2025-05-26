@@ -37496,16 +37496,17 @@
       "type": "module",
       "meta": {
         "name": "cnvpytor_partition",
-        "description": "partitioning read depth histograms",
+        "description": "Calculate segmentation for specified bin size (multiple bin sizes separate by space)",
         "keywords": [
-          "cnv calling",
-          "partition histograms",
-          "read depth"
+          "cnv",
+          "call",
+          "partition",
+          "histogram"
         ],
         "tools": [
           {
             "cnvpytor": {
-              "description": "calling CNVs using read depth",
+              "description": "Calling CNVs using read depth",
               "homepage": "https://github.com/abyzovlab/CNVpytor",
               "documentation": "https://github.com/abyzovlab/CNVpytor",
               "tool_dev_url": "https://github.com/abyzovlab/CNVpytor",
@@ -37537,7 +37538,7 @@
             {
               "bin_sizes": {
                 "type": "string",
-                "description": "list of binsizes separated by space e.g. \"1000 10000\" and \"1000\""
+                "description": "list of binsizes separated by space e.g. \"1000 10000\" default is \"1000\""
               }
             }
           ]
@@ -37552,10 +37553,10 @@
                 }
               },
               {
-                "${pytor.baseName}.pytor": {
+                "${prefix}.pytor": {
                   "type": "file",
                   "description": "pytor file",
-                  "pattern": "*.{pytor}"
+                  "pattern": "*.pytor"
                 }
               }
             ]
