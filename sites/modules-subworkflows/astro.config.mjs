@@ -37,14 +37,15 @@ export default defineConfig({
             provider: fontProviders.fontsource(),
             name: "Inter",
             cssVariable: "--font-inter",
-            fallbacks: ["sans-serif"]
-
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"]
         },
         {
             provider: fontProviders.fontsource(),
             name: "Maven Pro",
             cssVariable: "--font-maven-pro",
-            fallbacks: ["sans-serif"]
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"]
         }]
     },
 	integrations: [
