@@ -5,7 +5,7 @@ subtitle: Process for proposing major new nf-core projects
 
 # Summary
 
-1. Got a big idea? Post it on `#rfc-suggestions` for quick feedback.
+1. Got a big idea? Post it on [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) for quick feedback.
 2. Create an issue on nf-core/proposals using the RFC template, explaining **_what_** you want to do.
 3. Once approved by the core team, open a PR with a full RFC text as markdown, extending the issue with details on **_how_** it should be implemented.
 4. Start development and update the RFC PR as needed as you go along.
@@ -56,7 +56,7 @@ Projects that are smaller in scope should typically be raised as a new issue on 
 A suggestion is optional - you can go straight to step 2, but the requirements here are very few so it can help to gauge initial reactions before putting work into a proposal.
 :::
 
-**Location:** To submit an idea, fill out the form shared in the `#rfc-suggestions` channel on the nf-core Slack. A thread will be created for discussion. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
+**Location:** To submit an idea, fill out the form shared in the [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) channel on the nf-core Slack. A thread will be created for discussion. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
 
 ## Stage 2: Proposal (the “what”)
 
