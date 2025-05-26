@@ -220,8 +220,7 @@ export const writePipelinesJson = async () => {
           });
           data[`${branch}_branch_protection_up_to_date`] = branchRules?.data?.res;
           data[`${branch}_branch_protection_status_checks`] =
-            branchRules?.data?.required_status_checks?.contexts?.includes("nf-core") &&
-            branchRules?.data?.required_status_checks?.contexts?.includes("pre-commit") ? 1 : 0;
+            branchRules?.data?.required_status_checks?.contexts ?? -1;
           data[`${branch}_branch_protection_required_reviews`] =
             branchRules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
           data[`${branch}_branch_protection_require_codeowner_review`] =
