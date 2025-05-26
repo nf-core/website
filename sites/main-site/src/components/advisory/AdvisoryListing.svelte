@@ -5,6 +5,7 @@
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
     import { advisories_types } from "./advisoryTypes";
+    import { formatAdvisoryType, getAdvisoryTypeIcon } from "./advisoryUtils";
 
     interface Props {
         advisories?: CollectionEntry<"advisories">[];
@@ -45,6 +46,13 @@
                 return dateB - dateA; // Sort by most recent first
             }),
     );
+
+    const formattedAdvisoryTypes = advisories_types.map((type) => ({
+        name: type.name,
+        displayName: formatAdvisoryType(type.name),
+        icon: getAdvisoryTypeIcon(type.name),
+        class: type.class,
+    }));
 
     const filterByType = (advisories: CollectionEntry<"advisories">) => {
         if ($CurrentFilter.length === 0) return true;
@@ -93,7 +101,8 @@
 </script>
 
 <div>
-    <FilterBar filter={advisories_types} displayStyle={[]} sortBy={[]} filterName={() => "Advisory type"}></FilterBar>
+    <FilterBar filter={formattedAdvisoryTypes} displayStyle={[]} sortBy={[]} filterName={() => "Advisory type"}
+    ></FilterBar>
     <div class="advisories">
         {#if currentAdvisories.length > 0}
             <div class="mb-3 col-12">
