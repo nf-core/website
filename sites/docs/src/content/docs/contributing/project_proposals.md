@@ -69,7 +69,7 @@ A suggestion is optional - you can go straight to step 2, but the requirements h
 
 ### Location
 
-To submit an idea, fill out the form shared in the [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) channel on the nf-core Slack. A thread will be created for discussion. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
+To suggest an idea, drop a message in the [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) channel on the nf-core Slack. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
 
 # Stage 2: Proposal (the “what”)
 
