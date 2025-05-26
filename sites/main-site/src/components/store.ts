@@ -1,12 +1,20 @@
 import { persistentAtom } from '@nanostores/persistent';
 import { atom } from 'nanostores';
 
-export const CurrentFilter = atom([{ name: '' }]);
-export const Filters = atom([]);
-export const SortBy = atom('');
+export interface FilterItem {
+    name: string;
+    displayName?: string;
+    class?: string;
+    icon?: string;
+    count?: number;
+}
+
+export const CurrentFilter = atom<{ name: string }[]>([{ name: '' }]);
+export const Filters = atom<FilterItem[]>([]);
+export const SortBy = atom<string>('');
 // add persistentatom for display style to be either table or grid
 
-export const DisplayStyle = persistentAtom('DisplayStyle', 'grid', {
+export const DisplayStyle = persistentAtom<string>('DisplayStyle', 'grid', {
     encode(value) {
         return JSON.stringify(value);
     },
@@ -28,8 +36,8 @@ export const Checkboxes = persistentAtom<Array<{id: string, checked: boolean}>>(
     },
 });
 export const currentHeading = atom('');
-export const currentPage = atom(1);
-export const CurrentTab = atom('');
-export const SearchQuery = atom('');
-export const showHidden = atom(false);
-export const showHelp = atom(false);
+export const currentPage = atom<number>(1);
+export const CurrentTab = atom<string>('');
+export const SearchQuery = atom<string>('');
+export const showHidden = atom<boolean>(false);
+export const showHelp = atom<boolean>(false);
