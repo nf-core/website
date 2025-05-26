@@ -17,11 +17,13 @@ The nf-core ‘Request for Comment’ (RFC) process is designed to give the comm
 
 ## Glossary
 
-RFC (Request for Comment):
-: A formal proposal submitted for discussion, typically involving significant changes or new features. An RFC outlines the motivation, requirements, and steps necessary for implementation, and invites feedback and collaboration from the community before a final decision is made**.**
+<dl>
+  <dt>RFC (Request for Comment):</dt>
+  <dd>A formal proposal submitted for discussion, typically involving significant changes or new features. An RFC outlines the motivation, requirements, and steps necessary for implementation, and invites feedback and collaboration from the community before a final decision is made.</dd>
 
-Proposal champion:
-: An individual who takes ownership of advancing a proposal through the RFC process. This role is self-nominated and open to anyone, including both project maintainers and other community members. The champion may be the original author of the proposal or someone who joins later. Responsibilities include drafting the detailed RFC, managing and integrating community feedback, and helping to guide the implementation of the proposal.
+  <dt>Proposal champion:</dt>
+  <dd>An individual who takes ownership of advancing a proposal through the RFC process. This role is self-nominated and open to anyone, including both project maintainers and other community members. The champion may be the original author of the proposal or someone who joins later. Responsibilities include drafting the detailed RFC, managing and integrating community feedback, and helping to guide the implementation of the proposal.</dd>
+</dl>
 
 :::note
 **You are not alone as a champion!** If this is your first time writing an RFC or design document, our maintainer team will be available to work with you and guide you through this process.
@@ -35,34 +37,49 @@ Not every project in nf-core requires an RFC. The process should only be used fo
 - Creation of new nf-core fundamental product / initiative
 - Changes to base dependencies and requirements that span many pipelines
 
+:::tip{collapse title="Examples"}
+
 To help give a better idea of the scale that a request should reach to require an RFC, we provide a few real-life examples here (from before we had an RFC procedure):
 
-- We would like to add a new ‘product’ offered by and for the community in the form of standardised analysis notebooks for routine post-pipeline analyses that require more user experimentation. This would require new subcommands of nf-core/tools, a new template, new repositories, and a new section on the top bar of the nf-core website.
-- I would like to propose a new subcommand to the nf-core tools package, called `nf-core testdatasets`. The purpose of this subcommand is to make it easier for developers to search through the very large and convoluted nf-core/test-datasets repository for suitable test-data files to promote reuse of existing data files.
-- There is a deficiency within the nf-core/modules specifications regarding standardised use of the `ext.args` variable. The use of the naming scheme `args`, `args2`, `args3` are not intuitive for developers to know which `arg` goes to which command in the module. We propose to update the specifications to use the command/subcommand as a suffix instead e.g., `args_samtoolssort`. This would require a change to every module in the repository and improved documentation support.
+- nf-core/reports
+  - We would like to add a new ‘product’ offered by and for the community in the form of standardised analysis notebooks for routine post-pipeline analyses that require more user experimentation. This would require new subcommands of nf-core/tools, a new template, new repositories, and a new section on the top bar of the nf-core website.
+- nf-core/tools test datasets
+  - I would like to propose a new subcommand to the nf-core tools package, called `nf-core testdatasets`. The purpose of this subcommand is to make it easier for developers to search through the very large and convoluted nf-core/test-datasets repository for suitable test-data files to promote reuse of existing data files.
+- Standardise `ext.args` naming
+  - There is a deficiency within the nf-core/modules specifications regarding standardised use of the `ext.args` variable. The use of the naming scheme `args`, `args2`, `args3` are not intuitive for developers to know which `arg` goes to which command in the module. We propose to update the specifications to use the command/subcommand as a suffix instead e.g., `args_samtoolssort`. This would require a change to every module in the repository and improved documentation support.
+
+:::
 
 As a rule of thumb, if your proposal will require changes across two or more different repositories, it is a good candidate for an RFC.
 Projects that are smaller in scope should typically be raised as a new issue on the relevant GitHub repository instead.
 
-# RFC procedure
+# Stage 1: Suggestion (optional)
 
-## Stage 1: Suggestion (optional)
+### Goal
 
-**Goal:** Provide a space for informal, low-barrier discussions around ideas and potential improvements to nf-core. This stage is useful for gathering early feedback and assessing community interest from the community, maintainers, and other stakeholders.
+Provide a space for informal, low-barrier discussions around ideas and potential improvements to nf-core. This stage is useful for gathering early feedback and assessing community interest from the community, maintainers, and other stakeholders.
 
-**Requirements:** None! Anyone can suggest anything. Proposals should be applicable to the whole community (not pipeline-specific) and large enough to warrant an RFC and associated discussion (not “fix a typo”).
+### Requirements
+
+None! Anyone can suggest anything. Proposals should be applicable to the whole community (not pipeline-specific) and large enough to warrant an RFC and associated discussion (not “fix a typo”).
 
 :::tip
 A suggestion is optional - you can go straight to step 2, but the requirements here are very few so it can help to gauge initial reactions before putting work into a proposal.
 :::
 
-**Location:** To submit an idea, fill out the form shared in the [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) channel on the nf-core Slack. A thread will be created for discussion. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
+### Location
 
-## Stage 2: Proposal (the “what”)
+To submit an idea, fill out the form shared in the [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) channel on the nf-core Slack. A thread will be created for discussion. If there is sufficient interest, you’ll be invited to submit a formal proposal in the next stage.
 
-**Goal:** Assess the feasibility of the proposed change with nf-core [maintainers](https://nf-co.re/governance#maintainers) and [core team](https://nf-co.re/governance#core-team). The focus is on the change's expected effect, **not necessarily the specifics of how it is expected to be implemented**.
+# Stage 2: Proposal (the “what”)
 
-**Requirements:** None! However, an existing Slack thread suggestion (Stage 1) may help.
+### Goal
+
+Assess the feasibility of the proposed change with nf-core [maintainers](https://nf-co.re/governance#maintainers) and [core team](https://nf-co.re/governance#core-team). The focus is on the change's expected effect, **not necessarily the specifics of how it is expected to be implemented**.
+
+### Requirements
+
+None! However, an existing Slack thread suggestion (Stage 1) may help.
 
 A proposal is more likely to be accepted if they are:
 
@@ -89,7 +106,7 @@ Once a proposal is accepted, the champion will be invited to write a formal RFC 
 
 A stale, accepted proposal may be rejected retroactively if progress is not made within a reasonable timeframe.
 
-## Stage 3: RFC & Development (the “how”)
+# Stage 3: RFC & Development (the “how”)
 
 ### Goal
 
@@ -122,7 +139,7 @@ The proposal champion may request feedback on updates to their RFC at any point.
 
 If possible and appropriate, proposal champions are encouraged to give a short-talk about the project at a nf-core `#bytesize` talk. This helps to give visibility to an RFC and provide an additional location for discourse around a project. It is not a requirement for RFC progression.
 
-## Stage 4: Ship it! 🚢
+# Stage 4: Ship it! 🚢
 
 ### Goal
 
@@ -140,6 +157,7 @@ Finalized RFCs are managed as Pull Requests in the nf-core/proposals repository.
 - RFCs should be updated with changes to design and implementation details, as needed.
 - Once the project is completed and implemented, the RFC is merged into the repository to signify completion.
 
-## Prior Art / Special Thanks
+# Prior Art / Special Thanks
 
-This process is taken and built on from the [Astro Roadmap](https://github.com/withastro/roadmap). This itself is an amalgamation of [Remix's Open Development process](https://remix.run/blog/open-development) and our previous [RFC process](https://github.com/withastro/roadmap/blob/78b736c28fe487ad02ec76bb038ad1087c471057/README.md), which had been based on the RFC processes of the Vue, React, Rust, and Ember projects.
+This RFC process is largely taken from the [Astro Roadmap](https://github.com/withastro/roadmap), with a degree of customisation for our purposes.
+The Astro RFC process itself is an amalgamation of [Remix's Open Development process](https://remix.run/blog/open-development) and the [previous Astro RFC process](https://github.com/withastro/roadmap/blob/78b736c28fe487ad02ec76bb038ad1087c471057/README.md), which had been based on the RFC processes of the Vue, React, Rust, and Ember projects.
