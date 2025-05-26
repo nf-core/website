@@ -4,6 +4,7 @@
 
     interface FilterItem {
         name: string;
+        displayName?: string;
         class?: string;
         icon?: string;
         count?: number;
@@ -110,8 +111,8 @@
                             {#if fil.icon}
                                 <i class={fil.icon + " me-1"}></i>
                             {/if}
-                            {fil.name}
-                            {#if fil.count >= 0}
+                            {fil.displayName || fil.name}
+                            {#if fil.count !== undefined && fil.count >= 0}
                                 <span class="badge bg-secondary ms-1">{fil.count}</span>
                             {/if}
                         </button>
@@ -143,8 +144,8 @@
                                     {#if fil.icon}
                                         <i class={fil.icon + " fa-fw me-1"}></i>
                                     {/if}
-                                    {fil.name}
-                                    {#if fil.count >= 0}
+                                    {fil.displayName || fil.name}
+                                    {#if fil.count !== undefined && fil.count >= 0}
                                         <span class="badge bg-secondary ms-1">{fil.count}</span>
                                     {/if}
                                 </div>
