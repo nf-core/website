@@ -377,7 +377,7 @@ pipelines.sort((a, b) => {
                                 {getCell(
                                     pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
                                     pipeline.repository_url + "/settings/branches",
-                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass`,
+                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
                                 )}
                                 {getCell(
                                     !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],

@@ -97,8 +97,9 @@ export const writePipelinesJson = async () => {
 
   let bar = new ProgressBar("  fetching pipelines [:bar] :percent :etas", { total: names.length });
 
-  // go through names and add or update pipelines in pipelines.json
-  for (const name of names.flat()) {
+  // Process pipelines with controlled concurrency to avoid rate limits
+  const CONCURRENCY_LIMIT = 5; // Process 5 pipelines concurrently
+  const processPipeline = async (name) => {
     // get the details from the github repo description
     const data = await octokit.rest.repos
       .get({
@@ -177,6 +178,16 @@ export const writePipelinesJson = async () => {
             }
             throw err;
           });
+          if (branch === "main" && name === "callingcards") {
+            console.log("branch_exists", branch_exists);
+            console.log(
+              await octokit.rest.repos.getBranch({
+                owner: "nf-core",
+                repo: name,
+                branch: branch,
+              }),
+            );
+          }
         data[`${branch}_branch_exists`] = branch_exists;
         if (!branch_exists) {
           continue;
@@ -286,15 +297,15 @@ export const writePipelinesJson = async () => {
     releases = releases.filter((release) => release.tag_name !== "" && release.draft === false);
 
     // remove releases that are already in the pipelines.json file
-    const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
+    const pipelineIndex = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     let new_releases = releases;
 
     data["released_after_tools"] =
       new Date(latest_tools_release_date.valueOf()) < new Date(releases[0]?.published_at).valueOf();
 
     let old_releases = [];
-    if (index > -1) {
-      old_releases = pipelines.remote_workflows[index].releases.filter((release) => release.tag_name !== "dev");
+    if (pipelineIndex > -1) {
+      old_releases = pipelines.remote_workflows[pipelineIndex].releases.filter((release) => release.tag_name !== "dev");
       const existing_releases = old_releases.map((release) => release.tag_name);
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
@@ -375,7 +386,7 @@ export const writePipelinesJson = async () => {
     // id 'nf-validation' // Validation of pipeline parameters and creation of an input channel from a sample sheet
     // }
     for (const branch of ["master", "main", "dev"]) {
-      if(!`${branch}_branch_exists`) {
+      if(!data[`${branch}_branch_exists`]) {
         continue;
       }
       const nextflowConfig = await getGitHubFile(name, "nextflow.config", branch).then(
@@ -388,12 +399,11 @@ export const writePipelinesJson = async () => {
               .filter((line) => line.includes("id"))
               .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]) : [];
 
-            // Parse manifest
-            const parsedManifest = response.match(/manifest\s*{([^}]*)}/s);
+            // get default branch from manifest
             const manifest = {};
-            if (parsedManifest) {
-              const defaultBranchMatch = parsedManifest[0].match(/defaultBranch\s*=\s*['"]([^'"]+)['"]/);
-              manifest.defaultBranch = defaultBranchMatch;
+            const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
+            if (defaultBranchMatch) {
+              manifest.defaultBranch = defaultBranchMatch[1];
             }
 
             return { plugins: pluginsList, manifest };
@@ -490,13 +500,29 @@ export const writePipelinesJson = async () => {
       pipelines.remote_workflows = [];
     }
     // update in pipelines.remote_workflows if entry with name exists or add it otherwise
+    const index = pipelines.remote_workflows.findIndex((workflow) => workflow.name === name);
     if (index > -1) {
       pipelines.remote_workflows[index] = data;
     } else {
       pipelines.remote_workflows.push(data);
     }
     bar.tick();
-  }
+    return data;
+  };
+
+  // Process pipelines with controlled concurrency
+  const processInBatches = async (items, batchSize) => {
+    const results = [];
+    for (let i = 0; i < items.length; i += batchSize) {
+      const batch = items.slice(i, i + batchSize);
+      const batchResults = await Promise.all(batch.map(processPipeline));
+      results.push(...batchResults);
+    }
+    return results;
+  };
+
+  // Process all pipelines with controlled concurrency
+  await processInBatches(names.flat(), CONCURRENCY_LIMIT);
 
   // sort the pipelines by name
   pipelines.remote_workflows.sort((a, b) => {
