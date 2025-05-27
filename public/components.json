@@ -37496,16 +37496,17 @@
       "type": "module",
       "meta": {
         "name": "cnvpytor_partition",
-        "description": "partitioning read depth histograms",
+        "description": "Calculate segmentation for specified bin size (multiple bin sizes separate by space)",
         "keywords": [
-          "cnv calling",
-          "partition histograms",
-          "read depth"
+          "cnv",
+          "call",
+          "partition",
+          "histogram"
         ],
         "tools": [
           {
             "cnvpytor": {
-              "description": "calling CNVs using read depth",
+              "description": "Calling CNVs using read depth",
               "homepage": "https://github.com/abyzovlab/CNVpytor",
               "documentation": "https://github.com/abyzovlab/CNVpytor",
               "tool_dev_url": "https://github.com/abyzovlab/CNVpytor",
@@ -37537,7 +37538,7 @@
             {
               "bin_sizes": {
                 "type": "string",
-                "description": "list of binsizes separated by space e.g. \"1000 10000\" and \"1000\""
+                "description": "list of binsizes separated by space e.g. \"1000 10000\" default is \"1000\""
               }
             }
           ]
@@ -37552,10 +37553,10 @@
                 }
               },
               {
-                "${pytor.baseName}.pytor": {
+                "${prefix}.pytor": {
                   "type": "file",
                   "description": "pytor file",
-                  "pattern": "*.{pytor}"
+                  "pattern": "*.pytor"
                 }
               }
             ]
@@ -119740,6 +119741,22 @@
             ]
           },
           {
+            "germline": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}_germline": {
+                  "type": "file",
+                  "description": "Germline MSI regions detected."
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
@@ -172503,10 +172520,10 @@
                 }
               },
               {
-                "output/*_R*.fastq.gz": {
+                "${prefix}/*_R*.fastq.gz": {
                   "type": "file",
                   "description": "Demultiplexed per-sample FASTQ files",
-                  "pattern": "output/*_R*.fastq.gz"
+                  "pattern": "${prefix}/*_R*.fastq.gz"
                 }
               }
             ]
@@ -172520,10 +172537,10 @@
                 }
               },
               {
-                "output/metrics.tsv": {
+                "${prefix}/metrics.tsv": {
                   "type": "file",
                   "description": "Demultiplexing summary stats; control_reads_omitted failing_reads_omitted, total_templates\n",
-                  "pattern": "output/metrics.tsv"
+                  "pattern": "${prefix}/metrics.tsv"
                 }
               }
             ]
@@ -172537,10 +172554,10 @@
                 }
               },
               {
-                "output/most_frequent_unmatched.tsv": {
+                "${prefix}/most_frequent_unmatched.tsv": {
                   "type": "file",
                   "description": "File containing approx. counts of barcodes that did not match the expected barcodes\n",
-                  "pattern": "output/most_frequence_unmatched.tsv"
+                  "pattern": "${prefix}/most_frequence_unmatched.tsv"
                 }
               }
             ]
@@ -172554,10 +172571,10 @@
                 }
               },
               {
-                "output/per_project_metrics.tsv": {
+                "${prefix}/per_project_metrics.tsv": {
                   "type": "file",
                   "description": "Summary metrics for samples in the same project",
-                  "pattern": "output/per_project_metrics.tsv"
+                  "pattern": "${prefix}/per_project_metrics.tsv"
                 }
               }
             ]
@@ -172571,10 +172588,10 @@
                 }
               },
               {
-                "output/per_sample_metrics.tsv": {
+                "${prefix}/per_sample_metrics.tsv": {
                   "type": "file",
                   "description": "Summary metrics for each sample",
-                  "pattern": "output/per_sample_metrics.tsv"
+                  "pattern": "${prefix}/per_sample_metrics.tsv"
                 }
               }
             ]
@@ -172588,10 +172605,10 @@
                 }
               },
               {
-                "output/sample_barcode_hop_metrics.tsv": {
+                "${prefix}/sample_barcode_hop_metrics.tsv": {
                   "type": "file",
                   "description": "File output for dual-indexed runs with barcodes which are unexpected combinations of\nexpected barcodes e.g. expected barcodes = AA-TT/GG-CC and observed barcodes = AA-CC/GG-TT\n",
-                  "pattern": "output/sample_barcode_hop_metrics/tsv"
+                  "pattern": "${prefix}/sample_barcode_hop_metrics/tsv"
                 }
               }
             ]
