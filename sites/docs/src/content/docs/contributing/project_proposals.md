@@ -121,7 +121,7 @@ A previously accepted proposal from Stage 2 and a confirmed proposal champion to
 
 RFCs are submitted as GitHub Pull Requests to the nf-core/proposals repository.
 
-- [See all in-progress RFCs](https://github.com/withastro/roadmap/pulls)
+- [See all in-progress RFCs](https://github.com/nf-core/proposals/pulls)
 - [See all finished RFCs](https://github.com/withastro/roadmap/tree/main/proposals)
 
 ### What to Expect
