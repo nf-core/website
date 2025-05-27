@@ -1,6 +1,6 @@
 ---
 title: meta-omics nf-test fest
-subtitle: Hackathon for implementing nf-test in meta-omics related pipelines!
+subtitle: Hackathon to implement nf-test in meta-omics related pipelines!
 type: training
 startDate: "2025-06-11"
 startTime: "09:00+02:00"
