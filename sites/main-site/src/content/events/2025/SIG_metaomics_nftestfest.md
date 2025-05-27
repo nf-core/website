@@ -25,14 +25,14 @@ We will be:
 - Trading reviews
 - Generally helping each other out with implementation (such as with generating snapshots)
 
-All with the support of nf-test experts from within the nf-core community!
+All with the support of nf-test experts from within the nf-core community, including Maxime Garcia and Sateesh Peri!
 
 This event can be for implementing nf-test in **any pipeline**, as long as it is related to meta-omics in some way.
 This means official nf-core or non-nf-core, internal or public is valid!
 
 The event is being organised by the [meta-omics](https://nf-co.re/special-interest-groups/meta-omics) [special interest group](https://nf-co.re/special-interest-groups), and supported financially by the [NFDI4Microbiota](https://nfdi4microbiota.de/) consortium.
 
-If you have any further questions, please contact the James Fellows Yates via the [meta-omics Slack channel](https://nfcore.slack.com/archives/C070369GP7T) on the nf-core slack.
+If you have any further questions, please contact the James Fellows Yates or Daniel Lundin via the [meta-omics Slack channel](https://nfcore.slack.com/archives/C070369GP7T) on the nf-core slack.
 
 ## Registration
 
