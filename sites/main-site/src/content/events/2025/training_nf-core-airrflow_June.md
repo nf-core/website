@@ -3,9 +3,9 @@ title: Introduction to nf-core/airrflow
 subtitle: Introductory practical workshop to nf-core/airrflow
 type: training
 startDate: "2025-06-12"
-startTime: "10:00 ET"
+startTime: "10:00-4"
 endDate: "2025-06-12"
-endTime: "11:30 ET"
+endTime: "11:30-4"
 locations:
   - name: https://www.zoom.com
     links: "#organisational-details"
