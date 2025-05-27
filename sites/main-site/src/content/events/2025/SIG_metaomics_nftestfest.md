@@ -3,12 +3,11 @@ title: meta-omics nf-test fest
 subtitle: Hackathon for implementing nf-test in meta-omics related pipelines!
 type: training
 startDate: "2025-06-11"
-startTime: "09:00 CEST"
+startTime: "09:00+02:00"
 endDate: "2025-06-12"
-endTime: "17:00 CEST"
+endTime: "17:00+02:00"
 locations:
   - name: gather.town
-    links: "#organisational-details"
 ---
 
 The nf-core metagenomics community will be coming together for for a two day hackathon to implement nf-test in [meta-omics](https://nf-co.re/special-interest-groups/meta-omics) related pipelines!
