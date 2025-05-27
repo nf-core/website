@@ -8,7 +8,7 @@ endDate: "2025-06-12"
 endTime: "11:30-04:00"
 locations:
   - name: https://www.zoom.com
-    links: "#organisational-details"
+    links: "#registration"
 ---
 
 The developers of the [nf-core/airrflow](https://nf-co.re/airrflow) workflow for BCR and TCR data analysis are organizing a virtual workshop to introduce researchers to the workflow.
