@@ -7,7 +7,7 @@ startTime: "10:00-04:00"
 endDate: "2025-06-12"
 endTime: "11:30-04:00"
 locations:
-  - name: https://www.zoom.com
+  - name: Virtual (zoom)
     links: "#registration"
 ---
 
