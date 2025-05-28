@@ -35780,7 +35780,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phyloplace",
@@ -35892,7 +35892,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -41763,7 +41763,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -41858,7 +41858,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -54819,7 +54819,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfamilies",
@@ -54931,7 +54931,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -55812,7 +55812,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -56981,7 +56981,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -60390,7 +60390,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60562,7 +60562,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60696,7 +60696,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -97063,7 +97063,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -101608,7 +101608,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -106027,7 +106027,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pathogensurveillance",
@@ -106145,7 +106145,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -106633,7 +106633,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -120704,7 +120704,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinannotator",
@@ -121353,7 +121353,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -122317,7 +122317,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -138668,7 +138668,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "scnanoseq",
@@ -138760,7 +138760,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "scnanoseq",
@@ -164459,9 +164459,15 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about the fasta file\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
-                "description": "Optional fasta reference file. This file is needed to create a VCF file and to evaluate predicted deletions.",
+                "description": "The reference FASTA file (mandatory when using CRAM files)",
                 "pattern": "*.{fasta,fa}"
               }
             }
@@ -164579,7 +164585,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -164599,6 +164605,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about the fasta file\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "The reference FASTA file (mandatory when using CRAM files)",
@@ -164613,7 +164625,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -188529,7 +188541,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -188662,7 +188674,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -188800,7 +188812,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -188884,7 +188896,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189025,7 +189037,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189166,7 +189178,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189251,7 +189263,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189398,7 +189410,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -195873,7 +195885,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -196453,7 +196465,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -214135,7 +214147,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
@@ -214528,7 +214540,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
@@ -214905,7 +214917,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
