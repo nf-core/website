@@ -148786,14 +148786,16 @@
               "statfile": {
                 "type": "file",
                 "description": "A Purge dups statistic file",
-                "pattern": "*.stat"
+                "pattern": "*.stat",
+                "ontologies": []
               }
             },
             {
               "cutoff": {
                 "type": "file",
                 "description": "A Purge dups cutoff file",
-                "pattern": "*.cutoffs"
+                "pattern": "*.cutoffs",
+                "ontologies": []
               }
             }
           ]
@@ -148811,7 +148813,8 @@
                 "*.png": {
                   "type": "file",
                   "description": "A png file of the read depth coverage.",
-                  "pattern": "*.png"
+                  "pattern": "*.png",
+                  "ontologies": []
                 }
               }
             ]
@@ -148822,7 +148825,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -180597,6 +180605,14 @@
                 "pattern": "*.fasta"
               }
             }
+          ],
+          [
+            {
+              "db_type": {
+                "type": "string",
+                "description": "Type of database to use, either 'gene' or 'mlst'"
+              }
+            }
           ]
         ],
         "output": [
@@ -194367,6 +194383,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "genome": {
                 "type": "file",
                 "description": "A fasta file of reference genome",
@@ -194375,6 +194397,12 @@
             }
           ],
           [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
             {
               "pickle": {
                 "type": "file",
@@ -194468,6 +194496,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "A fasta file of the genome to use as reference for mapping",
@@ -194476,6 +194510,12 @@
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing gtf information\ne.g. [ id:'test' ]\n"
+              }
+            },
             {
               "gtf": {
                 "type": "file",
@@ -194487,12 +194527,11 @@
         ],
         "output": [
           {
-            "index": [
+            "database": [
               {
-                "*.pickle": {
-                  "type": "file",
-                  "description": "Index file",
-                  "pattern": "*.pickle"
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -194500,6 +194539,23 @@
                   "type": "file",
                   "description": "Index database",
                   "pattern": "*.db"
+                }
+              }
+            ]
+          },
+          {
+            "pickle": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.pickle": {
+                  "type": "file",
+                  "description": "Index file",
+                  "pattern": "*.pickle"
                 }
               }
             ]
