@@ -16,7 +16,7 @@ stickersCollection = stickersCollection.filter(
         ),
 );
 
-const CATEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams"];
+const CATEGORIES = ["pipeline", "hero", "hackathon", "champion", "mentorship", "team"];
 // sort stickersCollection by category
 stickersCollection.sort((a, b) => {
     const aIndex = CATEGORIES.indexOf(a.rendered?.metadata?.category as string);
