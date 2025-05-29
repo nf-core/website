@@ -169782,10 +169782,6 @@
       },
       "pipelines": [
         {
-          "name": "createtaxdb",
-          "version": "dev"
-        },
-        {
           "name": "smrnaseq",
           "version": "2.4.0"
         }
@@ -213280,15 +213276,15 @@
             }
           },
           {
-            "val_discard_trimmed": {
-              "type": "boolean",
-              "description": "Structure: val(discard_trimmed)\nSpecify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
-            }
-          },
-          {
             "val_save_trimmed_fail": {
               "type": "boolean",
               "description": "Structure: val(save_trimmed_fail)\nSpecify true to save files that failed to pass trimming thresholds ending in `*.fail.fastq.gz`\n"
+            }
+          },
+          {
+            "val_discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "Structure: val(discard_trimmed)\nSpecify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
             }
           },
           {
