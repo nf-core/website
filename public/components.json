@@ -195735,15 +195735,34 @@
               "reads": {
                 "type": "file",
                 "description": "FASTQ or FASTQ.GZ file, list of 2 files for paired-end data",
-                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'Hg38' ]\n"
+              }
+            },
+            {
               "reference": {
                 "type": "file",
                 "description": "Reference genome file"
+              }
+            }
+          ],
+          [
+            {
+              "technology": {
+                "type": "string",
+                "description": "Technology to pass to universc `--technology argument`"
               }
             }
           ]
@@ -195753,16 +195772,15 @@
             "outs": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Files containing the outputs of Cell Ranger",
-                  "pattern": "sample-${meta.id}/outs/*"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "sample-${meta.id}/outs/*": {
+                "${prefix}/outs/*": {
                   "type": "file",
                   "description": "Files containing the outputs of Cell Ranger",
-                  "pattern": "sample-${meta.id}/outs/*"
+                  "pattern": "${prefix}/outs/*"
                 }
               }
             ]
@@ -195773,7 +195791,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
