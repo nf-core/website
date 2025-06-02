@@ -213,3 +213,11 @@ This file often has merge conflicts during template updates because it typically
 #### Resolution
 
 Make sure to keep all your custom changes.
+
+## `conf/base.config`
+
+We added the `withLabel: process_gpu` config to the base config.
+
+#### Resolution
+
+Accept the incoming gpu profile but keep your customizations.
