@@ -6,15 +6,17 @@ menu:
     weight: 10
 ---
 
-> Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: **_"Getting started with nf-core"_** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
->
-> Duration: **1hr 30min**
->
-> Updated for the nf-core Hackathon 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))_.
->
-> Updated for the Elixir workshop on November 2021 _(see [event](https://nf-co.re/events/2021/elixir-workflow-training-event))_.
->
-> Updated during the March 2022 hackathon.
+:::warning{title = "Last updated"}
+Material originally written for the Nextflow Camp 2019, Barcelona 2019-09-19: **_"Getting started with nf-core"_** _(see [programme](https://www.nextflow.io/nfcamp/2019/phil2.html))._
+
+Duration: **1hr 30min**
+
+Updated:
+
+- nf-core Hackathon March 2020, London 2020-03 _(see [event](https://nf-co.re/events#hackathon-francis-crick-2020))_.
+- Elixir workshop November 2021 _(see [event](https://nf-co.re/events/2021/elixir-workflow-training-event))_.
+- nf-core Hackathon March 2022, Online _(see [event](https://nf-co.re/events/2022/hackathon-march-2022/))_.
+  :::
 
 <iframe src="https://www.slideshare.net/slideshow/embed_code/key/v7hOzFwZTgD7o0?hostedIn=slideshare&page=upload" width="595" height="485" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" style="border:1px solid #CCC; border-width:1px; margin-bottom:5px; max-width: 100%;" allowfullscreen> </iframe>
 
@@ -46,7 +48,7 @@ _nf-core_ is a community-led project to develop a set of best-practice pipelines
 The aim of _nf-core_ is to develop with the community over GitHub and other communication channels to build a pipeline to solve a particular analysis task.
 We therefore encourage cooperation and adding new features to existing pipelines.
 Before considering starting a new pipeline, have a look if a pipeline already exists performing a similar task and consider contributing to that one instead.
-If there is no pipeline for the analysis task at hand, let us know about your new pipeline plans on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel.
+If there is no pipeline for the analysis task at hand, let us know about your new pipeline plans on Slack in the [nf-core/proposals](https://github.com/nf-core/proposals) repository.
 
 Pipelines are governed by a set of guidelines, enforced by community code reviews and automatic linting (code testing).
 A suite of helper tools aim to help people run and develop pipelines.
@@ -395,7 +397,7 @@ Subworkflows should be shipped with the pipeline implementation and if required 
 
 Your pipeline is written and ready to go!
 Before you can release it with _nf-core_ there are a few steps that need to be done.
-First, tell everyone about it on Slack in the [`#new-pipelines`](https://nfcore.slack.com/channels/new-pipelines) channel.
+First, tell everyone about it on Slack in your dedicated pipeline channel on Slack.
 Hopefully you've already done this before you spent lots of time on your pipeline, to check that there aren't other similar efforts happening elsewhere.
 Next, you need to be a member of the [nf-core GitHub organisation](https://github.com/nf-core/).
 You can find instructions for how to do this at [https://nf-co.re/join](https://nf-co.re/join).

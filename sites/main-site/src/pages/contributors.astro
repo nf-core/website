@@ -159,6 +159,36 @@ const headings = [
                                         {institution.contact_github.replace("https://github.com/", "")}
                                     </a>
                                 )}
+
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a
+                                        href={institution.bluesky}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="logos:bluesky" color="#1185fe" size="15px" />{" "}
+                                        {institution.bluesky
+                                            .replace("https://bsky.app/profile/", "")
+                                            .replace(".bsky.social", "")}
+                                    </a>
+                                )}
+                                {institution.linkedin && (
+                                    <a
+                                        href={institution.linkedin}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="mdi:linkedin" color="#0077b5" size="15px" />{" "}
+                                        {institution.linkedin
+                                            .replace("https://www.linkedin.com/", "")
+                                            .replace("in/", "")
+                                            .replace("company/", "")
+                                            .replace("/$", "")}
+                                    </a>
+                                )}
                                 {institution.twitter && (
                                     <a
                                         href={"https://twitter.com/" + institution.twitter}
@@ -166,17 +196,6 @@ const headings = [
                                     >
                                         <i class="fab fa-twitter" />{" "}
                                         {institution.twitter.replace("https://twitter.com/", "")}
-                                    </a>
-                                )}
-                                {institution.mastodon && (
-                                    <a href={institution.mastodon} class="">
-                                        <i class="fab fa-mastodon" /> {institution.mastodon}
-                                    </a>
-                                )}
-                                {institution.bluesky && (
-                                    <a href={institution.bluesky} class="">
-                                        <Icon name="simple-icons:bluesky" color="#1185fe" size="30px" />{" "}
-                                        {institution.bluesky}
                                     </a>
                                 )}
                             </div>
@@ -285,5 +304,9 @@ const headings = [
     .institution-logo {
         max-width: 40%;
         max-height: 5rem;
+    }
+    :global([data-icon="logos:bluesky"] path),
+    :global([data-icon="mdi:linkedin"] path) {
+        fill: var(--bs-body-color);
     }
 </style>
