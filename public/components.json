@@ -31228,6 +31228,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
               "bcl": {
                 "type": "file",
                 "description": "Base call files",
@@ -31247,30 +31253,29 @@
         ],
         "output": [
           {
+            "fastq": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/outs/fastq_path/*.fastq.gz": {
+                  "type": "file",
+                  "description": "Unaligned FastQ files",
+                  "pattern": "${prefix}/outs/fastq_path/*.fastq.gz"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
                   "pattern": "versions.yml"
-                }
-              }
-            ]
-          },
-          {
-            "fastq": [
-              {
-                "${bcl.getSimpleName(": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
-                }
-              },
-              {
-                "/*.fastq.gz": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
                 }
               }
             ]
@@ -102583,19 +102588,31 @@
             {
               "contrast_variable": {
                 "type": "string",
-                "description": "The column in the sample sheet that should be used to define groups for\ncomparison\n"
+                "description": "(Optional, required if reference and target are used) The column in the sample sheet that should be used to define groups for\ncomparison\n"
               }
             },
             {
               "reference": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
+                "description": "(Optional, required if contrast_variable and target are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
               }
             },
             {
               "target": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+                "description": "(Optional, required if contrast_variable and reference are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+              }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Optional, requires comparison if used) R formula string used for modeling, e.g. '~ treatment'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional, mandatory if formula is used) Literal string passed to `limma::makeContrasts`, e.g. 'treatmentmCherry'."
               }
             }
           ],
