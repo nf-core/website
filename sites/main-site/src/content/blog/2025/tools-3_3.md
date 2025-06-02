@@ -114,8 +114,8 @@ You can find the complete changelog and technical details [on GitHub](https://gi
 
 # Getting help to update your pipeline template
 
-In the [changelog](https://github.com/nf-core/tools/releases/tag/3.3.0), you can see a list of changes included to this template update, under the section `Template`.
-We have recopilated the most common merge conflicts that you may find to give you advice on how to solve them.
+All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/3.3.0).
+Below, we have collected the most common merge conflicts that you may find and how to resolve them.
 
 ## `.editorconfig`
 
