@@ -103,15 +103,10 @@ See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/n
 
 ## Installing subworkflows with components from different remotes
 
-Since we added the ability to host nf-core components (modules and subworkflows) in private repositories,
-several users requested the possibility to use components from different repositories.
-This means, before, when you installed a subworkflow from repository X, all components used by this subworkflow must be from repository X.
-The suggested change was to allow subworkflow from repository X to use components from repository X, Y, etc.
+Previously, when installing a subworkflow from repository X, all its components had to be from the same repository.
+This release adds support for subworkflows that use components from multiple repositories.
 
-After a lot of planning and discussion, [João Cavalcante](https://github.com/jvfe) started to work on this feature,
-and with this release of nf-core/tools we included the possibility to install subworkflows which use components from multiple repositories!
-
-Thank you to everyone who contributed to this with great feedback.
+Thanks to [João Cavalcante](https://github.com/jvfe) for implementing this feature and to everyone who provided feedback.
 
 ### Changelog
 
