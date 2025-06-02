@@ -1,18 +1,18 @@
 ---
-title: "nf-core/tools - 3.3.0"
+title: "nf-core/tools - 3.3"
 subtitle: "An nf-testic release"
 headerImage: "https://plus.unsplash.com/premium_photo-1676036793514-a637b11f392a"
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white."
 pubDate: 2025-06-02T14:00:00+01:00
 authors:
-    - "mashehu"
-    - "mirpedrol"
+  - "mashehu"
+  - "mirpedrol"
 label:
-    - "tools"
+  - "tools"
 maxHeadingDepth: 3
 ---
 
-This release brings exciting new features focused on nf-test integration, test dataset management, and improved resource handling. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
+This release brings exciting new features focused on nf-test integration, test dataset management and modules from different repositories in subworkflows. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
 
 # Highlights
 
@@ -47,20 +47,20 @@ If you do not want to use nf-test for your pipeline, add the following to the `.
 
 ```yaml
 skip_features:
-    - "nf-test"
+  - "nf-test"
 ```
 
 Additionally, to ignore the linting checks for nf-test, add add the following to the `.nf-core.yml` file:
 
 ```yaml
 lint:
-    files_exist:
-        - ".github/workflows/nf-test.yml"
-        - ".github/actions/get-shards/action.yml"
-        - ".github/actions/nf-test/action.yml"
-        - "nf-test.config"
-        - "tests/default.nf.test"
-    nf_test_content: False
+  files_exist:
+    - ".github/workflows/nf-test.yml"
+    - ".github/actions/get-shards/action.yml"
+    - ".github/actions/nf-test/action.yml"
+    - "nf-test.config"
+    - "tests/default.nf.test"
+  nf_test_content: False
 ```
 
 :::
@@ -87,17 +87,17 @@ This new command provides streamlined functionality for:
 
 - **Dataset discovery**: Easily search and explore available test datasets
 
-    List all datasets for a specific branch:
+  List all datasets for a specific branch:
 
-    ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+  ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
 
-    Search for a specific term and get more detailed information about the dataset:
+  Search for a specific term and get more detailed information about the dataset:
 
-    ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+  ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
 
 - **Dataset integration**: Easily use test datasets in your pipeline by providing the download URL
 
-    ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+  ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
 See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the [`test-datasets search` command](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
@@ -129,11 +129,11 @@ You can delete the `.editorconfig` file and make sure that you accept the change
 :::
 
 2. If your pipeline added nf-test before this template update, you might see some conflicts in the following files:
-    - `.github/actions/nf-test/action.yml`
-    - `.github/workflows/nf-test.yml`
-    - `.nftignore`
-    - `tests/nextflow.config`
-    - `nf-test.config`
+   - `.github/actions/nf-test/action.yml`
+   - `.github/workflows/nf-test.yml`
+   - `.nftignore`
+   - `tests/nextflow.config`
+   - `nf-test.config`
 
 :::tip
 It is a good idea to accept the changes made by the template, since they might contain updates and bug fixes that we have found thanks to the pipelines that added nf-test before.
