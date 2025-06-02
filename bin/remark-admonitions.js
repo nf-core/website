@@ -42,6 +42,29 @@ const acceptableAdmonitionTypes = {
  */
 export default function admonitionsPlugin() {
   return (tree) => {
+    // First pass: identify and mark version number patterns
+    visit(tree, (node, index, parent) => {
+      if (node.type === 'textDirective' && parent && index !== null) {
+        // Check if this could be part of a string
+
+          const previousNode = parent.children[index - 1];
+
+          if (previousNode && previousNode.type === 'text') {
+            // Mark these nodes for removal
+            node.remove = true;
+            previousNode.remove = true;
+
+            // Insert a text node with the combined string
+            parent.children.splice(index - 1, 2, {
+              type: 'text',
+              value: `${previousNode.value}:${node.name}`
+            });
+          }
+        }
+      }
+    );
+
+    // Second pass: handle actual admonitions and remove marked nodes
     visit(tree, (node) => {
       if (node.type === 'textDirective' || node.type === 'leafDirective' || node.type === 'containerDirective') {
         if (!Object.keys(acceptableAdmonitionTypes).includes(node.name)) {
