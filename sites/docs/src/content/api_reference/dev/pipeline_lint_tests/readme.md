@@ -23,6 +23,11 @@ This badge are a markdown image `![alt-text](<image URL>)` _inside_ a markdown l
 
 To disable this test, add the following to the pipeline’s `.nf-core.yml` file:
 
+```yaml
+lint:
+  readme: False
+```
+
 To disable subsets of these tests, add the following to the pipeline’s `.nf-core.yml` file:
 
 ```yaml

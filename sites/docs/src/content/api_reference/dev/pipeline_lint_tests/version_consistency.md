@@ -13,7 +13,7 @@ This lint fetches the pipeline version number from three possible locations:
 
 - The pipeline config, `manifest.version`
 - The docker container in the pipeline config, `process.container`
-  > - Some pipelines may not have this set on a pipeline level. If it is not found, it is ignored.
+  > Some pipelines may not have this set on a pipeline level. If it is not found, it is ignored.
 - `$GITHUB_REF`, if it looks like a release tag (`refs/tags/<something>`)
 
 The test then checks that:
