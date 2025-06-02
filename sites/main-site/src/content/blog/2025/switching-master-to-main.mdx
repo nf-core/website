@@ -1,0 +1,35 @@
+---
+title: "nf-core supports now `main` branch names"
+subtitle: "Announcing the possibility to change a pipeline default branch to main"
+pubDate: 2025-05-19T12:00:00+01:00
+headerImage: "https://images.unsplash.com/photo-1548710332-f65936b2ba27"
+headerImageAlt: "branch with green leave"
+embedHeaderImage: true
+authors:
+    - "mirpedrol"
+    - "jfy133"
+label:
+    - "pipelines"
+---
+
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+# nf-core stays woke
+
+We are happy to announce that nf-core is rolling out full support for the use of `main` branches in nf-core pipeline GitHub repositories!
+
+This brings us in-line with the rest of the GitHub programming community since the switch to the GitHub default back in [2020](https://github.blog/changelog/2020-10-01-the-default-branch-for-newly-created-repositories-is-now-main/).
+
+We recognise that changing the primary branch that is critical for the pulling of any Nextflow pipelines can feel intimidating.
+
+So for Gen Z we have made a short video and for Millenials and older, a documentation page describing the steps to switch the default branch of existing pipelines:
+
+- Watch the video:
+
+<YouTube id="WhpPh8PvZp0" poster="https://i.ytimg.com/vi/WhpPh8PvZp0/maxresdefault.jpg" />
+
+- Read the [Documentation](https://nf-co.re/docs/tutorials/pipelines/switching_master_to_main)
+
+For new pipelines, you can already select the primary branch on repository creation using `nf-core pipelines create`.
+
+If you have any problems, please shout on [#tools channel](https://nfcore.slack.com/archives/CE5LG7WMB) on slack.

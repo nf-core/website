@@ -15,6 +15,7 @@ label:
 
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import { Image } from "astro:assets";
+import merged from "@assets/images/blog/springcleaning2025/maintainers-team-merged-stats.png";
 
 Last week, the maintainers team volunteered their time on behalf of the community to spring clean the whole common nf-core ecosystem in preparation for the upcoming hackathon!
 
@@ -36,7 +37,10 @@ Prior the spring cleaning, we split up into different groups that were focused o
 
 The teams were extremely productive throughout the week, as can be seen just with merged PRs alone from this [pullpo.io](https://pullpo.io/) graph:
 
-![Bar chart of number of PRs merged by the maintainers team between March 10th-16th, with a total of 77 merged PRs throughout the week](src/assets/images/blog/springcleaning2025/maintainers-team-merged-stats.png)
+<Image
+    src={merged}
+    alt="Bar chart of number of PRs merged by the maintainers team between March 10th-16th, with a total of 77 merged PRs throughout the week"
+/>
 
 ## Progress
 
