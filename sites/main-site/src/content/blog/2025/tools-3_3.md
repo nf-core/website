@@ -122,78 +122,93 @@ You can find the complete changelog and technical details [on GitHub](https://gi
 In the [changelog](https://github.com/nf-core/tools/releases/tag/3.3.0), you can see a list of changes included to this template update, under the section `Template`.
 We have recopilated the most common merge conflicts that you may find to give you advice on how to solve them.
 
-1. The `.editorconfig` file was deleted - The same functionality was replaced by `.pre-commit-config.yaml` changes, adding the `trailing-whitespace` and `end-of-file-fixer` hooks.
+## `.editorconfig`
 
-:::tip
+The `.editorconfig` file was deleted - The same functionality was replaced by adding the `trailing-whitespace` and `end-of-file-fixer` hooks,
+and with additional settings in `.prettierrc.yml`.
+
+#### Resolution
+
 You can delete the `.editorconfig` file and make sure that you accept the changes in `.pre-commit-config.yaml`.
-:::
 
-2. If your pipeline added nf-test before this template update, you might see some conflicts in the following files:
-   - `.github/actions/nf-test/action.yml`
-   - `.github/workflows/nf-test.yml`
-   - `.nftignore`
-   - `tests/nextflow.config`
-   - `nf-test.config`
+## nf-test files
 
-:::tip
+If your pipeline added nf-test before this template update, you might see some conflicts in the following files:
+
+- `.github/actions/nf-test/action.yml`
+- `.github/workflows/nf-test.yml`
+- `.nftignore`
+- `tests/nextflow.config`
+- `nf-test.config`
+
+#### Resolution
+
 It is a good idea to accept the changes made by the template, since they might contain updates and bug fixes that we have found thanks to the pipelines that added nf-test before.
 Make sure to double-check the changes and understand them, and don't delete any extra content that you added to your tests.
 If you need help, do not hesitate to reach out on slack
-:::
 
-Additionaly, the file `ci.yml` was removed.
+## `ci.yml`
 
-:::tip
-Once you have implemented nf-test, you can safely remove this file, this is replaced by `nf-test.yml` and `nf-test/action.yml`.
-:::
+The file `ci.yml` was removed and replaced by `nf-test.yml`.
 
-3. The file `CITATIONS.md`.
+#### Resolution
 
-:::tip
-If you have added additional citaitons, keep them!
-:::
+Once you have implemented nf-test, by updating the `default.nf.test` file, you can safely remove this file, this is replaced by `nf-test.yml`.
 
-4. Changes in `modules.json`:
+## `CITATIONS.md`
 
-:::tip
+#### Resolution
+
+If you have added additional citations, keep them!
+
+## `modules.json`
+
+#### Resolution
+
 Don't accept the changes.
-Instead, run the command `nf-core modules update --all` to update all nf-core module after resolving the template update conflicts.
+Instead, run the command `nf-core modules update --all{:bash}` to update all nf-core module after resolving the template update conflicts.
 This will make sure that all modules are updated and the correct version is specified in this file.
-:::
 
-5. Changes in `nextflow.config`:
+## `nextflow.config`
 
-:::tip
+#### Resolution
+
 Keep all your added parameters.
 
 Accept the additions that come with this template update: - We have added a new profile `gpu` - We have added a new value to the `errorStrategy` - The expression to include config files has changed - nf-schema can be bumped back to 2.3.0 - If you have modified the contributors, added more tests, etc. don't remove them.
-:::
 
-6. In the `README.md`:
-
-:::tip
-Keep your zenodo url and your custom text.
+## `README.md`
 
 We have replaced the Twitter badge for Bluesky and we have added an nf-core template version badge.
-Accept these two changes.
-:::
+This is one of the harder files to sync with the template, because it usually doesn't contain any custom content.
 
-7. The file `ro-crate-metadata.json` is updated on `nf-core pipelines sync`:
+#### Resolution
 
-:::tip
-Accept the changes by default.
-:::
+Accept the changes to the Twitter badge and the nf-core template version badge. Keep your Zenodo URL and your custom text.
 
-8. In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the nextflow.log file.
-9. In all Github Actions (files inside `.github`) you will see several version updates.
+## `ro-crate-metadata.json`
 
-:::tip
-You can accept all version udpates.
-:::
+The file `ro-crate-metadata.json` is updated on `nf-core pipelines sync`.
 
-10. If you see changes in pipeline logos: accept them
-11. In the `modules.config`:
+#### Resolution
 
-:::tip
-Make sure to keep all your custom chagnes.
-:::
+Accept the changes.
+
+## GitHub Actions
+
+In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the nextflow.log file.
+In all Github Actions (files inside `.github/workflows`) you will see several version updates.
+
+#### Resolution
+
+You can accept all version updates.
+
+## Pipeline logos
+
+If you see changes in pipeline logos: accept them, except if you customized them.
+
+## `modules.config`
+
+#### Resolution
+
+Make sure to keep all your custom changes.
