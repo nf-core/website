@@ -62,26 +62,26 @@ Big thanks to everyone who contributed to this big addition to the nf-core templ
 Our newest infrastructure-team member [@JulianFlesch](https://github.com/JulianFlesch) has added a new CLI command to make it easier to find and integrate data sets from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 
 ```bash
-nf-core test-datasets <subcommand>
+nf-core test-datasets list|search
 ```
 
 This new command provides streamlined functionality for:
 
 - **Dataset discovery**: Easily search and explore available test datasets
 
-List all datasets for a specific branch:
+    List all datasets for a specific branch:
 
-![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+    ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
 
-Search for a specific term and get more detailed information about the dataset:
+    Search for a specific term and get more detailed information about the dataset:
 
-![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+    ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
 
 - **Dataset integration**: Easily use test datasets in your pipeline by providing the download URL
 
-![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+    ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
-See the full docs for the `test-datasets list` command [here](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the `test-datasets search` command [here](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
+See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the [`test-datasets search` command](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
 ### Changelog
 
