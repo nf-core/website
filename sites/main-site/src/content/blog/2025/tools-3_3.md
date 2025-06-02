@@ -221,3 +221,11 @@ We added the `withLabel: process_gpu` config to the base config.
 #### Resolution
 
 Accept the incoming gpu profile but keep your customizations.
+
+## `.nf-core.yml`
+
+There might be a conflict between the different `nf_core_version` values.
+
+#### Resolution
+
+Accept the newer version.
