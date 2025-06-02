@@ -33,10 +33,7 @@ if (generalConfigs.length === 0) {
     throw new Error("No general configs found");
 }
 const title = "nf-core/configs";
-const description =
-    "Browse the " +
-    files.filter((file) => file.data.extension === "config").length +
-    " configs that are currently available as part of nf-core.";
+const description = "Browse the " + generalConfigs.length + " configs that are currently available as part of nf-core.";
 ---
 
 <ListingLayout

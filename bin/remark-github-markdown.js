@@ -3,7 +3,7 @@ import { toString } from 'mdast-util-to-string';
 import { h } from 'hastscript';
 
 // Precompile regex patterns for better performance
-const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md)$/;
+const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md|\.config)$/;
 const MDX_ANCHOR_REGEX = /\.mdx?#/;
 const ADMONITION_REGEX = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/;
 const IMG_SRC_REGEX = /<img(.*?)src="(.*?)"/g;

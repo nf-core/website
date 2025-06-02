@@ -21,28 +21,31 @@ const md_github_url =
 const current_section = groupEntries.filter((group) => group.id.replace(/\.[^/.]+$/, "").split("/")[0] === section);
 const indexPage =
     "/special-interest-groups/" +
-    current_section.find((group) => group.id.includes("index.md"))?.id.replace(/\.[^/.]+$/, "");
+    current_section.find((group) => group.filePath?.includes("index.md"))?.filePath?.replace(/\.[^/.]+$/, "");
 
 const sections: SidebarEntry[] = [
     {
         type: "group",
-        id: current_section.find((group) => group.id.includes("index.md"))?.data.title ?? current_section[0].data.title,
+        id:
+            current_section.find((group) => group.filePath?.includes("index.md"))?.data.title ??
+            current_section[0].data.title,
         label:
-            current_section.find((group) => group.id.includes("index.md"))?.data.title ?? current_section[0].data.title,
+            current_section.find((group) => group.filePath?.includes("index.md"))?.data.title ??
+            current_section[0].data.title,
         href: indexPage,
         isCurrent: Astro.url.pathname.replace(".html", "") === indexPage,
         collapsed: false,
         entries: current_section
-            .filter((group) => !group.id.includes("index.md"))
+            .filter((group) => !group.filePath?.includes("index.md"))
             .map((group) => {
                 return {
                     type: "link",
                     id: group.data.title,
                     label: group.data.title,
-                    href: "/special-interest-groups/" + group.id.replace(/\.[^/.]+$/, ""),
+                    href: "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
                     isCurrent:
                         Astro.url.pathname.replace(".html", "") ===
-                        "/special-interest-groups/" + group.id.replace(/\.[^/.]+$/, ""),
+                        "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
                 };
             }),
     },

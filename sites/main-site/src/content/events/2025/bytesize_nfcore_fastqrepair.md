@@ -3,13 +3,15 @@ title: "Bytesize: nf-core/fastqrepair"
 subtitle: Tommaso Mazza, IRCCS Casa Sollievo della Sofferenza - Mendel
 type: talk
 startDate: "2025-05-13"
-startTime: "13:00+01:00"
+startTime: "13:00+02:00"
 endDate: "2025-05-13"
-endTime: "13:30+01:00"
+endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/Hjb6doI3n6o
+embedAt: fastqrepair
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/Hjb6doI3n6o
 ---
 
 This week, [Tommaso Mazza](https://github.com/tm4zza) is going to introduce the nf-core pipeline [nf-core/fastqrepair](https://nf-co.re/fastqrepair/1.0.0/).

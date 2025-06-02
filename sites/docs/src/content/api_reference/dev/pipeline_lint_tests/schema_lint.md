@@ -18,22 +18,8 @@ The lint test checks the schema for the following:
 - Schema should be a valid JSON file
 - Schema should adhere to [JSONSchema](https://json-schema.org/), Draft 7 or Draft 2020-12.
 - Parameters can be described in two places:
-
   > - As `properties` in the top-level schema object
-  > - As `properties` within subschemas listed in a top-level
-
-  > ```
-  > ``
-  > ```
-
-  > definitions\`\`(draft 7) or
-
-  > ```
-  > ``
-  > ```
-
-  > $defs\`\`(draft 2020-12) objects
-
+  > - As `properties` within subschemas listed in a top-level `definitions` (draft 7) or `$defs` (draft 2020-12) objects
 - The schema must describe at least one parameter
 - There must be no duplicate parameter IDs across the schema and definition subschema
 - All subschema in `definitions` or `$defs` must be referenced in the top-level `allOf` key

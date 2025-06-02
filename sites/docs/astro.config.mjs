@@ -8,8 +8,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
-import { defineConfig } from 'astro/config';
-import { FontaineTransform } from 'fontaine';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 import { h } from 'hastscript';
 import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -32,7 +31,23 @@ export default defineConfig({
     output: 'static',
     adapter: netlify(),
     prefetch: false,
-    integrations: [
+    experimental: {
+        fonts: [{
+            provider: fontProviders.fontsource(),
+            name: "Inter",
+            cssVariable: "--font-inter",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"]
+        },
+        {
+            provider: fontProviders.fontsource(),
+            name: "Maven Pro",
+            cssVariable: "--font-maven-pro",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"]
+        }]
+    },
+	integrations: [
         svelte(),
         icon({
             include: {
@@ -93,12 +108,6 @@ export default defineConfig({
         },
         plugins: [
             yaml(),
-            FontaineTransform.vite({
-                // avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
-                fallbacks: ['BlinkMacSystemFont', 'Segoe UI', 'Helvetica Neue', 'Arial', 'Noto Sans'],
-                resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-                skipFontFaceGeneration: (fallbackName) => fallbackName.includes('Font Awesome'),
-            }),
         ],
         ssr: {
             noExternal: ['@popperjs/core'],
