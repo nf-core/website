@@ -142,58 +142,51 @@ export const writePipelinesJson = async () => {
       }
     }
 
-    // get all rulesets for the repo
-    const ruleSets = await octokit.request("GET /repos/{owner}/{repo}/rulesets", {
-      owner: "nf-core",
-      repo: name,
-    });
+    // get all rulesets for the repo with detailed info in parallel
     let ruleSetData = [];
-    for (const ruleSet of ruleSets.data) {
-      ruleSetData.push(
-        await octokit.request("GET /repos/{owner}/{repo}/rulesets/{ruleset_id}", {
-          owner: "nf-core",
-          repo: name,
-          ruleset_id: ruleSet.id,
-        }),
-      );
+    try {
+      const ruleSets = await octokit.request("GET /repos/{owner}/{repo}/rulesets", {
+        owner: "nf-core",
+        repo: name,
+      });
+
+      // Fetch all ruleset details in parallel instead of sequentially
+      if (ruleSets.data.length > 0) {
+        ruleSetData = await Promise.all(
+          ruleSets.data.map(ruleSet =>
+            octokit.request("GET /repos/{owner}/{repo}/rulesets/{ruleset_id}", {
+              owner: "nf-core",
+              repo: name,
+              ruleset_id: ruleSet.id,
+            })
+          )
+        );
+      }
+    } catch (err) {
+      console.warn(`Failed to fetch rulesets for ${name}`, err);
+    }
+
+    // Get all branches in one API call instead of checking each individually
+    let allBranches = [];
+    try {
+      const { data: branchesData } = await octokit.rest.repos.listBranches({
+        owner: "nf-core",
+        repo: name,
+        per_page: 100,
+      });
+      allBranches = branchesData.map(branch => branch.name);
+    } catch (err) {
+      console.warn(`Failed to fetch branches for ${name}`, err);
     }
 
     // Get branch existence & protection rules
     for (const branch of ["master", "main", "dev", "TEMPLATE"]) {
-      // Initialize to -1 (unknown)
-      data[`${branch}_branch_exists`] = -1;
+      // Check if branch exists from the list we fetched
+      const branch_exists = allBranches.includes(branch);
+      data[`${branch}_branch_exists`] = branch_exists;
 
-      // Check if branch exists
-      try {
-        const branch_exists = await octokit.rest.repos
-          .getBranch({
-            owner: "nf-core",
-            repo: name,
-            branch: branch,
-          })
-          .then(() => true)
-          .catch((err) => {
-            if (err.status === 404) {
-              return false;
-            }
-            throw err;
-          });
-          if (branch === "main" && name === "callingcards") {
-            console.log("branch_exists", branch_exists);
-            console.log(
-              await octokit.rest.repos.getBranch({
-                owner: "nf-core",
-                repo: name,
-                branch: branch,
-              }),
-            );
-          }
-        data[`${branch}_branch_exists`] = branch_exists;
-        if (!branch_exists) {
-          continue;
-        }
-      } catch (err) {
-        console.warn(`Failed to fetch ${branch} branch`, err.response.data.message, err.response.url);
+      if (!branch_exists) {
+        continue;
       }
 
       // Check if there is a ruleSet for the branch
@@ -309,77 +302,94 @@ export const writePipelinesJson = async () => {
       const existing_releases = old_releases.map((release) => release.tag_name);
       new_releases = new_releases.filter((release) => !existing_releases.includes(release.tag_name));
     }
-    // get sha for each release (needed for aws viewer)
-    for (const release of new_releases) {
-      const { data: commit } = await octokit.rest.repos.getCommit({
+    // get sha and schema info for each release in parallel
+    await Promise.all(
+      new_releases.map(async (release) => {
+        // Fetch commit info and schema existence in parallel
+        const [commitData, schemaExists] = await Promise.all([
+          octokit.rest.repos.getCommit({
+            owner: "nf-core",
+            repo: name,
+            ref: release.tag_name,
+          }),
+          getGitHubFile(name, "nextflow_schema.json", release.tag_name).then((response) => {
+            return response ? true : false;
+          })
+        ]);
+
+        release.tag_sha = commitData.data.sha;
+        release.has_schema = schemaExists;
+      })
+    );
+
+    // Parallelize commit fetching and file existence checks
+    const [
+      { data: default_branch },
+      lastReleaseCommit,
+      { data: dev_branch },
+      isDSL2,
+      hasNfTest,
+      hasNfTestDev
+    ] = await Promise.all([
+      // Get default branch commits
+      octokit.rest.repos.listCommits({
         owner: "nf-core",
         repo: name,
-        ref: release.tag_name,
-      });
-      release.tag_sha = commit.sha;
-      // check if schema file exists for release
-      release.has_schema = await getGitHubFile(name, "nextflow_schema.json", release.tag_name).then((response) => {
+        sha: data.default_branch,
+        per_page: 1,
+      }),
+      // Get last release commit (only if releases exist)
+      releases[0]?.tag_name ? octokit.rest.repos.getCommit({
+        owner: "nf-core",
+        repo: name,
+        ref: releases[0].tag_name,
+      }) : Promise.resolve(null),
+      // Get dev branch commits
+      octokit.rest.repos.listCommits({
+        owner: "nf-core",
+        repo: name,
+        sha: "dev",
+      }).catch(() => ({ data: [] })), // Handle case where dev branch doesn't exist
+      // Check DSL2 status
+      githubFolderExists(name, "modules", releases?.[0]?.tag_name ?? data.default_branch),
+      // Check nf-test usage
+      getGitHubFile(name, "nf-test.config", releases?.[0]?.tag_name ?? data.default_branch).then((response) => {
         return response ? true : false;
-      });
-    }
+      }),
+      // Check nf-test dev usage
+      getGitHubFile(name, "nf-test.config", "dev").then((response) => {
+        return response ? true : false;
+      })
+    ]);
 
-    // get last push to master branch and compare to that of the newest release
-    const { data: default_branch } = await octokit.rest.repos.listCommits({
-      owner: "nf-core",
-      repo: name,
-      sha: data.default_branch,
-      per_page: 1,
-    });
     data["head_sha"] = default_branch[0]?.sha;
-
-    const lastReleaseCommit = await octokit.rest.repos.getCommit({
-      owner: "nf-core",
-      repo: name,
-      ref: releases[0]?.tag_name,
-    });
-    data["last_release_is_head"] = data["head_sha"] === lastReleaseCommit.data?.sha;
-    data["last_release_vs_default_compare_url"] =
-      data["repository_url"] + "/compare/" + data["head_sha"] + "..." + lastReleaseCommit.data?.sha;
-
-    // get last push to dev branch
-    const { data: dev_branch } = await octokit.rest.repos.listCommits({
-      owner: "nf-core",
-      repo: name,
-      sha: "dev",
-    });
+    data["last_release_is_head"] = lastReleaseCommit ? data["head_sha"] === lastReleaseCommit.data?.sha : false;
+    data["last_release_vs_default_compare_url"] = lastReleaseCommit ?
+      data["repository_url"] + "/compare/" + data["head_sha"] + "..." + lastReleaseCommit.data?.sha : "";
 
     data["commits_to_dev"] = dev_branch?.length;
+    data["is_DSL2"] = isDSL2;
+    data["has_nf_test"] = hasNfTest;
+    data["has_nf_test_dev"] = hasNfTestDev;
 
     if (dev_branch.length > 0) {
+      // Get dev schema in parallel with other operations
+      const devSchema = await getGitHubFile(name, "nextflow_schema.json", "dev").then((response) => {
+        return response ? true : false;
+      });
+
       new_releases = [
         ...new_releases,
         {
           tag_name: "dev",
           published_at: dev_branch[0].commit.author.date,
           tag_sha: dev_branch[0].sha,
-          has_schema: await getGitHubFile(name, "nextflow_schema.json", "dev").then((response) => {
-            return response ? true : false;
-          }),
+          has_schema: devSchema,
         },
       ];
     } else {
       console.log(`No commits to dev branch found for ${name}`);
     }
-
-    // Get DSL2 status
-    data["is_DSL2"] = await githubFolderExists(name, "modules", releases?.[0]?.tag_name ?? data.default_branch);
-
-    // Get nf-test usage
-    data["has_nf_test"] = await getGitHubFile(
-      name,
-      "nf-test.config",
-      releases?.[0]?.tag_name ?? data.default_branch,
-    ).then((response) => {
-      return response ? true : false;
-    });
-    data["has_nf_test_dev"] = await getGitHubFile(name, "nf-test.config", "dev").then((response) => {
-      return response ? true : false;
-    });
 
     // Get plugins in nextflow.config file, in the form of:
     //  plugins {
