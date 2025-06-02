@@ -106,7 +106,7 @@ See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/n
 Previously, when installing a subworkflow from repository X, all its components had to be from the same repository.
 This release adds support for subworkflows that use components from multiple repositories.
 
-Thanks to [João Cavalcante](https://github.com/jvfe) for implementing this feature and to everyone who provided feedback.
+Thanks to [João Cavalcante](https://github.com/jvfe) for implementing this feature and to everyone who provided feedback, especially [Arthur Gymer](https://github.com/awgymer) and [Matthieu Muffato](https://github.com/muffato).
 
 ### Changelog
 
