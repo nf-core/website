@@ -21,7 +21,7 @@ This will set the following options:
 - Set the `testsDir` to the base of the repository so it includes all files
 - Set the `workDir` to `NFT_WORKDIR` if it is set, otherwise it will default to `.nf-test`
 - Add an additional configuration file specific for nf-test located in `tests/nextflow.config`
-- Set the default profile(s) for nf-test to include `test` (this can be overridden on the command line)
+- Set the default profile(s) for nf-test to include `test` (this can be overridden on the command line or in the test files `*.nf.test`. See nf-test docs about [managing profiles](https://www.nf-test.com/docs/configuration/#managing-profiles).)
 - Set filenames that should trigger a full test run when modified (`nextflow.config`, `nf-test.config`, `conf/test.config`, `tests/nextflow.config`)
 - Load the necessary plugins (`nft-utils` is used for parsing the output of the pipeline, and other plugins can be added as needed ie `nft-bam`, `nft-vcf`...)
 
