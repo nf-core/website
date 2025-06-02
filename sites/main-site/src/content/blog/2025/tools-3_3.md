@@ -163,9 +163,12 @@ If you have added additional citations, keep them!
 
 ## `modules.json`
 
+This file often has merge conflicts during template updates because it typically contains pipeline-specific information.
+
 #### Resolution
 
 Don't accept the changes.
+
 Instead, run the command `nf-core modules update --all{:bash}` to update all nf-core module after resolving the template update conflicts.
 This will make sure that all modules are updated and the correct version is specified in this file.
 
@@ -196,7 +199,8 @@ Accept the changes.
 
 ## GitHub Actions
 
-In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the nextflow.log file.
+In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the `nextflow.log` file.
+
 In all Github Actions (files inside `.github/workflows`) you will see several version updates.
 
 #### Resolution
@@ -208,6 +212,8 @@ You can accept all version updates.
 If you see changes in pipeline logos: accept them, except if you customized them.
 
 ## `modules.config`
+
+This file often has merge conflicts during template updates because it typically contains pipeline-specific content.
 
 #### Resolution
 
