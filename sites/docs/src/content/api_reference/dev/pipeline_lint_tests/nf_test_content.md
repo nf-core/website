@@ -33,24 +33,25 @@ when {
 
 - The nf-test.config file should:
 
-  - Make sure tests are relative to root directory
+  - Make sure tests are relative to root directory <br/>
 
   ```groovy
   testsDir "."
   ```
 
-  - Ensure a user-configurable nf-test directory
+    <br/>
+    * Ensure a user-configurable nf-test directory
 
   ```groovy
   workDir System.getenv("NFT_WORKDIR") ?: ".nf-test"
   ```
 
-  - Use a test specific config
     <br/>
-
-  ```groovy
-  configFile "tests/nextflow.config"
-  ```
+    * Use a test specific config
+    <br/>
+    ```groovy
+    configFile "tests/nextflow.config"
+    ```
 
 All these checks can be skipped in the .nf-core.yml file using:
 
