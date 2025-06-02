@@ -1,0 +1,88 @@
+---
+title: "nf-core/tools - 3.3.0"
+subtitle: "An nf-testic release"
+headerImage: "https://plus.unsplash.com/premium_photo-1676036793514-a637b11f392a"
+headerImageAlt: "3D rendering of a cute little space rocket painted red and white."
+pubDate: 2025-06-02T14:00:00+01:00
+authors:
+    - "mashehu"
+    - "mirpedrol"
+label:
+    - "tools"
+maxHeadingDepth: 3
+---
+
+This release brings exciting new features focused on nf-test integration, test dataset management, and improved resource handling. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
+
+# Highlights
+
+## nf-test for pipelines
+
+To improve the robustness of nf-core pipeline testing workflows and
+help developers catch issues early in the development process,
+we've added pipeline-level nf-tests to the pipeline template.
+
+This manifests in four new files:
+
+```tree
+nf-test.config                 # The pipeline-level nf-test configuration file
+tests/
+├── .nftignore                 # ignored files for nf-test
+├── default.nf.test            # The default test for the pipeline, mirroring the setup in config/test.config
+└── nextflow.config            # The nextflow configuration for the pipeline tests
+```
+
+Additionally, we changed the CI setup to use nf-tests with [sharding](https://www.nf-test.com/docs/cli/test/#sharding) to speed up the testing process.
+This means good-bye to good old `ci.yml` and hello to `nf-test.yml`.
+
+:::tip
+If you do not want to use nf-test for your pipeline, add the following to the `.nf-core.yml` file:
+
+```yaml
+skip_features:
+    - "nf-test"
+```
+
+Additionally, to ignore the linting checks for nf-test, add add the following to the `.nf-core.yml` file:
+
+```yaml
+lint:
+    nf_test_content: False
+```
+
+:::
+
+To lower the load on our GitHub runners (especially during hackathons), we will use self-hosted runners for nf-test GitHub Actions.
+These are automatically set up for all nf-core repository. See our recent blog post on [self-hosted GitHub Actions runners](https://nf-co.re/blog/2025/state-of-nf-core-ci#moving-to-runson) to learn more about our setup.
+
+Big thanks to everyone who contributed to this big addition to the nf-core template, especially [@maxulysse](https://github.com/maxulysse), [@adamrtalbot](https://github.com/adamrtalbot), [Usman Rashid](https://github.com/GallVp) and [@edmundmiller](https://github.com/edmundmiller) for initial testing and tinkering, especially with the GitHub Actions. :raised_hands:
+
+## New `nf-core test-datasets` command
+
+Our newest infrastructure-team member [@JulianFlesch](https://github.com/JulianFlesch) has added a new CLI command to make it easier to find and integrate data sets from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+
+```bash
+nf-core test-datasets <subcommand>
+```
+
+This new command provides streamlined functionality for:
+
+- **Dataset discovery**: Easily search and explore available test datasets
+
+List all datasets for a specific branch:
+
+![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+
+Search for a specific term and get more detailed information about the dataset:
+
+![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+
+- **Dataset integration**: Easily use test datasets in your pipeline by providing the download URL
+
+![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+
+See the full docs for the `test-datasets list` command [here](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the `test-datasets search` command [here](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
+
+### Changelog
+
+You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.3.0).
