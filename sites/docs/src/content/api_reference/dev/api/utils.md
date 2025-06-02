@@ -488,7 +488,7 @@ Bases: `BaseModel`
          "type": "object"
       },
       "NFCoreYamlLintConfig": {
-         "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False",
+         "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False\n    # nf_test_content: False\n    nf_test_content:\n        - tests/<test_name>.nf.test\n        - tests/nextflow.config\n        - nf-test.config",
          "properties": {
             "files_unchanged": {
                "anyOf": [
@@ -574,6 +574,24 @@ Bases: `BaseModel`
                ],
                "default": null,
                "title": "Nextflow Config"
+            },
+            "nf_test_content": {
+               "anyOf": [
+                  {
+                     "type": "boolean"
+                  },
+                  {
+                     "items": {
+                        "type": "string"
+                     },
+                     "type": "array"
+                  },
+                  {
+                     "type": "null"
+                  }
+               ],
+               "default": null,
+               "title": "Nf Test Content"
             },
             "multiqc_config": {
                "anyOf": [
@@ -982,12 +1000,46 @@ Bases: `BaseModel`
 
 schema for linting config in .nf-core.yml should cover:
 
+```yaml
+files_unchanged:
+    - .github/workflows/branch.yml
+modules_config: False
+modules_config:
+        - fastqc
+# merge_markers: False
+merge_markers:
+        - docs/my_pdf.pdf
+nextflow_config: False
+nextflow_config:
+    - manifest.name
+    - config_defaults:
+        - params.annotation_db
+        - params.multiqc_comment_headers
+        - params.custom_table_headers
+# multiqc_config: False
+multiqc_config:
+    - report_section_order
+    - report_comment
+files_exist:
+    - .github/CONTRIBUTING.md
+    - CITATIONS.md
+template_strings: False
+template_strings:
+        - docs/my_pdf.pdf
+nfcore_components: False
+# nf_test_content: False
+nf_test_content:
+    - tests/<test_name>.nf.test
+    - tests/nextflow.config
+    - nf-test.config
+```
+
 <p><details  class="autodoc_pydantic_collapsable_json">
 <summary>Show JSON schema</summary>
 ```json
 {
    "title": "NFCoreYamlLintConfig",
-   "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False",
+   "description": "schema for linting config in `.nf-core.yml` should cover:\n\n.. code-block:: yaml\n\n    files_unchanged:\n        - .github/workflows/branch.yml\n    modules_config: False\n    modules_config:\n            - fastqc\n    # merge_markers: False\n    merge_markers:\n            - docs/my_pdf.pdf\n    nextflow_config: False\n    nextflow_config:\n        - manifest.name\n        - config_defaults:\n            - params.annotation_db\n            - params.multiqc_comment_headers\n            - params.custom_table_headers\n    # multiqc_config: False\n    multiqc_config:\n        - report_section_order\n        - report_comment\n    files_exist:\n        - .github/CONTRIBUTING.md\n        - CITATIONS.md\n    template_strings: False\n    template_strings:\n            - docs/my_pdf.pdf\n    nfcore_components: False\n    # nf_test_content: False\n    nf_test_content:\n        - tests/<test_name>.nf.test\n        - tests/nextflow.config\n        - nf-test.config",
    "type": "object",
    "properties": {
       "files_unchanged": {
@@ -1074,6 +1126,24 @@ schema for linting config in .nf-core.yml should cover:
          ],
          "default": null,
          "title": "Nextflow Config"
+      },
+      "nf_test_content": {
+         "anyOf": [
+            {
+               "type": "boolean"
+            },
+            {
+               "items": {
+                  "type": "string"
+               },
+               "type": "array"
+            },
+            {
+               "type": "null"
+            }
+         ],
+         "default": null,
+         "title": "Nf Test Content"
       },
       "multiqc_config": {
          "anyOf": [
@@ -1420,6 +1490,7 @@ schema for linting config in .nf-core.yml should cover:
   - [`modules_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_structure)
   - [`multiqc_config (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.multiqc_config)
   - [`nextflow_config (bool | List[str | Dict[str, List[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
+  - [`nf_test_content (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nf_test_content)
   - [`nfcore_components (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
   - [`nfcore_yml (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
   - [`pipeline_if_empty_null (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
@@ -1494,6 +1565,10 @@ List of MultiQC config options that be changed
 #### _`field{:python}`_`nextflow_config{:python}`_: bool | List\[str | Dict\[str, List\[str]]] | None_`{:python}`_= None_
 
 List of Nextflow config files that should not be changed
+
+#### _`field{:python}`_`nf_test_content{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+
+List of nf-test content that should not be changed
 
 #### _`field{:python}`_`nfcore_components{:python}`_: bool | None_`{:python}`_= None_
 
