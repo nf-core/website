@@ -18,6 +18,13 @@ This release brings exciting new features focused on nf-test integration, test d
 
 ## nf-test for pipelines
 
+Aproximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
+Since then, there has been a huge work form the community to switch all nf-core components from testing with pytest, to testing with nf-test.
+
+During the 2024 Barcelona Hackathon in October, a group of contributors worked on a POC to add pipeline-level nf-test tests.
+After this first POC, other pipeline maintainers joined the wave, and started implementing nf-test to their pipelines.
+With some of the most used pipelines in nf-core, and others, having implemented these tests, it is time for nf-core/tools to catch-up, and add this to the pipeline template.
+
 To improve the robustness of nf-core pipeline testing workflows and
 help developers catch issues early in the development process,
 we've added pipeline-level nf-tests to the pipeline template.
@@ -47,6 +54,12 @@ Additionally, to ignore the linting checks for nf-test, add add the following to
 
 ```yaml
 lint:
+    files_exist:
+        - ".github/workflows/nf-test.yml"
+        - ".github/actions/get-shards/action.yml"
+        - ".github/actions/nf-test/action.yml"
+        - "nf-test.config"
+        - "tests/default.nf.test"
     nf_test_content: False
 ```
 
@@ -88,6 +101,99 @@ This new command provides streamlined functionality for:
 
 See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the [`test-datasets search` command](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
+## Installing subworkflows with components from different remotes
+
+Since we added the ability to host nf-core components (modules and subworkflows) in private repositories,
+several users requested the possibility to use components from different repositories.
+This means, before, when you installed a subworkflow from repository X, all components used by this subworkflow must be from repository X.
+The suggested change was to allow subworkflow from repository X to use components from repository X, Y, etc.
+
+After a lot of planning and discussion, [João Cavalcante](https://github.com/jvfe) started to work on this feature,
+and with this release of nf-core/tools we included the possibility to install subworkflows which use components from multiple repositories!
+
+Thank you to everyone who contributed to this with great feedback.
+
 ### Changelog
 
 You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.3.0).
+
+# Getting help to update your pipeline template
+
+In the [changelog](https://github.com/nf-core/tools/releases/tag/3.3.0), you can see a list of changes included to this template update, under the section `Template`.
+We have recopilated the most common merge conflicts that you may find to give you advice on how to solve them.
+
+1. The `.editorconfig` file was deleted - The same functionality was replaced by `.pre-commit-config.yaml` changes, adding the `trailing-whitespace` and `end-of-file-fixer` hooks.
+
+:::tip
+You can delete the `.editorconfig` file and make sure that you accept the changes in `.pre-commit-config.yaml`.
+:::
+
+2. If your pipeline added nf-test before this template update, you might see some conflicts in the following files:
+    - `.github/actions/nf-test/action.yml`
+    - `.github/workflows/nf-test.yml`
+    - `.nftignore`
+    - `tests/nextflow.config`
+    - `nf-test.config`
+
+:::tip
+It is a good idea to accept the changes made by the template, since they might contain updates and bug fixes that we have found thanks to the pipelines that added nf-test before.
+Make sure to double-check the changes and understand them, and don't delete any extra content that you added to your tests.
+If you need help, do not hesitate to reach out on slack
+:::
+
+Additionaly, the file `ci.yml` was removed.
+
+:::tip
+Once you have implemented nf-test, you can safely remove this file, this is replaced by `nf-test.yml` and `nf-test/action.yml`.
+:::
+
+3. The file `CITATIONS.md`.
+
+:::tip
+If you have added additional citaitons, keep them!
+:::
+
+4. Changes in `modules.json`:
+
+:::tip
+Don't accept the changes.
+Instead, run the command `nf-core modules update --all` to update all nf-core module after resolving the template update conflicts.
+This will make sure that all modules are updated and the correct version is specified in this file.
+:::
+
+5. Changes in `nextflow.config`:
+
+:::tip
+Keep all your added parameters.
+
+Accept the additions that come with this template update: - We have added a new profile `gpu` - We have added a new value to the `errorStrategy` - The expression to include config files has changed - nf-schema can be bumped back to 2.3.0 - If you have modified the contributors, added more tests, etc. don't remove them.
+:::
+
+6. In the `README.md`:
+
+:::tip
+Keep your zenodo url and your custom text.
+
+We have replaced the Twitter badge for Bluesky and we have added an nf-core template version badge.
+Accept these two changes.
+:::
+
+7. The file `ro-crate-metadata.json` is updated on `nf-core pipelines sync`:
+
+:::tip
+Accept the changes by default.
+:::
+
+8. In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the nextflow.log file.
+9. In all Github Actions (files inside `.github`) you will see several version updates.
+
+:::tip
+You can accept all version udpates.
+:::
+
+10. If you see changes in pipeline logos: accept them
+11. In the `modules.config`:
+
+:::tip
+Make sure to keep all your custom chagnes.
+:::
