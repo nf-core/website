@@ -21,22 +21,22 @@ This release brings exciting new features focused on nf-test integration, test d
 Aproximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
 Since then, there has been a huge work form the community to switch all nf-core components from testing with pytest, to testing with nf-test.
 
-During the 2024 Barcelona Hackathon in October, a group of contributors worked on a POC to add pipeline-level nf-test tests.
-After this first POC, other pipeline maintainers joined the wave, and started implementing nf-test to their pipelines.
+During the 2024 Barcelona Hackathon in October, a group of contributors worked on a proof of concept to add pipeline-level nf-test tests.
+After this first attempt, other pipeline maintainers started to join in, and started implementing nf-test to their pipelines.
 With some of the most used pipelines in nf-core, and others, having implemented these tests, it is time for nf-core/tools to catch-up, and add this to the pipeline template.
 
 To improve the robustness of nf-core pipeline testing workflows and
 help developers catch issues early in the development process,
 we've added pipeline-level nf-tests to the pipeline template.
 
-This manifests in four new files:
+This can be seen in four new template files:
 
-```tree
-nf-test.config                 # The pipeline-level nf-test configuration file
+```bash
+nf-test.config       # The pipeline-level nf-test configuration file
 tests/
-├── .nftignore                 # ignored files for nf-test
-├── default.nf.test            # The default test for the pipeline, mirroring the setup in config/test.config
-└── nextflow.config            # The nextflow configuration for the pipeline tests
+├── .nftignore       # ignored files for nf-test
+├── default.nf.test  # The default test for the pipeline, mirroring the setup in config/test.config
+└── nextflow.config  # The nextflow configuration for the pipeline tests
 ```
 
 Additionally, we changed the CI setup to use nf-tests with [sharding](https://www.nf-test.com/docs/cli/test/#sharding) to speed up the testing process.
@@ -80,7 +80,8 @@ Big thanks to everyone who contributed to this big addition to the nf-core templ
 Our newest infrastructure-team member [@JulianFlesch](https://github.com/JulianFlesch) has added a new CLI command to make it easier to find and integrate data sets from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 
 ```bash
-nf-core test-datasets list|search
+nf-core test-datasets list
+nf-core test-datasets search
 ```
 
 This new command provides streamlined functionality for:
@@ -99,11 +100,11 @@ This new command provides streamlined functionality for:
 
   ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
-See the full docs for the [`test-datasets list` command](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and the [`test-datasets search` command](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
+See the full documentation here: [`test-datasets list`](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and  [`test-datasets search`](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
 ## Installing subworkflows with components from different remotes
 
-Previously, when installing a subworkflow from repository X, all its components had to be from the same repository.
+Previously, when installing a subworkflow from a custom repository, all of its components had to be from the same repository.
 This release adds support for subworkflows that use components from multiple repositories.
 
 Thanks to [João Cavalcante](https://github.com/jvfe) for implementing this feature and to everyone who provided feedback, especially [Arthur Gymer](https://github.com/awgymer) and [Matthieu Muffato](https://github.com/muffato).
@@ -173,7 +174,12 @@ This will make sure that all modules are updated and the correct version is spec
 
 Keep all your added parameters.
 
-Accept the additions that come with this template update: - We have added a new profile `gpu` - We have added a new value to the `errorStrategy` - The expression to include config files has changed - nf-schema can be bumped back to 2.3.0 - If you have modified the contributors, added more tests, etc. don't remove them.
+Accept the additions that come with this template update: 
+- We have added a new profile `gpu` 
+- We have added a new value to the `errorStrategy` 
+- The expression to include config files has changed 
+- nf-schema can be bumped back to 2.3.0 
+- If you have modified the contributors, added more tests, etc. don't remove them.
 
 ## `README.md`
 
