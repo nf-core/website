@@ -104,6 +104,10 @@ This new command provides streamlined functionality for:
 
   ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
+  or the path used in the pipeline test fiels
+
+  ![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
+
 See the full documentation here: [`test-datasets list`](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and [`test-datasets search`](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
 ## Installing subworkflows with components from different remotes
