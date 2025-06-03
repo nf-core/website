@@ -48,7 +48,14 @@ This means good-bye to good old `ci.yml` and hello to `nf-test.yml`.
 
 :::note
 The initial nf-test CI run will fail, because the pipeline repository doesn't have a snapshot for `default.nf.test` yet.
-To fix this, you can generate a snapshot by running `nf-test test{:bash}` and commit `tests/default.nf.test.snap`.
+
+To fix this, generate a snapshot with:
+
+```bash
+nf-test test
+```
+
+and then commit `tests/default.nf.test.snap`.
 :::
 
 :::tip
