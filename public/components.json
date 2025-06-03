@@ -24165,9 +24165,9 @@
                 }
               },
               {
-                "kraken2db               , includeInputs: true": {
+                "kraken2db": {
                   "type": "directory",
-                  "description": "A Kraken2 database directory with required bracken files in side",
+                  "description": "A Kraken2 database directory with required bracken files inside",
                   "pattern": "*/"
                 }
               }
@@ -24182,9 +24182,10 @@
                 }
               },
               {
-                "${kraken2db}/database*\", includeInputs: true": {
+                "${kraken2db}/database*": {
                   "type": "directory",
-                  "description": "Bracken files required to extend the Kraken2 database"
+                  "description": "Bracken files required to extend the Kraken2 database",
+                  "pattern": "*/"
                 }
               }
             ]
@@ -83395,10 +83396,6 @@
         {
           "name": "scrnaseq",
           "version": "4.0.0"
-        },
-        {
-          "name": "spatialxe",
-          "version": "dev"
         },
         {
           "name": "taxprofiler",
