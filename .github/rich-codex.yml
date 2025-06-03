@@ -252,6 +252,7 @@ outputs:
     img_paths:
       - public/images/tools/nf-core-test-datasets-list-url-out.svg
   - command: nf-core test-datasets list --branch mag --generate-nf-path
+    head: 25
     img_paths:
       - public/images/tools/nf-core-test-datasets-list-path-out.svg
   - command: nf-core test-datasets search --branch mag minigut_reads
