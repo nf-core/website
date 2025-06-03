@@ -16,6 +16,13 @@ This release brings exciting new features focused on nf-test integration, test d
 
 # Highlights
 
+## New nf-core infrastructure members
+
+This release marks the first release for two new nf-core infrastructure members. [@JulianFlesch](https://github.com/JulianFlesch) and [@ningyuxin1999](https://github.com/ningyuxin1999) are doing their PhDs at [QBiC](https://www.qbic.uni-tuebingen.de/) and will be working 50% for the nf-core infrastructure team.
+
+Julian is a long-time contributor to nf-core, and has been a member of the nf-core community since 2019. He has been a core contributor to the nf-core/modules and nf-core/test-datasets repositories, and has been a member of the nf-core infrastructure team since 2024.
+Yuxin is a new PhD student at QBiC, and has been a member of the nf-core community since 2024. He has been a core contributor to the nf-core/modules and nf-core/test-datasets repositories, and has been a member of the nf-core infrastructure team since 2024.
+
 ## nf-test for pipelines
 
 Aproximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
