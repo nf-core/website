@@ -5,12 +5,14 @@ headerImage: "https://plus.unsplash.com/premium_photo-1676036793514-a637b11f392a
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white."
 pubDate: 2025-06-03T12:00:00+02:00
 authors:
-  - "mashehu"
-  - "mirpedrol"
+    - "mashehu"
+    - "mirpedrol"
 label:
-  - "tools"
+    - "tools"
 maxHeadingDepth: 3
 ---
+
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 This release brings exciting new features focused on nf-test integration, test dataset management and modules from different repositories in subworkflows. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
 
@@ -63,20 +65,20 @@ If you do not want to use nf-test for your pipeline, add the following to the `.
 
 ```yaml
 skip_features:
-  - "nf-test"
+    - "nf-test"
 ```
 
 Additionally, to ignore the linting checks for nf-test, add add the following to the `.nf-core.yml` file:
 
 ```yaml
 lint:
-  files_exist:
-    - ".github/workflows/nf-test.yml"
-    - ".github/actions/get-shards/action.yml"
-    - ".github/actions/nf-test/action.yml"
-    - "nf-test.config"
-    - "tests/default.nf.test"
-  nf_test_content: False
+    files_exist:
+        - ".github/workflows/nf-test.yml"
+        - ".github/actions/get-shards/action.yml"
+        - ".github/actions/nf-test/action.yml"
+        - "nf-test.config"
+        - "tests/default.nf.test"
+    nf_test_content: False
 ```
 
 :::
@@ -104,21 +106,21 @@ This new command provides streamlined functionality for:
 
 - **Dataset discovery**: Easily search and explore available test datasets
 
-  List all datasets for a specific branch:
+    List all datasets for a specific branch:
 
-  ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+    ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
 
-  Search for a specific term and get more detailed information about the dataset:
+    Search for a specific term and get more detailed information about the dataset:
 
-  ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+    ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
 
 - **Dataset integration**: Easily use test datasets in your pipeline by providing the download URL
 
-  ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+    ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
-  or the path used in the pipeline test files:
+    or the path used in the pipeline test files:
 
-  ![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
+    ![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
 
 See the full documentation here: [`test-datasets list`](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and [`test-datasets search`](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
 
@@ -137,6 +139,10 @@ You can find the complete changelog and technical details [on GitHub](https://gi
 
 All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/3.3.0).
 Below, we have collected the most common merge conflicts that you may find and how to resolve them.
+
+## Video walkthrough
+
+<YouTube id="7Sgz3FzlcRQ" poster="https://i.ytimg.com/vi/7Sgz3FzlcRQ/maxresdefault.jpg" />
 
 ## `.editorconfig`
 
