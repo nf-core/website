@@ -3,7 +3,7 @@ title: "nf-core/tools - 3.3"
 subtitle: "An nf-testic release"
 headerImage: "https://plus.unsplash.com/premium_photo-1676036793514-a637b11f392a"
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white."
-pubDate: 2025-06-02T14:00:00+01:00
+pubDate: 2025-06-03T12:00:00+02:00
 authors:
   - "mashehu"
   - "mirpedrol"
@@ -22,7 +22,7 @@ This release marks the first release with contributions from two new nf-core inf
 
 ## nf-test for pipelines
 
-Aproximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
+Approximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
 Since then, there has been a huge work form the community to switch all nf-core components from testing with pytest, to testing with nf-test.
 
 During the 2024 Barcelona Hackathon in October, a group of contributors worked on a proof of concept to add pipeline-level nf-test tests.
@@ -45,6 +45,11 @@ tests/
 
 Additionally, we changed the CI setup to use nf-tests with [sharding](https://www.nf-test.com/docs/cli/test/#sharding) to speed up the testing process.
 This means good-bye to good old `ci.yml` and hello to `nf-test.yml`.
+
+:::note
+The initial nf-test CI run will fail, because the pipeline repository doesn't have a snapshot for `default.nf.test` yet.
+To fix this, you can generate a snapshot by running `nf-test test{:bash}` and commit `tests/default.nf.test.snap`.
+:::
 
 :::tip
 If you do not want to use nf-test for your pipeline, add the following to the `.nf-core.yml` file:
@@ -104,7 +109,7 @@ This new command provides streamlined functionality for:
 
   ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
 
-  or the path used in the pipeline test fiels
+  or the path used in the pipeline test files:
 
   ![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
 
