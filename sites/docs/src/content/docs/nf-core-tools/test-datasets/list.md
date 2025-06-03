@@ -32,3 +32,5 @@ As default output, a table listing the filenames is printed, but download urls o
 This is possible via the flags `-u`/`--generate-dl-url` and `-p`/`--generate-nf-path` as in the [`search` subcommand](/docs/nf-core-tools/test-datasets/search).
 
 ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+
+![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
