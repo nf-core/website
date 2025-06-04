@@ -19,7 +19,7 @@ This event is being organised by Gisela Gabernet ([@ggabernet](https://github.co
 
 ## Registration
 
-Please register in advance using [this link](https://yalesurvey.ca1.qualtrics.com/jfe/form/SV_0SB0zT7t6aD3gWy).
+The registration is now closed as we've reached the maximum number of participants. The tutorial video will be available on the Immcantation and nf-core YouTube channels after the event. Stay tuned for future training opportunities as well!
 
 There are a maximum of 20 slots for the training, so please only register if you plan to attend.
 
