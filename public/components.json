@@ -124459,7 +124459,7 @@
                 }
               },
               {
-                "*_filtered.${output_format}": {
+                "${prefix}.${output_format}": {
                   "type": "file",
                   "description": "Filtered reads.",
                   "pattern": "*.{fasta,fastq}{,.gz,.bz2,.lzma}"
