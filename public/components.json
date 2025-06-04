@@ -16899,13 +16899,19 @@
               "samplesheet": {
                 "type": "file",
                 "description": "Input samplesheet",
-                "pattern": "*.{csv}"
+                "pattern": "*.{csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             },
             {
               "run_dir": {
                 "type": "file",
-                "description": "Input run directory containing RunInfo.xml and BCL data\nCould be a directory or a tar of the directory\n"
+                "description": "Input run directory containing RunInfo.xml and BCL data\nCould be a directory or a tar of the directory\n",
+                "ontologies": []
               }
             }
           ]
@@ -16917,14 +16923,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Demultiplexed sample FASTQ files",
-                  "pattern": "**_S*_L00?_R?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**_S[1-9]*_R?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Demultiplexed sample FASTQ files",
-                  "pattern": "**_S*_L00?_R?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16935,14 +16951,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional demultiplexed index FASTQ files",
-                  "pattern": "**_S*_L00?_I?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**_S[1-9]*_I?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional demultiplexed index FASTQ files",
-                  "pattern": "**_S*_L00?_I?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16953,14 +16979,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional undetermined sample FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**Undetermined_S0*_R?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional undetermined sample FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16971,14 +17007,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional undetermined index FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**Undetermined_S0*_I?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional undetermined index FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16989,14 +17035,30 @@
                 "meta": {
                   "type": "file",
                   "description": "Demultiplexing Reports",
-                  "pattern": "Reports/*.{csv,xml}"
+                  "pattern": "Reports/*.{csv,xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               },
               {
                 "output/Reports": {
                   "type": "file",
                   "description": "Demultiplexing Reports",
-                  "pattern": "Reports/*.{csv,xml}"
+                  "pattern": "Reports/*.{csv,xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -17007,14 +17069,16 @@
                 "meta": {
                   "type": "file",
                   "description": "Log files",
-                  "pattern": "Logs/*.{log,txt}"
+                  "pattern": "Logs/*.{log,txt}",
+                  "ontologies": []
                 }
               },
               {
                 "output/Logs": {
                   "type": "file",
                   "description": "Log files",
-                  "pattern": "Logs/*.{log,txt}"
+                  "pattern": "Logs/*.{log,txt}",
+                  "ontologies": []
                 }
               }
             ]
@@ -17025,14 +17089,16 @@
                 "meta": {
                   "type": "file",
                   "description": "Interop files",
-                  "pattern": "*.{bin}"
+                  "pattern": "*.{bin}",
+                  "ontologies": []
                 }
               },
               {
-                "**/InterOp/*.bin\", includeInputs: true": {
+                "**/InterOp/*.bin": {
                   "type": "file",
                   "description": "Interop files",
-                  "pattern": "*.{bin}"
+                  "pattern": "*.{bin}",
+                  "ontologies": []
                 }
               }
             ]
@@ -17043,7 +17109,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -24165,9 +24236,9 @@
                 }
               },
               {
-                "kraken2db               , includeInputs: true": {
+                "kraken2db": {
                   "type": "directory",
-                  "description": "A Kraken2 database directory with required bracken files in side",
+                  "description": "A Kraken2 database directory with required bracken files inside",
                   "pattern": "*/"
                 }
               }
@@ -24182,9 +24253,10 @@
                 }
               },
               {
-                "${kraken2db}/database*\", includeInputs: true": {
+                "${kraken2db}/database*": {
                   "type": "directory",
-                  "description": "Bracken files required to extend the Kraken2 database"
+                  "description": "Bracken files required to extend the Kraken2 database",
+                  "pattern": "*/"
                 }
               }
             ]
@@ -31228,6 +31300,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
               "bcl": {
                 "type": "file",
                 "description": "Base call files",
@@ -31247,30 +31325,29 @@
         ],
         "output": [
           {
+            "fastq": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/outs/fastq_path/*.fastq.gz": {
+                  "type": "file",
+                  "description": "Unaligned FastQ files",
+                  "pattern": "${prefix}/outs/fastq_path/*.fastq.gz"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
                   "pattern": "versions.yml"
-                }
-              }
-            ]
-          },
-          {
-            "fastq": [
-              {
-                "${bcl.getSimpleName(": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
-                }
-              },
-              {
-                "/*.fastq.gz": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
                 }
               }
             ]
@@ -35780,7 +35857,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "phyloplace",
@@ -35892,7 +35969,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -41231,6 +41308,154 @@
       }
     },
     {
+      "name": "crabs_import",
+      "path": "modules/nf-core/crabs/import/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabs_import",
+        "description": "In-house generated or curated data can be imported into CRABS.",
+        "keywords": [
+          "insilico",
+          "amplicon",
+          "sequencing",
+          "inhouse"
+        ],
+        "tools": [
+          {
+            "crabs": {
+              "description": "Crabs (Creating Reference databases for Amplicon-Based Sequencing)\nis a program to download and curate reference databases\nfor eDNA metabarcoding analyses\n",
+              "homepage": "https://github.com/gjeunen/reference_database_creator",
+              "documentation": "https://github.com/gjeunen/reference_database_creator?tab=readme-ov-file#running-crabs",
+              "tool_dev_url": "https://github.com/gjeunen/reference_database_creator",
+              "doi": "10.1111/1755-0998.13741",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "In-house sequencing data",
+                "pattern": "*.{fa,fasta}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "accession2taxid": {
+                "type": "file",
+                "description": "Linking accession numbers to taxonomic IDs",
+                "pattern": "*.accession2taxid"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "names": {
+                "type": "file",
+                "description": "Containing information about the phylogenetic name associated with each taxonomic ID",
+                "pattern": "*.dmp"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "nodes": {
+                "type": "file",
+                "description": "Containing information how taxonomic IDs are linked",
+                "pattern": "*.dmp"
+              }
+            }
+          ],
+          [
+            {
+              "import_format": {
+                "type": "string",
+                "description": "Name of the repository from which the data was downloaded, i.e., BOLD, EMBL, GreenGenes, MIDORI, MITOFISH, NCBI, SILVA, or UNITE.",
+                "choices": [
+                  "bold",
+                  "embl",
+                  "greengenes",
+                  "midori",
+                  "mitofish",
+                  "ncbi",
+                  "silva",
+                  "unite"
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "crabsdb": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Reverse complemented Sequence",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab",
+          "@a4000"
+        ],
+        "maintainers": [
+          "@famosab",
+          "@a4000"
+        ]
+      }
+    },
+    {
       "name": "crabz_compress",
       "path": "modules/nf-core/crabz/compress/meta.yml",
       "type": "module",
@@ -41763,7 +41988,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -41858,7 +42083,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -54819,7 +55044,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinfamilies",
@@ -54931,7 +55156,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -55812,7 +56037,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -56981,7 +57206,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -60390,7 +60615,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60562,7 +60787,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -60696,7 +60921,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -73547,6 +73772,10 @@
           "version": "dev"
         },
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "deepmodeloptim",
           "version": "dev"
         },
@@ -83386,10 +83615,6 @@
         {
           "name": "scrnaseq",
           "version": "4.0.0"
-        },
-        {
-          "name": "spatialxe",
-          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -97059,7 +97284,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -101604,7 +101829,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -102579,19 +102804,31 @@
             {
               "contrast_variable": {
                 "type": "string",
-                "description": "The column in the sample sheet that should be used to define groups for\ncomparison\n"
+                "description": "(Optional, required if reference and target are used) The column in the sample sheet that should be used to define groups for\ncomparison\n"
               }
             },
             {
               "reference": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
+                "description": "(Optional, required if contrast_variable and target are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
               }
             },
             {
               "target": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+                "description": "(Optional, required if contrast_variable and reference are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+              }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Optional, requires comparison if used) R formula string used for modeling, e.g. '~ treatment'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional, mandatory if formula is used) Literal string passed to `limma::makeContrasts`, e.g. 'treatmentmCherry'."
               }
             }
           ],
@@ -106023,7 +106260,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "pathogensurveillance",
@@ -106141,7 +106378,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -106629,7 +106866,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -120700,7 +120937,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "proteinannotator",
@@ -121349,7 +121586,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -122313,7 +122550,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -124222,7 +124459,7 @@
                 }
               },
               {
-                "*_filtered.${output_format}": {
+                "${prefix}.${output_format}": {
                   "type": "file",
                   "description": "Filtered reads.",
                   "pattern": "*.{fasta,fastq}{,.gz,.bz2,.lzma}"
@@ -138664,7 +138901,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "scnanoseq",
@@ -138756,7 +138993,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "scnanoseq",
@@ -148782,14 +149019,16 @@
               "statfile": {
                 "type": "file",
                 "description": "A Purge dups statistic file",
-                "pattern": "*.stat"
+                "pattern": "*.stat",
+                "ontologies": []
               }
             },
             {
               "cutoff": {
                 "type": "file",
                 "description": "A Purge dups cutoff file",
-                "pattern": "*.cutoffs"
+                "pattern": "*.cutoffs",
+                "ontologies": []
               }
             }
           ]
@@ -148807,7 +149046,8 @@
                 "*.png": {
                   "type": "file",
                   "description": "A png file of the read depth coverage.",
-                  "pattern": "*.png"
+                  "pattern": "*.png",
+                  "ontologies": []
                 }
               }
             ]
@@ -148818,7 +149058,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -156870,7 +157115,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#format",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -156976,7 +157221,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#pedfilter",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -157058,7 +157303,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#rocplot",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -157282,7 +157527,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#vcfeval",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -164455,9 +164700,15 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about the fasta file\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
-                "description": "Optional fasta reference file. This file is needed to create a VCF file and to evaluate predicted deletions.",
+                "description": "The reference FASTA file (mandatory when using CRAM files)",
                 "pattern": "*.{fasta,fa}"
               }
             }
@@ -164575,7 +164826,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -164595,6 +164846,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information about the fasta file\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "The reference FASTA file (mandatory when using CRAM files)",
@@ -164609,7 +164866,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -169757,10 +170014,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "createtaxdb",
-          "version": "dev"
-        },
         {
           "name": "smrnaseq",
           "version": "2.4.0"
@@ -180581,6 +180834,14 @@
                 "pattern": "*.fasta"
               }
             }
+          ],
+          [
+            {
+              "db_type": {
+                "type": "string",
+                "description": "Type of database to use, either 'gene' or 'mlst'"
+              }
+            }
           ]
         ],
         "output": [
@@ -188525,7 +188786,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "reportho",
@@ -188658,7 +188919,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -188796,7 +189057,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -188880,7 +189141,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189021,7 +189282,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189162,7 +189423,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189247,7 +189508,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -189394,7 +189655,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -194351,6 +194612,12 @@
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "genome": {
                 "type": "file",
                 "description": "A fasta file of reference genome",
@@ -194359,6 +194626,12 @@
             }
           ],
           [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
             {
               "pickle": {
                 "type": "file",
@@ -194452,6 +194725,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
               "fasta": {
                 "type": "file",
                 "description": "A fasta file of the genome to use as reference for mapping",
@@ -194460,6 +194739,12 @@
             }
           ],
           [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing gtf information\ne.g. [ id:'test' ]\n"
+              }
+            },
             {
               "gtf": {
                 "type": "file",
@@ -194471,12 +194756,11 @@
         ],
         "output": [
           {
-            "index": [
+            "database": [
               {
-                "*.pickle": {
-                  "type": "file",
-                  "description": "Index file",
-                  "pattern": "*.pickle"
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -194484,6 +194768,23 @@
                   "type": "file",
                   "description": "Index database",
                   "pattern": "*.db"
+                }
+              }
+            ]
+          },
+          {
+            "pickle": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.pickle": {
+                  "type": "file",
+                  "description": "Index file",
+                  "pattern": "*.pickle"
                 }
               }
             ]
@@ -195667,15 +195968,34 @@
               "reads": {
                 "type": "file",
                 "description": "FASTQ or FASTQ.GZ file, list of 2 files for paired-end data",
-                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ],
           [
             {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'Hg38' ]\n"
+              }
+            },
+            {
               "reference": {
                 "type": "file",
                 "description": "Reference genome file"
+              }
+            }
+          ],
+          [
+            {
+              "technology": {
+                "type": "string",
+                "description": "Technology to pass to universc `--technology argument`"
               }
             }
           ]
@@ -195685,16 +196005,15 @@
             "outs": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Files containing the outputs of Cell Ranger",
-                  "pattern": "sample-${meta.id}/outs/*"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "sample-${meta.id}/outs/*": {
+                "${prefix}/outs/*": {
                   "type": "file",
                   "description": "Files containing the outputs of Cell Ranger",
-                  "pattern": "sample-${meta.id}/outs/*"
+                  "pattern": "${prefix}/outs/*"
                 }
               }
             ]
@@ -195705,7 +196024,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -195869,7 +196193,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanoseq",
@@ -196449,7 +196773,7 @@
       "pipelines": [
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         }
       ]
     },
@@ -213208,15 +213532,15 @@
             }
           },
           {
-            "val_discard_trimmed": {
-              "type": "boolean",
-              "description": "Structure: val(discard_trimmed)\nSpecify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
-            }
-          },
-          {
             "val_save_trimmed_fail": {
               "type": "boolean",
               "description": "Structure: val(save_trimmed_fail)\nSpecify true to save files that failed to pass trimming thresholds ending in `*.fail.fastq.gz`\n"
+            }
+          },
+          {
+            "val_discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "Structure: val(discard_trimmed)\nSpecify true to not write any reads that pass trimming thresholds.\nThis can be used to use fastp for the output report only.\n"
             }
           },
           {
@@ -214131,7 +214455,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
@@ -214524,7 +214848,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
@@ -214901,7 +215225,7 @@
         },
         {
           "name": "multiplesequencealign",
-          "version": "1.1.0"
+          "version": "1.1.1"
         },
         {
           "name": "nanostring",
