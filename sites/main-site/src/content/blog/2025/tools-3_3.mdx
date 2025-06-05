@@ -54,10 +54,12 @@ The initial nf-test CI run will fail, because the pipeline repository doesn't ha
 To fix this, generate a snapshot with:
 
 ```bash
-nf-test test
+nf-test test tests/ --profile=+<docker/singularity/conda etc.>
 ```
 
-and then commit `tests/default.nf.test.snap`.
+The `=+` notation is to extend the Nextflow `-profile test` option, and not overwrite it.
+
+Then commit `tests/default.nf.test.snap`.
 :::
 
 :::tip
