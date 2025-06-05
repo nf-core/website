@@ -51,10 +51,10 @@ This means good-bye to good old `ci.yml` and hello to `nf-test.yml`.
 :::note
 The initial nf-test CI run will fail, because the pipeline repository doesn't have a snapshot for `default.nf.test` yet.
 
-To fix this, generate a snapshot with:
+To fix this, generate a snapshot of just pipeline tests with:
 
 ```bash
-nf-test test
+nf-test test tests/ --profile=+<docker/singularity/conda etc.>
 ```
 
 and then commit `tests/default.nf.test.snap`.
