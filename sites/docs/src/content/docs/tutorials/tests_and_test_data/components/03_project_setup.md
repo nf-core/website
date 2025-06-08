@@ -1,15 +1,15 @@
 ---
 title: "3. Project Setup"
-subtitle: Configuring your project for testing with real examples from nf-core/methylseq
+subtitle: Configuring your nf-core pipeline project for testing with nf-test
 weight: 30
 ---
 
-## Real nf-core Project Structure
+## nf-core Project Structure
 
-Based on nf-core/methylseq, here's the actual structure of an nf-core project with nf-test:
+Here's the standard structure of an nf-core pipeline project with nf-test:
 
 ```
-methylseq/
+my-pipeline/
 ├── main.nf                          # Main pipeline script
 ├── nextflow.config                  # Main pipeline configuration
 ├── nextflow_schema.json            # Pipeline parameter schema
@@ -17,8 +17,6 @@ methylseq/
 ├── modules.json                    # Module dependencies
 ├── tests/                          # Pipeline-level tests
 │   ├── default.nf.test            # Main pipeline test
-│   ├── bwameth.nf.test            # Alternative aligner test
-│   ├── bismark_targeted_sequencing.nf.test
 │   ├── nextflow.config            # Test-specific config
 │   └── .nftignore                 # Files to ignore in snapshots
 ├── conf/                           # Configuration profiles
@@ -38,7 +36,7 @@ methylseq/
 
 ## Real nf-test Configuration
 
-### Actual nf-test.config from methylseq
+### Standard nf-test.config for nf-core pipelines
 
 ```groovy
 config {
@@ -57,13 +55,16 @@ config {
     // run all test with defined profile(s) from the main nextflow.config
     profile "test"
 
-    // list of filenames or patterns that should be trigger a full test run
+    // list of filenames or patterns that should trigger a full test run
     triggers 'nextflow.config', 'nf-test.config', 'conf/test.config', 'tests/nextflow.config', 'tests/.nftignore'
 
-    // load the necessary plugins
+    // load commonly used plugins
     plugins {
-        load "nft-bam@0.5.0"
         load "nft-utils@0.0.3"
+        // Add other plugins as needed for your pipeline
+        // load "nft-bam@0.6.0"    // For genomics pipelines working with BAM files
+        // load "nft-vcf@1.0.7"    // For variant calling pipelines
+        // load "nft-fastq@0.0.1"  // For quality control and preprocessing
     }
 }
 ```
@@ -75,12 +76,12 @@ config {
 - Ignores nf-core modules/subworkflows to test only local components
 - Uses environment variable `NFT_WORKDIR` for flexible work directory
 
-#### 2. **Essential Plugins**
-- **nft-bam@0.5.0**: For BAM file testing utilities
-- **nft-utils@0.0.3**: For file management and utility functions
+#### 2. **Common Plugins**
+- **nft-utils@0.0.3**: For file management and utility functions (widely used)
+- **nft-bam@0.5.0**: For BAM file testing utilities (when working with genomics data)
 
 #### 3. **Trigger Files**
-Files that trigger full test runs when changed:
+Files that trigger full test runs when changed (meaning all tests in the project will run, not just affected ones):
 - `nextflow.config` - Main pipeline configuration
 - `nf-test.config` - Test configuration
 - `conf/test.config` - Test profile configuration
@@ -89,7 +90,7 @@ Files that trigger full test runs when changed:
 
 ## Test-Specific Configuration
 
-### Actual tests/nextflow.config from methylseq
+### Standard tests/nextflow.config for nf-core pipelines
 
 ```groovy
 /*
@@ -100,34 +101,36 @@ Files that trigger full test runs when changed:
 
 params {
     // Base directory for nf-core/modules test data
-    modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
-    // Base directory for nf-core/methylseq test data
-    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/methylseq/'
-
-    // Input data
-    input       = "${projectDir}/assets/samplesheet.csv"
-    fasta       = "${params.pipelines_testdata_base_path}/reference/genome.fa.gz"
-    fasta_index = "${params.pipelines_testdata_base_path}/reference/genome.fa.fai"
-    outdir      = 'results'
+    modules_testdata_base_path = 's3://ngi-igenomes/testdata/nf-core/modules/'
+    
+    // Base directory for pipeline-specific test data
+    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
+    
+    // Input data - modify these paths for your pipeline's test data
+    input  = "${projectDir}/assets/samplesheet.csv"
+    outdir = 'results'
+    
+    // Add pipeline-specific test parameters here
+    // Examples for different pipeline types:
+    // genome = 'R64-1-1'                    // For genomics pipelines
+    // fasta  = 'test_reference.fa'          // Reference genome
+    // gtf    = 'test_annotation.gtf'        // Gene annotations
+    // design = 'design.csv'                 // Experimental design file
 }
 
-// Impose sensible resource limits for testing
+// Resource limits for testing
 process {
     resourceLimits = [
         cpus: 2,
-        memory: '3.GB',
-        time: '2.h'
+        memory: '6.GB',
+        time: '6.h'
     ]
 }
 
-aws.client.anonymous = true // fixes S3 access issues on self-hosted runners
+// CI/CD optimizations
+aws.client.anonymous = true
 
-// Impose same minimum Nextflow version as the pipeline for testing
-manifest {
-    nextflowVersion = '!>=24.10.2'
-}
-
-// Disable all Nextflow reporting options
+// Disable Nextflow reporting options for faster tests
 timeline { enabled = false }
 report   { enabled = false }
 trace    { enabled = false }
@@ -136,19 +139,20 @@ dag      { enabled = false }
 
 ### Key Test Configuration Features
 
-#### 1. **Test Data Sources**
+#### 1. **Parameter Management**
 - **modules_testdata_base_path**: Centralized nf-core modules test data
-- **pipelines_testdata_base_path**: Pipeline-specific test datasets
-- Both use remote URLs for consistency across environments
+- **Pipeline-specific params**: Add your pipeline's required parameters
+- **Remote URLs**: Use for consistency across environments
 
 #### 2. **Resource Management**
-- **resourceLimits**: Strict limits for CI/CD environments
-- **cpus: 2, memory: '3.GB', time: '2.h'**: Conservative limits for testing
+- **resourceLimits**: Conservative limits suitable for CI/CD environments
+- **Standard limits**: `cpus: 2, memory: '6.GB', time: '6.h'` (nf-core defaults)
+- **Scalable**: Adjust based on your pipeline's requirements
 
 #### 3. **CI/CD Optimizations**
-- **aws.client.anonymous = true**: Fixes S3 access in GitHub Actions
-- **Disabled reporting**: timeline, report, trace, dag disabled for speed
-- **Version constraints**: Matches pipeline requirements
+- **aws.client.anonymous = true**: Enables S3 access in CI environments
+- **Disabled reporting**: Removes timeline, report, trace, dag for faster execution
+- **Profile-based configuration**: Uses `test` profile for consistent testing
 
 ## Profile Configuration
 
@@ -162,7 +166,7 @@ dag      { enabled = false }
     Defines input files and everything required to run a fast and simple pipeline test.
 
     Use as follows:
-        nextflow run nf-core/methylseq -profile test,<docker/singularity> --outdir <OUTDIR>
+        nextflow run nf-core/PIPELINE_NAME -profile test,<docker/singularity> --outdir <OUTDIR>
 ----------------------------------------------------------------------------------------
 */
 
@@ -189,22 +193,20 @@ process {
 
 ## Test Data Structure
 
-### Real Samplesheet (assets/samplesheet.csv)
+### Example Samplesheet (assets/samplesheet.csv)
 
 ```csv
-sample,fastq_1,fastq_2,genome
-SRR389222_sub1,https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz,,
-SRR389222_sub2,https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub2.fastq.gz,,
-SRR389222_sub3,https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub3.fastq.gz,,
-Ecoli_10K_methylated,https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz,https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R2.fastq.gz,
+sample,fastq_1,fastq_2
+test_sample1,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R1.fastq.gz,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R2.fastq.gz
+test_sample2,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample2.fastq.gz,
 ```
 
-### Features of the Test Samplesheet
+### Test Samplesheet Best Practices
 
-1. **Mixed data types**: Single-end and paired-end samples
-2. **Remote URLs**: Direct links to GitHub test datasets
-3. **Minimal size**: Small datasets for fast testing
-4. **Real data**: Actual methylated sequencing data, not synthetic
+1. **Mixed data types**: Include both single-end and paired-end samples (if applicable)
+2. **Remote URLs**: Use direct links to test datasets for consistency
+3. **Minimal size**: Keep datasets small for fast testing
+4. **Real data**: Use actual data when possible, synthetic when necessary
 
 ## Input Validation Schema
 
@@ -213,8 +215,8 @@ Ecoli_10K_methylated,https://github.com/nf-core/test-datasets/raw/methylseq/test
 ```json
 {
     "$schema": "https://json-schema.org/draft/2020-12/schema",
-    "$id": "https://raw.githubusercontent.com/nf-core/methylseq/master/assets/schema_input.json",
-    "title": "nf-core/methylseq pipeline - params.input schema",
+    "$id": "https://raw.githubusercontent.com/nf-core/PIPELINE_NAME/master/assets/schema_input.json",
+    "title": "nf-core/PIPELINE_NAME pipeline - params.input schema",
     "description": "Schema for the file provided with params.input",
     "type": "array",
     "items": {
@@ -261,7 +263,7 @@ nf-test init
 
 ### 2. Set Up Test Configuration
 
-Create or verify these key files based on methylseq structure:
+Create or verify these key files using the standard nf-core structure:
 
 #### nf-test.config
 ```groovy
@@ -273,8 +275,11 @@ config {
     profile "test"
     triggers 'nextflow.config', 'nf-test.config', 'conf/test.config', 'tests/nextflow.config', 'tests/.nftignore'
     plugins {
-        load "nft-bam@0.5.0"
         load "nft-utils@0.0.3"
+        // Add plugins based on your pipeline needs:
+        // load "nft-bam@0.6.0"    // For BAM file testing
+        // load "nft-vcf@1.0.7"    // For VCF file testing
+        // load "nft-fastq@0.0.1"  // For FASTQ file testing
     }
 }
 ```
@@ -283,7 +288,7 @@ config {
 ```groovy
 params {
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
-    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/YOUR_PIPELINE/'
+    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
     input       = "${projectDir}/assets/samplesheet.csv"
     outdir      = 'results'
 }
@@ -309,8 +314,8 @@ dag      { enabled = false }
 #### Minimal samplesheet (assets/samplesheet.csv)
 ```csv
 sample,fastq_1,fastq_2
-test_sample1,https://github.com/nf-core/test-datasets/raw/YOUR_PIPELINE/testdata/sample1_R1.fastq.gz,https://github.com/nf-core/test-datasets/raw/YOUR_PIPELINE/testdata/sample1_R2.fastq.gz
-test_sample2,https://github.com/nf-core/test-datasets/raw/YOUR_PIPELINE/testdata/sample2.fastq.gz,
+test_sample1,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R1.fastq.gz,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R2.fastq.gz
+test_sample2,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample2.fastq.gz,
 ```
 
 ### 4. Set Up Profile Configuration
@@ -377,16 +382,17 @@ nf-test test modules/nf-core/fastqc/tests/main.nf.test --profile test,docker
 nf-test test tests/default.nf.test --profile test,docker
 ```
 
-## Best Practices from methylseq
+## Best Practices for nf-core Pipeline Testing
 
-1. **Use remote test data**: Links to GitHub test-datasets for consistency
-2. **Resource limits**: Always set sensible limits for CI/CD
-3. **Anonymous AWS access**: Essential for public repositories
-4. **Minimal datasets**: Keep test data small but representative
-5. **Mixed test scenarios**: Include both single-end and paired-end data
+1. **Use remote test data**: Links to GitHub test-datasets for consistency across environments
+2. **Resource limits**: Always set sensible limits for CI/CD environments
+3. **Anonymous AWS access**: Essential for public repositories accessing S3 data
+4. **Minimal datasets**: Keep test data small but representative of real use cases
+5. **Mixed test scenarios**: Include appropriate test cases for your pipeline's input types
 6. **Plugin management**: Use specific plugin versions for reproducibility
 7. **Ignore patterns**: Properly configure .nftignore for stable snapshots
+8. **Profile separation**: Use different profiles for different testing scenarios
 
 ## Next Steps
 
-With your project properly configured using the methylseq model, proceed to [Testing Modules](./04_testing_modules.md) to start writing comprehensive module tests. 
+With your project properly configured using standard nf-core patterns, proceed to [Testing Modules](./04_testing_modules.md) to start writing comprehensive module tests. 

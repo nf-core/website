@@ -1,6 +1,6 @@
 ---
 title: "16. Best Practices"
-subtitle: Testing best practices and conventions from nf-core/methylseq
+subtitle: Testing best practices and conventions for nf-core pipelines
 weight: 160
 ---
 
@@ -22,7 +22,7 @@ tests/
 
 ### Test Naming Conventions
 
-Based on methylseq's current implementation:
+Based on nf-core standard implementation:
 
 ```groovy
 nextflow_pipeline {
@@ -47,7 +47,7 @@ nextflow_pipeline {
 
 ### Pipeline Test Pattern
 
-Standard nf-core pipeline test structure from methylseq:
+Standard nf-core pipeline test structure:
 
 ```groovy
 test("-profile test") {
@@ -65,7 +65,7 @@ test("-profile test") {
             { assert workflow.success },
             { assert snapshot(
                 workflow.trace.succeeded().size(),
-                removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                 stable_name,
                 stable_path,
                 bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
@@ -100,7 +100,7 @@ plugins {
 
 ### Standard Test Configuration
 
-Based on methylseq's implementation:
+Based on nf-core standard implementation:
 
 ```groovy
 // nf-test.config
@@ -127,7 +127,7 @@ params {
     // For modules
     modules_testdata_base_path = 's3://ngi-igenomes/testdata/nf-core/modules/'
     // For pipelines
-    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/methylseq/'
+    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
     
     // Pipeline-specific test data
     input = "${projectDir}/assets/samplesheet.csv"
@@ -834,4 +834,4 @@ test("Performance regression check") {
 
 ## Next Steps
 
-Continue to [Troubleshooting Guide](./16_troubleshooting_guide.md) to learn how to debug common testing issues. 
+Continue to [Troubleshooting](./15_troubleshooting.md) to learn how to debug common testing issues. 

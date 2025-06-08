@@ -419,4 +419,4 @@ params {
 
 ## Next Steps
 
-Continue to [Snapshot Management](./08_snapshot_management.md) to learn about working with test snapshots. 
+Continue to [Snapshot Management](./09_snapshot_management.md) to learn about working with test snapshots. 

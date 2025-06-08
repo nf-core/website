@@ -432,4 +432,4 @@ then {
 
 ## Next Steps
 
-Continue to [Advanced Testing Patterns](./10_advanced_testing_patterns.md) to learn complex testing scenarios. 
+Continue to [Advanced Testing Patterns](./10_advanced_testing_patterns.md) to learn complex testing scenarios and custom function usage. 

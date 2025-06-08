@@ -23,20 +23,18 @@ This comprehensive guide covers testing nf-core components using nf-test. From w
 - **[7. nf-test Assertions](./components/07_assertions.md)** - Comprehensive assertion patterns and verification techniques
 
 ### Configuration & Management
-- **[8. Configuration Management](./components/07_configuration_management.md)** - Managing test configurations and parameters
-- **[9. Snapshot Management](./components/08_snapshot_management.md)** - Working with snapshots and test outputs
+- **[8. Configuration Management](./components/08_configuration_management.md)** - Managing test configurations and parameters
+- **[9. Snapshot Management](./components/09_snapshot_management.md)** - Working with snapshots and test outputs
 
 ### Advanced Topics
-- **[10. Advanced Testing Patterns](./components/09_advanced_testing_patterns.md)** - Complex testing scenarios and patterns
-- **[11. Test Data Management](./components/10_test_data_management.md)** - Organizing and managing test datasets
-- **[12. External Commands and Tools](./components/11_external_commands_tools.md)** - Testing with external dependencies
-- **[13. Custom Utility Classes](./components/12_custom_utility_classes.md)** - Creating reusable test utilities
+- **[10. Advanced Testing Patterns](./components/10_advanced_testing_patterns.md)** - Complex testing scenarios, custom functions, and external tool integration
+- **[11. Test Data Management](./components/11_test_data_management.md)** - Organizing and managing test datasets
 
 ### Quality & Deployment
-- **[14. Error Testing & Edge Cases](./components/13_error_testing_edge_cases.md)** - Testing failure scenarios and edge cases
-- **[15. CI/CD Integration](./components/14_cicd_integration.md)** - Integrating tests with continuous integration
-- **[16. Best Practices](./components/15_best_practices.md)** - Testing best practices and conventions
-- **[17. Troubleshooting](./components/16_troubleshooting.md)** - Common issues and solutions
+- **[12. Error Testing & Edge Cases](./components/12_error_testing_edge_cases.md)** - Testing failure scenarios and edge cases
+- **[13. CI/CD Integration](./components/13_cicd_integration.md)** - Integrating tests with continuous integration
+- **[14. Best Practices](./components/14_best_practices.md)** - Testing best practices and conventions
+- **[15. Troubleshooting](./components/15_troubleshooting.md)** - Common issues and solutions
 
 ## nf-core Testing Principles
 

@@ -44,7 +44,7 @@ nf-test clean
 
 ## nf-core Integration
 
-### Using nf-core tools
+### Using nf-core tools with nf-test
 
 ```bash
 # Create module with test template
@@ -55,6 +55,12 @@ nf-core modules test <tool>
 
 # Lint module tests
 nf-core modules lint <tool>
+
+# Search for available modules
+nf-core modules list
+
+# Get information about a module
+nf-core modules info <tool>
 ```
 
 ### Test Data Integration
@@ -65,6 +71,13 @@ nf-core uses centralized test data:
 // Reference test data
 file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
 ```
+
+## Prerequisites
+
+Before running these commands, ensure you have:
+- nf-test installed (see [Installation Guide](./01_installation.md))
+- An nf-core pipeline or module project set up
+- Access to test data (local or remote)
 
 ## Command Options
 

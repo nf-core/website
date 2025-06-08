@@ -536,4 +536,4 @@ params {
 
 ## Next Steps
 
-Continue to [External Commands and Tools](./12_external_commands_tools.md) to learn about testing with external dependencies. 
+Continue to [Error Testing & Edge Cases](./12_error_testing_edge_cases.md) to learn about testing failure scenarios and edge cases. 

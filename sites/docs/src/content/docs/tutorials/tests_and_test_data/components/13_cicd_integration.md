@@ -1,18 +1,18 @@
 ---
 title: "15. CI/CD Integration"
-subtitle: Integrating nf-test with continuous integration using real examples from nf-core/methylseq
+subtitle: Integrating nf-test with continuous integration
 weight: 150
 ---
 
 ## Real nf-core CI/CD Setup
 
-nf-core/methylseq provides a production-ready example of CI/CD integration with nf-test, featuring advanced sharding, multiple profiles, and GPU testing.
+This section provides production-ready examples of CI/CD integration with nf-test, featuring advanced sharding, multiple profiles, and GPU testing.
 
 ## Main nf-test Workflow
 
 ### Complete GitHub Actions Workflow
 
-Based on the actual `/.github/workflows/nf-test.yml` from methylseq:
+Here's a standard nf-core pipeline nf-test workflow:
 
 ```yaml
 name: Run nf-tests
@@ -657,4 +657,4 @@ Add TAP output processing for detailed test reports:
 
 ## Next Steps
 
-Continue to [Best Practices](./15_best_practices.md) to learn comprehensive testing strategies and conventions. 
+Continue to [Best Practices](./14_best_practices.md) to learn comprehensive testing strategies and conventions. 

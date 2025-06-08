@@ -410,7 +410,7 @@ When using nf-test with Docker, Singularity, or Conda, be aware of environment-s
 
 ## Next Steps
 
-Continue to [Configuration Management](./07_configuration_management.md) to learn about managing test configurations and environments.
+Continue to [Configuration Management](./08_configuration_management.md) to learn about managing test configurations and environments.
 
 ### Additional Reading
 

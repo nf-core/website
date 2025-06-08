@@ -1,12 +1,12 @@
 ---
 title: "4. Testing Modules"
-subtitle: Testing individual nf-core modules with real examples from nf-core/methylseq
+subtitle: Testing individual nf-core modules with comprehensive examples
 weight: 40
 ---
 
 ## Module Test Structure
 
-A typical nf-core module test follows established patterns. Here's the structure used in nf-core/methylseq for FastQC:
+A typical nf-core module test follows established patterns. Here's the structure commonly used for FastQC:
 
 ```groovy
 nextflow_process {

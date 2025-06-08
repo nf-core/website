@@ -6,7 +6,7 @@ weight: 60
 
 ## Pipeline Test Structure
 
-Pipeline tests verify end-to-end functionality with complete datasets. Here's the current structure used in nf-core/methylseq:
+Pipeline tests verify end-to-end functionality with complete datasets. Here's the standard structure used in nf-core pipelines:
 
 ```groovy
 nextflow_pipeline {
@@ -27,21 +27,21 @@ nextflow_pipeline {
             def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
             // stable_path: All files in ${params.outdir}/ with stable content
             def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
-            // bam_files: All bam files
-            def bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+            // binary_files: All binary files that need checksum validation
+            def binary_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam', '**/*.bai', '**/*.vcf.gz'])
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
                     // Number of tasks
                     workflow.trace.succeeded().size(),
-                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we tests pipelines on multiple Nextflow versions
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
-                    // All stable path name
+                    // pipeline versions.yml file for multiqc from which Nextflow version is removed because we test pipelines on multiple Nextflow versions
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
+                    // All stable path names
                     stable_name,
                     // All files with stable contents
                     stable_path,
-                    // All bam files
-                    bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
+                    // All binary files with checksums
+                    binary_files.collect{ file -> [ file.getName(), file.getName().endsWith('.bam') ? bam(file.toString()).getReadsMD5() : file.md5() ] }
                 ).match() }
             )
         }
@@ -53,7 +53,7 @@ nextflow_pipeline {
 
 ### Required default.nf.test
 
-Every nf-core pipeline **MUST** have a `default.nf.test` file in the pipeline root. The methylseq example shows the standard pattern:
+Every nf-core pipeline **MUST** have a `default.nf.test` file in the pipeline root. Here's the standard pattern:
 
 ```groovy
 // default.nf.test
@@ -71,18 +71,18 @@ nextflow_pipeline {
             }
         }
         then {
-            // Standard methylseq pattern with comprehensive snapshot coverage
+            // Standard nf-core pattern with comprehensive snapshot coverage
             def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
             def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
-            def bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+            def binary_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam', '**/*.bai', '**/*.vcf.gz'])
             assertAll(
                 { assert workflow.success },
                 { assert snapshot(
                     workflow.trace.succeeded().size(),
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                     stable_name,
                     stable_path,
-                    bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
+                    binary_files.collect{ file -> [ file.getName(), file.getName().endsWith('.bam') ? bam(file.toString()).getReadsMD5() : file.md5() ] }
                 ).match() }
             )
         }
@@ -144,10 +144,10 @@ nextflow_pipeline {
 
 ### Testing Each Pipeline Path
 
-Test each major pathway through your pipeline's "metro map". Here are real examples from nf-core/methylseq:
+Test each major pathway through your pipeline's "metro map". Here are examples for common pipeline branches:
 
 ```groovy
-// Test main Bismark path (default)
+// Test main pipeline path (default)
 test("-profile test") {
     when {
         params {
@@ -157,15 +157,15 @@ test("-profile test") {
     then {
         def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
         def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
-        def bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+        def binary_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam', '**/*.bai', '**/*.vcf.gz'])
         assertAll(
             { assert workflow.success },
             { assert snapshot(
                 workflow.trace.succeeded().size(),
-                removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                 stable_name,
                 stable_path,
-                bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
+                binary_files.collect{ file -> [ file.getName(), file.getName().endsWith('.bam') ? bam(file.toString()).getReadsMD5() : file.md5() ] }
             ).match() }
         )
     }
@@ -187,7 +187,7 @@ test("Params: bwameth") {
             { assert workflow.success },
             { assert snapshot(
                 workflow.trace.succeeded().size(),
-                removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                 stable_name,
                 stable_path,
                 bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
@@ -213,7 +213,7 @@ test("Params: bismark | run_targeted_sequencing") {
             { assert workflow.success },
             { assert snapshot(
                 workflow.trace.succeeded().size(),
-                removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                 stable_name,
                 stable_path,
                 bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
@@ -238,7 +238,7 @@ test("Params: bismark | skip_trimming") {
             { assert workflow.success },
             { assert snapshot(
                 workflow.trace.succeeded().size(),
-                removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                 stable_name,
                 stable_path,
                 bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getReadsMD5() ] }
@@ -409,7 +409,7 @@ nextflow_pipeline {
 
 ### Setting up .nftignore for Unstable Files
 
-Create `tests/.nftignore` to exclude files with unstable content but stable names. Here's the actual methylseq example:
+Create `tests/.nftignore` to exclude files with unstable content but stable names. Here's an example:
 
 ```gitignore
 .DS_Store
@@ -503,11 +503,11 @@ removeFromYamlMap("$outputDir/pipeline_info/*_mqc_versions.yml", "Workflow", "Ne
 
 ### Real-World Pipeline Test Examples
 
-#### Complete methylseq-style Test
+#### Complete Example Test
 
 ```groovy
 nextflow_pipeline {
-    name "Test METHYLSEQ Pipeline"
+    name "Test Example Pipeline"
     script "main.nf"
     profile "test"
     tag "pipeline"
@@ -541,7 +541,7 @@ nextflow_pipeline {
                 { assert workflow.success },
                 { assert snapshot(
                     workflow.trace.succeeded().size(),
-                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_methylseq_software_mqc_versions.yml"),
+                    removeNextflowVersion("$outputDir/pipeline_info/nf_core_*_software_mqc_versions.yml"),
                     stable_name,
                     stable_path
                 ).match() }
@@ -847,7 +847,7 @@ Continue to [nf-test Assertions](./07_assertions.md) to learn about comprehensiv
 
 ### Setting up nf-test Configuration
 
-Add to your `nf-test.config` based on methylseq's current implementation:
+Add to your `nf-test.config` based on nf-core standard implementation:
 
 ```groovy
 config {
@@ -879,7 +879,7 @@ config {
 
 ### Test Configuration
 
-Create `tests/nextflow.config` for test-specific settings (methylseq example):
+Create `tests/nextflow.config` for test-specific settings:
 
 ```groovy
 /*
@@ -891,8 +891,8 @@ Create `tests/nextflow.config` for test-specific settings (methylseq example):
 params {
     // Base directory for nf-core/modules test data
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
-    // Base directory for nf-core/methylseq test data
-    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/methylseq/'
+    // Base directory for pipeline-specific test data
+    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
 
     // Input data
     input       = "${projectDir}/assets/samplesheet.csv"

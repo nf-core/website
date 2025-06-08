@@ -1,64 +1,51 @@
 ---
 title: "5. Testing Subworkflows"
-subtitle: Testing subworkflow components with real examples from nf-core/methylseq
+subtitle: Testing subworkflow components with comprehensive examples
 weight: 50
 ---
 
 ## Subworkflow Test Structure
 
-Subworkflows combine multiple processes and require comprehensive testing. Here's the structure used in nf-core/methylseq for the Bismark alignment and deduplication subworkflow:
+Subworkflows combine multiple processes and require comprehensive testing. Here's an example structure for a typical alignment and quality control subworkflow:
 
 ```groovy
 nextflow_workflow {
-    name "Test Subworkflow FASTQ_ALIGN_DEDUP_BISMARK"
+    name "Test Subworkflow FASTQ_ALIGN_QC"
     script "../main.nf"
-    workflow "FASTQ_ALIGN_DEDUP_BISMARK"
+    workflow "FASTQ_ALIGN_QC"
     config "./nextflow.config"
 
     tag "subworkflows"
     tag "subworkflows_nfcore"
-    tag "subworkflows/fastq_align_dedup_bismark"
-    tag "bismark/align"
+    tag "subworkflows/fastq_align_qc"
+    tag "fastqc"
+    tag "trimgalore"
+    tag "bwa/mem"
     tag "samtools/sort"
     tag "samtools/index"
-    tag "bismark/deduplicate"
-    tag "bismark/methylationextractor"
-    tag "bismark/coverage2cytosine"
-    tag "bismark/report"
-    tag "bismark/summary"
-    tag "untar"
+    tag "samtools/stats"
+    tag "samtools/flagstat"
+    tag "picard/markduplicates"
 
     setup {
-        run("UNTAR", alias: "BOWTIE2") {
-            script "../../../../modules/nf-core/untar/main.nf"
+        run("BWA_INDEX") {
+            script "../../../../modules/nf-core/bwa/index/main.nf"
             process {
                 """
                 input[0] = [
-                    [:],
-                    file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Bowtie2_Index.tar.gz', checkIfExists: true)
-                ]
-                """
-            }
-        }
-
-        run("UNTAR", alias: "HISAT2") {
-            script "../../../../modules/nf-core/untar/main.nf"
-            process {
-                """
-                input[0] = [
-                    [:],
-                    file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Hisat2_Index.tar.gz', checkIfExists: true)
+                    [ id:'test' ],
+                    file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ]
                 """
             }
         }
     }
 
-    test("Params: bismark single-end | default") {
+    test("BWA alignment single-end | default") {
         when {
             params {
-                aligner            = "bismark"
-                cytosine_report    = false
+                aligner            = "bwa"
+                skip_trimming      = false
                 skip_deduplication = false
             }
 
@@ -66,15 +53,15 @@ nextflow_workflow {
                 """
                 input[0] = Channel.of([
                             [ id:'test', single_end:true ],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz', checkIfExists: true)
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                 ])
                 input[1] = Channel.of([
-                            [:],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
+                            [ id:'test' ],
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ])
-                input[2] = BOWTIE2.out.untar
-                input[3] = params.skip_deduplication
-                input[4] = params.cytosine_report
+                input[2] = BWA_INDEX.out.index
+                input[3] = params.skip_trimming
+                input[4] = params.skip_deduplication
                 """
             }
         }
@@ -85,16 +72,13 @@ nextflow_workflow {
                 { assert snapshot(
                     workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
                     workflow.out.bai.collect { meta, bai -> file(bai).name },
-                    workflow.out.coverage2cytosine_coverage,
-                    workflow.out.coverage2cytosine_report,
-                    workflow.out.coverage2cytosine_summary,
-                    workflow.out.methylation_bedgraph,
-                    workflow.out.methylation_calls,
-                    workflow.out.methylation_coverage,
-                    workflow.out.methylation_report,
-                    workflow.out.methylation_mbias,
-                    workflow.out.bismark_report.collect { meta, report -> file(report).name },
-                    workflow.out.bismark_summary[0][1],
+                    workflow.out.stats.collect { meta, stats -> file(stats).name },
+                    workflow.out.flagstat.collect { meta, flagstat -> file(flagstat).name },
+                    workflow.out.idxstats.collect { meta, idxstats -> file(idxstats).name },
+                    workflow.out.fastqc_html.collect { meta, html -> file(html).name },
+                    workflow.out.fastqc_zip.collect { meta, zip -> file(zip).name },
+                    workflow.out.trim_log.collect { meta, log -> file(log).name },
+                    workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
                     workflow.out.multiqc.flatten().collect { path -> file(path).name },
                     workflow.out.versions
                     ).match() }
@@ -484,11 +468,12 @@ Test all output channels that the subworkflow produces:
 
 ### 2. Use Real Test Data
 
-Use domain-specific test data (methylated FASTQ files for methylation workflows):
+Use domain-specific test data appropriate for your pipeline:
 
 ```groovy
-file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz', checkIfExists: true)
-file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz', checkIfExists: true)
+// For genomics pipelines
+file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
 ```
 
 ### 3. Test Single-End and Paired-End Scenarios
