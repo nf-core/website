@@ -1,12 +1,12 @@
 ---
-title: "3. Project Setup"
-subtitle: Configuring your nf-core pipeline project for testing with nf-test
+title: "3. Repository Setup"
+subtitle: Configuring your nf-core pipeline repository for testing with nf-test
 weight: 30
 ---
 
-## nf-core Project Structure
+## Example nf-core Repository Structure
 
-Here's the standard structure of an nf-core pipeline project with nf-test:
+Here is an example of an nf-core pipeline project with nf-test:
 
 ```
 my-pipeline/
@@ -34,9 +34,11 @@ my-pipeline/
 └── .nf-test/                      # nf-test working directory
 ```
 
-## Project Initialization Steps
+## Initial Setup
 
-### 1. Initialize nf-test (if not present. Most nf-core pipelines already have nf-test initialized.)
+### 1. Initialize nf-test (if not present)
+
+> **Note**: Most nf-core pipelines already have nf-test initialized.
 
 ```bash
 # Initialize nf-test in the project
@@ -47,11 +49,10 @@ nf-test init
 # - .nf-test/ directory
 ```
 
-### 2. Set Up Test Configuration
+### 2. Key Configuration Files
 
-Create or verify these key files using the standard nf-core structure:
-
-#### nf-test.config
+#### `nf-test.config` (Main Configuration)
+**Purpose**: Controls how nf-test behaves across your entire project
 ```groovy
 config {
     testsDir "."
@@ -70,7 +71,29 @@ config {
 }
 ```
 
-#### tests/nextflow.config
+> **For complete configuration options**, see the [official nf-test configuration documentation](https://www.nf-test.com/docs/configuration/).
+
+### Available nf-test Plugins
+
+For nf-core pipeline testing, you may need these plugins:
+
+| Plugin Name | Description/Use |
+|-------------|-----------------|
+| **nft-utils** | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
+| **nft-bam** | Helper functionality for handling SAM/BAM/CRAM files during tests - critical for genomics pipelines |
+| **nft-vcf** | Support for VCF files - utilities for testing variant call format files |
+| **nft-fasta** | Support for FASTA files - enables validation and testing of FASTA file formats |
+| **nft-fastq** | Support for FASTQ files - validation and testing utilities for sequencing data files |
+| **nft-csv** | Support for CSV files - utilities for testing comma-separated value files |
+| **nft-compress** | Support for ZIP files - enables testing of compressed file handling |
+| **nft-anndata** | Support for AnnData (h5ad) files - utilities for testing single-cell analysis data formats |
+| **nft-tiff** | Support for TIFF files - enables testing of Tagged Image File Format files |
+
+> **Note:** For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
+
+#### `tests/nextflow.config` (Test-Specific Settings)
+**Purpose**: Defines parameters and settings specifically for test execution
+
 ```groovy
 params {
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
@@ -90,49 +113,51 @@ process {
 aws.client.anonymous = true
 ```
 
-### 3. Create Test Assets
+## Test Data Integration
 
-#### Minimal samplesheet (assets/samplesheet.csv)
-```csv
-sample,fastq_1,fastq_2
-test_sample1,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R1.fastq.gz,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample1_R2.fastq.gz
-test_sample2,https://github.com/nf-core/test-datasets/raw/PIPELINE_NAME/testdata/sample2.fastq.gz,
+nf-core tools 3.3+ includes a command for discovering and managing test datasets:
+
+```bash
+# List all available test datasets
+nf-core test-datasets list
+
+# List datasets for a specific branch
+nf-core test-datasets list --branch mag
+
+# Search for specific datasets
+nf-core test-datasets search --branch mag minigut_reads
+
+# Generate download URLs for datasets
+nf-core test-datasets list --branch mag --generate-dl-url
+
+# Generate nf-test compatible paths
+nf-core test-datasets list --branch mag --generate-nf-path
 ```
 
-### 4. Set Up Profile Configuration
+> **Note:** This feature requires [nf-core/tools 3.3+](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
 
-#### conf/test.config
-```groovy
-params {
-    config_profile_name        = 'Test profile'
-    config_profile_description = 'Minimal test dataset to check pipeline function'
-    input = "${projectDir}/assets/samplesheet.csv"
-    // Add your specific test parameters
-}
+## Generating Tests (Optional)
 
-process {
-    resourceLimits = [
-        cpus: 4,
-        memory: '15.GB',
-        time: '1.h'
-    ]
-}
+Most nf-core pipelines already have tests generated. If needed:
+
+```bash
+# Generate test template for a process
+nf-test generate process path/to/main.nf
+
+# Generate test for workflow
+nf-test generate workflow path/to/main.nf
 ```
 
-## Best Practices for nf-core Pipeline Testing
 
-1. **Use remote test data**: Links to GitHub test-datasets for consistency across environments
-2. **Resource limits**: Always set sensible limits for CI/CD environments
-3. **Anonymous AWS access**: Essential for public repositories accessing S3 data
-4. **Minimal datasets**: Keep test data small but representative of real use cases
-5. **Mixed test scenarios**: Include appropriate test cases for your pipeline's input types
-6. **Plugin management**: Use specific plugin versions for reproducibility
-7. **Ignore patterns**: Properly configure .nftignore for stable snapshots
-8. **Profile separation**: Use different profiles for different testing scenarios
+## Basic Commands Summary
 
-For comprehensive information about nf-core test datasets and how to use them in your tests, see the [nf-core test-datasets documentation](https://nf-co.re/docs/tutorials/tests_and_test_data/test_data).
-
+| Command | Purpose |
+|---------|---------|
+| `nf-test list` | Show available tests |
+| `nf-test test --profile docker` | Run all tests |
+| `nf-test test --update-snapshot` | Update expected outputs |
+| `nf-test test --verbose` | Show detailed output |
 
 ## Next Steps
 
-With your project properly configured using standard nf-core patterns, proceed to [Testing Modules](./04_testing_modules.md) to start writing comprehensive module tests.
+With your project properly configured, proceed to [Testing Modules](./04_testing_modules.md) to start writing comprehensive module tests.

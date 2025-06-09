@@ -62,45 +62,6 @@ List available tests:
 nf-test list
 ```
 
----
-
-
-## Common Plugins
-
-For nf-core pipeline testing, you may need these plugins (loaded in your `nf-test.config`):
-
-### Available nf-test Plugins
-
-| Plugin Name | Description/Use |
-|-------------|-----------------|
-| **nft-utils** | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
-| **nft-bam** | Helper functionality for handling SAM/BAM/CRAM files during tests - critical for genomics pipelines |
-| **nft-vcf** | Support for VCF files - utilities for testing variant call format files |
-| **nft-fasta** | Support for FASTA files - enables validation and testing of FASTA file formats |
-| **nft-fastq** | Support for FASTQ files - validation and testing utilities for sequencing data files |
-| **nft-csv** | Support for CSV files - utilities for testing comma-separated value files |
-| **nft-compress** | Support for ZIP files - enables testing of compressed file handling |
-| **nft-anndata** | Support for AnnData (h5ad) files - utilities for testing single-cell analysis data formats |
-| **nft-tiff** | Support for TIFF files - enables testing of Tagged Image File Format files |
-
-### Plugin Configuration
-
-These plugins are automatically loaded when specified in your `nf-test.config`:
-
-```groovy
-config {
-    plugins {
-        load "nft-utils@0.0.3"
-        load "nft-bam@0.6.0"
-        // Add additional plugins as needed:
-        // load "nft-vcf@1.0.7"
-        // load "nft-fastq@0.0.1"
-    }
-}
-```
-
-> **Note:** For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
-
 ## Next Steps
 
 Once you have nf-test installed, proceed to [nf-test Commands & Integration](./02_commands_integration.md) to learn the essential commands.
