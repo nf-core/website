@@ -36,7 +36,7 @@ my-pipeline/
 
 ## Project Initialization Steps
 
-### 1. Initialize nf-test (if not present)
+### 1. Initialize nf-test (if not present. Most nf-core pipelines already have nf-test initialized.)
 
 ```bash
 # Initialize nf-test in the project
@@ -88,11 +88,6 @@ process {
 }
 
 aws.client.anonymous = true
-manifest { nextflowVersion = '!>=24.10.2' }
-timeline { enabled = false }
-report   { enabled = false }
-trace    { enabled = false }
-dag      { enabled = false }
 ```
 
 ### 3. Create Test Assets
@@ -122,39 +117,6 @@ process {
         time: '1.h'
     ]
 }
-```
-
-## Environment Setup
-
-### Development Environment
-
-```bash
-# Verify nf-test installation
-nf-test --version
-
-# Test basic functionality
-nf-test test --tag pipeline --profile docker,test
-```
-
-## Verification Steps
-
-### 1. Test Configuration
-
-```bash
-# Verify nf-test configuration
-nf-test list
-
-# Should show all discovered tests
-```
-
-### 2. Run Basic Tests
-
-```bash
-# Run a single test
-nf-test test --tag pipeline --profile test,docker
-
-# Run all tests
-nf-test test --profile test,docker
 ```
 
 ## Best Practices for nf-core Pipeline Testing

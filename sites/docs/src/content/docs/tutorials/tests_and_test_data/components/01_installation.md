@@ -18,9 +18,11 @@ Before installing nf-test, ensure you have:
 ### Recommended Installation: Using Conda/Mamba
 
 ```bash
-conda install -c bioconda nf-core nf-test
+conda install -c bioconda nf-core
+conda install -c bioconda nf-test
 # or
-mamba install -c bioconda nf-core nf-test
+mamba install -c bioconda nf-core
+mamba install -c bioconda nf-test
 ```
 
 ### Alternative Installation Methods
@@ -55,100 +57,13 @@ Verify your installation:
 nf-test version
 ```
 
----
-
-## nf-core tools test commands (nf-core/modules repo only)
-
-If you're working within the nf-core/modules repository, nf-core tools provides convenient test commands:
-
-#### Testing modules
-
+List available tests:
 ```bash
-nf-core modules test [OPTIONS] <tool> or <tool/subtool>
-```
-
-Example help output:
-```
-Usage: nf-core modules test [OPTIONS] <tool> or <tool/subtool>
-
-Run nf-test for a module.
-
-╭─ Options ─────────────────────────────────────────────────────────────────╮
-│ --verbose         -v    Print verbose output to the console. Sets         │
-│                         `--debug` inside the nf-test command.             │
-│ --dir             -d    <nf-core/modules directory>                       │
-│ --no-prompts      -p    Use defaults without prompting                    │
-│ --update          -u    Update existing snapshots                         │
-│ --once            -o    Run tests only once. Don't check snapshot         │
-│                         stability                                         │
-│ --profile               [docker|singularity|conda] Run tests with a       │
-│                         specific profile                                  │
-│ --migrate-pytest        Migrate a module with pytest tests to nf-test     │
-│ --help            -h    Show this message and exit.                       │
-╰───────────────────────────────────────────────────────────────────────────╯
-```
-
-#### Testing subworkflows
-
-```bash
-nf-core subworkflows test [OPTIONS] subworkflow name
-```
-
-Example help output:
-```
-Usage: nf-core subworkflows test [OPTIONS] subworkflow name
-
-Run nf-test for a subworkflow.
-
-╭─ Options ────────────────────────────────────────────────────────────────╮
-│ --dir             -d    <nf-core/modules directory>                      │
-│ --no-prompts      -p    Use defaults without prompting                   │
-│ --update          -u    Update existing snapshots                        │
-│ --once            -o    Run tests only once. Don't check snapshot        │
-│                         stability                                        │
-│ --profile               [docker|singularity|conda] Run tests with a      │
-│                         specific profile                                 │
-│ --migrate-pytest        Migrate a subworkflow with pytest tests to       │
-│                         nf-test                                          │
-│ --help            -h    Show this message and exit.                      │
-╰───────────────────────────────────────────────────────────────────────────╯
-```
-
-When working within the **nf-core/modules repository**, you can use nf-core tools commands:
-
-```bash
-# Test a specific module (only works in nf-core/modules repo)
-nf-core modules test bedtools/bamtobed
-
-# Test with docker profile
-nf-core modules test bedtools/bamtobed --profile docker
-
-# Test a subworkflow (only works in nf-core/modules repo)
-nf-core subworkflows test vcf_impute_glimpse
-```
-
-### In individual pipeline repositories
-
-When developing **individual nf-core pipelines**, use nf-test commands directly:
-
-```bash
-# Check nf-test version
-nf-test version
-
-# List all available tests
 nf-test list
-
-# Run specific tests with profiles
-nf-test test tests/default.nf-test --profile test,docker
-
-# Run all tests
-nf-test test
-
-# Update snapshots
-nf-test test tests/default.nf-test --update-snapshot
 ```
 
 ---
+
 
 ## Common Plugins
 
