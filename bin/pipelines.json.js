@@ -399,25 +399,26 @@ export const writePipelinesJson = async () => {
                 }
                 return { modules: Object.keys(modules_json.repos['nf-core/modules']) };
               } else if (
-                modules_json.repos['https://github.com/nf-core/modules.git'] &&
-                modules_json.repos['https://github.com/nf-core/modules.git'].modules
+                modules_json.repos["https://github.com/nf-core/modules.git"] &&
+                modules_json.repos["https://github.com/nf-core/modules.git"].modules &&
+                modules_json.repos["https://github.com/nf-core/modules.git"].modules["nf-core"]
               ) {
                 if (
-                  modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows &&
-                  modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core']
+                  modules_json.repos["https://github.com/nf-core/modules.git"].subworkflows &&
+                  modules_json.repos["https://github.com/nf-core/modules.git"].subworkflows["nf-core"]
                 ) {
                   return {
                     modules: Object.keys(
-                      modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
+                      modules_json.repos["https://github.com/nf-core/modules.git"].modules["nf-core"]
                     ),
                     subworkflows: Object.keys(
-                      modules_json.repos['https://github.com/nf-core/modules.git'].subworkflows['nf-core'],
+                      modules_json.repos["https://github.com/nf-core/modules.git"].subworkflows["nf-core"]
                     ),
                   };
                 } else {
                   return {
                     modules: Object.keys(
-                      modules_json.repos['https://github.com/nf-core/modules.git'].modules['nf-core'],
+                      modules_json.repos["https://github.com/nf-core/modules.git"].modules["nf-core"]
                     ),
                   };
                 }
