@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run build-component-json
+        run: npm run build-component-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
