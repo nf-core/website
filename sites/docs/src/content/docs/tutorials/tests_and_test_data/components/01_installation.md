@@ -4,23 +4,34 @@ subtitle: Setting up nf-test in your development environment
 weight: 10
 ---
 
-## Installation Options
+## Installing nf-test
 
-### Option 1: Official Installation Script (Recommended)
+**For nf-core pipeline development and testing, you need to install nf-test separately.** nf-core tools only provides test commands for the `nf-core/modules` repository context.
 
-The official and recommended way to install nf-test:
+### Prerequisites
+
+Before installing nf-test, ensure you have:
+
+- **Java 11 or higher**
+- **Nextflow** (latest stable version recommended)
+
+### Recommended Installation: Using Conda/Mamba
+
+```bash
+conda install -c bioconda nf-core nf-test
+# or
+mamba install -c bioconda nf-core nf-test
+```
+
+### Alternative Installation Methods
+
+#### Official Installation Script
 
 ```bash
 curl -fsSL https://get.nf-test.com | bash
 ```
 
-If you don't have curl installed, you can use wget:
-
-```bash
-wget -qO- https://get.nf-test.com | bash
-```
-
-This will create the `nf-test` executable file in the current directory. Optionally, move the `nf-test` file to a directory accessible by your `$PATH` variable:
+Move the `nf-test` file to a directory accessible by your `$PATH` variable:
 
 ```bash
 # Make it executable and move to PATH
@@ -28,36 +39,15 @@ chmod +x nf-test
 sudo mv nf-test /usr/local/bin/
 ```
 
-#### Install a specific version
-
-To install a specific version, pass it to the install script:
+#### Install specific version
 
 ```bash
 curl -fsSL https://get.nf-test.com | bash -s 0.9.0
 ```
 
-### Option 2: Using Conda/Mamba
+> **For complete installation instructions and troubleshooting**, visit the [official nf-test installation documentation](https://www.nf-test.com/docs/getting-started/).
 
-```bash
-conda install -c bioconda nf-test
-# or
-mamba install -c bioconda nf-test
-```
-
-### Option 3: Manual Installation
-
-Download the latest version from the [nf-test releases page](https://github.com/askimed/nf-test/releases):
-
-```bash
-# Download and extract
-curl -fsSL https://github.com/askimed/nf-test/releases/latest/download/nf-test.tar.gz | tar -xzf -
-
-# Make executable and move to PATH
-chmod +x nf-test
-sudo mv nf-test /usr/local/bin/
-```
-
-## Verification
+### Verification
 
 Verify your installation:
 
@@ -65,42 +55,100 @@ Verify your installation:
 nf-test version
 ```
 
-You should see output similar to:
+---
 
-```
-🚀 nf-test 0.9.0
-https://code.askimed.com/nf-test
-(c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr
+## nf-core tools test commands (nf-core/modules repo only)
 
-Nextflow Runtime:
+If you're working within the nf-core/modules repository, nf-core tools provides convenient test commands:
 
-      N E X T F L O W
-      version 23.10.1 build 5891
-      created 12-01-2024 22:01 UTC (23:01 CET)
-      cite doi:10.1038/nbt.3820
-      http://nextflow.io
-```
-
-## Troubleshooting Installation
-
-### Nextflow Binary not found?
-
-If you get an error message about Nextflow binary not being found, you have two options:
-
-1. **Move Nextflow to PATH**: Ensure your Nextflow binary is in a directory accessible by your `$PATH` variable
-2. **Set NEXTFLOW_HOME**: Set the environment variable `NEXTFLOW_HOME` to the directory containing the Nextflow binary:
+#### Testing modules
 
 ```bash
-export NEXTFLOW_HOME=/path/to/nextflow/directory
+nf-core modules test [OPTIONS] <tool> or <tool/subtool>
 ```
 
-### Updating nf-test
+Example help output:
+```
+Usage: nf-core modules test [OPTIONS] <tool> or <tool/subtool>
 
-To update an existing nf-test installation to the latest version:
+Run nf-test for a module.
+
+╭─ Options ─────────────────────────────────────────────────────────────────╮
+│ --verbose         -v    Print verbose output to the console. Sets         │
+│                         `--debug` inside the nf-test command.             │
+│ --dir             -d    <nf-core/modules directory>                       │
+│ --no-prompts      -p    Use defaults without prompting                    │
+│ --update          -u    Update existing snapshots                         │
+│ --once            -o    Run tests only once. Don't check snapshot         │
+│                         stability                                         │
+│ --profile               [docker|singularity|conda] Run tests with a       │
+│                         specific profile                                  │
+│ --migrate-pytest        Migrate a module with pytest tests to nf-test     │
+│ --help            -h    Show this message and exit.                       │
+╰───────────────────────────────────────────────────────────────────────────╯
+```
+
+#### Testing subworkflows
 
 ```bash
-nf-test update
+nf-core subworkflows test [OPTIONS] subworkflow name
 ```
+
+Example help output:
+```
+Usage: nf-core subworkflows test [OPTIONS] subworkflow name
+
+Run nf-test for a subworkflow.
+
+╭─ Options ────────────────────────────────────────────────────────────────╮
+│ --dir             -d    <nf-core/modules directory>                      │
+│ --no-prompts      -p    Use defaults without prompting                   │
+│ --update          -u    Update existing snapshots                        │
+│ --once            -o    Run tests only once. Don't check snapshot        │
+│                         stability                                        │
+│ --profile               [docker|singularity|conda] Run tests with a      │
+│                         specific profile                                 │
+│ --migrate-pytest        Migrate a subworkflow with pytest tests to       │
+│                         nf-test                                          │
+│ --help            -h    Show this message and exit.                      │
+╰───────────────────────────────────────────────────────────────────────────╯
+```
+
+When working within the **nf-core/modules repository**, you can use nf-core tools commands:
+
+```bash
+# Test a specific module (only works in nf-core/modules repo)
+nf-core modules test bedtools/bamtobed
+
+# Test with docker profile
+nf-core modules test bedtools/bamtobed --profile docker
+
+# Test a subworkflow (only works in nf-core/modules repo)
+nf-core subworkflows test vcf_impute_glimpse
+```
+
+### In individual pipeline repositories
+
+When developing **individual nf-core pipelines**, use nf-test commands directly:
+
+```bash
+# Check nf-test version
+nf-test version
+
+# List all available tests
+nf-test list
+
+# Run specific tests with profiles
+nf-test test tests/default.nf-test --profile test,docker
+
+# Run all tests
+nf-test test
+
+# Update snapshots
+nf-test test tests/default.nf-test --update-snapshot
+```
+
+---
 
 ## Common Plugins
 
@@ -138,13 +186,6 @@ config {
 
 > **Note:** For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
 
-## Prerequisites
-
-Before installing nf-test, ensure you have:
-
-- **Java 11 or higher**
-- **Nextflow** (latest stable version recommended)
-
 ## Next Steps
 
-Once installed, proceed to [nf-test Commands & Integration](./02_commands_integration.md) to learn the essential commands. 
+Once you have nf-test installed, proceed to [nf-test Commands & Integration](./02_commands_integration.md) to learn the essential commands.
