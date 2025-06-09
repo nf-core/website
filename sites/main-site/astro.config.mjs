@@ -139,7 +139,7 @@ export default defineConfig({
 		resolve: {
 			preserveSymlinks: true
 		},
-		envPrefix: ['PUBLIC_', 'GITHUB_'],  // This allows GITHUB_ prefixed env vars
+		envPrefix: ['PUBLIC_'],  // Remove GITHUB_ prefix to prevent token exposure
 	},
 	image: {
 		domains: [
