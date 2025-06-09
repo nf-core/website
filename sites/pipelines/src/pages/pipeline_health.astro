@@ -142,7 +142,7 @@ pipelines.sort((a, b) => {
                         >Branches exist</th
                     >
 
-                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
                         >Branch protection: <code>master</code>/<code>main</code> branch</th
                     >
                     <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
@@ -313,8 +313,8 @@ pipelines.sort((a, b) => {
                                 )}
                                 {/* Default branch set in nextflow.config manifest */}
                                 {getCell(
-                                    pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`].defaultBranch
-                                        ? pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`].defaultBranch ===
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch
+                                        ? pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch ===
                                           pipeline.default_branch
                                             ? true
                                             : false
@@ -367,90 +367,96 @@ pipelines.sort((a, b) => {
                                 )}
                                 {/* Branch protection: master/main */}
                                 {getCell(
-                                    !pipeline[`${mainOrMasterBranch}_branch_protection_up_to_date`]
-                                        ? true
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_up_to_date`],
-                                    pipeline.repository_url + "/settings/branches",
-                                    `${mainOrMasterBranch} branch: do not require branch to be up to date before merging`,
-                                    " border-start ",
-                                )}
-                                {getCell(
                                     pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
                                     `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
                                 )}
                                 {getCell(
                                     !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
                                     `${mainOrMasterBranch} branch: reviews not marked stale after new commits`,
                                 )}
                                 {getCell(
                                     pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`] !== -1
                                         ? !pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`]
                                         : pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`],
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
                                     `${mainOrMasterBranch} branch: code owner reviews not required`,
                                 )}
                                 {getCell(
                                     pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] !== -1
                                         ? pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] === 2
                                         : pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`],
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
                                     `${mainOrMasterBranch} branch: 2 reviews required`,
                                 )}
                                 {getCell(
                                     pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`] !== -1
                                         ? !pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`]
                                         : pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`],
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
                                     `${mainOrMasterBranch} branch: do not enforce rules for admins`,
                                     " border-end ",
                                 )}
                                 {/* Branch protection: dev */}
                                 {getCell(
-                                    !pipeline.dev_branch_protection_up_to_date
-                                        ? true
-                                        : pipeline.dev_branch_protection_up_to_date,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "dev branch: do not require branch to be up to date before merging",
-                                    " border-start ",
-                                )}
-                                {getCell(
                                     pipeline.dev_branch_protection_status_checks,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: minimum set of CI tests must pass",
                                 )}
                                 {getCell(
                                     !pipeline.dev_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: reviews not marked stale after new commits",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_require_codeowner_review !== -1
                                         ? !pipeline.dev_branch_protection_require_codeowner_review
                                         : pipeline.dev_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: code owner reviews not required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_required_reviews !== -1
                                         ? pipeline.dev_branch_protection_required_reviews >= 1
                                         : pipeline.dev_branch_protection_required_reviews,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: 1 review required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_enforce_admins !== -1
                                         ? !pipeline.dev_branch_protection_enforce_admins
                                         : pipeline.dev_branch_protection_enforce_admins,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: do not enforce rules for admins",
                                     " border-end ",
                                 )}
                                 {/* T push */}
                                 {getCell(
                                     pipeline.TEMPLATE_restrict_push,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.TEMPLATE_uses_ruleset ? "/rules" : "/branches"),
                                     "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}

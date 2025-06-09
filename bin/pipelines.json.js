@@ -153,13 +153,13 @@ export const writePipelinesJson = async () => {
       // Fetch all ruleset details in parallel instead of sequentially
       if (ruleSets.data.length > 0) {
         ruleSetData = await Promise.all(
-          ruleSets.data.map(ruleSet =>
+          ruleSets.data.map((ruleSet) =>
             octokit.request("GET /repos/{owner}/{repo}/rulesets/{ruleset_id}", {
               owner: "nf-core",
               repo: name,
               ruleset_id: ruleSet.id,
-            })
-          )
+            }),
+          ),
         );
       }
     } catch (err) {
@@ -174,7 +174,7 @@ export const writePipelinesJson = async () => {
         repo: name,
         per_page: 100,
       });
-      allBranches = branchesData.map(branch => branch.name);
+      allBranches = branchesData.map((branch) => branch.name);
     } catch (err) {
       console.warn(`Failed to fetch branches for ${name}`, err);
     }
@@ -189,67 +189,134 @@ export const writePipelinesJson = async () => {
         continue;
       }
 
+      // Initialize ALL branch protection fields with default values for non-TEMPLATE branches
+      if (branch !== "TEMPLATE") {
+        data[`${branch}_branch_protection_up_to_date`] = -1;
+        data[`${branch}_branch_protection_status_checks`] = -1;
+        data[`${branch}_branch_protection_required_reviews`] = -1;
+        data[`${branch}_branch_protection_require_codeowner_review`] = -1;
+        data[`${branch}_branch_protection_require_non_stale_review`] = -1;
+        data[`${branch}_branch_protection_enforce_admins`] = -1;
+      }
       // Check if there is a ruleSet for the branch
       const ruleSet = ruleSetData.find((r) => {
-        return r.data.conditions.ref_name.include[0] === "refs/heads/" + branch;
+        // Check if any of the include patterns match this branch
+        const includePatterns = r.data.conditions?.ref_name?.include || [];
+        const branchRef = "refs/heads/" + branch;
+        const matches = includePatterns.includes(branchRef);
+        // console.log(`Checking ruleset for ${branch}: patterns=${JSON.stringify(includePatterns)}, looking for=${branchRef}, matches=${matches}`);
+        return matches;
       })?.data;
-      console.log("ruleSet", ruleSet);
+      console.log(`${name} ${branch} ruleSet:`, ruleSet ? "found" : "not found");
       if (ruleSet) {
-        const required_status_checks = ruleSet.rules.find((rule) => rule.type === "required_status_checks")?.parameters
-          ?.required_status_checks;
-        const pull_request_rule = ruleSet.rules.find((rule) => rule.type === "pull_request")?.parameters;
-        console.log("status_checks", required_status_checks);
-        data[`${branch}_branch_protection_status_checks`] = required_status_checks?.map(check => check.context)??-1;
-        console.log("pull_request_rule", pull_request_rule);
-        data[`${branch}_branch_protection_required_reviews`] = pull_request_rule?.required_approving_review_count ?? -1;
-        data[`${branch}_branch_protection_require_codeowner_review`] = pull_request_rule?.require_code_owner_review ?? -1;
-        data[`${branch}_branch_protection_require_non_stale_review`] = pull_request_rule?.dismiss_stale_reviews_on_push ?? -1;
-        data[`${branch}_branch_protection_enforce_admins`] = ruleSet.rules.find(
-          (rule) => rule.type === "enforce_admins",
-        )?.parameters.enabled ?? -1;
-        // if all of the above are 1, then the branch protection is up to date
-        const protectionChecks = ['status_checks', 'required_reviews', 'require_codeowner_review', 'require_non_stale_review', 'enforce_admins'];
-        data[`${branch}_branch_protection_up_to_date`] = protectionChecks.every(check => data[`${branch}_branch_protection_${check}`] === 1);
-        console.log(data)
-        continue;
-      }
+        console.log(`Using ruleset for ${branch} branch protection`);
+        data[`${branch}_uses_ruleset`] = true;
+        if (branch !== "TEMPLATE") {
+          // Check for required status checks
+          const required_status_checks = ruleSet.rules.find((rule) => rule.type === "required_status_checks")
+            ?.parameters?.required_status_checks;
+          console.log(`${branch} required_status_checks:`, required_status_checks);
+          data[`${branch}_branch_protection_status_checks`] = required_status_checks
+            ? required_status_checks.map((check) => check.context)
+            : -1;
 
-      if (branch !== "TEMPLATE") {
-        // Get branch protection rules
-        try {
-          const branchRules = await octokit.rest.repos.getBranchProtection({
-            owner: "nf-core",
-            repo: name,
-            branch: branch,
-          });
-          data[`${branch}_branch_protection_up_to_date`] = branchRules?.data?.res;
-          data[`${branch}_branch_protection_status_checks`] =
-            branchRules?.data?.required_status_checks?.contexts ?? -1;
+          // Check for pull request rules
+          const pull_request_rule = ruleSet.rules.find((rule) => rule.type === "pull_request")?.parameters;
+          console.log(`${branch} pull_request_rule:`, pull_request_rule);
           data[`${branch}_branch_protection_required_reviews`] =
-            branchRules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
+            pull_request_rule?.required_approving_review_count ?? -1;
           data[`${branch}_branch_protection_require_codeowner_review`] =
-            branchRules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
+            pull_request_rule?.require_code_owner_review ?? -1;
           data[`${branch}_branch_protection_require_non_stale_review`] =
-            branchRules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
-          data[`${branch}_branch_protection_enforce_admins`] = branchRules?.data?.enforce_admins?.enabled ?? -1;
-        } catch (err) {
-          console.log(`Failed to fetch ${branch} branch protection`, err.response.data.message, err.response.url);
+            pull_request_rule?.dismiss_stale_reviews_on_push ?? -1;
+
+          // Check for admin enforcement
+          const enforce_admins_rule = ruleSet.rules.find((rule) => rule.type === "enforce_admins");
+          data[`${branch}_branch_protection_enforce_admins`] = enforce_admins_rule?.parameters?.enabled ?? -1;
+
+          // Check that branches don't need to be up to date
+          const branch_protection_up_to_date =
+            ruleSet.rules.find((rule) => rule.type === "branch_protection_up_to_date")?.parameters?.enabled ?? -1;
+          data[`${branch}_branch_protection_up_to_date`] = branch_protection_up_to_date ? true : false;
+
+          console.log(`Completed ruleset processing for ${branch} branch - found ${ruleSet.rules.length} rules`);
+          continue;
+        } else {
+          // check the ruleset for the TEMPLATE branch
+          const templateRuleSet = ruleSetData.find((r) => {
+            // Check if any of the include patterns match this branch
+            const includePatterns = r.data.conditions?.ref_name?.include || [];
+            const branchRef = "refs/heads/" + branch;
+            const matches = includePatterns.includes(branchRef);
+            // console.log(`Checking ruleset for ${branch}: patterns=${JSON.stringify(includePatterns)}, looking for=${branchRef}, matches=${matches}`);
+            return matches;
+          })?.data;
+          console.log(`${name} TEMPLATE ruleSet:`, templateRuleSet ? "found" : "not found");
+          if (templateRuleSet) {
+            console.log(`Using ruleset for TEMPLATE branch protection`);
+            data[`TEMPLATE_uses_ruleset`] = true;
+            console.log(`${name} TEMPLATE ruleSet:`, templateRuleSet);
+            // Check the bypass actors contains only bot
+            const bypass_actors = templateRuleSet.bypass_actors;
+            console.log(`${name} TEMPLATE bypass_actors:`, bypass_actors);
+
+            // Check if we only allow the bot team to bypass the push restriction
+            const teamActorsWithId = bypass_actors?.filter((actor) => actor.type === "Team" && actor.actor_id === 11558992) ?? [];
+            data[`TEMPLATE_bypass_actors`] = teamActorsWithId.length === 1;
+            data[`TEMPLATE_restrict_push`] =
+              teamActorsWithId.length === 1 && templateRuleSet.rules.some((rule) => rule.type === "update");
+          }
         }
-      } else {
-        // Template branch protection rules
-        try {
-          const restrictions = await octokit.rest.repos.getBranchProtection({
-            owner: "nf-core",
-            repo: name,
-            branch: "TEMPLATE",
-          });
-          data[`${branch}_restrict_push`] =
-            restrictions?.data.restrictions?.users?.length === 1 &&
-            restrictions?.data.restrictions?.users?.[0]?.login === "nf-core-bot"
-              ? true
-              : false;
-        } catch (err) {
-          console.log(`Failed to fetch ${branch} branch push restrictions`, err.response.data.message, err.response.url);
+
+        if (branch !== "TEMPLATE") {
+          // Get branch protection rules
+          try {
+            const branchRules = await octokit.rest.repos.getBranchProtection({
+              owner: "nf-core",
+              repo: name,
+              branch: branch,
+            });
+            console.log(`${branch} branch protection:`, branchRules?.data);
+            data[`${branch}_branch_protection_status_checks`] =
+              branchRules?.data?.required_status_checks?.contexts ?? -1;
+            data[`${branch}_branch_protection_required_reviews`] =
+              branchRules?.data?.required_pull_request_reviews?.required_approving_review_count ?? -1;
+            data[`${branch}_branch_protection_require_codeowner_review`] =
+              branchRules?.data?.required_pull_request_reviews?.require_code_owner_reviews ?? -1;
+            data[`${branch}_branch_protection_require_non_stale_review`] =
+              branchRules?.data?.required_pull_request_reviews?.dismiss_stale_reviews ?? -1;
+            data[`${branch}_branch_protection_enforce_admins`] = branchRules?.data?.enforce_admins?.enabled ?? -1;
+          } catch (err) {
+            // Branch protection might not be configured, which is normal
+            if (err.status === 404) {
+              console.log(`No branch protection configured for ${branch} branch in ${name}`);
+            } else {
+              console.log(
+                `Failed to fetch ${branch} branch protection for ${name}:`,
+                err.response?.data?.message || err.message,
+              );
+            }
+          }
+        } else {
+          // Template branch protection rules
+          try {
+            const restrictions = await octokit.rest.repos.getBranchProtection({
+              owner: "nf-core",
+              repo: name,
+              branch: "TEMPLATE",
+            });
+            data[`${branch}_restrict_push`] =
+              restrictions?.data.restrictions?.users?.length === 1 &&
+              restrictions?.data.restrictions?.users?.[0]?.login === "nf-core-bot"
+                ? true
+                : false;
+          } catch (err) {
+            console.log(
+              `Failed to fetch ${branch} branch push restrictions`,
+              err.response.data.message,
+              err.response.url,
+            );
+          }
         }
       }
     }
@@ -258,6 +325,12 @@ export const writePipelinesJson = async () => {
       data["topics"].includes(topic),
     );
     data["topics"] = data["topics"].filter((topic) => !ignored_topics.includes(topic));
+    if (!data["has_required_topics"]) {
+      data["missing_topics"] = ["nf-core", "nextflow", "workflow", "pipeline"].filter(
+        (topic) => !data["topics"].includes(topic),
+      );
+    }
+
     // get number of open pull requests
     let { data: pull_requests } = await octokit.rest.pulls.list({
       owner: "nf-core",
@@ -314,58 +387,57 @@ export const writePipelinesJson = async () => {
           }),
           getGitHubFile(name, "nextflow_schema.json", release.tag_name).then((response) => {
             return response ? true : false;
-          })
+          }),
         ]);
 
         release.tag_sha = commitData.data.sha;
         release.has_schema = schemaExists;
-      })
+      }),
     );
 
     // Parallelize commit fetching and file existence checks
-    const [
-      { data: default_branch },
-      lastReleaseCommit,
-      { data: dev_branch },
-      isDSL2,
-      hasNfTest,
-      hasNfTestDev
-    ] = await Promise.all([
-      // Get default branch commits
-      octokit.rest.repos.listCommits({
-        owner: "nf-core",
-        repo: name,
-        sha: data.default_branch,
-        per_page: 1,
-      }),
-      // Get last release commit (only if releases exist)
-      releases[0]?.tag_name ? octokit.rest.repos.getCommit({
-        owner: "nf-core",
-        repo: name,
-        ref: releases[0].tag_name,
-      }) : Promise.resolve(null),
-      // Get dev branch commits
-      octokit.rest.repos.listCommits({
-        owner: "nf-core",
-        repo: name,
-        sha: "dev",
-      }).catch(() => ({ data: [] })), // Handle case where dev branch doesn't exist
-      // Check DSL2 status
-      githubFolderExists(name, "modules", releases?.[0]?.tag_name ?? data.default_branch),
-      // Check nf-test usage
-      getGitHubFile(name, "nf-test.config", releases?.[0]?.tag_name ?? data.default_branch).then((response) => {
-        return response ? true : false;
-      }),
-      // Check nf-test dev usage
-      getGitHubFile(name, "nf-test.config", "dev").then((response) => {
-        return response ? true : false;
-      })
-    ]);
+    const [{ data: default_branch }, lastReleaseCommit, { data: dev_branch }, isDSL2, hasNfTest, hasNfTestDev] =
+      await Promise.all([
+        // Get default branch commits
+        octokit.rest.repos.listCommits({
+          owner: "nf-core",
+          repo: name,
+          sha: data.default_branch,
+          per_page: 1,
+        }),
+        // Get last release commit (only if releases exist)
+        releases[0]?.tag_name
+          ? octokit.rest.repos.getCommit({
+              owner: "nf-core",
+              repo: name,
+              ref: releases[0].tag_name,
+            })
+          : Promise.resolve(null),
+        // Get dev branch commits
+        octokit.rest.repos
+          .listCommits({
+            owner: "nf-core",
+            repo: name,
+            sha: "dev",
+          })
+          .catch(() => ({ data: [] })), // Handle case where dev branch doesn't exist
+        // Check DSL2 status
+        githubFolderExists(name, "modules", releases?.[0]?.tag_name ?? data.default_branch),
+        // Check nf-test usage
+        getGitHubFile(name, "nf-test.config", releases?.[0]?.tag_name ?? data.default_branch).then((response) => {
+          return response ? true : false;
+        }),
+        // Check nf-test dev usage
+        getGitHubFile(name, "nf-test.config", "dev").then((response) => {
+          return response ? true : false;
+        }),
+      ]);
 
     data["head_sha"] = default_branch[0]?.sha;
     data["last_release_is_head"] = lastReleaseCommit ? data["head_sha"] === lastReleaseCommit.data?.sha : false;
-    data["last_release_vs_default_compare_url"] = lastReleaseCommit ?
-      data["repository_url"] + "/compare/" + data["head_sha"] + "..." + lastReleaseCommit.data?.sha : "";
+    data["last_release_vs_default_compare_url"] = lastReleaseCommit
+      ? data["repository_url"] + "/compare/" + data["head_sha"] + "..." + lastReleaseCommit.data?.sha
+      : "";
 
     data["commits_to_dev"] = dev_branch?.length;
     data["is_DSL2"] = isDSL2;
@@ -396,31 +468,31 @@ export const writePipelinesJson = async () => {
     // id 'nf-validation' // Validation of pipeline parameters and creation of an input channel from a sample sheet
     // }
     for (const branch of ["master", "main", "dev"]) {
-      if(!data[`${branch}_branch_exists`]) {
+      if (!data[`${branch}_branch_exists`]) {
         continue;
       }
-      const nextflowConfig = await getGitHubFile(name, "nextflow.config", branch).then(
-        (response) => {
-          if (response) {
-            // Parse plugins
-            const plugins = response.match(/plugins\s*{([^}]*)}/s);
-            const pluginsList = plugins ? plugins[1]
-              .split("\n")
-              .filter((line) => line.includes("id"))
-              .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1]) : [];
+      const nextflowConfig = await getGitHubFile(name, "nextflow.config", branch).then((response) => {
+        if (response) {
+          // Parse plugins
+          const plugins = response.match(/plugins\s*{([^}]*)}/s);
+          const pluginsList = plugins
+            ? plugins[1]
+                .split("\n")
+                .filter((line) => line.includes("id"))
+                .map((line) => line.match(/id\s*['"]([^'"]*)['"]/)[1])
+            : [];
 
-            // get default branch from manifest
-            const manifest = {};
-            const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
-            if (defaultBranchMatch) {
-              manifest.defaultBranch = defaultBranchMatch[1];
-            }
-
-            return { plugins: pluginsList, manifest };
+          // get default branch from manifest
+          const manifest = {};
+          const defaultBranchMatch = response.match(/manifest\s*{[^}]*defaultBranch\s*=\s*['"]([^'"]+)['"]/s);
+          if (defaultBranchMatch) {
+            manifest.defaultBranch = defaultBranchMatch[1];
           }
-          return { plugins: [], manifest: {} };
+
+          return { plugins: pluginsList, manifest };
         }
-      );
+        return { plugins: [], manifest: {} };
+      });
 
       data[`${branch}_nextflow_config_plugins`] = nextflowConfig.plugins;
       data[`${branch}_nextflow_config_manifest`] = nextflowConfig.manifest;
@@ -457,7 +529,8 @@ export const writePipelinesJson = async () => {
                 return { modules: Object.keys(modules_json.repos["nf-core/modules"]) };
               } else if (
                 modules_json.repos["https://github.com/nf-core/modules.git"] &&
-                modules_json.repos["https://github.com/nf-core/modules.git"].modules
+                modules_json.repos["https://github.com/nf-core/modules.git"].modules &&
+                modules_json.repos["https://github.com/nf-core/modules.git"].modules["nf-core"]
               ) {
                 if (
                   modules_json.repos["https://github.com/nf-core/modules.git"].subworkflows &&
