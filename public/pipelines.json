@@ -12391,9 +12391,9 @@
             "url": "https://api.github.com/repos/nf-core/drugresponseeval",
             "created_at": "2023-08-24T10:02:01Z",
             "updated_at": "2025-05-12T09:15:59Z",
-            "pushed_at": "2025-06-05T13:19:34Z",
+            "pushed_at": "2025-06-06T10:35:32Z",
             "homepage": "https://nf-co.re/drugresponseeval",
-            "size": 7849,
+            "size": 10149,
             "stargazers_count": 20,
             "watchers_count": 20,
             "language": "Nextflow",
@@ -12406,7 +12406,7 @@
             "forks_count": 4,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 11,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -12427,7 +12427,7 @@
             ],
             "visibility": "public",
             "forks": 4,
-            "open_issues": 10,
+            "open_issues": 11,
             "watchers": 20,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -12541,7 +12541,7 @@
                 "nf-schema@2.2.0"
             ],
             "dev_nextflow_config_manifest": {
-                "defaultBranch": "master"
+                "defaultBranch": "main"
             },
             "releases": [
                 {
@@ -12564,21 +12564,13 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-05-16T07:26:03Z",
-                    "tag_sha": "10f5f2571c80cbcdacf8d792542d83c86d145cef",
+                    "published_at": "2025-06-05T15:18:08Z",
+                    "tag_sha": "22717f7d59a6fb17a17d6f530ed260f532d4de18",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
                         "docs/usage.md"
-                    ],
-                    "components": {
-                        "modules": [],
-                        "subworkflows": [
-                            "utils_nextflow_pipeline",
-                            "utils_nfcore_pipeline",
-                            "utils_nfschema_plugin"
-                        ]
-                    }
+                    ]
                 }
             ]
         },
