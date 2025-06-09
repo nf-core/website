@@ -95,7 +95,9 @@ export const writePipelinesJson = async () => {
     })
   )?.data?.created_at;
 
-  let bar = new ProgressBar("  fetching pipelines [:bar] :percent :etas", { total: names.length });
+  // Use active pipelines count for progress bar unless processing a single pipeline
+  const totalPipelines = singlePipelineName ? names.length : active_names.length;
+  let bar = new ProgressBar("  fetching pipelines [:bar] :percent :etas", { total: totalPipelines });
 
   // Process pipelines with controlled concurrency to avoid rate limits
   const CONCURRENCY_LIMIT = 5; // Process 5 pipelines concurrently
@@ -215,14 +217,14 @@ export const writePipelinesJson = async () => {
           // Check for required status checks
           const required_status_checks = ruleSet.rules.find((rule) => rule.type === "required_status_checks")
             ?.parameters?.required_status_checks;
-          console.log(`${branch} required_status_checks:`, required_status_checks);
+          // console.log(`${branch} required_status_checks:`, required_status_checks);
           data[`${branch}_branch_protection_status_checks`] = required_status_checks
             ? required_status_checks.map((check) => check.context)
             : -1;
 
           // Check for pull request rules
           const pull_request_rule = ruleSet.rules.find((rule) => rule.type === "pull_request")?.parameters;
-          console.log(`${branch} pull_request_rule:`, pull_request_rule);
+          // console.log(`${branch} pull_request_rule:`, pull_request_rule);
           data[`${branch}_branch_protection_required_reviews`] =
             pull_request_rule?.required_approving_review_count ?? -1;
           data[`${branch}_branch_protection_require_codeowner_review`] =
@@ -240,7 +242,7 @@ export const writePipelinesJson = async () => {
           data[`${branch}_branch_protection_up_to_date`] = branch_protection_up_to_date ? true : false;
 
           console.log(`Completed ruleset processing for ${branch} branch - found ${ruleSet.rules.length} rules`);
-          continue;
+
         } else {
           // check the ruleset for the TEMPLATE branch
           const templateRuleSet = ruleSetData.find((r) => {
@@ -261,13 +263,13 @@ export const writePipelinesJson = async () => {
             console.log(`${name} TEMPLATE bypass_actors:`, bypass_actors);
 
             // Check if we only allow the bot team to bypass the push restriction
-            const teamActorsWithId = bypass_actors?.filter((actor) => actor.type === "Team" && actor.actor_id === 11558992) ?? [];
-            data[`TEMPLATE_bypass_actors`] = teamActorsWithId.length === 1;
+            const teamActorsWithId = bypass_actors?.filter((actor) => actor.actor_type === "Team" && actor.actor_id === 11558992) ?? [];
             data[`TEMPLATE_restrict_push`] =
               teamActorsWithId.length === 1 && templateRuleSet.rules.some((rule) => rule.type === "update");
           }
         }
-
+      } else {
+        // No ruleset found, check old-style branch protection rules
         if (branch !== "TEMPLATE") {
           // Get branch protection rules
           try {
@@ -276,7 +278,7 @@ export const writePipelinesJson = async () => {
               repo: name,
               branch: branch,
             });
-            console.log(`${branch} branch protection:`, branchRules?.data);
+            // console.log(`${branch} branch protection:`, branchRules?.data);
             data[`${branch}_branch_protection_status_checks`] =
               branchRules?.data?.required_status_checks?.contexts ?? -1;
             data[`${branch}_branch_protection_required_reviews`] =
@@ -604,8 +606,9 @@ export const writePipelinesJson = async () => {
     return results;
   };
 
-  // Process all pipelines with controlled concurrency
-  await processInBatches(names.flat(), CONCURRENCY_LIMIT);
+  // Process only active (non-archived) pipelines with controlled concurrency
+  const pipelinesToProcess = singlePipelineName ? names.flat() : active_names.flat();
+  await processInBatches(pipelinesToProcess, CONCURRENCY_LIMIT);
 
   // sort the pipelines by name
   pipelines.remote_workflows.sort((a, b) => {
