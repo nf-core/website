@@ -19,6 +19,7 @@ Actual:   test.html:md5:def456
 **Solutions**:
 
 1. **Check for timestamps or variable content**:
+
    ```groovy
    // Filter variable content before snapshotting
    { assert snapshot(
@@ -29,6 +30,7 @@ Actual:   test.html:md5:def456
    ```
 
 2. **Update snapshots if changes are expected**:
+
    ```bash
    nf-test test --update-snapshot
    ```
@@ -50,6 +52,7 @@ ERROR: File does not exist: /path/to/test_data.fastq.gz
 **Solutions**:
 
 1. **Check test data paths**:
+
    ```groovy
    // Verify path construction
    def testFile = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz')
@@ -57,6 +60,7 @@ ERROR: File does not exist: /path/to/test_data.fastq.gz
    ```
 
 2. **Validate test data parameter**:
+
    ```groovy
    // Add to .nf-test.config
    params {
@@ -66,7 +70,7 @@ ERROR: File does not exist: /path/to/test_data.fastq.gz
 
 3. **Use local test data as fallback**:
    ```groovy
-   def testFile = file('tests/data/local_test.fastq.gz').exists() ? 
+   def testFile = file('tests/data/local_test.fastq.gz').exists() ?
                   file('tests/data/local_test.fastq.gz') :
                   file(params.modules_testdata_base_path + 'path/to/remote_test.fastq.gz', checkIfExists: true)
    ```
@@ -82,12 +86,14 @@ ERROR: Docker image 'biocontainers/fastqc:0.11.9--0' not found
 **Solutions**:
 
 1. **Check container availability**:
+
    ```bash
    docker pull biocontainers/fastqc:0.11.9--0
    singularity pull docker://biocontainers/fastqc:0.11.9--0
    ```
 
 2. **Use alternative registries**:
+
    ```groovy
    // In nextflow.config
    process {
@@ -113,6 +119,7 @@ ERROR: Process 'TOOL' terminated with exit status 137 (SIGKILL - Out of memory)
 **Solutions**:
 
 1. **Increase resource limits**:
+
    ```groovy
    // In test nextflow.config
    process {
@@ -124,6 +131,7 @@ ERROR: Process 'TOOL' terminated with exit status 137 (SIGKILL - Out of memory)
    ```
 
 2. **Use smaller test data**:
+
    ```groovy
    // Create minimal test dataset
    setup {
@@ -185,15 +193,15 @@ test("Debug test") {
             echo "DEBUG: Starting process with inputs:"
             echo "Input file: \$1"
             ls -la \$1
-            
+
             # Check environment
             echo "DEBUG: Environment variables:"
             env | grep -E "(PATH|JAVA|NEXTFLOW)" | sort
-            
+
             # Tool version check
             echo "DEBUG: Tool version:"
             my_tool --version
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -226,11 +234,13 @@ ERROR: Unknown profile 'test'
 **Solutions**:
 
 1. **Check available profiles**:
+
    ```bash
    nextflow config -show-profiles
    ```
 
 2. **Verify profile definition**:
+
    ```groovy
    // In nextflow.config
    profiles {
@@ -255,6 +265,7 @@ ERROR: Unknown profile 'test'
 **Solutions**:
 
 1. **Check parameter precedence**:
+
    ```bash
    # Parameters are applied in this order:
    # 1. Command line: --param value
@@ -273,7 +284,7 @@ ERROR: Unknown profile 'test'
                """
                echo "Parameter value: ${params.custom_param}"
                echo "All params: ${params}"
-               
+
                input[0] = [
                    [ id:'test' ],
                    file('input.txt', checkIfExists: true)
@@ -304,14 +315,16 @@ groovy.lang.MissingMethodException: No signature of method...
 **Solutions**:
 
 1. **Check Groovy syntax**:
+
    ```groovy
    // Correct closure syntax
    { assert process.success }
-   
+
    // Not: assert process.success (missing closure braces)
    ```
 
 2. **Validate method calls**:
+
    ```groovy
    // Check available methods
    println process.class.methods*.name.sort()
@@ -334,6 +347,7 @@ ERROR: Cannot read file: permission denied
 **Solutions**:
 
 1. **Check file permissions**:
+
    ```bash
    ls -la tests/data/
    chmod 644 tests/data/*.fastq.gz
@@ -348,7 +362,7 @@ ERROR: Cannot read file: permission denied
                echo "Working directory: \$(pwd)"
                echo "File listing:"
                ls -la
-               
+
                input[0] = [
                    [ id:'test' ],
                    file('input.txt', checkIfExists: true)
@@ -374,6 +388,7 @@ ERROR: Cannot read file: permission denied
 **Solutions**:
 
 1. **Use smaller test data**:
+
    ```groovy
    // Create minimal datasets
    setup {
@@ -385,6 +400,7 @@ ERROR: Cannot read file: permission denied
    ```
 
 2. **Optimize resource allocation**:
+
    ```groovy
    // In test config
    process {
@@ -408,13 +424,14 @@ ERROR: Cannot read file: permission denied
 **Solutions**:
 
 1. **Monitor memory usage**:
+
    ```bash
    # Run tests with memory monitoring
    while true; do
        echo "$(date): $(free -h | grep Mem)"
        sleep 10
    done &
-   
+
    nf-test test
    ```
 
@@ -423,7 +440,7 @@ ERROR: Cannot read file: permission denied
    cleanup {
        // Clean temporary files
        new File('temp_files').deleteDir()
-       
+
        // Force garbage collection
        System.gc()
    }
@@ -442,15 +459,17 @@ ERROR: Invalid FASTQ format
 **Solutions**:
 
 1. **Validate test data integrity**:
+
    ```bash
    # Check file integrity
    md5sum tests/data/*.fastq.gz
-   
+
    # Validate FASTQ format
    zcat test.fastq.gz | head -4
    ```
 
 2. **Re-download test data**:
+
    ```bash
    # Clean and re-download
    rm -rf tests/data/
@@ -486,6 +505,7 @@ ERROR: Command not found: samtools
 **Solutions**:
 
 1. **Check tool availability**:
+
    ```groovy
    test("Tool availability check") {
        when {
@@ -499,7 +519,7 @@ ERROR: Command not found: samtools
                    fi
                    echo "\$tool: \$(\$tool --version | head -1)"
                done
-               
+
                input[0] = [
                    [ id:'test' ],
                    file('input.txt', checkIfExists: true)
@@ -539,6 +559,7 @@ Assertion failed: assert process.out.bam.size() == 2
 **Solutions**:
 
 1. **Add detailed assertions**:
+
    ```groovy
    then {
        assertAll(
@@ -556,11 +577,12 @@ Assertion failed: assert process.out.bam.size() == 2
    ```
 
 2. **Use descriptive assertion messages**:
+
    ```groovy
    {
        def actualSize = process.out.bam.size()
        def expectedSize = 2
-       assert actualSize == expectedSize, 
+       assert actualSize == expectedSize,
               "Expected ${expectedSize} BAM files, but got ${actualSize}. Outputs: ${process.out.bam}"
    }
    ```
@@ -572,7 +594,7 @@ Assertion failed: assert process.out.bam.size() == 2
        assert process.out.containsKey('bam'), "Missing 'bam' output channel"
        assert process.out.bam instanceof List, "BAM output is not a list"
        assert !process.out.bam.isEmpty(), "BAM output list is empty"
-       
+
        process.out.bam.each { meta, bam ->
            assert meta instanceof Map, "Meta is not a Map: ${meta}"
            assert meta.containsKey('id'), "Meta missing 'id' field: ${meta}"
@@ -590,6 +612,7 @@ Assertion failed: assert process.out.bam.size() == 2
 **Solutions**:
 
 1. **Check environment differences**:
+
    ```yaml
    - name: Debug environment
      run: |
@@ -601,6 +624,7 @@ Assertion failed: assert process.out.bam.size() == 2
    ```
 
 2. **Use consistent test data**:
+
    ```yaml
    - name: Cache test data
      uses: actions/cache@v3
@@ -631,6 +655,7 @@ Assertion failed: assert process.out.bam.size() == 2
 **Solutions**:
 
 1. **Check Docker daemon**:
+
    ```yaml
    - name: Check Docker
      run: |
@@ -670,7 +695,7 @@ test("Isolated test") {
         new File('work').deleteDir()
         new File('.nextflow').deleteDir()
     }
-    
+
     when {
         process {
             """
@@ -700,7 +725,7 @@ test("Minimal reproduction") {
             """
             # Simplest possible test case
             echo "test" > output.txt
-            
+
             input[0] = [
                 [ id:'test' ],
                 []
@@ -749,9 +774,11 @@ When reporting issues, include:
 
 ### Error Message
 ```
+
 ERROR: Test failed with snapshot mismatch
 Expected: test.html:md5:abc123
-Actual:   test.html:md5:def456
+Actual: test.html:md5:def456
+
 ```
 
 ### Steps to Reproduce
@@ -770,4 +797,4 @@ Test should pass with matching snapshots
 - Only affects FastQC module
 ```
 
-This comprehensive troubleshooting guide should help you debug most common issues encountered when testing with nf-test in nf-core environments. 
+This comprehensive troubleshooting guide should help you debug most common issues encountered when testing with nf-test in nf-core environments.

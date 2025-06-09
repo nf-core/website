@@ -21,6 +21,7 @@ nextflow_process {
 ```
 
 **Key Points:**
+
 - Script paths starting with `./` or `../` are relative to the test script location
 - Use relative paths to reference files within the same directory or parent directories
 
@@ -52,7 +53,6 @@ Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests
 - Test files come with snapshots of component output channels
 - Tests verify both functionality and expected outputs
 - Support both regular and stub testing modes
-
 
 ## 1. Creating a New Module with Tests
 
@@ -137,6 +137,7 @@ nextflow_process {
 After providing the right test data, running the test as shown below will create a snapshot of the output.
 
 Run the tests:
+
 ```bash
 nf-core modules test seqtk/sample --profile docker
 ```
@@ -293,6 +294,7 @@ nextflow_process {
 ```
 
 Run the tests:
+
 ```bash
 nf-core modules test abricate/summary --profile docker
 ```

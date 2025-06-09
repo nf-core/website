@@ -207,7 +207,6 @@ enrichment_metrics/*
                 ).match() }
 ```
 
-
 ### Best Practices for nft-utils
 
 1. **Always set outdir to `$outputDir`** - ensures consistent test directory structure
@@ -225,7 +224,6 @@ enrichment_metrics/*
 2. **Verify wildcard patterns** - make sure they match your actual file structure
 3. **Review relative vs absolute paths** - use `relative: true` for portable tests
 4. **Update ignore patterns** - add new unstable files discovered during testing
-
 
 ## Next Steps
 

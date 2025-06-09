@@ -94,7 +94,7 @@ nextflow_process {
     name "Test Process FASTQC"
     script "../main.nf"
     process "FASTQC"
-    
+
     test("Remote test data") {
         when {
             process {
@@ -126,7 +126,7 @@ test("Local data with remote fallback") {
             def localFile = file('tests/data/test_sample.fastq.gz')
             def remoteFile = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
             def testFile = localFile.exists() ? localFile : remoteFile
-            
+
             input[0] = [
                 [ id:'test' ],
                 testFile
@@ -160,7 +160,7 @@ GCTAGCTAGCTAGCTA
 IIIIIIIIIIIIIIII
 """
     }
-    
+
     when {
         process {
             """
@@ -217,11 +217,11 @@ def createMinimalDataset(originalFile, outputFile, fraction = 0.001) {
 test("With minimal dataset") {
     setup {
         createMinimalDataset(
-            file('full_dataset.fastq.gz'), 
+            file('full_dataset.fastq.gz'),
             file('tests/minimal_dataset.fastq.gz')
         )
     }
-    
+
     when {
         process {
             """
@@ -255,7 +255,7 @@ profiles {
             max_cpus = 2
         }
     }
-    
+
     local_dev {
         params {
             // Use local mirror for development
@@ -292,7 +292,7 @@ test("Cached data access") {
                 '${params.modules_testdata_base_path}genomics/sarscov2/illumina/fastq/test_1.fastq.gz',
                 'tests/cache/test_1.fastq.gz'
             )
-            
+
             input[0] = [
                 [ id:'test' ],
                 cachedFile
@@ -324,11 +324,11 @@ test("Data validation") {
             assert lines[2].startsWith("+"), "Missing FASTQ separator"
             return true
         }
-        
+
         def testFile = file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz')
         validateFastq(testFile)
     }
-    
+
     when {
         process {
             """
@@ -383,21 +383,21 @@ def validateVCF(vcfFile) {
 def generateSyntheticReads(outputFile, numReads = 1000, readLength = 150) {
     def bases = ['A', 'T', 'C', 'G']
     def qualities = (20..40).collect { (char)(it + 33) }
-    
+
     outputFile.withWriter { writer ->
         (1..numReads).each { i ->
             // FASTQ header
             writer.println("@synthetic_read_${i}")
-            
+
             // Sequence
-            def sequence = (1..readLength).collect { 
-                bases[new Random().nextInt(4)] 
+            def sequence = (1..readLength).collect {
+                bases[new Random().nextInt(4)]
             }.join('')
             writer.println(sequence)
-            
+
             // Separator
             writer.println("+")
-            
+
             // Quality scores
             def quality = (1..readLength).collect {
                 qualities[new Random().nextInt(qualities.size())]
@@ -411,7 +411,7 @@ test("Synthetic data test") {
     setup {
         generateSyntheticReads(file('tests/synthetic_reads.fastq'))
     }
-    
+
     when {
         process {
             """
@@ -442,16 +442,16 @@ profiles {
         params {
             // Use encrypted or anonymized datasets
             test_data_base = '/secure/anonymized-datasets/'
-            
+
             // Ensure outputs are properly handled
             publish_dir_mode = 'copy'
             cleanup_intermediate = true
         }
-        
+
         process {
             // Add security labels
             label = 'sensitive_data'
-            
+
             // Ensure cleanup
             cleanup = true
         }
@@ -477,7 +477,7 @@ test("Anonymized data test") {
             file('tests/anonymized_data.txt')
         )
     }
-    
+
     when {
         process {
             """
@@ -536,4 +536,4 @@ params {
 
 ## Next Steps
 
-Continue to [Error Testing & Edge Cases](./12_error_testing_edge_cases.md) to learn about testing failure scenarios and edge cases. 
+Continue to [Error Testing & Edge Cases](./12_error_testing_edge_cases.md) to learn about testing failure scenarios and edge cases.

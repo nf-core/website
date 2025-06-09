@@ -22,34 +22,34 @@ config {
     // Test execution settings
     testsDir = "tests"
     workDir = ".nf-test"
-    
+
     // List of filenames or patterns that should trigger a full test run
     triggers 'nextflow.config', 'nf-test.config', 'conf/test.config', 'conf/test_full.config'
-    
+
     // Default parameters for all tests
     params {
         modules_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/modules/data/'
         pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/nf-core-pipeline/testdata/'
-        
+
         // Resource defaults
         max_memory = '6.GB'
         max_cpus = 2
         max_time = '6.h'
     }
-    
+
     // Profile configurations
     profiles {
         docker {
             docker.enabled = true
             singularity.enabled = false
         }
-        
+
         singularity {
             singularity.enabled = true
             docker.enabled = false
         }
     }
-    
+
     // Plugin configurations
     plugins {
         load "nft-utils@0.0.3"
@@ -65,7 +65,7 @@ The `triggers` directive specifies files that should cause a full test run when 
 config {
     // Standard nf-core triggers
     triggers 'nextflow.config', 'nf-test.config', 'conf/test.config', 'conf/test_full.config'
-    
+
     // Additional custom triggers
     triggers 'assets/samplesheet_check.py', 'lib/WorkflowMain.groovy', 'bin/*'
 }
@@ -82,7 +82,7 @@ This is essential for CI/CD systems to determine when comprehensive testing is n
 params {
     // Test-specific parameters
     publish_dir_mode = 'copy'
-    
+
     // Override defaults for this module
     max_memory = '2.GB'
     max_cpus = 1
@@ -114,7 +114,7 @@ nextflow_process {
     script "../main.nf"
     process "FASTQC"
     config "./nextflow.config"
-    
+
     test("Custom configuration") {
         when {
             params {
@@ -178,7 +178,7 @@ nextflow_process {
     name "Test Process with Validation"
     script "../main.nf"
     process "TOOL"
-    
+
     test("Valid parameters") {
         when {
             params {
@@ -190,7 +190,7 @@ nextflow_process {
                 // Validate parameters before use
                 assert params.min_quality >= 0 && params.min_quality <= 40
                 assert params.max_length > 0
-                
+
                 input[0] = [
                     [ id:'test', min_qual: params.min_quality, max_len: params.max_length ],
                     file('input.fastq.gz', checkIfExists: true)
@@ -249,13 +249,13 @@ profiles {
         docker.userEmulation = true
         process.container = 'biocontainers/fastqc:0.11.9--0'
     }
-    
+
     singularity {
         singularity.enabled = true
         singularity.autoMounts = true
         process.container = 'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0'
     }
-    
+
     conda {
         conda.enabled = true
         process.conda = 'bioconda::fastqc=0.11.9'
@@ -272,18 +272,18 @@ profiles {
         params.max_cpus = 2
         params.max_time = '6.h'
     }
-    
+
     test_full {
         params.max_memory = '128.GB'
         params.max_cpus = 16
         params.max_time = '72.h'
     }
-    
+
     github_actions {
         params.max_memory = '6.GB'
         params.max_cpus = 2
         params.max_time = '6.h'
-        
+
         // CI-specific settings
         docker.enabled = true
         singularity.enabled = false
@@ -301,7 +301,7 @@ params {
     // Common test parameters
     outdir = './results'
     publish_dir_mode = 'copy'
-    
+
     // Common test data paths
     test_data_base = 'https://raw.githubusercontent.com/nf-core/test-datasets/'
 }
@@ -355,7 +355,7 @@ test("Dynamic resource allocation") {
         params {
             def inputFile = file('input.bam', checkIfExists: true)
             def resources = getResourceConfig(inputFile.size())
-            
+
             max_cpus = resources.cpus
             max_memory = resources.memory
             max_time = resources.time
@@ -405,11 +405,11 @@ params {
     // Input/Output
     input = null        // Path to input samplesheet
     outdir = './results' // Output directory
-    
+
     // Analysis options
     skip_fastqc = false  // Skip FastQC steps
     skip_multiqc = false // Skip MultiQC report
-    
+
     // Resource limits
     max_memory = '128.GB' // Maximum memory allocation
     max_cpus = 16        // Maximum CPU cores
@@ -419,4 +419,4 @@ params {
 
 ## Next Steps
 
-Continue to [Snapshot Management](./09_snapshot_management.md) to learn about working with test snapshots. 
+Continue to [Snapshot Management](./09_snapshot_management.md) to learn about working with test snapshots.

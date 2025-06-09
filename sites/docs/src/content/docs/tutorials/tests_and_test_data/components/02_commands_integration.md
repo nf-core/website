@@ -7,6 +7,7 @@ weight: 20
 ## Prerequisites
 
 Before running these commands, ensure you have:
+
 - nf-test installed (see [Installation Guide](./01_installation.md))
 - An nf-core pipeline or nf-core/modules repo set up
 - Access to test data (local or remote)
@@ -16,13 +17,17 @@ Before running these commands, ensure you have:
 There are **two main contexts** for running nf-test commands in the nf-core ecosystem:
 
 ### 1. nf-core/modules Repository Context
+
 When working in the **nf-core/modules repository**, use `nf-core` tools commands:
+
 - Testing individual modules and subworkflows
 - Contributing to the shared nf-core modules library
 - Use `nf-core modules test` and `nf-core subworkflows test`
 
 ### 2. Individual Pipeline Context
+
 When developing **individual nf-core pipelines**, use `nf-test` commands directly:
+
 - Testing complete pipeline workflows
 - Pipeline-specific test configurations
 - Use `nf-test test` commands

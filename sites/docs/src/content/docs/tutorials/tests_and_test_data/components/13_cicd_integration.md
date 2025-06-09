@@ -219,6 +219,7 @@ runs:
 ```
 
 #### Key Sharding Features:
+
 - **Dynamic discovery**: Uses `nf-test --dry-run` to discover tests
 - **Intelligent sharding**: Only creates shards for changed tests
 - **Resource optimization**: Limits maximum shards to prevent resource waste
@@ -518,6 +519,7 @@ nf-test test \
 ```
 
 Key options:
+
 - **`--ci`**: CI-optimized mode
 - **`--shard`**: Parallel test execution
 - **`--changed-since HEAD^`**: Only test changed files
@@ -531,11 +533,11 @@ Key options:
 ```yaml
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NFT_VER: "0.9.2"                    # nf-test version
-  NXF_ANSI_LOG: false                 # Disable ANSI logs for CI
+  NFT_VER: "0.9.2" # nf-test version
+  NXF_ANSI_LOG: false # Disable ANSI logs for CI
   NXF_SINGULARITY_CACHEDIR: ${{ github.workspace }}/.singularity
   NXF_SINGULARITY_LIBRARYDIR: ${{ github.workspace }}/.singularity
-  NXF_VER: "24.10.2"                 # Nextflow version
+  NXF_VER: "24.10.2" # Nextflow version
 ```
 
 ### Version Management
@@ -631,30 +633,35 @@ Add TAP output processing for detailed test reports:
 ## Best Practices from methylseq
 
 ### 1. **Progressive Testing**
+
 - Use `--changed-since HEAD^` to test only modified components
 - Implement sharding for large test suites
 - Separate CPU and GPU tests
 
 ### 2. **Resource Management**
+
 - Set appropriate `NFT_WORKDIR` for CI environments
 - Use concurrency controls to prevent resource conflicts
 - Clean up test artifacts after completion
 
 ### 3. **Comprehensive Coverage**
+
 - Test multiple container engines (Docker, Singularity, Conda)
 - Test different Nextflow versions
 - Include both unit and integration tests
 
 ### 4. **Monitoring and Reporting**
+
 - Generate detailed test summaries
 - Use TAP output for structured reporting
 - Include debugging information for failed tests
 
 ### 5. **Version Management**
+
 - Pin specific versions of tools for reproducibility
 - Use automated dependency updates (Renovate)
 - Test against multiple Nextflow versions
 
 ## Next Steps
 
-Continue to [Best Practices](./14_best_practices.md) to learn comprehensive testing strategies and conventions. 
+Continue to [Best Practices](./14_best_practices.md) to learn comprehensive testing strategies and conventions.

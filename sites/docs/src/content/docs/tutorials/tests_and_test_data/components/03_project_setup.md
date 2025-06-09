@@ -37,6 +37,7 @@ my-pipeline/
 ### 1. Key Configuration Files
 
 #### `nf-test.config` (Main Configuration)
+
 **Purpose**: Controls nf-test global settings
 
 ```groovy
@@ -63,21 +64,22 @@ config {
 
 For nf-core pipeline testing, you may need these plugins:
 
-| Plugin Name | Description/Use |
-|-------------|-----------------|
-| **nft-utils** | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
-| **nft-bam** | Helper functionality for handling SAM/BAM/CRAM files during tests - critical for genomics pipelines |
-| **nft-vcf** | Support for VCF files - utilities for testing variant call format files |
-| **nft-fasta** | Support for FASTA files - enables validation and testing of FASTA file formats |
-| **nft-fastq** | Support for FASTQ files - validation and testing utilities for sequencing data files |
-| **nft-csv** | Support for CSV files - utilities for testing comma-separated value files |
-| **nft-compress** | Support for ZIP files - enables testing of compressed file handling |
-| **nft-anndata** | Support for AnnData (h5ad) files - utilities for testing single-cell analysis data formats |
-| **nft-tiff** | Support for TIFF files - enables testing of Tagged Image File Format files |
+| Plugin Name      | Description/Use                                                                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| **nft-utils**    | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
+| **nft-bam**      | Helper functionality for handling SAM/BAM/CRAM files during tests - critical for genomics pipelines                          |
+| **nft-vcf**      | Support for VCF files - utilities for testing variant call format files                                                      |
+| **nft-fasta**    | Support for FASTA files - enables validation and testing of FASTA file formats                                               |
+| **nft-fastq**    | Support for FASTQ files - validation and testing utilities for sequencing data files                                         |
+| **nft-csv**      | Support for CSV files - utilities for testing comma-separated value files                                                    |
+| **nft-compress** | Support for ZIP files - enables testing of compressed file handling                                                          |
+| **nft-anndata**  | Support for AnnData (h5ad) files - utilities for testing single-cell analysis data formats                                   |
+| **nft-tiff**     | Support for TIFF files - enables testing of Tagged Image File Format files                                                   |
 
 > **Note:** For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
 
 #### `tests/nextflow.config` (Test-Specific Settings)
+
 **Purpose**: Defines parameters and settings specifically for test execution
 
 ```groovy
@@ -134,15 +136,14 @@ nf-test generate process path/to/main.nf
 nf-test generate workflow path/to/main.nf
 ```
 
-
 ## Basic Commands Summary
 
-| Command | Purpose |
-|---------|---------|
-| `nf-test list` | Show available tests |
-| `nf-test test --profile docker` | Run all tests |
+| Command                          | Purpose                 |
+| -------------------------------- | ----------------------- |
+| `nf-test list`                   | Show available tests    |
+| `nf-test test --profile docker`  | Run all tests           |
 | `nf-test test --update-snapshot` | Update expected outputs |
-| `nf-test test --verbose` | Show detailed output |
+| `nf-test test --verbose`         | Show detailed output    |
 
 ## Next Steps
 

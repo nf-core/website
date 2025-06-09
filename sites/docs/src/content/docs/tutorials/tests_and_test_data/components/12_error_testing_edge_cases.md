@@ -23,7 +23,7 @@ test("Invalid file format") {
     then {
         assertAll(
             { assert process.failed },
-            { assert process.stderr.contains("Invalid file format") || 
+            { assert process.stderr.contains("Invalid file format") ||
                      process.stderr.contains("not in FASTQ format") }
         )
     }
@@ -98,7 +98,7 @@ test("Memory limit exceeded") {
     then {
         assertAll(
             { assert process.failed },
-            { assert process.stderr.contains("OutOfMemoryError") || 
+            { assert process.stderr.contains("OutOfMemoryError") ||
                      process.stderr.contains("exceeded memory limit") }
         )
     }
@@ -116,7 +116,7 @@ test("Empty input file") {
         def emptyFile = new File("tests/empty.fastq")
         emptyFile.text = ""
     }
-    
+
     when {
         process {
             """
@@ -137,7 +137,7 @@ test("Empty input file") {
                     assert process.out.size() >= 0
                 } else {
                     // Should fail with appropriate message
-                    assert process.stderr.contains("empty") || 
+                    assert process.stderr.contains("empty") ||
                            process.stderr.contains("no data")
                 }
             }
@@ -159,7 +159,7 @@ ATCGATCGATCGATCG
 IIIIIIIIIIIIIIII
 """
     }
-    
+
     when {
         process {
             """
@@ -197,7 +197,7 @@ test("Maximum size input") {
             }
         }
     }
-    
+
     when {
         process {
             """
@@ -301,7 +301,7 @@ GCTAGCTAGCTAGCTA
 JJJJJJJJJJJJJJJJ
 """
     }
-    
+
     when {
         process {
             """
@@ -315,7 +315,7 @@ JJJJJJJJJJJJJJJJ
     then {
         assertAll(
             { assert process.failed },
-            { assert process.stderr.contains("invalid FASTQ format") || 
+            { assert process.stderr.contains("invalid FASTQ format") ||
                      process.stderr.contains("malformed header") }
         )
     }
@@ -338,7 +338,7 @@ GCTA
 JJJJJJJJJJJJJJJJ
 """
     }
-    
+
     when {
         process {
             """
@@ -370,7 +370,7 @@ test("Concurrent file access") {
             """
             # Simulate concurrent access by multiple processes
             INPUT_FILE="shared_input.bam"
-            
+
             # Try to acquire file lock
             exec 200>"\$INPUT_FILE.lock"
             if flock -n 200; then
@@ -383,7 +383,7 @@ test("Concurrent file access") {
                 flock 200  # Wait for lock
                 samtools view "\$INPUT_FILE" | head -1000 > output1.sam
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('shared_input.bam', checkIfExists: true)
@@ -410,15 +410,15 @@ test("Temporary file race conditions") {
             # Create unique temporary files to avoid race conditions
             TEMP_PREFIX="temp_\${RANDOM}_\${task.index}"
             TEMP_FILE="\${TEMP_PREFIX}.tmp"
-            
+
             # Ensure cleanup on exit
             trap "rm -f \${TEMP_PREFIX}*" EXIT
-            
+
             # Use temporary file
             echo "Processing..." > "\$TEMP_FILE"
             sleep 1  # Simulate processing time
             mv "\$TEMP_FILE" "output.txt"
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -446,19 +446,19 @@ test("Cross-platform path handling") {
             """
             # Handle paths correctly across platforms
             INPUT_PATH="${params.input_path}"
-            
+
             # Normalize path separators
             if [[ "\$OSTYPE" == "msys" || "\$OSTYPE" == "cygwin" ]]; then
                 # Windows/MSYS
                 INPUT_PATH=\$(echo "\$INPUT_PATH" | sed 's|\\\\|/|g')
             fi
-            
+
             # Verify path exists
             if [[ ! -f "\$INPUT_PATH" ]]; then
                 echo "ERROR: Input file not found: \$INPUT_PATH"
                 exit 1
             fi
-            
+
             input[0] = [
                 [ id:'test', platform: "\$OSTYPE" ],
                 file("\$INPUT_PATH", checkIfExists: true)
@@ -483,17 +483,17 @@ test("Line ending compatibility") {
         // Create files with different line endings
         def unixFile = new File("tests/unix_endings.txt")
         unixFile.text = "line1\nline2\nline3\n"
-        
+
         def windowsFile = new File("tests/windows_endings.txt")
         windowsFile.text = "line1\r\nline2\r\nline3\r\n"
     }
-    
+
     when {
         process {
             """
             # Normalize line endings
             sed 's/\r\$//' tests/windows_endings.txt > normalized.txt
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('normalized.txt', checkIfExists: true)
@@ -525,7 +525,7 @@ test("Process timeout handling") {
                 cp input.txt output.txt  # Fallback action
                 exit 0
             }
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -553,13 +553,13 @@ test("Insufficient disk space") {
             # Check available disk space
             AVAILABLE_SPACE=\$(df . | tail -1 | awk '{print \$4}')
             REQUIRED_SPACE=1000000  # 1GB in KB
-            
+
             if [[ \$AVAILABLE_SPACE -lt \$REQUIRED_SPACE ]]; then
                 echo "ERROR: Insufficient disk space"
                 echo "Available: \$AVAILABLE_SPACE KB, Required: \$REQUIRED_SPACE KB"
                 exit 1
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -602,7 +602,7 @@ test("Graceful degradation") {
                 echo "Fast tool not available, using alternative"
                 slow_but_reliable_tool input.txt > output.txt
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -629,10 +629,10 @@ test("Retry logic") {
             # Retry logic for unreliable operations
             MAX_ATTEMPTS=3
             ATTEMPT=1
-            
+
             while [[ \$ATTEMPT -le \$MAX_ATTEMPTS ]]; do
                 echo "Attempt \$ATTEMPT of \$MAX_ATTEMPTS"
-                
+
                 if unreliable_command input.txt output.txt; then
                     echo "Command succeeded on attempt \$ATTEMPT"
                     break
@@ -645,7 +645,7 @@ test("Retry logic") {
                     ATTEMPT=\$((ATTEMPT + 1))
                 fi
             done
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -672,27 +672,27 @@ test("Input validation") {
         process {
             """
             INPUT_FILE="input.fastq.gz"
-            
+
             # Validate file exists and is readable
             if [[ ! -r "\$INPUT_FILE" ]]; then
                 echo "ERROR: Cannot read input file: \$INPUT_FILE"
                 exit 1
             fi
-            
+
             # Validate file is not empty
             if [[ ! -s "\$INPUT_FILE" ]]; then
                 echo "ERROR: Input file is empty: \$INPUT_FILE"
                 exit 1
             fi
-            
+
             # Validate file format
             if ! zcat "\$INPUT_FILE" | head -4 | awk 'NR==1 {if(!\$0 ~ /^@/) exit 1} NR==3 {if(!\$0 ~ /^\+/) exit 1}'; then
                 echo "ERROR: Invalid FASTQ format: \$INPUT_FILE"
                 exit 1
             fi
-            
+
             echo "Input validation passed"
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.fastq.gz', checkIfExists: true)
@@ -712,4 +712,4 @@ test("Input validation") {
 
 ## Next Steps
 
-Continue to [CI/CD Integration](./13_cicd_integration.md) to learn about integrating tests with continuous integration. 
+Continue to [CI/CD Integration](./13_cicd_integration.md) to learn about integrating tests with continuous integration.

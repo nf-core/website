@@ -12,25 +12,30 @@ This comprehensive guide covers testing nf-core components using nf-test. From w
 ## Guide Structure
 
 ### Getting Started
+
 - **[1. Installation](./components/01_installation.md)** - Setting up nf-test in your development environment
 - **[2. nf-test Commands & Integration](./components/02_commands_integration.md)** - Essential commands and nf-core integration
 - **[3. Project Setup](./components/03_project_setup.md)** - Configuring your project for testing
 
 ### Component Testing
+
 - **[4. Testing Modules](./components/04_testing_modules.md)** - Testing individual nf-core modules
 - **[5. Testing Subworkflows](./components/05_testing_subworkflows.md)** - Testing subworkflow components
 - **[6. Testing Pipelines](./components/06_testing_pipelines.md)** - End-to-end pipeline testing
 - **[7. nf-test Assertions](./components/07_assertions.md)** - Comprehensive assertion patterns and verification techniques
 
 ### Configuration & Management
+
 - **[8. Configuration Management](./components/08_configuration_management.md)** - Managing test configurations and parameters
 - **[9. Snapshot Management](./components/09_snapshot_management.md)** - Working with snapshots and test outputs
 
 ### Advanced Topics
+
 - **[10. Advanced Testing Patterns](./components/10_advanced_testing_patterns.md)** - Complex testing scenarios, custom functions, and external tool integration
 - **[11. Test Data Management](./components/11_test_data_management.md)** - Organizing and managing test datasets
 
 ### Quality & Deployment
+
 - **[12. Error Testing & Edge Cases](./components/12_error_testing_edge_cases.md)** - Testing failure scenarios and edge cases
 - **[13. CI/CD Integration](./components/13_cicd_integration.md)** - Integrating tests with continuous integration
 - **[14. Best Practices](./components/14_best_practices.md)** - Testing best practices and conventions
@@ -57,4 +62,4 @@ For issues not covered in this guide:
 - **Community support**: [nf-core Slack](https://nf-co.re/join) `#help` channel
 - **nf-core modules**: [GitHub repository](https://github.com/nf-core/modules) for examples
 
-Ready to get started? Begin with [Installation](./components/01_installation.md) to set up nf-test in your development environment. 
+Ready to get started? Begin with [Installation](./components/01_installation.md) to set up nf-test in your development environment.

@@ -13,7 +13,7 @@ nextflow_process {
     name "Test Process TOOL"
     script "../main.nf"
     process "TOOL"
-    
+
     ['single', 'paired'].each { read_type ->
         ['30', '20'].each { quality ->
             test("${read_type}_reads_quality_${quality}") {
@@ -26,7 +26,7 @@ nextflow_process {
                         """
                         input[0] = [
                             [ id: 'test', single_end: read_type == 'single' ],
-                            read_type == 'single' ? 
+                            read_type == 'single' ?
                                 file('single.fastq.gz', checkIfExists: true) :
                                 [file('read1.fastq.gz', checkIfExists: true), file('read2.fastq.gz', checkIfExists: true)]
                         ]
@@ -52,7 +52,7 @@ nextflow_process {
     name "Test Process ALIGNER"
     script "../main.nf"
     process "ALIGNER"
-    
+
     // Test data configurations
     def testConfigs = [
         [
@@ -62,13 +62,13 @@ nextflow_process {
             reference: "human_ref.fa"
         ],
         [
-            name: "mouse_genome", 
+            name: "mouse_genome",
             genome: "GRCm39",
             expected_alignments: 800,
             reference: "mouse_ref.fa"
         ]
     ]
-    
+
     testConfigs.each { config ->
         test("Alignment with ${config.name}") {
             when {
@@ -88,7 +88,7 @@ nextflow_process {
             then {
                 assertAll(
                     { assert process.success },
-                    { 
+                    {
                         process.out.bam.each { meta, bam ->
                             def lines = bam.readLines()
                             assert lines.size() >= config.expected_alignments
@@ -111,7 +111,7 @@ nextflow_workflow {
     name "Test Complex Workflow"
     script "../main.nf"
     workflow "COMPLEX_ANALYSIS"
-    
+
     test("Full analysis pipeline") {
         setup {
             // Step 1: Prepare reference
@@ -123,7 +123,7 @@ nextflow_workflow {
                     """
                 }
             }
-            
+
             // Step 2: Index reference
             run("INDEX_REFERENCE") {
                 script "../../index_reference/main.nf"
@@ -133,7 +133,7 @@ nextflow_workflow {
                     """
                 }
             }
-            
+
             // Step 3: Prepare samples
             run("PREPARE_SAMPLES") {
                 script "../../prepare_samples/main.nf"
@@ -147,7 +147,7 @@ nextflow_workflow {
                 }
             }
         }
-        
+
         when {
             workflow {
                 """
@@ -157,7 +157,7 @@ nextflow_workflow {
                 """
             }
         }
-        
+
         then {
             assertAll(
                 { assert workflow.success },
@@ -196,20 +196,20 @@ test("Analysis with optional preprocessing") {
             }
         }
     }
-    
+
     when {
         params {
             skip_preprocessing = false
         }
         workflow {
             """
-            input[0] = params.skip_preprocessing ? 
-                LOAD_PREPROCESSED.out.data : 
+            input[0] = params.skip_preprocessing ?
+                LOAD_PREPROCESSED.out.data :
                 PREPROCESS_DATA.out.processed_data
             """
         }
     }
-    
+
     then {
         assertAll(
             { assert workflow.success },
@@ -283,7 +283,7 @@ test("Maximum input size") {
         assertAll(
             { assert process.success },
             // Verify resource usage within limits
-            { 
+            {
                 assert process.trace.memory <= params.max_memory.replace('GB', '').toLong() * 1000000000
             },
             { assert snapshot(process.out).match("large_input") }
@@ -346,7 +346,7 @@ test("Resource usage verification") {
                 { assert process.success },
                 { assert process.trace.cpus <= cpu_count },
                 // Performance should improve with more CPUs
-                { 
+                {
                     if (cpu_count > 1) {
                         assert process.trace.duration.toMillis() < baseline_duration
                     }
@@ -367,7 +367,7 @@ nextflow_workflow {
     name "Test Module Integration"
     script "../integration_test.nf"
     workflow "MODULE_INTEGRATION"
-    
+
     test("Module chain integration") {
         when {
             workflow {
@@ -406,7 +406,7 @@ nextflow_workflow {
 nextflow_pipeline {
     name "Test Full Pipeline"
     script "main.nf"
-    
+
     test("Complete pipeline execution") {
         when {
             params {
@@ -526,12 +526,12 @@ then {
 ```groovy
 // tests/utils/FileValidators.groovy
 class FileValidators {
-    
+
     static class FastqValidator {
         static boolean isValid(file) {
             def lines = file.readLines()
             if (lines.size() % 4 != 0) return false
-            
+
             for (int i = 0; i < lines.size(); i += 4) {
                 if (!lines[i].startsWith("@")) return false      // Header
                 if (lines[i+1].isEmpty()) return false           // Sequence
@@ -541,14 +541,14 @@ class FileValidators {
             }
             return true
         }
-        
+
         static Map getStats(file) {
             def lines = file.readLines()
             def numReads = lines.size() / 4
             def avgLength = lines.findAll { !it.startsWith("@") && !it.startsWith("+") }
                                 .collect { it.length() }
                                 .sum() / numReads
-            
+
             return [
                 num_reads: numReads,
                 avg_length: avgLength,
@@ -556,7 +556,7 @@ class FileValidators {
             ]
         }
     }
-    
+
     static class BamValidator {
         static boolean isValid(file) {
             try {
@@ -566,19 +566,19 @@ class FileValidators {
                 return false
             }
         }
-        
+
         static Map getStats(file) {
             def stats = [:]
             try {
                 def idxstats = "samtools idxstats ${file}".execute().text
                 def lines = idxstats.split('\n').findAll { it.trim() }
-                
+
                 stats.chromosomes = lines.size() - 1  // Exclude unmapped
-                stats.mapped_reads = lines.collect { 
-                    it.split('\t')[2] as Integer 
+                stats.mapped_reads = lines.collect {
+                    it.split('\t')[2] as Integer
                 }.sum()
                 stats.unmapped_reads = lines[-1].split('\t')[3] as Integer
-                
+
             } catch (Exception e) {
                 stats.error = e.message
             }
@@ -593,24 +593,24 @@ class FileValidators {
 ```groovy
 // tests/utils/DataGenerators.groovy
 class DataGenerators {
-    
+
     static class GenomicDataGenerator {
         private static Random random = new Random()
         private static String[] bases = ['A', 'T', 'C', 'G']
-        
+
         static File generateFasta(String filename, Map options = [:]) {
             def numSequences = options.numSequences ?: 5
             def seqLength = options.seqLength ?: 1000
             def prefix = options.prefix ?: "seq"
-            
+
             def file = new File(filename)
             file.withWriter { writer ->
                 (1..numSequences).each { i ->
                     writer.println(">${prefix}_${i}")
-                    def sequence = (1..seqLength).collect { 
-                        bases[random.nextInt(4)] 
+                    def sequence = (1..seqLength).collect {
+                        bases[random.nextInt(4)]
                     }.join('')
-                    
+
                     // Write in 80-character lines
                     sequence.toList().collate(80).each { chunk ->
                         writer.println(chunk.join(''))
@@ -619,28 +619,28 @@ class DataGenerators {
             }
             return file
         }
-        
+
         static File generateFastq(String filename, Map options = [:]) {
             def numReads = options.numReads ?: 1000
             def readLength = options.readLength ?: 150
             def qualityOffset = options.qualityOffset ?: 33
             def prefix = options.prefix ?: "read"
-            
+
             def file = new File(filename)
             file.withWriter { writer ->
                 (1..numReads).each { i ->
                     // Header
                     writer.println("@${prefix}_${i}")
-                    
+
                     // Sequence
-                    def sequence = (1..readLength).collect { 
-                        bases[random.nextInt(4)] 
+                    def sequence = (1..readLength).collect {
+                        bases[random.nextInt(4)]
                     }.join('')
                     writer.println(sequence)
-                    
+
                     // Separator
                     writer.println("+")
-                    
+
                     // Quality scores
                     def quality = (1..readLength).collect {
                         (char)(random.nextInt(40) + qualityOffset)
@@ -659,37 +659,37 @@ class DataGenerators {
 ```groovy
 // tests/utils/AssertionUtils.groovy
 class AssertionUtils {
-    
+
     static void assertFileExists(file, String message = null) {
         def msg = message ?: "File should exist: ${file}"
         assert file instanceof File ? file.exists() : new File(file.toString()).exists(), msg
     }
-    
+
     static void assertFileNotEmpty(file, String message = null) {
         def fileObj = file instanceof File ? file : new File(file.toString())
         def msg = message ?: "File should not be empty: ${fileObj}"
         assert fileObj.exists() && fileObj.size() > 0, msg
     }
-    
+
     static void assertFileContentMatches(file, pattern, String message = null) {
         def fileObj = file instanceof File ? file : new File(file.toString())
         def content = fileObj.text
         def msg = message ?: "File content should match pattern: ${pattern}"
         assert content.matches(pattern), msg
     }
-    
+
     static void assertProcessResourceUsage(trace, Map limits, String message = null) {
         if (limits.maxMemory) {
             def memoryBytes = limits.maxMemory.replace('GB', '').toLong() * 1_000_000_000
-            assert trace.peakRss <= memoryBytes, 
+            assert trace.peakRss <= memoryBytes,
                    message ?: "Memory usage ${trace.peakRss} exceeds limit ${memoryBytes}"
         }
-        
+
         if (limits.maxCpus) {
             assert trace.cpus <= limits.maxCpus,
                    message ?: "CPU usage ${trace.cpus} exceeds limit ${limits.maxCpus}"
         }
-        
+
         if (limits.maxTime) {
             def timeMillis = limits.maxTime.replace('h', '').toLong() * 3_600_000
             assert trace.duration.toMillis() <= timeMillis,
@@ -709,7 +709,7 @@ test("Docker container") {
         process {
             """
             container 'biocontainers/samtools:1.15.1--h1170115_0'
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('test.bam', checkIfExists: true)
@@ -735,7 +735,7 @@ test("Container environment validation") {
             echo "Available tools:"
             which samtools && samtools --version
             which bcftools && bcftools --version
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('test.bam', checkIfExists: true)
@@ -773,7 +773,7 @@ test("Mock external service") {
         }
         '''
     }
-    
+
     when {
         process {
             """
@@ -785,7 +785,7 @@ test("Mock external service") {
                 echo "Calling real API"
                 curl -s "https://api.example.com/gene/ENSG00000123456" > api_response.json
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('gene_list.txt', checkIfExists: true)
@@ -817,16 +817,16 @@ exit 0
 '''
         stubScript.setExecutable(true)
     }
-    
+
     when {
         process {
             """
             # Add stub to PATH
             export PATH="tests/stubs:\$PATH"
-            
+
             # Verify stub is used
             which external_tool
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -851,34 +851,34 @@ exit 0
 ```groovy
 // tests/utils/SnapshotUtils.groovy
 class SnapshotUtils {
-    
+
     static Map normalizeProcessOutput(processOut) {
         def normalized = [:]
-        
+
         processOut.each { channelName, channelData ->
             normalized[channelName] = channelData.collect { item ->
                 if (item instanceof List && item.size() >= 2) {
                     def meta = item[0]
                     def files = item[1..-1]
-                    
+
                     // Normalize meta
                     def normalizedMeta = normalizeMeta(meta)
-                    
+
                     // Normalize files
                     def normalizedFiles = files.collect { file ->
                         normalizeFile(file)
                     }
-                    
+
                     return [normalizedMeta] + normalizedFiles
                 } else {
                     return normalizeFile(item)
                 }
             }
         }
-        
+
         return normalized
     }
-    
+
     private static Map normalizeMeta(meta) {
         def normalized = [:]
         meta.each { key, value ->
@@ -889,7 +889,7 @@ class SnapshotUtils {
         }
         return normalized
     }
-    
+
     private static Object normalizeFile(file) {
         if (file instanceof File || file.toString().contains('/')) {
             // For files, return just filename and checksum
@@ -903,7 +903,7 @@ class SnapshotUtils {
         }
         return file
     }
-    
+
     static Map excludeVariableContent(processOut, List excludePatterns = []) {
         def defaultPatterns = [
             /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}/,  // Timestamps
@@ -911,9 +911,9 @@ class SnapshotUtils {
             /process_id:\d+/,                        // Process IDs
             /execution_id:\w+-\w+-\w+-\w+-\w+/       // Execution IDs
         ]
-        
+
         def allPatterns = defaultPatterns + excludePatterns
-        
+
         def filtered = [:]
         processOut.each { channelName, channelData ->
             filtered[channelName] = channelData.collect { item ->
@@ -924,7 +924,7 @@ class SnapshotUtils {
                 return itemStr
             }
         }
-        
+
         return filtered
     }
 }
@@ -951,7 +951,7 @@ test("Graceful tool degradation") {
                 # Built-in fallback implementation
                 cat input.txt | sed 's/pattern/replacement/g' > output.txt
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -979,19 +979,19 @@ test("External tool with timeout") {
             run_with_timeout() {
                 local cmd="\$1"
                 local timeout="\$2"
-                
+
                 timeout "\$timeout" bash -c "\$cmd" || {
                     echo "Command timed out after \$timeout seconds"
                     return 1
                 }
             }
-            
+
             # Function to retry command
             retry_command() {
                 local cmd="\$1"
                 local max_attempts=3
                 local attempt=1
-                
+
                 while [[ \$attempt -le \$max_attempts ]]; do
                     echo "Attempt \$attempt of \$max_attempts"
                     if run_with_timeout "\$cmd" "300s"; then
@@ -1003,14 +1003,14 @@ test("External tool with timeout") {
                         sleep 10
                     fi
                 done
-                
+
                 echo "Command failed after \$max_attempts attempts"
                 return 1
             }
-            
+
             # Use retry logic for unreliable external command
             retry_command "external_unreliable_tool --input input.txt --output output.txt"
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -1043,21 +1043,21 @@ nextflow_process {
     name "Test Process with Full Utilities"
     script "../main.nf"
     process "COMPREHENSIVE_TOOL"
-    
+
     test("Comprehensive test with utilities") {
         setup {
             // Generate test data
             DataGenerators.GenomicDataGenerator.generateFastq(
-                "tests/generated_reads.fastq", 
+                "tests/generated_reads.fastq",
                 [numReads: 100, readLength: 150]
             )
-            
+
             DataGenerators.GenomicDataGenerator.generateFasta(
                 "tests/reference.fa",
                 [numSequences: 1, seqLength: 5000]
             )
         }
-        
+
         when {
             process {
                 """
@@ -1069,17 +1069,17 @@ nextflow_process {
                 """
             }
         }
-        
+
         then {
             assertAll(
                 { assert process.success },
-                
+
                 // File existence checks
                 {
                     AssertionUtils.assertFileExists(process.out.bam[0][1])
                     AssertionUtils.assertFileNotEmpty(process.out.bam[0][1])
                 },
-                
+
                 // Resource usage validation
                 {
                     AssertionUtils.assertProcessResourceUsage(
@@ -1087,12 +1087,12 @@ nextflow_process {
                         [maxMemory: '4GB', maxCpus: 2, maxTime: '1h']
                     )
                 },
-                
+
                 // Normalized snapshot
-                { 
+                {
                     assert snapshot(
                         SnapshotUtils.normalizeProcessOutput(process.out)
-                    ).match() 
+                    ).match()
                 }
             )
         }
@@ -1102,4 +1102,4 @@ nextflow_process {
 
 ## Next Steps
 
-Continue to [Test Data Management](./11_test_data_management.md) to learn about organizing and managing test datasets. 
+Continue to [Test Data Management](./11_test_data_management.md) to learn about organizing and managing test datasets.

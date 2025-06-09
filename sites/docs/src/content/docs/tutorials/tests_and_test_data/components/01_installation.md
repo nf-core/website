@@ -56,6 +56,7 @@ nf-test version
 ```
 
 List available tests:
+
 ```bash
 nf-test list
 ```

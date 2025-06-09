@@ -242,17 +242,17 @@ assert snapshot(
 ```groovy
 then {
     def stablefiles = []
-    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> 
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file ->
         if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {
             stablefiles.add(file)
-        } 
+        }
     }
-    
+
     def unstablefiles = []
-    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> 
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file ->
         if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {
             unstablefiles.add(file.getName().toString())
-        } 
+        }
     }
 
     assertAll(
@@ -417,4 +417,4 @@ Continue to [Configuration Management](./08_configuration_management.md) to lear
 - [nf-test Documentation](https://code.askimed.com/nf-test/docs/getting-started/)
 - [Updating Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#updating-snapshots)
 - [Cleaning Obsolete Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#cleaning-obsolete-snapshots)
-- [Constructing Complex Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#constructing-complex-snapshots) 
+- [Constructing Complex Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#constructing-complex-snapshots)

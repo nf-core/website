@@ -88,9 +88,7 @@ Snapshots are stored in `.nf-test/snapshots/` directory:
             "test_fastqc.zip:md5sum:987fed654cba321"
           ]
         ],
-        "2": [
-          "versions.yml:md5sum:abc123def456"
-        ]
+        "2": ["versions.yml:md5sum:abc123def456"]
       }
     ],
     "timestamp": "2024-01-15T10:30:45.123456"
@@ -168,8 +166,8 @@ then {
         { assert process.success },
         { assert snapshot(
             // Filter out timestamps and other variable content
-            process.out.log.collect { 
-                it.readLines().findAll { line -> 
+            process.out.log.collect {
+                it.readLines().findAll { line ->
                     !line.contains("timestamp") && !line.contains("execution_id")
                 }
             }
@@ -432,4 +430,4 @@ then {
 
 ## Next Steps
 
-Continue to [Advanced Testing Patterns](./10_advanced_testing_patterns.md) to learn complex testing scenarios and custom function usage. 
+Continue to [Advanced Testing Patterns](./10_advanced_testing_patterns.md) to learn complex testing scenarios and custom function usage.

@@ -21,6 +21,7 @@ nextflow_workflow {
 ```
 
 **Key Points:**
+
 - Script paths starting with `./` or `../` are relative to the test script location
 - Use relative paths to reference files within the same directory or parent directories
 
@@ -127,6 +128,7 @@ nextflow_workflow {
 ```
 
 Run the tests:
+
 ```bash
 nf-core subworkflows test fastq_align_qc --profile docker
 ```

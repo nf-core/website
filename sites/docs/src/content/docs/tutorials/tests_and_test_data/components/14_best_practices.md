@@ -31,13 +31,13 @@ nextflow_pipeline {
     config "./nextflow.config"
     tag "pipeline"
     tag "cpu"
-    
+
     // Good: Descriptive parameter-based names
     test("-profile test") { /* Default pathway */ }
     test("Params: bwameth") { /* Alternative aligner */ }
     test("Params: bismark | run_targeted_sequencing") { /* Feature-specific */ }
     test("Params: bismark | skip_trimming") { /* Skip options */ }
-    
+
     // Avoid: Generic test names
     test("test1") { /* ... */ }
     test("basic") { /* ... */ }
@@ -128,7 +128,7 @@ params {
     modules_testdata_base_path = 's3://ngi-igenomes/testdata/nf-core/modules/'
     // For pipelines
     pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
-    
+
     // Pipeline-specific test data
     input = "${projectDir}/assets/samplesheet.csv"
     fasta = "${params.pipelines_testdata_base_path}/reference/genome.fa.gz"
@@ -229,12 +229,12 @@ test("Comprehensive output validation") {
         assertAll(
             // Basic success check
             { assert process.success },
-            
+
             // Output existence
             { assert process.out.html.size() == 1 },
             { assert process.out.zip.size() == 1 },
             { assert process.out.versions.size() == 1 },
-            
+
             // File content validation
             {
                 process.out.html.each { meta, html ->
@@ -243,7 +243,7 @@ test("Comprehensive output validation") {
                     assert html.text.contains("FastQC Report")
                 }
             },
-            
+
             // Metadata validation
             {
                 process.out.html.each { meta, html ->
@@ -251,7 +251,7 @@ test("Comprehensive output validation") {
                     assert meta.containsKey('single_end')
                 }
             },
-            
+
             // Snapshot comparison
             { assert snapshot(process.out).match() }
         )
@@ -278,7 +278,7 @@ test("Invalid input handling") {
             { assert process.failed },
             { assert process.exitStatus == 1 },
             // Check for specific error messages
-            { assert process.stderr.contains("not in FASTQ format") || 
+            { assert process.stderr.contains("not in FASTQ format") ||
                      process.stderr.contains("Invalid file format") },
             // Ensure no partial outputs
             { assert process.out.html.size() == 0 },
@@ -307,13 +307,13 @@ test("Selective snapshot example") {
     then {
         assertAll(
             { assert process.success },
-            
+
             // Snapshot only stable outputs
             { assert snapshot(
                 process.out.html,
                 process.out.zip
             ).match("main_outputs") },
-            
+
             // Separate snapshot for versions (may change frequently)
             { assert snapshot(process.out.versions).match("versions") }
         )
@@ -338,7 +338,7 @@ test("Filtered snapshot content") {
     then {
         assertAll(
             { assert process.success },
-            
+
             // Filter variable content before snapshotting
             { assert snapshot(
                 process.out.stats.collect { meta, stats ->
@@ -373,7 +373,7 @@ profiles {
             }
         }
     }
-    
+
     test_full {
         params {
             max_memory = '64.GB'
@@ -381,7 +381,7 @@ profiles {
             max_time = '48.h'
         }
     }
-    
+
     ci {
         params {
             max_memory = '6.GB'
@@ -448,21 +448,21 @@ test("Resource usage validation") {
     then {
         assertAll(
             { assert process.success },
-            
+
             // Validate resource usage
             { assert process.trace.duration.toMinutes() < 10 },
             { assert process.trace.peakRss < 2_000_000_000 }, // 2GB
             { assert process.trace.cpus <= 4 },
-            
+
             // Performance regression detection
             {
                 def expectedDuration = 5 * 60 * 1000 // 5 minutes in ms
                 def actualDuration = process.trace.duration.toMillis()
                 def tolerance = 0.2 // 20% tolerance
-                
+
                 assert actualDuration < expectedDuration * (1 + tolerance)
             },
-            
+
             { assert snapshot(process.out).match() }
         )
     }
@@ -515,7 +515,7 @@ test("Graceful failure handling") {
             else
                 optional_tool input.txt > output.txt
             fi
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -543,19 +543,19 @@ test("Input validation") {
             # Comprehensive input validation
             validate_input() {
                 local file="\$1"
-                
+
                 # Check file exists and is readable
                 if [[ ! -r "\$file" ]]; then
                     echo "ERROR: Cannot read file: \$file" >&2
                     return 1
                 fi
-                
+
                 # Check file size
                 if [[ ! -s "\$file" ]]; then
                     echo "ERROR: File is empty: \$file" >&2
                     return 1
                 fi
-                
+
                 # Format-specific validation
                 if [[ "\$file" == *.fastq.gz ]]; then
                     if ! zcat "\$file" | head -4 | awk 'NR==1{if(!\$0~/^@/)exit 1}NR==3{if(!\$0~/^\+/)exit 1}'; then
@@ -563,19 +563,19 @@ test("Input validation") {
                         return 1
                     fi
                 fi
-                
+
                 return 0
             }
-            
+
             # Validate all inputs
             for input_file in input.fastq.gz reference.fa; do
                 if ! validate_input "\$input_file"; then
                     exit 1
                 fi
             done
-            
+
             echo "Input validation passed"
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.fastq.gz', checkIfExists: true)
@@ -602,10 +602,10 @@ nextflow_process {
     name "Test Process BWA_MEM"
     script "../main.nf"
     process "BWA_MEM"
-    
+
     /**
      * Test BWA-MEM alignment with single-end reads
-     * 
+     *
      * This test verifies:
      * - Basic alignment functionality
      * - SAM output format
@@ -630,7 +630,7 @@ nextflow_process {
         then {
             assertAll(
                 { assert process.success },
-                
+
                 // Verify SAM output structure
                 {
                     process.out.sam.each { meta, sam ->
@@ -640,11 +640,11 @@ nextflow_process {
                         assert lines.count { !it.startsWith("@") } > 0 // Alignment records present
                     }
                 },
-                
+
                 // Resource validation
                 { assert process.trace.duration.toMinutes() < 5 },
                 { assert process.trace.peakRss < 1_000_000_000 }, // 1GB
-                
+
                 { assert snapshot(process.out).match() }
             )
         }
@@ -662,12 +662,12 @@ BWA_MEM:
   - alignment
   - genomics
   - bwa
-  
+
 test_descriptions:
   "Single-end alignment": "Tests basic BWA-MEM functionality with single-end reads"
   "Paired-end alignment": "Tests BWA-MEM with paired-end reads and proper mate handling"
   "Large genome alignment": "Performance test with human genome reference"
-  
+
 test_requirements:
   "Single-end alignment":
     memory: "1GB"
@@ -691,7 +691,7 @@ test("Version compatibility check") {
             # Check tool version and adjust behavior accordingly
             TOOL_VERSION=\$(my_tool --version | grep -oE '[0-9]+\\.[0-9]+\\.[0-9]+')
             MAJOR_VERSION=\$(echo \$TOOL_VERSION | cut -d. -f1)
-            
+
             if [[ \$MAJOR_VERSION -ge 2 ]]; then
                 # New version syntax
                 my_tool --new-flag input.txt > output.txt
@@ -699,7 +699,7 @@ test("Version compatibility check") {
                 # Legacy version syntax
                 my_tool --old-flag input.txt > output.txt
             fi
-            
+
             input[0] = [
                 [ id:'test', tool_version: "\$TOOL_VERSION" ],
                 file('input.txt', checkIfExists: true)
@@ -730,9 +730,9 @@ test("Feature deprecation handling") {
             else
                 NEW_PARAM="\${params.new_parameter}"
             fi
-            
+
             my_tool --param "\$NEW_PARAM" input.txt > output.txt
-            
+
             input[0] = [
                 [ id:'test' ],
                 file('input.txt', checkIfExists: true)
@@ -743,7 +743,7 @@ test("Feature deprecation handling") {
     then {
         assertAll(
             { assert process.success },
-            { 
+            {
                 if (params.legacy_parameter) {
                     assert process.stderr.contains("WARNING: legacy_parameter is deprecated")
                 }
@@ -794,15 +794,15 @@ test("Performance regression check") {
         process {
             """
             START_TIME=\$(date +%s.%N)
-            
+
             # Run the actual process
             my_tool input.txt > output.txt
-            
+
             END_TIME=\$(date +%s.%N)
             DURATION=\$(echo "\$END_TIME - \$START_TIME" | bc)
-            
+
             echo "Execution time: \${DURATION}s"
-            
+
             input[0] = [
                 [ id:'test', execution_time: "\$DURATION" ],
                 file('input.txt', checkIfExists: true)
@@ -813,7 +813,7 @@ test("Performance regression check") {
     then {
         assertAll(
             { assert process.success },
-            
+
             // Performance regression check (baseline: 30s, tolerance: 20%)
             {
                 def executionTime = process.stdout.find(/Execution time: ([0-9.]+)s/) { match, time ->
@@ -821,11 +821,11 @@ test("Performance regression check") {
                 }
                 def baseline = 30.0
                 def tolerance = 0.2
-                
-                assert executionTime < baseline * (1 + tolerance), 
+
+                assert executionTime < baseline * (1 + tolerance),
                        "Performance regression detected: ${executionTime}s > ${baseline * (1 + tolerance)}s"
             },
-            
+
             { assert snapshot(process.out).match() }
         )
     }
@@ -834,4 +834,4 @@ test("Performance regression check") {
 
 ## Next Steps
 
-Continue to [Troubleshooting](./15_troubleshooting.md) to learn how to debug common testing issues. 
+Continue to [Troubleshooting](./15_troubleshooting.md) to learn how to debug common testing issues.
