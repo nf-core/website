@@ -1,69 +1,47 @@
 ---
-const { name, icon, params } = Astro.props;
+let { name, icon, params = [] } = Astro.props;
+import ComponentParamList from "./ComponentParamList.astro";
 
-import { Markdown } from '@astropub/md';
 export interface Props {
     name: string;
     icon: string;
-    params?: {}[];
+    params?: any[];
+}
+if (name == "Input") {
+    params = params.map((param, i) => {
+        param = Array.isArray(param) ? param : [param];
+        return { [`input[${i}]`]: param };
+    });
 }
 ---
 
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
     <i class={`fad ${icon} fa-fw`}></i>
     {name}
-    <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link"
-        ><span class="fas fa-link" aria-hidden="true"></span>
+    <a href={"#" + name.toLowerCase()} class="header-link scroll_to_link">
+        <span class="fas fa-link" aria-hidden="true"></span>
     </a>
 </h2>
 
 {
-    params ? (
-        <div class="row border-bottom border-3">
-            <div class="col-12 col-md-3 col-xxl-2">
-                <span class="text-body-secondary">Name (Type)</span>
+    params.length > 0 && (
+        <div class="row border-bottom border-3 d-none d-md-flex">
+            <div class="col-12 col-md-4 col-xxl-3">
+                <span class="text-body-secondary ps-3">
+                    name<span class="ps-0 font-monospace opacity-75 small">:type</span>
+                </span>
             </div>
-            <div class="col-12 col-md-6">
-                <span class="text-body-secondary text-start">Description</span>
+            <div class="col-12 col-md-7">
+                <span class="text-body-secondary text-start ps-3">description</span>
             </div>
             <div class="col-12 col-md">
-                <span class="text-body-secondary float-end">Pattern</span>
+                <span class="text-body-secondary float-end">pattern</span>
             </div>
         </div>
-    ) : (
-        ''
     )
 }
-{
-    params ? (
-        params.map((param) => {
-            const name = Object.keys(param)[0];
-            const { type, description, pattern } = param[name];
-            return (
-                <div class="row border-bottom align-items-center">
-                    <div class="col-12 col-md-3 col-xxl-2 small-h">
-                        <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
-                            <code>{name}</code>
-                            {type && <span class="text-body-secondary ms-1"> ({type})</span>}
-                            <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
-                                <span class="fas fa-link" aria-hidden="true" />
-                            </a>
-                        </h4>
-                    </div>
+{params.length > 0 ? <ComponentParamList params={params} /> : <p class="text-body-secondary">No input parameters</p>}
 
-                    <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
-                        <Markdown of={description.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.')} />
-                    </div>
-                    <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
-                        {pattern && <code class="float-end pattern">{pattern}</code>}
-                    </div>
-                </div>
-            );
-        })
-    ) : (
-        <p class="text-body-secondary">No input parameters</p>
-    )
-}
 <style>
     h4 {
         overflow: hidden;

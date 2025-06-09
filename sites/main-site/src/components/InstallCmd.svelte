@@ -1,10 +1,14 @@
 <script lang="ts">
-    export let cmd: string;
-    export let icon: boolean = true;
-    export let flatTop: boolean = false;
-    export let flatBottom: boolean = false;
+    interface Props {
+        cmd: string;
+        icon?: boolean;
+        flatTop?: boolean;
+        flatBottom?: boolean;
+    }
 
-    $: copied = false;
+    let { cmd, icon = true, flatTop = false, flatBottom = false }: Props = $props();
+
+    let copied = $state(false);
 
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
@@ -19,7 +23,7 @@
 
 <div class="input-group module-install-cmd">
     {#if icon}
-        <span class="input-group-text bg-body border-end-0"><i class="fa-regular fa-terminal" /></span>
+        <span class="input-group-text bg-body border-end-0"><i class="fa-regular fa-terminal"></i></span>
     {/if}
     <input
         type="text"
@@ -31,18 +35,19 @@
         data-autoselect=""
         value={cmd}
         readonly={true}
-        on:click={() => copyToClipboard(cmd)}
+        onclick={() => copyToClipboard(cmd)}
     />
     <button
         class="btn btn-secondary border copy-txt"
         class:text-bg-success={copied}
         class:rounded-top-0={flatTop}
+        aria-label="Copy to clipboard"
         data-bs-toggle="tooltip"
         data-bs-placement="left"
         title="Copy to clipboard"
         type="button"
-        on:click={() => copyToClipboard(cmd)}
-        ><i class={'fa-regular px-1 fa-clipboard' + (copied ? '-check' : '')} /></button
+        onclick={() => copyToClipboard(cmd)}
+        ><i class={"fa-regular px-1 fa-clipboard" + (copied ? "-check" : "")}></i></button
     >
 </div>
 

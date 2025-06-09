@@ -1,11 +1,11 @@
 ---
 title: Animal Genomics
-subtitle: 'The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics.'
+subtitle: "The Animal Genomics Special Interest Group is a community of researchers and practitioners interested in the application of genomics to animal breeding and genetics."
 groupName: Animal Genomics
 leads:
-  - bjlang: Björn Langer
   - joseespinosa: Jose Espinosa-Carrasco
   - cnotred: Cedric Notredame
+  - FrancescaB19: Francesca Bernini
 pipelines:
   - rnaseq
   - smrnaseq
@@ -29,4 +29,18 @@ Finally, the group will be a place where users can share their experience with n
 
 # Activities
 
-The format will involve a monthly meeting featuring a presentation and round table discussions on pre-identified topics. The presentation will typically feature novel ongoing efforts in animal genomics (new consortiums, new calls, etc). The discussion will often be a follow-up on the talk.
+The format will involve a [monthly meeting](/special-interest-groups/animal-genomics/meetings.md) featuring a presentation and round table discussions on pre-identified topics. The presentation will feature a diverse range of topics in the field of animal genomics, including:
+
+- Inspiring talks from top genomics researchers.
+- Novel ongoing efforts in animal genomics (new consortiums, new calls, etc).
+- More technical sessions on practical examples of how to use nf-core pipelines applied to animal genomics research.
+
+The discussion will often be a follow-up on the talk.
+
+# How to join
+
+Join the [nf-core Slack](/join#slack) and find us in the _#animal-genomics_ channel
+
+# Alumni
+
+- Björn Langer

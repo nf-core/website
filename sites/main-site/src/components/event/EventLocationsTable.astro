@@ -1,0 +1,104 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+
+interface Props {
+    eventPath: string;
+    showCount: boolean;
+}
+
+// Map of country names to their flag emoji for easier lookup
+const COUNTRIES = {
+    Argentina: "🇦🇷",
+    Australia: "🇦🇺",
+    Belgium: "🇧🇪",
+    Brazil: "🇧🇷",
+    Canada: "🇨🇦",
+    "Czech Republic": "🇨🇿",
+    Colombia: "🇨🇴",
+    Denmark: "🇩🇰",
+    Ethiopia: "🇪🇹",
+    France: "🇫🇷",
+    Germany: "🇩🇪",
+    Ghana: "🇬🇭",
+    Greece: "🇬🇷",
+    India: "🇮🇳",
+    Italy: "🇮🇹",
+    Kenya: "🇰🇪",
+    Netherlands: "🇳🇱",
+    "New Zealand": "🇳🇿",
+    Pakistan: "🇵🇰",
+    Poland: "🇵🇱",
+    "South Africa": "🇿🇦",
+    Spain: "🇪🇸",
+    Sweden: "🇸🇪",
+    Switzerland: "🇨🇭",
+    Turkey: "🇹🇷",
+    "United Kingdom": "🇬🇧",
+    USA: "🇺🇸",
+} as const;
+
+const { eventPath, showCount = false } = Astro.props;
+
+// Get location pages for the current event
+const locationPages = (await getCollection("events"))
+    .filter((page) => {
+        const pagePath = page.id.split("/");
+        return !pagePath[pagePath.length - 1].includes("index") && pagePath.slice(0, -1).join("/") === eventPath;
+    })
+    .map((page) => {
+        const country = page.data.locations?.[0]?.country;
+        return {
+            ...page,
+            countryInfo: country
+                ? {
+                      name: country,
+                      flag: COUNTRIES[country] || "",
+                  }
+                : undefined,
+        };
+    })
+    .sort((a, b) => (a.countryInfo?.name ?? "").localeCompare(b.countryInfo?.name ?? ""));
+
+const locationCount = locationPages.length;
+const countryCount = new Set(locationPages.map((page) => page.countryInfo?.name).filter(Boolean)).size;
+---
+
+{
+    showCount && (
+        <p>
+            There are currently {locationCount} local sites in {countryCount} countries!
+        </p>
+    )
+}
+
+<div class="table-responsive">
+    <table class="table table-hover table-sm small">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>City</th>
+                <th>Location</th>
+                <th>Event page</th>
+            </tr>
+        </thead>
+        <tbody>
+            {
+                locationPages.map((page) => (
+                    <tr class="">
+                        <td class="text-nowrap">
+                            {page.countryInfo?.flag} {page.countryInfo?.name}
+                        </td>
+                        <td class="text-nowrap">{page.data.locations?.[0]?.city}</td>
+                        <td>{page.data.locations?.[0]?.name}</td>
+                        <td class="text-nowrap">
+                            <a class="" href={`/events/${page.id.replace(".mdx", "")}`}>
+                                Read more
+                            </a>
+                        </td>
+                    </tr>
+                ))
+            }
+        </tbody>
+    </table>
+</div>

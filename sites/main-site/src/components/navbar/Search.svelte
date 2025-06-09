@@ -1,22 +1,26 @@
 <script lang="ts">
-    import docsearch from '@docsearch/js';
+    import docsearch from "@docsearch/js";
 
-    import '@docsearch/css';
-    import { onMount } from 'svelte';
+    import "@docsearch/css";
+    import { onMount } from "svelte";
 
-    export let id: string = '';
+    interface Props {
+        id?: string;
+    }
+
+    let { id = "" }: Props = $props();
     onMount(() => {
         docsearch({
-            container: '#' + id,
-            appId: '01BY3A8NRJ',
-            indexName: 'nf-co',
-            apiKey: 'c726615ab69f88b4e26bc891c97c1808',
-            placeholder: 'Search',
+            container: "#" + id,
+            appId: "01BY3A8NRJ",
+            indexName: "nf-co",
+            apiKey: "c726615ab69f88b4e26bc891c97c1808",
+            placeholder: "Search",
         });
     });
 </script>
 
-<div {id} />
+<div {id}></div>
 
 <style lang="scss">
     :global(:root) {
@@ -27,20 +31,20 @@
         --docsearch-primary-color: #{var(--bs-success)};
         --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
         --docsearch-modal-background: #{var(--bs-body-bg)};
-        --docsearch-modal-shadow: 'none';
+        --docsearch-modal-shadow: "none";
         --docsearch-footer-shadow: none;
         --docsearch-muted-color: #{var(--bs-secondary)};
     }
-    :global([data-bs-theme='dark']:root) {
+    :global([data-bs-theme="dark"]:root) {
         --docsearch-hit-color: #{var(--bs-body-color)};
         --docsearch-hit-background: #{var(--bs-body-bg)};
-        --docsearch-hit-shadow: 'none';
+        --docsearch-hit-shadow: "none";
         --docsearch-footer-background: #{var(--bs-tertiary-bg)};
         --docsearch-muted-color: #{var(--bs-tertiary-emphasis)};
     }
-    // :global(.DocSearch-Modal) {
-    //     background: var(--bs-secondary-bg);
-    // }
+    :global(.DocSearch-Modal) {
+        padding-top: 3.5rem;
+    }
     :global(.DocSearch-Form) {
         border: 1pt solid var(--bs-border-color);
     }
@@ -89,14 +93,14 @@
             padding: 0;
         }
     }
-    :global(.DocSearch-Hit-icon:has(svg[height='20'])) {
+    :global(.DocSearch-Hit-icon:has(svg[height="20"])) {
         line-height: 20px;
     }
 
     :global(.DocSearch-Hit-source) {
         font-size: 1rem;
     }
-    :global([data-bs-theme='dark'] .DocSearch-Hit[aria-selected='true'] a) {
+    :global([data-bs-theme="dark"] .DocSearch-Hit[aria-selected="true"] a) {
         background-color: rgba(var(--bs-success-rgb), 0.75);
     }
 </style>

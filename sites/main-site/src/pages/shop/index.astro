@@ -1,0 +1,124 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { spreadshopLocales } from "../../config";
+import HomepageCard from "@components/homepage/HomepageCard.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<PageLayout title="nf-core/shop" subtitle="Share your love for the nf-core community!">
+    <h1>Welcome to the nf-core shop!</h1>
+    <p class="mt-3 mb-4">
+        We are excited to announce the launch of the nf-core shop! We have a range of products available, including
+        t-shirts, hoodies, mugs, and stickers. All products are printed and shipped by our partners at Spreadshirt.
+    </p>
+    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 mb-4">
+        <div class="col">
+            <HomepageCard title="Big range of products" icon="pepicons-print:t-shirt" icon_class="text-secondary">
+                From tote bags to t-shirts, magnets to mugs, there's something for everyone! See <em>All Products</em>.
+            </HomepageCard>
+        </div>
+        <div class="col">
+            <HomepageCard title="Pipeline specific swag" icon="bi:bag-heart-fill" icon_class="text-secondary">
+                Many pipelines have their logos added to the shop, so you can show your love for your favourite
+                pipeline!
+            </HomepageCard>
+        </div>
+        <div class="col">
+            <HomepageCard
+                title="Customise your colours"
+                icon="fluent:paint-brush-sparkle-24-filled"
+                icon_class="text-secondary"
+            >
+                Each product can be customised with your favoruite colours and even designs. Make it your own!
+            </HomepageCard>
+        </div>
+    </div>
+    <div class="text-center mb-3">
+        <div class="dropdown">
+            <button
+                class="btn btn-success btn-lg dropdown-toggle"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+            >
+                Choose your shop's region
+            </button>
+            <ul class="dropdown-menu">
+                {
+                    spreadshopLocales.map((data) => (
+                        <li>
+                            <a class="dropdown-item" href={"/shop/" + data[1].toLowerCase()}>
+                                {data[0]}
+                            </a>
+                        </li>
+                    ))
+                }
+            </ul>
+        </div>
+    </div>
+    <p class="text-secondary text-center small">
+        Something funky going on? Here are the direct links to the shops without any clever website embeds:
+    </p>
+    <p class="text-center mb-5">
+        <a href="https://nf-core.myspreadshop.net" class="btn btn-outline-secondary me-2">🇪🇺 Direct link to EU shop</a>
+        <a href="https://nf-core.myspreadshop.com" class="btn btn-outline-secondary">🇺🇸 Direct link to USA shop</a>
+    </p>
+    <div class="grid mb-4">
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>How does this work?</h5>
+                <p class="card-text small">
+                    When you buy something, Spreadshirt will print and ship the product to you. This means we don't have
+                    to hold any inventory in stock, or really do anything. The entire shop runs directly with
+                    Spreadshirt.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>Does nf-core make a profit?</h5>
+                <p class="card-text small">
+                    No, we have set the profit margin to zero, everything is at cost price. This means everything is as
+                    cheap as possible, and also saves us from having to navigate legal / tax headaches.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>What about shipping?</h5>
+                <p class="card-text small">
+                    There are two shops, one in the US and one in the EU. Plus, many locales. Pick the one closest to
+                    you to use your local currency and get the best shipping.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>What if something goes wrong?</h5>
+                <p class="card-text small">
+                    If you have any issues with your order, please contact Spreadshirt directly. They should be able to
+                    help you out. Let us know if you have any problems.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>Can I suggest new products or designs?</h5>
+                <p class="card-text small">
+                    Yes, please do! We are always open to new ideas. If you have a suggestion, please post it in the <code
+                        >#shop</code
+                    > channel on the nf-core Slack.
+                </p>
+            </div>
+        </div>
+        <div class="card g-col-4">
+            <div class="card-body">
+                <h5>Ok, I'm ready...</h5>
+                <p class="card-text small">
+                    Great! We'd love to see you rocking your nf-core swag. Take lots of photos of your new gear when it
+                    arrives and tag us on social media!
+                </p>
+            </div>
+        </div>
+    </div>
+</PageLayout>

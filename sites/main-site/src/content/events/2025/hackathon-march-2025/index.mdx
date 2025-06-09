@@ -2,23 +2,267 @@
 title: Hackathon - March 2025 (Online / Distributed)
 subtitle: A virtual hackathon with local sites to develop nf-core together
 type: hackathon
-startDate: '2025-03-24'
-startTime: '10:00+02:00'
-endDate: '2025-03-26'
-endTime: '17:00+02:00'
+startDate: "2025-03-24"
+startTime: "10:00+02:00"
+endDate: "2025-03-26"
+endTime: "17:00+02:00"
+start: 2025-03-24T00:00:00+00:00
+end: 2025-03-26T00:00:00+00:00
 locations:
-    - name: Gather town, Slack, and local sites.
-# importTypeform: true
+    - name: Slack, and local sites.
+importTypeform: true
+hackathonProjectListModals: hackathon-march-2025
 announcement:
-    text: 'Registration for the online / distributed March hackathon is now open!'
+    text: "Registration for the online / distributed March hackathon is now open!"
     start: 2025-02-22T00:00:00+01:00
     end: 2025-03-23T00:00:00+01:00
 ---
+
+import EventMap from "@components/event/EventMap.astro";
+import EventLocationsTable from "@components/event/EventLocationsTable.astro";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
 
 # Welcome
 
 Join us online and in person **March 24-26, 2025**, for the nf-core hackathon! 🗓️
 
-The plan is to do an online + distributed hackathon, as held in [2023](/events/2023/hackathon-march-2023) and [2024](/events/2024/hackathon-march-2024).
+You can join for free from wherever you are online, or travel to a local site
+to hack with other Nextflow / nf-core enthusiasts in person!
 
-For now this is just a placeholder to save the date. Check back soon for more details!
+:::info{title="Key dates"}
+
+- **December 2024**: Proposals open to host local sites
+    - _Local site proposals will remain open until the start of the event_
+- **Jan 31st 2025**: Registration opens
+- **March 9th 2025**: Local site registration closes
+    - _Online registration will remain open until the end of the event_
+- **March 24th - 26th 2025**: Hackathon
+
+:::
+
+To get a feel for how the event will work, check out the similar style hackathons
+that we held in [2023](/events/2023/hackathon-march-2023) (16 local sites, 407 attendees)
+and [2024](/events/2024/hackathon-march-2024) (23 local sites, 466 attendees).
+
+:::tip{.fa-globe title="Time zones"}
+
+The hackathon runs from March 24-26, wherever you are.
+Event attendees will span the globe, so there should be some people online, wherever you are.
+Most people will work 9am - 5pm each day.
+
+:::
+
+## Registration
+
+Registration to join the hackathon is now open!
+See below or [open in a new tab](https://seqera.typeform.com/nfcoremarch2025).
+
+<div data-tf-live="01JJVB8DRXB3JQCM32R2Q3WSD0" style="margin-bottom:2rem;">
+    ..loading..
+</div>
+
+## Joining remotely
+
+The nf-core hackathon will take place both in-person and online.
+If you don't have a local site near you or can't join in person, you can attend online!
+
+The hackathon will use Slack extensively, with a main event channel as well as project-specific channels.
+Attendees will be encouraged to use Slack huddle video calls, as well as asynchronous messaging over Slack.
+
+## In person: Local sites
+
+If you have registered for a local site your local host will be in contact with you to outline site-specific information.
+For the most recent information about your site as well as the contact details of your organizer please check the event page specific to your local sites.
+
+<EventMap event={"2025/hackathon-march-2025"} />
+
+<EventLocationsTable eventPath="2025/hackathon-march-2025" showCount={true} />
+
+# Schedule
+
+We’ve kept the main schedule intentionally light to accommodate different time zones and allow for flexibility. While we have a few key syncs and social events planned, individual sites may be following their own schedules as well. We’d love to see as many of you as possible at the daily wrap-ups and quiz—they’re a great chance to connect with the community, share progress, and have some fun. Happy hacking!
+
+- Daily wrap-up
+    - APAC: 5 pm NZDT / 3 pm AEDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/89139122678?pwd=kHK82aVLVipF0y956ikvq1mNM9A648.1)
+        - [Join on Youtube - Day 1](https://www.youtube.com/live/l8sPKhanrxs)
+        - [Join on Youtube - Day 2](https://www.youtube.com/watch?v=ikBAflDfTL0)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=87N1pSI7vKQ)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1dZDReqfSGdoLEB5DOxo4gx6JJbaVWYoY1i3lx71Lzg0/edit?usp=drive_link)
+    - EMEA: 5 pm CET / 4 pm GMT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/81715446544?pwd=VBNTcymO5XY2WqYgIMDaAoXXB55Dm5.1)
+        - [Join on Youtube - Day 1](http://youtube.com/watch?v=bzYTVRlJBWE)
+        - [Join on Youtube - Day 2](http://youtube.com/watch?v=Qw26ogEgMNM)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=UL67_KVXQ6I)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1qcqpE1Ss0hnKQzCOnTSXoMgksUC_WipRqD71jaJzu7w/edit?usp=drive_link)
+    - AMER: 5 pm ET / 2 pm PDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/87169095085?pwd=K9eosZ6yTe9Q2a7uCyLYfilmn261oM.1)
+        - [Join on Youtube - Day 1](http://youtube.com/watch?v=4ThiqhcFD4Q)
+        - [Join on Youtube - Day 2](http://youtube.com/watch?v=0pqen0_y7rM)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=3is52pnw5JA)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1g0cAF8ViTZNLa1aLymXQzFBLHsdqej21GVhOdjSgR7c/edit?usp=drive_link)
+- Quiz social
+    - Tuesday, March 25, 4 pm CET / 11 am ET / 8 am PDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/82868493289?pwd=5kva7x1AebjzxkXVmJgLfxYCFrbj8m.1)
+    - Tuesday, March 25, 5 pm PDT / 1 pm NZDT / 11 am AEDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/83137372794?pwd=89yeuRkFmpT6KeSoCFdcrebGPFnKXd.1)
+
+:::tip{title="Your local time"}
+
+View the above times in your local time below:
+
+- Daily wrap-up
+    - APAC: <LocalDateTime date={new Date(1742788800000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+    - EMEA: <LocalDateTime date={new Date(1742832000000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+    - AMER: <LocalDateTime date={new Date(1742850000000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+- Quiz social
+    - <LocalDateTime date={new Date(1742914800000)} client:visible />
+    - <LocalDateTime date={new Date(1742947200000)} client:visible />
+
+:::
+
+# Projects
+
+We'll work in projects during the hackathon. Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-march-2025` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2025).
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+The front-matter YAML at the top of the file should be filled in as follows:
+
+- `title`: Short and self-descriptive name for the project
+- `category`: One of `pipelines`, `components`, `tooling`
+- `slack`: If your project already has an obvious Slack channel (eg. a pipeline) then right click
+  it and _Copy link_ and fill in here. Otherwise, leave blank as we will create a hackathon-specific
+  channel for your project.
+- `intro_video`: This field is not required, however it's recommended to record a short video prior to the event
+  to help folks joining in other time zones to get started.
+  You can also do this by recording the kick-off meeting at the start of the hackathon and adding that.
+  We can help with uploading videos to the nf-core YouTube channel, just ask in Slack.
+- `image`: A meme, silly picture or any other image to make your project more memorable.
+  Add to the [`sites/main-site/src/assets/images/events/2025/hackathon-march` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/assets/images/events/2025/hackathon-march)
+  as part of your PR.
+- `image_alt`: Text description of your image.
+- `leaders`: One or more contact people for your project (array)
+    - Each key under `leaders`: Your GitHub username
+        - `name`: Your name
+        - `slack`: Link to your Slack user. Find this by right clicking your name in Slack and selecting _Copy link_
+
+The body text can provide any context and background.
+Projects should have at least one goal mentioned in the body text under a `## Goal` heading that you want to
+try to achieve by the end of the hackathon.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them in the room, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+## List of projects
+
+<HackathonModalProjectList eventPath="hackathon-march-2025" />
+
+# Hosting a local site
+
+We are now accepting registrations from organizers interested in hosting local hackathon sites :tada:
+
+Anyone is welcome to host a site: you don't need to be an expert or have prior experience with hackathons.
+
+What you'll need:
+
+- Access to a dedicated space for the duration of the event
+- Decent wifi and a bunch of extension cables
+- Enthusiasm!
+
+Any space will do: be it a meeting room for 5-10 people through to larger spaces to accommodate more.
+
+The steps to host a site are:
+
+1. 👩🏻‍💻 Open a pull-request to add your site-specific page to this website
+    - Create a [new site-specific `.mdx` file](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/events/2025/hackathon-march-2025)
+      and add it to the [main event page's table](https://github.com/nf-core/website/blob/99a45bbabbc407d60d41acbcd2c93bba69d72341/sites/main-site/src/content/events/2025/hackathon-march-2025/index.mdx?plain=1#L105-L128).
+2. 📢 Advertise - both locally and online
+3. ☎️ During the event: act as a contact point with the hackathon organisers
+
+For more details, see the [About nf-core hackathons](https://youtu.be/nmp0pXL7GqQ?si=QShy0tqljhgap3lV&t=220)
+bytesize talk:
+
+<div style="max-width: 560px; margin: 0 auto 30px;">
+    <div class="ratio ratio-16x9">
+        <iframe
+            src="https://www.youtube.com/embed/nmp0pXL7GqQ?start=220"
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+        ></iframe>
+    </div>
+</div>
+
+:pizza: In previous years, Seqera has sponsored pizza.
+We're not yet sure how much funding will be available in 2025 or what shape it will take,
+so please don't plan around this.
+
+:calendar: There is no closing date for local site registration, however the sooner you register your interest the better.
+We use the site names in the main registration form and it really helps with planning.
+Also if we know about your site we'll have more time to help advertise and get folks to join!
+
+If you have any questions, jump into the [`#hackathon-mar-2025` channel](https://nfcore.slack.com/archives/C081XQ6T3M4)
+on the [nf-core Slack](https://nf-co.re/join#slack) and we'll be happy to help.
+
+# Social activities
+
+During the hackathon, we will have a bit of light-hearted fun and games for you to play!
+Special prizes are up for grabs for the winners!
+
+- Online quiz
+- Hackathon bingo
+- _more coming soon.._
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+- [ ] Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- [ ] If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- [ ] Join the nf-core slack and the [#hackathon-mar-2025 channel](https://nfcore.slack.com/archives/C081XQ6T3M4)
+- [ ] [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- [ ] Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
+
+## Hackathon playlist
+
+A community Spotify playlist was created during the first ever nf-core hackathon, and many songs have been added since.
+Feel free to tune in and enjoy the somewhat eclectic mix!
+
+<a href="https://open.spotify.com/playlist/6LyhtB3bllSwNbK9iDNVgH">
+    <picture>
+        <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_dark.png"
+        ></source>
+        <img
+            alt="nf-core/hackathon playlist"
+            src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_light.png"
+        ></img>
+    </picture>
+</a>

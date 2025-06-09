@@ -1,49 +1,70 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
+import { Markdown } from "@astropub/md";
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-const { title, color, proj_url, leaders, slack, intro_video } = Astro.props;
+const { title, color, category, proj_url, leaders, goal, slack, intro_video } = Astro.props;
 
 export interface Props {
     title: string;
     color?: string;
+    category?: string;
     proj_url?: URL;
     leaders: Object;
+    goal?: string;
     slack?: string;
     intro_video?: string;
 }
-const border_col = color ? { 'border-left-color': color, 'border-left-width': '5px' } : {};
-const slack_clean = slack ? slack.replace('#', '') : '';
+const slack_clean = slack ? slack.replace("#", "") : "";
+let this_color = color;
+if (!color && category) {
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+}
+const border_col = this_color ? { "border-left-color": this_color, "border-left-width": "5px" } : {};
 ---
 
 <div class="card mb-5" style={border_col}>
     <div class="card-body">
         <div class="row">
-            <div class={intro_video ? 'col-md-6' : 'col'}>
-                <h3>
-                    {title}
-                    {
-                        proj_url && (
-                            <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
-                                <Icon
-                                    name="octicon:table-16"
-                                    width="12pt"
-                                    class="me-1"
-                                    style={{ 'margin-top': '-3px' }}
-                                />
-                                Project Board
-                                <Icon
-                                    name="octicon:link-external-16"
-                                    width="12pt"
-                                    class="ms-1"
-                                    style={{ 'margin-top': '-3px' }}
-                                />
-                            </a>
-                        )
-                    }
-                </h3>
+            <div class={intro_video ? "col-md-6" : "col"}>
+                <div class="d-flex justify-content-between">
+                    <h3>
+                        {title}
+                        {
+                            proj_url && (
+                                <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                    <Icon
+                                        name="octicon:table-16"
+                                        width="12pt"
+                                        class="me-1"
+                                        style={{ "margin-top": "-3px" }}
+                                    />
+                                    Project Board
+                                    <Icon
+                                        name="octicon:link-external-16"
+                                        width="12pt"
+                                        class="ms-1"
+                                        style={{ "margin-top": "-3px" }}
+                                    />
+                                </a>
+                            )
+                        }
+                    </h3>
+                    <div>
+                        {
+                            category && (
+                                <span class="small badge rounded-pill ms-2" style={`background-color: ${this_color}`}>
+                                    {category}
+                                </span>
+                            )
+                        }
+                    </div>
+                </div>
                 {
                     slack && (
                         <a
@@ -58,19 +79,37 @@ const slack_clean = slack ? slack.replace('#', '') : '';
 
                 <slot />
 
+                {
+                    goal && (
+                        <>
+                            <h4>Goal</h4>
+                            <p>
+                                <Markdown of={goal} />
+                            </p>
+                        </>
+                    )
+                }
+
                 {leaders && <h4>Group Leaders</h4>}
                 {
-                    leaders &&
-                        Object.entries(leaders).map(([github, name]) => {
-                            return <Profile username={github}>{name}</Profile>;
-                        })
+                    leaders && (
+                        <div class="d-flex flex-wrap">
+                            {Object.entries(leaders).map(([github, name]) => {
+                                return (
+                                    <Profile username={github} wrapperClasses="me-2">
+                                        {name}
+                                    </Profile>
+                                );
+                            })}
+                        </div>
+                    )
                 }
             </div>
 
             {
                 intro_video && (
                     <div class="col-md-6">
-                        <YouTube id={intro_video} poster={`https://img.youtube.com/vi/${intro_video}/hqdefault.jpg`} />
+                        <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
                     </div>
                 )
             }

@@ -1,14 +1,16 @@
 ---
-title: 'Bytesize: Explaining Wave containers'
+title: "Bytesize: Explaining Wave containers"
 subtitle: Phil Ewels, Seqera
 type: talk
-startDate: '2024-06-11'
-startTime: '13:00+02:00'
-endDate: '2024-06-11'
-endTime: '13:30+02:00'
+startDate: "2024-06-11"
+startTime: "13:00+02:00"
+endDate: "2024-06-11"
+endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/6HVnB_WTyJU
 locations:
-  - links:
-      - https://kth-se.zoom.us/j/68390542812
+  - name: Online
+    links:
+      - https://youtu.be/6HVnB_WTyJU
 ---
 
 Wave is a container provisioning service integrated with Nextflow.

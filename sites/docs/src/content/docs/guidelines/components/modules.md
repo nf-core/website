@@ -47,7 +47,7 @@ All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a
     }
   ```
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 A disadvantage of passing arguments via ext.args is that it splits up how information is passed to a module, which can be difficult to understand where module inputs are defined.
 
 The justification behind using the `ext.args` is to provide more flexibility to users.
@@ -58,9 +58,9 @@ Initially these were passed via the main workflow script using custom functions 
 Therefore using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain and use.
 
 Note that sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`.
-A closure is used to make Nextflow evaluate the code in the code in the string.
+A closure is used to make Nextflow evaluate the code in the string.
 
-```nextflow
+```groovy
 ext.args = { "--id ${meta.id}" }
 ```
 
@@ -120,31 +120,32 @@ E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `sam
 ### Types of meta fields
 
 Modules MUST NOT use 'custom' hardcoded `meta` fields.
+This means both that they should not be referred to within the module as expected input, nor generate new fields as output.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
-Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
+Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 Modules should be written to allow as much flexibility to pipeline developers as possible.
 
-Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
+Hardcoding `meta` fields in a module both as input and output will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
 As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
-So, in the module code we DO NOT do:
+So, in the module code DO NOT:
 
-```bash
+```bash title="main.nf"
 my_command -r ${meta.strand} input.txt output.txt
 ```
 
-... but rather, in `modules.conf`
+... but rather:
 
-```nextflow
+```groovy title="modules.conf"
 ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
 ```
 
-... and then in the module code `main.nf`:
+and then in the module code:
 
-```bash
+```bash title="main.nf"
 my_command $args input.txt output.txt
 ```
 
@@ -185,13 +186,13 @@ cat <<-END_VERSIONS > versions.yml
 "${task.process}":
     fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
     samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
-END_VERSION
+END_VERSIONS
 ```
 
 resulting in, for instance,
 
 ```yaml
-'FASTQC':
+"FASTQC":
   fastqc: 0.11.9
   samtools: 1.12
 ```
@@ -225,7 +226,7 @@ If the software is unable to output a version number on the command-line then a 
 
 Please include the accompanying comments above the software packing directives and beside the version string.
 
-```nextflow {4,15,21}
+```groovy {4,15,21}
 process TOOL {
 
 ...
@@ -273,35 +274,37 @@ process {
 
 ### Capturing STDOUT and STDERR
 
-In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes.
-Use the shell command `tee` to simultaneously capture and preserve the streams.
-This allows for the streams to be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow encounters an error.
+In some cases, you may need to save STDOUT and STDERR to a file, for example, for reporting or debugging purposes. The `tee` shell command allows you to simultaneously capture and preserve these streams.
 
-This also ensures that they are captured by Nextflow.
+This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error. This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error. The stream output is preserved in the process's `.command.log` and `.command.err` files. If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
-If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
-
-```nextflow {7-8}
+```groovy {7-8}
 script:
 """
 tool \\
   --input $input \\
   --threads $task.cpus \\
   --output_prefix $prefix \\
-  2> >( tee ${prefix}.stderr.log >&2 ) \\
+  2>| >( tee ${prefix}.stderr.log >&2 ) \\
   | tee ${prefix}.stdout.log
 """
 ```
 
-Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the corresponding streams as well.
-Since a timeout may mean execution is aborted, it may make most sense to have background tasks do that.
+:::tip{title="Reason for forced stream redirect" collapse}
 
-```nextflow {3-4}
+Nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
+
+:::
+
+Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well. For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
+
+```groovy {3-4}
 script:
 """
 tail -F stored_stderr.log >&2 &
 tail -F stored_stdout.log &
 tool arguments
+wait
 """
 ```
 
@@ -310,7 +313,7 @@ tool arguments
 Occasionally, some tools do not exit with the expected exit code 0 upon successful use of the tool.
 In these cases one can use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
 
-```nextflow {6}
+```groovy {6}
 script:
 """
 tool \\
@@ -323,6 +326,73 @@ tool \\
 See the [Bash manual on file operators](https://tldp.org/LDP/abs/html/fto.html) for examples of properties of files which could be tested.
 
 Alternate suggestions include using `grep -c` to search for a valid string match, or other tool which will appropriately error when the expected output is not successfully created.
+
+### Script inclusion
+
+Using module templates helps distinguish between changes made to the scientific logic within the script and those affecting the workflow-specific logic in the module. This separation improves the code's clarity and maintainability.
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (e.g., Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), it MUST be provided through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+
+:::note
+We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts
+:::
+
+:::note
+Where script content in a module becomes particularly extensive, we strongly encourage packaging and hosting the code externally and provisioning via Conda/Docker as a standalone tool(kit).
+:::
+
+#### Inline script code
+
+If the script content remains at a readable length, the code MAY be embedded directly in the module without a dedicated template file. However, they should still follow the guidance content as with a template.
+
+#### Module template location
+
+The template MUST go into a directory called `templates/` in the same directory as the module `main.nf`.
+
+The template file MUST be named after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
+
+The template file can then be referred to within the module using the template function:
+
+    ```nextflow
+    script:
+    template 'deseq2_differential.R'
+    ```
+
+See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
+
+The resulting structure would look like this.
+
+    ```tree
+    deseq2
+    └── differential
+        ├── environment.yml
+        ├── main.nf
+        ├── meta.yml
+        ├── templates
+        │   └── deqseq2_differential.R
+        └── tests
+            ├── main.nf.test
+            ├── main.nf.test.snap
+            └── tags.yml
+    ```
+
+#### Template or inline script-code contents
+
+:::warning
+Be aware that in any script template that Nextflow needs to be escaped in the same way you would in a standard bash `script:` block!
+:::
+
+The script template file or inline script code (used when at a readable length) MUST generate a `versions.yml` file in the language-appropriate way that contains versions of the base language and all relevant libraries and packages.
+
+The generated `versions.yml` MUST have the same structure as a standard nf-core module `versions.yml`.
+
+See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/templates/deseq_de.R#L509-L534) for an example using R.
+
+#### Stubs in templated modules
+
+A templated module MUST have a stub block in the same way as any other module. For example, using `touch` to generate empty files and versions. See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
+
+An inline command to call the version for libraries for the `versions.yml` MAY be used in this case.
+For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
 
 ### Stubs
 
@@ -390,11 +460,17 @@ Channel names MUST follow `snake_case` convention and be all lower case.
 Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
 
 - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
-- As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
+- As a result of using this syntax, if the module could _potentially_ have the same named inputs and outputs add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `ext.prefix` variable to rename the output files so they don't clash.
 
-  ```nextflow
+  ```groovy
   script:
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
+  ```
+
+- If the input and output files are likely to have the same name, then an appropriate default prefix may be set, for example:
+
+  ```nextflow
+  def prefix = task.ext.prefix ?: "${meta.id}_sorted"
   ```
 
 ## Input/output options
@@ -414,7 +490,7 @@ Input channel `val` declarations SHOULD be defined for all mandatory non-file in
 - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
 - Options, flags, parameters that are _not_ required by the tool to function should NOT be included - rather these can be passed via `ext.args`.
 
-:::info{title="Rational" collapse}
+:::info{title="Rationale" collapse}
 It was decided by a [vote](https://nfcore.slack.com/archives/C043UU89KKQ/p1677581560661679) amongst interested parties within the 2023 Maintainers group on 2023-02-28 to allow non-file mandatory input channels.
 
 The reasoning behind this was that it is important to have documented (using the existing display on the website) the bare minimum information required for a module to run.
@@ -435,7 +511,7 @@ When one and only one of multiple argument are required:
 
   e.g. Grouping output parameters of [glimpse2 concordance](https://nf-co.re/modules/glimpse2_concordance)
 
-  `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"`
+  `if (((file1 ? 1:0) + (val1 ? 1:0) + (val2 ? 1:0)) != 1) error "One and only one argument required"{:bash}`
   :::
 
 ### Output channel emissions
@@ -449,7 +525,7 @@ However, passing an empty list (`[]`) instead of a file as a module parameter ca
 
 For example, having a module (`MY_MODULE`) that can take a `cram` channel and an optional `fasta` channel as input, can be used in the following ways:
 
-```nextflow
+```groovy
 MY_MODULE(cram, [])     // fasta is optional, the module will run without the fasta present
 MY_MODULE(cram, fasta)  // execution of the module will need an element in the fasta channel
 ```
@@ -458,13 +534,38 @@ MY_MODULE(cram, fasta)  // execution of the module will need an element in the f
 
 Optional outputs SHOULD be marked as optional:
 
-```nextflow
+```groovy
 tuple val(meta), path('*.tab'), emit: tab,  optional: true
 ```
 
 ### One output channel per output file type
 
-Each output file SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+Each output file type SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
+
+In some cases the file format can be different between files of the same type or for the same function (e.g. indices: `.bai` and `.crai`). These different file formats SHOULD be part of the same output channel since they are they serve the same purpose and are mutually exclusive.
+
+```groovy
+tuple val(meta), path("*.{bai,crai}"), emit: index
+```
+
+:::info{title="Rationale" collapse}
+This approach simplifies the process of retrieving and processing specific types of output, as each type can be easily identified and accessed within its designated channel.
+
+So when the output definition of module called `SAMTOOLS_INDEX` looks like this:
+
+```groovy
+tuple val(meta), path("*.{bai,crai}"), emit: index
+```
+
+The output files can be accessed like this:
+
+```groovy
+SAMTOOLS_INDEX.out.index
+```
+
+Regardless whether they are a `bai` or `crai` as downstream SAMTOOLS modules should accept either without an issue.
+
+:::
 
 ## Documentation
 
@@ -594,7 +695,7 @@ Where possible we will use BioContainers to fetch pre-built software containers 
 Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
 For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill-in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
-```nextflow
+```groovy
 conda "bioconda::fastqc=0.11.9"
 container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
     'https://depot.galaxyproject.org/singularity/fastqc:0.11.9--0' :
@@ -654,7 +755,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
   The packages should reflect those added to the multi-package-containers repo `hash.tsv` file
 
-- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use (this)[https://midnighter.github.io/mulled] helper tool.
+- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use [this](https://midnighter.github.io/mulled) helper tool.
 
 ### Software not on Bioconda
 
@@ -662,9 +763,43 @@ If the software is not available on Bioconda a `Dockerfile` MUST be provided wit
 
 ## Testing
 
-### All output channels must be tested
+### Scope of testing
 
-All output channels SHOULD be present in the nf-test snapshot file, or at a minimum, it MUST be verified that the files exist.
+Tests for modules SHOULD be executable within the nf-core/modules GitHub repository CI with example test data.
+
+Tests for modules MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files and a `versions` file.
+
+Module tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository. For example, they don't need to be executable within a pipeline repository.
+
+:::info{title="Rationale" collapse}
+Some modules may require upstream modules to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
+
+If the test were to work 'standalone,' the pipeline would need to include all these upstream modules just to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+
+Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate module tests again.
+:::
+
+:::note
+CI tests for nf-core modules, subworkflows, or pipeline are **not** required to produce _meaningful_ output.
+
+The main goal for nf-core CI tests are to ensure a given tool 'happily' executes without errors.
+
+It is OK for a test to produce nonsense output, or find 'nothing', as long as the tool does not crash or produce an error.
+:::
+
+### Snapshots
+
+Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
+
+All output channels SHOULD be present in the snapshot for each test, or at a minimum, it MUST contain some verification that the file exists.
+
+Thus by default, the `then` block of a test should contain this:
+
+```groovy
+assert snapshot(process.out).match()
+```
+
+When the snapshot is unstable another way MUST be used to test the output files. See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
 ### Stub tests
 
@@ -714,6 +849,61 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 ```groovy
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
+
+:::info
+CI tests for nf-core modules, subworkflows, or pipeline are **not** required to produce _meaningful_ output.
+
+The main goal for nf-core CI tests are to ensure a given tool 'happily' executes without errors.
+
+It is OK for a test to produce nonsense output, or find 'nothing', as long as the tool does not crash or produce an error.
+
+You SHOULD therefore reuse existing test-data from the modules branch of [nf-core/test-datasets](https://github.com/nf-core/test-datasets) as far as possible to reduce the size of our test dataset repository.
+
+You SHOULD only upload new test data to nf-core/test-datasets if there is absolutely no other option within the existing test-data archive.
+:::
+
+### Configuration of ext.args in tests
+
+Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module. They can be defined in the `when` block of a test under the `params` scope.
+
+```groovy {4-6} title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {3} title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+No other settings should go into this file.
+
+:::tip
+Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
+:::
+
+### Skipping CI test profiles
+
+If a module does not support a particular test profile, it can be skipped by adding the path to corresponding section in `.github/skip_nf_test.json`.
+:::Note
+Please keep the file sorted alphabetically.
+:::
 
 ## Misc
 

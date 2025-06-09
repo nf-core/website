@@ -39,17 +39,23 @@ npm install
 
 ### Running a local server
 
-Ok, you're ready! To run the website locally, just start astro dev mode:
+Ok, you're ready! The website is split up into sub-sites using npm workspaces ([see blogpost](https://nf-co.re/blog/2024/new-website-structure)). One usually works on just one sub-site, e.g., `sites/main-site` for blog posts, event pages and general code components, or `sites/docs` for changes to the documentation. To run the website locally, just start astro dev mode for the specific workspace,e.g.:
 
 ```bash
-npm run dev
+npm run dev --workspace sites/main-site
 ```
 
-You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/).
+or
+
+```bash
+npm run dev --workspace sites/docs
+```
+
+You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Some pages will not work when rendered using a specific dev server because the sub-sites are disjunct from each other, e.g., when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) the [http://localhost:4321/pipelines](http://localhost:4321/pipelines) pages will throw 404 errors.
 
 ### File structure
 
-We follow for the website, with a mono-repo setup.
+The website follows a mono-repo setup with sub-sites.
 The main sub-sites are:
 
 - `sites/main-site` - The main nf-core website, including components, events, blog posts
@@ -118,21 +124,20 @@ You can show a short announcement banner on the website by adding additional inf
 
 ```yaml
 announcement:
-  text: 'Your announcement text'
+  text: "Your announcement text"
   start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
   end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
 ```
 
-### Updating the JSON files and cached markdown
+### Updating the JSON files
 
-Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
+Much of the site is powered by the JSON files in `/public`.
 
 They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
 npm run build-pipeline-json
 npm run build-component-json
-npm run build-cache-force
 ```
 
 ### Adding a new sub-site to the mono-repo

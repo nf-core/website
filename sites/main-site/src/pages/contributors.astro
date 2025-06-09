@@ -1,16 +1,17 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import pipelines_json from '@public/pipelines.json';
-import contributors_yml from '../config/contributors.yaml';
-import Leaflet from '@components/Leaflet.svelte';
-import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
-import Admonition from '@components/Admonition.astro';
-import Heading from '@components/Heading.astro';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import contributors_yml from "../config/contributors.yaml";
+import Leaflet from "@components/Leaflet.svelte";
+import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
+import Admonition from "@components/Admonition.astro";
+import Heading from "@components/Heading.astro";
+import { Icon } from "astro-icon/components";
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
 let contributors = contributors_flat.map((contributor) => {
-    return { name: contributor.name.replace('@', ''), avatar_url: contributor.avatar_url };
+    return { name: contributor.name.replace("@", ""), avatar_url: contributor.avatar_url };
 });
 
 // remove duplicates
@@ -34,28 +35,28 @@ const contributors_map: {
     }
     return null;
 });
-const title = 'Contributors';
-const subtitle = 'Find out who is involved in the nf-core project';
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml';
+const title = "Contributors";
+const subtitle = "Find out who is involved in the nf-core project";
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml";
 const headings = [
     {
-        text: 'Introduction',
-        slug: 'introduction',
+        text: "Introduction",
+        slug: "introduction",
         depth: 1,
     },
     {
-        text: 'Contributors',
-        slug: 'contributors',
+        text: "Contributors",
+        slug: "contributors",
         depth: 1,
     },
     {
-        text: 'Organisations',
-        slug: 'organisations',
+        text: "Organisations",
+        slug: "organisations",
         depth: 1,
     },
     {
-        text: 'Projects we are involved with',
-        slug: 'initiatives',
+        text: "Projects we are involved with",
+        slug: "initiatives",
         depth: 1,
     },
 ];
@@ -102,7 +103,7 @@ const headings = [
         Some of the organisations running nf-core pipelines are listed below, along with a key person who you can
         contact for advice.
     </p>
-    <Admonition title={'note'}>
+    <Admonition title={"note"}>
         Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a
             href="https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml"
             >simple YAML file.</a
@@ -117,7 +118,7 @@ const headings = [
                 contributors_yml.contributors.map((institution) => (
                     <div
                         class="col align-items-stretch d-flex"
-                        id={institution.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}
+                        id={institution.full_name.toLowerCase().replace(/[^a-z]+/i, "-")}
                     >
                         <div class="card my-2 align-items-stretch">
                             <div class="card-body">
@@ -142,34 +143,59 @@ const headings = [
                             <div class="card-footer d-flex overflow-x-auto w-100 text-smaller">
                                 {institution.contact_email && (
                                     <a
-                                        href={'mailto:' + institution.contact_email}
+                                        href={"mailto:" + institution.contact_email}
                                         class="me-3 text-nowrap  text-decoration-none"
                                     >
-                                        <i class="fa-solid fa-envelope" />{' '}
+                                        <i class="fa-solid fa-envelope" />{" "}
                                         {institution.contact ? institution.contact : institution.contact_email}
                                     </a>
                                 )}
                                 {institution.contact_github && (
                                     <a
-                                        href={'https://github.com/' + institution.contact_github}
+                                        href={"https://github.com/" + institution.contact_github}
                                         class="me-3 text-nowrap text-decoration-none"
                                     >
-                                        <i class="fab fa-github" />{' '}
-                                        {institution.contact_github.replace('https://github.com/', '')}
+                                        <i class="fab fa-github" />{" "}
+                                        {institution.contact_github.replace("https://github.com/", "")}
+                                    </a>
+                                )}
+
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a
+                                        href={institution.bluesky}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="logos:bluesky" color="#1185fe" size="15px" />{" "}
+                                        {institution.bluesky
+                                            .replace("https://bsky.app/profile/", "")
+                                            .replace(".bsky.social", "")}
+                                    </a>
+                                )}
+                                {institution.linkedin && (
+                                    <a
+                                        href={institution.linkedin}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="mdi:linkedin" color="#0077b5" size="15px" />{" "}
+                                        {institution.linkedin
+                                            .replace("https://www.linkedin.com/", "")
+                                            .replace("in/", "")
+                                            .replace("company/", "")
+                                            .replace("/$", "")}
                                     </a>
                                 )}
                                 {institution.twitter && (
                                     <a
-                                        href={'https://twitter.com/' + institution.twitter}
+                                        href={"https://twitter.com/" + institution.twitter}
                                         class="me-3 text-nowrap text-decoration-none"
                                     >
-                                        <i class="fab fa-twitter" />{' '}
-                                        {institution.twitter.replace('https://twitter.com/', '')}
-                                    </a>
-                                )}
-                                {institution.mastodon && (
-                                    <a href={institution.mastodon} class="">
-                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                        <i class="fab fa-twitter" />{" "}
+                                        {institution.twitter.replace("https://twitter.com/", "")}
                                     </a>
                                 )}
                             </div>
@@ -278,5 +304,9 @@ const headings = [
     .institution-logo {
         max-width: 40%;
         max-height: 5rem;
+    }
+    :global([data-icon="logos:bluesky"] path),
+    :global([data-icon="mdi:linkedin"] path) {
+        fill: var(--bs-body-color);
     }
 </style>

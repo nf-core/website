@@ -101,14 +101,25 @@ blockquote {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.main-content figure img:has(+ figcaption) {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
 .main-content figcaption {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: $body-secondary-color;
   padding: 0.2rem 0.5rem;
+}
+
+.main-content pre figcaption {
   border: 1px solid $border-color;
   border-top: 0;
 }
-.main-content figcaption:last-child {
+.main-content pre figcaption:last-child {
   margin-bottom: 1.5rem;
   border-bottom-left-radius: 3px;
   border-bottom-right-radius: 3px;
@@ -281,11 +292,6 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code) {
-  background-color: rgba($white, 0.1) !important;
-  color: $white !important;
-}
-
 .main-content pre {
   font-size: 14px;
   code {
@@ -299,16 +305,14 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) {
-
+    &:not([data-line-numbers]):not(.hljs) {
       & > span {
-      padding-left: 1.5em;
-      padding-right: 1.5em;
-      &[data-highlighted-line] {
-        padding-left: calc(1.5em - 2px);
+        padding-left: 1em;
+        padding-right: 1em;
+        &[data-highlighted-line] {
+          padding-left: calc(1em - 2px);
+        }
       }
-    }
-
     }
     &[data-line-numbers] {
       counter-reset: line;
@@ -317,7 +321,7 @@ code:not(pre code),
         counter-increment: line;
         content: counter(line);
         display: inline-block;
-        width: 1.75rem;
+        width: 1.5rem;
         margin-right: 1rem;
         padding-right: 0.5rem;
         text-align: right;
@@ -557,17 +561,6 @@ h4:focus .header-link,
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
-}
-
-.mainpage-heading {
-  .topic,
-  .pipeline-topic,
-  .module-topic,
-  .subworkflow-topic {
-    background-color: rgba($white, 0.1);
-    color: rgba($white, 0.9);
-    font-weight: 400;
-  }
 }
 
 .pipelines-container-list .col:first-child .pipeline.card {
@@ -1176,7 +1169,6 @@ Launch Page
 .btn-show-hidden-params .collapsing {
   display: none;
 }
-
 .breadcrumb-item:not(.active) {
   & a,
   & span {
@@ -1252,7 +1244,7 @@ Launch Page
 
 .admonition {
   margin-top: 0.5rem;
-  p {
+  *:last-child {
     margin-bottom: 0;
   }
 
@@ -1260,6 +1252,15 @@ Launch Page
     width: 1.2rem;
     height: 1.2rem;
     fill: currentColor;
+  }
+  // Special admonitions containing *only* a code block figure
+  .admonition-body-content:has(figure:first-child:last-child) {
+    padding: 0 !important;
+    code {
+      border: none !important;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
 
   .title {
@@ -1300,25 +1301,26 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
   }
 }
 
-.main-content figure[data-rehype-pretty-code-figure] pre .copy-code-button {
-  margin-top: 0.75rem;
-  margin-bottom: 0.75rem;
-  margin-right: 0.7rem;
-  &:hover {
-    opacity: 1 !important;
+.main-content figure[data-rehype-pretty-code-figure] {
+  &:has([data-rehype-pretty-code-title]) pre {
+    code {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
   }
-  &.single-line {
-    margin-top: 0.425rem;
+  pre .copy-code-button {
+    margin-top: 0.5rem;
+    margin-bottom: 0.75rem;
+    margin-right: 0.425rem;
+    &.single-line {
+      margin-top: 0.425rem;
+    }
+    &:hover {
+      opacity: 1 !important;
+    }
   }
-}
-
-.main-content figure[data-rehype-pretty-code-figure]:has([data-rehype-pretty-code-title]) pre {
-  code {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-  .copy-code-button {
-    margin-top: 0.75rem;
+  &:has(.single-line) code {
+    padding-top: 0.75rem;
   }
 }
 
@@ -1359,6 +1361,28 @@ div.mermaid {
   margin-right: 2rem;
 }
 
+// Excalidraw
+
+@font-face {
+  font-family: 'Virgil';
+  src: url('https://excalidraw.com/Virgil.woff2');
+}
+@font-face {
+  font-family: 'Cascadia';
+  src: url('https://excalidraw.com/Cascadia.woff2');
+}
+@font-face {
+  font-family: 'Assistant';
+  src: url('https://excalidraw.com/Assistant-Regular.woff2');
+}
+.excalidraw svg {
+  height: 100%;
+  max-width: 100%;
+}
+.excalidraw svg rect {
+  fill: transparent;
+}
+
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
@@ -1366,6 +1390,7 @@ div.mermaid {
 @include color-mode(dark) {
   // dark mode specific variables
   --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
+  --bs-breadcrumb-item-active-color: #{$white};
 
   .tooltip {
     --bs-tooltip-bg: #{$body-bg-dark};
@@ -1402,12 +1427,12 @@ div.mermaid {
     }
   }
   figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] span::before {
-      background-color: var(--shiki-dark);
-}
+    background-color: var(--shiki-dark);
+  }
   [data-rehype-pretty-code-title][data-theme*=' '] {
     border: 1px solid $border-color-dark;
   }
-  img:not([src$=".svg"]) {
+  img:not([src$='.svg']) {
     filter: brightness(0.8) contrast(1.2); // dim images a bit https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/
   }
 
@@ -1466,12 +1491,6 @@ div.mermaid {
     }
   }
 
-  .mainpage-heading,
-  .mainpage-heading h1 {
-    color: $gray-100 !important;
-    text-wrap: balance;
-  }
-
   .lead {
     text-wrap: balance;
   }
@@ -1487,7 +1506,7 @@ div.mermaid {
   .main-content pre code {
     border: 1px solid $border-color-dark;
   }
-  .main-content figcaption {
+  .main-content figcaption, .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
   }
@@ -1533,5 +1552,13 @@ div.mermaid {
       }
       background-color: shade-color($success-text-emphasis-dark, 70%);
     }
+  }
+
+  .excalidraw svg {
+    filter: invert(100%) hue-rotate(180deg);
+  }
+
+  li.breadcrumb-item.active {
+    color: $breadcrumb-divider-color-dark;
   }
 }
