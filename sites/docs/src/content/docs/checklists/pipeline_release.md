@@ -2,6 +2,7 @@
 title: Release checklist
 subtitle: A step-by-step guide for releasing a nf-core pipeline
 markdownPlugin: checklist
+weight: 10
 ---
 
 ## Before you release
@@ -44,9 +45,9 @@ If this is your first release, make sure to follow the [first release tutorial](
 - [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
 
-      :::note
-      Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
-      :::
+  :::note
+  Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
+  :::
 
   - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
         For example releases in nf-core/rnaseq follow the pattern: - Prefix = Metal - Dictionary = Animals - Suffix = Don't use a suffix
