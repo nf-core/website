@@ -1,8 +1,48 @@
 ---
 title: "4. Testing Modules"
-subtitle: Testing individual nf-core modules with comprehensive examples
+subtitle: Testing nf-core modules
 weight: 40
 ---
+
+## Process Testing with nf-test
+
+nf-test allows you to test each process defined in a module file. The basic syntax for a process test follows this structure:
+
+```groovy
+nextflow_process {
+    name "<NAME>"
+    script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
+    process "<PROCESS_NAME>"
+
+    test("<TEST_NAME>") {
+        // Test implementation
+    }
+}
+```
+
+**Key Points:**
+- Script paths starting with `./` or `../` are relative to the test script location
+- Use relative paths to reference files within the same directory or parent directories
+
+### Essential Assertions
+
+Process tests commonly use these assertions:
+
+```groovy
+// Process status
+assert process.success
+assert process.failed
+assert process.exitStatus == 0
+
+// Output channels
+assert process.out.my_channel != null
+assert process.out.my_channel.size() == 3
+assert process.out.my_channel.get(0) == "expected_value"
+
+// For unnamed channels, use index notation
+assert process.out[0] != null
+assert process.out[0].size() == 3
+```
 
 ## Philosophy of nf-test for nf-core Components
 
@@ -13,9 +53,10 @@ Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests
 - Tests verify both functionality and expected outputs
 - Support both regular and stub testing modes
 
+
 ## 1. Creating a New Module with Tests
 
-Let's start by creating a new module to demonstrate the testing workflow:
+Creating a new module automatically creates a test file based on the template.
 
 ```bash
 # Create a new module using nf-core tools
@@ -93,6 +134,8 @@ nextflow_process {
 }
 ```
 
+After providing the right test data, running the test as shown below will create a snapshot of the output.
+
 Run the tests:
 ```bash
 nf-core modules test seqtk/sample --profile docker
@@ -131,16 +174,6 @@ nextflow_process {
 ## 2. Testing an Existing Module
 
 Let's examine testing the `bedtools/bamtobed` module, which is a simple un-chained module:
-
-```bash
-# Navigate to the bedtools/bamtobed module
-cd modules/nf-core/bedtools/bamtobed
-
-# View the current test file
-cat tests/main.nf.test
-```
-
-A typical test for this module looks like:
 
 ```groovy
 nextflow_process {
@@ -272,11 +305,11 @@ When module outputs change (e.g., due to version bumps), you need to update snap
 nf-core modules test abricate/summary --profile docker --update
 ```
 
-
+---
 
 Read more nf-test assertion patterns in the [nf-test assertions examples doc](07_assertions.md)
 
-
+---
 
 ## Next Steps
 

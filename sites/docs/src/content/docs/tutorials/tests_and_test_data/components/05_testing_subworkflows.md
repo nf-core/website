@@ -1,12 +1,81 @@
 ---
 title: "5. Testing Subworkflows"
-subtitle: Testing subworkflow components with comprehensive examples
+subtitle: Testing nf-core subworkflows
 weight: 50
 ---
 
-## Subworkflow Test Structure
+## Workflow Testing with nf-test
 
-Subworkflows combine multiple processes and require comprehensive testing. Here's an example structure for a typical alignment and quality control subworkflow:
+nf-test allows you to test specific workflows defined in a workflow file. The basic syntax for a workflow test follows this structure:
+
+```groovy
+nextflow_workflow {
+    name "<NAME>"
+    script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
+    workflow "<WORKFLOW_NAME>"
+
+    test("<TEST_NAME>") {
+        // Test implementation
+    }
+}
+```
+
+**Key Points:**
+- Script paths starting with `./` or `../` are relative to the test script location
+- Use relative paths to reference files within the same directory or parent directories
+
+### Essential Assertions
+
+Workflow tests commonly use these assertions:
+
+```groovy
+// Workflow status
+assert workflow.success
+assert workflow.failed
+assert workflow.exitStatus == 0
+
+// Error handling
+assert workflow.errorReport.contains("....")
+
+// Trace analysis
+assert workflow.trace.succeeded().size() == 3  // succeeded tasks
+assert workflow.trace.failed().size() == 0     // failed tasks
+assert workflow.trace.tasks().size() == 3      // all tasks
+
+// Output validation
+assert workflow.stdout.contains("Hello World") == 3
+```
+
+## Philosophy of nf-test for nf-core Subworkflows
+
+Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core subworkflow should include comprehensive tests that:
+
+- Each subworkflow contains a `tests/` folder beside the `main.nf` of the subworkflow itself
+- Test files come with snapshots of subworkflow output channels
+- Tests verify both functionality and expected outputs of all included modules
+- Support testing with different parameter combinations
+- Include proper setup blocks for complex dependencies
+
+## 1. Creating a New Subworkflow with Tests
+
+Creating a new subworkflow automatically creates a test file based on the template.
+
+```bash
+# Create a new subworkflow using nf-core tools
+cd path/to/subworkflows
+nf-core subworkflows create fastq_align_qc
+
+# This creates the subworkflow structure:
+# subworkflows/nf-core/fastq_align_qc/
+# ├── main.nf
+# ├── meta.yml
+# └── tests/
+#     ├── main.nf.test
+#     ├── nextflow.config
+#     └── tags.yml
+```
+
+The generated test file (`tests/main.nf.test`) will include comprehensive tagging for all modules in the subworkflow:
 
 ```groovy
 nextflow_workflow {
@@ -27,6 +96,59 @@ nextflow_workflow {
     tag "samtools/flagstat"
     tag "picard/markduplicates"
 
+    test("BWA alignment single-end | default") {
+        when {
+            workflow {
+                """
+                input[0] = Channel.of([
+                            [ id:'test', single_end:true ],
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
+                ])
+                input[1] = Channel.of([
+                            [ id:'test' ],
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
+                ])
+                input[2] = Channel.of([
+                            [ id:'test' ],
+                            file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bwa/genome.fasta.{amb,ann,bwt,pac,sa}', checkIfExists: true)
+                ])
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert workflow.success },
+                { assert snapshot(workflow.out).match() }
+            )
+        }
+    }
+}
+```
+
+Run the tests:
+```bash
+nf-core subworkflows test fastq_align_qc --profile docker
+```
+
+## 2. Testing Subworkflows with Setup Dependencies
+
+For subworkflows that require setup (like index generation), use setup blocks. Here's an example for a BWA alignment subworkflow:
+
+```groovy
+nextflow_workflow {
+    name "Test Subworkflow FASTQ_ALIGN_QC"
+    script "../main.nf"
+    workflow "FASTQ_ALIGN_QC"
+    config "./nextflow.config"
+
+    tag "subworkflows"
+    tag "subworkflows_nfcore"
+    tag "subworkflows/fastq_align_qc"
+    tag "bwa/mem"
+    tag "samtools/sort"
+    tag "samtools/index"
+
     setup {
         run("BWA_INDEX") {
             script "../../../../modules/nf-core/bwa/index/main.nf"
@@ -43,12 +165,6 @@ nextflow_workflow {
 
     test("BWA alignment single-end | default") {
         when {
-            params {
-                aligner            = "bwa"
-                skip_trimming      = false
-                skip_deduplication = false
-            }
-
             workflow {
                 """
                 input[0] = Channel.of([
@@ -60,8 +176,6 @@ nextflow_workflow {
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ])
                 input[2] = BWA_INDEX.out.index
-                input[3] = params.skip_trimming
-                input[4] = params.skip_deduplication
                 """
             }
         }
@@ -74,12 +188,6 @@ nextflow_workflow {
                     workflow.out.bai.collect { meta, bai -> file(bai).name },
                     workflow.out.stats.collect { meta, stats -> file(stats).name },
                     workflow.out.flagstat.collect { meta, flagstat -> file(flagstat).name },
-                    workflow.out.idxstats.collect { meta, idxstats -> file(idxstats).name },
-                    workflow.out.fastqc_html.collect { meta, html -> file(html).name },
-                    workflow.out.fastqc_zip.collect { meta, zip -> file(zip).name },
-                    workflow.out.trim_log.collect { meta, log -> file(log).name },
-                    workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
-                    workflow.out.multiqc.flatten().collect { path -> file(path).name },
                     workflow.out.versions
                     ).match() }
             )
@@ -88,316 +196,11 @@ nextflow_workflow {
 }
 ```
 
-## Essential Subworkflow Testing Components
-
-### 1. Comprehensive Tagging
-
-Tag all modules that are part of the subworkflow:
-
-```groovy
-tag "subworkflows"
-tag "subworkflows_nfcore"
-tag "subworkflows/fastq_align_dedup_bismark"
-tag "bismark/align"
-tag "samtools/sort"
-tag "samtools/index"
-tag "bismark/deduplicate"
-tag "bismark/methylationextractor"
-tag "bismark/coverage2cytosine"
-tag "bismark/report"
-tag "bismark/summary"
-tag "untar"
-```
-
-### 2. Complex Setup Dependencies
-
-Use setup blocks with aliases for multiple dependency modules:
-
-```groovy
-setup {
-    run("UNTAR", alias: "BOWTIE2") {
-        script "../../../../modules/nf-core/untar/main.nf"
-        process {
-            """
-            input[0] = [
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Bowtie2_Index.tar.gz', checkIfExists: true)
-            ]
-            """
-        }
-    }
-
-    run("UNTAR", alias: "HISAT2") {
-        script "../../../../modules/nf-core/untar/main.nf"
-        process {
-            """
-            input[0] = [
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Hisat2_Index.tar.gz', checkIfExists: true)
-            ]
-            """
-        }
-    }
-}
-```
-
-### 3. Multiple Output Channel Testing
-
-Test all output channels with appropriate validation:
-
-```groovy
-{ assert snapshot(
-    workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-    workflow.out.bai.collect { meta, bai -> file(bai).name },
-    workflow.out.coverage2cytosine_coverage,
-    workflow.out.coverage2cytosine_report,
-    workflow.out.coverage2cytosine_summary,
-    workflow.out.methylation_bedgraph,
-    workflow.out.methylation_calls,
-    workflow.out.methylation_coverage,
-    workflow.out.methylation_report,
-    workflow.out.methylation_mbias,
-    workflow.out.bismark_report.collect { meta, report -> file(report).name },
-    workflow.out.bismark_summary[0][1],
-    workflow.out.multiqc.flatten().collect { path -> file(path).name },
-    workflow.out.versions
-    ).match() }
-```
-
-## Real Subworkflow Testing Examples
-
-### BWA-meth Alignment Subworkflow
-
-```groovy
-nextflow_workflow {
-    name "Test Subworkflow FASTQ_ALIGN_DEDUP_BWAMETH"
-    script "../main.nf"
-    workflow "FASTQ_ALIGN_DEDUP_BWAMETH"
-    config "./nextflow.config"
-
-    tag "subworkflows"
-    tag "subworkflows_nfcore"
-    tag "subworkflows/fastq_align_dedup_bwameth"
-    tag "bwameth/align"
-    tag "parabricks/fq2bammeth"
-    tag "samtools/sort"
-    tag "samtools/index"
-    tag "samtools/flagstat"
-    tag "samtools/stats"
-    tag "picard/markduplicates"
-    tag "samtools/index"
-    tag "methyldackel/extract"
-    tag "methyldackel/mbias"
-    tag "untar"
-
-    setup {
-        run("UNTAR") {
-            script "../../../../modules/nf-core/untar/main.nf"
-            process {
-                """
-                input[0] = [
-                    [:],
-                    file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Bwameth_Index.tar.gz', checkIfExists: true)
-                ]
-                """
-            }
-        }
-    }
-
-    test("Params: bwameth single-end | default") {
-        when {
-            workflow {
-                """
-                input[0] = Channel.of([
-                            [ id:'test', single_end:true ],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz', checkIfExists: true)
-                ])
-                input[1] = Channel.of([
-                            [:],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
-                ])
-                input[2] = Channel.of([
-                            [:],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa.fai', checkIfExists: true)
-                ])
-                input[3] = UNTAR.out.untar
-                input[4] = false // skip_deduplication
-                input[5] = false // use_gpu
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success},
-                { assert snapshot(
-                    workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-                    workflow.out.bai.collect { meta, bai -> file(bai).name },
-                    workflow.out.samtools_flagstat,
-                    workflow.out.samtools_stats,
-                    workflow.out.methydackel_extract_bedgraph,
-                    workflow.out.methydackel_extract_methylkit,
-                    workflow.out.methydackel_mbias,
-                    workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
-                    workflow.out.multiqc.flatten().collect { path -> file(path).name },
-                    workflow.out.versions
-                    ).match() }
-            )
-        }
-    }
-
-    test("Params: bwameth paired-end | default") {
-        when {
-            workflow {
-                """
-                input[0] = Channel.of([
-                            [ id:'test', single_end:true ],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz', checkIfExists: true),
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R2.fastq.gz', checkIfExists: true)
-                ])
-                input[1] = Channel.of([
-                            [:],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
-                ])
-                input[2] = Channel.of([
-                            [:],
-                            file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa.fai', checkIfExists: true)
-                ])
-                input[3] = UNTAR.out.untar
-                input[4] = false // skip_deduplication
-                input[5] = false // use_gpu
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert workflow.success},
-                { assert snapshot(
-                    workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-                    workflow.out.bai.collect { meta, bai -> file(bai).name },
-                    workflow.out.samtools_flagstat,
-                    workflow.out.samtools_stats,
-                    workflow.out.methydackel_extract_bedgraph,
-                    workflow.out.methydackel_extract_methylkit,
-                    workflow.out.methydackel_mbias,
-                    workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
-                    workflow.out.multiqc.flatten().collect { path -> file(path).name },
-                    workflow.out.versions
-                    ).match() }
-            )
-        }
-    }
-}
-```
-
-## Advanced Subworkflow Testing Patterns
-
-### Parameter-Based Testing
+## 4. Testing Parameter Variations
 
 Test different parameter combinations that affect subworkflow behavior:
 
-```groovy
-test("Params: bismark paired-end | skip_deduplication") {
-    when {
-        params {
-            aligner            = "bismark"
-            skip_deduplication = true
-        }
-
-        workflow {
-            """
-            input[0] = Channel.of([
-                        [ id:'test', single_end:true ],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz', checkIfExists: true),
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R2.fastq.gz', checkIfExists: true)
-            ])
-            input[1] = Channel.of([
-                        [:],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
-            ])
-            input[2] = BOWTIE2.out.untar
-            input[3] = params.skip_deduplication
-            input[4] = params.cytosine_report
-            """
-        }
-    }
-
-    then {
-        assertAll(
-            { assert workflow.success },
-            { assert snapshot(
-                workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-                workflow.out.bai.collect { meta, bai -> file(bai).name },
-                workflow.out.coverage2cytosine_coverage,
-                workflow.out.coverage2cytosine_report,
-                workflow.out.coverage2cytosine_summary,
-                workflow.out.methylation_bedgraph,
-                workflow.out.methylation_calls,
-                workflow.out.methylation_coverage,
-                workflow.out.methylation_report,
-                workflow.out.methylation_mbias,
-                workflow.out.bismark_report.collect { meta, report -> file(report).name },
-                workflow.out.bismark_summary[0][1],
-                workflow.out.multiqc.flatten().collect { path -> file(path).name },
-                workflow.out.versions
-                ).match() }
-        )
-    }
-}
-
-test("Params: bismark paired-end | cytosine_report") {
-    when {
-        params {
-            aligner         = "bismark"
-            cytosine_report = true
-        }
-
-        workflow {
-            """
-            input[0] = Channel.of([
-                        [ id:'test', single_end:true ],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz', checkIfExists: true),
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R2.fastq.gz', checkIfExists: true)
-            ])
-            input[1] = Channel.of([
-                        [:],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
-            ])
-            input[2] = BOWTIE2.out.untar
-            input[3] = params.skip_deduplication
-            input[4] = params.cytosine_report
-            """
-        }
-    }
-
-    then {
-        assertAll(
-            { assert workflow.success },
-            { assert snapshot(
-                workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-                workflow.out.bai.collect { meta, bai -> file(bai).name },
-                workflow.out.coverage2cytosine_coverage,
-                workflow.out.coverage2cytosine_report,
-                workflow.out.coverage2cytosine_summary,
-                workflow.out.methylation_bedgraph,
-                workflow.out.methylation_calls,
-                workflow.out.methylation_coverage,
-                workflow.out.methylation_report,
-                workflow.out.methylation_mbias,
-                workflow.out.bismark_report.collect { meta, report -> file(report).name },
-                workflow.out.bismark_summary[0][1],
-                workflow.out.multiqc.flatten().collect { path -> file(path).name },
-                workflow.out.versions
-                ).match() }
-        )
-    }
-}
-```
-
-## Testing with Configuration
-
-### Subworkflow Configuration
+### Creating Parameter-Specific Configuration
 
 Create `tests/nextflow.config` for subworkflow-specific process configuration:
 
@@ -410,7 +213,7 @@ params {
 
 process {
     withName: 'BISMARK_ALIGN' {
-            ext.args = { params.aligner == 'bismark_hisat' ? ' --hisat2' : ' --bowtie2' }
+        ext.args = { params.aligner == 'bismark_hisat' ? ' --hisat2' : ' --bowtie2' }
     }
 
     withName: 'SAMTOOLS_SORT' {
@@ -419,103 +222,25 @@ process {
 }
 ```
 
-### Multi-Input Channel Testing
+## 5. Testing Output Channels Comprehensively
 
-Test complex input channel combinations:
+### BAM File Testing with MD5 Checksums
 
-```groovy
-workflow {
-    """
-    input[0] = Channel.of([
-                [ id:'test', single_end:true ],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz', checkIfExists: true)
-    ])
-    input[1] = Channel.of([
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa', checkIfExists: true)
-    ])
-    input[2] = Channel.of([
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/genome.fa.fai', checkIfExists: true)
-    ])
-    input[3] = UNTAR.out.untar  // From setup block
-    input[4] = false            // skip_deduplication
-    input[5] = false            // use_gpu
-    """
-}
-```
-
-## Best Practices for Subworkflow Testing
-
-### 1. Comprehensive Output Testing
-
-Test all output channels that the subworkflow produces:
+Always use MD5 checksums for BAM files to ensure content consistency:
 
 ```groovy
 { assert snapshot(
     workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
     workflow.out.bai.collect { meta, bai -> file(bai).name },
-    workflow.out.samtools_flagstat,
-    workflow.out.samtools_stats,
-    workflow.out.methydackel_extract_bedgraph,
-    workflow.out.methydackel_extract_methylkit,
-    workflow.out.methydackel_mbias,
-    workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
-    workflow.out.multiqc.flatten().collect { path -> file(path).name },
+    workflow.out.stats.collect { meta, stats -> file(stats).name },
+    workflow.out.flagstat.collect { meta, flagstat -> file(flagstat).name },
     workflow.out.versions
     ).match() }
 ```
 
-### 2. Use Real Test Data
+### File Name Testing for Stable Names
 
-Use domain-specific test data appropriate for your pipeline:
-
-```groovy
-// For genomics pipelines
-file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_2.fastq.gz', checkIfExists: true)
-```
-
-### 3. Test Single-End and Paired-End Scenarios
-
-Always test both sequencing modes:
-
-```groovy
-test("Params: bwameth single-end | default") {
-    when {
-        workflow {
-            """
-            input[0] = Channel.of([
-                        [ id:'test', single_end:true ],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/SRR389222_sub1.fastq.gz', checkIfExists: true)
-            ])
-            // ... other inputs
-            """
-        }
-    }
-    // ... assertions
-}
-
-test("Params: bwameth paired-end | default") {
-    when {
-        workflow {
-            """
-            input[0] = Channel.of([
-                        [ id:'test', single_end:false ],
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R1.fastq.gz', checkIfExists: true),
-                        file('https://github.com/nf-core/test-datasets/raw/methylseq/testdata/Ecoli_10K_methylated_R2.fastq.gz', checkIfExists: true)
-            ])
-            // ... other inputs
-            """
-        }
-    }
-    // ... assertions
-}
-```
-
-### 4. File Name Stability
-
-For files with stable names but variable content, collect only the filename:
+For files with stable names but variable content:
 
 ```groovy
 workflow.out.bai.collect { meta, bai -> file(bai).name },
@@ -523,160 +248,20 @@ workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
 workflow.out.multiqc.flatten().collect { path -> file(path).name }
 ```
 
-### 5. BAM File Testing
+## 7. Updating Subworkflow Snapshots
 
-Always use MD5 checksums for BAM files:
+When subworkflow outputs change (e.g., due to module version bumps), update snapshots:
 
-```groovy
-workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() }
+```bash
+nf-core subworkflows test fastq_align_qc --profile docker --update
 ```
 
-### 6. Parameter-Driven Testing
+---
 
-Test critical parameter combinations:
+Read more nf-test assertion patterns in the [nf-test assertions examples doc](07_assertions.md)
 
-```groovy
-params {
-    aligner            = "bismark"  // or "bwameth"
-    cytosine_report    = false      // or true
-    skip_deduplication = false      // or true
-}
-```
-
-### 7. Flatten MultiQC Outputs
-
-MultiQC outputs may be nested, so flatten them:
-
-```groovy
-workflow.out.multiqc.flatten().collect { path -> file(path).name }
-```
-
-## Advanced Subworkflow Patterns
-
-### Multiple Reference Indexes
-
-Test with different aligner indexes:
-
-```groovy
-setup {
-    run("UNTAR", alias: "BOWTIE2") {
-        script "../../../../modules/nf-core/untar/main.nf"
-        process {
-            """
-            input[0] = [
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Bowtie2_Index.tar.gz', checkIfExists: true)
-            ]
-            """
-        }
-    }
-
-    run("UNTAR", alias: "HISAT2") {
-        script "../../../../modules/nf-core/untar/main.nf"
-        process {
-            """
-            input[0] = [
-                [:],
-                file('https://github.com/nf-core/test-datasets/raw/methylseq/reference/Hisat2_Index.tar.gz', checkIfExists: true)
-            ]
-            """
-        }
-    }
-}
-```
-
-### Testing Conditional Outputs
-
-Some outputs may be conditional based on parameters:
-
-```groovy
-then {
-    assertAll(
-        { assert workflow.success },
-        {
-            if (params.skip_deduplication) {
-                // Test outputs when deduplication is skipped
-                assert workflow.out.picard_metrics.isEmpty()
-            } else {
-                // Test outputs when deduplication is performed
-                assert !workflow.out.picard_metrics.isEmpty()
-            }
-        },
-        { assert snapshot(workflow.out).match() }
-    )
-}
-```
-
-### Complex Meta Map Propagation
-
-Verify that meta maps are properly propagated through the subworkflow:
-
-```groovy
-then {
-    assertAll(
-        { assert workflow.success },
-        {
-            workflow.out.bam.each { meta, bam ->
-                assert meta.id == 'test'
-                assert meta.single_end == true  // or false for paired-end
-            }
-        },
-        { assert snapshot(workflow.out).match() }
-    )
-}
-```
-
-## Common Subworkflow Testing Pitfalls
-
-### 1. Incorrect Channel Structure
-
-Ensure channel structure matches subworkflow expectations:
-
-```groovy
-// Correct: Channel with meta and files
-Channel.of([
-    [ id:'test', single_end:true ],
-    file('test.fastq.gz', checkIfExists: true)
-])
-
-// Incorrect: Missing meta map
-Channel.of(file('test.fastq.gz', checkIfExists: true))
-```
-
-### 2. Missing Setup Dependencies
-
-Always include required setup blocks:
-
-```groovy
-setup {
-    run("INDEX_GENERATION") {
-        script "path/to/index/main.nf"
-        process {
-            """
-            input[0] = reference_channel
-            """
-        }
-    }
-}
-```
-
-### 3. Incomplete Output Testing
-
-Test all relevant outputs, not just success:
-
-```groovy
-// Good: Test multiple outputs
-{ assert snapshot(
-    workflow.out.bam,
-    workflow.out.reports,
-    workflow.out.metrics,
-    workflow.out.versions
-).match() }
-
-// Poor: Only test success
-{ assert workflow.success }
-```
+---
 
 ## Next Steps
 
-Continue to [Testing Pipelines](./06_testing_pipelines.md) to learn about end-to-end pipeline testing. 
+Continue to [Testing Pipelines](./06_testing_pipelines.md) to learn about end-to-end pipeline testing.

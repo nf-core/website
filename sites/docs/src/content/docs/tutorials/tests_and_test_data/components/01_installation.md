@@ -27,8 +27,6 @@ mamba install -c bioconda nf-test
 
 ### Alternative Installation Methods
 
-#### Official Installation Script
-
 ```bash
 curl -fsSL https://get.nf-test.com | bash
 ```

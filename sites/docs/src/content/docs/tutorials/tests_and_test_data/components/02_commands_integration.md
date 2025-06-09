@@ -56,27 +56,11 @@ nf-core subworkflows test vcf_impute_glimpse --profile docker
 nf-core subworkflows test vcf_impute_glimpse --profile docker --update
 ```
 
-### Module Management
-
-```bash
-# Create module with test template
-nf-core modules create <tool>
-
-# Lint module tests
-nf-core modules lint <tool>
-
-# Search for available modules
-nf-core modules list
-
-# Get information about a module
-nf-core modules info <tool>
-```
-
 ---
 
 ## Individual Pipeline Commands
 
-> **Note**: Use these commands when working on individual nf-core pipelines
+> **Note**: Use these commands when working on individual nf-core pipelines. You can use `nf-core/sarek`, `nf-core/methylseq`, `nf-core/rnaseq` as examples.
 
 ### Basic Testing
 
@@ -89,11 +73,7 @@ nf-test test --profile test,docker
 
 # Run specific test file
 nf-test test tests/default.nf-test --profile test,docker
-```
 
-### Test Management
-
-```bash
 # Update snapshots
 nf-test test --profile test,docker --update-snapshot
 
@@ -102,19 +82,6 @@ nf-test test --profile test,docker --verbose
 
 # Run specific test by tag
 nf-test test --tag pipeline --profile test,docker
-```
-
-### Test Selection
-
-```bash
-# Run tests matching a pattern
-nf-test test --filter "*fastqc*" --profile docker
-
-# Run only changed tests
-nf-test test --changed --profile docker
-
-# Dry run to see which tests would execute
-nf-test test --dry-run --profile docker
 ```
 
 ---

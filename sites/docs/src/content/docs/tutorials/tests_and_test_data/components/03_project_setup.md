@@ -34,25 +34,11 @@ my-pipeline/
 └── .nf-test/                      # nf-test working directory
 ```
 
-## Initial Setup
-
-### 1. Initialize nf-test (if not present)
-
-> **Note**: Most nf-core pipelines already have nf-test initialized.
-
-```bash
-# Initialize nf-test in the project
-nf-test init
-
-# This creates:
-# - nf-test.config
-# - .nf-test/ directory
-```
-
-### 2. Key Configuration Files
+### 1. Key Configuration Files
 
 #### `nf-test.config` (Main Configuration)
-**Purpose**: Controls how nf-test behaves across your entire project
+**Purpose**: Controls nf-test global settings
+
 ```groovy
 config {
     testsDir "."
