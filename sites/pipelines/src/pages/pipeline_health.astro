@@ -1,6 +1,7 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import { remote_workflows as pipelines } from '@public/pipelines.json';
+import PageLayout from "@layouts/PageLayout.astro";
+import { remote_workflows as pipelines } from "@public/pipelines.json";
+import GitHubActionTrigger from "@components/GitHubActionTrigger.svelte";
 
 // sort pipelines by name
 pipelines.sort((a, b) => a.name.localeCompare(b.name));
@@ -41,9 +42,9 @@ pipelines.sort((a, b) => {
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
-                        title="Master branch is same commit as the last release"
+                        title="Master/Main branch is same commit as the last release"
                         data-bs-toggle="tooltip"
-                        data-bs-placement="top"><code>master</code> = release</th
+                        data-bs-placement="top"><code>master</code>/<code>main</code> = release</th
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
@@ -107,9 +108,15 @@ pipelines.sort((a, b) => {
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
-                        title="default branch master (released) or dev (no releases)"
+                        title="default branch ✅ `main` or ⚠️ `master` (released) or `dev` (no releases)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Default branch</th
+                    >
+                    <th
+                        class="small fw-normal text-nowrap p-1"
+                        title="`defaultBranch` set in manifest of `nextflow.config` and matches default branch"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Branch in manifest</th
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
@@ -135,10 +142,10 @@ pipelines.sort((a, b) => {
                         >Branches exist</th
                     >
 
-                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
-                        >Branch protection: <code>master</code> branch</th
+                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                        >Branch protection: <code>master</code>/<code>main</code> branch</th
                     >
-                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
                         >Branch protection: <code>dev</code></th
                     >
                     <th
@@ -148,11 +155,18 @@ pipelines.sort((a, b) => {
                         data-bs-placement="top">T push</th
                     >
                     <th
-                        colspan="4"
+                        colspan="2"
                         class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-validation plugin in nextflow.config"
+                        title="nf-validation plugin should not be in nextflow.config"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Plugins: nf-validation</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        title="nf-schema plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-schema</th
                     >
                     <th
                         colspan="4"
@@ -166,19 +180,20 @@ pipelines.sort((a, b) => {
             <tbody>
                 {
                     pipelines.map((pipeline) => {
+                        const mainOrMasterBranch = pipeline.main_branch_exists ? "main" : "master";
                         const getCell = (condition?: any, link?: string, tooltip?: string, classes?: string) => (
                             <td
                                 class={
-                                    'text-center status ' +
+                                    "text-center status " +
                                     (condition
                                         ? condition === -1 || condition === undefined
-                                            ? 'status--unknown '
-                                            : 'status--healthy '
-                                        : 'status--unhealthy ') +
-                                    (classes ?? '')
+                                            ? "status--unknown "
+                                            : "status--healthy "
+                                        : "status--unhealthy ") +
+                                    (classes ?? "")
                                 }
                                 data-bs-toggle="tooltip"
-                                title={pipeline.name + ': ' + tooltip}
+                                title={pipeline.name + ": " + tooltip}
                             >
                                 {condition === -1 || condition === undefined ? (
                                     <a href={link} class="d-block text-secondary text-decoration-none">
@@ -193,59 +208,62 @@ pipelines.sort((a, b) => {
                         );
                         return (
                             <tr class:list={[{ archived: pipeline.archived, collapse: pipeline.archived }]}>
-                                <td class="text-nowrap">
+                                <td class="text-nowrap d-flex align-items-center justify-content-between">
                                     {pipeline.name}
-                                    {pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-archive text-info"
-                                            title="archived"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length > 1 && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-check text-success"
-                                            title="released"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
-                                    {pipeline.releases?.length === 1 && !pipeline.archived && (
-                                        <i
-                                            class="fa-solid fa-xs fa-fw fa-wrench text-warning"
-                                            title="under development"
-                                            data-bs-toggle="tooltip"
-                                        />
-                                    )}
+                                    <span class="d-flex align-items-center">
+                                        {pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-archive text-info"
+                                                title="archived"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length > 1 && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-check text-success"
+                                                title="released"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {pipeline.releases?.length === 1 && !pipeline.archived && (
+                                            <i
+                                                class="fa-solid fa-xs fa-fw fa-wrench text-warning"
+                                                title="under development"
+                                                data-bs-toggle="tooltip"
+                                            />
+                                        )}
+                                        {/* <GitHubActionTrigger client:idle pipelineName={pipeline.name} /> */}
+                                    </span>
                                 </td>
                                 {/* Released */}
                                 {getCell(
                                     pipeline.releases?.length > 1,
                                     `https://github.com/nf-core/${pipeline.name}/releases`,
-                                    'has at least one release',
+                                    "has at least one release",
                                 )}
                                 {/* Released after tools */}
                                 {getCell(
                                     pipeline.released_after_tools,
                                     `https://github.com/nf-core/${pipeline.name}/releases`,
-                                    'last release is after latest tools release (so up to date with template)',
+                                    "last release is after latest tools release (so up to date with template)",
                                 )}
-                                {/*Master = release */}
+                                {/*Master/Main = release */}
                                 {getCell(
                                     pipeline.last_release_is_head,
                                     pipeline.last_release_vs_default_compare_url,
-                                    'master branch is same commit as the last release',
+                                    `${mainOrMasterBranch} branch is same commit as the last release`,
                                 )}
                                 {/* JSON Schema*/}
                                 {getCell(
                                     pipeline.releases?.[0].has_schema,
                                     pipeline.repository_url,
-                                    'has a nextflow_schema.json file (in last release, dev if no release)',
+                                    "has a nextflow_schema.json file (in last release, dev if no release)",
                                 )}
                                 {/* commits to dev */}
                                 {getCell(
                                     pipeline.commits_to_dev > 1,
-                                    pipeline.repository_url + '/tree/dev',
-                                    'has more than one commit to dev branch (not just initial creation commit)',
+                                    pipeline.repository_url + "/tree/dev",
+                                    "has more than one commit to dev branch (not just initial creation commit)",
                                 )}
                                 {/* nf-test */}
                                 {/* DSL2 */}
@@ -255,231 +273,270 @@ pipelines.sort((a, b) => {
                                     "has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)",
                                 )}
                                 {/* nf-test */}
-                                {getCell(pipeline.has_nf_test, pipeline.repository_url, 'uses nf-test')}
+                                {getCell(pipeline.has_nf_test, pipeline.repository_url, "uses nf-test")}
                                 {/* nf-test in dev */}
                                 {getCell(
                                     pipeline.has_nf_test_dev,
                                     pipeline.repository_url,
-                                    'uses nf-test in dev branch',
+                                    "uses nf-test in dev branch",
                                 )}
                                 {/* wikis */}
-                                {getCell(!pipeline.has_wiki, pipeline.repository_url + '/settings', 'disable wiki')}
+                                {getCell(!pipeline.has_wiki, pipeline.repository_url + "/settings", "disable wiki")}
                                 {/* issues */}
-                                {getCell(pipeline.has_issues, pipeline.repository_url + '/settings', 'enable issues')}
+                                {getCell(pipeline.has_issues, pipeline.repository_url + "/settings", "enable issues")}
                                 {/* merge commits */}
                                 {getCell(
                                     pipeline.allow_merge_commit,
-                                    pipeline.repository_url + '/settings',
-                                    'allow merge commits',
+                                    pipeline.repository_url + "/settings",
+                                    "allow merge commits",
                                 )}
                                 {/* Rebase merging */}
                                 {getCell(
                                     pipeline.allow_rebase_merge,
-                                    pipeline.repository_url + '/settings',
-                                    'allow rebase merging',
+                                    pipeline.repository_url + "/settings",
+                                    "allow rebase merging",
                                 )}
                                 {/* Squash changes */}
                                 {getCell(
                                     (pipeline.allow_squash_merge ?? -1) !== -1
                                         ? !pipeline.allow_squash_merge
                                         : pipeline.allow_squash_merge,
-                                    pipeline.repository_url + '/settings',
-                                    'do not allow squash merge',
+                                    pipeline.repository_url + "/settings",
+                                    "do not allow squash merge",
                                 )}
                                 {/* Default branch */}
                                 {getCell(
                                     pipeline.default_branch,
                                     pipeline.repository_url,
-                                    'default branch master (released) or dev (no releases)',
+                                    "default branch ✅ `main` or ⚠️ `master` (released) or `dev` (no releases)",
+                                    pipeline.default_branch === "master" ? "status--warning" : "",
+                                )}
+                                {/* Default branch set in nextflow.config manifest */}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch
+                                        ? pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch ===
+                                          pipeline.default_branch
+                                            ? true
+                                            : false
+                                        : -1,
+                                    pipeline.repository_url + "/blob/" + pipeline.default_branch + "/nextflow.config",
+                                    "default branch set in manifest of nextflow.config and matches default branch",
                                 )}
                                 {/* Keywords */}
-                                {getCell(pipeline.has_required_topics, pipeline.repository_url, 'minimum keywords set')}
+                                {getCell(pipeline.has_required_topics, pipeline.repository_url, "minimum keywords set")}
                                 {/* Description */}
-                                {getCell(pipeline.description, pipeline.repository_url, 'description must be set')}
+                                {getCell(pipeline.description, pipeline.repository_url, "description must be set")}
                                 {/* Repo URL */}
                                 {getCell(
-                                    new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ''),
+                                    new RegExp(`https:\/\/nf-co\.re\/${pipeline.name}`).test(pipeline.homepage ?? ""),
                                     pipeline.homepage && pipeline.homepage?.length > 0
                                         ? pipeline.homepage
                                         : pipeline.repository_url,
-                                    'URL should be set to https://nf-co.re/' + pipeline.name,
+                                    "URL should be set to https://nf-co.re/" + pipeline.name,
                                 )}
                                 {/* Team access */}
                                 {getCell(
                                     pipeline.team_contributors_permission_push ?? -1,
-                                    pipeline.repository_url + '/settings/access',
-                                    'write access for nf-core/contributors',
-                                    ' border-start',
+                                    pipeline.repository_url + "/settings/access",
+                                    "write access for nf-core/contributors",
+                                    " border-start",
                                 )}
                                 {getCell(
                                     pipeline.team_core_permission_admin ?? -1,
-                                    pipeline.repository_url + '/settings/access',
-                                    'admin access for nf-core/core',
-                                    ' border-end',
+                                    pipeline.repository_url + "/settings/access",
+                                    "admin access for nf-core/core",
+                                    " border-end",
                                 )}
                                 {/* Branches exist */}
                                 {getCell(
-                                    pipeline.master_branch_exists,
+                                    pipeline[`${mainOrMasterBranch}_branch_exists`],
                                     `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`,
-                                    'master branch: branch must exist',
-                                    ' ms-3',
+                                    `${mainOrMasterBranch} branch: branch must exist`,
+                                    " ms-3",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_exists,
                                     `https://github.com/nf-core/${pipeline.name}/tree/dev`,
-                                    'dev branch: branch must exist',
+                                    "dev branch: branch must exist",
                                 )}
                                 {getCell(
                                     pipeline.TEMPLATE_branch_exists,
                                     `https://github.com/nf-core/${pipeline.name}/tree/TEMPLATE`,
-                                    'TEMPLATE branch: branch must exist',
-                                    ' border-end',
+                                    "TEMPLATE branch: branch must exist",
+                                    " border-end",
                                 )}
-                                {/* Branch protection: master */}
+                                {/* Branch protection: master/main */}
                                 {getCell(
-                                    !pipeline.master_branch_protection_up_to_date
-                                        ? true
-                                        : pipeline.master_branch_protection_up_to_date,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: do not require branch to be up to date before merging',
-                                    ' border-start ',
-                                )}
-                                {getCell(
-                                    pipeline.master_branch_protection_status_checks,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: minimum set of CI tests must pass',
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
                                 )}
                                 {getCell(
-                                    !pipeline.master_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: reviews not marked stale after new commits',
+                                    !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: reviews not marked stale after new commits`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_require_codeowner_review !== -1
-                                        ? !pipeline.master_branch_protection_require_codeowner_review
-                                        : pipeline.master_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: code owner reviews not required',
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`] !== -1
+                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`]
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: code owner reviews not required`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_required_reviews !== -1
-                                        ? pipeline.master_branch_protection_required_reviews === 2
-                                        : pipeline.master_branch_protection_required_reviews,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: 2 reviews required',
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] !== -1
+                                        ? pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] === 2
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: 2 reviews required`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_enforce_admins !== -1
-                                        ? !pipeline.master_branch_protection_enforce_admins
-                                        : pipeline.master_branch_protection_enforce_admins,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'master branch: do not enforce rules for admins',
-                                    ' border-end ',
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`] !== -1
+                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`]
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: do not enforce rules for admins`,
+                                    " border-end ",
                                 )}
                                 {/* Branch protection: dev */}
                                 {getCell(
-                                    !pipeline.dev_branch_protection_up_to_date
-                                        ? true
-                                        : pipeline.dev_branch_protection_up_to_date,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: do not require branch to be up to date before merging',
-                                    ' border-start ',
-                                )}
-                                {getCell(
                                     pipeline.dev_branch_protection_status_checks,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: minimum set of CI tests must pass',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
+                                    "dev branch: minimum set of CI tests must pass",
                                 )}
                                 {getCell(
                                     !pipeline.dev_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: reviews not marked stale after new commits',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
+                                    "dev branch: reviews not marked stale after new commits",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_require_codeowner_review !== -1
                                         ? !pipeline.dev_branch_protection_require_codeowner_review
                                         : pipeline.dev_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: code owner reviews not required',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
+                                    "dev branch: code owner reviews not required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_required_reviews !== -1
                                         ? pipeline.dev_branch_protection_required_reviews >= 1
                                         : pipeline.dev_branch_protection_required_reviews,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: 1 review required',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
+                                    "dev branch: 1 review required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_enforce_admins !== -1
                                         ? !pipeline.dev_branch_protection_enforce_admins
                                         : pipeline.dev_branch_protection_enforce_admins,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'dev branch: do not enforce rules for admins',
-                                    ' border-end ',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
+                                    "dev branch: do not enforce rules for admins",
+                                    " border-end ",
                                 )}
                                 {/* T push */}
                                 {getCell(
                                     pipeline.TEMPLATE_restrict_push,
-                                    pipeline.repository_url + '/settings/branches',
-                                    'restrict push to TEMPLATE to @nf-core-bot',
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.TEMPLATE_uses_ruleset ? "/rules" : "/branches"),
+                                    "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}
+                                {
+                                    // nf-validation should be in the nextflow.config
+                                    getCell(
+                                        pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                            plugin.startsWith("nf-validation"),
+                                        )
+                                            ? 0
+                                            : 1,
+                                        pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                        `nf-validation plugin not in nextflow.config in ${mainOrMasterBranch}`,
+                                    )
+                                }
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-validation'),
-                                    ) ?? 0,
-                                    pipeline.repository_url + '/blob/master/nextflow.config',
-                                    `nf-validation plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith('nf-validation'))[0]?.split('@')[1] ?? 'unpinned'} in nextflow.config in master`,
-                                    ' border-start ',
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-validation"),
+                                    )
+                                        ? 0
+                                        : 1,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-validation plugin not in nextflow.config in dev",
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-validation'),
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/master/nextflow.config',
-                                    'nf-validation plugin must be pinned',
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    `nf-schema plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
+                                    " border-start ",
+                                )}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-schema"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-validation'),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/dev/nextflow.config',
-                                    'nf-validation plugin in nextflow.config in dev',
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-schema plugin in nextflow.config in dev",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-validation'),
+                                        plugin.startsWith("nf-schema"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/dev/nextflow.config',
-                                    'nf-validation plugin must be pinned',
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-prov'),
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-prov"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/master/nextflow.config',
-                                    `nf-prov plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith('nf-prov'))[0]?.split('@')[1] ?? 'unpinned'} in nextflow.config in master`,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    `nf-prov plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-prov"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-prov@'),
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-prov@"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/master/nextflow.config',
-                                    'nf-prov plugin must be pinned',
-                                )}
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-prov'),
-                                    ) ?? 0,
-                                    pipeline.repository_url + '/blob/dev/nextflow.config',
-                                    'nf-prov plugin in nextflow.config in dev',
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    "nf-prov plugin must be pinned",
                                 )}
                                 {getCell(
                                     pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith('nf-prov@'),
+                                        plugin.startsWith("nf-prov"),
                                     ) ?? 0,
-                                    pipeline.repository_url + '/blob/dev/nextflow.config',
-                                    'nf-prov plugin must be pinned',
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-prov plugin in nextflow.config in dev",
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-prov@"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-prov plugin must be pinned",
                                 )}
                             </tr>
                         );
@@ -487,6 +544,9 @@ pipelines.sort((a, b) => {
                 }
             </tbody>
         </table>
+        <span class="text-muted archived show">
+            and {pipelines.filter((pipeline) => pipeline.archived).length} archived pipelines
+        </span>
     </div>
 
     <div class="btn-row">
@@ -494,57 +554,65 @@ pipelines.sort((a, b) => {
             class="btn btn-primary mb-5 ms-3"
             title="Refresh data via manual dispatch of GitHub Action (from the `main` branch) to update the pipelines.json file."
             data-bs-toggle="tooltip"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
+            href="https://github.com/nf-core/website/actions/workflows/build-json-files.yml"
             >Refresh data via GitHub Action</a
         >
         <a
             class="btn btn-outline-secondary mb-5 ms-3 show-archived"
             title="Show hidden archived pipelines"
             data-bs-toggle="collapse"
-            data-bs-target=".archived"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
-            >Show archived pipelines</a
+            data-bs-target=".archived">Show archived pipelines</a
         >
         <a
             class="btn btn-outline-secondary mb-5 ms-3 archived collapse hide-archived"
             title="Show hidden archived pipelines"
             data-bs-toggle="collapse"
-            data-bs-target=".archived"
-            href="https://github.com/nf-core/website/actions/workflows/build-json-files-and-md-cache.yml"
-            >Hide archived pipelines</a
+            data-bs-target=".archived">Hide archived pipelines</a
         >
     </div>
 </PageLayout>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .status {
         pointer: hand;
     }
     .status--healthy {
+        background-color: $success;
         i {
             color: $success-text-emphasis;
         }
-        background-color: $success;
     }
     .status--unhealthy {
+        background-color: $danger;
         i {
             color: $danger-text-emphasis;
         }
-        background-color: $danger;
+    }
+    .status--warning {
+        background-color: $warning;
+        i {
+            color: $warning-text-emphasis;
+        }
     }
 
-    :global([data-bs-theme='dark']) {
+    :global([data-bs-theme="dark"]) {
         .status--healthy {
+            background-color: $success-border-subtle-dark;
             i {
                 color: $success-text-emphasis-dark;
             }
-            background-color: $success-border-subtle-dark;
         }
         .status--unhealthy {
+            background-color: $danger-border-subtle-dark;
             i {
                 color: $danger-text-emphasis-dark;
             }
-            background-color: $danger-border-subtle-dark;
+        }
+        .status--warning {
+            background-color: $warning-border-subtle-dark;
+            i {
+                color: $warning-text-emphasis-dark;
+            }
         }
     }
     .status--unknown {

@@ -5,7 +5,7 @@ minHeadingDepth: 2
 maxHeadingDepth: 2
 ---
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
 
 # Governance
 
@@ -37,8 +37,8 @@ The steering committee will meet regularly to discuss the project, funding and p
 
 ##### Responsibilities
 
--   Guiding project initiatives
--   Making decisions about the project, funds, and personnel
+- Guiding project initiatives
+- Making decisions about the project, funds, and personnel
 
 ##### Members
 
@@ -64,33 +64,45 @@ Core team members will appear as organization members on the GitHub organization
 
 ##### Responsibilities
 
--   Day-to-day community decisions
--   Attendance at the core team annual meeting
--   Regular attendance at monthly core team meetings
--   Sub-roles within the nf-core governance teams
--   A strong community presence
+- Day-to-day community decisions and coordination
+- Day-to-day tasks requiring elevated permissions
+    - Adding new community members to the GitHub organisation
+    - Leading pipeline proposal evaluations and tracking
+    - Facilitating pipeline repository transfers into nf-core organisation
+    - Pipeline GitHub repository setting configuration
+    - Uploading larger test-data to AWS bucket
+    - Uploading pipeline megatest data to AWS bucket
+    - Adding community members to the nf-core Seqera Platform workspace
+    - First pipeline release reviews
+    - Activating pipeline Zenodo archiving
+- Attendance at the core team annual meeting
+- Regular attendance at monthly core team meetings
+- Sub-roles within the nf-core governance teams
+- A strong community presence
 
 ##### Members
 
 <Profile username="christopher-hakkaart">Chris Hakkaart</Profile>
-<Profile username="drpatelh">Harshil Patel</Profile>
 <Profile username="edmundmiller">Edmund Miller</Profile>
-<Profile username="ewels">Phil Ewels</Profile>
 <Profile username="FranBonath">Franziska Bonath</Profile>
 <Profile username="FriederikeHanssen">Friederike Hanssen</Profile>
 <Profile username="jfy133">James A. Fellows Yates</Profile>
 <Profile username="JoseEspinosa">Jose Espinosa-Carrasco</Profile>
-<Profile username="mashehu">Matthias Hörtenhuber</Profile>
-<Profile username="MaxUlysse">Maxime Garcia</Profile>
 <Profile username="mirpedrol">Júlia Mir Pedrol</Profile>
+<Profile username="kenibrewer">Ken Brewer</Profile>
+<Profile username="mashehu">Matthias Hörtenhuber</Profile>
+<Profile username="maxulysse">Maxime U. Garcia</Profile>
 <Profile username="mribeirodantas">Marcel Ribeiro-Dantas</Profile>
 <Profile username="nvnieuwk">Nicolas Vannieuwkerke</Profile>
+<Profile username="ewels">Phil Ewels</Profile>
 <Profile username="sateeshperi">Sateesh Peri</Profile>
 
 ##### Alumni
 
-<Profile username="ggabernet">Gisela Gabernet</Profile>
 <Profile username="apeltzer">Alexander Peltzer</Profile>
+<Profile username="vdauwera">Geraldine Van der Auwera</Profile>
+<Profile username="ggabernet">Gisela Gabernet</Profile>
+<Profile username="drpatelh">Harshil Patel</Profile>
 <Profile username="alneberg">Johannes Alneberg</Profile>
 <Profile username="KevinMenden">Kevin Menden</Profile>
 <Profile username="olgabot">Olga Botvinnik</Profile>
@@ -108,9 +120,9 @@ The safety team is not a part of the core team and can report directly to the st
 
 ##### Responsibilities
 
--   Be responsible for the nf-core code of conduct
--   Be available for nf-core events (online or in person)
--   Promptly respond to reports of misconduct and escalate to the core team or steering committee as necessary
+- Be responsible for the nf-core code of conduct
+- Be available for nf-core events (online or in person)
+- Promptly respond to reports of misconduct and escalate to the core team or steering committee as necessary
 
 ##### Members
 
@@ -129,8 +141,8 @@ The infrastructure team will have administrator access to repositories.
 
 ##### Responsibilities
 
--   Development and maintenance of nf-core tools, website, and mega tests
--   Regular attendance at maintenance team meetings
+- Development and maintenance of nf-core tools, website, and mega tests
+- Regular attendance at maintenance team meetings
 
 ##### Leads
 
@@ -138,8 +150,11 @@ The infrastructure team will have administrator access to repositories.
 
 ##### Members
 
+<Profile username="edmundmiller">Edmund Miller</Profile>
 <Profile username="mirpedrol">Júlia Mir Pedrol</Profile>
+<Profile username="julianflesch">Julian Flesch</Profile>
 <Profile username="mashehu">Matthias Hörtenhuber</Profile>
+<Profile username="ningyuxin1999">Yuxin Ning</Profile>
 
 ## Outreach
 
@@ -153,10 +168,10 @@ The outreach leads will have access to community social media and YouTube accoun
 
 ##### Responsibilities
 
--   Organizing and running the `#bytesize` seminar series
--   Leading the organization of hackathons, training sessions, mentorship program, and other outreach events
--   Creating and sharing community content
--   Regular attendance at outreach team meetings
+- Organizing and running the `#bytesize` seminar series
+- Leading the organization of hackathons, training sessions, mentorship program, and other outreach events
+- Creating and sharing community content
+- Regular attendance at outreach team meetings
 
 ##### Leads
 
@@ -167,16 +182,18 @@ The outreach leads will have access to community social media and YouTube accoun
 ##### Members
 
 <Profile username="abhi18av">Abhinav Sharma</Profile>
-<Profile username="edmundmiller">Edmund Miller</Profile>
-<Profile username="yuukiiwa">Yuk Kei</Profile>
-<Profile username="vdauwera">Geraldine Van der Auwera</Profile>
 <Profile username="chriswyatt1">Chris Wyatt</Profile>
+<Profile username="flowuenne">Florian Wuennemann</Profile>
+<Profile username="vdauwera">Geraldine Van der Auwera</Profile>
+<Profile username="kenibrewer">Ken Brewer</Profile>
+<Profile username="maxulysse">Maxime U. Garcia</Profile>
+<Profile username="yuukiiwa">Yuk Kei</Profile>
 
 ##### Alumni
 
+<Profile username="edmundmiller">Edmund Miller</Profile>
 <Profile username="pcantalupo">Paul Cantalupo</Profile>
 <Profile username="Xesus-Abalo">Xesús M. Abalo</Profile>
-<Profile username="MaxUlysse">Maxime Garcia</Profile>
 
 ## Maintainers
 
@@ -190,12 +207,12 @@ nf-core maintainers will have write access to repositories.
 
 ##### Responsibilities
 
--   Respond to `#github-invitations`
--   Assist in evaluating new pipeline proposals
--   Review regularly 'common' repositories: module, subworkflow, and pipeline release pull requests
--   Manage repository access for community developers
--   Manage test data
--   Enable and promote nf-core community values
+- Respond to `#github-invitations`
+- Assist in evaluating new pipeline proposals
+- Review regularly 'common' repositories: module, subworkflow, and pipeline release pull requests
+- Manage repository access for community developers
+- Manage test data
+- Enable and promote nf-core community values
 
 ##### Leads
 
@@ -217,41 +234,32 @@ nf-core maintainers will have write access to repositories.
 <Profile username="adamrtalbot" affiliation="Seqera">
     Adam Talbot
 </Profile>
-<Profile username="asp8200" affiliation="Danish National Genome Center">
-    Anders Sune Pedersen
-</Profile>
-<Profile username="jemten" affiliation="Science for Life Laboratory">
-    Anders Jemt
-</Profile>
-<Profile username="CarsonJM" affiliation="University of Washington">
-    Carson Miller
-</Profile>
-<Profile username="christopher-mohr" affiliation="Boehringer Ingelheim">
-    Christopher Mohr
+<Profile username="atrigila" affiliation="ZS">
+    Anabella Trigila
 </Profile>
 <Profile username="edmundmiller" affiliation="University of Texas at Dallas">
     Edmund Miller
 </Profile>
+<Profile
+    username="famosab"
+    affiliation="Quantitative Biology Center, QBiC, University of Tübingen & Translational Bioinformatics, University Hospital Tübingen"
+>
+    Famke Bäuerle
+</Profile>
 <Profile username="FloWuenne" affiliation="Seqera">
     Florian Wuennemann
 </Profile>
-<Profile username="itrujnara" affiliation="Centre for Genomic Regulation">
+<Profile username="itrujnara" affiliation="Centre for Genomic Regulation (CRG)">
     Igor Trujnara
-</Profile>
-<Profile username="mirpedrol" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
-    Júlia Mir Pedrol
-</Profile>
-<Profile username="ggabernet" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
-    Gisela Gabernet
-</Profile>
-<Profile username="drpatelh" affiliation="Seqera">
-    Harshil Patel
 </Profile>
 <Profile
     username="jasmezz"
     affiliation="Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute"
 >
     Jasmin Frangenberg
+</Profile>
+<Profile username="mirpedrol" affiliation="Centre for Genomic Regulation (CRG)">
+    Júlia Mir Pedrol
 </Profile>
 <Profile username="pinin4fjords" affiliation="Seqera">
     Jon Manning
@@ -265,13 +273,16 @@ nf-core maintainers will have write access to repositories.
 <Profile username="Joon-Klaps" affiliation="KU Leuven">
     Joon Klaps
 </Profile>
-<Profile username="JoseEspinosa" affiliation="Centre for Genomic Regulation">
+<Profile username="JoseEspinosa" affiliation="Centre for Genomic Regulation (CRG)">
     Jose Espinosa-Carrasco
 </Profile>
-<Profile username="LilyAnderssonLee" affiliation="Karolinska Institute & Karolinska University Hospital">
-    Lili Andersson-Li
+<Profile username="lpantano" affiliation="Harvard Chan School of Public Health">
+    Lorena Pantano
 </Profile>
-<Profile username="luisas" affiliation="Centre for Genomic Regulation">
+<Profile username="LouisLeNezet" affiliation="Institute Genetics & Development of Rennes">
+    Louis Le Nézet
+</Profile>
+<Profile username="luisas" affiliation="Centre for Genomic Regulation (CRG)">
     Luisa Santus
 </Profile>
 <Profile username="mahesh-panchal" affiliation="National Bioinformatics Infrastructure Sweden">
@@ -283,26 +294,26 @@ nf-core maintainers will have write access to repositories.
 <Profile username="mashehu" affiliation="Science for Life Laboratory">
     Matthias Hörtenhuber
 </Profile>
-<Profile username="Midnighter" affiliation="Unseen Bio ApS">
-    Moritz E. Beber
-</Profile>
 <Profile username="nictru" affiliation="Technical University of Munich">
     Nico Trummer
 </Profile>
 <Profile username="nvnieuwk" affiliation="Center For Medical Genetics Ghent">
     Nicolas Vannieuwkerke
 </Profile>
+<Profile username="pontus" affiliation="National Bioinformatics Infrastructure Sweden">
+    Pontus Freyhult
+</Profile>
 <Profile username="ramprasadn" affiliation="Science for Life Laboratory">
     Ramprasad Neethiraj
 </Profile>
-<Profile username="robsyme" affiliation="Seqera">
-    Rob Syme
+<Profile username="sateeshperi" affiliation="PeriMatrix IT Consultancy">
+    Sateesh Peri
 </Profile>
 <Profile username="sppearce" affiliation="NeoGenomics Laboratories">
     Simon Pearce
 </Profile>
-<Profile username="sofstam" affiliation="Karolinska Institute & Karolinska University Hospital">
-    Sofia Stamouli
+<Profile username="gallvp" affiliation="The New Zealand Institute for Plant and Food Research Limited">
+    Usman Rashid
 </Profile>
 
 ##### Alumni
@@ -310,14 +321,44 @@ nf-core maintainers will have write access to repositories.
 <Profile username="apeltzer" affiliation="Boehringer Ingelheim">
     Alex Peltzer
 </Profile>
+<Profile username="jemten" affiliation="Science for Life Laboratory">
+    Anders Jemt
+</Profile>
+<Profile username="asp8200" affiliation="Danish National Genome Center">
+    Anders Sune Pedersen
+</Profile>
+<Profile username="CarsonJM" affiliation="University of Washington">
+    Carson Miller
+</Profile>
+<Profile username="christopher-mohr" affiliation="Boehringer Ingelheim">
+    Christopher Mohr
+</Profile>
 <Profile username="erikrikarddaniel" affiliation="Linnaeus University">
     Daniel Lundin
+</Profile>
+<Profile username="ggabernet" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
+    Gisela Gabernet
+</Profile>
+<Profile username="drpatelh" affiliation="Seqera">
+    Harshil Patel
+</Profile>
+<Profile username="LilyAnderssonLee" affiliation="Karolinska Institute & Karolinska University Hospital">
+    Lili Andersson-Li
 </Profile>
 <Profile username="louperelo" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
     Louisa Perelo
 </Profile>
 <Profile username="muffato" affiliation="Wellcome Sanger Institute">
     Matthieu Muffato
+</Profile>
+<Profile username="Midnighter" affiliation="Unseen Bio ApS">
+    Moritz E. Beber
+</Profile>
+<Profile username="sofstam" affiliation="Karolinska Institute & Karolinska University Hospital">
+    Sofia Stamouli
+</Profile>
+<Profile username="robsyme" affiliation="Seqera">
+    Rob Syme
 </Profile>
 
 We thank all the institutions and companies of the maintainers team for their support of nf-core.

@@ -1,11 +1,11 @@
 ---
-title: 'ELIXIR Proteomics Community - Connection with nf-core'
+title: "ELIXIR Proteomics Community - Connection with nf-core"
 subtitle: A joint effort on the standardization of analytics workflows
 type: talk
-startDate: '2020-09-28'
-startTime: '11:00+02:00'
-endDate: '2020-09-28'
-endTime: '12:00+02:00'
+startDate: "2020-09-28"
+startTime: "11:00+02:00"
+endDate: "2020-09-28"
+endTime: "12:00+02:00"
 locations:
   - name: Zoom
     links:

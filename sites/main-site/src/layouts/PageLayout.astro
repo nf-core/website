@@ -1,8 +1,8 @@
 ---
-import { SITE_TITLE, SITE_DESCRIPTION } from '../config';
-import BaseLayout from '@layouts/BaseLayout.astro';
-import Header from '@components/header/Header.astro';
-import type { SidebarEntry } from '@utils/types';
+import { SITE_TITLE, SITE_DESCRIPTION } from "../config";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Header from "@components/header/Header.astro";
+import type { SidebarEntry } from "@utils/types";
 
 let {
     title = SITE_TITLE,
@@ -111,10 +111,11 @@ if (frontmatter) {
         }
     </div>
     <slot name="pre-footer" />
+    <slot name="post-footer" slot="post-footer" />
 </BaseLayout>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .mainpage {
         min-height: calc(100vh - 14.5rem); // offset for header and footer
         @include media-breakpoint-down(lg) {

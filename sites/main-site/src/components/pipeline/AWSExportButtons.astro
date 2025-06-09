@@ -1,5 +1,5 @@
 ---
-import CopyButton from '@components/CopyButton.svelte';
+import CopyButton from "@components/CopyButton.svelte";
 
 const { href } = Astro.props;
 
@@ -20,7 +20,7 @@ export interface Props {
     </span>
     <span class="btn btn-outline-secondary">
         <CopyButton
-            text={href.replace('https://', 's3://')}
+            text={href.replace("https://", "s3://").replace(".s3-eu-west-1.amazonaws.com", "")}
             label="Copy S3 URL"
             copiedLabel='Copied S3 URL <i class="fa-regular px-1 fa-clipboard-check" />'
             client:idle

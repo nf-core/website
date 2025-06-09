@@ -9,6 +9,10 @@ import { parse } from 'yaml';
 // get current path
 const __dirname = path.resolve();
 
+// Get pipeline name from command line argument if provided
+const args = process.argv.slice(2);
+const singlePipelineName = args[0] || null;
+
 console.log(await getCurrentRateLimitRemaining());
 // write the components.json file
 export const writeComponentsJson = async () => {
@@ -118,7 +122,37 @@ export const writeComponentsJson = async () => {
     bar.tick();
   }
   // Update pipelines that use modules and subworkflows
-  for (const pipeline of pipelines.remote_workflows) {
+  let pipelinesToProcess = pipelines.remote_workflows;
+
+  if (singlePipelineName) {
+    pipelinesToProcess = pipelines.remote_workflows.filter(pipeline => pipeline.name === singlePipelineName);
+    if (pipelinesToProcess.length === 0) {
+      console.error(`Pipeline ${singlePipelineName} not found in pipelines.json`);
+      process.exit(1);
+    }
+    console.log(`Processing components for single pipeline: ${singlePipelineName}`);
+
+    // Clean up existing pipeline references for this specific pipeline
+    components.modules.forEach(module => {
+      if (module.pipelines) {
+        module.pipelines = module.pipelines.filter(p => p.name !== singlePipelineName);
+        if (module.pipelines.length === 0) {
+          delete module.pipelines;
+        }
+      }
+    });
+
+    components.subworkflows.forEach(subworkflow => {
+      if (subworkflow.pipelines) {
+        subworkflow.pipelines = subworkflow.pipelines.filter(p => p.name !== singlePipelineName);
+        if (subworkflow.pipelines.length === 0) {
+          delete subworkflow.pipelines;
+        }
+      }
+    });
+  }
+
+  for (const pipeline of pipelinesToProcess) {
     const release = pipeline.releases[0];
 
     if (release.components && release.components.modules) {
@@ -144,7 +178,10 @@ export const writeComponentsJson = async () => {
           if (index > -1) {
             const entry = { name: pipeline.name, version: release.tag_name };
             if (components.subworkflows[index].pipelines) {
-              components.subworkflows[index].pipelines.push(entry);
+              // check if the pipeline is already in the array
+              if (!components.subworkflows[index].pipelines.some(e => e.name === entry.name && e.version === entry.version)) {
+                components.subworkflows[index].pipelines.push(entry);
+              }
             } else {
               components.subworkflows[index].pipelines = [entry];
             }

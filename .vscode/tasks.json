@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "npm",
+            "script": "dev",
+            "path": "sites/${input:sub-site}",
+            "problemMatcher": [],
+            "label": "npm: dev - subsites",
+            "detail": "astro dev",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ],
+    "inputs": [
+        {
+            "type": "pickString",
+            "id": "sub-site",
+            "description": "What sub-site do you want to run?",
+            "options": ["main-site", "configs", "docs", "modules-subworkflows", "pipelines", "pipelines-results"],
+            "default": "docs"
+        }
+    ]
+}

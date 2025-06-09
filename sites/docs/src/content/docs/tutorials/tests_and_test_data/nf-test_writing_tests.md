@@ -1,8 +1,8 @@
 ---
-title: 'nf-test: Writing tests'
+title: "nf-test: Writing tests"
 subtitle: Guidelines for writing nf-test tests
 shortTitle: Writing nf-test tests
-weight: 50
+weight: 10
 ---
 
 ## Philosophy of nf-tests for nf-core components
@@ -12,32 +12,64 @@ weight: 50
 
 ## nf-test guidelines for a simple un-chained module
 
-- Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+- Some modules MAY require additional parameters added to the test command to successfully run. These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the additional parameters there.
+If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
 
 ```bash
 touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
 ```
 
-Then add the path to the `main.nf.test` file.
+```groovy title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+You do not need to modify the contents of this file any further.
+
+Then add the config to the `main.nf.test` file.
 
 ```groovy title="main.nf.test"
 process "MODULE"
 config "./nextflow.config"
 ```
 
-- When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
+Lastly supply the params in the when section of the test.
 
 ```groovy title="main.nf.test"
-options "-stub"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
 ```
 
-:::note
-this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
-:::
+- When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
 
-- You can find examples of different nf-tests assertions on [this tutorial](/docs/contributing/nf-test/assertions).
+  ```groovy title="main.nf.test"
+  options "-stub"
+  ```
+
+  :::note
+  this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+  :::
+
+:::tip
+See the [assertions documentation](/docs/contributing/nf-test/assertions) for examples on how to handle different types of test data and scenarios.
+:::
 
 ## nf-test guidelines for a chained module
 
@@ -54,9 +86,9 @@ setup {
                     """
                     input[0] =  Channel.fromList([
                         tuple([ id:'test1', single_end:false ], // meta map
-                            file(params.test_data['bacteroides_fragilis']['genome']['genome_fna_gz'], checkIfExists: true)),
+                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
                         tuple([ id:'test2', single_end:false ],
-                            file(params.test_data['haemophilus_influenzae']['genome']['genome_fna_gz'], checkIfExists: true))
+                            file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
                     ])
                     """
                 }
@@ -105,9 +137,9 @@ nextflow_process {
                 """
                 input[0] = Channel.fromList([
                                 tuple([ id:'test1', single_end:false ], // meta map
-                                    file(params.test_data['bacteroides_fragilis']['genome']['genome_fna_gz'], checkIfExists: true)),
+                                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
                                 tuple([ id:'test2', single_end:false ],
-                                    file(params.test_data['haemophilus_influenzae']['genome']['genome_fna_gz'], checkIfExists: true))
+                                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
                             ])
                 """
             }

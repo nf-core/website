@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Pavia)
 subtitle: Local node of the nf-core hackathon at DBB University of Pavia, Pavia.
 shortTitle: Pavia, Italy
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: UNIPV
     address: via Ferrata, 9 27100 Pavia, Italy

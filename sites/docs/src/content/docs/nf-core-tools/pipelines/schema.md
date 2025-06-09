@@ -11,17 +11,17 @@ Pipeline schema files are built according to the [JSONSchema specification](http
 
 To help developers working with pipeline schema, nf-core tools has three `schema` sub-commands:
 
-- `nf-core schema validate`
-- `nf-core schema build`
-- `nf-core schema docs`
-- `nf-core schema lint`
+- `nf-core pipelines schema validate`
+- `nf-core pipelines schema build`
+- `nf-core pipelines schema docs`
+- `nf-core pipelines schema lint`
 
 ## Validate pipeline parameters
 
 Nextflow can take input parameters in a JSON or YAML file when running a pipeline using the `-params-file` option.
 This command validates such a file against the pipeline schema.
 
-Usage is `nf-core schema validate <pipeline> <parameter file>`. eg with the pipeline downloaded [above](#download-pipeline), you can run:
+Usage is `nf-core pipelines schema validate <pipeline> <parameter file>`. eg with the pipeline downloaded [above](#download-pipeline), you can run:
 
 <!-- RICH-CODEX
 working_dir: tmp
@@ -30,14 +30,14 @@ timeout: 10
 after_command: rm nf-params.json
 -->
 
-![`nf-core schema validate nf-core-rnaseq/3_8 nf-params.json`](/images/tools/nf-core-schema-validate.svg)
+![`nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json`](/images/tools/nf-core-schema-validate.svg)
 
 The `pipeline` option can be a directory containing a pipeline, a path to a schema file or the name of an nf-core pipeline (which will be downloaded using `nextflow pull`).
 
 ## Build a pipeline schema
 
 Manually building JSONSchema documents is not trivial and can be very error prone.
-Instead, the `nf-core schema build` command collects your pipeline parameters and gives interactive prompts about any missing or unexpected params.
+Instead, the `nf-core pipelines schema build` command collects your pipeline parameters and gives interactive prompts about any missing or unexpected params.
 If no existing schema is found it will create one for you.
 
 Once built, the tool can send the schema to the nf-core website so that you can use a graphical interface to organise and fill in the schema.
@@ -51,7 +51,7 @@ timeout: 10
 before_command: sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && mv nextflow_schema.json.tmp nextflow_schema.json
 -->
 
-![`nf-core schema build --no-prompts`](/images/tools/nf-core-schema-build.svg)
+![`nf-core pipelines schema build --no-prompts`](/images/tools/nf-core-schema-build.svg)
 
 There are four flags that you can use with this command:
 
@@ -62,7 +62,7 @@ There are four flags that you can use with this command:
 
 ## Display the documentation for a pipeline schema
 
-To get an impression about the current pipeline schema you can display the content of the `nextflow_schema.json` with `nf-core schema docs <pipeline-schema>`. This will print the content of your schema in Markdown format to the standard output.
+To get an impression about the current pipeline schema you can display the content of the `nextflow_schema.json` with `nf-core pipelines schema docs <pipeline-schema>`. This will print the content of your schema in Markdown format to the standard output.
 
 There are four flags that you can use with this command:
 
@@ -73,7 +73,7 @@ There are four flags that you can use with this command:
 
 ## Add new parameters to the pipeline schema
 
-If you want to add a parameter to the schema, you first have to add the parameter and its default value to the `nextflow.config` file with the `params` scope. Afterwards, you run the command `nf-core schema build` to add the parameters to your schema and open the graphical interface to easily modify the schema.
+If you want to add a parameter to the schema, you first have to add the parameter and its default value to the `nextflow.config` file with the `params` scope. Afterwards, you run the command `nf-core pipelines schema build` to add the parameters to your schema and open the graphical interface to easily modify the schema.
 
 The graphical interface is oganzised in groups and within the groups the single parameters are stored. For a better overview you can collapse all groups with the `Collapse groups` button, then your new parameters will be the only remaining one at the bottom of the page. Now you can either create a new group with the `Add group` button or drag and drop the paramters in an existing group. Therefor the group has to be expanded. The group title will be displayed, if you run your pipeline with the `--help` flag and its description apears on the parameter page of your pipeline.
 
@@ -94,17 +94,17 @@ After filling the schema, click on the `Finished` button in the top right corner
 
 ## Update existing pipeline schema
 
-It's important to change the default value of a parameter in the `nextflow.config` file first and then in the pipeline schema, because the value in the config file overwrites the value in the pipeline schema. To change any other parameter use `nf-core schema build --web-only` to open the graphical interface without rebuilding the pipeline schema. Now, the parameters can be changed as mentioned above but keep in mind that changing the parameter datatype depends on the default value specified in the `nextflow.config` file.
+It's important to change the default value of a parameter in the `nextflow.config` file first and then in the pipeline schema, because the value in the config file overwrites the value in the pipeline schema. To change any other parameter use `nf-core pipelines schema build --web-only` to open the graphical interface without rebuilding the pipeline schema. Now, the parameters can be changed as mentioned above but keep in mind that changing the parameter datatype depends on the default value specified in the `nextflow.config` file.
 
 ## Linting a pipeline schema
 
-The pipeline schema is linted as part of the main pipeline `nf-core lint` command,
+The pipeline schema is linted as part of the main pipeline `nf-core pipelines lint` command,
 however sometimes it can be useful to quickly check the syntax of the JSONSchema without running a full lint run.
 
-Usage is `nf-core schema lint <schema>` (defaulting to `nextflow_schema.json`), eg:
+Usage is `nf-core pipelines schema lint <schema>` (defaulting to `nextflow_schema.json`), eg:
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
 -->
 
-![`nf-core schema lint`](/images/tools/nf-core-schema-lint.svg)
+![`nf-core pipelines schema lint`](/images/tools/nf-core-schema-lint.svg)

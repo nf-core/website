@@ -3,8 +3,8 @@ name: Add Netlify Link to PR
 on:
   pull_request_target:
     paths:
-      - 'sites/**/src/pages/**'
-      - 'sites/**/src/content/**'
+      - "sites/**/src/pages/**"
+      - "sites/**/src/content/**"
 
 jobs:
   add-comment:
@@ -12,48 +12,63 @@ jobs:
     steps:
       - name: Check for changed files
         id: changed-files
-        uses: tj-actions/changed-files@d6babd6899969df1a11d14c368283ea4436bca78 # v44
+        uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
 
       - name: Add Netlify link to PR
         if: steps.changed-files.outputs.all_changed_files != ''
-        uses: actions/github-script@v7
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
         with:
           github-token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
           script: |
-            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ').slice(0, 50);
+            let changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`.split(' ').slice(0, 50);
             console.log('Changed files:', changedFiles)
 
+            // remove the sites/** prefix until src
+            const processedFiles = changedFiles.map(file => file.replace(/^sites\/[^/]+\//, ''));
+            console.log('Processed files:', processedFiles);
+
             // handle normal pages
-            let netlifyLinks = changedFiles
+            let netlifyLinks = processedFiles
               .filter(file => file.startsWith('src/pages/'))
               .filter(file => !file.endsWith('].astro')) // skip dynamic routes
               .map(file => `@netlify ${file?.replace('src/pages/', '/')}`)[0]
-              ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\.astro$/, '').replace(/\/index$/, '');
+              ?.replace(/\.md$/, '')
+              .replace(/\.mdx$/, '')
+              .replace(/\.astro$/, '')
+              .replace(/\/index$/, '');
 
             // handle pages in content collections
             if (!netlifyLinks) {
-              netlifyLinks = changedFiles
+              netlifyLinks = processedFiles
                 .filter(file => file.startsWith('src/content/'))
                 .map(file => `@netlify ${file?.replace('src/content/', '/')}`)[0]
-                ?.replace(/\.md$/, '').replace(/\.mdx$/, '').replace(/\/index$/, '');
+                ?.replace(/\.md$/, '')
+                .replace(/\.mdx$/, '')
+                .replace(/\/index$/, '');
             }
-            console.log('Netlify links:', netlifyLinks)
+
+            console.log('Netlify links:', netlifyLinks);
 
             if (netlifyLinks) {
-              console.log('Adding Netlify link to PR body' ,context.payload.pull_request.number);
+              console.log('Adding Netlify link to PR body', context.payload.pull_request.number);
+
               const { data: pullRequest } = await github.rest.pulls.get({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 pull_number: context.payload.pull_request.number,
               });
+
               console.log('Current PR:', pullRequest);
               console.log('Current PR body:', pullRequest.body);
+
               const currentBody = pullRequest.body || '';
               if (currentBody.includes('@netlify')) {
                 return; // Skip if the PR body already contains a Netlify link
               }
+
               const newBody = `${currentBody}\n\n${netlifyLinks}`;
               console.log('New PR body:', newBody);
+
               // Update the pull request body
               await github.rest.pulls.update({
                 owner: context.repo.owner,
@@ -61,5 +76,6 @@ jobs:
                 pull_number: pullRequest.number,
                 body: newBody,
               });
+
               console.log('Netlify link added to PR body');
             }

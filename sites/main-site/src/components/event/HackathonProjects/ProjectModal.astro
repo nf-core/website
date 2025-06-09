@@ -1,0 +1,139 @@
+---
+import { Icon } from "astro-icon/components";
+
+import Profile from "@components/GitHubProfilePicture.svelte";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+import { Image } from "astro:assets";
+const { id, title, color, category, proj_url, leaders, slack, intro_video, image, image_alt } = Astro.props;
+
+const images = import.meta.glob("../../../assets/**");
+export interface Props {
+    id: string;
+    title: string;
+    color?: string;
+    category?: string;
+    proj_url?: URL;
+    leaders: Object;
+    slack?: string;
+    intro_video?: string;
+    image?: string;
+    image_alt?: string;
+}
+let this_color = color;
+if (!color && category) {
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+}
+---
+
+<div class="modal fade" id={id} tabindex="-1" aria-labelledby={`${id}-label`} aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header d-flex align-items-center">
+                <h1 class="modal-title" id={`${id}-label`}>{title}</h1>
+                {
+                    category && (
+                        <span class="fs-6 badge rounded-pill ms-4" style={`background-color: ${this_color}`}>
+                            {category}
+                        </span>
+                    )
+                }
+                <button type="button" class="btn-close align-self-start" data-bs-dismiss="modal" aria-label="Close"
+                ></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class={intro_video || image ? "col-lg-8" : "col"}>
+                        {
+                            proj_url && (
+                                <h3>
+                                    <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                                        <Icon
+                                            name="octicon:table-16"
+                                            width="12pt"
+                                            class="me-1"
+                                            style={{ "margin-top": "-3px" }}
+                                        />
+                                        Project Board
+                                        <Icon
+                                            name="octicon:link-external-16"
+                                            width="12pt"
+                                            class="ms-1"
+                                            style={{ "margin-top": "-3px" }}
+                                        />
+                                    </a>
+                                </h3>
+                            )
+                        }
+
+                        <slot />
+
+                        {
+                            leaders && (
+                                <div>
+                                    <h4>Group Leaders</h4>
+                                    <div class="d-flex flex-wrap">
+                                        {Object.entries(leaders).map(([github, { name, slack }]) => (
+                                            <div class="d-flex align-items-center border rounded rounded-start-0 mb-2 me-2">
+                                                <Profile name={github} size={50} />
+                                                {slack && (
+                                                    <a href={slack} target="_blank" class="me-2 text-decoration-none">
+                                                        {name}
+                                                        <Icon
+                                                            name="mdi:slack"
+                                                            width="14pt"
+                                                            height="14pt"
+                                                            class="mb-1"
+                                                        />
+                                                    </a>
+                                                )}
+                                                {!slack && <span class="mx-2">{name}</span>}
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            )
+                        }
+                    </div>
+                    {
+                        (intro_video || image) && (
+                            <div class="col-lg-4">
+                                {intro_video && (
+                                    <div class="mb-2">
+                                        <YouTube
+                                            id={intro_video}
+                                            poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
+                                        />
+                                    </div>
+                                )}
+                                {image && (
+                                    <div>
+                                        <Image
+                                            src={images["../../.." + image]()}
+                                            width="600"
+                                            alt={image_alt ?? ""}
+                                            style="object-fit: contain;"
+                                        />
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                {
+                    slack && (
+                        <a href={slack} target="_blank" class="btn btn-primary">
+                            <Icon name="mdi:slack" width="14pt" height="14pt" class="mb-1" /> Go to Slack channel
+                        </a>
+                    )
+                }
+            </div>
+        </div>
+    </div>
+</div>

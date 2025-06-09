@@ -2,7 +2,7 @@
 title: Developing pipelines
 subtitle: Creating a new module for the nf-core modules repository.
 weight: 5
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ## Trying your first Gitpod environment

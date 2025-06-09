@@ -1,66 +1,502 @@
 ---
-title: Hackathon - May 2024 (Barcelona)
+title: Hackathon - October 2024 (Barcelona)
 subtitle: An in-person hackathon held in Barcelona
 type: hackathon
 announcement:
-    start: 2024-07-05T09:00:00+02:00
-startDate: '2024-10-28'
-startTime: '10:00+02:00'
-endDate: '2024-10-30'
-endTime: '14:00+02:00'
+    start: 2024-08-28T09:00:00+02:00
+startDate: "2024-10-28"
+startTime: "10:00+02:00"
+endDate: "2024-10-30"
+endTime: "14:00+02:00"
 locations:
     - name: World Trade Center Barcelona, Barcelona, Spain
-      geoCoordinates: [42.34347, -71.04489]
+      geoCoordinates: [41.371298, 2.181658]
 ---
+
+import { Image } from "astro:assets";
+import summitCard from "@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png";
+import ontLogo from "@assets/images/events/2024/hackathon-barcelona/ont-logo.svg";
+import ontLogoDarkbg from "@assets/images/events/2024/hackathon-barcelona/ont-logo-darkbg.svg";
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import HackathonGroup from "@components/event/HackathonGroup.astro";
 
 # Welcome
 
 Join us in person for the October 2024 nf-core hackathon!
 
-This hackathon will be held in advance of the _**Nextflow Summit 2024**_ in Barcelona, Spain.
-You can find out more information about the summit at https://summit.nextflow.io/2024/barcelona/.
+This hackathon will be held in advance of the **Nextflow Summit 2024** in Barcelona, Spain and is organised jointly.
 
-The Barcelona nf-core hackathon will be in-person only, without the hybrid / online features that we have used in other events (e.g., Gather Town).
-Anyone is free to join remotely, as we will be using the same GitHub Project boards and Slack communication as usual.
-However, please be aware, we won't actively be trying to run this as a hybrid event.
+- **Summit website**: https://summit.nextflow.io/2024/barcelona/
+- **Dates**: 28th - 30th October 2024
+- **Registration**: Visit the [summit registration page](https://summit.nextflow.io/2024/barcelona/register/)
+- **Schedule**: Visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
+- **Location**: [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6)
+- **Slack channel**: [`#hackathon-oct-2024`](https://nfcore.slack.com/archives/C07HZCK6YE4)
 
-# Registration
+<Image class="mb-5" src={summitCard} alt="Nextflow Summit 2024 - Barcelona" />
 
-Registration for the nf-core hackathon is now open!
+This nf-core hackathon is sponsored by [Seqera](https://seqera.io/) and
+[Oxford Nanopore Technologies](https://nanoporetech.com/).
+Many thanks to both companies for making this event possible!
 
-You can register for the hackathon on the [Nextflow Summit website](https://summit.nextflow.io/2024/barcelona/register/).
-Please note that tickets are limited, so register early to avoid disappointment.
+<div class="d-flex justify-content-evenly my-5">
+    <Image src={ontLogo} alt="Oxford Nanopore" class="hide-dark" style="height: 50px; width:auto;" />
+    <Image src={ontLogoDarkbg} alt="Oxford Nanopore" class="hide-light" style="height: 50px; width:auto;" />
+    <img
+        src="/images/contributors/colour/seqera.svg"
+        alt="Seqera"
+        class="darkmode-image"
+        style="height: 40px; width:auto;"
+    />
+</div>
 
-**Register early to benefit from the early-bird discount codes!**
+# How the hackathon works
 
-<a class="btn btn-success btn-lg mb-3" href="https://summit.nextflow.io/2024/barcelona/register/">
-    <span>
-        <i class="fa-solid fa-pencil me-2"></i>
-        <span>Register now</span>
-    </span>
-</a>
+## What to expect
 
-# Socials activities
+The nf-core hackathons are collaborative, community-driven events where participants work together on projects.
+
+Everyone is welcome, no prior experience of nf-core contributions is needed. However, we do expect that you have some experience with writing Nextflow code.
+Note that there is a separate [training event](https://summit.nextflow.io/2024/barcelona/training/) for learning Nextflow and nf-core from scratch, running in parallel to the hackathon.
+
+nf-core hackathons are not just about coding! We also have a lot of fun. We typically run things like a quiz, a bingo and have several small prizes for the winners.
+In addition to small social games and contests during the event, we also have a social evening.
+
+## Prerequisites
+
+Before you arrive at the hackathon, please make sure that you have:
+
+- [Registered](https://summit.nextflow.io/2024/barcelona/register/) to come!
+- [Joined the nf-core Slack](https://nf-co.re/join#slack)
+- [Joined the nf-core GitHub organisation](https://nf-co.re/join#github)
+- Added yourself to the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4)
+
+## Where to find tasks
+
+We collect all tasks in the ["Hackathon October 2024" GitHub project board](https://github.com/orgs/nf-core/projects/76).
+
+If you are not too familiar yet with the code base, a great starting point is to filter for issues labelled as `good first issue`.
+
+Once you found something, get in touch with the project group (i.e. ping them on slack, find them in the room), assign yourself, and get started.
+
+## How to contribute code
+
+We use GitHub to collaborate on code:
+
+{/* TODO link to external docs on this? */}
+
+1. Find a hackathon project
+2. Discuss with the group and assign yourself to an issue. (Create one if it is not there)
+3. Fork the repository
+4. Work on a branch in your Fork
+5. Once ready, open a PR to the parent repository
+
+:::note
+Only assign yourself to an issue if you are ready to work on it, typically one issue at a time.
+:::
+
+See [Helpful resources](#helpful-resources) below for more information.
+
+# Schedule
+
+The hackathon will run from **Monday 28th October** to **Wednesday 30th October**.
+The registration opens on Monday at **9am**. We will start at **10am** everyday and close at **5pm** on Monday and Tuesday. On Wednesday we will wrap up at **1pm**.
+For a complete schedule visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
+
+# Projects
+
+This hackathon we will use projects, as opposed to the broader groups of previous events.
+At the end of each day, we will group the projects into categories and sum up their progress.
+Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+New projects can be proposed in the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4).
+Use the [project proposal form](https://slack.com/shortcuts/Ft07HAJVNF8A/295721bac20c398d998d0fed127fe3b5) to submit an idea.
+After a some community discussion, you can add your project to the list below and others can find it.
+
+:::tip
+If you are planning to start a new pipeline, please propose it on the [`#new-pipelines` slack channel](https://nfcore.slack.com/archives/CE6SDEDAA)
+**ahead** of the hackathon start to avoid delays during the event.
+:::
+
+Once a project is approved, the project leaders should add it to this webpage and
+add issues issues to the [GitHub project board](https://github.com/orgs/nf-core/projects/76) ahead of the hackathon.
+If appropriate, label them as `good first issue`.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them in the room, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+# List of projects
+
+## Pipelines
+
+<HackathonGroup
+    title="nf-core/seqinspector"
+    category="pipelines"
+    leaders={{'FranBonath': 'Franziska Bonath'}}
+    goal="Work towards a first release"
+    slack="seqinspector"
+>
+    nf-core/seqinspector aims to be a pipeline for initial quality control of sequencing data. Input is either FASTQ files or a run folder, and output is planned to be a global MultiQC report and, if wished, MultiQC files of groups that are defined in the sample sheet.
+    By joining this group you can
+        1) add existing modules to a pipeline (beginner friendly)
+        2) write a new module of your preferred QC tool if it doesn’t exist yet (intermediate level).
+        3) start with implementation of long read methods (advanced level, we have only limited experience in the group, so help would be more than appreciated!).
+        4) work on display of the data in the MultiQC reports (beginner - intermediate level)
+        5) write documentation
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Single cell analysis: nf-core/scrnaseq and nf-core/scdownstream"
+    category="pipelines"
+    leaders={{'nictru': 'Nico Trummer'}}
+    goal="Move shared functionality to nf-core/modules and make #scdownstream ready for 1.0 release"
+>
+    [nf-core/scrnaseq](https://nf-co.re/scrnaseq) transforms FASTQ files into expression matrices, while [nf-core/scdownstream](https://nf-co.re/scdownstream) receives expression matrices as input and performs quality control, integration, clustering and more.
+    This project has two main parts:
+        1) Move some local modules from scdownstream to nf-core/modules so that they can be re-used in scrnaseq.
+        2) Add new features to scdownstream. See the open [enhancement issues](https://github.com/nf-core/scdownstream/issues?q=is%3Aopen+is%3Aissue+label%3Aenhancement) for details.
+
+    By joining this group you can:
+        1) Create new modules and move existing local modules to nf-core/modules (beginner friendly)
+        2) Integrate the newly added modules into the pipelines (beginner - intermediate level)
+        3) Improve the scdownstream MultiQC report and documentation (beginner - intermediate level)
+        4) Look into a potential extension of scdownstream to multi-omics analyses (advanced level, has not yet been tackled but help would be great!)
+
+    Prior experience with single cell analysis is not required, but helpful.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/deepmodeloptim"
+    category="pipelines"
+    leaders={{'mathysgrapotte': 'Mathys Grapotte'}}
+    goal="Reach nf-core/deepmodeloptim v1.0.0 release!"
+    slack="deepmodeloptim"
+>
+    We proposed a new pipeline to nf-core, initially called STIMULUS (available here: https://github.com/mathysgrapotte/stimulus).
+    This pipeline aims to explore ways that deep learning models can learn, relative to how the input data is processed
+    (check GitHub or the [`#deepmodeloptim` channel](https://nfcore.slack.com/archives/C07MD07ULR2) on the nf-core slack).
+
+    Working on deepmodeloptim on the hackathon will mostly involve nf-core-izing the pipeline and making it a place where it is easy to contribute.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/sarek"
+    category="pipelines"
+    leaders={{'FriederikeHanssen': 'Rike Hanssen'}}
+    goal="Improve input validation, usability, and docs"
+    slack="sarek"
+>
+    General work on sarek with a focus on maintenance:
+
+        - Improve input validation
+        - Improve documentation
+        - Fix bugs
+
+    If you want to get started on a new addition, this is a great time to come by and chat.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Sarek (preprocessing) goes GPU"
+    category="pipelines"
+    leaders={{
+        'Furentsu': 'Eugenio Franzoso',
+        'famosab': 'Famke Bäuerle'
+    }}
+    goal="Integration of Parabricks in sarek"
+    slack="parabricks"
+>
+    Variant calling has multiple time consuming steps that could be faster if we use GPUs instead of CPUs.
+    First steps to achieve that could be the integration of Parabricks which is software developed by NVIDIA.
+    The modules are ready and need to be integrated into sarek.
+
+    This project can also expand onto other pipelines and include more tools that allow execution on GPU.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/genomeqc"
+    category="pipelines"
+    leaders={{
+        'chriswyatt1': 'Chris Wyatt',
+        'GallVp': 'Usman Rashid',
+        'FernandoDuarteF': 'Fernando Duarte',
+        'mahesh-panchal': 'Mahesh Binzer-Panchal'
+    }}
+    goal="Write a first draft of this pipeline"
+    slack="genomeqc"
+>
+    A pipeline to compare and contrast genome assemblies and their annotations.
+
+    When you sequence a new genome, or wish to use a published genome, it is important to gauge the quality of the assembly.
+    There are basic tools, such as BUSCO (completeness), QUAST (contiguity), or general statistics of numbers of chromosomes,
+    genes, etc (AGAT), but no nf-core pipeline to perform all of these tasks,
+    including documenting their TE content, telomere locations, contamination level.
+
+    In addition, we would want to plot this on a phylogenetic tree, to help compare these stats.
+    See the [`#genomeqc`](https://nfcore.slack.com/archives/C07LY51P4S2) nf-core Slack channel to join!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/variantbenchmarking"
+    category="pipelines"
+    leaders={{
+        'kubranarci': 'Kübra Narcı'
+    }}
+    goal="I would like to have the first version of this pipeline published"
+    slack="variantbenchmarking"
+>
+    This is a variant benchmarking pipeline, for now structural variant and small benchmarking
+    parts for germlines are working, yet there are plans for addin g somatic benchmarking including
+    creation of a truth file for structural variants and adding some benchmark tools. The pipeline
+    needs to be tested extensively and a set of reviews is required.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/proteinfold"
+    category="pipelines"
+    leaders={{
+        'JoseEspinosa': 'Jose Espinosa-Carrasco'
+    }}
+    goal="Towards release 1.2.0 and beyond"
+    slack="proteinfold"
+>
+    We have adding new reporting capabilities to the pipeline lately and we would like to finish
+    adding this features and testing them during the hackathon.
+
+    A part from this, we would like to explore which other tools could be added to the pipeline (e.g. RoseTTAFold or
+    OmegaFold) and discuss with the community what should be the future of the pipeline in terms of development.
+
+    Of course, as any other pipeline we would try to find other more "house-keeping" issues in which people joining the
+    group could get involved during the hackathon.
+
+    If you are interested please join the group!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/phaseimpute"
+    category="pipelines"
+    leaders={{
+        'LouisLeNezet': 'Louis Le Nézet',
+        'atrigila': 'Anabella Trigila'
+    }}
+    goal="Work towards a first release"
+    slack="phaseimpute"
+>
+    nf-core/phaseimpute is a multi-steps pipeline dedicated to genetic imputation from simulation to validation.
+    By joining this group you can
+        1) Contribute updated subworkflows and modules back to nf-core (beginner - intermediate level)
+        2) Improve documentation and enhance readability (beginner)
+        3) Assist with pre-release review (beginner to expert)
+        4) Add support for SNP chip array data (simulation and imputation) (expert)
+        5) Add support for sexual chromosome imputation (expert)
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-core/differentialabundance"
+    category="pipeline"
+    leaders={{
+        'suzannejin': 'Suzanne Jin',
+        'bjlang': 'Björn Langer',
+        'pinin4fjords': 'Jonathan Manning',
+        'WackerO': 'Oskar Wacker'
+    }}
+    goal="move forward for the next release with the restructured pipeline and the new methods!"
+>
+    This is a pipeline for downstream gene expression analysis, with a main focus on differential expression analysis. Currently, we are working on a new branch `dev-ratio` with two objectives:
+
+    - add new methods
+    - convert the pipeline into a modular and unified framework that allocates different ways of performing differential analysis.
+
+    By joining this group you will help with:
+        1) Implement and add nf-core modules that wrap other methods that can be used to perform differential analysis. Some modules (ie. propd) were already created but need to be updated (beginner friendly).
+        2) Add these new modules to the pipeline and update the pipeline parameters correspondingly (beginner friendly).
+        3) Add the existing modules to the new modular subworkflow in a way that will reproduce the original pipeline’s behaviour (beginner - intermediate level).
+        4) Update the code required to generate the plots and reports (beginner - intermediate level).
+        5) Restructure the pipeline architecture (intermediate level).
+        6) Update documentation (beginner friendly).
+
+</HackathonGroup>
+
+## Components
+
+<HackathonGroup
+    title="Image processing pipelines"
+    category="components"
+    leaders={{'kbestak': 'Kresimir Bestak'}}
+    goal="Work towards next Molkart release and implement an additional MCMICRO segmentation option."
+>
+    This project focuses on creating modules and adding functionality to (highly multiplexed) imaging pipelines - [nf-core/mcmicro](https://nf-co.re/mcmicro) and [nf-core/molkart](https://nf-co.re/molkart).
+    By joining this group you can:
+        1) Create new segmentation modules for nf-core/modules (beginner friendly) ...
+        2) ... and integrate them into the pipelines (beginner - intermediate level)
+        3) Support the spot detection implementation for MCMICRO (intermediate level)
+        4) Work on improved QC metric reporting for both pipelines (beginner - intermediate level)
+        5) Help us address open [issues](https://github.com/nf-core/molkart/issues) (beginner - intermediate level)
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Update subworkflows meta.yml"
+    category="components"
+    leaders={{'mirpedrol': 'Júlia Mir'}}
+    goal="Update the meta.yml file of all nf-core subworkflows"
+>
+    We will work on updating the `meta.yml` file of subworkflows to have the proper description for the structure of input and output channels.
+
+    Check [the issue](https://github.com/nf-core/modules/issues/6737) describing the tasks and tracking the progress.
+
+    Beginners and first-time contributors are welcome!
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Software packaging: ARM"
+    category="components"
+    leaders={{'dslarm': 'David Lecomber'}}
+    goal="Optimise run time on at least one tool"
+>
+    Looking into making more packages build natively for `linux/arm64` and improving
+    performance of the important ones for faster and cheaper runs on ARM machines
+    such as AWS Graviton.
+
+</HackathonGroup>
+
+## Tooling
+
+<HackathonGroup
+    title="References"
+    category="tooling"
+    leaders={{'maxulysse': 'Maxime Garcia', 'pinin4fjords': 'Jonathan Manning'}}
+    goal="Replacing iGenomes, then world domination."
+    slack="references"
+>
+    Continuing the discussion from last year's hackathon, this group will work on tasks related to references' genomes handling / management.
+    Some work has started with [nf-core/references](https://github.com/nf-core/references) but it is at a very early stage. This hackathon group will work towards agreeing on a fundamental structure and plan.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Tube map polishing"
+    category="tooling"
+    leaders={{'mashehu': 'Matthias Hörtenhuber'}}
+    goal="Make the tube maps in pipelines even more fabulous."
+>
+    Everybody loves the nf-core tube maps, but they also need some special care to gleam in all their beauty. Come join us and refine your workflows representations to their full glory. Doesn't matter if you already have a finished version and want a thorough review (🦅👀) or brainstorm some ideas and concepts to start a new one, this group is for you. Disclaimer: This will not be an introduction to vector graphic tools. You bring the tools, we bring the eyes and brains.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="nf-test plugins"
+    category="tooling"
+    leaders={{'nvnieuwk': 'Nicolas Vannieuwkerke'}}
+    goal="Fully develop [nft-utils](https://github.com/nf-core/nft-utils) and start new nf-test plugins"
+    slack="nft-plugins"
+>
+    nf-test is a very important piece of our modules, used for continuous integration testing of all our modules.
+    However, writing tests for some file types / more advanced tests can be difficult.
+    In this group we will try and kickstart the creation of nf-test plugins to make our testing a lot easier.
+    This will mainly involve the development of [`nft-utils`](https://github.com/nf-core/nft-utils), the improvement of [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) and hopefully the creation of completely new nf-test plugins.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Infrastructure around nf-core/modules"
+    category="tooling"
+    leaders={{'mirpedrol': 'Júlia Mir Pedrol'}}
+    goal="Develop infrastructure for nf-core/modules"
+    slack="tools"
+>
+    For Pythonistas :tada:
+    Working on nf-core/tools by developing infrastructure related to nf-core/modules.
+
+    Issues:
+    - Make `nf-core modules create` use the same structure for local modules than for remote modules (beginner friendly)
+    - Fix bug: `nf-core modules update` deletes templates files when there is a patch file (intermediate level)
+    - Fix the structure of modules meta.yml files (intermediate level)
+
+</HackathonGroup>
+
+## Special Interest Groups
+
+<HackathonGroup
+    title="Regulatory"
+    category="Special Interest Group"
+    leaders={{'apeltzer': 'Alexander Peltzer'}}
+    goal="Clearing out the scope of the regulatory special interest group and discussing who would tackle different subfields of the entire regulatory space for future improvements on nf-core guidelines and pipelines."
+    slack="regulatory"
+>
+    This group will work on tasks for the [#regulatory special interest group](/special-interest-groups/regulatory). Most likely we will try to come up with more detailed plans on how to tackle different needs of subgroups within regulatory and try to come up with a strategy on how to both align between those subgroups as well as to come up with plans / proposals for the wider community what we could add to enable e.g. auditors or authorities to understand better what nf-core already provides.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Meta-omics"
+    category="Special Interest Group"
+    leaders={{'erikrikarddaniel': 'Daniel Lundin', 'jfy133': 'James Fellows Yates'}}
+    goal="Widened understanding of the implementation details of all pipelines in a larger group of developers."
+    slack="meta-omics"
+>
+    We will work together on any or all of the [meta-omics](https://nf-co.re/special-interest-groups/meta-omics) pipelines -- [mag](https://nf-co.re/mag), [ampliseq](https://nf-co.re/ampliseq), [metatdenovo](https://nf-co.re/metatdenovo), [magmap](https://nf-co.re/magmap), [eager](https://nf-co.re/eager), [funcscan](https://nf-co.re/funcscan), [createtaxdb](https://nf-co.re/createtaxdb) and [taxprofiler](https://nf-co.re/taxprofiler) etc. --
+    extending functionality, but also discussing how they can be made to better integrate with each other plus a number of downstream pipelines, both within and outside nf-core.
+
+    We will have a number of documentation and/or new-module requests for newcomers to get their hands dirty, and larger implementation tasks for more advanced developers.
+
+</HackathonGroup>
+
+<HackathonGroup
+    title="Teaching"
+    category="Special Interest Group"
+    leaders={{'LorenzoS96': 'Lorenzo Sola', 'msantorsola': 'Mariangela Santorsola', 'DavideBag': 'pushordo'}}
+    goal="Develop tailored course materials and hands-on tutorials."
+    slack="training"
+>
+    nf-core pipelines are playing a crucial role in standardising bioinformatics workflows and their user base is growing every day. Engaging training materials are essential to complement the pipelines that are being released. To achieve this, a problem-based learning approach could be developed for several nf-core pipelines where tutorials follow a storyline based on carefully simulated data. A first attempt at this approach has been drafted for nfcore/sarek (https://lescai-teaching.github.io/sarek-tutorial) and nfcore/rnaseq (https://lescai-teaching.github.io/rnaseq-tutorial). This project intends to gather people who are willing to discuss and develop further similar materials for these and other nf-core pipelines.
+
+</HackathonGroup>
+
+# Social activities
 
 During the hackathon, we will have light-hearted fun and games!
 Special prizes are up for grabs for the winners!
 
-_More details will be available soon._
+More details will be revelealed at the start of the event, but you can expect: a quiz, bingo and sock-related activities.
 
-# Venue: World Trade Center Barcelona
+## Connect game
 
-The hackathon will be taking place at the [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6).
+While waiting for tests to pass, why not play a quick game?
 
-The World Trade Center is a premier business complex on the Barcelona waterfront, offering offices, conference facilities, and a hotel, and known for hosting a variety of international business events and trade shows.
+In the game you have to match three of the same symbol. Don't forget to post your highscores in the [#connectgame](https://nfcore.slack.com/archives/C07TNL7M1PF) channel on slack!
 
-More information about this venue can be found on the [Nextflow Summit website](https://summit.nextflow.io/2024/barcelona/travel/).
-
-<a class="btn btn-success btn-lg mb-3" href="https://maps.app.goo.gl/Fyezb8CiS11wEGAU6">
-    <span>
-        <i class="fa-solid fa-map-pin me-2"></i>
-        <span>Google Maps</span>
-    </span>
-</a>
+:::tip
+Be sure to also check out the soundtrack! :headphones:
+:::
 
 # Helpful resources
 
@@ -73,20 +509,20 @@ In particular, the talk about [using git and GitHub](https://www.youtube.com/wat
 
 **Help with coding and nf-core tools**
 
--   Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
--   [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
--   Overview of all nf-core/tools commands for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
+- Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
+- [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
+- Overview of all nf-core/tools commands for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
 
 **Adding to pipelines**
 
--   [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
--   How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
+- [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
+- How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
 
 **Creating a new pipeline**
 
--   [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
--   [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
--   [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
+- [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
+- [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
+- [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
 
 # Code of conduct
 

@@ -1,0 +1,90 @@
+---
+title: "Maintainers Minutes: August 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2024-08-14T12:00:00+02:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on it's body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "jfy133"
+    - "FriederikeHanssen"
+label:
+    - "maintainers"
+---
+
+The 'Maintainers Minutes' aims to further give insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## More (or less) testing
+
+[Júlia](https://github.com/mirpedrol) encountered several failing tests on nf-core/crisprseq with conda and singularity (currently, our CI tests only run with docker).
+Moving forward we agreed that at least some tests should also be run with `singularity` and `conda` at some point during the development process but before release.
+
+We discussed several ideas.
+On the one hand we'd like to make sure everything works at all times, on the other hand running tons of essentially duplicate tests makes development slow, costs money, and is not great for the planet 🌳.
+As a compromise, we agreed on the following:
+
+- Singularity & conda tests are run on PR to master
+- Make singularity required
+- Conda optional opt-out
+- Add `workflow dispatch` button for easier manual testing during earlier stages of development
+
+## Nf-test best practices
+
+[Nicolas](https://github.com/nvnieuwk/) brought up that nf-test snapshots (i.e., files that record e.g. md5sums or presence of strings) should be readable to quickly determine that they include everything they should.
+He had noticed that some people in module tests had started using a snapshot for every single file (rather than all in one), seemingly to be able to 'label' each snapshot.
+However, since the order of each 'snapshot' recorded in the `.snap` file does not necessarily correspond to the order they are defined in the test file, having one snapshot _per file_ in the same test scrambles the entries all over the place, e.g. out of order from the output channels as defined in the module.
+
+He will make updates to the guidelines that all assertions should go into a single snapshot per test for modules.
+
+## Bulk updates of modules
+
+[Júlia](https://github.com/mirpedrol) is coordinating an upcoming bulk update of all modules in https://github.com/nf-core/modules/issues/5828 (join [#wg-modules-update](https://nfcore.slack.com/archives/C07BDPBPLG3) to stay tuned)
+
+This will include a lot of new exciting things:
+
+- Improved `meta.yml` layout accounting for the channel structure (https://github.com/nf-core/modules/pull/5867)
+- Subworkflows
+- bio.tools identifiers (for better linked metadata across registries)
+- edam ontologies for all input/output files (for better standardisation of file types)
+- Removing defaults from conda channel (to reduce chances of ToS violations)
+- Adding lock files (for better conda dependency version stability)
+- Adding version topic channels (for simplified version reporting in pipelines)
+- Adding lint for stub tests for all modules (to help us move to having complete 'dry run' functionality in pipelines)
+
+### Topic channels for `version`
+
+In addition, we discussed how to incorporate the version aggregation system using Nextflow's new '[topic](https://www.nextflow.io/docs/latest/channel.html#topic)' channel functionality.
+[Edmund](https://github.com/edmundmiller) created a [proof of concept](https://github.com/nf-core/nascent/pull/150) showing that it is possible to handle topic and non-topic version channels together.
+This would require a pipeline update by all developers, pinning a recent nextflow version, and adding the `preview` flag.
+It was concluded that this should be a hackathon task.
+
+## Obligatory argument
+
+After our recent settling (somewhat, anyway) on how we want to name subworkflows in the previous meeting, we now discussed the `meta.yml` restructuring for subworkflows.
+The `meta.yml` currently only includes the channel name.
+However we are moving now for it being expanded to match the _entire_ channel construct, like: "meta, bam, bai" (not just files).
+However, of course, this let us to start arguing over the overall channel names.
+
+> There are only two hard things in Computer Science: cache invalidation and naming things.
+>
+> -- Phil Karlton
+
+_from [https://martinfowler.com/bliki/TwoHardThings.html](https://martinfowler.com/bliki/TwoHardThings.html)_
+
+## Versioning of modules guidelines
+
+Various members of the nf-core community had both a long time ago and more recently suggested that the module guidelines should be versioned.
+Everyone think it's a good idea and we discussed how to best approach this since the guidelines are listed on the website, _but_ linting is linked to nf-core/tools versions, _but_ not everything can/is linted for at the moment.
+
+Some ideas included linking the docs with the tools version and date stamp the docs, have dev docs version to account for incremental updates.
+However, it was brought up that that linting against the tools dev version may cause problems with changes that may occur during the development on the dev branch.
+One of the major technical challenges that was flagged was how to best account for various docs versions on the website, with the additional complication that the guidelines page is planned to be split up into one file per guideline point (which [James](https://github.com/jfy133) finds 🤢).
+[Matthias](https://github.com/mashehu) will think about a few ways on how this could be tackled to minimise the amount of file copies that may occur when archiving each version.
+
+## Next time
+
+[Mahesh](https://github.com/mahesh-panchal) has figured out an interesting way to handle args in nf-tests without having to make a separate `nextflow.config` file each time for each test ([as brought up here](https://nfcore.slack.com/archives/C049MBCEW06/p1721042240473589)).
+We'll discuss this in detail next time.
+
+\- :heart: from your #maintainers team!

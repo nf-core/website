@@ -1,14 +1,14 @@
 ---
-import { Icon } from 'astro-icon/components';
-import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
-import ContributorCarousel from '@components/ContributorCarousel.svelte';
-import EventBanner from '@components/event/EventBanner.astro';
-import HomepageCard from '@components/homepage/HomepageCard.astro';
-import HomepageVideosEvents from '@components/homepage/HomepageVideosEvents.astro';
-import BaseLayout from '@layouts/BaseLayout.astro';
-import { Code } from 'astro/components';
-import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
+import { Icon } from "astro-icon/components";
+import NfCoreLogoDarkbg from "@public/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "@public/images/logo/nf-core-logo.svg";
+import ContributorCarousel from "@components/ContributorCarousel.svelte";
+import EventBanner from "@components/event/EventBanner.astro";
+import HomepageCard from "@components/homepage/HomepageCard.astro";
+import HomepageVideosEvents from "@components/homepage/HomepageVideosEvents.astro";
+import BaseLayout from "@layouts/BaseLayout.astro";
+import { Code } from "astro/components";
+import AnnouncementBanner from "@components/navbar/AnnouncementBanner.astro";
 ---
 
 <BaseLayout>
@@ -18,14 +18,15 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
         <div class="homepage-header-contents col-md-5">
             <h1>
                 <div class="hide-dark">
-                    <Fragment set:html={NfCoreLogo} />
+                    <NfCoreLogo />
                 </div>
                 <div class="hide-light">
-                    <Fragment set:html={NfCoreLogoDarkbg} />
+                    <NfCoreLogoDarkbg />
                 </div>
             </h1>
             <p class="lead font-weight-normal">
-                A community effort to collect a curated set of analysis pipelines built using Nextflow.
+                A global community effort to collect a curated set of open&#8209;source analysis pipelines built using
+                Nextflow.
             </p>
             <div class="homepage-cta-flex mb-5">
                 <a class="homepage-cta text-decoration-none" href="/pipelines/">View Pipelines</a>
@@ -38,14 +39,14 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="industry-alt" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="industry-alt" class="text-white" height={80} width={110} />
                     <h3 class="text-white">For facilities</h3>
                     <p class="lead">
                         Highly optimised pipelines with excellent reporting. Validated releases ensure reproducibility.
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="users" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="users" class="text-white" height={80} width={110} />
 
                     <h3 class="text-white">For users</h3>
                     <p class="lead">
@@ -53,7 +54,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                     </p>
                 </div>
                 <div class="col-md-4 col-xl-3 py-3 py-md-5 px-md-4">
-                    <Icon name="laptop-code" class="text-white" height="60pt" width="80pt" />
+                    <Icon name="laptop-code" class="text-white" height={80} width={110} />
                     <h3 class="text-white">For developers</h3>
                     <p class="lead">
                         Companion templates and tools help to validate your code and simplify common tasks.
@@ -62,7 +63,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
             </div>
             <div>
                 <p class="d-flex position-relative justify-content-center text-white m-0 pb-3">
-                    <Icon name="logos/nature_biotech" class="float-start me-3" height="60px" width="60px" />
+                    <Icon name="logos/nature_biotech" class="float-start me-3" height={60} width={60} />
                     <a
                         class="text-white stretched-link text-decoration-none d-flex flex-column justify-content-center"
                         href="https://doi.org/10.1038/s41587-020-0439-x"
@@ -71,7 +72,7 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         nf-core is published in Nature Biotechnology!
                         <span class="underline m-auto"
                             ><em>Nat Biotechnol</em>
-                            <strong> 38</strong>, 276–278 (2020).
+                            <strong> 38</strong>, 276-278 (2020).
                         </span>
                     </a>
                 </p>
@@ -88,38 +89,43 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
         <h3 class="mb-4 text-center">Fully featured pipelines</h3>
         <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
             <div class="col">
-                <HomepageCard title="Documentation" icon="books" icon_class="text-success icon-lg">
+                <HomepageCard title="Documentation" icon="mdi:book-information-variant" icon_class="text-secondary">
                     Extensive documentation covering installation, usage and description of output files ensures that
                     you won't be left in the dark.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Portable and reproducible" icon="server-regular-lights" icon_class="text-success">
-                    Pipelines follow best-practices to ensure maximum portability and reproducibility. The large
-                    community makes the pipelines exceptionally well tested and easy to run.
+                <HomepageCard title="Stable Releases" icon="mdi:timeline-check-outline" icon_class="text-secondary">
+                    nf-core pipelines use GitHub releases to tag stable versions of the code and software. Pipelines are
+                    exceptionally well tested and easy to run.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Stable Releases" icon="line-md:check-list-3-twotone" icon_class="text-success">
-                    nf-core pipelines use GitHub releases to tag stable versions of the code and software, making
-                    pipeline runs totally reproducible.
+                <HomepageCard
+                    title="Open source"
+                    name="opensource"
+                    icon="ri:open-source-line"
+                    icon_class="text-secondary"
+                >
+                    All nf-core code is licensed under the MIT license and is available on GitHub. Pipelines can be
+                    used, modified, and forked - by anyone.
                 </HomepageCard>
             </div>
 
             <div class="col">
-                <HomepageCard title="CI Testing" icon="logos:github-actions">
+                <HomepageCard title="CI Testing" icon="mdi:progress-check" icon_class="text-secondary">
                     Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration
                     testing to ensure that nothing has broken.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Cloud-ready" icon="logos:aws" icon_dark="mdi:aws">
-                    Pipelines are tested on AWS after every release. You can even browse results live on the website and
-                    use outputs for your own benchmarking.
+                <HomepageCard title="Run anywhere" icon="mdi:cloud-outline" icon_class="text-secondary">
+                    Pipelines are ultra-portable and run on most laptops, HPCs and clouds. Tests run on AWS after every
+                    release: you can browse results on the website and use for your own benchmarking.
                 </HomepageCard>
             </div>
             <div class="col">
-                <HomepageCard title="Packaged software" icon="box-alt" icon_class="docker">
+                <HomepageCard title="Packaged software" icon="mdi:package-variant" icon_class="text-secondary">
                     Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda or
                     others. No need for any software installations.
                 </HomepageCard>
@@ -127,10 +133,35 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
         </div>
     </div>
 
+    <div class="container pb-5 text-center lead" id="features">
+        <p class="mb-0">All nf-core code is <strong>community owned</strong>.</p>
+        <p>Everyone is welcome to use, contribute to, and help maintain nf-core.</p>
+    </div>
+
     <div class="bg-body-tertiary pt-4 pb-5">
         <div id="developers" class="container homepage-feature-boxes">
-            <h3 class="mb-4 text-center">Developers: Not just another registry</h3>
+            <h3 class="mb-2 text-center">How to get involved</h3>
+            <div class="container pb-2 text-center lead" id="features">
+                <p class="mb-0"><strong>Everyone is welcome</strong> to contribute, in any way!</p>
+                <p>
+                    Contribute ideas and code directly via <a href="https://github.com/nf-core/" target="_blank"
+                        >GitHub</a
+                    >, or come <a href="/join/">talk to us in Slack</a>.
+                </p>
+            </div>
             <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4">
+                <div class="col">
+                    <HomepageCard
+                        title="Start small or go big"
+                        icon="octicon:git-pull-request-16"
+                        icon_class="text-secondary"
+                        btn_txt="Get started"
+                        btn_href="/docs/usage/getting_started/introduction"
+                    >
+                        You start wherever you like: Typo fixes in docs? No module for your favourite tool? Missing a
+                        pipeline? We are looking for all types of contributions!
+                    </HomepageCard>
+                </div>
                 <div class="col">
                     <HomepageCard
                         title="Develop with the community"
@@ -138,8 +169,8 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         btn_txt="Join Slack"
                         btn_href="join/"
                     >
-                        Come and talk to us <em>before</em> you start writing a pipeline to find collaborators and check
-                        that your pipeline is suitable for nf-core.
+                        Join forces with others! We promote collaboration over duplication: before you start coding,
+                        please propose your idea in Slack.
                     </HomepageCard>
                 </div>
                 <div class="col">
@@ -149,20 +180,9 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                         btn_txt="Read the docs"
                         btn_href="/docs/tutorials/adding_a_pipeline/overview"
                     >
-                        All pipelines, modules and subworkflows must be based on our template and be created using
-                        <code>nf-core</code>
-                        <a href="/tools/">tools</a>. An automated sync keeps pipelines up to date.
-                    </HomepageCard>
-                </div>
-                <div class="col">
-                    <HomepageCard
-                        title="Collaborate, don't duplicate"
-                        fontawesome="fa-duotone fa-code-merge text-secondary"
-                        btn_txt="See the guidelines"
-                        btn_href="/docs/guidelines/pipelines/overview"
-                    >
-                        We only allow one pipeline per data type / analysis type. If a similar pipeline exists we'll ask
-                        you to add to that instead of making a new workflow.
+                        Pipelines, modules and subworkflows are based on a template, created using
+                        <a href="/docs/nf-core-tools"><code>nf-core</code> tools</a>. An automated sync keeps pipelines
+                        up to date.
                     </HomepageCard>
                 </div>
             </div>
@@ -181,15 +201,15 @@ import AnnouncementBanner from '@components/navbar/AnnouncementBanner.astro';
                     <div class="text-white-50">
                         <p>Nextflow lets you run nf-core pipelines on virtually any computing environment.</p>
                         <p>
-                            Most nf-core genomics pipelines come with built-in support for
-                            <a href="https://ewels.github.io/AWS-iGenomes/" target="_blank" style="white-space:nowrap;">
-                                AWS-iGenomes</a
-                            >, with genome references for over 30 common species.
-                        </p>
-                        <p>
                             The nf-core companion tool makes it easy to list all available nf-core pipelines and shows
                             which are available locally. Local versions are checked against the latest available
                             release.
+                        </p>
+                        <p>
+                            The nf-core companion tool also provides a range of helper functions to make it easier to
+                            work with nf-core pipelines, such as downloading pipelines for offline use, an interactive
+                            command-line launch wizard and helper functions to generate commented config file templates
+                            for any pipeline.
                         </p>
                     </div>
                 </div>
@@ -214,7 +234,7 @@ nextflow run nf-core/rnaseq \\
 pip install nf-core
 
 # List all nf-core pipelines and show available updates
-nf-core list`}
+nf-core pipelines list`}
                             />
                         </div>
                     </div>
@@ -262,7 +282,7 @@ nf-core list`}
     <ContributorCarousel client:idle />
 
     <style lang="scss">
-        @import '@styles/_variables.scss';
+        @import "@styles/_variables.scss";
         .homepage-header .homepage-header-contents {
             margin: 4rem auto 0;
             padding: 0;
@@ -301,7 +321,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
 
             &:after {
                 transition: 0.3s all ease;
-                content: '';
+                content: "";
                 position: absolute;
                 left: 0;
                 top: 0;
@@ -311,7 +331,7 @@ Based on https://codepen.io/wintr/pen/beBJBb */
                 border: 2px solid $nf-core-color;
             }
             &:before {
-                content: '';
+                content: "";
                 position: absolute;
                 border-radius: 3px;
                 left: 0;
@@ -377,13 +397,13 @@ Based on https://codepen.io/wintr/pen/beBJBb */
                 opacity: 0.4;
             }
         }
-        svg[data-icon='users'] {
+        svg[data-icon="users"] {
             margin-bottom: 0.25rem;
         }
-        svg[data-icon='industry-alt'] {
+        svg[data-icon="industry-alt"] {
             margin-bottom: 0.35rem;
         }
-        svg[data-icon='laptop-code'] {
+        svg[data-icon="laptop-code"] {
             margin-bottom: 0.55rem;
         }
     </style>

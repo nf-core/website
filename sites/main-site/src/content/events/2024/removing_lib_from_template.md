@@ -1,11 +1,11 @@
 ---
 title: "Bytesize: Removing the 'lib/' directory from the template"
-subtitle: 'Sayonara lib! Harshil Patel, Seqera'
+subtitle: "Sayonara lib! Harshil Patel, Seqera"
 type: talk
-startDate: '2024-02-27'
-startTime: '13:00+01:00'
-endDate: '2024-02-27'
-endTime: '13:30+01:00'
+startDate: "2024-02-27"
+startTime: "13:00+01:00"
+endDate: "2024-02-27"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/_meU3EzKdRI
 locations:
   - name: Online

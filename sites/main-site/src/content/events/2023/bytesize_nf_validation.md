@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-validation'
+title: "Bytesize: nf-validation"
 subtitle: Júlia Mir Pedrol, QBIC and Nicolas Vannieuwkerke, Center for Medical Genetics Ghent
 type: talk
-startDate: '2023-06-06'
-startTime: '13:00+02:00'
-endDate: '2023-06-06'
-endTime: '13:30+02:00'
+startDate: "2023-06-06"
+startTime: "13:00+02:00"
+endDate: "2023-06-06"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=rr9FTlQayIE
 locations:
   - name: Online

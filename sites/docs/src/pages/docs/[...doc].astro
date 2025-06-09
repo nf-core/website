@@ -1,24 +1,24 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import FooterPrevNext from '@components/footer/FooterPrevNext.astro';
-import SubFooter from '@components/footer/SubFooter.astro';
-import { getCollection } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import FooterPrevNext from "@components/footer/FooterPrevNext.astro";
+import SubFooter from "@components/footer/SubFooter.astro";
+import { getCollection, render } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
 import {
     findCurrentGroup,
     addEntriesToSection,
     sanitizeNfCoreLabels,
     findByProperty,
     getSectionParents,
-} from '@utils/functions';
-import { Icon } from 'astro-icon/components';
-import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
+} from "@utils/functions";
+import { Icon } from "astro-icon/components";
+import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
 
 export async function getStaticPaths() {
-    const docs = await getCollection('docs');
+    const docs = await getCollection("docs");
     return docs.map((doc) => ({
         params: {
-            doc: doc.slug,
+            doc: doc.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             doc: doc,
@@ -27,72 +27,72 @@ export async function getStaticPaths() {
 }
 const title = Astro.props.doc.data.title;
 const subtitle = Astro.props.doc.data.subtitle;
-const { headings, Content, remarkPluginFrontmatter } = await Astro.props.doc.render();
+const { headings, Content, remarkPluginFrontmatter } = await render(Astro.props.doc);
 
 let prev_page: { title: string; slug: string } | null = null;
 let next_page: { title: string; slug: string } | null = null;
 
-const docs = await getCollection('docs');
+const docs = await getCollection("docs");
 
 let sections: SidebarEntry[] = [
     {
-        type: 'group',
-        id: 'usage',
-        href: '/docs/usage',
-        label: 'Usage',
+        type: "group",
+        id: "usage",
+        href: "/docs/usage",
+        label: "Usage",
         entries: [],
         collapsed: true,
-        icon: 'octicon:play-16',
+        icon: "octicon:play-16",
         weight: 1,
     },
     {
-        type: 'group',
-        id: 'contributing',
-        label: 'Contributing',
-        href: '/docs/contributing',
+        type: "group",
+        id: "contributing",
+        label: "Contributing",
+        href: "/docs/contributing",
         entries: [],
         collapsed: true,
-        icon: 'octicon:git-pull-request-16',
+        icon: "octicon:git-pull-request-16",
         weight: 2,
     },
     {
-        type: 'group',
-        id: 'tutorials',
-        label: 'Tutorials',
-        href: '/docs/tutorials',
+        type: "group",
+        id: "tutorials",
+        label: "Tutorials",
+        href: "/docs/tutorials",
         entries: [],
         collapsed: true,
-        icon: 'octicon:mortar-board-16',
+        icon: "octicon:mortar-board-16",
         weight: 3,
     },
     {
-        type: 'group',
-        id: 'guidelines',
-        label: 'Guidelines',
-        href: '/docs/guidelines',
+        type: "group",
+        id: "guidelines",
+        label: "Guidelines",
+        href: "/docs/guidelines",
         entries: [],
         collapsed: true,
-        icon: 'octicon:law-16',
+        icon: "octicon:law-16",
         weight: 4,
     },
     {
-        type: 'group',
-        id: 'checklists',
-        label: 'Checklists',
-        href: '/docs/checklists',
+        type: "group",
+        id: "checklists",
+        label: "Checklists",
+        href: "/docs/checklists",
         entries: [],
         collapsed: true,
-        icon: 'octicon:tasklist-16',
+        icon: "octicon:tasklist-16",
         weight: 5,
     },
     {
-        type: 'group',
-        id: 'nf-core-tools',
-        label: 'nf-core/tools',
-        href: '/docs/nf-core-tools',
+        type: "group",
+        id: "nf-core-tools",
+        label: "nf-core/tools",
+        href: "/docs/nf-core-tools",
         entries: [],
         collapsed: true,
-        icon: 'octicon:tools-16',
+        icon: "octicon:tools-16",
         weight: 6,
     },
 ];
@@ -108,9 +108,9 @@ let currentGroupIndex = -1;
 if (currentGroup.length > 0) {
     currentGroupIndex = currentGroup.findIndex((entry) => entry.isCurrent);
     if (currentGroupIndex === -1) {
-        console.error('Could not find current page ' + Astro.url.pathname + ' in docs collection');
+        console.error("Could not find current page " + Astro.url.pathname + " in docs collection");
     }
-    if (currentElement && currentElement.type === 'group' && currentElement.entries.length > 1) {
+    if (currentElement && currentElement.type === "group" && currentElement.entries.length > 1) {
         currentElement.entries[0].href?.endsWith(Astro.url.pathname)
             ? (next_page = {
                   title: currentElement.entries[1].label,
@@ -122,14 +122,14 @@ if (currentGroup.length > 0) {
               });
     } else {
         if (currentGroupIndex === 0) {
-            const parentHref = currentGroup[0].href?.split('/').slice(0, -1).join('/');
+            const parentHref = currentGroup[0].href?.split("/").slice(0, -1).join("/");
 
             // find parentHref in sections in different depths
             const parentSection = findByProperty(sections, (val) => val.href === parentHref)?.entries?.find(
                 (entry) => entry.entries && entry.entries == currentGroup,
             );
 
-            prev_page = parentSection && parentHref ? { title: 'Introduction', slug: parentHref } : null;
+            prev_page = parentSection && parentHref ? { title: "Introduction", slug: parentHref } : null;
         } else if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
             prev_page = {
                 title: currentGroup[currentGroupIndex - 1].label,
@@ -146,10 +146,13 @@ if (currentGroup.length > 0) {
 }
 
 const docType = Astro.props.doc.data.type;
-
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/docs/src/content/docs/' + Astro.props.doc.id;
+const isMDX = Astro.props.doc.filePath?.endsWith(".mdx");
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/docs/src/content/docs/" +
+    Astro.props.doc.id +
+    (isMDX ? ".mdx" : ".md");
 // remove leading and trailing slash
-const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, '').split('/');
+const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 // check if markdown file starts with a heading (markdown or html)
 const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
 
@@ -173,7 +176,7 @@ const parentSections = getSectionParents(sections, currentElement);
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
-    meta_title={'Docs: ' + title}
+    meta_title={"Docs: " + title}
     md_github_url={md_github_url}
     headings={extendedHeadings}
     leftSidebar={true}
@@ -181,10 +184,10 @@ const parentSections = getSectionParents(sections, currentElement);
     sections={sections}
     viewTransitions={true}
     docSearchTags={[
-        { name: 'page_type', content: 'Docs' },
-        { name: 'page_rank', content: '8' },
+        { name: "page_type", content: "Docs" },
+        { name: "page_rank", content: "8" },
         {
-            name: 'page_subtype',
+            name: "page_subtype",
             content: splitUrl[1].replace(/(^|\s)\S/g, (match) => match.toUpperCase()),
         },
     ]}
@@ -195,7 +198,7 @@ const parentSections = getSectionParents(sections, currentElement);
                 <li class="breadcrumb-item">
                     <a href="/docs"> Docs</a>
                 </li>
-                <Icon name="octicon:chevron-right-16" class={'mt-1'} />
+                <Icon name="octicon:chevron-right-16" class={"mt-1"} />
                 {
                     parentSections.map((section) => (
                         <>
@@ -208,7 +211,7 @@ const parentSections = getSectionParents(sections, currentElement);
                                     <span class="text-reset">{section.label}</span>
                                 )}
                             </li>
-                            <Icon name="octicon:chevron-right-16" class={'mt-1'} />
+                            <Icon name="octicon:chevron-right-16" class={"mt-1"} />
                         </>
                     ))
                 }
@@ -221,7 +224,7 @@ const parentSections = getSectionParents(sections, currentElement);
 
     <SubFooter slot="pre-footer" {md_github_url} />
     {
-        docType === 'tutorial' && currentElement && currentElement?.type === 'link' && (
+        docType === "tutorial" && currentElement && currentElement?.type === "link" && (
             <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
                 <p>
                     <strong class="h5 my-2">Tutorial:</strong>
@@ -260,7 +263,7 @@ const parentSections = getSectionParents(sections, currentElement);
             </div>
         )
     }{
-        docType === 'tutorial' && currentElement?.type === 'group' && (
+        docType === "tutorial" && currentElement?.type === "group" && (
             <div slot="right-sidebar-top" class="border border-success rounded p-3 pb-2">
                 <span>
                     <strong class="h5 my-2">Tutorial:</strong>
@@ -276,16 +279,16 @@ const parentSections = getSectionParents(sections, currentElement);
     }
 </MarkdownTocLayout>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     nav {
-        --bs-breadcrumb-divider: '';
+        --bs-breadcrumb-divider: "";
     }
     .breadcrumb-item,
     .breadcrumb-item a,
     .breadcrumb-item::before {
         color: $gray-200 !important;
     }
-    :global(li:has(input[type='checkbox'])) {
+    :global(li:has(input[type="checkbox"])) {
         list-style: none;
 
         list-style-position: outside;

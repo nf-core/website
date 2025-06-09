@@ -1,14 +1,15 @@
 ---
-title: 'Bytesize: Special Interest Group meta-omics'
+title: "Bytesize: Special Interest Group meta-omics"
 subtitle: Daniel Lundin (Linnaeus University / Stockholm University), James Fellows Yates (HKI Jena / MPI-EVA Leipzig) and Carson J. Miller (University of Washington)
 type: talk
-startDate: '2024-09-03'
-startTime: '13:00+02:00'
-endDate: '2024-09-03'
-endTime: '13:30+02:00'
+startDate: "2024-09-03"
+startTime: "13:00+02:00"
+endDate: "2024-09-03"
+endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/qaLUkB6t5Sw
 locations:
-  - links:
-      - https://kth-se.zoom.us/j/68390542812
+  - Name: Online
+    links: https://youtu.be/qaLUkB6t5Sw
 ---
 
 In this week's bytesize Daniel Lundin ([@erikrikarddaniel](https://github.com/erikrikarddaniel)), James A. Fellows Yates ([@jfy133](https://github.com/jfy133)) and Carson J. Miller ([@carsonjm](https://github.com/carsonjm)) introduce the [Special Interest Group "meta-omics"](https://nf-co.re/special-interest-groups/meta-omics).

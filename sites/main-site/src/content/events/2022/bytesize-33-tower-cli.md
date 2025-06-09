@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 33: Nextflow Tower CLI'
+title: "Bytesize 33: Nextflow Tower CLI"
 subtitle: Evan Floden - Seqera Labs, Spain
 type: talk
-startDate: '2022-02-15'
-startTime: '13:00+01:00'
-endDate: '2022-02-15'
-endTime: '13:30+01:00'
+startDate: "2022-02-15"
+startTime: "13:00+01:00"
+endDate: "2022-02-15"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/MggFf15vGCw
 locations:
   - name: Online

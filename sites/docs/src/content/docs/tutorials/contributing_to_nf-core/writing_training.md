@@ -50,11 +50,11 @@ There is no bytesize talk about how to create training materials at present, but
 
 #### Use this as a template.
 
-Use this file `https://github.com/nf-core/website/markdown/docs/contributing/training_guide.md` as a template to guide you.
+Use this file `https://github.com/nf-core/website/blob/main/sites/docs/src/content/docs/tutorials/contributing_to_nf-core/writing_training.md` as a template to guide you.
 
 1. Make a fork of the [nf-core website repository](https://github.com/nf-core/website/).
-2. Make a new branch from the `master` branch in your fork and check it out. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
-3. Make a copy of the `markdown/docs/contributing/training_guide.md` with an appropriate name to use as your skeleton.
+2. Make sure you have the `main` branch checked out with `git checkout main` then branch off your fork. Name it after the guide you intend to submit. For example: `git checkout -b gitpod_training_guide`
+3. Make a copy of the `./sites/docs/src/content/docs/tutorials/contributing_to_nf-core/writing_training.md` with an appropriate name to use as your skeleton.
 
 #### Add framing questions.
 

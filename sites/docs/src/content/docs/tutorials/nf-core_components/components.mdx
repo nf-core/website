@@ -2,11 +2,11 @@
 title: Writing nf-core modules and subworkflows
 subtitle: Tutorial for DSL2 modules and subworkflows
 shortTitle: Writing nf-core components
-weight: 20
+weight: 10
 ---
 
-import Tabs from '@components/Tabs.svelte';
-import TabItem from '@components/TabItem.svelte';
+import Tabs from "@components/Tabs.svelte";
+import TabItem from "@components/TabItem.svelte";
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
@@ -16,15 +16,15 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
 
--   Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
--   Check [open pull requests](https://github.com/nf-core/modules/pulls)
--   Search [open issues](https://github.com/nf-core/modules/issues)
+- Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
+- Check [open pull requests](https://github.com/nf-core/modules/pulls)
+- Search [open issues](https://github.com/nf-core/modules/issues)
 
 If the module doesn't exist on `nf-core/modules`:
 
--   Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
--   Set an appropriate subject for the issue e.g. `new module: fastqc`
--   Add yourself to the `Assignees` so we can track who is working on the module
+- Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
+- Set an appropriate subject for the issue e.g. `new module: fastqc`
+- Add yourself to the `Assignees` so we can track who is working on the module
 
 ### New module workflow
 
@@ -53,7 +53,7 @@ and proceed with Step 5.
     pre-commit install
     ```
 
-<Tabs names={["modules","subworkflows"]} client:idle>
+<Tabs names={["modules","subworkflows"]}  icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
 <TabItem name={"modules"} client:idle>
 7. Set up git on your computer by adding a new git remote of the main nf-core git repo called `upstream`
 
@@ -79,7 +79,7 @@ and proceed with Step 5.
 
     2. [`./modules/nf-core/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
 
-        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
+        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) during linting (and in the pre-commit hook).
 
     3. [`./modules/nf-core/fastqc/tests/main.nf.test`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test)
 
@@ -89,20 +89,20 @@ and proceed with Step 5.
 
         Refer to the section [writing nf-test tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) for more information on how to write nf-tests
 
-    4. Create a snapshot of the tests
-       ![nf-core modules test](/images/contributing/modules/nf-core-modules-test.svg)
+9. Create a snapshot of the tests
+   ![nf-core modules test](/images/contributing/modules/nf-core-modules-test.svg)
 
     :::note
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
     :::
 
-9. Check that the new module you've added follows the [module specifications](/docs/guidelines/components/modules)
+10. Check that the new module you've added follows the [module specifications](/docs/guidelines/components/modules)
 
-10. Lint the module locally to check that it adheres to nf-core guidelines before submission
+11. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
     ![nf-core modules lint](/images/contributing/modules/nf-core-modules-lint.svg)
 
-11. Once ready, the code can be pushed and a pull request (PR) created
+12. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -159,7 +159,7 @@ git branch -d fastqc
 
         Refer to the section [writing nf-test tests](docs/contributing/writing-nf-test-tests) for more information on how to write nf-tests
 
-    4. Create a snapshot of the tests
+9. Create a snapshot of the tests
 
     ![nf-core subworkflows test](/images/contributing/modules/nf-core-subworkflows-test.svg)
 
@@ -167,13 +167,13 @@ git branch -d fastqc
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
     :::
 
-9. Check that the new subworkflow you've added follows the [subworkflow specifications](/docs/guidelines/components/subworkflows)
+10. Check that the new subworkflow you've added follows the [subworkflow specifications](/docs/guidelines/components/subworkflows)
 
-10. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
+11. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
 
 ![nf-core subworkflows lint](/images/contributing/modules/nf-core-subworkflows-lint.svg)
 
-11. Once ready, the code can be pushed and a pull request (PR) created
+12. Once ready, the code can be pushed and a pull request (PR) created
 
 On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request - see below. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows:
 
@@ -207,7 +207,7 @@ If a new test dataset is added to [`tests/config/test_data.config`](https://gith
 
 For example: the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) file `genomics/sarscov2/genome/genome.fasta` labelled as `genome_fasta`, or `genomics/sarscov2/genome/genome.fasta.fai` as `genome_fasta_fai`.
 
-<Tabs names={["modules","subworkflows"]}  client:idle>
+<Tabs names={["modules","subworkflows"]}  icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']}  client:idle>
 <TabItem name={"modules"} client:idle>
 #### Using a stub test when required test data is too big
 

@@ -2,13 +2,13 @@
 title: Introduction to nf-core/eager
 subtitle: Introductory practical workshop to nf-core/eager
 type: training
-startDate: '2020-12-11'
-startTime: '14:00+01:00'
-endDate: '2020-12-11'
-endTime: '16:00+01:00'
+startDate: "2020-12-11"
+startTime: "14:00+01:00"
+endDate: "2020-12-11"
+endTime: "16:00+01:00"
 locations:
   - name: https://meet.jit.si
-    links: '#organisational-details'
+    links: "#organisational-details"
 ---
 
 The developers of the [nf-core/eager](https://nf-co.re/eager) aDNA (meta)genomics pipeline will be running an online practical workshop to introduce palaeogenetics researchers to the pipeline.

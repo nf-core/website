@@ -1,11 +1,11 @@
 ---
-title: 'Getting started with nf-core'
-subtitle: 'Tutorial at the Nextflow Camp 2019'
+title: "Getting started with nf-core"
+subtitle: "Tutorial at the Nextflow Camp 2019"
 type: training
-startDate: '2019-09-19'
-startTime: '11:15+01:00'
-endDate: '2019-09-19'
-endTime: '13:00+01:00'
+startDate: "2019-09-19"
+startTime: "11:15+01:00"
+endDate: "2019-09-19"
+endTime: "13:00+01:00"
 locations:
   - name: Centre for Genomic Regulation, Barcelona
     links:

@@ -2,10 +2,10 @@
 title: Hackathon - March 2023 (Leipzig)
 subtitle: Local node of the nf-core hackathon at MPI-EVA, Leipzig.
 type: hackathon
-startDate: '2023-03-27'
-startTime: '10:00+02:00'
-endDate: '2023-03-29'
-endTime: '18:00+02:00'
+startDate: "2023-03-27"
+startTime: "10:00+02:00"
+endDate: "2023-03-29"
+endTime: "18:00+02:00"
 locations:
   - name: MPI-EVA
     address: Deutscher Pl. 6, 04103 Leipzig

@@ -1,20 +1,23 @@
 <script lang="ts">
     export let recentRelease: boolean = false;
     export let footer: boolean = false;
+    export let cardHeader: () => any = () => null;
+    export let cardBody: () => any = () => null;
+    export let cardFooter: () => any = () => null;
 </script>
 
 <div class="card">
     <div class="card-header" class:border-success={recentRelease}>
         <h2 class="mb-0">
-            <slot name="card-header" />
+            {@render cardHeader()}
         </h2>
     </div>
     <div class="card-body" class:pt-0={recentRelease}>
-        <slot name="card-body" />
+        {@render cardBody()}
     </div>
     {#if footer}
         <div class="card-footer h-100">
-            <slot name="card-footer" />
+            {@render cardFooter()}
         </div>
     {/if}
 </div>

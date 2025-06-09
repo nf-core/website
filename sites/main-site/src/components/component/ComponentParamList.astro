@@ -1,0 +1,23 @@
+---
+import ParameterItem from "./ComponentParamItem.astro";
+
+const { params, depth = 0 } = Astro.props;
+---
+
+{
+    params.map((param, i) => {
+        const [name, value] = Object.entries(param)[0];
+        return (
+            <div class:list={[{ "card card-body mt-3 py-1": depth === 0 }]}>
+                <ParameterItem
+                    name={name}
+                    value={value}
+                    depth={depth}
+                    lastItem={i === params.length - 1 && depth > 0}
+                />
+            </div>
+        );
+    })
+}
+
+<style></style>

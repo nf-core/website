@@ -1,11 +1,11 @@
 ---
-title: '#animal-genomics: June Meeting'
+title: "#animal-genomics: June Meeting"
 subtitle: Yuliaxis Ramayo, Institute of Agrifood Research and Technology (IRTA), Spain
 type: talk
-startDate: '2024-06-19'
-startTime: '16:00+02:00'
-endDate: '2024-06-19'
-endTime: '17:00+02:00'
+startDate: "2024-06-19"
+startTime: "16:00+02:00"
+endDate: "2024-06-19"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/KJDSzKLyiPk
 locations:
   - name: Online

@@ -1,0 +1,183 @@
+---
+title: "Maintainers Minutes: September/October 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2024-10-28T12:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "jfy133"
+    - "maxulysse"
+    - "sateeshperi"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import { Image } from "astro:assets";
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+In this double post, we discussed the following topics from the September and October maintainers meetings:
+
+- [Massive modules update](#massive-modules-update)
+- [Pipeline level test with nf-test](#Pipeline-level-test-with-nf-test)
+- [helpdesk is the new coffee-n-code](#helpdesk-is-the-new-coffee-n-code)
+- [New way of passing parameters to modules within nf-test scripts](#new-way-of-passing-parameters-to-modules-within-nf-test-scripts)
+- [Stalled PRs due to waiting for review](#stalled-prs-due-to-waiting-for-review)
+- [Replacing monolithic `conf/modules.conf` into per module-configs](#replacing-monolithic-confmodulesconf-into-per-module-configs)
+- [Modification of modules specifications regarding channels](#modifications-of-modules-specifications-regarding-channels)
+
+### Massive modules update
+
+The nf-core/modules update taskforce have been hard at work, and has :drum: surprise :drum: massively updated the modules:
+
+- https://github.com/nf-core/modules/issues/5828
+
+The list is still pretty long, but we will get there.
+
+### Pipeline level test with nf-test
+
+A new plugin for nf-test was created to facilitate pipeline level test, it's [nft-utils](https://github.com/nf-core/nft-utils/), and it's already implemented in methylseq, rnaseq, sarek and some other pipelines.
+Maxime has made [a bytesize](https://nf-co.re/events/2024/bytesize_pipeline_level_tests_with_nftest) about it.
+
+### helpdesk is the new coffee-n-code
+
+Stay tuned, it's coming pretty soon.
+
+## New way of passing parameters to modules within nf-test scripts
+
+Our nf-core/modules have greatly benefited from the new nf-test implementation. However one pet peeve for many is the greatly increased number of config files that now comes with each module when installing on a pipeline (>100 file pipeline PRs anyone 😱).
+
+Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> has made a [proof of concept](https://github.com/nf-core/modules/pull/6788/) aimed at reducing the number of config files needed for testing different parameters. This approach consolidates configs that previously required separate files to test different parameters into a single `nextflow.config`, helping streamline testing processes.
+
+An implementation can be seen in the `bismark/align` module used in methylseq pipeline:
+
+- [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
+- [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
+
+By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter defined in the `when` block.
+
+The proposal received unanimous approval. Mahesh will now begin to formalise this by updating the [nf-core/modules specifications](https://nf-co.re/docs/guidelines/components/modules), and we can start to begin adding additional linting tests to help transfer to this system.
+
+:::info
+This system only applies to modules nf-test, and should not be used at pipeline level!
+:::
+
+## Stalled PRs Due to Pending Reviews
+
+It has been noted that we occasionally receive almost-complete module PRs that stall because a reviewer leaves comments but does not return for a re-review.
+Even if the module author receives a second approving review, they may feel uncomfortable merging without the original contributor’s approval.
+
+After a brief discussion, we agreed to introduce a new reviewing guideline: if all reasonable comments have been addressed and another reviewer has approved, the PR should be merged after 1 month if the original reviewer has not returned for a re-review.
+
+If the original reviewer was temporarily unavailable during this period (which can happen!), the module can still be updated in a follow-up PR.
+
+## Replacing monolithic `conf/modules.conf` with per-module configs
+
+A contentious point was brought up by the developers of [nf-core/rnaseq](https://nf-co.re/rnaseq) and [nf-core/methylseq](https://nf-co.re/methylseq).
+
+Both pipelines recently have experimented with modifying the ways in which modules and processes can get customised by config files.
+Currently, the nf-core template has a single file - `conf/modules.conf` - where all module-level configurations occur (specifying additional arguments, file publication specifications etc.).
+
+The two pipelines, however, have opted to split this single monolithic file into multiple files, with one config file per module e.g. [in this nf-core/methylseq PR](https://github.com/nf-core/methylseq/commit/7b276c97589b65153ae23b34fcf4f6da86bb8d70).
+
+The main goal of this approach is to make CI testing more efficient by allowing changes to a specific config to trigger only the related tests rather than the entire test suite (since all modules are currently dependent on a single config file).
+Another reason is to increase the modularity and portability of modules and their configurations.
+
+This proposal initially brought up a lot of consternation with most of the other maintainers present. The primary issue was the potential impact on usability, specifically regarding the ease with which users can locate customized parameters within each module.
+Currently, we can direct users to a single file within a single directory, simplifying their search.
+
+Splitting configurations into potentially hundreds of files could make it significantly harder for users to find what they need. It's also unclear if another file has an overriding setting for a module, for example that's defined in the subworkflow folder rather than the module folder. Additionally, this approach isn’t currently supported by Nextflow’s native capabilities, which would allow modules to automatically detect and load nextflow.config files alongside main.nf. As a result, a substantial amount of manual work would be needed to manually include each module’s config.
+
+A lengthy discussion ensued, weighing user readability against developer efficiency and which should take priority. For instance, efficiency improvements could be made at the level of nf-core/tools or GitHub CI configurations, where optimizations might achieve similar goals.
+Alternatively, waiting for native Nextflow support could eventually reduce the workload on developers.
+
+The sarek developers proposed a middle ground that has worked well in sarek: triggering tests on smaller chunks while maintaining findability. Their approach involves naming config files after each process and storing all configs within a `conf/modules/` folder. This setup makes configurations easy to locate and include while still achieving modularity. see sarek's module configs organization [here](https://github.com/nf-core/sarek/tree/master/conf/modules)
+
+A general agreement was that this new system is not yet palatable to enough for maintainers to propose pushing split configs to the template. However, `nf-core/rnaseq` and `nf-core/methylseq` can continue to refine this approach based on what `nf-core/sarek` developers have proposed.
+
+Developers agreed to revisit and review this approach again in a couple of months.
+
+## Modification of modules specifications regarding channels
+
+Finally, we debated pros- and cons- of different ways of structuring input channels in modules.
+
+In the initial design of DSL2 nf-core modules, it was decided to require one input channel per file type, and not support 'mega-tuples', due to readability and portability.
+
+For example, this was found to be less readable:
+
+```nextflow
+input:
+tuple value(meta), path(bam), path(bai), path(fasta), path(fai), path(dict)
+```
+
+Compared to:
+
+```nextflow
+input:
+tuple value(meta), path(bam)
+tuple value(meta), path(bai)
+tuple value(meta), path(fasta)
+tuple value(meta), path(fai)
+tuple value(meta), path(dict)
+```
+
+Where ensuring each file was associated with it's companion could be facilitated with (relatively) standardised `multiMap()` calls.
+
+```nextflow
+combined_channel.multiMap { meta, bam, bai, fasta, fai, dict ->
+    bam: tuple( meta, bam )
+    bai: tuple( meta, bai )
+    fasta: tuple ( meta, fasta )
+    fai: tuple ( meta, fai )
+    dict: tuple ( meta, dict )
+}
+.set { process_in }
+
+PROCESS (
+    process_in.bam,
+    process_in.bai,
+    process_in.fasta,
+    process_in.fai,
+    process_in.dict,
+)
+```
+
+:::info
+`multiMap` should only be used in this way when directly providing process inputs. It's not a general method of synchronising channel inputs.
+:::
+
+By forcing a particular structure of a singular input tuple (former example), it restricted pipeline developers in how they can do their own file shuttling between processes, potentially requiring many custom `map` functions to restructure channels.
+
+On the flipside, there are some instances (think `samtools`) where a particular file will _always_ be accompanied by a secondary file such as index files.
+By combining these into a single tuple would make it easier to chain such modules with extremely uniform input file requirements.
+
+Recently the module specifications had been relaxed to allow such cases of the former, but also in particular that different file format variants serving the same function (`.bai` vs `.csi` files for example), could be represented in the same element of a 'collapsed' input channel.
+
+For example, an output channel could be like so:
+
+```nextflow
+output:
+tuple value(meta), path("*bam"), path(".{bai,csi}"),
+path(fasta)
+path(fai)
+path(dict)
+```
+
+Some maintainers expressed a preference for a stricter approach, advocating for each input file to be provided in its own input channel. Their concern was that shared channels could introduce risks, such as misconfiguration, where the wrong type of index file could inadvertently be supplied, causing the pipeline to fail if a downstream process receives an incompatible file type.
+
+We discussed the potential benefits of ‘typed’ inputs—possibly a future feature in Nextflow—versus the importance of code clarity, which is challenged by the need to repeatedly use .join and .combine after each module call.
+
+Differing philosophies emerged: some felt it essential to design pipelines that prevent all possible user errors, while others suggested pipelines should support only specific configurations and parameters, with any deviations (e.g., via ext.args) being at the user’s own risk.
+
+This discussion remains unresolved, and will likely rear it's head again in the future.
+
+## The end
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and slack threads!
+
+\- :heart: from your #maintainers team!

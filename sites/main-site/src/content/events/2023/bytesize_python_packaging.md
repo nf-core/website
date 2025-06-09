@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Converting Python scripts into packages for PyPI, Bioconda & Biocontainers'
+title: "Bytesize: Converting Python scripts into packages for PyPI, Bioconda & Biocontainers"
 subtitle: Phil Ewels - Seqera Labs
 type: talk
-startDate: '2023-05-02'
-startTime: '13:00+02:00'
-endDate: '2023-05-02'
-endTime: '13:30+02:00'
+startDate: "2023-05-02"
+startTime: "13:00+02:00"
+endDate: "2023-05-02"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=hOuS6mXCwhk
 locations:
   - name: Online

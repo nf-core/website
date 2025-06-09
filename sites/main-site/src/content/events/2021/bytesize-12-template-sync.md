@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 12: Template sync - how to merge automated PRs'
+title: "Bytesize 12: Template sync - how to merge automated PRs"
 subtitle: Phil Ewels - SciLifeLab, Sweden
 type: talk
-startDate: '2021-05-11'
-startTime: '13:00+02:00'
-endDate: '2021-05-11'
-endTime: '13:30+02:00'
+startDate: "2021-05-11"
+startTime: "13:00+02:00"
+endDate: "2021-05-11"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/-CZKoo5Y_08
 locations:
   - name: Online

@@ -89,7 +89,7 @@ You can try out some commands, for example listing available nf-core pipelines:
 
 ![nf-core list](/images/contributing/creating_with_nf_core/nfcore_list.svg)
 
-In this tutorial we will focus on creating a pipeline, but please do look at the functionality that nf-core/tools provides to you as a user - especially `nf-core launch` and `nf-core download`.
+In this tutorial we will focus on creating a pipeline, but please do look at the functionality that nf-core/tools provides to you as a user - especially `nf-core pipelines launch` and `nf-core pipelines download`.
 
 ## Creating a pipeline
 
@@ -114,7 +114,7 @@ cd nf-core-demo/
 
 ### Pipeline git repo
 
-The `nf-core create` command has made a fully fledged pipeline for you.
+The `nf-core pipelines create` command has made a fully fledged pipeline for you.
 Before getting too carried away looking at all of the files, note that it has also initiated a git repository:
 
 ![git status](/images/contributing/creating_with_nf_core/git_status.svg)
@@ -165,7 +165,7 @@ Customising the template is part of writing your new pipeline.
 However, not _all_ files should be edited - indeed, nf-core strives to promote standardisation amongst pipelines.
 
 To try to keep pipelines up to date and using the same code where possible, we have an automated code linting tool for nf-core pipelines.
-Running `nf-core lint` will run a comprehensive test suite against your pipeline:
+Running `nf-core pipelines lint` will run a comprehensive test suite against your pipeline:
 
 ```bash
 cd nf-core-demo/
@@ -193,7 +193,7 @@ nf-core lint
 
 Whilst it's helpful to be able to run the nf-core lint tests locally, their real strength is the combination with CI (continuous integration) testing.
 By default, nf-core pipelines are configured to run CI tests on GitHub every time you push to the repo or open a pull request.
-The same `nf-core lint` command runs on your code on the automated machines.
+The same `nf-core pipelines lint` command runs on your code on the automated machines.
 If there are any failures, they will be reported with a ❌ and you will not be able to merge the pull-request until you push more commits that fix those failures.
 
 These automated tests allow us to maintain code quality in a scalable and standardised way across the community.
@@ -251,7 +251,7 @@ nextflow run nf-core-demo/ -profile test,docker
 If you peek inside the `nextflow_schema.json` file you will see that it is quite an intimidating thing.
 The file is large and complex, and very easy to break if edited manually.
 
-Thankfully, we provide a user-friendly tool for editing this file: `nf-core schema build`.
+Thankfully, we provide a user-friendly tool for editing this file: `nf-core pipelines schema build`.
 
 To see this in action, let's add some new parameters to `nextflow.config`:
 
@@ -264,7 +264,7 @@ params {
     // rest of the config file..
 ```
 
-Then run `nf-core schema build`:
+Then run `nf-core pipelines schema build`:
 
 ```bash
 cd nf-core-demo/
@@ -368,7 +368,7 @@ Write some code to invoke the process above:
     // MODULE: Echo reads
     //
     ECHO_READS (
-        INPUT_CHECK.out.reads
+        ch_samplesheet
     )
 ```
 
@@ -380,7 +380,7 @@ and call it in the main `workflow` definition after `FASTQC`:
     // MODULE: Run FastQC
     //
     FASTQC (
-        INPUT_CHECK.out.reads
+        ch_samplesheet
     )
     ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 
@@ -745,7 +745,7 @@ We now just need to call the `FASTP` process in the main `workflow`. Paste the s
     // MODULE: Run Fastp trimming
     //
     FASTP (
-        INPUT_CHECK.out.reads,
+        ch_samplesheet,
         [],
         false,
         false

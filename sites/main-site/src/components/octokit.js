@@ -1,27 +1,68 @@
 import * as dotenv from 'dotenv';
 import { Octokit } from 'octokit';
+import { retry } from "@octokit/plugin-retry";
+import { throttling } from "@octokit/plugin-throttling";
 
-if (!import.meta.env) {
-  dotenv.config();
+// Get GitHub token from the appropriate environment
+let GITHUB_TOKEN;
+
+// Load environment variables
+dotenv.config();
+
+try {
+  // Try to use Astro environment if available
+  if (typeof import.meta !== 'undefined' && import.meta.env) {
+    const astroEnv = await import('astro:env/server');
+    GITHUB_TOKEN = astroEnv.GITHUB_TOKEN;
+    console.log("Using GITHUB_TOKEN from Astro environment");
+  } else {
+    // Fall back to process.env
+    GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    console.log("Using GITHUB_TOKEN from process.env");
+  }
+} catch (error) {
+  // Fall back to process.env if Astro import fails
+  GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  console.log("error:", error);
+  console.log("Astro environment not detected, using process.env.GITHUB_TOKEN");
 }
-export const octokit = new Octokit({
-  // different env vars for node (used for scripts in `bin/`) and astro
-  auth: import.meta.env ? import.meta.env.GITHUB_TOKEN : process.env.GITHUB_TOKEN,
+
+// For Astro, we need to access the token through import.meta.env.GITHUB_TOKEN
+// Note that this needs to be available server-side
+const MyOctokit = Octokit.plugin(retry, throttling);
+export const octokit = new MyOctokit({
+  auth: GITHUB_TOKEN,
+  throttle: {
+    onRateLimit: (retryAfter, options, octokit, retryCount) => {
+      console.log(`Request quota exhausted for request ${options.method} ${options.url}. Retrying in ${retryAfter} seconds. Retry count: ${retryCount}`);
+
+      if (retryCount < 1) {
+        // only retries once
+        console.log(`Retrying after ${retryAfter} seconds!`);
+        return true;
+      }
+    },
+    onSecondaryRateLimit: (retryAfter, options, octokit) => {
+      // does not retry, only logs a warning
+      console.log(`Secondary quota detected for request ${options.method} ${options.url}`);
+    },
+  },
+  retry: {
+    doNotRetry: ["429"],
+  },
 });
+
 export default octokit;
 
 export async function getCurrentRateLimitRemaining() {
   try {
     // Make a request to any endpoint (e.g., get the authenticated user)
-    const response = await octokit.rest.repos.get({
-      owner: 'nf-core',
-      repo: 'nf-co.re',
+    const { data: response } = await octokit.request('GET /rate_limit', {
+      headers: {
+        'X-GitHub-Api-Version': '2022-11-28'
+      }
     });
-
-    // Get the 'x-ratelimit-remaining' header from the response headers
-    const rateLimitRemaining = response.headers['x-ratelimit-remaining'];
-
-    console.log(`Rate limit remaining: ${rateLimitRemaining}`);
+    console.log(`Rate limit remaining: ${response.resources.core.remaining} out of ${response.resources.core.limit}, reset at ${new Date(response.resources.core.reset * 1000).toLocaleString()}`);
   } catch (error) {
     console.error('Error occurred:', error);
   }
@@ -114,7 +155,7 @@ export const getGitHubFile = async (repo, path, ref) => {
       }
       return content;
     } else {
-      // console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(`File ${path} not found in ${repo} ${ref}`);
       console.log(response.url);
       return null;
     }

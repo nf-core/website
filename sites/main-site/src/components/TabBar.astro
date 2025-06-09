@@ -23,12 +23,12 @@ if (!activeItem) {
                 return (
                     <li class="nav-item">
                         <a
-                            class={'nav-link ' + (item.active ? 'active' : '')}
+                            class={"nav-link " + (item.active ? "active" : "")}
                             href={item.href}
                             rel="prefetch"
-                            title={item.label.toLowerCase().replaceAll(' ', '_')}
+                            title={item.label.toLowerCase().replaceAll(" ", "_")}
                         >
-                            <i class={item.icon ? item.icon : 'fa-regular fa-book'} /> {item.label}
+                            <i class={item.icon ? item.icon : "fa-regular fa-book"} /> {item.label}
                         </a>
                     </li>
                 );
@@ -51,7 +51,7 @@ if (!activeItem) {
                 aria-haspopup="true"
                 aria-expanded="false"
             >
-                <i class={activeItem.icon ? activeItem.icon : 'fa-regular fa-book'}></i>
+                <i class={activeItem.icon ? activeItem.icon : "fa-regular fa-book"}></i>
                 {activeItem.label}
             </button>
             <div class="dropdown-menu py-1" aria-labelledby="tabs">
@@ -59,11 +59,11 @@ if (!activeItem) {
                     items.map((item) => {
                         return (
                             <a
-                                class={'dropdown-item px-2 ' + (item.active ? 'active' : '')}
+                                class={"dropdown-item px-2 " + (item.active ? "active" : "")}
                                 href={item.href}
                                 rel="prefetch"
                             >
-                                <i class:list={['fa-fw', item.icon, { 'fa-regular fa-book': !item.icon }]} />{' '}
+                                <i class:list={["fa-fw", item.icon, { "fa-regular fa-book": !item.icon }]} />{" "}
                                 {item.label}
                             </a>
                         );

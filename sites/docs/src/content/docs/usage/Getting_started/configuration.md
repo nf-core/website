@@ -7,11 +7,11 @@ weight: 3
 # Introduction
 
 One of the strongest features of Nextflow is that it can run on virtually any computational infrastructure.
-It has built-in support for HPC execution schedulers such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), [PBS](https://www.openpbs.org/), [LSF](https://www.ibm.com/support/knowledgecenter/en/SSWRJV_10.1.0/lsf_welcome/lsf_welcome.html) and more as well as cloud compute infrastructure such as [AWS Batch](https://aws.amazon.com/batch/) and [Google Cloud](https://cloud.google.com/).
+It has built-in support for HPC execution schedulers (such as [Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), and [others](https://www.nextflow.io/docs/latest/executor.html)) and cloud compute infrastructure (such as [AWS Batch](https://aws.amazon.com/batch/), [Google Cloud](https://cloud.google.com/) and [others](https://www.nextflow.io/docs/latest/executor.html)).
 
-Nextflow also supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), [Podman](https://podman.io/), [Charliecloud](https://hpc.github.io/charliecloud/), [Shifter](https://www.nersc.gov/research-and-development/user-defined-images/), as well as the [Conda](https://docs.conda.io/en/latest/) package management system to deploy the pipelines.
+For dependency management, Nextflow supports container engines such as [Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), and [others](https://www.nextflow.io/docs/latest/container.html), and dependency management systems ([Conda](https://docs.conda.io/en/latest/) and [Spack](https://spack.readthedocs.io/en/latest/)) to deploy the pipelines.
 
-In order to get nf-core pipelines to run properly on your system, you will need to install one of the aforementioned software (See [Installation](https://nf-co.re/docs/usage/installation/) page) and configure Nextflow so that it knows how best to run your analysis jobs.
+To get nf-core pipelines to run properly on your system, you must install your dependency management software of choice (see [Installation](/docs/usage/getting_started/installation)) and configure Nextflow to run your workflows.
 
 # Different config locations
 
@@ -64,7 +64,7 @@ If you use a shared system with other people (such as a HPC or institutional ser
 These are shared config profiles loaded by all nf-core pipelines at run time.
 
 You may find that your system already has a shared profile available here (see [https://github.com/nf-core/configs](https://github.com/nf-core/configs)).
-If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/usage/tutorials/step_by_step_institutional_profile) to add your cluster.
+If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles) to add your cluster.
 
 ## Custom configuration files
 
@@ -112,18 +112,42 @@ For more information on how to specify an executor, please refer to the [Nextflo
 
 In addition to the executor, you may find that pipeline runs occasionally fail due to a particular step of the pipeline requesting more resources than you have on your system.
 
+To avoid these failures, you can tell Nextflow to set a cap pipeline-step resource requests against a list called `resourceLimits` specified in Nextflow config file. These should represent the maximum possible resources of a machine or node.
+
+For example, you can place into a file the following:
+
+```groovy
+process {
+  resourceLimits = [
+    cpus: 32,
+    memory: 256.GB,
+    time: 24.h
+  ]
+}
+```
+
+And supply this in your pipeline run command with `-c <custom>.config`. Then, during a pipeline run, if, for example, a job exceeds the default memory request, it will be retried, increasing the memory each time until either the job completes or until it reaches a request of `256.GB`.
+
+Therefore, these parameters only act as a _cap_ to prevent Nextflow from submitting a single job requesting resources more than what is possible on your system and requests getting out of hand.
+
+Note that specifying these will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for more infomation.
+
+:::note{collapse title="Note on older nf-core pipelines"}
+
+If you wish to use pipelines generated with the nf-core template before `v3.0.0`, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
+
+In addition to the executor, you may find that pipeline runs occasionally fail due to a particular step of the pipeline requesting more resources than you have on your system.
+
 To avoid these failures, all nf-core pipelines [check](https://github.com/nf-core/tools/blob/99961bedab1518f592668727a4d692c4ddf3c336/nf_core/pipeline-template/nextflow.config#L206-L237) pipeline-step resource requests against parameters called `--max_cpus`, `--max_memory` and `--max_time`. These should represent the maximum possible resources of a machine or node.
 
 These parameters only act as a _cap_, to prevent Nextflow submitting a single job requesting resources more than what is possible on your system.
 
-:::warning
 Increasing these values from the defaults will not _increase_ the resources available to the pipeline tasks! See [Tuning workflow resources](#tuning-workflow-resources) for this.
-:::
 
 Most pipelines will attempt to automatically restart jobs that fail due to lack of resources with double-requests, these caps keep those requests from getting out of hand and crashing the entire pipeline run. If a particular job exceeds the process-specific default resources and is retried, only resource requests (cpu, memory, or time) that have not yet reached the value set with `--max_<resource>` will be increased during the retry.
 
-:::warning
 Setting the `--max_<resource>` parameters do not represent the total sum of resource usage of the pipeline at a given time - only a single pipeline job!
+
 :::
 
 ## Tuning workflow resources
@@ -138,7 +162,38 @@ Where possible we try to get tools to make use of the resources available, for e
 
 To tune workflow resources to better match your requirements, we can tweak these through [custom configuration files](#custom-configuration-files) or [shared nf-core/configs](#shared-nf-coreconfigs).
 
-By default, most process resources are specified using process _labels_, for example with the following base config:
+By default, most process resources are specified using process _labels_, as in the following example base config:
+
+```groovy
+process {
+  resourceLimits = [
+    cpus: 32,
+    memory: 256.GB,
+    time: 24.h
+  ]
+  withLabel:process_low {
+    cpus   = { 2 * task.attempt }
+    memory = { 14.GB * task.attempt }
+    time   = { 6.h  * task.attempt }
+  }
+  withLabel:process_medium {
+    cpus   = { 6  * task.attempt }
+    memory = { 42.GB * task.attempt }
+    time   = { 8.h * task.attempt }
+  }
+  withLabel:process_high {
+    cpus   = { 12 * task.attempt }
+    memory = { 84.GB * task.attempt }
+    time   = { 10.h * task.attempt }
+  }
+}
+```
+
+The `resourceLimits` list sets the absolute maximums any pipeline job can request (typically corresponding to the maximum available resources on your machine). The label blocks indicate the initial 'default' resources a pipeline job will request. For most nf-core pipelines, if a job runs out of memory, it will retry the job but increase the amount of resource requested up to the `resourceLimits` maximum.
+
+:::note{collapse title="Note on older nf-core pipelines"}
+
+If you wish to use pipelines generated with the nf-core template before `v3.0.0`, and/or when running with Nextflow versions earlier than 24.04.0 you may need use a different syntax to prevent the resources from exceeding a maximum limit.
 
 ```groovy
 process {
@@ -164,15 +219,15 @@ process {
   - If you want to use `check_max()` in a **custom config** file, you must copy the function to the end of your config _outside_ of any configuration scopes! It will _not_ be inherited from `base.config`.
 - The `* task.attempt` means that these values are doubled if a process is automatically retried after failing with an exit code that corresponds to a lack of resources.
 
-:::warning
 If you want to use the `check_max()` function in your custom config, you must copy the function in the link above to the bottom of your custom config
+
 :::
 
 :::warning
 You don't need to copy all of the labels into your own custom config file, only overwrite the things you wish to change
 :::
 
-If you want to give more memory to _all_ large tasks across most nf-core pipelines, would would specify in a custom config file:
+If you want to give a hard-coded memory to _all_ large tasks across most nf-core pipelines (without increases during retries), we would specify in a custom config file:
 
 ```groovy
 process {
@@ -182,12 +237,12 @@ process {
 }
 ```
 
-You can be more specific than this by targeting a given process name instead of it's label using `withName`. You can see the process names in your console log when the pipeline is running For example:
+You can also be more specific than this by targeting a given _process_ (job) name instead of its label using `withName`. You can see the process names in your console log when the pipeline is running For example:
 
 ```groovy
 process {
   withName: STAR_ALIGN {
-    cpus = 32
+    cpus = { 32 * task.attempt }
   }
 }
 ```
@@ -295,7 +350,7 @@ Sometimes tool developers change how tool versions are reported between updates.
 
 In some cases you may wish to understand which tool arguments or options a pipeline uses, or even update or change these for your own analyses.
 
-You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
+You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/2.0.0/parameters#annotation_bakta_mincontiglen) in [nf-core/funcscan](https://nf-co.re/funcscan).
 
 ### Finding already used arguments
 

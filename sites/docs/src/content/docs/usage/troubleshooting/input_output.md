@@ -27,8 +27,8 @@ nextflow run nf-core/<pipeline> -profile <profile> -params-file params.yml
 Where the `params.yml` file contains the pipeline params:
 
 ```yaml title="params.yml"
-input: '/<path>/<to>/<data>/input'
-igenomes_base: '/<path>/<to>/<data>/igenomes'
+input: "/<path>/<to>/<data>/input"
+igenomes_base: "/<path>/<to>/<data>/igenomes"
 ```
 
 ## Input glob pattern errors

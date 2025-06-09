@@ -2,25 +2,24 @@
 title: Create a new pipeline
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 10
-type: 'tutorial'
+type: "tutorial"
 ---
 
 # Create a pipeline from the template
 
 ## Request a new pipeline
 
-Before you get too carried away, the first task is to request the new pipeline in the nf-core Slack.
-We have a Slack channel dedicated to this: `#new-pipelines`.
+Before you get too carried away, the first task is to propose the pipeline on [nf-core/proposals](https://github.com/nf-core/proposals).
 
-There, you will find a _Workflow_ bookmarked to top of the Slack window called _Pipeline proposal_.
+There, you will find a dedicated _Issue_ template for you to fill out.
 This gives you a form to fill in with key information about the pipeline you want to write.
 
 The proposal will be discussed and checked for uniqueness (not too much overlap with any existing pipelines)
-and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/35/) on GitHub.
+and added to our [new pipeline tracking board](https://github.com/orgs/nf-core/projects/104) on GitHub.
 
-Once accepted, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
+**Once accepted**, someone from the core team will create a Slack channel for your pipeline and you can get started on the next steps.
 
-You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics.
+You should also at this point additionally join the [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) channel for major change announcements as well as general discussion on pipeline development related topics, and [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to help you get your two reviews for you eventual first release.
 
 ## Create the pipeline
 
@@ -32,7 +31,7 @@ This way we avoid having a lot of "empty" pipelines listed which are basically j
 See [Adding your pipeline to the nf-core organisation](/docs/tutorials/adding_a_pipeline/move_to_nf-core_org) for details on this process.
 
 All nf-core pipelines [_must_ use the nf-core template](/docs/guidelines/pipelines/requirements/use_the_template).
-This is done by using the `nf-core create` command - see [the docs](/docs/nf-core-tools/pipelines/create) for detailed instructions.
+This is done by using the `nf-core pipelines create` command - see [the docs](/docs/nf-core-tools/pipelines/create) for detailed instructions.
 This tool does lots of things for you: it gives you the correct file structure and boiler plate code
 and also sets up the required `git` infrastructure for you to keep your pipeline in sync in the future.
 
@@ -57,7 +56,7 @@ Make sure _not_ to initialise it with _any_ file, `README` or `LICENSE`: you jus
 You already have these files generated from the nf-core template.
 
 Once created, copy the git URL and add this as a remote to your local git repository.
-The `nf-core create` command will have initialised a git repository for you,
+The `nf-core pipelines create` command will have initialised a git repository for you,
 so all you need to do is add the remote:
 
 ```bash
@@ -84,7 +83,7 @@ You can now start writing code for real.
 
 Follow usual git development practices, working on the `dev` branch and committing + pushing code as normal.
 
-Remember to run the `nf-core lint` command (see [docs](/docs/nf-core-tools/pipelines/lint))
+Remember to run the `nf-core pipelines lint` command (see [docs](/docs/nf-core-tools/pipelines/lint))
 to make sure that your workflow passes all of the nf-core compatibility tests.
 The automated tests on Github Actions also run this, so you should get a
 notification from GitHub if something breaks.

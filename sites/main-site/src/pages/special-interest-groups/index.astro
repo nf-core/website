@@ -1,11 +1,12 @@
 ---
-import SpecialInterestGroupsListing from '@components/SpecialInterestGroupsListing.svelte';
-import ListingLayout from '@layouts/ListingLayout.astro';
-import { getCollection } from 'astro:content';
-let groups = await getCollection('special-interest-groups');
+import SpecialInterestGroupsListing from "@components/SpecialInterestGroupsListing.svelte";
+import ListingLayout from "@layouts/ListingLayout.astro";
+import { getCollection } from "astro:content";
+let groups = await getCollection("special-interest-groups");
+
 groups = groups
-    .filter((group) => group.id.includes('index.md'))
-    .sort((a, b) => a.data.title.localeCompare(b.data.title));
+    .filter((group) => group.filePath?.includes("index.md"))
+    .sort((a, b) => a.data.groupName.localeCompare(b.data.groupName));
 ---
 
 <ListingLayout
@@ -18,8 +19,8 @@ groups = groups
         To find out more about Special Interest Groups, read the <a href='/blog/2024/special_interest_groups'>announcement blog post</a>.
     `
     displayStyle={[
-        { name: 'grid', icon: 'fa-regular fa-grid-2' },
-        { name: 'table', icon: 'fa-regular fa-bars' },
+        { name: "grid", icon: "fa-regular fa-grid-2" },
+        { name: "table", icon: "fa-regular fa-bars" },
     ]}
     viewTransitions={true}
     filter={[]}

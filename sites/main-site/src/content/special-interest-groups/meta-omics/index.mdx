@@ -1,0 +1,54 @@
+---
+title: Introduction
+subtitle: "Community of researchers investigating biological community composition and dynamics using metagenomic, metatranscriptomic, and metaproteomic approaches."
+groupName: Meta-omics
+leads:
+    - jfy133: James Fellows Yates
+    - erikrikarddaniel: Daniel Lundin
+    - carsonjm: Carson J. Miller
+pipelines:
+    - ampliseq
+    - createtaxdb
+    - differentialabundance
+    - eager
+    - funcscan
+    - mag
+    - magmap
+    - metatdenovo
+    - phageannotator
+    - phyloplace
+    - rnaseq
+    - taxprofiler
+---
+
+import metro_omics_metro from "@assets/images/special-interest-groups/meta-omics/nf-core-meta-omics-metro.png";
+import { Image } from "astro:assets";
+
+# Introduction
+
+Meta-omics methods aim to simultaneously analyse the entire multi-species potential and realised functional capacity of a biological sample. In other words to taxonomically and functionally characterise all organisms and their activity in a community.
+
+The initial aims of this interest group will be:
+
+1. Helping coordinate compatibility between existing and potential meta-omic nf-core pipelines
+2. Implementing semi-'chaining' of sequential pipelines
+3. Developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
+4. Documenting usage of 'first level' meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines (e.g., funcscan, phageannotator, phyloplace, rnaseq, differentialabundance) etc.
+
+<Image
+    src={metro_omics_metro}
+    class="d-block m-auto"
+    width={800}
+    density={[1.5, 2]}
+    alt="Diagram showcasing how nf-core pipelines can potentially be used for complementary and sequential analysis within meta-omics disciplines using a London Underground style 'tube map'"
+/>
+
+Depending on interest/activity, other potential activities could include:
+
+1. Benchmarking meta-omic pipelines using relevant datasets (i.e. CAMI2), or reads generated using #readsimulator
+2. Adding nf-tests to meta-omic pipelines
+3. Reducing functional redundancy between pipelines
+
+# Activities
+
+Initial activities will involve a monthly meeting with developers and users, to identify the most relevant problems related meta-omics with nf-core pipelines. Future activities may include presentations and discussions from topic-experts, as well as tutorials, workshops, and demo-days of nf-core pipelines.
