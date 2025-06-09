@@ -72,10 +72,10 @@
                 }
               },
               {
-                "*.abacas*": {
+                "${prefix}.*": {
                   "type": "file",
                   "description": "List containing abacas output files\n[ 'test.abacas.bin', 'test.abacas.fasta', 'test.abacas.gaps',\n'test.abacas.gaps.tab', 'test.abacas.nucmer.delta',\n'test.abacas.nucmer.filtered.delta', 'test.abacas.nucmer.tiling',\n'test.abacas.tab', 'test.abacas.unused.contigs.out',\n'test.abacas.MULTIFASTA.fa' ]\n",
-                  "pattern": "*.{abacas}*",
+                  "pattern": "${prefix}.*",
                   "ontologies": []
                 }
               }
@@ -3191,7 +3191,7 @@
                 }
               },
               {
-                "${meta.id}/": {
+                "${prefix}/": {
                   "type": "directory",
                   "description": "The output directory that contains the summary output and related alignment files for one sample.",
                   "pattern": "/*"
@@ -3208,7 +3208,7 @@
                 }
               },
               {
-                "${meta.id}/contig_gbks/": {
+                "${prefix}/contig_gbks/": {
                   "type": "directory",
                   "description": "The output subdirectory that contains the gbk files containing the AMP hits for each sample.",
                   "pattern": "/*/contig_gbks"
@@ -3225,7 +3225,7 @@
                 }
               },
               {
-                "${meta.id}/${meta.id}_mmseqs_matches.tsv": {
+                "${prefix}/${prefix}_mmseqs_matches.tsv": {
                   "type": "file",
                   "description": "An alignment file containing the results from the MMseqs2 alignment step done on all AMP hits.",
                   "pattern": "/*/*_mmseqs_matches.tsv"
@@ -3242,7 +3242,7 @@
                 }
               },
               {
-                "${meta.id}/${meta.id}_ampcombi.tsv": {
+                "${prefix}/${prefix}_ampcombi.tsv": {
                   "type": "file",
                   "description": "A file containing the summary report of all predicted AMP hits from all AMP tools given as input, the corresponding taxonomic and functional classification from the alignment step and the estimated physiochemical properties.",
                   "pattern": "/*/*_ampcombi.tsv"
@@ -3259,7 +3259,7 @@
                 }
               },
               {
-                "${meta.id}/${meta.id}_amp.faa": {
+                "${prefix}/${prefix}_amp.faa": {
                   "type": "file",
                   "description": "A fasta file containing the amino acid sequences of all predicted AMP hits.",
                   "pattern": "/*/*_amp.faa"
@@ -3276,7 +3276,7 @@
                 }
               },
               {
-                "${meta.id}/${meta.id}_ampcombi.log": {
+                "${prefix}/${prefix}_ampcombi.log": {
                   "type": "file",
                   "description": "A log file that captures the standard output per sample in a log file. Can be activated by `--log`.",
                   "pattern": "/*/*.log"
@@ -5051,7 +5051,13 @@
         "maintainers": [
           "@LeonHafner"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "scdownstream",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "annosine",
@@ -7172,7 +7178,7 @@
           ],
           [
             {
-              "meta": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
@@ -8695,7 +8701,7 @@
         "input": [
           [
             {
-              "\"jsons/*\"": {
+              "jsons/*": {
                 "type": "file",
                 "description": "JSON files",
                 "pattern": "*.json"
@@ -16899,13 +16905,19 @@
               "samplesheet": {
                 "type": "file",
                 "description": "Input samplesheet",
-                "pattern": "*.{csv}"
+                "pattern": "*.{csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             },
             {
               "run_dir": {
                 "type": "file",
-                "description": "Input run directory containing RunInfo.xml and BCL data\nCould be a directory or a tar of the directory\n"
+                "description": "Input run directory containing RunInfo.xml and BCL data\nCould be a directory or a tar of the directory\n",
+                "ontologies": []
               }
             }
           ]
@@ -16917,14 +16929,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Demultiplexed sample FASTQ files",
-                  "pattern": "**_S*_L00?_R?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**_S[1-9]*_R?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Demultiplexed sample FASTQ files",
-                  "pattern": "**_S*_L00?_R?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16935,14 +16957,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional demultiplexed index FASTQ files",
-                  "pattern": "**_S*_L00?_I?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**_S[1-9]*_I?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional demultiplexed index FASTQ files",
-                  "pattern": "**_S*_L00?_I?_00?.fastq.gz"
+                  "pattern": "**_S*_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16953,14 +16985,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional undetermined sample FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**Undetermined_S0*_R?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional undetermined sample FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_R?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16971,14 +17013,24 @@
                 "meta": {
                   "type": "file",
                   "description": "Optional undetermined index FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               },
               {
                 "output/**Undetermined_S0*_I?_00?.fastq.gz": {
                   "type": "file",
                   "description": "Optional undetermined index FASTQ files",
-                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz"
+                  "pattern": "Undetermined_S0_L00?_I?_00?.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -16989,14 +17041,30 @@
                 "meta": {
                   "type": "file",
                   "description": "Demultiplexing Reports",
-                  "pattern": "Reports/*.{csv,xml}"
+                  "pattern": "Reports/*.{csv,xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               },
               {
                 "output/Reports": {
                   "type": "file",
                   "description": "Demultiplexing Reports",
-                  "pattern": "Reports/*.{csv,xml}"
+                  "pattern": "Reports/*.{csv,xml}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -17007,14 +17075,16 @@
                 "meta": {
                   "type": "file",
                   "description": "Log files",
-                  "pattern": "Logs/*.{log,txt}"
+                  "pattern": "Logs/*.{log,txt}",
+                  "ontologies": []
                 }
               },
               {
                 "output/Logs": {
                   "type": "file",
                   "description": "Log files",
-                  "pattern": "Logs/*.{log,txt}"
+                  "pattern": "Logs/*.{log,txt}",
+                  "ontologies": []
                 }
               }
             ]
@@ -17025,14 +17095,16 @@
                 "meta": {
                   "type": "file",
                   "description": "Interop files",
-                  "pattern": "*.{bin}"
+                  "pattern": "*.{bin}",
+                  "ontologies": []
                 }
               },
               {
-                "**/InterOp/*.bin\", includeInputs: true": {
+                "**/InterOp/*.bin": {
                   "type": "file",
                   "description": "Interop files",
-                  "pattern": "*.{bin}"
+                  "pattern": "*.{bin}",
+                  "ontologies": []
                 }
               }
             ]
@@ -17043,7 +17115,12 @@
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software versions",
-                  "pattern": "versions.yml"
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
                 }
               }
             ]
@@ -24165,9 +24242,9 @@
                 }
               },
               {
-                "kraken2db               , includeInputs: true": {
+                "kraken2db": {
                   "type": "directory",
-                  "description": "A Kraken2 database directory with required bracken files in side",
+                  "description": "A Kraken2 database directory with required bracken files inside",
                   "pattern": "*/"
                 }
               }
@@ -24182,9 +24259,10 @@
                 }
               },
               {
-                "${kraken2db}/database*\", includeInputs: true": {
+                "${kraken2db}/database*": {
                   "type": "directory",
-                  "description": "Bracken files required to extend the Kraken2 database"
+                  "description": "Bracken files required to extend the Kraken2 database",
+                  "pattern": "*/"
                 }
               }
             ]
@@ -31228,6 +31306,12 @@
         "input": [
           [
             {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
               "bcl": {
                 "type": "file",
                 "description": "Base call files",
@@ -31247,30 +31331,29 @@
         ],
         "output": [
           {
+            "fastq": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/outs/fastq_path/*.fastq.gz": {
+                  "type": "file",
+                  "description": "Unaligned FastQ files",
+                  "pattern": "${prefix}/outs/fastq_path/*.fastq.gz"
+                }
+              }
+            ]
+          },
+          {
             "versions": [
               {
                 "versions.yml": {
                   "type": "file",
                   "description": "File containing software version",
                   "pattern": "versions.yml"
-                }
-              }
-            ]
-          },
-          {
-            "fastq": [
-              {
-                "${bcl.getSimpleName(": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
-                }
-              },
-              {
-                "/*.fastq.gz": {
-                  "type": "file",
-                  "description": "Unaligned FastQ files",
-                  "pattern": "*.fastq.gz"
                 }
               }
             ]
@@ -41227,6 +41310,154 @@
         ],
         "maintainers": [
           "@maxulysse"
+        ]
+      }
+    },
+    {
+      "name": "crabs_import",
+      "path": "modules/nf-core/crabs/import/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabs_import",
+        "description": "In-house generated or curated data can be imported into CRABS.",
+        "keywords": [
+          "insilico",
+          "amplicon",
+          "sequencing",
+          "inhouse"
+        ],
+        "tools": [
+          {
+            "crabs": {
+              "description": "Crabs (Creating Reference databases for Amplicon-Based Sequencing)\nis a program to download and curate reference databases\nfor eDNA metabarcoding analyses\n",
+              "homepage": "https://github.com/gjeunen/reference_database_creator",
+              "documentation": "https://github.com/gjeunen/reference_database_creator?tab=readme-ov-file#running-crabs",
+              "tool_dev_url": "https://github.com/gjeunen/reference_database_creator",
+              "doi": "10.1111/1755-0998.13741",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "In-house sequencing data",
+                "pattern": "*.{fa,fasta}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "accession2taxid": {
+                "type": "file",
+                "description": "Linking accession numbers to taxonomic IDs",
+                "pattern": "*.accession2taxid"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "names": {
+                "type": "file",
+                "description": "Containing information about the phylogenetic name associated with each taxonomic ID",
+                "pattern": "*.dmp"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "nodes": {
+                "type": "file",
+                "description": "Containing information how taxonomic IDs are linked",
+                "pattern": "*.dmp"
+              }
+            }
+          ],
+          [
+            {
+              "import_format": {
+                "type": "string",
+                "description": "Name of the repository from which the data was downloaded, i.e., BOLD, EMBL, GreenGenes, MIDORI, MITOFISH, NCBI, SILVA, or UNITE.",
+                "choices": [
+                  "bold",
+                  "embl",
+                  "greengenes",
+                  "midori",
+                  "mitofish",
+                  "ncbi",
+                  "silva",
+                  "unite"
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "crabsdb": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Reverse complemented Sequence",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab",
+          "@a4000"
+        ],
+        "maintainers": [
+          "@famosab",
+          "@a4000"
         ]
       }
     },
@@ -78703,6 +78934,13 @@
                 "description": "Input genomic vcf files",
                 "pattern": "*.{gvcf,gvcf.gz,g.vcf,g.vcf.gz}"
               }
+            },
+            {
+              "custom_config": {
+                "type": "file",
+                "description": "Custom YML config for additional profiles",
+                "pattern": "*.{yml,yaml}"
+              }
             }
           ],
           [
@@ -78719,6 +78957,14 @@
                 "pattern": "*.bed"
               }
             }
+          ],
+          [
+            {
+              "vcf_output": {
+                "type": "boolean",
+                "description": "Specify to output to VCF format"
+              }
+            }
           ]
         ],
         "output": [
@@ -78726,15 +78972,31 @@
             "bcf": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "merged BCF file",
-                  "pattern": "*.bcf"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "*.bcf": {
                   "type": "file",
                   "description": "merged BCF file",
+                  "pattern": "*.bcf"
+                }
+              }
+            ]
+          },
+          {
+            "vcf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "merged VCF file",
                   "pattern": "*.bcf"
                 }
               }
@@ -83390,10 +83652,6 @@
         {
           "name": "scrnaseq",
           "version": "4.0.0"
-        },
-        {
-          "name": "spatialxe",
-          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -102583,19 +102841,31 @@
             {
               "contrast_variable": {
                 "type": "string",
-                "description": "The column in the sample sheet that should be used to define groups for\ncomparison\n"
+                "description": "(Optional, required if reference and target are used) The column in the sample sheet that should be used to define groups for\ncomparison\n"
               }
             },
             {
               "reference": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
+                "description": "(Optional, required if contrast_variable and target are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the reference samples\n"
               }
             },
             {
               "target": {
                 "type": "string",
-                "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+                "description": "(Optional, required if contrast_variable and reference are used) The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
+              }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Optional, requires comparison if used) R formula string used for modeling, e.g. '~ treatment'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional, mandatory if formula is used) Literal string passed to `limma::makeContrasts`, e.g. 'treatmentmCherry'."
               }
             }
           ],
@@ -102854,7 +103124,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`  \n"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
                 }
               },
               {
@@ -112876,6 +113146,147 @@
           "version": "4.0.0"
         }
       ]
+    },
+    {
+      "name": "metacache_build",
+      "path": "modules/nf-core/metacache/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metacache_build",
+        "description": "Taxonomic profiling database building with MetaCache",
+        "keywords": [
+          "genomics",
+          "metagenomics",
+          "taxonomy",
+          "short reads",
+          "long reads",
+          "kmer",
+          "k-mer",
+          "metacache",
+          "build",
+          "reference"
+        ],
+        "tools": [
+          {
+            "metacache": {
+              "description": "MetaCache is a classification system for mapping genomic sequences (short reads, long reads, contigs, ...) from metagenomic samples to their most likely taxon of origin. It aims to reduce the memory requirement usually associated with k-mer based methods while retaining their speed. MetaCache uses locality sensitive hashing to quickly identify candidate regions within one or multiple reference genomes. A read is then classified based on the similarity to those regions.\n\nFor an independent comparison to other tools in terms of classification accuracy see the LEMMI benchmarking site.\n\nThe latest version of MetaCache classifies around 60 Million reads (of length 100) per minute against all complete bacterial, viral and archaea genomes from NCBI RefSeq Release 97 running with 88 threads on a workstation with 2 Intel(R) Xeon(R) Gold 6238 CPUs.\n",
+              "homepage": "https://muellan.github.io/metacache",
+              "documentation": "https://github.com/muellan/metacache/tree/master/docs",
+              "tool_dev_url": "https://github.com/muellan/metacache",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genome_files": {
+                "type": "file",
+                "description": "(possibly gzipped) fasta or fastq files of full genomes, for example from an NCBI assembly",
+                "pattern": "*.{fna,fa,fasta,fnq,fq,fastq}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1954"
+                  },
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "taxonomy": {
+                "type": "file",
+                "description": "NCBI taxonomy formatted files nodes.dmp and names.dmp",
+                "pattern": "{names,nodes,merged}.dmp",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3028"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "seq2taxid": {
+                "type": "file",
+                "description": "NCBI-style 'accession2taxid' tab-separated file with 3 or 4 columns: accession, accession_version, taxid, and gid (optional)\n",
+                "pattern": "*"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "db": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.meta": {
+                  "type": "file",
+                  "description": "sequence signature database binary file",
+                  "pattern": "*.meta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2333"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.cache*": {
+                  "type": "file",
+                  "description": "sequence signature database binary files",
+                  "pattern": "*.cache+([0-9])",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2333"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Gullumluvl"
+        ],
+        "maintainers": [
+          "@Gullumluvl"
+        ]
+      }
     },
     {
       "name": "metaeuk_easypredict",
@@ -124226,7 +124637,7 @@
                 }
               },
               {
-                "*_filtered.${output_format}": {
+                "${prefix}.${output_format}": {
                   "type": "file",
                   "description": "Filtered reads.",
                   "pattern": "*.{fasta,fastq}{,.gz,.bz2,.lzma}"
@@ -156882,7 +157293,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#format",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -156988,7 +157399,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#pedfilter",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -157070,7 +157481,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#rocplot",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -157294,7 +157705,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://github.com/RealTimeGenomics/rtg-tools",
+              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#vcfeval",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
