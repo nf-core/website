@@ -4,7 +4,7 @@
     import { CurrentFilter, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
-    import { advisories_types } from "./advisoryTypes";
+    import { advisories_types } from "./advisoryUtils";
     import { formatAdvisoryType, getAdvisoryTypeIcon } from "./advisoryUtils";
 
     interface Props {
