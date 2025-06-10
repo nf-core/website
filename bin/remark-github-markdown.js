@@ -1,6 +1,5 @@
 import { visit } from 'unist-util-visit';
 import { toString } from 'mdast-util-to-string';
-import { h } from 'hastscript';
 
 // Precompile regex patterns for better performance
 const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md|\.config)$/;
