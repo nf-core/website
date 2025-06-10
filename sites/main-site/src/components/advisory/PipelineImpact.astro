@@ -36,7 +36,7 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
                     return (
                         <li class="pipeline-impact-item">
                             <a href={`/${name}`} class="text-decoration-none">
-                                {name}
+                                : {name}
                             </a>
                             {versions && versions.length > 0 && (
                                 <div class="versions">
@@ -117,19 +117,6 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
             margin-bottom: 0;
         }
 
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0.25rem;
-            top: 30%;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 0.125rem;
-            background-color: var(--bs-body-color);
-            opacity: 0.5;
-            transition: all 0.2s ease;
-        }
-
         a {
             display: block;
             padding: 0.4rem 0.6rem;
@@ -141,11 +128,6 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
                 background-color: var(--bs-tertiary-bg);
                 color: var(--bs-primary);
                 text-decoration: none;
-
-                & + .pipeline-impact-item::before {
-                    background-color: var(--bs-primary);
-                    opacity: 0.7;
-                }
             }
         }
 

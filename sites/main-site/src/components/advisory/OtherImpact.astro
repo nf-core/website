@@ -29,7 +29,7 @@ const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
                 items.map((item) => (
                     <li class="impact-item">
                         <a href={`${urlPrefix}/${item}`} class="text-decoration-none">
-                            {item}
+                            : {item}
                         </a>
                     </li>
                 ))
@@ -91,22 +91,10 @@ const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
     .impact-item {
         margin-bottom: 0.75rem;
         padding-left: 1rem;
-        position: relative;
+        display: flex;
+        align-items: center;
         &:last-child {
             margin-bottom: 0;
-        }
-
-        &::before {
-            content: "";
-            position: absolute;
-            left: 0.25rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0.5rem;
-            height: 0.125rem;
-            background-color: var(--bs-body-color);
-            opacity: 0.5;
-            transition: all 0.2s ease;
         }
 
         a {
@@ -115,16 +103,12 @@ const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
             color: var(--bs-body-color);
             font-size: 0.95rem;
             transition: all 0.2s ease;
+            flex-grow: 1;
 
             &:hover {
                 background-color: var(--bs-tertiary-bg);
                 color: var(--bs-primary);
                 text-decoration: none;
-
-                & + .impact-item::before {
-                    background-color: var(--bs-primary);
-                    opacity: 0.7;
-                }
             }
         }
     }
