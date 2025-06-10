@@ -142,14 +142,6 @@ nf-test generate process path/to/main.nf
 nf-test generate workflow path/to/main.nf
 ```
 
-## Basic Commands Summary
-
-| Command                          | Purpose                 |
-| -------------------------------- | ----------------------- |
-| `nf-test list`                   | Show available tests    |
-| `nf-test test --profile docker`  | Run all tests           |
-| `nf-test test --update-snapshot` | Update expected outputs |
-| `nf-test test --verbose`         | Show detailed output    |
 
 ## Next Steps
 
