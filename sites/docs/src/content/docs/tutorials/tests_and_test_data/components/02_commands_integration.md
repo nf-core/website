@@ -34,7 +34,7 @@ When developing **individual nf-core pipelines**, use `nf-test` commands directl
 - Pipeline-specific test configurations
 - Use `nf-test test` commands
 
-nf-core tools does not currently provide additional functionality for testing pipeline level tests. 
+nf-core tools does not currently provide additional functionality for testing pipeline level tests.
 
 ---
 
@@ -84,7 +84,7 @@ nf-core subworkflows test vcf_impute_glimpse --profile docker --update
 # List all available tests
 nf-test list
 
-# Run all tests with profiles
+# Run all available tests (modules, workflow, pipeline etc.) within the repository
 nf-test test --profile test,docker
 
 # Run specific test file
