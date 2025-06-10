@@ -5,11 +5,8 @@ import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtend
 import {
     formatAdvisoryType,
     formatAdvisoryCategory,
-    getAdvisoryTypeIcon,
-    getAdvisoryTypeClass,
-    getAdvisorySeverityIcon,
-    getAdvisorySeverityClass,
-    getAdvisoryCategoryIcon,
+    advisory_classes,
+    advisory_icons,
     getAdvisoryMetadataItems,
 } from "./advisoryUtils";
 
@@ -52,20 +49,20 @@ function getLinkIcon(link) {
     return "fas fa-link";
 }
 
-function getSeverityClass(severity) {
-    return `text-${advisories_type_classes[severity] || "secondary"}`;
+function getSeverityClass(severity: string): string {
+    return `text-${advisory_classes[severity] || "secondary"}`;
 }
 
-function getSeverityIcon(severity) {
-    return advisories_type_icons[severity] || "fa-circle-info";
+function getSeverityIcon(severity: string): string {
+    return advisory_icons[severity] || "fa-circle-info";
 }
 
-function getTypeClass(type) {
-    return advisories_type_classes[type] || "secondary";
+function getTypeClass(type: string): string {
+    return advisory_classes[type] || "secondary";
 }
 
-function getTypeIcon(type) {
-    return advisories_type_icons[type] || "fa-circle-info";
+function getTypeIcon(type: string): string {
+    return advisory_icons[type] || "fa-circle-info";
 }
 
 function getReporterInfo(reporter: string | Record<string, string>) {
@@ -99,9 +96,9 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                 <dl>
                     <dt>Severity</dt>
                     <dd>
-                        <span class={`badge bg-${getAdvisorySeverityClass(frontmatter.severity)}`}>
-                            <i class={`${getAdvisorySeverityIcon(frontmatter.severity)} me-1`}></i>
-                            {formatAdvisoryType(frontmatter.severity)}
+                        <span class={`badge bg-${advisory_classes[frontmatter.severity] || "secondary"}`}>
+                            <i class={`${advisory_icons[frontmatter.severity] || "fa-circle-info"} me-1`}></i>
+                            {formatAdvisoryCategory(frontmatter.severity)}
                         </span>
                     </dd>
 
@@ -109,8 +106,8 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                     <dd>
                         {
                             frontmatter.type.map((type) => (
-                                <span class={`badge bg-${getAdvisoryTypeClass(type)} me-1`}>
-                                    <i class={`${getAdvisoryTypeIcon(type)} me-1`} />
+                                <span class={`badge bg-${advisory_classes[type] || "secondary"} me-1`}>
+                                    <i class={`${advisory_icons[type] || "fa-circle-info"} me-1`} />
                                     {formatAdvisoryType(type)}
                                 </span>
                             ))
@@ -122,7 +119,7 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                         {
                             frontmatter.category.map((cat) => (
                                 <span class="category-item me-2">
-                                    <i class={`fa-solid ${getAdvisoryCategoryIcon(cat)} me-1`} />
+                                    <i class={`${advisory_icons[cat] || "fa-solid fa-cogs"} me-1`} />
                                     {formatAdvisoryCategory(cat)}
                                 </span>
                             ))

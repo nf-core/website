@@ -1,12 +1,16 @@
 <script lang="ts">
     import type { CollectionEntry } from "astro:content";
     import { formatDistanceToNow } from "date-fns";
+    import { formatAdvisoryType, formatAdvisoryCategory } from "./advisoryUtils";
 
     interface Props {
         advisories?: CollectionEntry<"advisories">[];
         advisories_time_category?: string;
         advisories_type_classes?: Record<string, string>;
         advisories_type_icons?: Record<string, string>;
+        advisory: CollectionEntry<"advisories">;
+        advisory_classes?: Record<string, string>;
+        advisory_icons?: Record<string, string>;
     }
 
     let {
@@ -14,6 +18,9 @@
         advisories_time_category = "",
         advisories_type_classes = {},
         advisories_type_icons = {},
+        advisory,
+        advisory_classes = {},
+        advisory_icons = {},
     }: Props = $props();
 
     let backgroundIcon = $state("");
@@ -73,23 +80,17 @@
                                     >
                                     <span class="ms-1 my-auto">
                                         {#each advisory.data.type as type}
-                                            <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
-                                                <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
-                                                {type
-                                                    .split("_")
-                                                    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                                                    .join(" ")}
+                                            <span class={`badge bg-${advisory_classes[type]} small me-1`}>
+                                                <i class={`${advisory_icons[type]} me-1`} aria-hidden="true"></i>
+                                                {formatAdvisoryType(type)}
                                             </span>
                                         {/each}
-                                        <span
-                                            class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}
-                                        >
+                                        <span class={`badge bg-${advisory_classes[advisory.data.severity]} small`}>
                                             <i
-                                                class={`${advisories_type_icons[advisory.data.severity]} me-1`}
+                                                class={`${advisory_icons[advisory.data.severity]} me-1`}
                                                 aria-hidden="true"
                                             ></i>
-                                            {advisory.data.severity.charAt(0).toUpperCase() +
-                                                advisory.data.severity.slice(1)}
+                                            {formatAdvisoryCategory(advisory.data.severity)}
                                         </span>
                                     </span>
                                 </h5>
@@ -139,20 +140,14 @@
                             >
                             <span class="ms-1">
                                 {#each advisory.data.type as type}
-                                    <span class={`badge bg-${advisories_type_classes[type]} small me-1`}>
-                                        <i class={`${advisories_type_icons[type]} me-1`} aria-hidden="true"></i>
-                                        {type
-                                            .split("_")
-                                            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-                                            .join(" ")}
+                                    <span class={`badge bg-${advisory_classes[type]} small me-1`}>
+                                        <i class={`${advisory_icons[type]} me-1`} aria-hidden="true"></i>
+                                        {formatAdvisoryType(type)}
                                     </span>
                                 {/each}
-                                <span class={`badge bg-${advisories_type_classes[advisory.data.severity]} small`}>
-                                    <i
-                                        class={`${advisories_type_icons[advisory.data.severity]} me-1`}
-                                        aria-hidden="true"
-                                    ></i>
-                                    {advisory.data.severity.charAt(0).toUpperCase() + advisory.data.severity.slice(1)}
+                                <span class={`badge bg-${advisory_classes[advisory.data.severity]} small`}>
+                                    <i class={`${advisory_icons[advisory.data.severity]} me-1`} aria-hidden="true"></i>
+                                    {formatAdvisoryCategory(advisory.data.severity)}
                                 </span>
                             </span>
                         </p>
