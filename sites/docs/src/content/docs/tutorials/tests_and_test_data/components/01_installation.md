@@ -18,14 +18,15 @@ Before installing nf-test, ensure you have:
 ### Recommended Installation: Using Conda/Mamba
 
 ```bash
-conda install -c bioconda nf-core
-conda install -c bioconda nf-test
+conda create -n nf-core -c bioconda nf-core nf-test
+conda activate nf-core
 # or
-mamba install -c bioconda nf-core
-mamba install -c bioconda nf-test
-```
+mamba create -n nf-core -c bioconda nf-core nf-test
+mamba activate nf-core
 
 ### Alternative Installation Methods
+
+For a standalone binary install: 
 
 ```bash
 curl -fsSL https://get.nf-test.com | bash
@@ -41,6 +42,8 @@ sudo mv nf-test /usr/local/bin/
 
 #### Install specific version
 
+For installing a specific version of nf-test, you can specify this as an option to the install script.
+
 ```bash
 curl -fsSL https://get.nf-test.com | bash -s 0.9.0
 ```
@@ -49,13 +52,13 @@ curl -fsSL https://get.nf-test.com | bash -s 0.9.0
 
 ### Verification
 
-Verify your installation:
+Verify your installation worked correctly, you can check the version is printed.
 
 ```bash
 nf-test version
 ```
 
-List available tests:
+You can also list all available tests in a repository already with:
 
 ```bash
 nf-test list
