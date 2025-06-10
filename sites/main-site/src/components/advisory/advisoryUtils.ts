@@ -1,4 +1,5 @@
-export const advisories_type_classes = {
+// Combined dictionary for all advisory classes (types and severities)
+export const advisory_classes = {
     // Advisory types
     known_regression: "dark",
     incompatibility: "warning",
@@ -14,7 +15,8 @@ export const advisories_type_classes = {
     critical: "danger",
 } as const;
 
-export const advisories_type_icons = {
+// Combined dictionary for all advisory icons (types and severities)
+export const advisory_icons = {
     // Advisory types
     known_regression: "fa-solid fa-bug",
     incompatibility: "fa-solid fa-exclamation-triangle",
@@ -28,6 +30,11 @@ export const advisories_type_icons = {
     medium: "fa-solid fa-minus",
     high: "fa-solid fa-arrow-up",
     critical: "fa-solid fa-exclamation-circle",
+    // Categories
+    pipelines: "fa-solid fa-project-diagram",
+    modules: "fa-solid fa-cube",
+    subworkflows: "fa-solid fa-sitemap",
+    configuration: "fa-solid fa-cogs",
 } as const;
 
 // Only include actual advisory types, not severity levels
@@ -44,8 +51,8 @@ const advisory_types = [
 export const advisories_types = advisory_types.map((type) => {
     return {
         name: type,
-        class: advisories_type_classes[type],
-        icon: advisories_type_icons[type],
+        class: advisory_classes[type],
+        icon: advisory_icons[type],
     };
 });
 
@@ -58,22 +65,6 @@ export function formatAdvisoryType(type: string): string {
 
 export function formatAdvisoryCategory(category: string): string {
     return category.charAt(0).toUpperCase() + category.slice(1);
-}
-
-export function getAdvisoryTypeIcon(type: string): string {
-    return advisories_type_icons[type] || "fa-circle-info";
-}
-
-export function getAdvisoryTypeClass(type: string): string {
-    return advisories_type_classes[type] || "secondary";
-}
-
-export function getAdvisorySeverityIcon(severity: string): string {
-    return advisories_type_icons[severity] || "fa-circle-info";
-}
-
-export function getAdvisorySeverityClass(severity: string): string {
-    return advisories_type_classes[severity] || "secondary";
 }
 
 export function getAdvisoryCategoryIcon(category: string): string {
