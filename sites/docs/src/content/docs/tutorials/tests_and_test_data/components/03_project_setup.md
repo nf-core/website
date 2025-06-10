@@ -17,6 +17,8 @@ my-pipeline/
 ├── modules.json                    # Module dependencies
 ├── tests/                          # Pipeline-level tests
 │   ├── default.nf.test            # Main pipeline test
+│   ├── params-1.nf.test           # Pipeline param-1 test
+|   ├── params-2.nf.test           # Pipeline param-2 test
 │   ├── nextflow.config            # Test-specific config
 │   └── .nftignore                 # Files to ignore in snapshots
 ├── conf/                           # Configuration profiles
@@ -62,7 +64,10 @@ config {
 
 ### Available nf-test Plugins
 
-For nf-core pipeline testing, you may need these plugins:
+For nf-core pipeline testing, plugins provide additional functionality to help validate different output file types and ensure data integrity during testing.
+
+Plugins can be customized - like nft-utils, which has been tailored by the nf-core community for automating the capture and validation of pipeline-level outputs.
+
 
 | Plugin Name      | Description/Use                                                                                                              |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
