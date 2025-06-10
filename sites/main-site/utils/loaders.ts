@@ -4,6 +4,8 @@ import type { Loader, LoaderContext } from "astro/loaders";
 import { octokit, getCurrentRateLimitRemaining } from "@components/octokit.js";
 import ProgressBar from "progress";
 import { S3Client, ListObjectsV2Command } from "@aws-sdk/client-s3";
+import { createMarkdownProcessor } from "@astrojs/markdown-remark";
+import remarkGitHubMarkdown from "../../../bin/remark-github-markdown.js";
 
 // ========================================
 // TYPE DEFINITIONS
@@ -102,15 +104,36 @@ function createProcessors(processors: Processors) {
 }
 
 /**
- * Creates a markdown processor using Astro's built-in renderMarkdown
+ * Creates a markdown processor with GitHub-specific transformations
  */
-function createMarkdownProcessor(renderMarkdown: Function): Processors {
+function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo: string, ref: string }): Processors {
     return {
-        md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
+        md: async (text: string, config: any, filepath?: string): Promise<RenderedContent> => {
             try {
-                return await renderMarkdown(text);
+                // For GitHub files, we need to use our custom processor with remark plugin
+                // to handle link transformations, image URLs, etc.
+                const processor = await createMarkdownProcessor({
+                    ...config.markdown,
+                    remarkPlugins: [
+                        [
+                            remarkGitHubMarkdown,
+                            {
+                                org: 'nf-core',
+                                repo: options.repo,
+                                ref: options.ref,
+                                parent_directory: filepath?.includes("/")
+                                    ? filepath.split("/").slice(0, -1).join("/")
+                                    : "",
+                            },
+                        ],
+                        ...(config.markdown?.remarkPlugins || []),
+                    ],
+                });
+
+                const { code: html, metadata } = await processor.render(text);
+                return { html, metadata };
             } catch (error) {
-                console.error(`Error processing markdown for ${filepath}:`, error);
+                console.error(`Error processing markdown for ${options.repo}/${options.ref}:`, error);
                 return {
                     html: `<div class="error">Error processing markdown: ${error.message}</div>`,
                     metadata: {},
@@ -225,13 +248,9 @@ class GitHubContentFetcher {
             };
 
             let rendered: RenderedContent;
-            if (extension === 'md' && renderMarkdown) {
-                // Use Astro's built-in markdown renderer
-                rendered = await renderMarkdown(body);
-            } else {
-                // Use custom processors
-                rendered = await createProcessors(processors)[extension](body, processorConfig, filepath);
-            }
+            // Use custom processors (may include GitHub-specific transformations for markdown)
+            // The processor proxy will handle missing processors appropriately
+            rendered = await createProcessors(processors)[extension](body, processorConfig, filepath);
 
             // Get commit date if requested
             let lastCommit: string | null = null;
@@ -415,7 +434,10 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
 
                     // Process documentation files
                     const docFiles = [...release.doc_files, "README.md"];
-                    const processors = createMarkdownProcessor(context.renderMarkdown);
+                    const processors = createGitHubMarkdownProcessor(context.renderMarkdown, {
+                        repo: pipeline.name,
+                        ref: release.tag_name,
+                    });
                     const metadata = {
                         name: pipeline.name,
                         archived: pipeline.archived,
