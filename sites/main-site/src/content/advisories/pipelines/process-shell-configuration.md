@@ -129,5 +129,5 @@ If you're seeing this above error you have a few options. In order of difficulty
 
 and use with `-c`, eg. `nextflow run nf-core/rnaseq -c nf_config_fix.config`.</li>
 
-<li>Use an older version of the pipeline that has nf-core/tools template < 3.0.0, thus was published before 2024-10-08. The issue was fixed and published in the template 3.1.2 on 2025-01-27, so pipeline versions released after that day are mostly not affected either, unless they were published with an older template. Additionally, some pipelines already incorporate a manual fix, so even though released during that period, pixelator v1.4.0 and references 0.1 already incorporate the required change.</li>
+<li>Use an older version of the pipeline that has nf-core/tools template < 3.0.0, thus was published before 2024-10-08. The issue was fixed and published in the template 3.1.2 on 2025-01-27, so pipeline versions released after that day are mostly not affected either, unless they were published with an older template. You can fine the template version that a pipeline uses in a hidden file called `.nf-core.yml` in the pipeline repository. Additionally, some pipelines already incorporate a manual fix, so even though released during that period, pixelator v1.4.0 and references 0.1 already incorporate the required change.</li>
 </ul>
