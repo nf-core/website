@@ -10,7 +10,7 @@ Before running these commands, ensure you have:
 
 - nf-test installed (see [Installation Guide](./01_installation.md))
 - An nf-core pipeline or nf-core/modules repo set up
-- Access to test data (local or remote)
+- Access to (nf-core) test data (local or remote)
 
 ## Understanding Testing Contexts
 
@@ -24,21 +24,30 @@ When working in the **nf-core/modules repository**, use `nf-core` tools commands
 - Contributing to the shared nf-core modules library
 - Use `nf-core modules test` and `nf-core subworkflows test`
 
+nf-core tools modules and subworkflow testing has extra functionality that aids setting up the tests and snapshots (e.g. automatically running a second test to check stability of the output files of a module).
+
 ### 2. Individual Pipeline Context
 
-When developing **individual nf-core pipelines**, use `nf-test` commands directly:
+When developing **individual nf-core pipelines**, use `nf-test` commands directly, if you are:
 
 - Testing complete pipeline workflows
 - Pipeline-specific test configurations
 - Use `nf-test test` commands
 
+nf-core tools does not currently provide additional functionality for testing pipeline level tests. 
+
 ---
 
-## nf-core/modules Repository Commands
+## nf-core/modules Repository Reference Commands
 
 > **Note**: These commands only work within the nf-core/modules repository
 
+
 ### Module Testing
+
+These commands will tell nf-core to run the test files of `bedtools/bamtobed` module twice, and compare the results to see if they change.
+By giving `--update`, this will update the 'snapshot' that records the state of the results files (in cases where you have made changes to the module).
+By giving `--verbose`, the command will print the Nextflow logging information to console, which is useful for debugging.
 
 ```bash
 # Test a specific module
@@ -52,6 +61,8 @@ nf-core modules test bedtools/bamtobed --profile docker --verbose
 ```
 
 ### Subworkflow Testing
+
+These commands are functionally the same as above, but with subworkflows.
 
 ```bash
 # Test a subworkflow

@@ -81,7 +81,8 @@ For nf-core pipeline testing, you may need these plugins:
 #### `tests/nextflow.config` (Test-Specific Settings)
 
 **Purpose**: Defines parameters and settings specifically for test execution
-
+This is very similar to your typical nf-core test profiles.
+However one change is the `aws.client.anonymous` option that <XYZ>
 ```groovy
 params {
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
