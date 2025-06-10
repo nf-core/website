@@ -36,7 +36,7 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
                     return (
                         <li class="pipeline-impact-item">
                             <a href={`/${name}`} class="text-decoration-none">
-                                <code class="pipeline-name">{name}</code>
+                                {name}
                             </a>
                             {versions && versions.length > 0 && (
                                 <div class="versions">
@@ -110,17 +110,43 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
     }
 
     .pipeline-impact-item {
-        margin-bottom: 1rem;
+        margin-bottom: 0.75rem;
+        padding-left: 1rem;
+        position: relative;
         &:last-child {
             margin-bottom: 0;
         }
 
-        .pipeline-name {
-            background-color: var(--bs-tertiary-bg);
-            padding: 0.2rem 0.4rem;
-            border-radius: 0.25rem;
-            font-size: 0.9rem;
-            display: inline-block;
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0.25rem;
+            top: 30%;
+            transform: translateY(-50%);
+            width: 0.5rem;
+            height: 0.125rem;
+            background-color: var(--bs-body-color);
+            opacity: 0.5;
+            transition: all 0.2s ease;
+        }
+
+        a {
+            display: block;
+            padding: 0.4rem 0.6rem;
+            color: var(--bs-body-color);
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+
+            &:hover {
+                background-color: var(--bs-tertiary-bg);
+                color: var(--bs-primary);
+                text-decoration: none;
+
+                & + .pipeline-impact-item::before {
+                    background-color: var(--bs-primary);
+                    opacity: 0.7;
+                }
+            }
         }
 
         .versions {

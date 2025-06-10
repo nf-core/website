@@ -93,7 +93,7 @@
             transition: transform 0.2s ease-in-out;
 
             &:hover {
-                transform: scale(1.02);
+                background-color: var(--bs-tertiary-bg);
             }
         }
     }

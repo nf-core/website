@@ -16,9 +16,6 @@
     let {
         advisories = $bindable([]),
         advisories_time_category = "",
-        advisories_type_classes = {},
-        advisories_type_icons = {},
-        advisory,
         advisory_classes = {},
         advisory_icons = {},
     }: Props = $props();
