@@ -18,7 +18,7 @@ There are **two main contexts** for running nf-test commands in the nf-core ecos
 
 ### 1. nf-core/modules Repository Context
 
-When working in the **nf-core/modules repository**, use `nf-core` tools commands:
+When working in the **nf-core/modules repository**, use `nf-core` tools commands if you are:
 
 - Testing individual modules and subworkflows
 - Contributing to the shared nf-core modules library
