@@ -4,10 +4,8 @@
     import {
         formatAdvisoryType,
         formatAdvisoryCategory,
-        getAdvisoryTypeIcon,
-        getAdvisoryTypeClass,
-        getAdvisorySeverityIcon,
-        getAdvisorySeverityClass,
+        advisory_classes,
+        advisory_icons,
         getAdvisoryMetadataItems,
     } from "./advisoryUtils";
 
@@ -17,7 +15,7 @@
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
-    const severity_class = getAdvisorySeverityClass(frontmatter.severity);
+    const severity_class = advisory_classes[frontmatter.severity];
     const metadataItems = getAdvisoryMetadataItems(frontmatter);
 </script>
 
@@ -62,13 +60,13 @@
                 </p>
                 <div class="d-flex flex-wrap gap-1 mb-3 justify-content-end">
                     {#each frontmatter.type as type}
-                        <span class={`badge bg-${getAdvisoryTypeClass(type)} small`}>
-                            <i class={`${getAdvisoryTypeIcon(type)} me-1`} aria-hidden="true"></i>
+                        <span class={`badge bg-${advisory_classes[type]} small`}>
+                            <i class={`${advisory_icons[type]} me-1`} aria-hidden="true"></i>
                             {formatAdvisoryType(type)}
                         </span>
                     {/each}
-                    <span class={`badge bg-${getAdvisorySeverityClass(frontmatter.severity)} small`}>
-                        <i class={`${getAdvisorySeverityIcon(frontmatter.severity)} me-1`} aria-hidden="true"></i>
+                    <span class={`badge bg-${advisory_classes[frontmatter.severity]} small`}>
+                        <i class={`${advisory_icons[frontmatter.severity]} me-1`} aria-hidden="true"></i>
                         {formatAdvisoryType(frontmatter.severity)}
                     </span>
                 </div>
