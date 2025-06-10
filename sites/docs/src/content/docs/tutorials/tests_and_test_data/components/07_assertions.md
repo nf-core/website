@@ -358,63 +358,8 @@ with(process.out.imputed_plink2) {
 }
 ```
 
-## Debugging Techniques
-
-### Using println for Debugging
-
-Print statements can help debug test issues. They must go within the `then` block, prior to `assertAll`:
-
-```groovy
-then {
-    def unstable_patterns_auth = [
-        '**/mapped_reads_gc-content_distribution.txt',
-        '**/genome_gc_content_per_window.png',
-        '**/*.{svg,pdf,html}',
-        '*.{svg,pdf,html}',
-        '**/DamageProfiler.log',
-    ]
-
-    println("unstable_patterns_auth: " + unstable_patterns_auth)
-
-    assertAll(
-        { assert snapshot( stable_content_authentication, stable_name_authentication*.name ).match("authentication") },
-        // ... more assertions
-    )
-}
-```
-
-## Known Issues and Container Considerations
-
-When using nf-test with Docker, Singularity, or Conda, be aware of environment-specific issues that can cause mismatched hashes:
-
-### Tips for Handling Mismatched Hashes
-
-1. **Consistent Environment**: Ensure consistent environments across containers
-2. **Identical Base Images**: Use same base images for Docker/Singularity containers
-3. **Pin Software Versions**: Explicitly pin software versions and dependencies
-4. **Isolate Non-Deterministic Elements**: Identify and isolate non-deterministic elements
-5. **Reproducible Conda Environments**: Use `conda list --explicit` for exact environment recreation
-6. **Review Container Caching**: Be cautious with caching mechanisms
-7. **Consistent Filesystem Paths**: Ensure path consistency within containers
-8. **Regular Updates**: Regularly update and test containers
-
-## Best Practices Summary
-
-1. **Start Simple**: Begin with basic success checks and version snapshots
-2. **Capture Everything Possible**: Aim to snapshot complete outputs when stable
-3. **Handle Instability Gracefully**: Use selective snapshots for unstable content
-4. **Use Meaningful Tags**: Name snapshots descriptively for easier debugging
-5. **Debug Systematically**: Use println statements to understand output structure
-6. **Review Snapshot Changes**: Always review snapshot file changes in code reviews
-7. **Test Edge Cases**: Include tests for error conditions and boundary cases
 
 ## Next Steps
 
 Continue to [Test Data Management](./08_test_data_management.md) to learn about organizing and managing test datasets.
 
-### Additional Reading
-
-- [nf-test Documentation](https://code.askimed.com/nf-test/docs/getting-started/)
-- [Updating Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#updating-snapshots)
-- [Cleaning Obsolete Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#cleaning-obsolete-snapshots)
-- [Constructing Complex Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#constructing-complex-snapshots)
