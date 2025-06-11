@@ -239,3 +239,22 @@ outputs:
     fake_command: nf-core subworkflows lint bam_stats_samtools
     img_paths:
       - public/images/tools/nf-core-subworkflows-lint.svg
+  - command: nf-core test-datasets list-branches
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-branches.svg
+  - command: nf-core test-datasets list --branch mag
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-mag.svg
+  - command: nf-core test-datasets list --branch mag --generate-dl-url
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-url-out.svg
+  - command: nf-core test-datasets list --branch mag --generate-nf-path
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-path-out.svg
+  - command: nf-core test-datasets search --branch mag minigut_reads
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-search.svg

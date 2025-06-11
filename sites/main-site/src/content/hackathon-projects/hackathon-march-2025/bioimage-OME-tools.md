@@ -2,6 +2,7 @@
 title: Bioimage processing modules based on OME tools
 category: components
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C08H9MWG06T
 image: "/assets/images/events/2025/hackathon-march/bioimage_meme.png"
 image_alt: meme comparing traditional bioimage tools with OME tools for large scale processing
 leaders:
