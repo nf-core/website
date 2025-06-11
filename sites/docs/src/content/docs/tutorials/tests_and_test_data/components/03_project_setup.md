@@ -109,7 +109,7 @@ aws.client.anonymous = true
 
 ## Test Data Integration
 
-nf-core tools 3.3+ includes a command for discovering and managing test datasets:
+nf-core tools 3.3+ includes a command for discovering test datasets, making it easier to refer to these within your tests:
 
 ```bash
 # List all available test datasets

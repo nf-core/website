@@ -47,7 +47,7 @@ assert process.out[0].size() == 3
 
 ## Philosophy of nf-test for nf-core Components
 
-Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core module should include comprehensive tests that:
+Following the [nf-core testing guidance](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core module should include comprehensive tests that:
 
 - Each component contains a `tests/` folder beside the `main.nf` of the component itself
 - Test files come with snapshots of component output channels
