@@ -11,7 +11,6 @@
 
     export let frontmatter: CollectionEntry<"advisories">["data"];
     export let slug: string = "";
-    export let time_category: string = "";
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
