@@ -40,29 +40,28 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
     }
     return { username: Object.keys(reviewer)[0], affiliation: Object.values(reviewer)[0] };
 }
+
+const hasContributors = frontmatter.reporter?.length || frontmatter.reviewer?.length;
 ---
 
 <div class="advisory-header">
-    <div class="d-flex flex-column gap-4">
-        <div class="d-flex justify-content-between align-items-start">
-            <dl class="mb-0">
-                <dt class="fw-semibold mb-1">Published</dt>
-                <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
-            </dl>
-        </div>
-
+    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Categorisation</h2>
+    <div class="d-flex flex-column gap-2">
         <div>
             <dl class="mb-0">
-                <dt class="fw-semibold mb-1">Severity</dt>
-                <dd class="mb-3">
+                <dt class="fw-semibold mb-1 text-body-secondary">Published</dt>
+                <dd class="mb-4">{frontmatter.publishedDate.toLocaleDateString()}</dd>
+
+                <dt class="fw-semibold mb-1 text-body-secondary">Severity</dt>
+                <dd class="mb-4">
                     <span class={`badge bg-${advisory_classes[frontmatter.severity] || "secondary"}`}>
                         <i class={`${advisory_icons[frontmatter.severity] || "fa-circle-info"} me-1`}></i>
                         {formatAdvisoryCategory(frontmatter.severity)}
                     </span>
                 </dd>
 
-                <dt class="fw-semibold mb-1">Type</dt>
-                <dd class="mb-3">
+                <dt class="fw-semibold mb-1 text-body-secondary">Type</dt>
+                <dd class="mb-4">
                     {
                         frontmatter.type.map((type) => (
                             <span class={`badge bg-${advisory_classes[type] || "secondary"} me-1`}>
@@ -73,11 +72,11 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                     }
                 </dd>
 
-                <dt class="fw-semibold mb-1">Category</dt>
-                <dd class="mb-3">
+                <dt class="fw-semibold mb-1 text-body-secondary">Category</dt>
+                <dd class="mb-4">
                     {
                         frontmatter.category.map((cat) => (
-                            <span class="d-inline-flex align-items-center me-3 fw-light small">
+                            <span class="d-inline-flex align-items-center me-3 fw-light small mt-1">
                                 <i class={`${advisory_icons[cat] || "fa-solid fa-cogs"} me-1 text-primary`} />
                                 {formatAdvisoryCategory(cat)}
                             </span>
@@ -88,13 +87,18 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                 {
                     metadataItems.length > 0 && (
                         <>
-                            <dt class="fw-semibold mb-1">Technical Details</dt>
-                            <dd class="mb-3">
+                            <dt class="fw-semibold mb-1 text-body-secondary">Technical Details</dt>
+                            <dd class="mb-4">
                                 {metadataItems.map((item) => (
-                                    <span class="d-inline-flex align-items-center me-3 fw-light small">
-                                        <i class={`fas ${item.icon} me-1 text-primary`} />
-                                        {item.label}: {item.value}
-                                    </span>
+                                    <div class="mb-2">
+                                        <div class="fw-semibold small mb-1">
+                                            <i class={`fas ${item.icon} me-1 text-primary`} />
+                                            {item.label}
+                                        </div>
+                                        <div class="d-flex flex-wrap gap-2">
+                                            <span class="fw-light small">{item.value}</span>
+                                        </div>
+                                    </div>
                                 ))}
                             </dd>
                         </>
@@ -103,56 +107,57 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
             </dl>
         </div>
 
-        <div class="border rounded p-3">
-            {
-                frontmatter.reporter && (
-                    <div class="mb-3">
-                        <dt class="fw-semibold mb-2">Reported by</dt>
-                        <dd class="d-flex flex-wrap gap-2 mb-0">
-                            {frontmatter.reporter.map((reporter) => {
-                                const info = getReporterInfo(reporter);
-                                return (
-                                    <div>
-                                        <GitHubProfilePictureExtended
-                                            client:load
-                                            username={info.username}
-                                            affiliation={info.affiliation}
-                                            size={45}
-                                            wrapperClasses="advisory-profile"
-                                            labelClasses="d-none"
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </dd>
-                    </div>
-                )
-            }
-            {
-                frontmatter.reviewer && (
-                    <div>
-                        <dt class="fw-semibold mb-2">Reviewed by</dt>
-                        <dd class="d-flex flex-wrap gap-2 mb-0">
-                            {frontmatter.reviewer.map((reviewer) => {
-                                const info = getReviewerInfo(reviewer);
-                                return (
-                                    <div>
-                                        <GitHubProfilePictureExtended
-                                            client:load
-                                            username={info.username}
-                                            affiliation={info.affiliation}
-                                            size={45}
-                                            wrapperClasses="advisory-profile"
-                                            labelClasses="d-none"
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </dd>
-                    </div>
-                )
-            }
-        </div>
+        {
+            hasContributors && (
+                <div>
+                    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Contributors</h2>
+                    {frontmatter.reporter && (
+                        <div class="mb-2">
+                            <dt class="fw-semibold mb-2 text-body-secondary">Reported by</dt>
+                            <dd class="d-flex flex-wrap gap-2 mb-0">
+                                {frontmatter.reporter.map((reporter) => {
+                                    const info = getReporterInfo(reporter);
+                                    return (
+                                        <div>
+                                            <GitHubProfilePictureExtended
+                                                client:load
+                                                username={info.username}
+                                                affiliation={info.affiliation}
+                                                size={45}
+                                                wrapperClasses="advisory-profile"
+                                                labelClasses="d-none"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </dd>
+                        </div>
+                    )}
+                    {frontmatter.reviewer && (
+                        <div>
+                            <dt class="fw-semibold mb-2 text-body-secondary">Reviewed by</dt>
+                            <dd class="d-flex flex-wrap gap-2 mb-0">
+                                {frontmatter.reviewer.map((reviewer) => {
+                                    const info = getReviewerInfo(reviewer);
+                                    return (
+                                        <div>
+                                            <GitHubProfilePictureExtended
+                                                client:load
+                                                username={info.username}
+                                                affiliation={info.affiliation}
+                                                size={45}
+                                                wrapperClasses="advisory-profile"
+                                                labelClasses="d-none"
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </dd>
+                        </div>
+                    )}
+                </div>
+            )
+        }
     </div>
 </div>
 

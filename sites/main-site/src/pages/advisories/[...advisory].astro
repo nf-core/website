@@ -1,7 +1,7 @@
 ---
 import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
 import AdvisoryHeader from "@components/advisory/AdvisoryHeader.astro";
-import AdvisoryImpact from "@components/advisory/AdvisoryImpact.astro";
+import AdvisoryDetails from "@components/advisory/AdvisoryDetails.astro";
 import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
 import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
 import { getCollection, render } from "astro:content";
@@ -140,8 +140,7 @@ sections.forEach((year) => {
     tocSidebarPosition="left"
 >
     <div slot="right-sidebar-top">
-        <AdvisoryHeader frontmatter={frontmatter} />
-        <AdvisoryImpact frontmatter={frontmatter} />
+        <AdvisoryDetails frontmatter={frontmatter} />
     </div>
     <div slot="left-sidebar-top">
         <AdvisorySidebar advisories={advisories} sidebarTitle="Advisories" />

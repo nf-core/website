@@ -1,0 +1,100 @@
+---
+import AdvisoryHeader from "./AdvisoryHeader.astro";
+import PipelineImpact from "./PipelineImpact.astro";
+import OtherImpact from "./OtherImpact.astro";
+
+interface Props {
+    frontmatter: {
+        pipelines?: Array<string | { name: string; versions: string[] }>;
+        subworkflows?: string[];
+        modules?: string[];
+        configuration?: string[];
+    };
+}
+
+const { frontmatter } = Astro.props;
+
+const hasImpact =
+    frontmatter.pipelines?.length ||
+    frontmatter.subworkflows?.length ||
+    frontmatter.modules?.length ||
+    frontmatter.configuration?.length;
+---
+
+<div class="advisory-container bg-body rounded shadow-sm border p-4 mb-4">
+    <AdvisoryHeader frontmatter={frontmatter} />
+    {
+        hasImpact && (
+            <div class="advisory-impact pt-4">
+                <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Impact</h2>
+                <div class="row g-4">
+                    {frontmatter.pipelines?.length > 0 && (
+                        <div class="col-12">
+                            <PipelineImpact pipelines={frontmatter.pipelines} />
+                        </div>
+                    )}
+
+                    {frontmatter.subworkflows?.length > 0 && (
+                        <div class="col-12">
+                            <OtherImpact
+                                items={frontmatter.subworkflows}
+                                title="Affected subworkflows"
+                                icon="fa-sitemap"
+                                urlPrefix="/subworkflows"
+                            />
+                        </div>
+                    )}
+
+                    {frontmatter.modules?.length > 0 && (
+                        <div class="col-12">
+                            <OtherImpact
+                                items={frontmatter.modules}
+                                title="Affected Modules"
+                                icon="fa-cube"
+                                urlPrefix="/modules"
+                            />
+                        </div>
+                    )}
+
+                    {frontmatter.configuration?.length > 0 && (
+                        <div class="col-12">
+                            <OtherImpact
+                                items={frontmatter.configuration}
+                                title="Affected Configuration"
+                                icon="fa-cogs"
+                                urlPrefix="/configs"
+                            />
+                        </div>
+                    )}
+                </div>
+            </div>
+        )
+    }
+</div>
+
+<style lang="scss">
+    .advisory-container {
+        .advisory-impact {
+            h3 {
+                color: var(--bs-body-color);
+                font-size: 1.1rem;
+                i {
+                    color: var(--bs-primary);
+                }
+            }
+
+            code {
+                background-color: var(--bs-tertiary-bg);
+                padding: 0.2rem 0.4rem;
+                border-radius: 0.25rem;
+                font-size: 0.9rem;
+            }
+
+            a {
+                &:hover {
+                    text-decoration: underline !important;
+                }
+            }
+        }
+    }
+</style>
