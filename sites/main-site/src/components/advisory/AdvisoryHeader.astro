@@ -43,211 +43,142 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
 ---
 
 <div class="advisory-header">
-    <div class="row">
-        <div class="col-md-9">
-            <div class="d-flex justify-content-between align-items-start mb-3">
-                <div>
-                    <dl class="mb-0">
-                        <dt>Published</dt>
-                        <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
-                    </dl>
-                </div>
-            </div>
-
-            <div class="advisory-metadata">
-                <dl>
-                    <dt>Severity</dt>
-                    <dd>
-                        <span class={`badge bg-${advisory_classes[frontmatter.severity] || "secondary"}`}>
-                            <i class={`${advisory_icons[frontmatter.severity] || "fa-circle-info"} me-1`}></i>
-                            {formatAdvisoryCategory(frontmatter.severity)}
-                        </span>
-                    </dd>
-
-                    <dt>Type</dt>
-                    <dd>
-                        {
-                            frontmatter.type.map((type) => (
-                                <span class={`badge bg-${advisory_classes[type] || "secondary"} me-1`}>
-                                    <i class={`${advisory_icons[type] || "fa-circle-info"} me-1`} />
-                                    {formatAdvisoryType(type)}
-                                </span>
-                            ))
-                        }
-                    </dd>
-
-                    <dt>Category</dt>
-                    <dd>
-                        {
-                            frontmatter.category.map((cat) => (
-                                <span class="category-item me-2">
-                                    <i class={`${advisory_icons[cat] || "fa-solid fa-cogs"} me-1`} />
-                                    {formatAdvisoryCategory(cat)}
-                                </span>
-                            ))
-                        }
-                    </dd>
-
-                    {
-                        metadataItems.length > 0 && (
-                            <>
-                                <dt>Technical Details</dt>
-                                <dd>
-                                    {metadataItems.map((item) => (
-                                        <span class="metadata-item me-3 mt-2">
-                                            <i class={`fas ${item.icon} me-1`} />
-                                            {item.label}: {item.value}
-                                        </span>
-                                    ))}
-                                </dd>
-                            </>
-                        )
-                    }
-                </dl>
-            </div>
+    <div class="d-flex flex-column gap-4">
+        <div class="d-flex justify-content-between align-items-start">
+            <dl class="mb-0">
+                <dt class="fw-semibold mb-1">Published</dt>
+                <dd>{frontmatter.publishedDate.toLocaleDateString()}</dd>
+            </dl>
         </div>
-        <div class="col-md-3">
-            <div class="advisory-contributors">
+
+        <div>
+            <dl class="mb-0">
+                <dt class="fw-semibold mb-1">Severity</dt>
+                <dd class="mb-3">
+                    <span class={`badge bg-${advisory_classes[frontmatter.severity] || "secondary"}`}>
+                        <i class={`${advisory_icons[frontmatter.severity] || "fa-circle-info"} me-1`}></i>
+                        {formatAdvisoryCategory(frontmatter.severity)}
+                    </span>
+                </dd>
+
+                <dt class="fw-semibold mb-1">Type</dt>
+                <dd class="mb-3">
+                    {
+                        frontmatter.type.map((type) => (
+                            <span class={`badge bg-${advisory_classes[type] || "secondary"} me-1`}>
+                                <i class={`${advisory_icons[type] || "fa-circle-info"} me-1`} />
+                                {formatAdvisoryType(type)}
+                            </span>
+                        ))
+                    }
+                </dd>
+
+                <dt class="fw-semibold mb-1">Category</dt>
+                <dd class="mb-3">
+                    {
+                        frontmatter.category.map((cat) => (
+                            <span class="d-inline-flex align-items-center me-3 fw-light small">
+                                <i class={`${advisory_icons[cat] || "fa-solid fa-cogs"} me-1 text-primary`} />
+                                {formatAdvisoryCategory(cat)}
+                            </span>
+                        ))
+                    }
+                </dd>
+
                 {
-                    frontmatter.reporter && (
-                        <div class="mb-3">
-                            <dt>Reported by</dt>
-                            <dd>
-                                {frontmatter.reporter.map((reporter) => {
-                                    const info = getReporterInfo(reporter);
-                                    return (
-                                        <div class="me-1">
-                                            <GitHubProfilePictureExtended
-                                                client:load
-                                                username={info.username}
-                                                affiliation={info.affiliation}
-                                                size={45}
-                                                wrapperClasses="advisory-profile"
-                                                labelClasses="d-none"
-                                            />
-                                        </div>
-                                    );
-                                })}
+                    metadataItems.length > 0 && (
+                        <>
+                            <dt class="fw-semibold mb-1">Technical Details</dt>
+                            <dd class="mb-3">
+                                {metadataItems.map((item) => (
+                                    <span class="d-inline-flex align-items-center me-3 fw-light small">
+                                        <i class={`fas ${item.icon} me-1 text-primary`} />
+                                        {item.label}: {item.value}
+                                    </span>
+                                ))}
                             </dd>
-                        </div>
+                        </>
                     )
                 }
-                {
-                    frontmatter.reviewer && (
-                        <div>
-                            <dt>Reviewed by</dt>
-                            <dd>
-                                {frontmatter.reviewer.map((reviewer) => {
-                                    const info = getReviewerInfo(reviewer);
-                                    return (
-                                        <div class="me-1">
-                                            <GitHubProfilePictureExtended
-                                                client:load
-                                                username={info.username}
-                                                affiliation={info.affiliation}
-                                                size={45}
-                                                wrapperClasses="advisory-profile"
-                                                labelClasses="d-none"
-                                            />
-                                        </div>
-                                    );
-                                })}
-                            </dd>
-                        </div>
-                    )
-                }
-            </div>
+            </dl>
+        </div>
+
+        <div class="border rounded p-3">
+            {
+                frontmatter.reporter && (
+                    <div class="mb-3">
+                        <dt class="fw-semibold mb-2">Reported by</dt>
+                        <dd class="d-flex flex-wrap gap-2 mb-0">
+                            {frontmatter.reporter.map((reporter) => {
+                                const info = getReporterInfo(reporter);
+                                return (
+                                    <div>
+                                        <GitHubProfilePictureExtended
+                                            client:load
+                                            username={info.username}
+                                            affiliation={info.affiliation}
+                                            size={45}
+                                            wrapperClasses="advisory-profile"
+                                            labelClasses="d-none"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </dd>
+                    </div>
+                )
+            }
+            {
+                frontmatter.reviewer && (
+                    <div>
+                        <dt class="fw-semibold mb-2">Reviewed by</dt>
+                        <dd class="d-flex flex-wrap gap-2 mb-0">
+                            {frontmatter.reviewer.map((reviewer) => {
+                                const info = getReviewerInfo(reviewer);
+                                return (
+                                    <div>
+                                        <GitHubProfilePictureExtended
+                                            client:load
+                                            username={info.username}
+                                            affiliation={info.affiliation}
+                                            size={45}
+                                            wrapperClasses="advisory-profile"
+                                            labelClasses="d-none"
+                                        />
+                                    </div>
+                                );
+                            })}
+                        </dd>
+                    </div>
+                )
+            }
         </div>
     </div>
 </div>
 
 <style lang="scss">
     .advisory-header {
-        dl {
-            margin-bottom: 0;
-        }
-
-        dt {
-            font-weight: 600;
-            color: var(--bs-body-color);
-            margin-bottom: 0.25rem;
-        }
-
-        dd {
-            margin-bottom: 1rem;
-            &:last-child {
-                margin-bottom: 0;
-            }
-        }
-
         .badge {
             font-size: 0.875rem;
             padding: 0.35em 0.65em;
             font-weight: 500;
         }
 
-        a {
-            text-decoration: none;
-            &:hover {
-                text-decoration: underline;
-            }
-        }
+        :global(.advisory-profile) {
+            .btn {
+                padding: 0;
+                border: none;
+                background: none;
 
-        .advisory-contributors {
-            padding: 0.75rem;
-            border-radius: 0.375rem;
-
-            dt {
-                margin-bottom: 0.25rem;
-            }
-
-            dd {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.25rem;
-                margin-bottom: 0.5rem;
-            }
-
-            :global(.advisory-profile) {
-                .btn {
-                    padding: 0;
-                    border: none;
-                    background: none;
-
-                    &:hover {
-                        transform: scale(1.05);
-                        transition: transform 0.2s ease-in-out;
-                    }
-                }
-
-                img {
-                    border-radius: 50%;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                &:hover {
+                    transform: scale(1.05);
+                    transition: transform 0.2s ease-in-out;
                 }
             }
-        }
 
-        .category-item {
-            display: inline-flex;
-            align-items: center;
-            color: var(--bs-body-color);
-            font-size: 0.95rem;
-
-            i {
-                color: var(--bs-primary);
-                padding-left: 1rem;
-            }
-        }
-
-        .metadata-item {
-            display: inline-flex;
-            align-items: center;
-            color: var(--bs-body-color);
-            font-size: 0.9rem;
-
-            i {
-                color: var(--bs-primary);
-                padding-left: 1rem;
+            img {
+                border-radius: 50%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             }
         }
     }
