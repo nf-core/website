@@ -14,16 +14,16 @@ const hasVersions = (
 const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}`;
 ---
 
-<div class="collapsible-section">
+<div class="mb-3">
     <button
-        class="collapse-button"
+        class="btn btn-link text-decoration-none p-0 mb-2 d-flex align-items-center w-100 text-start"
         aria-expanded="true"
         aria-controls={sectionId}
         data-bs-toggle="collapse"
         data-bs-target={`#${sectionId}`}
     >
-        <h3 class="h5 mb-2">
-            <i class="fas fa-project-diagram me-2"></i>
+        <h3 class="h5 mb-0">
+            <i class="fas fa-project-diagram me-2 transition-rotate"></i>
             Affected Pipelines
         </h3>
     </button>
@@ -34,15 +34,18 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
                     const name = hasVersions(pipeline) ? pipeline.name : pipeline;
                     const versions = hasVersions(pipeline) ? pipeline.versions : null;
                     return (
-                        <li class="pipeline-impact-item">
-                            <a href={`/${name}`} class="text-decoration-none">
+                        <li class="mb-2 ps-3">
+                            <a
+                                href={`/${name}`}
+                                class="d-block p-2 text-decoration-none rounded hover-bg fw-light small"
+                            >
                                 : {name}
                             </a>
                             {versions && versions.length > 0 && (
-                                <div class="versions">
-                                    <div class="version-tags">
+                                <div class="ms-3 mt-2">
+                                    <div class="d-flex flex-wrap gap-1">
                                         {versions.map((version) => (
-                                            <span class="version-tag">{version}</span>
+                                            <span class="badge bg-primary-subtle text-primary">{version}</span>
                                         ))}
                                     </div>
                                 </div>
@@ -56,101 +59,21 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
 </div>
 
 <style lang="scss">
-    .collapsible-section {
-        .collapse-button {
-            background: none;
-            border: none;
-            padding: 0.75rem;
-            color: var(--bs-body-color);
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            width: 100%;
-            text-align: left;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border-radius: 0.375rem;
-            margin-bottom: 0.5rem;
-
-            &:hover {
-                color: var(--bs-primary);
-
-                h3 {
-                    color: var(--bs-primary);
-                }
-            }
-
-            &:active {
-                transform: translateY(1px);
-            }
-
-            h3 {
-                margin: 0;
-                transition: color 0.2s ease;
-                display: flex;
-                align-items: center;
-                width: 100%;
-            }
-
-            i {
-                transition: all 0.2s ease;
-                margin-right: 0.5rem;
-            }
-
-            &[aria-expanded="false"] {
-                i.fa-project-diagram {
-                    transform: rotate(-90deg);
-                }
-            }
-        }
-
-        .collapse {
-            transition: all 0.2s ease-in-out;
-        }
+    .transition-rotate {
+        transition: transform 0.2s ease;
     }
 
-    .pipeline-impact-item {
-        margin-bottom: 0.75rem;
-        padding-left: 1rem;
-        position: relative;
-        &:last-child {
-            margin-bottom: 0;
-        }
+    [aria-expanded="false"] .transition-rotate {
+        transform: rotate(-90deg);
+    }
 
-        a {
-            display: block;
-            padding: 0.4rem 0.6rem;
-            color: var(--bs-body-color);
-            font-size: 0.95rem;
-            transition: all 0.2s ease;
+    .hover-bg {
+        color: var(--bs-body-color);
+        transition: all 0.2s ease;
 
-            &:hover {
-                background-color: var(--bs-tertiary-bg);
-                color: var(--bs-primary);
-                text-decoration: none;
-            }
-        }
-
-        .versions {
-            margin-top: 0.5rem;
-            margin-left: 1rem;
-            font-size: 0.9rem;
-
-            .version-tags {
-                display: flex;
-                flex-wrap: wrap;
-                gap: 0.25rem;
-                margin-top: 0.25rem;
-
-                .version-tag {
-                    background-color: var(--bs-primary-bg-subtle);
-                    color: var(--bs-primary);
-                    padding: 0.1rem 0.3rem;
-                    border-radius: 0.25rem;
-                    font-size: 0.8rem;
-                    white-space: nowrap;
-                }
-            }
+        &:hover {
+            background-color: var(--bs-tertiary-bg);
+            color: var(--bs-primary);
         }
     }
 </style>
