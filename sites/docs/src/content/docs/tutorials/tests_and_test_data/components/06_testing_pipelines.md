@@ -6,17 +6,18 @@ weight: 60
 
 # Pipeline Testing
 
-Pipeline-level testing ensures that your entire nf-core pipeline works correctly from start to finish. As of nf-core/tools 3.3, pipeline-level nf-test tests have been added to the pipeline template to improve robustness and help developers catch issues early in the development process.
+Pipeline-level testing ensures that your entire nf-core pipeline works correctly from start to finish. 
+As of nf-core/tools 3.3, pipeline-level nf-test tests have been added to the pipeline template to improve robustness and help developers catch issues early in the development process.
 
 ## Template Files
 
 When you create a new nf-core pipeline or update an existing one, you'll find these new template files for pipeline testing:
 
-```
+```tree
 nf-test.config       # The pipeline-level nf-test configuration file
 tests/
 ├── .nftignore       # ignored files for nf-test
-├── default.nf.test  # The default test for the pipeline, mirroring the setup in config/test.config
+├── default.nf.test  # The default test for the pipeline, loading the parameter configuration from config/test.config
 └── nextflow.config  # The nextflow configuration for the pipeline tests
 ```
 
