@@ -4,8 +4,8 @@ import NavbarToc from "@components/navbar/NavbarToc.svelte";
 import NavbarDocsNav from "@components/navbar/NavbarDocsNav.svelte";
 import NavbarDocsNavTitle from "@components/navbar/NavbarDocsNavTitle.astro";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
-import NfCoreLogoDarkbg from "/images/logo/nf-core-logo-darkbg.svg?raw";
-import NfCoreLogo from "/images/logo/nf-core-logo.svg?raw";
+import NfCoreLogoDarkbg from "@public/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "@public/images/logo/nf-core-logo.svg";
 import IconSocial from "@components/IconSocial.astro";
 import ThemeSwitch from "@components/ThemeSwitch.svelte";
 import { Icon } from "astro-icon/components";
@@ -78,10 +78,10 @@ if (onGoingEvents?.length > 0) {
     <div class="container-fluid">
         <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
-                <Fragment set:html={NfCoreLogo} />
+                <NfCoreLogo />
             </div>
             <div class="hide-light">
-                <Fragment set:html={NfCoreLogoDarkbg} />
+                <NfCoreLogoDarkbg />
             </div>
         </a>
         {
@@ -179,6 +179,11 @@ if (onGoingEvents?.length > 0) {
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Programs and groups</span></li>
                         <li><a class="dropdown-item" href="/special-interest-groups/">Special interest groups</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/nf-core/proposals/pulls" target="_blank">
+                                In-progress RFCs
+                            </a>
+                        </li>
                         <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
                         <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
                         <li>
@@ -199,6 +204,7 @@ if (onGoingEvents?.length > 0) {
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/stickers/">Stickers</a></li>
                         <li><a class="dropdown-item" href="/governance/">Governance</a></li>
                         <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>

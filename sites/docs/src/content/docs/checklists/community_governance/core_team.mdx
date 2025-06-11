@@ -2,32 +2,35 @@
 title: Core Checklists
 subtitle: Step-by-step guides for core team tasks
 markdownPlugin: checklist
+parentWeight: 100
 ---
 
 ## New pipeline proposals and onboarding
 
-Instructions for nf-core pipeline approval:
+Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approval:
 
-1. [ ] Core: Before leaving your feedback(!), add to the [proposal tracking board](https://github.com/orgs/nf-core/projects/35/views/1) under 'Under discussion'.
-2. [ ] Core: Add :plus: icon on proposal to know it's on the board.
-3. [ ] Community: Discuss benefits/drawbacks of the proposal.
+1. [ ] Core: Before leaving your feedback(!), update the _project status_ on the issue to 'Proposed'.
+2. [ ] Community: Discuss benefits/drawbacks of the proposal.
     - Emphasise collaboration (prefer to have more developers on one pipeline rather than one developer).
     - Ensure proposal follows [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview).
     - In some cases, promote 'partial acceptance', i.e., if upstream steps already covered in another pipeline, propose new pipeline of just non-overlapping steps
-4. [ ] Core: Make final decision
-    - If accepted: update proposal tracking board, moving proposal to 'Accepted' section
-    - If not accepted: update proposal tracking board, moving proposal to 'Turned down'
-5. [ ] Core: Check proposal has received approval in #new-pipelines from either:
+3. [ ] Core: Make final decision
+    - If accepted: update the Project status on the issue 'Accepted' section
+    - If not accepted: update the project status to 'turned down'
+4. [ ] Core: Check proposal has received approval in [nf-core/proposals](https://github.com/nf-core/proposals) from either:
     - Two members of the core team.
     - One member of the core team and one member of the maintainers team.
-6. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
-7. [ ] Core: Create a slack channel with approved pipeline name.
-8. [ ] Core: Ask the developers to join #pipeline-maintainers channel.
+5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
+6. [ ] Core: Create a slack channel with approved pipeline name.
+    - [ ] Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
+7. [ ] Core: Add the main developers to
+    - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
+    - [ ] [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
+8. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 9. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
-10. [ ] Core/Dev: Transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
+10. [ ] Core/Dev: Once first release (mostly) ready: transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
 11. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
     - Website repo > Actions > Build json files and md-cache > Run workflow > From main.
-12. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
 
 ## Uploading test data to s3 bucket
 
@@ -39,6 +42,67 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
         :::
 2.  [ ] Check that large files cannot be reduced or subsetted.
 3.  [ ] Select **Amazon S3-managed keys (SSE-S3)** and create the pipeline directory in the S3 bucket.
+
+## Repository transfer to nf-core organisation
+
+1. [ ] Request repository ownership transfer from the developer.
+    1. If the repository is under an organisation account, ask the developer to add a core team member as a co-owner.
+    2. If the repository is under a personal user account, ask the developer to transfer ownership directly to a core team member’s personal account.
+2. [ ] Transfer the repository to the nf-core organisation.
+    1. In the repository, go to **Settings**.
+    2. Scroll to the bottom of the **General** page.
+    3. Select **Transfer**, next to **Transfer ownership**.
+    4. Confirm or update the repository name if needed.
+3. [ ] Configure repository settings in the nf-core organisation.
+    1. Ask Matthias for the repository ruleset JSON files (these are still under development, but pinned in the core channel).
+    2. In the repository, go to **Settings**.
+    3. In the left sidebar, select Rules (under Code and automation).
+    4. Select New ruleset.
+    5. Select **Import a ruleset**, then select one of the JSON files.
+    6. Select **Create** at the bottom of the page. Do not modify any fields.
+    7. Repeat the import (step 5) and create (step 6) steps for each JSON file provided.
+
+## Making custom docker containers for modules
+
+Instructions for adding custom docker containers to the nf-core [https://quay.io](https://quay.io/organization/nf-core) organisation.
+
+:::note
+These instructions require the person building and pushing the container to have push rights to the organization.
+**Only core members may have this access**, and new core members should request access from existing members.
+:::
+
+1. Check with the module author to ensure there is no available solution via Conda, Bioconda, or BioContainers.
+2. Ask the module author to:
+    - Place a `Dockerfile` alongside the module (sub)directories
+    - Add a `README.md` describing why the container is needed, and provide instructions for building the container
+    - (Optional) add a `.gitgnore` file to ensure build artefacts are not pushed with the `Dockerfile` and `README.md`
+3. Ensure Docker is correctly authenticated for pushing to `quay.io`.
+
+    ```bash
+    docker login --username <QUAY_USER_NAME> quay.io
+    ```
+
+4. Build the Docker image locally and tag it appropriately:
+
+    ```bash
+    docker build . -t quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+5. Push the built container image:
+
+    ```bash
+    docker push quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+6. Share the container reference with the module author so they can update the module:
+
+    ```groovy
+    container "nf-core/<TOOL>:<VERSION>"
+    ```
+
+    :::note
+    This replaces the entire Docker/Singularity condition in the module.
+    :::
 
 ## Activating Zenodo archiving of a new pipeline
 

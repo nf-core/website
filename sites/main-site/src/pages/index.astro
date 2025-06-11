@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
-import NfCoreLogoDarkbg from "/images/logo/nf-core-logo-darkbg.svg?raw";
-import NfCoreLogo from "/images/logo/nf-core-logo.svg?raw";
+import NfCoreLogoDarkbg from "@public/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "@public/images/logo/nf-core-logo.svg";
 import ContributorCarousel from "@components/ContributorCarousel.svelte";
 import EventBanner from "@components/event/EventBanner.astro";
 import HomepageCard from "@components/homepage/HomepageCard.astro";
@@ -18,10 +18,10 @@ import AnnouncementBanner from "@components/navbar/AnnouncementBanner.astro";
         <div class="homepage-header-contents col-md-5">
             <h1>
                 <div class="hide-dark">
-                    <Fragment set:html={NfCoreLogo} />
+                    <NfCoreLogo />
                 </div>
                 <div class="hide-light">
-                    <Fragment set:html={NfCoreLogoDarkbg} />
+                    <NfCoreLogoDarkbg />
                 </div>
             </h1>
             <p class="lead font-weight-normal">

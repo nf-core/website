@@ -8,7 +8,7 @@ The key words “MUST”, “MUST NOT”, “SHOULD”, etc. are to be interpret
 
 ## Actively request reviewers and feedback
 
-- Authors/Reviewers SHOULD request help for review at nf-core Slack `#request-review` channel.
+- Authors/Reviewers SHOULD request help for review at nf-core Slack `#request-review` channel for general reviews (please use [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) for pipeline releases)
 - We encourage collaboration in PR, other contributors are welcome to fix linting errors (you can mention relevant bot commands) or make improvements to the code if necessary.
 
 ## Pull Request Rapid Merge After Review

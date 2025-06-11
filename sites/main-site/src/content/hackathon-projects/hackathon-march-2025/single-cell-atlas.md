@@ -2,6 +2,7 @@
 title: "Adapt Single Cell Expression Atlas analysis workflow to nf-core standards"
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C08J6LDLN0P
 image: "/assets/images/events/2025/hackathon-march/single-cell-atlas.png"
 image_alt: EMBL-EBI Single Cell Expression Atlas logo
 leaders:

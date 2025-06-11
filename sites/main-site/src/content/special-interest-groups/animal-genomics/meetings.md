@@ -11,7 +11,12 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-|             Mar 19, 2025 | Christopher Tuggle (Iowa State University, USA))                                                                             | [March Meeting](/events/2025/SIG_animalgenomics_Mar)         |
+|             Sep 17, 2025 | Brenda Murdoch (University of Alberta, Canada)                                                                               | [September Meeting](/events/2025/SIG_animalgenomics_Sep)     |
+|             Jul 16, 2025 | Luca Fontanesi (University of Bologna, Italy)                                                                                | [July Meeting](/events/2025/SIG_animalgenomics_Jul)          |
+|             Jun 18, 2025 | Ángela Canovas (University of Guelph, Canada)                                                                                | [June Meeting](/events/2025/SIG_animalgenomics_Jun)          |
+|             May 21, 2025 | James Reecy (Iowa State University, US)                                                                                      | [May Meeting](/events/2025/SIG_animalgenomics_May)           |
+|             Apr 16, 2025 | Damir Baranasic (MRC, London Institute of Medical Sciences, UK)                                                              | [April Meeting](/events/2025/SIG_animalgenomics_Apr)         |
+|             Mar 19, 2025 | Christopher Tuggle (Iowa State University, USA)                                                                              | [March Meeting](/events/2025/SIG_animalgenomics_Mar)         |
 |             Feb 19, 2025 | Harris Lewin (Arizona State University, USA)                                                                                 | [February Meeting](/events/2025/SIG_animalgenomics_Feb)      |
 |             Jan 22, 2025 | Round table for discussing the section of the ELIXIR Domestic Animals Genome & Phenome Focus Group                           | [January Meeting](/events/2025/SIG_animalgenomics_Jan)       |
 |             Dec 18, 2024 | Emily Clark (The Roslin Institute, University of Edinburgh, UK)                                                              | [December Meeting](/events/2024/SIG_animalgenomics_Dec)      |
