@@ -92,7 +92,11 @@ const hasContributors = frontmatter.reporter?.length || frontmatter.reviewer?.le
                                 {metadataItems.map((item) => (
                                     <div class="mb-2">
                                         <div class="fw-semibold small mb-1">
-                                            <i class={`fas ${item.icon} me-1 text-primary`} />
+                                            {item.iconType === "fa" ? (
+                                                <i class={`fas ${item.icon} me-1 text-primary`} />
+                                            ) : (
+                                                <span class="me-1 text-primary" set:html={item.icon} />
+                                            )}
                                             {item.label}
                                         </div>
                                         <div class="d-flex flex-wrap gap-2">
