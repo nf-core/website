@@ -1,5 +1,9 @@
 ---
-import AdvisoryPageLayout from "@layouts/AdvisoryPageLayout.astro";
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import AdvisoryHeader from "@components/advisory/AdvisoryHeader.astro";
+import AdvisoryImpact from "@components/advisory/AdvisoryImpact.astro";
+import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
+import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
 import { getCollection, render } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
@@ -120,14 +124,13 @@ sections.forEach((year) => {
 ---
 
 {frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
-<AdvisoryPageLayout
+<MarkdownTocLayout
     title={title}
     subtitle={subtitle}
     md_github_url={md_github_url}
-    advisory_header={frontmatter}
     headings={headings}
     leftSidebar={true}
-    advisories={advisories}
+    sections={sections}
     docSearchTags={[
         { name: "page_type", content: "advisory" },
         ...frontmatter.type.map((type) => ({ name: "page_subtype", content: type })),
@@ -135,5 +138,13 @@ sections.forEach((year) => {
     viewTransitions={true}
     sidebarTitle="Advisories"
 >
+    <div slot="right-sidebar-top">
+        <AdvisoryHeader frontmatter={frontmatter} />
+        <AdvisoryImpact frontmatter={frontmatter} />
+    </div>
+    <div slot="left-sidebar">
+        <AdvisorySidebar advisories={advisories} sidebarTitle="Advisories" />
+    </div>
     <Content />
-</AdvisoryPageLayout>
+    <AdvisoryReferences references={frontmatter.references} />
+</MarkdownTocLayout>
