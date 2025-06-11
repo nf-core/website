@@ -87,22 +87,36 @@ function getLinkIcon(url: string): IconResult {
 
 {
     references?.length > 0 && (
-        <div class="advisory-references">
+        <div class="mt-5 pt-4 border-top">
             <h2 class="h4 mb-3">References</h2>
             <ul class="list-unstyled mb-0">
                 {references.map((ref) => {
                     const icon = getLinkIcon(ref.url);
                     return (
-                        <li class="reference-item mb-3">
-                            <a href={ref.url} target="_blank" rel="noopener noreferrer" class="reference-link">
+                        <li class="mb-3">
+                            <a
+                                href={ref.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="fw-normal text-decoration-none d-inline-flex align-items-center text-body"
+                            >
                                 {icon.type === "fa" ? (
-                                    <i class={`${icon.icon} me-2`} />
+                                    <i
+                                        class={`${icon.icon} me-2 text-primary`}
+                                        style="width: 1.25rem; text-align: center;"
+                                    />
                                 ) : (
-                                    <span class="custom-icon me-2" set:html={icon.icon} />
+                                    <span
+                                        class="me-2 text-primary"
+                                        style="width: 1.25rem; text-align: center;"
+                                        set:html={icon.icon}
+                                    />
                                 )}
-                                <span class="reference-title">{ref.title}</span>
+                                <span class="fw-medium hover-link text-decoration-underline">{ref.title}</span>
                             </a>
-                            {ref.description && <p class="reference-description mb-0 mt-1">{ref.description}</p>}
+                            {ref.description && (
+                                <p class="text-body-secondary small mb-0 mt-1 ps-4">{ref.description}</p>
+                            )}
                         </li>
                     );
                 })}
@@ -112,64 +126,15 @@ function getLinkIcon(url: string): IconResult {
 }
 
 <style lang="scss">
-    .advisory-references {
-        margin-top: 3rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--bs-border-color);
+    .transition-rotate {
+        transition: transform 0.2s ease;
+    }
 
-        h2 {
-            color: var(--bs-body-color);
-            font-size: 1.5rem;
-        }
+    .hover-link {
+        transition: all 0.2s ease;
 
-        .reference-item {
-            &:last-child {
-                margin-bottom: 0 !important;
-            }
-        }
-
-        .reference-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--bs-body-color);
-            text-decoration: none;
-            transition: color 0.2s ease-in-out;
-
-            i,
-            .custom-icon {
-                color: var(--bs-primary);
-                width: 1.25rem;
-                text-align: center;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .custom-icon {
-                svg {
-                    width: 1em;
-                    height: 1em;
-                }
-            }
-
-            &:hover {
-                color: var(--bs-primary);
-                text-decoration: none;
-
-                .reference-title {
-                    text-decoration: underline;
-                }
-            }
-        }
-
-        .reference-title {
-            font-weight: 500;
-        }
-
-        .reference-description {
-            color: var(--bs-body-color-secondary);
-            font-size: 0.95rem;
-            padding-left: 2.25rem; // Aligns with the title (icon width + margin)
+        &:hover {
+            color: var(--bs-primary);
         }
     }
 </style>
