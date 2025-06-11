@@ -67,7 +67,7 @@ when {
   this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
   :::
 
-- The test names should be descriptive and easily distinguishable. One possibility is `data origin - data format - other flags`, for example `human - [bam,bai] - create_bed`.
+- The test names should be descriptive and easily distinguishable. One possibility is `data origin - data format - other flags`, for example `human - [bam,bai] - create_bed`. The `other flags` should serve as a way to distinguish between different tests which have similar inputs.
 
 :::tip
 See the [assertions documentation](/docs/contributing/nf-test/assertions) for examples on how to handle different types of test data and scenarios.
@@ -144,8 +144,10 @@ nextflow_process {
             input[0] = Channel.fromList([
                             tuple([ id:'test1', single_end:false ], // meta map
                                 file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
-                            tuple([ id:'test2', single_end:false ],
-                                file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
+                            tuple(
+                                [ id:'test2', single_end:false ],
+                                file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true)
+                            )
                         ])
             """
         }
@@ -157,7 +159,9 @@ nextflow_process {
         when {
             process {
                 """
-                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
+                input[0] = ABRICATE_RUN.out.report
+                    .collect{ meta, report -> report }
+                    .map{ report -> [ [ id: 'test_summary' ], report ] }
                 """
             }
         }
