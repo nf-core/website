@@ -42677,6 +42677,91 @@
       }
     },
     {
+      "name": "crabs_insilicopcr",
+      "path": "modules/nf-core/crabs/insilicopcr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabs_insilicopcr",
+        "description": "CRABS extracts the amplicon region of the primer set by conducting an in silico PCR.",
+        "keywords": [
+          "insilico",
+          "PCR",
+          "amplicon",
+          "sequencing"
+        ],
+        "tools": [
+          {
+            "crabs": {
+              "description": "Crabs (Creating Reference databases for Amplicon-Based Sequencing)\nis a program to download and curate reference databases\nfor eDNA metabarcoding analyses\n",
+              "homepage": "https://github.com/gjeunen/reference_database_creator",
+              "documentation": "https://github.com/gjeunen/reference_database_creator?tab=readme-ov-file#running-crabs",
+              "tool_dev_url": "https://github.com/gjeunen/reference_database_creator",
+              "doi": "10.1111/1755-0998.13741",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "crabsdb": {
+                "type": "file",
+                "description": "CRABSDB to conduct in silico PCR on",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "file",
+                  "description": "Extracted amplicon regions",
+                  "pattern": "*.insilicopcr.txtt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab",
+          "@a4000"
+        ],
+        "maintainers": [
+          "@famosab",
+          "@a4000"
+        ]
+      }
+    },
+    {
       "name": "crabz_compress",
       "path": "modules/nf-core/crabz/compress/meta.yml",
       "type": "module",
@@ -137414,26 +137499,18 @@
         ],
         "output": [
           {
-            "interval_list": [
+            "intervallist": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
                 }
               },
               {
-                "*.interval_list": {
+                "*.intervallist": {
                   "type": "file",
                   "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
-                }
-              },
-              {
-                "_list": {
-                  "type": "file",
-                  "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
+                  "pattern": "*.intervallist"
                 }
               }
             ]
