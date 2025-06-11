@@ -137,12 +137,13 @@ sections.forEach((year) => {
     ]}
     viewTransitions={true}
     sidebarTitle="Advisories"
+    tocSidebarPosition="left"
 >
     <div slot="right-sidebar-top">
         <AdvisoryHeader frontmatter={frontmatter} />
         <AdvisoryImpact frontmatter={frontmatter} />
     </div>
-    <div slot="left-sidebar">
+    <div slot="left-sidebar-top">
         <AdvisorySidebar advisories={advisories} sidebarTitle="Advisories" />
     </div>
     <Content />
