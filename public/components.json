@@ -152406,27 +152406,10 @@
                 }
               },
               {
-                "${notebook}": {
+                "notebook": {
                   "type": "file",
-                  "description": "The original, un-rendered notebook.",
-                  "pattern": "*.[qmd,ipynb,rmd]"
-                }
-              }
-            ]
-          },
-          {
-            "artifacts": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
-                }
-              },
-              {
-                "artifacts/*": {
-                  "type": "file",
-                  "description": "Artifacts generated during report rendering.",
-                  "pattern": "*"
+                  "description": "The Quarto notebook that was rendered. Allows user to continue working on the notebook.",
+                  "pattern": "*.{qmd}"
                 }
               }
             ]
@@ -152443,6 +152426,23 @@
                 "params.yml": {
                   "type": "file",
                   "description": "Parameters used during report rendering.",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
+            "artifacts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+                }
+              },
+              {
+                "${notebook_parameters.artifact_dir}/*": {
+                  "type": "file",
+                  "description": "Artifacts generated during report rendering.",
                   "pattern": "*"
                 }
               }
