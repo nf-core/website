@@ -41,3 +41,24 @@ export const CurrentTab = atom<string>('');
 export const SearchQuery = atom<string>('');
 export const showHidden = atom<boolean>(false);
 export const showHelp = atom<boolean>(false);
+
+export interface NextflowVersion {
+    version: string;
+    isEdge: boolean;
+    downloadUrl: string;
+    downloadUrlAll: string;
+    published_at: string;
+}
+
+interface CachedVersions {
+    versions: NextflowVersion[];
+    lastUpdated: number; // timestamp in milliseconds
+}
+
+export const NextflowVersions = atom<CachedVersions>({ versions: [], lastUpdated: 0 });
+
+// Helper function to check if cache is expired
+export const isCacheExpired = (lastUpdated: number): boolean => {
+    // Cache expiration time (24 hours in milliseconds)
+    return Date.now() - lastUpdated > 24 * 60 * 60 * 1000;
+};

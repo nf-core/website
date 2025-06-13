@@ -1,11 +1,37 @@
 import type { APIRoute } from 'astro';
 import octokit from '@components/octokit';
 import type { OctokitResponse } from '@octokit/types';
+import { NextflowVersions, isCacheExpired } from '@components/store';
 
 export const GET: APIRoute = async ({ params, request }) => {
     try {
-        // get all releases as versions, go through all release pages
+        const url = new URL(request.url);
+        const forceRefresh = url.searchParams.get('renew') === 'true';
 
+        // Check if we have cached versions
+        const cached = NextflowVersions.get();
+        const cacheExpired = isCacheExpired(cached.lastUpdated);
+
+        // Use cache if it exists, is not expired, and force refresh is not requested
+        if (cached.versions.length > 0 && !cacheExpired && !forceRefresh) {
+            return new Response(
+                JSON.stringify({
+                    latest: {
+                        stable: cached.versions.find(version => !version.isEdge),
+                        edge: cached.versions.find(version => version.isEdge),
+                        everything: cached.versions[0],
+                    },
+                    versions: cached.versions,
+                }), {
+                    status: 200,
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+        }
+
+        // If cache is expired or force refresh requested, fetch from GitHub
         const versions: {}[] = [];
         let page = 1;
         let releases: OctokitResponse<any>;
@@ -41,6 +67,12 @@ export const GET: APIRoute = async ({ params, request }) => {
             return 0;
         });
 
+        // Update the store with versions and current timestamp
+        NextflowVersions.set({
+            versions: formattedVersions,
+            lastUpdated: Date.now()
+        });
+
         return new Response(
             JSON.stringify({
                 latest:{
@@ -50,11 +82,11 @@ export const GET: APIRoute = async ({ params, request }) => {
                 },
                 versions: formattedVersions,
             }), {
-        status: 200,
-        headers: {
-        "Content-Type": "application/json"
-        }
-    }
+                status: 200,
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            }
         );
     } catch (error) {
         return new Response(
