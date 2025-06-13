@@ -1,6 +1,8 @@
 /// <reference path="../.astro/types.d.ts" />
 /// <reference types="astro/client" />
 
+import type { VersionSpec } from "@components/advisory/advisoryUtils";
+
 declare module 'astro:content' {
   interface DataEntryMap {
     'advisories': {
@@ -14,11 +16,11 @@ declare module 'astro:content' {
         publishedDate: Date;
         reporter?: (string | Record<string, string>)[];
         reviewer?: (string | Record<string, string>)[];
-        pipelines?: string[] | Array<{name: string; versions: string[]}>;
+        pipelines?: string[] | Array<{name: string; versions: VersionSpec}>;
         modules?: string[];
         subworkflows?: string[];
         configuration?: string[];
-        nextflowVersions?: string[];
+        nextflowVersions?: VersionSpec;
         nextflowExecutors?: (
           | 'AWS Batch'
           | 'Azure Batch'
@@ -52,7 +54,7 @@ declare module 'astro:content' {
           | 'Wave'
         )[] | Array<{
           name: 'Apptainer' | 'Charliecloud' | 'Docker' | 'Podman' | 'Sarus' | 'Shifter' | 'Singularity' | 'Conda' | 'Spack' | 'Wave';
-          versions: string[];
+          versions: VersionSpec;
         }>;
         references?: Array<{
           title: string;

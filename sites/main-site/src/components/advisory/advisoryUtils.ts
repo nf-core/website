@@ -157,13 +157,16 @@ export function getAdvisoryCategoryIcon(category: string): string {
 
 interface SoftwareDependency {
     name: string;
-    versions?: string[];
+    versions?: VersionSpec;
 }
 
 type DependencyItem = string | SoftwareDependency;
 
-export function formatNextflowVersions(versions: string[]): string {
-    return versions.join(", ");
+export function formatNextflowVersions(versions: VersionSpec): string {
+    if (versions.type === "distinct") {
+        return versions.version.join(", ");
+    }
+    return "various";
 }
 
 export function formatNextflowExecutors(executors: string[]): string {
@@ -174,7 +177,12 @@ export function formatSoftwareDependency(dep: DependencyItem): string {
     if (typeof dep === "string") {
         return dep;
     }
-    return `${dep.name}${dep.versions ? ` (${dep.versions.join(", ")})` : ""}`;
+    const versionStr = dep.versions ?
+        (dep.versions.type === "distinct" ?
+            ` (${dep.versions.version.join(", ")})` :
+            " (various)") :
+        "";
+    return `${dep.name}${versionStr}`;
 }
 
 export function formatSoftwareDependencies(dependencies: DependencyItem[] | string): string {
@@ -185,7 +193,7 @@ export function formatSoftwareDependencies(dependencies: DependencyItem[] | stri
 }
 
 export interface AdvisoryMetadata {
-    nextflowVersions?: string[] | null;
+    nextflowVersions?: VersionSpec | null;
     nextflowExecutors?: string[] | null;
     softwareDependencies?: DependencyItem[] | string | null;
 }
@@ -200,7 +208,7 @@ export interface MetadataItem {
 export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataItem[] {
     const items: MetadataItem[] = [];
 
-    if (metadata.nextflowVersions?.length) {
+    if (metadata.nextflowVersions) {
         items.push({
             icon: customIcons.nextflow,
             iconType: "svg",
@@ -229,3 +237,11 @@ export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataIt
 
     return items;
 }
+
+export interface VersionSpec {
+    type: "distinct" | "range";
+    version: string[];
+}
+
+
+
