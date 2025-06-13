@@ -1,4 +1,4 @@
-import { getNextflowVersions } from '@utils/functions';
+import { getCachedNextflowVersions } from '@utils/functions';
 import semverSatisfies from 'semver/functions/satisfies'
 
 
@@ -168,18 +168,21 @@ interface SoftwareDependency {
 type DependencyItem = string | SoftwareDependency;
 
 // .filter(v => semverSatisfies(v.version.replace('v', ''), versions.version))
-export async function formatNextflowVersions(versions: VersionSpec, with_edge: boolean): Promise<string> {
+export function formatNextflowVersions(versions: VersionSpec, with_edge: boolean): string {
     if (versions.type === "distinct") {
         return versions.version.join(", ");
     }
     if (versions.type === "range") {
-        const cachedVersions = await getNextflowVersions();
-        const validVersions = cachedVersions
-            .filter(v => !v.isEdge || with_edge)
-            .map(v => v.version);
-        return validVersions.length > 0 ? validVersions.join(", ") : versions.version.join(", ");
+        // Try to use cached versions first
+        const cachedVersions = getCachedNextflowVersions();
+        if (cachedVersions.length > 0) {
+            const validVersions = cachedVersions
+                .filter(v => !v.isEdge || with_edge)
+                .map(v => v.version);
+            return validVersions.length > 0 ? validVersions.join(", ") : versions.version.join(", ");
+        }
     }
-    return "various";
+    return "undefined";
 }
 
 export function versionSpecToStringArray(versions: VersionSpec): string[] {
@@ -228,7 +231,7 @@ export interface MetadataItem {
     value: string;
 }
 
-export async function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): Promise<MetadataItem[]> {
+export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataItem[] {
     const items: MetadataItem[] = [];
 
     if (metadata.nextflowVersions) {
@@ -236,7 +239,7 @@ export async function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): Prom
             icon: customIcons.nextflow,
             iconType: "svg",
             label: "Nextflow",
-            value: await formatNextflowVersions(metadata.nextflowVersions, false),
+            value: formatNextflowVersions(metadata.nextflowVersions, false),
         });
     }
 

@@ -1,9 +1,9 @@
-import type { SidebarEntry } from '@utils/types';
+import type { SidebarEntry } from './types.ts';
 import type { CollectionEntry } from 'astro:content';
-import { NextflowVersions } from '@components/store';
-import octokit from '@components/octokit';
+import { NextflowVersions } from '../src/components/store.ts';
+import octokit from '../src/components/octokit';
 import type { OctokitResponse } from '@octokit/types';
-import type { NextflowVersion } from '@components/store';
+import type { NextflowVersion } from '../src/components/store.ts';
 
 export const createLinkOrGroup = (
     id: string,
@@ -169,6 +169,20 @@ const isCacheExpired = (lastUpdated: number): boolean => {
     return Date.now() - lastUpdated > 24 * 60 * 60 * 1000;
 };
 
+/**
+ * Synchronously get the cached Nextflow versions.
+ * This is safe to use in components and during build time.
+ * Returns empty array if no versions are cached yet.
+ */
+export function getCachedNextflowVersions(): NextflowVersion[] {
+    const cached = NextflowVersions.get();
+    return cached.versions;
+}
+
+/**
+ * Asynchronously fetch Nextflow versions from GitHub and update the cache.
+ * During build time, this will populate the cache for synchronous access.
+ */
 export async function getNextflowVersions(renew = false): Promise<NextflowVersion[]> {
     const cached = NextflowVersions.get();
     const cacheExpired = isCacheExpired(cached.lastUpdated);
