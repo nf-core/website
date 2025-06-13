@@ -1,5 +1,9 @@
 import type { SidebarEntry } from '@utils/types';
 import type { CollectionEntry } from 'astro:content';
+import { NextflowVersions } from '@components/store';
+import octokit from '@components/octokit';
+import type { OctokitResponse } from '@octokit/types';
+import type { NextflowVersion } from '@components/store';
 
 export const createLinkOrGroup = (
     id: string,
@@ -159,4 +163,64 @@ export const sanitizeNfCoreLabels = (label: string) => {
             .join(' nf-')
     );
 };
+
+// Helper function to check if cache is older than 24 hours
+const isCacheExpired = (lastUpdated: number): boolean => {
+    return Date.now() - lastUpdated > 24 * 60 * 60 * 1000;
+};
+
+export async function getNextflowVersions(renew = false): Promise<NextflowVersion[]> {
+    const cached = NextflowVersions.get();
+    const cacheExpired = isCacheExpired(cached.lastUpdated);
+
+    // Use cache if it exists, is not expired, and renewal is not requested
+    if (cached.versions.length > 0 && !cacheExpired && !renew) {
+        console.log("Using cached Nextflow versions");
+        return cached.versions;
+    }
+
+    // If cache is expired or renewal requested, fetch from GitHub
+    console.log("Fetching Nextflow versions from GitHub");
+    const versions: {}[] = [];
+    let page = 1;
+    let releases: OctokitResponse<any>;
+    do {
+        releases = await octokit.request('GET /repos/{owner}/{repo}/releases', {
+            owner: 'nextflow-io',
+            repo: 'nextflow',
+            page,
+        });
+        versions.push(...releases.data);
+        page++;
+    } while (releases.headers.link?.includes('rel="next"'));
+
+    const formattedVersions = versions.map((version: any) => ({
+        version: version['tag_name'],
+        isEdge: version['prerelease'],
+        downloadUrl: version['assets'][0] && version['assets'][0]['browser_download_url'],
+        downloadUrlAll: version['assets'][1] && version['assets'][1]['browser_download_url'],
+        published_at: version['published_at'],
+    })).sort((a: any, b: any) => {
+        const aVersion = a['version'].replace('-edge', '').replace('v', '');
+        const bVersion = b['version'].replace('-edge', '').replace('v', '');
+        const aVersionSplit = aVersion.split('.');
+        const bVersionSplit = bVersion.split('.');
+        for (let i = 0; i < 3; i++) {
+            if (parseInt(aVersionSplit[i]) > parseInt(bVersionSplit[i])) {
+                return -1;
+            } else if (parseInt(aVersionSplit[i]) < parseInt(bVersionSplit[i])) {
+                return 1;
+            }
+        }
+        return 0;
+    });
+
+    // Update the store with versions and current timestamp
+    NextflowVersions.set({
+        versions: formattedVersions,
+        lastUpdated: Date.now()
+    });
+
+    return formattedVersions;
+}
 

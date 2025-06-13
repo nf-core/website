@@ -1,4 +1,5 @@
-
+import { getNextflowVersions } from '@utils/functions';
+import semverSatisfies from 'semver/functions/satisfies'
 
 
 // Combined dictionary for all advisory classes (types and severities)
@@ -166,11 +167,18 @@ interface SoftwareDependency {
 
 type DependencyItem = string | SoftwareDependency;
 
-export function formatNextflowVersions(versions: VersionSpec): string {
+// .filter(v => semverSatisfies(v.version.replace('v', ''), versions.version))
+export async function formatNextflowVersions(versions: VersionSpec, with_edge: boolean): Promise<string> {
     if (versions.type === "distinct") {
         return versions.version.join(", ");
     }
-    // ToDo: Obtain a list of valid Nextflow versions and use semver.satisfies to subset
+    if (versions.type === "range") {
+        const cachedVersions = await getNextflowVersions();
+        const validVersions = cachedVersions
+            .filter(v => !v.isEdge || with_edge)
+            .map(v => v.version);
+        return validVersions.length > 0 ? validVersions.join(", ") : versions.version.join(", ");
+    }
     return "various";
 }
 
@@ -220,7 +228,7 @@ export interface MetadataItem {
     value: string;
 }
 
-export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataItem[] {
+export async function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): Promise<MetadataItem[]> {
     const items: MetadataItem[] = [];
 
     if (metadata.nextflowVersions) {
@@ -228,7 +236,7 @@ export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataIt
             icon: customIcons.nextflow,
             iconType: "svg",
             label: "Nextflow",
-            value: formatNextflowVersions(metadata.nextflowVersions),
+            value: await formatNextflowVersions(metadata.nextflowVersions, false),
         });
     }
 

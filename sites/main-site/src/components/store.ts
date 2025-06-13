@@ -42,6 +42,8 @@ export const SearchQuery = atom<string>('');
 export const showHidden = atom<boolean>(false);
 export const showHelp = atom<boolean>(false);
 
+
+
 export interface NextflowVersion {
     version: string;
     isEdge: boolean;
@@ -50,15 +52,10 @@ export interface NextflowVersion {
     published_at: string;
 }
 
-interface CachedVersions {
+interface CachedNextflowVersions {
     versions: NextflowVersion[];
     lastUpdated: number; // timestamp in milliseconds
 }
 
-export const NextflowVersions = atom<CachedVersions>({ versions: [], lastUpdated: 0 });
+export const NextflowVersions = atom<CachedNextflowVersions>({ versions: [], lastUpdated: 0 });
 
-// Helper function to check if cache is expired
-export const isCacheExpired = (lastUpdated: number): boolean => {
-    // Cache expiration time (24 hours in milliseconds)
-    return Date.now() - lastUpdated > 24 * 60 * 60 * 1000;
-};
