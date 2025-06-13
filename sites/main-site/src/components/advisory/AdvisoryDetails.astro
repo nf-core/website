@@ -21,12 +21,12 @@ const hasImpact =
     frontmatter.configuration?.length;
 ---
 
-<div class="advisory-container bg-body rounded shadow-sm border p-4 mb-4">
+<div class="advisory-container bg-body p-4 mb-4">
     <AdvisoryHeader frontmatter={frontmatter} />
     {
         hasImpact && (
             <div class="advisory-impact pt-4">
-                <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Impact</h2>
+                <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom border-success">Impact</h2>
                 <div class="row g-4">
                     {frontmatter.pipelines?.length > 0 && (
                         <div class="col-12">

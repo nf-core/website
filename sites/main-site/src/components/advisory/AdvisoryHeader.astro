@@ -45,7 +45,7 @@ const hasContributors = frontmatter.reporter?.length || frontmatter.reviewer?.le
 ---
 
 <div class="advisory-header">
-    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Categorisation</h2>
+    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom border-success">Categorisation</h2>
     <div class="d-flex flex-column gap-2">
         <div>
             <dl class="mb-0">
@@ -114,7 +114,7 @@ const hasContributors = frontmatter.reporter?.length || frontmatter.reviewer?.le
         {
             hasContributors && (
                 <div>
-                    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom">Contributors</h2>
+                    <h2 class="h4 pt-2 pb-2 mb-4 border-top border-bottom border-success">Contributors</h2>
                     {frontmatter.reporter && (
                         <div class="mb-2">
                             <dt class="fw-semibold mb-2 text-body-secondary">Reported by</dt>
