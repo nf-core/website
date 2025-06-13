@@ -1,13 +1,15 @@
 ---
+import { versionSpecToStringArray } from "./advisoryUtils";
+
 interface Props {
-    pipelines: Array<string | { name: string; versions: string[] }>;
+    pipelines: Array<string | { name: string; versions: VersionSpec }>;
 }
 
 const { pipelines } = Astro.props;
 
 const hasVersions = (
-    pipeline: string | { name: string; versions: string[] },
-): pipeline is { name: string; versions: string[] } => {
+    pipeline: string | { name: string; versions: VersionSpec },
+): pipeline is { name: string; versions: VersionSpec } => {
     return typeof pipeline === "object" && "versions" in pipeline;
 };
 
@@ -32,7 +34,7 @@ const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}
             {
                 pipelines.map((pipeline) => {
                     const name = hasVersions(pipeline) ? pipeline.name : pipeline;
-                    const versions = hasVersions(pipeline) ? pipeline.versions : null;
+                    const versions = hasVersions(pipeline) ? versionSpecToStringArray(pipeline.versions) : null;
                     return (
                         <li class="mb-2 ps-3">
                             <a
