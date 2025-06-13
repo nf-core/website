@@ -5,8 +5,6 @@ import { githubFileLoader } from "@utils/loaders";
 import { octokit } from "@components/octokit.js";
 import type { VersionSpec } from "@components/advisory/advisoryUtils";
 
-import semver from "semver";
-
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
     // semver lenient allows for 1.0 instead of enforcing 1.0.0
@@ -15,13 +13,13 @@ const commonSchemas = {
         .regex(/^(\d+\.\d+(?:\.\d+)?)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
         })
-        .transform((val): VersionSpec => ({ type: "distinct", version: [semver.coerce(semver.clean(val))] })),
+        .transform((val): VersionSpec => ({ type: "distinct", version: [val] })),
     semver_strict: z
         .string()
         .regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)",
         })
-        .transform((val): VersionSpec => ({ type: "distinct", version: [semver.coerce(val)] })),
+        .transform((val): VersionSpec => ({ type: "distinct", version: [val] })),
     semver_range: z
         .string()
         .regex(
