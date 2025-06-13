@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 import type { AstroConfig } from "astro";
 import { githubFileLoader } from "@utils/loaders";
 import { octokit } from "@components/octokit.js";
+import type { VersionSpec } from "@components/advisory/advisoryUtils";
 
 import semver from "semver";
 
@@ -14,13 +15,13 @@ const commonSchemas = {
         .regex(/^(\d+\.\d+(?:\.\d+)?)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
         })
-        .transform((val): { type: "distinct"; version: string[] } => ({ type: "distinct", version: [semver.coerce(semver.clean(val))] })),
+        .transform((val): VersionSpec => ({ type: "distinct", version: [semver.coerce(semver.clean(val))] })),
     semver_strict: z
         .string()
         .regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)",
         })
-        .transform((val): { type: "distinct"; version: string[] } => ({ type: "distinct", version: [semver.coerce(val)] })),
+        .transform((val): VersionSpec => ({ type: "distinct", version: [semver.coerce(val)] })),
     semver_range: z
         .string()
         .regex(
@@ -29,7 +30,7 @@ const commonSchemas = {
                 message: "Must be a valid semantic version range (e.g., ^2.0.0, ~1.2.3, >=1.0.0, 1.0.0 - 2.0.0, 1.0.0, 2.0.0)",
             }
         )
-        .transform((val): { type: "range"; version: string[] } => ({ type: "range", version: [val] })),
+        .transform((val): VersionSpec => ({ type: "range", version: [val] })),
     dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
         message: "Date must be in the format YYYY-MM-DD",
     }),
@@ -45,20 +46,13 @@ const commonSchemas = {
     }),
 };
 
-export interface VersionSpec {
-    type: "distinct" | "range";
-    version: string[];
-}
 
 // Helper function to transform versions into VersionSpec
-const transformVersions = (val: z.infer<typeof commonSchemas.semver_lenient>[] | z.infer<typeof commonSchemas.semver_strict>[] | z.infer<typeof commonSchemas.semver_range>): VersionSpec => {
+const transformVersions = (val: VersionSpec[]| VersionSpec): VersionSpec => {
     if (Array.isArray(val)) {
-        // Merge all versions from the array of VersionSpecs into a single distinct VersionSpec
-        const allVersions = val.flatMap(v => (v as VersionSpec).version);
-        return { type: "distinct", version: allVersions };
+        return { type: "distinct", version: val.flatMap(v => v.version) };
     }
-    // For single values, use the transform from commonSchema directly
-    return val as VersionSpec;
+    return val;
 };
 
 const teams = await octokit.request("GET /orgs/{org}/teams", {
