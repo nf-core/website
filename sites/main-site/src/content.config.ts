@@ -17,6 +17,23 @@ const commonSchemas = {
         .regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)",
         }),
+    semver_range: z
+        .string()
+        .regex(
+            /(?<operator>\^|~|>=?|<=?|=)?\s*(?<major>x|\*|\d+)(?:\.(?<minor>x|\*|\d+))?(?:\.(?<patch>x|\*|\d+))?(?:-(?<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+(?<build>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
+            {
+                message: "Must be a valid semantic version range (e.g., ^2.0.0, ~1.2.3, >=1.0.0, 1.0.0 - 2.0.0, 1.0.0, 2.0.0)",
+            }
+        ),
+    semver_parsed: z.object({
+        raw: z.string(),
+        operator: z.string().optional(),
+        major: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]),
+        minor: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]).optional(),
+        patch: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]).optional(),
+        prerelease: z.string().optional(),
+        build: z.string().optional()
+    }),
     dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
         message: "Date must be in the format YYYY-MM-DD",
     }),
@@ -31,6 +48,11 @@ const commonSchemas = {
         url: z.string().url(),
     }),
 };
+
+
+
+// export the type of the semver_parsed schema for use in advisories and their filters
+export type SemverParsed = z.infer<typeof commonSchemas.semver_parsed>;
 
 const teams = await octokit.request("GET /orgs/{org}/teams", {
     org: "nf-core",
@@ -173,7 +195,7 @@ const advisories = defineCollection({
                         z.array(
                             z.object({
                                 name: z.string(),
-                                versions: z.array(commonSchemas.semver_lenient),
+                                versions: z.union([z.array(commonSchemas.semver_lenient), commonSchemas.semver_range]),
                             }),
                         ),
                     ]),
@@ -206,7 +228,7 @@ const advisories = defineCollection({
                 // sort the configuration by name
                 return data?.sort();
             }),
-            nextflowVersions: z.nullable(z.array(commonSchemas.semver_strict)),
+            nextflowVersions: z.nullable(z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range])),
             nextflowExecutors: z.nullable(
                 z.array(
                     z.enum([
@@ -238,7 +260,7 @@ const advisories = defineCollection({
                     z.array(
                         z.object({
                             name: z.union([commonSchemas.containerRuntime, commonSchemas.environment]),
-                            versions: z.array(commonSchemas.semver_lenient),
+                            versions: z.array(z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range])),
                         }),
                     ),
                 ]),
