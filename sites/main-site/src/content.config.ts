@@ -4,6 +4,8 @@ import type { AstroConfig } from "astro";
 import { githubFileLoader } from "@utils/loaders";
 import { octokit } from "@components/octokit.js";
 
+import semver from "semver";
+
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
     // semver lenient allows for 1.0 instead of enforcing 1.0.0
@@ -11,29 +13,23 @@ const commonSchemas = {
         .string()
         .regex(/^(\d+\.\d+(?:\.\d+)?)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
-        }),
+        })
+        .transform((val): { type: "distinct"; version: string[] } => ({ type: "distinct", version: [semver.coerce(semver.clean(val))] })),
     semver_strict: z
         .string()
         .regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
             message: "Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)",
-        }),
+        })
+        .transform((val): { type: "distinct"; version: string[] } => ({ type: "distinct", version: [semver.coerce(val)] })),
     semver_range: z
         .string()
         .regex(
-            /(?<operator>\^|~|>=?|<=?|=)?\s*(?<major>x|\*|\d+)(?:\.(?<minor>x|\*|\d+))?(?:\.(?<patch>x|\*|\d+))?(?:-(?<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+(?<build>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?/,
+            /(?<operator>\^|~|>=?|<=?|=)?\s*(?<major>x|\*|\d+)(?:\.(?<minor>x|\*|\d+))?(?:\.(?<patch>x|\*|\d+))?(?:-(?<prerelease>[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*))?(?:\+(?<build>[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*))?/,
             {
                 message: "Must be a valid semantic version range (e.g., ^2.0.0, ~1.2.3, >=1.0.0, 1.0.0 - 2.0.0, 1.0.0, 2.0.0)",
             }
-        ),
-    semver_parsed: z.object({
-        raw: z.string(),
-        operator: z.string().optional(),
-        major: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]),
-        minor: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]).optional(),
-        patch: z.union([z.literal('x'), z.literal('*'), z.string().regex(/^\d+$/)]).optional(),
-        prerelease: z.string().optional(),
-        build: z.string().optional()
-    }),
+        )
+        .transform((val): { type: "range"; version: string[] } => ({ type: "range", version: [val] })),
     dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
         message: "Date must be in the format YYYY-MM-DD",
     }),
@@ -49,10 +45,21 @@ const commonSchemas = {
     }),
 };
 
+export interface VersionSpec {
+    type: "distinct" | "range";
+    version: string[];
+}
 
-
-// export the type of the semver_parsed schema for use in advisories and their filters
-export type SemverParsed = z.infer<typeof commonSchemas.semver_parsed>;
+// Helper function to transform versions into VersionSpec
+const transformVersions = (val: z.infer<typeof commonSchemas.semver_lenient>[] | z.infer<typeof commonSchemas.semver_strict>[] | z.infer<typeof commonSchemas.semver_range>): VersionSpec => {
+    if (Array.isArray(val)) {
+        // Merge all versions from the array of VersionSpecs into a single distinct VersionSpec
+        const allVersions = val.flatMap(v => (v as VersionSpec).version);
+        return { type: "distinct", version: allVersions };
+    }
+    // For single values, use the transform from commonSchema directly
+    return val as VersionSpec;
+};
 
 const teams = await octokit.request("GET /orgs/{org}/teams", {
     org: "nf-core",
@@ -195,7 +202,10 @@ const advisories = defineCollection({
                         z.array(
                             z.object({
                                 name: z.string(),
-                                versions: z.union([z.array(commonSchemas.semver_lenient), commonSchemas.semver_range]),
+                                versions: z.union([
+                                    z.array(commonSchemas.semver_lenient),
+                                    commonSchemas.semver_range
+                                ]).transform(transformVersions),
                             }),
                         ),
                     ]),
@@ -208,8 +218,8 @@ const advisories = defineCollection({
                         return (data as string[]).sort();
                     }
 
-                    // If it's an array of pipeline names and versions, sort by name as well
-                    return (data as Array<{ name: string; versions: string[] }>).sort((a, b) =>
+                    // If it's an array of pipeline names and versions, sort by name
+                    return (data as Array<{ name: string; versions: VersionSpec }>).sort((a, b) =>
                         a.name.localeCompare(b.name),
                     );
                 }),
@@ -228,7 +238,7 @@ const advisories = defineCollection({
                 // sort the configuration by name
                 return data?.sort();
             }),
-            nextflowVersions: z.nullable(z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range])),
+            nextflowVersions: z.nullable(z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range]).transform(transformVersions)),
             nextflowExecutors: z.nullable(
                 z.array(
                     z.enum([
@@ -260,7 +270,7 @@ const advisories = defineCollection({
                     z.array(
                         z.object({
                             name: z.union([commonSchemas.containerRuntime, commonSchemas.environment]),
-                            versions: z.array(z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range])),
+                            versions: z.union([z.array(commonSchemas.semver_strict), commonSchemas.semver_range]).transform(transformVersions),
                         }),
                     ),
                 ]),
