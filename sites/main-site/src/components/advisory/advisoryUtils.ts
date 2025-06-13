@@ -167,7 +167,6 @@ interface SoftwareDependency {
 
 type DependencyItem = string | SoftwareDependency;
 
-// .filter(v => semverSatisfies(v.version.replace('v', ''), versions.version))
 export function formatNextflowVersions(versions: VersionSpec, with_edge: boolean): string {
     if (versions.type === "distinct") {
         return versions.version.join(", ");
@@ -176,10 +175,15 @@ export function formatNextflowVersions(versions: VersionSpec, with_edge: boolean
         // Try to use cached versions first
         const cachedVersions = getCachedNextflowVersions();
         if (cachedVersions.length > 0) {
-            const validVersions = cachedVersions
-                .filter(v => !v.isEdge || with_edge)
-                .map(v => v.version);
-            return validVersions.length > 0 ? validVersions.join(", ") : versions.version.join(", ");
+            // Filter based on with_edge flag and map to version strings
+            const filteredVersions = cachedVersions
+                .filter(v => with_edge ? true : !v.isEdge)
+                .map(v => v.version.replace('v', ''));
+            const validVersions = filteredVersions
+                .filter(v => semverSatisfies(v, versions.version[0]))
+            console.debug("Applicable Nextflow versions:", validVersions);
+            console.debug("Specified Nextflow Range:", versions.version[0])
+            return validVersions.length > 0 && validVersions.length < 10 ? validVersions.join(", ") : versions.version.join(", ");
         }
     }
     return "undefined";
