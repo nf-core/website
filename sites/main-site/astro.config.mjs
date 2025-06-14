@@ -24,6 +24,7 @@ import remarkMath from 'remark-math';
 import pipelines_json from './public/pipelines.json';
 import markdownIntegration from '@astropub/md';
 import icon from 'astro-icon';
+import { onBuildStart } from './src/hooks';
 
 let pipelineRedirects = {};
 pipelines_json.remote_workflows.map((pipeline) => {
@@ -248,5 +249,8 @@ export default defineConfig({
 			],
 			rehypeKatex
 		]
+	},
+	hooks: {
+		'astro:build:start': onBuildStart
 	}
 });
