@@ -106,13 +106,7 @@ if (versions.filter((v) => v !== "dev").length > 0) {
         icon: "fa-regular fa-chart-line",
     });
 }
-allTabItems.push({
-    label: "Modules",
-    href: `/${pipeline}/modules/`,
-    active: url.includes(`/${pipeline}/modules`),
-    icon: "fa-regular fa-gear",
-});
-const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases", "Modules"];
+const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases"];
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
 const gh_url = "https://github.com/nf-core/" + pipeline;
