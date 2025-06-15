@@ -42677,6 +42677,91 @@
       }
     },
     {
+      "name": "crabs_insilicopcr",
+      "path": "modules/nf-core/crabs/insilicopcr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "crabs_insilicopcr",
+        "description": "CRABS extracts the amplicon region of the primer set by conducting an in silico PCR.",
+        "keywords": [
+          "insilico",
+          "PCR",
+          "amplicon",
+          "sequencing"
+        ],
+        "tools": [
+          {
+            "crabs": {
+              "description": "Crabs (Creating Reference databases for Amplicon-Based Sequencing)\nis a program to download and curate reference databases\nfor eDNA metabarcoding analyses\n",
+              "homepage": "https://github.com/gjeunen/reference_database_creator",
+              "documentation": "https://github.com/gjeunen/reference_database_creator?tab=readme-ov-file#running-crabs",
+              "tool_dev_url": "https://github.com/gjeunen/reference_database_creator",
+              "doi": "10.1111/1755-0998.13741",
+              "licence": [
+                "MIT License"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "crabsdb": {
+                "type": "file",
+                "description": "CRABSDB to conduct in silico PCR on",
+                "pattern": "*.txt"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "file",
+                  "description": "Extracted amplicon regions",
+                  "pattern": "*.insilicopcr.txtt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@famosab",
+          "@a4000"
+        ],
+        "maintainers": [
+          "@famosab",
+          "@a4000"
+        ]
+      }
+    },
+    {
       "name": "crabz_compress",
       "path": "modules/nf-core/crabz/compress/meta.yml",
       "type": "module",
@@ -43837,10 +43922,6 @@
         },
         {
           "name": "circrna",
-          "version": "dev"
-        },
-        {
-          "name": "createtaxdb",
           "version": "dev"
         },
         {
@@ -62336,6 +62417,115 @@
         ],
         "authors": [
           "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "force_cube",
+      "path": "modules/nf-core/force/cube/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "force_cube",
+        "description": "Generate processing masks for a give datacube definition and area of interest.\nThese files can be used to spatially restrict downstream analysis tasks.\n",
+        "keywords": [
+          "satellite data",
+          "processing masks",
+          "binary masks",
+          "area of interest",
+          "datacube",
+          "mask"
+        ],
+        "tools": [
+          {
+            "force": {
+              "description": "A all-in-one tool for processing satellite data.\nSpecialized on medium resolution data such as Landsat or Sentinel imagery.\n",
+              "homepage": "https://davidfrantz.github.io/code/force/",
+              "documentation": "https://force-eo.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/davidfrantz/force",
+              "doi": "10.3390/rs11091124",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "aoi": {
+                "type": "file",
+                "description": "Vector file (either shapefile geometry or geopackage) defining the area of interest.",
+                "pattern": "*.{shp,gpkg}"
+              }
+            }
+          ],
+          [
+            {
+              "mask/datacube-definition.prj": {
+                "type": "file",
+                "description": "Datacube file in FORCE format defining the properties of the targeted datacube",
+                "pattern": "*.{prj}"
+              }
+            }
+          ],
+          [
+            {
+              "shapefile_dbf": {
+                "type": "file",
+                "description": "Optional attribute table for shapefiles. Required if aoi is a shapefile.",
+                "pattern": "*.{dbf}"
+              }
+            }
+          ],
+          [
+            {
+              "shapefile_prj": {
+                "type": "file",
+                "description": "Optional projection for shapefiles. Required if aoi is a shapefile.",
+                "pattern": "*.{prj}"
+              }
+            }
+          ],
+          [
+            {
+              "shapefile_shx": {
+                "type": "file",
+                "description": "Optional shape index for shapefiles. Required if aoi is a shapefile.",
+                "pattern": "*.{shx}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "masks": [
+              {
+                "mask/*/*.tif": {
+                  "type": "file",
+                  "description": "Binary analysis masks for every tile. Directory names indicate corresponding datacube tile. Pixel values indicate usable pixels in downstream analysis.",
+                  "pattern": "*.tif"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Felix-Kummer"
+        ],
+        "maintainers": [
+          "@Felix-Kummer"
         ]
       }
     },
@@ -114524,6 +114714,122 @@
       }
     },
     {
+      "name": "metacache_query",
+      "path": "modules/nf-core/metacache/query/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "metacache_query",
+        "description": "Metacache query command for taxonomic classification",
+        "keywords": [
+          "metagenomics",
+          "classification",
+          "metacache"
+        ],
+        "tools": [
+          {
+            "metacache": {
+              "description": "MetaCache is a classification system for mapping genomic sequences (short reads, long reads, contigs, ...) from metagenomic samples to their most likely taxon of origin.",
+              "homepage": "https://github.com/muellan/metacache",
+              "documentation": "https://muellan.github.io/metacache/",
+              "tool_dev_url": "https://github.com/muellan/metacache",
+              "doi": "10.1093/bioinformatics/btx520",
+              "licence": [
+                "GPL-3.0 license"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "FASTA or FASTQ files",
+                "pattern": "*.{fasta,fa,fastq,fq}"
+              }
+            }
+          ],
+          [
+            {
+              "db": {
+                "type": "directory",
+                "description": "A MetaCache database contains taxonomic information and min-hash signatures of reference sequences (complete genomes, scaffolds, contigs, ...)."
+              }
+            }
+          ],
+          [
+            {
+              "do_abundances": {
+                "type": "boolean",
+                "description": "Flag indicating whether to produce the abundance table."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "mapping_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*mapping.txt": {
+                  "type": "file",
+                  "description": "Output file containing mapping results",
+                  "pattern": "*mapping.txt"
+                }
+              }
+            ]
+          },
+          {
+            "abundances": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*abundances.txt": {
+                  "type": "file",
+                  "description": "Output file showing absolute and relative abundance of each taxon",
+                  "pattern": "*abundances.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@sofstam",
+          "@Gullumluvl"
+        ],
+        "maintainers": [
+          "@sofstam",
+          "@Gullumluvl"
+        ]
+      }
+    },
+    {
       "name": "metaeuk_easypredict",
       "path": "modules/nf-core/metaeuk/easypredict/meta.yml",
       "type": "module",
@@ -137414,26 +137720,18 @@
         ],
         "output": [
           {
-            "interval_list": [
+            "intervallist": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
                 }
               },
               {
-                "*.interval_list": {
+                "*.intervallist": {
                   "type": "file",
                   "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
-                }
-              },
-              {
-                "_list": {
-                  "type": "file",
-                  "description": "gatk interval list file",
-                  "pattern": "*.interval_list"
+                  "pattern": "*.intervallist"
                 }
               }
             ]
@@ -152333,27 +152631,10 @@
                 }
               },
               {
-                "${notebook}": {
+                "notebook": {
                   "type": "file",
-                  "description": "The original, un-rendered notebook.",
-                  "pattern": "*.[qmd,ipynb,rmd]"
-                }
-              }
-            ]
-          },
-          {
-            "artifacts": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
-                }
-              },
-              {
-                "artifacts/*": {
-                  "type": "file",
-                  "description": "Artifacts generated during report rendering.",
-                  "pattern": "*"
+                  "description": "The Quarto notebook that was rendered. Allows user to continue working on the notebook.",
+                  "pattern": "*.{qmd}"
                 }
               }
             ]
@@ -152370,6 +152651,23 @@
                 "params.yml": {
                   "type": "file",
                   "description": "Parameters used during report rendering.",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
+            "artifacts": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`.\n"
+                }
+              },
+              {
+                "${notebook_parameters.artifact_dir}/*": {
+                  "type": "file",
+                  "description": "Artifacts generated during report rendering.",
                   "pattern": "*"
                 }
               }
@@ -159401,6 +159699,756 @@
         ],
         "maintainers": [
           "@mribeirodantas"
+        ]
+      }
+    },
+    {
+      "name": "rundbcan_cazymeannotation",
+      "path": "modules/nf-core/rundbcan/cazymeannotation/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rundbcan_cazymeannotation",
+        "description": "CAZyme annotation module for the dbcan pipeline. This module is used to annotate carbohydrate-active enzymes (CAZymes) from genomic data using the dbCAN annotation tool.",
+        "keywords": [
+          "dbCAN",
+          "download",
+          "CAZyme",
+          "CAZyme gene Cluster",
+          "genomes"
+        ],
+        "tools": [
+          {
+            "dbcan": {
+              "description": "Standalone version of dbCAN annotation tool for automated CAZyme annotation.",
+              "homepage": "https://bcb.unl.edu/dbCAN2/",
+              "documentation": "https://run-dbcan.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/bcb-unl/run_dbcan",
+              "doi": "10.1093/nar/gkad328",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:dbcan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input_raw_data": {
+                "type": "file",
+                "description": "FASTA file for protein sequences.",
+                "pattern": "*.{fasta,fa,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "dbcan_db": {
+                "type": "directory",
+                "description": "Path to the dbCAN database directory."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "cazyme_annotation": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_overview.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of dbCAN CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcanhmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_dbCAN_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN HMM results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcansub_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}_dbCANsub_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN subfamily results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcandiamond_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}_diamond.out": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN diamond results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Xinpeng021001"
+        ],
+        "maintainers": [
+          "@Xinpeng021001"
+        ]
+      }
+    },
+    {
+      "name": "rundbcan_database",
+      "path": "modules/nf-core/rundbcan/database/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rundbcan_database",
+        "description": "command from run_dbcan to prepare the database for dbCAN annotation.",
+        "keywords": [
+          "dbCAN",
+          "download",
+          "CAZyme",
+          "CAZyme gene Cluster",
+          "genomes"
+        ],
+        "tools": [
+          {
+            "run_dbcan": {
+              "description": "Standalone version of dbCAN annotation tool for automated CAZyme annotation.",
+              "homepage": "https://bcb.unl.edu/dbCAN2/",
+              "documentation": "https://run-dbcan.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/bcb-unl/run_dbcan",
+              "doi": "10.1093/nar/gkad328",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:dbcan"
+            }
+          }
+        ],
+        "output": [
+          {
+            "dbcan_db": [
+              {
+                "dbcan_db": {
+                  "type": "directory",
+                  "description": "Download directory for dbCAN databases",
+                  "pattern": "dbcan_db"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Xinpeng021001"
+        ],
+        "maintainers": [
+          "@Xinpeng021001"
+        ]
+      }
+    },
+    {
+      "name": "rundbcan_easycgc",
+      "path": "modules/nf-core/rundbcan/easycgc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rundbcan_easycgc",
+        "description": "CGC annotation module for the dbcan pipeline. This module is used to annotate carbohydrate-active enzymes (CAZymes) from genomic data using the dbCAN annotation tool.",
+        "keywords": [
+          "dbCAN",
+          "download",
+          "CAZyme",
+          "CAZyme gene Cluster",
+          "genomes"
+        ],
+        "tools": [
+          {
+            "dbcan": {
+              "description": "Standalone version of dbCAN annotation tool for automated CAZyme annotation.",
+              "homepage": "https://bcb.unl.edu/dbCAN2/",
+              "documentation": "https://run-dbcan.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/bcb-unl/run_dbcan",
+              "doi": "10.1093/nar/gkad328",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:dbcan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input_raw_data": {
+                "type": "file",
+                "description": "FASTA file for protein sequences.",
+                "pattern": "*.{fasta,fa,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input_gff": {
+                "type": "file",
+                "description": "GFF file for protein sequences."
+              }
+            },
+            {
+              "gff_type": {
+                "type": "string",
+                "description": "Type of GFF file. Options are `NCBI_prok`, `JGI`, `NCBI_euk`, and `prodigal`. This is used to parse the GFF file correctly.\n"
+              }
+            }
+          ],
+          [
+            {
+              "dbcan_db": {
+                "type": "directory",
+                "description": "Path to the dbCAN database directory."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "cazyme_annotation": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_overview.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of dbCAN CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcanhmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_dbCAN_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN HMM results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcansub_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_dbCANsub_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN subfamily results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcandiamond_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_diamond.out": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN diamond results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "cgc_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_cgc.gff": {
+                  "type": "file",
+                  "description": "GFF file containing the CAZyme gene clusters (CGC) identified by dbCAN. This file is generated from the dbCAN annotation and contains the locations of CAZyme gene clusters in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "cgc_standard_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_cgc_standard_out.tsv": {
+                  "type": "file",
+                  "description": "Standard output file from dbCAN for CAZyme gene clusters (CGC) in a tabular format. This file summarizes the CAZyme gene clusters identified in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "diamond_out_tc": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_diamond.out.tc": {
+                  "type": "file",
+                  "description": "TSV file containing the diamond output for transporter annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "tf_hmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_TF_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of Transcription factor.\n"
+                }
+              }
+            ]
+          },
+          {
+            "stp_hmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_STP_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of signaling transduction proteins (STP) annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Xinpeng021001"
+        ],
+        "maintainers": [
+          "@Xinpeng021001"
+        ]
+      }
+    },
+    {
+      "name": "rundbcan_easysubstrate",
+      "path": "modules/nf-core/rundbcan/easysubstrate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rundbcan_easysubstrate",
+        "description": "Substrate annotation module for the dbcan pipeline. This module is used to annotate carbohydrate-active enzymes (CAZymes) from genomic data using the dbCAN annotation tool.",
+        "keywords": [
+          "dbCAN",
+          "download",
+          "CAZyme",
+          "CAZyme gene Cluster",
+          "genomes"
+        ],
+        "tools": [
+          {
+            "dbcan": {
+              "description": "Standalone version of dbCAN annotation tool for automated CAZyme annotation.",
+              "homepage": "https://bcb.unl.edu/dbCAN2/",
+              "documentation": "https://run-dbcan.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/bcb-unl/run_dbcan",
+              "doi": "10.1093/nar/gkad328",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:dbcan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "input_raw_data": {
+                "type": "file",
+                "description": "FASTA file for protein sequences.",
+                "pattern": "*.{fasta,fa,faa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "input_gff": {
+                "type": "file",
+                "description": "GFF file for protein sequences."
+              }
+            },
+            {
+              "gff_type": {
+                "type": "string",
+                "description": "Type of GFF file. Options are `NCBI_prok`, `JGI`, `NCBI_euk`, and `prodigal`. This is used to parse the GFF file correctly.\n"
+              }
+            }
+          ],
+          [
+            {
+              "dbcan_db": {
+                "type": "directory",
+                "description": "Path to the dbCAN database directory."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "cazyme_annotation": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_overview.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of dbCAN CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcanhmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_dbCAN_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN HMM results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcansub_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_dbCANsub_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN subfamily results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "dbcandiamond_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_diamond.out": {
+                  "type": "file",
+                  "description": "TSV file containing the detailed dbCAN diamond results for CAZyme annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "cgc_gff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_cgc.gff": {
+                  "type": "file",
+                  "description": "GFF file containing the CAZyme gene clusters (CGC) identified by dbCAN. This file is generated from the dbCAN annotation and contains the locations of CAZyme gene clusters in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "cgc_standard_out": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_cgc_standard_out.tsv": {
+                  "type": "file",
+                  "description": "Standard output file from dbCAN for CAZyme gene clusters (CGC) in a tabular format. This file summarizes the CAZyme gene clusters identified in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "diamond_out_tc": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_diamond.out.tc": {
+                  "type": "file",
+                  "description": "TSV file containing the diamond output for transporter annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "tf_hmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_TF_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of Transcription factor.\n"
+                }
+              }
+            ]
+          },
+          {
+            "stp_hmm_results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_STP_hmm_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the results of signaling transduction proteins (STP) annotation.\n"
+                }
+              }
+            ]
+          },
+          {
+            "total_cgc_info": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_total_cgc_info.tsv": {
+                  "type": "file",
+                  "description": "TSV file summarizing the total additional genes in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "substrate_prediction": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_substrate_prediction.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the substrate predictions based on the CGC annotations from dbCAN.\n"
+                }
+              }
+            ]
+          },
+          {
+            "synteny_pdf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "${prefix}_synteny_pdf/": {
+                  "type": "directory",
+                  "description": "Directory containing the synteny plots in PDF format for the CAZyme gene clusters (CGC) identified by dbCAN. This directory will contain one or more PDF files showing the syntenic regions of the CGC in the genome.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Xinpeng021001"
+        ],
+        "maintainers": [
+          "@Xinpeng021001"
         ]
       }
     },
@@ -194067,6 +195115,14 @@
           ],
           [
             {
+              "barcode_whitelist": {
+                "type": "file",
+                "description": "BarocdeWhitelist file"
+              }
+            }
+          ],
+          [
+            {
               "cell_barcode_read": {
                 "type": "string",
                 "description": "Read containing cell barcode (either R1 or R2)"
@@ -194083,9 +195139,9 @@
           ],
           [
             {
-              "barcode_whitelist": {
-                "type": "file",
-                "description": "BarocdeWhitelist file"
+              "read_format": {
+                "type": "string",
+                "description": "Specifies where in the read the barcodes and UMIs can be found."
               }
             }
           ]
