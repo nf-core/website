@@ -28668,7 +28668,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "raredisease",
@@ -36541,7 +36541,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -45947,6 +45947,104 @@
           "version": "1.2.0"
         }
       ]
+    },
+    {
+      "name": "deacon_index",
+      "path": "modules/nf-core/deacon/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_index",
+        "description": "Create deacon index for reference genome",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "pattern": "*.{fasta,fasta.gz,fas,fas.gz,fa,fa.gz,fna,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "index": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@mberacochea"
+        ],
+        "maintainers": [
+          "@mberacochea"
+        ]
+      }
     },
     {
       "name": "decoupler_decoupler",
@@ -56359,7 +56457,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -87646,7 +87744,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -89832,7 +89930,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -89950,7 +90048,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -90448,7 +90546,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -107872,7 +107970,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -119692,7 +119790,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -119787,7 +119885,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -120001,7 +120099,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -120083,6 +120181,145 @@
           "version": "4.0.0"
         }
       ]
+    },
+    {
+      "name": "mmseqs_easycluster",
+      "path": "modules/nf-core/mmseqs/easycluster/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_easycluster",
+        "description": "Cluster sequences using MMSeqs2 easy cluster.",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "mmseqs2"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:mmseqs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "sequence": {
+                "type": "file",
+                "description": "Input sequence file in FASTA/FASTQ format for clustering",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1920"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "representatives": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*rep_seq.fasta": {
+                  "type": "file",
+                  "description": "a fasta file containing the cluster representatives",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fasta": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*all_seqs.fasta": {
+                  "type": "file",
+                  "description": "a fasta-like file per cluster",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "an adjacency list file containing the clusters",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ],
+        "maintainers": [
+          "@Joon-Klaps"
+        ]
+      }
     },
     {
       "name": "mmseqs_easysearch",
@@ -120266,7 +120503,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -123495,7 +123732,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfold",
@@ -123622,6 +123859,127 @@
           "version": "0.1.1"
         }
       ]
+    },
+    {
+      "name": "multiseqdemux",
+      "path": "modules/nf-core/multiseqdemux/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "multiseqdemux",
+        "description": "Identify singlets, doublets and negative cells from multiplexing experiments. Annotate singlets by tags.",
+        "keywords": [
+          "demultiplexing",
+          "hashing-based deconvolution",
+          "single-cell"
+        ],
+        "tools": [
+          {
+            "multiseqdemux": {
+              "description": "MULTIseqDemux is the demultiplexing module of Seurat, which demultiplex samples based on data from cell hashing.",
+              "homepage": "https://satijalab.org/seurat/reference/multiseqdemux",
+              "documentation": "https://satijalab.org/seurat/reference/multiseqdemux",
+              "tool_dev_url": "https://github.com/satijalab/seurat",
+              "doi": "10.1038/s41592-019-0433-8",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "seurat_object": {
+                "type": "file",
+                "description": "A `.rds` file containing the seurat object. Assumes that the hash tag oligo (HTO) data has been added and normalized.\n"
+              }
+            },
+            {
+              "assay": {
+                "type": "string",
+                "description": "Name of the Hashtag assay, usually called \"HTO\" by default. Use the custom name if the assay has been named differently.\n"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "params": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_params_multiseqdemux.csv": {
+                  "type": "file",
+                  "description": "The used parameters to call MULTIseqDemux in the R-Script.",
+                  "pattern": "_params_multiseqdemux.csv"
+                }
+              }
+            ]
+          },
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_res_multiseqdemux.csv": {
+                  "type": "file",
+                  "description": "Resuls of MULTIseqDemux.",
+                  "pattern": "_res_multiseqdemux.csv"
+                }
+              }
+            ]
+          },
+          {
+            "rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_multiseqdemux.rds": {
+                  "type": "file",
+                  "description": "SeuratObject saved as RDS.",
+                  "pattern": "_multiseqdemux.rds"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LuisHeinzlmeier"
+        ],
+        "maintainers": [
+          "@LuisHeinzlmeier"
+        ]
+      }
     },
     {
       "name": "multivcfanalyzer",
@@ -131702,6 +132060,89 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "osfclient_fetch",
+      "path": "modules/nf-core/osfclient/fetch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "osfclient_fetch",
+        "description": "A python library and a command-line client for up- and downloading files to and from your Open Science Framework projects",
+        "keywords": [
+          "osf",
+          "Open Science Framework",
+          "fetch"
+        ],
+        "tools": [
+          {
+            "osfclient": {
+              "description": "The osfclient is a python library and a command-line client for up- and downloading files to and from your Open Science Framework projects.",
+              "homepage": "https://osfclient.readthedocs.io/en/latest/",
+              "documentation": "https://osfclient.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/osfclient/osfclient",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "project_id": {
+                "type": "string",
+                "description": "Project ID of the Open Science Framework project to fetch files from"
+              }
+            },
+            {
+              "path": {
+                "type": "string",
+                "description": "File to fetch from the project"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "download_files": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${outname}": {
+                  "type": "file",
+                  "description": "Downloaded file",
+                  "pattern": "*"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@JacquelineAldridge"
+        ]
+      }
     },
     {
       "name": "paftools_sam2paf",
@@ -154124,6 +154565,96 @@
       }
     },
     {
+      "name": "raw2ometiff",
+      "path": "modules/nf-core/raw2ometiff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "raw2ometiff",
+        "description": "write your description here",
+        "keywords": [
+          "ome",
+          "tiff",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "raw2ometiff": {
+              "description": "Java application to convert a directory of tiles to an OME-TIFF pyramid.",
+              "homepage": "https://github.com/glencoesoftware/raw2ometiff",
+              "documentation": "https://github.com/glencoesoftware/raw2ometiff",
+              "tool_dev_url": "https://github.com/glencoesoftware/raw2ometiff",
+              "licence": [
+                "GPL-2.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "zarr_dir": {
+                "type": "directory",
+                "description": "Tile directory must contain a full pyramid in a Zarr container.",
+                "pattern": "*.{zarr}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3915"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "ometiff": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1']`\n"
+                }
+              },
+              {
+                "*.ome.tiff": {
+                  "type": "file",
+                  "description": "OME-TIFF pyramid",
+                  "pattern": "*.ome.tiff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3727"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@CaroAMN"
+        ],
+        "maintainers": [
+          "@CaroAMN"
+        ]
+      }
+    },
+    {
       "name": "raxmlng",
       "path": "modules/nf-core/raxmlng/meta.yml",
       "type": "module",
@@ -172816,7 +173347,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -198820,7 +199351,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfold",
@@ -202108,6 +202639,104 @@
           "version": "3.5.1"
         }
       ]
+    },
+    {
+      "name": "vclust_prefilter",
+      "path": "modules/nf-core/vclust/prefilter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vclust_prefilter",
+        "description": "The prefilter command creates a pre-alignment filter that reduces the number of genome pairs to be aligned by filtering out dissimilar sequences before the alignment step.",
+        "keywords": [
+          "cluster",
+          "virus",
+          "filter",
+          "contig",
+          "scaffold",
+          "phage"
+        ],
+        "tools": [
+          {
+            "vclust": {
+              "description": "Fast and accurate tool for calculating ANI and clustering virus genomes and metagenomes.",
+              "homepage": "https://afproject.org/vclust/",
+              "documentation": "https://github.com/refresh-bio/vclust/wiki",
+              "tool_dev_url": "https://github.com/refresh-bio/vclust",
+              "doi": "10.1038/s41592-025-02701-7",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:vclust"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta file containing sequences needed for filtering",
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "txt": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Output text file containing relationships for filtering",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2082"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Joon-Klaps"
+        ],
+        "maintainers": [
+          "@Joon-Klaps"
+        ]
+      }
     },
     {
       "name": "velocyto",
@@ -217246,7 +217875,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfold",
@@ -217639,7 +218268,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "proteinfold",
@@ -218012,7 +218641,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "rangeland",
