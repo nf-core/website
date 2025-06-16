@@ -35,7 +35,6 @@
 <div class="tag-section text-body-secondary" class:topics={type === "keywords"}>
     {#if includes || included}
         <span class="text-small">{includes ? "Includes:" : "Included in:"}</span>
-        {#if !inline}<br />{/if}
     {/if}
 
     {#each expanded || !maxShown ? tags : tags.slice(0, maxShown) as tag}
@@ -45,7 +44,6 @@
     {/each}
 
     {#if additionalTagsCount > 0 && maxShown}
-        {#if !inline}<br />{/if}
         <span
             class="text-small text-nowrap"
             title={`click to show all ${type}`}
