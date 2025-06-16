@@ -178,16 +178,6 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
             },
         ]}
     />
-    <SidebarStatsRow content={[{ title: "get help" }]}>
-        <div class="d-flex flex-column">
-            <a class="btn btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + pipeline}
-                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-            >
-            <a class="btn btn-outline-secondary" href={"https://github.com/nf-core/" + pipeline + "/issues"}
-                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
-            >
-        </div>
-    </SidebarStatsRow>
     {
         modules.length > 0 && (
             <SidebarStatsRow content={[{ title: "included modules" }]}>
@@ -198,7 +188,7 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
     {
         subworkflows.length > 0 && (
             <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
-                <TagSection tags={subworkflows} type="subworkflows" client:load />
+                <TagSection tags={subworkflows} type="subworkflows" maxShown={5} client:load />
             </SidebarStatsRow>
         )
     }
@@ -220,6 +210,16 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                 </div>
             )
         }
+    </SidebarStatsRow>
+    <SidebarStatsRow content={[{ title: "get help" }]}>
+        <div class="d-flex flex-column">
+            <a class="btn btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + pipeline}
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-outline-secondary" href={"https://github.com/nf-core/" + pipeline + "/issues"}
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
     </SidebarStatsRow>
     <style lang="scss">
         @import "@styles/_variables.scss";
