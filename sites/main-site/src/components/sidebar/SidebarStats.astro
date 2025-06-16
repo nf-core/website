@@ -14,6 +14,9 @@ export interface Props {
     included_components?: string[];
     included_subworkflows?: string[];
 }
+// split included_components into modules and subworkflows (subworkflows should have at least two "_" in the name and no slashes)
+const subworkflows = included_components?.filter((x) => (x.match(/_/g) || []).length >= 2 && !x.includes("/"));
+const modules = included_components?.filter((x) => !subworkflows?.includes(x));
 ---
 
 <div class="sidebar overflow-y-auto">
@@ -52,7 +55,8 @@ export interface Props {
                     },
                 ]}
             >
-                <TagSection tags={included_components} type="modules" client:load />
+                <TagSection tags={modules} type="modules" maxShown={3} client:load />
+                <TagSection tags={subworkflows} type="subworkflows" maxShown={3} client:load />
             </SidebarStatsRow>
         )
     }
