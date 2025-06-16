@@ -1,7 +1,7 @@
 <script lang="ts">
     interface Props {
         tags: string[];
-        type: "modules" | "subworkflows" | "pipelines" | "keywords";
+        type: "components" | "modules" | "subworkflows" | "pipelines" | "keywords";
         maxShown?: number;
         includes?: boolean;
         included?: boolean;
@@ -16,7 +16,10 @@
             ? "bg-body-tertiary text-success"
             : type === "pipelines"
               ? "border text-body border-warning-subtle bg-warning-subtle"
-              : "border text-body border-info-subtle bg-info-subtle"; // subworkflows and modules share styling
+              : type === "subworkflows"
+                ? "border text-body border-success-subtle bg-success-subtle"
+                : "border text-body border-info-subtle bg-info-subtle"; // modules and components share styling
+
     const additionalTagsCount = tags.length - maxShown;
 
     function getHref(tag: string) {
@@ -29,7 +32,7 @@
     }
 </script>
 
-<div class="tag-section my-1 text-body-secondary" class:topics={type === "keywords"}>
+<div class="tag-section text-body-secondary" class:topics={type === "keywords"}>
     {#if includes || included}
         <span class="text-small">{includes ? "Includes:" : "Included in:"}</span>
         {#if !inline}<br />{/if}
