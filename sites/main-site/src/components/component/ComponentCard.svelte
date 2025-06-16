@@ -66,13 +66,3 @@
         </div>
     {/snippet}
 </ListingCard>
-
-<style>
-    .card {
-        max-width: 30rem;
-    }
-    .card-header {
-        background-color: transparent;
-        word-break: break-word;
-    }
-</style>
