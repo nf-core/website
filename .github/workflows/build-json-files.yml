@@ -31,7 +31,7 @@ jobs:
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 20
           cache: "npm"
@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run build-component-json
+        run: npm run build-component-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
@@ -55,4 +55,5 @@ jobs:
           git config user.name "nf-core-bot"
           git config push.default upstream
           git status
+          git pull
           git diff --quiet || (git commit -am "[automated] Update json files" && git push)

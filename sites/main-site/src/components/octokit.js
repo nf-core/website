@@ -155,7 +155,7 @@ export const getGitHubFile = async (repo, path, ref) => {
       }
       return content;
     } else {
-      // console.log(`File ${path} not found in ${repo} ${ref}`);
+      console.log(`File ${path} not found in ${repo} ${ref}`);
       console.log(response.url);
       return null;
     }

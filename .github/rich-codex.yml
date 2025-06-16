@@ -7,7 +7,8 @@ outputs:
     head: 19
     img_paths:
       - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: mkdir tmp && cd tmp && \
+  - command: |
+      mkdir tmp && cd tmp && \
       nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
     fake_command: nf-core pipelines create
     img_paths:
@@ -66,7 +67,7 @@ outputs:
     trim_after: "Command line"
     img_paths:
       - public/images/tools/nf-core-launch-rnaseq.svg
-  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
+  - command: cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
     img_paths:
       - public/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
@@ -78,7 +79,7 @@ outputs:
       - public/images/tools/nf-core-create.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "lint: { pipeline_todos: false }" >> .nf-core.yml && \
+      sed -i 's/lint: {}/lint: { pipeline_todos: false }/g' .nf-core.yml && \
       nf-core pipelines lint
     fake_command: nf-core pipelines lint
     img_paths:
@@ -188,7 +189,6 @@ outputs:
       - public/images/tools/nf-core-subworkflows-list-remote.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows list local
     head: 25
     fake_command: nf-core subworkflows list local
@@ -196,7 +196,6 @@ outputs:
       - public/images/tools/nf-core-subworkflows-list-local.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows info bam_rseqc
     head: 15
     tail: 10
@@ -205,14 +204,12 @@ outputs:
       - public/images/tools/nf-core-subworkflows-info.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows install bam_rseqc
     fake_command: nf-core subworkflows install bam_rseqc
     img_paths:
       - public/images/tools/nf-core-subworkflows-install.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows update --all --no-preview
     timeout: 30
     fake_command: nf-core subworkflows update --all --no-preview
@@ -220,7 +217,6 @@ outputs:
       - public/images/tools/nf-core-subworkflows-update.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows remove bam_rseqc
     fake_command: nf-core subworkflows remove bam_rseqc
     img_paths:
@@ -243,3 +239,22 @@ outputs:
     fake_command: nf-core subworkflows lint bam_stats_samtools
     img_paths:
       - public/images/tools/nf-core-subworkflows-lint.svg
+  - command: nf-core test-datasets list-branches
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-branches.svg
+  - command: nf-core test-datasets list --branch mag
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-mag.svg
+  - command: nf-core test-datasets list --branch mag --generate-dl-url
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-url-out.svg
+  - command: nf-core test-datasets list --branch mag --generate-nf-path
+    head: 25
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-list-path-out.svg
+  - command: nf-core test-datasets search --branch mag minigut_reads
+    img_paths:
+      - public/images/tools/nf-core-test-datasets-search.svg
