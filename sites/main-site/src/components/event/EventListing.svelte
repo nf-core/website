@@ -125,7 +125,7 @@
 
 <div>
     <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} filterName={() => "Event type"}></FilterBar>
-    <div class="events">
+    <div class="events m-auto">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">
                 <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Currently ongoing</h2>
@@ -174,3 +174,9 @@
         </div>
     </div>
 </div>
+
+<style lang="scss">
+    .events {
+        max-width: 50rem;
+    }
+</style>
