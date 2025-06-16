@@ -79,6 +79,10 @@
     let paginatedItems = $derived(
         filteredComponents.slice((currentPageValue - 1) * pageSize, currentPageValue * pageSize),
     );
+
+    SearchQuery.subscribe(() => {
+        $currentPage = 1;
+    });
 </script>
 
 <div class={`listing px-0 px-lg-2 py-4 ${components.length > 0 ? components[0].type : ""}`}>

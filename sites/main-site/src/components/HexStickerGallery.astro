@@ -1,0 +1,322 @@
+---
+import HexSticker from "./HexSticker.astro";
+import StickerModal from "./StickerModal.astro";
+import HexGrid from "./HexGrid.astro";
+
+interface StickerData {
+    imageUrl: string;
+    alt: string;
+    category: string;
+    link?: string;
+    description?: string;
+}
+
+interface Props {
+    stickers: {
+        rendered: {
+            metadata: StickerData;
+        };
+    }[];
+}
+
+const { stickers = [] } = Astro.props;
+
+// Filter out any stickers with undefined categories
+const validStickers = stickers.filter((sticker) => sticker && sticker.rendered?.metadata.category);
+
+// Get unique categories while preserving the order they first appear in the stickers array
+const uniqueCategories = [...new Set(validStickers.map((sticker) => sticker.rendered.metadata.category))];
+
+// Group stickers by category
+const stickersByCategory = uniqueCategories.reduce(
+    (acc, category) => {
+        acc[category] = validStickers.filter((sticker) => sticker.rendered.metadata.category === category);
+        return acc;
+    },
+    {} as Record<string, Props["stickers"]>,
+);
+
+// Function to format category name for display
+function formatCategoryName(category: string): string {
+    if (!category) return "Other Stickers";
+    // Ensure all category names end with "Stickers"
+    const baseName = category.charAt(0).toUpperCase() + category.slice(1);
+    return baseName.endsWith("Stickers") ? baseName : `${baseName} Stickers`;
+}
+
+// Create category IDs for navigation
+const categoryIds = uniqueCategories.map((category) => ({
+    id: `category-${category}`,
+    name: formatCategoryName(category),
+}));
+
+// Check if we have any valid stickers to display
+const hasValidStickers = validStickers.length > 0;
+---
+
+{
+    !hasValidStickers ? (
+        <div class="alert alert-info">
+            Loading stickers... If this message persists, please check the GitHub repository at
+            <a href="https://github.com/nf-core/logos" target="_blank" rel="noopener noreferrer">
+                nf-core/logos
+            </a>
+            .
+        </div>
+    ) : (
+        <div class="sticker-gallery w-100">
+            <div class="sticker-info text-center mb-2">
+                <p class="mb-0">
+                    To find instructions on how to make your own hex sticker and for all the source images seen here, go
+                    to
+                    <a
+                        href="https://github.com/nf-core/logos"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="fw-medium"
+                    >
+                        nf-core/logos <i class="fas fa-external-link-alt fa-xs ms-1" />
+                    </a>
+                </p>
+            </div>
+            <nav class="category-nav mb-2" aria-label="Sticker categories">
+                <div class="d-flex flex-wrap justify-content-center gap-2">
+                    {categoryIds.map(({ id, name }) => (
+                        <a href={`#${id}`} class="btn btn-outline-success" aria-label={`Jump to ${name}`}>
+                            {name}
+                        </a>
+                    ))}
+                </div>
+            </nav>
+
+            {uniqueCategories.map((category, index) => (
+                <section class="category-section mb-3" id={`category-${category}`}>
+                    <h2 class="category-heading mb-1 d-flex align-items-center justify-content-center text-success">
+                        {formatCategoryName(category)}
+                        <a href="#top" class="back-to-top ms-2" title="Back to top" aria-label="Back to top">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="16"
+                                height="16"
+                                fill="currentColor"
+                                class="bi bi-arrow-up-circle"
+                                viewBox="0 0 16 16"
+                                aria-hidden="true"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"
+                                />
+                            </svg>
+                        </a>
+                    </h2>
+                    <HexGrid class="hex-gallery" id={`hexGallery-${category}`} data-category={category}>
+                        {stickersByCategory[category].map((sticker) => (
+                            <HexSticker {...sticker.rendered.metadata} />
+                        ))}
+                    </HexGrid>
+                    {index < uniqueCategories.length - 1 && <hr class="category-divider my-2" />}
+                </section>
+            ))}
+        </div>
+    )
+}
+
+<!-- Include the sticker modal component -->
+<StickerModal />
+
+<style>
+    /* Information message styles */
+    .sticker-info {
+        font-size: 1.1rem;
+        line-height: 1.4;
+        color: var(--bs-body-color);
+    }
+
+    .sticker-info a {
+        color: var(--bs-primary);
+        text-decoration: none;
+    }
+
+    .sticker-info a:hover {
+        text-decoration: underline;
+    }
+
+    /* Category navigation styles */
+    .category-nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background-color: var(--bs-body-bg);
+        padding: 0.4rem 0;
+        border-bottom: 1px solid var(--bs-border-color);
+    }
+
+    .category-nav .btn {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+        border-radius: 0.375rem;
+    }
+
+    .category-heading {
+        font-size: 1.75rem;
+        font-weight: 600;
+        color: var(--bs-body-color);
+        margin-top: 0.75rem; /* Drastically reduced top margin */
+    }
+
+    /* First category heading should have less top margin */
+    .category-section:first-child .category-heading {
+        margin-top: 0.25rem; /* Minimal top margin for first heading */
+    }
+
+    .back-to-top {
+        opacity: 0.5;
+        transition: opacity 0.3s ease;
+        color: var(--bs-body-color);
+    }
+
+    .back-to-top:hover {
+        opacity: 1;
+    }
+
+    .category-divider {
+        border-color: var(--bs-border-color);
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hex-gallery {
+        --hex-size: 225px; /* Increased from 187.5px - Base size for large screens */
+        --hex-margin: 0.5rem;
+        --hex-gap: 1rem;
+        padding-bottom: 1rem; /* Minimal bottom padding */
+    }
+
+    /* Responsive sizing for different screen sizes */
+    @media (max-width: 1400px) {
+        .hex-gallery {
+            --hex-size: 210px; /* Increased from 175px */
+        }
+    }
+
+    @media (max-width: 1200px) {
+        .hex-gallery {
+            --hex-size: 192px; /* Increased from 160px */
+        }
+    }
+
+    @media (max-width: 992px) {
+        .hex-gallery {
+            --hex-size: 168px; /* Increased from 140px */
+            --hex-margin: 0.45rem;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .sticker-info {
+            font-size: 1rem;
+        }
+
+        .category-nav .btn {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+        }
+
+        .hex-gallery {
+            --hex-size: 144px; /* Increased from 120px */
+            --hex-margin: 0.4rem;
+            --hex-gap: 0.75rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .hex-gallery {
+            --hex-size: 132px; /* Increased from 110px - Slightly larger for better visibility */
+            --hex-margin: 0.4rem;
+            --hex-gap: 0.4rem;
+        }
+
+        /* Adjust category navigation for small screens */
+        .category-nav .btn {
+            font-size: 0.85rem;
+            padding: 0.35rem 0.7rem;
+        }
+
+        .category-heading {
+            font-size: 1.6rem;
+        }
+    }
+
+    /* Additional responsive adjustments for very small screens */
+    @media (max-width: 400px) {
+        .hex-gallery {
+            --hex-size: 108px; /* Increased from 90px - Smaller size for iPhone screens to fit 2-column hex grid */
+            --hex-margin: 0.25rem;
+            --hex-gap: 0.25rem;
+        }
+
+        /* Adjust category navigation for very small screens */
+        .category-nav .btn {
+            font-size: 0.75rem;
+            padding: 0.25rem 0.5rem;
+        }
+
+        .category-heading {
+            font-size: 1.5rem;
+        }
+    }
+
+    /* iPhone-specific adjustments */
+    @media (max-width: 390px) {
+        .hex-gallery {
+            --hex-size: 96px; /* Increased from 80px - Even smaller for narrower iPhones */
+            --hex-margin: 0.2rem;
+        }
+    }
+
+    /* Hover effects for the gallery */
+    .hex-gallery:hover .hex-container:not(:hover) {
+        opacity: 0.7; /* Less dramatic fade */
+        filter: grayscale(0.25); /* Reduced grayscale effect */
+        transform: scale(0.95); /* Less shrinking */
+        transition: all 0.6s ease; /* Slower, simpler transition */
+    }
+
+    .hex-gallery .hex-container {
+        transition:
+            opacity 0.6s ease,
+            filter 0.6s ease,
+            transform 0.6s ease,
+            box-shadow 0.6s ease;
+        will-change: transform; /* Optimize for animations */
+    }
+
+    .hex-gallery .hex-container:hover {
+        z-index: 10;
+        transform: scale(1.1) rotate(1deg); /* Reduced scale and rotation */
+        filter: brightness(1.05) contrast(1.02) saturate(1.05); /* Reduced filter effects */
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Lighter shadow */
+    }
+
+    /* Add alternating tilt directions for more natural feel */
+    .hex-gallery .hex-container:nth-child(even):hover {
+        transform: scale(1.1) rotate(-1deg); /* Reduced scale and rotation */
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .hex-gallery:hover .hex-container:not(:hover) {
+            opacity: 0.8;
+            filter: grayscale(0.1);
+            transform: scale(0.98);
+            transition: all 0.8s ease;
+        }
+
+        .hex-gallery .hex-container:hover {
+            transform: scale(1.05) rotate(0deg);
+            transition: all 0.8s ease;
+        }
+    }
+</style>

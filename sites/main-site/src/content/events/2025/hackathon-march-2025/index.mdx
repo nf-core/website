@@ -21,6 +21,7 @@ announcement:
 import EventMap from "@components/event/EventMap.astro";
 import EventLocationsTable from "@components/event/EventLocationsTable.astro";
 import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
 
 # Welcome
 
@@ -77,6 +78,49 @@ For the most recent information about your site as well as the contact details o
 <EventMap event={"2025/hackathon-march-2025"} />
 
 <EventLocationsTable eventPath="2025/hackathon-march-2025" showCount={true} />
+
+# Schedule
+
+We’ve kept the main schedule intentionally light to accommodate different time zones and allow for flexibility. While we have a few key syncs and social events planned, individual sites may be following their own schedules as well. We’d love to see as many of you as possible at the daily wrap-ups and quiz—they’re a great chance to connect with the community, share progress, and have some fun. Happy hacking!
+
+- Daily wrap-up
+    - APAC: 5 pm NZDT / 3 pm AEDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/89139122678?pwd=kHK82aVLVipF0y956ikvq1mNM9A648.1)
+        - [Join on Youtube - Day 1](https://www.youtube.com/live/l8sPKhanrxs)
+        - [Join on Youtube - Day 2](https://www.youtube.com/watch?v=ikBAflDfTL0)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=87N1pSI7vKQ)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1dZDReqfSGdoLEB5DOxo4gx6JJbaVWYoY1i3lx71Lzg0/edit?usp=drive_link)
+    - EMEA: 5 pm CET / 4 pm GMT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/81715446544?pwd=VBNTcymO5XY2WqYgIMDaAoXXB55Dm5.1)
+        - [Join on Youtube - Day 1](http://youtube.com/watch?v=bzYTVRlJBWE)
+        - [Join on Youtube - Day 2](http://youtube.com/watch?v=Qw26ogEgMNM)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=UL67_KVXQ6I)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1qcqpE1Ss0hnKQzCOnTSXoMgksUC_WipRqD71jaJzu7w/edit?usp=drive_link)
+    - AMER: 5 pm ET / 2 pm PDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/87169095085?pwd=K9eosZ6yTe9Q2a7uCyLYfilmn261oM.1)
+        - [Join on Youtube - Day 1](http://youtube.com/watch?v=4ThiqhcFD4Q)
+        - [Join on Youtube - Day 2](http://youtube.com/watch?v=0pqen0_y7rM)
+        - [Join on Youtube - Day 3](http://youtube.com/watch?v=3is52pnw5JA)
+        - [Progress update slides deck](https://docs.google.com/presentation/d/1g0cAF8ViTZNLa1aLymXQzFBLHsdqej21GVhOdjSgR7c/edit?usp=drive_link)
+- Quiz social
+    - Tuesday, March 25, 4 pm CET / 11 am ET / 8 am PDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/82868493289?pwd=5kva7x1AebjzxkXVmJgLfxYCFrbj8m.1)
+    - Tuesday, March 25, 5 pm PDT / 1 pm NZDT / 11 am AEDT
+        - [Join on Zoom](https://seqera-io.zoom.us/j/83137372794?pwd=89yeuRkFmpT6KeSoCFdcrebGPFnKXd.1)
+
+:::tip{title="Your local time"}
+
+View the above times in your local time below:
+
+- Daily wrap-up
+    - APAC: <LocalDateTime date={new Date(1742788800000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+    - EMEA: <LocalDateTime date={new Date(1742832000000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+    - AMER: <LocalDateTime date={new Date(1742850000000)} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible />
+- Quiz social
+    - <LocalDateTime date={new Date(1742914800000)} client:visible />
+    - <LocalDateTime date={new Date(1742947200000)} client:visible />
+
+:::
 
 # Projects
 
@@ -194,6 +238,16 @@ Special prizes are up for grabs for the winners!
 - Online quiz
 - Hackathon bingo
 - _more coming soon.._
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+- [ ] Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- [ ] If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- [ ] Join the nf-core slack and the [#hackathon-mar-2025 channel](https://nfcore.slack.com/archives/C081XQ6T3M4)
+- [ ] [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- [ ] Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
 
 ## Hackathon playlist
 
