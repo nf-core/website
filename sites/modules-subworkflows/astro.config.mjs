@@ -1,5 +1,6 @@
 import admonitionsPlugin from '../../bin/remark-admonitions';
-import mermaid from '../../bin/remark-mermaid';
+import { mermaid } from '../../bin/remark-mermaid.ts';
+import { remarkTree } from '../../bin/remark-tree.ts';
 import { rehypeCheckboxParser } from '../../bin/rehype-checkbox-parser.ts';
 import { rehypeHeadingNumbers } from '../../bin/rehype-heading-numbers.ts';
 import mdx from '@astrojs/mdx';
@@ -132,6 +133,7 @@ export default defineConfig({
             remarkDirective,
             admonitionsPlugin,
             mermaid,
+            remarkTree,
             remarkMath,
             // [
             //     remarkDescription,

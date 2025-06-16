@@ -1383,6 +1383,40 @@ div.mermaid {
   fill: transparent;
 }
 
+// File Tree Styles
+.file-tree {
+  font-family: $font-family-monospace;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  max-width: 100%;
+  overflow-x: auto;
+
+  .tree-entry {
+    transition: background-color 0.2s ease;
+    border-radius: 0.25rem;
+    margin: 0.125rem 0;
+
+    &:hover {
+      background-color: rgba(var(--bs-primary-rgb), 0.1);
+    }
+
+    .tree-icon {
+      display: inline-flex;
+      align-items: center;
+      min-width: 1rem;
+
+      i, span {
+        font-size: 0.875rem;
+      }
+    }
+
+    .file-name {
+      word-break: break-all;
+      user-select: text;
+    }
+  }
+}
+
 ////////////////////////////
 ///  Dark Mode Overrides ///
 ///////////////////////////
