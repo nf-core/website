@@ -17,7 +17,7 @@
     let latestRelease,
         tagName = $state(),
         releaseDateAgo = $state(),
-        recentRelease = $state();
+        recentRelease = $state(false);
     const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
         addSuffix: true,
     });
@@ -58,7 +58,6 @@
                     data-bs-toggle="tooltip"
                     data-html="true"
                     data-bs-original-title={stars + " stargazers on GitHub"}
-                    style={{ cursor: "pointer" }}
                 >
                     <i class="fa-regular fa-star" aria-hidden="true"></i>
 
@@ -75,7 +74,7 @@
                     <a
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
                         class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
-                        >New release! <Confetti x={[-1.5, 1.75]} amount="100" rounded="true" /></a
+                        >New release! <Confetti x={[-1.5, 1.75]} amount={100} rounded={true} /></a
                     >
                 {/if}
             </div>
@@ -92,7 +91,6 @@
                     <a
                         role="button"
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
-                        style={{ cursor: "pointer" }}
                         class="btn btn-outline-secondary"
                     >
                         <i class="fa-regular fa-tag me-1"></i>
