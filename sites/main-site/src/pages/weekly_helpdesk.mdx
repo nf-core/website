@@ -13,6 +13,6 @@ import { TZDate } from "@date-fns/tz";
 
 We run 3 weekly helpdesk slots for different regions / time zones:
 
-- AMER: Tuesdays 2pm ET (Tuesdays <LocalDateTime date={(() => { const d = nextTuesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 14, 0, 'America/New_York'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in { Intl.DateTimeFormat().resolvedOptions().timeZone})
-- APAC: Wednesdays 3pm NZDT (Wednesdays <LocalDateTime date={(() => { const d = nextWednesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 15, 0, 'Pacific/Auckland'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in { Intl.DateTimeFormat().resolvedOptions().timeZone})
-- EMEA: Thursdays 10am CET (Thursdays <LocalDateTime date={(() => { const d = nextThursday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 'Europe/Paris'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} client:visible /> in { Intl.DateTimeFormat().resolvedOptions().timeZone})
+- AMER: Tuesdays 2pm ET (Tuesdays <LocalDateTime date={(() => { const d = nextTuesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 14, 0, 'America/New_York'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)
+- APAC: Wednesdays 3pm NZDT (Wednesdays <LocalDateTime date={(() => { const d = nextWednesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 15, 0, 'Pacific/Auckland'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)
+- EMEA: Thursdays 10am CET (Thursdays <LocalDateTime date={(() => { const d = nextThursday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 'Europe/Paris'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)
