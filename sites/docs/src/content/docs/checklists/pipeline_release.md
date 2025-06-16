@@ -69,7 +69,7 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-- [ ] Make sure the dev branch on your fork is up to date
+- [ ] Make sure the `dev` branch on your fork is up to date
 - [ ] On a new branch, bump to a new `dev` version
   - [ ] For example, `1.0.0` becomes `1.1.0dev`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
