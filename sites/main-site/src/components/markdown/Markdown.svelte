@@ -4,6 +4,7 @@
     import remarkGfm from "remark-gfm";
     import remarkDirective from "remark-directive";
     import admonitionsPlugin from "@root/bin/remark-admonitions.js";
+    import { remarkTree } from "@root/bin/remark-tree.ts";
     import addClasses from "rehype-class-names";
     import rehypeAutolinkHeadings from "rehype-autolink-headings";
     import rehypeHighlight from "rehype-highlight";
@@ -23,6 +24,7 @@
     plugins.push({ remarkPlugin: [remarkGfm] });
     plugins.push({ remarkPlugin: [remarkDirective] });
     plugins.push({ remarkPlugin: [admonitionsPlugin] });
+    plugins.push({ remarkPlugin: [remarkTree] });
     plugins.push({ remarkPlugin: [remarkMath] });
     plugins.push({ rehypePlugin: [rehypeSlug] });
 

@@ -107,6 +107,7 @@
             }
             block.prepend(icon);
         });
+
         // change stored Checkboxes to checked
         $Checkboxes.forEach((checkbox) => {
             const element = document.getElementById(checkbox.id);
@@ -142,3 +143,107 @@
 <div>
     {@render children?.()}
 </div>
+
+<style lang="scss">
+    :global(.file-tree) {
+        // CSS Custom Properties with modern light-dark() function
+        --tree-x-space: 1.5rem;
+        --tree-y-space: 0.125rem;
+        --tree-y-pad: 0;
+        --tree-border-color: light-dark(var(--bs-gray-300), var(--bs-gray-600));
+        --tree-text-muted: light-dark(var(--bs-gray-600), var(--bs-gray-400));
+        --tree-text-subtle: light-dark(var(--bs-gray-500), var(--bs-gray-400));
+
+        font-size: 0.875rem;
+        overflow-x: auto;
+        container-type: inline-size;
+
+        // Nested list styling with modern CSS nesting
+        :global(.nested-list) {
+            border-inline-start: 1px solid var(--tree-border-color);
+            padding-block: 0;
+            padding-inline: 0 0 0 0.5rem;
+        }
+
+        // Tree entry components
+        :global(.tree-entry) {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        :global(.file-name) {
+            font-weight: 500;
+            color: var(--bs-body-color);
+        }
+
+        :global(.comment) {
+            color: var(--tree-text-muted);
+            font-style: italic;
+            margin-inline-start: auto;
+
+            // Container query for responsive layout
+            @container (max-width: 30rem) {
+                display: block;
+                margin-inline-start: 1.5rem;
+                margin-block-start: 0.25rem;
+            }
+        }
+
+        // Icon styling with logical properties
+        :global(.tree-icon) {
+            inline-size: 0.875rem;
+            block-size: 0.875rem;
+            flex-shrink: 0;
+
+            :global(path) {
+                fill: var(--tree-text-muted) !important;
+            }
+        }
+
+        // Highlighted entries
+        :global(.highlight) {
+            display: inline-block;
+            border-radius: 0.25rem;
+            padding-inline-end: 0.5rem;
+            color: white;
+            background-color: var(--bs-primary);
+
+            .tree-icon path {
+                fill: currentColor !important;
+            }
+        }
+
+        // Empty state
+        :global(.empty) {
+            color: var(--tree-text-subtle);
+            padding-inline-start: 0.5rem;
+            font-style: italic;
+        }
+
+        // Tree item spacing
+        :global(.tree-item) {
+            margin-block: var(--tree-y-space);
+            padding-left: 0.5rem;
+
+            :global(> div) {
+                padding-block: 0.15rem 0.5rem;
+            }
+        }
+    }
+
+    // Fallback for browsers without light-dark() support
+    @supports not (color: light-dark(white, black)) {
+        :global(.file-tree) {
+            --tree-border-color: var(--bs-gray-300);
+            --tree-text-muted: var(--bs-gray-600);
+            --tree-text-subtle: var(--bs-gray-500);
+        }
+
+        :global([data-bs-theme="dark"] .file-tree) {
+            --tree-border-color: var(--bs-gray-600);
+            --tree-text-muted: var(--bs-gray-400);
+            --tree-text-subtle: var(--bs-gray-400);
+        }
+    }
+</style>

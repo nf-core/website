@@ -250,6 +250,34 @@ process {
 }
 ```
 
+## File trees
+
+You can display file trees using the `tree` language.
+
+````md
+```tree
+tests
+├─ alignment-pair-end.nf.test # comment
+├─ alignment-single-end.nf.test
+├─ going-deeper/
+│  ├─ deeper.nf.test
+│  └─ deeper.nf.test.md
+└─ default.nf.test
+```
+````
+
+This will be rendered as:
+
+```tree
+tests
+├─ alignment-pair-end.nf.test # comment
+├─ alignment-single-end.nf.test
+├─ going-deeper/
+│  ├─ deeper.nf.test
+│  └─ deeper.nf.test.md
+└─ default.nf.test
+```
+
 # Mermaid diagrams
 
 [Mermaid](https://mermaid.js.org/intro/) is a simple markdown-like script language for generating charts from text via javascript. It supports many different types of diagrams, including flowcharts, sequence diagrams, gantt charts and class diagrams. To display them correctly on an nf-co.re page, you need to wrap them in a code block with the language set to `mermaid`,e.g.,:

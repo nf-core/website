@@ -37,9 +37,9 @@ Each nf-test file should be named after the set-up it tests in the following for
 
 ```tree
 tests
-└── alignment-pair-end.nf.test
-└── alignment-single-end.nf.test
-├── default.nf.test
+├── alignment-pair-end.nf.test
+├── alignment-single-end.nf.test
+└── default.nf.test
 ```
 
 ### Pipeline nf-tests additional guidance
