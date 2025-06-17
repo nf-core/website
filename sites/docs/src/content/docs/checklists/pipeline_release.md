@@ -49,8 +49,11 @@ If this is your first release, make sure to follow the [first release tutorial](
   Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
   :::
 
-  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
-        For example releases in nf-core/rnaseq follow the pattern: - Prefix = Metal - Dictionary = Animals - Suffix = Don't use a suffix
+  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`).
+        For example releases in nf-core/rnaseq follow the pattern:
+    - Prefix = Metal
+    - Dictionary = Animals
+    - Suffix = Don't use a suffix
 
 - [ ] Celebrate! But not too much - you still have a few things left to do...
 
@@ -66,7 +69,7 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-- [ ] Make sure the dev branch on your fork is up to date
+- [ ] Make sure the `dev` branch on your fork is up to date
 - [ ] On a new branch, bump to a new `dev` version
   - [ ] For example, `1.0.0` becomes `1.1.0dev`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
