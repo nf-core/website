@@ -28,9 +28,9 @@ a lot of manual code checks and providing fast feedback to developers.
 Of course, when something works well, we tend to use it a lot.
 This is certainly true with GitHub actions and nf-core.
 
-An average pull-request in nf-core/modules can kick off up to 20 automated jobs,
-while pipelines like nf-core/viralrecon start 178 jobs per PR.
-The nf-core GitHub Organisation has an allocation of 60 actions runners
+An average pull-request in nf-core/modules can kick off up to 20 automated jobs.
+PRs for nf-core pipelines can start up even more jobs.
+The nf-core GitHub organisation has an allocation of 60 action runners
 (this already includes a double allocation for open source projects).
 
 This mismatch between number of jobs launched and total concurrent capacity can
@@ -118,6 +118,13 @@ We then use this number to set the number of shards needed based on the number o
 
 The disadvantage of this approach is that it is not immediately clear which tests failed during a run, one needs to instead go through the logs of the different jobs.
 We tried to mitigate this by adding a summary of the tests in the GitHub Actions, but this needs some more polishing.
+
+Thanks to the work by [@GallVp](https://github.com/GallVp), [@sateeshperi](https://github.com/sateeshperi),
+[@edmundmiller](https://github.com/edmundmiller), [@adamrtalbot](https://github.com/adamrtalbot), [@mirpedrol](https://github.com/mirpedrol),
+[@maxulysse](https://github.com/maxulysse), and [@mashehu](https://github.com/mashehu),
+we now have this dynamic sharding step in the CI workflows for
+[nf-core/modules](https://github.com/nf-core/modules/blob/ab281000d296e2a6ab4efceb14c1151bd3a326da/.github/actions/get-shards/action.yml) and in the
+upcoming [pipeline template](https://github.com/nf-core/tools/blob/ae7760bcff980809f6dabdcaa96209b60a3d2d5a/nf_core/pipeline-template/.github/actions/get-shards/action.yml) for nf-core/tools 3.3.0.
 
 ### A different waiting game
 

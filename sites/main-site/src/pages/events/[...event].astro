@@ -118,13 +118,18 @@ let sections: SidebarEntry[] = years.map((year) => {
     };
 });
 addEntriesToSection(sections, events);
+
 // sort .entries by date
 sections.forEach((year) => {
-    year.entries.sort((a, b) => {
-        const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
-        const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
-        return eventB.data.startDate - eventA.data.startDate;
-    });
+    year.type === "group" &&
+        year.entries?.sort((a, b) => {
+            const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+            const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
+            if (eventA?.data.start && eventB?.data.start) {
+                return eventB.data.start.getTime() - eventA.data.start.getTime();
+            }
+            return 0;
+        });
 });
 ---
 

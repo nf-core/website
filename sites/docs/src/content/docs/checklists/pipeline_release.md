@@ -2,6 +2,7 @@
 title: Release checklist
 subtitle: A step-by-step guide for releasing a nf-core pipeline
 markdownPlugin: checklist
+weight: 10
 ---
 
 ## Before you release
@@ -37,16 +38,23 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] Make sure that all of the CI tests are passing - this is a special case PR and the tests are different
 - [ ] Request PR reviews from at least two people on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL)
   - [ ] If a first release, one review must come from one core or maintainers team member - feel free to ping the two teams on slack under your post on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
+  - [ ] For any other release, one review can come from a member of the same development team, but we strongly recommend the second to be an another external/neutral person from the community
   - [ ] While you're waiting for reviews on your PR, review another community member's release PR (see pinned message in the channel above)
-  - [ ] Once your PR approved by two reviewers, merge your PR into `master`
-  - [ ] And finally delete any label of types: "under development", "under construction" or variants of these
+- [ ] Once your PR approved by two reviewers, merge your PR into `master`/`main`
+  - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
 - [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
-      :::note
-      Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
-      :::
-  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
-        For example releases in nf-core/rnaseq follow the pattern: - Prefix = Metal - Dictionary = Animals - Suffix = Don't use a suffix
+
+  :::note
+  Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
+  :::
+
+  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`).
+        For example releases in nf-core/rnaseq follow the pattern:
+    - Prefix = Metal
+    - Dictionary = Animals
+    - Suffix = Don't use a suffix
+
 - [ ] Celebrate! But not too much - you still have a few things left to do...
 
 ### Automated events
@@ -61,7 +69,7 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-- [ ] Make sure the dev branch on your fork is up to date
+- [ ] Make sure the `dev` branch on your fork is up to date
 - [ ] On a new branch, bump to a new `dev` version
   - [ ] For example, `1.0.0` becomes `1.1.0dev`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
