@@ -17,6 +17,11 @@ We run 3 weekly helpdesk slots for different regions / time zones:
 - APAC: Wednesdays 3pm NZDT (Wednesdays <LocalDateTime date={(() => { const d = nextWednesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 15, 0, 'Pacific/Auckland'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)
 - EMEA: Thursdays 10am CET (Thursdays <LocalDateTime date={(() => { const d = nextThursday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 'Europe/Paris'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)
 
+:::tip
+Weekly helpdesk sessions are run on a best-effort basis, depending on volunteer availability.
+Check the [`#weekly-helpdesk` Slack channel](https://nfcore.slack.com/archives/C06KSS9L8M7) for the latest info.
+:::
+
 In these sessions, some of the nf-core maintainer team and other seasoned community members
 will be available to engage in discussions about your code, running pipelines,
 writing configs, or anything else related to nf-core and Nextflow.
