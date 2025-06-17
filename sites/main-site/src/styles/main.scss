@@ -1244,6 +1244,10 @@ Launch Page
 
 .admonition {
   margin-top: 0.5rem;
+
+  .task-list-item > & {
+    padding-left: 1.5rem;
+  }
   *:last-child {
     margin-bottom: 0;
   }
