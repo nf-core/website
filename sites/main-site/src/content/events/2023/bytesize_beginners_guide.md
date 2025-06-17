@@ -13,8 +13,6 @@ locations:
       - https://www.youtube.com/watch?v=2hEYtrGXrKo
 ---
 
-## Bytesize: A beginners guide to nf-core
-
 This week, Franziska ([@FranBonath](https://github.com/FranBonath)) will share her experiences as a beginner in using nf-core provided material and will give tips on how to get started.
 
 <details markdown="1"><summary>Video transcription</summary>
