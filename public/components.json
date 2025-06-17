@@ -28786,7 +28786,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "circdna",
@@ -58475,7 +58475,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -59217,7 +59217,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bamtofastq",
+          "version": "2.2.0"
+        }
+      ]
     },
     {
       "name": "fasttree",
@@ -61340,7 +61346,7 @@
             {
               "files_in": {
                 "type": "file",
-                "description": "List of compressed / uncompressed files",
+                "description": "List of either compressed or uncompressed files",
                 "pattern": "*"
               }
             }
@@ -61351,15 +61357,14 @@
             "file_out": [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Concatenated file. Will be gzipped if file_out ends with \".gz\"",
-                  "pattern": "${file_out}"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
                 "${prefix}": {
                   "type": "file",
-                  "description": "Concatenated file. Will be gzipped if file_out ends with \".gz\"",
+                  "description": "Concatenated file. Will be gzipped if ${prefix} ends with \".gz\" or inputs are gzipped, will be uncompressed otherwise.",
                   "pattern": "${file_out}"
                 }
               }
@@ -123500,7 +123505,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -163319,7 +163324,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "hlatyping",
@@ -164204,7 +164209,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -164878,7 +164883,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -165160,7 +165165,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -165520,7 +165525,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -166016,7 +166021,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -166921,7 +166926,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "callingcards",
@@ -167290,7 +167295,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "circdna",
@@ -213516,6 +213521,18 @@
               "type": "file",
               "description": "Bwameth genome index files\nStructure: [ val(meta), path(bwameth_index) ]\n"
             }
+          },
+          {
+            "aligner": {
+              "type": "string",
+              "description": "Aligner name (bismark, bismark_hisat, or bwameth)\n"
+            }
+          },
+          {
+            "collecthsmetrics": {
+              "type": "boolean",
+              "description": "Whether to run picard collecthsmetrics tool\n"
+            }
           }
         ],
         "output": [
@@ -213554,10 +213571,12 @@
           }
         ],
         "authors": [
-          "@sateeshperi"
+          "@sateeshperi",
+          "dcarrillox"
         ],
         "maintainers": [
-          "@sateeshperi"
+          "@sateeshperi",
+          "@dcarrillox"
         ]
       },
       "pipelines": [
@@ -217651,7 +217670,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cellpainting",
@@ -218044,7 +218063,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.1.1"
+          "version": "2.2.0"
         },
         {
           "name": "cellpainting",
@@ -218448,6 +218467,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.2.0"
+        },
+        {
           "name": "cellpainting",
           "version": "dev"
         },
@@ -218802,10 +218825,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "bamtofastq",
-          "version": "2.1.1"
-        },
         {
           "name": "chipseq",
           "version": "2.1.0"
