@@ -1,6 +1,7 @@
 <script lang="ts">
     import ListingTableHeader from "@components/ListingTableHeader.svelte";
     import PaginationNav from "@components/PaginationNav.svelte";
+    import TagSection from "@components/TagSection.svelte";
     import ComponentCard from "@components/component/ComponentCard.svelte";
     import { SortBy, DisplayStyle, SearchQuery, currentPage } from "@components/store";
 
@@ -153,15 +154,11 @@
                                 {component.meta.description}
                             </td>
                             <td class="topics">
-                                {#each component.meta.keywords || [] as keyword}
-                                    <span class={`badge me-2 ${component.type}-topic`}>{keyword}</span>
-                                {/each}
+                                <TagSection tags={component.meta.keywords} type="keywords" />
                             </td>
                             {#if component.type !== "module"}
                                 <td class="components">
-                                    {#each component.meta.components || [] as sub_component}
-                                        <span class={`badge me-2 ${component.type}-topic`}>{sub_component}</span>
-                                    {/each}
+                                    <TagSection tags={component.meta.components} type="modules" />
                                 </td>
                             {/if}
                             <td class="text-end">
