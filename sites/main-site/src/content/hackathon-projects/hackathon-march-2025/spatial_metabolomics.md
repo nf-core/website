@@ -2,6 +2,7 @@
 title: Bringing spatial metabolomics to nf-core
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C08JKPV4ZNH
 image: "/assets/images/events/2025/hackathon-march/Spat_metabo_meme.jpg"
 image_alt: "'Excited Jonah Hill' meme, where Jonah hill is screaming from excitment when he heard that spatial metabolomics workflows can be automated with nextflow"
 leaders:

@@ -42,9 +42,9 @@ pipelines.sort((a, b) => {
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
-                        title="Master branch is same commit as the last release"
+                        title="Master/Main branch is same commit as the last release"
                         data-bs-toggle="tooltip"
-                        data-bs-placement="top"><code>master</code> = release</th
+                        data-bs-placement="top"><code>master</code>/<code>main</code> = release</th
                     >
                     <th
                         class="small fw-normal text-nowrap p-1"
@@ -142,10 +142,10 @@ pipelines.sort((a, b) => {
                         >Branches exist</th
                     >
 
-                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
-                        >Branch protection: <code>master</code> branch</th
+                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                        >Branch protection: <code>master</code>/<code>main</code> branch</th
                     >
-                    <th colspan="6" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
                         >Branch protection: <code>dev</code></th
                     >
                     <th
@@ -180,6 +180,7 @@ pipelines.sort((a, b) => {
             <tbody>
                 {
                     pipelines.map((pipeline) => {
+                        const mainOrMasterBranch = pipeline.main_branch_exists ? "main" : "master";
                         const getCell = (condition?: any, link?: string, tooltip?: string, classes?: string) => (
                             <td
                                 class={
@@ -231,7 +232,7 @@ pipelines.sort((a, b) => {
                                                 data-bs-toggle="tooltip"
                                             />
                                         )}
-                                        <GitHubActionTrigger client:idle pipelineName={pipeline.name} />
+                                        {/* <GitHubActionTrigger client:idle pipelineName={pipeline.name} /> */}
                                     </span>
                                 </td>
                                 {/* Released */}
@@ -246,11 +247,11 @@ pipelines.sort((a, b) => {
                                     `https://github.com/nf-core/${pipeline.name}/releases`,
                                     "last release is after latest tools release (so up to date with template)",
                                 )}
-                                {/*Master = release */}
+                                {/*Master/Main = release */}
                                 {getCell(
                                     pipeline.last_release_is_head,
                                     pipeline.last_release_vs_default_compare_url,
-                                    "master branch is same commit as the last release",
+                                    `${mainOrMasterBranch} branch is same commit as the last release`,
                                 )}
                                 {/* JSON Schema*/}
                                 {getCell(
@@ -312,8 +313,8 @@ pipelines.sort((a, b) => {
                                 )}
                                 {/* Default branch set in nextflow.config manifest */}
                                 {getCell(
-                                    pipeline.master_nextflow_config_manifest.defaultBranch
-                                        ? pipeline.master_nextflow_config_manifest.defaultBranch ===
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch
+                                        ? pipeline[`${mainOrMasterBranch}_nextflow_config_manifest`]?.defaultBranch ===
                                           pipeline.default_branch
                                             ? true
                                             : false
@@ -348,9 +349,9 @@ pipelines.sort((a, b) => {
                                 )}
                                 {/* Branches exist */}
                                 {getCell(
-                                    pipeline.master_branch_exists,
+                                    pipeline[`${mainOrMasterBranch}_branch_exists`],
                                     `https://github.com/nf-core/${pipeline.name}/tree/${pipeline.default_branch}`,
-                                    "master branch: branch must exist",
+                                    `${mainOrMasterBranch} branch: branch must exist`,
                                     " ms-3",
                                 )}
                                 {getCell(
@@ -364,105 +365,111 @@ pipelines.sort((a, b) => {
                                     "TEMPLATE branch: branch must exist",
                                     " border-end",
                                 )}
-                                {/* Branch protection: master */}
+                                {/* Branch protection: master/main */}
                                 {getCell(
-                                    !pipeline.master_branch_protection_up_to_date
-                                        ? true
-                                        : pipeline.master_branch_protection_up_to_date,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: do not require branch to be up to date before merging",
-                                    " border-start ",
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_status_checks,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: minimum set of CI tests must pass",
+                                    !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: reviews not marked stale after new commits`,
                                 )}
                                 {getCell(
-                                    !pipeline.master_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: reviews not marked stale after new commits",
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`] !== -1
+                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`]
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: code owner reviews not required`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_require_codeowner_review !== -1
-                                        ? !pipeline.master_branch_protection_require_codeowner_review
-                                        : pipeline.master_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: code owner reviews not required",
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] !== -1
+                                        ? pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] === 2
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: 2 reviews required`,
                                 )}
                                 {getCell(
-                                    pipeline.master_branch_protection_required_reviews !== -1
-                                        ? pipeline.master_branch_protection_required_reviews === 2
-                                        : pipeline.master_branch_protection_required_reviews,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: 2 reviews required",
-                                )}
-                                {getCell(
-                                    pipeline.master_branch_protection_enforce_admins !== -1
-                                        ? !pipeline.master_branch_protection_enforce_admins
-                                        : pipeline.master_branch_protection_enforce_admins,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "master branch: do not enforce rules for admins",
+                                    pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`] !== -1
+                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`]
+                                        : pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`],
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
+                                    `${mainOrMasterBranch} branch: do not enforce rules for admins`,
                                     " border-end ",
                                 )}
                                 {/* Branch protection: dev */}
                                 {getCell(
-                                    !pipeline.dev_branch_protection_up_to_date
-                                        ? true
-                                        : pipeline.dev_branch_protection_up_to_date,
-                                    pipeline.repository_url + "/settings/branches",
-                                    "dev branch: do not require branch to be up to date before merging",
-                                    " border-start ",
-                                )}
-                                {getCell(
                                     pipeline.dev_branch_protection_status_checks,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: minimum set of CI tests must pass",
                                 )}
                                 {getCell(
                                     !pipeline.dev_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: reviews not marked stale after new commits",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_require_codeowner_review !== -1
                                         ? !pipeline.dev_branch_protection_require_codeowner_review
                                         : pipeline.dev_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: code owner reviews not required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_required_reviews !== -1
                                         ? pipeline.dev_branch_protection_required_reviews >= 1
                                         : pipeline.dev_branch_protection_required_reviews,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: 1 review required",
                                 )}
                                 {getCell(
                                     pipeline.dev_branch_protection_enforce_admins !== -1
                                         ? !pipeline.dev_branch_protection_enforce_admins
                                         : pipeline.dev_branch_protection_enforce_admins,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: do not enforce rules for admins",
                                     " border-end ",
                                 )}
                                 {/* T push */}
                                 {getCell(
                                     pipeline.TEMPLATE_restrict_push,
-                                    pipeline.repository_url + "/settings/branches",
+                                    pipeline.repository_url +
+                                        "/settings" +
+                                        (pipeline.TEMPLATE_uses_ruleset ? "/rules" : "/branches"),
                                     "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}
                                 {
                                     // nf-validation should be in the nextflow.config
                                     getCell(
-                                        pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                        pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
                                             plugin.startsWith("nf-validation"),
                                         )
                                             ? 0
                                             : 1,
-                                        pipeline.repository_url + "/blob/master/nextflow.config",
-                                        `nf-validation plugin not in nextflow.config in master`,
+                                        pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                        `nf-validation plugin not in nextflow.config in ${mainOrMasterBranch}`,
                                     )
                                 }
                                 {getCell(
@@ -475,18 +482,18 @@ pipelines.sort((a, b) => {
                                     "nf-validation plugin not in nextflow.config in dev",
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
                                         plugin.startsWith("nf-schema"),
                                     ) ?? 0,
-                                    pipeline.repository_url + "/blob/master/nextflow.config",
-                                    `nf-schema plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    `nf-schema plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
                                     " border-start ",
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
                                         plugin.startsWith("nf-schema"),
                                     ) ?? 0,
-                                    pipeline.repository_url + "/blob/master/nextflow.config",
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
                                     "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
@@ -504,17 +511,17 @@ pipelines.sort((a, b) => {
                                     "nf-schema plugin must be pinned",
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
                                         plugin.startsWith("nf-prov"),
                                     ) ?? 0,
-                                    pipeline.repository_url + "/blob/master/nextflow.config",
-                                    `nf-prov plugin version ${pipeline.master_nextflow_config_plugins?.filter((plugin) => plugin.startsWith("nf-prov"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in master`,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    `nf-prov plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-prov"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
                                 )}
                                 {getCell(
-                                    pipeline.master_nextflow_config_plugins?.some((plugin) =>
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
                                         plugin.startsWith("nf-prov@"),
                                     ) ?? 0,
-                                    pipeline.repository_url + "/blob/master/nextflow.config",
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
                                     "nf-prov plugin must be pinned",
                                 )}
                                 {getCell(
