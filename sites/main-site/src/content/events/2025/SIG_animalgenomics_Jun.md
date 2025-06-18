@@ -7,10 +7,11 @@ startDate: "2025-06-18"
 startTime: "16:00+01:00"
 endDate: "2025-06-18"
 endTime: "17:00+01:00"
+youtubeEmbed: https://youtu.be/37v5XrECwGY
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/37v5XrECwGY
 ---
 
 # Multi-OMICs integration approach to breed healthier and more sustainable animals
