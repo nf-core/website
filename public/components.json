@@ -12858,7 +12858,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -12977,7 +12977,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "taxprofiler",
@@ -13222,7 +13222,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -13720,7 +13720,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -28656,7 +28656,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "nascent",
@@ -28830,7 +28830,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylseq",
@@ -58595,7 +58595,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylarray",
@@ -90543,7 +90543,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "phyloplace",
@@ -123657,7 +123657,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylarray",
@@ -141188,7 +141188,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylong",
@@ -148697,7 +148697,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -149001,7 +149001,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -164927,7 +164927,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylong",
@@ -165213,7 +165213,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "nanoseq",
@@ -165589,7 +165589,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylong",
@@ -166723,7 +166723,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylong",
@@ -166970,7 +166970,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylseq",
@@ -174254,7 +174254,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -174539,7 +174539,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "radseq",
@@ -183239,7 +183239,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "pathogensurveillance",
@@ -187065,7 +187065,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "nascent",
@@ -191221,7 +191221,7 @@
       "pipelines": [
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -195210,7 +195210,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylseq",
@@ -199328,7 +199328,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylseq",
@@ -202644,6 +202644,172 @@
           "version": "3.5.1"
         }
       ]
+    },
+    {
+      "name": "vclust_align",
+      "path": "modules/nf-core/vclust/align/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vclust_align",
+        "description": "The align command performs pairwise sequence alignments of viral genomes and provides similarity measures like ANI and coverage (alignment fraction)",
+        "keywords": [
+          "cluster",
+          "virus",
+          "filter",
+          "contig",
+          "scaffold",
+          "phage"
+        ],
+        "tools": [
+          {
+            "vclust": {
+              "description": "Fast and accurate tool for calculating ANI and clustering virus genomes and metagenomes.",
+              "homepage": "https://afproject.org/vclust/",
+              "documentation": "https://github.com/refresh-bio/vclust/wiki",
+              "tool_dev_url": "https://github.com/refresh-bio/vclust",
+              "doi": "10.1038/s41592-025-02701-7",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:vclust"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta file containing sequences needed for filtering",
+                "pattern": "*.{fasta,fna,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "filter": {
+                "type": "file",
+                "description": "Input txt file containing sequences relationships for filtering  (generated with vclust prefilter)",
+                "pattern": "*.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2082"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "save_alignment": {
+                "type": "boolean",
+                "default": false,
+                "description": "Save the pairwise alignments to a blast-like file.\n",
+                "pattern": "*.aln.tsv"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "tsv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Sorted TSV file",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "ids": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.ids.tsv": {
+                  "type": "file",
+                  "description": "File containing sequence IDs and their number of parts",
+                  "pattern": "*.ids.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "aln": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.aln.tsv": {
+                  "type": "file",
+                  "description": "File similar to the BLASTn tabular output file,\nincludes information on each local alignment between two genomes.\n"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Joon-klaps"
+        ],
+        "maintainers": [
+          "@Joon-klaps"
+        ]
+      }
     },
     {
       "name": "vclust_prefilter",
@@ -211084,6 +211250,10 @@
           "version": "dev"
         },
         {
+          "name": "metatdenovo",
+          "version": "1.2.0"
+        },
+        {
           "name": "nascent",
           "version": "2.3.0"
         },
@@ -211356,6 +211526,10 @@
         {
           "name": "magmap",
           "version": "dev"
+        },
+        {
+          "name": "metatdenovo",
+          "version": "1.2.0"
         },
         {
           "name": "nascent",
@@ -217818,7 +217992,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylarray",
@@ -218211,7 +218385,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylarray",
@@ -218588,7 +218762,7 @@
         },
         {
           "name": "metatdenovo",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "methylarray",
