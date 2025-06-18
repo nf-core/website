@@ -1,12 +1,13 @@
 ---
-title: 'Bytesize: nf-core/viralintegration'
+title: "Bytesize: nf-core/viralintegration"
 subtitle: Alyssa Briggs, The University of Texas at Dallas
 type: talk
-startDate: '2023-10-24'
-startTime: '14:30+02:00'
+startDate: "2023-10-24"
+startTime: "14:30+02:00"
+embedAt: "viralintegration"
 youtubeEmbed: https://www.youtube.com/watch?v=rLG6YKE52Mo
-endDate: '2023-10-24'
-endTime: '15:00+02:00'
+endDate: "2023-10-24"
+endTime: "15:00+02:00"
 locations:
   - name: Online
     links:

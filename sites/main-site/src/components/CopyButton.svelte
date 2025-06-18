@@ -1,12 +1,25 @@
 <script lang="ts">
-    export let text: string;
-    export let label: string = '';
-    export let copiedLabel: string = '<i class="fa-regular px-1 fa-clipboard-check" />';
-    export let classes: string = '';
-    export let copiedClasses: string = '';
+    interface Props {
+        text: string;
+        label?: string;
+        copiedLabel?: string;
+        classes?: string;
+        copiedClasses?: string;
+        children?: import("svelte").Snippet;
+    }
 
-    $: copied = false;
-    $: currentClasses = copied ? copiedClasses : classes;
+    let {
+        text,
+        label = "",
+        copiedLabel = '<i class="fa-regular px-1 fa-clipboard-check" />',
+        classes = "",
+        copiedClasses = "",
+        children,
+    }: Props = $props();
+
+    let copied = $state(false);
+
+    let currentClasses = $derived(copied ? copiedClasses : classes);
     const copyToClipboard = (text: string) => {
         navigator.clipboard.writeText(text);
         copied = true;
@@ -18,14 +31,14 @@
 </script>
 
 <span
-    class={'copy-url ' + currentClasses}
-    on:click={() => copyToClipboard(text)}
-    on:keypress={() => copyToClipboard(text)}
+    class={"copy-url " + currentClasses}
+    onclick={() => copyToClipboard(text)}
+    onkeypress={() => copyToClipboard(text)}
     data-bs-toggle="tooltip"
     title="Copy to clipboard"
     role="button"
     tabindex="0"
-    ><slot />{#if copied}{@html copiedLabel}
+    >{@render children?.()}{#if copied}{@html copiedLabel}
     {:else}{@html label}{/if}</span
 >
 

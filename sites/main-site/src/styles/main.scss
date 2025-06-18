@@ -101,6 +101,13 @@ blockquote {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
+.main-content figure img:has(+ figcaption) {
+  border: 1px solid $border-color;
+  border-bottom: 0;
+  margin-bottom: 0;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
 
 .main-content figcaption {
   font-size: 0.9rem;
@@ -285,11 +292,6 @@ code:not(pre code),
   color: inherit;
 }
 
-.mainpage-heading code:not(pre code) {
-  background-color: rgba($white, 0.1) !important;
-  color: $white !important;
-}
-
 .main-content pre {
   font-size: 14px;
   code {
@@ -303,12 +305,12 @@ code:not(pre code),
       padding-top: 0;
       padding-bottom: 0;
     }
-    &:not([data-line-numbers]) {
+    &:not([data-line-numbers]):not(.hljs) {
       & > span {
-        padding-left: 1.5em;
-        padding-right: 1.5em;
+        padding-left: 1em;
+        padding-right: 1em;
         &[data-highlighted-line] {
-          padding-left: calc(1.5em - 2px);
+          padding-left: calc(1em - 2px);
         }
       }
     }
@@ -319,7 +321,7 @@ code:not(pre code),
         counter-increment: line;
         content: counter(line);
         display: inline-block;
-        width: 1.75rem;
+        width: 1.5rem;
         margin-right: 1rem;
         padding-right: 0.5rem;
         text-align: right;
@@ -559,17 +561,6 @@ h4:focus .header-link,
   background-color: $gray-100;
   color: $success;
   font-weight: 400;
-}
-
-.mainpage-heading {
-  .topic,
-  .pipeline-topic,
-  .module-topic,
-  .subworkflow-topic {
-    background-color: rgba($white, 0.1);
-    color: rgba($white, 0.9);
-    font-weight: 400;
-  }
 }
 
 .pipelines-container-list .col:first-child .pipeline.card {
@@ -1178,7 +1169,6 @@ Launch Page
 .btn-show-hidden-params .collapsing {
   display: none;
 }
-
 .breadcrumb-item:not(.active) {
   & a,
   & span {
@@ -1254,6 +1244,10 @@ Launch Page
 
 .admonition {
   margin-top: 0.5rem;
+
+  .task-list-item > & {
+    padding-left: 1.5rem;
+  }
   *:last-child {
     margin-bottom: 0;
   }
@@ -1319,7 +1313,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
     }
   }
   pre .copy-code-button {
-    margin-top: 0.75rem;
+    margin-top: 0.5rem;
     margin-bottom: 0.75rem;
     margin-right: 0.425rem;
     &.single-line {
@@ -1329,7 +1323,7 @@ figure[data-rehype-pretty-code-figure] [data-theme*=' ']:not([data-rehype-pretty
       opacity: 1 !important;
     }
   }
-  &:has(.single-line) code{
+  &:has(.single-line) code {
     padding-top: 0.75rem;
   }
 }
@@ -1374,16 +1368,16 @@ div.mermaid {
 // Excalidraw
 
 @font-face {
-  font-family: "Virgil";
-  src: url("https://excalidraw.com/Virgil.woff2");
+  font-family: 'Virgil';
+  src: url('https://excalidraw.com/Virgil.woff2');
 }
 @font-face {
-  font-family: "Cascadia";
-  src: url("https://excalidraw.com/Cascadia.woff2");
+  font-family: 'Cascadia';
+  src: url('https://excalidraw.com/Cascadia.woff2');
 }
 @font-face {
-  font-family: "Assistant";
-  src: url("https://excalidraw.com/Assistant-Regular.woff2");
+  font-family: 'Assistant';
+  src: url('https://excalidraw.com/Assistant-Regular.woff2');
 }
 .excalidraw svg {
   height: 100%;
@@ -1400,6 +1394,7 @@ div.mermaid {
 @include color-mode(dark) {
   // dark mode specific variables
   --bs-heading-color: #{$nf-core-color-dark}; // not working at the moment;
+  --bs-breadcrumb-item-active-color: #{$white};
 
   .tooltip {
     --bs-tooltip-bg: #{$body-bg-dark};
@@ -1500,12 +1495,6 @@ div.mermaid {
     }
   }
 
-  .mainpage-heading,
-  .mainpage-heading h1 {
-    color: $gray-100 !important;
-    text-wrap: balance;
-  }
-
   .lead {
     text-wrap: balance;
   }
@@ -1521,7 +1510,7 @@ div.mermaid {
   .main-content pre code {
     border: 1px solid $border-color-dark;
   }
-  .main-content figcaption {
+  .main-content figcaption, .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
   }
@@ -1571,5 +1560,9 @@ div.mermaid {
 
   .excalidraw svg {
     filter: invert(100%) hue-rotate(180deg);
+  }
+
+  li.breadcrumb-item.active {
+    color: $breadcrumb-divider-color-dark;
   }
 }

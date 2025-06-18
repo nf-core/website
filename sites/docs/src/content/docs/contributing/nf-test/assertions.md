@@ -1,5 +1,5 @@
 ---
-title: 'nf-test: Example assertions'
+title: "nf-test: Example assertions"
 subtitle: A guide to using nf-test assertions for testing nf-core pipelines.
 parentWeight: 20
 ---
@@ -86,6 +86,35 @@ which is equivalent to
 
 ```groovy
 log[0][1]
+```
+
+The first `get(0)` or `[0]` corresponds to the emitted channel object itself.
+
+The `get(1)` or `[1]` corresponds to the second object of the channel object.
+Most nf-core modules and pipelines typically emit two sub-components of an object: a meta map and the file(s)/directories etc.
+Specifying `get(q)` or `[1]` thus corresponds to the file(s)/directories for recording in a snapshot.
+
+## Debugging
+
+When you assign variables that you inject into the `assertAll`, you can use `println` statements to print these variables during the test for debugging purposes.
+
+The print statements must go within the `then` block, and prior `assertAll`.
+
+```nextflow
+then {
+    def unstable_patterns_auth = [
+        '**/mapped_reads_gc-content_distribution.txt',
+        '**/genome_gc_content_per_window.png',
+        '**/*.{svg,pdf,html}',
+        '*.{svg,pdf,html}',
+        '**/DamageProfiler.log',
+        ]
+
+    println("unstable_patterns_auth: " + unstable_patterns_auth)
+
+    assertAll(
+        { assert snapshot( stable_content_authentication     , stable_name_authentication*.name   ).match("authentication") },
+    ...
 ```
 
 ## Additional Reading
@@ -315,6 +344,72 @@ _Motivation:_ I want to check the presence of a specific string or data pattern 
 ```
 
 _Explanation:_ check if a specific string (`"MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242"`) is present in the content of a gzipped file, specified by `path(process.out.vcf[0][1]).linesGzip.toString()`.
+
+### Snapshotting variable files in a channel emitting a directory
+
+_Context_: If a channel emits just a directory, by default nf-test will recursively list all files in that and all sub directories, and generate md5sums of all the files.
+However, in some cases, _some_ of the files in the directory may have unstable/empty md5sums.
+I want to snapshot all stable files with md5sums, but only snapshot names of unstable files.
+_Motivation_: I want to snapshot all files with stable md5sums, but only snapshot names of unstable files.
+
+```bash
+then {
+    def stablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {stablefiles.add(file)} }
+    def unstablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())} }
+
+    assertAll(
+        { assert process.success },
+        { assert snapshot(
+                stableFiles,
+                stableNames,
+                process.out.versions
+            ).match() }
+    )
+}
+```
+
+_Explanation_: We create two lists of files paths within the emitted directory, filter these two for stable and unstable files respectively, and snapshot the lists of paths.
+
+In more detail, we generate an empty list (`stablefiles`). We then retrieve the directory from the channel `db` using `get(1)` (rather than the meta), and retrieve all files and directories that are inside that directory using `endFileRecurse` and, however we only append to the list (`.add(file)`) those files that are not a directory and not paths that end in (`endsWith`) the file names identified as unstable (`"database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"`).
+
+We then do the reverse (`unstablefiles`), where we loop again through the directory, but this time append only files that _do_ match the identified unstable file names.
+However do not append the path itself, but just the filename by converting to a string (`getName().toString()`) when adding to the list.
+
+These two lists of stable paths and unstable names can be captured in the snapshot in an `assert snapshot().match()`.
+
+:::note
+We have to explicitly exclude directories in the first case, because `eachFileRecurse` includes directories when listing all files.
+
+If directories are included in the list of files to be snapshot, nf-test by default looks inside any directory in the list (here called `stablefiles`) and also runs an md5sum on any file in the listed directory.
+Therefore, even if you explicitly exclude the file during the `endFileRercurse` and `find` function, and thus it is not explicitly in the `stablefiles` list itself, the file will still be picked by nf-test via the directory.
+
+Therefore, by excluding directories, you do not get an accidental 'double' listing of files you wish to exclude.
+:::
+
+### Snapshotting variable binary files with file size
+
+_Context_: You have a tool that always produces a binary file that cannot be asserted for valid contents such as a string.
+
+_Motivation_: You want to be able to still check that the binary file contains 'something' rather than just the existence of the file.
+
+To compare an exact file size (in bytes)
+
+```nextflow
+"malt/malt_index/ref.idx - correct file size: ${file("$outputDir/malt/malt_index/ref.idx").length()}",
+```
+
+To check for a minimum size (in bytes)
+
+```nextflow
+"malt/malt_index/ref.idx - minimum file size: ${file("$outputDir/malt/malt_index/ref.idx").length() >= 61616}",
+```
+
+_Explanation_: When you have a binary file that can have variable contents, you cannot use a md5sum, as the md5sum hash will be different each time. Then, as it is a binary file, you cannot easily search for plain text strings to check that the specific string is present in the file.
+
+While you could check simply for the existence of a file, it may be that some tools can produce binary files that have 'insufficent' contents for it to work.
+If you know that your tool produces a binary file _size_ that is stable (despite variability), or you know that a 'working' binary file exceeds a particular size, you can use the file size (in bytes) to assert the file is 'valid'.
 
 ## Useful nf-test operators and functions
 

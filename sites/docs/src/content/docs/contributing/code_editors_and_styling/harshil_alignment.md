@@ -67,6 +67,8 @@ path  "versions.yml"              , emit: versions
 
 ### Colon Example (Comments)
 
+❌ Bad
+
 ```groovy
 take:
 print_version        // boolean: print version

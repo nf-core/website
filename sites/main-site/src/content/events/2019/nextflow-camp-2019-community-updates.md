@@ -1,11 +1,11 @@
 ---
-title: 'nf-core community updates'
-subtitle: 'Presentation at the Nextflow Camp 2019'
+title: "nf-core community updates"
+subtitle: "Presentation at the Nextflow Camp 2019"
 type: talk
-startDate: '2019-09-19'
-startTime: '09:10+01:00'
-endDate: '2019-09-19'
-endTime: '09:45+01:00'
+startDate: "2019-09-19"
+startTime: "09:10+01:00"
+endDate: "2019-09-19"
+endTime: "09:45+01:00"
 locationName: Centre for Genomic Regulation, Barcelona
 locations:
   - name: Centre for Genomic Regulation, Barcelona

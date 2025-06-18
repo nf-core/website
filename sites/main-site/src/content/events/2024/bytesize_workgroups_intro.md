@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: nf-core Special Interest Groups'
+title: "Bytesize: nf-core Special Interest Groups"
 subtitle: Phil Ewels, Seqera
 type: talk
-startDate: '2024-02-20'
-startTime: '13:00+01:00'
-endDate: '2024-02-20'
-endTime: '13:30+01:00'
+startDate: "2024-02-20"
+startTime: "13:00+01:00"
+endDate: "2024-02-20"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:

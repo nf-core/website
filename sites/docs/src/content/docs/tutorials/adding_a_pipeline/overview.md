@@ -49,5 +49,4 @@ Not all pipelines are suitable for inclusion in the main nf-core community (eg. 
 All nf-core discussion happens on the nf-core Slack, which you can join here:
 [https://nf-co.re/join](https://nf-co.re/join)
 
-These topics are specifically discussed in the `#new-pipelines` channel:
-[https://nfcore.slack.com/channels/new-pipelines](https://nfcore.slack.com/channels/new-pipelines)
+These topics are specifically discussed in the [nf-core/proposals](https://github.com/nf-core/proposals/issues) repository.

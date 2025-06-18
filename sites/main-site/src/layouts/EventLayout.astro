@@ -1,33 +1,32 @@
 ---
-import EventListing from '@components/event/EventListing.svelte';
-import PageLayout from '@layouts/PageLayout.astro';
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import { type CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
+import EventListing from "@components/event/EventListing.svelte";
+import PageLayout from "@layouts/PageLayout.astro";
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import { type CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
 
 const { title, subtitle, events, currentFilters } = Astro.props;
 export interface Props {
     title: string;
     subtitle: string;
     currentFilters: { name: string }[];
-    events: CollectionEntry<'events'>[];
+    events: CollectionEntry<"events">[];
 }
 
 events
     .map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
         }
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .sort((a, b) => {
-        return new Date(a.data.start) - new Date(b.data.start);
+        if (!a.data.start || !b.data.start) return 0;
+        return a.data.start.getTime() - b.data.start.getTime();
     });
 
 const searchEvents = (search) => {
-    const searchTerms = search.toLowerCase().split(' ');
+    const searchTerms = search.toLowerCase().split(" ");
     return events.filter((event) => {
         const eventString = JSON.stringify(event.data).toLowerCase();
         return searchTerms.every((term) => eventString.includes(term));
@@ -40,43 +39,62 @@ const filterEvents = (type) => {
 
 let currentEvents = events.filter((event) => {
     const today = new Date();
+    if (!event.data.start || !event.data.end) return false;
     return event.data.start < today && event.data.end > today;
 });
 
 const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
 
-const sections: SidebarEntry[] = years.map((year) => {
+let sections: SidebarEntry[] = years.map((year) => {
     return {
-        type: 'group',
+        id: year.toString(),
+        type: "group",
         label: year.toString(),
-        href: '#year-' + year,
+        href: "#year-" + year,
         collapsed: true,
         entries: events
             .filter((event) => event.data.start?.getFullYear() === year)
             .map((event) => {
                 return {
-                    type: 'link',
+                    id: event.id,
+                    type: "link",
                     label: event.data.title,
-                    href: '#event-' + event.slug,
-                    isCurrent: false,
+                    href: "#event-" + event.id,
+                    isCurrent: Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, ""),
                 };
             }),
     };
 });
+
+// sort entries by date
+sections.forEach((section) => {
+    section.type === "group" &&
+        section.entries?.sort((a, b) => {
+            const eventA = events.find((event) => event.id === a.id);
+            const eventB = events.find((event) => event.id === b.id);
+            if (eventA?.data.start && eventB?.data.start) {
+                return eventB.data.start.getTime() - eventA.data.start.getTime();
+            }
+            return 0;
+        });
+});
 ---
 
 <PageLayout
-    title={title || 'Events'}
-    subtitle={subtitle || 'Details of past and future events around nf-core.'}
+    title={title || "Events"}
+    subtitle={subtitle || "Details of past and future events around nf-core."}
     viewTransitions={true}
+    mainpage_container={false}
 >
-    <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <SidebarNav items={sections} />
-        </div>
+    <div class="container-xxxl">
+        <div class="row">
+            <div class="col-12 col-md-2 col-xl-3 sticky-top-under d-none d-md-inline sidebar-left pt-1">
+                <SidebarNav items={sections} />
+            </div>
 
-        <div class="col">
-            <EventListing {events} {currentEvents} {currentFilters} client:load />
+            <div class="col">
+                <EventListing {events} {currentEvents} {currentFilters} client:load />
+            </div>
         </div>
     </div>
 </PageLayout>

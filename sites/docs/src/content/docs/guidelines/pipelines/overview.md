@@ -28,7 +28,7 @@ See recommendation: [Build with the community](/docs/guidelines/pipelines/recomm
 ### Ask the community
 
 The instructions below are subject to interpretation and specific scenarios.
-If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
+If in doubt, please ask the community for feedback on the [#help slack channel](https://nfcore.slack.com/channels/help).
 You can join the nf-core Slack [here](https://nf-co.re/join).
 
 ## Requirements
@@ -50,7 +50,7 @@ All nf-core pipelines _must_ follow the following guidelines:
 - [Standardised parameters](/docs/guidelines/pipelines/requirements/parameters): Strive to have standardised usage.
 - [Single command](/docs/guidelines/pipelines/requirements/single_command): Pipelines should run in a single command.
 - [Keywords](/docs/guidelines/pipelines/requirements/keywords): Excellent documentation and GitHub repository keywords.
-- [Pass lint tests](/docs/guidelines/pipelines/requirements/linting): The pipeline must not have any failures in the `nf-core lint` tests.
+- [Pass lint tests](/docs/guidelines/pipelines/requirements/linting): The pipeline must not have any failures in the `nf-core pipelines lint` tests.
 - [Credits and Acknowledgements](/docs/guidelines/pipelines/requirements/acknowledgements): Pipelines must properly acknowledge prior work.
 - [Minimum inputs](/docs/guidelines/pipelines/requirements/minimum_inputs): Pipelines should be able to run with as little input as possible.
 - [Use nf-core git branches](/docs/guidelines/pipelines/requirements/git_branches): Use `master`, `dev` and `TEMPLATE`.
@@ -77,7 +77,7 @@ Indeed, numerous pipelines outside of nf-core now extensively use and contribute
 
 If using nf-core tools and especially the template, please don't call your pipeline `nf-core/<yourpipeline>`.
 Please say that your pipeline _"uses"_ nf-core rather than rather than _"is"_ nf-core.
-Remember that you can generate a pipeline with `nf-core create` that excludes nf-core branding.
+Remember that you can generate a pipeline with `nf-core pipelines create` that excludes nf-core branding.
 Citation and acknowledgement of the work that goes into these tools and templates is welcome.
 
 > Non nf-core pipelines can be added to [nextflow-io/awesome-nextflow](https://github.com/nextflow-io/awesome-nextflow) for added visibility.

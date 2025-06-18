@@ -1,0 +1,324 @@
+---
+title: "nf-core survey 2025: the results"
+subtitle: "Results summary from the nf-core community survey 2025"
+pubDate: 2025-03-26T12:00:00+01:00
+headerImage: "/assets/images/blog/survey-results-2025/nfcore-survey_logo.png"
+headerImageAlt: "nf-core survey 2025 logo"
+embedHeaderImage: true
+authors:
+    - "jfy133"
+    - "FranBonath"
+label:
+    - "community"
+---
+
+import worldmap from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-worldmap.png";
+import locationdistribution from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-locationdistribution.png";
+import respondertype from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-respondertype.png";
+import confidence from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-confidence.png";
+import happiness from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-happiness.png";
+import cloudglobalimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalimprove.png";
+import cloudglobalpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalpositive.png";
+import cloudglobalrequests from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-cloudglobalrequests.png";
+import barglobaldetails from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-barglobaldetails.png";
+
+import fineuserpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserpositive.png";
+import fineuserimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserimprove.png";
+import fineuserrequest from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-fineuserrequest.png";
+import finedevpositive from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevpositive.png";
+import finedevimprove from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevimprove.png";
+import finedevrequest from "@assets/images/blog/survey-results-2025/nfcoresurvey2025-finedevrequest.png";
+
+import { Image } from "astro:assets";
+
+## Introduction
+
+nf-core has a huge community of 11,000 members (based on Slack users), and this number does not seem appear to be diminishing.
+As the community gets bigger, it is getting harder to keep track of all the discussions happening across all of our Slack channels, and increasingly in face-to-face talks on Slack huddles and gather.town.
+Therefore the core team has decided to hold a yearly community survey to help provide us with an overview of the mood within the community and in which ways the 'wind is blowing' in terms of needs and requirements.
+
+With this information, we plan to develop a roadmap for the continued development and progress of the nf-core ecosystem and community over the next few years.
+
+## Key points
+
+- We had 209 responders, representing 1.8% of our Slack community.
+- nf-core has a responder NPS score of 54, representing a very positive opinion of nf-core, and are likely to recommend the community to colleagues and peers.
+- The community itself was the biggest positive aspect of nf-core, with responders finding it a welcoming, friendly, and helpful group of people.
+- While the existing amount of documentation was appreciated, it remains the biggest target for improvement primarily in terms of discoverability and consistency.
+
+## Methodology
+
+In mid-february 2025, we sent a simple survey out on Slack for all community members, regardless of whether they are users, developers, newcomers, or veterans of nf-core.
+This short 7 question survey asked the following main questions
+
+1. Community member type (user, developer, or both)
+2. Experience within nf-core (1 newcomer - 5 advanced)
+3. What country based in (country list)
+4. How likely to recommend nf-core (0-10 scale)
+5. What is liked the most about nf-core (free text)
+6. What difficulties have been encountered (free text)
+7. Any other feedback (free text)
+
+The survey was open for approximately a month, with one reminder halfway through.
+
+The answers of the first four questions were aggregated and summarised as distributions.
+
+The free text answers from the latter three questions were assigned with one or more of various types of tags to group the responses into similar feedback topics.
+This tagging was independently performed by two core members and compared.
+
+Tagging was performed within Google Drive, and then all data was cleaned up, processed, and visualised R with the Tidyverse collection of packages.
+The code in the form of a Quarto markdown notebook can be seen [here](https://github.com/jfy133/nf-core-simplesurvey-2025/).
+
+## Response statistics
+
+In total, we received 209 responses.
+Assuming these were all unique responders (the survey was anonymous), and with a maximum community size of 11,640 people based on Slack numbers in mid-March 2025, this corresponds to an approximate response rate of 1.8% of the community providing feedback.
+
+## Geographic Distribution
+
+We had responders based in 36 different countries, spanning the Americas, Europe, Africa, Asia and Oceania.
+
+<Image
+    src={worldmap}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="World map with countries that the survey received at least response from filled in green."
+
+/>
+
+The top 5 countries with the greatest number of responders came from the USA, UK, Germany, Sweden, and Spain.
+Other than the USA, all other countries in the top 10 countries by of responders are in Europe, emphasising the origins of the community.
+
+<Image
+    src={locationdistribution}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Barchart of countries on Y axis and responder counts on the X axis"
+
+/>
+
+## Responder type and experience
+
+To get a better idea of the type of experience or interaction the responders may have had of nf-core, we can look at how they classified themselves.
+
+<Image
+    src={respondertype}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Barchart of type of responder (user, developer, both, snakemake developer, no feedback) on Y axis and responder counts on the X axis"
+
+/>
+
+We received a relatively equal spread of users, developers, those who both use and develop nf-core pipelines, and one apparently disgruntled Snakemake developer.
+
+We also wanted to understand the level of experience each of these groups felt they had by asking them to score their confidence in using or developing pipelines.
+
+<Image
+    src={confidence}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the self-reported confidence as a user or developer on the X axis"
+
+/>
+
+After excluding the responses with no responder type and the snakemake developer, we can see that the developer and user/developer responders mostly felt relatively confident with developing within nf-core, users were more evenly spread but with a skew towards being feeling less confident in using nf-core pipelines.
+
+## Overall happiness with nf-core
+
+The first feedback question we asked was a general 'how satisfied' or 'happy' you are with the initiative and community as a whole on a scale of 0-10.
+
+Based on the values, we can calculate a ['net promoter score'](https://en.wikipedia.org/wiki/Net_promoter_score) or NPS, which is a market research metric to evaluate the general satisfaction and approximate loyalty responders have.
+This is calculated by subtracting the percentage of 'low score' responders (0-6) from the percentage of 'high score' responders (9-10).
+Negative values are normally evaluated as general dissatisfaction amongst the responders, and scores of 60-100 represent strong loyalty and happiness of the responders.
+
+The NPS score from the survey is 54.
+
+<Image
+    src={happiness}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Three barcharts for each type of responder (user, developer, both), with count on the Y axis and the likely to recommend to a peer score on the X axis"
+
+/>
+
+When looking at the likelihood to recommend nf-core to a colleague score distribution across each of our responder types, we see that developers and user developers - both likely to be more comfortable bioinformatically have a strong skew towards being very likely to recommend nf-core.
+The general trend of recommendations by users is similar, but there are slightly higher numbers of less happy users giving only middling scores (between a score of 4-7).
+
+Overall, the responders are mostly positive and happy with the nf-core initiative and community.
+
+## General Feedback
+
+So let's start with what the community likes most about nf-core across both users, developers, and user/developers?
+
+<Image
+    src={cloudglobalpositive}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to positive feedback category types as evaluated by the reviewers at different sizes"
+
+/>
+
+By far the most common feedback was the community 'feel' itself.
+
+Responders often mentioned that the community was just a nice place to be, with people being friendly and helpful (as reflected by other categories such as references to inclusivity, expertise, and speed of responses).
+Furthermore people also appreciated that the diverse number of pipelines are generally of high quality, are reproducible, and the infrastructure around them.
+
+Other appreciated factors were the ease of use of the pipelines and the documentation, as well as the consistency and familiarity of the pipelines (derived from the common template), and the ability to share and re-use components such as nf-core modules in other contexts.
+
+Next let's look what people felt was their biggest difficulties in using or developing within nf-core.
+
+<Image
+    src={cloudglobalimprove}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to improvement feedback category types as evaluated by the reviewers at different sizes"
+
+/>
+
+Interestingly, by far the largest feedback was documentation - despite other responders saying they really appreciated the documentation!
+There were so many comments on this the reviewers end up splitting this into multiple different categories, and these are still some of the most commented on issues encountered when working with nf-core.
+
+These categories spanned from finding the whole ecosystem very overwhelming to get started with or it being unclear how to get involved (for both users or developers), and setting up nf-core pipelines on infrastructure.
+Another curious discordance with the positive feedback is that while people appreciate the consistency within pipelines due to the common template, people often felt the template was too complex.
+A related feedback was some users finding the pipelines were too large and complicated to get started with.
+
+Other common categories were related to release speed of pipelines and tools/template (typically that they are too fast and there are too many, although sometimes _not fast enough_)
+Communication in terms of how and who decisions within nf-core get made was also sometimes brought up, as well as problems with setting up and debugging the recently implemented nf-test tooling.
+Finally, confusingly a common issue was also Nextflow itself, however the reviewers felt this appears to be either due to a misunderstanding that `Nextflow != nf-core` or the strength of the feelings of Python developers that how can you _not_ develop something in Python.
+
+So what were the most common requests?
+
+<Image
+    src={cloudglobalrequests}
+    class="d-block m-auto"
+    height={800}
+    density={[1.5, 2]}
+    alt="Word cloud with different words corresponding to requests feedback category types as evaluated by the reviewers at different sizes"
+/>
+
+The answers from this question had a much greater diversity than the other two questions, except for the most common one - unsurprisingly - better documentation.
+Another request was better communication - either through more transparent procedures, clearer standards, and more external advertising to pull in a wider diversity of research software engineers.
+A few people also requested pipeline chaining functionality, new pipelines, more merchandise on the [nf-core/shop](https://nf-co.re/shop) and memes (feed the obsession by posting [#nf-core-memes](https://nfcore.slack.com/archives/C03EZ806PFT)!)
+
+Interested in the actual numbers? See the image below.
+
+:::info{collapse title="Actual numbers"}
+
+<Image
+    src={barglobaldetails}
+    class="d-block m-auto"
+    width={1200}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers"
+
+/>
+:::
+
+## Closer Feedback
+
+But what about the feedback from just users or just developers of nf-core?
+
+## Users
+
+Users mostly appreciate the ease of use of pipelines, the community feel and expertise, and documentation and training.
+
+<Image
+    src={fineuserpositive}
+    class="d-block m-auto"
+    height={800}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and positive tags"
+
+/>
+
+Even though many are happy with the documentation, much of the difficulties encountered were to related documentation - particularly for new users on how to run pipelines and how to install and configure for their infrastructure.
+Furthermore some user-only responders were somewhat concerned about the variable pipeline quality encountered between pipelines.
+
+<Image
+    src={fineuserimprove}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and improve tags"
+
+/>
+
+Most users-only responders did not feel they needed anything more and only had positive sentiments about the community.
+But as with the the above - documentation and training improvements was the most important.
+
+<Image
+    src={fineuserrequest}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for users and request tags"
+
+/>
+
+## Developer Feedback
+
+For developers-only, once again the community feel and inclusivity alongside expertise was a big draw.
+The high quality of the open-source pipelines, modules, and infrastructure was also a big plus point
+
+<Image
+    src={finedevpositive}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and positive tags"
+
+/>
+
+The biggest issues encountered by developer-only responders were related to onboarding of new developers as well as documentation in regards to handling the complexity of the pipeline template.
+Another issue was tool release speed - some people complained there were too many changes too quickly, and others wanted new features faster.
+
+<Image
+    src={finedevimprove}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and improve tags"
+
+/>
+
+Finally, as with users - in terms of extra feedback the strongest category of feedback comments were just positive vibes.
+More merchandise ideas were requested, as well as few people requesting clearer and more consistent standards and specifications when developing.
+
+<Image
+    src={finedevrequest}
+    class="d-block m-auto"
+    height={600}
+
+    density={[1.5, 2]}
+    alt="Bar chart of counts of feedback category types as evaluated by the two reviewers for developers and requests tags"
+
+/>
+
+## So what's next?
+
+The core team will take some time process the results, including holding discussions with steering and maintainers teams.
+We aim to develop a roadmap with priority areas where coordination efforts will be driven towards to address the feedback.
+
+Once this roadmap is ready, we will present it to the community via another blog post for feedback and implementation.
+
+Thank you to all the responders to the survey, and we hope the results of this survey and future ones will make the community even more proud of our collective efforts to making user-friendly, powerful, and reproducible workflows.

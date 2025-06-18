@@ -1,10 +1,13 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-2pl77s2zm-_ZA26KLc2ZtqLaab58AzRA
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-36a17gkw1-LWHLFOkR6J2v3VqvircGpg
 
 # Force a 404 header on custom 404 page
 # See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
 /404.html /404      404!
 /404      /404.html 404!
+
+# Hackathon 2024 game
+/games/connectgame https://nf-core.github.io/connectgame/connectgame/
 
 
 # Temporary oldsite redirections
@@ -40,7 +43,8 @@
 /docs/usage/offline                                          https://nf-core-docs.netlify.app/docs/usage/getting_started/offline 200
 /docs/usage/troubleshooting                                  https://nf-core-docs.netlify.app/docs/usage/troubleshooting/overview 200
 /docs/usage/tutorials                                        https://nf-core-docs.netlify.app/docs/tutorials 200
-/docs/usage/tutorials/step_by_step_institutional_profile     https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/config_institutional_profile 200
+/docs/usage/tutorials/step_by_step_institutional_profile     https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/writing_institutional_profile 200
+/docs/tutorials/use_nf-core_pipelines/config_institutional_profile           https://nf-core-docs.netlify.app/docs/tutorials/use_nf-core_pipelines/writing_institutional_profile 200
 /docs/usage/tutorials/nf_core_usage_tutorial                 https://nf-core-docs.netlify.app/docs/tutorials/nf-core_contributing_overview 200
 /docs/usage/tutorials/institution                            https://nf-core-docs.netlify.app/docs/tutorials/contributing_to_nf-core/contributors_institution 200
 /docs/usage/data_management                                  /blog/2020/data_management
@@ -76,6 +80,7 @@
 /docs/contributing/nfcore_component-specifications           https://nf-core-docs.netlify.app/docs/guidelines/components/overview 200
 /docs/contributing/nfcore_component-specifications/*         https://nf-core-docs.netlify.app/docs/guidelines/components/:splat 200
 /docs/contributing/tutorials/unofficial_pipelines            https://nf-core-docs.netlify.app/docs/guidelines/external_use 200
+/docs/tutorials/nf-core_contributing_overview                https://nf-core-docs.netlify.app/docs/tutorials/nf-core_training/contributing-training/nf-core_contributing_overview 200
 
 # Redirects to subsites
 /docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
@@ -88,8 +93,13 @@
 /:pipeline/parameters https://nf-core-pipelines.netlify.app/:pipeline/latest/parameters 200!
 /:pipeline/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/latest/results/:splat 200!
 /:pipeline/:version/results/* https://nf-core-pipeline-results.netlify.app/:pipeline/:version/results/:splat 200!
-/:pipeline/:version/docs/usage/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
-/:pipeline/:version/docs/output/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
+/:pipeline/:version/docs/usage/usage/* https://nf-core-pipelines.netlify.app/:pipeline/:version/docs/usage/:splat 200!
+/:pipeline/:version/docs/output/output/* https://nf-core-pipelines.netlify.app/:pipeline/:version/docs/output/:splat 200!
+/:pipeline/:version/docs/conf/igenomes.config https://nf-core-pipelines.netlify.app/:pipeline/:version/docs/conf/igenomes.config 200!
+
 /modules/* https://nf-core-modules-subworkflows.netlify.app/modules/:splat 200!
 /subworkflows/* https://nf-core-modules-subworkflows.netlify.app/subworkflows/:splat 200!
 /configs/* https://nf-core-configs.netlify.app/configs/:splat 200!
+
+# temporary redirecs due to updated event URL #TODO: remove after 19th Feb 2025
+/events/2025/sig_animalgenomics_february /events/2025/sig_animalgenomics_feb
