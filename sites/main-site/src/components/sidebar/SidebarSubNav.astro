@@ -1,10 +1,10 @@
 ---
 // Heavily inspired by Astro Starlight
 
-import { type SidebarEntry } from '@utils/types';
-import { sanitizeNfCoreLabels } from '@utils/functions';
+import { type SidebarEntry } from "@utils/types";
+import { sanitizeNfCoreLabels } from "@utils/functions";
 
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
 export interface Props {
     items: SidebarEntry[];
@@ -21,56 +21,56 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         return [];
     }
     return sidebar.flatMap((entry) =>
-        entry.type === 'group' && entry.entries ? flattenSidebar(entry.entries) : entry,
+        entry.type === "group" && entry.entries ? flattenSidebar(entry.entries) : entry,
     );
 };
 ---
 
 <script is:inline>
     // scroll to the active item
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
         const activeItem = document.querySelector('a[aria-current="page"]');
         if (activeItem) {
-            activeItem.scrollIntoView({ block: 'center' });
+            activeItem.scrollIntoView({ block: "center" });
         }
     }
 </script>
-<ul class:list={[{ 'top-level': !nested }, 'w-100']}>
+<ul class:list={[{ "top-level": !nested }, "w-100"]}>
     {
         items.map((item) => {
             const containsCurrent =
-                item.type === 'group' &&
+                item.type === "group" &&
                 (flattenSidebar(item.entries).some((i) => i.isCurrent) || item.entries.some((i) => i.isCurrent));
             return (
                 <li>
-                    {item.type === 'link' ? (
+                    {item.type === "link" ? (
                         <a
                             href={item.href}
-                            aria-current={item.isCurrent && 'page'}
-                            class:list={['px-2']}
+                            aria-current={item.isCurrent && "page"}
+                            class:list={["px-2 py-2"]}
                             data-weight={item.weight}
                         >
                             <span class="section-link" set:html={sanitizeNfCoreLabels(item.label)} />
                         </a>
                     ) : (
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
-                            <summary aria-current={item.isCurrent && 'page'}>
-                                <div class:list={[{ h6: !nested }, 'group-label flex-grow-1']}>
+                            <summary aria-current={item.isCurrent && "page"}>
+                                <div class:list={[{ h6: !nested }, "group-label flex-grow-1"]}>
                                     <span
-                                        class="group-header d-flex align-items-center"
+                                        class="group-header d-flex align-items-start"
                                         data-weight={item.weight}
                                         set:html={sanitizeNfCoreLabels(item.label)}
                                     >
                                         {item.icon &&
-                                            (item.icon.includes(':') ? (
+                                            (item.icon.includes(":") ? (
                                                 <Icon name={item.icon} class="me-2 fs-5" is:inline />
                                             ) : (
-                                                <i class={`me-2 fa-fw ${item.icon} text-reset`} />
+                                                <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
                                             ))}
                                     </span>
                                 </div>
                                 <div class="hover-target">
-                                    <i class:list={['fa-solid fa-chevron-right fa-xs mx-3 h-100 caret']} />
+                                    <i class:list={["fa-solid fa-chevron-right fa-xs mx-3 h-100 caret"]} />
                                 </div>
                             </summary>
                             <Astro.self items={item.entries} nested={true} />
@@ -82,7 +82,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
     }
 </ul>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
 
     ul {
         --sl-sidebar-item-margin-inline: 9pt;
@@ -104,7 +104,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                 background-color: transparentize($success, 0.85);
             }
         }
-        & summary[aria-current='page'] .group-label a:hover {
+        & summary[aria-current="page"] .group-label a:hover {
             color: var(--bs-body-color);
             background-color: transparentize($success, 1);
         }
@@ -113,9 +113,9 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
         }
         a,
         summary {
-            &[aria-current='page'],
-            &[aria-current='page']:hover,
-            &[aria-current='page']:focus {
+            &[aria-current="page"],
+            &[aria-current="page"]:hover,
+            &[aria-current="page"]:focus {
                 color: var(--bs-body-color);
                 background-color: transparentize($success, 0.75);
                 border-inline-end: 2pt solid var(--bs-success);

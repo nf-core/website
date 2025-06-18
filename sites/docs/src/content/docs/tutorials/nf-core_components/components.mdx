@@ -5,8 +5,8 @@ shortTitle: Writing nf-core components
 weight: 10
 ---
 
-import Tabs from '@components/Tabs.svelte';
-import TabItem from '@components/TabItem.svelte';
+import Tabs from "@components/Tabs.svelte";
+import TabItem from "@components/TabItem.svelte";
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
@@ -16,15 +16,15 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
 
--   Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
--   Check [open pull requests](https://github.com/nf-core/modules/pulls)
--   Search [open issues](https://github.com/nf-core/modules/issues)
+- Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
+- Check [open pull requests](https://github.com/nf-core/modules/pulls)
+- Search [open issues](https://github.com/nf-core/modules/issues)
 
 If the module doesn't exist on `nf-core/modules`:
 
--   Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
--   Set an appropriate subject for the issue e.g. `new module: fastqc`
--   Add yourself to the `Assignees` so we can track who is working on the module
+- Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
+- Set an appropriate subject for the issue e.g. `new module: fastqc`
+- Add yourself to the `Assignees` so we can track who is working on the module
 
 ### New module workflow
 
@@ -79,7 +79,7 @@ and proceed with Step 5.
 
     2. [`./modules/nf-core/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
 
-        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/.yaml-schema.json) during linting (and in the pre-commit hook).
+        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check its formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) during linting (and in the pre-commit hook).
 
     3. [`./modules/nf-core/fastqc/tests/main.nf.test`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test)
 

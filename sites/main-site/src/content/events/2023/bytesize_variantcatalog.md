@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: variantcatalogue'
+title: "Bytesize: variantcatalogue"
 subtitle: Solenne Correard, University of British Columbia, Vancouver, Canada
 type: talk
-startDate: '2023-02-21'
-startTime: '13:00+01:00'
-endDate: '2023-02-21'
-endTime: '13:30+01:00'
+startDate: "2023-02-21"
+startTime: "13:00+01:00"
+endDate: "2023-02-21"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=Em1cHCLQQ_c
 locations:
   - name: Online

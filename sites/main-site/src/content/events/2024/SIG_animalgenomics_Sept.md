@@ -1,12 +1,12 @@
 ---
-title: '#animal-genomics: September Meeting'
+title: "#animal-genomics: September Meeting"
 subtitle: Guillaume Devailly (INRAE, France), Cervin Guyomar (INRAE, France), Sandrine Lagarrigue (INRAE, France)
 
 type: talk
-startDate: '2024-09-18'
-startTime: '16:00+02:00'
-endDate: '2024-09-18'
-endTime: '17:00+02:00'
+startDate: "2024-09-18"
+startTime: "16:00+02:00"
+endDate: "2024-09-18"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/zXZsU3GsXb0
 locations:
   - name: Online

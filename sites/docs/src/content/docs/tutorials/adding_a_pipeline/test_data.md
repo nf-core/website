@@ -3,7 +3,7 @@ title: Test data
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 short_title: Test data setup
 weight: 20
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ## Running with test data

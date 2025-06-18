@@ -1,11 +1,11 @@
 ---
-title: 'BOSC 2020: nf-core poster / demo'
+title: "BOSC 2020: nf-core poster / demo"
 subtitle: Live poster / demo showing off some new nf-core features
 type: talk
-startDate: '2020-07-21'
-startTime: '17:30+02:00'
-endDate: '2020-07-21'
-endTime: '18:15+02:00'
+startDate: "2020-07-21"
+startTime: "17:30+02:00"
+endDate: "2020-07-21"
+endTime: "18:15+02:00"
 locations:
   - name: Online
     links:

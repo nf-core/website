@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Excalidraw'
+title: "Bytesize: Excalidraw"
 subtitle: Phil Ewels, Seqera
 type: talk
-startDate: '2024-09-17'
-startTime: '13:00+02:00'
-endDate: '2024-09-17'
-endTime: '13:30+02:00'
+startDate: "2024-09-17"
+startTime: "13:00+02:00"
+endDate: "2024-09-17"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/GGwGZOulD8A
 locations:
   - name: Online

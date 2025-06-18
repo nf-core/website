@@ -124,21 +124,20 @@ You can show a short announcement banner on the website by adding additional inf
 
 ```yaml
 announcement:
-  text: 'Your announcement text'
+  text: "Your announcement text"
   start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
   end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
 ```
 
-### Updating the JSON files and cached markdown
+### Updating the JSON files
 
-Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
+Much of the site is powered by the JSON files in `/public`.
 
 They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
 npm run build-pipeline-json
 npm run build-component-json
-npm run build-cache-force
 ```
 
 ### Adding a new sub-site to the mono-repo

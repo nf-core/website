@@ -1,12 +1,12 @@
 <script>
-    import Marquee from 'svelte-fast-marquee';
-    import contributors_yml from '../config/contributors.yaml';
+    import Marquee from "svelte-fast-marquee";
+    import contributors_yml from "../config/contributors.yaml";
 
     let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
         .sort((a, b) => 0.5 - Math.random());
 
-    let displayContributors = contributors.slice(0, 10); // start by displaying 10 contributors
+    let displayContributors = $state(contributors.slice(0, 10)); // start by displaying 10 contributors
 
     function addMoreContributors() {
         let moreContributors = contributors.slice(displayContributors.length, displayContributors.length + 5);
@@ -65,7 +65,7 @@
             color: rgba(255, 255, 255, 0.8);
         }
         &::before {
-            content: '';
+            content: "";
             background: #000;
             position: absolute;
             top: 0;
@@ -75,8 +75,8 @@
             z-index: -2;
         }
         &::after {
-            content: '';
-            background: url('/flowcell.jpg') no-repeat;
+            content: "";
+            background: url("/flowcell.jpg") no-repeat;
             background-attachment: fixed;
             opacity: 0.8;
             background-size: cover;

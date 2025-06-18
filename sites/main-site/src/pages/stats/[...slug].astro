@@ -1,0 +1,65 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+export const prerender = false;
+
+// navigate to subpages based on the current URL
+let { slug } = Astro.params;
+// handle slug being undefined
+if (!slug || slug === "stats") {
+    slug = "";
+}
+
+slug = slug?.replace("stats/", "");
+---
+
+<PageLayout
+    title="nf-core in numbers"
+    subtitle="Measuring activity across the nf-core community"
+    mainpage_container={false}
+>
+    <div class="iframe-container w-100 d-flex align-items-start">
+        <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x"></i>
+        <iframe
+            class="d-none"
+            src={`https://nf-core-stats.netlify.app/${slug}`}
+            onload="this.classList.remove('d-none'); this.previousElementSibling.classList.add('d-none');"
+            title="stats"
+            style="border:none;"
+            width="100%"
+            height="100%"></iframe>
+    </div>
+</PageLayout>
+
+<script>
+    // Listen for messages from the iframe
+    window.addEventListener("message", function (event) {
+        console.log("event", event);
+        // Verify the origin of the message
+        if (event.origin !== "https://nf-core-stats.netlify.app") return;
+
+        // Check if the message contains URL information
+        if (event.data && event.data.type === "urlChange" && event.data.path) {
+            console.log("event.data.path", event.data.path);
+            // Update the browser URL without reloading the page
+            const newPath = `/stats${event.data.path}`;
+            if (window.location.pathname !== newPath) {
+                window.history.pushState({}, "", newPath);
+            }
+        }
+    });
+
+    // Handle browser back/forward buttons
+    window.addEventListener("popstate", function () {
+        const iframe = document.querySelector("iframe");
+        if (iframe) {
+            const path = window.location.pathname.replace("stats/", "");
+            iframe.src = `https://nf-core-stats.netlify.app/${path}`;
+        }
+    });
+</script>
+
+<style>
+    .iframe-container {
+        height: 1600px; /* TODO: Update if longer pages are added */
+    }
+</style>

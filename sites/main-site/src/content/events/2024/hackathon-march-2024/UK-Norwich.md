@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Norwich)
 subtitle: Local node of the nf-core hackathon at the Quadram Institute Bioscience, Norwich
 shortTitle: Norwich, UK
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+00:00'
-endDate: '2024-03-20'
-endTime: '17:00+00:00'
+startDate: "2024-03-18"
+startTime: "10:00+00:00"
+endDate: "2024-03-20"
+endTime: "17:00+00:00"
 locations:
   - name: Quadram Institute Bioscience
     address: Rosalind Franklin Rd, Norwich, NR4 7UQ, UK

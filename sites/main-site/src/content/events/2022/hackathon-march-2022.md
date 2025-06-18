@@ -2,10 +2,10 @@
 title: Hackathon - March 2022
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-startDate: '2022-03-16'
-startTime: '10:00+01:00'
-endDate: '2022-03-18'
-endTime: '18:00+01:00'
+startDate: "2022-03-16"
+startTime: "10:00+01:00"
+endDate: "2022-03-18"
+endTime: "18:00+01:00"
 locationName: Gather town and Slack.
 locationURL: https://gather.town/
 locations:
@@ -264,7 +264,7 @@ The following schedule should display times in your local time zone:
                    <ul class="small list-unstyled">
                     <li>Topic: Customise MultiQC reports</li>
                     <li>Location: Lecture Theatre</li>
-
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1647439200" data-timeformat="HH:mm z">15:00</td>
@@ -274,9 +274,24 @@ The following schedule should display times in your local time zone:
             </tr>
            <tr>
                 <td data-timestamp="1647441000" data-timeformat="HH:mm z">15:30</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
-                <td rowspan="1">Break<br><ul class="small list-unstyled"><li>Location: Cafeteria</li></ul</td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
+                <td rowspan="1">
+                  Break<br>
+                  <ul class="small list-unstyled">
+                  <li>Location: Cafeteria</li>
+                  </ul>
+                </td>
             </tr>
             <tr>
                 <td data-timestamp="1647442800" data-timeformat="HH:mm z">16:00</td>

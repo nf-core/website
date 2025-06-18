@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize: Converting pytest modules to nf-test'
-subtitle: 'Adam Talbot (Seqera) and Sateesh Peri (MemVerge)'
+title: "Bytesize: Converting pytest modules to nf-test"
+subtitle: "Adam Talbot (Seqera) and Sateesh Peri (MemVerge)"
 type: talk
-startDate: '2023-10-31'
-startTime: '13:00+01:00'
+startDate: "2023-10-31"
+startTime: "13:00+01:00"
 youtubeEmbed: https://youtu.be/MuwluoKFnwM
-endDate: '2023-10-31'
-endTime: '13:30+01:00'
+endDate: "2023-10-31"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:

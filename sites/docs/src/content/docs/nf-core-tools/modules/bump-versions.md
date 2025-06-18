@@ -24,5 +24,5 @@ If you want this module to be updated only to a specific version (or downgraded)
 
 ```yaml
 bump-versions:
-  star/align: '2.6.1d'
+  star/align: "2.6.1d"
 ```

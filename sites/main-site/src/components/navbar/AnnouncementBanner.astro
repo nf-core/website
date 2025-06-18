@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
 
-const events: CollectionEntry<'events'>[] = await getCollection('events');
+const events: CollectionEntry<"events">[] = await getCollection("events");
 type announcement = {
     title: string;
     start: Date;
@@ -12,19 +12,19 @@ type announcement = {
 };
 const eventAnnouncements: announcement[] = events.reduce((acc, event) => {
     if (event.data.announcement?.text && event.data.announcement.start) {
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
+        event.data.start = event.data.start ?? new Date(event.data.startDate + "T" + event.data.startTime);
         acc.push({
             title: event.data.title,
             start: event.data.announcement.start,
             end: event.data.announcement.end || event.data.start,
             text: event.data.announcement.text,
-            slug: 'events/' + event.slug,
+            slug: "events/" + event.id.replace(/\.[^/.]+$/, ""),
         });
     }
     return acc;
 }, [] as announcement[]);
 
-let blogPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+let blogPosts: CollectionEntry<"blog">[] = await getCollection("blog");
 const blogPostAnnouncements: announcement[] = blogPosts.reduce((acc, post) => {
     if (post.data.announcement?.text && post.data.announcement?.start && post.data.announcement?.end) {
         acc.push({
@@ -32,7 +32,7 @@ const blogPostAnnouncements: announcement[] = blogPosts.reduce((acc, post) => {
             start: post.data.announcement.start,
             end: post.data.announcement.end,
             text: post.data.announcement.text,
-            slug: `blog/${post.slug}`,
+            slug: `blog/${post.id.replace(/\.[^/.]+$/, "")}`,
         });
     }
     return acc;
@@ -55,7 +55,7 @@ const nextAnnouncement = sortedAnnouncements[0];
     nextAnnouncement && (
         <div class="announcement d-flex justify-content-center text-bg-success">
             <div class="p-2 text-center ">
-                <a class="text-white" href={nextAnnouncement.slug}>
+                <a class="text-white" href={nextAnnouncement.slug.replace(/\.[^/.]+$/, "")}>
                     {nextAnnouncement.text}
                 </a>
             </div>

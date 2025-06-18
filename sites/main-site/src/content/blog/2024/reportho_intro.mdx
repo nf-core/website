@@ -1,24 +1,24 @@
 ---
-title: 'A gentle introduction to nf-core/reportho'
-subtitle: 'The nf-core pipeline for comparing ortholog predictions'
-headerImage: '/assets/images/blog/reportho_intro/reportho_tube_map.png'
-headerImageAlt: 'Tube map of the reportho pipeline'
+title: "A gentle introduction to nf-core/reportho"
+subtitle: "The nf-core pipeline for comparing ortholog predictions"
+headerImage: "/assets/images/blog/reportho_intro/reportho_tube_map_wide.png"
+headerImageAlt: "Tube map of the reportho pipeline"
 pubDate: 2024-07-19T00:19:00+01:00
 authors:
-    - 'itrujnara'
+    - "itrujnara"
 label:
-    - 'pipeline'
-    - 'bioinformatics'
-    - 'genomics'
-    - 'orthologs'
-    - 'public databases'
+    - "pipeline"
+    - "bioinformatics"
+    - "genomics"
+    - "orthologs"
+    - "public databases"
 ---
 
-import reportho_tube_map from '@assets/images/blog/reportho_intro/reportho_tube_map.png';
-import train_tracks from '@assets/images/blog/reportho_intro/train_tracks.png';
-import the_world_if from '@assets/images/blog/reportho_intro/the_world_if.png';
+import reportho_tube_map from "@assets/images/blog/reportho_intro/reportho_tube_map.png";
+import train_tracks from "@assets/images/blog/reportho_intro/train_tracks.png";
+import the_world_if from "@assets/images/blog/reportho_intro/the_world_if.png";
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 # Orthologs matter
 
@@ -31,11 +31,11 @@ Orthologs matter. We need them for a variety of reasons. They are key to underst
     src={train_tracks}
     alt="A very complicated layout of railway tracks with multiple signs and signals"
 />
-Imagine you need to find the orthologs of a protein for your study. What do you do? You might decide to get them from OMA
-because you heard it is good. Or maybe EggNOG because your boss said so. If you want to be accurate, you might try to get
-the predictions from multiple sources and compare them. However, you will probably run into problems. The interfaces are
-different, the lists are hard to obtain, and the output formats are tricky to compare. Just looking at this might make you
-go home and cry.
+Imagine you need to find the orthologs of a protein for your study. What do you do? You might decide to get them from
+OMA because you heard it is good. Or maybe EggNOG because your boss said so. If you want to be accurate, you might try
+to get the predictions from multiple sources and compare them. However, you will probably run into problems. The
+interfaces are different, the lists are hard to obtain, and the output formats are tricky to compare. Just looking at
+this might make you go home and cry.
 
 # The Dream
 
@@ -44,19 +44,21 @@ go home and cry.
     src={the_world_if}
     alt="A futuristic city with flying vehicles, captioned in boldface with 'The world if reportho'"
 />
-Now imagine you could get all the results you need at the click of a button. Just type in an identifier, press “Go” and get
-a neat comparison of all the public predictions. That’s how we imagine nf-core/reportho. We want to isolate all the complexity
-of queries, access modes, and data formats, all while giving you maximum flexibility.
+Now imagine you could get all the results you need at the click of a button. Just type in an identifier, press “Go” and
+get a neat comparison of all the public predictions. That’s how we imagine nf-core/reportho. We want to isolate all the
+complexity of queries, access modes, and data formats, all while giving you maximum flexibility.
 
 # How does it work?
 
 <Image class="d-block m-auto" src={reportho_tube_map} alt="A tube map presenting the steps of the pipeline" />
 The workflow is quite straightforward. The pipeline takes a UniProt identifier as input, queries all available databases
-for ortholog predictions, puts them in a homogeneous format, and performs comparisons. Working with a new sequence not annotated
-in UniProt? No problem! We will run BLAST for you and find a close match in the databases. Once you get a list of orthologs,
-you can perform MSA and phylogeny reconstruction with some of the most popular tools on the market. And, to top it all off,
-you get a bunch of useful and tidy reports: [a detailed one](https://nf-co.re/reportho/1.0.1/results/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/report/BicD2_dist/index.html)
-for each query protein (NB: works better if you download the folder and use `run.sh`), plus [a summary report](https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/multiqc/multiqc_report.html)
+for ortholog predictions, puts them in a homogeneous format, and performs comparisons. Working with a new sequence not
+annotated in UniProt? No problem! We will run BLAST for you and find a close match in the databases. Once you get a list
+of orthologs, you can perform MSA and phylogeny reconstruction with some of the most popular tools on the market. And,
+to top it all off, you get a bunch of useful and tidy reports: [a detailed
+one](https://nf-co.re/reportho/1.0.1/results/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/report/BicD2_dist/index.html)
+for each query protein (NB: works better if you download the folder and use `run.sh`), plus [a summary
+report](https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/reportho/results-42b305199b903365b71e7a8554cfcc6a822da8a8/multiqc/multiqc_report.html)
 of all the queries you used.
 
 # Supported databases

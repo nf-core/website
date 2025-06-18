@@ -1,31 +1,32 @@
 ---
-import Leaflet from '@components/Leaflet.svelte';
-import local_sites_yml from '../../config/local_sites.yaml';
-import { getCollection } from 'astro:content';
+import Leaflet from "@components/Leaflet.svelte";
+import { getCollection } from "astro:content";
 
 const { event } = Astro.props;
 
-let events = await getCollection('events', ({ slug }) => {
-    return slug.startsWith(event);
+let events = await getCollection("events", ({ id }) => {
+    return id.startsWith(event);
 });
 
-const local_sites_map: {
+let local_sites_map: {
     location: [number, number];
     name: string;
     url: string;
 }[] = events.map((site) => {
     const location = site.data.locations?.[0];
-    if (location) {
+    if (location && location.geoCoordinates) {
         return {
             location: location.geoCoordinates,
-            name: site.data.title,
-            url: '/events/' + site.slug,
+            name: site.data.locations?.[0]?.name ?? site.data.title,
+            url: "/events/" + site.id.replace(/\.[^/.]+$/, ""),
         };
     }
     return null;
 });
+// remove null values
+local_sites_map = local_sites_map.filter((site) => site !== null);
 ---
 
-<div>
+<div class="mb-5">
     <Leaflet locations={local_sites_map} client:only="svelte" />
 </div>

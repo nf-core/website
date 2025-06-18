@@ -2,10 +2,10 @@
 title: Hackathon @ QBiC
 subtitle: The 2019 nf-core hackathon held at QBiC, Tübingen, Germany
 type: hackathon
-startDate: '2019-04-08'
-startTime: '09:00+02:00'
-endDate: '2019-04-09'
-endTime: '17:00+02:00'
+startDate: "2019-04-08"
+startTime: "09:00+02:00"
+endDate: "2019-04-09"
+endTime: "17:00+02:00"
 address: Auf der Morgenstelle 10, 72076 Tübingen, Germany
 locations:
   - name: QBiC

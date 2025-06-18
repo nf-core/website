@@ -1,10 +1,10 @@
 ---
-import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
-import pipelines_json from '@public/pipelines.json';
-import { formatDistance } from 'date-fns';
-import cache from '@root/bin/cache.js';
-import { Markdown } from '@astropub/md';
-import PipelineSidebar from '@components/pipeline/PipelineSidebar.astro';
+import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import { formatDistance } from "date-fns";
+import { getEntry } from "astro:content";
+import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
+
 export function getStaticPaths() {
     var paths: {
         params: {
@@ -18,9 +18,9 @@ export function getStaticPaths() {
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const md_files = pipeline.releases[0].doc_files.map((file) =>
-            file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+            file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
         );
-        const releases = pipeline.releases.filter((release) => release.tag_name !== 'dev');
+        const releases = pipeline.releases.filter((release) => release.tag_name !== "dev");
         if (releases.length === 0) {
             return;
         }
@@ -44,31 +44,36 @@ const { pipeline } = Astro.params;
 let { releases, md_files, meta } = Astro.props;
 const version = releases[0].tag_name;
 const description = meta.description;
-// get all body content for this pipeline from the cache
-
-let gh_releases = [];
+let gh_releases: string[] = [];
 for (const release of releases) {
-    const cache_key = `${pipeline}/${release.tag_name}/body`;
-    const gh_release = await cache.get(cache_key).catch((err) => {
-        console.error(err);
-    });
-    if (gh_release) {
-        gh_releases.push(gh_release);
-    } else {
-        console.log(`No cache for ${cache_key}`);
+    if (release.tag_name !== "dev") {
+        const changelog = await getEntry("releases", `${pipeline}/${release.tag_name}/release-notes`);
+        if (changelog) {
+            let body = changelog.rendered?.html;
+            // add github links to PR links, i.e. links like <a href="#XXX">#XXX</a>
+            body = body?.replaceAll(/<a href="#(\d+)">#(\d+)</g, (match, p1, p2) => {
+                return `<a href="https://github.com/nf-core/${pipeline}/pull/${p1}">#${p2}</a>`;
+            });
+            // add github links to usernames
+            body = body?.replaceAll(/@(\w+([-]\w+)*)/g, (match, p1) => {
+                return `<a href="https://github.com/${p1}">${match}</a>`;
+            });
+
+            gh_releases.push(body || "");
+        }
     }
 }
 ---
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ': Releases'}
+    meta_title={pipeline + ": Releases"}
     subtitle={description}
     headings={[]}
     version={version}
     versions={releases.map((release) => release.tag_name)}
     tabItems={md_files}
-    docSearchTags={[{ name: 'page_rank', content: '-50' }]}
+    docSearchTags={[{ name: "page_rank", content: "-50" }]}
 >
     <div class="row">
         <div class="col-12 col-md-9 pt-3">
@@ -84,7 +89,7 @@ for (const release of releases) {
                                             class="accordion-button"
                                             type="button"
                                             data-bs-toggle="collapse"
-                                            data-bs-target={`#collapse${release.tag_name.replaceAll('.', '_')}`}
+                                            data-bs-target={`#collapse${release.tag_name.replaceAll(".", "_")}`}
                                             aria-expanded="true"
                                             aria-controls="collapseOne"
                                         >
@@ -97,10 +102,10 @@ for (const release of releases) {
                                         </button>
                                     </h2>
                                     <div
-                                        id={`collapse${release.tag_name.replaceAll('.', '_')}`}
+                                        id={`collapse${release.tag_name.replaceAll(".", "_")}`}
                                         class:list={[
-                                            'accordion-collapse collapse',
-                                            release.tag_name === version ? 'show' : '',
+                                            "accordion-collapse collapse",
+                                            release.tag_name === version ? "show" : "",
                                         ]}
                                     >
                                         <div class="accordion-body">
@@ -126,7 +131,7 @@ for (const release of releases) {
                                                     View on GitHub
                                                 </a>
                                             </div>
-                                            {gh_releases[i] ? <Markdown of={gh_releases[i]} /> : ''}
+                                            {gh_releases[i] ? <Fragment set:html={gh_releases[i]} /> : ""}
                                         </div>
                                     </div>
                                 </div>
@@ -142,7 +147,7 @@ for (const release of releases) {
 </PipelinePageLayout>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .nav-link {
         &:hover {
             border: 0;

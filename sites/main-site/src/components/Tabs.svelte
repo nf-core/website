@@ -1,7 +1,12 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
-    export let names: string[] = [];
-    export let icons: string[] = [];
+    import { CurrentTab } from "@components/store";
+    interface Props {
+        names?: string[];
+        icons?: string[];
+        children?: import("svelte").Snippet;
+    }
+
+    let { names = [], icons = [], children }: Props = $props();
 
     CurrentTab.set(names[0]);
 </script>
@@ -17,9 +22,9 @@
                 role="tab"
                 aria-controls={`${name}-tab-pane`}
                 aria-selected={name === $CurrentTab}
-                on:click={() => CurrentTab.set(name)}
-                on:keydown={(e) => {
-                    if (e.key === 'Enter') {
+                onclick={() => CurrentTab.set(name)}
+                onkeydown={(e) => {
+                    if (e.key === "Enter") {
                         CurrentTab.set(name);
                     }
                 }}>{@html icons[index]}{name}</button
@@ -28,5 +33,5 @@
     {/each}
 </ul>
 <div class="tab-content" id="myTabContent">
-    <slot />
+    {@render children?.()}
 </div>

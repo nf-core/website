@@ -1,0 +1,16 @@
+---
+import { Markdown } from "@astropub/md";
+import yaml from "yaml";
+
+const data = await fetch(
+    "https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml",
+)
+    .then((res) => res.text())
+    .then((text) => yaml.parse(text));
+
+const markdownContent = Object.entries(data)
+    .map(([key, value]) => `### \`${key}\`\n\n${value.help_text || "No help text available"}`)
+    .join("\n\n");
+---
+
+<Markdown of={markdownContent} />
