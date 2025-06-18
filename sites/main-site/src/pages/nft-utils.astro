@@ -9,10 +9,14 @@ let md_content = await fetch("https://raw.githubusercontent.com/nf-core/nft-util
     .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
     .catch(() => "# Error loading content\n\nUnable to load Readme from GitHub.");
 
+// prefix images with a github url
+md_content = md_content.replace(/!\[.*\]\((.*)\)/g, (match, p1) => {
+    return `![${p1}](https://raw.githubusercontent.com/nf-core/nft-utils/refs/heads/main/docs/${p1})`;
+});
+
 const headings =
     md_content.match(/^#+\s+(.*)$/gm)?.map((heading) => {
         const text = heading.replace(/^#+\s+/, "").trim();
-
         return {
             text: text.replace(/`([^`]+)`/g, "<code>$1</code>"),
             slug: text
@@ -28,7 +32,8 @@ const headings =
     title={title}
     subtitle={subtitle}
     headings={headings}
-    md_github_url="https://github.com/nf-core/nft-utils/edit/main/README.md"
+    md_github_url="https://github.com/nf-core/nft-utils/edit/main/docs/usage.md"
+    leftSidebar={false}
 >
     <Markdown of={md_content} />
 </MarkdownTocLayout>
