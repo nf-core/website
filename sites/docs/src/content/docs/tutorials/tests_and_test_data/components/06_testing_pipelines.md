@@ -226,6 +226,23 @@ enrichment_metrics/*
 3. **Review relative vs absolute paths** - use `relative: true` for portable tests
 4. **Update ignore patterns** - add new unstable files discovered during testing
 
+
+## Testing expected file contents
+
+Often, we will know more about the contents of a file than just whether it is stable or not. For example, a TSV file summarising per-sample information might reasonably be expected to contain one row per input sample - asserting that there is one row per input sample is a good way to check that all samples have made it through the pipeline correctly and that the per-sample processing logic is working correctly. This can catch errors in a pipeline where, for example, the final output file depends on the joining of two channels based on a key - key mismatches will result in fewer downstream samples than expected from the inputs.
+
+This can also be particularly helpful where a pipeline is running a filtering step on the input samples - for example, discarding samples which do not meet quality thresholds. In this case, re-implementing the filter as an nf-test assertion and checking that the number of rows in a final summary file is correct is a good way to catch errors in the filtering logic within the pipeline.
+
+#### Considerations for file contents checking
+
+- `nf-test` plugins are your friends here - there are a plethora of plugins for processing specific file types which can be used to make assertions about file contents
+    - For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
+
+#### Example patterns for checking expected file contents
+
+- Check that the number of samples in the input samplesheet matches the number of samples in the output summary
+- If it is known a-priori which samples are expected to pass QC, check that expected failing samples are not in the final summary files
+- If a pipeline produces some countable number of outputs from each individual sample (for example, FASTA files), count these and ensure that they are all represented in downstream results files
 ## Next Steps
 
 Continue to [nf-test Assertions](./07_assertions.md) to learn about comprehensive assertion patterns and verification techniques.
