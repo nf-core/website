@@ -12165,6 +12165,106 @@
       ]
     },
     {
+      "name": "bamutil_clipoverlap",
+      "path": "modules/nf-core/bamutil/clipoverlap/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bamutil_clipoverlap",
+        "description": "clips overlapping read pairs. When two mates overlap, this tool will clip the record's whose clipped region would have the lowest average quality.",
+        "keywords": [
+          "bam",
+          "clipping",
+          "clipOverlap",
+          "bamUtil"
+        ],
+        "tools": [
+          {
+            "bamutil": {
+              "description": "Programs that perform operations on SAM/BAM files, all built into a single executable, bam.",
+              "homepage": "https://genome.sph.umich.edu/wiki/BamUtil",
+              "documentation": "https://genome.sph.umich.edu/wiki/BamUtil:_clipOverlap",
+              "tool_dev_url": "https://github.com/statgen/bamUtil",
+              "doi": "10.1101/gr.176552.114",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:bamutil"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Coordinate/ReadName sorted BAM/SAM/uncompressedBAM file",
+                "pattern": "*.{bam,sam,ubam}"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "bam": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Coordinate/ReadName sorted BAM/SAM/uncompressedBAM file",
+                  "pattern": "*.{bam}"
+                }
+              }
+            ]
+          },
+          {
+            "stats_log": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "basic overlap statistics when unabled with --stats",
+                  "pattern": "*.{log}"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Y-Pei"
+        ],
+        "maintainers": [
+          "@Y-Pei"
+        ]
+      }
+    },
+    {
       "name": "bamutil_trimbam",
       "path": "modules/nf-core/bamutil/trimbam/meta.yml",
       "type": "module",
@@ -25504,7 +25604,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -33384,7 +33484,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -50965,7 +51065,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -61496,7 +61596,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -61592,7 +61692,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -64518,7 +64618,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -98969,7 +99069,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -100429,7 +100529,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -100538,7 +100638,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -101070,7 +101170,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -101169,7 +101269,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -101848,7 +101948,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -108892,7 +108992,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -123637,7 +123737,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "crisprseq",
@@ -137600,6 +137700,18 @@
                   }
                 ]
               }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "bed file containing regions of interest, where only bases from the given regions will be reported",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
             }
           ],
           [
@@ -141526,7 +141638,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "metatdenovo",
@@ -191461,7 +191573,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -199951,7 +200063,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "lsmquant",
@@ -213543,7 +213655,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -218210,7 +218322,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "crisprseq",
@@ -218603,7 +218715,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "crisprseq",
@@ -219004,7 +219116,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "crisprseq",
