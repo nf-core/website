@@ -24,7 +24,7 @@ Format a group of parameters of the schema as commented YAML.
 - **Return type:**
   str
 
-#### `format_param(name: str, properties: Dict, required_properties: List[str] = [], show_hidden: bool = False) → str | None{:python}`
+#### `format_param(name: str, properties: dict, required_properties: list[str] = [], show_hidden: bool = False) → str | None{:python}`
 
 Format a single parameter of the schema as commented YAML
 

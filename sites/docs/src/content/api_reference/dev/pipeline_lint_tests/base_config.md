@@ -1,6 +1,6 @@
 # base_config
 
-#### `PipelineLint.base_config() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.base_config() → dict[str, list[str]]{:python}`
 
 Make sure the conf/base.config file follows the nf-core template, especially removed sections.
 

@@ -25,7 +25,7 @@ Bumps a pipeline version number.
 
 ### `nf_core.pipelines.bump_version.log_change(old_content: str, new_content: str){:python}`
 
-### `nf_core.pipelines.bump_version.update_file_version(filename: str | Path, pipeline_obj:{:python}`[`Pipeline{:python}`](../utils#nf_core.utils.Pipeline)`, patterns: List[Tuple[str, str]], required: bool = True, yaml_key: List[str] | None = None) → None{:python}`
+### `nf_core.pipelines.bump_version.update_file_version(filename: str | Path, pipeline_obj:{:python}`[`Pipeline{:python}`](../utils#nf_core.utils.Pipeline)`, patterns: list[tuple[str, str]], required: bool = True, yaml_key: list[str] | None = None) → None{:python}`
 
 Updates a file with a new version number.
 
@@ -38,7 +38,7 @@ Updates a file with a new version number.
   - **required** (_bool_ _,_ _optional_) – Whether the file is required to exist. Defaults to True.
   - **yaml_key** (_Optional_ \*\[\*_List_ \*\[\*_str_ _]_ _]_ _,_ _optional_) – The YAML key to update. Defaults to None.
 
-### `nf_core.pipelines.bump_version.update_text_file(fn: Path, patterns: List[Tuple[str, str]], required: bool){:python}`
+### `nf_core.pipelines.bump_version.update_text_file(fn: Path, patterns: list[tuple[str, str]], required: bool){:python}`
 
 Updates a text file with a new version number.
 
@@ -48,7 +48,7 @@ Updates a text file with a new version number.
     match and the replacement strings.
   - **required** (_bool_) – Whether the file is required to exist.
 
-### `nf_core.pipelines.bump_version.update_yaml_file(fn: Path, patterns: List[Tuple[str, str]], yaml_key: List[str], required: bool){:python}`
+### `nf_core.pipelines.bump_version.update_yaml_file(fn: Path, patterns: list[tuple[str, str]], yaml_key: list[str], required: bool){:python}`
 
 Updates a YAML file with a new version number.
 
