@@ -135,6 +135,25 @@ with(process.out.ncbi_settings) {
 }
 ```
 
+#### Comparing row counts with nft-csv
+
+**Motivation:** Ensure the number of rows in a per-sample output summary file from a pipeline matches the number of files in an input samplesheet
+
+```groovy
+params {
+    outdir = "$outputDir"
+}
+
+...
+
+then {
+    // Comma is default separator but being explicit to demonstrate it can be changed
+    def n_input_samples = path("/path/to/input/samplesheet.csv").csv(sep: ",").rowCount
+
+    assertAll(
+        { assert path("$outputDir/path/to/summary.csv").csv(sep: ",").rowCount == n_input_samples
+    )
+}
 ### Advanced Content Verification
 
 #### Snapshot Selective File Portions
