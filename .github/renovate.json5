@@ -17,12 +17,6 @@
             ],
             datasourceTemplate: "github-release-attachments",
         },
-        {
-            customType: "regex",
-            managerFilePatterns: ["/^\\.pre-commit-config\\.yaml$/"],
-            matchStrings: ["- (?<depName>[^@]+)@(?<currentValue>[^\\s]+)"],
-            datasourceTemplate: "npm",
-            versioningTemplate: "semver",
-        },
+
     ],
 }
