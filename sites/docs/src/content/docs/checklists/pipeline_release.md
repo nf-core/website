@@ -74,6 +74,7 @@ The last step is to bump up the pipeline version number in the development branc
   - [ ] For example, `1.0.0` becomes `1.1.0dev`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
 - [ ] Update the `CHANGELOG.md` to include a new section for this new version
+- [ ] If your pipeline is using pipeline-level nf-test tests, update snapshots: `nf-test test tests/ --profile=+<docker/singularity/conda etc.>`
 - [ ] [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 - [ ] (**First release only**) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
   - [ ] Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.
