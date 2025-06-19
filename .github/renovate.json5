@@ -8,6 +8,14 @@
     npm: {
         enabled: false,
     },
+    packageRules: [
+        {
+            matchManagers: ["regex"],
+            matchFiles: [".pre-commit-config.yaml"],
+            groupName: "pre-commit npm dependencies",
+            groupSlug: "pre-commit-npm",
+        },
+    ],
     customManagers: [
         {
             customType: "regex",
