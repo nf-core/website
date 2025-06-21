@@ -87708,6 +87708,210 @@
       ]
     },
     {
+      "name": "hasheddrops",
+      "path": "modules/nf-core/hasheddrops/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hasheddrops",
+        "description": "Generating cell hashing calls from a matrix of count data.",
+        "keywords": [
+          "demultiplexing",
+          "hashing-based deconvolution",
+          "single-cell"
+        ],
+        "tools": [
+          {
+            "hasheddrops": {
+              "description": "Demultiplex cell barcodes into their samples of origin based on the most abundant hash tag oligo (HTO). Also identify potential doublets based on the presence of multiple significant HTOs.",
+              "homepage": "https://rdrr.io/github/MarioniLab/DropletUtils/man/hashedDrops.html",
+              "documentation": "https://rdrr.io/github/MarioniLab/DropletUtils/man/hashedDrops.html",
+              "tool_dev_url": "https://github.com/MarioniLab/DropletUtils",
+              "doi": "10.18129/B9.bioc.DropletUtils",
+              "licence": [
+                "GPL-3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hto_matrix": {
+                "type": "file",
+                "description": "Directory that contains the HTO matrix in a 10X format.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3917"
+                  }
+                ]
+              }
+            },
+            {
+              "runEmptyDrops": {
+                "type": "boolean",
+                "description": "Run EmptyDrops() before hasheDrops() (\"TRUE\") or not (\"FALSE\").\n"
+              }
+            },
+            {
+              "rna_matrix": {
+                "type": "file",
+                "description": "Path to RNA count matrix, which is only uses if runEmptyDrops == \"TRUE\".\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3917"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "empty_drops_plot": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_emptyDrops.png": {
+                  "type": "file",
+                  "description": "EmptyDrops results plot\n",
+                  "pattern": "_emptyDrops.png"
+                }
+              }
+            ]
+          },
+          {
+            "empty_drops_csv": [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_emptyDrops.csv": {
+                  "type": "file",
+                  "description": "EmptyDrops results in CSV format\n",
+                  "pattern": "_emptyDrops.csv"
+                }
+              }
+            ]
+          },
+          {
+            "empty_drops_rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_emptyDrops.rds": {
+                  "type": "file",
+                  "description": "EmptyDrops results in RDS format\n",
+                  "pattern": "_emptyDrops.rds"
+                }
+              }
+            ]
+          },
+          {
+            "results": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_results_hasheddrops.csv": {
+                  "type": "file",
+                  "description": "HashedDrops results\n",
+                  "pattern": "_results_hasheddrops.csv"
+                }
+              }
+            ]
+          },
+          {
+            "rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_hasheddrops.rds": {
+                  "type": "file",
+                  "description": "HashedDrops results in RDS format\n",
+                  "pattern": "_hasheddrops.rds"
+                }
+              }
+            ]
+          },
+          {
+            "plot": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_plot_hasheddrops.png": {
+                  "type": "file",
+                  "description": "HashedDrops plot\n",
+                  "pattern": "_plot_hasheddrops.png"
+                }
+              }
+            ]
+          },
+          {
+            "params": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_params_hasheddrops.csv": {
+                  "type": "file",
+                  "description": "The used parameters to call hashedDrops() in the R-Script.\n",
+                  "pattern": "_params_hasheddrops.csv"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions."
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LuisHeinzlmeier"
+        ],
+        "maintainers": [
+          "@LuisHeinzlmeier"
+        ]
+      }
+    },
+    {
       "name": "helitronscanner_draw",
       "path": "modules/nf-core/helitronscanner/draw/meta.yml",
       "type": "module",
