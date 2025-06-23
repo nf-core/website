@@ -927,15 +927,15 @@ Bases: `BaseModel`
 
 </details></p>
 * **Fields:**
-  - [`bump_version (Dict[str, bool] | None)`](#nf_core.utils.NFCoreYamlConfig.bump_version)
+  - [`bump_version (dict[str, bool] | None)`](#nf_core.utils.NFCoreYamlConfig.bump_version)
   - [`lint (nf_core.utils.NFCoreYamlLintConfig | None)`](#nf_core.utils.NFCoreYamlConfig.lint)
   - [`nf_core_version (str | None)`](#nf_core.utils.NFCoreYamlConfig.nf_core_version)
   - [`org_path (str | None)`](#nf_core.utils.NFCoreYamlConfig.org_path)
   - [`repository_type (Literal['pipeline', 'modules'] | None)`](#nf_core.utils.NFCoreYamlConfig.repository_type)
   - [`template (nf_core.utils.NFCoreTemplateConfig | None)`](#nf_core.utils.NFCoreYamlConfig.template)
-  - [`update (Dict[str, str | bool | Dict[str, str | Dict[str, str | bool]]] | None)`](#nf_core.utils.NFCoreYamlConfig.update)
+  - [`update (dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None)`](#nf_core.utils.NFCoreYamlConfig.update)
 
-#### _`field{:python}`_`bump_version{:python}`_: Dict\[str, bool] | None_`{:python}`_= None_
+#### _`field{:python}`_`bump_version{:python}`_: dict\[str, bool] | None_`{:python}`_= None_
 
 Disable bumping of the version for a module/subworkflow (when repository_type is modules). See <https://nf-co.re/docs/nf-core-tools/modules/bump-versions> for more information.
 
@@ -959,13 +959,13 @@ Type of repository
 
 Pipeline template configuration
 
-#### _`field{:python}`_`update{:python}`_: Dict\[str, str | bool | Dict\[str, str | Dict\[str, str | bool]]] | None_`{:python}`_= None_
+#### _`field{:python}`_`update{:python}`_: dict\[str, str | bool | dict\[str, str | dict\[str, str | bool]]] | None_`{:python}`_= None_
 
 Disable updating specific modules/subworkflows (when repository_type is pipeline). See <https://nf-co.re/docs/nf-core-tools/modules/update> for more information.
 
 #### `get(item: str, default: Any = None) → Any{:python}`
 
-#### `model_dump(**kwargs) → Dict[str, Any]{:python}`
+#### `model_dump(**kwargs) → dict[str, Any]{:python}`
 
 !!! abstract “Usage Documentation”
 : [model_dump](../concepts/serialization#modelmodel_dump)
@@ -1480,30 +1480,30 @@ nf_test_content:
   - [`actions_nf_test (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_nf_test)
   - [`actions_schema_validation (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.actions_schema_validation)
   - [`base_config (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.base_config)
-  - [`files_exist (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
-  - [`files_unchanged (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
+  - [`files_exist (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_exist)
+  - [`files_unchanged (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.files_unchanged)
   - [`included_configs (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.included_configs)
   - [`local_component_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.local_component_structure)
-  - [`merge_markers (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
-  - [`modules_config (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_config)
+  - [`merge_markers (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.merge_markers)
+  - [`modules_config (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_config)
   - [`modules_json (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_json)
   - [`modules_structure (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.modules_structure)
-  - [`multiqc_config (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.multiqc_config)
-  - [`nextflow_config (bool | List[str | Dict[str, List[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
-  - [`nf_test_content (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nf_test_content)
+  - [`multiqc_config (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.multiqc_config)
+  - [`nextflow_config (bool | list[str | dict[str, list[str]]] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nextflow_config)
+  - [`nf_test_content (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.nf_test_content)
   - [`nfcore_components (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_components)
   - [`nfcore_yml (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.nfcore_yml)
   - [`pipeline_if_empty_null (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_if_empty_null)
   - [`pipeline_name_conventions (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_name_conventions)
   - [`pipeline_todos (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.pipeline_todos)
   - [`plugin_includes (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.plugin_includes)
-  - [`readme (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.readme)
+  - [`readme (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.readme)
   - [`rocrate_readme_sync (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.rocrate_readme_sync)
   - [`schema_description (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_description)
   - [`schema_lint (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_lint)
   - [`schema_params (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.schema_params)
   - [`system_exit (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.system_exit)
-  - [`template_strings (bool | List[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.template_strings)
+  - [`template_strings (bool | list[str] | None)`](#nf_core.utils.NFCoreYamlLintConfig.template_strings)
   - [`version_consistency (bool | None)`](#nf_core.utils.NFCoreYamlLintConfig.version_consistency)
 
 #### _`field{:python}`_`actions_awsfulltest{:python}`_: bool | None_`{:python}`_= None_
@@ -1526,11 +1526,11 @@ Lint GitHub Action workflow files with schema
 
 Lint base.config file
 
-#### _`field{:python}`_`files_exist{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`files_exist{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of files that can not exist
 
-#### _`field{:python}`_`files_unchanged{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`files_unchanged{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of files that should not be changed
 
@@ -1542,11 +1542,11 @@ Lint for included configs
 
 Lint local components use correct structure mirroring remote
 
-#### _`field{:python}`_`merge_markers{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`merge_markers{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of files that should not contain merge markers
 
-#### _`field{:python}`_`modules_config{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`modules_config{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of modules that should not be changed
 
@@ -1558,15 +1558,15 @@ Lint modules.json file
 
 Lint modules structure
 
-#### _`field{:python}`_`multiqc_config{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`multiqc_config{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of MultiQC config options that be changed
 
-#### _`field{:python}`_`nextflow_config{:python}`_: bool | List\[str | Dict\[str, List\[str]]] | None_`{:python}`_= None_
+#### _`field{:python}`_`nextflow_config{:python}`_: bool | list\[str | dict\[str, list\[str]]] | None_`{:python}`_= None_
 
 List of Nextflow config files that should not be changed
 
-#### _`field{:python}`_`nf_test_content{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`nf_test_content{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of nf-test content that should not be changed
 
@@ -1594,7 +1594,7 @@ Lint for TODOs statements
 
 Lint for nextflow plugin
 
-#### _`field{:python}`_`readme{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`readme{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 Lint the README.md file
 
@@ -1618,7 +1618,7 @@ Lint schema for all params
 
 Lint for System.exit calls in groovy/nextflow code
 
-#### _`field{:python}`_`template_strings{:python}`_: bool | List\[str] | None_`{:python}`_= None_
+#### _`field{:python}`_`template_strings{:python}`_: bool | list\[str] | None_`{:python}`_= None_
 
 List of files that can contain template strings
 
@@ -1714,7 +1714,7 @@ Run core load functions
 
 Try to load the pipeline environment.yml file, if it exists
 
-#### `list_files() → List[Path]{:python}`
+#### `list_files() → list[Path]{:python}`
 
 Get a list of all files in the pipeline
 
@@ -1800,7 +1800,7 @@ Returns the most recent container versions by default.
   - **A LookupError**\*\*,\*\* **if the connection fails** **or** **times out** **or** **gives an unexpected status code** –
   - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
 
-### `nf_core.utils.get_first_available_path(directory: Path | str, paths: List[str]) → Path | None{:python}`
+### `nf_core.utils.get_first_available_path(directory: Path | str, paths: list[str]) → Path | None{:python}`
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
@@ -1855,7 +1855,7 @@ Should mimic Path.is_relative_to which not available in Python < 3.9
 path1 (Path | str): The path that could be a subpath
 path2 (Path | str): The path the could be the superpath
 
-### `nf_core.utils.load_tools_config(directory: str | Path = '.') → Tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
+### `nf_core.utils.load_tools_config(directory: str | Path = '.') → tuple[Path | None,{:python}`[`NFCoreYamlConfig{:python}`](#nf_core.utils.NFCoreYamlConfig)`| None]{:python}`
 
 Parse the nf-core.yml configuration file
 
@@ -1913,7 +1913,7 @@ Return an s if the input is not one or has not the length of one.
 
 Return ‘ies’ if the input is not one or has not the length of one, else ‘y’.
 
-### `nf_core.utils.poll_nfcore_web_api(api_url: str, post_data: Dict | None = None) → Dict{:python}`
+### `nf_core.utils.poll_nfcore_web_api(api_url: str, post_data: dict | None = None) → dict{:python}`
 
 Poll the nf-core website API
 
@@ -1921,7 +1921,7 @@ Takes argument api_url for URL
 
 Expects API response to be valid JSON and contain a top-level ‘status’ key.
 
-### `nf_core.utils.prompt_pipeline_release_branch(wf_releases: List[Dict[str, Any]], wf_branches: Dict[str, Any], multiple: bool = False) → Tuple[Any, List[str]]{:python}`
+### `nf_core.utils.prompt_pipeline_release_branch(wf_releases: list[dict[str, Any]], wf_branches: dict[str, Any], multiple: bool = False) → tuple[Any, list[str]]{:python}`
 
 Prompt for pipeline release / branch
 
@@ -1951,7 +1951,7 @@ Prompt for the pipeline name with questionary
 
 Check if any environment variables are set to force Rich to use coloured output
 
-### `nf_core.utils.run_cmd(executable: str, cmd: str) → Tuple[bytes, bytes] | None{:python}`
+### `nf_core.utils.run_cmd(executable: str, cmd: str) → tuple[bytes, bytes] | None{:python}`
 
 Run a specified command and capture the output. Handle errors nicely.
 
@@ -1972,7 +1972,7 @@ Creates a directory for files that need to be kept between sessions
 
 Currently only used for keeping local copies of modules repos
 
-### `nf_core.utils.setup_requests_cachedir() → Dict[str, Path | timedelta | str]{:python}`
+### `nf_core.utils.setup_requests_cachedir() → dict[str, Path | timedelta | str]{:python}`
 
 Sets up local caching for faster remote HTTP requests.
 
@@ -1982,7 +1982,7 @@ a .config/nf-core/cache\_\* subdir.
 Uses requests_cache monkey patching.
 Also returns the config dict so that we can use the same setup with a Session.
 
-### `nf_core.utils.sort_dictionary(d: Dict) → Dict{:python}`
+### `nf_core.utils.sort_dictionary(d: dict) → dict{:python}`
 
 Sorts a nested dictionary recursively
 
