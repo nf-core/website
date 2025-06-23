@@ -1,6 +1,6 @@
 # files_unchanged
 
-#### `PipelineLint.files_unchanged() → Dict[str, List[str] | bool]{:python}`
+#### `PipelineLint.files_unchanged() → dict[str, list[str] | bool]{:python}`
 
 Checks that certain pipeline files are not modified from template output.
 

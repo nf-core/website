@@ -1,6 +1,6 @@
 # files_exist
 
-#### `PipelineLint.files_exist() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.files_exist() → dict[str, list[str]]{:python}`
 
 Checks a given pipeline directory for required files.
 
