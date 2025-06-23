@@ -1,6 +1,6 @@
 # nf_test_content
 
-#### `PipelineLint.nf_test_content() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.nf_test_content() → dict[str, list[str]]{:python}`
 
 Checks that the pipeline nf-test files have the appropriate content.
 
@@ -32,19 +32,16 @@ when {
   > And should set the correct resource limits, as defined in the test profile
 
 - The nf-test.config file should:
-  - Make sure tests are relative to root directory <br/>
-
+  : \* Make sure tests are relative to root directory <br/>
   ```groovy
   testsDir "."
   ```
-
     <br/>
     * Ensure a user-configurable nf-test directory
-
-  ```groovy
-  workDir System.getenv("NFT_WORKDIR") ?: ".nf-test"
-  ```
-
+    <br/>
+    ```groovy
+    workDir System.getenv("NFT_WORKDIR") ?: ".nf-test"
+    ```
     <br/>
     * Use a test specific config
     <br/>
