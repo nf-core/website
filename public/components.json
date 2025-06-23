@@ -91915,6 +91915,12 @@
           ],
           [
             {
+              "reference_name": {
+                "type": "string",
+                "description": "Name of the reference to align against and thus remove mapped reads to.\nTypically corresponds\n"
+              }
+            },
+            {
               "reference_dir": {
                 "type": "directory",
                 "description": "Directory containing index file(s) corresponding to the preferred aligner (bowtie2 short reads or minimap for long reads).\nNote that single end data is assumed to be long reads. If you have single-end short read you must supply both the BowTie2\nindices AND explicitly specify `--aligner bowtie2`\n",
@@ -91923,14 +91929,6 @@
                     "edam": "http://edamontology.org/data_1049"
                   }
                 ]
-              }
-            }
-          ],
-          [
-            {
-              "reference_name": {
-                "type": "string",
-                "description": "Name of the reference to align against and thus remove mapped reads to.\nTypically corresponds\n"
               }
             }
           ]
@@ -92028,9 +92026,25 @@
             }
           }
         ],
+        "input": [
+          [
+            {
+              "index_name": {
+                "type": "string",
+                "description": "Name of the reference genome index to download"
+              }
+            }
+          ]
+        ],
         "output": [
           {
             "reference": [
+              {
+                "index_name": {
+                  "type": "directory",
+                  "description": "Name of the reference genome index downloaded"
+                }
+              },
               {
                 "reference/": {
                   "type": "directory",
