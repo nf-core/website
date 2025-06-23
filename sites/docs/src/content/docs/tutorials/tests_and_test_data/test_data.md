@@ -33,7 +33,6 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
 1. Always ask on the [#modules](https://nfcore.slack.com/channels/modules) or [#test-data](https://nfcore.slack.com/channels/test-data) channels on the [nf-core slack](https://nf-co.re/join/slack) before adding test data.
 
 2. Add any new test data via a pull request from the corresponding branch of a personal fork of the nf-core/test-dataset repository.
-
    - For example, to add test-data for a module, upload to the `modules` branch of your fork, and open the PR against the `modules` branch of the nf-core/test-datasets repo. For a pipeline, e.g. nf-core/mag, upload to the `mag` branch of your fork, and open the PR against the `mag` branch of the nf-core/test-datasets repo.
 
 3. New bioinformatic test data files should be generated from the existing collections of test data as far as possible. See field-specific guidance [below](#field-specific-guidance).
@@ -41,7 +40,6 @@ In contrast, if your module requires many tests, steps, or heavy CPU usage, you 
    For example, if you were adding new genomic test data, and needed to create a specific type of genotyping file format for a particular tool - you should use the SARS-CoV2 or _Homo sapiens_ BAM files as input when generating the file you will need to use your module tests. The resulting genotyping file should then be stored alongside the BAM file, or in the corresponding file format type directory.
 
 4. In the worst case scenario where you cannot (re)use the existing data in the field-specific collections, the `delete_me/` folder may be used.
-
    - We discourage the use of this directory as far as possible.
    - If you do use this directory, we ask you to replace anything added to this directory with proper test data based on the existing dataset as soon as possible.
 
