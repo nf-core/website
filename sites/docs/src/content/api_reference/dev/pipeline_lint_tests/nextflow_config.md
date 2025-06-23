@@ -1,6 +1,6 @@
 # nextflow_config
 
-#### `PipelineLint.nextflow_config() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.nextflow_config() → dict[str, list[str]]{:python}`
 
 Checks the pipeline configuration for required variables.
 
