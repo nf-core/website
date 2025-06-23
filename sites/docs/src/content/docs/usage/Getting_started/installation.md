@@ -141,7 +141,6 @@ For example, `-profile docker` or `-profile conda`.
   - Also runs _containers_, and can optionally create these from Docker images
   - Does not need root access or any daemon processes
 - [Apptainer](https://apptainer.org/)
-
   - Open source version of Singularity (split from Singularity in 2021)
   - :::warning
     Currently, nf-core pipelines run with `-profile apptainer` will build using
