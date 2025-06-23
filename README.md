@@ -146,7 +146,6 @@ The following steps are necessary to add a new sub-site to the mono-repo:
 
 - [ ] Copy the `sites/pipelines` directory to a new directory with the name of the new sub-site, e.g. newsite.
 - [ ] Update the following files in the new directory:
-
   - [ ] `astro.config.mjs`
     - [ ] Update the `assetsPrefix` field to point to the new site's netlify URL, e.g. `assetsPrefix: 'https://nf-core-website-newsite.netlify.app/'`.
   - [ ] `package.json` - Update the `name` field to the new site name, e.g. `"name": "newsite"`.
