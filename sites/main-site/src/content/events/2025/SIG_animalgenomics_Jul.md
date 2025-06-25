@@ -1,6 +1,6 @@
 ---
 title: "#animal-genomics: July Meeting"
-subtitle: Luca Fontanesi
+subtitle: Luca Fontanesi (Full Professor of animal breeding and genetics at the University of Bologna)
 
 type: talk
 startDate: "2025-07-16"
