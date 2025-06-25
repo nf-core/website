@@ -38198,23 +38198,6 @@
             ]
           },
           {
-            "cnn": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.cnn": {
-                  "type": "file",
-                  "description": "CNN file",
-                  "pattern": "*.cnn"
-                }
-              }
-            ]
-          },
-          {
             "versions": [
               {
                 "versions.yml": {
@@ -95659,6 +95642,10 @@
         {
           "name": "funcscan",
           "version": "2.1.0"
+        },
+        {
+          "name": "proteinannotator",
+          "version": "dev"
         }
       ]
     },
@@ -200830,6 +200817,10 @@
         },
         {
           "name": "phageannotator",
+          "version": "dev"
+        },
+        {
+          "name": "proteinannotator",
           "version": "dev"
         },
         {
