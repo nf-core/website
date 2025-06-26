@@ -14,5 +14,5 @@ locations:
 
 In this weeks bytesize, James [@jfy133](https://github.com/jfy133) is giving about the new nf-core pipeline [nf-core/createtaxdb](https://nf-co.re/createtaxdb/dev/).
 
-nf-core/createtaxdb is a bioinformatics pipeline that constructs custom metagenomic classifier databases for multiple classifiers and profilers from the same input reference genome set in a highly automated and parallelised manner. 
+nf-core/createtaxdb is a bioinformatics pipeline that constructs custom metagenomic classifier databases for multiple classifiers and profilers from the same input reference genome set in a highly automated and parallelised manner.
 It supports both nucleotide and protein based classifiers and profilers. The pipeline is designed to be a companion pipeline to nf-core/taxprofiler for taxonomic profiling of metagenomic data, but can be used for any context.
