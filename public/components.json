@@ -187078,6 +187078,220 @@
       ]
     },
     {
+      "name": "stare",
+      "path": "modules/nf-core/stare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "stare",
+        "description": "Framework that scores enhancer–gene interactions using the Activity-By-Contact model and derives transcription factor affinities on gene level",
+        "keywords": [
+          "enhancer",
+          "tf_affinity",
+          "abc_model",
+          "genomics",
+          "gene_regulation"
+        ],
+        "tools": [
+          {
+            "stare": {
+              "description": "Score enhancer–gene interactions with ABC and compute TF-gene affinity matrices",
+              "homepage": "https://github.com/SchulzLab/STARE",
+              "documentation": "https://stare.readthedocs.io/en/latest/Main.html",
+              "tool_dev_url": "https://github.com/SchulzLab/STARE",
+              "doi": "10.1093/bioinformatics/btad062",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bed_file": {
+                "type": "file",
+                "description": "BED file with non-overlapping candidate regions; optional—if omitted runs in promoter-mode around TSS",
+                "pattern": "*.bed",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "ucsc": "https://genome.ucsc.edu/FAQ/FAQformat#format1"
+                  }
+                ]
+              }
+            },
+            {
+              "contact_folder": {
+                "type": "directory",
+                "description": "Directory of gzipped chromatin contact files per chromosome; if not provided use distance-based estimate",
+                "optional": true
+              }
+            },
+            {
+              "existing_abc": {
+                "type": "file",
+                "description": "Precomputed ABC‐scoring file (must contain Ensembl ID, PeakID, intergenicScore columns) to reuse interactions",
+                "pattern": "*.txt.gz",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "Gene annotation file in GTF format (e.g. Gencode); full annotation recommended for ABC scoring",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "bioontology": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genome": {
+                "type": "file",
+                "description": "Genome FASTA file in RefSeq format",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "bioontology": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "psem": {
+                "type": "file",
+                "description": "Position Specific Energy Matrix or Count Matrix in transfac format; converted automatically to PSEM using sequence background from bed_file",
+                "pattern": "*.transfac",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "exclude_bed": {
+                "type": "file",
+                "description": "BED file with regions to exclude; overlapping regions are discarded",
+                "pattern": "*.bed",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "ucsc": "https://genome.ucsc.edu/FAQ/FAQformat#format1"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta6": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genes": {
+                "type": "file",
+                "description": "File listing gene IDs or symbols to restrict output; optional",
+                "pattern": "*.{txt,tsv}",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "affinities": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "${prefix}/Gene_TF_matrices/${prefix}_TF_Gene_Affinities.txt"
+                }
+              },
+              {
+                "${meta.id}/Gene_TF_matrices/${meta.id}_TF_Gene_Affinities.txt": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "${prefix}/Gene_TF_matrices/${prefix}_TF_Gene_Affinities.txt"
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@LeonHafner"
+        ],
+        "maintainers": [
+          "@LeonHafner"
+        ]
+      }
+    },
+    {
       "name": "starfusion_build",
       "path": "modules/nf-core/starfusion/build/meta.yml",
       "type": "module",
