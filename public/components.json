@@ -121713,6 +121713,188 @@
       ]
     },
     {
+      "name": "mobster",
+      "path": "modules/nf-core/mobster/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mobster",
+        "description": "Subclonal deconvolution of cancer genome sequencing data.",
+        "keywords": [
+          "subclonal deconvolution",
+          "genomics",
+          "cancer evolution"
+        ],
+        "tools": [
+          {
+            "mobster": {
+              "description": "mobster is a package that implements a model-based approach for subclonal deconvolution of\ncancer genome sequencing data.\n\nThe package integrates evolutionary theory (i.e., population) and Machine-Learning to analyze\n(e.g., whole-genome) bulk data from cancer samples. This analysis relates to clustering; we\napproach it via a maximum-likelihood formulation of Dirichlet mixture models, and use bootstrap\nroutines to assess the confidence of the parameters.\n",
+              "homepage": "https://caravagnalab.github.io/mobster/",
+              "documentation": "https://caravagnalab.github.io/mobster/",
+              "tool_dev_url": "https://github.com/caravagnalab/mobster",
+              "doi": "10.1038/s41588-020-0675-5",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": "biotools:mobster-R"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "rds_join": {
+                "type": "file",
+                "description": "Either a .rds object of class mCNAqc or a .csv mutations table",
+                "pattern": "*.{rds,csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "mobster_rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_mobster_st_fit.rds": {
+                  "type": "file",
+                  "description": "Full mobster fit as an .rds object",
+                  "pattern": "*_mobster_st_fit.rds"
+                }
+              }
+            ]
+          },
+          {
+            "mobster_best_rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_mobster_st_best_fit.rds": {
+                  "type": "file",
+                  "description": "Best mobster fit as an .rds object",
+                  "pattern": "*_mobster_st_best_fit.rds"
+                }
+              }
+            ]
+          },
+          {
+            "mobster_plots_rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_plots.rds": {
+                  "type": "file",
+                  "description": "Final plots as an .rds object",
+                  "pattern": "*_plots.rds"
+                }
+              }
+            ]
+          },
+          {
+            "mobster_report_rds": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_REPORT_plots_mobster.rds": {
+                  "type": "file",
+                  "description": "Final report plots as an .rds object",
+                  "pattern": "*_REPORT_plots_mobster.rds"
+                }
+              }
+            ]
+          },
+          {
+            "mobster_report_pdf": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_REPORT_plots_mobster.pdf": {
+                  "type": "file",
+                  "description": "Final report plots as a .pdf file",
+                  "pattern": "*_REPORT_plots_mobster.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "mobster_report_png": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_REPORT_plots_mobster.png": {
+                  "type": "file",
+                  "description": "Final report plots as a .png file",
+                  "pattern": "*_REPORT_plots_mobster.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@elena-buscaroli"
+        ],
+        "maintainers": [
+          "@elena-buscaroli"
+        ]
+      }
+    },
+    {
       "name": "mobsuite_recon",
       "path": "modules/nf-core/mobsuite/recon/meta.yml",
       "type": "module",
