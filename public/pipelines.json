@@ -4055,7 +4055,7 @@
             "forks_count": 155,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 33,
+            "open_issues_count": 34,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -4068,7 +4068,7 @@
             ],
             "visibility": "public",
             "forks": 155,
-            "open_issues": 33,
+            "open_issues": 34,
             "watchers": 215,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -4132,7 +4132,7 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 4,
+            "open_pr_count": 5,
             "repository_url": "https://github.com/nf-core/chipseq",
             "contributors": [
                 {
@@ -8341,10 +8341,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/demo",
             "created_at": "2024-05-05T12:11:15Z",
-            "updated_at": "2025-06-09T06:54:53Z",
-            "pushed_at": "2025-06-27T13:56:21Z",
+            "updated_at": "2025-06-27T19:23:59Z",
+            "pushed_at": "2025-06-27T19:51:39Z",
             "homepage": "https://nf-co.re/demo",
-            "size": 692,
+            "size": 693,
             "stargazers_count": 6,
             "watchers_count": 6,
             "language": "Nextflow",
@@ -8357,7 +8357,7 @@
             "forks_count": 12,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 7,
+            "open_issues_count": 6,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -8369,7 +8369,7 @@
             ],
             "visibility": "public",
             "forks": 12,
-            "open_issues": 7,
+            "open_issues": 6,
             "watchers": 6,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -8429,13 +8429,18 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/demo",
             "contributors": [
                 {
                     "name": "christopher-hakkaart",
                     "count": 64,
                     "avatar_url": "https://avatars.githubusercontent.com/u/76951771?v=4"
+                },
+                {
+                    "name": "FloWuenne",
+                    "count": 18,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/11639154?v=4"
                 },
                 {
                     "name": "mashehu",
@@ -8448,26 +8453,26 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/49096557?v=4"
                 },
                 {
+                    "name": "maxulysse",
+                    "count": 2,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
+                },
+                {
                     "name": "vdauwera",
                     "count": 1,
                     "avatar_url": "https://avatars.githubusercontent.com/u/2748435?v=4"
-                },
-                {
-                    "name": "maxulysse",
-                    "count": 1,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/1019628?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "16bb0e312095166f3971c5d6260fe11347cee98c",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/demo/compare/16bb0e312095166f3971c5d6260fe11347cee98c...04060b4644d68649180db796e89a3db2a466a8d8",
+            "released_after_tools": true,
+            "head_sha": "db7f526ce151cecde9c4497a4adb54f71c553ed2",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/demo/compare/db7f526ce151cecde9c4497a4adb54f71c553ed2...db7f526ce151cecde9c4497a4adb54f71c553ed2",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
-                "nf-schema@2.2.0"
+                "nf-schema@2.3.0"
             ],
             "master_nextflow_config_manifest": {
                 "defaultBranch": "master"
@@ -8479,6 +8484,28 @@
                 "defaultBranch": "master"
             },
             "releases": [
+                {
+                    "tag_name": "1.0.2",
+                    "published_at": "2025-06-27T19:51:39Z",
+                    "tag_sha": "db7f526ce151cecde9c4497a4adb54f71c553ed2",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "fastqc",
+                            "multiqc",
+                            "seqtk_trim"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "1.0.1",
                     "published_at": "2024-10-18T11:18:34Z",
@@ -27878,12 +27905,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/pathogensurveillance",
             "created_at": "2023-01-12T17:57:12Z",
-            "updated_at": "2025-06-26T22:00:40Z",
-            "pushed_at": "2025-06-26T22:00:36Z",
+            "updated_at": "2025-06-27T19:17:47Z",
+            "pushed_at": "2025-06-27T17:50:17Z",
             "homepage": "https://nf-co.re/pathogensurveillance",
             "size": 296832,
-            "stargazers_count": 28,
-            "watchers_count": 28,
+            "stargazers_count": 30,
+            "watchers_count": 30,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -27894,15 +27921,15 @@
             "forks_count": 7,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 58,
+            "open_issues_count": 59,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
             "topics": [],
             "visibility": "public",
             "forks": 7,
-            "open_issues": 58,
-            "watchers": 28,
+            "open_issues": 59,
+            "watchers": 30,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -27964,7 +27991,7 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/pathogensurveillance",
             "contributors": [
                 {
@@ -28018,10 +28045,10 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/97370288?v=4"
                 }
             ],
-            "released_after_tools": false,
+            "released_after_tools": true,
             "head_sha": "a83b789a7b61e96bee4d5e72a2681876c7289883",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/pathogensurveillance/compare/a83b789a7b61e96bee4d5e72a2681876c7289883...a83b789a7b61e96bee4d5e72a2681876c7289883",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -28039,6 +28066,63 @@
                 "defaultBranch": "main"
             },
             "releases": [
+                {
+                    "tag_name": "1.0.0",
+                    "published_at": "2025-06-27T17:50:17Z",
+                    "tag_sha": "a83b789a7b61e96bee4d5e72a2681876c7289883",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bakta_bakta",
+                            "bakta_baktadbdownload",
+                            "bbmap_sendsketch",
+                            "busco_busco",
+                            "busco_download",
+                            "bwa_index",
+                            "bwa_mem",
+                            "fastp",
+                            "fastqc",
+                            "flye",
+                            "gatk4_variantfiltration",
+                            "graphtyper_genotype",
+                            "graphtyper_vcfconcatenate",
+                            "iqtree",
+                            "mafft",
+                            "mafft_align",
+                            "multiqc",
+                            "nanoplot",
+                            "picard_addorreplacereadgroups",
+                            "picard_createsequencedictionary",
+                            "picard_markduplicates",
+                            "picard_sortsam",
+                            "pirate",
+                            "quast",
+                            "samtools_faidx",
+                            "samtools_index",
+                            "seqkit_head",
+                            "seqkit_sliding",
+                            "seqkit_stats",
+                            "seqtk_sample",
+                            "sourmash_compare",
+                            "sourmash_sketch",
+                            "spades",
+                            "sratools_fasterqdump",
+                            "tabix_bgzip",
+                            "tabix_tabix",
+                            "untar",
+                            "vcflib_vcffilter"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "dev",
                     "published_at": "2025-06-26T19:32:48Z",
@@ -28707,9 +28791,9 @@
             "url": "https://api.github.com/repos/nf-core/phaseimpute",
             "created_at": "2023-07-12T14:41:51Z",
             "updated_at": "2025-06-18T00:29:41Z",
-            "pushed_at": "2025-06-19T12:24:57Z",
+            "pushed_at": "2025-06-27T16:00:24Z",
             "homepage": "https://nf-co.re/phaseimpute",
-            "size": 17869,
+            "size": 17943,
             "stargazers_count": 22,
             "watchers_count": 22,
             "language": "Nextflow",
@@ -28722,7 +28806,7 @@
             "forks_count": 20,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 13,
+            "open_issues_count": 12,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -28735,7 +28819,7 @@
             ],
             "visibility": "public",
             "forks": 20,
-            "open_issues": 13,
+            "open_issues": 12,
             "watchers": 22,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -28807,7 +28891,7 @@
                 "workflow",
                 "pipeline"
             ],
-            "open_pr_count": 1,
+            "open_pr_count": 0,
             "repository_url": "https://github.com/nf-core/phaseimpute",
             "contributors": [
                 {
@@ -28933,8 +29017,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-06-19T12:24:57Z",
-                    "tag_sha": "0d8619d3994fd5d56d53f69d51690cb6545603ca",
+                    "published_at": "2025-06-27T16:00:24Z",
+                    "tag_sha": "0f7e01fb2425d0b06dd9ed2c02b24d58a814d939",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -34576,7 +34660,7 @@
             "forks_count": 111,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 35,
+            "open_issues_count": 37,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -34589,7 +34673,7 @@
             ],
             "visibility": "public",
             "forks": 111,
-            "open_issues": 35,
+            "open_issues": 37,
             "watchers": 159,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -38811,12 +38895,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/sarek",
             "created_at": "2019-04-30T15:43:00Z",
-            "updated_at": "2025-06-23T09:43:15Z",
+            "updated_at": "2025-06-27T20:22:23Z",
             "pushed_at": "2025-06-26T08:30:03Z",
             "homepage": "https://nf-co.re/sarek",
             "size": 107395,
-            "stargazers_count": 452,
-            "watchers_count": 452,
+            "stargazers_count": 453,
+            "watchers_count": 453,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -38847,7 +38931,7 @@
             "visibility": "public",
             "forks": 449,
             "open_issues": 336,
-            "watchers": 452,
+            "watchers": 453,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": true,
