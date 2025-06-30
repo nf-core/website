@@ -8,9 +8,16 @@ const data = await fetch(
     .then((res) => res.text())
     .then((text) => yaml.parse(text));
 
+// convert yaml to markdown
 const markdownContent = Object.entries(data)
-    .map(([key, value]) => `### \`${key}\`\n\n${value.help_text || "No help text available"}`)
-    .join("\n\n");
+    .map(([key, value]) => {
+        return `## ${value.name}\n\n${Object.entries(value.features)
+            .map(([feature, value]) => {
+                return "### `" + feature + "`\n _default: " + value.default + "_\n\n" + value.help_text + "\n\n";
+            })
+            .join("\n")}`;
+    })
+    .join("\n");
 ---
 
 <Markdown of={markdownContent} />
