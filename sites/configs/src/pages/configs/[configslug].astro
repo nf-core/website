@@ -35,14 +35,13 @@ export async function getStaticPaths() {
                         (file) =>
                             file.data.extension === "config" &&
                             file.id.includes("pipeline/") &&
-                            file.id.includes(name) &&
+                            file.id.endsWith("/" + name) &&
                             file.id.split("/").slice(-2, -1).join("/") !== "pipeline",
                     ),
                 },
             };
         });
 }
-
 interface Props {
     md: CollectionEntry<"configs">;
     config: CollectionEntry<"configs">;
