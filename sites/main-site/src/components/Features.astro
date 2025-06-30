@@ -11,9 +11,9 @@ const data = await fetch(
 // convert yaml to markdown
 const markdownContent = Object.entries(data)
     .map(([key, value]) => {
-        return `## ${value.name}\n\n${Object.entries(value.features)
+        return `### ${value.name}\n\n${Object.entries(value.features)
             .map(([feature, value]) => {
-                return "### `" + feature + "`\n _default: " + value.default + "_\n\n" + value.help_text + "\n\n";
+                return "#### `" + feature + "`\n _default: " + value.default + "_\n\n" + value.help_text + "\n\n";
             })
             .join("\n")}`;
     })
