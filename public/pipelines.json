@@ -26635,10 +26635,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/oncoanalyser",
             "created_at": "2022-12-22T05:01:49Z",
-            "updated_at": "2025-06-18T13:45:37Z",
-            "pushed_at": "2025-06-30T02:37:08Z",
+            "updated_at": "2025-06-30T04:30:52Z",
+            "pushed_at": "2025-06-30T08:01:12Z",
             "homepage": "https://nf-co.re/oncoanalyser",
-            "size": 6521,
+            "size": 6530,
             "stargazers_count": 75,
             "watchers_count": 75,
             "language": "Nextflow",
@@ -26651,7 +26651,7 @@
             "forks_count": 21,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 28,
+            "open_issues_count": 26,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -26670,7 +26670,7 @@
             ],
             "visibility": "public",
             "forks": 21,
-            "open_issues": 28,
+            "open_issues": 26,
             "watchers": 75,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -26736,12 +26736,12 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/oncoanalyser",
             "contributors": [
                 {
                     "name": "scwatts",
-                    "count": 714,
+                    "count": 801,
                     "avatar_url": "https://avatars.githubusercontent.com/u/463926?v=4"
                 },
                 {
@@ -26751,7 +26751,7 @@
                 },
                 {
                     "name": "luan-n-nguyen",
-                    "count": 27,
+                    "count": 37,
                     "avatar_url": "https://avatars.githubusercontent.com/u/125411678?v=4"
                 },
                 {
@@ -26790,13 +26790,13 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/177333344?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "d1218d24a165a233fd5e3abfe91ace80b634def2",
+            "released_after_tools": true,
+            "head_sha": "0d0dc258ce4b378fc721cf14dae837c58539b0c7",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/oncoanalyser/compare/d1218d24a165a233fd5e3abfe91ace80b634def2...d1218d24a165a233fd5e3abfe91ace80b634def2",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/oncoanalyser/compare/0d0dc258ce4b378fc721cf14dae837c58539b0c7...0d0dc258ce4b378fc721cf14dae837c58539b0c7",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.3.0"
@@ -26811,6 +26811,34 @@
                 "defaultBranch": "master"
             },
             "releases": [
+                {
+                    "tag_name": "2.1.0",
+                    "published_at": "2025-06-30T05:57:36Z",
+                    "tag_sha": "0d0dc258ce4b378fc721cf14dae837c58539b0c7",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/faq_and_troubleshooting.md",
+                        "docs/usage/key_concepts.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bwa_index",
+                            "bwamem2_index",
+                            "gatk4_markduplicates",
+                            "samtools_dict",
+                            "samtools_faidx",
+                            "samtools_sort",
+                            "star_genomegenerate"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    }
+                },
                 {
                     "tag_name": "2.0.0",
                     "published_at": "2025-04-10T12:30:02Z",
@@ -26868,8 +26896,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-06-30T02:37:07Z",
-                    "tag_sha": "12826156504b5f0e0b9a6ade888e0b5b264a52b8",
+                    "published_at": "2025-06-30T07:45:39Z",
+                    "tag_sha": "66f2759749a465cea38448744fe24f38bdf7e961",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
