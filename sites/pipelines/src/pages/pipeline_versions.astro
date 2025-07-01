@@ -1,29 +1,32 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 
-// Handle version info import with fallback
-let versionData = { pipelines: {} };
+// Handle pipelines.json import with fallback
+let pipelinesData: any = { remote_workflows: [] };
 try {
     // @ts-ignore - Dynamic import may fail if file doesn't exist
-    const module = await import("@public/version_info.json");
-    versionData = module.default || module;
+    const module = await import("@public/pipelines.json");
+    pipelinesData = module.default || module;
 } catch (e) {
-    console.log("version_info.json not found, using empty data");
+    console.log("pipelines.json not found, using empty data");
 }
 
-// Flatten the version data into a more usable format
+// Flatten the pipelines data into a more usable format
 const pipelineVersions: any[] = [];
-const pipelinesData = versionData?.pipelines || {};
+const workflows = pipelinesData?.remote_workflows || [];
 
-Object.entries(pipelinesData).forEach(([pipelineName, releases]: [string, any]) => {
-    Object.entries(releases || {}).forEach(([releaseTag, info]: [string, any]) => {
+workflows.forEach((workflow: any) => {
+    const pipelineName = workflow.name;
+    const releases = workflow.releases || [];
+
+    releases.forEach((release: any) => {
         pipelineVersions.push({
             pipeline: pipelineName,
-            release: releaseTag,
-            nextflow_version: info?.nextflow_version || null,
-            nf_core_version: info?.nf_core_version || null,
-            published_at: info?.published_at || null,
-            published_date: info?.published_at ? new Date(info.published_at) : null,
+            release: release.tag_name,
+            nextflow_version: release.nextflow_version || null,
+            nf_core_version: release.nf_core_version || null,
+            published_at: release.published_at || null,
+            published_date: release.published_at ? new Date(release.published_at) : null,
         });
     });
 });
@@ -51,7 +54,7 @@ pipelineVersions.forEach((version) => {
 });
 
 // Calculate statistics
-const totalPipelines = Object.keys(pipelinesData).length;
+const totalPipelines = workflows.length;
 const totalReleases = pipelineVersions.length;
 
 // Count Nextflow versions (only from latest releases)
@@ -301,10 +304,10 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
 
                     <div class="text-center mt-4 mb-5">
                         <p class="text-muted">
-                            Data last updated from <code>version_info.json</code>
+                            Data last updated from <code>pipelines.json</code>
                         </p>
                         <a
-                            href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
+                            href="https://github.com/nf-core/website/actions/workflows/update-pipelines-json.yml"
                             class="btn btn-sm btn-outline-primary"
                             target="_blank"
                         >
