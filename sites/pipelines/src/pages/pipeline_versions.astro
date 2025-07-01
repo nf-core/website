@@ -1,0 +1,317 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+
+// Handle version info import with fallback
+let versionData = { pipelines: {} };
+try {
+    // @ts-ignore - Dynamic import may fail if file doesn't exist
+    const module = await import("@public/version_info.json");
+    versionData = module.default || module;
+} catch (e) {
+    console.log("version_info.json not found, using empty data");
+}
+
+// Flatten the version data into a more usable format
+const pipelineVersions: any[] = [];
+const pipelinesData = versionData?.pipelines || {};
+
+Object.entries(pipelinesData).forEach(([pipelineName, releases]: [string, any]) => {
+    Object.entries(releases || {}).forEach(([releaseTag, info]: [string, any]) => {
+        pipelineVersions.push({
+            pipeline: pipelineName,
+            release: releaseTag,
+            nextflow_version: info?.nextflow_version || null,
+            nf_core_version: info?.nf_core_version || null,
+            published_at: info?.published_at || null,
+            published_date: info?.published_at ? new Date(info.published_at) : null,
+        });
+    });
+});
+
+// Sort by pipeline name, then by release (dev last)
+pipelineVersions.sort((a, b) => {
+    if (a.pipeline !== b.pipeline) {
+        return a.pipeline.localeCompare(b.pipeline);
+    }
+    if (a.release === "dev" && b.release !== "dev") return 1;
+    if (a.release !== "dev" && b.release === "dev") return -1;
+    // Sort by published date for numbered releases (newest first)
+    if (a.published_date && b.published_date) {
+        return b.published_date.getTime() - a.published_date.getTime();
+    }
+    return 0;
+});
+
+// Calculate statistics
+const totalPipelines = Object.keys(pipelinesData).length;
+const totalReleases = pipelineVersions.length;
+const devReleases = pipelineVersions.filter((p) => p.release === "dev").length;
+const taggedReleases = totalReleases - devReleases;
+
+// Count Nextflow versions
+const nextflowVersionCounts: Record<string, number> = {};
+pipelineVersions.forEach((p) => {
+    if (p.nextflow_version) {
+        const version = p.nextflow_version.replace("!>=", "≥");
+        nextflowVersionCounts[version] = (nextflowVersionCounts[version] || 0) + 1;
+    }
+});
+
+// Count nf-core versions
+const nfCoreVersionCounts: Record<string, number> = {};
+pipelineVersions.forEach((p) => {
+    if (p.nf_core_version) {
+        nfCoreVersionCounts[p.nf_core_version] = (nfCoreVersionCounts[p.nf_core_version] || 0) + 1;
+    }
+});
+
+// Find most common versions
+const mostCommonNextflow = Object.entries(nextflowVersionCounts).sort((a, b) => b[1] - a[1])[0];
+const mostCommonNfCore = Object.entries(nfCoreVersionCounts).sort((a, b) => b[1] - a[1])[0];
+
+// Get latest versions (simplified - just looking for highest version numbers)
+const latestNextflowVersions = Object.keys(nextflowVersionCounts)
+    .filter((v) => v.includes("24.") || v.includes("25."))
+    .sort()
+    .reverse();
+const latestNfCoreVersions = Object.keys(nfCoreVersionCounts)
+    .filter((v) => v.startsWith("3."))
+    .sort()
+    .reverse();
+
+const latestNextflow = latestNextflowVersions[0] || mostCommonNextflow?.[0];
+const latestNfCore = latestNfCoreVersions[0] || mostCommonNfCore?.[0];
+
+// Count pipelines using latest versions
+const usingLatestNextflow = latestNextflow
+    ? pipelineVersions.filter((p) => p.nextflow_version?.includes(latestNextflow.replace("≥", ""))).length
+    : 0;
+const usingLatestNfCore = latestNfCore ? pipelineVersions.filter((p) => p.nf_core_version === latestNfCore).length : 0;
+
+// Format date
+const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return "-";
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+};
+---
+
+<PageLayout
+    title="Pipeline Versions"
+    subtitle="Nextflow and nf-core tools versions across all pipelines"
+    mainpage_container={false}
+>
+    <div class="container main-content">
+        {
+            pipelineVersions.length === 0 ? (
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">No version data available</h4>
+                    <p>
+                        The version information file has not been generated yet. This data is updated nightly by an
+                        automated workflow.
+                    </p>
+                    <hr />
+                    <p class="mb-0">
+                        <a
+                            href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
+                            class="btn btn-sm btn-primary"
+                            target="_blank"
+                        >
+                            View Update Workflow
+                        </a>
+                    </p>
+                </div>
+            ) : (
+                <>
+                    {/* Summary Statistics Cards */}
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Total Pipelines</h5>
+                                    <p class="card-text display-4 text-primary">{totalPipelines}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Total Releases</h5>
+                                    <p class="card-text display-4 text-success">{totalReleases}</p>
+                                    <p class="text-muted small">
+                                        {taggedReleases} tagged, {devReleases} dev
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Most Common Nextflow</h5>
+                                    <p class="card-text h3 text-info">
+                                        {mostCommonNextflow ? mostCommonNextflow[0] : "N/A"}
+                                    </p>
+                                    <p class="text-muted small">
+                                        {mostCommonNextflow ? `${mostCommonNextflow[1]} releases` : ""}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-3">
+                            <div class="card h-100">
+                                <div class="card-body text-center">
+                                    <h5 class="card-title">Most Common nf-core</h5>
+                                    <p class="card-text h3 text-warning">
+                                        {mostCommonNfCore ? `v${mostCommonNfCore[0]}` : "N/A"}
+                                    </p>
+                                    <p class="text-muted small">
+                                        {mostCommonNfCore ? `${mostCommonNfCore[1]} releases` : ""}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Additional Statistics Cards */}
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Latest Versions Usage</h5>
+                                    <div class="row">
+                                        <div class="col-6 text-center border-end">
+                                            <p class="mb-1 text-muted">Latest Nextflow ({latestNextflow || "N/A"})</p>
+                                            <p class="h4 text-primary">{usingLatestNextflow} releases</p>
+                                        </div>
+                                        <div class="col-6 text-center">
+                                            <p class="mb-1 text-muted">Latest nf-core (v{latestNfCore || "N/A"})</p>
+                                            <p class="h4 text-warning">{usingLatestNfCore} releases</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Version Distribution</h5>
+                                    <p class="mb-1">
+                                        <strong>Nextflow versions:</strong> {Object.keys(nextflowVersionCounts).length}{" "}
+                                        unique
+                                    </p>
+                                    <p class="mb-0">
+                                        <strong>nf-core versions:</strong> {Object.keys(nfCoreVersionCounts).length}{" "}
+                                        unique
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Versions Table */}
+                    <div class="table-responsive">
+                        <table class="table table-hover table-sm">
+                            <thead>
+                                <tr class="sticky-top bg-body">
+                                    <th>Pipeline</th>
+                                    <th>Release</th>
+                                    <th>Nextflow Version</th>
+                                    <th>nf-core Version</th>
+                                    <th>Published Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {pipelineVersions.map((version) => (
+                                    <tr class:list={[{ "table-info": version.release === "dev" }]}>
+                                        <td class="fw-semibold">
+                                            <a
+                                                href={`https://github.com/nf-core/${version.pipeline}`}
+                                                target="_blank"
+                                                class="text-decoration-none"
+                                            >
+                                                {version.pipeline}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {version.release === "dev" ? (
+                                                <span class="badge bg-info">{version.release}</span>
+                                            ) : (
+                                                <a
+                                                    href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                    target="_blank"
+                                                    class="text-decoration-none"
+                                                >
+                                                    {version.release}
+                                                </a>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {version.nextflow_version ? (
+                                                <code>{version.nextflow_version.replace("!>=", "≥")}</code>
+                                            ) : (
+                                                <span class="text-muted">-</span>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {version.nf_core_version ? (
+                                                <span class="badge bg-secondary">v{version.nf_core_version}</span>
+                                            ) : (
+                                                <span class="text-muted">-</span>
+                                            )}
+                                        </td>
+                                        <td class="text-muted small">{formatDate(version.published_at)}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="text-center mt-4 mb-5">
+                        <p class="text-muted">
+                            Data last updated from <code>version_info.json</code>
+                        </p>
+                        <a
+                            href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
+                            class="btn btn-sm btn-outline-primary"
+                            target="_blank"
+                        >
+                            View Update Workflow
+                        </a>
+                    </div>
+                </>
+            )
+        }
+    </div>
+</PageLayout>
+
+<style>
+    .table {
+        font-size: 0.875rem;
+    }
+
+    .sticky-top {
+        top: 60px; /* Adjust based on navbar height */
+        z-index: 10;
+    }
+
+    .card {
+        border: 1px solid var(--bs-gray-300);
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+
+    .display-4 {
+        font-weight: 300;
+    }
+
+    tbody tr:hover {
+        background-color: var(--bs-gray-100);
+    }
+
+    :global([data-bs-theme="dark"]) tbody tr:hover {
+        background-color: var(--bs-gray-800);
+    }
+</style>
