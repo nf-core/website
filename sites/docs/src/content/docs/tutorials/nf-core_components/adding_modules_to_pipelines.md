@@ -40,6 +40,7 @@ Different pipelines may have different workflows, but the following steps will c
     ```bash
     prettier -w .
     ```
+
     - Or you can run [pre-commit](https://nf-co.re/events/2023/bytesize_precommit) to use prettier when committing your code
 
     - If you forget this step you can also post a comment on the open PR once made with `@nf-core-bot fix linting`
