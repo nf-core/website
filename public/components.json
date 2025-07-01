@@ -118752,6 +118752,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "genomeassembler",
           "version": "1.0.1"
         },
@@ -118865,6 +118869,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "evexplorer",
+          "version": "dev"
         },
         {
           "name": "radseq",
@@ -153205,7 +153213,13 @@
         "maintainers": [
           "@chriswyatt1"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "evexplorer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pycoqc",
