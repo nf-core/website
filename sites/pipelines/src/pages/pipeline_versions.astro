@@ -253,73 +253,83 @@ const formatDate = (dateStr: string | null) => {
                             <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
                         </span>
                     </div>
-                    <div class="table-responsive">
-                        <table class="table table-hover table-sm text-small" id="versionsTable">
-                            <thead>
-                                <tr class="sticky-top bg-body">
-                                    <th>Pipeline</th>
-                                    <th>Release</th>
-                                    <th>Nextflow Version</th>
-                                    <th>nf-core Version</th>
-                                    <th>Published Date</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {pipelineVersions.map((version) => {
-                                    const isLatest = version.release === latestReleases.get(version.pipeline);
-                                    const isDev = version.release === "dev";
-                                    const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
-                                    return (
-                                        <tr
+                    <table class="table table-hover table-sm text-small" id="versionsTable">
+                        <thead>
+                            <tr class="sticky-top-under z-1 table-active">
+                                <th>Pipeline</th>
+                                <th>Release</th>
+                                <th>Nextflow Version</th>
+                                <th>nf-core Version</th>
+                                <th>Published Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {pipelineVersions.map((version) => {
+                                const isLatest = version.release === latestReleases.get(version.pipeline);
+                                const isDev = version.release === "dev";
+                                const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
+                                const isNonLatestNonDev = !isLatest && !isDev;
+                                return (
+                                    <tr class:list={[{ "hidden-release": !showByDefault }]}>
+                                        <td class="fw-semibold">
+                                            <a
+                                                href={`https://github.com/nf-core/${version.pipeline}`}
+                                                target="_blank"
+                                                class:list={[
+                                                    "text-decoration-none",
+                                                    { "text-body-tertiary": isNonLatestNonDev },
+                                                ]}
+                                            >
+                                                {version.pipeline}
+                                            </a>
+                                        </td>
+                                        <td>
+                                            {version.release === "dev" ? (
+                                                <span class="badge bg-secondary">{version.release}</span>
+                                            ) : (
+                                                <a
+                                                    href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                    target="_blank"
+                                                    class:list={[
+                                                        "text-decoration-none",
+                                                        { "text-body-tertiary": isNonLatestNonDev },
+                                                    ]}
+                                                >
+                                                    {version.release}
+                                                </a>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {version.nextflow_version ? (
+                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                    {version.nextflow_version.replace("!>=", "≥")}
+                                                </code>
+                                            ) : (
+                                                <span class="text-muted">-</span>
+                                            )}
+                                        </td>
+                                        <td>
+                                            {version.nf_core_version ? (
+                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                    v{version.nf_core_version}
+                                                </code>
+                                            ) : (
+                                                <span class="text-muted">-</span>
+                                            )}
+                                        </td>
+                                        <td
                                             class:list={[
-                                                { "table-active": showByDefault },
-                                                { "text-body-tertiary": !isLatest && !isDev },
-                                                { "hidden-release": !showByDefault },
+                                                "text-muted small",
+                                                { "text-body-tertiary": isNonLatestNonDev },
                                             ]}
                                         >
-                                            <td class="fw-semibold">
-                                                <a
-                                                    href={`https://github.com/nf-core/${version.pipeline}`}
-                                                    target="_blank"
-                                                    class="text-decoration-none"
-                                                >
-                                                    {version.pipeline}
-                                                </a>
-                                            </td>
-                                            <td>
-                                                {version.release === "dev" ? (
-                                                    <span class="badge bg-info">{version.release}</span>
-                                                ) : (
-                                                    <a
-                                                        href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
-                                                        target="_blank"
-                                                        class="text-decoration-none"
-                                                    >
-                                                        {version.release}
-                                                    </a>
-                                                )}
-                                            </td>
-                                            <td>
-                                                {version.nextflow_version ? (
-                                                    <code>{version.nextflow_version.replace("!>=", "≥")}</code>
-                                                ) : (
-                                                    <span class="text-muted">-</span>
-                                                )}
-                                            </td>
-                                            <td>
-                                                {version.nf_core_version ? (
-                                                    <span class="badge bg-secondary">v{version.nf_core_version}</span>
-                                                ) : (
-                                                    <span class="text-muted">-</span>
-                                                )}
-                                            </td>
-                                            <td class="text-muted small">{formatDate(version.published_at)}</td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    </div>
+                                            {formatDate(version.published_at)}
+                                        </td>
+                                    </tr>
+                                );
+                            })}
+                        </tbody>
+                    </table>
 
                     <div class="text-center mt-4 mb-5">
                         <p class="text-muted">
@@ -346,11 +356,6 @@ const formatDate = (dateStr: string | null) => {
 
     .show-all .hidden-release {
         display: table-row;
-    }
-
-    .sticky-top {
-        top: 60px; /* Adjust based on navbar height */
-        z-index: 10;
     }
 </style>
 
