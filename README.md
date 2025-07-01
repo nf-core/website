@@ -31,10 +31,10 @@ cd nf-core_website/
 ### Installing dependencies
 
 The website is built using [Astro](https://astro.build/), a static site generator.
-To install the dependencies, run:
+To install the dependencies for all sub-sites, run:
 
 ```bash
-npm install
+npm install --workspaces
 ```
 
 ### Running a local server
@@ -49,6 +49,20 @@ or
 
 ```bash
 npm run dev --workspace sites/docs
+```
+
+For sub-sites (`sites/pipelines`, `sites/pipeline-results`, `sites/configs`, `sites/modules-subworkflows`) that are pulling data from GitHub API, you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
+
+Add the `.env` file to the root of the repository with the following content:
+
+```bash
+GITHUB_TOKEN=your_github_token
+```
+
+and then symlink the `.env` file to the sub-site you are working on, e.g.:
+
+```bash
+ln -s .env sites/pipelines/.env
 ```
 
 You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Some pages will not work when rendered using a specific dev server because the sub-sites are disjunct from each other, e.g., when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) the [http://localhost:4321/pipelines](http://localhost:4321/pipelines) pages will throw 404 errors.
