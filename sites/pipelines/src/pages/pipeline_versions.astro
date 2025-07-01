@@ -33,8 +33,8 @@ pipelineVersions.sort((a, b) => {
     if (a.pipeline !== b.pipeline) {
         return a.pipeline.localeCompare(b.pipeline);
     }
-    if (a.release === "dev" && b.release !== "dev") return 1;
-    if (a.release !== "dev" && b.release === "dev") return -1;
+    if (a.release === "dev" && b.release !== "dev") return -1;
+    if (a.release !== "dev" && b.release === "dev") return 1;
     // Sort by published date for numbered releases (newest first)
     if (a.published_date && b.published_date) {
         return b.published_date.getTime() - a.published_date.getTime();
@@ -214,7 +214,7 @@ const formatDate = (dateStr: string | null) => {
 
                     {/* Versions Table */}
                     <div class="table-responsive">
-                        <table class="table table-hover table-sm">
+                        <table class="table table-hover table-sm text-small">
                             <thead>
                                 <tr class="sticky-top bg-body">
                                     <th>Pipeline</th>
@@ -226,7 +226,7 @@ const formatDate = (dateStr: string | null) => {
                             </thead>
                             <tbody>
                                 {pipelineVersions.map((version) => (
-                                    <tr class:list={[{ "table-info": version.release === "dev" }]}>
+                                    <tr class:list={[{ "table-active": version.release === "dev" }]}>
                                         <td class="fw-semibold">
                                             <a
                                                 href={`https://github.com/nf-core/${version.pipeline}`}
@@ -287,31 +287,3 @@ const formatDate = (dateStr: string | null) => {
         }
     </div>
 </PageLayout>
-
-<style>
-    .table {
-        font-size: 0.875rem;
-    }
-
-    .sticky-top {
-        top: 60px; /* Adjust based on navbar height */
-        z-index: 10;
-    }
-
-    .card {
-        border: 1px solid var(--bs-gray-300);
-        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-    }
-
-    .display-4 {
-        font-weight: 300;
-    }
-
-    tbody tr:hover {
-        background-color: var(--bs-gray-100);
-    }
-
-    :global([data-bs-theme="dark"]) tbody tr:hover {
-        background-color: var(--bs-gray-800);
-    }
-</style>
