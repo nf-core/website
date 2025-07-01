@@ -15,7 +15,10 @@ try {
 const pipelineVersions: any[] = [];
 const workflows = pipelinesData?.remote_workflows || [];
 
-workflows.forEach((workflow: any) => {
+// Filter out archived pipelines
+const activeWorkflows = workflows.filter((workflow: any) => !workflow.archived);
+
+activeWorkflows.forEach((workflow: any) => {
     const pipelineName = workflow.name;
     const releases = workflow.releases || [];
 
@@ -54,7 +57,7 @@ pipelineVersions.forEach((version) => {
 });
 
 // Calculate statistics
-const totalPipelines = workflows.length;
+const totalPipelines = activeWorkflows.length;
 const totalReleases = pipelineVersions.length;
 
 // Count Nextflow versions (only from latest releases)
@@ -112,8 +115,12 @@ const prepareChartData = (versionCounts: Record<string, number>, limit: number =
 const nextflowChartData = prepareChartData(nextflowVersionCounts);
 const nfCoreChartData = prepareChartData(nfCoreVersionCounts);
 
-// Generate histogram using table for better alignment
-const createBarChart = (data: { labels: string[]; values: number[] }, accentColor: string = "#23a3dd") => {
+// Generate histogram
+const createBarChart = (
+    data: { labels: string[]; values: number[] },
+    accentColor: string = "#23a3dd",
+    chartId: string,
+) => {
     if (data.labels.length === 0) return "";
 
     // Create table-based bar chart
@@ -123,7 +130,7 @@ const createBarChart = (data: { labels: string[]; values: number[] }, accentColo
             const value = data.values[i];
             const percentage = (value / maxValue) * 100;
             return `
-            <tr>
+            <tr data-version="${label}" data-count="${value}">
                 <td class="chart-label text-nowrap pe-2">${label.replace(">=", "&ge; ").replace("≥", "&ge; ")}</td>
                 <td class="w-100">
                     <div class="chart-bar" style="width: ${percentage}%; background-color: ${accentColor};">
@@ -135,11 +142,27 @@ const createBarChart = (data: { labels: string[]; values: number[] }, accentColo
         })
         .join("");
 
-    return `<table class="w-100 text-small">${rows}</table>`;
+    return `
+        <table class="w-100 text-small histogram-table" id="${chartId}">
+            <thead>
+                <tr>
+                    <th class="sortable histogram-sortable" data-sort="version" style="width: 90px;">
+                        Version
+                        <i class="fas fa-sort ms-1 text-muted"></i>
+                    </th>
+                    <th class="sortable histogram-sortable" data-sort="count">
+                        Count
+                        <i class="fas fa-sort ms-1 text-muted"></i>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    `;
 };
 
-const nextflowChart = createBarChart(nextflowChartData, "var(--bs-info)");
-const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
+const nextflowChart = createBarChart(nextflowChartData, "var(--bs-info)", "nextflowChart");
+const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCoreChart");
 ---
 
 <PageLayout
@@ -193,10 +216,16 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
 
                     {/* Versions Table */}
                     <div class="mb-3 d-flex justify-content-between align-items-center">
-                        <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
-                            <i class="fas fa-eye me-1" />
-                            <span class="toggle-text">Show all releases</span>
-                        </button>
+                        <div class="btn-group" role="group">
+                            <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
+                                <i class="fas fa-eye me-1" />
+                                <span class="toggle-text">Show all releases</span>
+                            </button>
+                            <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
+                                <i class="fas fa-download me-1" />
+                                Download CSV
+                            </button>
+                        </div>
                         <span class="text-muted small">
                             Showing {totalPipelines} latest releases
                             <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
@@ -335,6 +364,25 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
         text-align: right;
     }
 
+    .chart-bar {
+        display: inline-block;
+        min-width: 30px;
+        text-align: center;
+        border-radius: 3px;
+    }
+
+    /* Histogram table styling */
+    .histogram-table thead th {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+        border-bottom: 2px solid var(--bs-border-color);
+    }
+
+    .histogram-table tbody td {
+        padding: 0.25rem 0.75rem;
+        vertical-align: middle;
+    }
+
     /* Sortable table headers */
     .sortable {
         cursor: pointer;
@@ -367,6 +415,7 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
     document.addEventListener("DOMContentLoaded", () => {
         // Initialize toggle functionality
         const toggleButton = document.getElementById("toggleReleases");
+        const downloadButton = document.getElementById("downloadCSV");
         const versionsTable = document.getElementById("versionsTable") as HTMLTableElement;
         const toggleText = toggleButton?.querySelector(".toggle-text");
         const toggleIcon = toggleButton?.querySelector("i");
@@ -390,6 +439,57 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
                 toggleIcon?.classList.add("fa-eye");
                 if (hiddenCount) hiddenCount.style.display = "inline";
             }
+        });
+
+        // Download CSV functionality
+        downloadButton?.addEventListener("click", () => {
+            const rows = versionsTable?.querySelectorAll("tbody tr");
+            if (!rows) return;
+
+            // CSV header
+            let csv = "Pipeline,Release,Nextflow Version,nf-core Version,Published Date\n";
+
+            // Add data rows (including hidden ones based on current view)
+            rows.forEach((row) => {
+                // Skip hidden rows if not showing all
+                if (!showingAll && row.classList.contains("hidden-release")) {
+                    return;
+                }
+
+                const cells = row.querySelectorAll("td");
+                const pipeline = cells[0]?.textContent?.trim() || "";
+                const release = cells[1]?.textContent?.trim() || "";
+                const nextflowVersion = cells[2]?.textContent?.trim().replace("≥", ">=") || "";
+                const nfCoreVersion = cells[3]?.textContent?.trim() || "";
+                const publishedDate = cells[4]?.textContent?.trim() || "";
+
+                // Escape values that contain commas or quotes
+                const escapeCSV = (value: string) => {
+                    if (value.includes(",") || value.includes('"') || value.includes("\n")) {
+                        return `"${value.replace(/"/g, '""')}"`;
+                    }
+                    return value;
+                };
+
+                csv += `${escapeCSV(pipeline)},${escapeCSV(release)},${escapeCSV(nextflowVersion)},${escapeCSV(nfCoreVersion)},${escapeCSV(publishedDate)}\n`;
+            });
+
+            // Create and trigger download
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().split("T")[0];
+            const filename = showingAll
+                ? `nf-core-pipeline-versions-all-${timestamp}.csv`
+                : `nf-core-pipeline-versions-latest-${timestamp}.csv`;
+
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         });
 
         // Initialize table sorting
@@ -467,6 +567,78 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
                 // Default string comparison
                 const comparison = aValue.localeCompare(bValue);
                 return ascending ? comparison : -comparison;
+            });
+
+            // Re-append rows in sorted order
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        // Initialize histogram table sorting
+        const histogramTables = document.querySelectorAll(".histogram-table");
+        histogramTables.forEach((table) => {
+            const headers = table.querySelectorAll<HTMLTableCellElement>("th.histogram-sortable");
+            let currentHistogramSort: { column: string; ascending: boolean } | null = null;
+
+            headers.forEach((header) => {
+                header.addEventListener("click", () => {
+                    const sortType = header.dataset.sort;
+                    if (!sortType) return;
+
+                    // Determine sort direction
+                    const isAscending =
+                        currentHistogramSort?.column === sortType ? !currentHistogramSort.ascending : true;
+                    currentHistogramSort = { column: sortType, ascending: isAscending };
+
+                    // Update header classes
+                    headers.forEach((h) => {
+                        h.classList.remove("sort-asc", "sort-desc");
+                    });
+                    header.classList.add(isAscending ? "sort-asc" : "sort-desc");
+
+                    // Sort the histogram table
+                    sortHistogramTable(table as HTMLTableElement, sortType, isAscending);
+                });
+            });
+        });
+
+        function sortHistogramTable(table: HTMLTableElement, sortType: string, ascending: boolean) {
+            const tbody = table.querySelector("tbody");
+            if (!tbody) return;
+
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            rows.sort((a, b) => {
+                let aValue: string | number = a.dataset[sortType] || "";
+                let bValue: string | number = b.dataset[sortType] || "";
+
+                if (sortType === "count") {
+                    // Convert to numbers for count sorting
+                    aValue = parseInt(aValue as string) || 0;
+                    bValue = parseInt(bValue as string) || 0;
+                    return ascending
+                        ? (aValue as number) - (bValue as number)
+                        : (bValue as number) - (aValue as number);
+                } else {
+                    // Version sorting - extract numeric parts
+                    const aVersion = (aValue as string).match(/[\d.]+/)?.[0] || "";
+                    const bVersion = (bValue as string).match(/[\d.]+/)?.[0] || "";
+
+                    if (aVersion && bVersion) {
+                        const aParts = aVersion.split(".").map(Number);
+                        const bParts = bVersion.split(".").map(Number);
+                        for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                            const aPart = aParts[i] || 0;
+                            const bPart = bParts[i] || 0;
+                            if (aPart !== bPart) {
+                                return ascending ? aPart - bPart : bPart - aPart;
+                            }
+                        }
+                    }
+
+                    // Fallback to string comparison
+                    const comparison = (aValue as string).localeCompare(bValue as string);
+                    return ascending ? comparison : -comparison;
+                }
             });
 
             // Re-append rows in sorted order
