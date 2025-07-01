@@ -67,6 +67,14 @@ ln -s .env sites/pipelines/.env
 
 You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Some pages will not work when rendered using a specific dev server because the sub-sites are disjunct from each other, e.g., when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) the [http://localhost:4321/pipelines](http://localhost:4321/pipelines) pages will throw 404 errors.
 
+In case you want to update `pipelines.json` or `components.json` you need to have a GitHub token with the `admin:read`, `workflows:read`, `PRs:read`, `issues:read` permissions.
+You can then run the following command to update the JSON files:
+
+```bash
+npm run build-pipeline-json
+npm run build-component-json
+```
+
 ### File structure
 
 The website follows a mono-repo setup with sub-sites.
