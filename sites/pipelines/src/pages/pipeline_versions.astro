@@ -202,11 +202,26 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
                     <table class="table table-hover table-sm text-small" id="versionsTable">
                         <thead>
                             <tr class="sticky-top-under z-1 table-active">
-                                <th>Pipeline</th>
-                                <th>Release</th>
-                                <th>Nextflow Version</th>
-                                <th>nf-core Version</th>
-                                <th>Published Date</th>
+                                <th class="sortable" data-sort="pipeline">
+                                    Pipeline
+                                    <i class="fas fa-sort ms-1 text-muted" />
+                                </th>
+                                <th class="sortable" data-sort="release">
+                                    Release
+                                    <i class="fas fa-sort ms-1 text-muted" />
+                                </th>
+                                <th class="sortable" data-sort="nextflow">
+                                    Nextflow Version
+                                    <i class="fas fa-sort ms-1 text-muted" />
+                                </th>
+                                <th class="sortable" data-sort="nfcore">
+                                    nf-core Version
+                                    <i class="fas fa-sort ms-1 text-muted" />
+                                </th>
+                                <th class="sortable" data-sort="date">
+                                    Published Date
+                                    <i class="fas fa-sort ms-1 text-muted" />
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -216,7 +231,14 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
                                 const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
                                 const isNonLatestNonDev = !isLatest && !isDev;
                                 return (
-                                    <tr class:list={[{ "hidden-release": !showByDefault }]}>
+                                    <tr
+                                        class:list={[{ "hidden-release": !showByDefault }]}
+                                        data-pipeline={version.pipeline}
+                                        data-release={version.release}
+                                        data-nextflow={version.nextflow_version || ""}
+                                        data-nfcore={version.nf_core_version || ""}
+                                        data-date={version.published_at || ""}
+                                    >
                                         <td class="fw-semibold">
                                             <a
                                                 href={`https://github.com/nf-core/${version.pipeline}`}
@@ -309,13 +331,40 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
         width: 90px;
         text-align: right;
     }
+
+    /* Sortable table headers */
+    .sortable {
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+    }
+
+    .sortable i {
+        font-size: 0.75rem;
+        transition: opacity 0.2s;
+        opacity: 0.5;
+    }
+
+    .sortable:hover i {
+        opacity: 1;
+    }
+
+    .sortable.sort-asc i::before {
+        content: "\f0de"; /* fa-sort-up */
+        opacity: 1;
+    }
+
+    .sortable.sort-desc i::before {
+        content: "\f0dd"; /* fa-sort-down */
+        opacity: 1;
+    }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Initialize toggle functionality
         const toggleButton = document.getElementById("toggleReleases");
-        const versionsTable = document.getElementById("versionsTable");
+        const versionsTable = document.getElementById("versionsTable") as HTMLTableElement;
         const toggleText = toggleButton?.querySelector(".toggle-text");
         const toggleIcon = toggleButton?.querySelector("i");
         const hiddenCount = document.querySelector(".hidden-count") as HTMLElement;
@@ -339,5 +388,86 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
                 if (hiddenCount) hiddenCount.style.display = "inline";
             }
         });
+
+        // Initialize table sorting
+        const sortableHeaders = versionsTable?.querySelectorAll<HTMLTableCellElement>("th.sortable");
+        let currentSort: { column: string; ascending: boolean } | null = null;
+
+        sortableHeaders?.forEach((header) => {
+            header.addEventListener("click", () => {
+                const sortType = header.dataset.sort;
+                if (!sortType) return;
+
+                // Determine sort direction
+                const isAscending = currentSort?.column === sortType ? !currentSort.ascending : true;
+                currentSort = { column: sortType, ascending: isAscending };
+
+                // Update header classes
+                sortableHeaders.forEach((h) => {
+                    h.classList.remove("sort-asc", "sort-desc");
+                });
+                header.classList.add(isAscending ? "sort-asc" : "sort-desc");
+
+                // Sort the table
+                sortTable(sortType, isAscending);
+            });
+        });
+
+        function sortTable(sortType: string, ascending: boolean) {
+            const tbody = versionsTable?.querySelector("tbody");
+            if (!tbody) return;
+
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            // Custom sorting function
+            rows.sort((a, b) => {
+                let aValue = a.dataset[sortType] || "";
+                let bValue = b.dataset[sortType] || "";
+
+                // Special handling for different column types
+                switch (sortType) {
+                    case "date":
+                        // Sort by date (ISO format)
+                        aValue = aValue || "0000-00-00";
+                        bValue = bValue || "0000-00-00";
+                        break;
+                    case "release":
+                        // Put 'dev' releases at the end when ascending, start when descending
+                        if (aValue === "dev" && bValue !== "dev") return ascending ? 1 : -1;
+                        if (aValue !== "dev" && bValue === "dev") return ascending ? -1 : 1;
+                        // Try to sort numerically if possible (for version numbers)
+                        const aNum = parseFloat(aValue.replace(/[^0-9.]/g, ""));
+                        const bNum = parseFloat(bValue.replace(/[^0-9.]/g, ""));
+                        if (!isNaN(aNum) && !isNaN(bNum)) {
+                            return ascending ? aNum - bNum : bNum - aNum;
+                        }
+                        break;
+                    case "nextflow":
+                    case "nfcore":
+                        // Extract version numbers for proper sorting
+                        const aVersion = aValue.match(/[\d.]+/)?.[0] || "";
+                        const bVersion = bValue.match(/[\d.]+/)?.[0] || "";
+                        if (aVersion && bVersion) {
+                            const aParts = aVersion.split(".").map(Number);
+                            const bParts = bVersion.split(".").map(Number);
+                            for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                                const aPart = aParts[i] || 0;
+                                const bPart = bParts[i] || 0;
+                                if (aPart !== bPart) {
+                                    return ascending ? aPart - bPart : bPart - aPart;
+                                }
+                            }
+                        }
+                        break;
+                }
+
+                // Default string comparison
+                const comparison = aValue.localeCompare(bValue);
+                return ascending ? comparison : -comparison;
+            });
+
+            // Re-append rows in sorted order
+            rows.forEach((row) => tbody.appendChild(row));
+        }
     });
 </script>
