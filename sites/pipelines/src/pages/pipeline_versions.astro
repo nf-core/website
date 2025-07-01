@@ -42,26 +42,46 @@ pipelineVersions.sort((a, b) => {
     return 0;
 });
 
+// Identify latest release for each pipeline (excluding dev)
+const latestReleases = new Map<string, string>();
+pipelineVersions.forEach((version) => {
+    if (version.release !== "dev" && !latestReleases.has(version.pipeline)) {
+        latestReleases.set(version.pipeline, version.release);
+    }
+});
+
 // Calculate statistics
 const totalPipelines = Object.keys(pipelinesData).length;
 const totalReleases = pipelineVersions.length;
 const devReleases = pipelineVersions.filter((p) => p.release === "dev").length;
 const taggedReleases = totalReleases - devReleases;
 
-// Count Nextflow versions
+// Count Nextflow versions (only from latest releases)
 const nextflowVersionCounts: Record<string, number> = {};
+const nextflowVersionCountsAll: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
     if (p.nextflow_version) {
         const version = p.nextflow_version.replace("!>=", "≥");
-        nextflowVersionCounts[version] = (nextflowVersionCounts[version] || 0) + 1;
+        // Count all versions
+        nextflowVersionCountsAll[version] = (nextflowVersionCountsAll[version] || 0) + 1;
+        // Only count if it's the latest release for this pipeline
+        if (p.release === latestReleases.get(p.pipeline)) {
+            nextflowVersionCounts[version] = (nextflowVersionCounts[version] || 0) + 1;
+        }
     }
 });
 
-// Count nf-core versions
+// Count nf-core versions (only from latest releases)
 const nfCoreVersionCounts: Record<string, number> = {};
+const nfCoreVersionCountsAll: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
     if (p.nf_core_version) {
-        nfCoreVersionCounts[p.nf_core_version] = (nfCoreVersionCounts[p.nf_core_version] || 0) + 1;
+        // Count all versions
+        nfCoreVersionCountsAll[p.nf_core_version] = (nfCoreVersionCountsAll[p.nf_core_version] || 0) + 1;
+        // Only count if it's the latest release for this pipeline
+        if (p.release === latestReleases.get(p.pipeline)) {
+            nfCoreVersionCounts[p.nf_core_version] = (nfCoreVersionCounts[p.nf_core_version] || 0) + 1;
+        }
     }
 });
 
@@ -70,11 +90,11 @@ const mostCommonNextflow = Object.entries(nextflowVersionCounts).sort((a, b) => 
 const mostCommonNfCore = Object.entries(nfCoreVersionCounts).sort((a, b) => b[1] - a[1])[0];
 
 // Get latest versions (simplified - just looking for highest version numbers)
-const latestNextflowVersions = Object.keys(nextflowVersionCounts)
+const latestNextflowVersions = Object.keys(nextflowVersionCountsAll)
     .filter((v) => v.includes("24.") || v.includes("25."))
     .sort()
     .reverse();
-const latestNfCoreVersions = Object.keys(nfCoreVersionCounts)
+const latestNfCoreVersions = Object.keys(nfCoreVersionCountsAll)
     .filter((v) => v.startsWith("3."))
     .sort()
     .reverse();
@@ -82,11 +102,18 @@ const latestNfCoreVersions = Object.keys(nfCoreVersionCounts)
 const latestNextflow = latestNextflowVersions[0] || mostCommonNextflow?.[0];
 const latestNfCore = latestNfCoreVersions[0] || mostCommonNfCore?.[0];
 
-// Count pipelines using latest versions
+// Count pipelines using latest versions (only considering their latest releases)
 const usingLatestNextflow = latestNextflow
-    ? pipelineVersions.filter((p) => p.nextflow_version?.includes(latestNextflow.replace("≥", ""))).length
+    ? pipelineVersions.filter(
+          (p) =>
+              p.release === latestReleases.get(p.pipeline) &&
+              p.nextflow_version?.includes(latestNextflow.replace("≥", "")),
+      ).length
     : 0;
-const usingLatestNfCore = latestNfCore ? pipelineVersions.filter((p) => p.nf_core_version === latestNfCore).length : 0;
+const usingLatestNfCore = latestNfCore
+    ? pipelineVersions.filter((p) => p.release === latestReleases.get(p.pipeline) && p.nf_core_version === latestNfCore)
+          .length
+    : 0;
 
 // Format date
 const formatDate = (dateStr: string | null) => {
@@ -152,11 +179,12 @@ const formatDate = (dateStr: string | null) => {
                             <div class="card h-100">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Most Common Nextflow</h5>
+                                    <p class="text-muted small mb-2">(latest releases only)</p>
                                     <p class="card-text h3 text-info">
                                         {mostCommonNextflow ? mostCommonNextflow[0] : "N/A"}
                                     </p>
                                     <p class="text-muted small">
-                                        {mostCommonNextflow ? `${mostCommonNextflow[1]} releases` : ""}
+                                        {mostCommonNextflow ? `${mostCommonNextflow[1]} pipelines` : ""}
                                     </p>
                                 </div>
                             </div>
@@ -165,11 +193,12 @@ const formatDate = (dateStr: string | null) => {
                             <div class="card h-100">
                                 <div class="card-body text-center">
                                     <h5 class="card-title">Most Common nf-core</h5>
+                                    <p class="text-muted small mb-2">(latest releases only)</p>
                                     <p class="card-text h3 text-warning">
                                         {mostCommonNfCore ? `v${mostCommonNfCore[0]}` : "N/A"}
                                     </p>
                                     <p class="text-muted small">
-                                        {mostCommonNfCore ? `${mostCommonNfCore[1]} releases` : ""}
+                                        {mostCommonNfCore ? `${mostCommonNfCore[1]} pipelines` : ""}
                                     </p>
                                 </div>
                             </div>
@@ -182,14 +211,15 @@ const formatDate = (dateStr: string | null) => {
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Latest Versions Usage</h5>
+                                    <p class="text-muted small mb-2">(at latest release)</p>
                                     <div class="row">
                                         <div class="col-6 text-center border-end">
                                             <p class="mb-1 text-muted">Latest Nextflow ({latestNextflow || "N/A"})</p>
-                                            <p class="h4 text-primary">{usingLatestNextflow} releases</p>
+                                            <p class="h4 text-primary">{usingLatestNextflow} pipelines</p>
                                         </div>
                                         <div class="col-6 text-center">
                                             <p class="mb-1 text-muted">Latest nf-core (v{latestNfCore || "N/A"})</p>
-                                            <p class="h4 text-warning">{usingLatestNfCore} releases</p>
+                                            <p class="h4 text-warning">{usingLatestNfCore} pipelines</p>
                                         </div>
                                     </div>
                                 </div>
@@ -213,8 +243,18 @@ const formatDate = (dateStr: string | null) => {
                     </div>
 
                     {/* Versions Table */}
+                    <div class="mb-3 d-flex justify-content-between align-items-center">
+                        <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
+                            <i class="fas fa-eye me-1" />
+                            <span class="toggle-text">Show all releases</span>
+                        </button>
+                        <span class="text-muted small">
+                            Showing {totalPipelines} latest releases
+                            <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
+                        </span>
+                    </div>
                     <div class="table-responsive">
-                        <table class="table table-hover table-sm text-small">
+                        <table class="table table-hover table-sm text-small" id="versionsTable">
                             <thead>
                                 <tr class="sticky-top bg-body">
                                     <th>Pipeline</th>
@@ -225,47 +265,58 @@ const formatDate = (dateStr: string | null) => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {pipelineVersions.map((version) => (
-                                    <tr class:list={[{ "table-active": version.release === "dev" }]}>
-                                        <td class="fw-semibold">
-                                            <a
-                                                href={`https://github.com/nf-core/${version.pipeline}`}
-                                                target="_blank"
-                                                class="text-decoration-none"
-                                            >
-                                                {version.pipeline}
-                                            </a>
-                                        </td>
-                                        <td>
-                                            {version.release === "dev" ? (
-                                                <span class="badge bg-info">{version.release}</span>
-                                            ) : (
+                                {pipelineVersions.map((version) => {
+                                    const isLatest = version.release === latestReleases.get(version.pipeline);
+                                    const isDev = version.release === "dev";
+                                    const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
+                                    return (
+                                        <tr
+                                            class:list={[
+                                                { "table-active": showByDefault },
+                                                { "text-body-tertiary": !isLatest && !isDev },
+                                                { "hidden-release": !showByDefault },
+                                            ]}
+                                        >
+                                            <td class="fw-semibold">
                                                 <a
-                                                    href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                    href={`https://github.com/nf-core/${version.pipeline}`}
                                                     target="_blank"
                                                     class="text-decoration-none"
                                                 >
-                                                    {version.release}
+                                                    {version.pipeline}
                                                 </a>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {version.nextflow_version ? (
-                                                <code>{version.nextflow_version.replace("!>=", "≥")}</code>
-                                            ) : (
-                                                <span class="text-muted">-</span>
-                                            )}
-                                        </td>
-                                        <td>
-                                            {version.nf_core_version ? (
-                                                <span class="badge bg-secondary">v{version.nf_core_version}</span>
-                                            ) : (
-                                                <span class="text-muted">-</span>
-                                            )}
-                                        </td>
-                                        <td class="text-muted small">{formatDate(version.published_at)}</td>
-                                    </tr>
-                                ))}
+                                            </td>
+                                            <td>
+                                                {version.release === "dev" ? (
+                                                    <span class="badge bg-info">{version.release}</span>
+                                                ) : (
+                                                    <a
+                                                        href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                        target="_blank"
+                                                        class="text-decoration-none"
+                                                    >
+                                                        {version.release}
+                                                    </a>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {version.nextflow_version ? (
+                                                    <code>{version.nextflow_version.replace("!>=", "≥")}</code>
+                                                ) : (
+                                                    <span class="text-muted">-</span>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {version.nf_core_version ? (
+                                                    <span class="badge bg-secondary">v{version.nf_core_version}</span>
+                                                ) : (
+                                                    <span class="text-muted">-</span>
+                                                )}
+                                            </td>
+                                            <td class="text-muted small">{formatDate(version.published_at)}</td>
+                                        </tr>
+                                    );
+                                })}
                             </tbody>
                         </table>
                     </div>
@@ -287,3 +338,48 @@ const formatDate = (dateStr: string | null) => {
         }
     </div>
 </PageLayout>
+
+<style>
+    .hidden-release {
+        display: none;
+    }
+
+    .show-all .hidden-release {
+        display: table-row;
+    }
+
+    .sticky-top {
+        top: 60px; /* Adjust based on navbar height */
+        z-index: 10;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const toggleButton = document.getElementById("toggleReleases");
+        const versionsTable = document.getElementById("versionsTable");
+        const toggleText = toggleButton?.querySelector(".toggle-text");
+        const toggleIcon = toggleButton?.querySelector("i");
+        const hiddenCount = document.querySelector(".hidden-count") as HTMLElement;
+
+        let showingAll = false;
+
+        toggleButton?.addEventListener("click", () => {
+            showingAll = !showingAll;
+
+            if (showingAll) {
+                versionsTable?.classList.add("show-all");
+                if (toggleText) toggleText.textContent = "Show latest only";
+                toggleIcon?.classList.remove("fa-eye");
+                toggleIcon?.classList.add("fa-eye-slash");
+                if (hiddenCount) hiddenCount.style.display = "none";
+            } else {
+                versionsTable?.classList.remove("show-all");
+                if (toggleText) toggleText.textContent = "Show all releases";
+                toggleIcon?.classList.remove("fa-eye-slash");
+                toggleIcon?.classList.add("fa-eye");
+                if (hiddenCount) hiddenCount.style.display = "inline";
+            }
+        });
+    });
+</script>
