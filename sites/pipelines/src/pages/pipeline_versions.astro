@@ -100,14 +100,12 @@ const formatDate = (dateStr: string | null) => {
     });
 };
 
-// Prepare data for histograms (limit to top 10 versions for readability)
-const prepareChartData = (versionCounts: Record<string, number>, limit: number = 10) => {
-    const sorted = Object.entries(versionCounts)
-        .sort((a, b) => b[1] - a[1])
-        .slice(0, limit);
+// Prepare data for histograms
+const prepareChartData = (versionCounts: Record<string, number>) => {
+    const entries = Object.entries(versionCounts);
 
-    const labels = sorted.map(([version]) => version);
-    const values = sorted.map(([, count]) => count);
+    const labels = entries.map(([version]) => version);
+    const values = entries.map(([, count]) => count);
 
     return { labels, values };
 };
@@ -123,11 +121,31 @@ const createBarChart = (
 ) => {
     if (data.labels.length === 0) return "";
 
+    // Sort data by version number (descending) by default
+    const sortedData = data.labels
+        .map((label, i) => ({
+            label,
+            value: data.values[i],
+            version: label.match(/[\d.]+/)?.[0] || "",
+        }))
+        .sort((a, b) => {
+            // Extract version numbers for proper sorting
+            const aParts = a.version.split(".").map(Number);
+            const bParts = b.version.split(".").map(Number);
+            for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                const aPart = aParts[i] || 0;
+                const bPart = bParts[i] || 0;
+                if (aPart !== bPart) {
+                    return bPart - aPart; // Descending order
+                }
+            }
+            return 0;
+        });
+
     // Create table-based bar chart
     const maxValue = Math.max(...data.values);
-    const rows = data.labels
-        .map((label, i) => {
-            const value = data.values[i];
+    const rows = sortedData
+        .map(({ label, value }) => {
             const percentage = (value / maxValue) * 100;
             return `
             <tr data-version="${label}" data-count="${value}">
@@ -143,10 +161,10 @@ const createBarChart = (
         .join("");
 
     return `
-        <table class="w-100 text-small histogram-table" id="${chartId}">
+        <table class="w-100 text-small histogram-table" id="${chartId}" data-initial-sort="version">
             <thead>
                 <tr>
-                    <th class="sortable histogram-sortable" data-sort="version" style="width: 90px;">
+                    <th class="sortable histogram-sortable sort-asc" data-sort="version" style="width: 90px;">
                         Version
                         <i class="fas fa-sort ms-1 text-muted"></i>
                     </th>
@@ -577,7 +595,11 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
         const histogramTables = document.querySelectorAll(".histogram-table");
         histogramTables.forEach((table) => {
             const headers = table.querySelectorAll<HTMLTableCellElement>("th.histogram-sortable");
-            let currentHistogramSort: { column: string; ascending: boolean } | null = null;
+            // Initialize with version sorted ascending by default
+            let currentHistogramSort: { column: string; ascending: boolean } | null = {
+                column: "version",
+                ascending: true,
+            };
 
             headers.forEach((header) => {
                 header.addEventListener("click", () => {
