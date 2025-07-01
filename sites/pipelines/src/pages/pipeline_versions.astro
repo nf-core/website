@@ -79,13 +79,13 @@ pipelineVersions.forEach((p) => {
 const nfCoreVersionCounts: Record<string, number> = {};
 const nfCoreVersionCountsAll: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
-    if (p.nf_core_version) {
-        // Count all versions
-        nfCoreVersionCountsAll[p.nf_core_version] = (nfCoreVersionCountsAll[p.nf_core_version] || 0) + 1;
-        // Only count if it's the latest release for this pipeline
-        if (p.release === latestReleases.get(p.pipeline)) {
-            nfCoreVersionCounts[p.nf_core_version] = (nfCoreVersionCounts[p.nf_core_version] || 0) + 1;
-        }
+    // Use "<2.14.1" for missing versions
+    const version = p.nf_core_version || "<2.14.1";
+    // Count all versions
+    nfCoreVersionCountsAll[version] = (nfCoreVersionCountsAll[version] || 0) + 1;
+    // Only count if it's the latest release for this pipeline
+    if (p.release === latestReleases.get(p.pipeline)) {
+        nfCoreVersionCounts[version] = (nfCoreVersionCounts[version] || 0) + 1;
     }
 });
 
@@ -129,6 +129,10 @@ const createBarChart = (
             version: label.match(/[\d.]+/)?.[0] || "",
         }))
         .sort((a, b) => {
+            // Handle "<2.14.1" specially - it should come first (oldest)
+            if (a.label.startsWith("<") && !b.label.startsWith("<")) return 1; // a goes to end (oldest)
+            if (!a.label.startsWith("<") && b.label.startsWith("<")) return -1; // b goes to end (oldest)
+
             // Extract version numbers for proper sorting
             const aParts = a.version.split(".").map(Number);
             const bParts = b.version.split(".").map(Number);
@@ -332,7 +336,14 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                                                     v{version.nf_core_version}
                                                 </code>
                                             ) : (
-                                                <span class="text-muted">-</span>
+                                                <code
+                                                    class:list={[
+                                                        "text-muted",
+                                                        { "text-body-tertiary": isNonLatestNonDev },
+                                                    ]}
+                                                >
+                                                    &lt;2.14.1
+                                                </code>
                                             )}
                                         </td>
                                         <td
@@ -478,7 +489,11 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                 const pipeline = cells[0]?.textContent?.trim() || "";
                 const release = cells[1]?.textContent?.trim() || "";
                 const nextflowVersion = cells[2]?.textContent?.trim().replace("≥", ">=") || "";
-                const nfCoreVersion = cells[3]?.textContent?.trim() || "";
+                let nfCoreVersion = cells[3]?.textContent?.trim() || "";
+                // Replace the HTML entity with the actual character for CSV
+                if (nfCoreVersion.includes("<")) {
+                    nfCoreVersion = nfCoreVersion.replace(/</g, "gs<");
+                }
                 const publishedDate = cells[4]?.textContent?.trim() || "";
 
                 // Escape values that contain commas or quotes
@@ -641,7 +656,18 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                         ? (aValue as number) - (bValue as number)
                         : (bValue as number) - (aValue as number);
                 } else {
-                    // Version sorting - extract numeric parts
+                    // Version sorting - handle "<2.14.1" specially
+                    const aIsLessThan = (aValue as string).startsWith("<");
+                    const bIsLessThan = (bValue as string).startsWith("<");
+
+                    if (aIsLessThan && !bIsLessThan) {
+                        return ascending ? -1 : 1; // "<2.14.1" is oldest
+                    }
+                    if (!aIsLessThan && bIsLessThan) {
+                        return ascending ? 1 : -1; // "<2.14.1" is oldest
+                    }
+
+                    // Extract numeric parts for regular versions
                     const aVersion = (aValue as string).match(/[\d.]+/)?.[0] || "";
                     const bVersion = (bValue as string).match(/[\d.]+/)?.[0] || "";
 
