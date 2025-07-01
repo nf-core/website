@@ -16,7 +16,7 @@ Fetch version information for nf-core pipelines from GitHub.
    - Fetches `nextflow.config` and extracts the `nextflowVersion` value
    - Fetches `.nf-core.yml` and extracts the `nf_core_version` value
    - Stores the `published_at` timestamp from pipelines.json
-3. Caches results in `.github/version_info.json` to avoid re-fetching
+3. Caches results in `sites/pipelines/public/version_info.json` to avoid re-fetching
 4. Saves progress after each pipeline to prevent data loss
 
 ## Usage
@@ -29,7 +29,7 @@ uv run .github/fetch_version_info.py
 
 ## Output
 
-The script creates/updates `.github/version_info.json` with a structure like:
+The script creates/updates `sites/pipelines/public/version_info.json` with a structure like:
 
 ```json
 {
@@ -75,7 +75,7 @@ def load_pipelines_json() -> Dict[str, Any]:
 
 def load_cache() -> Dict[str, Any]:
     """Load the local cache file if it exists"""
-    cache_path = Path(".github/version_info.json")
+    cache_path = Path("sites/pipelines/public/version_info.json")
 
     if cache_path.exists():
         try:
@@ -90,7 +90,7 @@ def load_cache() -> Dict[str, Any]:
 
 def save_cache(cache: Dict[str, Any]) -> None:
     """Save the cache to disk"""
-    cache_path = Path(".github/version_info.json")
+    cache_path = Path("sites/pipelines/public/version_info.json")
     cache_path.parent.mkdir(parents=True, exist_ok=True)
 
     try:
@@ -224,7 +224,7 @@ def main():
             print(f"    Published at: {version_info['published_at'] or 'Not found'}")
 
     print(f"\nCompleted! Processed {len(pipelines_data.get('remote_workflows', []))} pipelines")
-    print("Results saved to .github/version_info.json")
+    print("Results saved to sites/pipelines/public/version_info.json")
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
-          git add .github/version_info.json
+          git add sites/pipelines/public/version_info.json
           git commit -m "[automated] Update pipeline version info"
           git push
 
