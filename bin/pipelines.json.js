@@ -518,28 +518,33 @@ export const writePipelinesJson = async () => {
       data[`${branch}_nextflow_config_manifest`] = nextflowConfig.manifest;
     }
 
-    new_releases = await Promise.all(
-      new_releases.map(async (release) => {
-        const { tag_name, published_at, tag_sha, has_schema } = release;
-        const doc_files = await getDocFiles(name, release.tag_name);
+    // Process all releases to ensure they have version information
+    const processRelease = async (release) => {
+      const { tag_name, published_at, tag_sha, has_schema } = release;
+      const doc_files = release.doc_files || await getDocFiles(name, release.tag_name);
 
-        // Fetch version information
-        let nextflow_version = null;
-        let nf_core_version = null;
+      // Fetch version information if not already present
+      let nextflow_version = release.nextflow_version;
+      let nf_core_version = release.nf_core_version;
 
-        // Fetch nextflow.config and extract nextflowVersion
+      // Only fetch if version info is missing
+      if (nextflow_version === undefined || nextflow_version === null) {
         const nextflowConfig = await getGitHubFile(name, "nextflow.config", tag_name);
         if (nextflowConfig) {
           nextflow_version = extractNextflowVersion(nextflowConfig);
         }
+      }
 
-        // Fetch .nf-core.yml and extract nf_core_version
+      if (nf_core_version === undefined || nf_core_version === null) {
         const nfCoreYml = await getGitHubFile(name, ".nf-core.yml", tag_name);
         if (nfCoreYml) {
           nf_core_version = extractNfCoreVersion(nfCoreYml);
         }
+      }
 
-        let components = await octokit
+      let components = release.components;
+      if (!components) {
+        components = await octokit
           .request("GET /repos/{owner}/{repo}/contents/{path}?ref={ref}", {
             owner: "nf-core",
             repo: name,
@@ -595,11 +600,18 @@ export const writePipelinesJson = async () => {
             return component.replace("/", "_");
           });
         }
-        return { tag_name, published_at, tag_sha, has_schema, doc_files, components, nextflow_version, nf_core_version };
-      }),
-    );
+      }
 
-    // Assign new_releases to data.releases
+      return { tag_name, published_at, tag_sha, has_schema, doc_files, components, nextflow_version, nf_core_version };
+    };
+
+    // Process new releases
+    new_releases = await Promise.all(new_releases.map(processRelease));
+
+    // Process old releases to add version information if missing
+    old_releases = await Promise.all(old_releases.map(processRelease));
+
+    // Assign all releases to data.releases
     data["releases"] = [...old_releases, ...new_releases];
 
     // Resolve the promises
