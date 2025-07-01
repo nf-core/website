@@ -1,0 +1,69 @@
+name: Update pipeline version info
+
+on:
+  schedule:
+    # Run at 1am UTC every day
+    - cron: "0 1 * * *"
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  update-version-info:
+    runs-on: ubuntu-latest
+    steps:
+      # Use the @nf-core-bot token to check out so we can push later
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        with:
+          token: ${{ secrets.nf_core_bot_auth_token }}
+
+      # Install uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@bd01e18f51369d5a26f1651c3cb451d3417e3bba # v6.3.1
+
+      # Run the version info fetch script
+      - name: Fetch version info
+        run: uv run .github/fetch_version_info.py
+
+      # Check if there are any changes
+      - name: Check for changes
+        id: check-changes
+        run: git diff --quiet || echo "changes=true" >> $GITHUB_OUTPUT
+
+      # Commit and push changes if any
+      - name: Commit and push changes
+        if: steps.check-changes.outputs.changes == 'true'
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git add sites/pipelines/public/version_info.json
+          git commit -m "[automated] Update pipeline version info"
+          git push
+
+      # Create issue if the workflow fails
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        with:
+          github-token: ${{ secrets.nf_core_bot_auth_token }}
+          script: |
+            const title = 'Pipeline version info update failed';
+            const body = `The automated pipeline version info update workflow failed.\n\nSee the [workflow run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}) for details.`;
+
+            // Check if issue already exists
+            const issues = await github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: 'automated-issue'
+            });
+
+            const existingIssue = issues.data.find(issue => issue.title === title);
+
+            if (!existingIssue) {
+              await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: title,
+                body: body,
+                labels: ['automated-issue', 'bug']
+              });
+            }
