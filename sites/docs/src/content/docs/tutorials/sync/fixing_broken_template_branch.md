@@ -39,6 +39,7 @@ If so, the easiest solution is to start your `TEMPLATE` branch from scratch.
   ```bash
   git push origin TEMPLATE --force
   ```
+
   - This will then replace the broken `TEMPLATE` branch on GitHub with a nice clean one, which can be viewable by checking the commit history.
 
   :::warning
