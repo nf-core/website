@@ -57,6 +57,7 @@ To run a pipeline:
    ```bash
    nextflow run nf-core/<pipeline_name> -profile test,docker --outdir <OUTDIR>
    ```
+
    - Replace `<pipeline_name>` with the name of an nf-core pipeline.
 
    - If you don't have Docker installed, replace `docker` with either `singularity` or `conda`.
