@@ -782,69 +782,28 @@
             "open_issues": 25,
             "watchers": 209,
             "default_branch": "master",
-            "temp_clone_token": "",
-            "allow_squash_merge": false,
-            "allow_merge_commit": true,
-            "allow_rebase_merge": true,
-            "allow_auto_merge": false,
-            "delete_branch_on_merge": false,
-            "allow_update_branch": false,
-            "use_squash_pr_title_as_default": false,
-            "squash_merge_commit_message": "COMMIT_MESSAGES",
-            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
-            "merge_commit_message": "PR_TITLE",
-            "merge_commit_title": "MERGE_MESSAGE",
             "custom_properties": {},
-            "security_and_analysis": {
-                "secret_scanning": {
-                    "status": "enabled"
-                },
-                "secret_scanning_push_protection": {
-                    "status": "enabled"
-                },
-                "dependabot_security_updates": {
-                    "status": "disabled"
-                },
-                "secret_scanning_non_provider_patterns": {
-                    "status": "enabled"
-                },
-                "secret_scanning_ai_detection": {
-                    "status": "disabled"
-                },
-                "secret_scanning_validity_checks": {
-                    "status": "enabled"
-                }
-            },
             "network_count": 138,
             "subscribers_count": 165,
-            "team_contributors_permission_push": true,
-            "team_contributors_permission_admin": false,
-            "team_core_permission_push": true,
-            "team_core_permission_admin": true,
+            "allow_merge_commit": -1,
+            "allow_rebase_merge": -1,
+            "allow_squash_merge": -1,
             "master_branch_exists": true,
             "master_branch_protection_up_to_date": -1,
-            "master_branch_protection_status_checks": [
-                "nf-core",
-                "pre-commit"
-            ],
-            "master_branch_protection_required_reviews": 2,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
             "main_branch_exists": false,
             "dev_branch_exists": true,
             "dev_branch_protection_up_to_date": -1,
-            "dev_branch_protection_status_checks": [
-                "nf-core",
-                "pre-commit",
-                "confirm-pass"
-            ],
-            "dev_branch_protection_required_reviews": 1,
-            "dev_branch_protection_require_codeowner_review": false,
-            "dev_branch_protection_require_non_stale_review": false,
-            "dev_branch_protection_enforce_admins": false,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
             "TEMPLATE_branch_exists": true,
-            "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
             "open_pr_count": 3,
             "repository_url": "https://github.com/nf-core/ampliseq",
@@ -1725,7 +1684,9 @@
                             "utils_nfcore_pipeline",
                             "utils_nfschema_plugin"
                         ]
-                    }
+                    },
+                    "nextflow_version": "!>=24.04.2",
+                    "nf_core_version": "3.3.1"
                 }
             ]
         },
