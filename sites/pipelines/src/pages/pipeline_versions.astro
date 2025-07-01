@@ -53,8 +53,6 @@ pipelineVersions.forEach((version) => {
 // Calculate statistics
 const totalPipelines = Object.keys(pipelinesData).length;
 const totalReleases = pipelineVersions.length;
-const devReleases = pipelineVersions.filter((p) => p.release === "dev").length;
-const taggedReleases = totalReleases - devReleases;
 
 // Count Nextflow versions (only from latest releases)
 const nextflowVersionCounts: Record<string, number> = {};
@@ -85,36 +83,6 @@ pipelineVersions.forEach((p) => {
     }
 });
 
-// Find most common versions
-const mostCommonNextflow = Object.entries(nextflowVersionCounts).sort((a, b) => b[1] - a[1])[0];
-const mostCommonNfCore = Object.entries(nfCoreVersionCounts).sort((a, b) => b[1] - a[1])[0];
-
-// Get latest versions (simplified - just looking for highest version numbers)
-const latestNextflowVersions = Object.keys(nextflowVersionCountsAll)
-    .filter((v) => v.includes("24.") || v.includes("25."))
-    .sort()
-    .reverse();
-const latestNfCoreVersions = Object.keys(nfCoreVersionCountsAll)
-    .filter((v) => v.startsWith("3."))
-    .sort()
-    .reverse();
-
-const latestNextflow = latestNextflowVersions[0] || mostCommonNextflow?.[0];
-const latestNfCore = latestNfCoreVersions[0] || mostCommonNfCore?.[0];
-
-// Count pipelines using latest versions (only considering their latest releases)
-const usingLatestNextflow = latestNextflow
-    ? pipelineVersions.filter(
-          (p) =>
-              p.release === latestReleases.get(p.pipeline) &&
-              p.nextflow_version?.includes(latestNextflow.replace("≥", "")),
-      ).length
-    : 0;
-const usingLatestNfCore = latestNfCore
-    ? pipelineVersions.filter((p) => p.release === latestReleases.get(p.pipeline) && p.nf_core_version === latestNfCore)
-          .length
-    : 0;
-
 // Format date
 const formatDate = (dateStr: string | null) => {
     if (!dateStr) return "-";
@@ -125,6 +93,50 @@ const formatDate = (dateStr: string | null) => {
         day: "numeric",
     });
 };
+
+// Prepare data for histograms (limit to top 10 versions for readability)
+const prepareChartData = (versionCounts: Record<string, number>, limit: number = 10) => {
+    const sorted = Object.entries(versionCounts)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, limit);
+
+    const labels = sorted.map(([version]) => version);
+    const values = sorted.map(([, count]) => count);
+
+    return { labels, values };
+};
+
+const nextflowChartData = prepareChartData(nextflowVersionCounts);
+const nfCoreChartData = prepareChartData(nfCoreVersionCounts);
+
+// Generate histogram using table for better alignment
+const createBarChart = (data: { labels: string[]; values: number[] }, accentColor: string = "#23a3dd") => {
+    if (data.labels.length === 0) return "";
+
+    // Create table-based bar chart
+    const maxValue = Math.max(...data.values);
+    const rows = data.labels
+        .map((label, i) => {
+            const value = data.values[i];
+            const percentage = (value / maxValue) * 100;
+            return `
+            <tr>
+                <td class="chart-label text-nowrap pe-2">${label.replace(">=", "&ge; ").replace("≥", "&ge; ")}</td>
+                <td class="w-100">
+                    <div class="chart-bar" style="width: ${percentage}%; background-color: ${accentColor};">
+                        <span class="text-white ps-1">${value}</span>
+                    </div>
+                </td>
+            </tr>
+        `;
+        })
+        .join("");
+
+    return `<table class="w-100 text-small">${rows}</table>`;
+};
+
+const nextflowChart = createBarChart(nextflowChartData, "var(--bs-info)");
+const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)");
 ---
 
 <PageLayout
@@ -154,89 +166,23 @@ const formatDate = (dateStr: string | null) => {
                 </div>
             ) : (
                 <>
-                    {/* Summary Statistics Cards */}
+                    {/* Version Distribution Charts */}
                     <div class="row g-3 mb-4">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Total Pipelines</h5>
-                                    <p class="card-text display-4 text-primary">{totalPipelines}</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Total Releases</h5>
-                                    <p class="card-text display-4 text-success">{totalReleases}</p>
-                                    <p class="text-muted small">
-                                        {taggedReleases} tagged, {devReleases} dev
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Most Common Nextflow</h5>
-                                    <p class="text-muted small mb-2">(latest releases only)</p>
-                                    <p class="card-text h3 text-info">
-                                        {mostCommonNextflow ? mostCommonNextflow[0] : "N/A"}
-                                    </p>
-                                    <p class="text-muted small">
-                                        {mostCommonNextflow ? `${mostCommonNextflow[1]} pipelines` : ""}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="card h-100">
-                                <div class="card-body text-center">
-                                    <h5 class="card-title">Most Common nf-core</h5>
-                                    <p class="text-muted small mb-2">(latest releases only)</p>
-                                    <p class="card-text h3 text-warning">
-                                        {mostCommonNfCore ? `v${mostCommonNfCore[0]}` : "N/A"}
-                                    </p>
-                                    <p class="text-muted small">
-                                        {mostCommonNfCore ? `${mostCommonNfCore[1]} pipelines` : ""}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Additional Statistics Cards */}
-                    <div class="row g-3 mb-4">
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">Latest Versions Usage</h5>
-                                    <p class="text-muted small mb-2">(at latest release)</p>
-                                    <div class="row">
-                                        <div class="col-6 text-center border-end">
-                                            <p class="mb-1 text-muted">Latest Nextflow ({latestNextflow || "N/A"})</p>
-                                            <p class="h4 text-primary">{usingLatestNextflow} pipelines</p>
-                                        </div>
-                                        <div class="col-6 text-center">
-                                            <p class="mb-1 text-muted">Latest nf-core (v{latestNfCore || "N/A"})</p>
-                                            <p class="h4 text-warning">{usingLatestNfCore} pipelines</p>
-                                        </div>
-                                    </div>
+                                    <h5 class="card-title">Nextflow Version Distribution</h5>
+                                    <p class="text-muted small mb-3">(latest releases only)</p>
+                                    <div set:html={nextflowChart} />
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-lg-6">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">Version Distribution</h5>
-                                    <p class="mb-1">
-                                        <strong>Nextflow versions:</strong> {Object.keys(nextflowVersionCounts).length}{" "}
-                                        unique
-                                    </p>
-                                    <p class="mb-0">
-                                        <strong>nf-core versions:</strong> {Object.keys(nfCoreVersionCounts).length}{" "}
-                                        unique
-                                    </p>
+                                    <h5 class="card-title">nf-core Tools Version Distribution</h5>
+                                    <p class="text-muted small mb-3">(latest releases only)</p>
+                                    <div set:html={nfCoreChart} />
                                 </div>
                             </div>
                         </div>
@@ -357,10 +303,17 @@ const formatDate = (dateStr: string | null) => {
     .show-all .hidden-release {
         display: table-row;
     }
+
+    /* Custom bar chart styling */
+    .chart-label {
+        width: 90px;
+        text-align: right;
+    }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // Initialize toggle functionality
         const toggleButton = document.getElementById("toggleReleases");
         const versionsTable = document.getElementById("versionsTable");
         const toggleText = toggleButton?.querySelector(".toggle-text");
