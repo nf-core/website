@@ -2,9 +2,9 @@
 title: "Bytesize: nf-core test-datasets"
 subtitle: Julian Flesch, QBiC, University Tübingen
 type: talk
-startDate: "2025-07-01"
+startDate: "2025-07-08"
 startTime: "13:00+02:00"
-endDate: "2025-07-01"
+endDate: "2025-07-08"
 endTime: "13:30+02:00"
 locations:
   - name: Online
