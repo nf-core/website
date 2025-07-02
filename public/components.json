@@ -77533,6 +77533,23 @@
             ]
           },
           {
+            "marker_classification": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_marker_classification/*_marker_classification.tsv": {
+                  "type": "file",
+                  "description": "Marker-based classification scores when --disable-nn-classification is used",
+                  "pattern": "*_marker_classification.tsv"
+                }
+              }
+            ]
+          },
+          {
             "taxonomy": [
               {
                 "meta": {
