@@ -12,7 +12,14 @@ try {
 }
 
 // Flatten the pipelines data into a more usable format
-const pipelineVersions: any[] = [];
+const pipelineVersions: {
+    pipeline: string;
+    release: string;
+    nextflow_version: string | null;
+    nf_core_version: string | null;
+    published_at: string | null;
+    published_date: Date | null;
+}[] = [];
 const workflows = pipelinesData?.remote_workflows || [];
 
 // Filter out archived pipelines
@@ -65,7 +72,7 @@ const nextflowVersionCounts: Record<string, number> = {};
 const nextflowVersionCountsAll: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
     if (p.nextflow_version) {
-        const version = p.nextflow_version.replace("!>=", "≥");
+        const version = p.nextflow_version.replace("!>=", ">=");
         // Count all versions
         nextflowVersionCountsAll[version] = (nextflowVersionCountsAll[version] || 0) + 1;
         // Only count if it's the latest release for this pipeline
@@ -229,7 +236,7 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                             <div class="card h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">nf-core Tools Version Distribution</h5>
-                                    <p class="text-muted small mb-3">(latest releases only)</p>
+                                    <p class="text-muted small my-2">(latest releases only)</p>
                                     <div set:html={nfCoreChart} />
                                 </div>
                             </div>
@@ -256,7 +263,7 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                     <table class="table table-hover table-sm text-small" id="versionsTable">
                         <thead>
                             <tr class="sticky-top-under z-1 table-active">
-                                <th class="sortable" data-sort="pipeline">
+                                <th class="sortable sort-desc" data-sort="pipeline">
                                     Pipeline
                                     <i class="fas fa-sort ms-1 text-muted" />
                                 </th>
@@ -295,7 +302,7 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
                                     >
                                         <td class="fw-semibold">
                                             <a
-                                                href={`https://github.com/nf-core/${version.pipeline}`}
+                                                href={`https://nf-co.re/${version.pipeline}`}
                                                 target="_blank"
                                                 class:list={[
                                                     "text-decoration-none",
@@ -429,12 +436,12 @@ const nfCoreChart = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCore
         opacity: 1;
     }
 
-    .sortable.sort-asc i::before {
+    :global(.sortable.sort-asc i::before) {
         content: "\f0de"; /* fa-sort-up */
         opacity: 1;
     }
 
-    .sortable.sort-desc i::before {
+    :global(.sortable.sort-desc i::before) {
         content: "\f0dd"; /* fa-sort-down */
         opacity: 1;
     }
