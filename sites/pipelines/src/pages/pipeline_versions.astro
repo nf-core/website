@@ -202,17 +202,16 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                         <thead>
                                             <tr>
                                                 <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap"
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
                                                     data-sort="version"
-                                                    style="width: 90px; cursor: pointer; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--bs-border-color);"
+                                                    style="width: 90px;"
                                                 >
                                                     Version
                                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                                 </th>
                                                 <th
-                                                    class="sortable histogram-sortable user-select-none text-nowrap"
+                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
                                                     data-sort="count"
-                                                    style="cursor: pointer; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--bs-border-color);"
                                                 >
                                                     Count
                                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
@@ -226,18 +225,15 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 return (
                                                     <tr data-version={label} data-count={value}>
                                                         <td
-                                                            class="text-end text-nowrap pe-2 align-middle"
-                                                            style="width: 90px; padding: 0.25rem 0.75rem;"
+                                                            class="text-end text-nowrap pe-2 align-middle px-3 py-1"
+                                                            style="width: 90px;"
                                                         >
                                                             {label.replace(">=", "≥ ")}
                                                         </td>
-                                                        <td
-                                                            class="w-100 align-middle"
-                                                            style="padding: 0.25rem 0.75rem;"
-                                                        >
+                                                        <td class="w-100 align-middle px-3 py-1">
                                                             <div
-                                                                class="d-inline-block text-center rounded-1"
-                                                                style={`width: ${percentage}%; min-width: 30px; background-color: var(--bs-info);`}
+                                                                class="d-inline-block text-center rounded-1 bg-info"
+                                                                style={`width: ${percentage}%; min-width: 30px;`}
                                                             >
                                                                 <span class="text-white px-1">{value}</span>
                                                             </div>
@@ -263,17 +259,16 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                         <thead>
                                             <tr>
                                                 <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap"
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap fs-7 px-3 py-2 mb-2 border-bottom"
                                                     data-sort="version"
-                                                    style="width: 90px; cursor: pointer; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--bs-border-color);"
+                                                    style="width: 90px;"
                                                 >
                                                     Version
                                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                                 </th>
                                                 <th
-                                                    class="sortable histogram-sortable user-select-none text-nowrap"
+                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
                                                     data-sort="count"
-                                                    style="cursor: pointer; font-size: 0.875rem; padding: 0.5rem 0.75rem; border-bottom: 2px solid var(--bs-border-color);"
                                                 >
                                                     Count
                                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
@@ -287,15 +282,12 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 return (
                                                     <tr data-version={label} data-count={value}>
                                                         <td
-                                                            class="text-end text-nowrap pe-2 align-middle"
-                                                            style="width: 90px; padding: 0.25rem 0.75rem;"
+                                                            class="text-end text-nowrap pe-2 align-middle px-3 py-1"
+                                                            style="width: 90px;"
                                                         >
                                                             {label.replace(">=", "≥ ").replace("≥", "≥ ")}
                                                         </td>
-                                                        <td
-                                                            class="w-100 align-middle"
-                                                            style="padding: 0.25rem 0.75rem;"
-                                                        >
+                                                        <td class="w-100 align-middle px-3 py-1">
                                                             <div
                                                                 class="d-inline-block text-center rounded-1"
                                                                 style={`width: ${percentage}%; min-width: 30px; background-color: var(--bs-warning);`}
@@ -333,43 +325,23 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                     <table class="table table-hover table-sm text-small" id="versionsTable">
                         <thead>
                             <tr class="sticky-top-under z-1 table-active">
-                                <th
-                                    class="sortable sort-desc user-select-none text-nowrap"
-                                    data-sort="pipeline"
-                                    style="cursor: pointer;"
-                                >
+                                <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
                                     Pipeline
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th
-                                    class="sortable user-select-none text-nowrap"
-                                    data-sort="release"
-                                    style="cursor: pointer;"
-                                >
+                                <th class="sortable user-select-none text-nowrap" data-sort="release">
                                     Release
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th
-                                    class="sortable user-select-none text-nowrap"
-                                    data-sort="nextflow"
-                                    style="cursor: pointer;"
-                                >
+                                <th class="sortable user-select-none text-nowrap" data-sort="nextflow">
                                     Nextflow Version
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th
-                                    class="sortable user-select-none text-nowrap"
-                                    data-sort="nfcore"
-                                    style="cursor: pointer;"
-                                >
+                                <th class="sortable user-select-none text-nowrap" data-sort="nfcore">
                                     nf-core Version
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th
-                                    class="sortable user-select-none text-nowrap"
-                                    data-sort="date"
-                                    style="cursor: pointer;"
-                                >
+                                <th class="sortable user-select-none text-nowrap" data-sort="date">
                                     Published Date
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
@@ -484,17 +456,21 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
         display: table-row;
     }
 
-    /* Sortable table hover effects */
+    /* Sortable table styles */
+    .sortable {
+        cursor: pointer;
+    }
+
     .sortable:hover i {
         opacity: 1 !important;
     }
 
-    :global(.sortable.sort-asc i::before) {
+    .sortable.sort-asc i::before {
         content: "\f0de"; /* fa-sort-up */
         opacity: 1;
     }
 
-    :global(.sortable.sort-desc i::before) {
+    .sortable.sort-desc i::before {
         content: "\f0dd"; /* fa-sort-down */
         opacity: 1;
     }
