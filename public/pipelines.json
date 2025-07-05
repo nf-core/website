@@ -22807,9 +22807,9 @@
             "url": "https://api.github.com/repos/nf-core/methylseq",
             "created_at": "2018-03-12T15:46:42Z",
             "updated_at": "2025-07-04T06:25:25Z",
-            "pushed_at": "2025-07-04T11:57:07Z",
+            "pushed_at": "2025-07-05T11:48:44Z",
             "homepage": "https://nf-co.re/methylseq",
-            "size": 25474,
+            "size": 25483,
             "stargazers_count": 168,
             "watchers_count": 168,
             "language": "Nextflow",
@@ -22822,7 +22822,7 @@
             "forks_count": 156,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 27,
+            "open_issues_count": 28,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -22838,7 +22838,7 @@
             ],
             "visibility": "public",
             "forks": 156,
-            "open_issues": 27,
+            "open_issues": 28,
             "watchers": 168,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -22900,7 +22900,7 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/methylseq",
             "contributors": [
                 {
@@ -31837,9 +31837,9 @@
             "url": "https://api.github.com/repos/nf-core/raredisease",
             "created_at": "2021-06-21T09:40:29Z",
             "updated_at": "2025-06-30T12:25:31Z",
-            "pushed_at": "2025-07-04T13:38:55Z",
+            "pushed_at": "2025-07-05T09:14:04Z",
             "homepage": "https://nf-co.re/raredisease",
-            "size": 196542,
+            "size": 196543,
             "stargazers_count": 103,
             "watchers_count": 103,
             "language": "Nextflow",
@@ -47832,10 +47832,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/tfactivity",
             "created_at": "2024-03-03T07:02:10Z",
-            "updated_at": "2025-06-19T08:08:28Z",
-            "pushed_at": "2025-07-04T20:13:58Z",
+            "updated_at": "2025-07-05T10:59:20Z",
+            "pushed_at": "2025-07-05T10:59:15Z",
             "homepage": "https://nf-co.re/tfactivity",
-            "size": 8011,
+            "size": 8110,
             "stargazers_count": 12,
             "watchers_count": 12,
             "language": "Nextflow",
@@ -47848,7 +47848,7 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 4,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -47859,7 +47859,7 @@
             ],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 4,
+            "open_issues": 3,
             "watchers": 12,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -47927,12 +47927,12 @@
             "TEMPLATE_branch_exists": true,
             "TEMPLATE_restrict_push": true,
             "has_required_topics": true,
-            "open_pr_count": 2,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/tfactivity",
             "contributors": [
                 {
                     "name": "nictru",
-                    "count": 315,
+                    "count": 325,
                     "avatar_url": "https://avatars.githubusercontent.com/u/52698566?v=4"
                 },
                 {
@@ -47952,7 +47952,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "653603c6cba98a245fe4cb0785bce8d6d72579ad",
+            "head_sha": "ad77357fd40dec55c60e639ea3acb87a07f68d3c",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -47972,8 +47972,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-06-19T08:08:16Z",
-                    "tag_sha": "653603c6cba98a245fe4cb0785bce8d6d72579ad",
+                    "published_at": "2025-07-05T10:59:15Z",
+                    "tag_sha": "ad77357fd40dec55c60e639ea3acb87a07f68d3c",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -47995,7 +47995,9 @@
                             "gnu_sort",
                             "gunzip",
                             "samtools_faidx",
-                            "samtools_reheader"
+                            "samtools_reheader",
+                            "untar",
+                            "zip"
                         ],
                         "subworkflows": [
                             "utils_nextflow_pipeline",
