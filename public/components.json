@@ -64508,6 +64508,293 @@
       }
     },
     {
+      "name": "fusionreport_detect",
+      "path": "modules/nf-core/fusionreport/detect/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fusionreport_detect",
+        "description": "fusionreport_detect",
+        "keywords": [
+          "sort",
+          "RNA-seq",
+          "fusion report",
+          "detect"
+        ],
+        "tools": [
+          {
+            "fusionreport": {
+              "description": "Tool for parsing outputs from fusion detection tools",
+              "homepage": "https://github.com/Clinical-Genomics/fusion-report",
+              "documentation": "https://matq007.github.io/fusion-report/#/",
+              "doi": "10.1101/011650",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "arriba_fusions": {
+                "type": "file",
+                "description": "File",
+                "pattern": "*.fusions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "starfusion_fusions": {
+                "type": "file",
+                "description": "File containing fusions from STARfusion",
+                "pattern": "*.starfusion.fusion_predictions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "fusioncatcher_fusions": {
+                "type": "file",
+                "description": "File containing fusions from fusioncatcher",
+                "pattern": "*.fusions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "fusionreport_ref": {
+                "type": "directory",
+                "description": "File",
+                "pattern": "fusion_report_db"
+              }
+            }
+          ],
+          [
+            {
+              "tools_cutoff": {
+                "type": "integer",
+                "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fusion_list": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "*fusionreport.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fusion_list_filtered": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "*fusionreport_filtered.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.index.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              },
+              {
+                "*index.html": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.index.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*_*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_*.html": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*_*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "json": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.json": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@praveenraj2018, @rannick"
+        ]
+      }
+    },
+    {
       "name": "fusionreport_download",
       "path": "modules/nf-core/fusionreport/download/meta.yml",
       "type": "module",
@@ -188056,7 +188343,37 @@
             {
               "dfam_species": {
                 "type": "string",
-                "description": "Dfam species name"
+                "description": "Dfam species name",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "pfam_url": {
+                "type": "file",
+                "description": "compressed HMM database from the Pfam protein family database.",
+                "pattern": "*.hmm.gz",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "dfam_urls": {
+                "type": "file",
+                "description": "URLs to DNA transposable element files from Dfam.",
+                "pattern": "*.{hmm,hmm.h3f,hmm.h3i,hmm.h3m,hmm.h3p}",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "annot_filter_url": {
+                "type": "file",
+                "description": "Rules for filtering out fusions based on annotations.",
+                "required": true
               }
             }
           ]
