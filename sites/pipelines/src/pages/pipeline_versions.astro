@@ -165,7 +165,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
     subtitle="Nextflow and nf-core tools versions across all pipelines"
     mainpage_container={false}
 >
-    <div class="container main-content">
+    <div class="container-fluid main-content">
         {
             pipelineVersions.length === 0 ? (
                 <div class="alert alert-info" role="alert">
@@ -306,133 +306,131 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                     </div>
 
                     {/* Versions Table */}
-                    <div class="mb-3 d-flex justify-content-between align-items-center">
-                        <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
-                                <i class="fas fa-eye me-1" />
-                                <span class="toggle-text">Show all releases</span>
-                            </button>
-                            <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
-                                <i class="fas fa-download me-1" />
-                                Download CSV
-                            </button>
+                    <div class="table-container m-auto w-100">
+                        <div class=" mb-3 d-flex justify-content-between align-items-center">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
+                                    <i class="fas fa-eye me-1" />
+                                    <span class="toggle-text">Show all releases</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
+                                    <i class="fas fa-download me-1" />
+                                    Download CSV
+                                </button>
+                            </div>
+                            <span class="text-muted small">
+                                Showing {totalPipelines} latest releases
+                                <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
+                            </span>
                         </div>
-                        <span class="text-muted small">
-                            Showing {totalPipelines} latest releases
-                            <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
-                        </span>
-                    </div>
-                    <table class="table table-hover table-sm text-small" id="versionsTable">
-                        <thead>
-                            <tr class="sticky-top-under z-1 table-active">
-                                <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
-                                    Pipeline
-                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                </th>
-                                <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
-                                    Release
-                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                </th>
-                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
-                                    Nextflow Version
-                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                </th>
-                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
-                                    nf-core Version
-                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                </th>
-                                <th class="sortable user-select-none text-nowrap" data-sort="date">
-                                    Published Date
-                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {pipelineVersions.map((version) => {
-                                const isLatest = version.release === latestReleases.get(version.pipeline);
-                                const isDev = version.release === "dev";
-                                const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
-                                const isNonLatestNonDev = !isLatest && !isDev;
-                                return (
-                                    <tr
-                                        class:list={[{ "hidden-release": !showByDefault }]}
-                                        data-pipeline={version.pipeline}
-                                        data-release={version.release}
-                                        data-nextflow={version.nextflow_version || ""}
-                                        data-nfcore={version.nf_core_version || ""}
-                                        data-date={version.published_at || ""}
-                                    >
-                                        <td class="fw-semibold">
-                                            <a
-                                                href={`https://nf-co.re/${version.pipeline}`}
-                                                target="_blank"
-                                                class:list={[
-                                                    "text-decoration-none",
-                                                    { "text-body-tertiary": isNonLatestNonDev },
-                                                ]}
-                                            >
-                                                {version.pipeline}
-                                            </a>
-                                        </td>
-                                        <td class="text-end">
-                                            {version.release === "dev" ? (
-                                                <span class="badge bg-secondary">{version.release}</span>
-                                            ) : (
+                        <table class="table table-hover table-responsive table-sm text-small" id="versionsTable">
+                            <thead>
+                                <tr class="sticky-top-under z-1 table-active">
+                                    <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
+                                        Pipeline
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
+                                        Release
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
+                                        Nextflow Version
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
+                                        nf-core Version
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap" data-sort="date">
+                                        Published Date
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {pipelineVersions.map((version) => {
+                                    const isLatest = version.release === latestReleases.get(version.pipeline);
+                                    const isDev = version.release === "dev";
+                                    const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
+                                    const isNonLatestNonDev = !isLatest && !isDev;
+                                    return (
+                                        <tr
+                                            class:list={[{ "hidden-release": !showByDefault }]}
+                                            data-pipeline={version.pipeline}
+                                            data-release={version.release}
+                                            data-nextflow={version.nextflow_version || ""}
+                                            data-nfcore={version.nf_core_version || ""}
+                                            data-date={version.published_at || ""}
+                                        >
+                                            <td class="fw-semibold">
                                                 <a
-                                                    href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                    href={`https://nf-co.re/${version.pipeline}`}
                                                     target="_blank"
                                                     class:list={[
                                                         "text-decoration-none",
                                                         { "text-body-tertiary": isNonLatestNonDev },
                                                     ]}
                                                 >
-                                                    {version.release}
+                                                    {version.pipeline}
                                                 </a>
-                                            )}
-                                        </td>
-                                        <td class="text-end">
-                                            {version.nextflow_version ? (
-                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
-                                                    {version.nextflow_version.replace("!>=", ">=")}
-                                                </code>
-                                            ) : (
-                                                <span class="text-muted">-</span>
-                                            )}
-                                        </td>
-                                        <td class="text-end">
-                                            {version.nf_core_version ? (
-                                                <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
-                                                    v{version.nf_core_version}
-                                                </code>
-                                            ) : (
-                                                <code
-                                                    class:list={[
-                                                        "text-muted",
-                                                        { "text-body-tertiary": isNonLatestNonDev },
-                                                    ]}
-                                                >
-                                                    &lt;2.14.1
-                                                </code>
-                                            )}
-                                        </td>
-                                        <td
-                                            class:list={[
-                                                "text-muted small",
-                                                { "text-body-tertiary": isNonLatestNonDev },
-                                            ]}
-                                        >
-                                            {formatDate(version.published_at)}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-
+                                            </td>
+                                            <td class="text-end">
+                                                {version.release === "dev" ? (
+                                                    <span class="badge bg-secondary">{version.release}</span>
+                                                ) : (
+                                                    <a
+                                                        href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                        target="_blank"
+                                                        class:list={[
+                                                            "text-decoration-none",
+                                                            { "text-body-tertiary": isNonLatestNonDev },
+                                                        ]}
+                                                    >
+                                                        {version.release}
+                                                    </a>
+                                                )}
+                                            </td>
+                                            <td class="text-end">
+                                                {version.nextflow_version ? (
+                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                        {version.nextflow_version.replace("!>=", ">=")}
+                                                    </code>
+                                                ) : (
+                                                    <span class="text-muted">-</span>
+                                                )}
+                                            </td>
+                                            <td class="text-end">
+                                                {version.nf_core_version ? (
+                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                        v{version.nf_core_version}
+                                                    </code>
+                                                ) : (
+                                                    <code
+                                                        class:list={[
+                                                            "text-muted",
+                                                            { "text-body-tertiary": isNonLatestNonDev },
+                                                        ]}
+                                                    >
+                                                        &lt;2.14.1
+                                                    </code>
+                                                )}
+                                            </td>
+                                            <td
+                                                class:list={[
+                                                    "text-muted small",
+                                                    { "text-body-tertiary": isNonLatestNonDev },
+                                                ]}
+                                            >
+                                                {formatDate(version.published_at)}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="text-center mt-4 mb-5">
-                        <p class="text-muted">
-                            Data last updated from <code>pipelines.json</code>
-                        </p>
                         <a
                             href="https://github.com/nf-core/website/actions/workflows/update-pipelines-json.yml"
                             class="btn btn-sm btn-outline-primary"
@@ -473,6 +471,10 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
     .sortable.sort-desc i::before {
         content: "\f0dd"; /* fa-sort-down */
         opacity: 1;
+    }
+
+    .table-container {
+        max-width: 50rem;
     }
 </style>
 
