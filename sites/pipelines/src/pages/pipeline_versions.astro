@@ -158,6 +158,10 @@ const createBarChart = (
 
 const nextflowChartData_sorted = createBarChart(nextflowChartData, "var(--bs-info)", "nextflowChart");
 const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCoreChart");
+
+// Pre-calculate percentages for each chart
+const nextflowTotal = nextflowChartData.values.reduce((sum, val) => sum + val, 0);
+const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
 ---
 
 <PageLayout
@@ -192,8 +196,35 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                         <div class="col-lg-6">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">Nextflow Version Distribution</h5>
-                                    <p class="text-muted small mb-3">(latest releases only)</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="card-title mb-1">Nextflow Version Distribution</h5>
+                                            <p class="text-muted small mb-0">(latest releases only)</p>
+                                        </div>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowDisplay"
+                                                id="nextflowCount"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nextflowCount">
+                                                n
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nextflowDisplay"
+                                                id="nextflowPercent"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nextflowPercent">
+                                                %
+                                            </label>
+                                        </div>
+                                    </div>
                                     <table
                                         class="w-100 text-small histogram-table"
                                         id="nextflowChart"
@@ -222,8 +253,13 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                             {nextflowChartData_sorted.map(({ label, value }) => {
                                                 const maxValue = Math.max(...nextflowChartData.values);
                                                 const percentage = (value / maxValue) * 100;
+                                                const percentageValue = ((value / nextflowTotal) * 100).toFixed(1);
                                                 return (
-                                                    <tr data-version={label} data-count={value}>
+                                                    <tr
+                                                        data-version={label}
+                                                        data-count={value}
+                                                        data-percentage={percentageValue}
+                                                    >
                                                         <td
                                                             class="text-end text-nowrap pe-2 align-middle font-monospace"
                                                             style="width: 90px;"
@@ -232,8 +268,8 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                         </td>
                                                         <td class="w-100 align-middle px-3">
                                                             <div
-                                                                class="d-inline-block text-center rounded-1 bg-info"
-                                                                style={`width: ${percentage}%; min-width: 30px;`}
+                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-info"
+                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
                                                             >
                                                                 <span class="text-white px-1">{value}</span>
                                                             </div>
@@ -249,8 +285,35 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                         <div class="col-lg-6">
                             <div class="card h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">nf-core Tools Version Distribution</h5>
-                                    <p class="text-muted small my-2">(latest releases only)</p>
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="card-title mb-1">nf-core Tools Version Distribution</h5>
+                                            <p class="text-muted small mb-0">(latest releases only)</p>
+                                        </div>
+                                        <div class="btn-group btn-group-sm" role="group">
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreDisplay"
+                                                id="nfCoreCount"
+                                                autocomplete="off"
+                                                checked
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nfCoreCount">
+                                                n
+                                            </label>
+                                            <input
+                                                type="radio"
+                                                class="btn-check"
+                                                name="nfCoreDisplay"
+                                                id="nfCorePercent"
+                                                autocomplete="off"
+                                            />
+                                            <label class="btn btn-outline-secondary" for="nfCorePercent">
+                                                %
+                                            </label>
+                                        </div>
+                                    </div>
                                     <table
                                         class="w-100 text-small histogram-table"
                                         id="nfCoreChart"
@@ -279,8 +342,13 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                             {nfCoreChartData_sorted.map(({ label, value }) => {
                                                 const maxValue = Math.max(...nfCoreChartData.values);
                                                 const percentage = (value / maxValue) * 100;
+                                                const percentageValue = ((value / nfCoreTotal) * 100).toFixed(1);
                                                 return (
-                                                    <tr data-version={label} data-count={value}>
+                                                    <tr
+                                                        data-version={label}
+                                                        data-count={value}
+                                                        data-percentage={percentageValue}
+                                                    >
                                                         <td
                                                             class="text-end text-nowrap pe-2 align-middle font-monospace"
                                                             style="width: 90px;"
@@ -289,8 +357,8 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                         </td>
                                                         <td class="w-100 align-middle px-3">
                                                             <div
-                                                                class="d-inline-block text-center rounded-1"
-                                                                style={`width: ${percentage}%; min-width: 30px; background-color: var(--bs-warning);`}
+                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-warning"
+                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
                                                             >
                                                                 <span class="text-dark px-1">{value}</span>
                                                             </div>
@@ -506,6 +574,39 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                 toggleIcon?.classList.add("fa-eye");
                 if (hiddenCount) hiddenCount.style.display = "inline";
             }
+        });
+
+        // Simple histogram toggle functionality
+        const toggleChart = (chartId: string, showPercentage: boolean) => {
+            const chart = document.getElementById(chartId);
+            if (!chart) return;
+
+            chart.querySelectorAll("tbody tr").forEach((row) => {
+                const span = row.querySelector("span");
+                if (span) {
+                    span.textContent = showPercentage
+                        ? `${row.getAttribute("data-percentage")}%`
+                        : row.getAttribute("data-count") || "0";
+                }
+            });
+        };
+
+        // Nextflow chart toggles
+        document.getElementById("nextflowCount")?.addEventListener("change", () => {
+            toggleChart("nextflowChart", false);
+        });
+
+        document.getElementById("nextflowPercent")?.addEventListener("change", () => {
+            toggleChart("nextflowChart", true);
+        });
+
+        // nf-core chart toggles
+        document.getElementById("nfCoreCount")?.addEventListener("change", () => {
+            toggleChart("nfCoreChart", false);
+        });
+
+        document.getElementById("nfCorePercent")?.addEventListener("change", () => {
+            toggleChart("nfCoreChart", true);
         });
 
         // Download CSV functionality
