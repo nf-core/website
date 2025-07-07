@@ -2,10 +2,18 @@
 import ParameterItem from "./ComponentParamItem.astro";
 
 const { params, depth = 0 } = Astro.props;
+
+interface Props {
+    params: any[];
+    depth?: number;
+}
+
+// Ensure params is always an array
+const normalizedParams = Array.isArray(params) ? params : [params];
 ---
 
 {
-    params.map((param, i) => {
+    normalizedParams.map((param, i) => {
         const [name, value] = Object.entries(param)[0];
         return (
             <div class:list={[{ "card card-body mt-3 py-1": depth === 0 }]}>
@@ -13,7 +21,7 @@ const { params, depth = 0 } = Astro.props;
                     name={name}
                     value={value}
                     depth={depth}
-                    lastItem={i === params.length - 1 && depth > 0}
+                    lastItem={i === normalizedParams.length - 1 && depth > 0}
                 />
             </div>
         );
