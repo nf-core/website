@@ -40,7 +40,7 @@ export const writeComponentsJson = async () => {
     .then((response) => response.data.tree);
 
   let modules = tree
-    .filter((file) => file.path.includes('admixture/meta.yml') && !file.path.includes('subworkflows/'))
+    .filter((file) => file.path.includes('meta.yml') && !file.path.includes('subworkflows/'))
     .map((file) => ({
       name: file.path.replace('modules/nf-core/', '').replace('/meta.yml', '').replace('/', '_'),
       path: file.path,
