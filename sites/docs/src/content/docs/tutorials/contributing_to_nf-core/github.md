@@ -15,7 +15,6 @@ You then choose the account or organisation you want to fork the repository into
 In order to create a new module, it is best to branch the code into a recognisable branch. You can do this in two ways.
 
 - You can create a new branch locally, on the terminal, using the following command:
-
   - ```bash
     git checkout -b newmodule
 
@@ -25,7 +24,6 @@ In order to create a new module, it is best to branch the code into a recognisab
   - The branch will be synchronised with your remote once you push the first new commit.
 
 - You can use the GitHub interface
-
   - To do this, you can select the dropdown menu on the top-left of your repository code, write the name of the new branch and choose to create it as shown below:
 
     ![branch](/images/contributing/dsl2_modules_tutorial/dsl2-mod_02_new_branch.png)

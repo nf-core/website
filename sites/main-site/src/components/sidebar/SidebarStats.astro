@@ -1,6 +1,7 @@
 ---
 import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
 import GitHubUser from "@components/GitHubProfilePicture.svelte";
+import TagSection from "@components/TagSection.svelte";
 const { component_type, contributors, included_pipelines, included_components, included_subworkflows } = Astro.props;
 
 export interface Props {
@@ -13,6 +14,9 @@ export interface Props {
     included_components?: string[];
     included_subworkflows?: string[];
 }
+// split included_components into modules and subworkflows (subworkflows should have at least two "_" in the name and no slashes)
+const subworkflows = included_components?.filter((x) => (x.match(/_/g) || []).length >= 2 && !x.includes("/"));
+const modules = included_components?.filter((x) => !subworkflows?.includes(x));
 ---
 
 <div class="sidebar overflow-y-auto">
@@ -25,19 +29,7 @@ export interface Props {
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_pipelines.map((pipeline) => (
-                        <a
-                            href={"/" + pipeline.name + "/" + pipeline.version + "/"}
-                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2 text-decoration-none"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title={"most recent pipeline version with this module:\n" + pipeline.version}
-                        >
-                            {pipeline.name}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={included_pipelines.map((x) => x.name)} type="pipelines" client:load />
             </SidebarStatsRow>
         )
     }
@@ -50,16 +42,7 @@ export interface Props {
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_subworkflows.map((module) => (
-                        <a
-                            href={"/subworkflows/" + module.replace("/", "_")}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {module}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={included_subworkflows} type="subworkflows" client:load />
             </SidebarStatsRow>
         )
     }
@@ -72,16 +55,8 @@ export interface Props {
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_components.map((module) => (
-                        <a
-                            href={"/modules/" + module.replace("/", "_") + "/"}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {module}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={modules} type="modules" maxShown={3} client:load />
+                <TagSection tags={subworkflows} type="subworkflows" maxShown={3} client:load />
             </SidebarStatsRow>
         )
     }

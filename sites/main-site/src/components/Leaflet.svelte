@@ -20,7 +20,7 @@
         m = map(container, {
             minZoom: 1.4,
             fullscreenControl: true,
-        }).setView([20, 25.09], 1.4); // Adjusted center point and zoom
+        }).setView([20, 22.09], 1.5); // Adjusted center point and zoom
 
         let greenIcon = new Icon({
             iconUrl: "/images/marker-icon-2x-green.png",
@@ -76,8 +76,8 @@
 
 <style lang="scss">
     .map {
-        height: 400px;
-        width: 90%;
+        height: 500px;
+        width: 80%;
     }
     @media (max-width: 767.98px) {
         // md-breakpoint
