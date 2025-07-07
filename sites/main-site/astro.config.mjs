@@ -8,8 +8,7 @@ import partytown from '@astrojs/partytown';
 import sitemap from '@astrojs/sitemap';
 import svelte from '@astrojs/svelte';
 import yaml from '@rollup/plugin-yaml';
-import { defineConfig, envField } from 'astro/config';
-import { FontaineTransform } from 'fontaine';
+import { defineConfig, envField, fontProviders } from 'astro/config';
 import { h } from 'hastscript';
 import addClasses from 'rehype-class-names';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
@@ -50,6 +49,22 @@ export default defineConfig({
 			})
 		}
 	},
+    experimental: {
+        fonts: [{
+            provider: fontProviders.fontsource(),
+            name: "Inter",
+            cssVariable: "--font-inter",
+            fallbacks: ["sans-serif"],
+			weights: ["300 700"]
+        },
+        {
+            provider: fontProviders.fontsource(),
+            name: "Maven Pro",
+            cssVariable: "--font-maven-pro",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"]
+        }]
+    },
 	integrations: [
 		svelte(),
 		icon({
@@ -57,6 +72,7 @@ export default defineConfig({
 				// only include a subset of icons
 				'file-icons': ['nextflow'],
 				logos: [
+                    'bluesky',
 					'twitter',
 					'mastodon-icon',
 					'slack-icon',
@@ -70,6 +86,7 @@ export default defineConfig({
 				'fa-brands': ['github'],
 				mdi: [
 					'aws',
+                    'linkedin',
 					'slack',
 					'youtube',
 					'cloud-outline',
@@ -118,24 +135,11 @@ export default defineConfig({
 	vite: {
 		plugins: [
 			yaml(),
-			FontaineTransform.vite({
-				// avoid flash of unstyled text by interjecting fallback system fonts https://developer.chrome.com/blog/framework-tools-font-fallback/#using-fontaine-library
-				fallbacks: [
-					'BlinkMacSystemFont',
-					'Segoe UI',
-					'Helvetica Neue',
-					'Arial',
-					'Noto Sans'
-				],
-				resolvePath: (id) => new URL(`./public${id}`, import.meta.url),
-				skipFontFaceGeneration: (fallbackName) =>
-					fallbackName === 'Font Awesome 6 Pro fallback'
-			})
 		],
 		resolve: {
 			preserveSymlinks: true
 		},
-		envPrefix: ['PUBLIC_', 'GITHUB_'],  // This allows GITHUB_ prefixed env vars
+		envPrefix: ['PUBLIC_'],  // Remove GITHUB_ prefix to prevent token exposure
 	},
 	image: {
 		domains: [

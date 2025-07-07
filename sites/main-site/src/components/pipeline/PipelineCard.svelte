@@ -1,5 +1,6 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
+    import TagSection from "@components/TagSection.svelte";
     import Markdown from "@components/markdown/Markdown.svelte";
     import { formatDistanceToNow, add } from "date-fns";
     import { Confetti } from "svelte-confetti";
@@ -16,7 +17,7 @@
     let latestRelease,
         tagName = $state(),
         releaseDateAgo = $state(),
-        recentRelease = $state();
+        recentRelease = $state(false);
     const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
         addSuffix: true,
     });
@@ -57,7 +58,6 @@
                     data-bs-toggle="tooltip"
                     data-html="true"
                     data-bs-original-title={stars + " stargazers on GitHub"}
-                    style={{ cursor: "pointer" }}
                 >
                     <i class="fa-regular fa-star" aria-hidden="true"></i>
 
@@ -74,25 +74,23 @@
                     <a
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
                         class="text-decoration-none badge text-bg-success fs-6 mb-0 rounded-top-0"
-                        >New release! <Confetti x={[-1.5, 1.75]} amount="100" rounded="true" /></a
+                        >New release! <Confetti x={[-1.5, 1.75]} amount={100} rounded={true} /></a
                     >
                 {/if}
             </div>
             {#if body}
                 <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
             {/if}
-            <p class="topics mb-3">
-                {#each topics as topic}
-                    <span class="badge fw-normal bg-body-tertiary text-success me-2">{topic}</span>
-                {/each}
-            </p>
+
+            <div class="mb-2">
+                <TagSection tags={topics} type="keywords" />
+            </div>
 
             {#if released}
                 <p class="release">
                     <a
                         role="button"
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
-                        style={{ cursor: "pointer" }}
                         class="btn btn-outline-secondary"
                     >
                         <i class="fa-regular fa-tag me-1"></i>
@@ -110,9 +108,6 @@
 </ListingCard>
 
 <style lang="scss">
-    .badge.text-success {
-        font-weight: 400;
-    }
     .gh-stats {
         float: right;
     }
