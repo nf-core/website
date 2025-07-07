@@ -8,7 +8,7 @@ const hasNestedParams = Array.isArray(value) || (typeof value === "object" && !t
 ---
 
 {
-    name.slice(0, 6) !== "input[" && (
+    name.slice(0, 6) !== "input[" && name !== "0" && (
         <div
             class:list={[
                 `row align-items-center ${depth > 0 ? "ms-md-" + depth * 2 : ""}`,
