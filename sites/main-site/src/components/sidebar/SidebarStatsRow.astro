@@ -14,18 +14,14 @@ export interface Props {
 <div class:list={["row g-0 w-100", { "border-bottom": !lastChild }]}>
     {
         content.map((entry) => {
-            return (
-                <div class="col mb-1">
-                    {entry.title && (
+            if (entry.title && entry.value) {
+                return (
+                    <div class="col mb-1">
                         <h6 class="text-body-secondary my-1">
                             {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
                             {entry.title}
                         </h6>
-                    )}
-                    {entry.value ? (
-                        <div class="overflow-x-auto" set:html={entry.value} />
-                    ) : (
-                        <div class="overflow-x-auto">
+                        <div class="overflow-x-auto" set:html={entry.value}>
                             <slot />
                         </div>
                     </div>
