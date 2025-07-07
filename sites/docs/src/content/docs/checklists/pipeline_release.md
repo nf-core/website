@@ -2,6 +2,7 @@
 title: Release checklist
 subtitle: A step-by-step guide for releasing a nf-core pipeline
 markdownPlugin: checklist
+weight: 10
 ---
 
 ## Before you release
@@ -43,11 +44,16 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
 - [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
-      :::note
-      Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
-      :::
-  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`)
-        For example releases in nf-core/rnaseq follow the pattern: - Prefix = Metal - Dictionary = Animals - Suffix = Don't use a suffix
+
+  :::note
+  Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
+  :::
+  - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`).
+        For example releases in nf-core/rnaseq follow the pattern:
+    - Prefix = Metal
+    - Dictionary = Animals
+    - Suffix = Don't use a suffix
+
 - [ ] Celebrate! But not too much - you still have a few things left to do...
 
 ### Automated events
@@ -62,11 +68,12 @@ A number of events are automatically triggered after the pipeline is released:
 
 The last step is to bump up the pipeline version number in the development branch:
 
-- [ ] Make sure the dev branch on your fork is up to date
+- [ ] Make sure the `dev` branch on your fork is up to date
 - [ ] On a new branch, bump to a new `dev` version
   - [ ] For example, `1.0.0` becomes `1.1.0dev`
   - [ ] Use the `nf-core pipelines bump-version` command to make the changes, eg: navigate to the pipeline directory and run `nf-core pipelines bump-version 1.1.0dev`
 - [ ] Update the `CHANGELOG.md` to include a new section for this new version
+- [ ] If your pipeline is using pipeline-level nf-test tests, update snapshots: `nf-test test tests/ --profile=+<docker/singularity/conda etc.>`
 - [ ] [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.
 - [ ] (**First release only**) After the first release of the pipeline you will need to add the DOI manually into the main `README.md` for the pipeline:
   - [ ] Search for your pipeline on Zenodo and find the DOI that allows you to _"Cite all versions"_ of the pipeline.

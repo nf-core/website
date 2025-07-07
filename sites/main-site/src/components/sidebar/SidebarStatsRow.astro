@@ -28,9 +28,27 @@ export interface Props {
                         <div class="overflow-x-auto">
                             <slot />
                         </div>
-                    )}
-                </div>
-            );
+                    </div>
+                );
+            } else if (entry.title && entry.value === undefined) {
+                return (
+                    <div class="col mb-1">
+                        <h6 class="text-body-secondary my-1">
+                            {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
+                            {entry.title}
+                        </h6>
+                        <div class="overflow-x-auto">
+                            <slot />
+                        </div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div class="col mb-1">
+                        <slot />
+                    </div>
+                );
+            }
         })
     }
 </div>

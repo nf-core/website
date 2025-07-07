@@ -45,8 +45,9 @@ let currentEvents = events.filter((event) => {
 
 const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
 
-const sections: SidebarEntry[] = years.map((year) => {
+let sections: SidebarEntry[] = years.map((year) => {
     return {
+        id: year.toString(),
         type: "group",
         label: year.toString(),
         href: "#year-" + year,
@@ -55,13 +56,27 @@ const sections: SidebarEntry[] = years.map((year) => {
             .filter((event) => event.data.start?.getFullYear() === year)
             .map((event) => {
                 return {
+                    id: event.id,
                     type: "link",
                     label: event.data.title,
                     href: "#event-" + event.id,
-                    isCurrent: false,
+                    isCurrent: Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, ""),
                 };
             }),
     };
+});
+
+// sort entries by date
+sections.forEach((section) => {
+    section.type === "group" &&
+        section.entries?.sort((a, b) => {
+            const eventA = events.find((event) => event.id === a.id);
+            const eventB = events.find((event) => event.id === b.id);
+            if (eventA?.data.start && eventB?.data.start) {
+                return eventB.data.start.getTime() - eventA.data.start.getTime();
+            }
+            return 0;
+        });
 });
 ---
 
@@ -69,14 +84,17 @@ const sections: SidebarEntry[] = years.map((year) => {
     title={title || "Events"}
     subtitle={subtitle || "Details of past and future events around nf-core."}
     viewTransitions={true}
+    mainpage_container={false}
 >
-    <div class="row">
-        <div class="col-12 col-md-2 sticky-top-under d-none d-md-inline sidebar-left pt-1">
-            <SidebarNav items={sections} />
-        </div>
+    <div class="container-xxxl">
+        <div class="row">
+            <div class="col-12 col-md-2 col-xl-3 sticky-top-under d-none d-md-inline sidebar-left pt-1">
+                <SidebarNav items={sections} />
+            </div>
 
-        <div class="col">
-            <EventListing {events} {currentEvents} {currentFilters} client:load />
+            <div class="col">
+                <EventListing {events} {currentEvents} {currentFilters} client:load />
+            </div>
         </div>
     </div>
 </PageLayout>

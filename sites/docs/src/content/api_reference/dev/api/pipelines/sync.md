@@ -73,7 +73,7 @@ GitHub repository name
 - **Type:**
   str
 
-#### _`static{:python}`_`_parse_json_response(response) → Tuple[Any, str]{:python}`
+#### _`static{:python}`_`_parse_json_response(response) → tuple[Any, str]{:python}`
 
 Helper method to parse JSON response and create pretty-printed string.
 

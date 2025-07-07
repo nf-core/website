@@ -62,7 +62,13 @@ const headings = [
 ];
 ---
 
-<MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url={md_github_url}>
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    headings={headings}
+    md_github_url={md_github_url}
+    leftSidebar={false}
+>
     <Heading level={1} id="introduction">Introduction</Heading>
     <p>
         nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many
@@ -112,7 +118,7 @@ const headings = [
     <div>
         <Leaflet locations={contributors_map} client:only="svelte" />
     </div>
-    <div class="contributor-cards row row-cols-1 row-cols-md-2">
+    <div class="contributor-cards row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxxxl-4 w-100 ms-0">
         {
             contributors_yml.contributors &&
                 contributors_yml.contributors.map((institution) => (
@@ -159,6 +165,36 @@ const headings = [
                                         {institution.contact_github.replace("https://github.com/", "")}
                                     </a>
                                 )}
+
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a
+                                        href={institution.bluesky}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="logos:bluesky" color="#1185fe" size="15px" />{" "}
+                                        {institution.bluesky
+                                            .replace("https://bsky.app/profile/", "")
+                                            .replace(".bsky.social", "")}
+                                    </a>
+                                )}
+                                {institution.linkedin && (
+                                    <a
+                                        href={institution.linkedin}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="mdi:linkedin" color="#0077b5" size="15px" />{" "}
+                                        {institution.linkedin
+                                            .replace("https://www.linkedin.com/", "")
+                                            .replace("in/", "")
+                                            .replace("company/", "")
+                                            .replace("/$", "")}
+                                    </a>
+                                )}
                                 {institution.twitter && (
                                     <a
                                         href={"https://twitter.com/" + institution.twitter}
@@ -166,17 +202,6 @@ const headings = [
                                     >
                                         <i class="fab fa-twitter" />{" "}
                                         {institution.twitter.replace("https://twitter.com/", "")}
-                                    </a>
-                                )}
-                                {institution.mastodon && (
-                                    <a href={institution.mastodon} class="">
-                                        <i class="fab fa-mastodon" /> {institution.mastodon}
-                                    </a>
-                                )}
-                                {institution.bluesky && (
-                                    <a href={institution.bluesky} class="">
-                                        <Icon name="simple-icons:bluesky" color="#1185fe" size="30px" />{" "}
-                                        {institution.bluesky}
                                     </a>
                                 )}
                             </div>
@@ -283,7 +308,17 @@ const headings = [
 </MarkdownTocLayout>
 <style lang="scss">
     .institution-logo {
-        max-width: 40%;
+        max-width: 30%;
         max-height: 5rem;
+    }
+    :global([data-icon="logos:bluesky"] path),
+    :global([data-icon="mdi:linkedin"] path) {
+        fill: var(--bs-body-color);
+    }
+    :global(.markdown-content) {
+        max-width: 90% !important;
+        p {
+            max-width: 50rem !important;
+        }
     }
 </style>
