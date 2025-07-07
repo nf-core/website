@@ -21,7 +21,7 @@ This file describes:
 - The structure of the channels
 - The authors of the module
 
-This file has been changing recently. 
+This file has been changing recently.
 We identified improvements that could be made when describing the inputs and outputs of the module.
 And we updated how the channels are described.
 You can see the [first blog-post](https://nf-co.re/blog/2025/modules-ontology) we wrote about this changes for more context.
@@ -31,7 +31,7 @@ This change makes it easier to understand the channel structure of the module.
 
 But one last detail was still missing. We were not distinguishing between tuple channels and single element channels.
 Now, tuple channels correspond to lists in the `meta.yml` file. While single element channels are not included inside a list.
-You can see  the changes in [our PR on the modules repository](https://github.com/nf-core/modules/pull/8747).
+You can see the changes in [our PR on the modules repository](https://github.com/nf-core/modules/pull/8747).
 
 This is an example of the `bwa/mem` module.
 See the difference beween tuple channels and single element channels such as `val sorted_bam` in the input and `versions` in the output.
@@ -136,12 +136,17 @@ See the difference beween tuple channels and single element channels such as `va
 
 </div>
 
-To make these changes easier for users, we have the `--fix` flag in the nf-core linting command.
-This flag will try to fix all the possible lint failures related to the `meta.yml` file.
+To make the switch to the new structure easier for everyone using nf-core modules, you can add `--fix` to you modules lint command.
+
+```bash
+nf-core modules lint --fix bwa/mem
+```
+
+This flag will try to fix all the possible lint failures related to the meta.yml file.
 
 ### For nf-core/tools contributors
 
-To help users create nf-core modules, we use a [Jinja2](https://jinja.palletsprojects.com) template. 
+To help users create nf-core modules, we use a [Jinja2](https://jinja.palletsprojects.com) template.
 Jinja2 is used to create templates for modules, subworkflows, and pipelines.
 With all the recent changes and improvements, this template was starting to get overengineered, with lots of conditionals which make it difficult to follow the code of the file.
 For this reason, we decided to simplify the template, and handle the `meta.yml` file with a YAML library.
