@@ -202,7 +202,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                         <thead>
                                             <tr>
                                                 <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 ms-3 py-2 border-bottom"
                                                     data-sort="version"
                                                     style="width: 90px;"
                                                 >
@@ -225,12 +225,12 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 return (
                                                     <tr data-version={label} data-count={value}>
                                                         <td
-                                                            class="text-end text-nowrap pe-2 align-middle px-3 py-1"
+                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
                                                             style="width: 90px;"
                                                         >
-                                                            {label.replace(">=", "≥ ")}
+                                                            {label.replace(">=", ">=")}
                                                         </td>
-                                                        <td class="w-100 align-middle px-3 py-1">
+                                                        <td class="w-100 align-middle px-3">
                                                             <div
                                                                 class="d-inline-block text-center rounded-1 bg-info"
                                                                 style={`width: ${percentage}%; min-width: 30px;`}
@@ -259,7 +259,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                         <thead>
                                             <tr>
                                                 <th
-                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap fs-7 px-3 py-2 mb-2 border-bottom"
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 py-2 mb-2 border-bottom"
                                                     data-sort="version"
                                                     style="width: 90px;"
                                                 >
@@ -282,12 +282,12 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 return (
                                                     <tr data-version={label} data-count={value}>
                                                         <td
-                                                            class="text-end text-nowrap pe-2 align-middle px-3 py-1"
+                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
                                                             style="width: 90px;"
                                                         >
-                                                            {label.replace(">=", "≥ ").replace("≥", "≥ ")}
+                                                            {label}
                                                         </td>
-                                                        <td class="w-100 align-middle px-3 py-1">
+                                                        <td class="w-100 align-middle px-3">
                                                             <div
                                                                 class="d-inline-block text-center rounded-1"
                                                                 style={`width: ${percentage}%; min-width: 30px; background-color: var(--bs-warning);`}
@@ -329,15 +329,15 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                     Pipeline
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th class="sortable user-select-none text-nowrap" data-sort="release">
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
                                     Release
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th class="sortable user-select-none text-nowrap" data-sort="nextflow">
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
                                     Nextflow Version
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
-                                <th class="sortable user-select-none text-nowrap" data-sort="nfcore">
+                                <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
                                     nf-core Version
                                     <i class="fas fa-sort ms-1 text-muted opacity-50" />
                                 </th>
@@ -374,7 +374,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 {version.pipeline}
                                             </a>
                                         </td>
-                                        <td>
+                                        <td class="text-end">
                                             {version.release === "dev" ? (
                                                 <span class="badge bg-secondary">{version.release}</span>
                                             ) : (
@@ -390,7 +390,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 </a>
                                             )}
                                         </td>
-                                        <td>
+                                        <td class="text-end">
                                             {version.nextflow_version ? (
                                                 <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
                                                     {version.nextflow_version.replace("!>=", ">=")}
@@ -399,7 +399,7 @@ const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning
                                                 <span class="text-muted">-</span>
                                             )}
                                         </td>
-                                        <td>
+                                        <td class="text-end">
                                             {version.nf_core_version ? (
                                                 <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
                                                     v{version.nf_core_version}
