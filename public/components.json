@@ -19761,6 +19761,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "methylseq",
+          "version": "4.0.0"
+        },
+        {
           "name": "nascent",
           "version": "2.3.0"
         },
@@ -23163,7 +23167,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23320,7 +23324,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23431,7 +23435,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23524,7 +23528,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23702,7 +23706,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23816,7 +23820,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -23934,7 +23938,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28044,7 +28048,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -28136,7 +28140,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -29010,7 +29014,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nascent",
@@ -41887,6 +41891,115 @@
       ]
     },
     {
+      "name": "cooltools_eigscis",
+      "path": "modules/nf-core/cooltools/eigscis/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eigscis",
+        "description": "Perform eigen value decomposition on a cooler matrix to calculate compartment signal by finding the eigenvector that correlates best with the phasing track",
+        "keywords": [
+          "cool",
+          "Hi-C",
+          "compartment signal",
+          "eigenvector"
+        ],
+        "tools": [
+          {
+            "cooltools": {
+              "description": "Analysis tools for genomic interaction data stored in .cool format",
+              "homepage": "https://cooltools.readthedocs.io",
+              "documentation": "https://cooltools.readthedocs.io",
+              "tool_dev_url": "https://github.com/open2c/cooltools/",
+              "doi": "10.5281/zenodo.5214125",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:cooltools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information"
+              }
+            },
+            {
+              "cool": {
+                "type": "file",
+                "description": "cool file",
+                "pattern": "*.cool"
+              }
+            }
+          ],
+          [
+            {
+              "bed": {
+                "type": "file",
+                "description": "bed file, phasing track for orienting and ranking eigenvectors,provided as /path/to/track::track_value_column_name",
+                "pattern": "*.bed"
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "result": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. id:'test'"
+                }
+              },
+              {
+                "*compartment*": {
+                  "type": "file",
+                  "description": "BED-like file for compartment track"
+                }
+              }
+            ]
+          },
+          {
+            "bigwig": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information e.g. id:'test'"
+                }
+              },
+              {
+                "*.bw": {
+                  "type": "file",
+                  "description": "bigwig file for compartment track",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@Thibault-Poinsignon"
+        ]
+      }
+    },
+    {
       "name": "cooltools_insulation",
       "path": "modules/nf-core/cooltools/insulation/meta.yml",
       "type": "module",
@@ -44200,6 +44313,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "drugresponseeval",
+          "version": "1.1.0"
         },
         {
           "name": "genomeannotator",
@@ -52228,6 +52345,120 @@
       }
     },
     {
+      "name": "dssp_mkdssp",
+      "path": "modules/nf-core/dssp/mkdssp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "dssp_mkdssp",
+        "description": "Calculates secondary structure assignments from PDB files using mkdssp (DSSP).\nDSSP is a standard tool for assigning secondary structure to amino acids in protein structures.\n",
+        "keywords": [
+          "protein",
+          "secondary structure",
+          "structural bioinformatics",
+          "dssp",
+          "mkdssp"
+        ],
+        "tools": [
+          {
+            "dssp": {
+              "description": "Calculates secondary structure information from PDB files.",
+              "homepage": "https://github.com/PDB-REDO/dssp",
+              "documentation": "https://github.com/PDB-REDO/dssp/blob/trunk/doc/mkdssp.md",
+              "tool_dev_url": "https://github.com/PDB-REDO/dssp",
+              "doi": "10.1002/bip.360221211",
+              "licence": [
+                "BSD-2-Clause"
+              ],
+              "identifier": "biotools:dssp"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "pdb": {
+                "type": "file",
+                "description": "Protein structure file in PDB format",
+                "pattern": "*.pdb",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "format": {
+                "type": "string",
+                "description": "Format for the output file",
+                "enum": [
+                  "dssp",
+                  "mmcif"
+                ]
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "dssp": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.{dssp,mmcif}": {
+                  "type": "file",
+                  "description": "File containing secondary structure output in dssp or mmCIF format",
+                  "pattern": "*.{dssp,mmcif}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1454"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1477"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "duphold",
       "path": "modules/nf-core/duphold/meta.yml",
       "type": "module",
@@ -58894,7 +59125,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mitodetect",
@@ -58919,6 +59150,10 @@
         {
           "name": "pacvar",
           "version": "1.0.1"
+        },
+        {
+          "name": "panoramaseq",
+          "version": "dev"
         },
         {
           "name": "pathogensurveillance",
@@ -64269,6 +64504,293 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "fusionreport_detect",
+      "path": "modules/nf-core/fusionreport/detect/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fusionreport_detect",
+        "description": "fusionreport_detect",
+        "keywords": [
+          "sort",
+          "RNA-seq",
+          "fusion report",
+          "detect"
+        ],
+        "tools": [
+          {
+            "fusionreport": {
+              "description": "Tool for parsing outputs from fusion detection tools",
+              "homepage": "https://github.com/Clinical-Genomics/fusion-report",
+              "documentation": "https://matq007.github.io/fusion-report/#/",
+              "doi": "10.1101/011650",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "arriba_fusions": {
+                "type": "file",
+                "description": "File",
+                "pattern": "*.fusions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "starfusion_fusions": {
+                "type": "file",
+                "description": "File containing fusions from STARfusion",
+                "pattern": "*.starfusion.fusion_predictions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "fusioncatcher_fusions": {
+                "type": "file",
+                "description": "File containing fusions from fusioncatcher",
+                "pattern": "*.fusions.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\n"
+              }
+            },
+            {
+              "fusionreport_ref": {
+                "type": "directory",
+                "description": "File",
+                "pattern": "fusion_report_db"
+              }
+            }
+          ],
+          [
+            {
+              "tools_cutoff": {
+                "type": "integer",
+                "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "fusion_list": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "*fusionreport.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "fusion_list_filtered": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "*fusionreport_filtered.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "report": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.index.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              },
+              {
+                "*index.html": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.index.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "html": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*_*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              },
+              {
+                "*_*.html": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*_*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "csv": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "json": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              },
+              {
+                "*.json": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@praveenraj2018, @rannick"
         ]
       }
     },
@@ -77419,6 +77941,23 @@
             ]
           },
           {
+            "marker_classification": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_marker_classification/*_marker_classification.tsv": {
+                  "type": "file",
+                  "description": "Marker-based classification scores when --disable-nn-classification is used",
+                  "pattern": "*_marker_classification.tsv"
+                }
+              }
+            ]
+          },
+          {
             "taxonomy": [
               {
                 "meta": {
@@ -85585,7 +86124,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mhcquant",
@@ -117444,7 +117983,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -117562,7 +118101,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -118752,6 +119291,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "evexplorer",
+          "version": "dev"
+        },
+        {
           "name": "genomeassembler",
           "version": "1.0.1"
         },
@@ -118865,6 +119408,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "evexplorer",
+          "version": "dev"
         },
         {
           "name": "radseq",
@@ -124844,7 +125391,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mhcquant",
@@ -124889,6 +125436,10 @@
         {
           "name": "pangenome",
           "version": "1.1.3"
+        },
+        {
+          "name": "panoramaseq",
+          "version": "dev"
         },
         {
           "name": "pathogensurveillance",
@@ -135606,7 +136157,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -139771,7 +140322,13 @@
           "@kevinmenden",
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "picard_cleansam",
@@ -140111,6 +140668,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "4.0.0"
+        },
         {
           "name": "raredisease",
           "version": "2.6.0"
@@ -140749,6 +141310,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "methylseq",
+          "version": "4.0.0"
+        },
         {
           "name": "pathogensurveillance",
           "version": "1.0.0"
@@ -141637,7 +142202,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "pathogensurveillance",
@@ -149366,7 +149931,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nascent",
@@ -153205,7 +153770,13 @@
         "maintainers": [
           "@chriswyatt1"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "evexplorer",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pycoqc",
@@ -154321,7 +154892,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "raredisease",
@@ -154446,7 +155017,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -165696,7 +166267,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -166390,7 +166961,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -167060,7 +167631,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -168198,7 +168769,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -168445,7 +169016,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "nanoseq",
@@ -168845,6 +169416,147 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "scanpy_filter",
+      "path": "modules/nf-core/scanpy/filter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scanpy_filter",
+        "description": "Filter cells and genes in single-cell RNA-seq data using Scanpy",
+        "keywords": [
+          "filter",
+          "quality-control",
+          "scanpy",
+          "single-cell",
+          "preprocessing"
+        ],
+        "tools": [
+          {
+            "scanpy": {
+              "description": "Single-Cell Analysis in Python",
+              "homepage": "https://scanpy.readthedocs.io",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.filter_cells.html",
+              "tool_dev_url": "https://github.com/scverse/scanpy",
+              "doi": "10.1186/s13059-017-1382-0",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "AnnData object in h5ad format",
+                "pattern": "*.{h5ad}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "min_genes": {
+                "type": "integer",
+                "description": "Minimum number of genes expressed per cell"
+              }
+            }
+          ],
+          [
+            {
+              "min_cells": {
+                "type": "integer",
+                "description": "Minimum number of cells expressing each gene"
+              }
+            }
+          ],
+          [
+            {
+              "min_counts_gene": {
+                "type": "integer",
+                "description": "Minimum number of counts per gene"
+              }
+            }
+          ],
+          [
+            {
+              "min_counts_cell": {
+                "type": "integer",
+                "description": "Minimum number of counts per cell"
+              }
+            }
+          ],
+          [
+            {
+              "max_mito_percentage": {
+                "type": "integer",
+                "description": "Maximum percentage of mitochondrial genes per cell"
+              }
+            }
+          ],
+          [
+            {
+              "symbol_col": {
+                "type": "string",
+                "description": "Column name of the gene symbols in the `var` of the AnnData object. Use `index` if the gene symbols are the row names."
+              }
+            }
+          ]
+        ],
+        "output": [
+          {
+            "h5ad": [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "Filtered AnnData object",
+                  "pattern": "*.h5ad",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          {
+            "versions": [
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml"
+                }
+              }
+            ]
+          }
+        ],
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
+        ]
+      }
     },
     {
       "name": "scanpy_scrublet",
@@ -187631,7 +188343,37 @@
             {
               "dfam_species": {
                 "type": "string",
-                "description": "Dfam species name"
+                "description": "Dfam species name",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "pfam_url": {
+                "type": "file",
+                "description": "compressed HMM database from the Pfam protein family database.",
+                "pattern": "*.hmm.gz",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "dfam_urls": {
+                "type": "file",
+                "description": "URLs to DNA transposable element files from Dfam.",
+                "pattern": "*.{hmm,hmm.h3f,hmm.h3i,hmm.h3m,hmm.h3p}",
+                "required": true
+              }
+            }
+          ],
+          [
+            {
+              "annot_filter_url": {
+                "type": "file",
+                "description": "Rules for filtering out fusions based on annotations.",
+                "required": true
               }
             }
           ]
@@ -197370,7 +198112,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "riboseq",
@@ -201508,7 +202250,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "multiplesequencealign",
@@ -201597,6 +202339,10 @@
         {
           "name": "taxprofiler",
           "version": "1.2.3"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         },
         {
           "name": "tumourevo",
@@ -211624,6 +212370,10 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
+        },
+        {
+          "name": "tfactivity",
+          "version": "dev"
         }
       ]
     }
@@ -216254,7 +217004,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -217262,7 +218012,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -217420,7 +218170,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         }
       ]
     },
@@ -220414,7 +221164,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "epitopeprediction",
@@ -220506,7 +221256,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mhcquant",
@@ -220549,6 +221299,10 @@
           "version": "1.1.3"
         },
         {
+          "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.0.0"
         },
@@ -220583,6 +221337,10 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
+        },
+        {
+          "name": "rarevariantburden",
+          "version": "dev"
         },
         {
           "name": "readsimulator",
@@ -220811,7 +221569,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "epitopeprediction",
@@ -220903,7 +221661,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mhcquant",
@@ -220946,6 +221704,10 @@
           "version": "1.1.3"
         },
         {
+          "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.0.0"
         },
@@ -220980,6 +221742,10 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
+        },
+        {
+          "name": "rarevariantburden",
+          "version": "dev"
         },
         {
           "name": "readsimulator",
@@ -221212,7 +221978,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "epitopeprediction",
@@ -221284,7 +222050,7 @@
         },
         {
           "name": "methylseq",
-          "version": "3.0.0"
+          "version": "4.0.0"
         },
         {
           "name": "mhcquant",
@@ -221327,6 +222093,10 @@
           "version": "1.1.3"
         },
         {
+          "name": "panoramaseq",
+          "version": "dev"
+        },
+        {
           "name": "pathogensurveillance",
           "version": "1.0.0"
         },
@@ -221357,6 +222127,10 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
+        },
+        {
+          "name": "rarevariantburden",
+          "version": "dev"
         },
         {
           "name": "references",

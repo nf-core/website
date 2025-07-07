@@ -647,7 +647,8 @@ Input/output patterns (if present) MUST follow a [Java glob pattern](https://doc
 - Module `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) ID when available.
 - Module `meta.yml` files SHOULD contain ontology URLs for files when relevant.
 
-Some tools on `bio.tools` have a list of inputs and outputs with their format. The EDAM ontology term can be obtained by clicking on that format or by searching the term in the [EDAM browser](https://edamontology.github.io/edam-browser/#topic_0091).
+Some bioinformatics tools listed on `bio.tools` already have a list of inputs and outputs with their format that you can use (for example see: [FastQC](https://bio.tools/fastqc)), the EDAM ontology term can be obtained by clicking on the relevant format in the input section of the diagrams.
+Otherwise, you can get the ontology terms for a given format by searching the term in the EBI's [Ontology Lookup Service](https://www.ebi.ac.uk/ols4/ontologies/edam) (recommended), or the [EDAM browser](https://edamontology.github.io/edam-browser/#topic_0091).
 
 ### Indication of input channel requirement
 
