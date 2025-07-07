@@ -9,6 +9,24 @@ import ProgressBar from "progress";
 // get current path
 const __dirname = path.resolve();
 
+// Helper function to extract nextflowVersion from nextflow.config content
+const extractNextflowVersion = (content) => {
+  if (!content) return null;
+  // Look for patterns like: nextflowVersion = '!>=24.04.2'
+  const pattern = /nextflowVersion\s*=\s*['"]([^'"]+)['"]/;
+  const match = content.match(pattern);
+  return match ? match[1] : null;
+};
+
+// Helper function to extract nf_core_version from .nf-core.yml content
+const extractNfCoreVersion = (content) => {
+  if (!content) return null;
+  // Look for patterns like: nf_core_version: 3.3.1
+  const pattern = /nf_core_version:\s*['"]?([^\s'"]+)['"]?/;
+  const match = content.match(pattern);
+  return match ? match[1] : null;
+};
+
 // Get pipeline name from command line argument if provided
 const args = process.argv.slice(2);
 const singlePipelineName = args[0] || null;
@@ -505,6 +523,22 @@ export const writePipelinesJson = async () => {
         const { tag_name, published_at, tag_sha, has_schema } = release;
         const doc_files = await getDocFiles(name, release.tag_name);
 
+        // Fetch version information
+        let nextflow_version = null;
+        let nf_core_version = null;
+
+        // Fetch nextflow.config and extract nextflowVersion
+        const nextflowConfig = await getGitHubFile(name, "nextflow.config", tag_name);
+        if (nextflowConfig) {
+          nextflow_version = extractNextflowVersion(nextflowConfig);
+        }
+
+        // Fetch .nf-core.yml and extract nf_core_version
+        const nfCoreYml = await getGitHubFile(name, ".nf-core.yml", tag_name);
+        if (nfCoreYml) {
+          nf_core_version = extractNfCoreVersion(nfCoreYml);
+        }
+
         let components = await octokit
           .request("GET /repos/{owner}/{repo}/contents/{path}?ref={ref}", {
             owner: "nf-core",
@@ -561,7 +595,7 @@ export const writePipelinesJson = async () => {
             return component.replace("/", "_");
           });
         }
-        return { tag_name, published_at, tag_sha, has_schema, doc_files, components };
+        return { tag_name, published_at, tag_sha, has_schema, doc_files, components, nextflow_version, nf_core_version };
       }),
     );
 
