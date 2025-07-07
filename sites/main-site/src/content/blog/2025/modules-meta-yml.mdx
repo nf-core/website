@@ -151,8 +151,8 @@ Jinja2 is used to create templates for modules, subworkflows, and pipelines.
 With all the recent changes and improvements, this template was starting to get overengineered, with lots of conditionals which make it difficult to follow the code of the file.
 For this reason, we decided to simplify the template, and handle the `meta.yml` file with a YAML library.
 
-Now, the module template `meta.yml` is the most basic template for an nf-core module. And it doesn't contain any conditionals.
-This file is read as a YAML during module creation. All the possible conditions are checked in the `generate_meta_yml_file()` funciton. And the YAML object is updated accordingly.
+Now, the module template `meta.yml` is the most [basic template](https://github.com/nf-core/tools/blob/dev/nf_core/module-template/meta.yml) for an nf-core module. And it doesn't contain any conditionals.
+This file is read as a YAML during module creation. All the possible conditions are checked in the [`generate_meta_yml_file()`](https://github.com/nf-core/tools/blob/dev/nf_core/components/create.py#L524) funciton. And the YAML object is updated accordingly.
 
 This will take into account:
 
