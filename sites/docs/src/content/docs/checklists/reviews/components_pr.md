@@ -35,5 +35,6 @@ Otherwise, you can cover most of the specifications by checking for the followin
 
 - [ ] Check that there are tests for all outputs, including optional ones.
 - [ ] Check that the `meta.yml` file has correct documentation links and patterns of files.
+- [ ] Check that the `meta.yml` file has correct [`bio.tools`](https://bio.tools/) ID for the tool and correct [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091) links of files.
 - [ ] Run the tool help and check that important input (usually optional) has not been missed.
 - [ ] Check that all outputs are captured by running nf-test (e.g. on Gitpod).

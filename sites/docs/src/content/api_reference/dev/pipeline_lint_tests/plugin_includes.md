@@ -1,6 +1,6 @@
 # plugin_includes
 
-#### `PipelineLint.plugin_includes() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.plugin_includes() → dict[str, list[str]]{:python}`
 
 Checks the include statements in the all
 

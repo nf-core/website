@@ -1,6 +1,6 @@
 # modules_json
 
-#### `PipelineLint.modules_json() → Dict[str, List[str]]{:python}`
+#### `PipelineLint.modules_json() → dict[str, list[str]]{:python}`
 
 Make sure all modules described in the `modules.json` file are actually installed
 

@@ -1,0 +1,266 @@
+---
+title: "nf-core/tools - 3.3"
+subtitle: "An nf-testic release"
+headerImage: "https://images.unsplash.com/photo-1636819488537-a9b1ffb315ce"
+headerImageAlt: "3D rendering of a cute little space rocket painted red and white with a fluffy smoke cloud coming out of it."
+pubDate: 2025-06-03T12:00:00+02:00
+authors:
+    - "mashehu"
+    - "mirpedrol"
+label:
+    - "tools"
+maxHeadingDepth: 3
+---
+
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+This release brings exciting new features focused on nf-test integration, test dataset management and modules from different repositories in subworkflows. As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
+
+# Highlights
+
+## New nf-core infrastructure members
+
+This release marks the first release with contributions from two new nf-core infrastructure members. [@JulianFlesch](https://github.com/JulianFlesch) and [@ningyuxin1999](https://github.com/ningyuxin1999) are doing their PhDs at [QBiC](https://www.qbic.uni-tuebingen.de/) and will be working 50% for the nf-core infrastructure team.
+
+## nf-test for pipelines
+
+Approximately 2 years ago, nf-core started using [nf-test](https://www.nf-test.com/) to test modules and subworkflows.
+Since then, there has been a huge work form the community to switch all nf-core components from testing with pytest, to testing with nf-test.
+
+During the 2024 Barcelona Hackathon in October, a group of contributors worked on a proof of concept to add pipeline-level nf-test tests.
+After this first attempt, other pipeline maintainers started to join in, and started implementing nf-test to their pipelines.
+With some of the most used pipelines in nf-core, and others, having implemented these tests, it is time for nf-core/tools to catch-up, and add this to the pipeline template.
+
+To improve the robustness of nf-core pipeline testing workflows and
+help developers catch issues early in the development process,
+we've added pipeline-level nf-tests to the pipeline template.
+
+This can be seen in four new template files:
+
+```bash
+nf-test.config       # The pipeline-level nf-test configuration file
+tests/
+├── .nftignore       # ignored files for nf-test
+├── default.nf.test  # The default test for the pipeline, mirroring the setup in config/test.config
+└── nextflow.config  # The nextflow configuration for the pipeline tests
+```
+
+Additionally, we changed the CI setup to use nf-tests with [sharding](https://www.nf-test.com/docs/cli/test/#sharding) to speed up the testing process.
+This means good-bye to good old `ci.yml` and hello to `nf-test.yml`.
+
+:::note
+The initial nf-test CI run will fail, because the pipeline repository doesn't have a snapshot for `default.nf.test` yet.
+
+To fix this, generate a snapshot with:
+
+```bash
+nf-test test tests/ --profile=+<docker/singularity/conda etc.>
+```
+
+The `=+` notation is to extend the Nextflow `-profile test` option, and not overwrite it.
+
+Then commit `tests/default.nf.test.snap`.
+:::
+
+:::tip
+If you do not want to use nf-test for your pipeline, add the following to the `.nf-core.yml` file:
+
+```yaml
+skip_features:
+    - "nf-test"
+```
+
+Additionally, to ignore the linting checks for nf-test, add add the following to the `.nf-core.yml` file:
+
+```yaml
+lint:
+    files_exist:
+        - ".github/workflows/nf-test.yml"
+        - ".github/actions/get-shards/action.yml"
+        - ".github/actions/nf-test/action.yml"
+        - "nf-test.config"
+        - "tests/default.nf.test"
+    nf_test_content: False
+```
+
+:::
+
+To lower the load on our GitHub runners (especially during hackathons), we will use self-hosted runners for nf-test GitHub Actions.
+These are automatically set up for all nf-core repository. See our recent blog post on [self-hosted GitHub Actions runners](https://nf-co.re/blog/2025/state-of-nf-core-ci#moving-to-runson) to learn more about our setup.
+
+Big thanks to everyone who contributed to this big addition to the nf-core template, especially
+[@maxulysse](https://github.com/maxulysse),
+[@adamrtalbot](https://github.com/adamrtalbot),
+[@SateeshPeri](https://github.com/SateeshPeri),
+[@GallVp](https://github.com/GallVp) and
+[@edmundmiller](https://github.com/edmundmiller) for testing and tinkering, especially with the GitHub Actions. :raised_hands:
+
+## New `nf-core test-datasets` command
+
+Our newest infrastructure-team member [@JulianFlesch](https://github.com/JulianFlesch) has added a new CLI command to make it easier to find and integrate data sets from the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+
+```bash
+nf-core test-datasets list
+nf-core test-datasets search
+```
+
+This new command provides streamlined functionality for:
+
+- **Dataset discovery**: Easily search and explore available test datasets
+
+    List all datasets for a specific branch:
+
+    ![`nf-core test-datasets list --branch mag`](/images/tools/nf-core-test-datasets-list-mag.svg)
+
+    Search for a specific term and get more detailed information about the dataset:
+
+    ![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+
+- **Dataset integration**: Easily use test datasets in your pipeline by providing the download URL
+
+    ![nf-core test-datasets list --branch mag --generate-dl-url](/images/tools/nf-core-test-datasets-list-url-out.svg)
+
+    or the path used in the pipeline test files:
+
+    ![nf-core test-datasets list --branch mag --generate-nf-path](/images/tools/nf-core-test-datasets-list-path-out.svg)
+
+See the full documentation here: [`test-datasets list`](https://nf-co.re/docs/nf-core-tools/test-datasets/list), and [`test-datasets search`](https://nf-co.re/docs/nf-core-tools/test-datasets/search).
+
+## Installing subworkflows with components from different remotes
+
+Previously, when installing a subworkflow from a custom repository, all of its components had to be from the same repository.
+This release adds support for subworkflows that use components from multiple repositories.
+
+Thanks to [João Cavalcante](https://github.com/jvfe) for implementing this feature and to everyone who provided feedback, especially [Arthur Gymer](https://github.com/awgymer) and [Matthieu Muffato](https://github.com/muffato).
+
+### Changelog
+
+You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.3.0).
+
+# Getting help to update your pipeline template
+
+All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/3.3.0).
+Below, we have collected the most common merge conflicts that you may find and how to resolve them.
+
+## Video walkthrough
+
+<YouTube id="7Sgz3FzlcRQ" poster="https://i.ytimg.com/vi/7Sgz3FzlcRQ/maxresdefault.jpg" />
+
+## `.editorconfig`
+
+The `.editorconfig` file was deleted - The same functionality was replaced by adding the `trailing-whitespace` and `end-of-file-fixer` hooks,
+and with additional settings in `.prettierrc.yml`.
+
+#### Resolution
+
+You can delete the `.editorconfig` file and make sure that you accept the changes in `.pre-commit-config.yaml`.
+
+## nf-test files
+
+If your pipeline added nf-test before this template update, you might see some conflicts in the following files:
+
+- `.github/actions/nf-test/action.yml`
+- `.github/workflows/nf-test.yml`
+- `.nftignore`
+- `tests/nextflow.config`
+- `nf-test.config`
+
+#### Resolution
+
+It is a good idea to accept the changes made by the template, since they might contain updates and bug fixes that we have found thanks to the pipelines that added nf-test before.
+Make sure to double-check the changes and understand them, and don't delete any extra content that you added to your tests.
+If you need help, do not hesitate to reach out on slack
+
+## `ci.yml`
+
+The file `ci.yml` was removed and replaced by `nf-test.yml`.
+
+#### Resolution
+
+Once you have implemented nf-test, by updating the `default.nf.test` file, you can safely remove this file, this is replaced by `nf-test.yml`.
+
+## `CITATIONS.md`
+
+#### Resolution
+
+If you have added additional citations, keep them!
+
+## `modules.json`
+
+This file often has merge conflicts during template updates because it typically contains pipeline-specific information.
+
+#### Resolution
+
+Don't accept the changes.
+
+Instead, run the command `nf-core modules update --all{:bash}` to update all nf-core module after resolving the template update conflicts.
+This will make sure that all modules are updated and the correct version is specified in this file.
+
+## `nextflow.config`
+
+#### Resolution
+
+Keep all your added parameters.
+
+Accept the additions that come with this template update:
+
+- We have added a new profile `gpu`
+- We have added a new value to the `errorStrategy`
+- The expression to include config files has changed
+- nf-schema can be bumped back to 2.3.0
+- If you have modified the contributors, added more tests, etc. don't remove them.
+
+## `README.md`
+
+We have replaced the Twitter badge for Bluesky and we have added an nf-core template version badge.
+This is one of the harder files to sync with the template, because it usually doesn't contain any custom content.
+
+#### Resolution
+
+Accept the changes to the Twitter badge and the nf-core template version badge. Keep your Zenodo URL and your custom text.
+
+## `ro-crate-metadata.json`
+
+The file `ro-crate-metadata.json` is updated on `nf-core pipelines sync`.
+
+#### Resolution
+
+Accept the changes.
+
+## GitHub Actions
+
+In the Github Action `download_pipeline.yml` we have removed the `pull_request_target` and added a step to upload the `nextflow.log` file.
+
+In all Github Actions (files inside `.github/workflows`) you will see several version updates.
+
+#### Resolution
+
+You can accept all version updates.
+
+## Pipeline logos
+
+If you see changes in pipeline logos: accept them, except if you customized them.
+
+## `modules.config`
+
+This file often has merge conflicts during template updates because it typically contains pipeline-specific content.
+
+#### Resolution
+
+Make sure to keep all your custom changes.
+
+## `conf/base.config`
+
+We added the `withLabel: process_gpu` config to the base config.
+
+#### Resolution
+
+Accept the incoming gpu profile but keep your customizations.
+
+## `.nf-core.yml`
+
+There might be a conflict between the different `nf_core_version` values.
+
+#### Resolution
+
+Accept the newer version.

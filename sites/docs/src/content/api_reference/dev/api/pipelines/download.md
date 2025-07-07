@@ -134,7 +134,7 @@ Find specified revision / branch / commit hash
 
 Loop through container names and download Singularity images
 
-#### `prioritize_direct_download(container_list: List[str]) → List[str]{:python}`
+#### `prioritize_direct_download(container_list: list[str]) → list[str]{:python}`
 
 Helper function that takes a list of container images (URLs and Docker URIs),
 eliminates all Docker URIs for which also a URL is contained and returns the
@@ -205,7 +205,7 @@ Ask if we should _only_ use $NXF_SINGULARITY_CACHEDIR without copying into targe
 
 Reads the file specified as index for the remote Singularity cache dir
 
-#### _`static{:python}`_`reconcile_seqera_container_uris(prioritized_container_list: List[str], other_list: List[str]) → List[str]{:python}`
+#### _`static{:python}`_`reconcile_seqera_container_uris(prioritized_container_list: list[str], other_list: list[str]) → list[str]{:python}`
 
 Helper function that takes a list of Seqera container URIs,
 extracts the software string and builds a regex from them to filter out
@@ -280,7 +280,7 @@ Use native Python to download the file.
   - **cache_path** (_str_ _,_ _None_) – The NXF_SINGULARITY_CACHEDIR path if set, None if not
   - **progress** (_Progress_) – Rich progress bar instance to add tasks to.
 
-#### `singularity_image_filenames(container: str) → Tuple[str, str | None]{:python}`
+#### `singularity_image_filenames(container: str) → tuple[str, str | None]{:python}`
 
 Check Singularity cache for image, copy to destination folder if found.
 
@@ -296,7 +296,7 @@ Check Singularity cache for image, copy to destination folder if found.
 - **Return type:**
   tuple (str, str)
 
-#### `singularity_pull_image(container: str, out_path: str, cache_path: str | None, library: List[str], progress:{:python}`[DownloadProgress](#nf_core.pipelines.download.DownloadProgress)) → None
+#### `singularity_pull_image(container: str, out_path: str, cache_path: str | None, library: list[str], progress:{:python}`[DownloadProgress](#nf_core.pipelines.download.DownloadProgress)) → None
 
 Pull a singularity image using `singularity pull`
 
