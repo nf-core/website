@@ -70,6 +70,7 @@ const totalReleases = pipelineVersions.length;
 // Count Nextflow versions (only from latest releases)
 const nextflowVersionCounts: Record<string, number> = {};
 const nextflowVersionCountsAll: Record<string, number> = {};
+const nextflowVersionCountsDev: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
     if (p.nextflow_version) {
         const version = p.nextflow_version.replace("!>=", ">=");
@@ -79,12 +80,17 @@ pipelineVersions.forEach((p) => {
         if (p.release === latestReleases.get(p.pipeline)) {
             nextflowVersionCounts[version] = (nextflowVersionCounts[version] || 0) + 1;
         }
+        // Only count dev versions
+        if (p.release === "dev") {
+            nextflowVersionCountsDev[version] = (nextflowVersionCountsDev[version] || 0) + 1;
+        }
     }
 });
 
 // Count nf-core versions (only from latest releases)
 const nfCoreVersionCounts: Record<string, number> = {};
 const nfCoreVersionCountsAll: Record<string, number> = {};
+const nfCoreVersionCountsDev: Record<string, number> = {};
 pipelineVersions.forEach((p) => {
     // Use "<2.14.1" for missing versions
     const version = p.nf_core_version || "<2.14.1";
@@ -93,6 +99,10 @@ pipelineVersions.forEach((p) => {
     // Only count if it's the latest release for this pipeline
     if (p.release === latestReleases.get(p.pipeline)) {
         nfCoreVersionCounts[version] = (nfCoreVersionCounts[version] || 0) + 1;
+    }
+    // Only count dev versions
+    if (p.release === "dev") {
+        nfCoreVersionCountsDev[version] = (nfCoreVersionCountsDev[version] || 0) + 1;
     }
 });
 
@@ -118,23 +128,34 @@ const prepareChartData = (versionCounts: Record<string, number>) => {
 };
 
 const nextflowChartData = prepareChartData(nextflowVersionCounts);
+const nextflowChartDataDev = prepareChartData(nextflowVersionCountsDev);
 const nfCoreChartData = prepareChartData(nfCoreVersionCounts);
+const nfCoreChartDataDev = prepareChartData(nfCoreVersionCountsDev);
 
 // Generate histogram data
 const createBarChart = (
-    data: { labels: string[]; values: number[] },
+    releasedData: { labels: string[]; values: number[] },
+    devData: { labels: string[]; values: number[] },
     accentColor: string = "#23a3dd",
     chartId: string,
 ) => {
-    if (data.labels.length === 0) return [];
+    // Combine all unique labels from both datasets
+    const allLabels = [...new Set([...releasedData.labels, ...devData.labels])];
+
+    if (allLabels.length === 0) return [];
 
     // Sort data by version number (descending) by default
-    const sortedData = data.labels
-        .map((label, i) => ({
-            label,
-            value: data.values[i],
-            version: label.match(/[\d.]+/)?.[0] || "",
-        }))
+    const sortedData = allLabels
+        .map((label) => {
+            const releasedIndex = releasedData.labels.indexOf(label);
+            const devIndex = devData.labels.indexOf(label);
+            return {
+                label,
+                releasedValue: releasedIndex >= 0 ? releasedData.values[releasedIndex] : 0,
+                devValue: devIndex >= 0 ? devData.values[devIndex] : 0,
+                version: label.match(/[\d.]+/)?.[0] || "",
+            };
+        })
         .sort((a, b) => {
             // Handle "<2.14.1" specially - it should come first (oldest)
             if (a.label.startsWith("<") && !b.label.startsWith("<")) return 1; // a goes to end (oldest)
@@ -156,12 +177,19 @@ const createBarChart = (
     return sortedData;
 };
 
-const nextflowChartData_sorted = createBarChart(nextflowChartData, "var(--bs-info)", "nextflowChart");
-const nfCoreChartData_sorted = createBarChart(nfCoreChartData, "var(--bs-warning)", "nfCoreChart");
+const nextflowChartData_sorted = createBarChart(
+    nextflowChartData,
+    nextflowChartDataDev,
+    "var(--bs-info)",
+    "nextflowChart",
+);
+const nfCoreChartData_sorted = createBarChart(nfCoreChartData, nfCoreChartDataDev, "var(--bs-warning)", "nfCoreChart");
 
 // Pre-calculate percentages for each chart
 const nextflowTotal = nextflowChartData.values.reduce((sum, val) => sum + val, 0);
+const nextflowTotalDev = nextflowChartDataDev.values.reduce((sum, val) => sum + val, 0);
 const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
+const nfCoreTotalDev = nfCoreChartDataDev.values.reduce((sum, val) => sum + val, 0);
 ---
 
 <PageLayout
@@ -199,30 +227,57 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
                                             <h5 class="card-title mb-1">Nextflow Version Distribution</h5>
-                                            <p class="text-muted small mb-0">(latest releases only)</p>
+                                            <p class="text-muted small mb-0 nextflow-subtitle">
+                                                (latest releases only)
+                                            </p>
                                         </div>
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <input
-                                                type="radio"
-                                                class="btn-check"
-                                                name="nextflowDisplay"
-                                                id="nextflowCount"
-                                                autocomplete="off"
-                                                checked
-                                            />
-                                            <label class="btn btn-outline-secondary" for="nextflowCount">
-                                                n
-                                            </label>
-                                            <input
-                                                type="radio"
-                                                class="btn-check"
-                                                name="nextflowDisplay"
-                                                id="nextflowPercent"
-                                                autocomplete="off"
-                                            />
-                                            <label class="btn btn-outline-secondary" for="nextflowPercent">
-                                                %
-                                            </label>
+                                        <div class="d-flex gap-2">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowVersion"
+                                                    id="nextflowReleased"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-primary" for="nextflowReleased">
+                                                    Released
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowVersion"
+                                                    id="nextflowDev"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-primary" for="nextflowDev">
+                                                    Dev
+                                                </label>
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowDisplay"
+                                                    id="nextflowCount"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nextflowCount">
+                                                    n
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowDisplay"
+                                                    id="nextflowPercent"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nextflowPercent">
+                                                    %
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <table
@@ -250,28 +305,39 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {nextflowChartData_sorted.map(({ label, value }) => {
-                                                const maxValue = Math.max(...nextflowChartData.values);
-                                                const percentage = (value / maxValue) * 100;
-                                                const percentageValue = ((value / nextflowTotal) * 100).toFixed(1);
+                                            {nextflowChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                                const maxValue = Math.max(
+                                                    ...nextflowChartData_sorted.map((item) => item.releasedValue),
+                                                );
+                                                const percentage = (releasedValue / maxValue) * 100;
+                                                const percentageValue = ((releasedValue / nextflowTotal) * 100).toFixed(
+                                                    1,
+                                                );
+                                                const devPercentageValue = (
+                                                    (devValue / nextflowTotalDev) *
+                                                    100
+                                                ).toFixed(1);
                                                 return (
                                                     <tr
                                                         data-version={label}
-                                                        data-count={value}
+                                                        data-count={releasedValue}
+                                                        data-count-dev={devValue}
                                                         data-percentage={percentageValue}
+                                                        data-percentage-dev={devPercentageValue}
+                                                        class:list={[{ "d-none": releasedValue === 0 }]}
                                                     >
                                                         <td
                                                             class="text-end text-nowrap pe-2 align-middle font-monospace"
                                                             style="width: 90px;"
                                                         >
-                                                            {label.replace(">=", ">=")}
+                                                            {label.replace(".00", ".0")}
                                                         </td>
                                                         <td class="w-100 align-middle px-3">
                                                             <div
                                                                 class="d-inline-block text-center text-nowrap rounded-1 bg-info"
                                                                 style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
                                                             >
-                                                                <span class="text-white px-1">{value}</span>
+                                                                <span class="text-white px-1">{releasedValue}</span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -288,30 +354,55 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
                                     <div class="d-flex justify-content-between align-items-center mb-3">
                                         <div>
                                             <h5 class="card-title mb-1">nf-core Tools Version Distribution</h5>
-                                            <p class="text-muted small mb-0">(latest releases only)</p>
+                                            <p class="text-muted small mb-0 nfcore-subtitle">(latest releases only)</p>
                                         </div>
-                                        <div class="btn-group btn-group-sm" role="group">
-                                            <input
-                                                type="radio"
-                                                class="btn-check"
-                                                name="nfCoreDisplay"
-                                                id="nfCoreCount"
-                                                autocomplete="off"
-                                                checked
-                                            />
-                                            <label class="btn btn-outline-secondary" for="nfCoreCount">
-                                                n
-                                            </label>
-                                            <input
-                                                type="radio"
-                                                class="btn-check"
-                                                name="nfCoreDisplay"
-                                                id="nfCorePercent"
-                                                autocomplete="off"
-                                            />
-                                            <label class="btn btn-outline-secondary" for="nfCorePercent">
-                                                %
-                                            </label>
+                                        <div class="d-flex gap-2">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreVersion"
+                                                    id="nfCoreReleased"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-primary" for="nfCoreReleased">
+                                                    Released
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreVersion"
+                                                    id="nfCoreDev"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-primary" for="nfCoreDev">
+                                                    Dev
+                                                </label>
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreDisplay"
+                                                    id="nfCoreCount"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nfCoreCount">
+                                                    n
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreDisplay"
+                                                    id="nfCorePercent"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nfCorePercent">
+                                                    %
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                     <table
@@ -339,15 +430,25 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {nfCoreChartData_sorted.map(({ label, value }) => {
-                                                const maxValue = Math.max(...nfCoreChartData.values);
-                                                const percentage = (value / maxValue) * 100;
-                                                const percentageValue = ((value / nfCoreTotal) * 100).toFixed(1);
+                                            {nfCoreChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                                const maxValue = Math.max(
+                                                    ...nfCoreChartData_sorted.map((item) => item.releasedValue),
+                                                );
+                                                const percentage = (releasedValue / maxValue) * 100;
+                                                const percentageValue = ((releasedValue / nfCoreTotal) * 100).toFixed(
+                                                    1,
+                                                );
+                                                const devPercentageValue = ((devValue / nfCoreTotalDev) * 100).toFixed(
+                                                    1,
+                                                );
                                                 return (
                                                     <tr
                                                         data-version={label}
-                                                        data-count={value}
+                                                        data-count={releasedValue}
+                                                        data-count-dev={devValue}
                                                         data-percentage={percentageValue}
+                                                        data-percentage-dev={devPercentageValue}
+                                                        class:list={[{ "d-none": releasedValue === 0 }]}
                                                     >
                                                         <td
                                                             class="text-end text-nowrap pe-2 align-middle font-monospace"
@@ -360,7 +461,7 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
                                                                 class="d-inline-block text-center text-nowrap rounded-1 bg-warning"
                                                                 style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
                                                             >
-                                                                <span class="text-dark px-1">{value}</span>
+                                                                <span class="text-dark px-1">{releasedValue}</span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -577,36 +678,117 @@ const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
         });
 
         // Simple histogram toggle functionality
-        const toggleChart = (chartId: string, showPercentage: boolean) => {
+        const toggleChart = (chartId: string, showPercentage: boolean, showDev: boolean = false) => {
             const chart = document.getElementById(chartId);
             if (!chart) return;
 
             chart.querySelectorAll("tbody tr").forEach((row) => {
                 const span = row.querySelector("span");
                 if (span) {
-                    span.textContent = showPercentage
-                        ? `${row.getAttribute("data-percentage")}%`
-                        : row.getAttribute("data-count") || "0";
+                    if (showPercentage) {
+                        span.textContent = showDev
+                            ? `${row.getAttribute("data-percentage-dev")}%`
+                            : `${row.getAttribute("data-percentage")}%`;
+                    } else {
+                        span.textContent = showDev
+                            ? row.getAttribute("data-count-dev") || "0"
+                            : row.getAttribute("data-count") || "0";
+                    }
                 }
             });
         };
 
-        // Nextflow chart toggles
+        // Toggle chart version (released vs dev)
+        const toggleChartVersion = (chartId: string, showDev: boolean) => {
+            const chart = document.getElementById(chartId);
+            if (!chart) return;
+
+            // Update subtitle
+            const subtitleClass = chartId === "nextflowChart" ? ".nextflow-subtitle" : ".nfcore-subtitle";
+            const subtitle = document.querySelector(subtitleClass);
+            if (subtitle) {
+                subtitle.textContent = showDev ? "(dev versions only)" : "(latest releases only)";
+            }
+
+            // Update bars widths based on dev vs released data
+            chart.querySelectorAll("tbody tr").forEach((row) => {
+                const bar = row.querySelector("div.d-inline-block");
+                const span = row.querySelector("span");
+                if (bar && span) {
+                    const countAttr = showDev ? "data-count-dev" : "data-count";
+                    const count = parseInt(row.getAttribute(countAttr) || "0");
+
+                    if (count === 0) {
+                        row.classList.add("d-none");
+                    } else {
+                        row.classList.remove("d-none");
+                    }
+
+                    // Recalculate max value for proper bar sizing
+                    const allRows = chart.querySelectorAll("tbody tr");
+                    const maxValue = Math.max(
+                        ...Array.from(allRows).map((r) => parseInt(r.getAttribute(countAttr) || "0")),
+                    );
+
+                    const percentage = maxValue > 0 ? (count / maxValue) * 100 : 0;
+                    bar.style.width = `calc(${percentage}% + 1rem)`;
+
+                    // Update the displayed value based on current display mode
+                    const isShowingPercentage = document.getElementById(
+                        chartId === "nextflowChart" ? "nextflowPercent" : "nfCorePercent",
+                    )?.checked;
+                    if (isShowingPercentage) {
+                        const percentageAttr = showDev ? "data-percentage-dev" : "data-percentage";
+                        span.textContent = `${row.getAttribute(percentageAttr)}%`;
+                    } else {
+                        span.textContent = count.toString();
+                    }
+                }
+            });
+        };
+
+        // Track current state for each chart
+        let nextflowShowDev = false;
+        let nfCoreShowDev = false;
+
+        // Nextflow version toggles (released vs dev)
+        document.getElementById("nextflowReleased")?.addEventListener("change", () => {
+            nextflowShowDev = false;
+            toggleChartVersion("nextflowChart", false);
+        });
+
+        document.getElementById("nextflowDev")?.addEventListener("change", () => {
+            nextflowShowDev = true;
+            toggleChartVersion("nextflowChart", true);
+        });
+
+        // Nextflow display toggles (count vs percentage)
         document.getElementById("nextflowCount")?.addEventListener("change", () => {
-            toggleChart("nextflowChart", false);
+            toggleChart("nextflowChart", false, nextflowShowDev);
         });
 
         document.getElementById("nextflowPercent")?.addEventListener("change", () => {
-            toggleChart("nextflowChart", true);
+            toggleChart("nextflowChart", true, nextflowShowDev);
         });
 
-        // nf-core chart toggles
+        // nf-core version toggles (released vs dev)
+        document.getElementById("nfCoreReleased")?.addEventListener("change", () => {
+            nfCoreShowDev = false;
+            toggleChartVersion("nfCoreChart", false);
+        });
+
+        document.getElementById("nfCoreDev")?.addEventListener("change", () => {
+            nfCoreShowDev = true;
+            toggleChartVersion("nfCoreChart", true);
+        });
+
+        // nf-core display toggles (count vs percentage)
         document.getElementById("nfCoreCount")?.addEventListener("change", () => {
-            toggleChart("nfCoreChart", false);
+            toggleChart("nfCoreChart", false, nfCoreShowDev);
         });
 
         document.getElementById("nfCorePercent")?.addEventListener("change", () => {
-            toggleChart("nfCoreChart", true);
+            toggleChart("nfCoreChart", true, nfCoreShowDev);
         });
 
         // Download CSV functionality
