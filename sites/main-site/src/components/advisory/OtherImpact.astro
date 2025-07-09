@@ -1,0 +1,75 @@
+---
+interface Props {
+    items: string[];
+    title: string;
+    icon: string;
+    urlPrefix: string;
+}
+
+const { items, title, icon, urlPrefix } = Astro.props;
+const sectionId = `impact-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class="mb-3">
+    <button
+        class="btn btn-link text-decoration-none p-0 mb-2 d-flex align-items-center w-100 text-start"
+        aria-expanded="true"
+        aria-controls={sectionId}
+        data-bs-toggle="collapse"
+        data-bs-target={`#${sectionId}`}
+    >
+        <h3 class="h5 mb-0">
+            <i class={`fas ${icon} me-2 transition-rotate`}></i>
+            {title}
+        </h3>
+    </button>
+    <div id={sectionId} class="collapse show">
+        <ul class="list-unstyled mb-0">
+            {
+                items.map((item) => (
+                    <li class="mb-2 ps-3">
+                        <a
+                            href={`${urlPrefix}/${item}`}
+                            class="d-block p-2 text-decoration-none rounded hover-bg fw-light small"
+                        >
+                            : {item}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </div>
+</div>
+
+<style lang="scss">
+    .transition-rotate {
+        transition: transform 0.2s ease;
+    }
+
+    [aria-expanded="false"] .transition-rotate {
+        transform: rotate(-90deg);
+    }
+
+    .hover-bg {
+        color: var(--bs-body-color);
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: var(--bs-tertiary-bg);
+            color: var(--bs-primary);
+        }
+    }
+</style>
+
+<script>
+    // Handle the collapse button text update
+    document.querySelectorAll(".collapse-button").forEach((button) => {
+        button.addEventListener("click", () => {
+            const isExpanded = button.getAttribute("aria-expanded") === "true";
+            const span = button.querySelector("span");
+            if (span) {
+                span.textContent = isExpanded ? "Show affected items" : "Hide affected items";
+            }
+        });
+    });
+</script>

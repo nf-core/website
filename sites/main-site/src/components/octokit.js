@@ -10,21 +10,20 @@ let GITHUB_TOKEN;
 dotenv.config();
 
 try {
-  // Try to use Astro environment if available
-  if (typeof import.meta !== 'undefined' && import.meta.env) {
-    const astroEnv = await import('astro:env/server');
-    GITHUB_TOKEN = astroEnv.GITHUB_TOKEN;
-    console.log("Using GITHUB_TOKEN from Astro environment");
-  } else {
-    // Fall back to process.env
-    GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-    console.log("Using GITHUB_TOKEN from process.env");
-  }
+    // Try to use Astro environment if available and we're in a server context
+    if (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.SSR) {
+        const astroEnv = await import('astro:env/server');
+        GITHUB_TOKEN = astroEnv.GITHUB_TOKEN;
+        console.log("Using GITHUB_TOKEN from Astro environment");
+    } else {
+        // Fall back to process.env
+        GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+        console.log("Using GITHUB_TOKEN from process.env");
+    }
 } catch (error) {
-  // Fall back to process.env if Astro import fails
-  GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-  console.log("error:", error);
-  console.log("Astro environment not detected, using process.env.GITHUB_TOKEN");
+    // Fall back to process.env if Astro import fails
+    GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+    console.log("Astro environment not available, using process.env.GITHUB_TOKEN");
 }
 
 // For Astro, we need to access the token through import.meta.env.GITHUB_TOKEN
