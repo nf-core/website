@@ -20,12 +20,10 @@ By expanding the range of available tools, we will improve its functionality, fo
 ## Goals
 
 - **Expanding the range of doublet detection tools to include better-performing tools, particularly scDblFinder.**
-
   - _For people who have experience with scRNA-seq QC in Python or R_
   - _Based on benchmark comparisons, [scDblFinder](https://github.com/plger/scDblFinder) generally outperforms the currently listed tools._
 
 - **Expanding the range of cell type annotation tools to include other species currently not accounted for, particularly mice.**
-
   - _For people who have experience with mouse or other model organism's scRNA-seq data analysis_
   - _Datasets like Tabula Muris (Senis) will be explored for support integration._
 

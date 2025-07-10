@@ -47,7 +47,7 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         <a
                             href={item.href}
                             aria-current={item.isCurrent && "page"}
-                            class:list={["px-2"]}
+                            class:list={["px-2 py-2"]}
                             data-weight={item.weight}
                         >
                             <span class="section-link" set:html={sanitizeNfCoreLabels(item.label)} />

@@ -8,10 +8,10 @@ const hasNestedParams = Array.isArray(value) || (typeof value === "object" && !t
 ---
 
 {
-    name.slice(0, 6) !== "input[" && (
+    name.slice(0, 6) !== "input[" && name !== "0" && (
         <div
             class:list={[
-                `row align-items-center ${depth > 0 ? "ms-md-" + depth * 2 : ""}`,
+                `row align-items-start ${depth > 0 ? "ms-md-" + depth * 2 : ""}`,
                 { "border-bottom": !lastItem },
             ]}
         >
@@ -29,7 +29,7 @@ const hasNestedParams = Array.isArray(value) || (typeof value === "object" && !t
             <div class={`col-12 description py-1 small col-md-${pattern ? "5" : "7"}`}>
                 {description && <Markdown of={description.replace(/(\n)/g, " \n").replace(/\*./g, "\\*.")} />}
             </div>
-            <div class={`col-12 col-md-${pattern ? "4" : "1"} ms-auto`}>
+            <div class={`col-12 col-md-${pattern ? "3" : "1"} ms-auto mt-2`}>
                 {pattern && <code class="float-end pattern">{pattern}</code>}
             </div>
         </div>
