@@ -1,0 +1,1017 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+
+// Handle pipelines.json import with fallback
+let pipelinesData: any = { remote_workflows: [] };
+try {
+    // @ts-ignore - Dynamic import may fail if file doesn't exist
+    const module = await import("@public/pipelines.json");
+    pipelinesData = module.default || module;
+} catch (e) {
+    console.log("pipelines.json not found, using empty data");
+}
+
+// Flatten the pipelines data into a more usable format
+const pipelineVersions: {
+    pipeline: string;
+    release: string;
+    nextflow_version: string | null;
+    nf_core_version: string | null;
+    published_at: string | null;
+    published_date: Date | null;
+}[] = [];
+const workflows = pipelinesData?.remote_workflows || [];
+
+// Filter out archived pipelines
+const activeWorkflows = workflows.filter((workflow: any) => !workflow.archived);
+
+activeWorkflows.forEach((workflow: any) => {
+    const pipelineName = workflow.name;
+    const releases = workflow.releases || [];
+
+    releases.forEach((release: any) => {
+        pipelineVersions.push({
+            pipeline: pipelineName,
+            release: release.tag_name,
+            nextflow_version: release.nextflow_version || null,
+            nf_core_version: release.nf_core_version || null,
+            published_at: release.published_at || null,
+            published_date: release.published_at ? new Date(release.published_at) : null,
+        });
+    });
+});
+
+// Sort by pipeline name, then by release (dev last)
+pipelineVersions.sort((a, b) => {
+    if (a.pipeline !== b.pipeline) {
+        return a.pipeline.localeCompare(b.pipeline);
+    }
+    if (a.release === "dev" && b.release !== "dev") return -1;
+    if (a.release !== "dev" && b.release === "dev") return 1;
+    // Sort by published date for numbered releases (newest first)
+    if (a.published_date && b.published_date) {
+        return b.published_date.getTime() - a.published_date.getTime();
+    }
+    return 0;
+});
+
+// Identify latest release for each pipeline (excluding dev)
+const latestReleases = new Map<string, string>();
+pipelineVersions.forEach((version) => {
+    if (version.release !== "dev" && !latestReleases.has(version.pipeline)) {
+        latestReleases.set(version.pipeline, version.release);
+    }
+});
+
+// Calculate statistics
+const totalPipelines = activeWorkflows.length;
+const totalReleases = pipelineVersions.length;
+
+// Count Nextflow versions (only from latest releases)
+const nextflowVersionCounts: Record<string, number> = {};
+const nextflowVersionCountsAll: Record<string, number> = {};
+const nextflowVersionCountsDev: Record<string, number> = {};
+pipelineVersions.forEach((p) => {
+    if (p.nextflow_version) {
+        const version = p.nextflow_version.replace("!>=", ">=");
+        // Count all versions
+        nextflowVersionCountsAll[version] = (nextflowVersionCountsAll[version] || 0) + 1;
+        // Only count if it's the latest release for this pipeline
+        if (p.release === latestReleases.get(p.pipeline)) {
+            nextflowVersionCounts[version] = (nextflowVersionCounts[version] || 0) + 1;
+        }
+        // Only count dev versions
+        if (p.release === "dev") {
+            nextflowVersionCountsDev[version] = (nextflowVersionCountsDev[version] || 0) + 1;
+        }
+    }
+});
+
+// Count nf-core versions (only from latest releases)
+const nfCoreVersionCounts: Record<string, number> = {};
+const nfCoreVersionCountsAll: Record<string, number> = {};
+const nfCoreVersionCountsDev: Record<string, number> = {};
+pipelineVersions.forEach((p) => {
+    // Use "<2.14.1" for missing versions
+    const version = p.nf_core_version || "<2.14.1";
+    // Count all versions
+    nfCoreVersionCountsAll[version] = (nfCoreVersionCountsAll[version] || 0) + 1;
+    // Only count if it's the latest release for this pipeline
+    if (p.release === latestReleases.get(p.pipeline)) {
+        nfCoreVersionCounts[version] = (nfCoreVersionCounts[version] || 0) + 1;
+    }
+    // Only count dev versions
+    if (p.release === "dev") {
+        nfCoreVersionCountsDev[version] = (nfCoreVersionCountsDev[version] || 0) + 1;
+    }
+});
+
+// Format date
+const formatDate = (dateStr: string | null) => {
+    if (!dateStr) return "-";
+    const date = new Date(dateStr);
+    return date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+    });
+};
+
+// Prepare data for histograms
+const prepareChartData = (versionCounts: Record<string, number>) => {
+    const entries = Object.entries(versionCounts);
+
+    const labels = entries.map(([version]) => version);
+    const values = entries.map(([, count]) => count);
+
+    return { labels, values };
+};
+
+const nextflowChartData = prepareChartData(nextflowVersionCounts);
+const nextflowChartDataDev = prepareChartData(nextflowVersionCountsDev);
+const nfCoreChartData = prepareChartData(nfCoreVersionCounts);
+const nfCoreChartDataDev = prepareChartData(nfCoreVersionCountsDev);
+
+// Generate histogram data
+const createBarChart = (
+    releasedData: { labels: string[]; values: number[] },
+    devData: { labels: string[]; values: number[] },
+    accentColor: string = "#23a3dd",
+    chartId: string,
+) => {
+    // Combine all unique labels from both datasets
+    const allLabels = [...new Set([...releasedData.labels, ...devData.labels])];
+
+    if (allLabels.length === 0) return [];
+
+    // Sort data by version number (descending) by default
+    const sortedData = allLabels
+        .map((label) => {
+            const releasedIndex = releasedData.labels.indexOf(label);
+            const devIndex = devData.labels.indexOf(label);
+            return {
+                label,
+                releasedValue: releasedIndex >= 0 ? releasedData.values[releasedIndex] : 0,
+                devValue: devIndex >= 0 ? devData.values[devIndex] : 0,
+                version: label.match(/[\d.]+/)?.[0] || "",
+            };
+        })
+        .sort((a, b) => {
+            // Handle "<2.14.1" specially - it should come first (oldest)
+            if (a.label.startsWith("<") && !b.label.startsWith("<")) return 1; // a goes to end (oldest)
+            if (!a.label.startsWith("<") && b.label.startsWith("<")) return -1; // b goes to end (oldest)
+
+            // Extract version numbers for proper sorting
+            const aParts = a.version.split(".").map(Number);
+            const bParts = b.version.split(".").map(Number);
+            for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                const aPart = aParts[i] || 0;
+                const bPart = bParts[i] || 0;
+                if (aPart !== bPart) {
+                    return bPart - aPart; // Descending order
+                }
+            }
+            return 0;
+        });
+
+    return sortedData;
+};
+
+const nextflowChartData_sorted = createBarChart(
+    nextflowChartData,
+    nextflowChartDataDev,
+    "var(--bs-info)",
+    "nextflowChart",
+);
+const nfCoreChartData_sorted = createBarChart(nfCoreChartData, nfCoreChartDataDev, "var(--bs-warning)", "nfCoreChart");
+
+// Pre-calculate percentages for each chart
+const nextflowTotal = nextflowChartData.values.reduce((sum, val) => sum + val, 0);
+const nextflowTotalDev = nextflowChartDataDev.values.reduce((sum, val) => sum + val, 0);
+const nfCoreTotal = nfCoreChartData.values.reduce((sum, val) => sum + val, 0);
+const nfCoreTotalDev = nfCoreChartDataDev.values.reduce((sum, val) => sum + val, 0);
+---
+
+<PageLayout
+    title="Pipeline Versions"
+    subtitle="Nextflow and nf-core tools versions across all pipelines"
+    mainpage_container={false}
+>
+    <div class="container-fluid main-content">
+        {
+            pipelineVersions.length === 0 ? (
+                <div class="alert alert-info" role="alert">
+                    <h4 class="alert-heading">No version data available</h4>
+                    <p>
+                        The version information file has not been generated yet. This data is updated nightly by an
+                        automated workflow.
+                    </p>
+                    <hr />
+                    <p class="mb-0">
+                        <a
+                            href="https://github.com/nf-core/website/actions/workflows/update-version-info.yml"
+                            class="btn btn-sm btn-primary"
+                            target="_blank"
+                        >
+                            View Update Workflow
+                        </a>
+                    </p>
+                </div>
+            ) : (
+                <>
+                    {/* Version Distribution Charts */}
+                    <div class="row g-3 mb-4">
+                        <div class="col-lg-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="card-title mb-1">Nextflow Version Distribution</h5>
+                                            <p class="text-muted small mb-0 nextflow-subtitle">
+                                                (latest releases only)
+                                            </p>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowVersion"
+                                                    id="nextflowReleased"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-primary" for="nextflowReleased">
+                                                    Released
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowVersion"
+                                                    id="nextflowDev"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-primary" for="nextflowDev">
+                                                    Dev
+                                                </label>
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowDisplay"
+                                                    id="nextflowCount"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nextflowCount">
+                                                    n
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nextflowDisplay"
+                                                    id="nextflowPercent"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nextflowPercent">
+                                                    %
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table
+                                        class="w-100 text-small histogram-table"
+                                        id="nextflowChart"
+                                        data-initial-sort="version"
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 ms-3 py-2 border-bottom"
+                                                    data-sort="version"
+                                                    style="width: 90px;"
+                                                >
+                                                    Version
+                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                                </th>
+                                                <th
+                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
+                                                    data-sort="count"
+                                                >
+                                                    Count
+                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {nextflowChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                                const maxValue = Math.max(
+                                                    ...nextflowChartData_sorted.map((item) => item.releasedValue),
+                                                );
+                                                const percentage = (releasedValue / maxValue) * 100;
+                                                const percentageValue = ((releasedValue / nextflowTotal) * 100).toFixed(
+                                                    1,
+                                                );
+                                                const devPercentageValue = (
+                                                    (devValue / nextflowTotalDev) *
+                                                    100
+                                                ).toFixed(1);
+                                                return (
+                                                    <tr
+                                                        data-version={label}
+                                                        data-count={releasedValue}
+                                                        data-count-dev={devValue}
+                                                        data-percentage={percentageValue}
+                                                        data-percentage-dev={devPercentageValue}
+                                                        class:list={[{ "d-none": releasedValue === 0 }]}
+                                                    >
+                                                        <td
+                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
+                                                            style="width: 90px;"
+                                                        >
+                                                            {label.replace(".00", ".0")}
+                                                        </td>
+                                                        <td class="w-100 align-middle px-3">
+                                                            <div
+                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-info"
+                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
+                                                            >
+                                                                <span class="text-white px-1">{releasedValue}</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-between align-items-center mb-3">
+                                        <div>
+                                            <h5 class="card-title mb-1">nf-core Tools Version Distribution</h5>
+                                            <p class="text-muted small mb-0 nfcore-subtitle">(latest releases only)</p>
+                                        </div>
+                                        <div class="d-flex gap-2">
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreVersion"
+                                                    id="nfCoreReleased"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-primary" for="nfCoreReleased">
+                                                    Released
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreVersion"
+                                                    id="nfCoreDev"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-primary" for="nfCoreDev">
+                                                    Dev
+                                                </label>
+                                            </div>
+                                            <div class="btn-group btn-group-sm" role="group">
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreDisplay"
+                                                    id="nfCoreCount"
+                                                    autocomplete="off"
+                                                    checked
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nfCoreCount">
+                                                    n
+                                                </label>
+                                                <input
+                                                    type="radio"
+                                                    class="btn-check"
+                                                    name="nfCoreDisplay"
+                                                    id="nfCorePercent"
+                                                    autocomplete="off"
+                                                />
+                                                <label class="btn btn-outline-secondary" for="nfCorePercent">
+                                                    %
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <table
+                                        class="w-100 text-small histogram-table"
+                                        id="nfCoreChart"
+                                        data-initial-sort="version"
+                                    >
+                                        <thead>
+                                            <tr>
+                                                <th
+                                                    class="sortable histogram-sortable sort-desc user-select-none text-nowrap text-end fs-7 py-2 mb-2 border-bottom"
+                                                    data-sort="version"
+                                                    style="width: 90px;"
+                                                >
+                                                    Version
+                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                                </th>
+                                                <th
+                                                    class="sortable histogram-sortable user-select-none text-nowrap fs-7 px-3 py-2 border-bottom"
+                                                    data-sort="count"
+                                                >
+                                                    Count
+                                                    <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {nfCoreChartData_sorted.map(({ label, releasedValue, devValue }) => {
+                                                const maxValue = Math.max(
+                                                    ...nfCoreChartData_sorted.map((item) => item.releasedValue),
+                                                );
+                                                const percentage = (releasedValue / maxValue) * 100;
+                                                const percentageValue = ((releasedValue / nfCoreTotal) * 100).toFixed(
+                                                    1,
+                                                );
+                                                const devPercentageValue = ((devValue / nfCoreTotalDev) * 100).toFixed(
+                                                    1,
+                                                );
+                                                return (
+                                                    <tr
+                                                        data-version={label}
+                                                        data-count={releasedValue}
+                                                        data-count-dev={devValue}
+                                                        data-percentage={percentageValue}
+                                                        data-percentage-dev={devPercentageValue}
+                                                        class:list={[{ "d-none": releasedValue === 0 }]}
+                                                    >
+                                                        <td
+                                                            class="text-end text-nowrap pe-2 align-middle font-monospace"
+                                                            style="width: 90px;"
+                                                        >
+                                                            {label}
+                                                        </td>
+                                                        <td class="w-100 align-middle px-3">
+                                                            <div
+                                                                class="d-inline-block text-center text-nowrap rounded-1 bg-warning"
+                                                                style={`width: calc(${percentage}% + 1rem); min-width: 2.5rem;`}
+                                                            >
+                                                                <span class="text-dark px-1">{releasedValue}</span>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                );
+                                            })}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Versions Table */}
+                    <div class="table-container m-auto w-100">
+                        <div class=" mb-3 d-flex justify-content-between align-items-center">
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-sm btn-primary" id="toggleReleases">
+                                    <i class="fas fa-eye me-1" />
+                                    <span class="toggle-text">Show all releases</span>
+                                </button>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="downloadCSV">
+                                    <i class="fas fa-download me-1" />
+                                    Download CSV
+                                </button>
+                            </div>
+                            <span class="text-muted small">
+                                Showing {totalPipelines} latest releases
+                                <span class="hidden-count">({totalReleases - totalPipelines} hidden)</span>
+                            </span>
+                        </div>
+                        <table class="table table-hover table-responsive table-sm text-small" id="versionsTable">
+                            <thead>
+                                <tr class="sticky-top-under z-1 table-active">
+                                    <th class="sortable sort-desc user-select-none text-nowrap" data-sort="pipeline">
+                                        Pipeline
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="release">
+                                        Release
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nextflow">
+                                        Nextflow Version
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap text-end" data-sort="nfcore">
+                                        nf-core Version
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                    <th class="sortable user-select-none text-nowrap" data-sort="date">
+                                        Published Date
+                                        <i class="fas fa-sort ms-1 text-muted opacity-50" />
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {pipelineVersions.map((version) => {
+                                    const isLatest = version.release === latestReleases.get(version.pipeline);
+                                    const isDev = version.release === "dev";
+                                    const showByDefault = isLatest || (isDev && !latestReleases.has(version.pipeline));
+                                    const isNonLatestNonDev = !isLatest && !isDev;
+                                    return (
+                                        <tr
+                                            class:list={[{ "hidden-release": !showByDefault }]}
+                                            data-pipeline={version.pipeline}
+                                            data-release={version.release}
+                                            data-nextflow={version.nextflow_version || ""}
+                                            data-nfcore={version.nf_core_version || ""}
+                                            data-date={version.published_at || ""}
+                                        >
+                                            <td class="fw-semibold">
+                                                <a
+                                                    href={`https://nf-co.re/${version.pipeline}`}
+                                                    target="_blank"
+                                                    class:list={[
+                                                        "text-decoration-none",
+                                                        { "text-body-tertiary": isNonLatestNonDev },
+                                                    ]}
+                                                >
+                                                    {version.pipeline}
+                                                </a>
+                                            </td>
+                                            <td class="text-end">
+                                                {version.release === "dev" ? (
+                                                    <span class="badge bg-secondary">{version.release}</span>
+                                                ) : (
+                                                    <a
+                                                        href={`https://github.com/nf-core/${version.pipeline}/releases/tag/${version.release}`}
+                                                        target="_blank"
+                                                        class:list={[
+                                                            "text-decoration-none",
+                                                            { "text-body-tertiary": isNonLatestNonDev },
+                                                        ]}
+                                                    >
+                                                        {version.release}
+                                                    </a>
+                                                )}
+                                            </td>
+                                            <td class="text-end">
+                                                {version.nextflow_version ? (
+                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                        {version.nextflow_version.replace("!>=", ">=")}
+                                                    </code>
+                                                ) : (
+                                                    <span class="text-muted">-</span>
+                                                )}
+                                            </td>
+                                            <td class="text-end">
+                                                {version.nf_core_version ? (
+                                                    <code class:list={[{ "text-body-tertiary": isNonLatestNonDev }]}>
+                                                        v{version.nf_core_version}
+                                                    </code>
+                                                ) : (
+                                                    <code
+                                                        class:list={[
+                                                            "text-muted",
+                                                            { "text-body-tertiary": isNonLatestNonDev },
+                                                        ]}
+                                                    >
+                                                        &lt;2.14.1
+                                                    </code>
+                                                )}
+                                            </td>
+                                            <td
+                                                class:list={[
+                                                    "text-muted small",
+                                                    { "text-body-tertiary": isNonLatestNonDev },
+                                                ]}
+                                            >
+                                                {formatDate(version.published_at)}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="text-center mt-4 mb-5">
+                        <a
+                            href="https://github.com/nf-core/website/actions/workflows/update-pipelines-json.yml"
+                            class="btn btn-sm btn-outline-primary"
+                            target="_blank"
+                        >
+                            View Update Workflow
+                        </a>
+                    </div>
+                </>
+            )
+        }
+    </div>
+</PageLayout>
+
+<style>
+    .hidden-release {
+        display: none;
+    }
+
+    .show-all .hidden-release {
+        display: table-row;
+    }
+
+    /* Sortable table styles */
+    .sortable {
+        cursor: pointer;
+    }
+
+    .sortable:hover i {
+        opacity: 1 !important;
+    }
+
+    .sortable.sort-asc i::before {
+        content: "\f0de"; /* fa-sort-up */
+        opacity: 1;
+    }
+
+    .sortable.sort-desc i::before {
+        content: "\f0dd"; /* fa-sort-down */
+        opacity: 1;
+    }
+
+    .table-container {
+        max-width: 50rem;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Initialize toggle functionality
+        const toggleButton = document.getElementById("toggleReleases");
+        const downloadButton = document.getElementById("downloadCSV");
+        const versionsTable = document.getElementById("versionsTable") as HTMLTableElement;
+        const toggleText = toggleButton?.querySelector(".toggle-text");
+        const toggleIcon = toggleButton?.querySelector("i");
+        const hiddenCount = document.querySelector(".hidden-count") as HTMLElement;
+
+        let showingAll = false;
+
+        toggleButton?.addEventListener("click", () => {
+            showingAll = !showingAll;
+
+            if (showingAll) {
+                versionsTable?.classList.add("show-all");
+                if (toggleText) toggleText.textContent = "Show latest only";
+                toggleIcon?.classList.remove("fa-eye");
+                toggleIcon?.classList.add("fa-eye-slash");
+                if (hiddenCount) hiddenCount.style.display = "none";
+            } else {
+                versionsTable?.classList.remove("show-all");
+                if (toggleText) toggleText.textContent = "Show all releases";
+                toggleIcon?.classList.remove("fa-eye-slash");
+                toggleIcon?.classList.add("fa-eye");
+                if (hiddenCount) hiddenCount.style.display = "inline";
+            }
+        });
+
+        // Simple histogram toggle functionality
+        const toggleChart = (chartId: string, showPercentage: boolean, showDev: boolean = false) => {
+            const chart = document.getElementById(chartId);
+            if (!chart) return;
+
+            chart.querySelectorAll("tbody tr").forEach((row) => {
+                const span = row.querySelector("span");
+                if (span) {
+                    if (showPercentage) {
+                        span.textContent = showDev
+                            ? `${row.getAttribute("data-percentage-dev")}%`
+                            : `${row.getAttribute("data-percentage")}%`;
+                    } else {
+                        span.textContent = showDev
+                            ? row.getAttribute("data-count-dev") || "0"
+                            : row.getAttribute("data-count") || "0";
+                    }
+                }
+            });
+        };
+
+        // Toggle chart version (released vs dev)
+        const toggleChartVersion = (chartId: string, showDev: boolean) => {
+            const chart = document.getElementById(chartId);
+            if (!chart) return;
+
+            // Update subtitle
+            const subtitleClass = chartId === "nextflowChart" ? ".nextflow-subtitle" : ".nfcore-subtitle";
+            const subtitle = document.querySelector(subtitleClass);
+            if (subtitle) {
+                subtitle.textContent = showDev ? "(dev versions only)" : "(latest releases only)";
+            }
+
+            // Update bars widths based on dev vs released data
+            chart.querySelectorAll("tbody tr").forEach((row) => {
+                const bar = row.querySelector("div.d-inline-block");
+                const span = row.querySelector("span");
+                if (bar && span) {
+                    const countAttr = showDev ? "data-count-dev" : "data-count";
+                    const count = parseInt(row.getAttribute(countAttr) || "0");
+
+                    if (count === 0) {
+                        row.classList.add("d-none");
+                    } else {
+                        row.classList.remove("d-none");
+                    }
+
+                    // Recalculate max value for proper bar sizing
+                    const allRows = chart.querySelectorAll("tbody tr");
+                    const maxValue = Math.max(
+                        ...Array.from(allRows).map((r) => parseInt(r.getAttribute(countAttr) || "0")),
+                    );
+
+                    const percentage = maxValue > 0 ? (count / maxValue) * 100 : 0;
+                    bar.style.width = `calc(${percentage}% + 1rem)`;
+
+                    // Update the displayed value based on current display mode
+                    const isShowingPercentage = document.getElementById(
+                        chartId === "nextflowChart" ? "nextflowPercent" : "nfCorePercent",
+                    )?.checked;
+                    if (isShowingPercentage) {
+                        const percentageAttr = showDev ? "data-percentage-dev" : "data-percentage";
+                        span.textContent = `${row.getAttribute(percentageAttr)}%`;
+                    } else {
+                        span.textContent = count.toString();
+                    }
+                }
+            });
+        };
+
+        // Track current state for each chart
+        let nextflowShowDev = false;
+        let nfCoreShowDev = false;
+
+        // Nextflow version toggles (released vs dev)
+        document.getElementById("nextflowReleased")?.addEventListener("change", () => {
+            nextflowShowDev = false;
+            toggleChartVersion("nextflowChart", false);
+        });
+
+        document.getElementById("nextflowDev")?.addEventListener("change", () => {
+            nextflowShowDev = true;
+            toggleChartVersion("nextflowChart", true);
+        });
+
+        // Nextflow display toggles (count vs percentage)
+        document.getElementById("nextflowCount")?.addEventListener("change", () => {
+            toggleChart("nextflowChart", false, nextflowShowDev);
+        });
+
+        document.getElementById("nextflowPercent")?.addEventListener("change", () => {
+            toggleChart("nextflowChart", true, nextflowShowDev);
+        });
+
+        // nf-core version toggles (released vs dev)
+        document.getElementById("nfCoreReleased")?.addEventListener("change", () => {
+            nfCoreShowDev = false;
+            toggleChartVersion("nfCoreChart", false);
+        });
+
+        document.getElementById("nfCoreDev")?.addEventListener("change", () => {
+            nfCoreShowDev = true;
+            toggleChartVersion("nfCoreChart", true);
+        });
+
+        // nf-core display toggles (count vs percentage)
+        document.getElementById("nfCoreCount")?.addEventListener("change", () => {
+            toggleChart("nfCoreChart", false, nfCoreShowDev);
+        });
+
+        document.getElementById("nfCorePercent")?.addEventListener("change", () => {
+            toggleChart("nfCoreChart", true, nfCoreShowDev);
+        });
+
+        // Download CSV functionality
+        downloadButton?.addEventListener("click", () => {
+            const rows = versionsTable?.querySelectorAll("tbody tr");
+            if (!rows) return;
+
+            // CSV header
+            let csv = "Pipeline,Release,Nextflow Version,nf-core Version,Published Date\n";
+
+            // Add data rows (including hidden ones based on current view)
+            rows.forEach((row) => {
+                // Skip hidden rows if not showing all
+                if (!showingAll && row.classList.contains("hidden-release")) {
+                    return;
+                }
+
+                const cells = row.querySelectorAll("td");
+                const pipeline = cells[0]?.textContent?.trim() || "";
+                const release = cells[1]?.textContent?.trim() || "";
+                const nextflowVersion = cells[2]?.textContent?.trim().replace("≥", ">=") || "";
+                let nfCoreVersion = cells[3]?.textContent?.trim() || "";
+                // Replace the HTML entity with the actual character for CSV
+                if (nfCoreVersion.includes("<")) {
+                    nfCoreVersion = nfCoreVersion.replace(/</g, "gs<");
+                }
+                const publishedDate = cells[4]?.textContent?.trim() || "";
+
+                // Escape values that contain commas or quotes
+                const escapeCSV = (value: string) => {
+                    if (value.includes(",") || value.includes('"') || value.includes("\n")) {
+                        return `"${value.replace(/"/g, '""')}"`;
+                    }
+                    return value;
+                };
+
+                csv += `${escapeCSV(pipeline)},${escapeCSV(release)},${escapeCSV(nextflowVersion)},${escapeCSV(nfCoreVersion)},${escapeCSV(publishedDate)}\n`;
+            });
+
+            // Create and trigger download
+            const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+            const link = document.createElement("a");
+            const url = URL.createObjectURL(blob);
+
+            const timestamp = new Date().toISOString().split("T")[0];
+            const filename = showingAll
+                ? `nf-core-pipeline-versions-all-${timestamp}.csv`
+                : `nf-core-pipeline-versions-latest-${timestamp}.csv`;
+
+            link.setAttribute("href", url);
+            link.setAttribute("download", filename);
+            link.style.visibility = "hidden";
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+
+        // Initialize table sorting
+        const sortableHeaders = versionsTable?.querySelectorAll<HTMLTableCellElement>("th.sortable");
+        let currentSort: { column: string; ascending: boolean } | null = null;
+
+        sortableHeaders?.forEach((header) => {
+            header.addEventListener("click", () => {
+                const sortType = header.dataset.sort;
+                if (!sortType) return;
+
+                // Determine sort direction
+                const isAscending = currentSort?.column === sortType ? !currentSort.ascending : true;
+                currentSort = { column: sortType, ascending: isAscending };
+
+                // Update header classes
+                sortableHeaders.forEach((h) => {
+                    h.classList.remove("sort-asc", "sort-desc");
+                });
+                header.classList.add(isAscending ? "sort-asc" : "sort-desc");
+
+                // Sort the table
+                sortTable(sortType, isAscending);
+            });
+        });
+
+        function sortTable(sortType: string, ascending: boolean) {
+            const tbody = versionsTable?.querySelector("tbody");
+            if (!tbody) return;
+
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            // Custom sorting function
+            rows.sort((a, b) => {
+                let aValue = a.dataset[sortType] || "";
+                let bValue = b.dataset[sortType] || "";
+
+                // Special handling for different column types
+                switch (sortType) {
+                    case "date":
+                        // Sort by date (ISO format)
+                        aValue = aValue || "0000-00-00";
+                        bValue = bValue || "0000-00-00";
+                        break;
+                    case "release":
+                        // Put 'dev' releases at the end when ascending, start when descending
+                        if (aValue === "dev" && bValue !== "dev") return ascending ? 1 : -1;
+                        if (aValue !== "dev" && bValue === "dev") return ascending ? -1 : 1;
+                        // Try to sort numerically if possible (for version numbers)
+                        const aNum = parseFloat(aValue.replace(/[^0-9.]/g, ""));
+                        const bNum = parseFloat(bValue.replace(/[^0-9.]/g, ""));
+                        if (!isNaN(aNum) && !isNaN(bNum)) {
+                            return ascending ? aNum - bNum : bNum - aNum;
+                        }
+                        break;
+                    case "nextflow":
+                    case "nfcore":
+                        // Extract version numbers for proper sorting
+                        const aVersion = aValue.match(/[\d.]+/)?.[0] || "";
+                        const bVersion = bValue.match(/[\d.]+/)?.[0] || "";
+                        if (aVersion && bVersion) {
+                            const aParts = aVersion.split(".").map(Number);
+                            const bParts = bVersion.split(".").map(Number);
+                            for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                                const aPart = aParts[i] || 0;
+                                const bPart = bParts[i] || 0;
+                                if (aPart !== bPart) {
+                                    return ascending ? aPart - bPart : bPart - aPart;
+                                }
+                            }
+                        }
+                        break;
+                }
+
+                // Default string comparison
+                const comparison = aValue.localeCompare(bValue);
+                return ascending ? comparison : -comparison;
+            });
+
+            // Re-append rows in sorted order
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+
+        // Initialize histogram table sorting
+        const histogramTables = document.querySelectorAll(".histogram-table");
+        histogramTables.forEach((table) => {
+            const headers = table.querySelectorAll<HTMLTableCellElement>("th.histogram-sortable");
+            // Initialize with version sorted ascending by default
+            let currentHistogramSort: { column: string; ascending: boolean } | null = {
+                column: "version",
+                ascending: false,
+            };
+
+            headers.forEach((header) => {
+                header.addEventListener("click", () => {
+                    const sortType = header.dataset.sort;
+                    if (!sortType) return;
+
+                    // Determine sort direction
+                    const isAscending =
+                        currentHistogramSort?.column === sortType ? !currentHistogramSort.ascending : true;
+                    currentHistogramSort = { column: sortType, ascending: isAscending };
+
+                    // Update header classes
+                    headers.forEach((h) => {
+                        h.classList.remove("sort-asc", "sort-desc");
+                    });
+                    header.classList.add(isAscending ? "sort-asc" : "sort-desc");
+
+                    // Sort the histogram table
+                    sortHistogramTable(table as HTMLTableElement, sortType, isAscending);
+                });
+            });
+        });
+
+        function sortHistogramTable(table: HTMLTableElement, sortType: string, ascending: boolean) {
+            const tbody = table.querySelector("tbody");
+            if (!tbody) return;
+
+            const rows = Array.from(tbody.querySelectorAll("tr"));
+
+            rows.sort((a, b) => {
+                let aValue: string | number = a.dataset[sortType] || "";
+                let bValue: string | number = b.dataset[sortType] || "";
+
+                if (sortType === "count") {
+                    // Convert to numbers for count sorting
+                    aValue = parseInt(aValue as string) || 0;
+                    bValue = parseInt(bValue as string) || 0;
+                    return ascending
+                        ? (aValue as number) - (bValue as number)
+                        : (bValue as number) - (aValue as number);
+                } else {
+                    // Version sorting - handle "<2.14.1" specially
+                    const aIsLessThan = (aValue as string).startsWith("<");
+                    const bIsLessThan = (bValue as string).startsWith("<");
+
+                    if (aIsLessThan && !bIsLessThan) {
+                        return ascending ? -1 : 1; // "<2.14.1" is oldest
+                    }
+                    if (!aIsLessThan && bIsLessThan) {
+                        return ascending ? 1 : -1; // "<2.14.1" is oldest
+                    }
+
+                    // Extract numeric parts for regular versions
+                    const aVersion = (aValue as string).match(/[\d.]+/)?.[0] || "";
+                    const bVersion = (bValue as string).match(/[\d.]+/)?.[0] || "";
+
+                    if (aVersion && bVersion) {
+                        const aParts = aVersion.split(".").map(Number);
+                        const bParts = bVersion.split(".").map(Number);
+                        for (let i = 0; i < Math.max(aParts.length, bParts.length); i++) {
+                            const aPart = aParts[i] || 0;
+                            const bPart = bParts[i] || 0;
+                            if (aPart !== bPart) {
+                                return ascending ? aPart - bPart : bPart - aPart;
+                            }
+                        }
+                    }
+
+                    // Fallback to string comparison
+                    const comparison = (aValue as string).localeCompare(bValue as string);
+                    return ascending ? comparison : -comparison;
+                }
+            });
+
+            // Re-append rows in sorted order
+            rows.forEach((row) => tbody.appendChild(row));
+        }
+    });
+</script>

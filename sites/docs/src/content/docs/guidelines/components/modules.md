@@ -629,7 +629,7 @@ Input/output types MUST only be of the following categories: `map`, `file`, `dir
 
 Input/output entries MUST match a corresponding channel in the module itself
 
-- There should be a one-to-one relationship between the module and the `meta.yaml`
+- There should be a one-to-one relationship between the module's inputs and outputs and those described in `meta.yml`
 - Input/output entries MUST NOT combine multiple output channels
 
 ### Useful input/output descriptions
@@ -641,6 +641,14 @@ Input/output descriptions SHOULD be descriptive of the contents of file
 ### Input/output glob pattern
 
 Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+### Ontology
+
+- Module `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) ID when available.
+- Module `meta.yml` files SHOULD contain ontology URLs for files when relevant.
+
+Some bioinformatics tools listed on `bio.tools` already have a list of inputs and outputs with their format that you can use (for example see: [FastQC](https://bio.tools/fastqc)), the EDAM ontology term can be obtained by clicking on the relevant format in the input section of the diagrams.
+Otherwise, you can get the ontology terms for a given format by searching the term in the EBI's [Ontology Lookup Service](https://www.ebi.ac.uk/ols4/ontologies/edam) (recommended), or the [EDAM browser](https://edamontology.github.io/edam-browser/#topic_0091).
 
 ### Indication of input channel requirement
 
