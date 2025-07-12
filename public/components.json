@@ -1407,7 +1407,13 @@
           "@toniher",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tfactivity",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "agat_convertspgff2tsv",
@@ -1638,6 +1644,10 @@
       "pipelines": [
         {
           "name": "genomeqc",
+          "version": "dev"
+        },
+        {
+          "name": "tfactivity",
           "version": "dev"
         }
       ]
