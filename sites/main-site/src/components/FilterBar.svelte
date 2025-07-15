@@ -21,9 +21,8 @@
         displayStyle: { name: string; icon: string }[];
         filterName?: () => string;
     }>();
-
     // Initialize filters once on mount
-    onMount(() => {
+    onMount(async () => {
         // Reset stores if no filters provided
         if (filter.length === 0) {
             Filters.set([]);
@@ -90,73 +89,71 @@
             class="form-control w-25 me-2 searchbar"
             value={search}
             oninput={handleSearch}
-            placeholder="&#xf002; Search..."
+            placeholder="Search"
         />
 
-        {#if $Filters.length > 0 && $Filters[0] && $Filters[0].name}
-            <div class="d-none d-xl-block ms-3 d-flex align-items-center">
-                <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
-                    {#each $Filters as fil}
-                        <button
-                            type="button"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            data-bs-delay="500"
-                            title="Double click to only show items from this category"
-                            class={fil.class
-                                ? "btn text-nowrap flex-fill btn-outline-" + fil.class
-                                : "btn text-nowrap w-100 btn-outline-success"}
-                            class:active={$CurrentFilter.some((f) => f.name === fil.name)}
-                            onclick={(e) => handleFilter(fil.name, e)}
-                            ondblclick={(e) => handleExclusiveFilter(fil.name, e)}
-                        >
-                            {#if fil.icon}
-                                <i class={fil.icon + " me-1"}></i>
-                            {/if}
-                            {fil.displayName || fil.name}
-                            {#if fil.count !== undefined && fil.count >= 0}
-                                <span class="badge bg-secondary ms-1">{fil.count}</span>
-                            {/if}
-                        </button>
-                    {/each}
-                </div>
-            </div>
-            <div class="d-xl-none ms-1 ms-md-3 align-items-center">
-                <div class="dropdown">
+        <div class="d-none d-xl-block ms-3 d-flex align-items-center">
+            <div class="btn-group ms-1 filter-buttons d-flex" role="group" aria-label="Filter listing">
+                {#each $Filters as fil}
                     <button
-                        class="btn btn-outline-success dropdown-toggle text-nowrap"
                         type="button"
-                        data-bs-toggle="dropdown"
-                        aria-expanded="false"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        data-bs-delay="500"
+                        title="Double click to only show items from this category"
+                        class={fil.class
+                            ? "btn text-nowrap flex-fill btn-outline-" + fil.class
+                            : "btn text-nowrap w-100 btn-outline-success"}
+                        class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                        onclick={(e) => handleFilter(fil.name, e)}
+                        ondblclick={(e) => handleExclusiveFilter(fil.name, e)}
                     >
-                        {filterName()}
+                        {#if fil.icon}
+                            <i class={fil.icon + " me-1"}></i>
+                        {/if}
+                        {fil.displayName || fil.name}
+                        {#if fil.count !== undefined && fil.count >= 0}
+                            <span class="badge bg-secondary ms-1">{fil.count}</span>
+                        {/if}
                     </button>
-                    <ul class="dropdown-menu">
-                        {#each $Filters as fil}
-                            <li>
-                                <div
-                                    class="dropdown-item"
-                                    title="Filter"
-                                    class:active={$CurrentFilter.some((f) => f.name === fil.name)}
-                                    onclick={(e) => handleFilter(fil.name, e)}
-                                    onkeydown={(e) => e.key === "Enter" && handleFilter(fil.name, e)}
-                                    role="button"
-                                    tabindex="0"
-                                >
-                                    {#if fil.icon}
-                                        <i class={fil.icon + " fa-fw me-1"}></i>
-                                    {/if}
-                                    {fil.displayName || fil.name}
-                                    {#if fil.count !== undefined && fil.count >= 0}
-                                        <span class="badge bg-secondary ms-1">{fil.count}</span>
-                                    {/if}
-                                </div>
-                            </li>
-                        {/each}
-                    </ul>
-                </div>
+                {/each}
             </div>
-        {/if}
+        </div>
+        <div class="d-xl-none ms-1 ms-md-3 align-items-center">
+            <div class="dropdown">
+                <button
+                    class="btn btn-outline-success dropdown-toggle text-nowrap"
+                    type="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                >
+                    {filterName()}
+                </button>
+                <ul class="dropdown-menu">
+                    {#each $Filters as fil}
+                        <li>
+                            <div
+                                class="dropdown-item"
+                                title="Filter"
+                                class:active={$CurrentFilter.some((f) => f.name === fil.name)}
+                                onclick={(e) => handleFilter(fil.name, e)}
+                                onkeydown={(e) => e.key === "Enter" && handleFilter(fil.name, e)}
+                                role="button"
+                                tabindex="0"
+                            >
+                                {#if fil.icon}
+                                    <i class={fil.icon + " fa-fw me-1"}></i>
+                                {/if}
+                                {fil.displayName || fil.name}
+                                {#if fil.count !== undefined && fil.count >= 0}
+                                    <span class="badge bg-secondary ms-1">{fil.count}</span>
+                                {/if}
+                            </div>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+        </div>
         {#if sortBy.length > 1}
             <div class="ms-1 ms-md-3 align-items-center">
                 <div class="dropdown">
@@ -210,9 +207,3 @@
         {/if}
     </div>
 </div>
-
-<style lang="scss">
-    .searchbar {
-        font-family: "Inter Variable", "Inter override", sans-serif, "Font Awesome 6 Pro";
-    }
-</style>
