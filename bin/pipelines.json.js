@@ -290,6 +290,7 @@ export const writePipelinesJson = async () => {
             }
           }
 
+      }
     }
     // remove ignored topics
     data["has_required_topics"] = ["nf-core", "nextflow", "workflow", "pipeline"].every((topic) =>
