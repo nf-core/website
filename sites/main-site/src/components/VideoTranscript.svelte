@@ -16,7 +16,7 @@
 
         const details = document.querySelector("details");
         // check if id is inside details
-        const containsId = Array.from(details.children).some((child) => {
+        const containsId = Array.from(details?.children || []).some((child) => {
             return child.innerHTML.includes(id);
         });
 
@@ -28,7 +28,7 @@
         // add video placeholder before details
         const videoPlaceholder = document.createElement("div");
         videoPlaceholder.id = "video-placeholder";
-        details.parentNode.insertBefore(videoPlaceholder, details);
+        details.parentNode?.insertBefore(videoPlaceholder, details);
 
         // create player
         let player = YouTubePlayer("video-placeholder", {
