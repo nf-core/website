@@ -149,12 +149,6 @@ pipelines.sort((a, b) => {
                         >Branch protection: <code>dev</code></th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1 px-3"
-                        title="Restrict push to TEMPLATE to @nf-core-bot"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top">T push</th
-                    >
-                    <th
                         colspan="2"
                         class="small fw-normal text-nowrap text-center p-1 px-3"
                         title="nf-validation plugin should not be in nextflow.config"
@@ -450,14 +444,6 @@ pipelines.sort((a, b) => {
                                         (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
                                     "dev branch: do not enforce rules for admins",
                                     " border-end ",
-                                )}
-                                {/* T push */}
-                                {getCell(
-                                    pipeline.TEMPLATE_restrict_push,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.TEMPLATE_uses_ruleset ? "/rules" : "/branches"),
-                                    "restrict push to TEMPLATE to @nf-core-bot",
                                 )}
                                 {/* Plugins */}
                                 {
