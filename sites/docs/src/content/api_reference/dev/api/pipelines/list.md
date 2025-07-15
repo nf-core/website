@@ -75,6 +75,8 @@ Dump JSON of all parsed information
 
 Prints a summary of all pipelines.
 
+### `nf_core.pipelines.list.autocomplete_pipelines(ctx, param, incomplete: str){:python}`
+
 ### `nf_core.pipelines.list.get_local_wf(workflow: str | Path, revision=None) → str | None{:python}`
 
 Check if this workflow has a local copy and use nextflow to pull it if not
