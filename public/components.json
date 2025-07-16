@@ -62231,6 +62231,140 @@
       ]
     },
     {
+      "name": "fastqdl",
+      "path": "modules/nf-core/fastqdl/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastqdl",
+        "description": "Download FASTQ files from SRA or ENA repositories.",
+        "keywords": [
+          "download",
+          "ena",
+          "fastq",
+          "sra"
+        ],
+        "tools": [
+          {
+            "fastqdl": {
+              "description": "A tool to download FASTQs associated with Study, Experiment, or Run accessions.",
+              "homepage": "https://github.com/rpetit3/fastq-dl",
+              "documentation": "https://github.com/rpetit3/fastq-dl",
+              "tool_dev_url": "https://github.com/rpetit3/fastq-dl",
+              "doi": "10.5281/zenodo.13957735",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastq-dl"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "accession": {
+                "type": "string",
+                "description": "ENA/SRA accession to query"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fastq.gz": {
+                  "type": "file",
+                  "description": "FASTQ files downloaded from ENA or SRA",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "runinfo": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*-run-info.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited file containing metadata for each Run downloaded",
+                  "pattern": "*-run-info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "runmergers": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*-run-mergers.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited file merge information from --group-by-experiment or --group-by-sample",
+                  "pattern": "*-run-mergers.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
       "name": "fastqe",
       "path": "modules/nf-core/fastqe/meta.yml",
       "type": "module",
