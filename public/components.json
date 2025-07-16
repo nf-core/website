@@ -18885,7 +18885,7 @@
                 }
               },
               {
-                "**/InterOp/*.bin": {
+                "output/InterOp/*.bin": {
                   "type": "file",
                   "description": "Interop files",
                   "pattern": "*.{bin}",
@@ -21831,6 +21831,97 @@
         ],
         "maintainers": [
           "@ekushele"
+        ]
+      }
+    },
+    {
+      "name": "bftools_showinf",
+      "path": "modules/nf-core/bftools/showinf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bftools_showinf",
+        "description": "Extract OME xml data from OME-tif",
+        "keywords": [
+          "metadata",
+          "ome-tif",
+          "ome-tiff",
+          "imaging",
+          "bioinformatics tools"
+        ],
+        "tools": [
+          {
+            "bftools": {
+              "description": "Suite of tools to handle several imaging protocols.",
+              "homepage": "https://www.openmicroscopy.org/bio-formats",
+              "documentation": "https://bio-formats.readthedocs.io/en/stable/users/index.html",
+              "tool_dev_url": "https://github.com/ome/bioformats",
+              "doi": "10.1083/jcb.201004104",
+              "licence": [
+                "GNU General Public License v2.0"
+              ],
+              "identifier": "biotools:bio-formats"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "image": {
+                "type": "file",
+                "description": "Path to image file containing OME metadata",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.xml": {
+                  "type": "file",
+                  "description": "XML with OME tag metadata",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@AlexBarbera"
+        ],
+        "maintainers": [
+          "@AlexBarbera"
         ]
       }
     },
@@ -67845,18 +67936,16 @@
               }
             }
           ],
-          [
-            {
-              "tools_cutoff": {
-                "type": "integer",
-                "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
-              }
-            }
-          ]
-        ],
-        "output": [
           {
-            "fusion_list": [
+            "tools_cutoff": {
+              "type": "integer",
+              "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
+            }
+          }
+        ],
+        "output": {
+          "fusion_list": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67882,9 +67971,9 @@
                 }
               }
             ]
-          },
-          {
-            "fusion_list_filtered": [
+          ],
+          "fusion_list_filtered": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67910,9 +67999,9 @@
                 }
               }
             ]
-          },
-          {
-            "report": [
+          ],
+          "report": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67938,9 +68027,9 @@
                 }
               }
             ]
-          },
-          {
-            "html": [
+          ],
+          "html": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67966,9 +68055,9 @@
                 }
               }
             ]
-          },
-          {
-            "csv": [
+          ],
+          "csv": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67994,9 +68083,9 @@
                 }
               }
             ]
-          },
-          {
-            "json": [
+          ],
+          "json": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -68022,24 +68111,22 @@
                 }
               }
             ]
-          },
-          {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3750"
-                    }
-                  ]
-                }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
-            ]
-          }
-        ],
+            }
+          ]
+        },
         "authors": [
           "@praveenraj2018, @rannick"
         ]
@@ -188069,8 +188156,8 @@
             },
             {
               "sample_size": {
-                "type": "integer",
-                "description": "Number of reads to sample."
+                "type": "float",
+                "description": "Fraction (<1.0) or number (>=1) of reads to sample."
               }
             }
           ]
@@ -217304,6 +217391,101 @@
       ]
     },
     {
+      "name": "vcf2zarr_convert",
+      "path": "modules/nf-core/vcf2zarr/convert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vcf2zarr_convert",
+        "description": "Convert VCF data to the VCF Zarr specification reliably, in parallel or distributed over a cluster",
+        "keywords": [
+          "vcf",
+          "zarr",
+          "convert"
+        ],
+        "tools": [
+          {
+            "vcf2zarr": {
+              "description": "Convert bioinformatics data to Zarr",
+              "homepage": "https://sgkit-dev.github.io/bio2zarr/vcf2zarr/overview.html",
+              "documentation": "https://sgkit-dev.github.io/bio2zarr/",
+              "tool_dev_url": "https://github.com/sgkit-dev/bio2zarr",
+              "doi": "10.1101/2024.06.11.598241",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:bio2zarr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcz": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcz": {
+                  "type": "directory",
+                  "description": "Output VCF Zarr store",
+                  "pattern": "*.{vcz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3915"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
       "name": "vcfanno",
       "path": "modules/nf-core/vcfanno/meta.yml",
       "type": "module",
@@ -226147,6 +226329,118 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "yte",
+      "path": "modules/nf-core/yte/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "yte",
+        "description": "A YAML template engine with Python expressions",
+        "keywords": [
+          "yaml",
+          "template",
+          "python"
+        ],
+        "tools": [
+          {
+            "yte": {
+              "description": "A YAML template engine with Python expressions",
+              "homepage": "https://yte-template-engine.github.io/",
+              "documentation": "https://yte-template-engine.github.io/",
+              "tool_dev_url": "https://github.com/yte-template-engine/yte",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'template1' ]`\n"
+              }
+            },
+            {
+              "template": {
+                "type": "file",
+                "description": "YTE template",
+                "pattern": "*.{yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "map_file": {
+              "type": "file",
+              "description": "YAML file containing a map to be used in the template",
+              "pattern": "*.{yaml}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
+                }
+              ]
+            }
+          },
+          {
+            "map": {
+              "type": "map",
+              "description": "Groovy Map containing mapping information to be used in the template\ne.g. `[ key: value ]` with key being a wildcard in the template\n"
+            }
+          }
+        ],
+        "output": {
+          "rendered": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.yaml": {
+                  "type": "file",
+                  "description": "Rendered YAML file",
+                  "pattern": "*.yaml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
     },
     {
       "name": "zip",
