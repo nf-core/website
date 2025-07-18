@@ -1,0 +1,81 @@
+---
+import { versionSpecToStringArray } from "./advisoryUtils";
+
+interface Props {
+    pipelines: Array<string | { name: string; versions: VersionSpec }>;
+}
+
+const { pipelines } = Astro.props;
+
+const hasVersions = (
+    pipeline: string | { name: string; versions: VersionSpec },
+): pipeline is { name: string; versions: VersionSpec } => {
+    return typeof pipeline === "object" && "versions" in pipeline;
+};
+
+const sectionId = `pipeline-impact-${Math.random().toString(36).substring(2, 9)}`;
+---
+
+<div class="mb-3">
+    <button
+        class="btn btn-link text-decoration-none p-0 mb-2 d-flex align-items-center w-100 text-start"
+        aria-expanded="true"
+        aria-controls={sectionId}
+        data-bs-toggle="collapse"
+        data-bs-target={`#${sectionId}`}
+    >
+        <h3 class="h5 mb-0">
+            <i class="fas fa-project-diagram me-2 transition-rotate"></i>
+            Affected Pipelines
+        </h3>
+    </button>
+    <div id={sectionId} class="collapse show">
+        <ul class="list-unstyled mb-0">
+            {
+                pipelines.map((pipeline) => {
+                    const name = hasVersions(pipeline) ? pipeline.name : pipeline;
+                    const versions = hasVersions(pipeline) ? versionSpecToStringArray(pipeline.versions) : null;
+                    return (
+                        <li class="mb-2 ps-3">
+                            <a
+                                href={`/${name}`}
+                                class="d-block p-2 text-decoration-none rounded hover-bg fw-light small"
+                            >
+                                : {name}
+                            </a>
+                            {versions && versions.length > 0 && (
+                                <div class="ms-3 mt-2">
+                                    <div class="d-flex flex-wrap gap-1">
+                                        {versions.map((version) => (
+                                            <span class="badge bg-primary-subtle text-primary">{version}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            )}
+                        </li>
+                    );
+                })
+            }
+        </ul>
+    </div>
+</div>
+
+<style lang="scss">
+    .transition-rotate {
+        transition: transform 0.2s ease;
+    }
+
+    [aria-expanded="false"] .transition-rotate {
+        transform: rotate(-90deg);
+    }
+
+    .hover-bg {
+        color: var(--bs-body-color);
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: var(--bs-tertiary-bg);
+            color: var(--bs-primary);
+        }
+    }
+</style>

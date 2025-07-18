@@ -39,6 +39,7 @@ export interface Props {
         subtitle?: string;
         md_github_url?: string;
     };
+    tocSidebarPosition?: "left" | "right";
 }
 
 let {
@@ -59,6 +60,7 @@ let {
     doubleNavbar = true,
     sidebarTitle = "",
     frontmatter,
+    tocSidebarPosition = "right",
 } = Astro.props;
 
 if (frontmatter?.title) {
@@ -83,6 +85,10 @@ if (leftSidebar) {
 if (showRightSidebar) {
     mainContentWidth -= rightSidebarWidth;
 }
+
+// Determine which sidebar should show the TOC
+const showTocInLeftSidebar = tocSidebarPosition === "left" && leftSidebar;
+const showTocInRightSidebar = tocSidebarPosition === "right" && showRightSidebar;
 ---
 
 <script>
@@ -134,7 +140,7 @@ if (showRightSidebar) {
             </div>
 
             {
-                showRightSidebar && (
+                showTocInRightSidebar && (
                     <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right toc order-3`}>
                         <SidebarToc
                             headings={headings}
@@ -153,6 +159,14 @@ if (showRightSidebar) {
                 )
             }
             {
+                !showTocInRightSidebar && showRightSidebar && (
+                    <div class={`col-12 col-xl-${rightSidebarWidth} sidebar-right order-3`}>
+                        <slot name="right-sidebar-top" />
+                        <slot name="right-sidebar-bottom" />
+                    </div>
+                )
+            }
+            {
                 leftSidebar && (
                     <div
                         class={`col-12 col-xl-${leftSidebarWidth} sticky-top-under d-none d-xl-inline sidebar-left order-1`}
@@ -166,6 +180,33 @@ if (showRightSidebar) {
                             </a>
                         )}
                         <SidebarNav items={sections} />
+                        {showTocInLeftSidebar && (
+                            <div class="toc mt-3">
+                                <SidebarToc
+                                    headings={headings}
+                                    minNumHeadings={minNumHeadings}
+                                    minHeadingDepth={minHeadingDepth}
+                                    maxHeadingDepth={maxHeadingDepth}
+                                    client:idle
+                                >
+                                    <slot slot="leftSidebarTop" name="left-sidebar-top" />
+                                    <slot slot="defaultContent" name="left-sidebar-bottom" />
+                                    <a
+                                        class="text-small text-body-secondary"
+                                        href={md_github_url}
+                                        slot="leftSidebarLinkBar"
+                                    >
+                                        <i class="fas fa-pencil-alt" /> Edit this page
+                                    </a>
+                                </SidebarToc>
+                            </div>
+                        )}
+                        {!showTocInLeftSidebar && (
+                            <>
+                                <slot name="left-sidebar-top" />
+                                <slot name="left-sidebar-bottom" />
+                            </>
+                        )}
                     </div>
                 )
             }
