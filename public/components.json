@@ -14574,6 +14574,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.0.0"
         },
@@ -15748,6 +15752,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -18439,6 +18447,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "4.0.0"
         },
@@ -18885,7 +18897,7 @@
                 }
               },
               {
-                "**/InterOp/*.bin": {
+                "output/InterOp/*.bin": {
                   "type": "file",
                   "description": "Interop files",
                   "pattern": "*.{bin}",
@@ -19061,7 +19073,13 @@
         "maintainers": [
           "@ashotmarg"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedgovcf",
@@ -21833,6 +21851,103 @@
           "@ekushele"
         ]
       }
+    },
+    {
+      "name": "bftools_showinf",
+      "path": "modules/nf-core/bftools/showinf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bftools_showinf",
+        "description": "Extract OME xml data from OME-tif",
+        "keywords": [
+          "metadata",
+          "ome-tif",
+          "ome-tiff",
+          "imaging",
+          "bioinformatics tools"
+        ],
+        "tools": [
+          {
+            "bftools": {
+              "description": "Suite of tools to handle several imaging protocols.",
+              "homepage": "https://www.openmicroscopy.org/bio-formats",
+              "documentation": "https://bio-formats.readthedocs.io/en/stable/users/index.html",
+              "tool_dev_url": "https://github.com/ome/bioformats",
+              "doi": "10.1083/jcb.201004104",
+              "licence": [
+                "GNU General Public License v2.0"
+              ],
+              "identifier": "biotools:bio-formats"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "image": {
+                "type": "file",
+                "description": "Path to image file containing OME metadata",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.xml": {
+                  "type": "file",
+                  "description": "XML with OME tag metadata",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@AlexBarbera"
+        ],
+        "maintainers": [
+          "@AlexBarbera"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "mcmicro",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bioawk",
@@ -48613,10 +48728,10 @@
                 }
               },
               {
-                "*estimate__decoupler.tsv": {
+                "*estimate_decoupler.tsv": {
                   "type": "file",
                   "description": "The file containing the estimation results of the enrichment(s)\n",
-                  "pattern": "*estimate__decoupler.tsv",
+                  "pattern": "*estimate_decoupler.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -48635,10 +48750,32 @@
                 }
               },
               {
-                "*pvals__decoupler.tsv": {
+                "*pvals_decoupler.tsv": {
                   "type": "file",
                   "description": "The file containing the p-value associated to the estimation\nresults of the enrichment(s)\n",
-                  "pattern": "*pvals__decoupler.tsv",
+                  "pattern": "*pvals_decoupler.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:‘test’, single_end ]\n"
+                }
+              },
+              {
+                "*decoupler_plot.png": {
+                  "type": "file",
+                  "description": "The file containing the plots associated to the estimation\nresults of the enrichment(s)\n",
+                  "pattern": "*decoupler_plot.png",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -61858,6 +61995,10 @@
           "version": "4.3.1"
         },
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "ampliseq",
           "version": "2.14.0"
         },
@@ -62138,6 +62279,140 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "fastqdl",
+      "path": "modules/nf-core/fastqdl/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastqdl",
+        "description": "Download FASTQ files from SRA or ENA repositories.",
+        "keywords": [
+          "download",
+          "ena",
+          "fastq",
+          "sra"
+        ],
+        "tools": [
+          {
+            "fastqdl": {
+              "description": "A tool to download FASTQs associated with Study, Experiment, or Run accessions.",
+              "homepage": "https://github.com/rpetit3/fastq-dl",
+              "documentation": "https://github.com/rpetit3/fastq-dl",
+              "tool_dev_url": "https://github.com/rpetit3/fastq-dl",
+              "doi": "10.5281/zenodo.13957735",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastq-dl"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "accession": {
+                "type": "string",
+                "description": "ENA/SRA accession to query"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fastq.gz": {
+                  "type": "file",
+                  "description": "FASTQ files downloaded from ENA or SRA",
+                  "pattern": "*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "runinfo": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*-run-info.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited file containing metadata for each Run downloaded",
+                  "pattern": "*-run-info.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "runmergers": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*-run-mergers.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited file merge information from --group-by-experiment or --group-by-sample",
+                  "pattern": "*-run-mergers.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
     },
     {
       "name": "fastqe",
@@ -67845,18 +68120,16 @@
               }
             }
           ],
-          [
-            {
-              "tools_cutoff": {
-                "type": "integer",
-                "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
-              }
-            }
-          ]
-        ],
-        "output": [
           {
-            "fusion_list": [
+            "tools_cutoff": {
+              "type": "integer",
+              "description": "Discard fusions detected by less than $tools_cutoff tools both for display in fusionreport html index and to consider in fusioninspector."
+            }
+          }
+        ],
+        "output": {
+          "fusion_list": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67882,9 +68155,9 @@
                 }
               }
             ]
-          },
-          {
-            "fusion_list_filtered": [
+          ],
+          "fusion_list_filtered": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67910,9 +68183,9 @@
                 }
               }
             ]
-          },
-          {
-            "report": [
+          ],
+          "report": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67938,9 +68211,9 @@
                 }
               }
             ]
-          },
-          {
-            "html": [
+          ],
+          "html": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67966,9 +68239,9 @@
                 }
               }
             ]
-          },
-          {
-            "csv": [
+          ],
+          "csv": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -67994,9 +68267,9 @@
                 }
               }
             ]
-          },
-          {
-            "json": [
+          ],
+          "json": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -68022,24 +68295,22 @@
                 }
               }
             ]
-          },
-          {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3750"
-                    }
-                  ]
-                }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
-            ]
-          }
-        ],
+            }
+          ]
+        },
         "authors": [
           "@praveenraj2018, @rannick"
         ]
@@ -132440,6 +132711,10 @@
           "version": "4.3.1"
         },
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "ampliseq",
           "version": "2.14.0"
         },
@@ -144030,7 +144305,7 @@
       "type": "module",
       "meta": {
         "name": "parabricks_fq2bammeth",
-        "description": "VIDIA Clara Parabricks GPU-accelerated fast, accurate algorithm for mapping methylated DNA sequence reads to a reference genome, performing local alignment, and producing alignment for different parts of the query sequence",
+        "description": "NVIDIA Clara Parabricks GPU-accelerated fast, accurate algorithm for mapping methylated DNA sequence reads to a reference genome, performing local alignment, and producing alignment for different parts of the query sequence",
         "keywords": [
           "align",
           "sort",
@@ -166698,6 +166973,112 @@
       }
     },
     {
+      "name": "rbt_vcfsplit",
+      "path": "modules/nf-core/rbt/vcfsplit/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rbt_vcfsplit",
+        "description": "A tool for splitting VCF/BCF files into N equal chunks, including BND support",
+        "keywords": [
+          "genomics",
+          "splitting",
+          "VCF",
+          "BCF",
+          "variants"
+        ],
+        "tools": [
+          {
+            "rust-bio-tools": {
+              "description": "A growing collection of fast and secure command line utilities for dealing with NGS data implemented on top of Rust-Bio.",
+              "homepage": "https://github.com/rust-bio/rust-bio-tools",
+              "documentation": "https://github.com/rust-bio/rust-bio-tools",
+              "tool_dev_url": "https://github.com/rust-bio/rust-bio-tools",
+              "doi": "no DOI available",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF file with variants to be split",
+                "pattern": "*.{vcf,bcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "numchunks": {
+              "type": "integer",
+              "description": "Number of chunks to split the VCF file into. The default is 15."
+            }
+          }
+        ],
+        "output": {
+          "bcfchunks": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bcf": {
+                  "type": "file",
+                  "description": "Chunks of the input VCF file, split into `numchunks` equal parts.",
+                  "pattern": "*.bcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
+    },
+    {
       "name": "regtools_junctionsextract",
       "path": "modules/nf-core/regtools/junctionsextract/meta.yml",
       "type": "module",
@@ -178163,6 +178544,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "atacseq",
           "version": "2.1.2"
         },
@@ -179367,6 +179752,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "atacseq",
           "version": "2.1.2"
         },
@@ -180021,6 +180410,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "bamtofastq",
           "version": "2.2.0"
         },
@@ -180236,6 +180629,108 @@
         ],
         "maintainers": [
           "@nictru"
+        ]
+      }
+    },
+    {
+      "name": "scanpy_hashsolo",
+      "path": "modules/nf-core/scanpy/hashsolo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "SCANPY_HASHSOLO",
+        "description": "Probabilistic demultiplexing of cell hashing data",
+        "keywords": [
+          "anndata",
+          "single-cell",
+          "hashing",
+          "demultiplexing",
+          "scanpy"
+        ],
+        "tools": [
+          {
+            "scanpy": {
+              "description": "Single-cell analysis in Python. Scales to >100M cells.",
+              "homepage": "https://github.com/scverse/scanpy",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.hashsolo.html",
+              "tool_dev_url": "https://github.com/scverse/scanpy",
+              "doi": "10.1186/s13059-017-1382-0",
+              "licence": [
+                "BSD-3"
+              ],
+              "identifier": "biotools:scanpy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input_h5ad": {
+                "type": "file",
+                "description": "The (annotated) data matrix of shape n_obs x n_vars. Rows correspond to cells and columns to genes.",
+                "pattern": "*.h5ad",
+                "ontologies": []
+              }
+            },
+            {
+              "cell_hashing_columns": {
+                "type": "list",
+                "description": "List of cell hashing columns to use for demultiplexing.\ne.g. `['hash_1', 'hash_2']`\n"
+              }
+            }
+          ],
+          {
+            "priors": {
+              "type": "list",
+              "description": "List of priors to use\n"
+            }
+          }
+        ],
+        "output": {
+          "h5ad": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.h5ad"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing cluster feature, etc.\n",
+                  "pattern": "*.h5ad",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@seohyonkim"
+        ],
+        "maintainers": [
+          "@seohyonkim"
         ]
       }
     },
@@ -188069,8 +188564,8 @@
             },
             {
               "sample_size": {
-                "type": "integer",
-                "description": "Number of reads to sample."
+                "type": "float",
+                "description": "Fraction (<1.0) or number (>=1) of reads to sample."
               }
             }
           ]
@@ -196253,6 +196748,149 @@
       ]
     },
     {
+      "name": "souporcell",
+      "path": "modules/nf-core/souporcell/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "souporcell",
+        "description": "souporcell is a method for clustering mixed-genotype scRNAseq experiments by individual.",
+        "keywords": [
+          "clustering",
+          "mixed-genotype",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "souporcell": {
+              "description": "Clustering scRNAseq by genotypes.",
+              "homepage": "https://github.com/wheaton5/souporcell",
+              "documentation": "https://github.com/wheaton5/souporcell",
+              "tool_dev_url": "https://github.com/wheaton5/souporcell",
+              "doi": "10.1101/699637v1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:souporcell"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "A BAM file from cellranger containing single-cell RNA-seq alignments.",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            },
+            {
+              "barcodes": {
+                "type": "file",
+                "description": "A barcode or whitelist TSV file from cellranger identifying individual cell barcodes.",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "A reference fasta file.",
+                "pattern": "*.fasta",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "clusters": {
+              "type": "integer",
+              "description": "Number of clusters."
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*.vcf": {
+                  "type": "file",
+                  "description": "VCF file containing genotype information",
+                  "pattern": "*.vcf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing clustering results",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@seohyonkim"
+        ],
+        "maintainers": [
+          "@seohyonkim"
+        ]
+      }
+    },
+    {
       "name": "sourcepredict",
       "path": "modules/nf-core/sourcepredict/meta.yml",
       "type": "module",
@@ -199471,6 +200109,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
         {
           "name": "circrna",
           "version": "dev"
@@ -214627,6 +215269,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -217302,6 +217948,101 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "vcf2zarr_convert",
+      "path": "modules/nf-core/vcf2zarr/convert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vcf2zarr_convert",
+        "description": "Convert VCF data to the VCF Zarr specification reliably, in parallel or distributed over a cluster",
+        "keywords": [
+          "vcf",
+          "zarr",
+          "convert"
+        ],
+        "tools": [
+          {
+            "vcf2zarr": {
+              "description": "Convert bioinformatics data to Zarr",
+              "homepage": "https://sgkit-dev.github.io/bio2zarr/vcf2zarr/overview.html",
+              "documentation": "https://sgkit-dev.github.io/bio2zarr/",
+              "tool_dev_url": "https://github.com/sgkit-dev/bio2zarr",
+              "doi": "10.1101/2024.06.11.598241",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:bio2zarr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcz": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcz": {
+                  "type": "directory",
+                  "description": "Output VCF Zarr store",
+                  "pattern": "*.{vcz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3915"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
     },
     {
       "name": "vcfanno",
@@ -226147,6 +226888,118 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "yte",
+      "path": "modules/nf-core/yte/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "yte",
+        "description": "A YAML template engine with Python expressions",
+        "keywords": [
+          "yaml",
+          "template",
+          "python"
+        ],
+        "tools": [
+          {
+            "yte": {
+              "description": "A YAML template engine with Python expressions",
+              "homepage": "https://yte-template-engine.github.io/",
+              "documentation": "https://yte-template-engine.github.io/",
+              "tool_dev_url": "https://github.com/yte-template-engine/yte",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'template1' ]`\n"
+              }
+            },
+            {
+              "template": {
+                "type": "file",
+                "description": "YTE template",
+                "pattern": "*.{yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "map_file": {
+              "type": "file",
+              "description": "YAML file containing a map to be used in the template",
+              "pattern": "*.{yaml}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
+                }
+              ]
+            }
+          },
+          {
+            "map": {
+              "type": "map",
+              "description": "Groovy Map containing mapping information to be used in the template\ne.g. `[ key: value ]` with key being a wildcard in the template\n"
+            }
+          }
+        ],
+        "output": {
+          "rendered": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.yaml": {
+                  "type": "file",
+                  "description": "Rendered YAML file",
+                  "pattern": "*.yaml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@famosab"
+        ],
+        "maintainers": [
+          "@famosab"
+        ]
+      }
     },
     {
       "name": "zip",
