@@ -14574,6 +14574,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.0.0"
         },
@@ -15748,6 +15752,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -18439,6 +18447,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "mag",
           "version": "4.0.0"
         },
@@ -19061,7 +19073,13 @@
         "maintainers": [
           "@ashotmarg"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "bedgovcf",
@@ -61975,6 +61993,10 @@
         {
           "name": "airrflow",
           "version": "4.3.1"
+        },
+        {
+          "name": "alleleexpression",
+          "version": "dev"
         },
         {
           "name": "ampliseq",
@@ -132689,6 +132711,10 @@
           "version": "4.3.1"
         },
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "ampliseq",
           "version": "2.14.0"
         },
@@ -178518,6 +178544,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "atacseq",
           "version": "2.1.2"
         },
@@ -179722,6 +179752,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "atacseq",
           "version": "2.1.2"
         },
@@ -180376,6 +180410,10 @@
       },
       "pipelines": [
         {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
+        {
           "name": "bamtofastq",
           "version": "2.2.0"
         },
@@ -180591,6 +180629,108 @@
         ],
         "maintainers": [
           "@nictru"
+        ]
+      }
+    },
+    {
+      "name": "scanpy_hashsolo",
+      "path": "modules/nf-core/scanpy/hashsolo/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "SCANPY_HASHSOLO",
+        "description": "Probabilistic demultiplexing of cell hashing data",
+        "keywords": [
+          "anndata",
+          "single-cell",
+          "hashing",
+          "demultiplexing",
+          "scanpy"
+        ],
+        "tools": [
+          {
+            "scanpy": {
+              "description": "Single-cell analysis in Python. Scales to >100M cells.",
+              "homepage": "https://github.com/scverse/scanpy",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/generated/scanpy.external.pp.hashsolo.html",
+              "tool_dev_url": "https://github.com/scverse/scanpy",
+              "doi": "10.1186/s13059-017-1382-0",
+              "licence": [
+                "BSD-3"
+              ],
+              "identifier": "biotools:scanpy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input_h5ad": {
+                "type": "file",
+                "description": "The (annotated) data matrix of shape n_obs x n_vars. Rows correspond to cells and columns to genes.",
+                "pattern": "*.h5ad",
+                "ontologies": []
+              }
+            },
+            {
+              "cell_hashing_columns": {
+                "type": "list",
+                "description": "List of cell hashing columns to use for demultiplexing.\ne.g. `['hash_1', 'hash_2']`\n"
+              }
+            }
+          ],
+          {
+            "priors": {
+              "type": "list",
+              "description": "List of priors to use\n"
+            }
+          }
+        ],
+        "output": {
+          "h5ad": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
+                  "pattern": "*.h5ad"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData file containing cluster feature, etc.\n",
+                  "pattern": "*.h5ad",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@seohyonkim"
+        ],
+        "maintainers": [
+          "@seohyonkim"
         ]
       }
     },
@@ -196608,6 +196748,149 @@
       ]
     },
     {
+      "name": "souporcell",
+      "path": "modules/nf-core/souporcell/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "souporcell",
+        "description": "souporcell is a method for clustering mixed-genotype scRNAseq experiments by individual.",
+        "keywords": [
+          "clustering",
+          "mixed-genotype",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "souporcell": {
+              "description": "Clustering scRNAseq by genotypes.",
+              "homepage": "https://github.com/wheaton5/souporcell",
+              "documentation": "https://github.com/wheaton5/souporcell",
+              "tool_dev_url": "https://github.com/wheaton5/souporcell",
+              "doi": "10.1101/699637v1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:souporcell"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "A BAM file from cellranger containing single-cell RNA-seq alignments.",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            },
+            {
+              "barcodes": {
+                "type": "file",
+                "description": "A barcode or whitelist TSV file from cellranger identifying individual cell barcodes.",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "A reference fasta file.",
+                "pattern": "*.fasta",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "clusters": {
+              "type": "integer",
+              "description": "Number of clusters."
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*.vcf": {
+                  "type": "file",
+                  "description": "VCF file containing genotype information",
+                  "pattern": "*.vcf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/*.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing clustering results",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@seohyonkim"
+        ],
+        "maintainers": [
+          "@seohyonkim"
+        ]
+      }
+    },
+    {
       "name": "sourcepredict",
       "path": "modules/nf-core/sourcepredict/meta.yml",
       "type": "module",
@@ -199826,6 +200109,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
         {
           "name": "circrna",
           "version": "dev"
@@ -214981,6 +215268,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "alleleexpression",
+          "version": "dev"
+        },
         {
           "name": "lncpipe",
           "version": "dev"
