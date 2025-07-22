@@ -16,32 +16,6 @@ advisories.sort((a, b) => {
     if (!a.data.publishedDate || !b.data.publishedDate) return 0;
     return a.data.publishedDate.getTime();
 });
-
-const searchAdvisories = (search) => {
-    const searchTerms = search.toLowerCase().split(" ");
-    return advisories.filter((advisory) => {
-        const advisoryString = JSON.stringify(advisory.data).toLowerCase();
-        return searchTerms.every((term) => advisoryString.includes(term));
-    });
-};
-
-const filterAdvisories = (type) => {
-    return advisories.filter((advisory) => advisory.data.type.includes(type));
-};
-
-const currentAdvisory = advisories.filter((advisories) => {
-    // Calculate date 3 months ago
-    const threeMonthsAgo = new Date();
-    threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-    const threeMonthsAgoTime = threeMonthsAgo.getTime();
-
-    // Check if advisory was published within the last 3 months
-    const publishedDateUnix = advisories.data.publishedDate?.getTime();
-
-    if (publishedDateUnix && publishedDateUnix >= threeMonthsAgoTime) {
-        return true;
-    }
-});
 ---
 
 <PageLayout
@@ -53,7 +27,6 @@ const currentAdvisory = advisories.filter((advisories) => {
         <div class="col-12 col-md-2">
             <AdvisorySidebar {advisories} />
         </div>
-
         <div class="col">
             <AdvisoryListing {advisories} {currentFilters} client:load />
         </div>
