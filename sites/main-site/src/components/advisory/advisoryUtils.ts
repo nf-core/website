@@ -125,7 +125,7 @@ export function getAdvisoryMetadataItems(metadata: AdvisoryMetadata): MetadataIt
 
     if (metadata.nextflowVersions?.length) {
         items.push({
-            icon: "fa-code-branch",
+            icon: "logos:nextflow",
             label: "Nextflow",
             value: formatNextflowVersions(metadata.nextflowVersions),
         });
