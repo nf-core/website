@@ -3,33 +3,32 @@ import { glob } from "astro/loaders";
 import type { AstroConfig } from "astro";
 import { githubFileLoader } from "@utils/loaders";
 import { octokit } from "@components/octokit.js";
+import semver from "semver";
 
 // Define reusable schemas for common validation patterns
 const commonSchemas = {
     // semver lenient allows for 1.0 instead of enforcing 1.0.0
-    semver_lenient: z
-        .string()
-        .regex(/^(\d+\.\d+(?:\.\d+)?)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
-            message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
-        }),
-    semver_strict: z
-        .string()
-        .regex(/^(\d+\.\d+\.\d+)(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$/, {
-            message: "Must follow semantic versioning (e.g., 1.0.0, 2.1.3-beta.1)",
-        }),
+    semver_lenient: z.string().refine((val) => semver.valid(semver.coerce(val)), {
+        message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
+    }),
     dateFormat: z.string().refine((s) => /^(\d{4}-\d{2}-\d{2})$/.test(s), {
         message: "Date must be in the format YYYY-MM-DD",
     }),
     timeWithOffset: z.string().refine((s) => /^(\d{2}:\d{2})([+-]\d{2}:\d{2})$/.test(s), {
         message: "Time must be in the format HH:MM+|-HH:MM where the +/-HH:MM is the UTC offset",
     }),
-    containerRuntime: z.enum(["Apptainer", "Charliecloud", "Docker", "Podman", "Sarus", "Shifter", "Singularity"]),
-    environment: z.enum(["Conda", "Spack", "Wave"]),
-    reference: z.object({
-        title: z.string(),
-        description: z.string(),
-        url: z.string().url(),
-    }),
+    container: z.enum([
+        "Apptainer",
+        "Charliecloud",
+        "Docker",
+        "Podman",
+        "Sarus",
+        "Shifter",
+        "Singularity",
+        "Conda",
+        "Spack",
+        "Wave",
+    ]),
 };
 
 const teams = await octokit.request("GET /orgs/{org}/teams", {
@@ -206,7 +205,22 @@ const advisories = defineCollection({
                 // sort the configuration by name
                 return data?.sort();
             }),
-            nextflowVersions: z.nullable(z.array(commonSchemas.semver_strict)),
+            nextflowVersions: z.nullable(
+                z.array(
+                    z.string().refine(
+                        (val) => {
+                            let v = val
+                                .split(".")
+                                .map((v) => (/^\d+$/.test(v) ? parseInt(v) : v)) // remove leading zeros for spring releases
+                                .join(".");
+                            return semver.valid(semver.coerce(v));
+                        },
+                        {
+                            message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
+                        },
+                    ),
+                ),
+            ),
             nextflowExecutors: z.nullable(
                 z.array(
                     z.enum([
@@ -234,16 +248,24 @@ const advisories = defineCollection({
             // software_dependencies is an reference to the commonSchemas.containerRuntime or commonSchemas.environment, optionally with versions.
             softwareDependencies: z.nullable(
                 z.union([
-                    z.array(z.union([commonSchemas.containerRuntime, commonSchemas.environment])),
+                    z.array(commonSchemas.container),
                     z.array(
                         z.object({
-                            name: z.union([commonSchemas.containerRuntime, commonSchemas.environment]),
+                            name: commonSchemas.container,
                             versions: z.array(commonSchemas.semver_lenient),
                         }),
                     ),
                 ]),
             ),
-            references: z.nullable(z.array(commonSchemas.reference)),
+            references: z.nullable(
+                z.array(
+                    z.object({
+                        title: z.string(),
+                        description: z.string(),
+                        url: z.string().url(),
+                    }),
+                ),
+            ),
         })
         .refine((data) => {
             if (data.severity === "critical" && !data.type.includes("security")) {
