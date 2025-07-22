@@ -40,11 +40,15 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
     }
     return { username: Object.keys(reviewer)[0], affiliation: Object.values(reviewer)[0] };
 }
+
+const sameReporterAndReviewer =
+    frontmatter.reporter &&
+    frontmatter.reviewer &&
+    JSON.stringify([...frontmatter.reporter].sort()) === JSON.stringify([...frontmatter.reviewer].sort());
 ---
 
-<div class="d-flex flex-column align-items-start">
+<div class="d-flex flex-column align-items-start text-smaller">
     <SidebarStatsRow
-        lastChild={false}
         content={[
             {
                 title: "Published on",
@@ -54,60 +58,80 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
                     day: "numeric",
                 }),
             },
+            {
+                title: "Severity",
+                value: `<span class="badge text-bg-${advisoryClasses[frontmatter.severity] || "secondary"}">
+            <i class="${advisoryIcons[frontmatter.severity] || "fa-circle-info"} me-1"></i>
+            ${formatAdvisoryCategory(frontmatter.severity)}
+        </span>`,
+            },
         ]}
     />
 
-    <SidebarStatsRow lastChild={false} content={[{ title: "Severity" }]}>
-        <span class={`badge bg-${advisoryClasses[frontmatter.severity] || "secondary"}`}>
-            <i class={`${advisoryIcons[frontmatter.severity] || "fa-circle-info"} me-1`}></i>
-            {formatAdvisoryCategory(frontmatter.severity)}
-        </span>
-    </SidebarStatsRow>
+    <SidebarStatsRow
+        content={[
+            {
+                title: "Type",
+                value: `<div class="d-flex flex-column align-items-start">${frontmatter.type
+                    .map(
+                        (type) =>
+                            `<span class="me-1 mb-1">
+                        <i class="${advisoryIcons[type] || "fa-circle-info"} me-1"></i>
+                        ${formatAdvisoryType(type)}
+                    </span>`,
+                    )
+                    .join("")}</div>`,
+            },
+            {
+                title: "Category",
+                value: frontmatter.category
+                    .map(
+                        (cat) =>
+                            `<div class="category-item mb-1 fs-6">
+                        <i class="${advisoryIcons[cat] || "fa-solid fa-cogs"} me-1"></i>
+                        ${formatAdvisoryCategory(cat)}
+                    </div>`,
+                    )
+                    .join(""),
+            },
+        ]}
+    />
 
-    <SidebarStatsRow lastChild={false} content={[{ title: "Type" }]}>
-        {
-            frontmatter.type.map((type) => (
-                <span class={`badge bg-${advisoryClasses[type] || "secondary"} me-1 mb-1`}>
-                    <i class={`${advisoryIcons[type] || "fa-circle-info"} me-1`} />
-                    {formatAdvisoryType(type)}
-                </span>
-            ))
-        }
-    </SidebarStatsRow>
-
-    <SidebarStatsRow lastChild={false} content={[{ title: "Category" }]}>
-        {
-            frontmatter.category.map((cat) => (
-                <div class="category-item mb-1">
-                    <i class={`${advisoryIcons[cat] || "fa-solid fa-cogs"} me-1 text-primary`} />
-                    {formatAdvisoryCategory(cat)}
-                </div>
-            ))
-        }
-    </SidebarStatsRow>
+    <SidebarStatsRow content={[]} />
 
     {
         metadataItems.length > 0 && (
-            <SidebarStatsRow lastChild={false} content={[{ title: "Technical Details" }]}>
-                {metadataItems.map((item) => (
-                    <div class="metadata-item mb-1">
-                        {item.label === "Nextflow" ? (
-                            <div class="d-inline-block me-1 text-primary">
-                                <Fragment set:html={nextflowIcon} />
-                            </div>
-                        ) : (
-                            <i class={`fas ${item.icon} me-1 text-primary`} />
-                        )}
-                        <strong>{item.label}:</strong> {item.value}
-                    </div>
-                ))}
-            </SidebarStatsRow>
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: "Technical Details",
+                        value: `<div class="d-flex flex-column align-items-start">${metadataItems
+                            .map(
+                                (item) =>
+                                    `
+                                <strong>
+                                    ${
+                                        item.label === "Nextflow"
+                                            ? `<div class="d-inline-block me-1">${nextflowIcon}</div>`
+                                            : `<i class="fas ${item.icon} me-1"></i>`
+                                    }
+                                    ${item.label}:
+                                </strong>
+                                <span class="text-muted text-small font-monospace">${item.value}</span>
+                            `,
+                            )
+                            .join("")}</div>`,
+                    },
+                ]}
+            />
         )
     }
 
     {
         frontmatter.reporter && (
-            <SidebarStatsRow lastChild={false} content={[{ title: "Reported by" }]}>
+            <SidebarStatsRow
+                content={[{ title: sameReporterAndReviewer ? "Reported by and reviewed by" : "Reported by" }]}
+            >
                 {frontmatter.reporter.map((reporter) => {
                     const info = getReporterInfo(reporter);
                     return (
@@ -125,8 +149,8 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
     }
 
     {
-        frontmatter.reviewer && (
-            <SidebarStatsRow lastChild={true} content={[{ title: "Reviewed by" }]}>
+        frontmatter.reviewer && !sameReporterAndReviewer && (
+            <SidebarStatsRow content={[{ title: "Reviewed by" }]}>
                 {frontmatter.reviewer.map((reviewer) => {
                     const info = getReviewerInfo(reviewer);
                     return (
@@ -144,24 +168,4 @@ function getReviewerInfo(reviewer: string | Record<string, string>) {
     }
 </div>
 
-<style lang="scss">
-    .badge {
-        font-size: 0.875rem;
-        padding: 0.35em 0.65em;
-        font-weight: 500;
-    }
-
-    .category-item {
-        display: flex;
-        align-items: center;
-        color: var(--bs-body-color);
-        font-size: 0.95rem;
-    }
-
-    .metadata-item {
-        display: flex;
-        align-items: center;
-        color: var(--bs-body-color);
-        font-size: 0.9rem;
-    }
-</style>
+<style lang="scss"></style>
