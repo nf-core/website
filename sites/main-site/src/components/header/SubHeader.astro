@@ -1,5 +1,6 @@
 ---
 import InstallCmd from "@components/InstallCmd.svelte";
+import { getCollection } from "astro:content";
 
 const {
     pipeline = "",
@@ -30,6 +31,8 @@ let component_name = component;
 if (component_type === "modules" && component) {
     component_name = component.replace("_", "/");
 }
+
+const advisories = await getCollection("advisories", ({ data }) => data.frontmatter.pipelines.includes(pipeline));
 
 const shaking = version === "dev" ? "3deg" : "1deg";
 ---

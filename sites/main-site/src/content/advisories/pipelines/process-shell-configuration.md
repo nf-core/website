@@ -44,8 +44,7 @@ pipelines:
       - 1.1.0
   - name: mag
     versions:
-      - 3.2.0
-      - 3.2.1
+      - 3.2.*
       - 3.3.0
   - name: metapep
     versions:
@@ -89,9 +88,7 @@ modules:
 subworkflows:
 configuration:
 nextflowVersions:
-  - 25.04.0
-  - 25.04.1
-  - 25.04.2
+  - ">=25.04.0 <25.04.3"
 nextflowExecutors:
 softwareDependencies:
 references:
