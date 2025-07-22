@@ -7,7 +7,7 @@
     "build-cache": "npm run build-pipeline-json && npm run build-component-json",
     "build-pipeline-json": "node bin/pipelines.json.js",
     "build-component-json": "node bin/components.json.js",
-    "update": "for dir in sites/*; do (cd $dir && npx npm-check-updates --interactive --format group); done",
+    "update": "npx npm-check-updates --interactive --format group --workspaces",
     "test-all": "for dir in sites/*; do (cd $dir && npm run test); done"
   },
   "workspaces": [
