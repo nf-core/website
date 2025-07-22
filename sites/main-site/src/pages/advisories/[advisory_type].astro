@@ -1,5 +1,5 @@
 ---
-import advisoryLayout from "@layouts/advisoryLayout.astro";
+import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
 import { getCollection } from "astro:content";
 import { markdown } from "@astropub/md";
 
@@ -41,4 +41,4 @@ const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
 const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
 ---
 
-<advisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]}></advisoryLayout>
+<AdvisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]} />

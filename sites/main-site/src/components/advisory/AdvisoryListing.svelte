@@ -4,7 +4,7 @@
     import { CurrentFilter, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
     import type { CollectionEntry } from "astro:content";
-    import { advisories_types, advisory_classes, advisory_icons } from "./advisoryUtils";
+    import { advisoryTypes, advisoryClasses, advisoryIcons } from "./advisoryUtils";
     import { formatAdvisoryType } from "./advisoryUtils";
 
     interface Props {
@@ -47,11 +47,11 @@
             }),
     );
 
-    const formattedAdvisoryTypes = advisories_types.map((type) => ({
+    const formattedAdvisoryTypes = advisoryTypes.map((type) => ({
         name: type.name,
         displayName: formatAdvisoryType(type.name),
-        icon: advisory_icons[type.name],
-        class: advisory_classes[type.name],
+        icon: advisoryIcons[type.name],
+        class: advisoryClasses[type.name],
     }));
 
     const filterByType = (advisories: CollectionEntry<"advisories">) => {

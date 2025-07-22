@@ -1,5 +1,5 @@
 // Combined dictionary for all advisory classes (types and severities)
-export const advisory_classes = {
+export const advisoryClasses = {
     // Advisory types
     known_regression: "dark",
     incompatibility: "warning",
@@ -16,7 +16,7 @@ export const advisory_classes = {
 } as const;
 
 // Combined dictionary for all advisory icons (types and severities)
-export const advisory_icons = {
+export const advisoryIcons = {
     // Advisory types
     known_regression: "fa-solid fa-bug",
     incompatibility: "fa-solid fa-exclamation-triangle",
@@ -37,8 +37,7 @@ export const advisory_icons = {
     configuration: "fa-solid fa-cogs",
 } as const;
 
-// Only include actual advisory types, not severity levels
-const advisory_types = [
+export const advisoryTypes = [
     "known_regression",
     "incompatibility",
     "security",
@@ -46,13 +45,11 @@ const advisory_types = [
     "data_corruption",
     "scientific_advice",
     "other",
-] as const;
-
-export const advisories_types = advisory_types.map((type) => {
+].map((type) => {
     return {
         name: type,
-        class: advisory_classes[type],
-        icon: advisory_icons[type],
+        class: advisoryClasses[type],
+        icon: advisoryIcons[type],
     };
 });
 
