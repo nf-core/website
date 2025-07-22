@@ -4,8 +4,8 @@
     import {
         formatAdvisoryType,
         formatAdvisoryCategory,
-        advisory_classes,
-        advisory_icons,
+        advisoryClasses,
+        advisoryIcons,
         getAdvisoryMetadataItems,
     } from "./advisoryUtils";
     import ListingCard from "../ListingCard.svelte";
@@ -54,13 +54,13 @@
                 </p>
                 <div class="d-flex flex-wrap gap-1">
                     {#each frontmatter.type as type}
-                        <span class={`badge text-bg-${advisory_classes[type]} small`}>
-                            <i class={`${advisory_icons[type]} me-1`} aria-hidden="true"></i>
+                        <span class={`badge text-bg-${advisoryClasses[type]} small`}>
+                            <i class={`${advisoryIcons[type]} me-1`} aria-hidden="true"></i>
                             {formatAdvisoryType(type)}
                         </span>
                     {/each}
-                    <span class={`badge bg-${advisory_classes[frontmatter.severity]} small`}>
-                        <i class={`${advisory_icons[frontmatter.severity]} me-1`} aria-hidden="true"></i>
+                    <span class={`badge bg-${advisoryClasses[frontmatter.severity]} small`}>
+                        <i class={`${advisoryIcons[frontmatter.severity]} me-1`} aria-hidden="true"></i>
                         {formatAdvisoryType(frontmatter.severity)}
                     </span>
                 </div>
