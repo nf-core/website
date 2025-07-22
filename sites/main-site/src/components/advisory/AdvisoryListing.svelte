@@ -15,36 +15,13 @@
     let { advisories = [], currentFilters }: Props = $props();
 
     let filteredAdvisories = $state(advisories);
-    let currentAdvisories = $derived(
-        filteredAdvisories.filter((advisories) => {
-            // Calculate date 3 months ago
-            const threeMonthsAgo = new Date();
-            threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-            const threeMonthsAgoTime = threeMonthsAgo.getTime();
 
-            // Check if advisory was published within the last 3 months
-            const publishedDateUnix = advisories.data.publishedDate?.getTime();
-            return publishedDateUnix && publishedDateUnix >= threeMonthsAgoTime;
+    let sortedAdvisories = $derived(
+        filteredAdvisories.sort((a, b) => {
+            const dateA = a.data.publishedDate?.getTime() ?? 0;
+            const dateB = b.data.publishedDate?.getTime() ?? 0;
+            return dateB - dateA; // Sort by most recent first
         }),
-    );
-
-    let pastAdvisories = $derived(
-        filteredAdvisories
-            .filter((advisories) => {
-                // Calculate date 3 months ago
-                const threeMonthsAgo = new Date();
-                threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3);
-                const threeMonthsAgoTime = threeMonthsAgo.getTime();
-
-                // Check if advisory was published more than 3 months ago
-                const publishedDateUnix = advisories.data.publishedDate?.getTime();
-                return !publishedDateUnix || publishedDateUnix < threeMonthsAgoTime;
-            })
-            .sort((a, b) => {
-                const dateA = a.data.publishedDate?.getTime() ?? 0;
-                const dateB = b.data.publishedDate?.getTime() ?? 0;
-                return dateB - dateA; // Sort by most recent first
-            }),
     );
 
     const formattedAdvisoryTypes = advisoryTypes.map((type) => ({
@@ -104,27 +81,16 @@
     <FilterBar filter={formattedAdvisoryTypes} displayStyle={[]} sortBy={[]} filterName={() => "Advisory type"}
     ></FilterBar>
     <div class="advisories">
-        {#if currentAdvisories.length > 0}
-            <div class="mb-3 col-12">
-                <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Recent advisories</h2>
-                {#each currentAdvisories as advisories (advisories.id)}
-                    <AdvisoryCard frontmatter={advisories.data} slug={advisories.id} time_category="current" />
+        <div class="d-flex flex-column">
+            <div class="mb-3">
+                {#each sortedAdvisories as advisories, idx (advisories.id)}
+                    {#if hasYearChanged(sortedAdvisories, idx)}
+                        <h3 id={"year-" + advisories.data.publishedDate?.getFullYear()}>
+                            {advisories.data.publishedDate?.getFullYear()}
+                        </h3>
+                    {/if}
+                    <AdvisoryCard frontmatter={advisories.data} slug={advisories.id} />
                 {/each}
-            </div>
-        {/if}
-        <div class="mt-5">
-            <div class="d-flex flex-column">
-                <div class="mb-3">
-                    <h2><i class="fa-duotone fa-calendar-check me-3"></i>Past advisories</h2>
-                    {#each pastAdvisories as advisories, idx (advisories.id)}
-                        {#if hasYearChanged(pastAdvisories, idx)}
-                            <h3 id={"year-" + advisories.data.publishedDate?.getFullYear()}>
-                                {advisories.data.publishedDate?.getFullYear()}
-                            </h3>
-                        {/if}
-                        <AdvisoryCard frontmatter={advisories.data} slug={advisories.id} time_category="past" />
-                    {/each}
-                </div>
             </div>
         </div>
     </div>
