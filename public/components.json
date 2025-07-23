@@ -52732,6 +52732,18 @@
                 "type": "string",
                 "description": "The value within the contrast_variable column of the sample sheet that\nshould be used to derive the target samples\n"
               }
+            },
+            {
+              "formula": {
+                "type": "string",
+                "description": "(Optional) R formula string used for modeling, e.g. '~ treatment'."
+              }
+            },
+            {
+              "comparison": {
+                "type": "string",
+                "description": "(Optional, mandatory if formula is provided) Literal string for contrasts, e.g. 'treatmenthND6'."
+              }
             }
           ],
           [
