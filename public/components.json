@@ -218531,6 +218531,144 @@
       }
     },
     {
+      "name": "varscan_somatic",
+      "path": "modules/nf-core/varscan/somatic/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "varscan_somatic",
+        "description": "VarScan2 is a tool for variant detection in massively parallel sequencing data. It can detect SNPs, indels, and copy number variations in both somatic and germline samples. It is particularly useful for analyzing tumor/normal sample pairs.",
+        "keywords": [
+          "variant calling",
+          "germline",
+          "somatic",
+          "vcf",
+          "variants",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "varscan": {
+              "description": "variant detection in massively parallel sequencing data",
+              "homepage": "https://github.com/dkoboldt/varscan",
+              "documentation": "https://dkoboldt.github.io/varscan/",
+              "tool_dev_url": "https://github.com/dkoboldt/varscan",
+              "doi": "10.1101/gr.129684.111",
+              "licence": [
+                "The Non-Profit Open Software License version 3.0 (NPOSL-3.0)"
+              ],
+              "identifier": "biotools:varscan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "normal_mpileup": {
+                "type": "file",
+                "description": "mpileup file from normal sample",
+                "pattern": "*.mpileup",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3015"
+                  }
+                ]
+              }
+            },
+            {
+              "tumour_mpileup": {
+                "type": "file",
+                "description": "mpileup file from tumour sample",
+                "pattern": "*.mpileup",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3015"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf_snvs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.snvs.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with SNVs",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "vcf_indels": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.indels.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with indels",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vmelichar"
+        ],
+        "maintainers": [
+          "@vmelichar"
+        ]
+      }
+    },
+    {
       "name": "vcf2cytosure",
       "path": "modules/nf-core/vcf2cytosure/meta.yml",
       "type": "module",
