@@ -44,22 +44,14 @@ const version_tag_name = version === "latest" ? versions[0] : version;
 
 // Simply await the getEntry result directly
 const schemaEntry = await getEntry("pipelines", `${pipeline}/${version_tag_name}/nextflow_schema`);
-const schema = schemaEntry ? JSON.parse(schemaEntry.rendered?.html ?? "{}") : {};
-
-// Create properly typed headings array
-let headings: { slug: string; text: string; depth: number; fa_icon?: string; hidden?: boolean }[] = [];
-
-// Check if we have definitions in the schema
-const definitions = schema.definitions || schema.$defs || schema.properties || {};
-if (Object.keys(definitions).length > 0) {
-    headings = Object.entries(definitions).map(([key, value]: [string, any]) => ({
-        slug: key.replaceAll("_", "-"),
-        text: value?.title || key,
-        depth: 1,
-        fa_icon: value?.fa_icon || "",
-        hidden: value?.properties && Object.values(value.properties).every((prop: any) => prop?.hidden),
-    }));
-}
+const schema = JSON.parse(schemaEntry?.rendered?.html ?? "{}");
+const headings = schemaEntry?.rendered?.metadata?.headings as {
+    slug: string;
+    text: string;
+    depth: number;
+    fa_icon: string;
+    hidden: boolean;
+}[];
 ---
 
 <PipelinePageLayout
