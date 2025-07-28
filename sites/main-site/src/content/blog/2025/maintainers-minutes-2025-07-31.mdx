@@ -1,0 +1,90 @@
+---
+title: "Maintainers Minutes: July 2025"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2025-07-31T10:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "maxulysse"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import { Image } from "astro:assets";
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+After a short summer break, we returned with a special maintainers meeting dedicated to nf-core/test-datasets.
+nf-core/testdatasets is a GitHub repository that holds the majority of the files we use for the CI testing of our modules, subworkflows, and pipelines.
+
+One of the less optimal developer experiences the community undergo current is interacting with this part of our infrastructure.
+This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with the nf-core/survey from earlier this year, and our own experiences [TODO: ADD LINK TO BLOG POST].
+
+As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by @JulianFleischer [TODO: add GitHub Handle] to help explore the available data files in the nf-core/test-datasets repository.
+However this only acts to alleviate the symptoms of the problems in identifying suitable files, knowing where to put new files, and what is within each file.
+Instead we want to restructure and develop clearer specifications, documentation, and procedures for the test datasets repository.
+
+Therefore this month's meeting was 'taken over' by the wg-test-dataset-task-force [TODO: add slack channel link] to start the process of redesigning the structure and documentation.
+
+## Scope of discussions
+
+Some things we agreed on throughout the meeting to limit the scope of the discussions was
+
+1. We are primarily trying to address _modules_ test-datasets (not pipelines)
+2. We agreed we want to 'start from scratch' rather than try and adjust the existing repository
+
+## Location
+
+One of the larger discussions we had was where should the test-dataset files go: should we move them to a new service?
+
+The pros of continuing using GitHub were:
+
+- ✅ Familiarity of our users with the interface (e.g. for reviewing)
+- ✅ It stays within our existing infrastructure
+- ✅ The 10 MB file limit is a _good thing_ (forcing developers to ensure their tests are fast)
+
+The cons of GitHub were:
+
+- ❌ (Currently) makes a very large repository for cloning
+- ❌ It only supports HTTPs/SSH interaction, so you cannot pass directories from the repository to Nextflow (where only S3 filesystems are supported for directory input)
+- ❌ The 10 MB file limit is a _bad thing_ (some developers cannot physically get their data files that small, e.g. imaging)
+- ❌ It is hard to view the contents of any non-raw textfile
+
+Alternative solutions were proposed:
+
+- HuggingFace
+    - ✅ Suggested by Edmund [TODO: github] as a similar interface to GitHub (thus would be familiar)
+    - ✅ Much less restrictive file sizes (up to 5GB per file, and no max number of files)
+    - ❌ But is outside our infrastructure
+    - ❌ Is actually just a `git-lfs`, so actually doesn't provide much difference to GitHub (which also supports git-lfs)
+    - ❌ It would require separate team organisation (not everyone could join and have access)
+- AWS S3:
+    - ✅ Out test-datasets are actually already 'backed up' here
+    - ✅ This is already relatively well supported by out infrastructure and Nextflow (e.g. directory inputs)
+    - ✅ Anabella [TODO: github] showed services such as 42basepairs [TODO: link] that allow you to see inside common bioinformatics file formats
+    - ❌ We were very worried about ingress/egress costs (particularly in our very parallelised CI tests)
+    - ❌ We did not have an immediate solution how community members could 'submit' to a controlled bucket (for cost reasons)
+    - ❌ We weren't sure on the longevity of services like 42basepairs
+- Cloudflare R2
+    - ✅ No ingress/egress fees, 'flat rate' for hosting based on amount
+    - ✅ S3 filesystem
+    - ❌ Would maybe need to ask for open-source credits... but no idea if available
+
+Our main conclusions from these discussions were:
+
+1. We turn on `git-lfs` already for the existing GitHub repository, to make it easier to at least clone it
+2. Edmund would investigate the Cloudflare option to get more information on the pros and cons
+
+## Structure
+
+## Documentation
+
+## The end
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and Slack threads!
+
+\- :heart: from your #maintainers team!
