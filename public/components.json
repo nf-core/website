@@ -218816,6 +218816,235 @@
       }
     },
     {
+      "name": "varscan_processsomatic",
+      "path": "modules/nf-core/varscan/processsomatic/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "varscan_processsomatic",
+        "description": "VarScan2 is a tool for variant detection in massively parallel sequencing data. It can detect SNPs, indels, and copy number variations in both somatic and germline samples. It is particularly useful for analyzing tumor/normal sample pairs. This subtool divides variants based on status (germline, somatic, loss of heterozygosity) and confidence level (high-confidence or not) and outputs them in separate VCF files.",
+        "keywords": [
+          "variant calling",
+          "germline",
+          "somatic",
+          "vcf",
+          "variants",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "varscan": {
+              "description": "variant detection in massively parallel sequencing data",
+              "homepage": "https://github.com/dkoboldt/varscan",
+              "documentation": "https://dkoboldt.github.io/varscan/",
+              "tool_dev_url": "https://github.com/dkoboldt/varscan",
+              "doi": "10.1101/gr.129684.111",
+              "licence": [
+                "The Non-Profit Open Software License version 3.0 (NPOSL-3.0)"
+              ],
+              "identifier": "biotools:varscan"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF file",
+                "pattern": "*.{snvs,indels}.vcf.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "germline_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.Germline.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with germline variants",
+                  "pattern": "*.Germline.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "germline_hc_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.Germline.hc.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with high-confidence germline variants",
+                  "pattern": "*.Germline.hc.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "somatic_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.Somatic.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with somatic variants",
+                  "pattern": "*.Somatic.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "somatic_hc_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.Somatic.hc.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with high-confidence somatic variants",
+                  "pattern": "*.Somatic.hc.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "loh_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.LOH.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with loss of heterozygosity variants",
+                  "pattern": "*.LOH.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "loh_hc_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.LOH.hc.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with high-confidence loss of heterozygosity variants",
+                  "pattern": "*.LOH.hc.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vmelichar"
+        ],
+        "maintainers": [
+          "@vmelichar"
+        ]
+      }
+    },
+    {
       "name": "varscan_somatic",
       "path": "modules/nf-core/varscan/somatic/meta.yml",
       "type": "module",
