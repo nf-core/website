@@ -46,6 +46,7 @@
             class={"collapse collapsible-content " + textClass}
             class:show={open}
             transition:slide={{ duration: 300, axis: "y" }}
+            style="padding-top: 1px;"
         >
             {@render children?.()}
         </div>
@@ -56,5 +57,12 @@
     .btn.open {
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
+        transition:
+            border-bottom-left-radius 0.3s ease-out,
+            border-bottom-right-radius 0.3s ease-out;
+        border-bottom: 0;
+    }
+    .btn:not(.open) {
+        transition: border-bottom 0.1s ease 0.25s; // Delay restoring border
     }
 </style>
