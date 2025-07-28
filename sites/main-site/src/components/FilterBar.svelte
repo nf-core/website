@@ -47,8 +47,6 @@
         SearchQuery.set("");
     });
 
-    let search = $state($SearchQuery);
-
     function handleSearch(q: Event) {
         const target = q.target as HTMLInputElement;
         SearchQuery.set(target.value.trim());
@@ -87,7 +85,7 @@
         <input
             type="text"
             class="form-control w-25 me-2 searchbar"
-            value={search}
+            value={$SearchQuery}
             oninput={handleSearch}
             placeholder="&#xf002; Search..."
         />
