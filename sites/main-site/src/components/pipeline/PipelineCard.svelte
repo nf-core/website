@@ -1,7 +1,6 @@
 <script lang="ts">
     import ListingCard from "@components/ListingCard.svelte";
     import TagSection from "@components/TagSection.svelte";
-    import Markdown from "@components/markdown/Markdown.svelte";
     import { formatDistanceToNow, add } from "date-fns";
     import { Confetti } from "svelte-confetti";
 
@@ -79,7 +78,7 @@
                 {/if}
             </div>
             {#if body}
-                <div class="description flex-grow-1" class:pt-1={recentRelease}><Markdown md={body} /></div>
+                <div class="description flex-grow-1" class:pt-1={recentRelease}>{@html body}</div>
             {/if}
 
             <div class="mb-2">

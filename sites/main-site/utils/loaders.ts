@@ -504,7 +504,7 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                         name: pipeline.name,
                         archived: pipeline.archived,
                         releases: pipeline.releases,
-                        description: pipeline.description,
+                        description: await context.renderMarkdown(pipeline.description ?? ""),
                         topics: pipeline.topics,
                         stargazers_count: pipeline.stargazers_count,
                     };
