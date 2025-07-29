@@ -37,4 +37,10 @@ const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
 const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
 ---
 
-<AdvisoryLayout {advisories} {title} {subtitle} currentFilters={[{ name: advisory_type }]} />
+<AdvisoryLayout
+    {advisories}
+    {title}
+    {subtitle}
+    currentFilters={[{ name: advisory_type }]}
+    sidebarTitle={title + " Advisory"}
+/>

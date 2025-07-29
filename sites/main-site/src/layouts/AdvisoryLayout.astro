@@ -4,12 +4,13 @@ import PageLayout from "@layouts/PageLayout.astro";
 import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
 import { type CollectionEntry } from "astro:content";
 
-const { title, subtitle, advisories, currentFilters } = Astro.props;
+const { title, subtitle, advisories, currentFilters, sidebarTitle = "Advisories" } = Astro.props;
 export interface Props {
     title: string;
     subtitle: string;
     currentFilters: { name: string }[];
     advisories: CollectionEntry<"advisories">[];
+    sidebarTitle?: string;
 }
 
 advisories.sort((a, b) => {
@@ -25,7 +26,7 @@ advisories.sort((a, b) => {
 >
     <div class="row">
         <div class="col-12 col-md-2">
-            <AdvisorySidebar {advisories} />
+            <AdvisorySidebar {advisories} {sidebarTitle} />
         </div>
         <div class="col">
             <AdvisoryListing {advisories} {currentFilters} client:load />
