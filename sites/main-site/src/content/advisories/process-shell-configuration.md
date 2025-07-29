@@ -44,7 +44,8 @@ pipelines:
       - 1.1.0
   - name: mag
     versions:
-      - 3.2.*
+      - 3.2.0
+      - 3.2.1
       - 3.3.0
   - name: metapep
     versions:
