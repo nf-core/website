@@ -41738,6 +41738,203 @@
       }
     },
     {
+      "name": "comebin_runcomebin",
+      "path": "modules/nf-core/comebin/runcomebin/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "comebin_runcomebin",
+        "description": "Effective binning of metagenomic contigs using COntrastive Multi-viEw representation learning",
+        "keywords": [
+          "metagenomics",
+          "binning",
+          "clustering"
+        ],
+        "tools": [
+          {
+            "comebin": {
+              "description": "COMEBin allows effective binning of metagenomic contigs using COntrastive Multi-viEw representation learning",
+              "homepage": "https://github.com/ziyewang/COMEBin",
+              "documentation": "https://github.com/ziyewang/COMEBin",
+              "tool_dev_url": "https://github.com/ziyewang/COMEBin",
+              "doi": "10.1038/s41467-023-44290-z",
+              "licence": [
+                "GPL v3"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "FASTA file of contigs for binning",
+                "pattern": "*.{fa,fas,fasta,fna,fa.gz,fas.gz,fasta.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "List of sorted bam files of reads mapped to the reference assembly. Not compatible with TSV input.\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bins": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/comebin_res_bins/*.fa.gz": {
+                  "type": "file",
+                  "description": "List of FASTA files of binned contigs",
+                  "pattern": "*.fna.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/comebin_res.tsv": {
+                  "type": "file",
+                  "description": "TSV mapping the output clusters to contigs\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/comebin.log": {
+                  "type": "file",
+                  "description": "COMEBin log file\n",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "embeddings": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/embeddings.tsv": {
+                  "type": "file",
+                  "description": "TSV describing the embeddings of the contigs\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "covembeddings": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/covembeddings.tsv": {
+                  "type": "file",
+                  "description": "TSV describing the embeddings of the contigs\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
+    },
+    {
       "name": "concoct_concoct",
       "path": "modules/nf-core/concoct/concoct/meta.yml",
       "type": "module",
@@ -111183,14 +111380,6 @@
                   "type": "file",
                   "description": "Pairwise alignment in CRAM format (optional)",
                   "pattern": "*.cram",
-                  "ontologies": []
-                }
-              },
-              {
-                "fasta": {
-                  "type": "file",
-                  "description": "Genome file to recover sequences from the CRAM file (optional)",
-                  "pattern": "*.{fasta,fasta.gz,fasta.bgz,fasta.bgzf}",
                   "ontologies": []
                 }
               }
@@ -218000,6 +218189,315 @@
           "version": "1.1.1"
         }
       ]
+    },
+    {
+      "name": "vamb_bin",
+      "path": "modules/nf-core/vamb/bin/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "vamb_bin",
+        "description": "Variational autoencoder for metagenomic binning",
+        "keywords": [
+          "clustering",
+          "binning",
+          "metagenomics",
+          "denovo assembly",
+          "mag"
+        ],
+        "tools": [
+          {
+            "vamb": {
+              "description": "Variational autoencoder for metagenomic binning.",
+              "homepage": "https://vamb.readthedocs.io/en/latest",
+              "documentation": "https://vamb.readthedocs.io/en/latest",
+              "tool_dev_url": "https://github.com/RasmussenLab/vamb",
+              "doi": "10.1038/s41587-020-00777-4",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:vamb"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "assembly": {
+                "type": "file",
+                "description": "FASTA file of contigs for binning",
+                "pattern": "*.{fa,fas,fasta,fna,fa.gz,fas.gz,fasta.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "abundance_tsv": {
+                "type": "file",
+                "description": "TSV describing abundance of contigs in the provided assembly with headers\ncontigname\\tsample1\\tsample2...\nctg00001\\t10.0\\t5.0\n\nNot compatible with bam input.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "List of sorted bam files of reads mapped to the reference assembly. Not compatible with TSV input.\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "taxonomy": {
+                "type": "file",
+                "description": "TSV describing the taxonomic lineage of each contig, with headers\ncontigs\\tpredictions\nctg00001\\tBacteria;Pseudomonadati;Pseudomonadota;Gammaproteobacteria;Enterobacterales;Enterobacteriacea;Escherichia coli\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bins": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/bins/*.fna.gz": {
+                  "type": "file",
+                  "description": "List of FASTA files of binned contigs",
+                  "pattern": "*.fna.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "clusters_metadata": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/vae*_clusters_metadata.tsv": {
+                  "type": "file",
+                  "description": "TSV describing the metadata of the output bin clusters\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "clusters_split": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/vae*_clusters_split.tsv": {
+                  "type": "file",
+                  "description": "TSV defining the output bin clusters if binsplitting enabled\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "clusters_unsplit": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/vae*_clusters_unsplit.tsv": {
+                  "type": "file",
+                  "description": "TSV defining the output bin clusters without binsplitting\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "taxometer_results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/results_taxometer.tsv": {
+                  "type": "file",
+                  "description": "TSV describing the refined taxonomic lineage of each contig, with headers\ncontigs\\tpredictions\\tscores\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "latent_encoding": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/latent.npz": {
+                  "type": "file",
+                  "description": "Numpy array of the latent embedding of the contigs\n",
+                  "pattern": "*.npz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "abundance": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/abundance.npz": {
+                  "type": "file",
+                  "description": "Numpy array of the abundance of contigs\n",
+                  "pattern": "*.npz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "composition": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/composition.npz": {
+                  "type": "file",
+                  "description": "Numpy array of the kmer composition of the contigs\n",
+                  "pattern": "*.npz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}/log.txt": {
+                  "type": "file",
+                  "description": "Vamb log file\n",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
     },
     {
       "name": "vardictjava",
