@@ -28,7 +28,7 @@ As a first step in overhauling this experience we saw in the last major nf-core/
 However this only acts to alleviate the symptoms of the problems in identifying suitable files, knowing where to put new files, and what is within each file.
 Instead we want to restructure and develop clearer specifications, documentation, and procedures for the test datasets repository.
 
-Therefore this month's meeting was 'taken over' by the wg-test-dataset-task-force [TODO: add slack channel link] to start the process of redesigning the structure and documentation.
+Therefore this month's meeting was 'taken over' by the wg-test-dataset-task-force [TODO: add slack channel link] leads Simon and James [TODO: GitHub Handles] to start the process of redesigning the structure and documentation.
 
 ## Scope of discussions
 
@@ -40,6 +40,13 @@ Some things we agreed on throughout the meeting to limit the scope of the discus
 ## Location
 
 One of the larger discussions we had was where should the test-dataset files go: should we move them to a new service?
+
+We defined a set of criteria that we wanted to meet with the new location:
+
+- Much faster to download (or clone)
+- Support directories
+- Free (or cheap) hosting
+- Doesn't charge for ingress/egress
 
 The pros of continuing using GitHub were:
 
@@ -77,11 +84,52 @@ Alternative solutions were proposed:
 Our main conclusions from these discussions were:
 
 1. We turn on `git-lfs` already for the existing GitHub repository, to make it easier to at least clone it
-2. Edmund would investigate the Cloudflare option to get more information on the pros and cons
+2. Edmund would investigate the Cloudflare option to get more information on the pros and cons of this option
+
+## Documentation
+
+Next we moved onto documentation.
+
+Trying to know what was in a module test-data file, how it was generated, and how it linked with other data files within nf-core/test-datasets is a common pain point for the maintainers and community members.
+Currently this relies on both the directory structure of the repository, and also a haphazardly and inconsistent README file in the root of the modules branch.
+
+We had a brainstorming session of what sort of information we would like to recorded about each test data file:
+
+- Keywords
+- Is it real or simulated data?
+- Is it a tool specific file vs a generic file?
+- Command(s) was used to generate
+- Version of the tool(s) was used for generation
+- Source location of any upstream files
+- Who created (author)
+- Bioinformatics specific metadata
+    - Organism derived from
+    - Whole genome
+    - Chromosomes embedded
+    - Individuals
+    - Genome version
+    - Panel
+- Support 'grouped' files (e.g. in bioinformatics pairs-end reads, ped/bim/fam, bam/bai)
+
+We then proposed different ideas how to store such metadata:
+
+- Stricter and descriptive naming file schema a table listing each
+- A prose-based `README` markdown file next to each data file
+- A `meta.yaml` file next to each data file akin to nf-core/modules YAML files
 
 ## Structure
 
-## Documentation
+## Additional considerations
+
+Other points that were brought up such as:
+
+- We should try to somehow 'version' test-datafiles - e.g. using GitHub URLs pointing to a specific hash, to reduce risks of test breaking if someone changes the contents of a test file (although this shouldn't happen) (Jon [TODO: GITHUB HANDLE])
+- We could maybe consider a 'spill over' location, in case we stick with GitHub and the 10 MB limits are too restrictive for some tools's test-data (which would reduce costs) (Louis [TODO: GITHUB HANDLE])
+- Is there a way to automatically identify data files that have never been used, so we can clean them to save costs (Famke [TODO: GITHUB HANDLE])
+    - None of the maintainers present were aware of anything like this, but if a community member has an idea please let us know!!
+- Should we allow 'copying' of a tool's own test-data files or always make our own derived from our existing files (where possible) (Igor: [TODO: GITHUB HANDLE])
+
+And of course, we agreed all the decisions above should be converted into nf-core/proposal RFCs [TODO: link] to facilitate wider community discussions (these will be announced on GitHub when posted!).
 
 ## The end
 
