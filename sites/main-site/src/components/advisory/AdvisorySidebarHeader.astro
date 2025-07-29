@@ -82,17 +82,18 @@ function formatImpactItems(
         .map((item) => {
             const name = typeof item === "object" ? item.name : item;
             const versions = typeof item === "object" ? item.versions : null;
-
-            let itemHtml = `<a href="${urlPrefix}/${name}" class="badge fw-normal ${typeSpecificClasses}" title="${name}">
+            const itemType = type === "pipelines" ? "span" : "a";
+            const itemLink = type === "pipelines" ? "" : `href="${urlPrefix}/${name}"`;
+            let itemHtml = `<${itemType} ${itemLink} class="badge fw-normal ${typeSpecificClasses}" title="${name}">
             ${name}
-        </a>`;
+        </${itemType}>`;
 
             if (versions?.length) {
                 const versionTags = versions
                     .map((version) => {
                         if (type === "pipelines") {
                             const resolvedVersion = resolveVersionRange(name, version);
-                            return `<a href="/${name}/${resolvedVersion}" class="pipeline-version badge text-bg-secondary px-2 py-1 my-1 border border-start-0 rounded-start-0" title="View ${name} version ${resolvedVersion}">${version}</a>`;
+                            return `<a href="/${name}/${resolvedVersion}" class="pipeline-version badge text-bg-tertiary fw-normal px-2 py-1 my-1 border border-start-0 rounded-start-0" title="View ${name} version ${resolvedVersion}">${version}</a>`;
                         }
                         return `<span class="badge text-bg-secondary px-2 py-1 me-1 mb-1">${version}</span>`;
                     })
@@ -197,20 +198,24 @@ const impactSections = [
                 content={[
                     {
                         title: "Technical Details",
-                        value: `<div class="d-flex flex-column align-items-start">
+                        value: `<div class="">
                         ${metadataItems
                             .map(
                                 (item) => `
-                            <strong>
+                            <div class="d-flex align-items-start flex-wrap ">
+                            <span class="">
                                 ${
                                     item.label === "Nextflow"
                                         ? `<div class="d-inline-block me-1">${nextflowIcon}</div>`
                                         : `<i class="fa-solid ${item.icon} me-1"></i>`
                                 }
                                 ${item.label}:
-                            </strong>
-                            <span class="text-muted text-small font-monospace">${item.value}</span>
-                        `,
+                            </span>
+                            ${item.value
+                                .split(",")
+                                .map((value) => `<code class="mb-1 me-1">${value}</code>`)
+                                .join("")}
+                        </div>`,
                             )
                             .join("")}
                     </div>`,
@@ -282,10 +287,18 @@ const impactSections = [
 <style lang="scss">
     :global(a.badge:hover) {
         color: var(--bs-emphasis-color) !important;
-        background-color: var(--bs-subtle-bg) !important;
+        background-color: var(--bs-tertiary-bg);
     }
     :global(a.badge:not(:last-child)) {
         border-bottom-right-radius: 0;
         border-top-right-radius: 0;
+    }
+
+    :global(.text-bg-tertiary) {
+        background-color: var(--bs-tertiary-bg);
+        color: var(--bs-gray-700);
+        :global([data-bs-theme="dark"]) & {
+            color: var(--bs-gray-300) !important;
+        }
     }
 </style>

@@ -83,14 +83,14 @@
     <div class="d-none d-xl-block w-100">
         {@render rightSidebarTop()}
         {#if showToc}
-            <strong class="h6 my-2 text-body">On this page</strong>
+            <strong class="h5 my-2 text-body">On this page</strong>
         {/if}
         <nav id="TableOfContents" class="d-flex flex-column">
             {#if showToc}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={"nav-item heading-padding-" + (heading.depth - minHeadingDepth)}
+                            class={"nav-item ms-1 heading-padding-" + (heading.depth - minHeadingDepth)}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
