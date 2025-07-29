@@ -5,7 +5,9 @@ import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { createLinkOrGroup } from "@utils/functions";
 import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
-
+import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
+import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
+import { text } from "mermaid/dist/rendering-util/rendering-elements/shapes/text.js";
 export async function getStaticPaths() {
     const advisories = await getCollection("advisories");
     return advisories.map((advisory) => ({
@@ -22,8 +24,12 @@ const { advisory, advisories } = Astro.props;
 const title = advisory.data.title;
 const subtitle = advisory.data.subtitle;
 let frontmatter = advisory.data;
-const { headings, Content } = await render(advisory);
+let { headings, Content } = await render(advisory);
 
+// add references to heading if available
+if (frontmatter.references) {
+    headings = [...headings, { depth: 1, slug: "references", text: "References" }];
+}
 const md_github_url =
     "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/advisories/" + advisory.id + ".md";
 
@@ -118,6 +124,19 @@ sections.forEach((year) => {
         });
     }
 });
+
+function getLinkIcon(url: string) {
+    // if github issue
+    if (url.includes("github.com") && url.includes("/issues/")) {
+        return "fas fa-info";
+    } else if (url.includes("github.com") && url.includes("/pull/")) {
+        return "fas fa-code-branch";
+    } else if (url.includes("slack.com")) {
+        return "fab fa-slack";
+    } else {
+        return "fas fa-link";
+    }
+}
 ---
 
 <MarkdownTocLayout
@@ -135,6 +154,24 @@ sections.forEach((year) => {
     sidebarTitle="Advisories"
 >
     <Content />
+    {
+        frontmatter.references?.length > 0 && (
+            <div class="advisory-references">
+                <h1 class="mb-3">References</h1>
+                <ul class="list-unstyled">
+                    {frontmatter.references.map((ref) => (
+                        <li class="reference-item mb-3">
+                            <a href={ref.url} target="_blank" rel="noopener noreferrer">
+                                <i class={`${getLinkIcon(ref.url)} fa-fw me-1`} />
+                                <span class="reference-title">{ref.title}</span>
+                            </a>
+                            {ref.description && <p class="reference-description ms-1">{ref.description}</p>}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
     <div slot="right-sidebar-top">
         <AdvisorySidebarHeader frontmatter={frontmatter} />
     </div>
