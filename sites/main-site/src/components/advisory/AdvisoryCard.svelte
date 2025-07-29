@@ -26,9 +26,9 @@
                     {frontmatter.title}
                 </h4>
                 {#if frontmatter.category}
-                    <div class="d-flex align-items-center fs-6 text-muted">
-                        <strong>Category:</strong>
-                        <span class="">
+                    <div class="d-flex align-items-center fs-6 fw-normal text-muted">
+                        <strong>Category: </strong>
+                        <span class="ms-1">
                             {frontmatter.category.map((cat) => formatAdvisoryCategory(cat)).join(", ")}
                         </span>
                     </div>
@@ -40,19 +40,22 @@
             {#if showDescription}
                 <p class="mb-4">{@html frontmatter.subtitle}</p>
             {/if}
-            {#if frontmatter.category || metadataItems.length > 0}
+            {#if metadataItems.length > 0}
                 <div class="mt-2 small">
                     <strong>Affects:</strong>
                     {#each metadataItems as item}
-                        <span class=" d-flex align-items-center">
-                            <strong class="d-flex align-items-center">
+                        <span class=" d-flex align-items-center mb-1">
+                            <span class="d-flex align-items-center">
                                 {#if item.label === "Nextflow"}
                                     {@html nextflowIcon}
                                 {:else}
                                     <i class={`fas ${item.icon}`} aria-hidden="true"></i>
                                 {/if}
-                                <span class="ms-1">{item.label}:</span></strong
-                            > <span class="text-muted ms-1">{item.value}</span>
+                                <span class="ms-1">{item.label}:</span></span
+                            >
+                            {#each item.value.split(",") as line}
+                                <code class="text-muted ms-1">{line}</code>
+                            {/each}
                         </span>
                     {/each}
                 </div>
@@ -87,10 +90,10 @@
     .card-link {
         &:hover {
             :global(.card) {
-                border-color: var(--bs-secondary-color);
+                border-color: var(--bs-tertiary-color);
             }
-            :global(.card-body) {
-                background-color: var(--bs-secondary-bg);
+            :global(.card-header) {
+                background-color: var(--bs-tertiary-bg);
             }
         }
     }
