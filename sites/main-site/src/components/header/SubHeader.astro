@@ -32,8 +32,6 @@ if (component_type === "modules" && component) {
     component_name = component.replace("_", "/");
 }
 
-const advisories = await getCollection("advisories", ({ data }) => data.frontmatter.pipelines.includes(pipeline));
-
 const shaking = version === "dev" ? "3deg" : "1deg";
 ---
 
@@ -88,6 +86,7 @@ const shaking = version === "dev" ? "3deg" : "1deg";
                 ""
             )
         }
+        <slot />
         {
             pipeline.length > 0 ? (
                 <a
