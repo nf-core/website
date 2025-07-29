@@ -5,9 +5,6 @@ import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { createLinkOrGroup } from "@utils/functions";
 import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
-import AdvisoryReferences from "@components/advisory/AdvisoryReferences.astro";
-import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
-import { text } from "mermaid/dist/rendering-util/rendering-elements/shapes/text.js";
 export async function getStaticPaths() {
     const advisories = await getCollection("advisories");
     return advisories.map((advisory) => ({
