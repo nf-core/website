@@ -32,7 +32,6 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
   - [nf-core/tools](https://nf-co.re/tools)
   - Docker/Singularity/Conda: [Google is your friend]
 - Familiarise yourself with the documentation on the nf-core website for nf-core modules:
-
   - [https://nf-co.re/docs/contributing/modules](https://nf-co.re/docs/contributing/modules)
 
   - [https://www.nextflow.io/docs/latest/dsl2.html#modules](https://www.nextflow.io/docs/latest/dsl2.html#modules)

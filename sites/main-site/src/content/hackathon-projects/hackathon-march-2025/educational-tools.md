@@ -18,11 +18,9 @@ This project focuses on generating additional data, materials and automated tool
 ## Goals
 
 - **Creating a pipeline to simulate educational datasets**
-
   - _This is for contributors with experience in nf-core module structure and dependencies, and ideally with experience in teaching bioinformatics at different levels. The purpose of the pipeline is to generate what we call "storyline-based data", i.e. datasets which can follow a storyline and with a specific biological meaning to be identified when used for bioinformatics education._
 
 - **Translation of tutorials**
-
   - _For users who would like to contribute by translating existing tutorials in a language different than English._
 
 - **Domain specific tutorials**

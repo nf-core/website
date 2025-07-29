@@ -8,7 +8,6 @@
     import rehypeAutolinkHeadings from "rehype-autolink-headings";
     import rehypeHighlight from "rehype-highlight";
     import rehypeSlug from "rehype-slug";
-    import { visit } from "unist-util-visit";
     import rehypeWrap from "rehype-wrap-all";
     import { h } from "hastscript";
     import remarkMath from "remark-math";
@@ -16,7 +15,7 @@
     import type { Plugin } from "svelte-exmarkdown";
 
     import "../../../../../node_modules/highlight.js/styles/github-dark.css";
-    let { md = $bindable() } = $props();
+    let { md } = $props();
 
     let plugins: Plugin[] = [];
     plugins.push({ remarkPlugin: [emoji] });

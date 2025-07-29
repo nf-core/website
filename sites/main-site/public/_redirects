@@ -1,5 +1,5 @@
 # Slack invite URL
-/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-36a17gkw1-LWHLFOkR6J2v3VqvircGpg
+/join/slack https://join.slack.com/t/nfcore/shared_invite/zt-3a62mcu4g-7wSK4Y844w6jCR3ioftPAQ
 
 # Force a 404 header on custom 404 page
 # See https://answers.netlify.com/t/bug-and-workaround-404-page-returns-http-200/21154
@@ -86,6 +86,7 @@
 /docs/* https://nf-core-docs.netlify.app/docs/:splat 200!
 /pipelines https://nf-core-pipelines.netlify.app/pipelines 200!
 /pipeline_health https://nf-core-pipelines.netlify.app/pipeline_health 200!
+/pipeline_versions https://nf-core-pipelines.netlify.app/pipeline_versions 200!
 /:pipeline/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
 /:pipeline/output/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/output/:splat 200!
 /:pipeline/docs/usage/* https://nf-core-pipelines.netlify.app/:pipeline/latest/docs/usage/:splat 200!
