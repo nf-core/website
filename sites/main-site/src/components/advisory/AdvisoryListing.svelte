@@ -17,7 +17,7 @@
     let filteredAdvisories = $state(advisories);
 
     let sortedAdvisories = $derived(
-        filteredAdvisories.sort((a, b) => {
+        [...filteredAdvisories].sort((a, b) => {
             const dateA = a.data.publishedDate?.getTime() ?? 0;
             const dateB = b.data.publishedDate?.getTime() ?? 0;
             return dateB - dateA; // Sort by most recent first
