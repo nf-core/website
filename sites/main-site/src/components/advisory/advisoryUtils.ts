@@ -1,12 +1,11 @@
 // Combined dictionary for all advisory classes (types and severities)
 export const advisoryClasses = {
     // Advisory types
-    known_regression: "dark",
+    known_regression: "info",
     incompatibility: "warning",
     security: "danger",
     performance: "success",
     data_corruption: "primary",
-    scientific_advice: "info",
     other: "secondary",
     // Severity levels
     low: "primary",
@@ -23,7 +22,6 @@ export const advisoryIcons = {
     security: "fa-solid fa-shield-alt",
     performance: "fa-solid fa-tachometer-alt",
     data_corruption: "fa-solid fa-database",
-    scientific_advice: "fa-solid fa-flask",
     other: "fa-solid fa-info-circle",
     // Severity levels
     low: "fa-solid fa-arrow-down",
@@ -43,7 +41,6 @@ export const advisoryTypes = [
     "security",
     "performance",
     "data_corruption",
-    "scientific_advice",
     "other",
 ].map((type) => {
     return {
