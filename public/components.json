@@ -66333,7 +66333,7 @@
                 "pattern": "*.{pdb,mmcif}",
                 "ontologies": [
                   {
-                    "edam": "http://edamontology.org/format_1747"
+                    "edam": "http://edamontology.org/format_1476"
                   },
                   {
                     "edam": "http://edamontology.org/format_1477"
@@ -132783,7 +132783,10 @@
                 "pattern": "*.{pdb}",
                 "ontologies": [
                   {
-                    "edam": "http://edamontology.org/format_1747"
+                    "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
                   }
                 ]
               }
@@ -132840,7 +132843,7 @@
                   "pattern": "${prefix}.pdb{.gz,}",
                   "ontologies": [
                     {
-                      "edam": "http://edamontology.org/format_1747"
+                      "edam": "http://edamontology.org/format_1476"
                     }
                   ]
                 }
