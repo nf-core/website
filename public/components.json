@@ -38585,9 +38585,9 @@
         "name": "clipkit",
         "description": "ClipKIT is a fast and flexible alignment trimming tool that keeps phylogenetically informative sites and removes those that display characteristics poor phylogenetic signal.",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "alignment",
+          "trimming",
+          "phylogeny"
         ],
         "tools": [
           {
@@ -46466,9 +46466,10 @@
         "name": "custom_addmostsevereconsequence",
         "description": "Annotate a VEP annotated VCF with the most severe consequence field",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "annotation",
+          "vep",
+          "consequence",
+          "vcf"
         ],
         "tools": [
           {
@@ -46572,9 +46573,10 @@
         "name": "custom_addmostseverepli",
         "description": "Annotate a VEP annotated VCF with the most severe pLi field",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "annotation",
+          "vep",
+          "pli",
+          "vcf"
         ],
         "tools": [
           {
@@ -51103,6 +51105,103 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "deeptools_multibigwigsummary",
+      "path": "modules/nf-core/deeptools/multibigwigsummary/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deeptools_multibigwigsummary",
+        "description": "Computes the average scores for each of the files in every genomic region",
+        "keywords": [
+          "bigwig",
+          "deeptools",
+          "plot",
+          "heatmap",
+          "matrix"
+        ],
+        "tools": [
+          {
+            "deeptools": {
+              "description": "A set of user-friendly tools for normalization and visualization of deep-sequencing data",
+              "homepage": "https://deeptools.readthedocs.io/en/develop/",
+              "documentation": "https://deeptools.readthedocs.io/en/develop/",
+              "tool_dev_url": "https://github.com/deeptools/deepTools/",
+              "doi": "10.1093/nar/gku365",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:deeptools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bigwigs": {
+                "type": "file",
+                "description": "Two or more bigWig files",
+                "pattern": "*.{bigWig,bw}",
+                "ontologies": []
+              }
+            },
+            {
+              "labels": {
+                "type": "list",
+                "description": "Labels for the bigWig files used in the matrix"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.npz": {
+                  "type": "file",
+                  "description": "Matrix file from multiBigwigSummary",
+                  "pattern": "*.npz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@ugoiannacchero",
+          "@daisymut"
+        ],
+        "maintainers": [
+          "@ugoiannacchero",
+          "@daisymut"
+        ]
+      }
     },
     {
       "name": "deeptools_plotcorrelation",
@@ -64777,9 +64876,10 @@
         "name": "fgbio_copyumifromreadname",
         "description": "Copies the UMI at the end of a bam files read name to the RX tag.",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "fgbio",
+          "copy",
+          "umi",
+          "readname"
         ],
         "tools": [
           {
