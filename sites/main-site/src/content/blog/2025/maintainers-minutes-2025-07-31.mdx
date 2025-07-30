@@ -12,6 +12,9 @@ label:
 ---
 
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import uptodatedocs from "@assets/images/blog/maintainers-minutes-2025-07-31/uptodate-documentation-meme.jpg";
+import datahostingmeme from "@assets/images/blog/maintainers-minutes-2025-07-31/datahosting-meme.jpg";
+import dataorganisationmessmeme from "@assets/images/blog/maintainers-minutes-2025-07-31/dataorganisationmessmeme.png";
 import { Image } from "astro:assets";
 
 The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly team meetings.
@@ -38,6 +41,14 @@ Some things we agreed on throughout the meeting to limit the scope of the discus
 2. We agreed we want to 'start from scratch' rather than try and adjust the existing repository
 
 ## Location
+
+<Image
+    src={uptodatedocs}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Character from lord of the rings saying 'one does not simply change hosting providers'"
+/>
 
 One of the larger discussions we had was where should the test-dataset files go: should we move them to a new service?
 
@@ -88,6 +99,14 @@ Our main conclusions from these discussions were:
 
 ## Documentation
 
+<Image
+    src={uptodatedocs}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Character from star wars saying 'up to date documentation, I've not seen this in a long time'"
+/>
+
 Next we moved onto documentation.
 
 Trying to know what was in a module test-data file, how it was generated, and how it linked with other data files within nf-core/test-datasets is a common pain point for the maintainers and community members.
@@ -121,6 +140,14 @@ Our primary conclusion here was that we needed to consult the community as to wh
 In particular we will try to contact different disciplines e.g. via the Special Interest Groups - particularly outside of bioinformatics - to ensure a consensus.
 
 ## Structure
+
+<Image
+    src={dataorganisationmessmeme}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Character from futurama saying 'Not sure I'm cleaning a mess or organising a mess'"
+/>
 
 Finally, we briefly touched on the structure the repository.
 
