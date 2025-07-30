@@ -111,13 +111,25 @@ We had a brainstorming session of what sort of information we would like to reco
     - Panel
 - Support 'grouped' files (e.g. in bioinformatics pairs-end reads, ped/bim/fam, bam/bai)
 
-We then proposed different ideas how to store such metadata:
+We then though about different ideas how to store such metadata:
 
 - Stricter and descriptive naming file schema a table listing each
 - A prose-based `README` markdown file next to each data file
 - A `meta.yaml` file next to each data file akin to nf-core/modules YAML files
 
+Our primary conclusion here was that we needed to consult the community as to what other attributes they feel they need for test-data files.
+In particular we will try to contact different disciplines e.g. via the Special Interest Groups - particularly outside of bioinformatics - to ensure a consensus.
+
 ## Structure
+
+Finally, we briefly touched on the structure the repository.
+
+During the session there was a general feeling that we wanted per-tool documentation rather than one mega README file.
+Assuming we stick with a GitHub interface we wanted to remove the 'empty' `master` branch and have the module test-data files as the primary landing page.
+Simon [TODO: github handle] also proposed having modules and pipeline test-data in separate locations to make it easier to find the right files and reduce the size.
+
+However the structure somewhat would depend on the location we choose, we will wait for the outcome of the location discussions before we continue this.
+For example, if we were to follow an object storage concept, it could be that we go with 'chaos' with no directory structure' and everything is organised and guided via the metadata with an user interface layer (as previously proposed by Maxime [TODO: github handle]).
 
 ## Additional considerations
 
@@ -132,6 +144,9 @@ Other points that were brought up such as:
 And of course, we agreed all the decisions above should be converted into nf-core/proposal RFCs [TODO: link] to facilitate wider community discussions (these will be announced on GitHub when posted!).
 
 ## The end
+
+All of the above are just starting points for discussions, and we will continue to work on these topics in the coming months.
+But we will need a large amount of input from the wider community to ensure the community gets the best experience they want, so we encourage anyone with thoughts and feedback on the above to join the #wg-test-data-task-force [TODO: add link to channel] channel and post their ideas there!
 
 As always, if you want to get involved and give your input, join the discussion on relevant PRs and Slack threads!
 
