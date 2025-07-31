@@ -27,11 +27,11 @@ nf-core/testdatasets is a GitHub repository that holds the majority of the files
 Interacting with this part of our infrastructure is currently one of the less optimal developer experiences.
 This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with [results from the nf-core/survey](https://nf-co.re/blog/2025/survey-results-2025) from earlier this year, and our own experiences.
 
-As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by <Profile username="JulianFlesch">Julian Flesch</Profile> to help explore the available data files in the nf-core/test-datasets repository.
+As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by Julian Flesch ([@JulianFlesch](https://github.com/JulianFlesch)) to help explore the available data files in the nf-core/test-datasets repository.
 However this only acts to alleviate the symptoms of the problems in identifying suitable files, knowing where to put new files, and what is within each file.
 Instead we want to restructure and develop clearer specifications, documentation, and procedures for the test datasets repository.
 
-Therefore this month's meeting was 'taken over' by the [#wg-test-dataset-task-force ](https://nfcore.slack.com/archives/C07B5FK9GKA) leads Simon <Profile username="SPPearce">Simon</Profile> and <Profile username="jfy133">James</Profile> to start the process of redesigning the structure and documentation.
+Therefore this month's meeting was 'taken over' by the [#wg-test-dataset-task-force ](https://nfcore.slack.com/archives/C07B5FK9GKA) leads Simon Simon ([@SPPearce](https://github.com/SPPearce)) and James ([@jfy133](https://github.com/jfy133)) to start the process of redesigning the structure and documentation.
 
 ## Scope of discussions
 
@@ -75,15 +75,15 @@ The cons of GitHub were:
 Alternative solutions were proposed:
 
 - HuggingFace
-    - ✅ Suggested by <Profile username="edmundmiller">Edmund</Profile> as a similar interface to GitHub (thus would be familiar)
+    - ✅ Suggested by Edmund ([@edmundmiller](https://github.com/edmundmiller)) as a similar interface to GitHub (thus would be familiar)
     - ✅ Much less restrictive file sizes (up to 5GB per file, and no max number of files)
     - ❌ But is outside our infrastructure
     - ❌ Is actually just a `git-lfs`, so actually doesn't provide much difference to GitHub (which also supports git-lfs)
     - ❌ It would require separate team organisation (not everyone could join and have access)
 - AWS S3:
-    - ✅ Out test-datasets are actually already 'backed up' here
-    - ✅ This is already relatively well supported by out infrastructure and Nextflow (e.g. directory inputs)
-    - ✅ <Profile username="atrigila">Anabella</Profile> showed services such as [42basepairs](https://42basepairs.com/) that provides ways to see inside common bioinformatics file formats of files on S3
+    - ✅ Our test-datasets are actually already 'backed up' here
+    - ✅ This is already relatively well supported by our infrastructure and Nextflow (e.g. directory inputs)
+    - ✅ Anabella ([@atrigila](https://github.com/atrigila)) showed services such as [42basepairs](https://42basepairs.com/) that provides ways to see inside common bioinformatics file formats of files on S3
     - ❌ We were very worried about ingress/egress costs (particularly in our very parallelised CI tests)
     - ❌ We did not have an immediate solution how community members could 'submit' to a controlled bucket (for cost reasons)
     - ❌ We weren't sure on the longevity of services like 42basepairs
@@ -154,22 +154,22 @@ Finally, we briefly touched on the structure for the repository.
 During the session there was a general feeling that we wanted per-tool documentation rather than one mega README file.
 Assuming we stick with a GitHub interface we wanted to remove the 'empty' `master` branch and have the module test-data files as the primary landing page.
 
-<Profile username="SPPearce">Simon</Profile> also proposed having modules and pipeline test-data in separate locations
+Simon ([@SPPearce](https://github.com/SPPearce)) also proposed having modules and pipeline test-data in separate locations
 to make it easier to find the right files and reduce the size.
 
 However the structure somewhat would depend on the location we choose, we will wait for the outcome of the location discussions before we continue this.
-For example, if we were to follow an object storage concept, it could be that we go with 'chaos' with no directory structure' and everything is organised and guided via the metadata with an user interface layer (as previously proposed by <Profile username="maxulysse">Maxime</Profile>).
+For example, if we were to follow an object storage concept, it could be that we go with 'chaos' with no directory structure' and everything is organised and guided via the metadata with an user interface layer (as previously proposed by Maxime ([@maxulysse](https://github.com/maxulysse))).
 
 ## Additional considerations
 
 Other points that were brought up such as:
 
-- We should try to somehow 'version' test-datafiles - e.g. using GitHub URLs pointing to a specific hash, to reduce risks of test breaking if someone changes the contents of a test file (although this shouldn't happen) (Jon <Profile username="pinin4fjords">Jon</Profile>)
-- We could maybe consider a 'spill over' location, in case we stick with GitHub and the 10 MB limits are too restrictive for some tools's test-data (which would reduce costs) <Profile username="LouisLeNezet">Louis</Profile>)
-- Is there a way to automatically identify data files that have never been used, so we can clean them to save costs (<Profile username="famosab">Famke</Profile>)
+- We should try to somehow 'version' test-datafiles - e.g. using GitHub URLs pointing to a specific hash, to reduce risks of test breaking if someone changes the contents of a test file (although this shouldn't happen) (Jon ([@pinin4fjords](https://github.com/pinin4fjords)))
+- We could maybe consider a 'spill over' location, in case we stick with GitHub and the 10 MB limits are too restrictive for some tools's test-data (which would reduce costs) (Louis ([@LouisLeNezet](https://github.com/LouisLeNezet)))
+- Is there a way to automatically identify data files that have never been used, so we can clean them to save costs (Famke ([@famosab](https://github.com/famosab)))
     - None of the maintainers present were aware of anything like this, but if a community member has an idea please let us know!!
 - Should we allow 'copying' of a tool's own test-data files or always make our own derived from our existing files (where possible)
-- Could we use an MCP agent to auto-annotate files with metadata as a first pass, some nf-core members have experience with these (<Profile username="itrujnara">Igor</Profile>)
+- Could we use an MCP agent to auto-annotate files with metadata as a first pass, some nf-core members have experience with these (Igor ([@itrujnara](https://github.com/itrujnara)))
 
 And of course, we agreed all the decisions above should be converted into [nf-core/proposal RFCs](https://github.com/nf-core/proposals/issues?q=is%3Aissue%20state%3Aopen%20label%3Anew-rfc) to facilitate wider community discussions (these will be announced on GitHub when posted!).
 
