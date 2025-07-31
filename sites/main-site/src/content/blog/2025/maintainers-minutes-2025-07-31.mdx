@@ -25,13 +25,13 @@ After a short summer break, we returned with a special maintainers meeting dedic
 nf-core/testdatasets is a GitHub repository that holds the majority of the files we use for the CI testing of our modules, subworkflows, and pipelines.
 
 Interacting with this part of our infrastructure is currently one of the less optimal developer experiences.
-This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with the nf-core/survey from earlier this year, and our own experiences [TODO: ADD LINK TO BLOG POST].
+This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with [results from the nf-core/survey](https://nf-co.re/blog/2025/survey-results-2025) from earlier this year, and our own experiences.
 
 As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by <Profile username="JulianFlesch">Julian Flesch</Profile> to help explore the available data files in the nf-core/test-datasets repository.
 However this only acts to alleviate the symptoms of the problems in identifying suitable files, knowing where to put new files, and what is within each file.
 Instead we want to restructure and develop clearer specifications, documentation, and procedures for the test datasets repository.
 
-Therefore this month's meeting was 'taken over' by the wg-test-dataset-task-force [TODO: add slack channel link] leads Simon <Profile username="SPPearce">Simon</Profile> and <Profile username="jfy133">James</Profile> to start the process of redesigning the structure and documentation.
+Therefore this month's meeting was 'taken over' by the [#wg-test-dataset-task-force ](https://nfcore.slack.com/archives/C07B5FK9GKA) leads Simon <Profile username="SPPearce">Simon</Profile> and <Profile username="jfy133">James</Profile> to start the process of redesigning the structure and documentation.
 
 ## Scope of discussions
 
@@ -83,7 +83,7 @@ Alternative solutions were proposed:
 - AWS S3:
     - ✅ Out test-datasets are actually already 'backed up' here
     - ✅ This is already relatively well supported by out infrastructure and Nextflow (e.g. directory inputs)
-    - ✅ <Profile username="atrigila">Anabella</Profile> showed services such as 42basepairs [TODO: link] that allow you to see inside common bioinformatics file formats
+    - ✅ <Profile username="atrigila">Anabella</Profile> showed services such as [42basepairs](https://42basepairs.com/) that provides ways to see inside common bioinformatics file formats of files on S3
     - ❌ We were very worried about ingress/egress costs (particularly in our very parallelised CI tests)
     - ❌ We did not have an immediate solution how community members could 'submit' to a controlled bucket (for cost reasons)
     - ❌ We weren't sure on the longevity of services like 42basepairs
@@ -130,9 +130,9 @@ We had a brainstorming session of what sort of information we would like to reco
     - Panel
 - Support 'grouped' files (e.g. in bioinformatics paired-end reads, ped/bim/fam, bam/bai)
 
-We then though about different ideas how to store such metadata:
+We then thought about different ideas how to store such metadata:
 
-- Stricter and descriptive naming file schema a table listing each
+- Using stricter and descriptive naming file scheme, to record metadata about the file, and a table with aggregating all the files
 - A prose-based `README` markdown file next to each data file
 - A `meta.yaml` file next to each data file akin to nf-core/modules YAML files
 
@@ -168,14 +168,15 @@ Other points that were brought up such as:
 - We could maybe consider a 'spill over' location, in case we stick with GitHub and the 10 MB limits are too restrictive for some tools's test-data (which would reduce costs) <Profile username="LouisLeNezet">Louis</Profile>)
 - Is there a way to automatically identify data files that have never been used, so we can clean them to save costs (<Profile username="famosab">Famke</Profile>)
     - None of the maintainers present were aware of anything like this, but if a community member has an idea please let us know!!
-- Should we allow 'copying' of a tool's own test-data files or always make our own derived from our existing files (where possible)?
+- Should we allow 'copying' of a tool's own test-data files or always make our own derived from our existing files (where possible)
+- Could we use an MCP agent to auto-annotate files with metadata as a first pass, some nf-core members have experience with these (<Profile username="itrujnara">Igor</Profile>)
 
-And of course, we agreed all the decisions above should be converted into nf-core/proposal RFCs [TODO: link] to facilitate wider community discussions (these will be announced on GitHub when posted!).
+And of course, we agreed all the decisions above should be converted into [nf-core/proposal RFCs](https://github.com/nf-core/proposals/issues?q=is%3Aissue%20state%3Aopen%20label%3Anew-rfc) to facilitate wider community discussions (these will be announced on GitHub when posted!).
 
 ## The end
 
 All of the above are just starting points for discussions, and we will continue to work on these topics in the coming months.
-But we will need a large amount of input from the wider community to ensure the community gets the best experience they want, so we encourage anyone with thoughts and feedback on the above to join the #wg-test-data-task-force [TODO: add link to channel] channel and post their ideas there!
+But we will need a large amount of input from the wider community to ensure the community gets the best experience they want, so we encourage anyone with thoughts and feedback on the above to join the [#wg-test-data-task-force](https://nfcore.slack.com/archives/C07B5FK9GKA) channel and post their ideas there!
 
 As always, if you want to get involved and give your input, join the discussion on relevant PRs and Slack threads!
 
