@@ -104,9 +104,14 @@ const events = defineCollection({
         }),
 });
 
+const advisories = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "/content/advisories" }),
+});
+
 export const collections = {
     pipelines,
     releases,
     events,
     blog,
+    advisories,
 };
