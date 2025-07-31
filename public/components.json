@@ -1407,13 +1407,7 @@
           "@toniher",
           "@gallvp"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "tfactivity",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "agat_convertspgff2tsv",
@@ -1644,10 +1638,6 @@
       "pipelines": [
         {
           "name": "genomeqc",
-          "version": "dev"
-        },
-        {
-          "name": "tfactivity",
           "version": "dev"
         }
       ]
@@ -10800,10 +10790,6 @@
         {
           "name": "differentialabundance",
           "version": "1.5.0"
-        },
-        {
-          "name": "tfactivity",
-          "version": "dev"
         }
       ]
     },
@@ -229170,30 +229156,45 @@
               }
             },
             {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA reference file",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "index of the reference file",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
               "hic_map": {
                 "type": "file",
                 "description": "BED file containing coordinates of read alignments",
                 "pattern": "*.{bed,bam,bin}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
               }
             }
-          ],
-          {
-            "fasta": {
-              "type": "file",
-              "description": "FASTA reference file",
-              "pattern": "*.{fasta,fa}",
-              "ontologies": []
-            }
-          },
-          {
-            "fai": {
-              "type": "file",
-              "description": "index of the reference file",
-              "pattern": "*.{fai}",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "scaffolds_fasta": [
@@ -229205,11 +229206,15 @@
                 }
               },
               {
-                "*scaffolds_final.fa": {
+                "*.fa": {
                   "type": "file",
                   "description": "FASTA file with resulting contigs",
-                  "pattern": "*scaffolds_final.fa",
-                  "ontologies": []
+                  "pattern": "*.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -229223,11 +229228,15 @@
                 }
               },
               {
-                "*scaffolds_final.agp": {
+                "*.agp": {
                   "type": "file",
                   "description": "AGP file containing contigs placing coordinates",
-                  "pattern": "*scaffolds_final.agp",
-                  "ontologies": []
+                  "pattern": "*.agp",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3693"
+                    }
+                  ]
                 }
               }
             ]
@@ -229241,11 +229250,10 @@
                 }
               },
               {
-                "*bin": {
+                "*.bin": {
                   "type": "file",
-                  "description": "BIN file with alignment results of Hi-C reads to the contigs in internal YaHS binary format",
-                  "pattern": "*bin",
-                  "ontologies": []
+                  "description": "Binary data file with alignment results of Hi-C reads\nto the contigs in internal YaHS binary format\n",
+                  "pattern": "*.bin"
                 }
               }
             ]
