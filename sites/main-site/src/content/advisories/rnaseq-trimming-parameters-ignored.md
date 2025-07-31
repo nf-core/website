@@ -1,6 +1,6 @@
 ---
 title: Trimming parameters ignored in RNA-seq pipeline 3.10
-subtitle: The clip parameters for read trimming are remain without affect for that pipeline version
+subtitle: The clip parameters for read trimming remain without affect for that pipeline version
 category: pipelines
 type: known_regression
 severity: low
