@@ -152,7 +152,7 @@ export default defineConfig({
   markdown: {
     syntaxHighlight: false,
     remarkPlugins: [
-      emoji,
+    //   emoji,
       remarkGfm,
       remarkDirective,
       admonitionsPlugin,
