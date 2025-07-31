@@ -108,7 +108,7 @@ function createProcessors(processors: Processors) {
  */
 function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo: string, ref: string }): Processors {
     return {
-        md: async (text: string, config: any, filepath?: string): Promise<RenderedContent> => {
+        md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
             try {
                 // For GitHub files, we need to use our custom processor with remark plugin
                 // to handle link transformations, image URLs, etc.
@@ -144,34 +144,95 @@ function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo
 }
 
 /**
- * Schema processor for JSON schema files
+ * Creates a schema processor for JSON schema files
  */
-const schemaProcessor: Processors = {
-    json: async (text: string): Promise<RenderedContent> => {
-        const schema = JSON.parse(text);
-        const definitions = schema.definitions || schema.$defs || schema.properties || {};
+function createSchemaProcessor(renderMarkdown: Function): Processors {
+    return {
+        json: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
+            try {
+                const schema = JSON.parse(text);
+                const definitions = schema.definitions || schema.$defs || schema.properties || {};
 
-        let headings: { slug: string; text: string; depth: number; fa_icon: string; hidden: boolean }[] = [];
+                let headings: { slug: string; text: string; depth: number; fa_icon: string; hidden: boolean }[] = [];
 
-        if (Object.keys(definitions).length > 0) {
-            headings = Object.entries(definitions).map(([key, value]: [string, any]) => ({
-                slug: key.replaceAll("_", "-"),
-                text: value?.title || key,
-                depth: 1,
-                fa_icon: value?.fa_icon || "",
-                hidden: value?.properties && Object.values(value.properties).every((prop: any) => prop?.hidden),
-            }));
+                if (Object.keys(definitions).length > 0) {
+                    headings = Object.entries(definitions).map(([key, value]: [string, any]) => ({
+                        slug: key.replaceAll("_", "-"),
+                        text: value?.title || key,
+                        depth: 1,
+                        fa_icon: value?.fa_icon || "",
+                        hidden: value?.properties && Object.values(value.properties).every((prop: any) => prop?.hidden),
+                    }));
+
+                    // Process markdown content in schema definitions
+                    const defsKey = schema.definitions ? 'definitions' : '$defs';
+                    if (schema[defsKey]) {
+                        // Deep copy the definitions to avoid mutation
+                        schema[defsKey] = JSON.parse(JSON.stringify(schema[defsKey]));
+
+                        await Promise.all(
+                            Object.entries(schema[defsKey]).map(async ([key, definition]) => {
+                                const def = definition as { description: string, help_text: string, properties: Record<string, any> };
+
+                                // Render markdown for definition-level content
+                                await Promise.all([
+                                    renderMarkdownField(def, 'description', renderMarkdown, `${key}`),
+                                    renderMarkdownField(def, 'help_text', renderMarkdown, `${key}`),
+                                ]);
+
+                                // Render markdown for property-level content
+                                if (def.properties) {
+                                    await Promise.all(
+                                        Object.entries(def.properties).map(async ([propKey, property]) => {
+                                            const prop = property as any;
+                                            await Promise.all([
+                                                renderMarkdownField(prop, 'description', renderMarkdown, `${key}.${propKey}`),
+                                                renderMarkdownField(prop, 'help_text', renderMarkdown, `${key}.${propKey}`),
+                                            ]);
+                                        })
+                                    );
+                                }
+                            })
+                        );
+                    }
+                }
+
+                return {
+                    html: JSON.stringify(schema, null, 2),
+                    metadata: {
+                        schema: schema["$schema"],
+                        headings,
+                    },
+                };
+            } catch (error) {
+                console.error(`Error processing schema for ${filepath}:`, error.message);
+                return {
+                    html: `<div class="error">Error processing schema: ${error.message}</div>`,
+                    metadata: { error: error.message },
+                };
+            }
+        },
+    };
+}
+
+/**
+ * Helper function to render markdown fields in schema objects
+ */
+async function renderMarkdownField(
+    obj: any,
+    fieldName: string,
+    renderMarkdown: Function,
+    context: string
+): Promise<void> {
+    if (obj[fieldName]) {
+        try {
+            const { html } = await renderMarkdown(obj[fieldName]);
+            obj[`${fieldName}_rendered`] = html;
+        } catch (error) {
+            console.warn(`Failed to render ${fieldName} for ${context}:`, error.message);
         }
-
-        return {
-            html: text,
-            metadata: {
-                schema: schema["$schema"],
-                headings,
-            },
-        };
-    },
-};
+    }
+}
 
 // ========================================
 // GITHUB CONTENT FETCHER
@@ -192,7 +253,7 @@ class GitHubContentFetcher {
     /**
      * Generic method to fetch data from GitHub
      */
-    private async fetchData<T>(filepath: string, type: "json" | "text"): Promise<T> {
+    private async fetchData<T extends any>(filepath: string, type: "json" | "text"): Promise<T> {
         try {
             if (filepath.startsWith("https://api.github.com")) {
                 const response = await octokit.request("GET " + filepath.replace("https://api.github.com", ""));
@@ -202,7 +263,7 @@ class GitHubContentFetcher {
             const response = await fetch(filepath);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-            return type === "json" ? await response.json() : await response.text();
+            return (type === "json" ? await response.json() : await response.text()) as T;
         } catch (error) {
             console.error(`Failed to fetch ${filepath}:`, error);
             throw error;
@@ -427,6 +488,7 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
 
                     // Process schema if available
                     if (release.has_schema) {
+                        const schemaProcessor = createSchemaProcessor(context.renderMarkdown);
                         await fetcher.processFile(`nextflow_schema.json`, schemaProcessor, false, {
                             name: pipeline.name,
                         });
