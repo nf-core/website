@@ -24,7 +24,7 @@ The 'Maintainers Minutes' aims to give further insight into the workings of the 
 After a short summer break, we returned with a special maintainers meeting dedicated to nf-core/test-datasets.
 nf-core/testdatasets is a GitHub repository that holds the majority of the files we use for the CI testing of our modules, subworkflows, and pipelines.
 
-One of the less optimal developer experiences the community undergo current is interacting with this part of our infrastructure.
+Interacting with this part of our infrastructure is currently one of the less optimal developer experiences.
 This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with the nf-core/survey from earlier this year, and our own experiences [TODO: ADD LINK TO BLOG POST].
 
 As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by @JulianFleischer [TODO: add GitHub Handle] to help explore the available data files in the nf-core/test-datasets repository.
@@ -128,7 +128,7 @@ We had a brainstorming session of what sort of information we would like to reco
     - Individuals
     - Genome version
     - Panel
-- Support 'grouped' files (e.g. in bioinformatics pairs-end reads, ped/bim/fam, bam/bai)
+- Support 'grouped' files (e.g. in bioinformatics paired-end reads, ped/bim/fam, bam/bai)
 
 We then though about different ideas how to store such metadata:
 
@@ -149,7 +149,7 @@ In particular we will try to contact different disciplines e.g. via the Special 
     alt="Character from futurama saying 'Not sure I'm cleaning a mess or organising a mess'"
 />
 
-Finally, we briefly touched on the structure the repository.
+Finally, we briefly touched on the structure for the repository.
 
 During the session there was a general feeling that we wanted per-tool documentation rather than one mega README file.
 Assuming we stick with a GitHub interface we wanted to remove the 'empty' `master` branch and have the module test-data files as the primary landing page.
