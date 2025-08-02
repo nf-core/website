@@ -1285,6 +1285,102 @@
       ]
     },
     {
+      "name": "agat_convertgff2bed",
+      "path": "modules/nf-core/agat/convertgff2bed/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "agat_convertgff2bed",
+        "description": "Takes a GFF3 file and converts to a bed12 file",
+        "keywords": [
+          "genome",
+          "bed",
+          "gff",
+          "conversion"
+        ],
+        "tools": [
+          {
+            "agat": {
+              "description": "Another Gff Analysis Toolkit (AGAT). Suite of tools to handle gene annotations in any GTF/GFF format.",
+              "homepage": "https://agat.readthedocs.io/en/latest/",
+              "documentation": "https://agat.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/NBISweden/AGAT",
+              "doi": "10.5281/zenodo.3552717",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:AGAT"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gff": {
+                "type": "file",
+                "description": "Input GFF3 file",
+                "pattern": "*.{gff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "Output bed12 file",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@atrigila"
+        ],
+        "maintainers": [
+          "@atrigila"
+        ]
+      }
+    },
+    {
       "name": "agat_convertspgff2gtf",
       "path": "modules/nf-core/agat/convertspgff2gtf/meta.yml",
       "type": "module",
@@ -172298,25 +172394,49 @@
           }
         ],
         "input": [
-          {
-            "gtf": {
-              "type": "file",
-              "description": "GTF file",
-              "pattern": "*.{gtf}",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "GTF file",
+                "pattern": "*.{gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
             }
-          }
+          ]
         ],
         "output": {
           "rrna_gtf": [
-            {
-              "*rrna_intervals.gtf": {
-                "type": "file",
-                "description": "GTF file with ribosomal RNA only",
-                "pattern": "*.{gtf}",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_rrna_intervals.gtf": {
+                  "type": "file",
+                  "description": "Output GTF file containing ribosomal RNA intervals",
+                  "pattern": "*_rrna_intervals.gtf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2306"
+                    }
+                  ]
+                }
               }
-            }
+            ]
           ],
           "versions": [
             {
@@ -182874,6 +182994,130 @@
         ],
         "maintainers": [
           "@seohyonkim"
+        ]
+      }
+    },
+    {
+      "name": "scanpy_pca",
+      "path": "modules/nf-core/scanpy/pca/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "scanpy_pca",
+        "description": "Perform principal component analysis (PCA) on single-cell RNA-seq data using Scanpy",
+        "keywords": [
+          "pca",
+          "principal-component-analysis",
+          "scanpy",
+          "single-cell",
+          "dimensionality-reduction"
+        ],
+        "tools": [
+          {
+            "scanpy": {
+              "description": "Single-Cell Analysis in Python",
+              "homepage": "https://scanpy.readthedocs.io",
+              "documentation": "https://scanpy.readthedocs.io/en/stable/api/generated/scanpy.pp.pca.html",
+              "tool_dev_url": "https://github.com/scverse/scanpy",
+              "doi": "10.1186/s13059-017-1382-0",
+              "licence": [
+                "BSD-3-Clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "h5ad": {
+                "type": "file",
+                "description": "AnnData object in h5ad format",
+                "pattern": "*.{h5ad}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "key_added": {
+              "type": "string",
+              "description": "Key to add to obsm with PCA coordinates, usually 'X_pca'\n"
+            }
+          }
+        ],
+        "output": {
+          "h5ad": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.h5ad": {
+                  "type": "file",
+                  "description": "AnnData object with PCA coordinates added",
+                  "pattern": "*.h5ad",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "obsm": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "X_*.pkl": {
+                  "type": "file",
+                  "description": "Pickle file containing PCA coordinates matrix",
+                  "pattern": "X_*.pkl",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3553"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@nictru"
+        ],
+        "maintainers": [
+          "@nictru"
         ]
       }
     },
