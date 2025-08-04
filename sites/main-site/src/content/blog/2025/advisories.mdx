@@ -1,0 +1,44 @@
+---
+title: "Be advised on issues in nf-core"
+subtitle: "Introducing advisories, a new feature on the nf-core website"
+pubDate: 2025-08-6T10:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Wilhelm Busch"
+embedHeaderImage: true
+authors:
+    - "MatthiasZepper"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import datahostingmeme from "@assets/images/blog/maintainers-minutes-2025-07-31/datahosting-meme.jpg";
+import { Image } from "astro:assets";
+
+## Background and motivation
+
+April 2025. At least in our corner of the world, spring had just arrived. Daylight lingered a little longer, and flowers stretched toward the sun. But just as nature hit its stride, nf-core pipelines didn’t. As the world shook off winter’s sleep, a configuration issue in our pipeline template emerged from hibernation, too. Soon, our Slack channels and GitHub issues were buzzing like a disturbed hive — not with bees, but with confused and concerned users. With the release of Nextflow version 25.04, our software had decided to join the seasonal chaos.
+
+Fortunately, identifying the culprit didn’t take long. A subtle configuration bug — previously tolerated up through Nextflow 24.10 — now had wide-reaching effects when pipelines were executed with the newly released version 25.04. Fixing the configuration for the future was one thing; reaching everyone affected was another. Like many open-source projects, we don’t have a clear picture of who’s using our code, which meant we had no direct line to those caught off guard.
+
+To make matters trickier, resolving the issue fully required releasing new versions of the affected pipelines — a process that can easily take weeks or even months to complete across all of them. In the meantime, users needed to override the default, buggy configuration. Simple enough — if only they knew. We had the fix in hand, but no easy way to get it into all the hands that needed it. It took weeks before support requests for that issue finally started to taper off.
+
+The experience left us with a clear lesson: identifying and fixing bugs is only part of the equation — communicating effectively with a diverse, globally distributed user base is just as critical. So, we made a change. As a direct response, we introduced a new central communication channel on the nf-core website, along with an RSS feed that users can subscribe to. This will serve as our go-to platform for broadcasting important technical updates — especially those that affect released pipelines. Hopefully, we won’t need to use it too often (because that would mean something major has gone wrong again), but when we do, we now have a reliable way to get the word out.
+
+## Hello advisories
+
+If you haven’t come across the term advisory before: it’s commonly used in contexts like severe weather alerts, travel warnings, or those bold black-and-white parental advisory labels. In essence, an advisory is a heads-up: something important that might affect you, even if you’re not immediately aware of it. We’re now bringing that idea to nf-core!
+
+As much as we aim for stability — with thorough testing and continuous integration — bugs can still slip through. Once a pipeline version is released, it remains as is, meaning any issues discovered later will continue to affect that version indefinitely. While fixes are included in newer releases, older versions are still commonly used in practice. Unfortunately, information about known issues and possible workarounds for these versions can easily escape your attention — unless you happen to catch a Slack thread, scroll through a GitHub issue, or comb through a changelog. That’s far from ideal.
+
+**To fix that, we’ve introduced a new feature on the nf-core website: [Advisories](https://nf-co.re/advisories).**
+
+Think of these as structured, long-lived notices for significant technical issues in pipelines, modules, subworkflows or configs. They’re searchable, easy to reference, and designed to help users avoid or resolve known problems. We’ve also added an RSS feed so you can stay in the loop without needing to monitor chats or repositories.
+
+This isn’t just about fixing things — it’s about being transparent, reducing repeated confusion, and making life easier for both users and maintainers. If you work in a regulated environment, the added traceability and documentation may also come in handy for compliance and audits.
+
+## From Bug to Broadcast
+
+So how do advisories actually come to life? In short: anyone can create one. While in practice they’ll most often be written by maintainers of the affected pipelines or modules, the process is open to contributors who spot an issue worth sharing broadly.
+
+There’s no rigid rule on when to publish one — if you’ve identified a problem, understand its cause, and have a solid workaround or fix, that’s a great time. Advisories should focus on clarity, relevance, and practical value: if the issue is significant enough that users could waste hours chasing it down, it’s probably worth an advisory. Think of it as a way to save others from stepping into the same pothole.
