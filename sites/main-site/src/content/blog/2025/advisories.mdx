@@ -50,7 +50,63 @@ This isn’t just about fixing things — it’s about being transparent, reduci
 
 ## How do I find advisories?
 
-You can browse all existing advisories through our dedicated [overview page](https://nf-co.re/advisories), which presents each entry with a concise summary of the most important details. Looking for something specific? Use the category buttons at the top to filter out advisory types that aren’t relevant to your work — whether you're only interested in security issues, regressions, or anything else.
+You can browse all existing advisories through our dedicated [overview page](https://nf-co.re/advisories), which presents each entry with a concise summary of the most important details.
+
+Looking for something specific? Use the category buttons at the top to filter out advisory types that aren’t relevant to your work — whether you're only interested in security issues, regressions, or anything else.
+
+<figure>
+    <div class="d-block m-auto">
+        <div style="transform: scale(0.9); transform-origin: top center;">
+            <div class="card">
+                <div class="card-header">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h4 class="mb-0">Example Advisory Title</h4>
+                        <div class="d-flex align-items-center fs-6 fw-normal text-muted">
+                            <strong>Category: </strong>
+                            <span class="ms-1">Pipelines</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p class="mb-4">
+                        This is an example advisory demonstrating how advisories appear in the listing view with
+                        structured metadata and severity indicators.
+                    </p>
+                    <div class="mt-2 small">
+                        <strong>Affects:</strong>
+                        <span class="d-flex align-items-center mb-1">
+                            <span class="d-flex align-items-center">
+                                <i class="fas fa-project-diagram" aria-hidden="true"></i>
+                                <span class="ms-1">Nextflow:</span>
+                            </span>
+                            <code class="text-muted ms-1">25.04.0</code>
+                        </span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="text-wrap mb-0 text-secondary text-small">Published 2 months ago</p>
+                        <div class="d-flex align-items-center flex-wrap gap-1">
+                            <span class="badge text-bg-warning text-small">
+                                <i class="fas fa-exclamation-triangle me-1" aria-hidden="true"></i>Known Regression
+                            </span>
+                        </div>
+                        <div class="d-flex">
+                            <span class="text-muted me-1 text-small">Severity:</span>
+                            <span class="badge text-bg-danger text-small">
+                                <i class="fas fa-exclamation-triangle me-1" aria-hidden="true"></i>High
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <figcaption>
+        An example advisory card as it appears in the advisory listing, showing title, description, metadata, and
+        severity indicators.
+    </figcaption>
+</figure>
 
 Clicking on a specific advisory brings you to a structured view with two complementary sections. In the main content area, you’ll find a clear, plain-text explanation of the issue: what went wrong, how it was triggered, and what users should expect. It’s written to be human-readable, even if the underlying bug wasn’t.
 
