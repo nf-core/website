@@ -13,6 +13,8 @@ label:
 
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import { Image } from "astro:assets";
+import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
+import advisoryfooter from "@assets/images/blog/announcement_advisories/advisories-wilhelm-busch-style-footer.png";
 
 ## Background and motivation
 
@@ -66,9 +68,43 @@ If you'd like to author an advisory, start by forking [the nf-core website repos
 
 The main body of the advisory is written in regular Markdown. Use it to clearly describe the issue, and if possible, include recommended workarounds or resolutions. You’re free to structure this section as you see fit — just aim for clarity and usefulness, and a constructive tone. Advisories are not the place for blame or finger-pointing. Bugs happen, and the goal here is to help the community learn and adapt, not to single out individuals or teams. You can also add references to related GitHub issues, pull requests, or Slack discussions to provide additional context.
 
-While the narrative section is flexible, the real strength of advisories lies in their structured format: making them searchable, categorizable, and directly linkable to affected versions. To enable that structure, each advisory must begin with a frontmatter block — a YAML-style header enclosed by `---`. This is where you define all the key metadata, such as affected pipelines, dependencies, and severity. If you’ve ever written a module’s `meta.yaml`, you’ll feel right at home here 😉.
+While the narrative section is flexible, the real strength of advisories lies in their structured format: making them searchable, categorizable, and directly linkable to affected versions. To enable that structure, each advisory must begin with a frontmatter block, a YAML-style header enclosed by `---`. This is where you define all the key metadata, such as affected pipelines, dependencies, and severity. If you’ve ever written a module’s `meta.yaml`, you’ll feel right at home here 😉.
 
-The collapsible "Tip" section below provides a reference for the supported categories and valid formats - you can find [the same summary also on the website's README](https://github.com/nf-core/website?tab=readme-ov-file#adding-an-advisory).
+{(() => {
+// Sample advisory data for demonstration
+const sampleAdvisoryData = {
+publishedDate: new Date("2024-12-03"),
+severity: "high",
+type: ["known_regression", "incompatibility"],
+category: ["pipelines", "configuration"],
+reporter: ["nf-core-bot"],
+reviewer: ["MatthiasZepper"],
+nextflowVersions: ["25.04.0", "25.04.1", "25.04.2"],
+nextflowExecutors: ["SLURM", "AWS Batch", "Local"],
+softwareDependencies: ["Docker", "Singularity"],
+pipelines: [
+{ name: "pipeline", versions: ["1.x.x","2.0.x"] },
+{ name: "workflow", versions: ["3.0.0"] }
+],
+subworkflows: ["subworkflow/example"],
+modules: ["module/example", "another/module"],
+configuration: ["config-item"]
+};
+
+    return (
+        <figure>
+            <div class="d-block m-auto border p-3" style="max-width: 400px;">
+                <AdvisorySidebarHeader frontmatter={sampleAdvisoryData} />
+            </div>
+            <figcaption>
+                The technical details section of an advisory, showing structured metadata including severity, affected components, and version information.
+            </figcaption>
+        </figure>
+    );
+
+})()}
+
+The collapsible "Tip" section below provides a reference for the supported categories and valid specifications - you can find [the same summary also on the website's README](https://github.com/nf-core/website?tab=readme-ov-file#adding-an-advisory).
 
 :::tip{collapse=true}
 This is the full overview
@@ -158,3 +194,11 @@ Advisories are our way of making important technical issues more visible, more s
 Importantly, they’re not about finger-pointing or perfect code. Software evolves — and so does understanding. By sharing what went wrong, what to watch out for, and how to move forward, we hope to strengthen trust in the nf-core ecosystem and make life just a little easier for everyone working with our pipelines.
 
 So whether you’re contributing your own advisory or simply subscribing to stay informed, we hope this new system will help the community stay better connected, more resilient, and a bit less surprised by the occasional issues.
+
+<Image
+    src={advisoryfooter}
+    class="d-block m-auto"
+    width={510}
+    density={[1.5, 2]}
+    alt="An old-fashioned, sepia tone Wilhelm Busch-style caricature of a woman sitting in a vintage armchair, reading a newspaper. The woman is depicted in a comically exaggerated pose of shock and bewilderment — eyes wide, mouth agape. Small details like a side table with a lamp and a teacup are adding atmosphere. Drawn in the sketchy, ink-heavy, slightly chaotic style of 19th-century German caricatures."
+/>
