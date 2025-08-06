@@ -1,0 +1,28 @@
+---
+title: "Running nf-core Pipelines on Google Colab"
+subtitle: "A guide to running and interacting with nf-core pipelines using Colab and VSCode"
+pubDate: 2025-08-05
+headerImage: "/assets/images/blog/nf-core-colab-guide/blogpost-thumbnail.jpg"
+headerImageAlt: "Epic Handshake between nf-core and colab"
+embedHeaderImage: true
+authors:
+    - "KurayiChawatama"
+label:
+    - "community post"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import colabmeme from "@assets/images/blog/nf-core-colab-guide/colab-meme.jpg";
+import { Image } from "astro:assets";
+
+# Introduction
+
+<Image
+    src={colabmeme}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Butch eats GPUs from the garbage while Tom is handfed in luxury"
+/>
+
+Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops. This post shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VSCode via the vscode-colab package for a full development experience. While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
