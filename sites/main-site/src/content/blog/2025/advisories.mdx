@@ -1,9 +1,9 @@
 ---
-title: "Be advised on issues in nf-core"
-subtitle: "Introducing advisories, a new feature on the nf-core website"
-pubDate: 2025-08-6T10:00:00+01:00
-headerImage: "/assets/images/blog/announcement_advisories/advisories-wilhelm-busch-style.png"
-headerImageAlt: "Satirical caricature of a teacher lecturing a green apple core in the style of Wilhelm Busch."
+title: "Introducing nf-core Advisories"
+subtitle: "Timely technical issue alerts, no matter how remote you are."
+pubDate: 2025-08-7T10:00:00+01:00
+headerImage: "/assets/images/blog/announcement_advisories/nfcoreadvisories.svg"
+headerImageAlt: "A cartoon penguin standing on snow looks startled as it approaches a wooden signpost with three directional signs. The top sign, pointing right and colored light blue, reads 'Known Regression' with a bug icon. The middle sign, pointing left and colored dark blue, reads 'Data Corruption' with a database icon. The bottom sign, pointing right and colored yellow, reads 'Incompatibility' with a warning triangle. The background shows an icy, snowy landscape under a blue sky with soft clouds."
 embedHeaderImage: true
 authors:
     - "MatthiasZepper"
@@ -14,7 +14,13 @@ label:
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import { Image } from "astro:assets";
 import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
-import advisoryfooter from "@assets/images/blog/announcement_advisories/advisories-wilhelm-busch-style-footer.png";
+
+<figure>
+    <figcaption>
+        With Advisories, important information about technical issues in nf-core pipelines — like regressions,
+        incompatibilities, or security alerts — now travels faster and farther than ever.
+    </figcaption>
+</figure>
 
 ## Background and motivation
 
@@ -88,7 +94,7 @@ Looking for something specific? Use the category buttons at the top to filter ou
                         <p class="text-wrap mb-0 text-secondary text-small">Published 2 months ago</p>
                         <div class="d-flex align-items-center flex-wrap gap-1">
                             <span class="badge text-bg-warning text-small">
-                                <i class="fas fa-exclamation-triangle me-1" aria-hidden="true"></i>Known Regression
+                                <i class="fas fa-exclamation-triangle me-1" aria-hidden="true"></i>Incompatibility
                             </span>
                         </div>
                         <div class="d-flex">
@@ -260,11 +266,3 @@ Advisories are our way of making important technical issues more visible, more s
 Importantly, they’re not about finger-pointing or perfect code. Software evolves — and so does understanding. By sharing what went wrong, what to watch out for, and how to move forward, we hope to strengthen trust in the nf-core ecosystem and make life just a little easier for everyone working with our pipelines.
 
 So whether you’re contributing your own advisory or simply subscribing to stay informed, we hope this new system will help the community stay better connected, more resilient, and a bit less surprised by the occasional issues.
-
-<Image
-    src={advisoryfooter}
-    class="d-block m-auto"
-    width={510}
-    density={[1.5, 2]}
-    alt="An old-fashioned, sepia tone Wilhelm Busch-style caricature of a woman sitting in a vintage armchair, reading a newspaper. The woman is depicted in a comically exaggerated pose of shock and bewilderment — eyes wide, mouth agape. Small details like a side table with a lamp and a teacup are adding atmosphere. Drawn in the sketchy, ink-heavy, slightly chaotic style of 19th-century German caricatures."
-/>
