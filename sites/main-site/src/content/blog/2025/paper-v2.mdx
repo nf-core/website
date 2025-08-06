@@ -2,7 +2,7 @@
 title: "Empowering bioinformatics communities with Nextflow and nf-core"
 subtitle: "Genome Biology review"
 pubDate: 2025-08-06T12:00:00+01:00
-headerImage: "/assets/images/blog/paper_v2/paper_v2.png"
+headerImage: "/assets/images/blog/paper-v2/paper-v2.png"
 headerImageAlt: "Genome Biology review title: Empowering bioinformatics communities with Nextflow and nf-core"
 embedHeaderImage: true
 authors:
@@ -15,17 +15,24 @@ label:
 ---
 
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
-import paper_v2_fig1 from "@assets/images/blog/paperv2/paper_v2_fig1.png";
-import paper_v2_fig2A from "@assets/images/blog/paperv2/paper_v2_fig2A.png";
-import paper_v2_fig2B from "@assets/images/blog/paperv2/paper_v2_fig2B.png";
-import paper_v2 from "@assets/images/blog/paperv2/paper_v2.png";
+import paperv2fig1 from "@assets/images/blog/paperv2/paper-v2-fig1.png";
+import paperv2fig2A from "@assets/images/blog/paperv2/paper-v2-fig2A.png";
+import paperv2fig2B from "@assets/images/blog/paperv2/paper-v2-fig2B.png";
+import paperv2 from "@assets/images/blog/paperv2/paper-v2.png";
 import { Image } from "astro:assets";
 
 ## Empowering bioinformatics communities with Nextflow and nf-core
 
 Last year, we [announced](https://bsky.app/profile/nf-co.re/post/3ksi4mr6uyl25) the preprint, but we are now thrilled to share that the latest nf-core community paper has been published in [**Genome Biology**](https://doi.org/10.1186/s13059-025-03673-9)!
 
-[_Empowering bioinformatics communities with Nextflow and nf-core_](https://doi.org/10.1186/s13059-025-03673-9)
+<Image
+    src={paperv2}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Genome Biology review title: Empowering bioinformatics communities with Nextflow and nf-core"
+    href="https://doi.org/10.1186/s13059-025-03673-9"
+/>
 
 In this publication we have summarised the evolution and impact of Nextflow and nf-core from 2018 to mid-2025, highlighting why Nextflow and nf-core have become central resources for the bioinformatics ecosystems.
 In particular, they empower research communities to gradually adopt FAIR practices for workflows, infrastructure and collaboration models.
@@ -44,7 +51,7 @@ We also report that, at the time of the publication, 124 pipelines were availabl
 In part thanks to the nf-core community, we also report how Nextflow has become the most widely used Workflow Management System (WfMS), as depicted on the bar plot below, which uses citation counts as a proxy for WfMS adoption.
 
 <Image
-    src={paper_v2_fig1}
+    src={paperv2fig1}
     class="d-block m-auto"
     width={400}
     density={[1.5, 2]}
@@ -58,7 +65,7 @@ Our CI workflows check code quality, ensure compatibility with dependencies, tes
 This allows multiple institutions to collaboratively maintain the same pipeline, promoting a distributed maintenance model and ensuring long-term sustainability.
 
 <Image
-    src={paper_v2_fig2A}
+    src={paperv2fig2A}
     class="d-block m-auto"
     width={400}
     density={[1.5, 2]}
@@ -73,7 +80,7 @@ The new publication describes how the adoption of Nextflow and nf-core by EuroFA
 We also report in the paper, how other initiatives, such as the Darwin Tree of Life (DToL) project or Genomics England, are also adopting nf-core components in their workflows, also adopting FAIR principle and demonstrating the utility of nf-core for other communities.
 
 <Image
-    src={paper_v2_fig2B}
+    src={paperv2fig2B}
     class="d-block m-auto"
     width={400}
     density={[1.5, 2]}
