@@ -25,4 +25,82 @@ import { Image } from "astro:assets";
     alt="Butch eats GPUs from the garbage while Tom is handfed in luxury"
 />
 
-Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops. This post shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VSCode via the vscode-colab package for a full development experience. While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
+Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
+This post shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VSCode via the vscode-colab package for a full development experience.
+While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
+
+# Setting up the environment in Google Colab
+
+After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and it's dependencies. Since Colab does not provide root access, you will need to install Nextflow in the user's home directory.
+
+Before installing Nextflow, you must install Java. In Colab, run the following commands in a code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
+
+```python title="Install Java"
+%cd .. # use '%'before cd to make a permanent change of directories
+!sudo apt update
+!sudo apt install openjdk-17-jdk
+!export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+!export PATH=$JAVA_HOME/bin:$PATH
+!source ~/.bashrc
+```
+Next, install Nextflow and make it executable by running the follwing in a commands in a code cell as before:
+
+```python title="Install Nextflow"
+!wget -qO- https://get.nextflow.io | bash # Download Nextflow
+!mv nextflow /usr/bin/nextflow # Move to a path Colab can access
+!chmod +x /usr/bin/nextflow # Make it executable
+!nextflow -v # Test it
+```
+
+Due to a lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
+That leaves the conda profile as the only way to run pipelines.
+However as Google Colab does not support native conda function, you need to install the [condacolab](https://pypi.org/project/condacolab/) package which will setup Conda for you by runnig the following commands:
+
+```python title="Install condacolab"
+!pip install -q condacolab
+import condacolab
+condacolab.install()
+```
+
+Make sure to set the conda defaults as follows for smooth pipeline execution:
+
+```python title="Set conda defaults"
+!conda config --add channels defaults
+!conda config --add channels bioconda
+!conda config --add channels conda-forge
+!conda config --set channel_priority strict
+```
+
+# Running a test pipeline
+
+Yes, the setup is that simple!
+Now that the main parts of environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/1.0.2/).
+To install the pipeline, run:
+
+```python title="Install nf-core/demo"
+! nextflow pull nf-core/demo
+```
+
+One last important step before running your pipeline, or any others in Colab, be sure to set the `MPLBACKEND` environment variable to `Agg`.
+This ensures that 'Matplotlib' can render plots in a headless environment like Colab, where no display is available.
+You can do this either by running the following in a code cell:
+
+```python title="Set MPLBACKEND to Agg in a code cell"
+%env MPLBACKEND=Agg
+```
+
+Or alternatively by running the following command in the terminal
+
+```bash title="Set MPLBACKEND to Agg in the terminal"
+export MPLBACKEND=Agg
+```
+
+Now you can finally run your pipeline!
+
+```python title="Run nf-core/demo"
+! nextflow run nf-core/demo -profile conda,test --outdir demo-results
+```
+
+# Running and Editing Pipelines in VSCode via Colab
+
+
