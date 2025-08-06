@@ -28,10 +28,63 @@ Last year, we [announced](https://bsky.app/profile/nf-co.re/post/3ksi4mr6uyl25) 
 
 [_Empowering bioinformatics communities with Nextflow and nf-core_](https://doi.org/10.1186/s13059-025-03673-9)
 
-In this publication we have summarised the latest updates and progress within Nextflow and nf-core (such as the now standardised Nextflow DSL2 syntax and the nf-core modules repository).
-The collaboration with the [EuroFAANG](https://eurofaang.eu/) consortium - who work on improving genotype-to-phenotype relationships of farm animals - has been a fruitful one that extended all things **FAIR**, and lead to the creation of the [Special Interest Groups](https://nf-co.re/blog/2024/special_interest_groups) at nf-core. The new publication describes how the adoption of Nextflow and nf-core of the consortium lead to more efficient and reproducible cross-institutional working and analysis.
+In this publication we have summarised the evolution and impact of Nextflow and nf-core from 2018 to mid-2025, highlighting why Nextflow and nf-core have become central resources for the bioinformatics ecosystems.
+In particular, they empower research communities to gradually adopt FAIR practices for workflows, infrastructure and collaboration models.
+We encourage you to read the paper, but in the meantime, here are the main highlights of the manuscript:
+
+### Technical Advances
+
+The release of Nextflow DSL2 enabled the creation of [an extensive library of modules and subworkflows](https://nf-co.re/modules/) that adhere to nf-core standards.
+These components are reusable across any Nextflow pipeline, meaning that even those not developing full nf-core pipelines can still contribute back to the ecosystem.
+This is reflected in the growing collection, which now includes over 1,400 modules and around 80 subworkflows.
+
+### Community growth
+
+nf-core reached 2600 GitHub contributors (including ~1200 members of the nf-core organization) and over 10000 Slack users illustrating the strength, engagement and constant growth of the community.
+We also report that, at the time of the publication, 124 pipelines were available and that the community is spanning beyond biological applications, with new pipelines in fields as diverse as astrophysics, earth science and economics.
+In part thanks to the nf-core community, we also report how Nextflow has become the most widely used Workflow Management System (WfMS), as depicted on the bar plot below, which uses citation counts as a proxy for WfMS adoption.
+
+<Image
+    src={paper_v2_fig1}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Google Scholar citation counts for bioinformatics workflow management systems. Sum of citations of the major publications of Galaxy, Nextflow, and Snakemake between 2018 and 2024."
+/>
+
+### Pipeline reproducibility and maintenance
+
+Reproducibility is at the core of nf-core and in the paper we summarized how the project’s infrastructure accomplishes this goal through extensive continuous integration (CI) and automated testing.
+Our CI workflows check code quality, ensure compatibility with dependencies, test execution on multiple platforms and automatically propagate guidelines updates.
+This allows multiple institutions to collaboratively maintain the same pipeline, promoting a distributed maintenance model and ensuring long-term sustainability.
+
+<Image
+    src={paper_v2_fig2A}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Pipeline maintenance and usage. Major contributions to the nf-core/smrnaseq pipeline over time by different academic institutions or private companies. Data for individual contributors is collapsed to their institution (SciLifeLab: 3; QBiC: 2; Boehringer Ingelheim: 3; Seqera: 4; all the others: 1)"
+/>
+
+### FAIRness and cross-community impact
+
+The collaboration with the [EuroFAANG consortium](https://eurofaang.eu/) - who work on decoding genotype-to-phenotype relationships of farm animals - has been a fruitful one on promoting the adoption of FAIR principles beyond data, extending them to workflows.
+This partnership also led to the creation of the [Special Interest Groups](https://nf-co.re/blog/2024/special_interest_groups) at nf-core.
+The new publication describes how the adoption of Nextflow and nf-core by EuroFAANG led to more efficient and reproducible cross-institutional working and analysis, as shown by the contribution to and/or use of nf-core pipelines in the figure below.
+We also report in the paper, how other initiatives, such as the Darwin Tree of Life (DToL) project or Genomics England, are also adopting nf-core components in their workflows, also adopting FAIR principle and demonstrating the utility of nf-core for other communities.
+
+<Image
+    src={paper_v2_fig2B}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Pipeline maintenance and usage. Nextflow analysis pipelines used in the EuroFAANG consortia for the functional annotation of various species’ genomes"
+/>
+
+### Acknowledgements
 
 We would like to thank Björn E. Langer for leading this effort and all the community members without whom this would not have been possible.
 
 **Full Citation**
-Langer, B.E., Amaral, A., Baudement, M.-O., Bonath, F., Charles, M., Chitneedi, P.K., Clark, E.L., Di Tommaso, P., Djebali, S., Ewels, P.A., Eynard, S., Fellows Yates, J.A., Fischer, D., Floden, E.W., Foissac, S., Gabernet, G., Garcia, M.U., Gillard, G., Gundappa, M.K., Guyomar, C., Hakkaart, C., Hanssen, F., Harrison, P.W., Hörtenhuber, M., Kurylo, C., Kühn, C., Lagarrigue, S., Lallias, D., Macqueen, D.J., Miller, E., Mir-Pedrol, J., Moreira, G.C.M., Nahnsen, S., Patel, H., Peltzer, A., Pitel, F., Ramayo-Caldas, Y., Ribeiro-Dantas, M. da C., Rocha, D., Salavati, M., Sokolov, A., Espinosa-Carrasco, J., Notredame, C., community, the nf-core, 2025. Empowering bioinformatics communities with Nextflow and nf-core. Genome Biology 26, 228. [https://doi.org/10.1186/s13059-025-03673-9](https://doi.org/10.1186/s13059-025-03673-9)
+Langer, B.E., Amaral, A., Baudement, M.-O., Bonath, F., Charles, M., Chitneedi, P.K., Clark, E.L., Di Tommaso, P., Djebali, S., Ewels, P.A., Eynard, S., Fellows Yates, J.A., Fischer, D., Floden, E.W., Foissac, S., Gabernet, G., Garcia, M.U., Gillard, G., Gundappa, M.K., Guyomar, C., Hakkaart, C., Hanssen, F., Harrison, P.W., Hörtenhuber, M., Kurylo, C., Kühn, C., Lagarrigue, S., Lallias, D., Macqueen, D.J., Miller, E., Mir-Pedrol, J., Moreira, G.C.M., Nahnsen, S., Patel, H., Peltzer, A., Pitel, F., Ramayo-Caldas, Y., Ribeiro-Dantas, M. da C., Rocha, D., Salavati, M., Sokolov, A., Espinosa-Carrasco, J., Notredame, C., community, the nf-core, 2025. Empowering bioinformatics communities with Nextflow and nf-core. Genome Biology 26, 228.
+[10.1186/s13059-025-03673-9](https://doi.org/10.1186/s13059-025-03673-9)
