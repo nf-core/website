@@ -13665,7 +13665,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "magmap",
@@ -25435,7 +25435,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "phageannotator",
@@ -25699,7 +25699,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "phageannotator",
@@ -62948,7 +62948,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "lncpipe",
@@ -63011,6 +63011,202 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "fastplong",
+      "path": "modules/nf-core/fastplong/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastplong",
+        "description": "Perform adapter/quality trimming and QC on long sequencing reads (ONT, PacBio, etc.)",
+        "keywords": [
+          "trimming",
+          "quality control",
+          "fastq",
+          "long reads"
+        ],
+        "tools": [
+          {
+            "fastplong": {
+              "description": "Ultra-fast preprocessing and quality control for long-read sequencing data.",
+              "homepage": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
+              "documentation": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
+              "tool_dev_url": "https://github.com/OpenGene/fastplong",
+              "doi": "10.1002/imt2.107",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastplong"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. Use 'single_end: true' for single-end reads.\ne.g. [ id:'test', single_end:true ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input FASTQ file. Gzip-compressed files are supported.\n",
+                "pattern": "*.{fastq.gz,fastq}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "adapter_fasta": {
+              "type": "file",
+              "description": "Optional FASTA file containing adapter sequences to trim.\n",
+              "pattern": "*.{fasta,fa,fna}",
+              "ontologies": []
+            }
+          },
+          {
+            "discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "If true, no reads that pass trimming thresholds will be written. Only reports will be generated.\n"
+            }
+          },
+          {
+            "save_trimmed_fail": {
+              "type": "boolean",
+              "description": "If true, reads that fail filtering will be saved to a file ending in `*.fail.fastq.gz`.\n"
+            }
+          }
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.fastplong.fastq.gz": {
+                  "type": "file",
+                  "description": "Trimmed and filtered reads",
+                  "pattern": "*fastplong.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "QC report in JSON format",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "QC report in HTML format",
+                  "pattern": "*.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file generated during trimming",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "reads_fail": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.fail.fastq.gz": {
+                  "type": "file",
+                  "description": "Reads that failed quality/trimming filters",
+                  "pattern": "*fail.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Lupphes"
+        ],
+        "maintainers": [
+          "@Lupphes"
+        ]
+      }
     },
     {
       "name": "fastqc",
@@ -63191,7 +63387,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "evexplorer",
@@ -110504,7 +110700,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "hgtseq",
@@ -134434,7 +134630,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -149491,8 +149687,8 @@
           {
             "perbase": {
               "description": "Per-base metrics on BAM/CRAM files.",
-              "homepage": "https://github.com/sstadick/perbase/blob/v0.10.2/README.md",
-              "documentation": "https://github.com/sstadick/perbase/blob/v0.10.2/README.md",
+              "homepage": "https://github.com/sstadick/perbase",
+              "documentation": "https://github.com/sstadick/perbase",
               "tool_dev_url": "https://github.com/sstadick/perbase",
               "licence": [
                 "MIT"
@@ -239389,7 +239585,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "differentialabundance",
@@ -239798,7 +239994,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "differentialabundance",
@@ -240215,7 +240411,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "diseasemodulediscovery",
