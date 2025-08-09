@@ -142,7 +142,7 @@ announcement:
 
 ### Adding an advisory
 
-To add an advisory to the website, creae a new markdown (or mdx) file in `sites/main-site/src/content/advisory` with the following frontmatter:
+To add an advisory to the website, create a new markdown (or mdx) file in `sites/main-site/src/content/advisory` with the following frontmatter:
 
 ```yaml
 ---
