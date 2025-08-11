@@ -13665,7 +13665,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "magmap",
@@ -20686,7 +20686,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nascent",
@@ -22251,6 +22251,136 @@
         ],
         "maintainers": [
           "@ekushele"
+        ]
+      }
+    },
+    {
+      "name": "bff",
+      "path": "modules/nf-core/bff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bff",
+        "description": "Generating cell hashing calls from a matrix of count data.",
+        "keywords": [
+          "demultiplexing",
+          "hashing-based deconvolution",
+          "single-cell"
+        ],
+        "tools": [
+          {
+            "bff": {
+              "description": "A toolkit for quality control, analysis, and exploration of single cell RNA sequencing data. 'Seurat' aims to enable users to identify and interpret sources of heterogeneity from single cell transcriptomic measurements, and to integrate diverse types of single cell data. See Satija R, Farrell J, Gennert D, et al (2015) <doi:10.1038/nbt.3192>, Macosko E, Basu A, Satija R, et al (2015) <doi:10.1016/j.cell.2015.05.002>, and Butler A and Satija R (2017) <doi:10.1101/164889> for more details.",
+              "homepage": "https://rdrr.io/github/BimberLab/cellhashR/man/GenerateCellHashingCalls.html",
+              "documentation": "https://rdrr.io/github/BimberLab/cellhashR/man/GenerateCellHashingCalls.html",
+              "tool_dev_url": "https://github.com/BimberLab/cellhashR",
+              "doi": "10.5281/zenodo.6402477",
+              "licence": [
+                "GPL-3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hto_matrix": {
+                "type": "file",
+                "description": "Directory that contains the HTO matrix in a 10X format.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3917"
+                  }
+                ]
+              }
+            },
+            {
+              "methods": {
+                "type": "string",
+                "description": "Decides whether 'RAW', 'CLUSTER' OR 'COMBINED' should be selected as the call method.\n"
+              }
+            },
+            {
+              "preprocessing": {
+                "type": "string",
+                "description": "Decides whether the HTO matrix should undergo a preprocessing step ('TRUE') or not ('FALSE').\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "assignment": [
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_assignment_bff.csv": {
+                  "type": "file",
+                  "description": "Contains the assignment results of demultiplexing.",
+                  "pattern": "assignment_bff.csv"
+                }
+              }
+            ]
+          ],
+          "metrics": [
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_metrics_bff.csv": {
+                  "type": "file",
+                  "description": "Summary metrics will be written to this file.",
+                  "pattern": "_metrics_bff.csv"
+                }
+              }
+            ]
+          ],
+          "params": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_params_bff.csv": {
+                  "type": "file",
+                  "description": "The used parameters to call HTODemux in the R-Script.",
+                  "pattern": "params_htodemux.csv"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions.",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@LuisHeinzlmeier"
+        ],
+        "maintainers": [
+          "@LuisHeinzlmeier"
         ]
       }
     },
@@ -24387,7 +24517,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -24560,7 +24690,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -24677,7 +24807,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -24774,7 +24904,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -24961,7 +25091,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -25083,7 +25213,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -25197,7 +25327,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -25435,7 +25565,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "phageannotator",
@@ -25699,7 +25829,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "phageannotator",
@@ -29690,7 +29820,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -29792,7 +29922,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -30537,10 +30667,6 @@
           "version": "dev"
         },
         {
-          "name": "proteinfamilies",
-          "version": "1.2.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -30713,7 +30839,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nascent",
@@ -38779,7 +38905,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -60990,7 +61116,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -62952,7 +63078,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "lncpipe",
@@ -63015,6 +63141,202 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "fastplong",
+      "path": "modules/nf-core/fastplong/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastplong",
+        "description": "Perform adapter/quality trimming and QC on long sequencing reads (ONT, PacBio, etc.)",
+        "keywords": [
+          "trimming",
+          "quality control",
+          "fastq",
+          "long reads"
+        ],
+        "tools": [
+          {
+            "fastplong": {
+              "description": "Ultra-fast preprocessing and quality control for long-read sequencing data.",
+              "homepage": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
+              "documentation": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
+              "tool_dev_url": "https://github.com/OpenGene/fastplong",
+              "doi": "10.1002/imt2.107",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fastplong"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. Use 'single_end: true' for single-end reads.\ne.g. [ id:'test', single_end:true ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input FASTQ file. Gzip-compressed files are supported.\n",
+                "pattern": "*.{fastq.gz,fastq}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "adapter_fasta": {
+              "type": "file",
+              "description": "Optional FASTA file containing adapter sequences to trim.\n",
+              "pattern": "*.{fasta,fa,fna}",
+              "ontologies": []
+            }
+          },
+          {
+            "discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "If true, no reads that pass trimming thresholds will be written. Only reports will be generated.\n"
+            }
+          },
+          {
+            "save_trimmed_fail": {
+              "type": "boolean",
+              "description": "If true, reads that fail filtering will be saved to a file ending in `*.fail.fastq.gz`.\n"
+            }
+          }
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.fastplong.fastq.gz": {
+                  "type": "file",
+                  "description": "Trimmed and filtered reads",
+                  "pattern": "*fastplong.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "QC report in JSON format",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "QC report in HTML format",
+                  "pattern": "*.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file generated during trimming",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "reads_fail": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information map"
+                }
+              },
+              {
+                "*.fail.fastq.gz": {
+                  "type": "file",
+                  "description": "Reads that failed quality/trimming filters",
+                  "pattern": "*fail.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Lupphes"
+        ],
+        "maintainers": [
+          "@Lupphes"
+        ]
+      }
     },
     {
       "name": "fastqc",
@@ -63195,7 +63517,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "evexplorer",
@@ -63283,7 +63605,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mitodetect",
@@ -66369,6 +66691,10 @@
         {
           "name": "createtaxdb",
           "version": "1.0.0"
+        },
+        {
+          "name": "proteinfamilies",
+          "version": "1.3.0"
         }
       ]
     },
@@ -92578,7 +92904,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mhcquant",
@@ -95130,7 +95456,7 @@
             {
               "runEmptyDrops": {
                 "type": "boolean",
-                "description": "Run EmptyDrops() before hasheDrops() (\"TRUE\") or not (\"FALSE\").\n"
+                "description": "Run EmptyDrops() before hashedDrops() (\"TRUE\") or not (\"FALSE\").\n"
               }
             },
             {
@@ -95864,7 +96190,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -98238,7 +98564,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -98360,7 +98686,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -98886,7 +99212,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -110504,7 +110830,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "hgtseq",
@@ -117655,7 +117981,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -126755,7 +127081,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -126877,7 +127203,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -130264,7 +130590,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "viralmetagenome",
@@ -130371,7 +130697,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "viralmetagenome",
@@ -130600,7 +130926,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "viralmetagenome",
@@ -131024,7 +131350,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "viralmetagenome",
@@ -134434,7 +134760,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -134546,7 +134872,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mhcquant",
@@ -134618,7 +134944,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "proteinfold",
@@ -146142,7 +146468,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -149491,8 +149817,8 @@
           {
             "perbase": {
               "description": "Per-base metrics on BAM/CRAM files.",
-              "homepage": "https://github.com/sstadick/perbase/blob/v0.10.2/README.md",
-              "documentation": "https://github.com/sstadick/perbase/blob/v0.10.2/README.md",
+              "homepage": "https://github.com/sstadick/perbase",
+              "documentation": "https://github.com/sstadick/perbase",
               "tool_dev_url": "https://github.com/sstadick/perbase",
               "licence": [
                 "MIT"
@@ -150721,7 +151047,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -151087,7 +151413,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "raredisease",
@@ -151759,7 +152085,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -152700,7 +153026,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -161214,7 +161540,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nascent",
@@ -167188,7 +167514,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "raredisease",
@@ -167315,7 +167641,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -179456,7 +179782,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nanoseq",
@@ -180198,7 +180524,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nanoseq",
@@ -180898,7 +181224,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nanoseq",
@@ -181407,7 +181733,7 @@
       "type": "module",
       "meta": {
         "name": "samtools_mpileup",
-        "description": "BAM",
+        "description": "Generate text pileup output for one or multiple BAM files. Each input file produces a separate group of pileup columns in the output.",
         "keywords": [
           "mpileup",
           "bam",
@@ -182090,7 +182416,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nanoseq",
@@ -182344,7 +182670,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "nanoseq",
@@ -182939,43 +183265,88 @@
               }
             },
             {
-              "input_h5ad": {
+              "data": {
                 "type": "file",
-                "description": "The (annotated) data matrix of shape n_obs x n_vars. Rows correspond to cells and columns to genes.",
-                "pattern": "*.h5ad",
-                "ontologies": []
+                "description": "A directory in 10x Genomics format containing `matrix.mtx.gz`, `features.tsv.gz`, `barcodes.tsv.gz` (hashing count matrix), or an AnnData (`.h5ad`) file with hashing counts stored in `.obs`.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3917"
+                  }
+                ]
               }
             },
             {
               "cell_hashing_columns": {
                 "type": "list",
-                "description": "List of cell hashing columns to use for demultiplexing.\ne.g. `['hash_1', 'hash_2']`\n"
+                "description": "Groovy list (`['hash_1', 'hash_2']`) of `.obs` columns that contain cell hashing counts.\nCan be `[]` if the data is in 10x Genomics format, as the columns are derived from the input.\n"
               }
             }
-          ],
-          {
-            "priors": {
-              "type": "list",
-              "description": "List of priors to use\n"
-            }
-          }
+          ]
         ],
         "output": {
+          "assignment": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_hashsolo.csv": {
+                  "type": "file",
+                  "description": "CSV file containing hashsolo assignment results\n",
+                  "pattern": "*_hashsolo.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "h5ad": [
             [
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n",
-                  "pattern": "*.h5ad"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
                 }
               },
               {
-                "*.h5ad": {
+                "*_hashsolo.h5ad": {
                   "type": "file",
-                  "description": "AnnData file containing cluster feature, etc.\n",
-                  "pattern": "*.h5ad",
-                  "ontologies": []
+                  "description": "Processed AnnData object containing hashsolo results\n",
+                  "pattern": "*_hashsolo.h5ad",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "params": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*_params_hashsolo.csv"
+                }
+              },
+              {
+                "*_params_hashsolo.csv": {
+                  "type": "file",
+                  "description": "CSV file containing parameters used in hashsolo analysis\n",
+                  "pattern": "*_params_hashsolo.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -182996,10 +183367,12 @@
           ]
         },
         "authors": [
-          "@seohyonkim"
+          "@seohyonkim",
+          "@LuisHeinzlmeier"
         ],
         "maintainers": [
-          "@seohyonkim"
+          "@seohyonkim",
+          "@LuisHeinzlmeier"
         ]
       }
     },
@@ -189827,7 +190200,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         }
       ]
     },
@@ -190229,6 +190602,10 @@
         {
           "name": "proteinannotator",
           "version": "dev"
+        },
+        {
+          "name": "proteinfamilies",
+          "version": "1.3.0"
         }
       ]
     },
@@ -203730,6 +204107,143 @@
       }
     },
     {
+      "name": "starfusion_detect",
+      "path": "modules/nf-core/starfusion/detect/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "starfusion_detect",
+        "description": "Fast and Accurate Fusion Transcript Detection from RNA-Seq",
+        "keywords": [
+          "Fusion",
+          "starfusion",
+          "RNA-Seq",
+          "detect"
+        ],
+        "tools": [
+          {
+            "star-fusion": {
+              "description": "Fast and Accurate Fusion Transcript Detection from RNA-Seq",
+              "homepage": "https://github.com/STAR-Fusion/STAR-Fusion",
+              "documentation": "https://github.com/STAR-Fusion/STAR-Fusion/wiki",
+              "tool_dev_url": "https://github.com/STAR-Fusion/STAR-Fusion/releases",
+              "doi": "10.1101/120295v1",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input fastq files",
+                "pattern": "*.{fq,fastq,fq.gz,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            },
+            {
+              "junction": {
+                "type": "file",
+                "description": "Chimeric junction output from STAR aligner",
+                "pattern": "*.{out.junction}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "reference": {
+              "type": "directory",
+              "description": "STAR-fusion reference genome lib folder",
+              "pattern": "*genome_lib_build_dir"
+            }
+          }
+        ],
+        "output": {
+          "fusions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.fusion_predictions.tsv": {
+                  "type": "file",
+                  "description": "Fusion events from STAR-fusion",
+                  "pattern": "*.{fusion_predictions.tsv}"
+                }
+              }
+            ]
+          ],
+          "abridged": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.abridged.tsv": {
+                  "type": "file",
+                  "description": "Abridged version of fusion events from STAR-fusion",
+                  "pattern": "*.{fusion.abridged.tsv}"
+                }
+              }
+            ]
+          ],
+          "coding_effect": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.coding_effect.tsv": {
+                  "type": "file",
+                  "description": "Fusion events with their coding effect from STAR-fusion",
+                  "pattern": "*.{coding_effect.tsv}"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@praveenraj2018"
+        ]
+      }
+    },
+    {
       "name": "stecfinder",
       "path": "modules/nf-core/stecfinder/meta.yml",
       "type": "module",
@@ -214198,7 +214712,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "riboseq",
@@ -218674,7 +219188,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "multiplesequencealign",
@@ -218702,7 +219216,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "proteinfold",
@@ -235192,6 +235706,12 @@
               "type": "boolean",
               "description": "Whether to run picard collecthsmetrics tool\n"
             }
+          },
+          {
+            "use_mem2": {
+              "type": "boolean",
+              "description": "Build a mem2 index when bwameth is chosen as an aligner, and an index path is not supplied\n"
+            }
           }
         ],
         "output": [
@@ -235241,7 +235761,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -236249,7 +236769,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -236407,7 +236927,7 @@
       "pipelines": [
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         }
       ]
     },
@@ -239385,7 +239905,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "differentialabundance",
@@ -239493,7 +240013,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mhcquant",
@@ -239561,7 +240081,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "proteinfold",
@@ -239794,7 +240314,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "differentialabundance",
@@ -239902,7 +240422,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mhcquant",
@@ -239970,7 +240490,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "proteinfold",
@@ -240211,7 +240731,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -240295,7 +240815,7 @@
         },
         {
           "name": "methylseq",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "mhcquant",
@@ -240363,7 +240883,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "rangeland",
