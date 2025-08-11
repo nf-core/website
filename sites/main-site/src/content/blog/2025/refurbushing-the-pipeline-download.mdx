@@ -5,9 +5,9 @@ headerImage: "https://images.unsplash.com/photo-1636819488537-a9b1ffb315ce"
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white with a fluffy smoke cloud coming out of it."
 pubDate: 2025-08-15T12:00:00+01:00
 authors:
-  - "ErikDanielsson"
+    - "ErikDanielsson"
 label:
-  - "tools"
+    - "tools"
 maxHeadingDepth: 3
 ---
 
@@ -15,7 +15,6 @@ import { Image } from "astro:assets";
 
 import old_nf_version from "@assets/images/blog/pipeline-download-refactor/old_nf_version.png";
 import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/rnaseq_in_action.png";
-
 
 The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634).
 The command has for a long time been reliant on complex regex logic to capture container strings in modules and config files.
