@@ -18,7 +18,7 @@ import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.as
 <figure>
     <figcaption>
         With Advisories, important information about technical issues in nf-core pipelines — like regressions,
-        incompatibilities, or security alerts — now travels faster and farther than ever.
+        incompatibilities, or security alerts — now travels faster and further than ever.
     </figcaption>
 </figure>
 
@@ -32,7 +32,11 @@ With the release of Nextflow version 25.04, our software had decided to join the
 
 Fixing the configuration for the future was one thing; reaching everyone affected was another. Like many open-source projects, we don’t have a clear picture of who’s using our code, which meant we had no direct line to those caught off guard.
 
-To make matters trickier, resolving the issue fully required releasing new versions of the affected pipelines — a process that can easily take weeks or even months to complete across all of them. In the meantime, users needed to override the default, buggy configuration. Simple enough — if only they knew. We had the fix in hand, but no easy way to get it into all the hands that needed it. It took weeks before support requests for that issue finally started to taper off.
+To make matters trickier, resolving the issue fully required releasing new versions of the affected pipelines — a process that can easily take weeks or even months to complete across all of them. In the meantime, users needed to override the default, buggy configuration.
+
+Simple enough — if only they knew. 
+
+We had the fix in hand, but no easy way to get it into all the hands that needed it. It took weeks before support requests for that issue finally started to taper off.
 
 The experience left us with a clear lesson: identifying and fixing bugs is only part of the equation — communicating effectively with a diverse, globally distributed user base is just as critical. So, we made a change.
 
@@ -50,7 +54,7 @@ While fixes are included in newer releases, older versions are still commonly us
 If you haven’t come across the term advisory before: it’s commonly used in contexts like severe weather alerts, travel warnings, or those bold black-and-white parental advisory labels. In essence, an advisory is a heads-up: something important that might affect you, even if you’re not immediately aware of it. We’re now bringing that idea to nf-core!
 :::
 
-Think of these as structured, long-lived notices for significant technical issues in pipelines, modules, subworkflows or configs. They’re searchable, easy to reference, and designed to help users avoid or resolve known problems. We’ve also added an [RSS feed](https://nf-co.re/advisories/rss.xml) so you can stay in the loop without needing to monitor chats or repositories.
+Think of these as structured, long-lived notices for significant technical issues in pipelines, modules, subworkflows or configs. They’re searchable, easy to reference, and designed to help users avoid or resolve known problems. If it's your jam, we’ve also added an [RSS feed](https://nf-co.re/advisories/rss.xml) so you can stay in the loop without needing to monitor chats or repositories.
 
 This isn’t just about fixing things — it’s about being transparent, reducing repeated confusion, and making life easier for both users and maintainers. If you work in a regulated environment, the added traceability and documentation may also come in handy for compliance and audits.
 
