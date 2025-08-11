@@ -1,6 +1,6 @@
 ---
-title: "Refurbishing the pipeline downloads command"
-subtitle: "Why are my pipeline download tests failing?"
+title: "Why are my pipeline download tests failing?"
+subtitle: "Refurbishing the pipeline downloads command"
 headerImage: "https://images.unsplash.com/photo-1636819488537-a9b1ffb315ce"
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white with a fluffy smoke cloud coming out of it."
 pubDate: 2025-08-15T12:00:00+01:00
@@ -16,7 +16,7 @@ import { Image } from "astro:assets";
 import old_nf_version from "@assets/images/blog/pipeline-download-refactor/old-nf-version.png";
 import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/rnaseq-in-action.png";
 
-The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634).
+The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634) that has recently been merged into the development version of `nf-core/tools`.
 The command has for a long time been reliant on complex regex logic to capture container strings in modules and config files.
 Due to the variability in where a pipeline can define containers, this has been prone to breaking.
 
@@ -26,34 +26,55 @@ This has now been integrated into the `nf-core/tools` code base which means that
 
 :::warning{title="Why are my pipeline download tests failing?!"}
 
-<Image src={old_nf_version} alt="Using an old Nextflow version" height="300" />
+<Image
+    src={old_nf_version}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Using an old Nextflow version"
+    height="300"
+/>
 
-`nf-core` pipelines use a GitHub workflow that runs the `nf-core pipelines download` to check that a pipeline is downloadable before release (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
-This workflow uses the **dev** branch of `nf-core/tools`, originally to allow maintainers of `nf-core/tools` to quickly push patches when the regex logic broke.
+Each `nf-core` pipeline repository has a GitHub workflow that runs the `nf-core pipelines download` on the pipeline before release (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
+This workflow checks that the pipeline does not produce any errors when downloaded, to ensure that the pipeline can be used in an offline enviroment.
 
-However, since the refurbished downloads command requires that the pipeline supports the 25.04 release of Nextflow, any release of a pipeline with an older Nextflow version will fail.
+The GitHub workflow currently uses the **`dev`** branch of `nf-core/tools`; originally to allow maintainers of `nf-core/tools` to quickly push patches when the regex logic broke.
+However, this means that _any_ changes made to the development version of `nf-core/tools` will directly take effect in the GitHub workflow.
+Since the refactor of the downloads code requires that the pipeline uses the **25.04** version of Nextflow, pipelines that do not comply with this will fail the download test.
+
+In time, there will be a template update to require that `nf-core` pipelines both run the test using the `main` branch of `nf-core/tools` and has this as minimal version of Nextflow.
+Until then you can either voluntarily update the pipelines Nextflow version or ignore the failing test.
 
 :::
 
 ### Added support for downloading Docker containers
 
-<Image src={rnaseq_in_action} alt="Docker container download for `rnaseq` 3.19.0" height="300" />
+<Image
+    src={rnaseq_in_action}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Docker container download for `rnaseq` 3.19.0"
+/>
 
-In addition to the use of `nextflow inspect` for container detection, the download command now also supports downloads of docker container images.
+In addition to the use of `nextflow inspect` for container detection, the download command now also support downloads of Docker container images.
 This means that `nf-core` pipelines can now be run on offline HPCs which support only Docker or Podman container systems.
-This has been [requested within the `nf-core` community](https://github.com/nf-core/tools/issues/2309), and will allow `nf-core` pipelines to be able to run on more systems than before.
 
 :::tip{title="How are Docker images saved?"}
 
-Compared to Singularity containers which are just normal files kept on your file system, Docker images are generally handled by the Docker daemon.
+Compared to Singularity containers which are files kept on your file system, Docker images are generally handled by the Docker daemon.
 However, via the [`docker image save`](https://docs.docker.com/reference/cli/docker/image/save/) command, Docker allows packaging images as `tar` archives.
 The `tar` archives can subsequently be loaded into another Docker daemon with [`docker image load`](https://docs.docker.com/reference/cli/docker/image/load/), or if you are running Podman with [`podman load`](https://docs.podman.io/en/v5.0.2/markdown/podman-load.1.html).
 
-The `nf-core pipelines downloads` command creates `tar` archives for all Docker images within the pipeline.
+The `nf-core pipelines downloads` command creates `tar` archives for each Docker image within the pipeline.
+The saved archives are then packaged along with scripts for loading them into Docker or Podman on the offline machine.
+Along with the Docker images are scripts for loading the `tar` archives into the Docker or Podman daemon on the offline machine.
 
 :::
 
-:::warning{title="`--parallel-download n` becomes `--parallel n`"}
+### API change `--parallel-download <int>` becomes `--parallel <int>`
+
+:::warning{title="`API change: --parallel-download <int>` becomes `--parallel <int>`"}
 
 The `--parallel-download` flag is changed to `--parallel` to better reflect the semantics:
 The flag now represents that `n` threads can be used to _either_ download or pull container images, depending on the type of container deteced.
