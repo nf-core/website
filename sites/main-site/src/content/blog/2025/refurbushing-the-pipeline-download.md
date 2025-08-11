@@ -3,7 +3,7 @@ title: "Refurbishing the pipeline downloads command"
 subtitle: "Why are my pipeline download tests failing?"
 headerImage: "https://images.unsplash.com/photo-1636819488537-a9b1ffb315ce"
 headerImageAlt: "3D rendering of a cute little space rocket painted red and white with a fluffy smoke cloud coming out of it."
-pubDate:
+pubDate: 2025-08-15T12:00:00+01:00
 authors:
   - "ErikDanielsson"
 label:
