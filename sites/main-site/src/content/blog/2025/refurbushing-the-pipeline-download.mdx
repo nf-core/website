@@ -6,6 +6,7 @@ headerImageAlt: "3D rendering of a cute little space rocket painted red and whit
 pubDate: 2025-08-15T12:00:00+01:00
 authors:
     - "ErikDanielsson"
+    - "mirpedrol"
 label:
     - "tools"
 maxHeadingDepth: 3
@@ -43,8 +44,9 @@ This makes the command both simpler and more reliable at the same time.
     alt="Docker container download for `rnaseq` 3.19.0"
 />
 
-In addition to the use of `nextflow inspect` for container detection, the download command now also supports downloads of Docker container images.
-This means that `nf-core` pipelines can now be run on offline HPCs which support only Docker or Podman container systems.
+In addition to the use of `nextflow inspect` for container detection,
+the download command has now been extended to support Docker containers in addition to Singularity containers which were previously the only container system supported.
+This means that `nf-core` pipelines can now be run on offline HPCs which support only Docker or Podman.
 
 :::tip{title="How are Docker images saved?"}
 
@@ -53,8 +55,7 @@ However, via the [`docker image save`](https://docs.docker.com/reference/cli/doc
 The `tar` archives can subsequently be loaded into another Docker daemon with [`docker image load`](https://docs.docker.com/reference/cli/docker/image/load/), or if you are running Podman with [`podman load`](https://docs.podman.io/en/v5.0.2/markdown/podman-load.1.html).
 
 The `nf-core pipelines downloads` command creates `tar` archives for each Docker image within the pipeline.
-The saved archives are then packaged along with scripts for loading them into Docker or Podman on the offline machine.
-Along with the Docker images are scripts for loading the `tar` archives into the Docker or Podman daemon on the offline machine.
+The saved archives are packaged along with scripts for loading them into Docker or Podman on the offline machine.
 
 :::
 
