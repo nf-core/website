@@ -5,9 +5,13 @@ subtitle: How to inform about significant technical issues in nf-core components
 
 import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
 
-## From bug to broadcast
+Advisories are structured, long-lived notices for significant technical issues in pipelines, modules, subworkflows or configs. Advisories should focus on clarity, relevance, and practical value: if the issue is significant enough that users could waste hours chasing it down, it’s probably worth an advisory. Think of it as a way to save others from stepping into the same pothole.
 
-So how do advisories actually come to life? In short: anyone can create one. While in practice they’ll most often be written by maintainers of the affected pipelines or modules, the process is open to contributors who spot an issue worth sharing broadly.
+## Who can issue an advisory?
+
+In short: anyone can create one. While in practice they’ll most often be written by maintainers of the affected pipelines or modules, the process is open to contributors who spot an issue worth sharing broadly.
+
+## What to publish?
 
 Some examples of issues that should be communicated as advisories include:
 
@@ -19,9 +23,7 @@ Some examples of issues that should be communicated as advisories include:
 
 These are the kinds of problems where a clear, structured advisory can help users avoid pitfalls and stay informed, but there’s no rigid rule on when to publish one — if you’ve identified a problem, understand its cause, possibly even have a solid workaround or fix, that’s a great time.
 
-## How to publish an advisory?
-
-**Advisories should focus on clarity, relevance, and practical value: if the issue is significant enough that users could waste hours chasing it down, it’s probably worth an advisory. Think of it as a way to save others from stepping into the same pothole.**
+## Where does one put the content?
 
 If you'd like to author an advisory, start by forking [the nf-core website repository](https://github.com/nf-core/website) and creating a new Markdown (or MDX) file under `sites/main-site/src/content/advisory`.
 
