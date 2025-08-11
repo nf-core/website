@@ -22,26 +22,6 @@ import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.as
     </figcaption>
 </figure>
 
-## Background and motivation
-
-May 2025. At least in our corner of the world, Sweden, spring had just arrived. Daylight lingered a little longer, and the first flowers carefully stretched toward the sun. But just as nature hit its stride, nf-core pipelines didn’t.
-
-As the world shook off winter’s sleep, a configuration issue in our pipeline template emerged from hibernation, too. Soon, nf-core's Slack channels and GitHub issues were buzzing like a disturbed hive — not with bees, but with confused and concerned users.
-
-With the release of Nextflow version 25.04, our software had decided to join the seasonal chaos. Fortunately, identifying the culprit didn’t take long. A subtle configuration bug — previously tolerated up through Nextflow 24.10 — now had wide-reaching effects when pipelines were executed with the newly released version 25.04.
-
-Fixing the configuration for the future was one thing; reaching everyone affected was another. Like many open-source projects, we don’t have a clear picture of who’s using our code, which meant we had no direct line to those caught off guard.
-
-To make matters trickier, resolving the issue fully required releasing new versions of the affected pipelines — a process that can easily take weeks or even months to complete across all of them. In the meantime, users needed to override the default, buggy configuration.
-
-Simple enough — if only they knew. 
-
-We had the fix in hand, but no easy way to get it into all the hands that needed it. It took weeks before support requests for that issue finally started to taper off.
-
-The experience left us with a clear lesson: identifying and fixing bugs is only part of the equation — communicating effectively with a diverse, globally distributed user base is just as critical. So, we made a change.
-
-As a direct response, we introduced a new central communication channel on the nf-core website, along with an [RSS feed](https://nf-co.re/advisories/rss.xml) that users can subscribe to. This will serve as our go-to platform for broadcasting important technical updates — especially those that affect released pipelines. Hopefully, we won’t need to use it too often (because that would mean something major has gone wrong again), but when we do, [we now have a more reliable way to get the word out](https://nf-co.re/advisories/process-shell-configuration).
-
 ## Hello advisories!
 
 As much as we aim for stability — with thorough testing and continuous integration — bugs can still slip through. Once a pipeline version is released, it remains as is, meaning any issues discovered later will continue to affect that version indefinitely.
@@ -57,6 +37,26 @@ If you haven’t come across the term advisory before: it’s commonly used in c
 Think of these as structured, long-lived notices for significant technical issues in pipelines, modules, subworkflows or configs. They’re searchable, easy to reference, and designed to help users avoid or resolve known problems. If it's your jam, we’ve also added an [RSS feed](https://nf-co.re/advisories/rss.xml) so you can stay in the loop without needing to monitor chats or repositories.
 
 This isn’t just about fixing things — it’s about being transparent, reducing repeated confusion, and making life easier for both users and maintainers. If you work in a regulated environment, the added traceability and documentation may also come in handy for compliance and audits.
+
+## Background and motivation
+
+May 2025. At least in our corner of the world, Sweden, spring had just arrived. Daylight lingered a little longer, and the first flowers carefully stretched toward the sun. But just as nature hit its stride, nf-core pipelines didn’t.
+
+As the world shook off winter’s sleep, a configuration issue in our pipeline template emerged from hibernation, too. Soon, nf-core's Slack channels and GitHub issues were buzzing like a disturbed hive — not with bees, but with confused and concerned users.
+
+With the release of Nextflow version 25.04, our software had decided to join the seasonal chaos. Fortunately, identifying the culprit didn’t take long. A subtle configuration bug — previously tolerated up through Nextflow 24.10 — now had wide-reaching effects when pipelines were executed with the newly released version 25.04.
+
+Fixing the configuration for the future was one thing; reaching everyone affected was another. Like many open-source projects, we don’t have a clear picture of who’s using our code, which meant we had no direct line to those caught off guard.
+
+To make matters trickier, resolving the issue fully required releasing new versions of the affected pipelines — a process that can easily take weeks or even months to complete across all of them. In the meantime, users needed to override the default, buggy configuration.
+
+Simple enough — if only they knew.
+
+We had the fix in hand, but no easy way to get it into all the hands that needed it. It took weeks before support requests for that issue finally started to taper off.
+
+The experience left us with a clear lesson: identifying and fixing bugs is only part of the equation — communicating effectively with a diverse, globally distributed user base is just as critical.
+
+Had advisories existed at the time,[we would have created one for this issue](https://nf-co.re/advisories/process-shell-configuration) and quickly shared the link on all our communication channels.
 
 ## How do I find advisories?
 
@@ -140,128 +140,7 @@ These are the kinds of problems where a clear, structured advisory can help user
 
 **Advisories should focus on clarity, relevance, and practical value: if the issue is significant enough that users could waste hours chasing it down, it’s probably worth an advisory. Think of it as a way to save others from stepping into the same pothole.**
 
-If you'd like to author an advisory, start by forking [the nf-core website repository](https://github.com/nf-core/website) and creating a new Markdown (or MDX) file under `sites/main-site/src/content/advisory`.
-
-The main body of the advisory is written in regular Markdown. Use it to clearly describe the issue, and if possible, include recommended workarounds or resolutions. You’re free to structure this section as you see fit — just aim for clarity and usefulness, and a constructive tone. Advisories are not the place for blame or finger-pointing. Bugs happen, and the goal here is to help the community learn and adapt, not to single out individuals or teams. You can also add references to related GitHub issues, pull requests, or Slack discussions to provide additional context.
-
-While the narrative section is flexible, the real strength of advisories lies in their structured format: making them searchable, categorizable, and directly linkable to affected versions. To enable that structure, each advisory must begin with a frontmatter block, a YAML-style header enclosed by `---`. This is where you define all the key metadata, such as affected pipelines, dependencies, and severity. If you’ve ever written a module’s `meta.yaml`, you’ll feel right at home here 😉.
-
-{(() => {
-// Sample advisory data for demonstration
-const sampleAdvisoryData = {
-publishedDate: new Date("2024-12-03"),
-severity: "high",
-type: ["known_regression", "incompatibility"],
-category: ["pipelines", "configuration"],
-reporter: ["nf-core-bot"],
-reviewer: ["MatthiasZepper"],
-nextflowVersions: ["25.04.0", "25.04.1", "25.04.2"],
-nextflowExecutors: ["SLURM", "AWS Batch", "Local"],
-softwareDependencies: ["Docker", "Singularity"],
-pipelines: [
-{ name: "pipeline", versions: ["1.x.x","2.0.x"] },
-{ name: "workflow", versions: ["3.0.0"] }
-],
-subworkflows: ["subworkflow/example"],
-modules: ["module/example", "another/module"],
-configuration: ["config-item"]
-};
-
-    return (
-        <figure>
-            <div class="d-block m-auto border p-3" style="max-width: 400px;">
-                <AdvisorySidebarHeader frontmatter={sampleAdvisoryData} />
-            </div>
-            <figcaption>
-                The technical details section of an advisory, showing structured metadata including severity, affected components, and version information.
-            </figcaption>
-        </figure>
-    );
-
-})()}
-
-The collapsible "Tip" section below provides a reference for the supported categories and valid specifications - you can find [the same summary also on the website's README](https://github.com/nf-core/website?tab=readme-ov-file#adding-an-advisory).
-
-:::tip{collapse=true}
-This is the full overview
-
-```yaml
----
-# Required fields
-title: "Advisory Title"
-subtitle: "Brief description of the issue"
-category:
-    "pipelines" # Which part of the nf-core ecosystem this advisory affects
-    # Options: ["pipelines", "modules", "subworkflows", "configuration"]
-    # Can be single value or array for multi-category issues
-type:
-    "known_regression" # What kind of issue this is - helps users understand impact
-    # Options: ["known_regression", "incompatibility", "security",
-    #          "performance", "data_corruption", "other"]
-    # Can be single value or array for issues with multiple aspects
-severity:
-    "high" # How serious this issue is for users
-    # Options: ["low", "medium", "high", "critical"]
-    # Note: "critical" is only allowed for security issues
-publishedDate: "2024-01-15" # When this advisory was published (YYYY-MM-DD format)
-
-# Optional reporter information - who discovered and reported this issue
-reporter: # Can be null, array of usernames, or array of objects with details
-    - "username" # Simple GitHub username
-    - name: "Full Name" # Object with full name and GitHub username
-      github: "username"
-
-# Optional reviewer information - who reviewed and validated this advisory
-reviewer: # Array of usernames or objects with reviewer details
-    - "reviewer-username"
-
-# Category-specific fields - REQUIRED if the corresponding category is specified above
-pipelines: # List of affected pipelines (required if category includes "pipelines")
-    - "pipeline-name" # Simple list of pipeline names
-    # OR specify affected versions:
-    - name: "pipeline-name" # Pipeline name with specific version information
-      versions: ["1.0.0", "1.1.0"] # Semantic version numbers of affected releases
-
-modules: # List of affected modules (required if category includes "modules")
-    - "module_name"
-    - "another/module"
-
-subworkflows: # List of affected subworkflows (required if category includes "subworkflows")
-    - "subworkflow/name"
-
-configuration: # Configuration aspects affected (required if category includes "configuration")
-    - "config-item"
-
-# Optional details
-nextflowVersions: # Specific Nextflow versions that exhibit this issue
-    - "23.04.0" # Use semantic versioning format
-    - "23.10.1"
-
-nextflowExecutors: # Workflow execution environments where this issue occurs
-    - "SLURM" # Specific executor names
-    - "AWS Batch"
-    - "Local"
-
-softwareDependencies: # Container systems or package managers affected by this issue
-    - "Docker" # Simple list of affected systems
-    # OR specify affected versions:
-    - name: "Singularity" # System name with version details
-      versions: ["3.8.0", "3.9.0"] # Specific versions that have the issue
-    # Available: ["Apptainer", "Charliecloud", "Docker", "Podman", "Sarus",
-    #            "Shifter", "Singularity", "Conda", "Spack", "Wave"]
-
-# Optional references - links to related information, bug reports, documentation
-references:
-    - title: "GitHub Issue" # Short title describing what this link is
-      description: "Original bug report" # Longer explanation of what you'll find at this link
-      url: "https://github.com/nf-core/pipeline/issues/123" # The actual URL
-    - title: "Slack discussion"
-      description: "Original reporting on the nf-core slack"
-      url: "https://nfcore.slack.com/archives/C03EZ806PFT/p1730391850337429"
----
-```
-
-:::
+[We have extra documentation available](https://nf-co.re/docs/tutorials/nf-core_components/publish_advisories.mdx) if you'd like to author an advisory.
 
 ## Looking Ahead
 
