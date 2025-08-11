@@ -11,10 +11,11 @@ label:
 maxHeadingDepth: 3
 ---
 
+import { Image } from "astro:assets";
+
 import old_nf_version from "@assets/images/blog/pipeline-download-refactor/old_nf_version.png";
 import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/rnaseq_in_action.png";
 
-import { Image } from "astro:assets";
 
 The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634).
 The command has for a long time been reliant on complex regex logic to capture container strings in modules and config files.
@@ -26,7 +27,7 @@ This has now been integrated into the `nf-core/tools` code base which means that
 
 :::warning{title=Why are my pipeline download tests failing?!}
 
-<Image src={old_nf_version} alt="Old Nextflow version" height="300" />
+<Image src={old_nf_version} alt="Using an old Nextflow version" height="300" />
 
 `nf-core` pipelines use a GitHub workflow that runs the `nf-core pipelines download` to check that a pipeline is downloadable before release (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
 This workflow uses the **dev** branch of `nf-core/tools`, originally to allow maintainers of `nf-core/tools` to quickly push patches when the regex logic broke.
