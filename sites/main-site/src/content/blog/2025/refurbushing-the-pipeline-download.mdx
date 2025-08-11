@@ -24,7 +24,7 @@ Not anymore!
 As of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to allow fetching of all pipeline containers by executing a dry-run of the pipeline.
 This has now been integrated into the `nf-core/tools` code base which means that the download command can offload the tricky problem of finding pipeline containers to Nextflow, making the command simpler and more reliant at the same time.
 
-:::warning{title="Why are my pipeline download tests failing?!"}
+:::warning{title="Why are is the pipeline download tests failing?!"}
 
 <Image
     src={old_nf_version}
@@ -35,15 +35,17 @@ This has now been integrated into the `nf-core/tools` code base which means that
     height="300"
 />
 
-Each `nf-core` pipeline repository has a GitHub workflow that runs the `nf-core pipelines download` on the pipeline before release (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
+Each `nf-core` pipeline repository has a GitHub workflow that runs the `nf-core pipelines download` command on the pipeline (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
 This workflow checks that the pipeline does not produce any errors when downloaded, to ensure that the pipeline can be used in an offline enviroment.
+The workflow is typically only triggered when a PR is made to the pipeline's main branch, i.e. only on release of the pipeline.
 
 The GitHub workflow currently uses the **`dev`** branch of `nf-core/tools`; originally to allow maintainers of `nf-core/tools` to quickly push patches when the regex logic broke.
 However, this means that _any_ changes made to the development version of `nf-core/tools` will directly take effect in the GitHub workflow.
 Since the refactor of the downloads code requires that the pipeline uses the **25.04** version of Nextflow, pipelines that do not comply with this will fail the download test.
 
-In time, there will be a template update to require that `nf-core` pipelines both run the test using the `main` branch of `nf-core/tools` and has this as minimal version of Nextflow.
-Until then you can either voluntarily update the pipelines Nextflow version or ignore the failing test.
+In time, there will be a pipeline template update that will require pipelines to use Nextflow `>=` 25.04, and to thus be compatible with the new command.
+The test itself will also be updated to use the `main` branch of `nf-core/tools` to avoid similar issues in the future.
+Until then, you can either voluntarily update the pipelines Nextflow version or ignore the failing test.
 
 :::
 
@@ -72,12 +74,12 @@ Along with the Docker images are scripts for loading the `tar` archives into the
 
 :::
 
-### API change `--parallel-download <int>` becomes `--parallel <int>`
+### Further details
 
-:::warning{title="`API change: --parallel-download <int>` becomes `--parallel <int>`"}
+More details on the changes can be found in the corresponding PRs on `nf-core/tools`(
+[#3634](https://github.com/nf-core/tools/pull/3634),
+[#3706](https://github.com/nf-core/tools/pull/3706),
+[#3696](https://github.com/nf-core/tools/pull/3696)
+)
 
-The `--parallel-download` flag is changed to `--parallel` to better reflect the semantics:
-The flag now represents that `n` threads can be used to _either_ download or pull container images, depending on the type of container deteced.
-The short flag `-d` is unchanged.
-
-:::
+If you find any bugs to the download command after the recent major changes, please tell us on the [#tools](https://nfcore.slack.com/archives/CE5LG7WMB) Slack channel or create an issue on [nf-core/tools](https://github.com/nf-core/tools/) detailing the problem.
