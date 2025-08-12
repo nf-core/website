@@ -23205,6 +23205,122 @@
       }
     },
     {
+      "name": "biomformat_convert",
+      "path": "modules/nf-core/biomformat/convert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "biomformat_convert",
+        "description": "Convert biom table to different format.\nConversion between text tab-delimited, BIOM-v1 (JSON), and BIOM-v2 (HDF5) formats are supported\n",
+        "keywords": [
+          "biom",
+          "feature table",
+          "formatting",
+          "conversion",
+          "amplicon sequences",
+          "metagenomics",
+          "metatranscriptomics"
+        ],
+        "tools": [
+          {
+            "biomformat": {
+              "description": "Biological Observation Matrix (BIOM) format. \nThis package includes basic tools for converting, summarizing, and adding metadata to biom-format files.\n",
+              "homepage": "http://biom-format.org/index.html",
+              "documentation": "http://biom-format.org/documentation/index.html",
+              "tool_dev_url": "https://github.com/biocore/biom-format",
+              "doi": "10.1186/2047-217X-1-7",
+              "licence": [
+                "BSD License"
+              ],
+              "identifier": "biotools:biomformat"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "biom": {
+                "type": "file",
+                "description": "Biom formatted feature table file",
+                "pattern": "*.{biom,txt,tsv}"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "biom": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.biom": {
+                  "type": "file",
+                  "description": "Converted biom file",
+                  "pattern": "*.biom",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3746"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Converted txt file",
+                  "pattern": "*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jcbioinformatics"
+        ],
+        "maintainers": [
+          "@jcbioinformatics"
+        ]
+      }
+    },
+    {
       "name": "biscuit_align",
       "path": "modules/nf-core/biscuit/align/meta.yml",
       "type": "module",
@@ -43970,31 +44086,57 @@
               }
             },
             {
-              "pairs": {
+              "contacts": {
                 "type": "file",
-                "description": "Path to contacts (i.e. read pairs) file.",
-                "ontologies": []
+                "description": "Path to contacts (e.g. read pairs, pairix, tabix) file.",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             },
             {
               "index": {
                 "type": "file",
                 "description": "Path to index file of the contacts.",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
-              "cool_bin": {
-                "type": "integer",
-                "description": "Bins size in bp"
+              "chromsizes": {
+                "type": "file",
+                "description": "Path to a chromsizes file.",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             }
           ],
           {
-            "chromsizes": {
-              "type": "file",
-              "description": "Path to a chromsizes file.",
-              "ontologies": []
+            "mode": {
+              "type": "integer",
+              "description": "Input mode for cooler cload - one of pairs, pairix, tabix\n"
+            }
+          },
+          {
+            "cool_bin": {
+              "type": "integer",
+              "description": "Bins size in bp"
             }
           }
         ],
@@ -44009,14 +44151,6 @@
               },
               {
                 "*.cool": {
-                  "type": "file",
-                  "description": "Output COOL file path",
-                  "pattern": "*.cool",
-                  "ontologies": []
-                }
-              },
-              {
-                "cool_bin": {
                   "type": "file",
                   "description": "Output COOL file path",
                   "pattern": "*.cool",
@@ -106361,6 +106495,122 @@
       }
     },
     {
+      "name": "juicertools_pre",
+      "path": "modules/nf-core/juicertools/pre/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "juicertools_pre",
+        "description": "Create a multi-resolution .hic contact matrix for analysis with Juicer",
+        "keywords": [
+          "hic",
+          "contact map",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "juicertools": {
+              "description": "Visualization and analysis software for Hi-C data",
+              "homepage": "https://github.com/aidenlab/juicer",
+              "documentation": "https://github.com/aidenlab/juicer",
+              "tool_dev_url": "https://github.com/aidenlab/juicer",
+              "doi": "10.1016/j.cels.2016.07.002",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "pairs": {
+                "type": "file",
+                "description": "Optionally gzipped TSV file, in one of a number of formats,\nincluding pairs format. See https://github.com/aidenlab/juicer/wiki/Pre#file-format\nfor details.\n",
+                "pattern": "*.{pairs,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genome_id": {
+                "type": "string",
+                "description": "String of a supported genome ID, see https://github.com/aidenlab/juicer/wiki/Pre#usage\nfor details. Incompatible with chromsizes option.\n"
+              }
+            },
+            {
+              "chromsizes": {
+                "type": "file",
+                "description": "Headerless TSV file describing chromosome sizes with format:\nchrom_name\\tlength\n\nIncompatible with genome_id option.\n",
+                "pattern": "*.{tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "hic": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.hic": {
+                  "type": "file",
+                  "description": ".hic file for analysis and visualisation in Juicer",
+                  "pattern": "*.{hic}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@prototaxites"
+        ]
+      }
+    },
+    {
       "name": "jupyternotebook",
       "path": "modules/nf-core/jupyternotebook/meta.yml",
       "type": "module",
@@ -111614,6 +111864,69 @@
           "version": "4.0.0"
         }
       ]
+    },
+    {
+      "name": "krona_ktimportkrona",
+      "path": "modules/nf-core/krona/ktimportkrona/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "krona_ktimportkrona",
+        "description": "Collect multiple krona reports into a single html file",
+        "keywords": [
+          "plot",
+          "taxonomy",
+          "interactive",
+          "html",
+          "visualisation",
+          "krona chart"
+        ],
+        "tools": [
+          {
+            "krona": {
+              "description": "Krona Tools is a set of scripts to create Krona charts from several Bioinformatics tools as well as from text and XML files.",
+              "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
+              "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
+              "doi": "10.1186/1471-2105-12-385",
+              "identifier": "biotools:krona"
+            }
+          }
+        ],
+        "input": [
+          {
+            "html": {
+              "type": "file",
+              "description": "One or multiple html files each containing a krona single plot",
+              "pattern": "*.html"
+            }
+          }
+        ],
+        "output": {
+          "html": [
+            {
+              "*.html": {
+                "type": "file",
+                "description": "HTML file containing all input HTML Krona plots with a selection bar to choose which one to look at",
+                "pattern": "*.krona.html"
+              }
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@paulwolk"
+        ],
+        "maintainers": [
+          "@paulwolk"
+        ]
+      }
     },
     {
       "name": "krona_ktimporttaxonomy",
@@ -187791,6 +188104,423 @@
       ]
     },
     {
+      "name": "sentieon_staralign",
+      "path": "modules/nf-core/sentieon/staralign/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_staralign",
+        "description": "Align reads to a reference genome using Sentieon STAR",
+        "keywords": [
+          "align",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "STAR genome index",
+                "pattern": "star"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Annotation GTF file",
+                "pattern": "*.{gtf}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "star_ignore_sjdbgtf": {
+              "type": "boolean",
+              "description": "Ignore annotation GTF file"
+            }
+          },
+          {
+            "seq_platform": {
+              "type": "string",
+              "description": "Sequencing platform"
+            }
+          },
+          {
+            "seq_center": {
+              "type": "string",
+              "description": "Sequencing center"
+            }
+          }
+        ],
+        "output": {
+          "log_final": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*Log.final.out": {
+                  "type": "file",
+                  "description": "STAR final log file",
+                  "pattern": "*Log.final.out",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log_out": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*Log.out": {
+                  "type": "file",
+                  "description": "STAR lot out file",
+                  "pattern": "*Log.out",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log_progress": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*Log.progress.out": {
+                  "type": "file",
+                  "description": "STAR log progress file",
+                  "pattern": "*Log.progress.out",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*d.out.bam": {
+                  "type": "file",
+                  "description": "Output BAM file containing read alignments",
+                  "pattern": "*.{bam}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_sorted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.sortedByCoord.out.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file of read alignments (optional)",
+                  "pattern": "*sortedByCoord.out.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_sorted_aligned": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.Aligned.sortedByCoord.out.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file of read alignments (optional)",
+                  "pattern": "*.Aligned.sortedByCoord.out.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*toTranscriptome.out.bam": {
+                  "type": "file",
+                  "description": "Output BAM file of transcriptome alignment (optional)",
+                  "pattern": "*toTranscriptome.out.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_unsorted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*Aligned.unsort.out.bam": {
+                  "type": "file",
+                  "description": "Unsorted BAM file of read alignments (optional)",
+                  "pattern": "*Aligned.unsort.out.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*fastq.gz": {
+                  "type": "file",
+                  "description": "Unmapped FastQ files (optional)",
+                  "pattern": "*fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.tab": {
+                  "type": "file",
+                  "description": "STAR output tab file(s) (optional)",
+                  "pattern": "*.tab",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "spl_junc_tab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.SJ.out.tab": {
+                  "type": "file",
+                  "description": "STAR output splice junction tab file",
+                  "pattern": "*.SJ.out.tab",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "read_per_gene_tab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.ReadsPerGene.out.tab": {
+                  "type": "file",
+                  "description": "STAR output read per gene tab file",
+                  "pattern": "*.ReadsPerGene.out.tab",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "junction": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.out.junction": {
+                  "type": "file",
+                  "description": "STAR chimeric junction output file (optional)",
+                  "pattern": "*.out.junction",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.out.sam": {
+                  "type": "file",
+                  "description": "STAR output SAM file(s) (optional)",
+                  "pattern": "*.out.sam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "wig": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.wig": {
+                  "type": "file",
+                  "description": "STAR output wiggle format file(s) (optional)",
+                  "pattern": "*.wig",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bedgraph": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bg": {
+                  "type": "file",
+                  "description": "STAR output bedGraph format file(s) (optional)",
+                  "pattern": "*.bg",
+                  "ontologies": []
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
       "name": "sentieon_tnfilter",
       "path": "modules/nf-core/sentieon/tnfilter/meta.yml",
       "type": "module",
@@ -222257,6 +222987,10 @@
         {
           "name": "pathogensurveillance",
           "version": "1.0.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -227450,7 +228184,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vt_decomposeblocksub",
@@ -227731,7 +228471,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vuegen",
@@ -240910,6 +241656,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.19.0"
         },
@@ -241095,10 +241845,6 @@
         {
           "name": "reportho",
           "version": "1.0.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "rnafusion",
