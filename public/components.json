@@ -111866,6 +111866,69 @@
       ]
     },
     {
+      "name": "krona_ktimportkrona",
+      "path": "modules/nf-core/krona/ktimportkrona/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "krona_ktimportkrona",
+        "description": "Collect multiple krona reports into a single html file",
+        "keywords": [
+          "plot",
+          "taxonomy",
+          "interactive",
+          "html",
+          "visualisation",
+          "krona chart"
+        ],
+        "tools": [
+          {
+            "krona": {
+              "description": "Krona Tools is a set of scripts to create Krona charts from several Bioinformatics tools as well as from text and XML files.",
+              "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
+              "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
+              "doi": "10.1186/1471-2105-12-385",
+              "identifier": "biotools:krona"
+            }
+          }
+        ],
+        "input": [
+          {
+            "html": {
+              "type": "file",
+              "description": "One or multiple html files each containing a krona single plot",
+              "pattern": "*.html"
+            }
+          }
+        ],
+        "output": {
+          "html": [
+            {
+              "*.html": {
+                "type": "file",
+                "description": "HTML file containing all input HTML Krona plots with a selection bar to choose which one to look at",
+                "pattern": "*.krona.html"
+              }
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@paulwolk"
+        ],
+        "maintainers": [
+          "@paulwolk"
+        ]
+      }
+    },
+    {
       "name": "krona_ktimporttaxonomy",
       "path": "modules/nf-core/krona/ktimporttaxonomy/meta.yml",
       "type": "module",
@@ -222924,6 +222987,10 @@
         {
           "name": "pathogensurveillance",
           "version": "1.0.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         }
       ]
     },
@@ -228117,7 +228184,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vt_decomposeblocksub",
@@ -228398,7 +228471,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnadnavar",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "vuegen",
@@ -241577,6 +241656,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "rnadnavar",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.19.0"
         },
@@ -241762,10 +241845,6 @@
         {
           "name": "reportho",
           "version": "1.0.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "rnafusion",
