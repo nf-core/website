@@ -18,11 +18,19 @@ This is a core document for ensuring everyone gets along well within our diverse
 
 Our primary communication platforms is our Slack workspace and various GitHub repositories.
 
+Popular repositories are:
+
+- [nf-core/modules](https://github.com/nf-core/modules): shared Nextflow modules and subworkflows
+- [nf-core/tools](https://github.com/nf-core/tools): nf-core toolkit including module, subworkflow, and pipeline templates
+- [nf-core/website](https://github.com/nf-core/website): for all nf-core documentation
+- [nf-core/testdatasets](https://github.com/nf-core/testdatasets): for shared test data files for unit testing
+- [nf-core/configs](https://github.com/nf-core/configs): shared Nextflow configuration files for HPC and cloud infrastructure
+
 If at any point you have a question, always ask on either of those - Slack has dedicated help channels such as [#nostupidquestions](https://nfcore.slack.com/archives/C043FMKUNLB) and [#help](https://nfcore.slack.com/archives/CE6SDBX2A).
 
-To join the Slack workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions.
-
 ## Joining the Slack and GitHub organisations
+
+To join the Slack workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions.
 
 After joining Slack, we encourage all contributors to join our GitHub organisation.
 
@@ -40,7 +48,7 @@ As a general rule, all pull requests must be reviewed by another community membe
 
 ## Reviewing
 
-Reviews and comments can be either or both technical (code) and/or conceptual (e.g. purpose/background/approach).
+Reviews and comments can be technical (code), conceptual (e.g. purpose/background/approach), or both.
 
 Anyone is welcome to review or leave a comment an nf-core pull request - regardless if you are within the nf-core community or not
 You also do not need to be in the nf-core GitHub organisation (although this is recommended).
