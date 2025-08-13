@@ -61,3 +61,28 @@ We also encourage you to regularly get reviews from community members that are n
 Be polite and constructive with your comments - we have a diverse range of backgrounds and cultures in our community.
 
 Help with making a smooth reviewing process by making single reviews with multiple comments, not lots of separate comments (i.e., press 'Start review', **not** 'Add single comment' on the GitHub 'Files Changed' tab!)
+
+## Who is who and how to contact them
+
+A general overview of the community structure can be seen on the [Governance](https://nf-co.re/governance#governance) page.
+
+As a rough guide: always ask the entire community first!
+The answers to the vast majority of questions can be obtained from the entire nf-core hivemind.
+
+Otherwise, if you get stuck on something that needs more expert advice or a decision:
+
+- An issue with modules, pipelines, or test configs? Ask the maintainers team!
+- Any questions about nf-core events or the bytesize series? Ask the outreach team!
+- Problems with the nf-core template, tooling, GitHub actions, or AWS? Ask the infrastructure team!
+- Need a critical decision made that may affect the entire community, or need something done that requires passwords? Ask the core team!
+- Have a inter-personal conflict with another member or member(s) of the community? Ask the safety team!
+
+Members of each team can also be seen on the [Governance](https://nf-co.re/governance#governance) page.
+
+## How to submit a module or subworkflow
+
+If you want to submit a new module, see the [Writing nf-core modules and subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components) tutorial.
+
+## How to submit a pipeline
+
+If you want to submit a new pipeline, see the [Adding a pipeline](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview) tutorial.
