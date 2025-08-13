@@ -15,7 +15,7 @@ maxHeadingDepth: 3
 import { Image } from "astro:assets";
 
 import old_nf_version from "@assets/images/blog/pipeline-download-refactor/old-nf-version.png";
-import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/rnaseq-in-action.png";
+import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/docker-demo-v1.gif";
 
 The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634) that has recently been merged into the development version of `nf-core/tools`.
 The following blog post outlines the updates to the command, and explains why your pipeline downloads tests might be failing
@@ -30,7 +30,7 @@ While this dynamicism makes it possible for Nextflow users to write flexible cod
 Until now, the download command has solved this problem by building up a code base of complex regex patterns used to search through the pipeline’s files for strings resembling container directives.
 While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
 
-However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to fetch all pipeline containers by executing a dry-run of the pipeline.
+However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to fetch all pipeline containers by  
 The new `nextflow inspect` command is now integrated in the `nf-core/tools` code base to replace the complex regex logic in the downloads commands.
 This makes the command both simpler and more reliable at the same time.
 
@@ -69,9 +69,12 @@ Until then, you can either voluntarily update the pipelines Nextflow version or 
     alt="Docker container download for `rnaseq` 3.19.0"
 />
 
-In addition to the use of `nextflow inspect` for container detection,
-the download command has now been extended to support Docker containers in addition to Singularity containers which were previously the only container system supported.
-This means that `nf-core` pipelines can now be run on offline HPCs which support only Docker or Podman.
+The download command has also been extended to support Docker containers,
+in addition to Singularity containers which was the only container system previously supported.
+The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `singularity`, `docker` and `none`.
+The last option indicates that only the pipeline files need to be fetched.
+
+The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers.
 
 :::tip{title="How are Docker images saved?"}
 
