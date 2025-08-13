@@ -14,8 +14,8 @@ maxHeadingDepth: 3
 
 import { Image } from "astro:assets";
 
-import old_nf_version from "@assets/images/blog/pipeline-download-refactor/old-nf-version.png";
-import rnaseq_in_action from "@assets/images/blog/pipeline-download-refactor/docker-demo-v1.gif";
+import old_nf_version from "@assets/images/blog/pipeline-download-refactor/nf-old-demo.gif";
+import docker_download_in_action from "@assets/images/blog/pipeline-download-refactor/bamtofastq-in-action.gif";
 
 The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634) that has recently been merged into the development version of `nf-core/tools`.
 The following blog post outlines the updates to the command, and explains why your pipeline downloads tests might be failing
@@ -30,7 +30,7 @@ While this dynamicism makes it possible for Nextflow users to write flexible cod
 Until now, the download command has solved this problem by building up a code base of complex regex patterns used to search through the pipeline’s files for strings resembling container directives.
 While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
 
-However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to fetch all pipeline containers by  
+However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to fetch all pipeline containers by using Nextflow internal code.
 The new `nextflow inspect` command is now integrated in the `nf-core/tools` code base to replace the complex regex logic in the downloads commands.
 This makes the command both simpler and more reliable at the same time.
 
@@ -39,7 +39,7 @@ This makes the command both simpler and more reliable at the same time.
 <Image
     src={old_nf_version}
     class="d-block m-auto"
-    width={600}
+    width={800}
     density={[1.5, 2]}
     alt="Using an old Nextflow version"
     height="300"
@@ -62,19 +62,19 @@ Until then, you can either voluntarily update the pipelines Nextflow version or 
 ### Added support for downloading Docker containers
 
 <Image
-    src={rnaseq_in_action}
+    src={docker_download_in_action}
     class="d-block m-auto"
-    width={600}
+    width={800}
     density={[1.5, 2]}
-    alt="Docker container download for `rnaseq` 3.19.0"
+    alt="Docker container download for `bamtofastq` 2.2.0"
 />
 
 The download command has also been extended to support Docker containers,
 in addition to Singularity containers which was the only container system previously supported.
 The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `singularity`, `docker` and `none`.
-The last option indicates that only the pipeline files need to be fetched.
+Alternatively, the container system can be selected via the interactive CLI prompts.
 
-The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers.
+The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers, making `nf-core` pipelines usable in even more compute environments!
 
 :::tip{title="How are Docker images saved?"}
 
@@ -83,7 +83,7 @@ However, via the [`docker image save`](https://docs.docker.com/reference/cli/doc
 The `tar` archives can subsequently be loaded into another Docker daemon with [`docker image load`](https://docs.docker.com/reference/cli/docker/image/load/), or if you are running Podman with [`podman load`](https://docs.podman.io/en/v5.0.2/markdown/podman-load.1.html).
 
 The `nf-core pipelines downloads` command creates `tar` archives for each Docker image within the pipeline.
-The saved archives are packaged along with scripts for loading them into Docker or Podman on the offline machine.
+The saved archives are placed within the `docker-images` directory of the download folder packaged along with scripts for loading them into Docker or Podman on the offline machine.
 
 :::
 
