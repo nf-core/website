@@ -183606,10 +183606,10 @@
                 }
               },
               {
-                "*_hashsolo.csv": {
+                "*_assignment_hashsolo.csv": {
                   "type": "file",
                   "description": "CSV file containing hashsolo assignment results\n",
-                  "pattern": "*_hashsolo.csv",
+                  "pattern": "*_assignment_hashsolo.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -188102,6 +188102,301 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "sentieon_rsemcalculateexpression",
+      "path": "modules/nf-core/sentieon/rsemcalculateexpression/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_rsemcalculateexpression",
+        "description": "Calculate expression with RSEM",
+        "keywords": [
+          "rsem",
+          "expression",
+          "quantification",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "rseqc": {
+              "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
+              "homepage": "https://github.com/deweylab/RSEM",
+              "documentation": "https://github.com/deweylab/RSEM",
+              "doi": "10.1186/1471-2105-12-323",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:rsem"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input reads for quantification",
+                "pattern": "*.fastq.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "index": {
+              "type": "file",
+              "description": "RSEM index",
+              "pattern": "rsem/*",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "counts_gene": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.genes.results": {
+                  "type": "file",
+                  "description": "Expression counts on gene level",
+                  "pattern": "*.genes.results",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.isoforms.results": {
+                  "type": "file",
+                  "description": "Expression counts on transcript level",
+                  "pattern": "*.isoforms.results",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "stat": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.stat": {
+                  "type": "file",
+                  "description": "RSEM statistics",
+                  "pattern": "*.stat",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "logs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "RSEM logs",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          "bam_star": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.STAR.genome.bam": {
+                  "type": "file",
+                  "description": "BAM file generated by STAR (optional)",
+                  "pattern": "*.STAR.genome.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_genome": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.genome.bam": {
+                  "type": "file",
+                  "description": "Genome BAM file (optional)",
+                  "pattern": "*.genome.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.transcript.bam": {
+                  "type": "file",
+                  "description": "Transcript BAM file (optional)",
+                  "pattern": "*.transcript.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
+      "name": "sentieon_rsempreparereference",
+      "path": "modules/nf-core/sentieon/rsempreparereference/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_rsempreparereference",
+        "description": "Prepare a reference genome for RSEM",
+        "keywords": [
+          "rsem",
+          "genome",
+          "index",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "rseqc": {
+              "description": "RSEM: accurate transcript quantification from RNA-Seq data with or without a reference genome\n",
+              "homepage": "https://github.com/deweylab/RSEM",
+              "documentation": "https://github.com/deweylab/RSEM",
+              "doi": "10.1186/1471-2105-12-323",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:rsem"
+            }
+          }
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "The Fasta file of the reference genome",
+              "pattern": "*.{fasta,fa}",
+              "ontologies": []
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "The GTF file of the reference genome",
+              "pattern": "*.gtf",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "index": [
+            {
+              "rsem": {
+                "type": "directory",
+                "description": "RSEM index directory",
+                "pattern": "rsem"
+              }
+            }
+          ],
+          "transcript_fasta": [
+            {
+              "*transcripts.fa": {
+                "type": "file",
+                "description": "Fasta file of transcripts",
+                "pattern": "rsem/*transcripts.fa",
+                "ontologies": []
+              }
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
     },
     {
       "name": "sentieon_staralign",
