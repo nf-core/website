@@ -7,6 +7,7 @@ pubDate: 2025-08-15T12:00:00+01:00
 authors:
     - "ErikDanielsson"
     - "mirpedrol"
+    - "MatthiasZepper"
 label:
     - "tools"
 maxHeadingDepth: 3
@@ -29,9 +30,10 @@ While this dynamicism makes it possible for Nextflow users to write flexible cod
 
 Until now, the download command has solved this problem by building up a code base of complex regex patterns used to search through the pipeline’s files for strings resembling container directives.
 While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
+For examples of the struggles of writing a container string catch-all regex, see for example the [Bowtie quote issue](https://github.com/nf-core/tools/issues/2392) or the [issue of race conditions when processing Seqera containers](https://github.com/nf-core/tools/issues/3285).
 
-However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to fetch all pipeline containers by using Nextflow internal code.
-The new `nextflow inspect` command is now integrated in the `nf-core/tools` code base to replace the complex regex logic in the downloads commands.
+However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to capture all container strings of modules used in the pipeline.
+As of the downloads refactor the `nextflow inspect` command has now also been integrated in the `nf-core/tools` code base to replace the complex regex logic in the downloads commands.
 This makes the command both simpler and more reliable at the same time.
 
 :::warning{title="Why are the pipeline download tests failing?!"}
@@ -74,7 +76,7 @@ in addition to Singularity containers which was the only container system previo
 The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `singularity`, `docker` and `none`.
 Alternatively, the container system can be selected via the interactive CLI prompts.
 
-The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers, making `nf-core` pipelines usable in even more compute environments!
+The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers, making it easy to run `nf-core` pipelines in even more compute environments!
 
 :::tip{title="How are Docker images saved?"}
 
