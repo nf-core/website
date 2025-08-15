@@ -61,6 +61,7 @@ nf-test test
 #### Benefits of Enhanced Diff Tools
 
 These tools help quickly identify:
+
 - **Text differences**: Line-by-line changes with color highlighting
 - **Structural changes**: Better visualization of file organization changes
 - **Content mismatches**: Clear indication of what changed between snapshots
@@ -93,7 +94,6 @@ When using nf-test with Docker, Singularity, or Conda, be aware of environment-s
 5. **Debug Systematically**: Use println statements to understand output structure
 6. **Review Snapshot Changes**: Always review snapshot file changes in code reviews
 7. **Test Edge Cases**: Include tests for error conditions and boundary cases
-
 
 ### Additional Reading
 

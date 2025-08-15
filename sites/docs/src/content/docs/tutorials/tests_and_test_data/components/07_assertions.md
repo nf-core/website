@@ -139,7 +139,7 @@ with(process.out.ncbi_settings) {
 
 **Motivation:** Ensure the number of rows in a per-sample output summary file from a pipeline matches the number of files in an input samplesheet
 
-```groovy
+````groovy
 params {
     outdir = "$outputDir"
 }
@@ -174,7 +174,7 @@ assertAll(
 
 // Last 4 lines of gzipped file
 path(process.out.gzip[0][1]).linesGzip[-4..-1]
-```
+````
 
 #### Assert Contains in Gzipped Files
 
@@ -382,8 +382,6 @@ with(process.out.imputed_plink2) {
 }
 ```
 
-
 ## Next Steps
 
 Continue to [Test Data Management](./08_test_data_management.md) to learn about organizing and managing test datasets.
-

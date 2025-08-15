@@ -6,7 +6,7 @@ weight: 60
 
 # Pipeline Testing
 
-Pipeline-level testing ensures that your entire nf-core pipeline works correctly from start to finish. 
+Pipeline-level testing ensures that your entire nf-core pipeline works correctly from start to finish.
 As of nf-core/tools 3.3, pipeline-level nf-test tests have been added to the pipeline template to improve robustness and help developers catch issues early in the development process.
 
 ## Template Files
@@ -207,48 +207,50 @@ enrichment_metrics/*
                     vcf_files.isEmpty() ? 'No VCF files' : vcf_files.collect { file -> file.getName() + ":md5," + path(file.toString()).vcf.variantsMD5 }
                 ).match() }
 ```
-### More examples of combining nft-utils with other plugins. 
 
-!!! info "don't forget to update the `nf-test.config`" 
-   ```groovy 
-         config {
-                  plugins {
-                      load "nft-bam@0.5.0"
-                      load "nft-utils@0.0.4"
-                      load "nft-csv@0.1.0"
-                      load "nft-vcf@1.0.7"
-                  }          
-            }
-    ```
+### More examples of combining nft-utils with other plugins.
 
-When wanting the validate the output samplesheets, we can use `nft-csv` where we isolate the index columns like `["sample"]` or `["index"]`. To check if we consistenly return the  same number of output samples as that we provided in the input. 
-    
-    ```groovy 
-    then {
-            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
-            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
-            def output_samples_csv = path(params.outdir + '/overview-tables/samples_overview.tsv').csv(sep:"\t")
-            def output_contigs_csv = path(params.outdir + '/overview-tables/contigs_overview.tsv').csv(sep:"\t")
-            def stable_bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
-            def stable_vcf_files = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+!!! info "don't forget to update the `nf-test.config`"
 
-            assertAll(
-                { assert workflow.success},
-                { assert snapshot(
-                    workflow.trace.succeeded().size(),
-                    stable_name,
-                    stable_path,
-                    stable_bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getStatistics() ] },
-                    stable_vcf_files.collect{ file -> [ file.getName(), path(file.toString()).vcf.getVariantsMD5() ] }
-                ).match() },
-                { assert snapshot(
-                    output_samples_csv.columnNames,
-                    output_samples_csv.columns["sample"].sort(),
-                    output_contigs_csv.columnNames,
-                    output_contigs_csv.columns["index"].sort(),
-                ).match("output samplesheets")}
-            )
-        }
+````groovy
+      config {
+               plugins {
+                   load "nft-bam@0.5.0"
+                   load "nft-utils@0.0.4"
+                   load "nft-csv@0.1.0"
+                   load "nft-vcf@1.0.7"
+               }
+         }
+ ```
+
+When wanting the validate the output samplesheets, we can use `nft-csv` where we isolate the index columns like `["sample"]` or `["index"]`. To check if we consistenly return the  same number of output samples as that we provided in the input.
+
+ ```groovy
+ then {
+         def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+         def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+         def output_samples_csv = path(params.outdir + '/overview-tables/samples_overview.tsv').csv(sep:"\t")
+         def output_contigs_csv = path(params.outdir + '/overview-tables/contigs_overview.tsv').csv(sep:"\t")
+         def stable_bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+         def stable_vcf_files = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+
+         assertAll(
+             { assert workflow.success},
+             { assert snapshot(
+                 workflow.trace.succeeded().size(),
+                 stable_name,
+                 stable_path,
+                 stable_bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getStatistics() ] },
+                 stable_vcf_files.collect{ file -> [ file.getName(), path(file.toString()).vcf.getVariantsMD5() ] }
+             ).match() },
+             { assert snapshot(
+                 output_samples_csv.columnNames,
+                 output_samples_csv.columns["sample"].sort(),
+                 output_contigs_csv.columnNames,
+                 output_contigs_csv.columns["index"].sort(),
+             ).match("output samplesheets")}
+         )
+     }
 
 ### Best Practices for nft-utils
 
@@ -278,7 +280,7 @@ This can also be particularly helpful where a pipeline is running a filtering st
 #### Considerations for file contents checking
 
 - `nf-test` plugins are your friends here - there are a plethora of plugins for processing specific file types which can be used to make assertions about file contents
-    - For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
+ - For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
 
 #### Example patterns for checking expected file contents
 
@@ -288,3 +290,4 @@ This can also be particularly helpful where a pipeline is running a filtering st
 ## Next Steps
 
 Continue to [nf-test Assertions](./07_assertions.md) to learn about comprehensive assertion patterns and verification techniques.
+````

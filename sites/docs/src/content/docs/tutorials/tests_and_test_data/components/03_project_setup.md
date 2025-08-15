@@ -68,7 +68,6 @@ For nf-core pipeline testing, plugins provide additional functionality to help v
 
 Plugins can be customized - like nft-utils, which has been tailored by the nf-core community for automating the capture and validation of pipeline-level outputs.
 
-
 | Plugin Name      | Description/Use                                                                                                              |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **nft-utils**    | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
@@ -88,6 +87,7 @@ Plugins can be customized - like nft-utils, which has been tailored by the nf-co
 **Purpose**: Defines parameters and settings specifically for test execution
 This is very similar to your typical nf-core test profiles.
 However one change is the `aws.client.anonymous` option that <XYZ>
+
 ```groovy
 params {
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
@@ -141,7 +141,6 @@ nf-test generate process path/to/main.nf
 # Generate test for workflow
 nf-test generate workflow path/to/main.nf
 ```
-
 
 ## Next Steps
 
