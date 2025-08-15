@@ -130235,7 +130235,7 @@
       "type": "module",
       "meta": {
         "name": "mitohifi_findmitoreference",
-        "description": "Download a mitochondrial genome to be used as reference for MitoHiFi",
+        "description": "Download a mitochondrial genome to be used as reference for MitoHiFi.\n\nNOTE: An optional NCBI API key can be supplied to MITOHIFI_FINDMITOREFERENCE.\nThis should be set using Nextflow's secrets functionality:\n\n`nextflow secrets set NCBI_API_KEY <key>`\n\nSee https://www.nextflow.io/docs/latest/secrets.html for more information.\n",
         "keywords": [
           "mitochondrial genome",
           "reference genome",
@@ -130278,10 +130278,8 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Downloaded mitochondrial genome in Fasta format",
-                  "pattern": "*.{fasta,fa}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -130289,7 +130287,11 @@
                   "type": "file",
                   "description": "Downloaded mitochondrial genome in Fasta format",
                   "pattern": "*.{fasta,fa}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -130298,10 +130300,8 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Downloaded mitochondrial genome in Fasta format",
-                  "pattern": "*.{fasta,fa}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -130309,7 +130309,11 @@
                   "type": "file",
                   "description": "Downloaded mitochondrial genome in Genbank format",
                   "pattern": "*.gb",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1936"
+                    }
+                  ]
                 }
               }
             ]
@@ -130375,39 +130379,67 @@
             {
               "input": {
                 "type": "file",
-                "description": "Path to PacBio HiFi reads or contigs. Type (-r/-c) is specified in ext.args2",
+                "description": "Path to PacBio HiFi reads or fasta contigs",
                 "pattern": "*.{fa,fa.gz,fasta,fasta.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "ref_fa": {
+                "type": "file",
+                "description": "Reference mitochondrial genome to align reads or contigs against",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "ref_gb": {
+                "type": "file",
+                "description": "Reference mitochondrial genome annotation",
+                "pattern": "*.{gb}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1936"
+                  }
+                ]
               }
             }
           ],
           {
-            "ref_fa": {
-              "type": "file",
-              "description": "Reference sequence",
-              "pattern": "*.{fa,fasta}",
-              "ontologies": []
-            }
-          },
-          {
-            "ref_gb": {
-              "type": "file",
-              "description": "Reference annotation",
-              "pattern": "*.{gb}",
-              "ontologies": []
-            }
-          },
-          {
             "input_mode": {
               "type": "string",
               "description": "Specifies type of input - reads or contigs",
-              "pattern": "{r,c}"
+              "pattern": "{reads,contigs}"
             }
           },
           {
             "mito_code": {
-              "type": "string",
-              "description": "Mitochondrial genetic code"
+              "type": "integer",
+              "description": "Integer reference number of mitochondrial genetic code - see\nhttps://www.ncbi.nlm.nih.gov/Taxonomy/Utils/wprintgc.cgi for details.\n"
             }
           }
         ],
@@ -130416,18 +130448,20 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Mitochondrial sequence",
-                  "pattern": "*.{fasta,fa}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*fasta": {
+                "final_mitogenome.fasta": {
                   "type": "file",
-                  "description": "Mitochondrial sequence",
-                  "pattern": "*.{fasta,fa}",
-                  "ontologies": []
+                  "description": "Fasta file containing final chosen mitochondrial sequence",
+                  "pattern": "final_mitogenome.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -130437,14 +130471,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*contigs_stats.tsv": {
+                "contigs_stats.tsv": {
                   "type": "file",
-                  "description": "Contigs statistics",
-                  "pattern": "*contigs_stats.tsv",
+                  "description": "Statistics of all identified mitochondrial contigs",
+                  "pattern": "contigs_stats.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -130459,15 +130493,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*gb": {
+                "final_mitogenome.gb": {
                   "type": "file",
-                  "description": "Genome annotation in case mitofinder was used",
-                  "pattern": "*.gb",
-                  "ontologies": []
+                  "description": "GB annotation file of final chosen mitochondrial sequence,\nif Mitofinder mode was used for annotation.\n",
+                  "pattern": "final_mitogenome.gb",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1936"
+                    }
+                  ]
                 }
               }
             ]
@@ -130477,15 +130515,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*gff": {
+                "final_mitogenome.gff": {
                   "type": "file",
-                  "description": "Genome annotation in case mitos was used",
-                  "pattern": "*.gff",
-                  "ontologies": []
+                  "description": "GB annotation file of final chosen mitochondrial sequence,\nif Mitos mode was used for annotation.\n",
+                  "pattern": "final_mitogenome.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
                 }
               }
             ]
@@ -130495,15 +130537,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*all_potential_contigs.fa": {
+                "all_potential_contigs.fa": {
                   "type": "file",
-                  "description": "Contains sequences of all potential contigs",
-                  "pattern": "*all_potential_contigs.fa",
-                  "ontologies": []
+                  "description": "Fasta file containing sequences of all potential mitogenome contigs",
+                  "pattern": "all_potential_contigs.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -130513,15 +130559,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*contigs_annotations.png": {
+                "contigs_annotations.png": {
                   "type": "file",
                   "description": "Graphical representation of annotated genes and tRNAs",
-                  "pattern": "*contigs_annotations.png",
-                  "ontologies": []
+                  "pattern": "contigs_annotations.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
                 }
               }
             ]
@@ -130531,14 +130581,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*contigs_circularization": {
+                "contigs_circularization/": {
                   "type": "directory",
                   "description": "Contains circularization reports",
-                  "pattern": "*contigs_circularization"
+                  "pattern": "contigs_circularization/"
                 }
               }
             ]
@@ -130548,14 +130598,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*contigs_filtering": {
+                "contigs_filtering/": {
                   "type": "directory",
                   "description": "Contains files with initial blast matches",
-                  "pattern": "*contigs_filtering"
+                  "pattern": "contigs_filtering/"
                 }
               }
             ]
@@ -130565,14 +130615,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*coverage_mapping": {
+                "coverage_mapping/": {
                   "type": "directory",
                   "description": "Contains statistics on coverage mapping",
-                  "pattern": "*coverage_mapping"
+                  "pattern": "coverage_mapping/"
                 }
               }
             ]
@@ -130582,15 +130632,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*coverage_plot.png": {
+                "coverage_plot.png": {
                   "type": "file",
                   "description": "Read coverage plot for mitochondrial contigs",
-                  "pattern": "*coverage_plot.png",
-                  "ontologies": []
+                  "pattern": "coverage_plot.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
                 }
               }
             ]
@@ -130600,15 +130654,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*final_mitogenome.annotation.png": {
+                "final_mitogenome.annotation.png": {
                   "type": "file",
-                  "description": "Graphical representation of annotated genes for the final mito contig",
-                  "pattern": "*final_mitogenome.annotation.png",
-                  "ontologies": []
+                  "description": "Graphical representation of annotated genes for the final\nmitogenome contig\n",
+                  "pattern": "final_mitogenome.annotation.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
                 }
               }
             ]
@@ -130618,14 +130676,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*final_mitogenome_choice": {
+                "final_mitogenome_choice/": {
                   "type": "directory",
                   "description": "Files with potential contigs clusterings and alignments",
-                  "pattern": "*final_mitogenome_choice"
+                  "pattern": "final_mitogenome_choice/"
                 }
               }
             ]
@@ -130635,15 +130693,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*final_mitogenome.coverage.png": {
+                "final_mitogenome.coverage.png": {
                   "type": "file",
-                  "description": "Graphical representation of reads coverage plot for the final mito contig",
-                  "pattern": "*final_mitogenome.coverage.png",
-                  "ontologies": []
+                  "description": "Graphical representation of reads coverage plot for the\nfinal mitogenome contig\n",
+                  "pattern": "final_mitogenome.coverage.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
                 }
               }
             ]
@@ -130653,14 +130715,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*potential_contigs": {
+                "potential_contigs/": {
                   "type": "directory",
                   "description": "Files with sequences and annotations of the potential contigs",
-                  "pattern": "*potential_contigs"
+                  "pattern": "potential_contigs/"
                 }
               }
             ]
@@ -130670,14 +130732,14 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*reads_mapping_and_assembly": {
+                "reads_mapping_and_assembly/": {
                   "type": "directory",
                   "description": "Read mapping files for run from the raw reads",
-                  "pattern": "*reads_mapping_and_assembly"
+                  "pattern": "reads_mapping_and_assembly/"
                 }
               }
             ]
@@ -130687,14 +130749,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "*shared_genes.tsv": {
+                "shared_genes.tsv": {
                   "type": "directory",
                   "description": "Report on genes shared with the reference genome",
-                  "pattern": "*shared_genes.tsv"
+                  "pattern": "shared_genes.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -184724,7 +184791,11 @@
                 "type": "file",
                 "description": "AnnData file containing filtered data (without empty droplets)",
                 "pattern": "*.h5ad",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
               }
             },
             {
@@ -184732,10 +184803,38 @@
                 "type": "file",
                 "description": "AnnData file containing unfiltered data (with empty droplets)",
                 "pattern": "*.h5ad",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          {
+            "input_layer": {
+              "type": "string",
+              "description": "Layer to use as input. Defaults to `X`."
+            }
+          },
+          {
+            "output_layer": {
+              "type": "string",
+              "description": "Layer to save the denoised counts to. Defaults to `scar`."
+            }
+          },
+          {
+            "max_epochs": {
+              "type": "integer",
+              "description": "Maximum number of epochs to train the model. Defaults to the [heuristic default](https://docs.scvi-tools.org/en/stable/api/reference/scvi.model.get_max_epochs_heuristic.html#scvi.model.get_max_epochs_heuristic)."
+            }
+          },
+          {
+            "n_batch": {
+              "type": "integer",
+              "description": "Number of batches to use for generating the ambient profile. Defaults to 1. This can be increased to prevent out-of-memory errors."
+            }
+          }
         ],
         "output": {
           "h5ad": [
@@ -184751,7 +184850,11 @@
                   "type": "file",
                   "description": "AnnData file containing decontaminated counts as `adata.X`",
                   "pattern": "*.h5ad",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
                 }
               }
             ]
@@ -184816,7 +184919,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
               }
             },
             {
@@ -184824,10 +184927,26 @@
                 "type": "file",
                 "description": "H5AD anndata object",
                 "pattern": "*.h5ad",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          {
+            "batch_key": {
+              "type": "string",
+              "description": "Column in adata.obs to use as batch. If not provided, the entire dataset is treated as a single batch."
+            }
+          },
+          {
+            "max_epochs": {
+              "type": "integer",
+              "description": "Maximum number of epochs to train the model. Defaults to the [heuristic default](https://docs.scvi-tools.org/en/stable/api/reference/scvi.model.get_max_epochs_heuristic.html#scvi.model.get_max_epochs_heuristic)."
+            }
+          }
         ],
         "output": {
           "h5ad": [
@@ -184835,7 +184954,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
                 }
               },
               {
@@ -184843,7 +184962,11 @@
                   "type": "file",
                   "description": "H5AD anndata object without doublets",
                   "pattern": "*.h5ad",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    }
+                  ]
                 }
               }
             ]
@@ -184853,7 +184976,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
                 }
               },
               {
