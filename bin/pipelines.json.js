@@ -204,20 +204,19 @@ export const writePipelinesJson = async () => {
       // Check if branch exists from the list we fetched
       const branch_exists = allBranches.includes(branch);
       data[`${branch}_branch_exists`] = branch_exists;
-
-      if (!branch_exists) {
+      // No need to check rules if branch doesn't exist or is TEMPLATE (which uses an org ruleSet)
+      if (!branch_exists || branch === "TEMPLATE") {
         continue;
       }
 
-      // Initialize ALL branch protection fields with default values for non-TEMPLATE branches
-      if (branch !== "TEMPLATE") {
-        data[`${branch}_branch_protection_up_to_date`] = -1;
-        data[`${branch}_branch_protection_status_checks`] = -1;
-        data[`${branch}_branch_protection_required_reviews`] = -1;
-        data[`${branch}_branch_protection_require_codeowner_review`] = -1;
-        data[`${branch}_branch_protection_require_non_stale_review`] = -1;
-        data[`${branch}_branch_protection_enforce_admins`] = -1;
-      }
+      // Initialize ALL branch protection fields with default values
+      data[`${branch}_branch_protection_up_to_date`] = -1;
+      data[`${branch}_branch_protection_status_checks`] = -1;
+      data[`${branch}_branch_protection_required_reviews`] = -1;
+      data[`${branch}_branch_protection_require_codeowner_review`] = -1;
+      data[`${branch}_branch_protection_require_non_stale_review`] = -1;
+      data[`${branch}_branch_protection_enforce_admins`] = -1;
+
       // Check if there is a ruleSet for the branch
       const ruleSet = ruleSetData.find((r) => {
         // Check if any of the include patterns match this branch
@@ -231,7 +230,7 @@ export const writePipelinesJson = async () => {
       if (ruleSet) {
         console.log(`Using ruleset for ${branch} branch protection`);
         data[`${branch}_uses_ruleset`] = true;
-        if (branch !== "TEMPLATE") {
+
           // Check for required status checks
           const required_status_checks = ruleSet.rules.find((rule) => rule.type === "required_status_checks")
             ?.parameters?.required_status_checks;
@@ -260,35 +259,8 @@ export const writePipelinesJson = async () => {
           data[`${branch}_branch_protection_up_to_date`] = branch_protection_up_to_date ? true : false;
 
           console.log(`Completed ruleset processing for ${branch} branch - found ${ruleSet.rules.length} rules`);
-
-        } else {
-          // check the ruleset for the TEMPLATE branch
-          const templateRuleSet = ruleSetData.find((r) => {
-            // Check if any of the include patterns match this branch
-            const includePatterns = r.data.conditions?.ref_name?.include || [];
-            const branchRef = "refs/heads/" + branch;
-            const matches = includePatterns.includes(branchRef);
-            // console.log(`Checking ruleset for ${branch}: patterns=${JSON.stringify(includePatterns)}, looking for=${branchRef}, matches=${matches}`);
-            return matches;
-          })?.data;
-          console.log(`${name} TEMPLATE ruleSet:`, templateRuleSet ? "found" : "not found");
-          if (templateRuleSet) {
-            console.log(`Using ruleset for TEMPLATE branch protection`);
-            data[`TEMPLATE_uses_ruleset`] = true;
-            console.log(`${name} TEMPLATE ruleSet:`, templateRuleSet);
-            // Check the bypass actors contains only bot
-            const bypass_actors = templateRuleSet.bypass_actors;
-            console.log(`${name} TEMPLATE bypass_actors:`, bypass_actors);
-
-            // Check if we only allow the bot team to bypass the push restriction
-            const teamActorsWithId = bypass_actors?.filter((actor) => actor.actor_type === "Team" && actor.actor_id === 11558992) ?? [];
-            data[`TEMPLATE_restrict_push`] =
-              teamActorsWithId.length === 1 && templateRuleSet.rules.some((rule) => rule.type === "update");
-          }
-        }
       } else {
         // No ruleset found, check old-style branch protection rules
-        if (branch !== "TEMPLATE") {
           // Get branch protection rules
           try {
             const branchRules = await octokit.rest.repos.getBranchProtection({
@@ -317,27 +289,7 @@ export const writePipelinesJson = async () => {
               );
             }
           }
-        } else {
-          // Template branch protection rules
-          try {
-            const restrictions = await octokit.rest.repos.getBranchProtection({
-              owner: "nf-core",
-              repo: name,
-              branch: "TEMPLATE",
-            });
-            data[`${branch}_restrict_push`] =
-              restrictions?.data.restrictions?.users?.length === 1 &&
-              restrictions?.data.restrictions?.users?.[0]?.login === "nf-core-bot"
-                ? true
-                : false;
-          } catch (err) {
-            console.log(
-              `Failed to fetch ${branch} branch push restrictions`,
-              err.response.data.message,
-              err.response.url,
-            );
-          }
-        }
+
       }
     }
     // remove ignored topics
@@ -595,7 +547,16 @@ export const writePipelinesJson = async () => {
             return component.replace("/", "_");
           });
         }
-        return { tag_name, published_at, tag_sha, has_schema, doc_files, components, nextflow_version, nf_core_version };
+        return {
+          tag_name,
+          published_at,
+          tag_sha,
+          has_schema,
+          doc_files,
+          components,
+          nextflow_version,
+          nf_core_version,
+        };
       }),
     );
 

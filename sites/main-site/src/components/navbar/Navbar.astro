@@ -156,6 +156,12 @@ if (onGoingEvents?.length > 0) {
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">What's happening</span></li>
                         <li class="">
+                            <a
+                                class="dropdown-item d-flex align-items-center justify-content-between"
+                                href="/advisories/">Advisories</a
+                            >
+                        </li>
+                        <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
                                 <BlogPostLabel client:idle timeSpan={blogPostTimeSpan} /></a

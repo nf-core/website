@@ -4,9 +4,9 @@ subtitle: Ángela Cánovas (Centre for Genetic Improvement of Livestock, Departm
 
 type: talk
 startDate: "2025-06-18"
-startTime: "16:00+01:00"
+startTime: "16:00+02:00"
 endDate: "2025-06-18"
-endTime: "17:00+01:00"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/37v5XrECwGY
 locations:
   - name: Online

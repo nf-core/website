@@ -4,9 +4,9 @@ subtitle: Damir Baranasic (MRC, London Institute of Medical Sciences, UK)
 
 type: talk
 startDate: "2025-04-16"
-startTime: "16:00+01:00"
+startTime: "16:00+02:00"
 endDate: "2025-04-16"
-endTime: "17:00+01:00"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/2oUtnGGmjss
 locations:
   - name: Online

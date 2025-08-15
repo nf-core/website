@@ -4,9 +4,9 @@ subtitle: James Reecy (Iowa State University, USA)
 
 type: talk
 startDate: "2025-05-21"
-startTime: "16:00+01:00"
+startTime: "16:00+02:00"
 endDate: "2025-05-21"
-endTime: "17:00+01:00"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/zRxtgzljxt0
 locations:
   - name: Online
