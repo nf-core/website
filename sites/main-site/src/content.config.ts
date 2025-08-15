@@ -31,19 +31,12 @@ const commonSchemas = {
     ]),
 };
 
-
-let teams;
-try {
-    teams = await octokit.request("GET /orgs/{org}/teams", {
-        org: "nf-core",
-        headers: {
-            "X-GitHub-Api-Version": "2022-11-28",
-        },
-    });
-} catch (e) {
-    console.warn("Warning: Could not fetch GitHub teams, using fallback. Error:", e?.message || e);
-    teams = { data: [] };
-}
+const teams = await octokit.request("GET /orgs/{org}/teams", {
+    org: "nf-core",
+    headers: {
+        "X-GitHub-Api-Version": "2022-11-28",
+    },
+});
 
 const events = defineCollection({
     loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/events" }),
