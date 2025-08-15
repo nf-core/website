@@ -207,6 +207,48 @@ enrichment_metrics/*
                     vcf_files.isEmpty() ? 'No VCF files' : vcf_files.collect { file -> file.getName() + ":md5," + path(file.toString()).vcf.variantsMD5 }
                 ).match() }
 ```
+### More examples of combining nft-utils with other plugins. 
+
+!!! info "don't forget to update the `nf-test.config`" 
+   ```groovy 
+         config {
+                  plugins {
+                      load "nft-bam@0.5.0"
+                      load "nft-utils@0.0.4"
+                      load "nft-csv@0.1.0"
+                      load "nft-vcf@1.0.7"
+                  }          
+            }
+    ```
+
+When wanting the validate the output samplesheets, we can use `nft-csv` where we isolate the index columns like `["sample"]` or `["index"]`. To check if we consistenly return the  same number of output samples as that we provided in the input. 
+    
+    ```groovy 
+    then {
+            def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
+            def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
+            def output_samples_csv = path(params.outdir + '/overview-tables/samples_overview.tsv').csv(sep:"\t")
+            def output_contigs_csv = path(params.outdir + '/overview-tables/contigs_overview.tsv').csv(sep:"\t")
+            def stable_bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+            def stable_vcf_files = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+
+            assertAll(
+                { assert workflow.success},
+                { assert snapshot(
+                    workflow.trace.succeeded().size(),
+                    stable_name,
+                    stable_path,
+                    stable_bam_files.collect{ file -> [ file.getName(), bam(file.toString()).getStatistics() ] },
+                    stable_vcf_files.collect{ file -> [ file.getName(), path(file.toString()).vcf.getVariantsMD5() ] }
+                ).match() },
+                { assert snapshot(
+                    output_samples_csv.columnNames,
+                    output_samples_csv.columns["sample"].sort(),
+                    output_contigs_csv.columnNames,
+                    output_contigs_csv.columns["index"].sort(),
+                ).match("output samplesheets")}
+            )
+        }
 
 ### Best Practices for nft-utils
 

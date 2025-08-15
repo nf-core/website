@@ -188,7 +188,12 @@ path(process.out.gzip[0][1]).linesGzip[-4..-1]
 
 #### Snapshot Sorted List & Exclude Specific Files
 
-**Motivation:** Snapshot multiple outputs while excluding unstable files.
+**Motivation:** Snapshot channels with multiple files in a single output channel, with one having all unstable file contents, and another with a single unstable file in the list among stable files.
+
+For channels with all stable files, we just specify the channel as normal.
+For the channel where all files are unstable (log), we use `collect` to loop through all files in the channel element that is the list of files, getting the name of the file and then sorting the entire list.
+For the channel with a single unstable file in the list of files, we find all files except for the 'offending' unstable file by name.
+We then have a separate assertion to independently check for the unstable file's existence by finding it from the list of files specifically.
 
 ```groovy
 assertAll(
@@ -198,7 +203,7 @@ assertAll(
         process.out.versions,
         process.out.fastq,
         process.out.undetermined,
-        file(process.out.logs.get(0).get(1)).list().sort(),
+        process.out.summary_tables[0][1].collect { file(it).name }.sort()
         process.out.interop.get(0).get(1).findAll { file(it).name != "IndexMetricsOut.bin" },
         ).match()
     },
