@@ -4,13 +4,14 @@ subtitle: Luca Fontanesi (Full Professor of animal breeding and genetics at the 
 
 type: talk
 startDate: "2025-07-16"
-startTime: "16:00+01:00"
+startTime: "16:00+02:00"
 endDate: "2025-07-16"
-endTime: "17:00+01:00"
+endTime: "17:00+02:00"
+youtubeEmbed: https://youtu.be/aFN9NXRTVsk
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/aFN9NXRTVsk
 ---
 
 # Phenomics as the central dogma in animal science: linking precision livestock farming with precision animal breeding and selection
