@@ -17,7 +17,7 @@ Before installing nf-test, ensure you have:
 
 ### Recommended Installation: Using Conda/Mamba
 
-```bash
+````bash
 conda create -n nf-core -c bioconda nf-core nf-test
 conda activate nf-core
 # or
@@ -26,11 +26,11 @@ mamba activate nf-core
 
 ### Alternative Installation Methods
 
-For a standalone binary install: 
+For a standalone binary install:
 
 ```bash
 curl -fsSL https://get.nf-test.com | bash
-```
+````
 
 Move the `nf-test` file to a directory accessible by your `$PATH` variable:
 

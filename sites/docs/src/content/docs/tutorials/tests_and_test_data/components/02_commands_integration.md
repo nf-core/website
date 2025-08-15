@@ -42,7 +42,6 @@ nf-core tools does not currently provide additional functionality for testing pi
 
 > **Note**: These commands only work within the nf-core/modules repository
 
-
 ### Module Testing
 
 These commands will tell nf-core to run the test files of `bedtools/bamtobed` module twice, and compare the results to see if they change.
