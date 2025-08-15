@@ -55939,6 +55939,193 @@
       }
     },
     {
+      "name": "drep_dereplicate",
+      "path": "modules/nf-core/drep/dereplicate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "drep_dereplicate",
+        "description": "Dereplicates a genome  set by identifying highly similar genomes and choose the best representative genome",
+        "keywords": [
+          "drep",
+          "genome",
+          "fasta",
+          "compare",
+          "comparison",
+          "visualisation",
+          "metagenomics",
+          "assembly",
+          "microbial genomics",
+          "dereplication"
+        ],
+        "tools": [
+          {
+            "drep": {
+              "description": "De-replication of microbial genomes assembled from multiple samples",
+              "homepage": "https://drep.readthedocs.io/en/latest/",
+              "documentation": "https://drep.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/MrOlm/drep",
+              "doi": "10.1038/ismej.2017.126",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:drep"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastas": {
+                "type": "file",
+                "description": "List of FASTA files to dereplicate",
+                "pattern": "*.{fasta,fa,fna,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "drep_work": {
+                "type": "directory",
+                "description": "Optional existing dRep working directory containing pre-computed clustering results (e.g. output from dRep compare)",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastas": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "dereplicated_genomes/*": {
+                  "type": "file",
+                  "description": "Representative genomes for each cluster of similar genomes",
+                  "pattern": "*.{fasta,fa,fna,fas}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "summary_tables": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "data_tables/*.csv": {
+                  "type": "file",
+                  "description": "Summary tables containing information about the dereplication process including cluster membership of each genome",
+                  "pattern": "*.{csv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "figures": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "figures/*pdf": {
+                  "type": "file",
+                  "description": "Figures visualising the dereplication process, such as clustering results and representative genome selection",
+                  "pattern": "*.{pdf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "logger.log": {
+                  "type": "file",
+                  "description": "logging file containing information about the dereplication process",
+                  "pattern": "*.{log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
       "name": "dshbio_exportsegments",
       "path": "modules/nf-core/dshbio/exportsegments/meta.yml",
       "type": "module",
@@ -81490,7 +81677,7 @@
                 }
               },
               {
-                "${prefix}.bam": {
+                "*.bam": {
                   "type": "file",
                   "description": "BAM file",
                   "pattern": "*.{bam}"
@@ -81507,7 +81694,7 @@
                 }
               },
               {
-                "${prefix}.cram": {
+                "*.cram": {
                   "type": "file",
                   "description": "CRAM file",
                   "pattern": "*.{cram}"
