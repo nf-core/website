@@ -116,4 +116,4 @@ For more detailed information about profile configuration and priority order, se
 
 ## Next Steps
 
-Continue to [Project Setup](./03_project_setup.md) to configure your testing environment.
+Continue to [FAQ & Debugging](./10_faq_debugging.md) to configure your testing environment.

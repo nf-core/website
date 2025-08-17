@@ -44,7 +44,7 @@ flowchart TD
 | **Triggers**              | Events that start the workflow | `push` (dev branch), `pull_request`, `release` (published), `workflow_dispatch`         |
 | **Path Exclusions**       | Files ignored for triggers     | docs/\*_, meta.yml, _.md, _.png, _.svg                                                  |
 | **Concurrency**           | Prevents multiple runs         | Group: `${{ github.workflow }}-${{ github.event.pull_request.number \|\| github.ref }}` |
-| **Environment Variables** | Global settings                | `GITHUB_TOKEN`, `NFT_VER: 0.9.2`, `NXF_VER: 24.10.2`, `NXF_ANSI_LOG: false`             |
+| **Environment Variables** | Global settings                | `GITHUB_TOKEN`, `NFT_VER: 0.9.2`, `NXF_VER: 24.10.5`, `NXF_ANSI_LOG: false`             |
 
 ### Jobs Breakdown
 

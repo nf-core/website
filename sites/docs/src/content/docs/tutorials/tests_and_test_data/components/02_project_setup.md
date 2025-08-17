@@ -124,12 +124,12 @@ Plugins can be customized - like nft-utils, which has been tailored by the nf-co
 
 **Purpose**: Defines parameters and settings specifically for test execution
 This is very similar to your typical nf-core test profiles.
-However one change is the `aws.client.anonymous` option that <XYZ>
+However one change is the `aws.client.anonymous` option that ensures anonymous access to AWS S3 buckets for test data, which is useful when your test data is publicly accessible and you don't want to configure AWS credentials for CI/CD.
 
 ```groovy
 params {
     modules_testdata_base_path   = 's3://ngi-igenomes/testdata/nf-core/modules/'
-    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/PIPELINE_NAME/'
+    pipelines_testdata_base_path = 'https://raw.githubusercontent.com/nf-core/test-datasets/<PIPELINE_NAME>/' // Replace <PIPELINE_NAME> with your pipeline's name
     input       = "${projectDir}/assets/samplesheet.csv"
     outdir      = 'results'
 }

@@ -194,7 +194,7 @@ assertAll(
 ```
 
 :::note
-`process.out` captures all output channels, both named and index-based ones.
+`process.out` captures all output channels, both named and index-based ones. This is useful for quickly getting a comprehensive overview of all outputs without needing to individually specify each channel.
 :::
 
 ## Essential Assertion Patterns
@@ -266,7 +266,7 @@ with(process.out.ncbi_settings) {
 
 **Motivation:** Ensure the number of rows in a per-sample output summary file from a pipeline matches the number of files in an input samplesheet
 
-````groovy
+```groovy
 params {
     outdir = "${outputDir}"
 }
@@ -274,7 +274,7 @@ params {
 ...
 then {
     // Comma is default separator but being explicit to demonstrate it can be changed
-    def n_input_samples = path("/path/to/input/samplesheet.csv").csv(sep: ",").rowCount
+    def n_input_samples = path("/path/to/input/samplesheet.csv").csv(sep: ",").rowCount // Replace /path/to/input/samplesheet.csv with your actual samplesheet path
 
     assertAll(
         { assert path("$outputDir/path/to/summary.csv").csv(sep: ",").rowCount == n_input_samples }
@@ -302,7 +302,7 @@ assertAll(
 
 // Last 4 lines of gzipped file
 path(process.out.gzip[0][1]).linesGzip[-4..-1]
-````
+```
 
 #### Assert Contains in Gzipped Files
 
@@ -426,8 +426,8 @@ Explicitly exclude directories in the first case because `eachFileRecurse` inclu
 
 #### Snapshotting Variable Binary Files with File Size
 
-**Context:** Binary files that cannot be asserted for valid contents.
-**Motivation:** Check that binary file contains 'something' rather than just existence.
+**Context:** Binary files that often have non-deterministic contents (e.g., timestamps, random seeds).
+**Motivation:** Check that binary file contains 'something' rather than just existence, or that it matches expected properties like minimum size.
 
 ```groovy
 // Exact file size (in bytes)

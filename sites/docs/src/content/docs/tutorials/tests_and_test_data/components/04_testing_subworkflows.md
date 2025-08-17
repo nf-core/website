@@ -55,7 +55,6 @@ Workflow tests commonly use these assertions:
 ```groovy
 // Workflow status
 assert workflow.success
-assert workflow.failed
 assert workflow.exitStatus == 0
 
 // Error handling
@@ -74,7 +73,7 @@ assert workflow.stdout.contains("Hello World") == 3
 
 Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core subworkflow should include comprehensive tests that:
 
-- Each subworkflow contains a `tests/` folder beside the `main.nf` of the subworkflow itself
+- Each subworkflow should contain a `tests/` folder alongside its `main.nf` file.
 - Test files come with snapshots of subworkflow output channels
 - Tests verify both functionality and expected outputs of all included modules
 - Support testing with different parameter combinations
@@ -273,20 +272,12 @@ workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
 workflow.out.multiqc.flatten().collect { path -> file(path).name }
 ```
 
-## 7. Updating Subworkflow Snapshots
-
-When subworkflow outputs change (e.g., due to module version bumps), update snapshots:
-
-```bash
-nf-core subworkflows test fastq_align_qc --profile docker --update
-```
-
 ---
 
-Read more nf-test assertion patterns in the [nf-test assertions examples doc](07_assertions.md)
+Read more nf-test assertion patterns in the [nf-test assertions examples doc](./06_assertions.md)
 
 ---
 
 ## Next Steps
 
-Continue to [Testing Pipelines](./06_testing_pipelines.md) to learn about end-to-end pipeline testing.
+Continue to [Testing Pipelines](./05_testing_pipelines.md) to learn about end-to-end pipeline testing.
