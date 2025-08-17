@@ -45646,6 +45646,144 @@
       }
     },
     {
+      "name": "coverm_genome",
+      "path": "modules/nf-core/coverm/genome/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "coverm_genome",
+        "description": "Calculate read coverage per-genome",
+        "keywords": [
+          "mapping",
+          "genomics",
+          "metagenomics",
+          "coverage"
+        ],
+        "tools": [
+          {
+            "coverm": {
+              "description": "CoverM aims to be a configurable, easy to use and fast DNA read coverage and relative abundance calculator focused on metagenomics applications",
+              "homepage": "https://github.com/wwood/CoverM",
+              "documentation": "https://wwood.github.io/CoverM/coverm-contig.html",
+              "tool_dev_url": "https://github.com/wwood/CoverM",
+              "doi": "10.5281/zenodo.10531253",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:coverm"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "FASTA/FASTQ containing reads (can be gzipped), or sorted BAM files of reads mapped to a reference.\nIf supplying PE fasta for multiple samples, should be in the order \"sample1_1, sample1_2, sample2_1, sample2_2...\".\n",
+                "pattern": "*.{fa,fq,fa.gz,fq.gz,bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "Genome FASTA file(s) to map reads to, or a directory containing genome FASTA files.",
+                "pattern": "*.{fasta,fasta.gz,mmi,sti,fna,fna.gz,fa,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "bam_input": {
+              "type": "boolean",
+              "description": "True if input is bam files"
+            }
+          },
+          {
+            "interleaved": {
+              "type": "boolean",
+              "description": "True if input is interleaved fastq file"
+            }
+          },
+          {
+            "ref_mode": {
+              "type": "string",
+              "description": "How to interpret the `reference` input:\n  - `\"dir\"`: Treat as a directory containing one or more FASTA files.\n  - `\"file\"`: Treat as a single FASTA file.\n  - `\"auto\"`: Automatically detect based on whether the `reference` path is a directory or file.\nDefaults to `\"auto\"` if not provided.\n",
+              "pattern": "^(dir|file|auto)$"
+            }
+          }
+        ],
+        "output": {
+          "coverage": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "pattern": "*.{tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vinisalazar"
+        ],
+        "maintainers": [
+          "@vinisalazar"
+        ]
+      }
+    },
+    {
       "name": "cowpy",
       "path": "modules/nf-core/cowpy/meta.yml",
       "type": "module",
@@ -55909,6 +56047,193 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/data_1049"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "drep_dereplicate",
+      "path": "modules/nf-core/drep/dereplicate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "drep_dereplicate",
+        "description": "Dereplicates a genome  set by identifying highly similar genomes and choose the best representative genome",
+        "keywords": [
+          "drep",
+          "genome",
+          "fasta",
+          "compare",
+          "comparison",
+          "visualisation",
+          "metagenomics",
+          "assembly",
+          "microbial genomics",
+          "dereplication"
+        ],
+        "tools": [
+          {
+            "drep": {
+              "description": "De-replication of microbial genomes assembled from multiple samples",
+              "homepage": "https://drep.readthedocs.io/en/latest/",
+              "documentation": "https://drep.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/MrOlm/drep",
+              "doi": "10.1038/ismej.2017.126",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:drep"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fastas": {
+                "type": "file",
+                "description": "List of FASTA files to dereplicate",
+                "pattern": "*.{fasta,fa,fna,fas}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "drep_work": {
+                "type": "directory",
+                "description": "Optional existing dRep working directory containing pre-computed clustering results (e.g. output from dRep compare)",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastas": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "dereplicated_genomes/*": {
+                  "type": "file",
+                  "description": "Representative genomes for each cluster of similar genomes",
+                  "pattern": "*.{fasta,fa,fna,fas}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "summary_tables": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "data_tables/*.csv": {
+                  "type": "file",
+                  "description": "Summary tables containing information about the dereplication process including cluster membership of each genome",
+                  "pattern": "*.{csv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "figures": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "figures/*pdf": {
+                  "type": "file",
+                  "description": "Figures visualising the dereplication process, such as clustering results and representative genome selection",
+                  "pattern": "*.{pdf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "logger.log": {
+                  "type": "file",
+                  "description": "logging file containing information about the dereplication process",
+                  "pattern": "*.{log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
                     }
                   ]
                 }
@@ -81490,7 +81815,7 @@
                 }
               },
               {
-                "${prefix}.bam": {
+                "*.bam": {
                   "type": "file",
                   "description": "BAM file",
                   "pattern": "*.{bam}"
@@ -81507,7 +81832,7 @@
                 }
               },
               {
-                "${prefix}.cram": {
+                "*.cram": {
                   "type": "file",
                   "description": "CRAM file",
                   "pattern": "*.{cram}"
