@@ -14,66 +14,22 @@ The following diagram illustrates the complete GitHub Actions workflow for nf-te
 
 ```mermaid
 flowchart TD
-    A[GitHub Actions Trigger] --> B{Event Type}
+    A[GitHub Actions Trigger] --> B[Path Filter Check]
 
-    B --> |Push to dev| C[Development Push]
-    B --> |Pull Request| D[PR Validation]
-    B --> |Release| E[Release Testing]
+    B --> |Changes Detected| C[Calculate Test Shards]
+    B --> |No Changes| D[Skip Testing]
 
-    C --> F[Path Filter Check]
-    D --> F
-    E --> F
+    C --> E[Matrix Testing<br/>conda, docker, singularity]
 
-    F --> |Files Changed| G[get-shards Job]
-    F --> |No Changes| H[Skip Testing]
+    E --> F[Run Tests<br/>nf-test test --ci --shard]
 
-    G --> G1[Calculate Test Shards]
-    G1 --> G2[Determine Total Shards]
-    G2 --> I[nf-test Job Matrix]
+    F --> G{All Tests Pass?}
 
-    I --> I1[Profile Matrix]
-    I --> I2[Shard Matrix]
-    I --> I3[Version Matrix]
+    G --> |Yes| H[✅ CI Success]
+    G --> |No| I[❌ CI Failure]
 
-    I1 --> J[conda profile]
-    I1 --> K[docker profile]
-    I1 --> L[singularity profile]
-
-    J --> M[Test Execution]
-    K --> M
-    L --> M
-
-    M --> M1[Setup Environment]
-    M --> M2[Install Dependencies]
-    M --> M3[Run nf-test]
-
-    M3 --> M4[nf-test test --ci]
-    M4 --> M5[--shard option]
-    M5 --> M6[--changed-since HEAD]
-    M6 --> M7[--profile option]
-
-    M7 --> N[Test Results]
-
-    N --> N1[TAP Output]
-    N --> N2[Test Summary]
-    N --> N3[Artifact Upload]
-
-    N1 --> O[confirm-pass Job]
-    N2 --> O
-    N3 --> O
-
-    O --> P{All Tests Pass?}
-
-    P --> |Yes| Q[✅ CI Success]
-    P --> |No| R[❌ CI Failure]
-
-    R --> S[Debug Information]
-    S --> S1[Test Logs]
-    S --> S2[Failed Assertions]
-    S --> S3[Environment Details]
-
-    Q --> T[Merge Ready]
-    R --> U[Fix Required]
+    I --> J[Debug & Fix]
+    H --> K[Ready to Merge]
 ```
 
 ## Main nf-test Workflow
@@ -227,7 +183,7 @@ methylseq uses Renovate for automated version updates:
 # renovate: datasource=github-releases depName=askimed/nf-test versioning=semver
 NFT_VER: "0.9.2"
 # renovate: datasource=github-releases depName=nextflow-io/nextflow versioning=semver
-NXF_VER: "24.10.2"
+NXF_VER: "24.10.5"
 ```
 
 ## Recommended CI/CD Patterns

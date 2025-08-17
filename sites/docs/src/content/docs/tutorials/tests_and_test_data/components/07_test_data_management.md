@@ -8,67 +8,6 @@ weight: 70
 
 Understanding how test data flows through the nf-core ecosystem is crucial for effective testing. The following diagram illustrates the complete test data management strategy:
 
-```mermaid
-flowchart TD
-    A[nf-core Test Data Strategy] --> B[Centralized Repositories]
-
-    B --> B1[nf-core/test-datasets]
-    B1 --> B2[modules branch<br/>Module test data]
-    B1 --> B3[pipeline branches<br/>Pipeline-specific data]
-
-    B2 --> C[Module Test Data Access]
-    B3 --> D[Pipeline Test Data Access]
-
-    C --> C1[modules_testdata_base_path]
-    C1 --> C2[genomics/sarscov2/illumina/fastq]
-    C1 --> C3[genomics/homo_sapiens/genome]
-    C1 --> C4[proteomics/database]
-
-    D --> D1[pipelines_testdata_base_path]
-    D1 --> D2[Pipeline-specific datasets]
-    D2 --> D3[Sample sheets]
-    D2 --> D4[Configuration files]
-    D2 --> D5[Reference data]
-
-    A --> E[Test Data Discovery]
-    E --> E1[nf-core test-datasets command]
-    E1 --> E2[list branches]
-    E1 --> E3[search datasets]
-    E1 --> E4[generate URLs]
-    E1 --> E5[generate nf-paths]
-
-    E2 --> F[Integration Methods]
-    E3 --> F
-    E4 --> F
-    E5 --> F
-
-    F --> F1[Direct URL References]
-    F --> F2[Parameter-based Paths]
-    F --> F3[Local Asset Files]
-
-    F1 --> G[Implementation in Tests]
-    F2 --> G
-    F3 --> G
-
-    G --> G1[checkIfExists: true]
-    G --> G2[file function usage]
-    G --> G3[Channel creation]
-
-    G1 --> H[Best Practices]
-    G2 --> H
-    G3 --> H
-
-    H --> H1[Use consistent base paths]
-    H --> H2[Verify file existence]
-    H --> H3[Organize by data type]
-    H --> H4[Document data requirements]
-
-    H1 --> I[Efficient Testing]
-    H2 --> I
-    H3 --> I
-    H4 --> I
-```
-
 ### nf-core Test Data Repository
 
 nf-core maintains centralized test datasets:
