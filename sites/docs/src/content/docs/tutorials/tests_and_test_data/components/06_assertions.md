@@ -512,4 +512,4 @@ with(process.out.imputed_plink2) {
 
 ## Next Steps
 
-Continue to [Test Data Management](./08_test_data_management.md) to learn about organizing and managing test datasets.
+Continue to [Test Data Management](./07_test_data_management.md) to learn about organizing and managing test datasets.
