@@ -8,27 +8,6 @@ weight: 40
 
 nf-test allows you to test specific workflows defined in a workflow file. Subworkflows combine multiple modules and require comprehensive testing strategies to ensure proper integration:
 
-```mermaid
-flowchart TD
-    A[Subworkflow Testing] --> B{Dependencies?}
-
-    B --> |Yes| C[Setup Block<br/>Run dependency processes]
-    B --> |No| D[Direct Testing]
-
-    C --> E[Test Execution]
-    D --> E
-
-    E --> F[Multi-Module Validation]
-    F --> G[Assertions<br/>• All modules succeed<br/>• Output channels<br/>• Content verification]
-
-    G --> H[Run Test<br/>nf-core subworkflows test]
-
-    H --> I{Results}
-    I --> |Pass| J[✅ Ready]
-    I --> |Fail| K[Debug & Fix]
-    K --> E
-```
-
 The basic syntax for a workflow test follows this structure:
 
 ```groovy

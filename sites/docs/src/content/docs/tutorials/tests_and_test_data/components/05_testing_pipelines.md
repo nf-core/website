@@ -13,26 +13,6 @@ As of nf-core/tools 3.3, pipeline-level nf-test tests have been added to the pip
 
 The following diagram illustrates the comprehensive pipeline testing approach using nft-utils and various assertion strategies:
 
-```mermaid
-flowchart TD
-    A[Pipeline Testing] --> B[Setup Test Data & Config]
-
-    B --> C[Run Pipeline Test<br/>nf-test test]
-
-    C --> D[Capture Outputs]
-
-    D --> E[Stable Files<br/>Snapshot content]
-    D --> F[Unstable Files<br/>Snapshot names only<br/>using .nftignore]
-
-    E --> G[Validate Results]
-    F --> G
-
-    G --> H{All Tests Pass?}
-    H --> |Yes| I[✅ Pipeline Ready]
-    H --> |No| J[Debug & Fix]
-    J --> C
-```
-
 ## Template Files
 
 When you create a new nf-core pipeline or update an existing one, you'll find these new template files for pipeline testing:
@@ -281,21 +261,21 @@ The pattern below creates **content-aware snapshots** that validate not just fil
 
 !!! info "don't forget to update the `nf-test.config`"
 
-````groovy
-      config {
-               plugins {
-                   load "nft-bam@0.5.0"
-                   load "nft-utils@0.0.4"
-                   load "nft-csv@0.1.0"
-                   load "nft-vcf@1.0.7"
-               }
-         }
- ```
+```groovy
+config {
+    plugins {
+        load "nft-bam@0.5.0"
+        load "nft-utils@0.0.4"
+        load "nft-csv@0.1.0"
+        load "nft-vcf@1.0.7"
+    }
+}
+```
 
-When wanting the validate the output samplesheets, we can use `nft-csv` where we isolate the index columns like `["sample"]` or `["index"]`. To check if we consistenly return the  same number of output samples as that we provided in the input.
+When wanting to validate the output samplesheets, we can use `nft-csv` where we isolate the index columns like `["sample"]` or `["index"]`. To check if we consistently return the same number of output samples as that we provided in the input.
 
- ```groovy
- then {
+```groovy
+then {
          def stable_name = getAllFilesFromDir(params.outdir, relative: true, includeDir: true, ignore: ['pipeline_info/*.{html,json,txt}'])
          def stable_path = getAllFilesFromDir(params.outdir, ignoreFile: 'tests/.nftignore')
          def output_samples_csv = path(params.outdir + '/overview-tables/samples_overview.tsv').csv(sep:"\t")
@@ -318,8 +298,9 @@ When wanting the validate the output samplesheets, we can use `nft-csv` where we
                  output_contigs_csv.columnNames,
                  output_contigs_csv.columns["index"].sort(),
              ).match("output samplesheets")}
-         )
-     }
+        )
+    }
+```
 
 ### Best Practices for nft-utils
 
@@ -339,6 +320,138 @@ When wanting the validate the output samplesheets, we can use `nft-csv` where we
 3. **Review relative vs absolute paths** - use `relative: true` for portable tests
 4. **Update ignore patterns** - add new unstable files discovered during testing
 
+## Parameter-Driven Testing Pattern
+
+For pipelines with multiple parameter configurations, you can use a **data-driven testing approach** to systematically test different parameter combinations within a single test file. This pattern is particularly useful for:
+
+- Testing different aligner options
+- Validating pipeline behavior with various skip parameters
+- Ensuring compatibility across different input configurations
+- Comprehensive parameter validation testing
+
+### Example: Multi-Parameter Testing Pattern
+
+```groovy
+nextflow_pipeline {
+    name "Test Workflow main.nf - Multiple Parameter Scenarios"
+    script "../main.nf"
+    config "./nextflow.config"
+    tag "parameters"
+
+    // Define test scenarios with different parameter combinations
+    def testScenarios = [
+        [
+            name: "default_params",
+            description: "Default parameters",
+            params: [:]
+        ],
+        [
+            name: "aligner_bwamem2",
+            description: "BWA-mem2 aligner",
+            params: [
+                aligner: "bwa-mem2"
+            ]
+        ],
+        [
+            name: "skip_trimming",
+            description: "Skip trimming step",
+            params: [
+                skip_trimming: true
+            ]
+        ],
+        [
+            name: "custom_input_with_options",
+            description: "Custom input with multiple options",
+            params: [
+                input: "assets/samplesheet_custom.csv",
+                aligner: "bwa-mem2",
+                skip_deduplication: true,
+                save_reference: true
+            ]
+        ]
+    ]
+
+    // Common assertion function for consistency across tests
+    def getStandardAssertionData = { outputDir ->
+        def stable_name = getAllFilesFromDir(
+            outputDir,
+            relative: true,
+            includeDir: true,
+            ignore: ['pipeline_info/*.{html,json,txt}']
+        )
+        def stable_path = getAllFilesFromDir(
+            outputDir,
+            ignoreFile: 'tests/.nftignore'
+        )
+        def bam_files = getAllFilesFromDir(outputDir, include: ['**/*.bam'])
+
+        return [
+            removeNextflowVersion("${outputDir}/pipeline_info/nf_core_*_software_mqc_versions.yml"),
+            stable_name,
+            stable_path,
+            bam_files.collect{ file ->
+                [file.getName(), bam(file.toString()).getReadsMD5()]
+            }
+        ]
+    }
+
+    // Generate tests dynamically for each scenario
+    testScenarios.each { scenario ->
+        test(scenario.description) {
+            when {
+                params {
+                    outdir = "${outputDir}"
+                    // Apply scenario-specific parameters
+                    scenario.params.each { key, value ->
+                        if (key == 'input') {
+                            // Handle special case for input files with relative paths
+                            input = "${baseDir}/${value}"
+                        } else {
+                            delegate."$key" = value
+                        }
+                    }
+                }
+            }
+
+            then {
+                assertAll(
+                    { assert workflow.success },
+                    { assert snapshot(
+                        workflow.trace.succeeded().size(),
+                        *getStandardAssertionData(params.outdir)
+                    ).match(scenario.name) } // Use scenario name for snapshot tagging
+                )
+            }
+        }
+    }
+}
+```
+
+### Benefits of Parameter-Driven Testing
+
+1. **Maintainability**: Single location for test logic updates
+2. **Consistency**: All tests use the same assertion patterns
+3. **Scalability**: Easy to add new parameter combinations
+4. **Organization**: Related parameter tests grouped together
+5. **Efficiency**: Shared helper functions reduce code duplication
+
+### Best Practices for Parameter Testing
+
+1. **Use descriptive names**: Each scenario should have a clear, descriptive name
+2. **Group related parameters**: Test logically related parameter combinations together
+3. **Handle special cases**: Use conditional logic for parameters requiring special handling (e.g., file paths)
+4. **Tag snapshots**: Use scenario names or descriptions for snapshot tagging to distinguish between test cases
+5. **Common assertions**: Extract common assertion logic into reusable functions
+6. **Document parameter effects**: Include descriptions explaining what each scenario tests
+
+### When to Use This Pattern
+
+- **Multiple parameter combinations**: When you need to test various parameter sets
+- **Regression testing**: Ensuring parameter changes don't break existing functionality
+- **Feature validation**: Testing new parameters or parameter interactions
+- **Comprehensive coverage**: Validating pipeline behavior across different configurations
+
+This pattern scales well and can handle complex parameter matrices while maintaining clean, readable test code.
 
 ## Testing expected file contents
 
@@ -349,14 +462,14 @@ This can also be particularly helpful where a pipeline is running a filtering st
 #### Considerations for file contents checking
 
 - `nf-test` plugins are very useful here - there are a plethora of plugins for processing specific file types which can be used to make assertions about file contents
- - For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
+- For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
 
 #### Example patterns for checking expected file contents
 
 - Check that the number of samples in the input samplesheet matches the number of samples in the output summary
 - If it is known a-priori which samples are expected to pass QC, check that expected failing samples are not in the final summary files
 - If a pipeline produces some countable number of outputs from each individual sample (for example, FASTA files), count these and ensure that they are all represented in downstream results files
+
 ## Next Steps
 
-Continue to [nf-test Assertions](./07_assertions.md) to learn about comprehensive assertion patterns and verification techniques.
-````
+Continue to [nf-test Assertions](./06_assertions.md) to learn about comprehensive assertion patterns and verification techniques.

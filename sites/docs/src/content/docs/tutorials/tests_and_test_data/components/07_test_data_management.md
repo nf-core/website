@@ -66,4 +66,4 @@ The `list` and `search` commands support these options:
 
 ## Next Steps
 
-Continue to [CI/CD Integration](./09_cicd_integration.md) to learn about integrating tests with continuous integration.
+Continue to [CI/CD Integration](./08_cicd_integration.md) to learn about integrating tests with continuous integration.

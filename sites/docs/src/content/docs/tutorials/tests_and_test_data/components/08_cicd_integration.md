@@ -12,26 +12,6 @@ This section provides production-ready examples of CI/CD integration with nf-tes
 
 The following diagram illustrates the complete GitHub Actions workflow for nf-test integration:
 
-```mermaid
-flowchart TD
-    A[GitHub Actions Trigger] --> B[Path Filter Check]
-
-    B --> |Changes Detected| C[Calculate Test Shards]
-    B --> |No Changes| D[Skip Testing]
-
-    C --> E[Matrix Testing<br/>conda, docker, singularity]
-
-    E --> F[Run Tests<br/>nf-test test --ci --shard]
-
-    F --> G{All Tests Pass?}
-
-    G --> |Yes| H[✅ CI Success]
-    G --> |No| I[❌ CI Failure]
-
-    I --> J[Debug & Fix]
-    H --> K[Ready to Merge]
-```
-
 ## Main nf-test Workflow
 
 ### Complete GitHub Actions Workflow
@@ -130,7 +110,7 @@ strategy:
     profile: [conda, docker, singularity]
     shard: ${{ fromJson(needs.get-shards.outputs.shard) }}
     NXF_VER:
-      - "24.10.2"
+      - "24.10.5"
     filters: [pipeline]
 ```
 
@@ -172,7 +152,7 @@ env:
   NXF_ANSI_LOG: false # Disable ANSI logs for CI
   NXF_SINGULARITY_CACHEDIR: ${{ github.workspace }}/.singularity
   NXF_SINGULARITY_LIBRARYDIR: ${{ github.workspace }}/.singularity
-  NXF_VER: "24.10.2" # Nextflow version
+  NXF_VER: "24.10.5" # Nextflow version
 ```
 
 ### Version Management
@@ -220,4 +200,4 @@ NXF_VER: "24.10.5"
 
 ## Next Steps
 
-Continue to [FAQ & Debugging](./10_faq_debugging.md) to learn comprehensive testing strategies, troubleshooting, and best practices.
+Continue to [nf-test Commands & Integration](./09_commands_integration.md) to learn about command-line usage and integration patterns.

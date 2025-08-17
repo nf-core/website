@@ -8,24 +8,6 @@ weight: 20
 
 Understanding how nf-test integrates with your nf-core pipeline repository is crucial for effective testing. The following diagram shows the key components and their relationships:
 
-```mermaid
-graph TD
-    A[nf-core Pipeline Repository] --> B[Configuration Files]
-    A --> C[Test Files]
-    A --> D[Test Data]
-
-    B --> B1[nf-test.config<br/>Global settings]
-    B --> B2[tests/nextflow.config<br/>Test parameters]
-    B --> B3[tests/.nftignore<br/>Exclude unstable files]
-
-    C --> C1[tests/default.nf.test<br/>Pipeline tests]
-    C --> C2[modules/tests/<br/>Module tests]
-    C --> C3[subworkflows/tests/<br/>Subworkflow tests]
-
-    D --> D1[Remote test data<br/>modules_testdata_base_path]
-    D --> D2[Pipeline test data<br/>pipelines_testdata_base_path]
-```
-
 ## Example nf-core Repository Structure
 
 Here is an example of an nf-core pipeline project with nf-test:
@@ -237,4 +219,4 @@ nf-test generate workflow path/to/main.nf
 
 ## Next Steps
 
-With your project properly configured, proceed to [Testing Modules](./04_testing_modules.md) to start writing comprehensive module tests.
+With your project properly configured, proceed to [Testing Modules](./03_testing_modules.md) to start writing comprehensive module tests.

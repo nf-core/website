@@ -8,28 +8,6 @@ weight: 30
 
 nf-test allows you to test each process defined in a module file. The following diagram illustrates the complete module testing workflow:
 
-```mermaid
-flowchart TD
-    A[Module Testing] --> B{Module Type}
-
-    B --> C[New Module<br/>nf-core modules create]
-    B --> D[Existing Module<br/>Use existing tests]
-    B --> E[Chained Module<br/>Needs setup block]
-
-    C --> F[Configure Test]
-    D --> F
-    E --> F
-
-    F --> G[Test Structure]
-    G --> H[Define inputs & assertions]
-    H --> I[Run Test<br/>nf-core modules test]
-
-    I --> J{Results}
-    J --> |Pass| K[✅ Ready]
-    J --> |Fail| L[Debug & Fix]
-    L --> I
-```
-
 The basic syntax for a process test follows this structure:
 
 ```groovy
