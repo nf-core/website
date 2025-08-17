@@ -10,56 +10,24 @@ nf-test allows you to test each process defined in a module file. The following 
 
 ```mermaid
 flowchart TD
-    A[Module Testing Process] --> B{Module Type?}
+    A[Module Testing] --> B{Module Type}
 
-    B --> C[New Module]
-    B --> D[Existing Module]
-    B --> E[Chained Module]
+    B --> C[New Module<br/>nf-core modules create]
+    B --> D[Existing Module<br/>Use existing tests]
+    B --> E[Chained Module<br/>Needs setup block]
 
-    C --> C1["nf-core modules create"]
-    C1 --> C2[Auto-generated test template]
-    C2 --> F[Configure Test Data]
-
-    D --> D1[Examine existing tests]
-    D1 --> D2[Update test data if needed]
-    D2 --> F
-
-    E --> E1[Setup dependency modules]
-    E1 --> E2[Use setup block]
-    E2 --> F
+    C --> F[Configure Test]
+    D --> F
+    E --> F
 
     F --> G[Test Structure]
-    G --> G1[Process Definition]
-    G --> G2[Input Channels]
-    G --> G3[Test Execution]
-    G --> G4[Assertions]
+    G --> H[Define inputs & assertions]
+    H --> I[Run Test<br/>nf-core modules test]
 
-    G4 --> H[Assertion Strategy]
-    H --> H1[Snapshot All Outputs]
-    H --> H2[File Existence Check]
-    H --> H3[Content Verification]
-    H --> H4[Selective Snapshots]
-
-    H1 --> I["assert snapshot(process.out).match()"]
-    H2 --> I
-    H3 --> I
-    H4 --> I
-
-    I --> J[Run Tests]
-    J --> J1["nf-core modules test MODULE"]
-    J --> J2["--profile docker"]
-    J --> J3["--update if needed"]
-
-    J1 --> K{Test Results}
-    J2 --> K
-    J3 --> K
-
-    K --> |Pass| L[✅ Module Ready]
-    K --> |Fail| M[Debug & Fix]
-    M --> N[Check snapshots]
-    N --> O[Verify test data]
-    O --> P[Review assertions]
-    P --> J
+    I --> J{Results}
+    J --> |Pass| K[✅ Ready]
+    J --> |Fail| L[Debug & Fix]
+    L --> I
 ```
 
 The basic syntax for a process test follows this structure:

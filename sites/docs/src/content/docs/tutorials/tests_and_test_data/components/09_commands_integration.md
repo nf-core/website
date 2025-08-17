@@ -16,64 +16,6 @@ Before running these commands, ensure you have:
 
 There are **two main contexts** for running nf-test commands in the nf-core ecosystem. The following diagram helps you choose the right commands for your situation:
 
-```mermaid
-flowchart TD
-    A[nf-test Usage Context] --> B{Repository Type}
-
-    B --> C[nf-core/modules Repository]
-    B --> D[Individual Pipeline Repository]
-
-    C --> C1[Module Testing]
-    C --> C2[Subworkflow Testing]
-
-    C1 --> E[nf-core modules commands]
-    C2 --> F[nf-core subworkflows commands]
-
-    E --> E1[nf-core modules test MODULE]
-    E --> E2[--profile docker]
-    E --> E3[--update flag]
-    E --> E4[--verbose flag]
-
-    F --> F1[nf-core subworkflows test SUBWORKFLOW]
-    F --> F2[--profile docker]
-    F --> F3[--update flag]
-
-    D --> D1[Pipeline Testing]
-    D --> D2[Module/Subworkflow Testing]
-
-    D1 --> G[Direct nf-test commands]
-    D2 --> G
-
-    G --> G1[nf-test list]
-    G --> G2[nf-test test]
-    G --> G3[nf-test test --profile test,docker]
-    G --> G4[nf-test test --update-snapshot]
-    G --> G5[nf-test test --tag pipeline]
-
-    E1 --> H[Enhanced nf-core Features]
-    F1 --> H
-
-    H --> H1[Automatic double-run]
-    H --> H2[Stability checking]
-    H --> H3[Snapshot management]
-
-    G1 --> I[Standard nf-test Features]
-    G2 --> I
-    G3 --> I
-    G4 --> I
-    G5 --> I
-
-    I --> I1[Basic test execution]
-    I --> I2[Manual snapshot updates]
-    I --> I3[Tag-based filtering]
-
-    H --> J[Use Case: Contributing to nf-core modules]
-    I --> K[Use Case: Pipeline development]
-
-    J --> L[Choose nf-core commands]
-    K --> M[Choose direct nf-test commands]
-```
-
 ### 1. nf-core/modules Repository Context
 
 When working in the **nf-core/modules repository**, use `nf-core` tools commands if you are:

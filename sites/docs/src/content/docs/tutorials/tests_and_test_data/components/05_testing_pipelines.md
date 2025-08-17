@@ -15,66 +15,22 @@ The following diagram illustrates the comprehensive pipeline testing approach us
 
 ```mermaid
 flowchart TD
-    A[Pipeline Testing] --> B[nft-utils Integration]
+    A[Pipeline Testing] --> B[Setup Test Data & Config]
 
-    B --> C[File Classification Strategy]
+    B --> C[Run Pipeline Test<br/>nf-test test]
 
-    C --> C1[Stable Files<br/>Consistent content + names]
-    C --> C2[Stable Names<br/>Consistent names only]
+    C --> D[Capture Outputs]
 
-    C1 --> D[getAllFilesFromDir<br/>default behavior]
-    C2 --> E[getAllFilesFromDir<br/>with nftignore file]
+    D --> E[Stable Files<br/>Snapshot content]
+    D --> F[Unstable Files<br/>Snapshot names only<br/>using .nftignore]
 
-    D --> F[Content Snapshots]
-    E --> G[Name-only Snapshots]
+    E --> G[Validate Results]
+    F --> G
 
-    F --> H[Pipeline Validation]
-    G --> H
-
-    H --> H1[Task Success Count]
-    H --> H2[Version Files]
-    H --> H3[Output Structure]
-    H --> H4[File Contents]
-
-    H1 --> I[Comprehensive Assertions]
-    H2 --> I
-    H3 --> I
-    H4 --> I
-
-    I --> I1[workflow trace succeeded size]
-    I --> I2[removeNextflowVersion function]
-    I --> I3[stable name snapshots]
-    I --> I4[stable path snapshots]
-
-    I1 --> J[Plugin-Specific Validation]
-    I2 --> J
-    I3 --> J
-    I4 --> J
-
-    J --> J1[nft-bam<br/>BAM file MD5]
-    J --> J2[nft-vcf<br/>VCF validation]
-    J --> J3[nft-csv<br/>Table verification]
-    J --> J4[nft-fastq<br/>FASTQ checks]
-
-    J1 --> K[Test Execution]
-    J2 --> K
-    J3 --> K
-    J4 --> K
-
-    K --> K1[nf-test with profiles]
-    K --> K2[CI/CD Integration]
-    K --> K3[Multi-profile Testing]
-
-    K1 --> L{Results}
-    K2 --> L
-    K3 --> L
-
-    L --> |Pass| M[✅ Pipeline Validated]
-    L --> |Fail| N[Debug Pipeline Issues]
-    N --> O[Check nftignore patterns]
-    O --> P[Verify output structure]
-    P --> Q[Review plugin usage]
-    Q --> K
+    G --> H{All Tests Pass?}
+    H --> |Yes| I[✅ Pipeline Ready]
+    H --> |No| J[Debug & Fix]
+    J --> C
 ```
 
 ## Template Files

@@ -11,34 +11,19 @@ Understanding how nf-test integrates with your nf-core pipeline repository is cr
 ```mermaid
 graph TD
     A[nf-core Pipeline Repository] --> B[Configuration Files]
-    A --> C[Test Directory Structure]
-    A --> D[Test Data Integration]
+    A --> C[Test Files]
+    A --> D[Test Data]
 
-    B --> B1[nf-test.config]
-    B --> B2[tests/nextflow.config]
-    B --> B3[tests/.nftignore]
+    B --> B1[nf-test.config<br/>Global settings]
+    B --> B2[tests/nextflow.config<br/>Test parameters]
+    B --> B3[tests/.nftignore<br/>Exclude unstable files]
 
-    C --> C1[tests/default.nf.test]
-    C --> C2[modules/tests/main.nf.test]
-    C --> C3[subworkflows/tests/main.nf.test]
+    C --> C1[tests/default.nf.test<br/>Pipeline tests]
+    C --> C2[modules/tests/<br/>Module tests]
+    C --> C3[subworkflows/tests/<br/>Subworkflow tests]
 
-    D --> D1[modules_testdata_base_path]
-    D --> D2[pipelines_testdata_base_path]
-    D --> D3[Local test assets]
-
-    B1 --> E[Global nf-test Settings]
-    E --> E1[Plugins Configuration]
-    E --> E2[Work Directory]
-    E --> E3[Test Triggers]
-
-    B2 --> F[Test Execution Settings]
-    F --> F1[Resource Limits]
-    F --> F2[Test Parameters]
-    F --> F3[AWS Anonymous Access]
-
-    B3 --> G[Snapshot Filtering]
-    G --> G1[Exclude Unstable Files]
-    G --> G2[Include File Names Only]
+    D --> D1[Remote test data<br/>modules_testdata_base_path]
+    D --> D2[Pipeline test data<br/>pipelines_testdata_base_path]
 ```
 
 ## Example nf-core Repository Structure
