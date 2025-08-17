@@ -56,7 +56,6 @@ Process tests commonly use these assertions:
 ```groovy
 // Process status
 assert process.success
-assert process.failed
 assert process.exitStatus == 0
 
 // Output channels
@@ -73,7 +72,7 @@ assert process.out[0].size() == 3
 
 Following the [nf-core testing guidance](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core module should include comprehensive tests that:
 
-- Each component contains a `tests/` folder beside the `main.nf` of the component itself
+- Each module should contain a `tests/` folder alongside its `main.nf` file.
 - Test files come with snapshots of component output channels
 - Tests verify both functionality and expected outputs
 - Support both regular and stub testing modes
@@ -339,4 +338,4 @@ Read more nf-test assertion patterns in the [nf-test assertions examples doc](07
 
 ## Next Steps
 
-Continue to [Testing Subworkflows](./05_testing_subworkflows.md) to learn about testing more complex multi-module components.
+Continue to [Testing Subworkflows](./04_testing_subworkflows.md) to learn about testing more complex multi-module components.

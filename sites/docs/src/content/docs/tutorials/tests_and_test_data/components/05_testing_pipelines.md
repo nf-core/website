@@ -66,7 +66,6 @@ The workflow object can be used in asserts to check its status, error messages o
 ```groovy
 // workflow status
 assert workflow.success
-assert workflow.failed
 assert workflow.exitStatus == 0
 
 // workflow error message
@@ -143,7 +142,7 @@ Add to your `nf-test.config`:
 ```groovy
 config {
     plugins {
-        load "nft-utils@0.0.4"
+        load "nft-utils@0.0.4" // Check https://plugins.nf-test.com/ for the latest version
     }
 }
 ```
@@ -173,7 +172,7 @@ nextflow_pipeline {
                 params.outdir,
                 relative: true,
                 includeDir: true,
-                ignore: ['pipeline_info/*.{html,json,txt}', 'pipeline_info/execution_*.{html,txt}']
+                ignore: ['pipeline_info/*.{html,json,txt}', 'pipeline_info/execution_*.{html,txt}'] // Use 'ignore' parameter for ad-hoc exclusions, or .nftignore for persistent exclusions
             )
 
             // stable_path: All files in ${params.outdir}/ with stable content
@@ -349,7 +348,7 @@ This can also be particularly helpful where a pipeline is running a filtering st
 
 #### Considerations for file contents checking
 
-- `nf-test` plugins are your friends here - there are a plethora of plugins for processing specific file types which can be used to make assertions about file contents
+- `nf-test` plugins are very useful here - there are a plethora of plugins for processing specific file types which can be used to make assertions about file contents
  - For flat summary files, `nft-csv` is very powerful and can be used to make powerful assertions about file contents
 
 #### Example patterns for checking expected file contents
