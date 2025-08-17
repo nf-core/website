@@ -14,20 +14,23 @@ This comprehensive guide covers testing nf-core components using nf-test. From w
 ### Getting Started
 
 - **[1. Installation](./components/01_installation.md)** - Setting up nf-test in your development environment
-- **[2. nf-test Commands & Integration](./components/02_commands_integration.md)** - Essential commands and nf-core integration
-- **[3. Project Setup](./components/03_project_setup.md)** - Configuring your nf-core pipeline repository for testing with nf-test
+- **[2. Project Setup](./components/03_project_setup.md)** - Configuring your nf-core pipeline repository for testing with nf-test
 
 ### Component Testing
 
-- **[4. Testing Modules](./components/04_testing_modules.md)** - Testing individual nf-core modules
-- **[5. Testing Subworkflows](./components/05_testing_subworkflows.md)** - Testing nf-core subworkflows
-- **[6. Testing Pipelines](./components/06_testing_pipelines.md)** - End-to-end pipeline testing
-- **[7. nf-test Assertions](./components/07_assertions.md)** - Comprehensive assertion patterns and verification techniques
+- **[3. Testing Modules](./components/04_testing_modules.md)** - Testing individual nf-core modules
+- **[4. Testing Subworkflows](./components/05_testing_subworkflows.md)** - Testing nf-core subworkflows
+- **[5. Testing Pipelines](./components/06_testing_pipelines.md)** - End-to-end pipeline testing
+- **[6. nf-test Assertions](./components/07_assertions.md)** - Comprehensive assertion patterns and verification techniques
 
 ### Data Management & Integration
 
-- **[8. Test Data Management](./components/08_test_data_management.md)** - Organizing and managing test datasets
-- **[9. CI/CD Integration](./components/09_cicd_integration.md)** - Integrating nf-test with continuous integration
+- **[7. Test Data Management](./components/08_test_data_management.md)** - Organizing and managing test datasets
+- **[8. CI/CD Integration](./components/09_cicd_integration.md)** - Integrating nf-test with continuous integration
+
+### Commands & Reference
+
+- **[9. nf-test Commands & Integration](./components/02_commands_integration.md)** - Essential commands and nf-core integration
 
 ### Troubleshooting & Best Practices
 

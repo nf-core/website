@@ -1,13 +1,81 @@
 ---
-title: "6. Testing Pipelines"
+title: "5. Testing Pipelines"
 subtitle: End-to-end pipeline testing
-weight: 60
+weight: 50
 ---
 
 # Pipeline Testing
 
 Pipeline-level testing ensures that your entire nf-core pipeline works correctly from start to finish.
 As of nf-core/tools 3.3, pipeline-level nf-test tests have been added to the pipeline template to improve robustness and help developers catch issues early in the development process.
+
+## Pipeline Testing Strategy
+
+The following diagram illustrates the comprehensive pipeline testing approach using nft-utils and various assertion strategies:
+
+```mermaid
+flowchart TD
+    A[Pipeline Testing] --> B[nft-utils Integration]
+
+    B --> C[File Classification Strategy]
+
+    C --> C1[Stable Files<br/>Consistent content + names]
+    C --> C2[Stable Names<br/>Consistent names only]
+
+    C1 --> D[getAllFilesFromDir<br/>default behavior]
+    C2 --> E[getAllFilesFromDir<br/>with nftignore file]
+
+    D --> F[Content Snapshots]
+    E --> G[Name-only Snapshots]
+
+    F --> H[Pipeline Validation]
+    G --> H
+
+    H --> H1[Task Success Count]
+    H --> H2[Version Files]
+    H --> H3[Output Structure]
+    H --> H4[File Contents]
+
+    H1 --> I[Comprehensive Assertions]
+    H2 --> I
+    H3 --> I
+    H4 --> I
+
+    I --> I1[workflow trace succeeded size]
+    I --> I2[removeNextflowVersion function]
+    I --> I3[stable name snapshots]
+    I --> I4[stable path snapshots]
+
+    I1 --> J[Plugin-Specific Validation]
+    I2 --> J
+    I3 --> J
+    I4 --> J
+
+    J --> J1[nft-bam<br/>BAM file MD5]
+    J --> J2[nft-vcf<br/>VCF validation]
+    J --> J3[nft-csv<br/>Table verification]
+    J --> J4[nft-fastq<br/>FASTQ checks]
+
+    J1 --> K[Test Execution]
+    J2 --> K
+    J3 --> K
+    J4 --> K
+
+    K --> K1[nf-test with profiles]
+    K --> K2[CI/CD Integration]
+    K --> K3[Multi-profile Testing]
+
+    K1 --> L{Results}
+    K2 --> L
+    K3 --> L
+
+    L --> |Pass| M[✅ Pipeline Validated]
+    L --> |Fail| N[Debug Pipeline Issues]
+    N --> O[Check nftignore patterns]
+    O --> P[Verify output structure]
+    P --> Q[Review plugin usage]
+    Q --> K
+```
 
 ## Template Files
 
@@ -58,6 +126,30 @@ assert workflow.trace.failed().size() == 0
 //returns a list containing all tasks
 assert workflow.trace.tasks().size() == 3
 ```
+
+---
+
+## Running a pipeline test
+
+To list all available tests, use the following command:
+
+```bash
+nf-test list tests/
+```
+
+This will list all available tests in the `tests/` directory.
+
+To run a pipeline test, use the following command:
+
+```bash
+nf-test test tests/default.nf.test --profile test,docker
+```
+
+This will run the test with the `test` profile and the `docker` profile.
+
+> add `--update-snapshot` to update the snapshot
+> add `--verbose` to see the verbose output
+> add `--debug` to see the debug output
 
 ---
 
@@ -189,6 +281,20 @@ enrichment_metrics/*
 
 [Sarek is doing it](https://github.com/nf-core/sarek/blob/dev/tests%2Fdefault.nf.test#L38-L47)
 
+This example demonstrates an **advanced pattern** for testing specific file types using dedicated nft plugins. Here's how the file channels were generated and what the pattern achieves:
+
+```groovy
+// Generate file channels for specific file types using getAllFilesFromDir with include patterns
+def bam_files = getAllFilesFromDir(params.outdir, include: ['**/*.bam'])
+def cram_files = getAllFilesFromDir(params.outdir, include: ['**/*.cram'])
+def vcf_files = getAllFilesFromDir(params.outdir, include: ['**/*.vcf.gz'])
+def fasta = getAllFilesFromDir(params.outdir, include: ['**/*.fa']).first()
+
+// Advanced pattern: Create file-specific snapshots with content validation
+```
+
+The pattern below creates **content-aware snapshots** that validate not just file presence, but also file integrity through format-specific checksums:
+
 ```groovy
                 { assert snapshot(
                     // Number of successful tasks
@@ -207,6 +313,14 @@ enrichment_metrics/*
                     vcf_files.isEmpty() ? 'No VCF files' : vcf_files.collect { file -> file.getName() + ":md5," + path(file.toString()).vcf.variantsMD5 }
                 ).match() }
 ```
+
+**What this pattern achieves:**
+
+- **BAM files**: Uses `nft-bam` plugin to generate `readsMD5` - validates the sequence data content, not just file presence
+- **CRAM files**: Uses `nft-bam` plugin with reference FASTA to generate `readsMD5` for compressed alignment data
+- **VCF files**: Uses `nft-vcf` plugin to generate `variantsMD5` - validates the actual variant calls, ignoring metadata differences
+- **Conditional logic**: `isEmpty() ? 'No files' : files.collect{}` handles cases where expected file types might not be present
+- **Filename + content**: Each snapshot includes both the filename and content hash, providing traceable validation
 
 ### More examples of combining nft-utils with other plugins.
 

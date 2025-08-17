@@ -1,12 +1,68 @@
 ---
-title: "4. Testing Modules"
+title: "3. Testing Modules"
 subtitle: Testing nf-core modules
-weight: 40
+weight: 30
 ---
 
 ## Process Testing with nf-test
 
-nf-test allows you to test each process defined in a module file. The basic syntax for a process test follows this structure:
+nf-test allows you to test each process defined in a module file. The following diagram illustrates the complete module testing workflow:
+
+```mermaid
+flowchart TD
+    A[Module Testing Process] --> B{Module Type?}
+
+    B --> C[New Module]
+    B --> D[Existing Module]
+    B --> E[Chained Module]
+
+    C --> C1["nf-core modules create"]
+    C1 --> C2[Auto-generated test template]
+    C2 --> F[Configure Test Data]
+
+    D --> D1[Examine existing tests]
+    D1 --> D2[Update test data if needed]
+    D2 --> F
+
+    E --> E1[Setup dependency modules]
+    E1 --> E2[Use setup block]
+    E2 --> F
+
+    F --> G[Test Structure]
+    G --> G1[Process Definition]
+    G --> G2[Input Channels]
+    G --> G3[Test Execution]
+    G --> G4[Assertions]
+
+    G4 --> H[Assertion Strategy]
+    H --> H1[Snapshot All Outputs]
+    H --> H2[File Existence Check]
+    H --> H3[Content Verification]
+    H --> H4[Selective Snapshots]
+
+    H1 --> I["assert snapshot(process.out).match()"]
+    H2 --> I
+    H3 --> I
+    H4 --> I
+
+    I --> J[Run Tests]
+    J --> J1["nf-core modules test MODULE"]
+    J --> J2["--profile docker"]
+    J --> J3["--update if needed"]
+
+    J1 --> K{Test Results}
+    J2 --> K
+    J3 --> K
+
+    K --> |Pass| L[✅ Module Ready]
+    K --> |Fail| M[Debug & Fix]
+    M --> N[Check snapshots]
+    N --> O[Verify test data]
+    O --> P[Review assertions]
+    P --> J
+```
+
+The basic syntax for a process test follows this structure:
 
 ```groovy
 nextflow_process {

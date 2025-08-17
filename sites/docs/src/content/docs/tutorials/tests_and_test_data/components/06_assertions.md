@@ -1,7 +1,7 @@
 ---
-title: "7. nf-test Assertions"
+title: "6. nf-test Assertions"
 subtitle: Comprehensive guide to nf-test assertions and verification patterns
-weight: 70
+weight: 60
 ---
 
 This component covers various assertion patterns and techniques for effective testing with nf-test. Mastering these patterns is essential for creating robust and maintainable tests for nf-core pipelines and components.
@@ -48,7 +48,126 @@ Use withName selectors to assign `ext.args` values to a specific process. Both d
 
 ### File Path Handling
 
-nf-test replaces paths in snapshots with a unique fingerprint (md5 sum by default) to ensure file content consistency.
+#### Understanding `file()` vs `path()` in nf-test
+
+nf-test provides two primary functions for working with file system objects:
+
+**`file()`**: Creates a File object that represents the file metadata and allows basic operations:
+
+- Use for checking file existence with `.exists()`
+- Access file properties like `.name`, `.length()`, `.isDirectory()`
+- Works with both absolute and relative paths
+- Returns `null` if the file doesn't exist
+
+**`path()`**: Creates a Path object with extended functionality for content operations:
+
+- Use for reading file content with `.readLines()`, `.text`, `.json`
+- Supports compressed files with `.linesGzip`
+- Essential for content-based assertions
+- Handles CSV parsing with `.csv()`
+- Required for snapshot operations on file content
+
+```groovy
+// Using file() for metadata checks
+assert file(process.out.output[0][1]).exists()
+assert file(process.out.output[0][1]).name == "expected_filename.txt"
+
+// Using path() for content operations
+assert path(process.out.output[0][1]).readLines().contains("expected_content")
+assert snapshot(path(process.out.output[0][1])).match("content_snapshot")
+```
+
+#### Snapshot Path Handling
+
+nf-test automatically replaces absolute file paths in snapshots with unique fingerprints (md5 sums by default) to ensure:
+
+- **Portability**: Tests work across different systems and directories
+- **Consistency**: File content changes are detected reliably
+- **Reproducibility**: Same file content produces same fingerprint
+
+When a snapshot contains file paths, you'll see entries like:
+
+```json
+{
+  "content": [
+    {
+      "0": ["meta", "file_abc123def456.txt"]
+    }
+  ]
+}
+```
+
+#### Handling Multiple Files in Output Channels
+
+When processes emit multiple files as lists, you need specific techniques to handle them effectively:
+
+**Pattern 1: Accessing Individual Files in a List**
+
+```groovy
+// For a channel that emits [meta, [file1, file2, file3]]
+assert file(process.out.output[0][1][0]).exists()  // First file
+assert file(process.out.output[0][1][1]).exists()  // Second file
+assert file(process.out.output[0][1][2]).exists()  // Third file
+```
+
+**Pattern 2: Iterating Through All Files**
+
+```groovy
+// Check all files exist
+process.out.output[0][1].each { file_path ->
+    assert file(file_path).exists()
+}
+```
+
+**Pattern 3: Filtering Files by Name**
+
+```groovy
+// Find specific file types
+def log_files = process.out.logs[0][1].findAll { file(it).name.endsWith(".log") }
+def txt_files = process.out.output[0][1].findAll { file(it).name.endsWith(".txt") }
+
+assert log_files.size() == 1
+assert txt_files.size() >= 2
+```
+
+**Pattern 4: Collecting File Properties**
+
+```groovy
+// Create snapshot of file names only (for unstable file contents)
+assert snapshot(
+    process.out.output[0][1].collect { file(it).name }.sort()
+).match("output_filenames")
+
+// Mix of file content and metadata
+assert snapshot(
+    process.out.stable_files[0][1],  // Content snapshot for stable files
+    process.out.logs[0][1].collect { file(it).name }.sort()  // Names only for logs
+).match()
+```
+
+**Pattern 5: Separating Stable and Unstable Files**
+
+```groovy
+// When you have mixed stable/unstable files in one output
+def stable_files = process.out.mixed[0][1].findAll {
+    !file(it).name.contains("timestamp") && !file(it).name.endsWith(".log")
+}
+def unstable_files = process.out.mixed[0][1].findAll {
+    file(it).name.contains("timestamp") || file(it).name.endsWith(".log")
+}
+
+assertAll(
+    { assert snapshot(stable_files).match("stable_content") },
+    { assert snapshot(unstable_files.collect { file(it).name }.sort()).match("unstable_names") }
+)
+```
+
+**Common Gotchas:**
+
+- Always use `file()` or `path()` when working with file paths from channels
+- Remember that `process.out.channel[0][1]` might be a single file or a list
+- Use `.collect()` to transform lists before snapshotting
+- Sort file lists when order isn't guaranteed: `.collect { file(it).name }.sort()`
 
 ## nf-core Guidelines for Assertions
 
@@ -82,7 +201,7 @@ assertAll(
 
 ### Simple & Straightforward
 
-#### Snapshot Entire Output Channel
+#### Snapshot All Output Channels
 
 **Motivation:** Ensure all outputs are stable over changes.
 
@@ -93,12 +212,20 @@ assertAll(
 )
 ```
 
-#### Snapshot Specific Element
+#### Snapshot Specific Output Channel
 
-**Motivation:** Create snapshot for one specific output.
+**Motivation:** Create snapshot for one specific output channel.
 
 ```groovy
 assert snapshot(process.out.versions).match("versions")
+```
+
+#### Snapshot Specific Output Channel Element
+
+**Motivation:** Create snapshot for a specific element within a channel.
+
+```groovy
+assert snapshot(process.out.output[0][1]).match("output_file")
 ```
 
 ### File Verification Patterns
@@ -141,19 +268,20 @@ with(process.out.ncbi_settings) {
 
 ````groovy
 params {
-    outdir = "$outputDir"
+    outdir = "${outputDir}"
 }
 
 ...
-
 then {
     // Comma is default separator but being explicit to demonstrate it can be changed
     def n_input_samples = path("/path/to/input/samplesheet.csv").csv(sep: ",").rowCount
 
     assertAll(
-        { assert path("$outputDir/path/to/summary.csv").csv(sep: ",").rowCount == n_input_samples
+        { assert path("$outputDir/path/to/summary.csv").csv(sep: ",").rowCount == n_input_samples }
     )
 }
+```
+
 ### Advanced Content Verification
 
 #### Snapshot Selective File Portions
