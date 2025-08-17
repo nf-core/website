@@ -1,12 +1,79 @@
 ---
-title: "5. Testing Subworkflows"
+title: "4. Testing Subworkflows"
 subtitle: Testing nf-core subworkflows
-weight: 50
+weight: 40
 ---
 
 ## Workflow Testing with nf-test
 
-nf-test allows you to test specific workflows defined in a workflow file. The basic syntax for a workflow test follows this structure:
+nf-test allows you to test specific workflows defined in a workflow file. Subworkflows combine multiple modules and require comprehensive testing strategies to ensure proper integration:
+
+```mermaid
+flowchart TD
+    A[Subworkflow Testing] --> B[Subworkflow Components]
+
+    B --> B1[Multiple Modules]
+    B --> B2[Shared Parameters]
+    B --> B3[Output Integration]
+
+    B1 --> C[Test Strategy]
+    B2 --> C
+    B3 --> C
+
+    C --> D{Dependencies Required?}
+
+    D --> |Yes| E[Setup Block]
+    D --> |No| F[Direct Testing]
+
+    E --> E1[Run dependency processes]
+    E1 --> E2[Capture outputs]
+    E2 --> E3[Pass to main workflow]
+    E3 --> G[Test Execution]
+
+    F --> G
+
+    G --> H[Multi-Module Validation]
+    H --> H1[All modules succeed]
+    H2[Parameter passing]
+    H3[Output channel integrity]
+    H4[Resource usage]
+    H --> H2
+    H --> H3
+    H --> H4
+
+    H1 --> I[Comprehensive Assertions]
+    H2 --> I
+    H3 --> I
+    H4 --> I
+
+    I --> I1[File-based snapshots]
+    I --> I2[Content verification]
+    I --> I3[Channel structure]
+    I --> I4[Version tracking]
+
+    I1 --> J[Tag-based Organization]
+    I2 --> J
+    I3 --> J
+    I4 --> J
+
+    J --> J1[subworkflows tag]
+    J --> J2[Individual module tags]
+    J --> J3[Algorithm tags]
+
+    J1 --> K["nf-core subworkflows test"]
+    J2 --> K
+    J3 --> K
+
+    K --> L{Results}
+    L --> |Pass| M[✅ Subworkflow Ready]
+    L --> |Fail| N[Debug Integration Issues]
+    N --> O[Check module compatibility]
+    O --> P[Verify parameter flow]
+    P --> Q[Review output channels]
+    Q --> G
+```
+
+The basic syntax for a workflow test follows this structure:
 
 ```groovy
 nextflow_workflow {

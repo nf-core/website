@@ -1,8 +1,45 @@
 ---
-title: "3. Repository Setup"
+title: "2. Repository Setup"
 subtitle: Configuring your nf-core pipeline repository for testing with nf-test
-weight: 30
+weight: 20
 ---
+
+## nf-test Repository Architecture
+
+Understanding how nf-test integrates with your nf-core pipeline repository is crucial for effective testing. The following diagram shows the key components and their relationships:
+
+```mermaid
+graph TD
+    A[nf-core Pipeline Repository] --> B[Configuration Files]
+    A --> C[Test Directory Structure]
+    A --> D[Test Data Integration]
+
+    B --> B1[nf-test.config]
+    B --> B2[tests/nextflow.config]
+    B --> B3[tests/.nftignore]
+
+    C --> C1[tests/default.nf.test]
+    C --> C2[modules/tests/main.nf.test]
+    C --> C3[subworkflows/tests/main.nf.test]
+
+    D --> D1[modules_testdata_base_path]
+    D --> D2[pipelines_testdata_base_path]
+    D --> D3[Local test assets]
+
+    B1 --> E[Global nf-test Settings]
+    E --> E1[Plugins Configuration]
+    E --> E2[Work Directory]
+    E --> E3[Test Triggers]
+
+    B2 --> F[Test Execution Settings]
+    F --> F1[Resource Limits]
+    F --> F2[Test Parameters]
+    F --> F3[AWS Anonymous Access]
+
+    B3 --> G[Snapshot Filtering]
+    G --> G1[Exclude Unstable Files]
+    G --> G2[Include File Names Only]
+```
 
 ## Example nf-core Repository Structure
 
@@ -40,7 +77,7 @@ my-pipeline/
 
 #### `nf-test.config` (Main Configuration)
 
-**Purpose**: Controls nf-test global settings
+**Purpose**: Controls nf-test global settings and behavior across your entire pipeline
 
 ```groovy
 config {
@@ -59,6 +96,22 @@ config {
     }
 }
 ```
+
+**Key Configuration Options (nf-core specific):**
+
+- **`profile "test"`** ⭐ **Critical**: Sets `test` as the default Nextflow profile for all tests. This means every test will automatically use your pipeline's test configuration (resource limits, test data paths, etc.) without needing to specify `-profile test` each time.
+
+- **`ignore`** ⭐ **Important**: Excludes nf-core modules and subworkflows from testing in your pipeline repository. These components have their own tests in the nf-core/modules repository. For local/custom components, consider adding: `'modules/local/**/tests/*', 'subworkflows/local/**/tests/*'`
+
+- **`triggers`** ⭐ **Important**: Files that automatically invalidate test caches when changed. Critical for nf-core pipelines because changes to configuration files should trigger test re-runs to ensure consistency.
+
+- **`configFile "tests/nextflow.config"`**: Points to your test-specific Nextflow configuration. This allows separation of test settings from production pipeline settings.
+
+- **`testsDir "."`**: Sets the root directory for test discovery. Using "." means nf-test will recursively find all `*.nf.test` files in your repository.
+
+- **`workDir`**: Defines where nf-test stores its working files and caches. The environment variable `NFT_WORKDIR` allows CI systems to customize this location.
+
+- **`plugins`**: Essential for nf-core testing. The `nft-utils` plugin provides helper functions like `getAllFilesFromDir()` that are used across many nf-core pipeline tests.
 
 > **For complete configuration options**, see the [official nf-test configuration documentation](https://www.nf-test.com/docs/configuration/).
 
@@ -130,9 +183,64 @@ nf-core test-datasets list --branch mag --generate-nf-path
 
 > **Note:** This feature requires [nf-core/tools 3.3+](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
 
+## Pipeline-Level Testing Setup
+
+### nf-core/tools 3.3+ Pipeline Template
+
+Starting with nf-core/tools 3.3, pipeline-level nf-tests are included in the nf-core pipeline template. The template provides:
+
+- **`tests/default.nf.test`**: A default pipeline test that mirrors the setup in `config/test.config`
+- **`tests/nextflow.config`**: Test-specific Nextflow configuration
+- **`tests/.nftignore`**: Files to ignore in nf-test snapshots
+- **`nf-test.config`**: Pipeline-level nf-test configuration
+
+### Initial Snapshot Generation ⚠️
+
+**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**. This means:
+
+1. **The initial nf-test CI run will fail** because there's no snapshot for `default.nf.test`
+2. **You must generate the snapshot manually** before the tests will pass
+
+To generate the required snapshot:
+
+```bash
+# Generate snapshot for the default test
+nf-test test tests/ --profile=+docker
+
+# Or with other execution profiles:
+nf-test test tests/ --profile=+singularity
+nf-test test tests/ --profile=+conda
+```
+
+> **Note**: The `=+` notation extends the Nextflow `-profile test` option rather than overwriting it.
+
+After running this command:
+
+1. **Commit the generated snapshot**: `tests/default.nf.test.snap`
+2. **Push to your repository** to fix the failing CI
+
+### Creating Additional Pipeline Tests
+
+You can create additional pipeline tests by copying and renaming the default test:
+
+```bash
+# Copy the default test for different scenarios
+cp tests/default.nf.test tests/custom_params.nf.test
+cp tests/default.nf.test tests/full_test.nf.test
+cp tests/default.nf.test tests/minimal_test.nf.test
+```
+
+Then modify each test file to:
+
+- Test different parameter combinations
+- Use different input datasets
+- Test specific pipeline branches or features
+
+Each test will need its own snapshot generated using the same `nf-test test` command.
+
 ## Generating Tests (Optional)
 
-Most nf-core pipelines already have tests generated. If needed:
+For module and subworkflow tests, you can generate test templates:
 
 ```bash
 # Generate test template for a process
