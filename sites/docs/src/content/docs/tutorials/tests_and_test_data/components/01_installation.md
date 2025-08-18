@@ -14,15 +14,16 @@ The nf-core tools only provide test commands when working within the `nf-core/mo
 You will need the following to get started:
 
 - **Java 11 or higher**
-- **Nextflow** (latest stable version recommended)
+- **[Nextflow](https://www.nextflow.io/docs/latest/install.html)** (latest stable version recommended)
+- **[nf-core/tools](https://nf-co.re/docs/nf-core-tools/installation)**
 
 ### Installation
 
-nf-test is distributed via conda and mamba. It is also distributed as a self-installing package.
+nf-test is distributed via conda/mamba and as a self-installing package.
 
-#### Conda
+#### Conda/Mamba
 
-To install nf-test with conda:
+To install nf-test with conda (or mamba):
 
 1. Create an `nf-test` environment:
 
@@ -42,27 +43,9 @@ conda activate nf-test
 nf-test version
 ```
 
-#### Mamba
-
-To install nf-test with Mamba:
-
-1. Create an `nf-test` environment:
-
-```bash
-mamba create -n nf-test -c bioconda nf-test
-```
-
-2. Activate your environment:
-
-```bash
-mamba activate nf-test
-```
-
-3. Verify your install (you should see a list of versions printed):
-
-```bash
-nf-test version
-```
+:::note
+You can replace `conda` with `mamba` in the commands above if you prefer mamba's CLI, though modern conda (≥22.11) uses the same fast libmamba solver internally.
+:::
 
 #### Standalone binary
 
