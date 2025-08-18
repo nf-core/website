@@ -1,7 +1,7 @@
 ---
 title: "Running nf-core Pipelines on Google Colab"
 subtitle: "A guide to running and interacting with nf-core pipelines using Colab and VS Code"
-pubDate: 2025-08-15T12:00:00+01:00
+pubDate: 2025-08-13
 headerImage: "/assets/images/blog/nf-core-colab-guide/blogpost-thumbnail.jpg"
 headerImageAlt: "Epic Handshake between nf-core and colab"
 embedHeaderImage: true
@@ -11,14 +11,19 @@ label:
     - "community post"
 ---
 
+import { Image } from "astro:assets";
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import colabmeme from "@assets/images/blog/nf-core-colab-guide/colab-meme.jpg";
-import login from "@assets/images/blog/nf-core-colab-guide/login.png";
-import connect from "@assets/images/blog/nf-core-colab-guide/connect.png";
-
-import { Image } from "astro:assets";
+import disconnectmeme from "@assets/images/blog/nf-core-colab-guide/colab-disconnected-meme.png"
+import sleepmeme from "@assets/images/blog/nf-core-colab-guide/dont-fall-asleep-meme.png"
 
 # Introduction
+
+Running and developing nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
+A detailed tutorial for running and developing nf-core/Nextflow pipelines in Google Colab is available at [this link](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide). Make sure to give it a look if this approach suits your needs.
+This blog post serves as a narrative exploration of the experience of running and developing Nextflow and nf-core pipelines described in the tutorial.
+
+# Why Run Pipelines in Google Colab
 
 <Image
     src={colabmeme}
@@ -28,69 +33,78 @@ import { Image } from "astro:assets";
     alt="Butch eats GPUs from the garbage while Tom is handfed in luxury"
 />
 
-Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
-This post shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VS Code via the vscode-colab package for a full development experience.
-While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
+Google Colab provides a free, accessible way to leverage powerful cloud hardware for computational tasks, making it an attractive option for students, researchers, and anyone with limited local resources.
+For a small subscription fee, you can access the latest hardware each year at a fraction of the cost of buying a new PC.
+As bioinformatics and data science tasks become more resource-intensive, Colab offers a cost-effective solution for learning and developing large-scale pipelines like those built with Nextflow.
+If you’re a student or developer working on a laptop, Colab can dramatically speed up your workflow.
+You can write and test your code locally, then run it in Colab to take advantage of faster execution and larger memory-saving time and reducing frustration from crashes on limited hardware.
+You can write and test your code locally, then run it in Colab to take advantage of faster execution and larger memory—saving time and reducing frustration from crashes on limited hardware.
+Colab is also ideal for training workshops where participants may not have access to high-performance computing (HPC) clusters.
+Instructors can use real-world, large datasets instead of toy examples, thus giving everyone hands-on experience with industry-scale workflows.
+Ultimately, using Colab can help democratize access to advanced pipeline development and best practices, enabling more people to contribute to open-source projects like nf-core.
 
-# Setting up the environment in Google Colab
+# Limitations of Running Pipelines in Colab
 
-After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and it's dependencies. Since Colab does not provide root access, you will need to install Nextflow in the user's home directory.
+<div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', margin: '2rem 0' }}>
+  <Image
+    src={disconnectmeme}
+    width={300}
+    alt="Colab disconnect meme"
+    style={{ borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+  />
+  <Image
+    src={sleepmeme}
+    width={300}
+    alt="Colab sleep meme"
+    style={{ borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
+  />
+</div>
 
-After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and its dependencies. Since Colab does not provide root access, you will need to install Nextflow in your home directory.
+While colab Google Colab is a powerful and accessible platform, it does have some constraints.
+While Google Colab is a powerful and accessible platform, it does have some constraints.
+In the free tier, the user is subject to session timeouts of unpredictable frequency as well as limited runtime duration.
+The paid Pro tier despite coming with many benefits, will also be subject to session timeouts if the tab your notebook is open in closes for a few minutes.
+The paid Pro tier, despite coming with many benefits, will also be subject to session timeouts if the tab your notebook is open in closes for a few minutes.
+This has led to the stereotypical meme of waking up to find your notebook timed out a few minutes after you went to sleep because you temporarily lost internet connection, or didn't plug your laptop all the way in!
 
-Before installing Nextflow, you must install Java. In Colab, run the following commands in a code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
+The biggest issue that will likely affect someone developing nextflow pipelines in colab is going to be the lack of root access.
+The biggest issue that will likely affect someone developing Nextflow pipelines in Colab is the lack of root access.
+Due to this lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
+Thankfully, we can still run pipelines with conda under `-profile conda`.
+However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) Python package to serve as a proxy.
+In my case, this doesn't seem to perform any differently from a shell-based conda installation.
 
-```python title="Install Java"
-%cd .. # use '%'before cd to make a permanent change of directories
-!sudo apt update
-!sudo apt install openjdk-17-jdk
-!export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-!export PATH=$JAVA_HOME/bin:$PATH
-!source ~/.bashrc
-```
+# Overcoming Colab 's Challenges With vscode-colab
 
-Next, install Nextflow and make it executable by running the following commands in a code cell as before:
+Once you've got your nextflow, conda and nf-core pipeline of your choice installed you're pretty much good to run any pipeline you desire.
+However, because of the general instability of the conda profile when running most pipelines, you're bound to have the pipeline crash at some point and will need to make a script edit somewhere to solve the issue.
+While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, VS Code offers a more robust environment.
+Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's powerful hardware in the comfort of VS Code's rich software suite.
+This means you will have access to all your favorite extensions and syntax highlighting in a familiar, seamless GUI!
+The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
+You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
 
-```python title="Install Nextflow"
-!wget -qO- https://get.nextflow.io | bash # Download Nextflow
-!mv nextflow /usr/bin/nextflow # Move to a path Colab can access
-!chmod +x /usr/bin/nextflow # Make it executable
-!nextflow -v # Test it
-```
+# Downsides and Caveats of the VS Code Colab Approach
 
-Due to a lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
+**Main limitations:**
+- No root access (no Docker/Singularity)
+- Session timeouts
+- MPLBACKEND issues
+- Conda is not native
+- Limited GUI for complex workflows
 
-That leaves the conda profile as the only way to run pipelines.
-However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) package, which will set up Conda for you by running the following commands:
+While this approach is great, it does have it's downsides.
+The biggest issue you will face is frequent disconnections or crashing of the connection tunnel.
+I have seen that this reduces drastically—or almost never happens—if you make sure to set up the other aspects of your Colab environment before starting up the tunnel.
+The issue could be with Colab having a low affinity for handling requests from multiple frontends.
+At the time of writing this blog post, the most annoying issue is that you have to set up the whole VS Code environment with all the extensions from scratch with each run.
+The developer of the package did indicate that the ability to save profiles as config files is under development and will be added soon, so make sure to keep an eye on the repo for any such developments.
+Although not a huge issue, I found the tunnel construction time of 3-5 minutes to be a bit too long to wait.
+Other than these, the package works great and just about seamlessly gets the job done.
 
-```python title="Install condacolab"
-!pip install -q condacolab
-import condacolab
-condacolab.install()
-```
+# Tips for a Smooth Experience
 
-Make sure to set the conda defaults as follows for smooth pipeline execution:
-
-```python title="Set conda defaults"
-!conda config --add channels defaults
-!conda config --add channels bioconda
-!conda config --add channels conda-forge
-!conda config --set channel_priority strict
-```
-
-# Running a test pipeline
-
-
-Yes, the setup is that simple!
-Now that the main parts of the environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/1.0.2/).
-To install the pipeline, run:
-
-```python title="Install nf-core/demo"
-! nextflow pull nf-core/demo
-```
-
-
-One last important step before running your pipeline, or any others in Colab, is to set the `MPLBACKEND` environment variable to `Agg`.
+As an important step before running your pipeline, or any others in Colab, is to set the `MPLBACKEND` environment variable to `Agg`.
 This ensures that Matplotlib can render plots in a headless environment like Colab, where no display is available.
 You can do this either by running the following in a code cell:
 
@@ -98,57 +112,16 @@ You can do this either by running the following in a code cell:
 %env MPLBACKEND=Agg
 ```
 
-
 Or alternatively, by running the following command in the terminal:
 
 ```bash title="Set MPLBACKEND to Agg in the terminal"
 export MPLBACKEND=Agg
 ```
 
-# Running and Editing Pipelines in VS Code via Colab
-
-
-While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, VS Code offers a more robust environment.
-Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's powerful hardware in the comfort of VS Code's rich software suite.
-The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
-You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
-
-_Note: If you decide to use this approach, it is best to run this after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues._
-
-
-And remember, while Google Colab is a powerful and accessible platform, it does have some constraints:
-- Session timeouts and limited runtime duration
-- No root access for system-level changes
-- Limited resources compared to dedicated cloud VMs
-
-# Conclusion
-
-
-In this guide, we covered:
-- Setting up Nextflow and dependencies in Google Colab
-- Running nf-core pipelines in a cloud environment
-- Connecting Colab to VS Code for a richer development experience
-
+Google colab 's storage is temporary and also limited in most cases.
+As such, make it standard practice to mount and save your results in your personal Google Drive account if you have one.
+Additionally, if you plan on writing and developing your pipelines exclusively in Google Colab, then make sure to work in git and commit, or alternatively test in Colab but save changes from your local PC and commit to prevent loss of your progress.
+Finally, make sure to pick the VM instance that works best for your task and set up your Nextflow run configuration file accordingly to make the most use of the hardware at your disposal.
 
 If you have feedback, questions, or tips, please share them in the comments or via the nf-core Slack channel. Your input helps improve the community!
-
-
-
-
-- why would anyone run pipelines in colab? (also poeple that mainly develop on their laptop, but may want a faster testing environment)
-    - heavy duty data based trainings, or cheapskates like me that are new to nextflow and otherwise don't have access to the resources to properly run pipelines
-- limitations of running pipelines in general in colab
-    - no root access and thus no docker and all
-    - MPLBACKEND issue
-    - conda itself is not direct either
-    - crappy GUI for a multilingual environment like nextflow, that's where:
-- vscode-colab comes in!
-    - why shoudl anython use vs code colab? - also supports Kaggle notebooks
-    -  all your favourite extentions and language highlighting, familair more streamlined ideal
-    - disadvantages
-        - run order of the pipelines can mean can cause frequent disconnections but it is otherwise stable
-        - environment loadup time is a bit long
-        - you have to setup the whole environment with all the extentions from scratch with each run
-- tips
-    - make sure to connect your google drive if you want to save results,  make sure you have enough storage for it
-    - make sure to work in git and commit or alternatively test in colab, but save changes from your local PC and commti from there to prevent loss
+Happy pipeline development!
