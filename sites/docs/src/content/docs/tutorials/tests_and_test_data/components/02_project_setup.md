@@ -6,7 +6,8 @@ weight: 20
 
 ## nf-test Repository Architecture
 
-Understanding how nf-test integrates with your nf-core pipeline repository is crucial for effective testing. The following diagram shows the key components and their relationships:
+Understanding how nf-test integrates with your nf-core pipeline repository is crucial for effective testing.
+The following diagram shows the key components and their relationships:
 
 ## Example nf-core Repository Structure
 
@@ -21,14 +22,16 @@ my-pipeline/
 ├── modules.json                    # Module dependencies
 ├── tests/                          # Pipeline-level tests
 │   ├── default.nf.test            # Main pipeline test
-│   ├── params-1.nf.test           # Pipeline param-1 test
-|   ├── params-2.nf.test           # Pipeline param-2 test
+│   ├── test_alternatives.nf.test           # Pipeline test alternative tools
+|   ├── test_minimal.nf.test           # Pipeline test most basic run
 │   ├── nextflow.config            # Test-specific config
 │   └── .nftignore                 # Files to ignore in snapshots
 ├── conf/                           # Configuration profiles
 │   ├── test.config                # Test profile
 │   ├── test_full.config           # Full test profile
 │   ├── base.config                # Base configuration
+│   ├── test_alternatives.config                # Parameter configuration for test_alternative test
+│   ├── test_minimal.config                # Parameter configuration for test_minimal test
 │   └── igenomes.config            # Reference genome configurations
 ├── assets/                         # Pipeline assets
 │   ├── samplesheet.csv            # Test samplesheet
@@ -66,7 +69,7 @@ config {
 
 **Key Configuration Options (nf-core specific):**
 
-- **`profile "test"`** ⭐ **Critical**: Sets `test` as the default Nextflow profile for all tests. This means every test will automatically use your pipeline's test configuration (resource limits, test data paths, etc.) without needing to specify `-profile test` each time.
+- **`profile "test"`** ⭐ **Critical**: Sets `test` as the default Nextflow profile for all tests. This means every test will automatically use your pipeline's test configuration by default (resource limits, test data paths, etc.) without needing to specify `-profile test` each time.
 
 - **`ignore`** ⭐ **Important**: Excludes nf-core modules and subworkflows from testing in your pipeline repository. These components have their own tests in the nf-core/modules repository. For local/custom components, consider adding: `'modules/local/**/tests/*', 'subworkflows/local/**/tests/*'`
 
@@ -74,7 +77,7 @@ config {
 
 - **`configFile "tests/nextflow.config"`**: Points to your test-specific Nextflow configuration. This allows separation of test settings from production pipeline settings.
 
-- **`testsDir "."`**: Sets the root directory for test discovery. Using "." means nf-test will recursively find all `*.nf.test` files in your repository.
+- **`testsDir "."`**: Sets the root directory for test discovery. Using "." means nf-test will recursively find all `*.nf.test` files in your repository (but ignore what is defined in the `ignore` option above).
 
 - **`workDir`**: Defines where nf-test stores its working files and caches. The environment variable `NFT_WORKDIR` allows CI systems to customize this location.
 
@@ -104,7 +107,7 @@ Plugins can be customized - like nft-utils, which has been tailored by the nf-co
 
 #### `tests/nextflow.config` (Test-Specific Settings)
 
-**Purpose**: Defines parameters and settings specifically for test execution
+**Purpose**: Defines base parameters and settings across all test executions
 This is very similar to your typical nf-core test profiles.
 However one change is the `aws.client.anonymous` option that ensures anonymous access to AWS S3 buckets for test data, which is useful when your test data is publicly accessible and you don't want to configure AWS credentials for CI/CD.
 
@@ -129,7 +132,7 @@ aws.client.anonymous = true
 
 ## Test Data Integration
 
-nf-core tools 3.3+ includes a command for discovering test datasets, making it easier to refer to these within your tests:
+From nf-core tools v3.3 onwards, there is a command for discovering test datasets, making it easier to refer to these within your tests:
 
 ```bash
 # List all available test datasets
@@ -148,22 +151,27 @@ nf-core test-datasets list --branch mag --generate-dl-url
 nf-core test-datasets list --branch mag --generate-nf-path
 ```
 
-> **Note:** This feature requires [nf-core/tools 3.3+](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
+> **Note:** For more information see the nf-core/tools v3.3 [blog post](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
 
 ## Pipeline-Level Testing Setup
 
 ### nf-core/tools 3.3+ Pipeline Template
 
-Starting with nf-core/tools 3.3, pipeline-level nf-tests are included in the nf-core pipeline template. The template provides:
+Starting with nf-core/tools v3.3, pipeline-level nf-tests are included in the nf-core pipeline template.
+The template provides:
 
 - **`tests/default.nf.test`**: A default pipeline test that mirrors the setup in `config/test.config`
-- **`tests/nextflow.config`**: Test-specific Nextflow configuration
+- **`tests/nextflow.config`**: Base test-specific Nextflow configuration
 - **`tests/.nftignore`**: Files to ignore in nf-test snapshots
 - **`nf-test.config`**: Pipeline-level nf-test configuration
 
 ### Initial Snapshot Generation ⚠️
 
-**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**. This means:
+:::warning
+**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**. 
+:::
+
+This means:
 
 1. **The initial nf-test CI run will fail** because there's no snapshot for `default.nf.test`
 2. **You must generate the snapshot manually** before the tests will pass
@@ -179,7 +187,9 @@ nf-test test tests/ --profile=+singularity
 nf-test test tests/ --profile=+conda
 ```
 
-> **Note**: The `=+` notation extends the Nextflow `-profile test` option rather than overwriting it.
+:::Note
+The `=+` notation extends the Nextflow `-profile test` option rather than overwriting it.
+:::
 
 After running this command:
 
@@ -192,9 +202,9 @@ You can create additional pipeline tests by copying and renaming the default tes
 
 ```bash
 # Copy the default test for different scenarios
-cp tests/default.nf.test tests/custom_params.nf.test
-cp tests/default.nf.test tests/full_test.nf.test
-cp tests/default.nf.test tests/minimal_test.nf.test
+cp tests/default.nf.test tests/test_alternative.nf.test
+cp tests/default.nf.test tests/test_full.nf.test
+cp tests/default.nf.test tests/test_minimal.nf.test
 ```
 
 Then modify each test file to:
@@ -207,7 +217,7 @@ Each test will need its own snapshot generated using the same `nf-test test` com
 
 ## Generating Tests (Optional)
 
-For module and subworkflow tests, you can generate test templates:
+For (local) module and subworkflow tests, you can generate test templates:
 
 ```bash
 # Generate test template for a process
