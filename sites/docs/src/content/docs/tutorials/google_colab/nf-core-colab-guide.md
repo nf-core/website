@@ -8,6 +8,7 @@ subtitle: "A guide to running and interacting with nf-core pipelines using Colab
 Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
 This post shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VS Code via the vscode-colab package for a full development experience.
 While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
+Also make sure to checkout the [blogpost](https://nf-co.re/blog/2025/nf-core-colab-guide) on this topic for deeper insights and more tips for running nf-core pipelines using Colab.
 
 # Setting up the environment in Google Colab
 
