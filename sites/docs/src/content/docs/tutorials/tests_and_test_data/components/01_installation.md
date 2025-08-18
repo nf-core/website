@@ -1,69 +1,96 @@
 ---
-title: "1. Installation"
+title: "Installation"
 subtitle: Setting up nf-test in your development environment
 weight: 10
 ---
 
 ## Installing nf-test
 
-**For nf-core pipeline development and testing, you need to install nf-test separately.** nf-core tools only provides test commands for the `nf-core/modules` repository context.
+nf-test must be installed separately for nf-core pipeline development and testing. The nf-core tools only provide test commands when working within the `nf-core/modules` repository context.
 
 ### Prerequisites
 
-Before installing nf-test, ensure you have:
+You will need the following to get started:
 
 - **Java 11 or higher**
 - **Nextflow** (latest stable version recommended)
 
-### Recommended Installation: Using Conda/Mamba
+### Installation
 
-```bash
-conda create -n nf-test -c bioconda nf-test
-conda activate nf-test
-# or
-mamba create -n nf-test -c bioconda nf-test
-mamba activate nf-test
-```
+nf-test is distributed via conda and mamba. It is also distributed as a self-installing package.
 
-### Alternative Installation Methods
+#### Conda
 
-For a standalone binary install:
+To install nf-test with conda:
 
-```bash
-curl -fsSL https://get.nf-test.com | bash
-```
+1. Create an `nf-test` environment:
 
-Move the `nf-test` file to a directory accessible by your `$PATH` variable:
+  ```bash
+  conda create -n nf-test -c bioconda nf-test
+  ```
 
-```bash
-# Make it executable and move to PATH
-chmod +x nf-test
-sudo mv nf-test /usr/local/bin/
-```
+2. Activate your environment:
 
-#### Install specific version
+  ```bash
+  conda activate nf-test
+  ```
 
-For installing a specific version of nf-test, you can specify this as an option to the install script.
+3. Verify your install:
 
-```bash
-curl -fsSL https://get.nf-test.com | bash -s 0.9.0
-```
+  ```bash
+  nf-test version
+  ```
 
-> **For complete installation instructions and troubleshooting**, visit the [official nf-test installation documentation](https://www.nf-test.com/docs/getting-started/).
+#### Mamba
 
-### Verification
+To install nf-test with Mamba:
 
-Verify your installation worked correctly, you can check the version is printed.
+1. Create an `nf-test` environment:
 
-```bash
-nf-test version
-```
+  ```bash
+  mamba create -n nf-test -c bioconda nf-test
+  ```
 
-You can also list all available tests in a repository already with:
+2. Activate your environment:
 
-```bash
-nf-test list
-```
+  ```bash
+  mamba activate nf-test
+  ```
+
+3. Verify your install:
+
+  ```bash
+  nf-test version
+  ```
+
+#### Standalone binary
+
+To install nf-test as a standalone binary:
+
+1. Download the binary:
+
+  ```bash
+  curl -fsSL https://get.nf-test.com | bash
+  ```
+
+2. Make `nf-test` executable:
+
+  ```bash
+  chmod +x nf-test
+  ```
+
+3. Add `nf-test` to your `$PATH` variable. For example:
+
+  ```bash
+  mkdir -p $HOME/.local/bin/
+  mv nf-test $HOME/.local/bin/
+  ```
+  
+  :::note
+  Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Set `export PATH="$PATH:$HOME/.local/bin` to temporarily add this directory to `PATH`. Add the export command to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`, to add the directory to `PATH` permanently. Alternatively, move the `nf-test` executable to a directory already in your `PATH`.
+  :::
+  
+
 
 ## Next Steps
 
