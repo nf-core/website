@@ -6,7 +6,8 @@ weight: 10
 
 ## Installing nf-test
 
-nf-test must be installed separately for nf-core pipeline development and testing. The nf-core tools only provide test commands when working within the `nf-core/modules` repository context.
+nf-test must be installed separately for nf-core pipeline development and testing.
+The nf-core tools only provide test commands when working within the `nf-core/modules` repository context.
 
 ### Prerequisites
 
@@ -57,7 +58,7 @@ mamba create -n nf-test -c bioconda nf-test
 mamba activate nf-test
 ```
 
-3. Verify your install:
+3. Verify your install (you should see a list of versions printed):
 
 ```bash
 nf-test version
@@ -87,7 +88,10 @@ mv nf-test $HOME/.local/bin/
 ```
 
 :::note
-Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Set `export PATH="$PATH:$HOME/.local/bin` to temporarily add this directory to `PATH`. Add the export command to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`, to add the directory to `PATH` permanently. Alternatively, move the `nf-test` executable to a directory already in your `PATH`.
+Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable.
+Set `export PATH="$PATH:$HOME/.local/bin` to temporarily add this directory to `PATH`.
+Add the export command to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`, to add the directory to `PATH` permanently.
+Alternatively, move the `nf-test` executable to a directory already in your `PATH`.
 :::
 
 ## Next Steps
