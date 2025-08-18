@@ -105,12 +105,6 @@ Or alternatively, by running the following command in the terminal:
 export MPLBACKEND=Agg
 ```
 
-Now you can finally run your pipeline!
-
-```python title="Run nf-core/demo"
-! nextflow run nf-core/demo -profile conda,test --outdir demo-results
-```
-
 # Running and Editing Pipelines in VS Code via Colab
 
 
@@ -120,82 +114,6 @@ The library makes use of the official [VS Code Remote Tunnels](https://code.visu
 You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
 
 _Note: If you decide to use this approach, it is best to run this after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues._
-
-
-
-The first step is to install and import the library, which can easily be done by running the following command in your Colab code cell:
-
-```python title="Install vscode-colab"
-!pip install vscode-colab
-import vscode_colab
-```
-
-
-Next, authenticate the connection using your GitHub credentials:
-
-```python title="Authenticate with GitHub"
-vscode_colab.login()
-```
-
-<Image
-    src={login}
-    class="d-block m-auto"
-    width={800}
-    density={[1.5, 2]}
-    alt="interactive login popup in cell output"
-/>
-
-
-Follow the displayed instructions to authorize the connection.
-
-
-### 3. Establish the Tunnel and Configure Git (Optional)
-
-
-To start the VS Code tunnel, optionally configure Git, set up a Python version, or create a new project:
-
-```python title="Establish the tunnel"
-vscode_colab.connect(
-    name="my-tunnel",
-    git_user_name="Your Name",
-    git_user_email="you@example.com",
-    setup_python_version="3.13",  # Optional: Specify Python version to install with pyenv
-    create_new_project="my_new_project"  # Optional: Create a new project directory
-)
-```
-
-<Image
-    src={connect}
-    class="d-block m-auto"
-    width={800}
-    density={[1.5, 2]}
-    alt="interactive tunnel connection popup in cell output"
-/>
-
-
-The above step allows for a lot more customization than shown here. Please refer to the library's vignette to see if any of these options will suit your needs.
-
-
-Finally, in your local VS Code:
-
-1. Ensure the [Remote Tunnels extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server) is installed.
-2. Sign in with the same GitHub account used in the notebook.
-3. Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`).
-4. Run `Remote Tunnels: Connect to Tunnel...` and select your notebook's tunnel.
-
-
-You're now seamlessly connected to Colab through VS Code and can develop Nextflow pipelines more flexibly from just about any computer.
-
-# Tips
-
-
-To avoid losing your work, always clone the nf-core pipeline you want to contribute to, or regularly push your personal pipelines to a remote repository.
-For long-term storage of results and access to your own datasets, you can mount your Google Drive in Colab:
-
-```python title="Mount Google Drive"
-from google.colab import drive
-drive.mount('/content/drive')
-```
 
 
 And remember, while Google Colab is a powerful and accessible platform, it does have some constraints:
@@ -213,3 +131,24 @@ In this guide, we covered:
 
 
 If you have feedback, questions, or tips, please share them in the comments or via the nf-core Slack channel. Your input helps improve the community!
+
+
+
+
+- why would anyone run pipelines in colab? (also poeple that mainly develop on their laptop, but may want a faster testing environment)
+    - heavy duty data based trainings, or cheapskates like me that are new to nextflow and otherwise don't have access to the resources to properly run pipelines
+- limitations of running pipelines in general in colab
+    - no root access and thus no docker and all
+    - MPLBACKEND issue
+    - conda itself is not direct either
+    - crappy GUI for a multilingual environment like nextflow, that's where:
+- vscode-colab comes in!
+    - why shoudl anython use vs code colab? - also supports Kaggle notebooks
+    -  all your favourite extentions and language highlighting, familair more streamlined ideal
+    - disadvantages
+        - run order of the pipelines can mean can cause frequent disconnections but it is otherwise stable
+        - environment loadup time is a bit long
+        - you have to setup the whole environment with all the extentions from scratch with each run
+- tips
+    - make sure to connect your google drive if you want to save results,  make sure you have enough storage for it
+    - make sure to work in git and commit or alternatively test in colab, but save changes from your local PC and commti from there to prevent loss
