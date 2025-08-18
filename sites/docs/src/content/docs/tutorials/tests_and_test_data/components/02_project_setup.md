@@ -43,7 +43,28 @@ my-pipeline/
 └── .nf-test/                      # nf-test working directory
 ```
 
-### 1. Key Configuration Files
+## nf-test Files Overview
+
+Before diving into configuration details, here are **all the nf-test-related files** you'll be working with:
+
+**Core Configuration Files** (You'll edit these):
+
+- **`nf-test.config`** - Main nf-test configuration (plugins, profiles, global settings)
+- **`tests/nextflow.config`** - Test-specific Nextflow parameters and settings
+- **`tests/.nftignore`** - Files to exclude from nf-test snapshots
+
+**Test Files** (You'll create/edit these):
+
+- **`tests/*.nf.test`** - Pipeline-level test files (e.g., `default.nf.test`, `test_minimal.nf.test`)
+- **`modules/*/tests/main.nf.test`** - Individual module test files
+- **`subworkflows/*/tests/main.nf.test`** - Individual subworkflow test files
+
+**Generated Files** (nf-test creates these automatically):
+
+- **`tests/*.nf.test.snap`** - Snapshot files containing expected test outputs
+- **`.nf-test/`** - Working directory for nf-test (cache, temporary files)
+
+### Key Configuration Files
 
 #### `nf-test.config` (Main Configuration)
 
@@ -60,9 +81,9 @@ config {
     plugins {
         load "nft-utils@0.0.3"
         // Add plugins based on your pipeline needs:
-        // load "nft-bam@0.6.0"    // For BAM file testing
-        // load "nft-vcf@1.0.7"    // For VCF file testing
-        // load "nft-fastq@0.0.1"  // For FASTQ file testing
+        load "nft-bam@0.6.0"    // For BAM file testing
+        load "nft-vcf@1.0.7"    // For VCF file testing
+        load "nft-fastq@0.0.1"  // For FASTQ file testing
     }
 }
 ```
@@ -110,6 +131,10 @@ Plugins can be customized - like nft-utils, which has been tailored by the nf-co
 **Purpose**: Defines base parameters and settings across all test executions
 This is very similar to your typical nf-core test profiles.
 However one change is the `aws.client.anonymous` option that ensures anonymous access to AWS S3 buckets for test data, which is useful when your test data is publicly accessible and you don't want to configure AWS credentials for CI/CD.
+
+:::note
+Base configuration like below can be overridden for other tests in specific test\_\*.config files
+:::
 
 ```groovy
 params {
@@ -168,7 +193,7 @@ The template provides:
 ### Initial Snapshot Generation ⚠️
 
 :::warning
-**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**. 
+**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**.
 :::
 
 This means:
@@ -179,17 +204,23 @@ This means:
 To generate the required snapshot:
 
 ```bash
-# Generate snapshot for the default test
+# Generate snapshot for the default test (run twice to ensure stability)
+nf-test test tests/ --profile=+docker
 nf-test test tests/ --profile=+docker
 
 # Or with other execution profiles:
 nf-test test tests/ --profile=+singularity
+nf-test test tests/ --profile=+singularity
+
+nf-test test tests/ --profile=+conda
 nf-test test tests/ --profile=+conda
 ```
 
 :::Note
-The `=+` notation extends the Nextflow `-profile test` option rather than overwriting it.
-:::
+
+- The `=+` notation extends the Nextflow `-profile test` option rather than overwriting it.
+- Running the test **twice is required** to ensure snapshot stability: the first run generates the snapshot, the second run validates it's consistent.
+  :::
 
 After running this command:
 
@@ -207,13 +238,13 @@ cp tests/default.nf.test tests/test_full.nf.test
 cp tests/default.nf.test tests/test_minimal.nf.test
 ```
 
-Then modify each test file to:
+Generally you should have one `conf/test_*.config` per `test_*.nf.test` file.
 
-- Test different parameter combinations
-- Use different input datasets
-- Test specific pipeline branches or features
+Each test config should include the parameter and/or input dataset combination you want to test.
 
-Each test will need its own snapshot generated using the same `nf-test test` command.
+You then modify each `test_*.nf.test` file to describe what you want to test in the output of the pipeline.
+
+Finally each test will need its own snapshot generated using the same `nf-test test` command.
 
 ## Generating Tests (Optional)
 
