@@ -25,21 +25,21 @@ To install nf-test with conda:
 
 1. Create an `nf-test` environment:
 
-  ```bash
-  conda create -n nf-test -c bioconda nf-test
-  ```
+```bash
+conda create -n nf-test -c bioconda nf-test
+```
 
 2. Activate your environment:
 
-  ```bash
-  conda activate nf-test
-  ```
+```bash
+conda activate nf-test
+```
 
 3. Verify your install:
 
-  ```bash
-  nf-test version
-  ```
+```bash
+nf-test version
+```
 
 #### Mamba
 
@@ -47,21 +47,21 @@ To install nf-test with Mamba:
 
 1. Create an `nf-test` environment:
 
-  ```bash
-  mamba create -n nf-test -c bioconda nf-test
-  ```
+```bash
+mamba create -n nf-test -c bioconda nf-test
+```
 
 2. Activate your environment:
 
-  ```bash
-  mamba activate nf-test
-  ```
+```bash
+mamba activate nf-test
+```
 
 3. Verify your install:
 
-  ```bash
-  nf-test version
-  ```
+```bash
+nf-test version
+```
 
 #### Standalone binary
 
@@ -69,28 +69,26 @@ To install nf-test as a standalone binary:
 
 1. Download the binary:
 
-  ```bash
-  curl -fsSL https://get.nf-test.com | bash
-  ```
+```bash
+curl -fsSL https://get.nf-test.com | bash
+```
 
 2. Make `nf-test` executable:
 
-  ```bash
-  chmod +x nf-test
-  ```
+```bash
+chmod +x nf-test
+```
 
 3. Add `nf-test` to your `$PATH` variable. For example:
 
-  ```bash
-  mkdir -p $HOME/.local/bin/
-  mv nf-test $HOME/.local/bin/
-  ```
-  
-  :::note
-  Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Set `export PATH="$PATH:$HOME/.local/bin` to temporarily add this directory to `PATH`. Add the export command to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`, to add the directory to `PATH` permanently. Alternatively, move the `nf-test` executable to a directory already in your `PATH`.
-  :::
-  
+```bash
+mkdir -p $HOME/.local/bin/
+mv nf-test $HOME/.local/bin/
+```
 
+:::note
+Ensure the directory `$HOME/.local/bin/` is included in your `PATH` variable. Set `export PATH="$PATH:$HOME/.local/bin` to temporarily add this directory to `PATH`. Add the export command to your shell configuration file, such as `~/.bashrc` or `~/.zshrc`, to add the directory to `PATH` permanently. Alternatively, move the `nf-test` executable to a directory already in your `PATH`.
+:::
 
 ## Next Steps
 
