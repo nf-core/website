@@ -1,17 +1,17 @@
 ---
-title: "2. Repository Setup"
+title: "Repository Setup"
 subtitle: Configuring your nf-core pipeline repository for testing with nf-test
 weight: 20
 ---
 
-## nf-test Repository Architecture
+## nf-test repository architecture
 
 Understanding how nf-test integrates with your nf-core pipeline repository is crucial for effective testing.
 The following diagram shows the key components and their relationships:
 
-## Example nf-core Repository Structure
+## Example nf-core repository structure
 
-Here is an example of an nf-core pipeline project with nf-test:
+The following example shows an nf-core pipeline project with nf-test:
 
 ```
 my-pipeline/
@@ -43,30 +43,36 @@ my-pipeline/
 └── .nf-test/                      # nf-test working directory
 ```
 
-## nf-test Files Overview
+## nf-test files overview
 
-Before diving into configuration details, here are **all the nf-test-related files** you'll be working with:
+The following files are required for nf-test configuration:
 
-**Core Configuration Files** (You'll edit these):
+**Core configuration files**
 
-- **`nf-test.config`** - Main nf-test configuration (plugins, profiles, global settings)
-- **`tests/nextflow.config`** - Test-specific Nextflow parameters and settings
-- **`tests/.nftignore`** - Files to exclude from nf-test snapshots
+You'll edit these:
 
-**Test Files** (You'll create/edit these):
+- `nf-test.config` - Main nf-test configuration (plugins, profiles, global settings)
+- `tests/nextflow.config` - Test-specific Nextflow parameters and settings
+- `tests/.nftignore` - Files to exclude from nf-test snapshots
 
-- **`tests/*.nf.test`** - Pipeline-level test files (e.g., `default.nf.test`, `test_minimal.nf.test`)
-- **`modules/*/tests/main.nf.test`** - Individual module test files
-- **`subworkflows/*/tests/main.nf.test`** - Individual subworkflow test files
+**Test files**
 
-**Generated Files** (nf-test creates these automatically):
+You'll create/edit these:
 
-- **`tests/*.nf.test.snap`** - Snapshot files containing expected test outputs
-- **`.nf-test/`** - Working directory for nf-test (cache, temporary files)
+- `tests/*.nf.test` - Pipeline-level test files (e.g., `default.nf.test` and `test_minimal.nf.test`)
+- `modules/*/tests/main.nf.test` - Individual module test files
+- `subworkflows/*/tests/main.nf.test` - Individual subworkflow test files
 
-### Key Configuration Files
+**Generated files**
 
-#### `nf-test.config` (Main Configuration)
+nf-test creates these automatically:
+
+- `tests/*.nf.test.snap` - Snapshot files containing expected test outputs
+- `.nf-test/` - Working directory for nf-test (i.e., cache, temporary files)
+
+### Key configuration files
+
+#### `nf-test.config` (main configuration)
 
 **Purpose**: Controls nf-test global settings and behavior across your entire pipeline
 
@@ -88,31 +94,35 @@ config {
 }
 ```
 
-**Key Configuration Options (nf-core specific):**
+**Key configuration options**
 
-- **`profile "test"`** ⭐ **Critical**: Sets `test` as the default Nextflow profile for all tests. This means every test will automatically use your pipeline's test configuration by default (resource limits, test data paths, etc.) without needing to specify `-profile test` each time.
+nf-core specific:
 
-- **`ignore`** ⭐ **Important**: Excludes nf-core modules and subworkflows from testing in your pipeline repository. These components have their own tests in the nf-core/modules repository. For local/custom components, consider adding: `'modules/local/**/tests/*', 'subworkflows/local/**/tests/*'`
+- `profile "test"`: Sets `test` as the default Nextflow profile for all tests. This means every test will automatically use your pipeline's test configuration by default (resource limits, test data paths, etc.) without needing to specify `-profile test` each time.
 
-- **`triggers`** ⭐ **Important**: Files that automatically invalidate test caches when changed. Critical for nf-core pipelines because changes to configuration files should trigger test re-runs to ensure consistency.
+- `ignore`: Excludes nf-core modules and subworkflows from testing in your pipeline repository. These components have their own tests in the nf-core/modules repository. For local/custom components, consider adding: `'modules/local/**/tests/*', 'subworkflows/local/**/tests/*'`
 
-- **`configFile "tests/nextflow.config"`**: Points to your test-specific Nextflow configuration. This allows separation of test settings from production pipeline settings.
+- `triggers`: Files that automatically invalidate test caches when changed. Critical for nf-core pipelines because changes to configuration files should trigger test re-runs to ensure consistency.
 
-- **`testsDir "."`**: Sets the root directory for test discovery. Using "." means nf-test will recursively find all `*.nf.test` files in your repository (but ignore what is defined in the `ignore` option above).
+- `configFile "tests/nextflow.config"`: Points to your test-specific Nextflow configuration. This allows separation of test settings from production pipeline settings.
 
-- **`workDir`**: Defines where nf-test stores its working files and caches. The environment variable `NFT_WORKDIR` allows CI systems to customize this location.
+- `testsDir "."`: Sets the root directory for test discovery. Using "." means nf-test will recursively find all `*.nf.test` files in your repository (but ignore what is defined in the `ignore` option above).
 
-- **`plugins`**: Essential for nf-core testing. The `nft-utils` plugin provides helper functions like `getAllFilesFromDir()` that are used across many nf-core pipeline tests.
+- `workDir`: Defines where nf-test stores its working files and caches. The environment variable `NFT_WORKDIR` allows CI systems to customize this location.
 
-> **For complete configuration options**, see the [official nf-test configuration documentation](https://www.nf-test.com/docs/configuration/).
+- `plugins`: Essential for nf-core testing. The `nft-utils` plugin provides helper functions like `getAllFilesFromDir()` that are used across many nf-core pipeline tests.
 
-### Available nf-test Plugins
+:::note
+For complete configuration options, see the [official nf-test configuration documentation](https://www.nf-test.com/docs/configuration/).
+:::
+
+### Available nf-test plugins
 
 For nf-core pipeline testing, plugins provide additional functionality to help validate different output file types and ensure data integrity during testing.
 
-Plugins can be customized - like nft-utils, which has been tailored by the nf-core community for automating the capture and validation of pipeline-level outputs.
+Plugins can be customized, like nft-utils, which the nf-core community has tailored to automate the capture and validation of pipeline-level outputs.
 
-| Plugin Name      | Description/Use                                                                                                              |
+| Plugin name      | Description/Use                                                                                                              |
 | ---------------- | ---------------------------------------------------------------------------------------------------------------------------- |
 | **nft-utils**    | Essential utility functions like `getAllFilesFromDir()` and `removeNextflowVersion()` - widely used across nf-core pipelines |
 | **nft-bam**      | Helper functionality for handling SAM/BAM/CRAM files during tests - critical for genomics pipelines                          |
@@ -124,11 +134,13 @@ Plugins can be customized - like nft-utils, which has been tailored by the nf-co
 | **nft-anndata**  | Support for AnnData (h5ad) files - utilities for testing single-cell analysis data formats                                   |
 | **nft-tiff**     | Support for TIFF files - enables testing of Tagged Image File Format files                                                   |
 
-> **Note:** For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
+:::note
+For the complete list of available plugins and their latest versions, visit the [nf-test plugins registry](https://plugins.nf-test.com/).
+:::
 
-#### `tests/nextflow.config` (Test-Specific Settings)
+#### `tests/nextflow.config`
 
-**Purpose**: Defines base parameters and settings across all test executions
+Defines base parameters and settings across all test executions
 This is very similar to your typical nf-core test profiles.
 However one change is the `aws.client.anonymous` option that ensures anonymous access to AWS S3 buckets for test data, which is useful when your test data is publicly accessible and you don't want to configure AWS credentials for CI/CD.
 
@@ -155,7 +167,7 @@ process {
 aws.client.anonymous = true
 ```
 
-## Test Data Integration
+## Test data integration
 
 From nf-core tools v3.3 onwards, there is a command for discovering test datasets, making it easier to refer to these within your tests:
 
@@ -176,24 +188,26 @@ nf-core test-datasets list --branch mag --generate-dl-url
 nf-core test-datasets list --branch mag --generate-nf-path
 ```
 
-> **Note:** For more information see the nf-core/tools v3.3 [blog post](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
+:::note
+For more information, see the nf-core/tools v3.3 [blog post](https://nf-co.re/blog/2025/tools-3_3#new-nf-core-test-datasets-command).
+:::
 
-## Pipeline-Level Testing Setup
+## Pipeline-level testing setup
 
-### nf-core/tools 3.3+ Pipeline Template
+### nf-core/tools 3.3+ pipeline template
 
 Starting with nf-core/tools v3.3, pipeline-level nf-tests are included in the nf-core pipeline template.
 The template provides:
 
-- **`tests/default.nf.test`**: A default pipeline test that mirrors the setup in `config/test.config`
-- **`tests/nextflow.config`**: Base test-specific Nextflow configuration
-- **`tests/.nftignore`**: Files to ignore in nf-test snapshots
-- **`nf-test.config`**: Pipeline-level nf-test configuration
+- `tests/default.nf.test`: A default pipeline test that mirrors the setup in `config/test.config`
+- `tests/nextflow.config`: Base test-specific Nextflow configuration
+- `tests/.nftignore`: Files to ignore in nf-test snapshots
+- `nf-test.config`: Pipeline-level nf-test configuration
 
-### Initial Snapshot Generation ⚠️
+### Initial snapshot generation ⚠️
 
 :::warning
-**Important**: The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**.
+The pipeline template includes `tests/default.nf.test` but **does not include a snapshot file**.
 :::
 
 This means:
@@ -227,7 +241,7 @@ After running this command:
 1. **Commit the generated snapshot**: `tests/default.nf.test.snap`
 2. **Push to your repository** to fix the failing CI
 
-### Creating Additional Pipeline Tests
+### Creating additional pipeline tests
 
 You can create additional pipeline tests by copying and renaming the default test:
 
@@ -246,7 +260,7 @@ You then modify each `test_*.nf.test` file to describe what you want to test in 
 
 Finally each test will need its own snapshot generated using the same `nf-test test` command.
 
-## Generating Tests (Optional)
+## Generating tests (optional)
 
 For (local) module and subworkflow tests, you can generate test templates:
 
@@ -258,6 +272,6 @@ nf-test generate process path/to/main.nf
 nf-test generate workflow path/to/main.nf
 ```
 
-## Next Steps
+## Next steps
 
 With your project properly configured, proceed to [Testing Modules](./03_testing_modules.md) to start writing comprehensive module tests.
