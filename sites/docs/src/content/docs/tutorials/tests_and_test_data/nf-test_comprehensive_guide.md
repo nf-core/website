@@ -22,6 +22,7 @@ From writing your first test to implementing advanced patterns, this guide provi
 3. [Testing modules](./components/03_testing_modules.md) - Testing individual nf-core modules
 4. [Testing subworkflows](./components/04_testing_subworkflows.md) - Testing nf-core subworkflows
 5. [Testing pipelines](./components/05_testing_pipelines.md) - End-to-end pipeline testing
+
 - [nf-test assertions](./components/06_assertions.md) - Comprehensive assertion patterns and verification techniques
 
 ### Data management and integration
