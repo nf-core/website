@@ -14,8 +14,8 @@ label:
 import { Image } from "astro:assets";
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import colabmeme from "@assets/images/blog/nf-core-colab/colab-meme.jpg";
-import disconnectmeme from "@assets/images/blog/nf-core-colab/colab-disconnected-meme.png"
-import sleepmeme from "@assets/images/blog/nf-core-colab/dont-fall-asleep-meme.png"
+import disconnectmeme from "@assets/images/blog/nf-core-colab/colab-disconnected-meme.png";
+import sleepmeme from "@assets/images/blog/nf-core-colab/dont-fall-asleep-meme.png";
 
 # Introduction
 
@@ -45,19 +45,19 @@ Ultimately, using Colab can help democratize access to advanced pipeline develop
 
 # Limitations of Running Pipelines in Colab
 
-<div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', margin: '2rem 0' }}>
-  <Image
-    src={disconnectmeme}
-    width={300}
-    alt="Colab disconnect meme"
-    style={{ borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-  />
-  <Image
-    src={sleepmeme}
-    width={300}
-    alt="Colab sleep meme"
-    style={{ borderRadius: '8px', boxShadow: '0 2px 8px rgba(0,0,0,0.1)' }}
-  />
+<div style={{ display: "flex", gap: "1rem", justifyContent: "center", alignItems: "center", margin: "2rem 0" }}>
+    <Image
+        src={disconnectmeme}
+        width={300}
+        alt="Colab disconnect meme"
+        style={{ borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+    />
+    <Image
+        src={sleepmeme}
+        width={300}
+        alt="Colab sleep meme"
+        style={{ borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+    />
 </div>
 
 While colab Google Colab is a powerful and accessible platform, it does have some constraints.
@@ -87,6 +87,7 @@ You can read more about the library and even help contribute to new features on 
 # Downsides and Caveats of the VS Code Colab Approach
 
 **Main limitations:**
+
 - No root access (no Docker/Singularity)
 - Session timeouts
 - MPLBACKEND issues
