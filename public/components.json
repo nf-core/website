@@ -14164,7 +14164,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -20344,7 +20344,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -27132,7 +27132,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "taxprofiler",
@@ -30979,7 +30979,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -47697,7 +47697,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -48203,7 +48203,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -48960,7 +48960,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -53695,7 +53695,7 @@
               }
             ]
           ],
-          "vcf_tbi": [
+          "vcf_index": [
             [
               {
                 "meta": {
@@ -53704,10 +53704,10 @@
                 }
               },
               {
-                "${prefix}.vcf.gz.tbi": {
+                "${prefix}.vcf.gz.{tbi,csi}": {
                   "type": "file",
                   "description": "Tabix index file of compressed VCF",
-                  "pattern": "*.vcf.gz.tbi",
+                  "pattern": "*.vcf.gz.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -53735,7 +53735,7 @@
               }
             ]
           ],
-          "gvcf_tbi": [
+          "gvcf_index": [
             [
               {
                 "meta": {
@@ -53744,10 +53744,10 @@
                 }
               },
               {
-                "${prefix}.g.vcf.gz.tbi": {
+                "${prefix}.g.vcf.gz.{tbi,csi}": {
                   "type": "file",
                   "description": "Tabix index file of compressed GVCF",
-                  "pattern": "*.g.vcf.gz.tbi",
+                  "pattern": "*.g.vcf.gz.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -57148,7 +57148,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -63577,7 +63577,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "sarek",
@@ -64128,7 +64128,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -68757,7 +68757,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -68865,7 +68865,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -76310,10 +76310,10 @@
                 }
               },
               {
-                "$prefix": {
-                  "type": "directory",
-                  "description": "Directory containing the files that compose the genomicsdb workspace, this is only output for create mode, as update changes an existing db",
-                  "pattern": "*/$prefix"
+                "${prefix}": {
+                  "type": "file",
+                  "description": "genomicsdb",
+                  "ontologies": []
                 }
               }
             ]
@@ -76327,10 +76327,10 @@
                 }
               },
               {
-                "$updated_db": {
-                  "type": "directory",
-                  "description": "Directory containing the files that compose the updated genomicsdb workspace, this is only output for update mode, and should be the same path as the input wspace.",
-                  "pattern": "same/path/as/wspace"
+                "${updated_db}": {
+                  "type": "file",
+                  "description": "updated genomicsdb",
+                  "ontologies": []
                 }
               }
             ]
@@ -86713,7 +86713,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -93407,7 +93407,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -97598,7 +97598,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -97740,7 +97740,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -97851,7 +97851,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -108849,7 +108849,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -109037,7 +109037,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -111413,7 +111413,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "taxprofiler",
@@ -135697,7 +135697,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -153743,7 +153743,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnavar",
@@ -162253,7 +162253,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -168453,7 +168453,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -173708,7 +173708,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -173815,7 +173815,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -173923,7 +173923,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -174035,7 +174035,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -174231,7 +174231,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -174463,7 +174463,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -174595,7 +174595,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -174707,7 +174707,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "scnanoseq",
@@ -174880,7 +174880,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -175018,7 +175018,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -177560,7 +177560,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -177748,7 +177748,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -181257,7 +181257,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -181547,7 +181547,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -181981,7 +181981,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -182949,7 +182949,14 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "index_format": {
+              "type": "string",
+              "description": "Index format to use (optional)",
+              "pattern": "bai|csi|crai"
+            }
+          }
         ],
         "output": {
           "bam": [
@@ -182961,7 +182968,7 @@
                 }
               },
               {
-                "*.bam": {
+                "${prefix}.bam": {
                   "type": "file",
                   "description": "Sorted BAM file",
                   "pattern": "*.{bam}",
@@ -182979,10 +182986,28 @@
                 }
               },
               {
-                "*.cram": {
+                "${prefix}.cram": {
                   "type": "file",
                   "description": "Sorted CRAM file",
                   "pattern": "*.{cram}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.sam": {
+                  "type": "file",
+                  "description": "Sorted SAM file",
+                  "pattern": "*.{sam}",
                   "ontologies": []
                 }
               }
@@ -182997,7 +183022,7 @@
                 }
               },
               {
-                "*.crai": {
+                "${prefix}.${extension}.crai": {
                   "type": "file",
                   "description": "CRAM index file (optional)",
                   "pattern": "*.crai",
@@ -183015,10 +183040,28 @@
                 }
               },
               {
-                "*.csi": {
+                "${prefix}.${extension}.csi": {
                   "type": "file",
                   "description": "BAM index file (optional)",
                   "pattern": "*.csi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.${extension}.bai": {
+                  "type": "file",
+                  "description": "BAM index file (optional)",
+                  "pattern": "*.bai",
                   "ontologies": []
                 }
               }
@@ -183165,7 +183208,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -183407,7 +183450,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -188756,7 +188799,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.20.0"
+        }
+      ]
     },
     {
       "name": "sentieon_rsempreparereference",
@@ -188844,7 +188893,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.20.0"
+        }
+      ]
     },
     {
       "name": "sentieon_staralign",
@@ -189261,7 +189316,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.20.0"
+        }
+      ]
     },
     {
       "name": "sentieon_tnfilter",
@@ -200992,7 +201053,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -204396,7 +204457,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -204556,7 +204617,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -207048,7 +207109,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -207199,7 +207260,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -207365,7 +207426,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -216193,7 +216254,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -218136,7 +218197,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -218241,7 +218302,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -218362,7 +218423,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -219597,7 +219658,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "smrnaseq",
@@ -219813,7 +219874,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "scnanoseq",
@@ -219948,7 +220009,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -220237,7 +220298,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -220713,7 +220774,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -233323,7 +233384,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -233429,7 +233490,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -233791,7 +233852,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -233979,7 +234040,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnavar",
@@ -234591,7 +234652,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -234755,7 +234816,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -235033,7 +235094,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -236006,7 +236067,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -238711,7 +238772,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -239607,7 +239668,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "smrnaseq",
@@ -239788,7 +239849,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnasplice",
@@ -240364,7 +240425,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -240490,7 +240551,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -241260,7 +241321,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         }
       ]
     },
@@ -241618,7 +241679,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnavar",
@@ -242027,7 +242088,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnavar",
@@ -242404,7 +242465,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.19.0"
+          "version": "3.20.0"
         },
         {
           "name": "rnavar",
