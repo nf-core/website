@@ -8,7 +8,7 @@ weight: 5
 ## Overview
 
 This comprehensive guide covers testing nf-core components using nf-test.
-From writing your first test to implementing advanced patterns, this guide provides everything needed to create robust, maintainable tests for modules, subworkflows, and pipelines.
+This guide provides everything needed to create robust, maintainable tests for modules, subworkflows, and pipelines, from writing your first test to implementing advanced patterns.
 
 ## Guide structure
 
