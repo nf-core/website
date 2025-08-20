@@ -84,7 +84,8 @@ In my experience, this doesn't seem to perform any differently from a shell-base
 
 Once you've got your Nextflow, conda, and nf-core pipeline of your choice installed you're pretty much good to go to run any pipeline you desire.
 However, because of the slightly more common instability of the conda profile when running most pipelines, you're bound to have the pipeline crash at some point and will need to make a script edit somewhere to solve the issue.
-While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, VS Code offers a more robust environment.
+
+While you could get away with developing pipelines inside Colab's built-in terminal using editors like vim or nano, VS Code offers a more robust environment.
 Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's powerful hardware in the comfort of VS Code's rich software suite.
 This means you will have access to all your favorite extensions and syntax highlighting in a familiar, seamless GUI!
 The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
