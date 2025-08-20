@@ -1,0 +1,515 @@
+---
+title: "6. nf-test Assertions"
+subtitle: Comprehensive guide to nf-test assertions and verification patterns
+weight: 60
+---
+
+This component covers various assertion patterns and techniques for effective testing with nf-test. Mastering these patterns is essential for creating robust and maintainable tests for nf-core pipelines and components.
+
+## Snapshots
+
+Snapshots are used to compare the current output of a process, workflow, or function against a reference snapshot file (`*.nf.test.snap`).
+
+### Basic Snapshot Usage
+
+Create snapshots using the `snapshot` keyword. The `match` method checks if the snapshot corresponds to the expected data in the snap file:
+
+```groovy
+// Create a snapshot of a workflow channel
+assert snapshot(workflow.out.channel1).match('channel1')
+
+// Snapshot all output channels of a process
+assert snapshot(process.out).match()
+
+// Snapshot a specific file
+assert snapshot(path(process.out.get(0))).match()
+
+// Snapshot the result of a function
+assert snapshot(function.result).match()
+```
+
+The first test run generates a JSON snapshot file. Subsequent runs compare against this file. Commit snapshot files with code changes and review them in your code review process.
+
+### Configuring Tests
+
+nf-test allows specifying params or including config files:
+
+```groovy
+params {
+    foo = 'bar'
+}
+```
+
+```groovy
+config "./nextflow.config"
+```
+
+Use withName selectors to assign `ext.args` values to a specific process. Both directives work within the scope they are defined in.
+
+### File Path Handling
+
+#### Understanding `file()` vs `path()` in nf-test
+
+nf-test provides two primary functions for working with file system objects:
+
+**`file()`**: Creates a File object that represents the file metadata and allows basic operations:
+
+- Use for checking file existence with `.exists()`
+- Access file properties like `.name`, `.length()`, `.isDirectory()`
+- Works with both absolute and relative paths
+- Returns `null` if the file doesn't exist
+
+**`path()`**: Creates a Path object with extended functionality for content operations:
+
+- Use for reading file content with `.readLines()`, `.text`, `.json`
+- Supports compressed files with `.linesGzip`
+- Essential for content-based assertions
+- Handles CSV parsing with `.csv()`
+- Required for snapshot operations on file content
+
+```groovy
+// Using file() for metadata checks
+assert file(process.out.output[0][1]).exists()
+assert file(process.out.output[0][1]).name == "expected_filename.txt"
+
+// Using path() for content operations
+assert path(process.out.output[0][1]).readLines().contains("expected_content")
+assert snapshot(path(process.out.output[0][1])).match("content_snapshot")
+```
+
+#### Snapshot Path Handling
+
+nf-test automatically replaces absolute file paths in snapshots with unique fingerprints (md5 sums by default) to ensure:
+
+- **Portability**: Tests work across different systems and directories
+- **Consistency**: File content changes are detected reliably
+- **Reproducibility**: Same file content produces same fingerprint
+
+When a snapshot contains file paths, you'll see entries like:
+
+```json
+{
+  "content": [
+    {
+      "0": ["meta", "file_abc123def456.txt"]
+    }
+  ]
+}
+```
+
+#### Handling Multiple Files in Output Channels
+
+When processes emit multiple files as lists, you need specific techniques to handle them effectively:
+
+**Pattern 1: Accessing Individual Files in a List**
+
+```groovy
+// For a channel that emits [meta, [file1, file2, file3]]
+assert file(process.out.output[0][1][0]).exists()  // First file
+assert file(process.out.output[0][1][1]).exists()  // Second file
+assert file(process.out.output[0][1][2]).exists()  // Third file
+```
+
+**Pattern 2: Iterating Through All Files**
+
+```groovy
+// Check all files exist
+process.out.output[0][1].each { file_path ->
+    assert file(file_path).exists()
+}
+```
+
+**Pattern 3: Filtering Files by Name**
+
+```groovy
+// Find specific file types
+def log_files = process.out.logs[0][1].findAll { file(it).name.endsWith(".log") }
+def txt_files = process.out.output[0][1].findAll { file(it).name.endsWith(".txt") }
+
+assert log_files.size() == 1
+assert txt_files.size() >= 2
+```
+
+**Pattern 4: Collecting File Properties**
+
+```groovy
+// Create snapshot of file names only (for unstable file contents)
+assert snapshot(
+    process.out.output[0][1].collect { file(it).name }.sort()
+).match("output_filenames")
+
+// Mix of file content and metadata
+assert snapshot(
+    process.out.stable_files[0][1],  // Content snapshot for stable files
+    process.out.logs[0][1].collect { file(it).name }.sort()  // Names only for logs
+).match()
+```
+
+**Pattern 5: Separating Stable and Unstable Files**
+
+```groovy
+// When you have mixed stable/unstable files in one output
+def stable_files = process.out.mixed[0][1].findAll {
+    !file(it).name.contains("timestamp") && !file(it).name.endsWith(".log")
+}
+def unstable_files = process.out.mixed[0][1].findAll {
+    file(it).name.contains("timestamp") || file(it).name.endsWith(".log")
+}
+
+assertAll(
+    { assert snapshot(stable_files).match("stable_content") },
+    { assert snapshot(unstable_files.collect { file(it).name }.sort()).match("unstable_names") }
+)
+```
+
+**Common Gotchas:**
+
+- Always use `file()` or `path()` when working with file paths from channels
+- Remember that `process.out.channel[0][1]` might be a single file or a list
+- Use `.collect()` to transform lists before snapshotting
+- Sort file lists when order isn't guaranteed: `.collect { file(it).name }.sort()`
+
+## nf-core Guidelines for Assertions
+
+### Core Requirements
+
+1. **Encapsulate Assertions in `assertAll()`**: Group all assertions within `assertAll()` for comprehensive testing.
+
+2. **Minimum Requirement**: Always check process success and version.yml file:
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out.versions).match("versions") }
+)
+```
+
+3. **Capture as much as possible**: Best practice is to snapshot complete output:
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+
+:::note
+`process.out` captures all output channels, both named and index-based ones. This is useful for quickly getting a comprehensive overview of all outputs without needing to individually specify each channel.
+:::
+
+## Essential Assertion Patterns
+
+### Simple & Straightforward
+
+#### Snapshot All Output Channels
+
+**Motivation:** Ensure all outputs are stable over changes.
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+
+#### Snapshot Specific Output Channel
+
+**Motivation:** Create snapshot for one specific output channel.
+
+```groovy
+assert snapshot(process.out.versions).match("versions")
+```
+
+#### Snapshot Specific Output Channel Element
+
+**Motivation:** Create snapshot for a specific element within a channel.
+
+```groovy
+assert snapshot(process.out.output[0][1]).match("output_file")
+```
+
+### File Verification Patterns
+
+#### File Exists Check
+
+**Motivation:** Snapshots are unstable due to timestamps/file-paths in content.
+
+```groovy
+assert file(process.out.interop[0][1].find { file(it).name == "IndexMetricsOut.bin" }).exists()
+```
+
+#### File Contains Check
+
+**Motivation:** Verify specific content within files.
+
+```groovy
+with(process.out.report) {
+    with(get(0)) {
+        assert get(1).endsWith("hisat2_SE_report.txt")
+        assert path(get(1)).readLines().last().contains("Bismark completed in")
+    }
+}
+```
+
+#### ReadLines & Contains
+
+**Motivation:** Ensure specific substrings are always present.
+
+```groovy
+with(process.out.ncbi_settings) {
+    assert path(get(0)).readLines().any { it.contains('/LIBS/GUID') }
+    assert path(get(0)).readLines().any { it.contains('/libs/cloud/report_instance_identity') }
+}
+```
+
+#### Comparing row counts with nft-csv
+
+**Motivation:** Ensure the number of rows in a per-sample output summary file from a pipeline matches the number of files in an input samplesheet
+
+```groovy
+params {
+    outdir = "${outputDir}"
+}
+
+...
+then {
+    // Comma is default separator but being explicit to demonstrate it can be changed
+    def n_input_samples = path("/path/to/input/samplesheet.csv").csv(sep: ",").rowCount // Replace /path/to/input/samplesheet.csv with your actual samplesheet path
+
+    assertAll(
+        { assert path("$outputDir/path/to/summary.csv").csv(sep: ",").rowCount == n_input_samples }
+    )
+}
+```
+
+### Advanced Content Verification
+
+#### Snapshot Selective File Portions
+
+**Motivation:** Part of file content is stable, part is not (e.g., timestamps).
+
+```groovy
+// First 5 lines only
+assert snapshot(file(process.out.aligned[0][1]).readLines()[0..4]).match()
+
+// Lines and size of gzipped file
+def lines = path(process.out.file_out[0][1]).linesGzip
+assertAll(
+    { assert process.success },
+    { assert snapshot(lines[0..5]).match("test_cat_zipped_zipped_lines") },
+    { assert snapshot(lines.size()).match("test_cat_zipped_zipped_size") }
+)
+
+// Last 4 lines of gzipped file
+path(process.out.gzip[0][1]).linesGzip[-4..-1]
+```
+
+#### Assert Contains in Gzipped Files
+
+**Motivation:** Check presence of specific data patterns in compressed files.
+
+```groovy
+{ assert path(process.out.vcf[0][1]).linesGzip.toString().contains("MT192765.1\t10214\t.\tATTTAC\tATTAC\t29.8242") }
+```
+
+### Complex Output Handling
+
+#### Snapshot Sorted List & Exclude Specific Files
+
+**Motivation:** Snapshot channels with multiple files in a single output channel, with one having all unstable file contents, and another with a single unstable file in the list among stable files.
+
+For channels with all stable files, we just specify the channel as normal.
+For the channel where all files are unstable (log), we use `collect` to loop through all files in the channel element that is the list of files, getting the name of the file and then sorting the entire list.
+For the channel with a single unstable file in the list of files, we find all files except for the 'offending' unstable file by name.
+We then have a separate assertion to independently check for the unstable file's existence by finding it from the list of files specifically.
+
+```groovy
+assertAll(
+    { assert process.success },
+    { assert snapshot(
+        process.out.reports,
+        process.out.versions,
+        process.out.fastq,
+        process.out.undetermined,
+        process.out.summary_tables[0][1].collect { file(it).name }.sort()
+        process.out.interop.get(0).get(1).findAll { file(it).name != "IndexMetricsOut.bin" },
+        ).match()
+    },
+    { assert file(process.out.interop.get(0).get(1).find { file(it).name == "IndexMetricsOut.bin" }).exists() }
+)
+```
+
+#### Snapshot Element in Tuple Output
+
+**Motivation:** Only one element of tuple has stable snapshots.
+
+```groovy
+assert snapshot(file(process.out.deletions[0][1])).match("deletions")
+```
+
+#### Snapshot Published File in Outdir
+
+**Motivation:** Verify files saved correctly in output directory.
+
+```groovy
+params {
+    outdir = "$outputDir"
+}
+```
+
+```groovy
+assert snapshot(path("$outputDir/kallisto/test/abundance.tsv")).match("abundance_tsv_single")
+```
+
+### Pattern Matching and Validation
+
+#### Assert File Name and Type
+
+**Motivation:** Verify file type when exact location is unknown.
+
+```groovy
+assert process.out.classified_reads_fastq[0][1][0] ==~ ".*/test.classified_1.fastq.gz"
+```
+
+#### Snapshot Selective File Names & Content
+
+**Motivation:** Include specific aspects of multiple files in snapshot.
+
+```groovy
+assert snapshot(
+    file(process.out.npa[0][1]).name,
+    file(process.out.npc[0][1]).name,
+    path(process.out.npo[0][1]).readLines()[0],
+    path(process.out.npl[0][1])
+).match()
+```
+
+### Handling Variable Directory Contents
+
+#### Snapshotting Variable Files in Channel Directories
+
+**Context:** Channel emits directory with mixed stable/unstable files.
+**Motivation:** Snapshot stable files with md5sums, unstable files by name only.
+
+```groovy
+then {
+    def stablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file ->
+        if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {
+            stablefiles.add(file)
+        }
+    }
+
+    def unstablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file ->
+        if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {
+            unstablefiles.add(file.getName().toString())
+        }
+    }
+
+    assertAll(
+        { assert process.success },
+        { assert snapshot(
+                stablefiles,
+                unstablefiles,
+                process.out.versions
+            ).match() }
+    )
+}
+```
+
+:::note
+Explicitly exclude directories in the first case because `eachFileRecurse` includes directories. If directories are included, nf-test looks inside and runs md5sum on files, potentially including files you wanted to exclude.
+:::
+
+### Binary File Verification
+
+#### Snapshotting Variable Binary Files with File Size
+
+**Context:** Binary files that often have non-deterministic contents (e.g., timestamps, random seeds).
+**Motivation:** Check that binary file contains 'something' rather than just existence, or that it matches expected properties like minimum size.
+
+```groovy
+// Exact file size (in bytes)
+"malt/malt_index/ref.idx - correct file size: ${file("$outputDir/malt/malt_index/ref.idx").length()}",
+
+// Minimum size (in bytes)
+"malt/malt_index/ref.idx - minimum file size: ${file("$outputDir/malt/malt_index/ref.idx").length() >= 61616}",
+```
+
+## Channel Assertion Techniques
+
+### Asserting Presence using `contains`
+
+Use Groovy's `contains` and `collect` methods to assert presence of items in channel output:
+
+```groovy
+// Example channel with tuples
+def exampleChannel = [
+    ['Bonjour', '/.nf-test/tests/c563c/work/65/b62f/Bonjour.json'],
+    ['Hello', '/.nf-test/tests/c563c/work/65/fa20/Hello.json'],
+    ['Hola', '/.nf-test/tests/c563c/work/65/85d0/Hola.json']
+]
+
+// Asserting a tuple's presence
+testData = exampleChannel.collect { greeting, jsonPath -> [greeting, path(jsonPath).json] }
+assert testData.contains(['Hello', path('./myTestData/Hello.json').json])
+
+// Asserting a subset (greeting only)
+testData = exampleChannel.collect { greeting, _ -> greeting }
+assert testData.contains('Hello')
+```
+
+### Indexing
+
+Access elements in output channels using index notation:
+
+```groovy
+log.get(0).get(1)
+// equivalent to
+log[0][1]
+```
+
+- First `get(0)` or `[0]`: emitted channel object
+- `get(1)` or `[1]`: second object (typically files/directories in nf-core modules)
+
+## Useful nf-test Operators and Functions
+
+### Regular Expressions
+
+The operator `==~` checks if a string matches a regular expression:
+
+```groovy
+assert "/my/full/path/to/process/dir/example.vcf.pgen" ==~ ".*/example.vcf.pgen"
+```
+
+### Using `with()` for Cleaner Code
+
+Instead of repetitive assertions:
+
+```groovy
+assert process.out.imputed_plink2.size() == 1
+assert process.out.imputed_plink2[0][0] == "example.vcf"
+assert process.out.imputed_plink2[0][1] ==~ ".*/example.vcf.pgen"
+assert process.out.imputed_plink2[0][2] ==~ ".*/example.vcf.psam"
+assert process.out.imputed_plink2[0][3] ==~ ".*/example.vcf.pvar"
+```
+
+Use `with()` to reduce redundancy:
+
+```groovy
+assert process.out.imputed_plink2
+with(process.out.imputed_plink2) {
+    assert size() == 1
+    with(get(0)) {
+        assert get(0) == "example.vcf"
+        assert get(1) ==~ ".*/example.vcf.pgen"
+        assert get(2) ==~ ".*/example.vcf.psam"
+        assert get(3) ==~ ".*/example.vcf.pvar"
+    }
+}
+```
+
+## Next Steps
+
+Continue to [Test Data Management](./07_test_data_management.md) to learn about organizing and managing test datasets.
