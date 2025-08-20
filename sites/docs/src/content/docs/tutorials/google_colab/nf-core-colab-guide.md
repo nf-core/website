@@ -161,6 +161,8 @@ from google.colab import drive
 drive.mount('/content/drive')
 ```
 
+### Limitations to Note
+
 And remember, while Google Colab is a powerful and accessible platform, it does have some constraints:
 
 - Session timeouts and limited runtime duration
