@@ -105,7 +105,8 @@ You can read more about the library and even help contribute to new features on 
 While the `vscode-colab` approach is great, it does have it's downsides.
 
 The biggest issue you will face is frequent disconnections or crashing of the connection tunnel.
-I have seen that this reduces drastically—or almost never happens—if you make sure to set up the other aspects of your Colab environment before starting up the tunnel.
+I have seen that if you make sure to set up the other aspects of your Colab environment before starting up the tunnel - disconnections rarely happens (or at least drastically reduces the number of).
+
 The issue could be with Colab having a low affinity for handling requests from multiple frontends.
 At the time of writing this blog post, the most annoying issue is that you have to set up the whole VS Code environment with all the extensions from scratch with each run.
 The developer of the package did indicate that the ability to save profiles as config files is under development and will be added soon, so make sure to keep an eye on the repo for any such developments.
