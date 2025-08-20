@@ -12,7 +12,7 @@ Also make sure to checkout the [blogpost](https://nf-co.re/blog/2025/nf-core-col
 
 ## Setting up the environment in Google Colab
 
-After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and it's dependencies. Since Colab does not provide root access, you will need to install Nextflow in the user's home directory.
+If you are new to Google Colab, you can follow the official [Google Colab Getting Started guide](https://research.google.com/colaboratory/faq.html) or the [Colab Welcome Notebook](https://colab.research.google.com/notebooks/intro.ipynb) for instructions on how to register for an account and set up your first notebook.
 
 After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and its dependencies. Since Colab does not provide root access, you will need to install Nextflow in your home directory.
 
@@ -93,7 +93,7 @@ Now you can finally run your pipeline!
 ! nextflow run nf-core/demo -profile conda,test --outdir demo-results
 ```
 
-# Running and Editing Pipelines in VS Code via Colab
+## Running and Editing Pipelines in VS Code via Colab
 
 While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, a VSCode IDE offers a more robust and richer environment for development.
 Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's hardware in the comfort of the popular VSCode software suite.
@@ -136,7 +136,7 @@ vscode_colab.connect(
 
 ![interactive tunnel connection popup in cell output](/images/tutorials/google_colab/connect.png)
 
-The above step allows for a lot more customization than shown here. Please refer to the library's vignette to see if any of these options will suit your needs.
+The above step allows for a lot more customization than shown here. Please refer to the library's [vignette](https://github.com/EssenceSentry/vscode-colab) to see if any of these options will suit your needs.
 
 Finally, in your local VS Code:
 
@@ -147,9 +147,13 @@ Finally, in your local VS Code:
 
 You're now seamlessly connected to Colab through VS Code and can develop Nextflow pipelines more flexibly from just about any computer.
 
-# Tips
+## Final tips for a Smooth Experience
 
-To avoid losing your work, always clone the nf-core pipeline you want to contribute to, or regularly push your personal pipelines to a remote repository.
+Google Colab's storage is temporary and limited to around 100GB in most cases.
+It's important to regularly back up your results to avoid data loss—mounting your personal Google Drive is convenient for small to moderate outputs, but may not be suitable for large workflow results, which can reach hundreds of gigabytes.
+For larger datasets, consider syncing to external cloud storage or transferring results to institutional or project-specific storage solutions.
+Additionally, if you plan on writing and developing your pipelines exclusively in Google Colab, make sure to use `git` and regularly commit and push your code, or alternatively, test in Colab but save changes from your local PC and commit to prevent loss of your progress after the notebook instance shuts down.
+
 For long-term storage of results and access to your own datasets, you can mount your Google Drive in Colab:
 
 ```python
@@ -163,7 +167,7 @@ And remember, while Google Colab is a powerful and accessible platform, it does 
 - No root access for system-level changes
 - Limited resources compared to dedicated cloud VMs
 
-# Conclusion
+## Conclusion
 
 In this guide, we covered:
 
