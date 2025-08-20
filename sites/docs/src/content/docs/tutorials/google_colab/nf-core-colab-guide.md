@@ -59,7 +59,7 @@ Make sure to set the conda defaults as follows for smooth pipeline execution:
 # Running a test pipeline
 
 Yes, the setup is that simple!
-Now that the main parts of the environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/1.0.2/).
+Now that the main parts of the environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/).
 To install the pipeline, run:
 
 ```python
