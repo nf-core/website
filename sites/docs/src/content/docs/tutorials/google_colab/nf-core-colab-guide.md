@@ -16,7 +16,7 @@ After opening a Colab notebook with the machine type of your choice, the first s
 
 After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and its dependencies. Since Colab does not provide root access, you will need to install Nextflow in your home directory.
 
-Before installing Nextflow, you must install Java. In Colab, run the following commands in a code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
+Before installing Nextflow, you must install Java. In Colab, run the following commands in a notebook code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
 
 ```python
 %cd .. # use '%'before cd to make a permanent change of directories
