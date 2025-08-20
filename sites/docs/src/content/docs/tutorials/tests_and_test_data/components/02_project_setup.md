@@ -258,7 +258,7 @@ Each test config should include the parameter and/or input dataset combination y
 
 You then modify each `test_*.nf.test` file to describe what you want to test in the output of the pipeline.
 
-Finally each test will need its own snapshot generated using the same `nf-test test` command.
+Finally, each test will need its own snapshot generated using the same `nf-test test` command.
 
 ## Generating tests (optional)
 
