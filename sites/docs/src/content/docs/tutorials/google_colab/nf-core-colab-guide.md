@@ -3,18 +3,20 @@ title: "Running nf-core Pipelines on Google Colab"
 subtitle: "A guide to running and interacting with nf-core pipelines using Colab and VS Code"
 ---
 
-# Introduction
+## Running nf-core Pipelines in Google Colab
 
 Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
 This tutorial shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VS Code via the `vscode-colab` package for a full development experience.
 While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
 Also make sure to checkout the [blogpost](https://nf-co.re/blog/2025/nf-core-colab-guide) on this topic for deeper insights and more tips for running nf-core pipelines using Colab.
 
-# Setting up the environment in Google Colab
+## Setting up the environment in Google Colab
 
 After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and it's dependencies. Since Colab does not provide root access, you will need to install Nextflow in the user's home directory.
 
 After opening a Colab notebook with the machine type of your choice, the first step is to install Nextflow and its dependencies. Since Colab does not provide root access, you will need to install Nextflow in your home directory.
+
+### Setting up Java for Nextflow
 
 Before installing Nextflow, you must install Java. In Colab, run the following commands in a notebook code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
 
@@ -27,6 +29,8 @@ Before installing Nextflow, you must install Java. In Colab, run the following c
 !source ~/.bashrc
 ```
 
+### Installing and Setting up Nextflow
+
 Next, install Nextflow and make it executable by running the following commands in a code cell as before:
 
 ```python
@@ -35,6 +39,8 @@ Next, install Nextflow and make it executable by running the following commands 
 !chmod +x /usr/bin/nextflow # Make it executable
 !nextflow -v # Test it
 ```
+
+### Setting Up Conda for Google Colab
 
 Due to a lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
 
@@ -56,7 +62,7 @@ Make sure to set the conda defaults as follows for smooth pipeline execution:
 !conda config --set channel_priority strict
 ```
 
-# Running a test pipeline
+## Running a test pipeline
 
 Yes, the setup is that simple!
 Now that the main parts of the environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/).
@@ -67,7 +73,8 @@ To install the pipeline, run:
 ```
 
 One last important step before running your pipeline, or any others in Colab, is to set the `MPLBACKEND` environment variable to `Agg`.
-This ensures that Matplotlib can render plots in a headless environment like Colab, where no display is available.
+While you might not expect to use Matplotlib directly in nf-core pipelines, some dependencies or scripts may use it behind the scenes for rendering or saving plots, which can cause crashes if not configured for a headless environment like Colab.
+
 You can do this either by running the following in a code cell:
 
 ```python
@@ -94,7 +101,9 @@ Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Py
 The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
 You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
 
-_Note: If you decide to use this approach, it is best to run this after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues._
+:::note
+If you decide to use this approach, it is best to run this after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues.
+:::
 
 The first step is to install and import the library, which can easily be done by running the following command in your Colab code cell:
 
