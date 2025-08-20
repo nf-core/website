@@ -72,7 +72,6 @@ In the free tier, the user is subject to session timeouts of unpredictable frequ
 The paid Pro tier, while coming with many benefits, will also be subject to session timeouts if the tab your notebook is open in closes for a few minutes.
 This can to the stereotypical case of waking up to find your notebook timed out a few minutes after you went to sleep because you temporarily lost internet connection, or didn't plug your laptop all the way in!
 
-The biggest issue that will likely affect someone developing nextflow pipelines in colab is going to be the lack of root access.
 The biggest issue that will likely affect someone developing Nextflow pipelines in Colab is the lack of root access.
 Due to this lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
 Thankfully, we can still run pipelines with conda under `-profile conda`.
