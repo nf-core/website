@@ -241481,6 +241481,87 @@
       ]
     },
     {
+      "name": "tiff_segmentation_vpt",
+      "path": "subworkflows/nf-core/tiff_segmentation_vpt/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "tiff_segmentation_vpt",
+        "description": "Perform segmentation of MERSCOPE TIFF images using the vizgen-postprocessing tool",
+        "keywords": [
+          "segmentation",
+          "imaging",
+          "merscope",
+          "vizgen",
+          "tiff",
+          "spatial"
+        ],
+        "components": [
+          "vizgenpostprocessing/preparesegmentation",
+          "vizgenpostprocessing/runsegmentationontile",
+          "vizgenpostprocessing/compiletilesegmentation"
+        ],
+        "input": [
+          {
+            "ch_input": {
+              "type": "channel",
+              "description": "The input channel containing image directory and transformation file\nStructure: [ val(meta), path(image_dir), path(micron_to_mosaic_pixel_transform.csv) ]\n",
+              "pattern": "*"
+            }
+          },
+          {
+            "ch_algorithm_json": {
+              "type": "channel",
+              "description": "Channel containing algorithm configuration file\nStructure: [ path(algorithm.json) ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "ch_images_regex": {
+              "type": "channel",
+              "description": "Channel containing regex pattern for image matching\nStructure: [ val(regex) ]\n",
+              "pattern": "*"
+            }
+          },
+          {
+            "ch_custom_weights": {
+              "type": "channel",
+              "description": "Channel containing custom weights for segmentation\nStructure: [ path(custom_weights) ]\n",
+              "pattern": "*"
+            }
+          }
+        ],
+        "output": [
+          {
+            "micron_space_segmentation": {
+              "type": "file",
+              "description": "Channel containing micron space segmentation results\nStructure: [ val(meta), path(parquet) ]\n",
+              "pattern": "*.parquet"
+            }
+          },
+          {
+            "mosaic_space_segmentation": {
+              "type": "file",
+              "description": "Channel containing mosaic space segmentation results\nStructure: [ val(meta), path(parquet) ]\n",
+              "pattern": "*.parquet"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@mcmero"
+        ],
+        "maintainers": [
+          "@mcmero"
+        ]
+      }
+    },
+    {
       "name": "utils_nextflow_pipeline",
       "path": "subworkflows/nf-core/utils_nextflow_pipeline/meta.yml",
       "type": "subworkflow",
