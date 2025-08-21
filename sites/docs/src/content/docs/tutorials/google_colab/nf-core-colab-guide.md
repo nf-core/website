@@ -71,8 +71,11 @@ Make sure to set the conda defaults as follows for smooth pipeline execution:
 
 ## Running a test pipeline
 
+...and you're ready to go!
+
 Yes, the setup is that simple!
-Now that the main parts of the environment are all set up, we can run our demo pipeline [nf-core/demo](https://nf-co.re/demo/).
+
+Now that the main parts of the environment are all set up, we can run the demo pipeline [nf-core/demo](https://nf-co.re/demo/).
 To install the pipeline, run:
 
 ```python
@@ -102,14 +105,16 @@ Now you can finally run your pipeline!
 
 ## Running and Editing Pipelines in VS Code via Colab
 
-While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, a VSCode IDE offers a more robust and richer environment for development.
-Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's hardware in the comfort of the popular VSCode software suite.
+While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, a VS Code IDE offers a more robust and richer environment for development.
 
-The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
+If you use VS Code as your normal IDE, thankfully the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's hardware in the comfort of the popular VSCode software suite.
+
+It allows you to securely and reliably connect a local instance of VS Code to Google Colab as well as Kaggle notebooks through the use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) package.
+
 You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
 
 :::note
-If you decide to use this approach, it is best to run this after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues.
+If you decide to use this approach, it is best to run this immediately after setting up the other dependencies that require installation by running inside Colab cells to avoid any connection issues.
 :::
 
 The first step is to install and import the library, which can easily be done by running the following command in your Colab code cell:
@@ -145,7 +150,7 @@ vscode_colab.connect(
 
 The above step allows for a lot more customization than shown here. Please refer to the library's [vignette](https://github.com/EssenceSentry/vscode-colab) to see if any of these options will suit your needs.
 
-Finally, in your local VS Code:
+Then, in your local VS Code:
 
 1. Ensure the [Remote Tunnels extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server) is installed.
 2. Sign in with the same GitHub account used in the notebook.
@@ -157,16 +162,21 @@ You're now seamlessly connected to Colab through VS Code and can develop Nextflo
 ## Final tips for a Smooth Experience
 
 Google Colab's storage is temporary and limited to around 100GB in most cases.
-It's important to regularly back up your results to avoid data loss—mounting your personal Google Drive is convenient for small to moderate outputs, but may not be suitable for large workflow results, which can reach hundreds of gigabytes.
-For larger datasets, consider syncing to external cloud storage or transferring results to institutional or project-specific storage solutions.
-Additionally, if you plan on writing and developing your pipelines exclusively in Google Colab, make sure to use `git` and regularly commit and push your code, or alternatively, test in Colab but save changes from your local PC and commit to prevent loss of your progress after the notebook instance shuts down.
+Thereofre it is important to regularly back up your results to avoid data loss.
 
-For long-term storage of results and access to your own datasets, you can mount your Google Drive in Colab:
+For small to moderate outputs, mounting your personal Google Drive is convenient, but may not be suitable for large workflow results, which can reach hundreds of gigabytes.
 
 ```python
 from google.colab import drive
 drive.mount('/content/drive')
 ```
+
+For larger datasets, consider syncing to external cloud storage or transferring results to institutional or project-specific storage solutions.
+
+:::tip
+If you plan to also write and develop pipelines in Google Colab, make sure to use `git` and regularly commit and push your code, or alternatively, test in Colab but save changes from your local PC and commit to prevent loss of your progress after the notebook instance shuts down.
+:::
+
 
 ### Limitations to Note
 
