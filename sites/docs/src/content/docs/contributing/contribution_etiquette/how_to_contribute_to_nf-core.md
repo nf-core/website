@@ -24,7 +24,6 @@ Popular repositories include:
 - [nf-core/testdatasets](https://github.com/nf-core/testdatasets): Shared test data files for unit testing
 - [nf-core/configs](https://github.com/nf-core/configs): Shared Nextflow configuration files for HPC and cloud infrastructure
 
-
 ## Joining the Slack and GitHub organisations
 
 To join the Slack workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions.
@@ -38,12 +37,14 @@ To join the GitHub workspace, see our [Join nf-core](https://nf-co.re/join) page
 :::tip
 You need to join our Slack workspace first 😉
 :::
+
 ## Asking for help
 
 If you have questions and don't know where to start, ask in our dedicated Slack help channels:
 
 - [#nostupidquestions](https://nfcore.slack.com/archives/C043FMKUNLB)
 - [#help](https://nfcore.slack.com/archives/CE6SDBX2A).
+
 ## Pull requests
 
 Everyone is welcome to open a pull request on our GitHub repositories.
