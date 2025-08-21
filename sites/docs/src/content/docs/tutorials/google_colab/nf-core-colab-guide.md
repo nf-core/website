@@ -82,8 +82,6 @@ To install the pipeline, run:
 ! nextflow pull nf-core/demo
 ```
 
-
-
 ### Preventing Matplotlib Backend Errors in Colab
 
 :::warning
@@ -92,6 +90,7 @@ If you try to run an nf-core pipeline in Colab without changing the Matplotlib b
 ```text
 ValueError: Key backend: 'module://matplotlib_inline.backend_inline' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
 ```
+
 :::
 
 This happens because some pipelines (such as `nf-core/scdownstream`) or their dependencies (like Scanpy) import Matplotlib or its submodules. In Colab, the `MPLBACKEND` environment variable is often set to `module://matplotlib_inline.backend_inline` to enable inline plotting in notebooks. However, this backend is not available in headless or non-interactive environments, such as when Nextflow runs a process in a separate shell.
@@ -112,6 +111,7 @@ Or alternatively, by running the following command in the terminal:
 ```bash title="Set MPLBACKEND to Agg in the terminal"
 export MPLBACKEND=Agg
 ```
+
 :::
 
 Now you can finally run your pipeline!
