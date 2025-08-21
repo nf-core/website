@@ -14,7 +14,7 @@ The [code of conduct](https://nf-co.re/code_of_conduct) is a core document for e
 
 ## Communication
 
-Our primary communication platforms is our Slack workspace and the communication features for various GitHub repositories.
+Our primary communication platforms is our Slack workspace and the communication features for various GitHub repositories (i.e., Issues and Pull Requests).
 
 Popular repositories include:
 
