@@ -81,38 +81,6 @@ To install the pipeline, run:
 ! nextflow pull nf-core/demo
 ```
 
-### Preventing Matplotlib Backend Errors in Colab
-
-:::warning
-If you try to run an nf-core pipeline in Colab without changing the Matplotlib backend, you may see an error like this:
-
-```text
-ValueError: Key backend: 'module://matplotlib_inline.backend_inline' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
-```
-
-:::
-
-This happens because some pipelines (such as `nf-core/scdownstream`) or their dependencies (like Scanpy) import Matplotlib or its submodules. In Colab, the `MPLBACKEND` environment variable is often set to `module://matplotlib_inline.backend_inline` to enable inline plotting in notebooks. However, this backend is not available in headless or non-interactive environments, such as when Nextflow runs a process in a separate shell.
-
-When a pipeline process tries to import Matplotlib, it checks the `MPLBACKEND` value. If it is set to an invalid backend, the process will fail with the error above. This is why you may not see the error with simple demo pipelines (which do not use Matplotlib), but you will encounter it with pipelines that use Scanpy or other tools that rely on Matplotlib for plotting or image processing.
-
-:::tip{title="Solution"}
-Always set the `MPLBACKEND` environment variable to a valid backend (such as `Agg`) before running your pipeline. This ensures Matplotlib can render plots in a headless environment and prevents backend errors.
-
-You can do this either by running the following in a code cell:
-
-```python
-%env MPLBACKEND=Agg
-```
-
-Or alternatively, by running the following command in the terminal:
-
-```bash title="Set MPLBACKEND to Agg in the terminal"
-export MPLBACKEND=Agg
-```
-
-:::
-
 Now you can finally run your pipeline!
 
 ```python
