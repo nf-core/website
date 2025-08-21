@@ -24,7 +24,7 @@ Google Colab provides a free, accessible way to leverage powerful cloud hardware
 
 To make it easier for people to access such resources, we have just published a new detailed tutorial for running and developing nf-core/Nextflow pipelines in Google Colab is available at [this link](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide)!
 
-In this blog post we provide background into our own experiences of running and developing Nextflow and nf-core pipelines, describing its pros and cons, but that also motivated the creation of the tutorial. Make sure to give it a look to see if this approach suits your needs.
+In this blog post we provide background into our own experiences of running and developing Nextflow and nf-core pipelines, describing its pros and cons, but that also motivated the creation of the tutorial.
 
 ### Why Run Pipelines in Google Colab
 
@@ -76,8 +76,11 @@ The biggest issue that will likely affect someone developing Nextflow pipelines 
 Due to this lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the typical `-profile docker` or `-profile singularity` container based configuration profiles.
 This is because `sudo` access is needed to install the these engines.
 Thankfully, we can still run pipelines with conda under `-profile conda`.
+
 However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) Python package to serve as a proxy.
 In my experience, this doesn't seem to perform any differently from a shell-based conda installation.
+
+For a step-by-step guide on setting up Conda in Colab, see the [Setting up Conda for Google Colab section of the official nf-core guide](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide#setting-up-conda-for-google-colab).
 
 ## Developing with VS Code and Colab
 
@@ -111,8 +114,11 @@ This may be because Colab isn’t designed to reliably support connections from 
 
 At the time of writing this blog post, the most annoying issue is that you have to set up the whole VS Code environment with all the extensions from scratch with each run.
 The developer of the `vscode-colab` package did indicate that the ability to save profiles as config files is under development and will be added soon, so make sure to keep an eye on the repo for any such developments.
+
 Although not a huge issue, I found the tunnel construction time of 3-5 minutes to be a bit too long to wait.
 Other than these, the package works great and just about seamlessly gets the job done.
+
+For instructions on how to set up and use VS Code with Colab, see the [Running and Editing Pipelines in VS Code via Colab section of the official nf-core guide](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide#running-and-editing-pipelines-in-vs-code-via-colab).
 
 ## Final tips for a Smooth Experience
 
