@@ -118,7 +118,9 @@ Other than these, the package works great and just about seamlessly gets the job
 
 ### Preventing Matplotlib Backend Errors in Colab
 
-If you try to run an nf-core pipeline in Colab without changing the Matplotlib backend, you may see an error like this:
+When I was exploring the use of Google Colab for my own work, I encountered specific issues with some pipelines that used tools that had Matplotlib as a dependency.
+
+If you try to run some nf-core pipelines that use such tools with the conda profile in Colab, but without changing the Matplotlib backend, you may see an error like this:
 
 ```text
 ValueError: Key backend: 'module://matplotlib_inline.backend_inline' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
