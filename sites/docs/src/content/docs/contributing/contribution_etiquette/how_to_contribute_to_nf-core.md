@@ -14,7 +14,7 @@ The [code of conduct](https://nf-co.re/code_of_conduct) is a core document for e
 
 ## Communication
 
-Our primary communication platforms is our Slack workspace and various GitHub repositories.
+Our primary communication platforms is our Slack workspace and the communication features for various GitHub repositories.
 
 Popular repositories include:
 
@@ -53,6 +53,7 @@ Before opening a pull request, join the GitHub organisation so that any tests wi
 
 As a general rule, all pull requests must be reviewed by another community member.
 
+It's also good to be patient - like many open source projects, nf-core is driven by volunteers and noone is obliged to review your work. It's typically easier to get reviews for smaller requests than larger, just like PRs in line with the desires of the community are more likely to get a quick review than others.
 ## Reviewing
 
 Reviews and comments can be technical (code), conceptual (e.g., purpose/background/approach), or both.
