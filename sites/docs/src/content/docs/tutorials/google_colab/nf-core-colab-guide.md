@@ -6,9 +6,13 @@ subtitle: "A guide to running and interacting with nf-core pipelines using Colab
 ## Running nf-core Pipelines in Google Colab
 
 Running nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
-This tutorial shows two ways you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VS Code via the `vscode-colab` package for a full development experience.
-While Colab has limitations, such as session timeouts and a lack of root access, it offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
-Also make sure to checkout the [blogpost](https://nf-co.re/blog/2025/nf-core-colab-guide) on this topic for deeper insights and more tips for running nf-core pipelines using Colab.
+
+Colab offers a free and accessible platform ideal for learning, teaching, and prototyping workflows in resource-constrained environments.
+However out of the box it does have a few limitations, such as session timeouts and a lack of root access, which means a user needs correctly configure and setup their instance for an optimal experience.
+
+This tutorial shows two ways in which you can use Google Colab to run nf-core pipelines entirely in the cloud, either in a browser-based execution or connected to VS Code via the `vscode-colab` package for a full development experience.
+
+Make sure to also checkout this [blogpost](https://nf-co.re/blog/2025/nf-core-colab-guide) on this topic for more background on running nf-core pipelines using Colab.
 
 ## Setting up the environment in Google Colab
 
@@ -18,7 +22,9 @@ After opening a Colab notebook with the machine type of your choice, the first s
 
 ### Setting up Java for Nextflow
 
-Before installing Nextflow, you must install Java. In Colab, run the following commands in a notebook code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
+Before installing Nextflow, you must install Java.
+
+In Colab, run the following commands in a notebook code cell using the `%` and `!` prefixes, or run them directly in your terminal (without the prefixes).
 
 ```python
 %cd .. # use '%'before cd to make a permanent change of directories
@@ -44,8 +50,9 @@ Next, install Nextflow and make it executable by running the following commands 
 
 Due to a lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the `-profile docker` or `-profile singularity` container based configuration profiles.
 
-That leaves the conda profile as the only way to run pipelines.
-However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) package, which will set up Conda for you by running the following commands:
+That leaves the `conda` profile as the only way to run pipelines.
+
+However, as Google Colab does not natively support conda, you need to install the [condacolab](https://pypi.org/project/condacolab/) package, which will set up Conda for you by running the following commands:
 
 ```python
 !pip install -q condacolab
