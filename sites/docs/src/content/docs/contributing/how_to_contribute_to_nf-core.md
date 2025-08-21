@@ -14,9 +14,9 @@ The [code of conduct](https://nf-co.re/code_of_conduct) is a core document for e
 
 ## Communication
 
-Our primary communication platforms is our Slack workspace and the communication features for various GitHub repositories (i.e., Issues and Pull Requests).
+Our primary communication platforms is our [Slack workspace](https://nfcore.slack.com/) and the communication features for various GitHub repositories (i.e., Issues and Pull Requests).
 
-Popular repositories include:
+Popular common repositories include:
 
 - [nf-core/modules](https://github.com/nf-core/modules): Shared Nextflow modules and subworkflows
 - [nf-core/tools](https://github.com/nf-core/tools): nf-core toolkit, including module, subworkflow, and pipeline templates
@@ -53,13 +53,16 @@ Before opening a pull request, join the GitHub organisation so that any tests wi
 
 As a general rule, all pull requests must be reviewed by another community member.
 
-It's also good to be patient - like many open source projects, nf-core is driven by volunteers and noone is obliged to review your work. It's typically easier to get reviews for smaller requests than larger, just like PRs in line with the desires of the community are more likely to get a quick review than others.
+It's also good to be patient - like many open source projects, nf-core is driven by volunteers and noone is obliged to review your work.
+
+Smaller pull requests (a few files) are more likely to get speedy reviews than large ones (100s files), just like PRs in line with the desires of the community are more likely to get a quick review than others.
+Keep this in mind when preparing your contributions!
 
 ## Reviewing
 
-Reviews and comments can be technical (code), conceptual (e.g., purpose/background/approach), or both.
+Reviews and comments can be technical (code), conceptual (e.g., purpose/background/approach/domain specific), or both.
 
-Everyone is welcome to review or leave a comment on an nf-core pull request - regardless of whether you are within the nf-core community or not
+Everyone is welcome to review or leave a comment on an nf-core pull request - regardless of whether you are within the nf-core community or not.
 You also do not need to be in the nf-core GitHub organisation (although this is recommended).
 
 However, if you review a PR about a 'conceptual' question, a second technical review by another community member is required.
