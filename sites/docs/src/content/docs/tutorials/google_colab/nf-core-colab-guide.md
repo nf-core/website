@@ -177,7 +177,6 @@ For larger datasets, consider syncing to external cloud storage or transferring 
 If you plan to also write and develop pipelines in Google Colab, make sure to use `git` and regularly commit and push your code, or alternatively, test in Colab but save changes from your local PC and commit to prevent loss of your progress after the notebook instance shuts down.
 :::
 
-
 ### Limitations to Note
 
 And remember, while Google Colab is a powerful and accessible platform, it does have some constraints:
