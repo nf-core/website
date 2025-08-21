@@ -1,6 +1,6 @@
 ---
 title: "How to contribute to nf-core"
-subtitle: "General etiquette guidelines on contributing to the nf-core ecosystem"
+subtitle: "Etiquette guidelines for contributing to nf-core"
 ---
 
 Welcome to the nf-core community!
@@ -10,79 +10,85 @@ If this is your first time, please read the below to orient yourself on how cont
 
 ## Code of conduct
 
-Before we start, please make sure you read our [code of conduct](https://nf-co.re/code_of_conduct)!
-
-This is a core document for ensuring everyone gets along well within our diverse distributed group.
+The [code of conduct](https://nf-co.re/code_of_conduct) is a core document for ensuring everyone gets along well within our diverse, distributed group. Before you start, take a moment to review this document.
 
 ## Communication
 
 Our primary communication platforms is our Slack workspace and various GitHub repositories.
 
-Popular repositories are:
+Popular repositories include:
 
-- [nf-core/modules](https://github.com/nf-core/modules): shared Nextflow modules and subworkflows
-- [nf-core/tools](https://github.com/nf-core/tools): nf-core toolkit including module, subworkflow, and pipeline templates
-- [nf-core/website](https://github.com/nf-core/website): for all nf-core documentation
-- [nf-core/testdatasets](https://github.com/nf-core/testdatasets): for shared test data files for unit testing
-- [nf-core/configs](https://github.com/nf-core/configs): shared Nextflow configuration files for HPC and cloud infrastructure
+- [nf-core/modules](https://github.com/nf-core/modules): Shared Nextflow modules and subworkflows
+- [nf-core/tools](https://github.com/nf-core/tools): nf-core toolkit, including module, subworkflow, and pipeline templates
+- [nf-core/website](https://github.com/nf-core/website): nf-core documentation
+- [nf-core/testdatasets](https://github.com/nf-core/testdatasets): Shared test data files for unit testing
+- [nf-core/configs](https://github.com/nf-core/configs): Shared Nextflow configuration files for HPC and cloud infrastructure
 
-If at any point you have a question, always ask on either of those - Slack has dedicated help channels such as [#nostupidquestions](https://nfcore.slack.com/archives/C043FMKUNLB) and [#help](https://nfcore.slack.com/archives/CE6SDBX2A).
 
 ## Joining the Slack and GitHub organisations
 
 To join the Slack workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions.
 
-After joining Slack, we encourage all contributors to join our GitHub organisation.
+After joining Slack, we recommend you join our GitHub organisation.
 
-This is open to everyone, and has a range of benefits including not having to wait for someone to approve CI tests, reviewing and merge rights (on most repositories).
+The GitHub organization is open to everyone and offers a range of benefits, including not having to wait for someone to approve CI tests and reviewing and merging rights (on most repositories).
 
-To join the GitHub workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions (hint: you'll need to be on our Slack workspace 😉)
+To join the GitHub workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions
 
+:::tip
+You need to join our Slack workspace first 😉
+:::
+## Asking for help
+
+If you have questions and don't know where to start, ask in our dedicated Slack help channels:
+
+- [#nostupidquestions](https://nfcore.slack.com/archives/C043FMKUNLB)
+- [#help](https://nfcore.slack.com/archives/CE6SDBX2A).
 ## Pull requests
 
-Anyone is welcome to open a pull request on our GitHub repositories.
+Everyone is welcome to open a pull request on our GitHub repositories.
 
-Before opening a pull request, we ask you to join the GitHub organisation so any tests will automatically run.
+Before opening a pull request, join the GitHub organisation so that any tests will automatically run.
 
 As a general rule, all pull requests must be reviewed by another community member.
 
 ## Reviewing
 
-Reviews and comments can be technical (code), conceptual (e.g. purpose/background/approach), or both.
+Reviews and comments can be technical (code), conceptual (e.g., purpose/background/approach), or both.
 
-Anyone is welcome to review or leave a comment an nf-core pull request - regardless if you are within the nf-core community or not
+Everyone is welcome to review or leave a comment on an nf-core pull request - regardless of whether you are within the nf-core community or not
 You also do not need to be in the nf-core GitHub organisation (although this is recommended).
 
-We do ask however that if you review a PR about a 'conceptual' question, we ask for you to request a second technical review by another community member.
+However, if you review a PR about a 'conceptual' question, a second technical review by another community member is required.
 You can request reviews via the [#request-review](https://nfcore.slack.com/archives/CQY2U5QU9) channel on Slack.
 
-We also encourage you to regularly get reviews from community members that are not directly within your own development team.
+Reviews from community members who are not directly within your development team are recommended.
 
-Be polite and constructive with your comments - we have a diverse range of backgrounds and cultures in our community.
+Be polite and constructive in your comments. Our community has a diverse range of backgrounds, cultures, and expertise.
 
-Help with making a smooth reviewing process by making single reviews with multiple comments, not lots of separate comments (i.e., press 'Start review', **not** 'Add single comment' on the GitHub 'Files Changed' tab!)
+Help with making a smooth reviewing process by making single reviews with multiple comments, not lots of separate comments (i.e., select **Start review**, not **Add single comment** on the **GitHub Files Changed** tab!)
 
 ## Who is who and how to contact them
 
-A general overview of the community structure can be seen on the [Governance](https://nf-co.re/governance#governance) page.
+See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community structure.
 
-As a rough guide: always ask the entire community first!
+As a general rule: always ask the entire community first!
 The answers to the vast majority of questions can be obtained from the entire nf-core hivemind.
 
-Otherwise, if you get stuck on something that needs more expert advice or a decision:
+If you get stuck on something that needs more expert advice or a decision, there are specific teams that may be able to help:
 
-- An issue with modules, pipelines, or test configs? Ask the maintainers team!
-- Any questions about nf-core events or the bytesize series? Ask the outreach team!
-- Problems with the nf-core template, tooling, GitHub actions, or AWS? Ask the infrastructure team!
-- Need a critical decision made that may affect the entire community, or need something done that requires passwords? Ask the core team!
-- Have a inter-personal conflict with another member or member(s) of the community? Ask the safety team!
+- Issue with modules, pipelines, or test configs: Ask the maintainers team
+- Questions about nf-core events or the bytesize series: Ask the outreach team
+- Problems with the nf-core template, tooling, GitHub actions, or AWS: Ask the infrastructure team!
+- Critical decision made that may affect the entire community, or need something done that requires passwords: Ask the core team!
+- Inter-personal conflict with another member or member(s) of the community: Ask the safety team!
 
-Members of each team can also be seen on the [Governance](https://nf-co.re/governance#governance) page.
+Members of each team are listed on the [Governance](https://nf-co.re/governance#governance) page.
 
 ## How to submit a module or subworkflow
 
-If you want to submit a new module, see the [Writing nf-core modules and subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components) tutorial.
+For more information about how to submit a new module, see the [Writing nf-core modules and subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components) tutorial.
 
 ## How to submit a pipeline
 
-If you want to submit a new pipeline, see the [Adding a pipeline](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview) tutorial.
+For more information about how to submit a new pipeline, see the [Adding a pipeline](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview) tutorial.
