@@ -146,7 +146,7 @@ You're now seamlessly connected to Colab through VS Code and can develop Nextflo
 ## Final tips for a Smooth Experience
 
 Google Colab's storage is temporary and limited to around 100GB in most cases.
-Thereofre it is important to regularly back up your results to avoid data loss.
+Therefore it is important to regularly back up your results to avoid data loss.
 
 For small to moderate outputs, mounting your personal Google Drive is convenient, but may not be suitable for large workflow results, which can reach hundreds of gigabytes.
 
