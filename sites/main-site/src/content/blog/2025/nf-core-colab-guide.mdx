@@ -73,8 +73,8 @@ This can lead to the stereotypical case of waking up to find your notebook timed
 
 The biggest issue that will likely affect someone developing Nextflow pipelines in Colab is the lack of root access.
 
-Due to this lack of root access, it is not possible to run nf-core, or any Nextflow pipelines, using the typical `-profile docker` or `-profile singularity` container based configuration profiles.
-This is because `sudo` access is needed to install the these engines.
+Due to this lack of root access, it is not possible to run nf-core or any Nextflow pipelines using the typical `-profile docker` or `-profile singularity` container-based configuration profiles.
+This is because `sudo` access is needed to install these engines.
 Thankfully, we can still run pipelines with conda under `-profile conda`.
 
 However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) Python package to serve as a proxy.
