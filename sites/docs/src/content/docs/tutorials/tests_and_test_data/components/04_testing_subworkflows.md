@@ -6,7 +6,7 @@ weight: 40
 
 ## Overview
 
-nf-test enables comprehensive testing of subworkflows that combine multiple modules into integrated analysis pipelines. This chapter covers testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
+The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps. This chapter covers testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
 
 ### Basic test syntax
 
@@ -27,8 +27,7 @@ nextflow_workflow {
 :::note
 **Key points:**
 
-- Script paths starting with `./` or `../` are relative to the test script location
-- Use relative paths to reference files within the same directory or parent directories
+- Script paths starting with `./` or `../` are relative to the test script's location.
   :::
 
 ### Essential Assertions
@@ -49,7 +48,7 @@ assert workflow.trace.failed().size() == 0     // failed tasks
 assert workflow.trace.tasks().size() == 3      // all tasks
 
 // Output validation
-assert workflow.stdout.contains("Hello World") == 3
+assert workflow.stdout.contains("Hello World")
 ```
 
 ## Subworkflow testing principles
@@ -64,10 +63,10 @@ Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests
 
 ## Creating a new subworkflow with tests
 
-When creating a new subworkflow using nf-core tools, a test file is automatically generated based on the template.
+When creating a new subworkflow using `nf-core/tools`, a test file is automatically generated based on the template.
 
 ```bash
-# Create a new subworkflow using nf-core tools
+# Create a new subworkflow using nf-core/tools
 cd path/to/subworkflows
 nf-core subworkflows create fastq_align_qc
 ```
@@ -109,14 +108,17 @@ nextflow_workflow {
         when {
             workflow {
                 """
+                // Paired-end fastq reads
                 input[0] = Channel.of([
                             [ id:'test', single_end:true ],
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
                 ])
+                // Reference genome fasta file
                 input[1] = Channel.of([
                             [ id:'test' ],
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ])
+                // BWA index
                 input[2] = Channel.of([
                             [ id:'test' ],
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/bwa/genome.fasta.{amb,ann,bwt,pac,sa}', checkIfExists: true)
@@ -143,7 +145,7 @@ nf-core subworkflows test fastq_align_qc --profile docker
 
 ## Testing subworkflows with setup dependencies
 
-For subworkflows that require setup (like index generation), use setup blocks. Here's an example for a BWA alignment subworkflow:
+For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
 
 ```groovy
 nextflow_workflow {
@@ -161,6 +163,7 @@ nextflow_workflow {
 
     setup {
         run("BWA_INDEX") {
+            // Path to the module's main.nf script, relative to the subworkflow's tests/ directory
             script "../../../../modules/nf-core/bwa/index/main.nf"
             process {
                 """
@@ -185,6 +188,7 @@ nextflow_workflow {
                             [ id:'test' ],
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/genome/genome.fasta', checkIfExists: true)
                 ])
+                // Use the output from the setup block
                 input[2] = BWA_INDEX.out.index
                 """
             }
@@ -236,7 +240,7 @@ process {
 
 ### BAM file testing with MD5 checksums
 
-Always use MD5 checksums for BAM files to ensure content consistency:
+To ensure content consistency, always use MD5 checksums when testing BAM files. This is more reliable than checking file names or sizes, which can be unstable.
 
 ```groovy
 { assert snapshot(
@@ -250,7 +254,7 @@ Always use MD5 checksums for BAM files to ensure content consistency:
 
 ### File name testing for stable names
 
-For files with stable names but variable content:
+For files with stable names but variable content (like log files or reports), testing the file name is sufficient.
 
 ```groovy
 workflow.out.bai.collect { meta, bai -> file(bai).name },
@@ -259,7 +263,7 @@ workflow.out.multiqc.flatten().collect { path -> file(path).name }
 ```
 
 :::note
-For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./06_assertions.md).
+For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
 :::
 
 ## Next steps
