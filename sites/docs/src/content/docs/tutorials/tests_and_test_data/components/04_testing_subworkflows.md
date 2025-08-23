@@ -6,7 +6,7 @@ weight: 40
 
 ## Overview
 
-The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps. This chapter covers testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
+The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps. This chapter builds upon the concepts introduced in the module testing chapter, covering testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
 
 ### Basic test syntax
 
@@ -28,6 +28,7 @@ nextflow_workflow {
 **Key points:**
 
 - Script paths starting with `./` or `../` are relative to the test script's location.
+- The syntax is very similar to module testing, but uses a `nextflow_workflow` block instead of `nextflow_process`.
   :::
 
 ### Essential Assertions
@@ -53,7 +54,7 @@ assert workflow.stdout.contains("Hello World")
 
 ## Subworkflow testing principles
 
-Following the [nf-core testing guidelines](https://nf-co.re/docs/tutorials/tests_and_test_data/nf-test_writing_tests), each nf-core subworkflow should include comprehensive tests that:
+Subworkflow testing follows the same core principles as module testing, but adapted for the broader scope of a subworkflow. Each nf-core subworkflow should include comprehensive tests that:
 
 - Each subworkflow should contain a `tests/` folder alongside its `main.nf` file
 - Test files come with snapshots of subworkflow output channels
@@ -145,7 +146,7 @@ nf-core subworkflows test fastq_align_qc --profile docker
 
 ## Testing subworkflows with setup dependencies
 
-For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
+Just as `setup` blocks are used to chain modules, they are also used in subworkflow tests to handle prerequisite steps, such as generating a reference genome index. For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
 
 ```groovy
 nextflow_workflow {
@@ -232,6 +233,57 @@ process {
 
     withName: 'SAMTOOLS_SORT' {
         ext.prefix = { "${meta.id}.sorted" }
+    }
+}
+```
+
+### Overriding parameters with the `params` block
+
+In addition to a `nextflow.config` file, `nf-test` provides a `params` block within the `when` block to override Nextflow's input `params` for a specific test. This is useful for testing different parameter combinations without creating multiple config files.
+
+You can set parameters manually, including nested parameters:
+
+```groovy
+when {
+    params {
+        outdir = "output"
+        output {
+          dir = "output"
+        }
+    }
+    workflow {
+        """
+        // workflow inputs
+        """
+    }
+}
+```
+
+#### Loading parameters from a file
+
+You can also load parameters from a JSON or YAML file. This is useful for managing complex parameter sets.
+
+```groovy
+when {
+    params {
+        load("$baseDir/tests/params.json")
+    }
+    workflow {
+        // ...
+    }
+}
+```
+
+It is also possible to combine both techniques, allowing you to load a base set of parameters from a file and then override specific ones for a particular test case.
+
+```groovy
+when {
+    params {
+        load("$baseDir/tests/params.json")
+        outputDir = "new/output/path"
+    }
+    workflow {
+        // ...
     }
 }
 ```
