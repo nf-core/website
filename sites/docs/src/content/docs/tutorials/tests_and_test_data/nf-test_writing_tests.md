@@ -67,6 +67,8 @@ when {
   this can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
   :::
 
+- The test names should be descriptive and easily distinguishable. One possibility is `data origin - data format - other flags`, for example `human - [bam,bai] - create_bed`. The `other flags` should serve as a way to distinguish between different tests which have similar inputs.
+
 :::tip
 See the [assertions documentation](/docs/contributing/nf-test/assertions) for examples on how to handle different types of test data and scenarios.
 :::
@@ -74,6 +76,12 @@ See the [assertions documentation](/docs/contributing/nf-test/assertions) for ex
 ## nf-test guidelines for a chained module
 
 - For modules that involve running more than one process to generate required test-data (aka chained modules), nf-test provides a [setup](https://code.askimed.com/nf-test/docs/testcases/setup/) method.
+
+- The setup block can be moved out of the test block and be reused over multiple tests. If different inputs for the same setup process are needed they can be used with aliases:
+
+  ```groovy
+  run("GATK_UNIFIEDGENOTYPER", alias: "GATK_UNIFIEDGENOTYPERSNPS")
+  ```
 
 - For example, the module `abricate/summary` requires the process `abricate/run` to be run prior and takes its output as input. The `setup` method is to be declared before the primary `when` block in the test file as shown below:
 
@@ -128,23 +136,50 @@ nextflow_process {
     tag "abricate"
     tag "abricate/summary"
 
+    setup {
+        run("ABRICATE_RUN") {
+            script "../../run/main.nf"
+            process {
+            """
+            input[0] = Channel.fromList([
+                            tuple([ id:'test1', single_end:false ], // meta map
+                                file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
+                            tuple(
+                                [ id:'test2', single_end:false ],
+                                file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true)
+                            )
+                        ])
+            """
+        }
+        }
+    }
+
     test("bacteroides_fragilis - genome_fna_gz") {
 
-        setup {
-            run("ABRICATE_RUN") {
-                script "../../run/main.nf"
-                process {
+        when {
+            process {
                 """
-                input[0] = Channel.fromList([
-                                tuple([ id:'test1', single_end:false ], // meta map
-                                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
-                                tuple([ id:'test2', single_end:false ],
-                                    file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
-                            ])
+                input[0] = ABRICATE_RUN.out.report
+                    .collect{ meta, report -> report }
+                    .map{ report -> [ [ id: 'test_summary' ], report ] }
                 """
-            }
             }
         }
+
+        then {
+            assertAll(
+                { assert process.success },
+                { assert snapshot(
+                    process.out,
+                    path(process.out.versions[0]).yaml
+                ).match() }
+            )
+        }
+    }
+
+    test("bacteroides_fragilis - genome_fna_gz - stub") {
+
+      options "-stub"
 
         when {
             process {
