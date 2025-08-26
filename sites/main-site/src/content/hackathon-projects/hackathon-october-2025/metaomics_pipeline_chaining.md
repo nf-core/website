@@ -3,7 +3,7 @@ title: meta-omics pipeline chaining
 category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C070369GP7T
-image: "https://nf-co.re/logo/metaomics"
+image: "/assets/images/events/2025/hackathon-barcelona/nfcore-metaomics_logo.png"
 image_alt: "'nf-core/metaomics logo"
 leaders:
   jfy133:
