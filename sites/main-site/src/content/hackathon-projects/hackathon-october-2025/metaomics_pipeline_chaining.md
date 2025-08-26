@@ -11,7 +11,7 @@ leaders:
     slack: "https://nfcore.slack.com/team/UEM37TBAR"
   erikrikarddaniel:
     name: Daniel Lundin
-    slack: "https://nfcore.slack.com/team/UR949F5LG
+    slack: "https://nfcore.slack.com/team/UR949F5LG"
 ---
 
 ## Project Aim
