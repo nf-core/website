@@ -127345,6 +127345,12 @@
               "pattern": "*/",
               "ontologies": []
             }
+          },
+          {
+            "save_samfile": {
+              "type": "boolean",
+              "description": "Whether to save the SAM file produced by MetaPhlAn of read alignments to MetaPhlAn database gene sequences\n"
+            }
           }
         ],
         "output": {
@@ -127401,6 +127407,24 @@
                   "type": "file",
                   "description": "Intermediate Bowtie2 output produced from mapping the metagenome against the MetaPHlAn marker database ( not compatible with `bowtie2out` files generated with MetaPhlAn versions below 3 )",
                   "pattern": "*.{bowtie2out.txt}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.sam": {
+                  "type": "file",
+                  "description": "SAM file produced by MetaPPhlAn of read alignments to MetaPhlAn database gene sequences",
+                  "pattern": "*.{sam}",
                   "ontologies": []
                 }
               }
@@ -190525,6 +190549,315 @@
       ]
     },
     {
+      "name": "seq2hla",
+      "path": "modules/nf-core/seq2hla/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seq2hla",
+        "description": "Precision HLA typing and expression from RNA-seq data using seq2HLA",
+        "keywords": [
+          "hla",
+          "typing",
+          "rna-seq",
+          "genomics",
+          "immunogenetics"
+        ],
+        "tools": [
+          {
+            "seq2hla": {
+              "description": "Precision HLA typing and expression from next-generation RNA sequencing data",
+              "homepage": "https://github.com/TRON-Bioinformatics/seq2HLA",
+              "documentation": "https://github.com/TRON-Bioinformatics/seq2HLA#readme",
+              "tool_dev_url": "https://github.com/TRON-Bioinformatics/seq2HLA",
+              "doi": "10.1186/s13073-015-0240-5",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seq2HLA"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Paired-end FASTQ files for RNA-seq data",
+                "pattern": "*.{fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "class1_genotype_2d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-class.HLAgenotype2digits": {
+                  "type": "file",
+                  "description": "HLA Class I 2-digit genotype results",
+                  "pattern": "*ClassI-class.HLAgenotype2digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class2_genotype_2d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassII.HLAgenotype2digits": {
+                  "type": "file",
+                  "description": "HLA Class II 2-digit genotype results",
+                  "pattern": "*ClassII.HLAgenotype2digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_genotype_4d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-class.HLAgenotype4digits": {
+                  "type": "file",
+                  "description": "HLA Class I 4-digit genotype results",
+                  "pattern": "*ClassI-class.HLAgenotype4digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class2_genotype_4d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassII.HLAgenotype4digits": {
+                  "type": "file",
+                  "description": "HLA Class II 4-digit genotype results",
+                  "pattern": "*ClassII.HLAgenotype4digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_bowtielog": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-class.bowtielog": {
+                  "type": "file",
+                  "description": "HLA Class I Bowtie alignment log",
+                  "pattern": "*ClassI-class.bowtielog",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class2_bowtielog": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassII.bowtielog": {
+                  "type": "file",
+                  "description": "HLA Class II Bowtie alignment log",
+                  "pattern": "*ClassII.bowtielog",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_expression": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-class.expression": {
+                  "type": "file",
+                  "description": "HLA Class I expression results",
+                  "pattern": "*ClassI-class.expression",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class2_expression": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassII.expression": {
+                  "type": "file",
+                  "description": "HLA Class II expression results",
+                  "pattern": "*ClassII.expression",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_nonclass_genotype_2d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-nonclass.HLAgenotype2digits": {
+                  "type": "file",
+                  "description": "HLA Class I non-classical 2-digit genotype results",
+                  "pattern": "*ClassI-nonclass.HLAgenotype2digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ambiguity": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.ambiguity": {
+                  "type": "file",
+                  "description": "HLA typing ambiguity results",
+                  "pattern": "*.ambiguity",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_nonclass_genotype_4d": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-nonclass.HLAgenotype4digits": {
+                  "type": "file",
+                  "description": "HLA Class I non-classical 4-digit genotype results",
+                  "pattern": "*ClassI-nonclass.HLAgenotype4digits",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_nonclass_bowtielog": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-nonclass.bowtielog": {
+                  "type": "file",
+                  "description": "HLA Class I non-classical Bowtie alignment log",
+                  "pattern": "*ClassI-nonclass.bowtielog",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "class1_nonclass_expression": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*ClassI-nonclass.expression": {
+                  "type": "file",
+                  "description": "HLA Class I non-classical expression results",
+                  "pattern": "*ClassI-nonclass.expression",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@FriederikeHanssen"
+        ],
+        "maintainers": [
+          "@FriederikeHanssen"
+        ]
+      }
+    },
+    {
       "name": "seqcluster_collapse",
       "path": "modules/nf-core/seqcluster/collapse/meta.yml",
       "type": "module",
@@ -221412,6 +221745,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "lsmquant",
+          "version": "dev"
+        },
         {
           "name": "scnanoseq",
           "version": "1.2.0"
