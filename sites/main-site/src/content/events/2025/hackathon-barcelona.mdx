@@ -11,10 +11,12 @@ endTime: "17:00+02:00"
 locations:
     - name: Barcelona (venue yet to be announced)
       geoCoordinates: [41.39104154474001, 2.1806526747271753]
+hackathonProjectListModals: hackathon-october-2025
 ---
 
 import { Image } from "astro:assets";
 import summitCard from "@assets/images/events/2025/hackathon-barcelona/summit-2025-barcelona.jpg";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
 
 # Welcome
 
@@ -120,7 +122,7 @@ You can move freely between projects throughout the event.
 
 # List of projects
 
-A list of project will be posted here soon!
+<HackathonModalProjectList eventPath="hackathon-october-2025" />
 
 # Helpful resources
 
