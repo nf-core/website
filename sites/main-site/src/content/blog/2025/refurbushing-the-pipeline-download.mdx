@@ -28,7 +28,7 @@ it must do this to be able to bundle the software as a standalone package that c
 Nextflow allows a user to define container both in modules directly or in config files – as long as the container string is resolved at runtime, Nextflow does not care where it came from.
 While this dynamicism makes it possible for Nextflow users to write flexible code, it makes it difficult to determine from the source code which containers the pipeline is using.
 
-Until now, the download command has solved this problem by building up a code base of complex regex patterns used to search through the pipeline’s files for strings resembling container directives.
+Until now, the download command has solved this problem by building up a codebase of complex regex patterns used to search through pipeline files for strings resembling container directives.
 While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
 For examples of the struggles of writing a container string catch-all regex, see for example the [Bowtie quote issue](https://github.com/nf-core/tools/issues/2392) or the [issue of race conditions when processing Seqera containers](https://github.com/nf-core/tools/issues/3285).
 
