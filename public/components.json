@@ -9017,6 +9017,174 @@
       ]
     },
     {
+      "name": "artic_aligntrim",
+      "path": "modules/nf-core/artic/aligntrim/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "artic_aligntrim",
+        "description": "Standalone version of fieldbioinformatics aligntrim. Soft clips amplicon scheme primer sites in BAM/SAM files.",
+        "keywords": [
+          "artic",
+          "primer trimming",
+          "amplicon",
+          "genomics",
+          "sequencing",
+          "nanopore",
+          "illumina"
+        ],
+        "tools": [
+          {
+            "align_trim": {
+              "description": "ARTIC align_trim: A tool for trimming amplicon sequencing primers from aligned reads.",
+              "homepage": "https://github.com/artic-network/align_trim",
+              "documentation": "https://github.com/artic-network/align_trim/blob/master/README.md",
+              "tool_dev_url": "https://github.com/artic-network/align_trim",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "samfile": {
+                "type": "file",
+                "description": "BAM or SAM file containing aligned reads",
+                "pattern": "*.{bam,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            },
+            {
+              "scheme_bed": {
+                "type": "file",
+                "description": "BED file containing amplicon scheme primer locations",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3617"
+                  }
+                ]
+              }
+            },
+            {
+              "normalise_depth": {
+                "type": "integer",
+                "description": "Normalise the read depth to this value"
+              }
+            }
+          ],
+          {
+            "sort_bam": {
+              "type": "boolean",
+              "description": "Optionally sort the BAM file after trimming"
+            }
+          }
+        ],
+        "output": {
+          "primertrimmed_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.primertrimmed*.bam": {
+                  "type": "file",
+                  "description": "BAM file with primer sequences soft clipped",
+                  "pattern": "*.primertrimmed.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "align_trim_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.align_trim_report.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing full details of primer trimming for each read / read pair",
+                  "pattern": "*.align_trim_report.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "amp_depth_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.amp_depth_report.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing mean depth per amplicon",
+                  "pattern": "*.amp_depth_report.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@BioWilko"
+        ],
+        "maintainers": [
+          "@BioWilko"
+        ]
+      }
+    },
+    {
       "name": "artic_guppyplex",
       "path": "modules/nf-core/artic/guppyplex/meta.yml",
       "type": "module",
@@ -14989,7 +15157,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -15294,10 +15462,6 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
-        },
-        {
-          "name": "rnavar",
-          "version": "1.1.1"
         },
         {
           "name": "sarek",
@@ -17312,13 +17476,7 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnavar",
-          "version": "1.1.1"
-        }
-      ]
+      }
     },
     {
       "name": "bcftools_pluginsetgt",
@@ -18361,10 +18519,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnavar",
-          "version": "1.1.1"
         },
         {
           "name": "sarek",
@@ -21250,7 +21404,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "tfactivity",
@@ -21947,7 +22101,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "ssds",
@@ -30987,7 +31141,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -59533,7 +59687,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -59882,7 +60036,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -64136,7 +64290,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -72536,10 +72690,10 @@
                 }
               },
               {
-                "*.bam": {
+                "${prefix}.bam": {
                   "type": "file",
                   "description": "Recalibrated BAM file",
-                  "pattern": "*.{bam}",
+                  "pattern": "${prefix}.bam",
                   "ontologies": []
                 }
               }
@@ -72554,10 +72708,10 @@
                 }
               },
               {
-                "*.bai": {
+                "${prefix}*bai": {
                   "type": "file",
-                  "description": "Recalibrated BAM file index",
-                  "pattern": "*.{bai}",
+                  "description": "Recalibrated BAM index file",
+                  "pattern": "${prefix}*bai",
                   "ontologies": []
                 }
               }
@@ -72572,10 +72726,10 @@
                 }
               },
               {
-                "*.cram": {
+                "${prefix}.cram": {
                   "type": "file",
                   "description": "Recalibrated CRAM file",
-                  "pattern": "*.{cram}",
+                  "pattern": "${prefix}.cram",
                   "ontologies": []
                 }
               }
@@ -72612,7 +72766,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -73164,7 +73318,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -73297,7 +73451,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -74313,7 +74467,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -74769,7 +74923,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -77205,7 +77359,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -77311,7 +77465,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "tbanalyzer",
@@ -77511,7 +77665,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -78359,7 +78513,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -80632,7 +80786,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -81313,7 +81467,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "variantcatalogue",
@@ -81833,10 +81987,10 @@
                 }
               },
               {
-                "*.bam": {
+                "${prefix}.bam": {
                   "type": "file",
                   "description": "Recalibrated BAM file",
-                  "pattern": "*.{bam}",
+                  "pattern": "${prefix}.bam",
                   "ontologies": []
                 }
               }
@@ -81851,10 +82005,10 @@
                 }
               },
               {
-                "*.bai": {
+                "${prefix}*bai": {
                   "type": "file",
-                  "description": "Recalibrated BAM file index",
-                  "pattern": "*.{bai}",
+                  "description": "Recalibrated BAM index file",
+                  "pattern": "${prefix}*bai",
                   "ontologies": []
                 }
               }
@@ -81869,10 +82023,10 @@
                 }
               },
               {
-                "*.cram": {
+                "${prefix}.cram": {
                   "type": "file",
                   "description": "Recalibrated CRAM file",
-                  "pattern": "*.{cram}",
+                  "pattern": "${prefix}.cram",
                   "ontologies": []
                 }
               }
@@ -86759,7 +86913,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -93449,7 +93603,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -133331,7 +133485,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -135763,7 +135917,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -153805,7 +153959,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -179906,7 +180060,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -180601,7 +180755,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -181331,7 +181485,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -181621,7 +181775,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -182055,7 +182209,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -182482,7 +182636,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -183282,7 +183436,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -183524,7 +183678,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -190855,7 +191009,13 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnavar",
+          "version": "1.2.0"
+        }
+      ]
     },
     {
       "name": "seqcluster_collapse",
@@ -200272,7 +200432,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -200459,7 +200619,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -204953,7 +205113,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "viralintegration",
@@ -205113,7 +205273,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "scrnaseq",
@@ -205187,7 +205347,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -211626,7 +211786,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -211780,7 +211940,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -220608,7 +220768,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "smrnaseq",
@@ -221373,7 +221533,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -234639,7 +234799,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -235419,7 +235579,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -235697,7 +235857,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -239704,7 +239864,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         }
       ]
     },
@@ -241613,6 +241773,68 @@
       }
     },
     {
+      "name": "mmseqs_fasta_cluster",
+      "path": "subworkflows/nf-core/mmseqs_fasta_cluster/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "MMSEQS_FASTA_CLUSTER",
+        "description": "Subworkflow that generates a clustering TSV file from a set of amino acid sequence within a FASTA file.",
+        "keywords": [
+          "fasta",
+          "sequences",
+          "cluster",
+          "linclust",
+          "mmseqs"
+        ],
+        "components": [
+          "mmseqs/createdb",
+          "mmseqs/cluster",
+          "mmseqs/linclust",
+          "mmseqs/createtsv"
+        ],
+        "input": [
+          {
+            "sequences": {
+              "type": "file",
+              "description": "Fasta file containing sequences for clustering.\n"
+            }
+          },
+          {
+            "clustering_tool": {
+              "type": "string",
+              "description": "Clustering algorithm of MMSeqs to use for cluster generation. Options are 'linclust' or 'cluster'.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "type": "file",
+              "description": "Versions file containing the software versions used in the workflow.\n"
+            }
+          },
+          {
+            "seqs": {
+              "type": "file",
+              "description": "The input FASTA file mapped to its corresponding clustering tsv, per input entry."
+            }
+          },
+          {
+            "clusters": {
+              "type": "file",
+              "description": "Clustering file mapped to its corresponding input FASTA file."
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "multiple_impute_glimpse2",
       "path": "subworkflows/nf-core/multiple_impute_glimpse2/meta.yml",
       "type": "subworkflow",
@@ -242359,7 +242581,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -242768,7 +242990,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -243145,7 +243367,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sammyseq",
@@ -243460,7 +243682,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
@@ -243679,7 +243901,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.1.1"
+          "version": "1.2.0"
         },
         {
           "name": "sarek",
