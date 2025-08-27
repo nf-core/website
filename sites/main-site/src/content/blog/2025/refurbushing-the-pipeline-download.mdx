@@ -23,7 +23,7 @@ The following blog post outlines the updates to the command, and explains why yo
 
 ### Troubles with container detection and how `nextflow inspect` solves them
 
-The major problem of the downloads command is to find all containers the pipeline depends on;
+The major problem of the downloads command is to find all containers a pipeline depends on;
 it must do this to be able to bundle the software as a standalone package that can be transferred to the offline machine.
 Nextflow allows a user to define container both in modules directly or in config files – as long as the container string is resolved at runtime, Nextflow does not care where it came from.
 While this dynamicism makes it possible for Nextflow users to write flexible code, it makes it difficult to determine from the source code which containers the pipeline is using.
