@@ -45,6 +45,18 @@ const sections: SidebarEntry[] = years.map((year) => {
         )
     }
     <SidebarNav items={sections} />
+    <div class="mt-3 d-flex align-items-top fs-6 fw-normal text-muted">
+        <a
+            href="https://nf-co.re/advisories/rss.xml"
+            target="_blank"
+            rel="noopener"
+            class="text-decoration-none d-flex align-items-center"
+            title="Subscribe to RSS feed"
+        >
+            <i class="fa fa-rss-square me-2" aria-hidden="true" style="color: #f26522; font-size: 1.2em;"></i>
+            <span>Subscribe to advisories</span>
+        </a>
+    </div>
 </div>
 
 <style lang="scss">
