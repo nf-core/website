@@ -32,7 +32,7 @@ Until now, the download command has solved this problem by building up a code ba
 While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
 For examples of the struggles of writing a container string catch-all regex, see for example the [Bowtie quote issue](https://github.com/nf-core/tools/issues/2392) or the [issue of race conditions when processing Seqera containers](https://github.com/nf-core/tools/issues/3285).
 
-However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to capture all container strings of modules used in the pipeline.
+However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to capture all containers used in a pipeline.
 As of the downloads refactor the `nextflow inspect` command has now also been integrated in the `nf-core/tools` code base to replace the complex regex logic in the downloads commands.
 This makes the command both simpler and more reliable at the same time.
 
