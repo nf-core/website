@@ -101,7 +101,7 @@ Note that compressing many GBs of binary files can be slow, so specifying `--com
 
 ### Docker and Podman images
 
-In addition to Singularity images, the download command also enables to find and download a pipeline's Docker images.
+In addition to Singularity images, the download command also can find and download a pipeline's Docker images.
 The support for Docker/Podman images is however less configurable than for Singularity images:
 In the current version of the command the Docker image download only support the `copy` option for the `--container-cache-utilisation` flag.
 An implicit cache in the form of Docker images available in the Docker daemon on the download machine is however available (see details below).
