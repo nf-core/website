@@ -65,7 +65,7 @@ This Nextflow subcommand parses the pipeline code, both configs and scripts, and
 To specify what container system to fetch containers for and to include containers required for pipeline tests, the `nextflow inspect` command is run with the flag `-profile <singularity/docker>,test,test_full`.
 The command then produces a JSON file containing URIs for each container of interest in the pipeline.
 
-### Singularity images
+### Singularity Images
 
 If you select to download Singularity images, the downloaded workflow files are again edited to add the following line to the end of the pipeline's `nextflow.config` file:
 
