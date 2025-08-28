@@ -104,7 +104,7 @@ Note that compressing many GBs of binary files can be slow, so specifying `--com
 In addition to Singularity images, the download command also can find and download a pipeline's Docker images.
 The support for Docker/Podman images is however less configurable than for Singularity images:
 In the current version of the command the Docker image download only support the `copy` option for the `--container-cache-utilisation` flag.
-An implicit cache in the form of Docker images available in the Docker daemon on the download machine is however available (see details below).
+An implicit cache in the form of Docker images available in the Docker daemon on the download machine is however available ([see details below](#how-the-dockerpodman-image-downloads-work).
 The flag `--container-cache-index` is not supported either, the command will always fetch all the Docker images in the list produced by `nextflow inspect`.
 
 #### How the Docker/Podman image downloads work
