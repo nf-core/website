@@ -87,7 +87,7 @@ If you are running the download on the same system where you will be running the
 
 If you are downloading a workflow for a different system, you can provide information about the contents of its image cache to `nf-core pipelines download`. To avoid unnecessary container image downloads, choose `--container-cache-utilisation remote` and provide a list of already available images as plain text file to `--container-cache-index my_list_of_remotely_available_images.txt`. To generate this list on the remote system, run `find $NXF_SINGULARITY_CACHEDIR -name "*.img" > my_list_of_remotely_available_images.txt`. The tool will then only download and copy images into your output directory, which are missing on the remote system.
 
-#### How the Singularity image downloads work
+#### How Singularity Image Downloads work
 
 The list of Singularity containers found in the pipeline by `nextflow inspect` is processed in the following order:
 
