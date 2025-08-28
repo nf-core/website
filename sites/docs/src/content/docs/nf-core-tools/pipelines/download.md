@@ -76,7 +76,7 @@ singularity.cacheDir = "${projectDir}/../singularity-images/"
 This tells Nextflow to use the `singularity-containers` directory relative to the workflow for the singularity image cache directory.
 All images should be downloaded there, so Nextflow will use them instead of trying to pull from the internet.
 
-#### Singularity cache directory
+#### Singularity Cache Directory
 
 We highly recommend setting the `$NXF_SINGULARITY_CACHEDIR` environment variable on your system, even if that is a different system to where you will be running Nextflow.
 
