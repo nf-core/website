@@ -60,7 +60,7 @@ If the download speeds are much slower than your internet connection is capable 
 
 ### How Pipeline Containers are Found
 
-The container image download finds container images using [`nextflow inspect`](https://www.nextflow.io/docs/latest/reference/cli.html#inspect).
+The download command internally uses [`nextflow inspect`](https://www.nextflow.io/docs/latest/reference/cli.html#inspect) to find container images.
 This Nextflow subcommand parses the pipeline code, both configs and scripts, and figures out what container is used in each module.
 To specify what container system to fetch containers for and that containers associated with pipeline tests should also be fetch, the command is supplied with the flag `-profile <singularity/docker>,test,test_full`.
 The command then produces a JSON file containing URIs for each container of interest in the pipeline.
