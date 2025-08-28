@@ -28116,7 +28116,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "genomeassembler",
@@ -30932,7 +30932,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "epitopeprediction",
@@ -31103,7 +31103,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "genomeannotator",
@@ -60890,7 +60890,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -63709,7 +63709,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
@@ -64148,7 +64148,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
@@ -83072,7 +83072,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "phaseimpute",
@@ -96213,6 +96213,28 @@
                   "type": "file",
                   "description": "HashedDrops results\n",
                   "pattern": "_results_hasheddrops.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "id_to_hash": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_id_to_hash.csv": {
+                  "type": "file",
+                  "description": "A table mapping integer indices used by hashedDrops results (e.g. the column `Best` or `Second`) to HTO names (or combinations of HTO names joined with `+` if `combinations` is speficied in `ext.args`).\n",
+                  "pattern": "_id_to_hash.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -135695,7 +135717,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
@@ -177786,7 +177808,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "lncpipe",
@@ -177978,7 +178000,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "lncpipe",
@@ -201707,7 +201729,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "lncpipe",
@@ -203251,7 +203273,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "mag",
@@ -217357,7 +217379,7 @@
       "pipelines": [
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "viralmetagenome",
@@ -241552,7 +241574,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -242371,7 +242393,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
@@ -242780,7 +242802,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
@@ -243197,7 +243219,7 @@
         },
         {
           "name": "denovotranscript",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "detaxizer",
