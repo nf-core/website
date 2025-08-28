@@ -56,7 +56,7 @@ To do this, select `<singularity/docker>` in the prompt or specify `--container-
 Your archive / target output directory will then also include a separate folder `<singularity/docker>-containers`.
 For Podman images, use the `docker` option and see details in the Docker section below.
 
-If the download speeds are much slower than your internet connection is capable of, you can set `--parallel-downloads` to a large number to download loads of images at once.
+If the download speeds are much slower than your internet connection is capable of, you can set the number of simultaneous downloads with the  `--parallel-downloads` parameter.
 
 ### How Pipeline Containers are Found
 
