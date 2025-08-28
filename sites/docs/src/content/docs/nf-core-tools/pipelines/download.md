@@ -48,7 +48,7 @@ So using `-profile <NAME>` should work if available within [nf-core/configs](htt
 This option is not available when downloading a pipeline for use with [Seqera Platform](#adapting-downloads-to-seqera-platform) because the application manages all configurations separately.
 :::
 
-## Downloading container images
+## Downloading Container Images
 
 If you are using a container system for running you pipeline, the `nf-core pipelines download` command can also fetch the required container images for you.
 Currently supported container systems are [Singularity](https://apptainer.org) (Apptainer), [Docker](https://www.docker.com/) and [Podman](https://podman.io/).
