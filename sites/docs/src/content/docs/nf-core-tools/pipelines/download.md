@@ -58,7 +58,7 @@ For Podman images, use the `docker` option and see details in the Docker section
 
 If the download speeds are much slower than your internet connection is capable of, you can set `--parallel-downloads` to a large number to download loads of images at once.
 
-### How a pipelines container images are found
+### How Pipeline Containers are Found
 
 The container image download finds container images using [`nextflow inspect`](https://www.nextflow.io/docs/latest/reference/cli.html#inspect).
 This Nextflow subcommand parses the pipeline code, both configs and scripts, and figures out what container is used in each module.
