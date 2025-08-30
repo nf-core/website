@@ -93,7 +93,7 @@ While you could get away with editing existing pipelines inside Colab's built-in
 
 If you use VS Code as your normal IDE, thankfully the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's hardware in the comfort of the popular VSCode software suite.
 
-It allows you to securely and reliably connect a local instance of VS Code to Google Colab as well as Kaggle notebooks through the use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) package.
+It allows you to securely and reliably connect a local instance of VS Code to Google Colab's servers through the use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) package.
 
 You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
 
