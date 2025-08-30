@@ -28,8 +28,8 @@ In Colab, run the following commands in a notebook code cell using the `%` and `
 
 ```python
 %cd .. # use '%'before cd to make a permanent change of directories
-!sudo apt update
-!sudo apt install openjdk-17-jdk
+!apt update
+!apt install openjdk-17-jdk
 !export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
 !export PATH=$JAVA_HOME/bin:$PATH
 !source ~/.bashrc
