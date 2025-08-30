@@ -89,7 +89,7 @@ Now you can finally run your pipeline!
 
 ## Running and Editing Pipelines in VS Code via Colab
 
-While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, a VS Code IDE offers a more robust and richer environment for development.
+While you could get away with editing existing pipelines inside Colab's built-in terminal using editors like vim or nano, a VS Code integrated development environment (IDE) offers a more robust and richer environment for development.
 
 If you use VS Code as your normal IDE, thankfully the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's hardware in the comfort of the popular VSCode software suite.
 
