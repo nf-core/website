@@ -118,7 +118,7 @@ vscode_colab.login()
 
 Follow the displayed instructions to authorize the connection.
 
-To start the VS Code tunnel, optionally configure Git, set up a Python version, or create a new project:
+When starting the tunnel, you can configure some optional settings that may come handy for advanced use cases.
 
 ```python
 vscode_colab.connect(
