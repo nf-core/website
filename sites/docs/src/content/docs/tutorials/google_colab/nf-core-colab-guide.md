@@ -134,7 +134,7 @@ vscode_colab.connect(
 
 The above step allows for a lot more customization than shown here. Please refer to the library's [vignette](https://github.com/EssenceSentry/vscode-colab) to see if any of these options will suit your needs.
 
-Then, in your local VS Code:
+Then, in VS Code on your desktop:
 
 1. Ensure the [Remote Tunnels extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server) is installed.
 2. Sign in with the same GitHub account used in the notebook.
