@@ -55,7 +55,7 @@ That leaves the `conda` profile as the only way to run pipelines.
 However, as Google Colab does not natively support conda, you need to install the [condacolab](https://pypi.org/project/condacolab/) package, which will set up Conda for you by running the following commands:
 
 ```python
-!pip install -q condacolab
+!pip install -q condacolab # -q here means quite
 import condacolab
 condacolab.install()
 ```
