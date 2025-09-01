@@ -192187,6 +192187,120 @@
       }
     },
     {
+      "name": "seqkit_sana",
+      "path": "modules/nf-core/seqkit/sana/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_sana",
+        "description": "Sanitize broken single line FASTQ files",
+        "keywords": [
+          "fastq",
+          "quality check",
+          "skip malformed",
+          "parser"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation.",
+              "homepage": "https://bioinf.shenwei.me/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "One line for each sequence and quality value",
+                "pattern": "*.{fq,fastq}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+                }
+              },
+              {
+                "${prefix}${extension}": {
+                  "type": "file",
+                  "description": "Parsed fastq file without malformed entries/lines",
+                  "pattern": "*.${extension}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Log file produced by the seqkit/sana software",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "seqkit_seq",
       "path": "modules/nf-core/seqkit/seq/meta.yml",
       "type": "module",
@@ -236195,6 +236309,68 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "bam_stringtie_merge",
+      "path": "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_stringtie_merge",
+        "description": "Assemble transcripts from sorted BAM alignments using StringTie, then merge per-sample transcript GTFs into a unified annotation.\n",
+        "keywords": [
+          "rna-seq",
+          "transcript-assembly",
+          "transcript-merge",
+          "stringtie",
+          "gtf"
+        ],
+        "components": [
+          "stringtie/stringtie",
+          "stringtie/merge"
+        ],
+        "input": [
+          {
+            "bam_sorted": {
+              "type": "file",
+              "description": "Sorted alignment files.\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "ch_chrgtf": {
+              "type": "file",
+              "description": "Reference gene annotation (GTF) for guided assembly and merge.\nStructure: [ val(meta), path(gtf) ]\n",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "stringtie_gtf": {
+              "type": "file",
+              "description": "Merged transcript annotation produced by StringTie --merge.\nStructure: [ val(meta), path(gtf) ]\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions for the subworkflow components.\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila",
+          "@rannick",
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@atrigila",
+          "@rannick",
+          "@nvnieuwk"
+        ]
+      }
     },
     {
       "name": "bam_subsampledepth_samtools",
