@@ -28658,7 +28658,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pathogensurveillance",
@@ -28922,6 +28922,10 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
+        },
+        {
+          "name": "circrna",
+          "version": "dev"
         },
         {
           "name": "crisprseq",
@@ -29369,7 +29373,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "radseq",
@@ -63700,6 +63704,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "coproid",
           "version": "2.0.0"
         },
@@ -67217,6 +67225,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -78128,7 +78140,7 @@
       "pipelines": [
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -88699,13 +88711,7 @@
                 "pattern": "*.bed"
               }
             }
-          ],
-          {
-            "vcf_output": {
-              "type": "boolean",
-              "description": "Specify to output to VCF format"
-            }
-          }
+          ]
         ],
         "output": {
           "bcf": [
@@ -88720,24 +88726,6 @@
                 "*.bcf": {
                   "type": "file",
                   "description": "merged BCF file",
-                  "pattern": "*.bcf",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "vcf": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-                }
-              },
-              {
-                "*.vcf.gz": {
-                  "type": "file",
-                  "description": "merged VCF file",
                   "pattern": "*.bcf",
                   "ontologies": []
                 }
@@ -180640,7 +180628,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pairgenomealign",
@@ -180860,7 +180848,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pairgenomealign",
@@ -183541,7 +183529,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -191744,7 +191732,13 @@
         "maintainers": [
           "@heuermh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_grep",
@@ -192919,6 +192913,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -205793,7 +205791,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "references",
@@ -217881,6 +217879,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "denovotranscript",
           "version": "1.2.1"
@@ -243099,7 +243101,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -243508,7 +243510,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -243901,7 +243903,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
