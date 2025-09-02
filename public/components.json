@@ -132934,6 +132934,125 @@
       }
     },
     {
+      "name": "modkit_bedmethyltobigwig",
+      "path": "modules/nf-core/modkit/bedmethyltobigwig/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "modkit_bedmethyltobigwig",
+        "description": "Convert a bedMethyl file to bigWig format using modkit",
+        "keywords": [
+          "long-read",
+          "ont",
+          "methylation"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://nanoporetech.github.io/modkit/",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bedmethyl": {
+                "type": "file",
+                "description": "bedMethyl file",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. `[ id:'hg38' ]`\n"
+              }
+            },
+            {
+              "chromsizes": {
+                "type": "file",
+                "description": "Tab-separated file with chromosome names and sizes or fai index",
+                "pattern": "*.{tsv,fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "modcodes": {
+              "type": "list",
+              "description": "List of modification codes to include in the output bigWig file.\nCan be either a list of strings or a string containing a comma-separated list.\n"
+            }
+          }
+        ],
+        "output": {
+          "bw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bw": {
+                  "type": "file",
+                  "description": "bigWig file",
+                  "pattern": "*.{bw}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Schmytzi"
+        ],
+        "maintainers": [
+          "@Schmytzi"
+        ]
+      }
+    },
+    {
       "name": "modkit_pileup",
       "path": "modules/nf-core/modkit/pileup/meta.yml",
       "type": "module",
