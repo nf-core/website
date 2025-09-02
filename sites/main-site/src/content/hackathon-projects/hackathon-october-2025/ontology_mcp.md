@@ -1,6 +1,6 @@
 ---
 title: ontology MCP
-category: special-interest-groups
+category: community
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08FKRKPDFV
 image: "https://plus.unsplash.com/premium_photo-1733317483746-661d5384329c"
