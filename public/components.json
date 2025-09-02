@@ -28658,7 +28658,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pathogensurveillance",
@@ -28922,6 +28922,10 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
+        },
+        {
+          "name": "circrna",
+          "version": "dev"
         },
         {
           "name": "crisprseq",
@@ -29369,7 +29373,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "radseq",
@@ -63700,6 +63704,10 @@
           "version": "2.4.0"
         },
         {
+          "name": "circrna",
+          "version": "dev"
+        },
+        {
           "name": "coproid",
           "version": "2.0.0"
         },
@@ -67217,6 +67225,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -78128,7 +78140,7 @@
       "pipelines": [
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "rnadnavar",
@@ -88699,13 +88711,7 @@
                 "pattern": "*.bed"
               }
             }
-          ],
-          {
-            "vcf_output": {
-              "type": "boolean",
-              "description": "Specify to output to VCF format"
-            }
-          }
+          ]
         ],
         "output": {
           "bcf": [
@@ -88720,24 +88726,6 @@
                 "*.bcf": {
                   "type": "file",
                   "description": "merged BCF file",
-                  "pattern": "*.bcf",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "vcf": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-                }
-              },
-              {
-                "*.vcf.gz": {
-                  "type": "file",
-                  "description": "merged VCF file",
                   "pattern": "*.bcf",
                   "ontologies": []
                 }
@@ -132930,6 +132918,125 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "modkit_bedmethyltobigwig",
+      "path": "modules/nf-core/modkit/bedmethyltobigwig/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "modkit_bedmethyltobigwig",
+        "description": "Convert a bedMethyl file to bigWig format using modkit",
+        "keywords": [
+          "long-read",
+          "ont",
+          "methylation"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://nanoporetech.github.io/modkit/",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bedmethyl": {
+                "type": "file",
+                "description": "bedMethyl file",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. `[ id:'hg38' ]`\n"
+              }
+            },
+            {
+              "chromsizes": {
+                "type": "file",
+                "description": "Tab-separated file with chromosome names and sizes or fai index",
+                "pattern": "*.{tsv,fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "modcodes": {
+              "type": "list",
+              "description": "List of modification codes to include in the output bigWig file.\nCan be either a list of strings or a string containing a comma-separated list.\n"
+            }
+          }
+        ],
+        "output": {
+          "bw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bw": {
+                  "type": "file",
+                  "description": "bigWig file",
+                  "pattern": "*.{bw}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Schmytzi"
+        ],
+        "maintainers": [
+          "@Schmytzi"
         ]
       }
     },
@@ -180521,7 +180628,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pairgenomealign",
@@ -180741,7 +180848,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pairgenomealign",
@@ -183422,7 +183529,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -191625,7 +191732,13 @@
         "maintainers": [
           "@heuermh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "seqkit_grep",
@@ -192187,6 +192300,120 @@
       }
     },
     {
+      "name": "seqkit_sana",
+      "path": "modules/nf-core/seqkit/sana/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_sana",
+        "description": "Sanitize broken single line FASTQ files",
+        "keywords": [
+          "fastq",
+          "quality check",
+          "skip malformed",
+          "parser"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation.",
+              "homepage": "https://bioinf.shenwei.me/seqkit",
+              "documentation": "https://bioinf.shenwei.me/seqkit",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "One line for each sequence and quality value",
+                "pattern": "*.{fq,fastq}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+                }
+              },
+              {
+                "${prefix}${extension}": {
+                  "type": "file",
+                  "description": "Parsed fastq file without malformed entries/lines",
+                  "pattern": "*.${extension}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'sample1']"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Log file produced by the seqkit/sana software",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "seqkit_seq",
       "path": "modules/nf-core/seqkit/seq/meta.yml",
       "type": "module",
@@ -192686,6 +192913,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "mag",
           "version": "4.0.0"
@@ -205560,7 +205791,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "references",
@@ -217648,6 +217879,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "circrna",
+          "version": "dev"
+        },
         {
           "name": "denovotranscript",
           "version": "1.2.1"
@@ -236197,6 +236432,68 @@
       ]
     },
     {
+      "name": "bam_stringtie_merge",
+      "path": "subworkflows/nf-core/bam_stringtie_merge/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_stringtie_merge",
+        "description": "Assemble transcripts from sorted BAM alignments using StringTie, then merge per-sample transcript GTFs into a unified annotation.\n",
+        "keywords": [
+          "rna-seq",
+          "transcript-assembly",
+          "transcript-merge",
+          "stringtie",
+          "gtf"
+        ],
+        "components": [
+          "stringtie/stringtie",
+          "stringtie/merge"
+        ],
+        "input": [
+          {
+            "bam_sorted": {
+              "type": "file",
+              "description": "Sorted alignment files.\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "ch_chrgtf": {
+              "type": "file",
+              "description": "Reference gene annotation (GTF) for guided assembly and merge.\nStructure: [ val(meta), path(gtf) ]\n",
+              "pattern": "*.gtf"
+            }
+          }
+        ],
+        "output": [
+          {
+            "stringtie_gtf": {
+              "type": "file",
+              "description": "Merged transcript annotation produced by StringTie --merge.\nStructure: [ val(meta), path(gtf) ]\n",
+              "pattern": "*.gtf"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions for the subworkflow components.\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@atrigila",
+          "@rannick",
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@atrigila",
+          "@rannick",
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "bam_subsampledepth_samtools",
       "path": "subworkflows/nf-core/bam_subsampledepth_samtools/meta.yml",
       "type": "subworkflow",
@@ -242804,7 +243101,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -243213,7 +243510,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
@@ -243606,7 +243903,7 @@
         },
         {
           "name": "oncoanalyser",
-          "version": "2.1.0"
+          "version": "2.2.0"
         },
         {
           "name": "pacvar",
