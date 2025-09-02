@@ -3,7 +3,7 @@ title: ontology MCP
 category: community
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08FKRKPDFV
-image: "https://plus.unsplash.com/premium_photo-1733317483746-661d5384329c"
+image: "/assets/images/events/2025/hackathon-barcelona/ontologies_hackathon_image.jpeg"
 image_alt: "Cat wondering between two question marks"
 leaders:
   mirpedrol:
