@@ -1,6 +1,6 @@
 ---
 title: ontology MCP
-category: community
+category: special-interest-groups
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08FKRKPDFV
 image: "/assets/images/events/2025/hackathon-barcelona/ontologies_hackathon_image.jpeg"
