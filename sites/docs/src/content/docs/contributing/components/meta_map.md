@@ -117,7 +117,7 @@ Here are some examples:
 // Add to map - adding two maps makes a new Map object
 ch.map { meta, files -> [ meta + [ single_end: files instanceof Path ], files ] }
 
-// Remove certain keys (and their entries) from a map
+// Extract certain keys (and their entries) from a map
 ch.map { meta, files -> [ meta.subMap( ['id','rg'] ), files ] }
   // OR by specifying what not to include
 ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
