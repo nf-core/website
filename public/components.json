@@ -204101,7 +204101,14 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "genome": {
+              "type": "string",
+              "description": "Reference genome name to use with SparseSignatures (e.g. \"GRCh37\", \"GRCh38\")",
+              "ontologies": []
+            }
+          }
         ],
         "output": {
           "signatures_mutCounts_rds": [
@@ -204228,11 +204235,11 @@
           ]
         },
         "authors": [
-          "@Katerina10-cloud",
+          "@kdavydzenka",
           "@elena-buscaroli"
         ],
         "maintainers": [
-          "@Katerina10-cloud",
+          "@kdavydzenka",
           "@elena-buscaroli"
         ]
       }
