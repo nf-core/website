@@ -10,11 +10,25 @@ The nf-test framework in the nf-core ecosystem enables comprehensive testing for
 
 This chapter covers the fundamentals of nf-core module testing, from basic syntax to advanced scenarios involving chained modules.
 
+## Module structure
+
+Before diving into testing, let's understand the typical structure of an nf-core module:
+
+```
+modules/nf-core/tool/subtool/
+├── main.nf              # Process definition
+├── meta.yml             # Module metadata
+└── tests/               # Testing directory
+    ├── main.nf.test     # Test definitions
+    ├── tags.yml         # Test tags
+    └── nextflow.config  # Optional: test-specific config
+```
+
 ### Basic test syntax
 
 The basic syntax for a process test follows this structure:
 
-```groovy  title="main.nf.test"
+```groovy title="main.nf.test"
 nextflow_process {
     name "<NAME>"
     script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
@@ -38,7 +52,7 @@ Tests use assertions to verify the expected output of the process specified in t
 
 You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
 
-Nextflow process output channels that lack explicit names can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel. This indexing method provides a straightforward way to interact with channels without the need for predefined names.
+Nextflow process output channels that lack explicit names (i.e., when no `meta` map is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel. This indexing method provides a straightforward way to interact with unnamed channels.
 
 ```groovy
 // Process completion status
@@ -63,85 +77,15 @@ assertAll(
 
 ## Module testing principles
 
-- Each module should contain a `tests/` folder alongside its `main.nf` file.
-- Test files come with snapshots of component output channels (a stored representation of the correct channel contents).
-- Tests verify both functionality and expected outputs.
-- Support both regular and stub (`-stub`) testing modes.
+nf-core module testing follows established best practices to ensure reliability and maintainability:
 
-## Testing an existing module
+- **Prefer MD5 checksums** for output verification when possible, then file content checks, then existence checks as fallbacks
+- **Test both regular and stub modes** to verify functionality and stub outputs
+- **Use appropriate test data** from the nf-core test-datasets repository
+- **Snapshot testing** for comprehensive output validation
+- **Minimal viable tests** that cover the core functionality without excessive complexity
 
-Let's examine testing the `bedtools/bamtobed` module, which is a simple standalone module:
-
-```bash
-cd path/to/modules
-# Run all tests for the module
-nf-core modules test bedtools/bamtobed --profile docker
-```
-
-This will run all tests for the module specified in the `main.nf.test` and display the results, including any failures or snapshot mismatches.
-
-```bash
-
-
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
-
-    nf-core/tools version 3.3.2 - https://nf-co.re
-
-
-INFO     Generating nf-test snapshot
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process BEDTOOLS_BAMTOBED                                                                         │
-│                                                                                                        │
-│   Test [824188d1] 'sarscov2 - bam' PASSED (3.335s)                                                     │
-│   Test [f4f6429b] 'stub' PASSED (3.154s)                                                               │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 2 tests in 6.498s                                                                    │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     Generating nf-test snapshot again to check stability
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process BEDTOOLS_BAMTOBED                                                                         │
-│                                                                                                        │
-│   Test [824188d1] 'sarscov2 - bam' PASSED (3.277s)                                                     │
-│   Test [f4f6429b] 'stub' PASSED (3.161s)                                                               │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 2 tests in 6.446s                                                                    │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     All tests passed!
-```
+For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
 
 ## Creating a new module with tests
 
@@ -226,13 +170,28 @@ nextflow_process {
 }
 ```
 
-After providing the appropriate test data, run the tests to create a snapshot of the output:
+Run the tests to create a snapshot of the output:
 
 ```bash
 nf-core modules test seqtk/sample --profile docker
 ```
 
+This will execute the tests and generate snapshots for validation.
+
+## Testing an existing module
+
+Let's examine testing the `bedtools/bamtobed` module, which is a simple standalone module:
+
 ```bash
+cd path/to/modules
+# Run all tests for the module
+nf-core modules test bedtools/bamtobed --profile docker
+```
+
+This will run all tests for the module specified in the `main.nf.test` and display the results, including any failures or snapshot mismatches.
+
+```bash
+
 
                                           ,--./,-.
           ___     __   __   __   ___     /,-._.--~\
@@ -258,21 +217,13 @@ INFO     Generating nf-test snapshot
 │ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
 │ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
 │                                                                                                        │
-│ Test Process SEQTK_SAMPLE                                                                              │
+│ Test Process BEDTOOLS_BAMTOBED                                                                         │
 │                                                                                                        │
-│   Test [a4edc395] 'sarscov2_sample_singleend_fqgz' PASSED (14.223s)                                    │
-│   Test [42c1ef08] 'sarscov2_sample_pairedend_fqgz' PASSED (3.353s)                                     │
-│   Test [7b327705] 'sarscov2_sample_singlend_fqgz_stub' PASSED (3.042s)                                 │
-│   Test [f1c40b60] 'sarscov2_sample_singleend_frac' PASSED (3.326s)                                     │
-│                                                                                                        │
-│ Test Workflow FASTQ_CONTAM_SEQTK_KRAKEN                                                                │
-│                                                                                                        │
-│   Test [609e9434] 'sarscov2 - fastq - 25000 - krakendb' PASSED (31.378s)                               │
-│   Test [b5fb1cc0] 'sarscov2 - fastq - [12500, 25000] - krakendb' PASSED (7.803s)                       │
-│   Test [aac34908] 'sarscov2 - fastq - [12500, 25000] - krakendb -- stub' PASSED (7.262s)               │
+│   Test [824188d1] 'sarscov2 - bam' PASSED (3.335s)                                                     │
+│   Test [f4f6429b] 'stub' PASSED (3.154s)                                                               │
 │                                                                                                        │
 │                                                                                                        │
-│ SUCCESS: Executed 7 tests in 70.391s                                                                   │
+│ SUCCESS: Executed 2 tests in 6.498s                                                                    │
 │                                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 INFO     Generating nf-test snapshot again to check stability
@@ -290,21 +241,13 @@ INFO     Generating nf-test snapshot again to check stability
 │ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
 │ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
 │                                                                                                        │
-│ Test Process SEQTK_SAMPLE                                                                              │
+│ Test Process BEDTOOLS_BAMTOBED                                                                         │
 │                                                                                                        │
-│   Test [a4edc395] 'sarscov2_sample_singleend_fqgz' PASSED (3.611s)                                     │
-│   Test [42c1ef08] 'sarscov2_sample_pairedend_fqgz' PASSED (3.321s)                                     │
-│   Test [7b327705] 'sarscov2_sample_singlend_fqgz_stub' PASSED (3.098s)                                 │
-│   Test [f1c40b60] 'sarscov2_sample_singleend_frac' PASSED (3.263s)                                     │
-│                                                                                                        │
-│ Test Workflow FASTQ_CONTAM_SEQTK_KRAKEN                                                                │
-│                                                                                                        │
-│   Test [609e9434] 'sarscov2 - fastq - 25000 - krakendb' PASSED (5.934s)                                │
-│   Test [b5fb1cc0] 'sarscov2 - fastq - [12500, 25000] - krakendb' PASSED (6.564s)                       │
-│   Test [aac34908] 'sarscov2 - fastq - [12500, 25000] - krakendb -- stub' PASSED (7.03s)                │
+│   Test [824188d1] 'sarscov2 - bam' PASSED (3.277s)                                                     │
+│   Test [f4f6429b] 'stub' PASSED (3.161s)                                                               │
 │                                                                                                        │
 │                                                                                                        │
-│ SUCCESS: Executed 7 tests in 32.853s                                                                   │
+│ SUCCESS: Executed 2 tests in 6.446s                                                                    │
 │                                                                                                        │
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 INFO     All tests passed!
@@ -312,28 +255,7 @@ INFO     All tests passed!
 
 ### Testing parameter variations
 
-There are two primary ways to alter parameters for a module test: creating a test-specific configuration file or using a `params` block within the test itself.
-
-#### Creating a parameter-specific configuration
-
-For modules requiring additional parameters, you can create a `nextflow.config` file in the `tests/` directory:
-
-```bash
-# Create config file for parameter testing
-touch modules/nf-core/seqtk/sample/tests/nextflow.config
-```
-
-Add the configuration:
-
-```groovy
-process {
-    withName: 'SEQTK_SAMPLE' {
-        ext.args = params.module_args
-    }
-}
-```
-
-Then specify to load the config at the top of the `main.nf.test` file as shown below, and specify the specific `params` you want to use for the given test in the `when` block:
+For modules requiring additional parameters, the **recommended approach** is to use a `params` block within the test itself. This method is simpler and keeps test configuration self-contained.
 
 ```groovy
 nextflow_process {
@@ -358,7 +280,10 @@ nextflow_process {
             }
         }
         then {
-            // ...
+            assertAll(
+                { assert process.success },
+                { assert snapshot(process.out).match() }
+            )
         }
     }
 }
@@ -372,6 +297,44 @@ The `setup` method allows you to specify processes or workflows that need to be 
 It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block.
 
 Within the setup block, you can use the `run` method to define and execute dependent processes or workflows.
+
+Here's a basic example of how a setup block looks:
+
+```groovy
+nextflow_process {
+    name "Test Process MY_MODULE"
+    script "../main.nf"
+    process "MY_MODULE"
+
+    test("test with setup") {
+        setup {
+            run("UPSTREAM_MODULE") {
+                script "../../upstream/main.nf"
+                process {
+                    """
+                    input[0] = [
+                        [ id:'test' ],
+                        file('path/to/input.txt')
+                    ]
+                    """
+                }
+            }
+        }
+
+        when {
+            process {
+                """
+                input[0] = UPSTREAM_MODULE.out.my_output
+                """
+            }
+        }
+
+        then {
+            assert process.success
+        }
+    }
+}
+```
 
 ### Syntax
 
@@ -388,15 +351,78 @@ run("ProcessName") {
 }
 ```
 
-
 :::warning
 Please keep in mind that changes in processes or workflows, which are executed in the setup method, can result in a failed test run.
 :::
 
-### Local `setup` method
+### Global `setup` method (for all tests)
 
-A `setup` method can be defined within a test case to execute a dependent process. 
-This process generates input data required for the primary process.
+A global `setup` method can be defined for all tests within a `nextflow_process` definition.
+
+The `setup` is applied to multiple `test` cases, ensuring a consistent setup for each test.
+
+This approach is useful when multiple tests share the same setup requirements.
+
+```groovy
+nextflow_process {
+
+    name "Test Process ABRICATE_SUMMARY"
+    script "../main.nf"
+    process "ABRICATE_SUMMARY"
+    config "./nextflow.config"
+
+    setup {
+        run("ABRICATE_RUN") {
+            script "../../run/main.nf"
+            process {
+                """
+                input[0] =  Channel.fromList([
+                    tuple([ id:'test1', single_end:false ], // meta map
+                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
+                    tuple([ id:'test2', single_end:false ],
+                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
+                ])
+                """
+            }
+        }
+    }
+
+    test("first test") {
+        when {
+            process {
+                """
+                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
+                """
+            }
+        }
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
+    }
+
+    test("second test") {
+        when {
+            process {
+                """
+                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
+                """
+            }
+        }
+        then {
+            assert process.success
+            assert snapshot(process.out).match()
+        }
+    }
+}
+```
+
+### Local `setup` method (for a single test)
+
+A `setup` method can also be defined within a specific test case to execute a dependent process for that test only.
+
+This process generates input data required for the primary process in just that single test.
+
 The `setup` block specifies the execution of the dependency, and the `when` block defines the processing logic for the module under test.
 
 Here's an example for `abricate/summary`, which requires output from `abricate/run`:
@@ -519,66 +545,6 @@ INFO     Generating nf-test snapshot again to check stability
 INFO     All tests passed!
 ```
 
-### Global `setup` method
-
-A global `setup` method can be defined for all tests within a `nextflow_process` definition.
-The `setup` is applied to multiple `test` cases, ensuring a consistent setup for each test.
-This approach is useful when multiple tests share the same setup requirements.
-
-```groovy
-nextflow_process {
-
-    name "Test Process ABRICATE_SUMMARY"
-    script "../main.nf"
-    process "ABRICATE_SUMMARY"
-    config "./nextflow.config"
-
-    setup {
-        run("ABRICATE_RUN") {
-            script "../../run/main.nf"
-            process {
-                """
-                input[0] =  Channel.fromList([
-                    tuple([ id:'test1', single_end:false ], // meta map
-                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)),
-                    tuple([ id:'test2', single_end:false ],
-                        file(params.modules_testdata_base_path + 'genomics/prokaryotes/haemophilus_influenzae/genome/genome.fna.gz', checkIfExists: true))
-                ])
-                """
-            }
-        }
-    }
-
-    test("first test") {
-        when {
-            process {
-                """
-                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
-                """
-            }
-        }
-        then {
-            assert process.success
-            assert snapshot(process.out).match()
-        }
-    }
-
-    test("second test") {
-        when {
-            process {
-                """
-                input[0] = ABRICATE_RUN.out.report.collect{ meta, report -> report }.map{ report -> [[ id: 'test_summary'], report]}
-                """
-            }
-        }
-        then {
-            assert process.success
-            assert snapshot(process.out).match()
-        }
-    }
-}
-```
-
 ### Aliasing dependencies
 
 If you need to run the same setup process multiple times for the same test but for different files, you can set an `alias` for the process:
@@ -674,6 +640,9 @@ nf-test test --profile docker --tag abricate/summary
 
 # or specify test path
 nf-test test --profile docker modules/nf-core/abricate/summary/tests/main.nf.test
+
+# update snapshots
+nf-test test --profile docker modules/nf-core/abricate/summary/tests/main.nf.test --update-snapshot
 ```
 
 This will run the tests for the module and display the results, including any failures or snapshot mismatches.
