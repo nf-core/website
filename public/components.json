@@ -15283,6 +15283,13 @@
             }
           ],
           {
+            "columns": {
+              "type": "file",
+              "description": "List of columns in the annotations file, one name per row",
+              "ontologies": []
+            }
+          },
+          {
             "header_lines": {
               "type": "file",
               "description": "Contains lines to append to the output VCF header",
@@ -134574,30 +134581,45 @@
           }
         ],
         "input": [
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Path to reference genome.",
-              "pattern": "*.fasta",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome",
+                "pattern": "*.{fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
             }
-          },
-          {
-            "output": {
-              "type": "string",
-              "description": "Name of output MSI scan to write."
-            }
-          }
+          ]
         ],
         "output": {
           "scan": [
-            {
-              "output_path": {
-                "type": "file",
-                "description": "Path to output MSI scan file.",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.scan": {
+                  "type": "file",
+                  "description": "File containing microsatellite list",
+                  "pattern": "*.{scan}",
+                  "ontologies": []
+                }
               }
-            }
+            ]
           ],
           "versions": [
             {
