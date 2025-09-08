@@ -213,7 +213,7 @@ nextflow_workflow {
 
 ## Testing parameter variations
 
-Test different parameter combinations that affect subworkflow behavior:
+You should make sure to test different parameter combinations that could affect subworkflow behavior. You can do this with Nextflow config files that sit alongside the `main.nf.test` file, or with `params` blocks in the test file itself.
 
 ### Creating parameter-specific configuration
 
@@ -239,17 +239,14 @@ process {
 
 ### Overriding parameters with the `params` block
 
-In addition to a `nextflow.config` file, `nf-test` provides a `params` block within the `when` block to override Nextflow's input `params` for a specific test. This is useful for testing different parameter combinations without creating multiple config files.
+While a `nextflow.config` file is useful for setting global parameters for all tests of a subworkflow, `nf-test` provides a `params` block within the `when` block to override Nextflow's input `params` for a specific test. This is useful for testing different parameter combinations without creating multiple config files.
 
-You can set parameters manually, including nested parameters:
+For example, you can override the `aligner` parameter from the `nextflow.config` example to test a different alignment tool:
 
 ```groovy
 when {
     params {
-        outdir = "output"
-        output {
-          dir = "output"
-        }
+        aligner = "bismark_hisat"
     }
     workflow {
         """
@@ -261,7 +258,19 @@ when {
 
 #### Loading parameters from a file
 
-You can also load parameters from a JSON or YAML file. This is useful for managing complex parameter sets.
+You can also load parameters from a JSON or YAML file, which is similar to Nextflow's `-params-file` option. This is useful for managing complex parameter sets. The file should contain a simple map of parameter names and values.
+
+For example, a `tests/params.json` file could look like this:
+
+```json
+{
+  "aligner": "bismark",
+  "cytosine_report": false,
+  "skip_deduplication": true
+}
+```
+
+You can then load it in your test:
 
 ```groovy
 when {
@@ -280,7 +289,7 @@ It is also possible to combine both techniques, allowing you to load a base set 
 when {
     params {
         load("$baseDir/tests/params.json")
-        outputDir = "new/output/path"
+        skip_deduplication = false
     }
     workflow {
         // ...
