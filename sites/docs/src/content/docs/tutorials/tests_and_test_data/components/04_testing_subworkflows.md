@@ -6,11 +6,12 @@ weight: 40
 
 ## Overview
 
-The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps. This chapter builds upon the concepts introduced in the module testing chapter, covering testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
+The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps.
+This chapter builds upon the concepts introduced in the module testing chapter, covering testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
 
 ### Basic test syntax
 
-The basic syntax for a workflow test follows this structure:
+The basic syntax for a (sub)workflow test follows this structure:
 
 ```groovy
 nextflow_workflow {
@@ -146,7 +147,8 @@ nf-core subworkflows test fastq_align_qc --profile docker
 
 ## Testing subworkflows with setup dependencies
 
-Just as `setup` blocks are used to chain modules, they are also used in subworkflow tests to handle prerequisite steps, such as generating a reference genome index. For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
+Just as `setup` blocks are used to chain modules that require upstream modules to generate inputs for the module under test, they are also used in subworkflow tests to handle prerequisite steps, such as generating a reference genome index.
+For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
 
 ```groovy
 nextflow_workflow {
