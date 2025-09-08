@@ -14,7 +14,7 @@ This chapter covers the fundamentals of nf-core module testing, from basic synta
 
 The basic syntax for a process test follows this structure:
 
-```groovy
+```groovy  title="main.nf.test"
 nextflow_process {
     name "<NAME>"
     script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
@@ -34,14 +34,14 @@ nextflow_process {
 
 ### Essential Assertions
 
-Tests use assertions to verify the expected output of the process in the `then` block.
+Tests use assertions to verify the expected output of the process specified in the `then` block.
 
-To report multiple failures in a single test run, group your assertions within an `assertAll` block.
+You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
 
-Channels that lack explicit names can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel. This indexing method provides a straightforward way to interact with channels without the need for predefined names.
+Nextflow process output channels that lack explicit names can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel. This indexing method provides a straightforward way to interact with channels without the need for predefined names.
 
 ```groovy
-// Process status
+// Process completion status
 assert process.success
 assert process.exitStatus == 0
 
@@ -78,7 +78,7 @@ cd path/to/modules
 nf-core modules test bedtools/bamtobed --profile docker
 ```
 
-This will run all tests for the module and display the results, including any failures or snapshot mismatches.
+This will run all tests for the module specified in the `main.nf.test` and display the results, including any failures or snapshot mismatches.
 
 ```bash
 
@@ -164,7 +164,7 @@ modules/nf-core/seqtk/sample/
     └── tags.yml
 ```
 
-The generated test file (`tests/main.nf.test`), with positional input channels `input[0]` and `input[1]` provided, will look like this:
+The generated test file (`tests/main.nf.test`) will look like this, once the `input[0]` and `input[1]` channels are defined in the `when` blocks:
 
 ```groovy
 nextflow_process {
@@ -316,7 +316,7 @@ There are two primary ways to alter parameters for a module test: creating a tes
 
 #### Creating a parameter-specific configuration
 
-For modules requiring additional parameters, you can create a `<filename>.config` file in the `tests/` directory:
+For modules requiring additional parameters, you can create a `nextflow.config` file in the `tests/` directory:
 
 ```bash
 # Create config file for parameter testing
@@ -333,7 +333,7 @@ process {
 }
 ```
 
-Then apply the config in your test as shown below:
+Then specify to load the config at the top of the `main.nf.test` file as shown below, and specify the specific `params` you want to use for the given test in the `when` block:
 
 ```groovy
 nextflow_process {
@@ -364,32 +364,12 @@ nextflow_process {
 }
 ```
 
-#### Overriding parameters with the `params` block
-
-In addition to a `nextflow.config` file, `nf-test` provides a `params` block within the `when` block to override Nextflow's input `params` for a specific test.
-
-```groovy
-when {
-  params {
-    outdir = "output"
-  }
-  process {
-    """
-    input[0] = [
-      [ id:'test', single_end:false ], // meta map
-      file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-    ]
-    input[1] = 10
-    """
-  }
-}
-```
-
 ## Testing chained modules
 
-For modules that depend on the output of other modules, use the `setup` method to define the dependency.
+In some cases, rather than directly linking to pre-made test-data files, it may make sense to run an 'upstream module' in your test to output the required inputs of the module you want to test.
 
-The `setup` method allows you to specify processes or workflows that need to be executed before the primary `when` block. It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block.
+The `setup` method allows you to specify processes or workflows that need to be executed before the primary `when` block.
+It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block.
 
 Within the setup block, you can use the `run` method to define and execute dependent processes or workflows.
 
@@ -401,21 +381,13 @@ The `run` method syntax for a process is as follows:
 run("ProcessName") {
     script "path/to/process/script.nf"
     process {
+        """
         // Define the process inputs here
+        """
     }
 }
 ```
 
-The `run` method syntax for a workflow is as follows:
-
-```groovy
-run("WorkflowName") {
-    script "path/to/workflow/script.nf"
-    workflow {
-        // Define the workflow inputs here
-    }
-}
-```
 
 :::warning
 Please keep in mind that changes in processes or workflows, which are executed in the setup method, can result in a failed test run.
@@ -423,7 +395,9 @@ Please keep in mind that changes in processes or workflows, which are executed i
 
 ### Local `setup` method
 
-A `setup` method can be defined within a test case to execute a dependent process. This process generates input data required for the primary process. The `setup` block specifies the execution of the dependency, and the `when` block defines the processing logic for the module under test.
+A `setup` method can be defined within a test case to execute a dependent process. 
+This process generates input data required for the primary process.
+The `setup` block specifies the execution of the dependency, and the `when` block defines the processing logic for the module under test.
 
 Here's an example for `abricate/summary`, which requires output from `abricate/run`:
 
@@ -547,7 +521,9 @@ INFO     All tests passed!
 
 ### Global `setup` method
 
-A global `setup` method can be defined for all tests within a `nextflow_process` definition. The `setup` is applied to multiple `test` cases, ensuring a consistent setup for each test. This approach is useful when multiple tests share the same setup requirements.
+A global `setup` method can be defined for all tests within a `nextflow_process` definition.
+The `setup` is applied to multiple `test` cases, ensuring a consistent setup for each test.
+This approach is useful when multiple tests share the same setup requirements.
 
 ```groovy
 nextflow_process {
@@ -605,7 +581,7 @@ nextflow_process {
 
 ### Aliasing dependencies
 
-If you need to run the same process multiple times, you can set an `alias` for the process:
+If you need to run the same setup process multiple times for the same test but for different files, you can set an `alias` for the process:
 
 ```groovy
 nextflow_process {
@@ -662,7 +638,7 @@ nextflow_process {
 
 ## Updating module snapshots
 
-When module outputs change (e.g., due to version bumps), you need to update snapshots:
+Whenever a module is updated resulting in changes to output (e.g., due to version bumps of the tool itself), you will need to update snapshots:
 
 ```bash
 nf-core modules test abricate/summary --profile docker --update
@@ -685,11 +661,13 @@ You will see the following warning at the start of the test run:
 │ Warning: every snapshot that fails during this test run is re-record.
 ```
 
-Once the test passes, the snapshot will be updated and the test re-run to verify the snapshot is stable.
+If you are using nf-core tools for executing the tests, once the test passes, the snapshot will be updated and the test(s) will be re-run for you to verify the snapshot is stable.
+
+If it is not stable, you will need to refine your assertions.
 
 ## Testing with nf-test
 
-You can also run the tests with nf-test directly using the `--tag` option:
+If you are running with nf-test directly, you can use the `--tag` option to specify which module within the repository to test:
 
 ```bash
 nf-test test --profile docker --tag abricate/summary
