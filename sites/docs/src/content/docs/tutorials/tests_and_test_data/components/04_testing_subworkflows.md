@@ -299,32 +299,6 @@ when {
 }
 ```
 
-## Testing output channels comprehensively
-
-### BAM file testing with MD5 checksums
-
-To ensure content consistency, always use MD5 checksums when testing BAM files. This is more reliable than checking file names or sizes, which can be unstable.
-
-```groovy
-{ assert snapshot(
-    workflow.out.bam.collect { meta, bamfile -> bam(bamfile).getReadsMD5() },
-    workflow.out.bai.collect { meta, bai -> file(bai).name },
-    workflow.out.stats.collect { meta, stats -> file(stats).name },
-    workflow.out.flagstat.collect { meta, flagstat -> file(flagstat).name },
-    workflow.out.versions
-    ).match() }
-```
-
-### File name testing for stable names
-
-For files with stable names but variable content (like log files or reports), testing the file name is sufficient.
-
-```groovy
-workflow.out.bai.collect { meta, bai -> file(bai).name },
-workflow.out.picard_metrics.collect { meta, metrics -> file(metrics).name },
-workflow.out.multiqc.flatten().collect { path -> file(path).name }
-```
-
 :::note
 For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
 :::
