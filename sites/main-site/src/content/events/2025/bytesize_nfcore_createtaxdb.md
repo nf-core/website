@@ -6,10 +6,11 @@ startDate: "2025-09-09"
 startTime: "13:00+02:00"
 endDate: "2025-09-09"
 endTime: "13:30+02:00"
+youtubeEmbed: https://youtu.be/zfBNxvek4Rw
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/zfBNxvek4Rw
 ---
 
 In this weeks bytesize, James [@jfy133](https://github.com/jfy133) is giving a talk about the new nf-core pipeline [nf-core/createtaxdb](https://nf-co.re/createtaxdb/).
