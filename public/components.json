@@ -26676,6 +26676,219 @@
       ]
     },
     {
+      "name": "blobtk_depth",
+      "path": "modules/nf-core/blobtk/depth/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blobtk_depth",
+        "description": "Creates a bed file containing the depth of data at intervals of an aligned bam.\n",
+        "keywords": [
+          "bam",
+          "gzipped",
+          "blobtoolkit",
+          "depth"
+        ],
+        "tools": [
+          {
+            "btk": {
+              "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
+              "homepage": "https://github.com/genomehubs/blobtk/",
+              "documentation": "https://github.com/genomehubs/blobtk/wiki/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:btk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Algined BAM file.\n",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Algined BAM index file.\n",
+                "pattern": "*.bai|*.csi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.regions.bed.gz": {
+                  "type": "file",
+                  "description": "Bed file describing the depth of regions across the genome.\n"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
+      "name": "blobtk_plot",
+      "path": "modules/nf-core/blobtk/plot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blobtk_plot",
+        "description": "Creates differing styles of blobplots depending on provided arguments.\n",
+        "keywords": [
+          "png",
+          "bkt",
+          "blobtoolkit",
+          "plot"
+        ],
+        "tools": [
+          {
+            "btk": {
+              "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
+              "homepage": "https://github.com/genomehubs/blobtk/",
+              "documentation": "https://github.com/genomehubs/blobtk/wiki/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:btk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information and blobtk arguments\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input assembly FASTA.\n",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "local_path": {
+              "type": "directory",
+              "description": "A path to a Blob Dir generated as part of a greater pipeline.\n",
+              "pattern": "*/"
+            }
+          },
+          {
+            "online_path": {
+              "type": "string",
+              "description": "A webaddress to a Blob Dir e.g. hosted on a BlobToolKit Viewer.\n",
+              "pattern": "*/"
+            }
+          },
+          {
+            "extra_args": {
+              "type": "map",
+              "description": "Groovy Map containing sample information and blobtk arguments\ne.g. `[name: 'VIEW', args: \"-v\"]`\n"
+            }
+          }
+        ],
+        "output": {
+          "png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.png": {
+                  "type": "file",
+                  "description": "Blobplot PNG results of input arguments.\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
       "name": "bowtie2_align",
       "path": "modules/nf-core/bowtie2/align/meta.yml",
       "type": "module",
