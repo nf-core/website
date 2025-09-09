@@ -12,7 +12,7 @@ This chapter covers the fundamentals of nf-core module testing, from basic synta
 
 ## Module structure
 
-Before diving into testing, let's understand the typical structure of an nf-core module:
+Before diving into testing, let's understand the typical structure of a nf-core module:
 
 ```
 modules/nf-core/tool/subtool/
@@ -20,7 +20,6 @@ modules/nf-core/tool/subtool/
 ├── meta.yml             # Module metadata
 └── tests/               # Testing directory
     ├── main.nf.test     # Test definitions
-    ├── tags.yml         # Test tags
     └── nextflow.config  # Optional: test-specific config
 ```
 
@@ -35,7 +34,11 @@ nextflow_process {
     process "<PROCESS_NAME>"
 
     test("<TEST_NAME>") {
-        // Test implementation
+        when {
+        }
+
+        then {
+        }
     }
 }
 ```
@@ -52,7 +55,7 @@ Tests use assertions to verify the expected output of the process specified in t
 
 You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
 
-Nextflow process output channels that lack explicit names (i.e., when no `meta` map is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel. This indexing method provides a straightforward way to interact with unnamed channels.
+Nextflow process output channels that lack explicit names (i.e., when no `meta` map is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
 
 ```groovy
 // Process completion status
@@ -77,27 +80,28 @@ assertAll(
 
 ## Module testing principles
 
-nf-core module testing follows established best practices to ensure reliability and maintainability:
-
-- **Prefer MD5 checksums** for output verification when possible, then file content checks, then existence checks as fallbacks
-- **Test both regular and stub modes** to verify functionality and stub outputs
-- **Use appropriate test data** from the nf-core test-datasets repository
-- **Snapshot testing** for comprehensive output validation
+- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
+- **Test both regular process and stub modes** to verify functionality and stub outputs
+- **Use appropriate test data** from the **nf-core test-datasets** repository
 - **Minimal viable tests** that cover the core functionality without excessive complexity
 
-For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
+:::note
+**Key points:**
+
+- For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
+  :::
 
 ## Creating a new module with tests
 
 When creating a new module using `nf-core/tools`, a test file is automatically generated based on the template.
 
 ```bash
-# Create a new module using nf-core/tools
+# Create a new module using nf-core/tools (EXAMPLE)
 cd path/to/modules
 nf-core modules create seqtk/sample
 ```
 
-This creates the following module structure:
+This creates the following module directory structure:
 
 ```
 modules/nf-core/seqtk/sample/
@@ -105,7 +109,6 @@ modules/nf-core/seqtk/sample/
 ├── meta.yml
 └── tests/
     ├── main.nf.test
-    └── tags.yml
 ```
 
 The generated test file (`tests/main.nf.test`) will look like this, once the `input[0]` and `input[1]` channels are defined in the `when` blocks:
@@ -255,48 +258,121 @@ INFO     All tests passed!
 
 ### Testing parameter variations
 
-For modules requiring additional parameters, the **recommended approach** is to use a `params` block within the test itself. This method is simpler and keeps test configuration self-contained.
+Some modules MAY require additional parameters added to the test command to successfully run.
+
+These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+
+If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
+
+```bash
+touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
+```
+
+```nextflow.config
+
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+You do not need to modify the contents of this file any further.
+
+Then add the config to the main.nf.test file and supply the params in the when section of the test.
+
+```main.nf.test
+
+process "MODULE"
+config "./nextflow.config"
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+### Choosing Parameter Configuration Methods
+
+**Use `nextflow.config` when:**
+
+- Multiple tests in the same module need the same parameter structure
+- You need complex process-specific configurations (memory, cpus, etc.)
+- Parameters require process selectors or conditional logic
+- You want to maintain consistent configuration across all tests
+
+**Use inline `params` blocks when:**
+
+- Testing different parameter values in individual tests
+- You need test-specific parameter overrides
+- Parameters are simple and don't require process configuration
+- You want to keep test parameters close to the test logic
+
+**Example comparison:**
 
 ```groovy
-nextflow_process {
-    name "Test Process SEQTK_SAMPLE"
-    script "../main.nf"
-    process "SEQTK_SAMPLE"
-    config "./nextflow.config"
+// nextflow.config approach - good for consistent configuration
+process {
+  withName: 'BLAST_BLASTN' {
+    ext.args = params.blast_args
+    memory = params.blast_memory ?: '8.GB'
+  }
+}
 
-    test("pass module_args to the module") {
-        when {
-            params {
-                module_args = "--help"
-            }
-            process {
-                """
-                input[0] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-                ]
-                input[1] = 10
-                """
-            }
+// Inline params approach - good for test-specific values
+test("custom evalue") {
+    when {
+        params {
+            blast_args = '-evalue 0.001 -max_target_seqs 10'
         }
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(process.out).match() }
-            )
+        process {
+            // test implementation
         }
     }
 }
 ```
+
+### Stub mode
+
+When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
+
+```main.nf.test
+process "MODULE"
+config "./nextflow.config"
+
+
+test("custom evalue") {
+  options "-stub"
+    when {
+        process {
+            // test implementation
+        }
+    }
+}
+```
+
+:::note
+This can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+:::
 
 ## Testing chained modules
 
 In some cases, rather than directly linking to pre-made test-data files, it may make sense to run an 'upstream module' in your test to output the required inputs of the module you want to test.
 
 The `setup` method allows you to specify processes or workflows that need to be executed before the primary `when` block.
+
 It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block.
 
-Within the setup block, you can use the `run` method to define and execute dependent processes or workflows.
+Within the `setup` block, you can use the `run` method to define and execute multiple dependent processes or workflows.
 
 Here's a basic example of how a setup block looks:
 
@@ -332,21 +408,6 @@ nextflow_process {
         then {
             assert process.success
         }
-    }
-}
-```
-
-### Syntax
-
-The `run` method syntax for a process is as follows:
-
-```groovy
-run("ProcessName") {
-    script "path/to/process/script.nf"
-    process {
-        """
-        // Define the process inputs here
-        """
     }
 }
 ```
@@ -419,11 +480,11 @@ nextflow_process {
 
 ### Local `setup` method (for a single test)
 
-A `setup` method can also be defined within a specific test case to execute a dependent process for that test only.
+A local `setup` method can be defined for a single test within a `nextflow_process` definition.
 
-This process generates input data required for the primary process in just that single test.
+The `setup` is applied to the specific test, ensuring a consistent setup for that test.
 
-The `setup` block specifies the execution of the dependency, and the `when` block defines the processing logic for the module under test.
+This approach is useful when a test requires a specific setup that is different from the global setup.
 
 Here's an example for `abricate/summary`, which requires output from `abricate/run`:
 
@@ -440,7 +501,6 @@ nextflow_process {
     tag "abricate/summary"
 
     test("bacteroides_fragilis - genome_fna_gz") {
-
         setup {
             run("ABRICATE_RUN") {
                 script "../../run/main.nf"
