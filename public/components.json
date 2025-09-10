@@ -79344,6 +79344,26 @@
             }
           ],
           {
+            "alleles": {
+              "type": "file",
+              "description": "vcf file to be used to force-call alleles.",
+              "pattern": "*.vcf.gz",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3989"
+                }
+              ]
+            }
+          },
+          {
+            "alleles_tbi": {
+              "type": "file",
+              "description": "Index file for alleles to be force-called.",
+              "pattern": "*.vcf.gz.tbi",
+              "ontologies": []
+            }
+          },
+          {
             "germline_resource": {
               "type": "file",
               "description": "Population vcf of germline sequencing, containing allele fractions.",
@@ -237225,6 +237245,16 @@
             }
           },
           {
+            "ch_alleles": {
+              "description": "VCF file to be used for force calling of alleles.\nStructure: [ path(alleles) ]\n"
+            }
+          },
+          {
+            "ch_alleles_tbi": {
+              "description": "Index of VCF file of alleles for force calling.\nStructure: [ path(alleles_tbi) ]\n"
+            }
+          },
+          {
             "ch_germline_resource": {
               "description": "Population vcf of germline sequencing, containing allele fractions.\nStructure: [ path(germline_resources) ]\n"
             }
@@ -237459,6 +237489,20 @@
               "type": "file",
               "description": "GATK sequence dictionary",
               "pattern": "*.dict"
+            }
+          },
+          {
+            "alleles": {
+              "type": "file",
+              "description": "vcf file to be used to force-call alleles.",
+              "pattern": "*.vcf.gz"
+            }
+          },
+          {
+            "alleles_tbi": {
+              "type": "file",
+              "description": "Index file for alleles to be force-called.",
+              "pattern": "*.vcf.gz.tbi"
             }
           },
           {
