@@ -13,4 +13,4 @@ locations:
 ---
 
 The nf-core `Request for Comment` (RFC) process is designed to give the community a voice and visibility to large projects that affect the entire community.
-In this weeks bytesize, Phil [@ewels]([https://github.com/jfy133](https://github.com/ewels)) is giving an overview of the RFC process.
+In this weeks bytesize, Phil [@ewels](<[https://github.com/jfy133](https://github.com/ewels)>) is giving an overview of the RFC process.
