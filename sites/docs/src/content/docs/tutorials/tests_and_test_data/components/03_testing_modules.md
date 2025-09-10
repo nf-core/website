@@ -25,7 +25,7 @@ modules/nf-core/tool/subtool/
 
 ### Basic test syntax
 
-The basic syntax for a process test follows this structure:
+The basic syntax for a module test follows this structure:
 
 ```groovy title="main.nf.test"
 nextflow_process {
@@ -88,10 +88,12 @@ assertAll(
 :::note
 **Key points:**
 
-- For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
-  :::
+For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
+:::
 
 ## Creating a new module with tests
+
+In this section we will give an overview of the general procedure for writing a test and generating a snapshot.
 
 When creating a new module using `nf-core/tools`, a test file is automatically generated based on the template.
 
@@ -108,10 +110,10 @@ modules/nf-core/seqtk/sample/
 ├── main.nf
 ├── meta.yml
 └── tests/
-    ├── main.nf.test
+    └── main.nf.test
 ```
 
-The generated test file (`tests/main.nf.test`) will look like this, once the `input[0]` and `input[1]` channels are defined in the `when` blocks:
+The test file (`tests/main.nf.test`) will look like this, once you have specified the test's input data via the `input[0]` and `input[1]` channels in the `when` block:
 
 ```groovy
 nextflow_process {
@@ -179,7 +181,10 @@ Run the tests to create a snapshot of the output:
 nf-core modules test seqtk/sample --profile docker
 ```
 
-This will execute the tests and generate snapshots for validation.
+This will execute the tests and generate snapshot file (`tests/main.nf.test.snap`) for validation.
+
+However, it is often necessary to make more complex test input setups and test assertions due to the complexity of the modules we are testing.
+In the following examples we will go through real life examples at increasingly complexity.
 
 ## Testing an existing module
 
@@ -260,7 +265,7 @@ INFO     All tests passed!
 
 Some modules MAY require additional parameters added to the test command to successfully run.
 
-These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
 If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
 
@@ -343,7 +348,13 @@ test("custom evalue") {
 
 ### Stub mode
 
-When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:
+All nf-core modules require a `stub:` section to allow 'dry run'-like functionality for pipelines.
+This is something that we always want to test for.
+
+Furthermore, in some cases the module will produce output data that is too big for GitHub actions nodes, or the tests take too long or require too much resources. 
+Therefore all you can do is test the module in the `stub` mode.
+
+Therefore you can to tell a test to run in stub mode by adding the `-stub` option as follows:
 
 ```main.nf.test
 process "MODULE"
@@ -361,7 +372,7 @@ test("custom evalue") {
 ```
 
 :::note
-This can be added at the top of `main.nf.test` to have all tests run in stub mode or this can also be added to a single test
+For modules that can never run full tests due to data being too large or requiring too much resources, this option can alternatively be added at the top of `main.nf.test` to have all tests run in stub mode.
 :::
 
 ## Testing chained modules
@@ -370,7 +381,7 @@ In some cases, rather than directly linking to pre-made test-data files, it may 
 
 The `setup` method allows you to specify processes or workflows that need to be executed before the primary `when` block.
 
-It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block.
+It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block 'on the fly'.
 
 Within the `setup` block, you can use the `run` method to define and execute multiple dependent processes or workflows.
 
@@ -480,7 +491,7 @@ nextflow_process {
 
 ### Local `setup` method (for a single test)
 
-A local `setup` method can be defined for a single test within a `nextflow_process` definition.
+Alternatively a local `setup` method can be defined for a single test within a `nextflow_process` definition.
 
 The `setup` is applied to the specific test, ensuring a consistent setup for that test.
 
