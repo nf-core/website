@@ -30,7 +30,7 @@ nextflow_workflow {
 
 - Script paths starting with `./` or `../` are relative to the test script's location.
 - The syntax is very similar to module testing, but uses a `nextflow_workflow` block instead of `nextflow_process`.
-  :::
+:::
 
 ### Essential Assertions
 
@@ -85,7 +85,7 @@ subworkflows/nf-core/fastq_align_qc/
     └── tags.yml
 ```
 
-The generated test file (`tests/main.nf.test`) will include comprehensive tagging for all modules in the subworkflow:
+The final test file (`tests/main.nf.test`) once completed will include comprehensive tagging for all modules in the subworkflow:
 
 ```groovy
 nextflow_workflow {
@@ -215,7 +215,8 @@ nextflow_workflow {
 
 ## Testing parameter variations
 
-You should make sure to test different parameter combinations that could affect subworkflow behavior. You can do this with Nextflow config files that sit alongside the `main.nf.test` file, or with `params` blocks in the test file itself.
+You should make sure to test different parameter combinations that could affect subworkflow behavior.
+You can do this with Nextflow config files that sit alongside the `main.nf.test` file, or with `params` blocks in the test file itself.
 
 ### Creating parameter-specific configuration
 
