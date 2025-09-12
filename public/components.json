@@ -101413,7 +101413,7 @@
                 }
               },
               {
-                "cleaned_reads/*.fastq.gz": {
+                "*.fastq.gz": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
                   "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
