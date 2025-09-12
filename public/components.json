@@ -39279,7 +39279,7 @@
                 }
               },
               {
-                "*merge_output.vcf.gz": {
+                "${prefix}merge_output.vcf.gz": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
                   "pattern": "*.{vcf,vcf.gz}"
@@ -39297,7 +39297,7 @@
                 }
               },
               {
-                "*merge_output.vcf.gz.tbi": {
+                "${prefix}merge_output.vcf.gz.tbi": {
                   "type": "file",
                   "description": "index for vcf files",
                   "pattern": "*.{vcf.tbi,vcf.tbi.gz}",
@@ -39316,7 +39316,7 @@
                 }
               },
               {
-                "*phased_merge_output.vcf.gz": {
+                "${prefix}phased_merge_output.vcf.gz": {
                   "type": "file",
                   "description": "phased vcf",
                   "pattern": "*.{vcf,vcf.gz}",
@@ -39335,9 +39335,47 @@
                 }
               },
               {
-                "*phased_merge_output.vcf.gz.tbi": {
+                "${prefix}phased_merge_output.vcf.gz.tbi": {
                   "type": "file",
                   "description": "index for vcf files",
+                  "pattern": "*.{vcf.tbi,vcf.tbi.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "gvcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{vcf,vcf.gz}"
+                }
+              },
+              {
+                "${prefix}merge_output.gvcf.gz": {
+                  "type": "file",
+                  "description": "gvcf file",
+                  "pattern": "*.{gvcf,gvcf.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "gtbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{gvcf.tbi,gvcf.gz.tbi}"
+                }
+              },
+              {
+                "${prefix}merge_output.gvcf.gz.tbi": {
+                  "type": "file",
+                  "description": "index for gvcf file",
                   "pattern": "*.{vcf.tbi,vcf.tbi.gz}",
                   "ontologies": []
                 }
@@ -107353,6 +107391,13 @@
                 "type": "list",
                 "description": "Optional - The BAM files from which the VCFs were created",
                 "pattern": "*.bam"
+              }
+            },
+            {
+              "bais": {
+                "type": "list",
+                "description": "Optional - The BAM index files from which the VCFs were created",
+                "pattern": "*.bai"
               }
             },
             {
