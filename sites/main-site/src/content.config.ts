@@ -369,7 +369,7 @@ const hackathonProjects = defineCollection({
     schema: z
         .object({
             title: z.string(),
-            category: z.enum(["pipelines", "components", "tooling", "community"]),
+            category: z.enum(["pipelines", "components", "tooling", "community", "special-interest-groups"]),
             leaders: z.record(
                 z.object({
                     name: z.string(),
