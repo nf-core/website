@@ -1,5 +1,5 @@
 ---
-title: meta-omics short reads QC
+title: extended short reads QC subworkflow
 category: components
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C070369GP7T
@@ -13,12 +13,12 @@ leaders:
 
 ## Project Aim
 
-In the [meta-omics special interest group](https://nf-co.re/special-interest-groups/meta-omics) we started a discussion about having a standardized, general subworkflow for reads quality check (QC) in nf-core
- Currently, different nf-core pipelines (and not only) use their own implementations of essentially the same QC steps: stats, adapter clipping, paired-end merging, umi-detection deduplication etc.
+In the [meta-omics special interest group](https://nf-co.re/special-interest-groups/meta-omics) we started a discussion about having a standardized, general subworkflow for reads quality check (QC) in nf-core.
+Currently, different nf-core pipelines (and not only) use their own implementations of essentially the same QC steps: stats, adapter clipping, paired-end merging, umi-detection deduplication etc.
 
 For example, some modules are shared across multiple pipelines, and are used widely (e.g., fastqc -73 pipelines, fastp -22 pipelines) while others are used in fewer pipelines (e.g., trimgalore -15 pipelines, umitools_extract -10 pipelines,adapterremoval -2 pipelines, etc.).
 
-The proposed project envisions a single Illumina short read preprocessing subworkflow that is installed and consistent across all nf-core pipelines using short read DNA data. However at the same time providing users freedom to pick their preferred tool from a pool of nf-core QC modules or completely skip some of the QC steps. 
+The proposed project envisions a single Illumina short read preprocessing subworkflow that is installed and consistent across all nf-core pipelines using short read DNA data. However, at the same time the subworkflow will provide users the freedom to pick their preferred tool from a pool of nf-core QC modules or completely skip some of the QC steps.
 
 It will also function as a template for an equivalent potential long reads QC subworkflow.
 
