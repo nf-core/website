@@ -1,6 +1,6 @@
 ---
 title: meta-omics short reads QC
-category: subworkflows
+category: components
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C070369GP7T
 image: "/assets/images/events/2025/hackathon-barcelona/nfcore-metaomics_logo.png"
