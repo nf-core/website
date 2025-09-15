@@ -24,7 +24,7 @@ It will also function as a template for an equivalent potential long reads QC su
 
 More information can be found on this [link](https://hackmd.io/@nf-core/S1NVXogilg).
 
-Anyone working on meta-omics (metagenomics, metataxonomics, metatranscriptomics, metaproteomics, metabolomics) are welcome to join!
+Anyone working with Illumina short read data, and particularly within meta-omics (metagenomics, metataxonomics, metatranscriptomics, metaproteomics, metabolomics), are welcome to join!
 
 ## Goals
 
