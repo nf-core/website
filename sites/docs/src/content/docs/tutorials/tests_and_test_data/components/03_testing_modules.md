@@ -78,6 +78,10 @@ assertAll(
 )
 ```
 
+:::note
+For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
+:::
+
 ## Creating a new module with tests
 
 In this section we will give an overview of the general procedure for writing a test and generating a snapshot.
