@@ -7,6 +7,7 @@ weight: 40
 ## Overview
 
 The nf-test framework enables comprehensive testing of subworkflows, which combine multiple modules into integrated analysis steps.
+
 This chapter builds upon the concepts introduced in the module testing chapter, covering testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
 
 ### Basic test syntax
@@ -30,7 +31,7 @@ nextflow_workflow {
 
 - Script paths starting with `./` or `../` are relative to the test script's location.
 - The syntax is very similar to module testing, but uses a `nextflow_workflow` block instead of `nextflow_process`.
-:::
+  :::
 
 ### Essential Assertions
 
@@ -57,11 +58,11 @@ assert workflow.stdout.contains("Hello World")
 
 Subworkflow testing follows the same core principles as module testing, but adapted for the broader scope of a subworkflow. Each nf-core subworkflow should include comprehensive tests that:
 
-- Each subworkflow should contain a `tests/` folder alongside its `main.nf` file
-- Test files come with snapshots of subworkflow output channels
-- Tests verify both functionality and expected outputs of all included modules
-- Support testing with different parameter combinations
-- Include proper setup blocks for complex dependencies
+- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
+- **Test both regular process and stub modes** to verify functionality and stub outputs
+- **Use appropriate test data** from the **nf-core test-datasets** repository
+- **Minimal viable tests** that cover the core functionality without excessive complexity
+- **Test all different parameter combinations**
 
 ## Creating a new subworkflow with tests
 
@@ -110,7 +111,7 @@ nextflow_workflow {
         when {
             workflow {
                 """
-                // Paired-end fastq reads
+                // Single-end fastq reads
                 input[0] = Channel.of([
                             [ id:'test', single_end:true ],
                             file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
@@ -147,8 +148,7 @@ nf-core subworkflows test fastq_align_qc --profile docker
 
 ## Testing subworkflows with setup dependencies
 
-Just as `setup` blocks are used to chain modules that require upstream modules to generate inputs for the module under test, they are also used in subworkflow tests to handle prerequisite steps, such as generating a reference genome index.
-For subworkflows that require setup (like index generation), use `setup` blocks. Here's an example for a BWA alignment subworkflow:
+Like module tests, subworkflows can use `setup` blocks to handle prerequisite steps such as generating a reference genome index. Here's an example for a BWA alignment subworkflow:
 
 ```groovy
 nextflow_workflow {
@@ -215,7 +215,8 @@ nextflow_workflow {
 
 ## Testing parameter variations
 
-You should make sure to test different parameter combinations that could affect subworkflow behavior.
+Test different parameter combinations that could affect subworkflow behavior.
+
 You can do this with Nextflow config files that sit alongside the `main.nf.test` file, or with `params` blocks in the test file itself.
 
 ### Creating parameter-specific configuration
@@ -255,47 +256,6 @@ when {
         """
         // workflow inputs
         """
-    }
-}
-```
-
-#### Loading parameters from a file
-
-You can also load parameters from a JSON or YAML file, which is similar to Nextflow's `-params-file` option. This is useful for managing complex parameter sets. The file should contain a simple map of parameter names and values.
-
-For example, a `tests/params.json` file could look like this:
-
-```json
-{
-  "aligner": "bismark",
-  "cytosine_report": false,
-  "skip_deduplication": true
-}
-```
-
-You can then load it in your test:
-
-```groovy
-when {
-    params {
-        load("$baseDir/tests/params.json")
-    }
-    workflow {
-        // ...
-    }
-}
-```
-
-It is also possible to combine both techniques, allowing you to load a base set of parameters from a file and then override specific ones for a particular test case.
-
-```groovy
-when {
-    params {
-        load("$baseDir/tests/params.json")
-        skip_deduplication = false
-    }
-    workflow {
-        // ...
     }
 }
 ```

@@ -78,19 +78,6 @@ assertAll(
 )
 ```
 
-## Module testing principles
-
-- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
-- **Test both regular process and stub modes** to verify functionality and stub outputs
-- **Use appropriate test data** from the **nf-core test-datasets** repository
-- **Minimal viable tests** that cover the core functionality without excessive complexity
-
-:::note
-**Key points:**
-
-For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
-:::
-
 ## Creating a new module with tests
 
 In this section we will give an overview of the general procedure for writing a test and generating a snapshot.
@@ -113,7 +100,7 @@ modules/nf-core/seqtk/sample/
     └── main.nf.test
 ```
 
-The test file (`tests/main.nf.test`) will look like this, once you have specified the test's input data via the `input[0]` and `input[1]` channels in the `when` block:
+Once you have specified the test's input data via the `input[0]` and `input[1]` channels in the `when` block, the test file (`tests/main.nf.test`) will look like this:
 
 ```groovy
 nextflow_process {
@@ -261,100 +248,28 @@ INFO     Generating nf-test snapshot again to check stability
 INFO     All tests passed!
 ```
 
-### Testing parameter variations
+## Module testing principles
 
-Some modules MAY require additional parameters added to the test command to successfully run.
+- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
+- **Test both regular process and stub modes** to verify functionality and stub outputs
+- **Use appropriate test data** from the **nf-core test-datasets** repository
+- **Minimal viable tests** that cover the core functionality without excessive complexity
 
-These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+:::note
+**Key points:**
 
-If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
-
-```bash
-touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
-```
-
-```nextflow.config
-
-process {
-  withName: 'MODULE' {
-    ext.args = params.module_args
-  }
-}
-```
-
-You do not need to modify the contents of this file any further.
-
-Then add the config to the main.nf.test file and supply the params in the when section of the test.
-
-```main.nf.test
-
-process "MODULE"
-config "./nextflow.config"
-
-when {
-  params {
-    module_args = '--extra_opt1 --extra_opt2'
-  }
-  process {
-    """
-    input[0] = [
-      [ id:'test1', single_end:false ], // meta map
-      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
-    ]
-    """
-  }
-}
-```
-
-### Choosing Parameter Configuration Methods
-
-**Use `nextflow.config` when:**
-
-- Multiple tests in the same module need the same parameter structure
-- You need complex process-specific configurations (memory, cpus, etc.)
-- Parameters require process selectors or conditional logic
-- You want to maintain consistent configuration across all tests
-
-**Use inline `params` blocks when:**
-
-- Testing different parameter values in individual tests
-- You need test-specific parameter overrides
-- Parameters are simple and don't require process configuration
-- You want to keep test parameters close to the test logic
-
-**Example comparison:**
-
-```groovy
-// nextflow.config approach - good for consistent configuration
-process {
-  withName: 'BLAST_BLASTN' {
-    ext.args = params.blast_args
-    memory = params.blast_memory ?: '8.GB'
-  }
-}
-
-// Inline params approach - good for test-specific values
-test("custom evalue") {
-    when {
-        params {
-            blast_args = '-evalue 0.001 -max_target_seqs 10'
-        }
-        process {
-            // test implementation
-        }
-    }
-}
-```
+For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
+:::
 
 ### Stub mode
 
 All nf-core modules require a `stub:` section to allow 'dry run'-like functionality for pipelines.
 This is something that we always want to test for.
 
-Furthermore, in some cases the module will produce output data that is too big for GitHub actions nodes, or the tests take too long or require too much resources. 
-Therefore all you can do is test the module in the `stub` mode.
+Furthermore, in some cases the module will produce output data that is too big for GitHub actions nodes, or the tests take too long or require too much resources.
+Therefore, the only option is to test the module in `stub` mode.
 
-Therefore you can to tell a test to run in stub mode by adding the `-stub` option as follows:
+Therefore you need to tell a test to run in stub mode by adding the `-stub` option as follows:
 
 ```main.nf.test
 process "MODULE"
@@ -668,6 +583,91 @@ nextflow_process {
 
         then {
             // ...
+        }
+    }
+}
+```
+
+### Testing parameter variations
+
+Some modules may require additional parameters added to the test command to successfully run.
+
+These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+
+If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
+
+```bash
+touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
+```
+
+```nextflow.config
+
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+You do not need to modify the contents of this file any further.
+
+Then add the config to the main.nf.test file and supply the params in the when section of the test.
+
+```main.nf.test
+
+process "MODULE"
+config "./nextflow.config"
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+### Choosing Parameter Configuration Methods
+
+**Use `nextflow.config` when:**
+
+- Multiple tests in the same module need the same parameter structure
+- You need complex process-specific configurations (memory, cpus, etc.)
+- Parameters require process selectors or conditional logic
+- You want to maintain consistent configuration across all tests
+
+**Use inline `params` blocks when:**
+
+- Testing different parameter values in individual tests
+- You need test-specific parameter overrides
+- Parameters are simple and don't require process configuration
+- You want to keep test parameters close to the test logic
+
+**Example comparison:**
+
+```groovy
+// nextflow.config approach - good for consistent configuration
+process {
+  withName: 'BLAST_BLASTN' {
+    ext.args = params.blast_args
+    memory = params.blast_memory ?: '8.GB'
+  }
+}
+
+// Inline params approach - good for test-specific values
+test("custom evalue") {
+    when {
+        params {
+            blast_args = '-evalue 0.001 -max_target_seqs 10'
+        }
+        process {
+            // test implementation
         }
     }
 }
