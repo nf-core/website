@@ -16442,6 +16442,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "variantprioritization",
+          "version": "dev"
+        },
+        {
           "name": "viralmetagenome",
           "version": "0.1.2"
         },
@@ -17213,6 +17217,10 @@
         },
         {
           "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "variantprioritization",
           "version": "dev"
         },
         {
@@ -64995,6 +65003,10 @@
         },
         {
           "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "variantprioritization",
           "version": "dev"
         },
         {
@@ -136804,6 +136816,10 @@
           "version": "dev"
         },
         {
+          "name": "variantprioritization",
+          "version": "dev"
+        },
+        {
           "name": "viralintegration",
           "version": "0.1.1"
         }
@@ -145428,6 +145444,361 @@
         {
           "name": "mhcquant",
           "version": "3.0.0"
+        }
+      ]
+    },
+    {
+      "name": "opt_flip",
+      "path": "modules/nf-core/opt/flip/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "opt_flip",
+        "description": "flip corrects probes that are aligning to the opposite strand of their intended target genes by reverse complementing them",
+        "keywords": [
+          "opt",
+          "opt flip",
+          "transcripts",
+          "off-target probes",
+          "align probes"
+        ],
+        "tools": [
+          {
+            "opt": {
+              "description": "opt is a simple program that aligns probe sequences to transcript sequences to detect potential off-target probe activity",
+              "homepage": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "documentation": "https://github.com/JEFworks-Lab/off-target-probe-tracker/blob/main/README.md",
+              "tool_dev_url": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "licence": [
+                "GPL-3.0 license"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information of the probe panel sequences used for the xenium experiment\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+              }
+            },
+            {
+              "probes_fasta": {
+                "type": "file",
+                "description": "Fasta file for the probe sequences used in the xenium experiment",
+                "pattern": "*.fasta",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing the information of the genomic features and fasta files used as references\ne.g. `[ id:'gencode_references' ]`\n"
+              }
+            },
+            {
+              "ref_annot_gff": {
+                "type": "file",
+                "description": "Reference annotations in gff format",
+                "pattern": "*.gff",
+                "ontologies": []
+              }
+            },
+            {
+              "ref_annot_fa": {
+                "type": "file",
+                "description": "Reference annotations in fasta format",
+                "pattern": "*.fa",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fwd_oriented_fa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing information of the forward oriented fasta generated with the probes panel sequences 'opt flip'\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+                }
+              },
+              {
+                "${meta.id}/fwd_oriented.fa": {
+                  "type": "file",
+                  "description": "The forward oriented fasta file",
+                  "pattern": "*.fa",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
+        }
+      ]
+    },
+    {
+      "name": "opt_stat",
+      "path": "modules/nf-core/opt/stat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "opt_stat",
+        "description": "stat summarizes opt binding predictions",
+        "keywords": [
+          "opt",
+          "opt stat",
+          "transcripts",
+          "binding predictions",
+          "off-target probes",
+          "align probes",
+          "summary stats"
+        ],
+        "tools": [
+          {
+            "opt": {
+              "description": "opt is a simple program that aligns probe sequences to transcript sequences to detect potential off-target probe activity",
+              "homepage": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "documentation": "https://github.com/JEFworks-Lab/off-target-probe-tracker/blob/main/README.md",
+              "tool_dev_url": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "licence": [
+                "GPL-3.0 license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing information of the probe targets generated from the panel sequences with `opt track`\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+              }
+            },
+            {
+              "probe_targets": {
+                "type": "file",
+                "description": "Generated probe targets",
+                "pattern": "*.tsv",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing information of the forward oriented fasta generated with the probes panel sequences 'opt flip'\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+              }
+            },
+            {
+              "fwd_oriented_probes": {
+                "type": "file",
+                "description": "The forward oriented fasta file",
+                "pattern": "*.fa",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "gene_synonyms": {
+              "type": "file",
+              "description": "Gene synonyms that may have been counted as off-targets but simply differ in name (optional input)",
+              "pattern": "*.csv",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing summary of the forward oriented probes generated with the panel sequences 'opt flip and track'\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+                }
+              },
+              {
+                "${meta.id}/collapsed_summary.tsv": {
+                  "type": "file",
+                  "description": "tsv file containing the summary stats",
+                  "pattern": "*.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
+        }
+      ]
+    },
+    {
+      "name": "opt_track",
+      "path": "modules/nf-core/opt/track/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "opt_track",
+        "description": "track aligns query probe sequences to any target transcriptome",
+        "keywords": [
+          "opt",
+          "opt track",
+          "transcripts",
+          "off-target probes",
+          "align probes",
+          "traget transcriptome"
+        ],
+        "tools": [
+          {
+            "opt": {
+              "description": "opt is a simple program that aligns probe sequences to transcript sequences to detect potential off-target probe activity",
+              "homepage": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "documentation": "https://github.com/JEFworks-Lab/off-target-probe-tracker/blob/main/README.md",
+              "tool_dev_url": "https://github.com/JEFworks-Lab/off-target-probe-tracker",
+              "licence": [
+                "GPL-3.0 license"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing information of the forward oriented fasta generated with the probes panel sequences generated with `opt flip`\ne.g. `[ id:'breast_cancer_probe_panel_sequences' ]`\n"
+              }
+            },
+            {
+              "fwd_oriented_fa": {
+                "type": "file",
+                "description": "Forward oriented fasta file generated by the opt flip command",
+                "pattern": "*.fa",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing the information of the genomic features and fasta files used as references\ne.g. `[ id:'gencode_references' ]`\n"
+              }
+            },
+            {
+              "ref_annot_gff": {
+                "type": "file",
+                "description": "Reference annotation in gff format",
+                "pattern": "*.gff",
+                "ontologies": []
+              }
+            },
+            {
+              "ref_annot_fa": {
+                "type": "file",
+                "description": "Reference annotation in fasta format",
+                "pattern": "*.fa",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "probes2target": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${meta.id}/probe2targets.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the gene and transcript information to which each probe aligns",
+                  "pattern": "*.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      },
+      "pipelines": [
+        {
+          "name": "spatialxe",
+          "version": "dev"
         }
       ]
     },
@@ -174573,11 +174944,14 @@
             {
               "reads": {
                 "type": "file",
-                "description": "Input reads for quantification",
-                "pattern": "*.fastq.gz",
+                "description": "Input reads for quantification (FASTQ files or BAM file for --alignments mode)",
+                "pattern": "*.{fastq.gz,bam}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3989"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
                   }
                 ]
               }
@@ -213488,6 +213862,10 @@
         {
           "name": "variantbenchmarking",
           "version": "1.3.0"
+        },
+        {
+          "name": "variantprioritization",
+          "version": "dev"
         }
       ]
     },
@@ -213649,6 +214027,10 @@
         },
         {
           "name": "variantcatalogue",
+          "version": "dev"
+        },
+        {
+          "name": "variantprioritization",
           "version": "dev"
         },
         {
@@ -244431,6 +244813,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "variantprioritization",
+          "version": "dev"
+        },
+        {
           "name": "viralmetagenome",
           "version": "0.1.2"
         }
@@ -244840,6 +245226,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "variantprioritization",
+          "version": "dev"
+        },
+        {
           "name": "viralmetagenome",
           "version": "0.1.2"
         }
@@ -245215,6 +245605,10 @@
         {
           "name": "variantbenchmarking",
           "version": "1.3.0"
+        },
+        {
+          "name": "variantprioritization",
+          "version": "dev"
         },
         {
           "name": "viralmetagenome",
