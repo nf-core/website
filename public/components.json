@@ -48169,6 +48169,169 @@
       }
     },
     {
+      "name": "ctree",
+      "path": "modules/nf-core/ctree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ctree",
+        "description": "Clone trees for Cancer Evolution studies from bulk sequencing data.",
+        "keywords": [
+          "phylogenetic-trees",
+          "cancer-genomics",
+          "cancer-evolution",
+          "clonal-evolution"
+        ],
+        "tools": [
+          {
+            "ctree": {
+              "description": "The ctree package implements clones trees for cancer evolutionary studies. These models are built from\nCancer Cell Franctions (CCFs) clusters computed via tumour subclonal deconvolution, using either one or\nmore tumour biopsies at once. They can be used to model evolutionary trajectories from bulk sequencing\ndata, especially if whole-genome sequencing is available.\n",
+              "homepage": "https://caravagnalab.github.io/ctree/",
+              "documentation": "https://caravagnalab.github.io/ctree/",
+              "tool_dev_url": "https://github.com/caravagnalab/ctree",
+              "doi": "10.1038/s41592-018-0108-x",
+              "licence": [
+                "GPL v3-or-later"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "ctree_input": {
+                "type": "file",
+                "description": "Either a .rds object of class `vb_bmm` or `dbpmm`, or a `.tsv` mutations table obtained after running the `pyclonevi` module\n",
+                "pattern": "*.{rds,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ctree_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "**ctree_{mobster,VIBER,pyclonevi}.rds": {
+                  "type": "file",
+                  "description": "The output varies based on the input. If the input is an object of class `dbpmm`,\nthe module outputs one object per sample as follows: `SampleID/ctree_mobster.rds`.\nIf the input is an object of class `vb_bmm`, the output will be one ctree object\nnamed `ctree_VIBER.rds`. If the input is the `pyclonevi` `.tsv` file, the output will\nbe one ctree object named `ctree_pyclonevi.rds`\n",
+                  "pattern": "**ctree_{mobster,VIBER,pyclonevi}.rds"
+                }
+              }
+            ]
+          ],
+          "ctree_plots_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "**ctree_{mobster,VIBER,pyclonevi}_plots.rds": {
+                  "type": "file",
+                  "description": "Final plots as an .rds object. The module outputs one file for each ctree object\n",
+                  "pattern": "**ctree_{mobster,VIBER,pyclonevi}_plots.rds"
+                }
+              }
+            ]
+          ],
+          "ctree_report_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "**ctree_{mobster,VIBER,pyclonevi}_report.rds": {
+                  "type": "file",
+                  "description": "Final report plots as an .rds object. The module outputs one file for each ctree object\n",
+                  "pattern": "**ctree_{mobster,VIBER,pyclonevi}_report.rds"
+                }
+              }
+            ]
+          ],
+          "ctree_report_pdf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "**ctree_{mobster,VIBER,pyclonevi}_report.pdf": {
+                  "type": "file",
+                  "description": "Final report plots as a pdf object. The module outputs one file for each ctree object\n",
+                  "pattern": "**ctree_{mobster,VIBER,pyclonevi}_report.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ctree_report_png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "**ctree_{mobster,VIBER,pyclonevi}_report.png": {
+                  "type": "file",
+                  "description": "Final report plots as a png object. The module outputs one file for each ctree object\n",
+                  "pattern": "**ctree_{mobster,VIBER,pyclonevi}_report.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@elena-buscaroli"
+        ],
+        "maintainers": [
+          "@elena-buscaroli"
+        ]
+      }
+    },
+    {
       "name": "custom_addmostsevereconsequence",
       "path": "modules/nf-core/custom/addmostsevereconsequence/meta.yml",
       "type": "module",
@@ -208217,7 +208380,13 @@
         "maintainers": [
           "@LeonHafner"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tfactivity",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "starfusion_build",
@@ -209827,6 +209996,275 @@
           "version": "3.20.0"
         }
       ]
+    },
+    {
+      "name": "strobealign",
+      "path": "modules/nf-core/strobealign/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "strobealign",
+        "description": "Align short reads using dynamic seed size with strobemers",
+        "keywords": [
+          "strobealign",
+          "strobemers",
+          "alignment",
+          "map",
+          "fastq",
+          "bam",
+          "sam"
+        ],
+        "tools": [
+          {
+            "strobealign": {
+              "description": "Align short reads using dynamic seed size with strobemers",
+              "homepage": "https://github.com/ksahlin/strobealign",
+              "documentation": "https://github.com/ksahlin/strobealign?tab=readme-ov-file#usage",
+              "tool_dev_url": "https://github.com/ksahlin/strobealign",
+              "doi": "10.1186/s13059-022-02831-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:strobealign"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Strobealign genome index file",
+                "pattern": "*.sti",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "sort_bam": {
+              "type": "boolean",
+              "description": "use samtools sort (true) or samtools view (false)",
+              "pattern": "true or false"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Output BAM file containing read alignments",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "cram": [
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "Output BAM file containing read alignments",
+                  "ontologies": []
+                }
+              },
+              {
+                "*.cram": {
+                  "type": "file",
+                  "description": "Output CRAM file containing read alignments",
+                  "pattern": "*.{cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "csi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.csi": {
+                  "type": "file",
+                  "description": "Optional index file for BAM file",
+                  "pattern": "*.{csi}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "crai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.crai": {
+                  "type": "file",
+                  "description": "Optional index file for CRAM file",
+                  "pattern": "*.{crai}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "paf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.paf.gz": {
+                  "type": "file",
+                  "description": "Output PAF file containing read alignments",
+                  "pattern": "*.{paf.gz}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.tsv.gz": {
+                  "type": "file",
+                  "description": "Output TSV file containing read alignments",
+                  "pattern": "*.{tsv.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sti": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.sti": {
+                  "type": "file",
+                  "description": "Optional strobealign index file for fasta reference",
+                  "pattern": "*.{sti}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@matthdsm"
+        ],
+        "maintainers": [
+          "@matthdsm",
+          "@nvnieuwk"
+        ]
+      }
     },
     {
       "name": "subread_featurecounts",
