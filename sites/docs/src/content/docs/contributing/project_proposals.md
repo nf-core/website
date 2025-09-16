@@ -13,7 +13,7 @@ import { YouTube } from "@astro-community/astro-embed-youtube";
 4. Start development and update the RFC PR as needed as you go along.
 5. Once the new feature ships, the RFC PR is merged and the markdown used for future reference.
 
-<YouTube id="JxIpiMclO8Q">
+<YouTube id="JxIpiMclO8Q"/>
 
 # Preamble
 
