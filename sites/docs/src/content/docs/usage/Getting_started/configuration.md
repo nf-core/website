@@ -277,7 +277,7 @@ If you think that the defaults in the pipeline are way off, please the pipeline 
 
 ## Docker registries
 
-By default, the pipelines use `quay.io` as the default docker registry for Docker and Podman images. When specifying a docker container, it will pull the image from quay.io unless you specify a full URI. For example, if the process container is:
+By default, most pipelines use `quay.io` as the default docker registry for Docker and Podman images. When specifying a docker container, it will pull the image from quay.io unless you specify a full URI. For example, if the process container is:
 
 - `biocontainers/fastqc:0.11.7--4`
 
@@ -285,9 +285,9 @@ By default, the image will be pulled from quay.io, resulting in a full URI of:
 
 - `quay.io/biocontainers/fastqc:0.11.7--4`
 
-If the `docker.registry` is specified, this will be used first. E.g. if the config value `docker.registry = 'public.ecr.aws'` is added the image will be pulled from:
+If the `docker.registry` is specified as something else, this will be used first. E.g. if the config value `docker.registry = 'myregistry.com'` is added the image will be pulled from:
 
-- `public.ecr.aws/biocontainers/fastqc:0.11.7--4`
+- `myregistry.com/biocontainers/fastqc:0.11.7--4`
 
 Alternatively, if you specify a full URI in the container specification, you can ignore the `docker.registry` setting altogether. For example, this image will be pulled exactly as specified:
 
