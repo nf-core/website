@@ -3,6 +3,8 @@ title: "Project proposals / RFCs"
 subtitle: Process for proposing major new nf-core projects
 ---
 
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
 # Summary
 
 1. Got a big idea? Post it on [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) for quick feedback.
@@ -10,6 +12,8 @@ subtitle: Process for proposing major new nf-core projects
 3. Once approved by the core team, open a **PR** on [nf-core/proposals](https://github.com/nf-core/proposals) with a full RFC text as markdown, extending the issue with details on **_how_** it should be implemented.
 4. Start development and update the RFC PR as needed as you go along.
 5. Once the new feature ships, the RFC PR is merged and the markdown used for future reference.
+
+<YouTube id="JxIpiMclO8Q">
 
 # Preamble
 
