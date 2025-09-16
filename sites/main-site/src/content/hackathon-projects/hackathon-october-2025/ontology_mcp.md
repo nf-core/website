@@ -20,7 +20,7 @@ This project aims to work on the development of an MCP with tools useful to assi
 which will be useful to tag nf-core modules.
 
 An MCP (Model Context Protocol) is a way to provide tools for AI agents to have contact with the world and get information.
-The MCP developed in the scop of this project should be able to assign ontology terms based on the description of a tool or a file.
+The MCP developed in the scope of this project should be able to assign ontology terms based on the description of a tool or a file.
 If a term is not available, it can suggest a new term to be added to EDAM.
 
 Work has been started in collaboration with the EDAM ontology organisation and the Bioconductor community at the [EDAM organisation](https://github.com/edamontology/edammcp).
@@ -29,4 +29,4 @@ For more context, you can find a [mermaid diagram](https://github.com/edamontolo
 
 ## Goals
 
-1. Work on implementing MCP tools for assigning EDAM ontology terms
+1. Work on implementing MCP tools for assigning EDAM ontology terms in module's `meta.yml`
