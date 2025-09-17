@@ -181431,6 +181431,10 @@
       },
       "pipelines": [
         {
+          "name": "drop",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -217911,7 +217915,7 @@
       "type": "module",
       "meta": {
         "name": "tinc",
-        "description": "write your description here",
+        "description": "TINC is a package to determine the contamination of tumour DNA in a matched normal sample. The approach uses evolutionary theory applied to read counts data from whole-genome sequencing assays.",
         "keywords": [
           "genomics",
           "tumour contamination",
@@ -222580,7 +222584,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -222596,22 +222600,46 @@
               }
             }
           ],
-          {
-            "genome": {
-              "type": "file",
-              "description": "fasta file of reference genome",
-              "pattern": "*.fasta",
-              "ontologies": []
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "fasta file of reference genome",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
             }
-          },
-          {
-            "gtf": {
-              "type": "file",
-              "description": "A annotation of use the genome",
-              "pattern": "*.gtf",
-              "ontologies": []
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Genome annotation file",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
             }
-          }
+          ]
         ],
         "output": {
           "sam": [
@@ -222619,7 +222647,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
