@@ -51101,26 +51101,47 @@
               }
             }
           ],
-          {
-            "net": {
-              "type": "file",
-              "description": "The prior knowledge network linking the features of the\nexpression matrix to a process/component (e.g. gene set,\ntranscription factor, kinase, etc.)\n",
-              "pattern": "*.tsv",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map"
+              }
+            },
+            {
+              "net": {
+                "type": "file",
+                "description": "The prior knowledge network linking the features of the\nexpression matrix to a process/component (e.g. gene set,\ntranscription factor, kinase, etc.)\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
-          },
-          {
-            "gtf": {
-              "type": "file",
-              "description": "Annotation file in GTF format\n",
-              "pattern": "*.gtf",
-              "ontologies": []
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy map"
+              }
+            },
+            {
+              "annot": {
+                "type": "file",
+                "description": "Annotation file in TSV format containing gene ID to gene name mappings.\nUsed specifically for mapping Ensembl IDs to gene names.\nExpected format: two columns with gene_id and gene_name headers.\n",
+                "pattern": "*.tsv",
+                "required": false,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
-          }
+          ]
         ],
         "output": {
           "dc_estimate": [
@@ -51176,10 +51197,10 @@
                 }
               },
               {
-                "*decoupler_plot.png": {
+                "*estimate_decoupler_plot.png": {
                   "type": "file",
                   "description": "The file containing the plots associated to the estimation\nresults of the enrichment(s)\n",
-                  "pattern": "*decoupler_plot.png",
+                  "pattern": "*estimate_decoupler_plot.png",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -239548,6 +239569,7 @@
         "components": [
           "gprofiler2/gost",
           "gsea/gsea",
+          "decoupler",
           "propr/grea",
           "custom/tabulartogseagct",
           "custom/tabulartogseacls",
@@ -239585,7 +239607,7 @@
                 {
                   "analysis_method": {
                     "type": "value",
-                    "description": "Analysis method (gprofiler2, gsea, or grea)"
+                    "description": "Analysis method (gprofiler2, gsea, decoupler or grea)"
                   }
                 }
               ]
@@ -239633,7 +239655,7 @@
                 },
                 {
                   "comparison": {
-                    "type list": null,
+                    "type": "list",
                     "description": "List of contrast comparison"
                   }
                 }
@@ -239714,7 +239736,7 @@
                 {
                   "all_enrich": {
                     "type": "file",
-                    "description": "table listing all enriched pathways that were found by gprofiler2. It can be empty, if none is found.",
+                    "description": "Table listing all enriched pathways that were found by gprofiler2.\nIt can be empty, if none is found.\n",
                     "pattern": "*.gprofiler2.all_enriched_pathways.tsv"
                   }
                 }
@@ -239723,7 +239745,7 @@
           },
           {
             "gprofiler2_sub_enrich": {
-              "description": "Channel containing the secondary enrichment table output from gprofiler.",
+              "description": "Channel containing the secondary enrichment table output from gprofiler2.",
               "structure": [
                 {
                   "meta": {
@@ -239734,7 +239756,7 @@
                 {
                   "sub_enrich": {
                     "type": "file",
-                    "description": "table listing enriched pathways that were found from one particular source.\nNote that it will only be created if any were found.\n",
+                    "description": "Table listing enriched pathways that were found from one particular source.\nNote that it will only be created if any were found.\n",
                     "pattern": "*.gprofiler2.*.sub_enriched_pathways.tsv"
                   }
                 }
@@ -239754,7 +239776,7 @@
                 {
                   "plot_html": {
                     "type": "file",
-                    "description": "Channel containing HTML file; interactive Manhattan plot of all enriched pathways.\nNote that this file will only be generated if enriched pathways were found.\n",
+                    "description": "HTML file; interactive Manhattan plot of all enriched pathways.\nNote that this file will only be generated if enriched pathways were found.\n",
                     "pattern": "*.gprofiler2.gostplot.html"
                   }
                 }
@@ -239789,8 +239811,68 @@
             }
           },
           {
+            "decoupler_dc_estimate": {
+              "description": "Channel containing decoupler estimate results.",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end ]\n"
+                  }
+                },
+                {
+                  "estimate_files": {
+                    "type": "file",
+                    "description": "Files containing the estimation results of the enrichment(s)\n",
+                    "pattern": "*estimate_decoupler.tsv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "decoupler_dc_pvals": {
+              "description": "Channel containing decoupler pvals results.",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end ]\n"
+                  }
+                },
+                {
+                  "pvals_files": {
+                    "type": "file",
+                    "description": "Files containing the p-values associated to the estimation\nresults of the enrichment(s)\n",
+                    "pattern": "*pvals_decoupler.tsv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "decoupler_png": {
+              "description": "Channel containing decoupler png results.",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end ]\n"
+                  }
+                },
+                {
+                  "plot_files": {
+                    "type": "file",
+                    "description": "Files containing the plots associated to the estimation\nresults of the enrichment(s)\n",
+                    "pattern": "*estimate_decoupler_plot.png"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "grea_results": {
-              "description": "Channel containing the output from GREA.\n",
+              "description": "Channel containing the output from GREA.",
               "structure": [
                 {
                   "meta": {
