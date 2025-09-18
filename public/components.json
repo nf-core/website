@@ -93297,7 +93297,11 @@
                 "type": "file",
                 "description": "A list of one or more bins in FASTA format for classification",
                 "pattern": "*.{fasta,fna,fas,fa}{,.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -93348,7 +93352,7 @@
               },
               {
                 "${prefix}": {
-                  "type": "map",
+                  "type": "directory",
                   "description": "All files output by GTDB-Tk",
                   "pattern": "*"
                 }
@@ -93366,9 +93370,14 @@
               },
               {
                 "${prefix}/classify/*.summary.tsv": {
-                  "type": "map",
+                  "type": "file",
                   "description": "A TSV summary file for the classification",
-                  "pattern": "*.{summary.tsv}"
+                  "pattern": "*.{summary.tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -93384,9 +93393,14 @@
               },
               {
                 "${prefix}/classify/*.classify.tree": {
-                  "type": "map",
+                  "type": "file",
                   "description": "Groovy Map NJ or UPGMA trees in Newick format produced from a multiple sequence\nalignment\n",
-                  "pattern": "*.{classify.tree}"
+                  "pattern": "*.{classify.tree}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    }
+                  ]
                 }
               }
             ]
@@ -93402,9 +93416,14 @@
               },
               {
                 "${prefix}/identify/*.markers_summary.tsv": {
-                  "type": "map",
+                  "type": "file",
                   "description": "A TSV summary file lineage markers used for the classification.",
-                  "pattern": "*.{markers_summary.tsv}"
+                  "pattern": "*.{markers_summary.tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -93420,9 +93439,14 @@
               },
               {
                 "${prefix}/align/*.msa.fasta.gz": {
-                  "type": "map",
+                  "type": "file",
                   "description": "Multiple sequence alignments file.",
-                  "pattern": "*.{msa.fasta.gz}"
+                  "pattern": "*.{msa.fasta.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -93438,9 +93462,14 @@
               },
               {
                 "${prefix}/align/*.user_msa.fasta.gz": {
-                  "type": "map",
+                  "type": "file",
                   "description": "Multiple sequence alignments file for the user-provided files.",
-                  "pattern": "*.{user_msa.fasta.gz}"
+                  "pattern": "*.{user_msa.fasta.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -93456,9 +93485,14 @@
               },
               {
                 "${prefix}/align/*.filtered.tsv": {
-                  "type": "map",
+                  "type": "file",
                   "description": "A list of genomes with an insufficient number of amino acids in MSA",
-                  "pattern": "*.{filtered.tsv}"
+                  "pattern": "*.{filtered.tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -93474,9 +93508,14 @@
               },
               {
                 "${prefix}/identify/*.failed_genomes.tsv": {
-                  "type": "map",
+                  "type": "file",
                   "description": "A TSV summary of the genomes which GTDB-tk failed to classify.",
-                  "pattern": "*.{failed_genomes.tsv}"
+                  "pattern": "*.{failed_genomes.tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -93492,9 +93531,14 @@
               },
               {
                 "${prefix}/${prefix}.log": {
-                  "type": "map",
+                  "type": "file",
                   "description": "GTDB-tk log file",
-                  "pattern": "*.{log}"
+                  "pattern": "*.{log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
                 }
               }
             ]
@@ -93510,9 +93554,14 @@
               },
               {
                 "${prefix}/${prefix}.warnings.log": {
-                  "type": "map",
+                  "type": "file",
                   "description": "GTDB-tk warnings log file",
-                  "pattern": "*.{warnings.log}"
+                  "pattern": "*.{warnings.log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3671"
+                    }
+                  ]
                 }
               }
             ]
@@ -138481,6 +138530,233 @@
       }
     },
     {
+      "name": "myloasm",
+      "path": "modules/nf-core/myloasm/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "myloasm",
+        "description": "Myloasm is a de novo metagenome assembler for long-read sequencing data.\nIt takes sequencing reads and outputs polished contigs in a single command.\n",
+        "keywords": [
+          "assembly",
+          "metagenome",
+          "long-read",
+          "pacbio",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "myloasm": {
+              "description": "Myloasm is a long-read assembler for metagenomes",
+              "homepage": "https://myloasm-docs.github.io",
+              "documentation": "https://myloasm-docs.github.io",
+              "tool_dev_url": "https://github.com/bluenote-1577/myloasm/tree/main",
+              "doi": "10.1101/2025.09.05.674543",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input long reads in FASTQ or FASTA format (FASTQ preferred for base quality information)",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz,fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing all myloasm output files and folders",
+                  "pattern": "*"
+                }
+              }
+            ]
+          ],
+          "contigs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/assembly_primary.fa": {
+                  "type": "file",
+                  "description": "Primary assembly contigs in FASTA format",
+                  "pattern": "assembly_primary.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "gfa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/final_contig_graph.gfa": {
+                  "type": "file",
+                  "description": "Final contig graph in GFA format",
+                  "pattern": "final_contig_graph.gfa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3975"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "contigs_alt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/alternate_assemblies/assembly_alternate.fa": {
+                  "type": "file",
+                  "description": "Alternative assembly contigs in FASTA format",
+                  "pattern": "assembly_alternate.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "contigs_dup": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/alternate_assemblies/duplicated_contigs.fa": {
+                  "type": "file",
+                  "description": "Duplicated contigs in FASTA format",
+                  "pattern": "duplicated_contigs.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "mapping": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/3-mapping/map_to_unitigs.paf.gz": {
+                  "type": "file",
+                  "description": "Mapping of reads to unitigs in PAF format (compressed)",
+                  "pattern": "map_to_unitigs.paf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/*.log": {
+                  "type": "file",
+                  "description": "MyloAsm log files containing assembly process information",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "nacho_normalize",
       "path": "modules/nf-core/nacho/normalize/meta.yml",
       "type": "module",
@@ -171395,6 +171671,515 @@
         "maintainers": [
           "@aunderwo",
           "@avantonder"
+        ]
+      }
+    },
+    {
+      "name": "rastair_call",
+      "path": "modules/nf-core/rastair/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rastair_call",
+        "description": "Assess positive C->T conversion as a readout for methylation on a genome-wide basis",
+        "keywords": [
+          "methylation",
+          "rastair",
+          "C->T conversion",
+          "bisulphite",
+          "bisulfite",
+          "bam",
+          "mCtoT"
+        ],
+        "tools": [
+          {
+            "rastair": {
+              "description": "A tool for rapid genome-wide assessment of positive C->T conversion as a readout for methylation.\n",
+              "homepage": "https://bitbucket.org/bsblabludwig/rastair/src/master/",
+              "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
+              "licence": [
+                "GPL-3.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.{bam,cram}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM/CRAM index file",
+                "pattern": "*.{bai,crai}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "pattern": "*.{fasta,fa}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.fai"
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "parsed_trim_OT": {
+                "type": "string",
+                "description": "Number of nucleotides to trim from Original Top (OT) reads."
+              }
+            }
+          ],
+          [
+            {
+              "meta6": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "parsed_trim_OB": {
+                "type": "string",
+                "description": "Number of nucleotides to trim from Original Bottom (OB) reads."
+              }
+            }
+          ]
+        ],
+        "output": {
+          "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.rastair_call.txt": {
+                  "type": "file",
+                  "description": "Text file from Rastair call containing C->T conversion metrics",
+                  "pattern": "*.rastair_call.txt"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@eduard-casas"
+        ],
+        "maintainers": [
+          "@eduard-casas"
+        ]
+      }
+    },
+    {
+      "name": "rastair_mbias",
+      "path": "modules/nf-core/rastair/mbias/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rastair_mbias",
+        "description": "Assess C->T conversion as a readout for methylation on a per-read-position basis.",
+        "keywords": [
+          "methylation",
+          "rastair",
+          "C->T conversion",
+          "bisulphite",
+          "bisulfite",
+          "bam",
+          "mCtoT",
+          "mbias",
+          "methylation bias"
+        ],
+        "tools": [
+          {
+            "rastair": {
+              "description": "A tool for rapid genome-wide assessment of positive C->T conversion as a readout for methylation.\n",
+              "homepage": "https://bitbucket.org/bsblabludwig/rastair/src/master/",
+              "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
+              "licence": [
+                "GPL-3.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.{bam,cram}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM/CRAM index file",
+                "pattern": "*.{bai,crai}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "pattern": "*.{fasta,fa}"
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.fai"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.rastair_mbias.txt": {
+                  "type": "file",
+                  "description": "Text file from Rastair mbias containing per-read-position C->T conversion metrics.",
+                  "pattern": "*.rastair_mbias.txt"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@eduard-casas"
+        ],
+        "maintainers": [
+          "@eduard-casas"
+        ]
+      }
+    },
+    {
+      "name": "rastair_mbias_parser",
+      "path": "modules/nf-core/rastair/mbias_parser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rastair_mbias_parser",
+        "description": "Parses Rastair mbias output to assess the ideal cutoff for read trimming and reports the values.",
+        "keywords": [
+          "methylation",
+          "rastair",
+          "C->T conversion",
+          "bisulphite",
+          "bisulfite",
+          "bam",
+          "mCtoT",
+          "mbias",
+          "methylation bias",
+          "parser",
+          "cutoff"
+        ],
+        "tools": [
+          {
+            "rastair": {
+              "description": "A tool for rapid genome-wide assessment of C->T conversion as a readout for methylation. The module uses R scripts bundled with Rastair.\n",
+              "homepage": "https://bitbucket.org/bsblabludwig/rastair/src/master/",
+              "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
+              "licence": [
+                "GPL-3.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "rastair_mbias_txt": {
+                "type": "file",
+                "description": "Text file from `rastair mbias`",
+                "pattern": "*.rastair_mbias.txt"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "mbias_processed_pdf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.rastair_mbias_processed.pdf": {
+                  "type": "file",
+                  "description": "PDF plot of the methylation bias across reads.",
+                  "pattern": "*.rastair_mbias_processed.pdf"
+                }
+              }
+            ]
+          ],
+          "mbias_processed_csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.rastair_mbias_processed.csv": {
+                  "type": "file",
+                  "description": "CSV file containing the recommended trimming values for OT and OB reads.",
+                  "pattern": "*.rastair_mbias_processed.csv"
+                }
+              }
+            ]
+          ],
+          "mbias_processed_str": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "trim_OT": {
+                  "type": "string",
+                  "description": "Recommended trimming value for Original Top (OT) reads."
+                }
+              },
+              {
+                "trim_OB": {
+                  "type": "string",
+                  "description": "Recommended trimming value for Original Bottom (OB) reads."
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@eduard-casas"
+        ],
+        "maintainers": [
+          "@eduard-casas"
+        ]
+      }
+    },
+    {
+      "name": "rastair_methylkit",
+      "path": "modules/nf-core/rastair/methylkit/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "convert_to_methylkit",
+        "description": "Parses rastair call output and converts it into a MethylKit-compatible format.",
+        "keywords": [
+          "methylation",
+          "rastair",
+          "C->T conversion",
+          "bisulphite",
+          "bisulfite",
+          "mCtoT",
+          "methylkit",
+          "convert",
+          "parser"
+        ],
+        "tools": [
+          {
+            "rastair": {
+              "description": "A tool for rapid genome-wide assessment of C->T conversion as a readout for methylation. The module uses a script bundled with Rastair to convert formats.\n",
+              "homepage": "https://bitbucket.org/bsblabludwig/rastair/src/master/",
+              "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
+              "licence": [
+                "GPL-3.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "rastair_call_txt": {
+                "type": "file",
+                "description": "Text file from `rastair call`",
+                "pattern": "*.rastair_call.txt"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "methylkit": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*methylkit.txt.gz": {
+                  "type": "file",
+                  "description": "Gzipped text file in MethylKit format.",
+                  "pattern": "*methylkit.txt.gz"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@eduard-casas"
+        ],
+        "maintainers": [
+          "@eduard-casas"
         ]
       }
     },
@@ -210292,6 +211077,155 @@
       }
     },
     {
+      "name": "strvctvre_strvctvre",
+      "path": "modules/nf-core/strvctvre/strvctvre/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "strvctvre_strvctvre",
+        "description": "a structural variant classifier for exonic deletions and duplications",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "deletions",
+          "duplications",
+          "annotations"
+        ],
+        "tools": [
+          {
+            "strvctvre": {
+              "description": "StrVCTVRE, a structural variant classifier for exonic deletions and duplications",
+              "homepage": "https://github.com/andrewSharo/StrVCTVRE/tree/master",
+              "documentation": "https://github.com/andrewSharo/StrVCTVRE/tree/master",
+              "tool_dev_url": "https://github.com/andrewSharo/StrVCTVRE/tree/master",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:strvctvre"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "sv_file": {
+                "type": "file",
+                "description": "Structural variants file in VCF or BED format",
+                "pattern": "*.{vcf,bed}"
+              }
+            },
+            {
+              "sv_file_index": {
+                "type": "file",
+                "description": "Index file for the structural variants file VCF file",
+                "pattern": "*.tbi"
+              }
+            },
+            {
+              "assembly": {
+                "type": "string",
+                "description": "Genome assembly version, has to be one of 'GRCh38' or 'GRCh37'",
+                "enum": [
+                  "GRCh38",
+                  "GRCh37"
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "phylop": {
+                "type": "file",
+                "description": "PhyloP bigWig file (fetched from https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/)",
+                "pattern": "*.bw"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "data_directory": {
+                "type": "directory",
+                "description": "Directory containing the StrVCTVRE data files (fetched from https://github.com/andrewSharo/StrVCTVRE/tree/master/data)"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "Structural variants file in VCF format",
+                  "pattern": "*.vcf"
+                }
+              }
+            ]
+          ],
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "Structural variants file in BED format",
+                  "pattern": "*.bed"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "subread_featurecounts",
       "path": "modules/nf-core/subread/featurecounts/meta.yml",
       "type": "module",
@@ -232907,7 +233841,13 @@
         "maintainers": [
           "@itrujnara"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "magmap",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "wgsim",
