@@ -1612,7 +1612,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "agat_convertspgff2gtf",
@@ -1841,7 +1847,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         }
       ]
     },
@@ -8811,7 +8817,13 @@
           "@praveenraj2018",
           "@rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "arriba_download",
@@ -9097,7 +9109,13 @@
         "authors": [
           "@rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "art_illumina",
@@ -22989,6 +23007,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         }
@@ -31434,7 +31456,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "sarek",
@@ -31617,7 +31639,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -47841,7 +47863,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "ctatsplicing_startocancerintrons",
@@ -48166,7 +48194,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "ctree",
@@ -64576,7 +64610,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -65127,7 +65161,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -70972,7 +71006,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "fusioninspector",
@@ -71238,7 +71278,13 @@
           "@alanmmobbs93",
           "@martings"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "fusionreport_detect",
@@ -71521,7 +71567,13 @@
         "authors": [
           "@praveenraj2018, @rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "fusionreport_download",
@@ -71587,7 +71639,13 @@
         "authors": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "galah",
@@ -74304,7 +74362,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnavar",
@@ -75776,7 +75834,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnavar",
@@ -78971,7 +79029,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "sarek",
@@ -87781,6 +87839,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -89826,15 +89888,18 @@
         "description": "Writes a sorted concatenation of file/s\n",
         "keywords": [
           "GNU",
+          "coreutils",
           "sort",
           "merge compare"
         ],
         "tools": [
           {
-            "sort": {
-              "description": "Writes a sorted concatenation of file/s",
-              "homepage": "https://github.com/vgl-hub/gfastats",
-              "documentation": "https://www.gnu.org/software/coreutils/manual/html_node/sort-invocation.html",
+            "gnu": {
+              "description": "The GNU Core Utilities are the basic file, shell and text manipulation utilities of the GNU operating system. These are the core utilities which are expected to exist on every operating system.",
+              "homepage": "https://www.gnu.org/software/coreutils/",
+              "documentation": "https://www.gnu.org/software/coreutils/manual/html_node/index.html",
+              "tool_dev_url": "https://git.savannah.gnu.org/cgit/coreutils.git",
+              "doi": "10.5281/zenodo.581670",
               "licence": [
                 "GPL"
               ],
@@ -89862,12 +89927,22 @@
         ],
         "output": {
           "sorted": [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${output_file}"
+                }
+              },
+              {
+                "${output_file}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "pattern": "${output_file}"
+                }
               }
-            }
+            ]
           ],
           "versions": [
             {
@@ -89961,10 +90036,11 @@
                 }
               },
               {
-                "*split*": {
+                "${prefix}.*": {
                   "type": "file",
                   "description": "Split files",
-                  "pattern": "*split*"
+                  "pattern": "${prefix}.*",
+                  "ontologies": []
                 }
               }
             ]
@@ -89973,8 +90049,13 @@
             {
               "versions.yml": {
                 "type": "file",
-                "description": "The split files",
-                "ontologies": []
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
             }
           ]
@@ -112531,6 +112612,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "magmap",
+          "version": "dev"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -112854,6 +112939,10 @@
         {
           "name": "mag",
           "version": "4.0.0"
+        },
+        {
+          "name": "magmap",
+          "version": "dev"
         },
         {
           "name": "taxprofiler",
@@ -133549,10 +133638,10 @@
                 }
               },
               {
-                "*_mobster_st_fit.rds": {
+                "*_mobster_fit.rds": {
                   "type": "file",
                   "description": "Full mobster fit as an .rds object",
-                  "pattern": "*_mobster_st_fit.rds",
+                  "pattern": "*_mobster_fit.rds",
                   "ontologies": []
                 }
               }
@@ -133567,16 +133656,16 @@
                 }
               },
               {
-                "*_mobster_st_best_fit.rds": {
+                "*_mobster_best_fit.rds": {
                   "type": "file",
                   "description": "Best mobster fit as an .rds object",
-                  "pattern": "*_mobster_st_best_fit.rds",
+                  "pattern": "*_mobster_best_fit.rds",
                   "ontologies": []
                 }
               }
             ]
           ],
-          "mobster_plots_rds": [
+          "mobster_best_plots_rds": [
             [
               {
                 "meta": {
@@ -133585,10 +133674,10 @@
                 }
               },
               {
-                "*_plots.rds": {
+                "*_mobster_best_plots.rds": {
                   "type": "file",
                   "description": "Final plots as an .rds object",
-                  "pattern": "*_plots.rds",
+                  "pattern": "*_mobster_best_plots.rds",
                   "ontologies": []
                 }
               }
@@ -133603,10 +133692,10 @@
                 }
               },
               {
-                "*_REPORT_plots_mobster.rds": {
+                "*_mobster_report.rds": {
                   "type": "file",
                   "description": "Final report plots as an .rds object",
-                  "pattern": "*_REPORT_plots_mobster.rds",
+                  "pattern": "*_mobster_report.rds",
                   "ontologies": []
                 }
               }
@@ -133621,10 +133710,10 @@
                 }
               },
               {
-                "*_REPORT_plots_mobster.pdf": {
+                "*_mobster_report.pdf": {
                   "type": "file",
                   "description": "Final report plots as a .pdf file",
-                  "pattern": "*_REPORT_plots_mobster.pdf",
+                  "pattern": "*_mobster_report.pdf",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3508"
@@ -133643,10 +133732,10 @@
                 }
               },
               {
-                "*_REPORT_plots_mobster.png": {
+                "*_mobster_report.png": {
                   "type": "file",
                   "description": "Final report plots as a .png file",
-                  "pattern": "*_REPORT_plots_mobster.png",
+                  "pattern": "*_mobster_report.png",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3603"
@@ -136970,7 +137059,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -154249,7 +154338,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         }
       ]
     },
@@ -154553,7 +154642,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "picard_collectwgsmetrics",
@@ -154701,7 +154796,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "variantcatalogue",
@@ -180090,6 +180185,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -180276,6 +180375,10 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -182374,6 +182477,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.2.0"
         },
@@ -183066,7 +183173,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnavar",
@@ -183791,6 +183898,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -184079,6 +184190,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -184512,7 +184627,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -185739,7 +185854,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -185982,6 +186097,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -186338,10 +186457,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.2"
         },
         {
           "name": "sammyseq",
@@ -208291,7 +208406,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -208451,7 +208566,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -209482,7 +209597,13 @@
         "maintainers": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "starfusion_detect",
@@ -209619,7 +209740,13 @@
         "authors": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "stecfinder",
@@ -210789,7 +210916,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         }
       ]
     },
@@ -210949,7 +211076,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -223127,6 +223254,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         }
       ]
     },
@@ -224407,6 +224538,10 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -239226,6 +239361,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -239504,6 +239643,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -239597,7 +239740,13 @@
           "@rannick",
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        }
+      ]
     },
     {
       "name": "bam_subsampledepth_samtools",
@@ -242908,10 +243057,7 @@
           "samtools/index",
           "samtools/flagstat",
           "samtools/stats",
-          "picard/markduplicates",
-          "samtools/index",
-          "methyldackel/extract",
-          "methyldackel/mbias"
+          "picard/markduplicates"
         ],
         "input": [
           {
@@ -242935,8 +243081,8 @@
           },
           {
             "ch_bwameth_index": {
-              "description": "Bismark genome index files\nStructure: [ val(meta), path(index) ]\n",
-              "pattern": "BismarkIndex"
+              "description": "Bwa-meth genome index files\nStructure: [ val(meta), path(index) ]\n",
+              "pattern": "Bwa-methIndex"
             }
           },
           {
@@ -242982,27 +243128,6 @@
             }
           },
           {
-            "methydackel_extract_bedgraph": {
-              "type": "file",
-              "description": "bedGraph file, containing per-base methylation metrics\nStructure: [ val(meta), path(bedgraph) ]\n",
-              "pattern": "*.bedGraph"
-            }
-          },
-          {
-            "methydackel_extract_methylkit": {
-              "type": "file",
-              "description": "methylKit file, containing per-base methylation metrics\nStructure: [ val(meta), path(methylKit) ]\n",
-              "pattern": "*.methylKit"
-            }
-          },
-          {
-            "methydackel_mbias": {
-              "type": "file",
-              "description": "Text file containing methylation bias\nStructure: [ val(meta), path(mbias) ]\n",
-              "pattern": "*.{txt}"
-            }
-          },
-          {
             "picard_metrics": {
               "type": "file",
               "description": "Duplicate metrics file generated by picard\nStructure: [ val(meta), path(metrics) ]\n",
@@ -243029,7 +243154,8 @@
         ],
         "maintainers": [
           "@sateeshperi",
-          "@gallvp"
+          "@gallvp",
+          "@eduard-watchmaker"
         ]
       },
       "pipelines": [
@@ -243666,6 +243792,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.2.0"
         }
@@ -244223,6 +244353,10 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -246376,7 +246510,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -246789,7 +246923,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.2"
+          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -247173,6 +247307,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.0.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -247362,10 +247500,6 @@
         {
           "name": "reportho",
           "version": "1.0.1"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.2"
         }
       ]
     },
