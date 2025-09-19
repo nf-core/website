@@ -14566,7 +14566,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -20747,7 +20747,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -27770,7 +27770,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "taxprofiler",
@@ -31621,7 +31621,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -48675,7 +48675,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -49181,7 +49181,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -49938,7 +49938,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -58147,7 +58147,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -64580,7 +64580,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "sarek",
@@ -65131,7 +65131,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -69768,7 +69768,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -69876,7 +69876,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -87782,7 +87782,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -94497,7 +94497,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -98710,7 +98710,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -98852,7 +98852,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -98963,7 +98963,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -109968,7 +109968,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -110156,7 +110156,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -112532,7 +112532,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "taxprofiler",
@@ -136974,7 +136974,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -148181,7 +148181,11 @@
                 "type": "file",
                 "description": "BAM file",
                 "pattern": "*.bam",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
               }
             }
           ],
@@ -148196,7 +148200,7 @@
               "bam_index": {
                 "type": "file",
                 "description": "BAM index file",
-                "pattern": "*.bai",
+                "pattern": "*.bam.bai",
                 "ontologies": []
               }
             }
@@ -148244,7 +148248,11 @@
                 "type": "file",
                 "description": "Reference fasta - must be unzipped.",
                 "pattern": "*.fasta",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ]
@@ -148263,7 +148271,11 @@
                   "type": "file",
                   "description": "BAM file after applying BQSR.",
                   "pattern": "*.bam",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -148280,7 +148292,7 @@
                 "*.bai": {
                   "type": "file",
                   "description": "bai index corresponding to output bam file.",
-                  "pattern": "*.bai",
+                  "pattern": "*.bam.bai",
                   "ontologies": []
                 }
               }
@@ -148393,6 +148405,20 @@
               }
             ]
           ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -148503,7 +148529,7 @@
                 }
               },
               {
-                "*.vcf": {
+                "*.vcf.gz": {
                   "type": "file",
                   "description": "vcf file created with deepvariant (does not support .gz for normal vcf), optional",
                   "pattern": "*.vcf",
@@ -148533,6 +148559,20 @@
                 }
               }
             ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ],
           "versions": [
             {
@@ -148598,6 +148638,9 @@
                 "pattern": "*.fastq.gz",
                 "ontologies": [
                   {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
@@ -148616,7 +148659,11 @@
                 "type": "file",
                 "description": "reference fasta file - must be unzipped",
                 "pattern": "*.fasta",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -148665,6 +148712,9 @@
                 "description": "(optional) known sites file(s) for calculating BQSR. markdups must be true to perform BQSR.",
                 "pattern": "*.vcf.gz",
                 "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
                   {
                     "edam": "http://edamontology.org/format_3989"
                   }
@@ -148805,6 +148855,20 @@
                 }
               }
             ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ],
           "versions": [
             {
@@ -149068,7 +149132,7 @@
           ],
           [
             {
-              "ref_meta": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing reference information.\n[ id:'test']\n"
               }
@@ -149243,6 +149307,20 @@
               }
             ]
           ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -149315,18 +149393,32 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing output information\n",
-                  "pattern": "*.g.vcf"
+                  "description": "Groovy Map containing output information\n"
                 }
               },
               {
                 "*.{idx,tbi}": {
-                  "type": "map",
-                  "description": "Groovy Map containing output information\n",
-                  "pattern": "*.g.vcf"
+                  "type": "file",
+                  "description": "Index of the gvcf file",
+                  "pattern": "*.{idx,tbi}",
+                  "ontologies": []
                 }
               }
             ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ],
           "versions": [
             {
@@ -149392,7 +149484,14 @@
                 "type": "file",
                 "description": "Input read file, supported formats - 'fastq', 'fastq.gz', 'fq', 'fq.gz', 'bam'",
                 "pattern": "^.*\\.(fastq|fastq\\.gz|fq|fq\\.gz|bam)$",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -149408,7 +149507,11 @@
                 "type": "file",
                 "description": "reference fasta file - must be unzipped",
                 "pattern": "*.fasta",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -149442,6 +149545,9 @@
                 "pattern": "*.vcf.gz",
                 "ontologies": [
                   {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
                     "edam": "http://edamontology.org/format_3989"
                   }
                 ]
@@ -149470,7 +149576,11 @@
                   "type": "file",
                   "description": "Sorted BAM file",
                   "pattern": "*.bam",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -149577,10 +149687,28 @@
                   "type": "file",
                   "description": "(optional) metrics calculated from marking duplicates in the bam file",
                   "pattern": "*.duplicate-metrics.txt",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ],
           "versions": [
             {
@@ -149645,14 +149773,18 @@
                 "type": "file",
                 "description": "bam file for tumor sample.",
                 "pattern": "*.bam",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
               }
             },
             {
               "tumor_bam_index": {
                 "type": "file",
                 "description": "(Optional) bai index corresponding to tumor bam file. Only required if intervals are provided.",
-                "pattern": "*.bam",
+                "pattern": "*.bam.bai",
                 "ontologies": []
               }
             },
@@ -149661,14 +149793,18 @@
                 "type": "file",
                 "description": "(Optional) bam file for normal sample in tumor-vs-normal calling.",
                 "pattern": "*.bam",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
               }
             },
             {
               "normal_bam_index": {
                 "type": "file",
                 "description": "(Optional) bai index corresponding to normal bam file. Only required if intervals are provided.",
-                "pattern": "*.bam",
+                "pattern": "*.bam.bai",
                 "ontologies": []
               }
             },
@@ -149758,6 +149894,20 @@
                 }
               }
             ]
+          ],
+          "compatible_versions": [
+            {
+              "compatible_versions.yml": {
+                "type": "file",
+                "description": "File containing info on compatible CPU-based software versions.",
+                "pattern": "compatible_versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ],
           "versions": [
             {
@@ -155604,7 +155754,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnavar",
@@ -164122,7 +164272,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -170322,7 +170472,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176089,7 +176239,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176196,7 +176346,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -176304,7 +176454,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176416,7 +176566,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176612,7 +176762,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176844,7 +176994,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -176976,7 +177126,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -177088,7 +177238,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "scnanoseq",
@@ -177261,7 +177411,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -177399,7 +177549,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -179941,7 +180091,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -180129,7 +180279,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -183642,7 +183792,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -183932,7 +184082,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -184366,7 +184516,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -185593,7 +185743,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -185835,7 +185985,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -191643,7 +191793,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -191737,7 +191887,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -192160,7 +192310,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -204734,7 +204884,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -208145,7 +208295,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -208305,7 +208455,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -210803,7 +210953,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -211372,7 +211522,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -211538,7 +211688,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -220477,7 +220627,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -222424,7 +222574,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -222529,7 +222679,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -222650,7 +222800,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -223909,7 +224059,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "smrnaseq",
@@ -224125,7 +224275,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "scnanoseq",
@@ -224260,7 +224410,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -224549,7 +224699,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -225025,7 +225175,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -237645,7 +237795,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -237751,7 +237901,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -238113,7 +238263,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -238301,7 +238451,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnavar",
@@ -238913,7 +239063,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -239077,7 +239227,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -239355,7 +239505,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -240414,7 +240564,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -243180,7 +243330,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -244076,7 +244226,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "smrnaseq",
@@ -244257,7 +244407,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnasplice",
@@ -244833,7 +244983,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -244959,7 +245109,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -245791,7 +245941,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         }
       ]
     },
@@ -246230,7 +246380,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnavar",
@@ -246643,7 +246793,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnavar",
@@ -247024,7 +247174,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.20.0"
+          "version": "3.21.0"
         },
         {
           "name": "rnavar",
