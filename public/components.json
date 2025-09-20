@@ -172383,7 +172383,7 @@
       "path": "modules/nf-core/rastair/methylkit/meta.yml",
       "type": "module",
       "meta": {
-        "name": "convert_to_methylkit",
+        "name": "rastair_methylkit",
         "description": "Parses rastair call output and converts it into a MethylKit-compatible format.",
         "keywords": [
           "methylation",
@@ -239921,6 +239921,95 @@
         ],
         "maintainers": [
           "@louislenezet"
+        ]
+      }
+    },
+    {
+      "name": "bam_taps_conversion",
+      "path": "subworkflows/nf-core/bam_taps_conversion/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_taps_conversion",
+        "description": "Uses rastair to assess C->T conversion as a readout for methylation in a genome-wide basis",
+        "keywords": [
+          "TAPS conversion",
+          "Methylation analysis",
+          "Molecular bias (MBIAS)",
+          "mCtoT",
+          "rastair",
+          "4-letter genome"
+        ],
+        "components": [
+          "rastair/mbias",
+          "rastair/call",
+          "rastair/methylkit",
+          "rastair/mbias/parser"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Reference genome fasta file\nStructure: [ [:], path(fasta) ]\n",
+              "pattern": "*.{fa,fasta}"
+            }
+          },
+          {
+            "ch_fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file\nStructure: [ val(meta), path(fai) ]\n",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "ch_bam": {
+              "type": "file",
+              "description": "BAM alignment files\nStructure: [ val(meta), path(bam) ]\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "ch_bai": {
+              "type": "file",
+              "description": "BAM index files\nStructure: [ val(meta), path(bai) ]\n",
+              "pattern": "*.bai"
+            }
+          }
+        ],
+        "output": [
+          {
+            "mbias": {
+              "type": "file",
+              "description": "File describing the molecular bias (MBIAS) of the TAPS conversion\nStructure: [ val(meta), path(mbias) ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "call": {
+              "type": "file",
+              "description": "Rastair call output files (similar to bed format, genome-wide)\nStructure: [ val(meta), path(call) ]\n",
+              "pattern": "*.txt"
+            }
+          },
+          {
+            "methylkit": {
+              "type": "file",
+              "description": "Rastair call output files in MethylKit format (similar to bed format, genome-wide)\nStructure: [ val(meta), path(methylkit) ]\n",
+              "pattern": "*.gz"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@eduard-watchmaker"
+        ],
+        "maintainers": [
+          "@eduard-watchmaker"
         ]
       }
     },
