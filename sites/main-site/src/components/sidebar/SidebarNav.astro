@@ -13,6 +13,7 @@ url = url.replace(/\.html$/, "");
 
 <div class="nav sticky-top-under pt-1 ms-auto">
     <SidebarSubNav items={items} />
+    <slot name="post-nav" slot="post-nav" />
 </div>
 
 <style lang="scss">
