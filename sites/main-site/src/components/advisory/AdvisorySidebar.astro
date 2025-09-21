@@ -36,7 +36,7 @@ const sections: SidebarEntry[] = years.map((year) => {
 });
 ---
 
-<div class="sidebar-left sticky-top-under d-none d-md-inline pt-1">
+<div class="sidebar-left d-none d-md-inline pt-1">
     {
         sidebarTitle && (
             <a href="/advisories" class="sidebar-title text-decoration-none">
@@ -44,19 +44,20 @@ const sections: SidebarEntry[] = years.map((year) => {
             </a>
         )
     }
-    <SidebarNav items={sections} />
-    <div class="mt-3 d-flex align-items-top fs-6 fw-normal text-muted">
-        <a
-            href="https://nf-co.re/advisories/rss.xml"
-            target="_blank"
-            rel="noopener"
-            class="text-decoration-none d-flex align-items-center"
-            title="Subscribe to RSS feed"
-        >
-            <i class="fa fa-rss-square me-2" aria-hidden="true" style="color: #f26522; font-size: 1.2em;"></i>
-            <span>Subscribe to advisories</span>
-        </a>
-    </div>
+    <SidebarNav items={sections}>
+        <div class="mt-3 text-muted" slot="post-nav">
+            <a
+                href="https://nf-co.re/advisories/rss.xml"
+                target="_blank"
+                rel="noopener"
+                class="d-flex align-items-center text-muted"
+                title="Subscribe to RSS feed"
+            >
+                <i class="fa fa-rss-square me-2" aria-hidden="true"></i>
+                <span>Subscribe to advisories</span>
+            </a>
+        </div>
+    </SidebarNav>
 </div>
 
 <style lang="scss">
