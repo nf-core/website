@@ -13,7 +13,7 @@ import { YouTube } from "@astro-community/astro-embed-youtube";
 4. Start development and update the RFC PR as needed as you go along.
 5. Once the new feature ships, the RFC PR is merged and the markdown used for future reference.
 
-<YouTube id="JxIpiMclO8Q"/>
+<YouTube id="JxIpiMclO8Q" />
 
 # Preamble
 
@@ -46,11 +46,11 @@ Not every project in nf-core requires an RFC. The process should only be used fo
 To help give a better idea of the scale that a request should reach to require an RFC, we provide a few real-life examples here (from before we had an RFC procedure):
 
 - nf-core/reports
-  - We would like to add a new ‘product’ offered by and for the community in the form of standardised analysis notebooks for routine post-pipeline analyses that require more user experimentation. This would require new subcommands of nf-core/tools, a new template, new repositories, and a new section on the top bar of the nf-core website.
+    - We would like to add a new ‘product’ offered by and for the community in the form of standardised analysis notebooks for routine post-pipeline analyses that require more user experimentation. This would require new subcommands of nf-core/tools, a new template, new repositories, and a new section on the top bar of the nf-core website.
 - nf-core/tools test datasets
-  - I would like to propose a new subcommand to the nf-core tools package, called `nf-core testdatasets`. The purpose of this subcommand is to make it easier for developers to search through the very large and convoluted nf-core/test-datasets repository for suitable test-data files to promote reuse of existing data files.
+    - I would like to propose a new subcommand to the nf-core tools package, called `nf-core testdatasets`. The purpose of this subcommand is to make it easier for developers to search through the very large and convoluted nf-core/test-datasets repository for suitable test-data files to promote reuse of existing data files.
 - Standardise `ext.args` naming
-  - There is a deficiency within the nf-core/modules specifications regarding standardised use of the `ext.args` variable. The use of the naming scheme `args`, `args2`, `args3` are not intuitive for developers to know which `arg` goes to which command in the module. We propose to update the specifications to use the command/subcommand as a suffix instead e.g., `args_samtoolssort`. This would require a change to every module in the repository and improved documentation support.
+    - There is a deficiency within the nf-core/modules specifications regarding standardised use of the `ext.args` variable. The use of the naming scheme `args`, `args2`, `args3` are not intuitive for developers to know which `arg` goes to which command in the module. We propose to update the specifications to use the command/subcommand as a suffix instead e.g., `args_samtoolssort`. This would require a change to every module in the repository and improved documentation support.
 
 :::
 
