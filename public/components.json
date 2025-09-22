@@ -19294,6 +19294,10 @@
           "version": "dev"
         },
         {
+          "name": "tumourevo",
+          "version": "dev"
+        },
+        {
           "name": "variantbenchmarking",
           "version": "1.3.0"
         }
@@ -48363,7 +48367,13 @@
         "maintainers": [
           "@elena-buscaroli"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "custom_addmostsevereconsequence",
@@ -133804,7 +133814,13 @@
         "maintainers": [
           "@elena-buscaroli"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mobsuite_recon",
@@ -186630,9 +186646,9 @@
               }
             },
             {
-              "cnv_exclude_regions": {
+              "cnv_exclude_regions_bed": {
                 "type": "file",
-                "description": "Regions of the genome to exclude from CNV analysis, in BED format.",
+                "description": "BED file containing regions to exclude from CNV calling",
                 "pattern": "*.bed",
                 "ontologies": []
               }
@@ -186640,6 +186656,28 @@
           ]
         ],
         "output": {
+          "versions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "versions.yml": {
+                  "type": "file",
+                  "description": "File containing software versions",
+                  "pattern": "versions.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "assembly_regions": [
             [
               {
@@ -186649,7 +186687,7 @@
                 }
               },
               {
-                "*/assembly.regions.bed": {
+                "${prefix}/assembly.regions.bed": {
                   "type": "file",
                   "description": "Assembly regions BED file",
                   "pattern": "*.bed",
@@ -186667,7 +186705,7 @@
                 }
               },
               {
-                "*/candidate.sv.bcf": {
+                "${prefix}/candidate.sv.bcf": {
                   "type": "file",
                   "description": "Candidate SV BCF file",
                   "pattern": "*.bcf",
@@ -186685,7 +186723,7 @@
                 }
               },
               {
-                "*/candidate.sv.bcf.csi": {
+                "${prefix}/candidate.sv.bcf.csi": {
                   "type": "file",
                   "description": "Candidate SV BCF CSI file",
                   "pattern": "*.csi",
@@ -186703,7 +186741,7 @@
                 }
               },
               {
-                "*/contig.alignment.bam": {
+                "${prefix}/contig.alignment.bam": {
                   "type": "file",
                   "description": "Contig alignment BAM file",
                   "pattern": "*.bam",
@@ -186721,7 +186759,7 @@
                 }
               },
               {
-                "*/contig.alignment.bam.csi": {
+                "${prefix}/contig.alignment.bam.csi": {
                   "type": "file",
                   "description": "Contig alignment BAM CSI file",
                   "pattern": "*.csi",
@@ -186739,7 +186777,7 @@
                 }
               },
               {
-                "*/copynum.bedgraph": {
+                "${prefix}/copynum.bedgraph": {
                   "type": "file",
                   "description": "Copy number BEDGraph file",
                   "pattern": "*.bedgraph",
@@ -186757,7 +186795,7 @@
                 }
               },
               {
-                "*/copynum.mpack": {
+                "${prefix}/copynum.mpack": {
                   "type": "file",
                   "description": "Copy number mpack file",
                   "pattern": "*.mpack",
@@ -186775,7 +186813,7 @@
                 }
               },
               {
-                "*/debug.breakpoint_clusters.bed": {
+                "${prefix}/debug.breakpoint_clusters.bed": {
                   "type": "file",
                   "description": "Debug breakpoint clusters BED file",
                   "pattern": "*.bed",
@@ -186793,7 +186831,7 @@
                 }
               },
               {
-                "*/debug.cluster.refinement.txt": {
+                "${prefix}/debug.cluster.refinement.txt": {
                   "type": "file",
                   "description": "Debug cluster refinement text file",
                   "pattern": "*.txt",
@@ -186811,11 +186849,15 @@
                 }
               },
               {
-                "*/discover.settings.json": {
+                "${prefix}/discover.settings.json": {
                   "type": "file",
                   "description": "Discover settings JSON file",
                   "pattern": "*.json",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -186829,7 +186871,7 @@
                 }
               },
               {
-                "*/genome.gclevels.mpack": {
+                "${prefix}/genome.gclevels.mpack": {
                   "type": "file",
                   "description": "Genome GC levels mpack file",
                   "pattern": "*.mpack",
@@ -186847,7 +186889,7 @@
                 }
               },
               {
-                "*/max.depth.bed": {
+                "${prefix}/max.depth.bed": {
                   "type": "file",
                   "description": "Max depth BED file",
                   "pattern": "*.bed",
@@ -186865,11 +186907,15 @@
                 }
               },
               {
-                "*/run.stats.json": {
+                "${prefix}/run.stats.json": {
                   "type": "file",
                   "description": "Run statistics JSON file",
                   "pattern": "*.json",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -186883,11 +186929,385 @@
                 }
               },
               {
-                "*/sample.gcbias.mpack": {
+                "${prefix}/sample.gcbias.mpack": {
                   "type": "file",
                   "description": "Sample GC bias mpack file",
                   "pattern": "*.mpack",
                   "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/sawfish.log": {
+                  "type": "file",
+                  "description": "Sawfish log file",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "depth_mpack": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/depth.mpack": {
+                  "type": "file",
+                  "description": "Depth mpack file",
+                  "pattern": "*.mpack",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "maf_mpack": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/maf.mpack": {
+                  "type": "file",
+                  "description": "MAF mpack file",
+                  "pattern": "*.mpack",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "expected_cn": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}/expected.copy.number.bed": {
+                  "type": "file",
+                  "description": "Expected copy number BED file",
+                  "pattern": "*.bed",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "discover_dir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Directory containing all discover output files",
+                  "ontologies": []
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@padraicc"
+        ],
+        "maintainers": [
+          "@padraicc"
+        ]
+      }
+    },
+    {
+      "name": "sawfish_jointcall",
+      "path": "modules/nf-core/sawfish/jointcall/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sawfish_jointcall",
+        "description": "Joint calling of structural variants from multiple samples using Sawfish",
+        "keywords": [
+          "sawfish",
+          "structural-variant calling",
+          "joint calling",
+          "CNV calling",
+          "Pacbio"
+        ],
+        "tools": [
+          {
+            "sawfish": {
+              "description": "Joint structural variant and copy number variant caller for HiFi sequencing data",
+              "homepage": "https://github.com/PacificBiosciences/sawfish",
+              "documentation": "https://github.com/PacificBiosciences/sawfish/tree/main/docs",
+              "doi": "10.1093/bioinformatics/btaf136",
+              "licence": [
+                "Pacific Biosciences Software License (https://github.com/PacificBiosciences/sawfish/blob/main/LICENSE.md)"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "sample_dirs": {
+                "type": "directory",
+                "description": "Sample directories from sawfish discover step",
+                "pattern": "*_discover_dir/",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'fasta' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
+              }
+            },
+            {
+              "bais": {
+                "type": "file",
+                "description": "Index of BAM/CAM file",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing additional information\ne.g. [ id:'csv' ]\n"
+              }
+            },
+            {
+              "sample_csv": {
+                "type": "file",
+                "description": "CSV file listing sample sawfish discover output and the sample bam file used with sawfish discover",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/*_genotyped.sv.vcf.gz": {
+                  "type": "file",
+                  "description": "Joint called variants in compressed VCF format",
+                  "pattern": "*_genotyped.sv.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/*_genotyped.sv.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Tabix index for the joint called VCF file",
+                  "pattern": "*_genotyped.sv.vcf.gz.tbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/contig.alignment.bam": {
+                  "type": "file",
+                  "description": "Contig alignment BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "bam_index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/contig.alignment.bam.csi": {
+                  "type": "file",
+                  "description": "Contig alignment BAM index file",
+                  "pattern": "*.csi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/run.stats.json": {
+                  "type": "file",
+                  "description": "Run statistics JSON file",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "depth_bw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/samples/*/depth.bw": {
+                  "type": "file",
+                  "description": "Sample depth BigWig file",
+                  "pattern": "*.bw",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "copynum_bedgraph": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/samples/*/copynum.bedgraph": {
+                  "type": "file",
+                  "description": "Sample copy number BEDGraph file",
+                  "pattern": "*.bedgraph",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "gc_bias_corrected_depth_bw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/samples/*/gc_bias_corrected_depth.bw": {
+                  "type": "file",
+                  "description": "Sample GC bias BigWig file",
+                  "pattern": "*.bw",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "copynum_summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*/samples/*/copynum.summary.json": {
+                  "type": "file",
+                  "description": "Sample copy number summary JSON file",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -186910,63 +187330,19 @@
               }
             ]
           ],
-          "depth_mpack": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
-                }
-              },
-              {
-                "*/depth.mpack": {
-                  "type": "file",
-                  "description": "Depth mpack file",
-                  "pattern": "*.mpack",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "expected_cn": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
-                }
-              },
-              {
-                "*/expected.copy.number.bed": {
-                  "type": "file",
-                  "description": "Expected copy number BED file",
-                  "pattern": "*.bed",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
           "versions": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
-                }
-              },
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3750"
-                    }
-                  ]
-                }
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
-            ]
+            }
           ]
         },
         "authors": [
@@ -200474,7 +200850,13 @@
         "authors": [
           "@kdavydzenka"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "simpleaf_index",
@@ -206798,7 +207180,13 @@
           "@kdavydzenka",
           "@elena-buscaroli"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "spatyper",
@@ -219308,7 +219696,13 @@
         "maintainers": [
           "@valerianilucrezia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "topas_gencons",
