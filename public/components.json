@@ -15416,7 +15416,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -21675,7 +21675,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "tfactivity",
@@ -22372,7 +22372,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "ssds",
@@ -31655,7 +31655,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -52793,6 +52793,153 @@
       ]
     },
     {
+      "name": "deeptools_bigwigcompare",
+      "path": "modules/nf-core/deeptools/bigwigcompare/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deeptools_bigwigcompare",
+        "description": "Compare two bigWig files based on the number of mapped reads",
+        "keywords": [
+          "bigwig",
+          "compare",
+          "genomics",
+          "deeptools",
+          "coverage"
+        ],
+        "tools": [
+          {
+            "deeptools": {
+              "description": "A set of user-friendly tools for normalization and visualization of deep-sequencing data",
+              "homepage": "https://deeptools.readthedocs.io/en/develop/",
+              "documentation": "https://deeptools.readthedocs.io/en/develop/content/tools/bigwigCompare.html",
+              "tool_dev_url": "https://github.com/deeptools/deepTools",
+              "doi": "10.1093/nar/gku365",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:deeptools",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "bigwig1": {
+                "type": "file",
+                "description": "First bigWig file (usually treatment)",
+                "pattern": "*.{bw,bigwig,bigWig}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3002"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            },
+            {
+              "bigwig2": {
+                "type": "file",
+                "description": "Second bigWig file (usually control)",
+                "pattern": "*.{bw,bigwig,bigWig}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3002"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing blacklist metadata\ne.g. [ id:'blacklist' ]\n"
+              }
+            },
+            {
+              "blacklist": {
+                "type": "file",
+                "description": "BED/GTF file containing regions to exclude from analysis",
+                "pattern": "*.{bed,gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3002"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ],
+                "optional": true
+              }
+            }
+          ]
+        ],
+        "output": {
+          "output": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.{bigWig,bedgraph}": {
+                  "type": "file",
+                  "description": "Output bigWig or bedGraph file with comparison results",
+                  "pattern": "*.{bigWig,bedgraph}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3006"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@nadiaxaidan",
+          "@daisymut",
+          "@ugoiannacchero"
+        ],
+        "maintainers": [
+          "@nadiaxaidan",
+          "@daisymut",
+          "@ugoiannacchero"
+        ]
+      }
+    },
+    {
       "name": "deeptools_computematrix",
       "path": "modules/nf-core/deeptools/computematrix/meta.yml",
       "type": "module",
@@ -60576,7 +60723,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -60925,7 +61072,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -65183,7 +65330,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -73691,7 +73838,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -74243,7 +74390,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -74376,7 +74523,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -75392,7 +75539,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -75848,7 +75995,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -78284,7 +78431,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -78390,7 +78537,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "tbanalyzer",
@@ -78590,7 +78737,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -79438,7 +79585,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -81731,7 +81878,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -82412,7 +82559,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "variantcatalogue",
@@ -87862,7 +88009,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -94584,7 +94731,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -134678,7 +134825,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -137125,7 +137272,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -155907,7 +156054,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -182536,7 +182683,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -183231,7 +183378,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -183965,7 +184112,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -184259,7 +184406,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -184693,7 +184840,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -185120,7 +185267,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -185920,7 +186067,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -186166,7 +186313,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -194312,7 +194459,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -204150,7 +204297,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -204337,7 +204484,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -208844,7 +208991,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "viralintegration",
@@ -209004,7 +209151,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "scrnaseq",
@@ -209078,7 +209225,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -215953,7 +216100,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -216111,7 +216258,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -224985,7 +225132,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "smrnaseq",
@@ -225750,7 +225897,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -239022,7 +239169,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -239886,7 +240033,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -240168,7 +240315,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -244398,7 +244545,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         }
       ]
     },
@@ -247119,7 +247266,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -247532,7 +247679,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -247917,7 +248064,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sammyseq",
@@ -248232,7 +248379,7 @@
         },
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
@@ -248451,7 +248598,7 @@
       "pipelines": [
         {
           "name": "rnavar",
-          "version": "1.2.0"
+          "version": "1.2.1"
         },
         {
           "name": "sarek",
