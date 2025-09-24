@@ -56540,6 +56540,126 @@
       ]
     },
     {
+      "name": "diann_insilicolibrarygeneration",
+      "path": "modules/nf-core/diann/insilicolibrarygeneration/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diann_insilicolibrarygeneration",
+        "description": "Generate in silico predicted spectral library using DIA-NN deep learning predictor.\nThis module uses DIA-NN software for data-independent acquisition (DIA) proteomics data processing.\nOutput materials should include attribution: \"Generated using DIA-NN\".\n",
+        "keywords": [
+          "diann",
+          "spectral library",
+          "proteomics",
+          "deep learning",
+          "dia"
+        ],
+        "tools": [
+          {
+            "diann": {
+              "description": "DIA-NN is a universal software for data-independent acquisition (DIA) proteomics data processing. \nIt uses deep learning to predict spectral libraries and perform peptide identification and quantification.\n",
+              "homepage": "https://github.com/vdemichev/DiaNN",
+              "documentation": "https://github.com/vdemichev/DiaNN",
+              "tool_dev_url": "https://github.com/vdemichev/DiaNN",
+              "doi": "10.1038/s41592-020-01009-0",
+              "licence": [
+                "https://github.com/vdemichev/DiaNN/blob/1.8.1/LICENSE.txt"
+              ],
+              "identifier": "biotools:diann"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA sequence database",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predict_speclib": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.predicted.speclib": {
+                  "type": "file",
+                  "description": "In silico predicted spectral library by DIA-NN deep learning predictor",
+                  "pattern": "*.predicted.speclib",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3240"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "DIA-NN log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@daichengxin",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@daichengxin"
+        ]
+      }
+    },
+    {
       "name": "doubletdetection",
       "path": "modules/nf-core/doubletdetection/meta.yml",
       "type": "module",
@@ -186803,28 +186923,6 @@
           ]
         ],
         "output": {
-          "versions": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
-                }
-              },
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3750"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
           "assembly_regions": [
             [
               {
@@ -187173,6 +187271,20 @@
                 }
               }
             ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
           ]
         },
         "authors": [
@@ -204249,7 +204361,11 @@
               }
             },
             {
-              "snpeff_db": {}
+              "snpeff_db": {
+                "type": "string",
+                "description": "SnpEff database name",
+                "ontologies": []
+              }
             }
           ]
         ],
@@ -225684,7 +225800,7 @@
       "type": "module",
       "meta": {
         "name": "untar",
-        "description": "Extract files.",
+        "description": "Extract files from tar, tar.gz, tar.bz2, tar.xz archives",
         "keywords": [
           "untar",
           "uncompress",
@@ -225693,7 +225809,7 @@
         "tools": [
           {
             "untar": {
-              "description": "Extract tar.gz files.\n",
+              "description": "Extract tar, tar.gz, tar.bz2, tar.xz files.\n",
               "documentation": "https://www.gnu.org/software/tar/manual/",
               "licence": [
                 "GPL-3.0-or-later"
@@ -225713,8 +225829,8 @@
             {
               "archive": {
                 "type": "file",
-                "description": "File to be untar",
-                "pattern": "*.{tar}.{gz}",
+                "description": "File to be untarred",
+                "pattern": "*.{tar,tar.gz,tar.bz2,tar.xz}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3981"
@@ -243923,14 +244039,16 @@
           "bwamem",
           "bwamem2",
           "dragmap",
-          "snapaligner"
+          "snapaligner",
+          "strobealign"
         ],
         "components": [
           "bowtie2/align",
           "bwa/mem",
           "bwamem2/mem",
           "dragmap/align",
-          "snapaligner/align"
+          "snapaligner/align",
+          "strobealign"
         ],
         "input": [
           {
@@ -243980,7 +244098,8 @@
                 "bwa",
                 "bwamem2",
                 "dragmap",
-                "snap"
+                "snap",
+                "strobealign"
               ]
             }
           },
@@ -248459,7 +248578,7 @@
           {
             "val_snpeff_db": {
               "type": "string",
-              "description": "database to use for snpeff, usually consists of the genome and the database version\ne.g. WBcel235.105\n"
+              "description": "database to use for snpeff, usually consists of the genome and the database version\ne.g. WBcel235.99\n"
             }
           },
           {
