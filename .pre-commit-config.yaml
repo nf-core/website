@@ -9,3 +9,9 @@ repos:
           - prettier-plugin-svelte@3.4.0
           - prettier-plugin-astro@0.14.1
         files: \.(astro|svelte|mdx|md|yml|yaml)$
+  - repo: https://github.com/errata-ai/vale
+    rev: v3.7.1
+    hooks:
+      - id: vale
+        args: ["--config=.vale.ini"]
+        files: \.(md|mdx)$
