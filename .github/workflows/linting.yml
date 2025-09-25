@@ -23,8 +23,8 @@ jobs:
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-      - name: Install mdx2vast for MDX support
-        run: npm install -g mdx2vast
+      - name: Install custom mdx2vast for MDX directive support
+        run: npm install -g https://github.com/edmundmiller/mdx2vast.git
       - name: Verify Vale setup
         run: |
           echo "Vale config:" && cat .vale.ini
@@ -33,6 +33,6 @@ jobs:
         with:
           files: sites/main-site/src/content,sites/docs/src/content,sites/configs/src/content,sites/modules-subworkflows/src/content,sites/pipelines/src/content
           reporter: github-pr-check
-          fail_on_error: false
+          fail_on_error: true
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
