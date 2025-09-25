@@ -17,6 +17,8 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
       - run: npm install --only=dev
+      - name: Install custom mdx2vast for MDX directive vale support
+        run: npm install -g https://github.com/edmundmiller/mdx2vast.git
       - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
   vale:
     runs-on: ubuntu-latest
