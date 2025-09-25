@@ -13,5 +13,8 @@ repos:
     rev: v3.7.1
     hooks:
       - id: vale
-        args: ["--config=.vale.ini"]
-        files: \.(md|mdx)$
+        name: vale sync
+        pass_filenames: false
+        args: [sync]
+      - id: vale
+        args: [--output=line, --minAlertLevel=error]
