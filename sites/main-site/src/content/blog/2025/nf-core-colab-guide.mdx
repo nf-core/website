@@ -11,7 +11,7 @@ label:
     - "community post"
 ---
 
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
 import colabmeme from "@assets/images/blog/nf-core-colab/colab-meme.jpg";
 import disconnectmeme from "@assets/images/blog/nf-core-colab/colab-disconnected-meme.png";
@@ -73,7 +73,7 @@ This can lead to the stereotypical case of waking up to find your notebook timed
 
 The biggest issue that will likely affect someone developing Nextflow pipelines in Colab is the lack of root access.
 
-Due to this lack of root access, it is not possible to run nf-core or any Nextflow pipelines using the typical `-profile docker` or `-profile singularity` container-based configuration profiles.
+Due to this lack of root access, it is not possible to run nf-core or any Nextflow pipelines using the typical `-profile Docker` or `-profile Singularity` container-based configuration profiles.
 This is because `sudo` access is needed to install these engines.
 Thankfully, we can still run pipelines with conda under `-profile conda`.
 
@@ -168,10 +168,12 @@ Google Colab offers several types of VM instances, each with different hardware 
 Choosing the right instance can significantly impact the performance and efficiency of your data analysis:
 
 - **Standard (CPU-only) instances:**
+
     - Typically provide about 2 vCPUs and 13 GB RAM.
     - Best for lightweight workflows, small datasets, or tasks without GPU needs.
 
 - **GPU-enabled instances:**
+
     - **Colab Pro** offers access to modern NVIDIA GPUs such as **T4** (16 GB VRAM), **L4** (24 GB VRAM), and sometimes **A100** (40 GB VRAM).
     - These instances usually pair with 2 to 8 vCPUs and 13 GB RAM, or more if High-RAM is enabled.
     - Ideal for deep learning, image analysis, or workflows that explicitly support GPU acceleration.

@@ -17,19 +17,19 @@ by providing brief summaries of the monthly team meetings.
 
 ## More (or less) testing
 
-[Júlia](https://github.com/mirpedrol) encountered several failing tests on nf-core/crisprseq with conda and singularity (currently, our CI tests only run with docker).
-Moving forward we agreed that at least some tests should also be run with `singularity` and `conda` at some point during the development process but before release.
+[Júlia](https://github.com/mirpedrol) encountered several failing tests on nf-core/crisprseq with Conda and Singularity (currently, our CI tests only run with Docker).
+Moving forward we agreed that at least some tests should also be run with `Singularity` and `Conda` at some point during the development process but before release.
 
 We discussed several ideas.
 On the one hand we'd like to make sure everything works at all times, on the other hand running tons of essentially duplicate tests makes development slow, costs money, and is not great for the planet 🌳.
 As a compromise, we agreed on the following:
 
-- Singularity & conda tests are run on PR to master
-- Make singularity required
+- Singularity & Conda tests are run on PR to master
+- Make Singularity required
 - Conda optional opt-out
 - Add `workflow dispatch` button for easier manual testing during earlier stages of development
 
-## Nf-test best practices
+## nf-test best practices
 
 [Nicolas](https://github.com/nvnieuwk/) brought up that nf-test snapshots (i.e., files that record e.g. md5sums or presence of strings) should be readable to quickly determine that they include everything they should.
 He had noticed that some people in module tests had started using a snapshot for every single file (rather than all in one), seemingly to be able to 'label' each snapshot.
@@ -47,8 +47,8 @@ This will include a lot of new exciting things:
 - Subworkflows
 - bio.tools identifiers (for better linked metadata across registries)
 - edam ontologies for all input/output files (for better standardisation of file types)
-- Removing defaults from conda channel (to reduce chances of ToS violations)
-- Adding lock files (for better conda dependency version stability)
+- Removing defaults from Conda channel (to reduce chances of ToS violations)
+- Adding lock files (for better Conda dependency version stability)
 - Adding version topic channels (for simplified version reporting in pipelines)
 - Adding lint for stub tests for all modules (to help us move to having complete 'dry run' functionality in pipelines)
 
@@ -56,7 +56,7 @@ This will include a lot of new exciting things:
 
 In addition, we discussed how to incorporate the version aggregation system using Nextflow's new '[topic](https://www.nextflow.io/docs/latest/channel.html#topic)' channel functionality.
 [Edmund](https://github.com/edmundmiller) created a [proof of concept](https://github.com/nf-core/nascent/pull/150) showing that it is possible to handle topic and non-topic version channels together.
-This would require a pipeline update by all developers, pinning a recent nextflow version, and adding the `preview` flag.
+This would require a pipeline update by all developers, pinning a recent Nextflow version, and adding the `preview` flag.
 It was concluded that this should be a hackathon task.
 
 ## Obligatory argument
@@ -78,7 +78,7 @@ Various members of the nf-core community had both a long time ago and more recen
 Everyone think it's a good idea and we discussed how to best approach this since the guidelines are listed on the website, _but_ linting is linked to nf-core/tools versions, _but_ not everything can/is linted for at the moment.
 
 Some ideas included linking the docs with the tools version and date stamp the docs, have dev docs version to account for incremental updates.
-However, it was brought up that that linting against the tools dev version may cause problems with changes that may occur during the development on the dev branch.
+However, it was brought up that linting against the tools dev version may cause problems with changes that may occur during the development on the dev branch.
 One of the major technical challenges that was flagged was how to best account for various docs versions on the website, with the additional complication that the guidelines page is planned to be split up into one file per guideline point (which [James](https://github.com/jfy133) finds 🤢).
 [Matthias](https://github.com/mashehu) will think about a few ways on how this could be tackled to minimise the amount of file copies that may occur when archiving each version.
 
