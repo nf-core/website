@@ -150347,6 +150347,280 @@
       }
     },
     {
+      "name": "parabricks_rnafq2bam",
+      "path": "modules/nf-core/parabricks/rnafq2bam/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_rnafq2bam",
+        "description": "This tool is the equivalent of fq2bam for RNA-Seq samples, receiving inputs in FASTQ format, performing alignment with the splice-aware STAR algorithm, optionally marking of duplicate reads, and outputting an aligned BAM file ready for variant and fusion calling.",
+        "keywords": [
+          "align",
+          "star",
+          "rna"
+        ],
+        "tools": [
+          {
+            "parabricks": {
+              "description": "NVIDIA Clara Parabricks GPU-accelerated genomics tools",
+              "homepage": "https://www.nvidia.com/en-us/clara/genomics/",
+              "documentation": "https://docs.nvidia.com/clara/parabricks/latest/index.html",
+              "licence": [
+                "https://docs.nvidia.com/clara/parabricks/latest/eula.html"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "fastq.gz files",
+                "pattern": "*.fastq.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta1": {
+                "type": "map",
+                "description": "Groovy Map containing fasta information\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "reference fasta file - must be unzipped",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing index information\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "reference BWA index",
+                "pattern": "*.{amb,ann,bwt,pac,sa}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genome lib dir information\n"
+              }
+            },
+            {
+              "genome_lib_dir": {
+                "type": "directory",
+                "description": "Path to a genome resource library directory. The indexing required to run STAR should be completed by the user beforehand.",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bai": {
+                  "type": "file",
+                  "description": "index corresponding to sorted BAM file",
+                  "pattern": "*.bai",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@gburnett-nvidia"
+        ],
+        "maintainers": [
+          "@gburnett-nvidia"
+        ]
+      }
+    },
+    {
+      "name": "parabricks_stargenomegenerate",
+      "path": "modules/nf-core/parabricks/stargenomegenerate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parabricks_stargenomegenerate",
+        "description": "This is near identical to the existing star/genomegenerate however it runs on an older version (2.7.2a) that is required for Parabricks compatibility.",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "star": {
+              "description": "STAR is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
+              "homepage": "https://github.com/alexdobin/STAR",
+              "manual": "https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf",
+              "doi": "10.1093/bioinformatics/bts635",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:star"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file of the reference genome",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "GTF file of the reference genome",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "star": {
+                  "type": "directory",
+                  "description": "Folder containing the star index files",
+                  "pattern": "star"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@gburnett-nvidia"
+        ],
+        "maintainers": [
+          "@gburnett-nvidia"
+        ]
+      }
+    },
+    {
       "name": "paraclu",
       "path": "modules/nf-core/paraclu/meta.yml",
       "type": "module",
@@ -152158,6 +152432,121 @@
         ],
         "maintainers": [
           "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "pbtk_pbmerge",
+      "path": "modules/nf-core/pbtk/pbmerge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbtk_pbmerge",
+        "description": "Simple tool which merges several PacBio BAM files together",
+        "keywords": [
+          "pbtk",
+          "pbmerge",
+          "genomics",
+          "pacbio",
+          "bam"
+        ],
+        "tools": [
+          {
+            "pbtk": {
+              "description": "pbtk - PacBio BAM toolkit",
+              "homepage": "https://github.com/PacificBiosciences/pbtk",
+              "documentation": "https://github.com/PacificBiosciences/pbtk#usage",
+              "tool_dev_url": "https://github.com/PacificBiosciences/pbtk",
+              "doi": "no DOI available",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "PacBio BAM files",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "The merged PacBio BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pbi": {
+                  "type": "file",
+                  "description": "BAM Pacbio index file",
+                  "pattern": "*.bam.pbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@haidyi"
+        ],
+        "maintainers": [
+          "@haidyi"
         ]
       }
     },
