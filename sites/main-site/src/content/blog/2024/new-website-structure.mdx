@@ -15,11 +15,11 @@ label:
 import subsites from "@assets/images/blog/new-website-structure/sub-site-meme.png";
 import horsesizedduck from "@assets/images/blog/new-website-structure/horse-sized-duck.jpg";
 import harderstronger from "@assets/images/blog/new-website-structure/harder-stronger.gif";
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 
 # Build big
 
-Nearly two years ago we rebuilt the nf-core website from the ground up with [Astro](https://astro.build/). The website is now comprised of over 6500 pages, featuring content for every pipeline release as well as blog posts, documentation, events and more. All these pages are built and deployed to the live server twice a day, in addition to building previews for every pull request against the main branch. The build process has become longer and longer as the site grows, eventually took over 10 minutes. We could reduce the build time a bit, but more than 5 minutes is an annoyingly long time to wait for a deployment preview, and also a waste a lot of resources when the majority of pages are unchanged.
+Nearly two years ago we rebuilt the nf-core website from the ground up with [Astro](https://Astro.build/). The website is now comprised of over 6500 pages, featuring content for every pipeline release as well as blog posts, documentation, events and more. All these pages are built and deployed to the live server twice a day, in addition to building previews for every pull request against the main branch. The build process has become longer and longer as the site grows, eventually took over 10 minutes. We could reduce the build time a bit, but more than 5 minutes is an annoyingly long time to wait for a deployment preview, and also a waste a lot of resources when the majority of pages are unchanged.
 
 # Divide and conquer
 
@@ -87,7 +87,7 @@ We are using [npm workspaces](https://docs.npmjs.com/cli/v7/using-npm/workspaces
 We tried [pnpm](https://pnpm.io/) which should be even faster and better optimised for this task, but never got it to run
 completely, whilst _npm workspaces_ worked out of the box.
 
-Every sub-site is a complete Astro project with its own `astro.config.mjs` and `package.json`,
+Every sub-site is a complete Astro project with its own `Astro.config.mjs` and `package.json`,
 but the components and layouts are shared.
 We accomplished this by keeping them in `sites/main-site/src` and setting aliases for the relative links
 to `sites/main-site` in the respective sub-sites. This kept the required code changes to a minimum.
@@ -133,7 +133,7 @@ This only happens when previewing a single sub-site and should not happen on the
 
 # Additional Changes
 
-We couldn't update to Astro 4 with the old website structure, because it increased the build time to > 20 minutes leading to a timeout on netlify. With the new structure, we are now able to use newer Astro versions and benefit from the new features and optimizations, including [content collection caching](https://astro.build/blog/astro-350/#content-collections-build-cache-experimental), decreasing the build time for repeated builds even more.
+We couldn't update to Astro 4 with the old website structure, because it increased the build time to > 20 minutes leading to a timeout on netlify. With the new structure, we are now able to use newer Astro versions and benefit from the new features and optimizations, including [content collection caching](https://Astro.build/blog/Astro-350/#content-collections-build-cache-experimental), decreasing the build time for repeated builds even more.
 
 <Image
     src={harderstronger}
