@@ -8,7 +8,8 @@ publishedDate: "2025-09-29"
 reporter:
   - vagkaratzas
 reviewer:
-  - vagkaratzas
+  - ewels
+  - mashehu
 pipelines:
   - name: proteinfamilies
     versions: ["1.3.0"]
