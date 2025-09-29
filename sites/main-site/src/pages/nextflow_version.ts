@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import octokit from '@components/octokit';
+import { octokit } from '@components/octokit';
 import type { OctokitResponse } from '@octokit/types';
 
 export const GET: APIRoute = async ({ params, request }) => {
