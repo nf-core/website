@@ -1,7 +1,7 @@
 ---
 title: Final family representative sequences are faulty in proteinfamilies pipeline 1.3.0
 subtitle: Bug inside the extract_family_reps.py script of v1.3.0
-category: pipelines
+category: [ pipelines ]
 type: known_regression
 severity: high
 publishedDate: "2025-09-29"
