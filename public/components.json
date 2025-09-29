@@ -47000,6 +47000,115 @@
       }
     },
     {
+      "name": "cramino",
+      "path": "modules/nf-core/cramino/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cramino",
+        "description": "Quality assessment of long-read bam files using cramino.",
+        "keywords": [
+          "quality assessment",
+          "bam",
+          "long-read",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cramino": {
+              "description": "A tool for very fast quality assessment of long read cram/bam files.",
+              "homepage": "https://github.com/wdecoster/cramino",
+              "documentation": "https://github.com/wdecoster/cramino#readme",
+              "tool_dev_url": "https://github.com/wdecoster/cramino",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of BAM/CRAM file",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": []
+              }
+            }
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Text file containing summary statistics of the long-read data",
+                  "pattern": "*.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "arrow": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.arrow": {
+                  "type": "file",
+                  "description": "Arrow file containing summary statistics of the long-read data",
+                  "pattern": "*.arrow",
+                  "ontologies": []
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@inemesb"
+        ],
+        "maintainers": [
+          "@inemesb"
+        ]
+      }
+    },
+    {
       "name": "crisprcleanr_normalize",
       "path": "modules/nf-core/crisprcleanr/normalize/meta.yml",
       "type": "module",
@@ -135073,6 +135182,133 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "modkit_repair",
+      "path": "modules/nf-core/modkit/repair/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "modkit_repair",
+        "description": "Modkit is a bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data. The command `modkit reapir` is used for repairing the MM/ML tags on trimmed or hard-clipped ONT reads.",
+        "keywords": [
+          "methylation",
+          "ont",
+          "long-read"
+        ],
+        "tools": [
+          {
+            "modkit": {
+              "description": "A bioinformatics tool for working with modified bases in Oxford Nanopore sequencing data.",
+              "homepage": "https://nanoporetech.github.io/modkit/",
+              "documentation": "https://nanoporetech.github.io/modkit/",
+              "tool_dev_url": "https://github.com/nanoporetech/modkit",
+              "licence": [
+                "Oxford Nanopore Technologies PLC. Public License Version 1.0"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "before_trim": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "after_trim": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Sorted BAM file",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "File for debug logs to be written to",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1678"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jkh00"
+        ],
+        "maintainers": [
+          "@jkh00"
+        ]
+      }
     },
     {
       "name": "molkartgarage_clahe",
