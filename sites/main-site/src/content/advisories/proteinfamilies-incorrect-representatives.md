@@ -6,8 +6,7 @@ type: known_regression
 severity: high
 publishedDate: "2025-09-29"
 reporter:
-  - EvangelosKaratzas
-    github: vagkaratzas
+  - vagkaratzas
 reviewer:
   - vagkaratzas
 pipelines:
@@ -27,8 +26,9 @@ references:
 
 # Issue
 
-The then updated python script `extract_family_reps.py` contained a bug where all sequences from a fasta file would be concatenated to become the family representative sequence, instead of just getting the first sequence of the file.
+The python script `extract_family_reps.py` in this version contained a bug where all sequences from a fasta file would be concatenated to become the family representative sequence, instead of just getting the first sequence of the file.
 
 # Resolution
 
 The relevant python function was updated to correctly extract just the first sequence per family.
+The fixed version is available in version 1.3.1 onwards.
