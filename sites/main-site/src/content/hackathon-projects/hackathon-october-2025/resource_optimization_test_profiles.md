@@ -1,6 +1,6 @@
 ---
 title: Resource optimization for all nf-core test profiles
-category: Infrastructure
+category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C06MD9L16UF
 image: "/assets/images/events/2025/hackathon-barcelona/optimize_resources_config_profile_image.jpg"
