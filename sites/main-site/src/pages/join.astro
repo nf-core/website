@@ -214,7 +214,7 @@ const headings = [
 
     <h1 id="workadventure" class="mt-5">
         <span class="join-pull-img bg-body">
-            <Icon name="workadventure" alt="WorkAdventu.re logo" height="120px" width="120px" style="fill: inherit" />
+            <Icon name="workadventure" alt="WorkAdventu.re logo" height="120px" width="120px" />
         </span>
         WorkAdventure
         <a href="
@@ -239,7 +239,10 @@ const headings = [
         float: right;
         padding-left: 1.5rem;
     }
-    :global([data-icon="workadventure"] g) {
-        fill: var(--bs-body-color);
+    :global([data-icon="workadventure"]) {
+        color: #1b2a41;
+    }
+    :global([data-bs-theme="dark"]) :global([data-icon="workadventure"]) {
+        color: var(--bs-body-color);
     }
 </style>
