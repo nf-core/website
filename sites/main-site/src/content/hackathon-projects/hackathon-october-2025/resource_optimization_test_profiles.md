@@ -4,7 +4,7 @@ category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C06MD9L16UF
 image: "/assets/images/events/2025/hackathon-barcelona/optimize_resources_config_profile_image.jpg"
-image_alt: "Shouting cartoon figure with the caption "Optimize all the things:"
+image_alt: "Shouting cartoon figure with the caption 'Optimize all the things'"
 leaders:
   flowuenne:
     name: Florian Wuennemann
@@ -19,9 +19,10 @@ This project builds on previous optimization work documented at: https://github.
 
 ## Goals
 
-1. Develop automated tooling to generate optimized resource configurations for each nf-core pipeline
-2. Integrate this automation with existing CI/CD workflows and AWS Megatests
-3. Create a system that automatically opens pull requests with optimized configurations after successful test runs
-4. Establish a standardized approach for resource optimization across all nf-core pipelines
+Since this project aims at optimizing all nf-core pipeline test profiles, it is probably more suited for experienced Nextflow / nf-core contributors.
+
+1. Develop automated tooling to generate optimized resource configurations for each nf-core pipeline (Difficulty: Medium)
+2. Integrate this automation with existing CI/CD workflows and AWS Megatests (Difficulty: Medium/Hard)
+3. Create a system that automatically applies / adds optimized configurations after successful AWS Megatest runs (Difficulty: Hard)
 
 The end result will be more efficient test profiles that reduce computational overhead while maintaining testing reliability.
