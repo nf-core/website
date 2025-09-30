@@ -4,7 +4,7 @@ category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C06MD9L16UF
 image: "/assets/images/events/2025/hackathon-barcelona/optimize_resources_config_profile_image.jpg"
-image_alt: "Optimize all the things"
+image_alt: "Shouting cartoon figure with the caption "Optimize all the things:"
 leaders:
   flowuenne:
     name: Florian Wuennemann
