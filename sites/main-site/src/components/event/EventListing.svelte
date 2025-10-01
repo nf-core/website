@@ -11,7 +11,6 @@
         currentEvents: CollectionEntry<"events">[];
     }
     let { events = [], currentFilters, currentEvents = $bindable() }: Props = $props();
-    console.log("currentFilters", currentFilters);
     let filteredEvents = $state(events);
     const filterByType = (event: CollectionEntry<"events">) => {
         if ($CurrentFilter.find((f) => f.name === event.data.type)) {
