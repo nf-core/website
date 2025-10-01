@@ -244491,6 +244491,133 @@
       }
     },
     {
+      "name": "fasta_index_methylseq",
+      "path": "subworkflows/nf-core/fasta_index_methylseq/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_index_methylseq",
+        "description": "Generate index files from reference fasta for bismark, bwameth and bwamem aligners",
+        "keywords": [
+          "bismark",
+          "bwameth",
+          "bwamem",
+          "prepare genome",
+          "index"
+        ],
+        "components": [
+          "untar",
+          "gunzip",
+          "bismark/genomepreparation",
+          "bwameth/index",
+          "bwa/index",
+          "samtools/faidx"
+        ],
+        "input": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fa/fa.gz}"
+            }
+          },
+          {
+            "fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "bismark_index": {
+              "type": "file",
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(bismark_index) ]\n"
+            }
+          },
+          {
+            "bwameth_index": {
+              "type": "file",
+              "description": "Bwameth genome index files\nStructure: [ val(meta), path(bwameth_index) ]\n"
+            }
+          },
+          {
+            "bwamem_index": {
+              "type": "file",
+              "description": "Bwamem genome index files\nStructure: [ val(meta), path(bwamem_index) ]\n"
+            }
+          },
+          {
+            "aligner": {
+              "type": "string",
+              "description": "Aligner name (bismark, bismark_hisat, or bwameth)\n"
+            }
+          },
+          {
+            "collecthsmetrics": {
+              "type": "boolean",
+              "description": "Whether to run picard collecthsmetrics tool\n"
+            }
+          },
+          {
+            "use_mem2": {
+              "type": "boolean",
+              "description": "Build a mem2 index when bwameth is chosen as an aligner, and an index path is not supplied\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fasta": {
+              "type": "file",
+              "description": "Reference genome\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fa"
+            }
+          },
+          {
+            "fasta_index": {
+              "type": "file",
+              "description": "Reference genome index file\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.fai"
+            }
+          },
+          {
+            "bismark_index": {
+              "type": "file",
+              "description": "Bismark genome index files\nStructure: [ val(meta), path(bismark_index) ]\npattern: \"BismarkIndex\"\n"
+            }
+          },
+          {
+            "bwameth_index": {
+              "type": "file",
+              "description": "Bwameth genome index files\nStructure: [ val(meta), path(bwameth_index) ]\npattern: \"index\"\n"
+            }
+          },
+          {
+            "bwamem_index": {
+              "type": "file",
+              "description": "Bwamem genome index files\nStructure: [ val(meta), path(bwamem_index) ]\npattern: \"index\"\n"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@sateeshperi",
+          "@dcarrillox",
+          "@eduard.watchmaker"
+        ],
+        "maintainers": [
+          "@sateeshperi",
+          "@dcarrillox",
+          "@eduard.watchmaker"
+        ]
+      }
+    },
+    {
       "name": "fasta_newick_epang_gappa",
       "path": "subworkflows/nf-core/fasta_newick_epang_gappa/meta.yml",
       "type": "subworkflow",
