@@ -1757,6 +1757,18 @@ Sends a HTTP GET request to the Anaconda remote API.
 
 Check if the current version of nf-core is outdated
 
+### `nf_core.utils.check_nextflow_version(minimal_nf_version: tuple[int, int, int, bool], silent=False) → bool{:python}`
+
+Check the version of Nextflow installed on the system.
+
+- **Parameters:**
+  - **minimal_nf_version** (_tuple_ \*\[\*_int_ _,_ _int_ _,_ _int_ _,_ _bool_ _]_) – The minimal version of Nextflow required.
+  - **silent** (_bool_) – Whether to log the version or not.
+- **Returns:**
+  True if the installed version is greater than or equal to minimal_nf_version
+- **Return type:**
+  bool
+
 ### `nf_core.utils.custom_yaml_dumper(){:python}`
 
 Overwrite default PyYAML output to make Prettier YAML linting happy
@@ -1801,6 +1813,10 @@ Returns the most recent container versions by default.
   - **A ValueError**\*\*,\*\* **if the package name can not be found** **(\*\***404\***\*)** –
 
 ### `nf_core.utils.get_first_available_path(directory: Path | str, paths: list[str]) → Path | None{:python}`
+
+### `nf_core.utils.get_nf_version() → tuple[int, int, int, bool] | None{:python}`
+
+Get the version of Nextflow installed on the system.
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
@@ -1920,6 +1936,8 @@ Poll the nf-core website API
 Takes argument api_url for URL
 
 Expects API response to be valid JSON and contain a top-level ‘status’ key.
+
+### `nf_core.utils.pretty_nf_version(version: tuple[int, int, int, bool]) → str{:python}`
 
 ### `nf_core.utils.prompt_pipeline_release_branch(wf_releases: list[dict[str, Any]], wf_branches: dict[str, Any], multiple: bool = False) → tuple[Any, list[str]]{:python}`
 
