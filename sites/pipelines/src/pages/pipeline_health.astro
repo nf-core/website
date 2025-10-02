@@ -350,92 +350,54 @@ pipelines.sort((a, b) => {
                                     "TEMPLATE branch: branch must exist",
                                     " border-end",
                                 )}
-                                {/* Branch protection: master/main */}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
+                                {/* Branch protection */}
+                                {[
+                                    { branch: mainOrMasterBranch, reviewsRequired: 2 },
+                                    { branch: "dev", reviewsRequired: 1 },
+                                ].map(({ branch, reviewsRequired }) =>
+                                    [
+                                        "status_checks",
+                                        "require_non_stale_review",
+                                        "require_codeowner_review",
+                                        "required_reviews",
+                                        "enforce_admins",
+                                    ].map((field, idx) => {
+                                        const value = pipeline[`${branch}_branch_protection_${field}`];
+                                        const usesRuleset = pipeline[`${branch}_uses_ruleset`];
+                                        const test =
+                                            field === "status_checks"
+                                                ? value
+                                                : field === "required_reviews"
+                                                  ? value !== -1
+                                                      ? branch === "dev"
+                                                          ? value >= 1
+                                                          : value >= 2
+                                                      : value
+                                                  : value !== -1
+                                                    ? !value
+                                                    : value;
+                                        const message =
+                                            field === "status_checks"
+                                                ? `minimum set of CI tests must pass${branch === mainOrMasterBranch ? `. Current CI tests: ${value}` : ""}`
+                                                : field === "require_non_stale_review"
+                                                  ? "reviews not marked stale after new commits"
+                                                  : field === "require_codeowner_review"
+                                                    ? "code owner reviews not required"
+                                                    : field === "required_reviews"
+                                                      ? `${reviewsRequired} review${reviewsRequired > 1 ? "s" : ""} required`
+                                                      : "do not enforce rules for admins";
+
+                                        return getCell(
+                                            test,
+                                            pipeline.repository_url +
+                                                "/settings" +
+                                                (usesRuleset ? "/rules" : "/branches"),
+                                            `${branch} branch: ${message}`,
+                                            idx === 4 ? "border-end" : "",
+                                        );
+                                    }),
                                 )}
-                                {getCell(
-                                    !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: reviews not marked stale after new commits`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`] !== -1
-                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`]
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: code owner reviews not required`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] !== -1
-                                        ? pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] === 2
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: 2 reviews required`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`] !== -1
-                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`]
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: do not enforce rules for admins`,
-                                    " border-end ",
-                                )}
-                                {/* Branch protection: dev */}
-                                {getCell(
-                                    pipeline.dev_branch_protection_status_checks,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: minimum set of CI tests must pass",
-                                )}
-                                {getCell(
-                                    !pipeline.dev_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: reviews not marked stale after new commits",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_require_codeowner_review !== -1
-                                        ? !pipeline.dev_branch_protection_require_codeowner_review
-                                        : pipeline.dev_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: code owner reviews not required",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_required_reviews !== -1
-                                        ? pipeline.dev_branch_protection_required_reviews >= 1
-                                        : pipeline.dev_branch_protection_required_reviews,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: 1 review required",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_enforce_admins !== -1
-                                        ? !pipeline.dev_branch_protection_enforce_admins
-                                        : pipeline.dev_branch_protection_enforce_admins,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: do not enforce rules for admins",
-                                    " border-end ",
-                                )}
+
                                 {/* Plugins */}
                                 {["nf-validation", "nf-schema", "nf-core-utils", "nf-prov"].map((name, idx) => [
                                     getCell(
