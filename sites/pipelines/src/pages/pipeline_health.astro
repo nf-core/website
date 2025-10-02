@@ -146,7 +146,7 @@ pipelines.sort((a, b) => {
                         >Branch protection: <code>dev</code></th
                     >
                     {
-                        ["nf-validation", "nf-schema", "nf-core-utils", "nf-prov"].map((plugin) => {
+                        ["nf-validation", "nf-schema", "nf-core-utils", "nf-co2footprint", "nf-prov"].map((plugin) => {
                             return (
                                 <th
                                     colspan="2"
@@ -399,23 +399,27 @@ pipelines.sort((a, b) => {
                                 )}
 
                                 {/* Plugins */}
-                                {["nf-validation", "nf-schema", "nf-core-utils", "nf-prov"].map((name, idx) => [
-                                    getCell(
-                                        pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((p) =>
-                                            p.startsWith(name),
-                                        )
-                                            ? 1
-                                            : 0,
-                                        pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                        `${name} plugin not in nextflow.config in ${mainOrMasterBranch}`,
-                                        idx === 1 ? "border-start" : "",
-                                    ),
-                                    getCell(
-                                        pipeline.dev_nextflow_config_plugins?.some((p) => p.startsWith(name)) ? 1 : 0,
-                                        pipeline.repository_url + "/blob/dev/nextflow.config",
-                                        `${name} plugin not in nextflow.config in dev`,
-                                    ),
-                                ])}
+                                {["nf-validation", "nf-schema", "nf-core-utils", "nf-co2footprint", "nf-prov"].map(
+                                    (name, idx) => [
+                                        getCell(
+                                            pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((p) =>
+                                                p.startsWith(name),
+                                            )
+                                                ? 1
+                                                : 0,
+                                            pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                            `${name} plugin not in nextflow.config in ${mainOrMasterBranch}`,
+                                            idx === 1 ? "border-start" : "",
+                                        ),
+                                        getCell(
+                                            pipeline.dev_nextflow_config_plugins?.some((p) => p.startsWith(name))
+                                                ? 1
+                                                : 0,
+                                            pipeline.repository_url + "/blob/dev/nextflow.config",
+                                            `${name} plugin not in nextflow.config in dev`,
+                                        ),
+                                    ],
+                                )}
                             </tr>
                         );
                     })
