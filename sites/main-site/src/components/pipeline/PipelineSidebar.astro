@@ -23,6 +23,10 @@ export interface Props {
                 modules?: string[];
                 subworkflows?: string[];
             };
+            co2footprint_files: {
+                co2e_emissions: number;
+                energy_consumption: number;
+            };
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -176,6 +180,12 @@ const subworkflows: string[] = meta.releases[0].components?.subworkflows || [];
                 title: "last update",
                 value: formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true }),
             },
+        ]}
+    />
+    <SidebarStatsRow
+        content={[
+            { title: "CO<sub>2</sub>e emissions", value: meta.releases[0].co2footprint_files.co2e_emissions + "g" },
+            { title: "energy consumption", value: meta.releases[0].co2footprint_files.energy_consumption + "Wh" },
         ]}
     />
     {
