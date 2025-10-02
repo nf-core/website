@@ -27,148 +27,139 @@ pipelines.sort((a, b) => {
         <table class="table table-hover table-sm w-100">
             <thead class="">
                 <tr class="sticky-top-under z-1">
-                    <th class="small fw-normal text-nowrap p-1">Pipeline Name</th>
+                    <th class="small fw-normal p-1">Pipeline Name</th>
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Has at least one release"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Released</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Last release is after latest tools release (so up to date with template)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Released after tools</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Master/Main branch is same commit as the last release"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top"><code>master</code>/<code>main</code> = release</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Has a nextflow_schema.json file (in last release, dev if no release)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">JSON Schema</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Has more than one commit to dev branch (not just initial creation commit)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Dev activity</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Has a modules directory, suggesting that it's a DSL2 pipeline (in last release, dev if no release)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">DSL2</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Uses nf-test"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">nf-test</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Uses nf-test in dev branch"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">nf-test in dev</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Disable wikis"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Wikis</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Enable issues"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Issues</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Allow merge commits"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Merge commits</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Allow rebase merging"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Rebase merging</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Do not allow squash merges"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Squash merges</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="default branch ✅ `main` or ⚠️ `master` (released) or `dev` (no releases)"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Default branch</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="`defaultBranch` set in manifest of `nextflow.config` and matches default branch"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Branch in manifest</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Minimum keywords set"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Keywords</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="Description must be set"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Description</th
                     >
                     <th
-                        class="small fw-normal text-nowrap p-1"
+                        class="small fw-normal p-1"
                         title="URL should be set to https://nf-co.re/[PIPELINE-NAME]"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Repo URL</th
                     >
-                    <th colspan="2" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top">Team access</th
-                    >
-                    <th colspan="3" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
-                        >Branches exist</th
-                    >
+                    <th colspan="2" class="small fw-normal p-1 px-3" data-bs-placement="top">Team access</th>
+                    <th colspan="3" class="small fw-normal p-1 px-3" data-bs-placement="top">Branches exist</th>
 
-                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                    <th colspan="5" class="small fw-normal p-1 px-3" data-bs-placement="top"
                         >Branch protection: <code>master</code>/<code>main</code> branch</th
                     >
-                    <th colspan="5" class="small fw-normal text-nowrap p-1 px-3" data-bs-placement="top"
+                    <th colspan="5" class="small fw-normal p-1 px-3" data-bs-placement="top"
                         >Branch protection: <code>dev</code></th
                     >
-                    <th
-                        colspan="2"
-                        class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-validation plugin should not be in nextflow.config"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top">Plugins: nf-validation</th
-                    >
-                    <th
-                        colspan="4"
-                        class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-schema plugin in nextflow.config"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top">Plugins: nf-schema</th
-                    >
-                    <th
-                        colspan="4"
-                        class="small fw-normal text-nowrap text-center p-1 px-3"
-                        title="nf-prov plugin in nextflow.config"
-                        data-bs-toggle="tooltip"
-                        data-bs-placement="top">Plugins: nf-prov</th
-                    >
+                    {
+                        ["nf-validation", "nf-schema", "nf-core-utils", "nf-prov"].map((plugin) => {
+                            return (
+                                <th
+                                    colspan="2"
+                                    class="small fw-normal text-center p-1 px-3"
+                                    title="nf-validation plugin should not be in nextflow.config"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                >
+                                    Plugins: {plugin}
+                                </th>
+                            );
+                        })
+                    }
                 </tr>
             </thead>
             <tbody>
@@ -359,171 +350,72 @@ pipelines.sort((a, b) => {
                                     "TEMPLATE branch: branch must exist",
                                     " border-end",
                                 )}
-                                {/* Branch protection: master/main */}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: minimum set of CI tests must pass. Current CI tests: ${pipeline[`${mainOrMasterBranch}_branch_protection_status_checks`]}`,
+                                {/* Branch protection */}
+                                {[
+                                    { branch: mainOrMasterBranch, reviewsRequired: 2 },
+                                    { branch: "dev", reviewsRequired: 1 },
+                                ].map(({ branch, reviewsRequired }) =>
+                                    [
+                                        "status_checks",
+                                        "require_non_stale_review",
+                                        "require_codeowner_review",
+                                        "required_reviews",
+                                        "enforce_admins",
+                                    ].map((field, idx) => {
+                                        const value = pipeline[`${branch}_branch_protection_${field}`];
+                                        const usesRuleset = pipeline[`${branch}_uses_ruleset`];
+                                        const test =
+                                            field === "status_checks"
+                                                ? value
+                                                : field === "required_reviews"
+                                                  ? value !== -1
+                                                      ? branch === "dev"
+                                                          ? value >= 1
+                                                          : value >= 2
+                                                      : value
+                                                  : value !== -1
+                                                    ? !value
+                                                    : value;
+                                        const message =
+                                            field === "status_checks"
+                                                ? `minimum set of CI tests must pass${branch === mainOrMasterBranch ? `. Current CI tests: ${value}` : ""}`
+                                                : field === "require_non_stale_review"
+                                                  ? "reviews not marked stale after new commits"
+                                                  : field === "require_codeowner_review"
+                                                    ? "code owner reviews not required"
+                                                    : field === "required_reviews"
+                                                      ? `${reviewsRequired} review${reviewsRequired > 1 ? "s" : ""} required`
+                                                      : "do not enforce rules for admins";
+
+                                        return getCell(
+                                            test,
+                                            pipeline.repository_url +
+                                                "/settings" +
+                                                (usesRuleset ? "/rules" : "/branches"),
+                                            `${branch} branch: ${message}`,
+                                            idx === 4 ? "border-end" : "",
+                                        );
+                                    }),
                                 )}
-                                {getCell(
-                                    !pipeline[`${mainOrMasterBranch}_branch_protection_require_non_stale_review`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: reviews not marked stale after new commits`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`] !== -1
-                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`]
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_require_codeowner_review`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: code owner reviews not required`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] !== -1
-                                        ? pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`] === 2
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_required_reviews`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: 2 reviews required`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`] !== -1
-                                        ? !pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`]
-                                        : pipeline[`${mainOrMasterBranch}_branch_protection_enforce_admins`],
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline[`${mainOrMasterBranch}_uses_ruleset`] ? "/rules" : "/branches"),
-                                    `${mainOrMasterBranch} branch: do not enforce rules for admins`,
-                                    " border-end ",
-                                )}
-                                {/* Branch protection: dev */}
-                                {getCell(
-                                    pipeline.dev_branch_protection_status_checks,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: minimum set of CI tests must pass",
-                                )}
-                                {getCell(
-                                    !pipeline.dev_branch_protection_require_non_stale_review,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: reviews not marked stale after new commits",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_require_codeowner_review !== -1
-                                        ? !pipeline.dev_branch_protection_require_codeowner_review
-                                        : pipeline.dev_branch_protection_require_codeowner_review,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: code owner reviews not required",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_required_reviews !== -1
-                                        ? pipeline.dev_branch_protection_required_reviews >= 1
-                                        : pipeline.dev_branch_protection_required_reviews,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: 1 review required",
-                                )}
-                                {getCell(
-                                    pipeline.dev_branch_protection_enforce_admins !== -1
-                                        ? !pipeline.dev_branch_protection_enforce_admins
-                                        : pipeline.dev_branch_protection_enforce_admins,
-                                    pipeline.repository_url +
-                                        "/settings" +
-                                        (pipeline.dev_uses_ruleset ? "/rules" : "/branches"),
-                                    "dev branch: do not enforce rules for admins",
-                                    " border-end ",
-                                )}
+
                                 {/* Plugins */}
-                                {
-                                    // nf-validation should be in the nextflow.config
+                                {["nf-validation", "nf-schema", "nf-core-utils", "nf-prov"].map((name, idx) => [
                                     getCell(
-                                        pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
-                                            plugin.startsWith("nf-validation"),
+                                        pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((p) =>
+                                            p.startsWith(name),
                                         )
-                                            ? 0
-                                            : 1,
+                                            ? 1
+                                            : 0,
                                         pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                        `nf-validation plugin not in nextflow.config in ${mainOrMasterBranch}`,
-                                    )
-                                }
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-validation"),
-                                    )
-                                        ? 0
-                                        : 1,
-                                    pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-validation plugin not in nextflow.config in dev",
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
-                                        plugin.startsWith("nf-schema"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                    `nf-schema plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-schema"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
-                                    " border-start ",
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
-                                        plugin.startsWith("nf-schema"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                    "nf-schema plugin must be pinned",
-                                )}
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-schema"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-schema plugin in nextflow.config in dev",
-                                )}
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-schema"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-schema plugin must be pinned",
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
-                                        plugin.startsWith("nf-prov"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                    `nf-prov plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-prov"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
-                                )}
-                                {getCell(
-                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
-                                        plugin.startsWith("nf-prov@"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
-                                    "nf-prov plugin must be pinned",
-                                )}
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-prov"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-prov plugin in nextflow.config in dev",
-                                )}
-                                {getCell(
-                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
-                                        plugin.startsWith("nf-prov@"),
-                                    ) ?? 0,
-                                    pipeline.repository_url + "/blob/dev/nextflow.config",
-                                    "nf-prov plugin must be pinned",
-                                )}
+                                        `${name} plugin not in nextflow.config in ${mainOrMasterBranch}`,
+                                        idx === 1 ? "border-start" : "",
+                                    ),
+                                    getCell(
+                                        pipeline.dev_nextflow_config_plugins?.some((p) => p.startsWith(name)) ? 1 : 0,
+                                        pipeline.repository_url + "/blob/dev/nextflow.config",
+                                        `${name} plugin not in nextflow.config in dev`,
+                                    ),
+                                ])}
                             </tr>
                         );
                     })
@@ -559,6 +451,9 @@ pipelines.sort((a, b) => {
 </PageLayout>
 <style lang="scss">
     @import "@styles/_variables.scss";
+    th {
+        max-width: 10rem;
+    }
     .status {
         pointer: hand;
     }
