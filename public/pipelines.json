@@ -26081,7 +26081,7 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/multiplesequencealign",
             "created_at": "2023-07-24T14:30:12Z",
-            "updated_at": "2025-10-02T01:27:27Z",
+            "updated_at": "2025-10-02T11:57:09Z",
             "pushed_at": "2025-07-09T08:24:51Z",
             "homepage": "https://nf-co.re/multiplesequencealign",
             "size": 20538,
@@ -26290,7 +26290,17 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": {
+                        "filename": "co2footprint_summary_2025-05-28_13-38-21.txt",
+                        "co2e_emissions": 169.72,
+                        "energy_consumption": 357.36
+                    }
                 },
                 {
                     "tag_name": "1.1.0",
@@ -26446,7 +26456,13 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
