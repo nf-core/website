@@ -164,7 +164,14 @@ pipelines.sort((a, b) => {
                     >
                     <th
                         colspan="4"
-                        class="small fw-normal text-nowrap text-center p-1 px-3"
+                        class="small fw-normal text-center p-1 px-3"
+                        title="nf-prov plugin in nextflow.config"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top">Plugins: nf-core-utils</th
+                    >
+                    <th
+                        colspan="4"
+                        class="small fw-normal text-center p-1 px-3"
                         title="nf-prov plugin in nextflow.config"
                         data-bs-toggle="tooltip"
                         data-bs-placement="top">Plugins: nf-prov</th
@@ -523,6 +530,35 @@ pipelines.sort((a, b) => {
                                     ) ?? 0,
                                     pipeline.repository_url + "/blob/dev/nextflow.config",
                                     "nf-prov plugin must be pinned",
+                                )}
+
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-core-utils"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    `nf-core-utils plugin version ${pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.filter((plugin) => plugin.startsWith("nf-core-utils"))[0]?.split("@")[1] ?? "unpinned"} in nextflow.config in ${mainOrMasterBranch}`,
+                                )}
+                                {getCell(
+                                    pipeline[`${mainOrMasterBranch}_nextflow_config_plugins`]?.some((plugin) =>
+                                        plugin.startsWith("nf-core-utils@"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + `/blob/${mainOrMasterBranch}/nextflow.config`,
+                                    "nf-core-utils plugin must be pinned",
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-core-utils"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-core-utils plugin in nextflow.config in dev",
+                                )}
+                                {getCell(
+                                    pipeline.dev_nextflow_config_plugins?.some((plugin) =>
+                                        plugin.startsWith("nf-core-utils@"),
+                                    ) ?? 0,
+                                    pipeline.repository_url + "/blob/dev/nextflow.config",
+                                    "nf-core-utils plugin must be pinned",
                                 )}
                             </tr>
                         );
