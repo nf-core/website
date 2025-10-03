@@ -1,0 +1,22 @@
+{
+  "name": "nf-core.astro",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro Dev Server",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": ["astro-build.astro-vscode", "editorconfig.editorconfig", "esbenp.prettier-vscode"]
+    }
+  },
+  "waitFor": "onCreateCommand",
+  "postAttachCommand": {
+    "server": "npm run dev --workspace sites/main-site -- --host"
+  }
+}
