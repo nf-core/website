@@ -1,5 +1,5 @@
 ---
-title: SeqSubmit: Automated Data Submission
+title: "SeqSubmit: Automated Data Submission"
 category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C09F9HR0A9E
