@@ -35,15 +35,15 @@ For this hackathon, we'll focus on creating reusable nf-core subworkflows for **
 
 1. Create missing nf-core modules for:
 
-- [`assembly_uploader`](https://github.com/EBI-Metagenomics/assembly_uploader) (MGnify's tool for metagenomic assembly submission)
-- [`genome_uploader`](https://github.com/EBI-Metagenomics/genome_uploader) (MGnify's tool for MAG/genome submission)
-- [`webin-cli`](https://ena-docs.readthedocs.io/en/latest/submit/general-guide/webin-cli.html) (ENA's general submission client)
+- [`assembly_uploader`](https://github.com/EBI-Metagenomics/assembly_uploader) (MGnify's tool for metagenomic assembly submission) (Difficulty: Easy/Medium)
+- [`genome_uploader`](https://github.com/EBI-Metagenomics/genome_uploader) (MGnify's tool for MAG/genome submission) (Difficulty: Easy/Medium)
+- [`webin-cli`](https://ena-docs.readthedocs.io/en/latest/submit/general-guide/webin-cli.html) (ENA's general submission client) (Difficulty: Easy/Medium)
 
-2. Write a `nf-core/mag` samplesheet generator for `nf-core/seqsubmit`.
-3. **Success**: Develop an nf-core subworkflow for uploading metagenomic assemblies with proper metadata handling.
-4. **Absolute Success**: Develop an nf-core subworkflow for uploading MAGs and bins, taking pre-calculated quality statistics (completeness, contamination, coverage) and taxonomic assignments as input.
+2. Write a `nf-core/mag` samplesheet generator for `nf-core/seqsubmit` (Difficulty: Medium/Hard).
+3. **Success**: Develop an nf-core subworkflow for uploading metagenomic assemblies with proper metadata handling (Difficulty: Hard).
+4. **Absolute Success**: Develop an nf-core subworkflow for uploading MAGs and bins, taking pre-calculated quality statistics (completeness, contamination, coverage) and taxonomic assignments as input (Difficulty: Very Hard).
 
-Let's make data submission more friendly —one subworkflow at a time! 🚀
+Let's make data submission more friendly—one subworkflow at a time! 🚀
 
 ## Resources
 
