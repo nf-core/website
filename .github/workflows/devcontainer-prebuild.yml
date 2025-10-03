@@ -27,3 +27,5 @@ jobs:
           imageName: ghcr.io/${{ github.repository }}/devcontainer
           cacheFrom: ghcr.io/${{ github.repository }}/devcontainer
           push: always
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
