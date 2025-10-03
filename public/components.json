@@ -26221,7 +26221,7 @@
                 }
               },
               {
-                "*.xml": {
+                "*.xml*": {
                   "type": "file",
                   "description": "File containing blastp hits in XML format",
                   "pattern": "*.{xml}",
@@ -26243,7 +26243,7 @@
                 }
               },
               {
-                "*.tsv": {
+                "*.tsv*": {
                   "type": "file",
                   "description": "File containing blastp hits in tabular format",
                   "pattern": "*.{tsv}",
@@ -26265,7 +26265,7 @@
                 }
               },
               {
-                "*.csv": {
+                "*.csv*": {
                   "type": "file",
                   "description": "File containing blastp hits in comma separated format",
                   "pattern": "*.csv",
