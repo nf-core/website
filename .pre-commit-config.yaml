@@ -9,3 +9,21 @@ repos:
           - prettier-plugin-svelte@3.4.0
           - prettier-plugin-astro@0.14.1
         files: \.(astro|svelte|mdx|md|yml|yaml)$
+  - repo: local
+    hooks:
+      - id: install-mdx2vast
+        name: Install mdx2vast
+        entry: bash -c 'npm list -g mdx2vast || npm install -g https://github.com/edmundmiller/mdx2vast'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+  - repo: https://github.com/errata-ai/vale
+    rev: v3.12.0
+    hooks:
+      - id: vale
+        name: vale sync
+        pass_filenames: false
+        args: [sync]
+      - id: vale
+        args: [--output=line, --minAlertLevel=error]
