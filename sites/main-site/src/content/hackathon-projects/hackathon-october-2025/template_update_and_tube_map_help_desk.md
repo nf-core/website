@@ -1,6 +1,6 @@
 ---
 title: Template Update and Tube-map Help Desk
-category: infrastructure
+category: tooling
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08FKRKPDFV
 image: "/assets/images/events/2025/hackathon-barcelona/unity-team.gif"
