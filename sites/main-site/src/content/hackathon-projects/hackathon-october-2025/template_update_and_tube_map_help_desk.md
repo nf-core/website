@@ -13,8 +13,17 @@ leaders:
 
 ## Project Aim
 
-A new template update just came out before the hackathon, coming with the usual obstacles of integrating them into the `dev` branch.
-In this group we will work on helping
+A new template update just came out before the hackathon (hopefully), coming with the usual obstacles of integrating them into the `dev` branch.
+In this group we will work on helping you go through the template update, review them and celebrate the merge.
+
+What is the best thing to do at a hackathon: procrastination!
+And there is not better procrastination in nf-core than making and polishing a pipeline tube map.
+If you want to start one for your pipeline and want to get some help on how to do it or get an "expert-review" review of your current one, this is your place. Crayons included.
+
+:::warning
+This group will not work on automating the process of creating a tube map.
+![boromir meme with the caption "one does not automate metro maps"](../../../assets/images/events/2025/hackathon-barcelona/one-does-not-automate-metro-maps.png)
+:::
 
 ## Goals (with recommended experience levels)
 
