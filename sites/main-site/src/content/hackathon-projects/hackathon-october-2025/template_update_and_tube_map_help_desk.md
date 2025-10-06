@@ -3,8 +3,8 @@ title: Template Update and Tube-map Help Desk
 category: special-interest-groups
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C08FKRKPDFV
-image: ""
-image_alt: ""
+image: "/assets/images/events/2025/hackathon-barcelona/unity-team.gif"
+image_alt: "two cartoon pengiuns dancing the fusion dance from dragon ball"
 leaders:
   mashehu:
     name: Matthias Hörtenhuber
