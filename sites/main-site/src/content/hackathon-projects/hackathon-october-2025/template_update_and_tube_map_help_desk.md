@@ -22,7 +22,7 @@ If you want to start one for your pipeline and want to get some help on how to d
 
 :::warning
 This group will not work on automating the process of creating a tube map.
-![boromir meme with the caption "one does not automate metro maps"](../../../assets/images/events/2025/hackathon-barcelona/one-does-not-automate-metro-maps.png)
+Doing them manually is part of the process.
 :::
 
 ## Goals (with recommended experience levels)
