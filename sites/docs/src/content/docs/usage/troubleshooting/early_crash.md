@@ -32,7 +32,7 @@ To fix, just re-pull the pipeline's Docker container manually with:
 docker pull nfcore/<pipeline>:dev
 ```
 
-If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with nextflow, by putting this line of code in your nextflow.config file:
+If you work in a `dev` branch, you may also want to consider putting a request for a pull in each run you do with Nextflow, by putting this line of code in your `nextflow.config` file:
 
 ```groovy
 docker {

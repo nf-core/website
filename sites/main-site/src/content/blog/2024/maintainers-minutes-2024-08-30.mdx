@@ -19,7 +19,7 @@ by providing brief summaries of the monthly team meetings.
 ### Seqera Containers
 
 [Phil Ewels](https://github.com/ewels) joined us to chat about migrating to [Seqera Containers](https://seqera.io/containers/) which ties into the [batch modules](https://github.com/nf-core/modules/issues/5828) update we have been discussing in the last few months.
-We agreed on a general structure and refactoring plan to incorporate the new container repository as well as leveraging conda lock files for better reproducibilty.
+We agreed on a general structure and refactoring plan to incorporate the new container repository as well as leveraging Conda lock files for better reproducibilty.
 Phil and [Edmund Miller](https://github.com/edmundmiller) will put together blog posts describing the plan in detail.
 
 ### Renovate
@@ -32,11 +32,11 @@ channels:
     - conda-forge
     - bioconda
 dependencies:
-    # renovate: datasource=conda depName=bioconda/bwa
+    # renovate: datasource=Conda depName=bioconda/bwa
     - bioconda::bwa=0.7.18
-    # renovate: datasource=conda depName=bioconda/samtools
+    # renovate: datasource=Conda depName=bioconda/samtools
     - bioconda::samtools=1.20
-    # renovate: datasource=conda depName=bioconda/htslib
+    # renovate: datasource=Conda depName=bioconda/htslib
     - bioconda::htslib=1.20.0
 ```
 

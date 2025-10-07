@@ -30,7 +30,7 @@ This will bring up a dropdown menu, you will then select the `Codespaces` tab an
 After the Codespace is created, you should see something that looks very similar to a Gitpod environment (please see nf-core's [Gitpod](/docs/tutorials/gitpod/overview) page for more information).
 
 :::note
-An important difference between Gitpod and Codespaces is that `-profile singularity`, and not `-profile docker` will need to be used to run any nextflow commands. Otherwise, the created codespace can be used almost exactly as you would use a Gitpod environment.
+An important difference between Gitpod and Codespaces is that `-profile singularity`, and not `-profile docker` will need to be used to run any Nextflow commands. Otherwise, the created codespace can be used almost exactly as you would use a Gitpod environment.
 :::
 
 ## Dev Containers on Visual Studio Code (VS Code)

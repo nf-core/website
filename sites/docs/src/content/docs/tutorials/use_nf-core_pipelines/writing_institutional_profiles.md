@@ -185,7 +185,7 @@ params {
 
 Note that for the `config_profile_contact`, it is best to indicate a specific person. This will typically be someone who wrote the config (via their name & github handle) or whoever will maintain it at the institution (e.g. email of IT Department, Institution X), i.e. someone who can be contacted if there are questions or problems and how to contact them.
 
-Finally, if you have a common resource directory for the AWS `iGenomes` collection of reference genomes, this can can also go in the `params` scope.
+Finally, if you have a common resource directory for the AWS `iGenomes` collection of reference genomes, this can also go in the `params` scope.
 
 ```nextflow
 params {

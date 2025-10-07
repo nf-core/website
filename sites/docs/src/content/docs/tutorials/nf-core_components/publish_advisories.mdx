@@ -41,7 +41,7 @@ category: ["pipelines", "configuration"],
 reporter: ["nf-core-bot"],
 reviewer: ["MatthiasZepper"],
 nextflowVersions: ["25.04.0", "25.04.1", "25.04.2"],
-nextflowExecutors: ["SLURM", "AWS Batch", "Local"],
+nextflowExecutors: ["Slurm", "AWS Batch", "Local"],
 softwareDependencies: ["Docker", "Singularity"],
 pipelines: [
 { name: "pipeline", versions: ["1.x.x","2.0.x"] },
@@ -122,7 +122,7 @@ nextflowVersions: # Specific Nextflow versions that exhibit this issue
     - "23.10.1"
 
 nextflowExecutors: # Workflow execution environments where this issue occurs
-    - "SLURM" # Specific executor names
+    - "Slurm" # Specific executor names
     - "AWS Batch"
     - "Local"
 

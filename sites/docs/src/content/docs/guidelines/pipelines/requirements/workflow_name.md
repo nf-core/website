@@ -13,7 +13,7 @@ All nf-core pipelines must have consistent naming that adhere to the following r
 - Descriptive and intuitive
 - Must not clash with different data or analysis types
 
-The first two points are to to maximise compatibility with other platforms,
+The first two points are to maximise compatibility with other platforms,
 so that the pipeline assets are named consistently across systems.
 
 We strongly recommend that names are self-descriptive towards the data or analysis type the pipeline will be using or performing.

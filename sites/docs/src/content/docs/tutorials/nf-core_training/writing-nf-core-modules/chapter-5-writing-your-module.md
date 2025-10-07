@@ -147,7 +147,7 @@ If you change your mind after the initial boilerplate file generation, you can a
 You should not use custom label names to specify other 'custom' requirements if you feel your module's typical resource requirements do not match those of set in the nf-core pipeline template's standard labels.
 The default resource specifications that are set for the standard labels can be modified by a pipeline developer when developing a pipeline level (in nf-core pipelines, this happens in the `conf/base.config` file).
 Thus, you should stick with the standard labels, and let pipeline developers 'tune' the modules resources within the pipeline.
-Furthermore a user can also override and refine these resource requirements even further for specific modules within a custom custom config file, by specifying in a `process` block by the module name with `withName:`.
+Furthermore a user can also override and refine these resource requirements even further for specific modules within a custom config file, by specifying in a `process` block by the module name with `withName:`.
 
 This flexibility at the pipeline level means that it is unnecessary to use any non-standard labels, and provides the benefit of 'consistency' between all nf-core modules and nf-core pipelines on how each standard resource is defined.
 
@@ -390,7 +390,7 @@ The boilerplate template already comes with an example samtools command for you,
 At the top of the block you have two standard variables that should not be removed.
 
 - 📛 The`args` variable is how a pipeline developer can 'inject' optional parameters into the command itself.
-  - The `ext.args` comes from the process scope of a nextflow configuration file - in nf-core pipelines this is defined in the `modules.config`
+  - The `ext.args` comes from the process scope of a Nextflow configuration file - in nf-core pipelines this is defined in the `modules.config`
   - More information on this is described in the 'using in pipelines' chapter
 - 📛 The `prefix` variable is used for the default output file basename that all output files should use
   - The default corresponds to the default `id` value of the primary input channel's meta map that all nf-core pipelines use.
@@ -652,7 +652,7 @@ input:
 
 In the default example added by the boilerplate template, you see a single input channel described - one with a meta map and a single path element.
 
-In this section you need to update the the input channel name, the description, pattern, and ontologies.
+In this section you need to update the input channel name, the description, pattern, and ontologies.
 
 The type follows a fixed set of [categories](https://nf-co.re/docs/guidelines/components/modules#input-and-output-channel-types), such as `file`, `integer`, `boolean`.
 
@@ -660,7 +660,7 @@ The description should be descriptive in what they contain or how they should be
 
 The pattern should match the corresponding input expected by the tool itself.
 
-The ontologies section should provide links to respective entry matching the input type within the the controlled vocabulary of the (typically) [EDAM ontology](https://www.ebi.ac.uk/ols4/ontologies/edam).
+The ontologies section should provide links to respective entry matching the input type within the controlled vocabulary of the (typically) [EDAM ontology](https://www.ebi.ac.uk/ols4/ontologies/edam).
 It is up to you how specific to be - whether extremely specific (fastq), or generic (text file).
 
 Note that you will have to make an entry for each of your input channels.
@@ -837,7 +837,7 @@ The only difference is that the 'key' of output _file_ (not the channel) should 
 You can use the `nf-core modules lint` command (described later) to automatically pick up all the output channels and put placeholders elements in for you
 :::
 
-As with the the `input:` block you need to update the type, description, pattern, and ontologies.
+As with the `input:` block you need to update the type, description, pattern, and ontologies.
 
 ### Contributors
 

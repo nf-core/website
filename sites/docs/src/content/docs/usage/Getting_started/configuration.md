@@ -307,6 +307,7 @@ In this case, a user can override the default container used by the pipeline by 
 2. Find the latest version of the Biocontainer available on [Quay.io](https://quay.io/repository/biocontainers/pangolin?tag=latest&tab=tags) for Docker or [Galaxy Project](https://depot.galaxyproject.org/singularity/) for Singularity
    - Note the container version tag is identical for both container systems, but must include the 'build' ID (e.g.`--pyhdfd78af_1`)
 3. Create the custom config accordingly:
+
    - For Docker:
 
      ```groovy
@@ -365,7 +366,7 @@ In some cases _some_ modules have mandatory information for a tool for it to be 
 
 ### Customising tool arguments
 
-If you want to modify which parameters are used by a given tool, you can do this by specifying them in the the `ext.args` entry of a process in a [custom config](#custom-configuration-files).
+If you want to modify which parameters are used by a given tool, you can do this by specifying them in the `ext.args` entry of a process in a [custom config](#custom-configuration-files).
 
 For example, lets say a pipeline does not yet support the `-n` parameter to a `BOWTIE_BUILD` step. You can add this in a custom config file like so:
 

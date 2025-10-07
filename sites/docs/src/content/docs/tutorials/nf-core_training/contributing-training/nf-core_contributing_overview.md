@@ -453,8 +453,10 @@ Once resolved and checked, this PR can be merged and a new pipeline release crea
 - Bump your pipeline's version to 1.0, ready for its first release!
 - Make sure that you're signed up to the _nf-core_ slack (get an invite on [nf-co.re](https://nf-co.re)) and drop us a line about your latest and greatest pipeline plans!
 - Ask to be a member of the _nf-core_ GitHub organisation by commenting on [this GitHub issue](https://github.com/nf-core/website/issues/3)
+<!-- vale nf-core.nf-core = NO -->
 - If you're a Bluesky user, make sure to follow the [@nf_core](https://bsky.app/profile/nf-co.re) account.
 - If you are a Mastodon user, you can follow the [@nf_core@mstdn.science](https://mstdn.science/@nf_core) account.
+<!-- vale nf-core.nf-core = YES -->
 
 ## Conclusion
 
