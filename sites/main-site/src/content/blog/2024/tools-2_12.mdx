@@ -14,7 +14,7 @@ embedHeaderImage: false
 
 import tui from "@assets/images/blog/tools-2_12/nfcoretui.gif";
 import fix_linting from "@assets/images/blog/tools-2_12/fix-linting.png";
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 
 This release comes with a lot of neat little improvements and bug fixes.
 
@@ -37,7 +37,7 @@ This release comes with a lot of neat little improvements and bug fixes.
     <img src={tui.src} alt="Demo gif of the TUI." class="img-fluid" />
 - If you need an svg version or a bigger png version of an nf-core pipeline logo,
   you can now use the new `nf-core logo-create` subcommand to output one.
-- Speaking of logos, the pipeline READMEs now use the [new(-ish) github image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
+- Speaking of logos, the pipeline READMEs now use the [new(-ish) GitHub image syntax](https://github.blog/changelog/2022-08-15-specify-theme-context-for-images-in-markdown-ga/).
 - Every pipeline now has a GitHub Action Workflow that tests a
   successful download with `nf-core download`.
 - Goodbye `-profile docker, test` errors: We check now if the `-profile` parameter is

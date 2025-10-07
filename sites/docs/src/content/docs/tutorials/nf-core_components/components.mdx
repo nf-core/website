@@ -32,11 +32,11 @@ We have implemented a number of commands in the `nf-core/tools` package to make 
 
 1. Install any of [`Docker`](https://docs.docker.com/engine/installation/), [`Singularity`](https://www.sylabs.io/guides/3.0/user-guide/) or [`Conda`](https://conda.io/miniconda.html)
 
-:::tip{title="Single step conda installation" collapse}
-If you use the conda package manager you can setup a new environment and install all dependencies for the new module workflow in one step with:
+:::tip{title="Single step Conda installation" collapse}
+If you use the Conda package manager you can setup a new environment and install all dependencies for the new module workflow in one step with:
 
 ```bash
-conda create -n nf-core -c bioconda "nextflow>=21.04.0" "nf-core>=2.7" nf-test
+conda create -n nf-core -c bioConda "nextflow>=21.04.0" "nf-core>=2.7" nf-test
 conda activate nf-core
 ```
 
@@ -47,7 +47,7 @@ and proceed with Step 5.
 3. Install the latest version of [`nf-core/tools`](https://github.com/nf-core/tools#installation) (`>=2.7`)
 4. Install [`nf-test`](https://code.askimed.com/nf-test/installation/)
 5. [Fork and clone the nf-core/modules repo locally](#uploading-to-nf-coremodules)
-6. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
+6. Setup up [pre-commit](https://pre-commit.com/) (comes packaged with [`nf-core/tools`](https://github.com/nf-core/tools#installation), watch the [pre-commit Bytesize talk](https://www.youtube.com/watch?v=08d6zv6zvdM&t=215) if you want to know more about it) to ensure that your code is linted and formatted correctly before you commit it to the repository
 
     ```bash
     pre-commit install
@@ -72,6 +72,7 @@ and proceed with Step 5.
     ![nf-core modules create](/images/contributing/modules/nf-core-modules-create.svg)
 
     All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 3 files to modify:
+
     1. [`./modules/nf-core/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf)
 
         This is the main script containing the `process` definition for the module. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
@@ -141,6 +142,7 @@ git branch -d fastqc
     ![nf-core subworkflows create](/images/contributing/modules/nf-core-subworkflows-create.svg)
 
     All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 3 files to modify:
+
     1. [`./subworkflows/nf-core/bam_sort_stats_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_stats_samtools/main.nf)
 
         This is the main script containing the `workflow` definition for the subworkflow. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
@@ -197,7 +199,7 @@ git branch -d bam_sort_stats_samtools
 
 ### Test data
 
-In order to test that each component added to `nf-core/modules` is actually working and to be able to track any changes to results files between component updates we have set-up a number of Github Actions CI tests to run each module on a minimal test dataset using Docker, Singularity and Conda.
+In order to test that each component added to `nf-core/modules` is actually working and to be able to track any changes to results files between component updates we have set-up a number of GitHub Actions CI tests to run each module on a minimal test dataset using Docker, Singularity and Conda.
 
 Please adhere to the [test-data specifications](/docs/guidelines/components/test_data) when adding new test-data
 

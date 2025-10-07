@@ -13,7 +13,7 @@ label:
 ---
 
 import Profile from "@components/GitHubProfilePictureExtended.svelte";
-import { Image } from "astro:assets";
+import { Image } from "Astro:assets";
 
 The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
 by providing brief summaries of the monthly team meetings.
@@ -105,7 +105,7 @@ Sateesh Peri provided an overview of significant changes to the nf-core/modules 
 Pipelines using GPU-dependent modules must update their CI workflows to support GPU testing.
 Currently, nf-core/methylseq serves as a test case for these CI updates.
 
-The updated CI workflow involves two main github actions:
+The updated CI workflow involves two main GitHub actions:
 
 - nf-test-shard:
     - Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.

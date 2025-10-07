@@ -29,7 +29,7 @@ Command exit status:
 Each exit code can mean different things to different tools as well as in different environments. Therefore it is not always easy for developers to predict the exact issue and solution!
 :::
 
-Common exit codes and and **_potential_** solutions are as follows:
+Common exit codes and **_potential_** solutions are as follows:
 
 | Exit Code | Possible Cause | Solution                                                                                                                                                                                                                     |
 | --------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

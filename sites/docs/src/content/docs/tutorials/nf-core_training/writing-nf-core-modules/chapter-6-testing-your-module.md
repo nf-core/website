@@ -264,7 +264,7 @@ Note that it is not included by default in the boilerplate template code.
 The location of a setup block can vary.
 You can either specify this before all tests, so you can re-use the same output of this upstream module in all subsequent tests.
 Alternatively you can place it before the 'when' block of each test within the test block themselves.
-In this case the the setup block will only be executed when the given test is executed.
+In this case the setup block will only be executed when the given test is executed.
 
 The difference between the setup block and the test block (see above) is that the output of modules in the setup block will _not_ be asserted by the test.
 
@@ -331,7 +331,7 @@ nextflow_process {
 ...
 ```
 
-Example of setup blocks used for a a specific test:
+Example of setup blocks used for a specific test:
 
 ```nextflow
 nextflow_process {
