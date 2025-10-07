@@ -204210,6 +204210,121 @@
       }
     },
     {
+      "name": "slamdunk_map",
+      "path": "modules/nf-core/slamdunk/map/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "slamdunk_map",
+        "description": "Slamdunk read mapping using NextGenMap’s SLAMSeq alignment settings.",
+        "keywords": [
+          "slamseq",
+          "rna-seq",
+          "mapping"
+        ],
+        "tools": [
+          {
+            "slamdunk": {
+              "description": "Slamdunk is a software tool for SLAMseq data analysis that performs mapping, filtering, SNP calling, and quantification of metabolic RNA labeling experiments.",
+              "homepage": "http://t-neumann.github.io/slamdunk/docs.html",
+              "documentation": "http://t-neumann.github.io/slamdunk/docs.html",
+              "tool_dev_url": "https://github.com/t-neumann/slamdunk",
+              "doi": "10.1186/s12859-019-2849-7",
+              "licence": [
+                "GNU Affero General Public License v3 (AGPL v3)"
+              ],
+              "identifier": "biotools:slamdunk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Input FASTQ or BAM file(s) for SLAMseq analysis",
+                "pattern": "*.{bam,fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa,fas,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Mapped BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@haidyi"
+        ],
+        "maintainers": [
+          "@haidyi"
+        ]
+      }
+    },
+    {
       "name": "slimfastq",
       "path": "modules/nf-core/slimfastq/meta.yml",
       "type": "module",
