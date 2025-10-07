@@ -238,7 +238,7 @@ process BWA_MEM {
     label 'process_single'
 
     // TODO nf-core: See section in main README for further information regarding finding and adding container addresses to the section below.
-    conda "${moduleDir}/environment.yml"
+    Conda "${moduleDir}/environment.yml"
     container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
         'https://depot.galaxyproject.org/singularity/bwa:0.7.18--h577a1d6_2':
         'biocontainers/bwa:0.7.18--h577a1d6_2' }"

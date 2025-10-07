@@ -20,7 +20,7 @@ nextflow run . -profile debug,test,docker --outdir <OUTDIR>
 
 We also automatically run tests with GitHub Actions anytime someone updates the pipeline code.
 We use nf-test to check the pipeline results, but regular test runs also often catch
-syntax errors and other serious problems that cause nextflow to exit with an error.
+syntax errors and other serious problems that cause Nextflow to exit with an error.
 
 ### Putting the test data on GitHub
 

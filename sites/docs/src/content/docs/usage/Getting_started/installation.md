@@ -82,7 +82,7 @@ The step to install Nextflow in itself will afterwards be the same as previously
 
 ### Updating Nextflow
 
-Updating nextflow is as simple as running:
+Updating Nextflow is as simple as running:
 
 ```bash
 nextflow self-update
