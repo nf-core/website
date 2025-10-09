@@ -12,42 +12,55 @@ In this page we will describe the nf-core community's guidance on how to use the
 
 ## Contribution types
 
-There are three main 'contribution' types that can be specified in this section of the manifest, as described in the [Nextflow documentation](https://nextflow.io/docs/latest/reference/config.html#manifest):
+The [manifest]((https://nextflow.io/docs/latest/reference/config.html#manifest)) supports three contribution types:
 
-- Author
-- Maintainer
-- Contributor
+- `author`
+- `maintainer`
+- `contributor`
 
-We will now explain how nf-core pipeline developers should use these in their pipelines.
+The following sections describe how nf-core attributes contributions using these types.
 
 ### Author
 
-An 'author' is typically someone who was a part of the team that designed and wrote the original version version of the pipeline (i.e., prior and up to version 1), and was therefore the primary maintainer of the pipeline in the past.
+An `author` is someone who designed and wrote the original pipeline (prior to and including version 1.0) and served as the primary maintainer at that time.
 
-The other use of the 'author' designation is for someone who was at one point (but is no longer) one of the lead maintainers of the pipeline.
-This means that in the past they ensured the pipeline remained up to date, reviewed PRs, developed a long-term roadmap, added new features, and help coordinate development with other developers and users.
+Someone may also be an `author` if they previously served as a lead `maintainer` of the pipeline. As a lead `maintainer`, they:
 
-Therefore there can be multiple authors.
+- Kept the pipeline up to date
+- Reviewed pull requests
+- Developed the long-term roadmap
+- Added new features
+- Coordinated development with other developers and users
+
+A pipeline can have multiple authors.
 
 ### Maintainer
 
-The maintainer designation is someone who is the _currently_ active as a lead developer of the pipeline, and is regularly contributing new code and managing the project.
-This means they are the main person or team member of the people who is ensuring the pipeline is up to date, reviewing PRs, is executing a long-term roadmap, adding new features, and currently coordinating with other developers and users.
-Maintainers typically have the best current 'overview' of the pipeline.
+A `maintainer` is currently active as a lead developer of the pipeline and regularly contributes code and manages the project. Maintainers:
 
-The maintainer designation does not need to be someone who originally authored the pipeline, but it can be the same.
-Once a 'maintainer' steps down as a lead and is no longer regularly or actively contributing or managing the pipeline, they are moved to the 'author' designation (optionally with the 'contributor' designation - see below).
+- Keep the pipeline up to date
+- Review pull requests
+- Execute the long-term roadmap
+- Add new features
+- Coordinate with other developers and users
+
+A `maintainer` typically has the best current understanding of the pipeline.
+A pipeline can have multiple maintainers.
+
+A `maintainer` doesn't need to be an original author of the pipeline, but can be.
+
+When a `maintainer` steps down and no longer actively contributes to or manages the pipeline, they become an `author`.
+You can optionally also add the `contributor` designation (see [Contributor](#contributor)).
 
 ### Contributor
 
-A contributor is someone who only occasionally contributes to the pipeline (whether that is code or docs), and does not have a 'mangement' role.
-They do not typically triage and deal with GitHub issues (although they may help contribute bug fixes on an irregular basis).
+A `contributor` occasionally contributes to the pipeline (code, documentation, or other) but doesn't have a management role. Contributors typically do not triage or resolve GitHub issues, but may occasionally contribute features or resolve bugs.
 
-Contributors can be both current and also in the past.
+Contributors can be both current and past.
 
 ## Case study
 
-We can use nf-core/mag as an example of distinguishing between the different types of contributions
+The nf-core/mag pipeline demonstrates how to distinguish between the different contribution types.
 
 ![](@assets/images//mag_contributors_plot.png)
 
@@ -57,13 +70,14 @@ We can use nf-core/mag as an example of distinguishing between the different typ
 - In 2023, Sabrina moved on and stepped down as a project lead. She then moved to an 'author' designation.
 - When Sabrina stepped down, James took over with managing the roadmap and triaging bug fixes, he thus changed from 'contributor' to 'maintainer' status.
 
-## Final Notes
+## Final notes
 
-It is important to note that a person can be designated one or multiple of the contribution types above!
-This should be combined on a case-by-case basis.
+A person can have one or more contribution designations.
+Evaluate each contributor's role and apply the appropriate types.
 
-Otherwise, as a final point - it is important that no one should ever be _removed_ from this list!
-Everyone who has contributed at any point in the history of a pipeline must be acknowledged and recognised, regardless if it was in v1 or v10 of a pipeline.
+:::note{title="Important"}
+Never _remove_ anyone from the contributor list. Acknowledge everyone who has contributed to the pipeline at any point in its history, whether in version 1 or version 10.
+:::
 
-nf-core is all about community and collaboration.
-We hope with this guide we can help strengthen community ownership of all of our pipelines, and give them a long lifetime!
+Community and collaboration are core to nf-core.
+Using these contribution types helps strengthen community ownership of pipelines and supports their long-term maintenance!
