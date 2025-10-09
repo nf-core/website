@@ -968,7 +968,7 @@ Disable updating specific modules/subworkflows (when repository_type is pipeline
 #### `model_dump(**kwargs) → dict[str, Any]{:python}`
 
 !!! abstract “Usage Documentation”
-: [model_dump](../concepts/serialization#modelmodel_dump)
+: [model_dump](../concepts/serialization#python-mode)
 
 Generate a dictionary representation of the model, optionally specifying which fields to include or exclude.
 
@@ -983,6 +983,9 @@ Generate a dictionary representation of the model, optionally specifying which f
   - **exclude_unset** – Whether to exclude fields that have not been explicitly set.
   - **exclude_defaults** – Whether to exclude fields that are set to their default value.
   - **exclude_none** – Whether to exclude fields that have a value of None.
+  - **exclude_computed_fields** – Whether to exclude computed fields.
+    While this can be useful for round-tripping, it is usually recommended tu use the dedicated
+    round_trip parameter instead.
   - **round_trip** – If True, dumped values should be valid as input for non-idempotent types such as Json\[T].
   - **warnings** – How to handle serialization errors. False/”none” ignores them, True/”warn” logs errors,
     “error” raises a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError].
