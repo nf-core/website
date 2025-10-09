@@ -49,7 +49,7 @@ Contributors can be both current and also in the past.
 
 We can use nf-core/mag as an example of distinguishing between the different types of contributions
 
-![](images/contributing/pipelines/mag_contributors_plot.png)
+![](@assets/images//mag_contributors_plot.png)
 
 - Hadrien was the original architect and wrote the majority of v1 of the pipeline from 2018, and finished developing v1 in 2020. He is therefore an author.
 - Daniel and Sabrina started assisting Hadrien in 2019, and took over as the lead maintainers between 2019-2022 keeping the pipeline up to date and adding new features. During this period they were maintainers.
