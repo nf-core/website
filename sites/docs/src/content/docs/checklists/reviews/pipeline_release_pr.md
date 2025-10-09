@@ -7,7 +7,7 @@ weight: 10
 parentWeight: 20
 ---
 
-Pipeline release reviews are often quite an overwhelming task, particularly when doing one for the first time.
+Pipeline release reviews are often quite an overwhelming task, particularly when doing one for the first time.  
 
 Pipeline release PRs are often quite diverse in their contents, making it harder to provide a strict set of reviewing guidelines that the PR must meet for approval, when compared to [modules or subworkflows](/docs/checklists/reviews/components_pr).
 
