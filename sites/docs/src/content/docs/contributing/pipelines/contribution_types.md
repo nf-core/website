@@ -12,7 +12,7 @@ In this page we will describe the nf-core community's guidance on how to use the
 
 ## Contribution types
 
-The [manifest]((https://nextflow.io/docs/latest/reference/config.html#manifest)) supports three contribution types:
+The [manifest](<(https://nextflow.io/docs/latest/reference/config.html#manifest)>) supports three contribution types:
 
 - `author`
 - `maintainer`
