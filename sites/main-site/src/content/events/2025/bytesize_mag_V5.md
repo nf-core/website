@@ -1,5 +1,5 @@
 ---
-title: "Bytesize: nf-core/mag v2.5"
+title: "Bytesize: nf-core/mag v5.0"
 subtitle: Diego Alvarez Saravia, University of Magallanes
 type: talk
 startDate: "2025-10-28"
