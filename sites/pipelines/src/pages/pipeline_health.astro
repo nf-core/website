@@ -16,6 +16,15 @@ pipelines.sort((a, b) => {
     if (!a.archived && b.archived) return -1;
     return a.name.localeCompare(b.name);
 });
+
+// Helper function to count true values in table cells
+const countTrue = (fn) => {
+    const activePipelines = pipelines.filter((p) => !p.archived);
+    return [
+        activePipelines.filter(fn).length,
+        " (" + Math.round((activePipelines.filter(fn).length / activePipelines.length) * 100) + "%)",
+    ];
+};
 ---
 
 <PageLayout
@@ -425,6 +434,101 @@ pipelines.sort((a, b) => {
                     })
                 }
             </tbody>
+            <tfoot>
+                <tr class="">
+                    <td class="text-nowrap">Total</td>
+                    <td class="text-center">{countTrue((p) => p.releases?.length > 1)}</td>
+                    <td class="text-center">{countTrue((p) => p.released_after_tools)}</td>
+                    <td class="text-center">{countTrue((p) => p.last_release_is_head)}</td>
+                    <td class="text-center">{countTrue((p) => p.releases?.[0].has_schema)}</td>
+                    <td class="text-center">{countTrue((p) => p.commits_to_dev > 1)}</td>
+                    <td class="text-center">{countTrue((p) => p.is_DSL2)}</td>
+                    <td class="text-center">{countTrue((p) => p.has_nf_test)}</td>
+                    <td class="text-center">{countTrue((p) => p.has_nf_test_dev)}</td>
+                    <td class="text-center">{countTrue((p) => !p.has_wiki)}</td>
+                    <td class="text-center">{countTrue((p) => p.has_issues)}</td>
+                    <td class="text-center">{countTrue((p) => p.allow_merge_commit)}</td>
+                    <td class="text-center">{countTrue((p) => p.allow_rebase_merge)}</td>
+                    <td class="text-center">{countTrue((p) => p.allow_squash_merge !== -1 && !p.allow_squash_merge)}</td
+                    >
+                    <td class="text-center">{countTrue((p) => p.default_branch)}</td>
+                    <td class="text-center"
+                        >{
+                            countTrue(
+                                (p) =>
+                                    p[(p.main_branch_exists ? "main" : "master") + "_nextflow_config_manifest"]
+                                        ?.defaultBranch === p.default_branch,
+                            )
+                        }</td
+                    >
+                    <td class="text-center">{countTrue((p) => p.has_required_topics)}</td>
+                    <td class="text-center">{countTrue((p) => p.description)}</td>
+                    <td class="text-center"
+                        >{countTrue((p) => new RegExp(`https:\/\/nf-co\.re\/${p.name}`).test(p.homepage ?? ""))}</td
+                    >
+                    <td class="text-center border-start"
+                        >{countTrue((p) => p.team_contributors_permission_push === true)}</td
+                    >
+                    <td class="text-center border-end">{countTrue((p) => p.team_core_permission_admin === true)}</td>
+                    <td class="text-center ms-3">{countTrue((p) => p.main_branch_exists || p.master_branch_exists)}</td>
+                    <td class="text-center">{countTrue((p) => p.dev_branch_exists)}</td>
+                    <td class="text-center border-end">{countTrue((p) => p.TEMPLATE_branch_exists)}</td>
+                    {
+                        [
+                            { branch: "main_or_master", reviewsRequired: 2 },
+                            { branch: "dev", reviewsRequired: 1 },
+                        ].map(({ branch, reviewsRequired }) =>
+                            [
+                                "status_checks",
+                                "require_non_stale_review",
+                                "require_codeowner_review",
+                                "required_reviews",
+                                "enforce_admins",
+                            ].map((field, idx) => {
+                                const count = countTrue((p) => {
+                                    const b =
+                                        branch === "main_or_master"
+                                            ? p.main_branch_exists
+                                                ? "main"
+                                                : "master"
+                                            : branch;
+                                    const value = p[`${b}_branch_protection_${field}`];
+                                    const test =
+                                        field === "status_checks"
+                                            ? value
+                                            : field === "required_reviews"
+                                              ? value !== -1
+                                                  ? branch === "dev"
+                                                      ? value >= 1
+                                                      : value >= 2
+                                                  : value
+                                              : value !== -1
+                                                ? !value
+                                                : value;
+                                    return test;
+                                });
+                                return <td class:list={["text-center", { "border-end": idx === 4 }]}>{count}</td>;
+                            }),
+                        )
+                    }
+                    {
+                        ["nf-validation", "nf-schema", "nf-core-utils", "nf-co2footprint", "nf-prov"].map(
+                            (name, idx) => [
+                                <td class:list={["text-center", { "border-start": idx === 0 }]}>
+                                    {countTrue((p) =>
+                                        p[
+                                            (p.main_branch_exists ? "main" : "master") + "_nextflow_config_plugins"
+                                        ]?.some((pl) => pl.startsWith(name)),
+                                    )}
+                                </td>,
+                                <td class="text-center">
+                                    {countTrue((p) => p.dev_nextflow_config_plugins?.some((pl) => pl.startsWith(name)))}
+                                </td>,
+                            ],
+                        )
+                    }
+                </tr>
+            </tfoot>
         </table>
         <span class="text-muted archived show">
             and {pipelines.filter((pipeline) => pipeline.archived).length} archived pipelines
@@ -457,6 +561,9 @@ pipelines.sort((a, b) => {
     @import "@styles/_variables.scss";
     th {
         max-width: 10rem;
+    }
+    tfoot {
+        border-top-width: 2pt;
     }
     .status {
         pointer: hand;
