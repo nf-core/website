@@ -12,4 +12,4 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-This week, Diego ([@dialvarezs](https://github.com/dialvarezs)) is updating us on the newest features in the nf-core/mag pipeline. Now it is possible to create assemblies using only long read information!
+This week, Diego ([@dialvarezs](https://github.com/dialvarezs)) is updating us on the newest features in the nf-core/mag pipeline. Now it is possible to create assemblies using only long read data!
