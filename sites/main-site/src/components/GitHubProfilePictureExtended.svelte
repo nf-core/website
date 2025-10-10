@@ -25,7 +25,7 @@
 
     const affiliation_str =
         affiliation.length > 0
-            ? `<div class="small"><abbr class="small d-block affiliation" data-bs-placement="bottom" data-bs-toggle="tooltip" title="${affiliation}">${affiliation}</abbr></div>`
+            ? `<div class="small"><abbr class="d-block affiliation" data-bs-placement="bottom" data-bs-toggle="tooltip" title="${affiliation}">${affiliation}</abbr></div>`
             : "";
     labelClasses = affiliation.length > 0 ? labelClasses + " small" : labelClasses;
 </script>
