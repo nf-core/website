@@ -19,8 +19,8 @@ compliance and completing the novel analysis paths with the Hi-C-like analysis o
 
 ## Goals
 
-1. Complete compartment analysis subworkflow and components ​
-2. ⁠First release checklist fulfillment ​
-3. Improve output for visualization and reports ​
-4. ⁠Improve flexibility by adding skip options and additional input types ​
-5. Update documentation and easy tasks for beginners​
+1. Complete compartment analysis subworkflow and components ​(expert)
+2. ⁠First release checklist fulfillment ​(medium with core help)
+3. Improve output for visualization and reports ​(medium)
+4. ⁠Improve flexibility by adding skip options and additional input types ​(medium, expert)
+5. Update documentation and easy tasks (beginner)
