@@ -613,6 +613,11 @@ export const writePipelinesJson = async () => {
 
   console.log("Writing pipelines.json");
   await writeFileSync(path.join(__dirname, "/public/pipelines.json"), json, "utf8");
+
+  // write YAML file 
+  const yamlStr = yaml.dump(pipelines);
+  console.log("Writing pipelines.yaml");
+  await writeFileSync(path.join(__dirname, "/public/pipelines.yaml"), yamlStr, "utf8");
 };
 
 writePipelinesJson();
