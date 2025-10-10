@@ -136430,47 +136430,24 @@
                 "pattern": "*.{bai,crai}",
                 "ontologies": []
               }
-            },
-            {
-              "normal_bam": {
-                "type": "file",
-                "description": "BAM/CRAM/SAM file",
-                "pattern": "*.{bam,cram,sam}",
-                "ontologies": []
-              }
-            },
-            {
-              "normal_bam_index": {
-                "type": "file",
-                "description": "BAM/CRAM/SAM index file",
-                "pattern": "*.{bai,crai}",
-                "ontologies": []
-              }
-            },
-            {
-              "intervals": {
-                "type": "file",
-                "description": "BED",
-                "pattern": "*.bed",
-                "ontologies": []
-              }
             }
           ],
-          {
-            "scan": {
-              "type": "file",
-              "description": "Input scan file from MSIsensor2 scan module",
-              "ontologies": []
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "models": {
+                "type": "file",
+                "description": "Folder of MSISensor2 models (available from Github or as a product of msisensor2/scan)",
+                "pattern": "*/*",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "models": {
-              "type": "file",
-              "description": "Folder of MSISensor2 models (available from Github or as a product of msisensor2/scan)",
-              "pattern": "*/*",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "msi": [
@@ -136519,23 +136496,6 @@
                 "${prefix}_somatic": {
                   "type": "file",
                   "description": "Somatic MSI regions detected.",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "germline": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}_germline": {
-                  "type": "file",
-                  "description": "Germline MSI regions detected.",
                   "ontologies": []
                 }
               }
@@ -152847,6 +152807,105 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "pbjasmine",
+      "path": "modules/nf-core/pbjasmine/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbjasmine",
+        "description": "Identify specific base modifications in PacBio HiFi reads by analyzing polymerase kinetic signatures",
+        "keywords": [
+          "genomics",
+          "methylation",
+          "bam",
+          "pacbio"
+        ],
+        "tools": [
+          {
+            "pbjasmine": {
+              "description": "Call select base modifications in PacBio HiFi reads.",
+              "homepage": "https://github.com/pacificbiosciences/jasmine",
+              "documentation": "https://github.com/pacificbiosciences/jasmine",
+              "tool_dev_url": "https://github.com/pacificbiosciences/jasmine",
+              "doi": "no DOI available",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Consensus reads with jasmine modification calls",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@YiJin-Xiong"
+        ],
+        "maintainers": [
+          "@YiJin-Xiong"
+        ]
+      }
     },
     {
       "name": "pbmm2_align",
