@@ -46,9 +46,154 @@ nextflow_process {
 - Script paths starting with `./` or `../` are relative to the test script's location.
   :::
 
-## Creating a new module with tests
+## Understanding snapshots
 
-In this section we will give an overview of the general procedure for writing a test and generating a snapshot.
+**What are snapshots?**
+
+Snapshots are nf-test's way of capturing and validating the expected outputs of your tests. When you run a test for the first time, nf-test creates a `.snap` file containing checksums, file names, and other metadata about the outputs.
+
+**How snapshot matching works:**
+
+1. **First run**: nf-test generates a snapshot file (e.g., `main.nf.test.snap`) containing the expected outputs
+2. **Subsequent runs**: nf-test compares current outputs against the stored snapshot
+3. **Pass/Fail**: Test passes if outputs match the snapshot, fails if they differ
+
+**Why snapshots are useful:**
+
+- **Automated validation**: No need to manually check every output file
+- **Regression detection**: Automatically catch when module behavior changes
+- **Comprehensive checking**: Validates file content, structure, and metadata
+
+**Example snapshot content:**
+
+```json
+{
+  "sarscov2 - fastq": {
+    "content": [
+      {
+        "0": ["versions.yml:md5,c50aa59475ab20752531545a585f8f2d"],
+        "1": [
+          [
+            {
+              "id": "test",
+              "single_end": false
+            },
+            "test.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
+          ]
+        ]
+      }
+    ]
+  }
+}
+```
+
+## Your first simple test walkthrough with an example
+
+Let's walk through creating a basic test step-by-step using the `cat` module as an example:
+
+### Step 1: Examine the module
+
+First, let's look at a simple module (`modules/cat/main.nf`):
+
+```groovy
+process CAT {
+    input:
+    tuple val(meta), path(file_in)
+
+    output:
+    tuple val(meta), path("${prefix}"), emit: file_out
+    path "versions.yml"               , emit: versions
+
+    script:
+    prefix = "${meta.id}.txt"
+    """
+    cat ${file_in} > ${prefix}
+    """
+}
+```
+
+This process simply concatenates input files and outputs a single file.
+
+### Step 2: Write the test
+
+Create `modules/cat/tests/main.nf.test`:
+
+```groovy
+nextflow_process {
+    name "Test Process CAT"
+    script "../main.nf"
+    process "CAT"
+
+    test("simple file concatenation") {
+        when {
+            process {
+                """
+                input[0] = [
+                    [ id:'test' ], // meta map with sample identifier
+                    file('test_file.txt')  // input file
+                ]
+                """
+            }
+        }
+
+        then {
+            assertAll(
+                { assert process.success },           // Check process completed successfully
+                { assert snapshot(process.out).match() } // Validate outputs match expected snapshot
+            )
+        }
+    }
+}
+```
+
+**Key components explained:**
+
+- `[ id:'test' ]` - **meta map**: Contains sample metadata (ID, conditions, etc.)
+- `file('test_file.txt')` - **input file**: The file to process
+- `process.success` - **success check**: Ensures the process didn't fail
+- `snapshot(process.out).match()` - **output validation**: Compares all outputs to stored snapshot
+
+### Step 3: Run the test
+
+```bash
+cd path/to/modules
+nf-core modules test cat --profile docker (EXAMPLE)
+```
+
+**What happens:**
+
+1. nf-test creates a temporary work directory `.nf-test/`
+2. Runs the CAT process with your test inputs
+3. **First run**: Generates `tests/main.nf.test.snap` with output checksums
+4. **Second run**: Validates outputs match the generated snapshot
+5. Reports PASS/FAIL
+
+### Step 4: Examine the generated snapshot
+
+After running, check `tests/main.nf.test.snap`:
+
+```json
+{
+  "simple file concatenation": {
+    "content": [
+      {
+        "0": [
+          // First output channel (file_out)
+          [{ "id": "test" }, "test.txt:md5,d41d8cd98f00b204e9800998ecf8427e"]
+        ],
+        "1": [
+          // Second output channel (versions)
+          "versions.yml:md5,c50aa59475ab20752531545a585f8f2d"
+        ]
+      }
+    ]
+  }
+}
+```
+
+Now you understand the full test cycle! The snapshot ensures your module produces consistent, expected outputs every time.
+
+## Creating a new module with tests
 
 When creating a new module using `nf-core/tools`, a test file is automatically generated based on the template.
 
