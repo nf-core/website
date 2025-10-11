@@ -12,9 +12,9 @@ This chapter covers the fundamentals of nf-core module testing, from basic synta
 
 ## Module structure
 
-Before diving into testing, let's understand the typical structure of a nf-core module:
+Before diving into testing, let's understand the typical structure of a nf-core module after creating the boiler plate files with `nf-core modules create`:
 
-```
+```tree
 modules/nf-core/tool/subtool/
 ├── main.nf              # Process definition
 ├── meta.yml             # Module metadata
@@ -25,7 +25,7 @@ modules/nf-core/tool/subtool/
 
 ### Basic test syntax
 
-The basic syntax for a module test follows this structure:
+The basic syntax for a module test that we define in `main.nf.test` follows this structure:
 
 ```groovy title="main.nf.test"
 nextflow_process {
@@ -51,7 +51,7 @@ nextflow_process {
 
 ### Essential Assertions
 
-Tests use assertions to verify the expected output of the process specified in the `then` block.
+Tests then use assertions to verify the expected output of the process specified in the `then` block.
 
 You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
 
@@ -104,7 +104,7 @@ modules/nf-core/seqtk/sample/
     └── main.nf.test
 ```
 
-Once you have specified the test's input data via the `input[0]` and `input[1]` channels in the `when` block, the test file (`tests/main.nf.test`) will look like this:
+We then edit the test file (`tests/main.nf.test`) to specify the test's input data via the `input[0]` and `input[1]` channels in the `when` block:
 
 ```groovy
 nextflow_process {
@@ -166,7 +166,7 @@ nextflow_process {
 }
 ```
 
-Run the tests to create a snapshot of the output:
+Once we've added the assertions in the `then` block, we run the tests to create a snapshot of the output:
 
 ```bash
 nf-core modules test seqtk/sample --profile docker
@@ -273,7 +273,7 @@ This is something that we always want to test for.
 Furthermore, in some cases the module will produce output data that is too big for GitHub actions nodes, or the tests take too long or require too much resources.
 Therefore, the only option is to test the module in `stub` mode.
 
-Therefore you need to tell a test to run in stub mode by adding the `-stub` option as follows:
+Therefore when adding a stub test, you need to tell a test to run in stub mode by adding the `-stub` option as follows:
 
 ```main.nf.test
 process "MODULE"
@@ -302,7 +302,7 @@ The `setup` method allows you to specify processes or workflows that need to be 
 
 It serves as a mechanism to prepare the required input data or set up essential steps prior to the primary processing block 'on the fly'.
 
-Within the `setup` block, you can use the `run` method to define and execute multiple dependent processes or workflows.
+Within a `setup` block, you can use the `run` method to define and execute multiple dependent processes or workflows.
 
 Here's a basic example of how a setup block looks:
 
@@ -537,7 +537,7 @@ INFO     All tests passed!
 
 ### Aliasing dependencies
 
-If you need to run the same setup process multiple times for the same test but for different files, you can set an `alias` for the process:
+If you need to run the same setup process multiple times for the same test but for different files (such as unzipping multiple different files), you can set an `alias` for the process:
 
 ```groovy
 nextflow_process {
@@ -596,7 +596,7 @@ nextflow_process {
 
 Some modules may require additional parameters added to the test command to successfully run.
 
-These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+These can be specified using a `params` input and an `ext.args` variable within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
 If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
 
@@ -605,7 +605,6 @@ touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
 ```
 
 ```nextflow.config
-
 process {
   withName: 'MODULE' {
     ext.args = params.module_args
@@ -615,10 +614,9 @@ process {
 
 You do not need to modify the contents of this file any further.
 
-Then add the config to the main.nf.test file and supply the params in the when section of the test.
+Then add the config to the `main.nf.test` file and supply the params in the `when` section of the test.
 
 ```main.nf.test
-
 process "MODULE"
 config "./nextflow.config"
 

@@ -10,11 +10,13 @@ The nf-test framework enables comprehensive testing of subworkflows, which combi
 
 This chapter builds upon the concepts introduced in the module testing chapter, covering testing strategies for subworkflows, from basic syntax to complex multi-module integration scenarios.
 
+If you have not already, we highly recommend reading the [module testing](03_testing_modules.md) chapter first.
+
 ## Subworkflow structure
 
 Before diving into testing, let's understand the typical structure of a nf-core subworkflow:
 
-```
+```tree
 subworkflows/nf-core/subworkflow/
 ├── main.nf              # Subworkflow definition
 ├── meta.yml             # Subworkflow metadata
@@ -45,7 +47,7 @@ nextflow_workflow {
 - Script paths starting with `./` or `../` are relative to the test script's location.
 - The syntax is very similar to module testing, but uses a `nextflow_workflow` block instead of `nextflow_process`.
 - The `workflow` block is used to specify the name of the subworkflow.
-  :::
+:::
 
 ### Essential Assertions
 
