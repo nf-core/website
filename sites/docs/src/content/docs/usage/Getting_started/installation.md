@@ -13,7 +13,7 @@ We recommend using a personal installation of Nextflow where possible, instead o
 This makes it easier to update and control versions.
 
 We generally recommend following the official installation instructions from the Nextflow documentation.
-However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-instllation), and on [Windows operating systems](#installation-on-windows).
+However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-installation), and on [Windows operating systems](#installation-on-windows).
 
 If in doubt, see the [official Nextflow installation documentation](https://www.nextflow.io/docs/latest/getstarted.html#installation).
 Any instructions on this page are provided for convinence, and may not be up-to-date.

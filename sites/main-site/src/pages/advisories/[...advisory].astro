@@ -112,11 +112,16 @@ sections.forEach((year) => {
     if (year.entries && year.entries.length > 0) {
         year.entries.sort((a, b) => {
             const advisoryA = advisories.find(
-                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === a.href,
+                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") + "/" === a.href,
             );
             const advisoryB = advisories.find(
-                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") === b.href,
+                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") + "/" === b.href,
             );
+            // Ensure both advisories are found before accessing their data
+            if (!advisoryA || !advisoryB) {
+                // If either advisory is missing, keep original order
+                return 0;
+            }
             return advisoryB.data.publishedDate.getTime() - advisoryA.data.publishedDate.getTime();
         });
     }

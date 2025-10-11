@@ -27,205 +27,205 @@ import icon from "astro-icon";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://nf-co.re/",
-  output: "static",
-  adapter: netlify(),
-  prefetch: false,
-  env: {
-    schema: {
-      GITHUB_TOKEN: envField.string({
-        context: "server", // Keep as server-side only for security
-        access: "secret",
-        optional: false,
-      }),
+    site: "https://nf-co.re/",
+    output: "static",
+    adapter: netlify(),
+    prefetch: false,
+    env: {
+        schema: {
+            GITHUB_TOKEN: envField.string({
+                context: "server", // Keep as server-side only for security
+                access: "secret",
+                optional: false,
+            }),
+        },
     },
-  },
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.fontsource(),
-        name: "Inter",
-        cssVariable: "--font-inter",
-        fallbacks: ["sans-serif"],
-        weights: ["300 700"],
-      },
-      {
-        provider: fontProviders.fontsource(),
-        name: "Maven Pro",
-        cssVariable: "--font-maven-pro",
-        fallbacks: ["sans-serif"],
-        weights: ["300 700"],
-      },
-    ],
-  },
-  integrations: [
-    svelte(),
-    icon({
-      iconDir: "../main-site/src/icons",
-      include: {
-        // only include a subset of icons
-        "file-icons": ["nextflow"],
-        logos: [
-          "twitter",
-          "mastodon-icon",
-          "slack-icon",
-          "aws",
-          "microsoft-azure",
-          "github-actions",
-          "youtube-icon",
-          "linkedin",
+    experimental: {
+        fonts: [
+            {
+                provider: fontProviders.fontsource(),
+                name: "Inter",
+                cssVariable: "--font-inter",
+                fallbacks: ["sans-serif"],
+                weights: ["300 700"],
+            },
+            {
+                provider: fontProviders.fontsource(),
+                name: "Maven Pro",
+                cssVariable: "--font-maven-pro",
+                fallbacks: ["sans-serif"],
+                weights: ["300 700"],
+            },
         ],
-        fa: ["github"],
-        "fa-brands": ["github"],
-        mdi: ["aws", "slack", "youtube"],
-        octicon: [
-          "chevron-right-16",
-          "git-pull-request-16",
-          "law-16",
-          "link-external-16",
-          "mortar-board-16",
-          "play-16",
-          "table-16",
-          "tasklist-16",
-          "terminal-16",
-          "tools-16",
+    },
+    integrations: [
+        svelte(),
+        icon({
+            iconDir: "../main-site/src/icons",
+            include: {
+                // only include a subset of icons
+                "file-icons": ["nextflow"],
+                logos: [
+                    "twitter",
+                    "mastodon-icon",
+                    "slack-icon",
+                    "aws",
+                    "microsoft-azure",
+                    "github-actions",
+                    "youtube-icon",
+                    "linkedin",
+                ],
+                fa: ["github"],
+                "fa-brands": ["github"],
+                mdi: ["aws", "slack", "youtube"],
+                octicon: [
+                    "chevron-right-16",
+                    "git-pull-request-16",
+                    "law-16",
+                    "link-external-16",
+                    "mortar-board-16",
+                    "play-16",
+                    "table-16",
+                    "tasklist-16",
+                    "terminal-16",
+                    "tools-16",
+                ],
+                "simple-icons": ["bluesky"],
+            },
+        }),
+        sitemap(),
+        partytown({
+            // Adds dataLayer.push as a forwarding-event.
+            config: {
+                forward: ["dataLayer.push"],
+            },
+        }),
+        mdx(),
+        markdownIntegration(),
+    ],
+    build: {
+        inlineStylesheets: "auto",
+        format: "file",
+        assetsPrefix: "https://nf-core-configs.netlify.app/",
+    },
+    vite: {
+        css: {
+            preprocessorOptions: {
+                scss: {
+                    api: "modern-compiler",
+                    silenceDeprecations: ["legacy-js-api", "color-functions"],
+                },
+            },
+        },
+        plugins: [yaml()],
+        ssr: {
+            noExternal: ["@popperjs/core"],
+        },
+        resolve: {
+            preserveSymlinks: true,
+            browser: true,
+        },
+    },
+    image: {
+        domains: ["raw.githubusercontent.com", "unsplash.com"],
+        service: {
+            entrypoint: "astro/assets/services/sharp",
+        },
+    },
+    markdown: {
+        syntaxHighlight: false,
+        remarkPlugins: [
+            emoji,
+            remarkGfm,
+            remarkDirective,
+            admonitionsPlugin,
+            mermaid,
+            remarkMath,
+            // [
+            //     remarkDescription,
+            //     {
+            //         name: 'excerpt',
+            //         node: (node, i, parent) => {
+            //             // check if parent has a child that is an html comment with the text 'end of excerpt'
+            //             if (
+            //                 parent?.children?.some(
+            //                     (child) =>
+            //                         (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
+            //                         (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
+            //                 )
+            //             ) {
+            //                 const sibling = parent?.children[i + 1];
+
+            //                 return (
+            //                     (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
+            //                     (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
+            //                 );
+            //             } else {
+            //                 // return the first paragraph otherwise
+
+            //                 // get the index of the first paragraph
+            //                 const firstParagraphIndex = parent?.children.findIndex(
+            //                     (child) => child.type === 'paragraph',
+            //                 );
+            //                 // if the node is the first paragraph, return true
+            //                 return i === firstParagraphIndex;
+            //             }
+            //         },
+            //     },
+            // ],
         ],
-        "simple-icons": ["bluesky"],
-      },
-    }),
-    sitemap(),
-    partytown({
-      // Adds dataLayer.push as a forwarding-event.
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    }),
-    mdx(),
-    markdownIntegration(),
-  ],
-  build: {
-    inlineStylesheets: "auto",
-    format: "file",
-    assetsPrefix: "https://nf-core-configs.netlify.app/",
-  },
-  vite: {
-    css: {
-      preprocessorOptions: {
-        scss: {
-          api: "modern-compiler",
-          silenceDeprecations: ["legacy-js-api", "mixed-decls", "color-functions"],
-        },
-      },
+        // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
+        rehypePlugins: [
+            rehypeSlug,
+            [
+                rehypeAutolinkHeadings,
+                {
+                    behavior: "append",
+                    content: h("i.ms-1.fas.fa-link.fa-xs.invisible"),
+                },
+            ],
+            [
+                addClasses,
+                {
+                    table: "table table-hover table-sm small",
+                },
+            ],
+            [
+                rehypeWrap,
+                {
+                    selector: "table",
+                    wrapper: "div.table-responsive",
+                },
+            ],
+            [
+                urls,
+                (url) => {
+                    const regex = /^https:\/\/(raw.)*github/;
+                    if (!regex.test(url.href) && url.href?.endsWith(".md")) {
+                        url.href = url.href.replace(/\.md$/, "/");
+                        url.pathname = url.pathname.replace(/\.md$/, "/");
+                        url.path = url.path.replace(/\.md$/, "/");
+                    } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
+                        url.href = url.href.replace(/\.mdx$/, "/");
+                        url.pathname = url.pathname.replace(/\.mdx$/, "/");
+                        url.path = url.path.replace(/\.mdx$/, "/");
+                    }
+                },
+            ],
+            rehypeCheckboxParser,
+            rehypeHeadingNumbers,
+            [
+                rehypePrettyCode,
+                {
+                    defaultLang: "plaintext",
+                    keepBackground: true,
+                    theme: {
+                        dark: "github-dark",
+                        light: "github-light",
+                    },
+                },
+            ],
+            rehypeKatex,
+        ],
     },
-    plugins: [yaml()],
-    ssr: {
-      noExternal: ["@popperjs/core"],
-    },
-    resolve: {
-      preserveSymlinks: true,
-      browser: true,
-    },
-  },
-  image: {
-    domains: ["raw.githubusercontent.com", "unsplash.com"],
-    service: {
-      entrypoint: "astro/assets/services/sharp",
-    },
-  },
-  markdown: {
-    syntaxHighlight: false,
-    remarkPlugins: [
-      emoji,
-      remarkGfm,
-      remarkDirective,
-      admonitionsPlugin,
-      mermaid,
-      remarkMath,
-      // [
-      //     remarkDescription,
-      //     {
-      //         name: 'excerpt',
-      //         node: (node, i, parent) => {
-      //             // check if parent has a child that is an html comment with the text 'end of excerpt'
-      //             if (
-      //                 parent?.children?.some(
-      //                     (child) =>
-      //                         (child.type === 'html' && child.value === '<!-- end of excerpt -->') ||
-      //                         (child.type === 'mdxFlowExpression' && child?.value === '/* end of excerpt */'),
-      //                 )
-      //             ) {
-      //                 const sibling = parent?.children[i + 1];
-
-      //                 return (
-      //                     (sibling?.type === 'html' && sibling?.value === '<!-- end of excerpt -->') ||
-      //                     (sibling?.type === 'mdxFlowExpression' && sibling?.value === '/* end of excerpt */')
-      //                 );
-      //             } else {
-      //                 // return the first paragraph otherwise
-
-      //                 // get the index of the first paragraph
-      //                 const firstParagraphIndex = parent?.children.findIndex(
-      //                     (child) => child.type === 'paragraph',
-      //                 );
-      //                 // if the node is the first paragraph, return true
-      //                 return i === firstParagraphIndex;
-      //             }
-      //         },
-      //     },
-      // ],
-    ],
-    // NOTE: Also update the plugins in `src/components/Markdown.svelte`!
-    rehypePlugins: [
-      rehypeSlug,
-      [
-        rehypeAutolinkHeadings,
-        {
-          behavior: "append",
-          content: h("i.ms-1.fas.fa-link.fa-xs.invisible"),
-        },
-      ],
-      [
-        addClasses,
-        {
-          table: "table table-hover table-sm small",
-        },
-      ],
-      [
-        rehypeWrap,
-        {
-          selector: "table",
-          wrapper: "div.table-responsive",
-        },
-      ],
-      [
-        urls,
-        (url) => {
-          const regex = /^https:\/\/(raw.)*github/;
-          if (!regex.test(url.href) && url.href?.endsWith(".md")) {
-            url.href = url.href.replace(/\.md$/, "/");
-            url.pathname = url.pathname.replace(/\.md$/, "/");
-            url.path = url.path.replace(/\.md$/, "/");
-          } else if (!regex.test(url.href) && url.href?.endsWith(".mdx")) {
-            url.href = url.href.replace(/\.mdx$/, "/");
-            url.pathname = url.pathname.replace(/\.mdx$/, "/");
-            url.path = url.path.replace(/\.mdx$/, "/");
-          }
-        },
-      ],
-      rehypeCheckboxParser,
-      rehypeHeadingNumbers,
-      [
-        rehypePrettyCode,
-        {
-          defaultLang: "plaintext",
-          keepBackground: true,
-          theme: {
-            dark: "github-dark",
-            light: "github-light",
-          },
-        },
-      ],
-      rehypeKatex,
-    ],
-  },
 });
