@@ -27,7 +27,6 @@
 <style lang="scss">
     .card {
         width: 100%;
-        height: 100%;
         &:global(.rounded-start-0) {
             border-left: 5px solid;
         }

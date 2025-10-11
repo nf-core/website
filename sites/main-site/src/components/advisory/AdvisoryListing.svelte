@@ -95,3 +95,9 @@
         </div>
     </div>
 </div>
+
+<style lang="scss">
+    h3:not(:first-child) {
+        margin-top: 0.5rem;
+    }
+</style>
