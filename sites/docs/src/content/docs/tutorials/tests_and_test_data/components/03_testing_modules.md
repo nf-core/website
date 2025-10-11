@@ -10,19 +10,6 @@ The nf-test framework in the nf-core ecosystem enables comprehensive testing for
 
 This chapter covers the fundamentals of nf-core module testing, from basic syntax to advanced scenarios involving chained modules.
 
-## Module structure
-
-Before diving into testing, let's understand the typical structure of a nf-core module after creating the boiler plate files with `nf-core modules create`:
-
-```tree
-modules/nf-core/tool/subtool/
-├── main.nf              # Process definition
-├── meta.yml             # Module metadata
-└── tests/               # Testing directory
-    ├── main.nf.test     # Test definitions
-    └── nextflow.config  # Optional: test-specific config
-```
-
 ### Basic test syntax
 
 The basic syntax for a module test that we define in `main.nf.test` follows this structure:
@@ -43,44 +30,21 @@ nextflow_process {
 }
 ```
 
+**Components:**
+
+- `nextflow_process` - Main test block for the process
+- `name` - Descriptive test suite identifier (e.g., "Test Process FASTQC")
+- `script` - Path to the Nextflow script (usually `"../main.nf"`)
+- `process` - Exact process name from the script (case-sensitive)
+- `test()` - Individual test case with descriptive name
+- `when` - Test input setup and execution parameters
+- `then` - Assertions to verify expected behavior and outputs
+
 :::note
 **Key points:**
 
 - Script paths starting with `./` or `../` are relative to the test script's location.
   :::
-
-### Essential Assertions
-
-Tests then use assertions to verify the expected output of the process specified in the `then` block.
-
-You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
-
-Nextflow process output channels that lack explicit names (i.e., when no `meta` map is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
-
-```groovy
-// Process completion status
-assert process.success
-assert process.exitStatus == 0
-
-// Output channels
-assert process.out.my_channel != null
-assert process.out.my_channel.size() == 3
-assert process.out.my_channel.get(0) == "expected_value"
-
-// For unnamed channels, use index notation
-assert process.out[0] != null
-assert process.out[0].size() == 3
-
-// Group assertions to see all failures at once
-assertAll(
-    { assert process.success },
-    { assert snapshot(process.out).match() }
-)
-```
-
-:::note
-For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
-:::
 
 ## Creating a new module with tests
 
@@ -96,12 +60,13 @@ nf-core modules create seqtk/sample
 
 This creates the following module directory structure:
 
-```
-modules/nf-core/seqtk/sample/
-├── main.nf
-├── meta.yml
-└── tests/
-    └── main.nf.test
+```tree
+modules/nf-core/tool/subtool/
+├── main.nf              # Process definition
+├── meta.yml             # Module metadata
+└── tests/               # Testing directory
+    ├── main.nf.test     # Test definitions
+    └── nextflow.config  # Optional: test-specific config
 ```
 
 We then edit the test file (`tests/main.nf.test`) to specify the test's input data via the `input[0]` and `input[1]` channels in the `when` block:
@@ -175,7 +140,39 @@ nf-core modules test seqtk/sample --profile docker
 This will execute the tests and generate snapshot file (`tests/main.nf.test.snap`) for validation.
 
 However, it is often necessary to make more complex test input setups and test assertions due to the complexity of the modules we are testing.
-In the following examples we will go through real life examples at increasingly complexity.
+
+### Essential Assertions
+
+Tests then use assertions to verify the expected output of the process specified in the `then` block.
+
+You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
+
+Nextflow process output channels that lack explicit names (i.e., when no `meta` map is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
+
+```groovy
+// Process completion status
+assert process.success
+assert process.exitStatus == 0
+
+// Output channels
+assert process.out.my_channel != null
+assert process.out.my_channel.size() == 3
+assert process.out.my_channel.get(0) == "expected_value"
+
+// For unnamed channels, use index notation
+assert process.out[0] != null
+assert process.out[0].size() == 3
+
+// Group assertions to see all failures at once
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+
+:::note
+For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
+:::
 
 ## Testing an existing module
 
@@ -251,19 +248,6 @@ INFO     Generating nf-test snapshot again to check stability
 ╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
 INFO     All tests passed!
 ```
-
-## Module testing principles
-
-- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
-- **Test both regular process and stub modes** to verify functionality and stub outputs
-- **Use appropriate test data** from the **nf-core test-datasets** repository
-- **Minimal viable tests** that cover the core functionality without excessive complexity
-
-:::note
-**Key points:**
-
-For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
-:::
 
 ### Stub mode
 
@@ -474,67 +458,6 @@ nf-core modules test abricate/summary --profile docker
 
 This will execute the test with the chained module setup, running `ABRICATE_RUN` first to generate the required input, then testing `ABRICATE_SUMMARY` with that output.
 
-```bash
-
-
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
-
-    nf-core/tools version 3.3.2 - https://nf-co.re
-
-
-INFO     Generating nf-test snapshot
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process ABRICATE_SUMMARY                                                                          │
-│                                                                                                        │
-│   Test [fc133477] 'Should run without failures' PASSED (102.456s)                                      │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 1 tests in 102.459s                                                                  │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     Generating nf-test snapshot again to check stability
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process ABRICATE_SUMMARY                                                                          │
-│                                                                                                        │
-│   Test [fc133477] 'Should run without failures' PASSED (11.658s)                                       │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 1 tests in 11.667s                                                                   │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     All tests passed!
-```
-
 ### Aliasing dependencies
 
 If you need to run the same setup process multiple times for the same test but for different files (such as unzipping multiple different files), you can set an `alias` for the process:
@@ -720,33 +643,21 @@ nf-test test --profile docker modules/nf-core/abricate/summary/tests/main.nf.tes
 
 This will run the tests for the module and display the results, including any failures or snapshot mismatches.
 
-```bash
-🚀 nf-test 0.9.0
-https://www.nf-test.com
-(c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr
-
-Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar
-Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar
-Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar
-Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar
-Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar
-Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar
-Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar
-
-Test Process ABRICATE_SUMMARY
-
-  Test [fc133477] 'Should run without failures' PASSED (15.286s)
-
-
-SUCCESS: Executed 1 tests in 15.294s
-```
-
 :::note
 The `nf-test test` command runs the test only once compared to the `nf-core modules test` command which runs the test twice to confirm snapshot stability.
 :::
 
+## Module testing principles
+
+- **Prefer automated MD5 checksums using Snapshots** for output verification when possible, then file content checks, then existence checks as fallbacks
+- **Test both regular process and stub modes** to verify functionality and stub outputs
+- **Use appropriate test data** from the **nf-core test-datasets** repository
+- **Minimal viable tests** that cover the core functionality without excessive complexity
+
 :::note
-For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
+**Key points:**
+
+For detailed testing guidelines, see the [nf-core modules testing specifications](https://nf-co.re/docs/guidelines/components/modules#testing).
 :::
 
 ## Next steps
