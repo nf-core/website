@@ -21,7 +21,7 @@ This complexity means that **data submission is universally dreaded and avoided*
 
 `seqsubmit` is an ambitious, community-driven initiative to create an **nf-core pipeline to automate submission of diverse genomic data** (samples, reads, assemblies etc.) to INSDC databases.
 
-INSDC (International Nucleotide Sequence Database Collaboration) comprises three major repositories which mirror each other's data within 24 hours:
+INSDC (International Nucleotide Sequence Database Collaboration) comprises three major repositories which mirror each other's data:
 
 - ENA (European Nucleotide Archive)
 - NCBI GenBank
