@@ -1,6 +1,6 @@
 ---
 title: "#animal-genomics: October Meeting"
-subtitle: Daniela Lourenco
+subtitle: Daniela Lourenco (University of Georgia, USA)
 
 type: talk
 startDate: "2025-10-15"
