@@ -10137,7 +10137,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -14581,6 +14581,10 @@
         {
           "name": "rnaseq",
           "version": "3.21.0"
+        },
+        {
+          "name": "sarek",
+          "version": "3.6.0"
         }
       ]
     },
@@ -15416,7 +15420,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantbenchmarking",
@@ -15720,7 +15724,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -16862,6 +16866,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "sarek",
+          "version": "3.6.0"
+        },
+        {
           "name": "tbanalyzer",
           "version": "dev"
         },
@@ -17048,7 +17056,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tumourevo",
@@ -17224,6 +17232,10 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
+        },
+        {
+          "name": "sarek",
+          "version": "3.6.0"
         },
         {
           "name": "variantbenchmarking",
@@ -18785,7 +18797,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantbenchmarking",
@@ -19099,7 +19111,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantbenchmarking",
@@ -29170,7 +29182,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "ssds",
@@ -29449,7 +29461,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "ssds",
@@ -29877,7 +29889,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -30151,7 +30163,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -31460,7 +31472,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -31659,7 +31671,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -40728,7 +40740,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -41003,7 +41015,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -41105,7 +41117,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -41197,7 +41209,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -41305,7 +41317,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -41403,7 +41415,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -43860,7 +43872,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -44208,7 +44220,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -44303,7 +44315,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -44398,7 +44410,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -44673,7 +44685,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -51235,28 +51247,56 @@
           }
         ],
         "input": [
-          {
-            "meta": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "config_file": {
+                "type": "file",
+                "description": "Path to a config file in YAML format",
+                "pattern": "*.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "table": {
+                "type": "file",
+                "description": "Path to a CSV/TSV file",
+                "pattern": "*.{csv,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
-          }
+          ]
         ],
         "output": {
           "report": [
             [
               {
                 "meta": {
-                  "type": "directory",
-                  "description": "directory with HTML report of provided CSV/TSV files",
-                  "pattern": "/output/"
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "${prefix}": {
                   "type": "directory",
                   "description": "directory with HTML report of provided CSV/TSV files",
-                  "pattern": "/output/"
+                  "pattern": "${prefix}"
                 }
               }
             ]
@@ -55353,7 +55393,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -57372,7 +57412,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -57476,7 +57516,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -61222,7 +61262,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tumourevo",
@@ -61571,7 +61611,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tumourevo",
@@ -65270,7 +65310,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "smrnaseq",
@@ -65833,7 +65873,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -67645,7 +67685,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -67985,7 +68025,13 @@
         "maintainers": [
           "@sppearce"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "fgbio_fastqtobam",
@@ -68101,7 +68147,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -68375,7 +68421,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -71254,7 +71300,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -74649,7 +74695,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -74836,7 +74882,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -75201,7 +75247,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -75460,7 +75506,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -75774,7 +75820,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -76806,7 +76852,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -77382,7 +77428,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -77875,7 +77921,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantcatalogue",
@@ -78050,7 +78096,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -78148,7 +78194,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -78254,7 +78300,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -78433,7 +78479,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -78661,7 +78707,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -78999,7 +79045,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -79242,7 +79288,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -79444,7 +79490,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -79650,7 +79696,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -79997,7 +80043,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -80239,7 +80285,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantcatalogue",
@@ -80396,7 +80442,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantcatalogue",
@@ -80788,7 +80834,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantcatalogue",
@@ -83601,7 +83647,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -83968,7 +84014,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -84125,7 +84171,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -84285,7 +84331,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -84973,7 +85019,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "smrnaseq",
@@ -91366,7 +91412,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -95555,6 +95601,10 @@
         {
           "name": "sammyseq",
           "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.6.0"
         },
         {
           "name": "scrnaseq",
@@ -118147,7 +118197,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -122406,7 +122456,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -122715,7 +122765,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -122968,7 +123018,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -136013,7 +136063,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantcatalogue",
@@ -136643,7 +136693,13 @@
         "maintainers": [
           "@adamrtalbot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "msisensor2_scan",
@@ -137196,7 +137252,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -137486,7 +137542,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -138424,7 +138480,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scdownstream",
@@ -139592,7 +139648,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "muse_sump",
@@ -139725,7 +139787,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "mygene",
@@ -144010,7 +144078,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -150453,7 +150521,13 @@
           "@gallvp",
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "parabricks_fq2bammeth",
@@ -170101,12 +170175,27 @@
                 "pattern": "*.txt",
                 "ontologies": []
               }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "File containing somatic variants from Mutect2",
+                "pattern": "{*.vcf, *.vcf.gz}",
+                "ontologies": []
+              }
             }
           ],
           {
             "normal_db": {
               "type": "file",
-              "description": "normal pannel database",
+              "description": "Database created from a panel of normals",
+              "ontologies": []
+            }
+          },
+          {
+            "mapping_bias": {
+              "type": "file",
+              "description": "Mapping bias file generated with normal panel",
               "ontologies": []
             }
           },
@@ -170356,7 +170445,6 @@
           "@lbeltrame"
         ],
         "maintainers": [
-          "@aldosr",
           "@lbeltrame"
         ]
       }
@@ -175357,7 +175445,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "regtools_junctionsextract",
@@ -183383,10 +183477,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "sarek",
-          "version": "3.5.1"
         }
       ]
     },
@@ -183735,7 +183825,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -184545,7 +184635,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -184880,7 +184970,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -185579,7 +185669,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -187045,7 +187135,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -187468,7 +187558,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -187603,7 +187693,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -188522,7 +188612,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -188866,7 +188956,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scnanoseq",
@@ -191925,7 +192015,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -192168,7 +192258,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -193142,7 +193232,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -193309,7 +193399,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -193581,7 +193671,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -193774,7 +193864,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -194020,7 +194110,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -195988,7 +196078,13 @@
         "maintainers": [
           "@ramprasadn"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "sentieon_varcal",
@@ -196194,7 +196290,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -206613,7 +206709,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -206800,7 +206896,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tbanalyzer",
@@ -210130,7 +210226,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -213485,7 +213581,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -213710,7 +213806,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -216337,7 +216433,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -218416,7 +218512,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "variantbenchmarking",
@@ -218574,7 +218670,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tumourevo",
@@ -221667,7 +221763,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -228217,7 +228313,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scdownstream",
@@ -228477,7 +228573,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scrnaseq",
@@ -229611,7 +229707,13 @@
           "@FriederikeHanssen",
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "varlociraptor_estimatealignmentproperties",
@@ -229755,7 +229857,13 @@
           "@FriederikeHanssen",
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "varlociraptor_preprocess",
@@ -229923,7 +230031,13 @@
           "@FriederikeHanssen",
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "varscan_fpfilter",
@@ -231226,6 +231340,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "sarek",
+          "version": "3.6.0"
         }
       ]
     },
@@ -232640,7 +232758,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -240215,7 +240333,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "sarek",
+          "version": "3.6.0"
+        }
+      ]
     },
     {
       "name": "zip",
@@ -241961,7 +242085,7 @@
       "pipelines": [
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
@@ -250081,7 +250205,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scdownstream",
@@ -250494,7 +250618,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scdownstream",
@@ -250879,7 +251003,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "scdownstream",
@@ -251190,7 +251314,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         },
         {
           "name": "tumourevo",
@@ -251409,7 +251533,7 @@
         },
         {
           "name": "sarek",
-          "version": "3.5.1"
+          "version": "3.6.0"
         }
       ]
     },
