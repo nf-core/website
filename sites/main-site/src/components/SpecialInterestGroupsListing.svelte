@@ -2,7 +2,6 @@
     import ListingTableHeader from "@components/ListingTableHeader.svelte";
     import ListingCard from "./ListingCard.svelte";
     import { DisplayStyle, SearchQuery } from "@components/store";
-    import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
 
     import type { CollectionEntry } from "astro:content";
 
@@ -13,6 +12,10 @@
     let { groups = [] }: Props = $props();
 
     let filteredGroups = groups;
+
+    const getLeadName = (lead: string | object): string => {
+        return typeof lead === "string" ? lead : Object.keys(lead)[0];
+    };
 </script>
 
 <div class="listing px-2 py-4">
@@ -51,17 +54,18 @@
                                     <div class="small g-col-4">
                                         {#if group.data.leads}
                                             <p class="text-muted small mb-2">Group leads:</p>
-                                            <div class="leads d-flex w-100 h-100 flex-wrap align-content-start">
+                                            <div class="leads d-flex w-100 h-100 flex-wrap align-content-start gap-1">
                                                 {#each group.data.leads as lead}
-                                                    {#if typeof lead === "string"}
-                                                        <GitHubProfilePicture name={lead} size={40} circle={true} />
-                                                    {:else}
-                                                        <GitHubProfilePicture
-                                                            name={Object.keys(lead)[0]}
-                                                            size={40}
-                                                            circle={true}
-                                                        />
-                                                    {/if}
+                                                    <a
+                                                        href={`https://github.com/${getLeadName(lead)}`}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        class="badge text-bg-dark text-decoration-none"
+                                                        data-bs-toggle="tooltip"
+                                                        title={getLeadName(lead)}
+                                                    >
+                                                        @{getLeadName(lead)}
+                                                    </a>
                                                 {/each}
                                             </div>
                                         {/if}
@@ -103,14 +107,18 @@
                                 {/each}
                             </td>
                             <td class="">
-                                <div class="d-flex flex-wrap">
+                                <div class="d-flex flex-wrap gap-1">
                                     {#each group.data.leads ?? [] as lead}
-                                        {#if typeof lead === "string"}
-                                            <GitHubProfilePicture name={lead} size={40} />
-                                        {:else}
-                                            <GitHubProfilePicture name={Object.keys(lead)[0]} size={40}
-                                            ></GitHubProfilePicture>
-                                        {/if}
+                                        <a
+                                            href={`https://github.com/${getLeadName(lead)}`}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="badge text-bg-dark text-decoration-none"
+                                            data-bs-toggle="tooltip"
+                                            title={getLeadName(lead)}
+                                        >
+                                            @{getLeadName(lead)}
+                                        </a>
                                     {/each}
                                 </div>
                             </td>
