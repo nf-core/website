@@ -87,7 +87,7 @@ All main commands have now shorter aliases:
 
 Thanks to the new version of [rich-click](https://ewels.github.io/rich-click/1.9/blog/2025/09/16/version-1.9/) for adding this feature (and nicer themeing)!
 
-# Template changes
+# Pipeline template changes
 
 This release includes also some changes to the pipeline template.
 
@@ -100,11 +100,13 @@ This release includes also some changes to the pipeline template.
 
 Mastodon announcements now include the pipeline description, providing more context when pipelines are released.
 
-### Changelog
-
-You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.4.0).
-
 # Miscellaneous
+
+## Modules linting
+
+Modules can now use Nextflow's `exec:` blocks and we lint for possible conflicts with `shell:` blocks.
+
+Thanks to [@muffato](https://github.com/muffato) for implementing this feature!
 
 ## Linting
 
@@ -120,3 +122,7 @@ Thank you [@rrahn](https://github.com/rrahn) for implementing this feature!
 - **Minimum Nextflow version bumped to 25.04.0** to support the latest features
 - **nf-test**: updated to 0.9.3 with the latest bug fixes and improvements
 - **MultiQC**: updated to 1.31 with new modules and features
+
+# Changelog
+
+You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.4.0).
