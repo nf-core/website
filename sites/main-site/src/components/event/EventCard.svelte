@@ -101,3 +101,11 @@
         </div>
     {/snippet}
 </ListingCard>
+
+<style lang="scss">
+    @media (max-width: 768px) {
+        .text-nowrap {
+            white-space: normal !important;
+        }
+    }
+</style>

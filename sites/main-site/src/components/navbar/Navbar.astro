@@ -9,7 +9,7 @@ import NfCoreLogo from "@public/images/logo/nf-core-logo.svg";
 import IconSocial from "@components/IconSocial.astro";
 import ThemeSwitch from "@components/ThemeSwitch.svelte";
 import { Icon } from "astro-icon/components";
-import Search from "@components/navbar/Search.svelte";
+import Search from "@components/navbar/Search.astro";
 import { findCurrentGroup } from "@utils/functions";
 import BlogPostLabel from "@components/navbar/BlogPostLabel.svelte";
 import type { SidebarEntry } from "@utils/types";
@@ -90,7 +90,7 @@ if (onGoingEvents?.length > 0) {
             )
         }
         <div class:list={["align-self-center d-xl-none", { "me-5": navTocHeadings.length === 0 }]}>
-            <Search id="docsearch-mobile" client:visible />
+            <Search id="docsearch-mobile" />
         </div>
         <button
             class="navbar-toggler border-0"
@@ -246,7 +246,7 @@ if (onGoingEvents?.length > 0) {
                     </ul>
                 </li>
                 <div class="align-self-center d-none d-xl-block ms-auto me-2">
-                    <Search id="docsearch-desktop" client:only="svelte" />
+                    <Search id="docsearch-desktop" />
                 </div>
                 <div class="d-none d-xl-block vr mx-1 mx-xxl-2"></div>
 
