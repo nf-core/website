@@ -153,6 +153,7 @@ export default defineConfig({
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
+        layout: "constrained",
     },
     markdown: {
         syntaxHighlight: false,

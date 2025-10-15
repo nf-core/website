@@ -125,12 +125,12 @@ We also thank the following organisations for supporting nf-core through providi
 <div class="row row-cols-1 row-cols-lg-4 my-5">
   <div class="col" style="align-self:center;">
     <a href="https://www.docker.com/" target="_blank">
-      <img src="/images/docker-horizontal.png" alt="Docker" class="w-75">
+      <img src="../../assets/images/docker-horizontal.png" alt="Docker" class="w-75">
     </a>
   </div>
   <div class="col" style="align-self:center;">
     <a href="https://runs-on.com/" target="_blank">
-      <img src="/images/runs-on.png" alt="RunsOn" class="w-50">
+      <img src="../../assets/images/runs-on.png" alt="RunsOn" class="w-50">
     </a>
   </div>
     <div class="col" style="align-self:center;">
