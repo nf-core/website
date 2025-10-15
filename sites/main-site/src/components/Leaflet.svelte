@@ -1,8 +1,13 @@
 <script lang="ts">
     import { tileLayer, marker, map, Icon } from "leaflet";
     import "leaflet-fullscreen";
-    import "leaflet/dist/leaflet.css";
-    import "leaflet-fullscreen/dist/leaflet.fullscreen.css";
+    import { onMount } from "svelte";
+
+    // Dynamically load CSS only when component mounts
+    onMount(async () => {
+        await import("leaflet/dist/leaflet.css");
+        await import("leaflet-fullscreen/dist/leaflet.fullscreen.css");
+    });
 
     interface Props {
         locations?: {

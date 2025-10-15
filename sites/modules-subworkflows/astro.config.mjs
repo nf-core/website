@@ -40,6 +40,7 @@ export default defineConfig({
                 cssVariable: "--font-inter",
                 fallbacks: ["sans-serif"],
                 weights: ["300 700"],
+                subsets: ["latin"]
             },
             {
                 provider: fontProviders.fontsource(),
