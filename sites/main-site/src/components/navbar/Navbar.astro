@@ -11,7 +11,7 @@ import ThemeSwitch from "@components/ThemeSwitch.svelte";
 import { Icon } from "astro-icon/components";
 import Search from "@components/navbar/Search.astro";
 import { findCurrentGroup } from "@utils/functions";
-import BlogPostLabel from "@components/navbar/BlogPostLabel.svelte";
+import BlogPostLabel from "@components/navbar/BlogPostLabel.astro";
 import type { SidebarEntry } from "@utils/types";
 import { getCollection } from "astro:content";
 
@@ -164,7 +164,7 @@ if (onGoingEvents?.length > 0) {
                         <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
-                                <BlogPostLabel client:idle timeSpan={blogPostTimeSpan} /></a
+                                <BlogPostLabel timeSpan={blogPostTimeSpan} /></a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
