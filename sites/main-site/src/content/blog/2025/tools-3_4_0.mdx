@@ -131,75 +131,85 @@ Thank you [@rrahn](https://github.com/rrahn) for implementing this feature!
 
 You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.4.0).
 
-# Typical merge conflicts
+# Getting help to update your pipeline template
 
-When updating your pipeline with `nf-core pipelines sync`, you may encounter merge conflicts. Here's how to resolve the most common ones:
+All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/3.4.0).
+Below, we have collected the most common merge conflicts that you may find and how to resolve them.
 
-## ARM architecture profile
+## `conf/arm.config` → `conf/emulate_amd64.config`
 
-**File:** `conf/arm.config`
+The generic `arm` profile has been replaced with a more specific `emulate_amd64` profile for better ARM64 architecture handling.
 
-The generic `arm` profile has been replaced with `emulate_amd64`.
-If you had custom changes in your `arm` profile, maintain them in the new `emulate_amd64` profile configuration.
+#### Resolution
+
+If you had custom changes in your `arm` profile, maintain them when migrating to the new `emulate_amd64` profile configuration.
 
 ## Test profiles
 
-**Files:** `conf/test*.config`
+#### Resolution
 
 Keep all your custom changes to test profiles while accepting updates from the template.
 
-## Nextflow and plugin versions
+## `nextflow.config`
 
-**File:** `nextflow.config`
+We have updated several key dependencies and configurations:
 
-- Keep the new minimum Nextflow version (25.04.0)
-- Keep the new `nf-schema` version (2.5.0)
-- Keep any additional plugins you previously added to the configuration
+- Minimum Nextflow version bumped to 25.04.0
+- nf-schema updated to 2.5.0
+- MultiQC updated to 1.31
 
-## MultiQC update
+#### Resolution
 
-Multiqc was updated to version 1.31.
+Always accept changes from the template for `nextflow.config` as a baseline, then re-apply your custom modifications.
+Make sure to keep any additional plugins you previously added to the configuration.
 
-**File:** `conf/modules.config`
-Accept changes from both your `dev` branch and the template update branch and then remove your old version sha for the multiqc module.
+## `.nf-core.yml`
 
-```diff
-"multiqc": {
-    "branch": "master",
--    "git_sha": "c9a31c472ef2d86802eb44f27322955849859361",
-+    "git_sha": "e10b76ca0c66213581bec2833e30d31f239dec0b",
-    "installed_by": ["modules"]
-},
-```
+There might be conflicts in the `repository_type: pipeline` or `template:` sections.
 
-**Files:** `modules/nf-core/multiqc`
+#### Resolution
 
-Accept all template changes
+Accept all changes coming from the template to ensure your pipeline stays up-to-date with the latest template structure.
 
-## Pipeline recreation
+## `.github/workflows/awstest.yml` and `.github/workflows/awsfulltest.yml`
 
-**File:** `.nf-core.yml`
+We replaced many of the `secrets.` variables with organization-wide `vars.` variables.
 
-If you see conflicts in the `repository_type: pipeline` or `template:` sections, pick all changes coming from the template to ensure your pipeline stays up-to-date with the latest template structure.
+#### Resolution
 
-## AWS CI workflows
-
-**File:** `.github/workflows/aws{full}test.yml`
-
-Secrets have been changed to organization-wide variables (`secrets.` → `vars.`).
-If you added custom changes to these workflows, keep both the new variable references and your modifications.
+Accept the new variable references (`vars.` instead of `secrets.`).
+If you previously changed one of these values or added custom changes to these workflows, keep both the new variable references and your modifications.
 
 ## `.nftignore`
 
-Changes related to the MultiQC update - accept all changes from the template and keep any additional patterns you added.
+Changes related to the MultiQC update have been made to this file.
+
+#### Resolution
+
+Accept all changes from the template and keep any additional patterns you added.
 
 ## `main.nf`
 
-Accept new inputs in the `PIPELINE_INITIALIZATION` subworkflow has been updated.
-Keep any custom logic you added while integrating the template updates.
+New inputs have been added and the `PIPELINE_INITIALIZATION` subworkflow has been updated.
 
-## utility subworkflows
+#### Resolution
 
-**Files:** `subworkflows/local/utils_nfcore_*_pipeline/main.nf`
+Accept new inputs and ensure the `PIPELINE_INITIALIZATION` subworkflow changes are integrated.
+Keep any custom logic you added while merging the template updates.
 
-Accept changes from the template for the local utility subworkflows.
+## `.gitpod.yml`
+
+Gitpod configuration has been removed in favor of GitHub Codespaces with devcontainers.
+
+#### Resolution
+
+You can safely delete the `.gitpod.yml` file.
+If you were using Gitpod, consider migrating to the new devcontainer setup (`.devcontainer/` directory).
+
+## `subworkflows/local/utils_nfcore_*_pipeline/main.nf`
+
+Utility subworkflows have been updated.
+
+#### Resolution
+
+Accept changes from the template for the local utility subworkflows to ensure compatibility with the latest nf-core standards.
