@@ -28,7 +28,7 @@ Although docker is available and containers can be run inside the nf-core devcon
 :::
 
 This should run the test data through nf-core/rnaseq, using apptainer with your results in the folder: `my_result`.
-This mamy take some time to complete.
+This may take some time to complete.
 
 The devcontainer method in Codespaces makes it easy to run and test nf-core pipelines quickly, but it lacks the computational power required to run real-size datasets.
 
