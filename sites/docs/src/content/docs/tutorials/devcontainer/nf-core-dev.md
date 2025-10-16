@@ -23,7 +23,7 @@ nextflow run . \
     --outdir my_result
 
 :::note
-Note the use of the singularity profile with `-profile singularity` to successfully run the pipeline.
+We recommend the use of the singularity profile with `-profile singularity{:bash}` to successfully run the pipeline.
 Although docker is available and containers can be run inside the nf-core devcontainers, running nextflow with the docker profile using `-profile docker` is currently not supported yet.
 :::
 
