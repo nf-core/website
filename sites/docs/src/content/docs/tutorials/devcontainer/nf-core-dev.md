@@ -18,10 +18,9 @@ Make sure to also select the larger 4 cpu hardware from "Machine Type".
 Once Codespaces has loaded, a container with all required tools is run automatically and the following command can run the nf-core workflow:
 
 ```bash
-nextflow run nf-core/rnaseq \
+nextflow run . \
     -profile test,singularity \
     --outdir my_result
-```
 
 :::note
 Note the use of the singularity profile with `-profile singularity` to successfully run the pipeline.
