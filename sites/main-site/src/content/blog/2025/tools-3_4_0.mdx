@@ -21,10 +21,10 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 - [Refactored download command](#refactored-download-command)
 - [New devcontainer setup](#new-devcontainer-setup)
-- [Improvements in ARM64 architecture handling](#change-in-arm-architecture-handling)
+- [Improvements in ARM64 architecture handling](#improvements-in-arm64-architecture-handling)
 - [CLI convenience improvements](#cli-convenience-improvements)
 
-# Refactored download command
+## Refactored download command
 
 The `nf-core download` command has received a major overhaul (see the [blog post](/blog/2025/refurbushing-the-pipeline-download) for more details about the motivation and new approach), bringing several powerful new features and improvements:
 
@@ -48,14 +48,14 @@ You can now download Docker images directly into tar archives, making it easier 
 nf-core download <pipeline> --container-system docker --compress tar
 ```
 
-# New devcontainer setup
+## New devcontainer setup
 
 With the [sunsetting of Gitpod](https://ona.com/stories/gitpod-classic-payg-sunset) (😢) we recommend using GitHub Codespaces instead.
 
 We updated therefore the devcontainer configuration to make the experience as seamless as possible.
 
 :::note
-If you want to run a Nextflow pipeline, we recommend to use `-profile singularity` when running in a codespace.
+If you want to run a Nextflow pipeline, we recommend to use `-profile singularity` when running in a codespace. Docker is not fully supported yet, and it can lead to unexpected behaviours.
 :::
 
 ## Improvements in ARM64 architecture handling
@@ -67,7 +67,7 @@ The template now includes better support for ARM64 architectures:
 
 This provides clearer options for pipeline users working with Apple Silicon Macs and ARM64 servers
 
-# CLI convenience improvements
+## CLI convenience improvements
 
 ### `modules lint` and `modules bump-versions` all sub-tools
 
@@ -136,80 +136,65 @@ You can find the complete changelog and technical details [on GitHub](https://gi
 All the template changes are listed in [the Template section of the changelog](https://github.com/nf-core/tools/releases/tag/3.4.0).
 Below, we have collected the most common merge conflicts that you may find and how to resolve them.
 
-## `conf/arm.config` → `conf/emulate_amd64.config`
+### \*.nf.test.snap - nf-test snapshots
 
-The generic `arm` profile has been replaced with a more specific `emulate_amd64` profile for better ARM64 architecture handling.
+If you use MultiQC in your pipeline, your snapshots will be outdated, because we updated the MultiQC version to 1.31.
 
-#### Resolution
+##### Resolution
 
-If you had custom changes in your `arm` profile, maintain them when migrating to the new `emulate_amd64` profile configuration.
+Regenerate the snapshots.
 
-## Test profiles
+### nextflow.config
 
-#### Resolution
+- The generic `arm` profile has been replaced with a more specific `arm64` and `emulate_amd64` profile for better ARM64 architecture handling.
+- We also bumped the Nextflow version.
+- the gitpod profile has been removed
 
-Keep all your custom changes to test profiles while accepting updates from the template.
+##### Resolution
 
-## `nextflow.config`
+- If you had custom changes in your `arm` profile, move them over to the `arm64` profile, otherwise accept the changes from the template.
+- Accept the new Nextflow version (if yours is not higher) and keep
+- Accept the removed gitpod profile
 
-We have updated several key dependencies and configurations:
-
-- Minimum Nextflow version bumped to 25.04.0
-- nf-schema updated to 2.5.0
-- MultiQC updated to 1.31
-
-#### Resolution
-
-Always accept changes from the template for `nextflow.config` as a baseline, then re-apply your custom modifications.
-Make sure to keep any additional plugins you previously added to the configuration.
-
-## `.nf-core.yml`
-
-There might be conflicts in the `repository_type: pipeline` or `template:` sections.
-
-#### Resolution
-
-Accept all changes coming from the template to ensure your pipeline stays up-to-date with the latest template structure.
-
-## `.github/workflows/awstest.yml` and `.github/workflows/awsfulltest.yml`
+### .github/workflows/awstest.yml and .github/workflows/awsfulltest.yml
 
 We replaced many of the `secrets.` variables with organization-wide `vars.` variables.
 
-#### Resolution
+##### Resolution
 
 Accept the new variable references (`vars.` instead of `secrets.`).
 If you previously changed one of these values or added custom changes to these workflows, keep both the new variable references and your modifications.
 
-## `.nftignore`
+### .nftignore
 
 Changes related to the MultiQC update have been made to this file.
 
-#### Resolution
+##### Resolution
 
 Accept all changes from the template and keep any additional patterns you added.
+Be sure not to add an empty line otherwise pre-commit will complain
 
-## `main.nf`
+### main.nf
 
 New inputs have been added and the `PIPELINE_INITIALIZATION` subworkflow has been updated.
 
-#### Resolution
+##### Resolution
 
 Accept new inputs and ensure the `PIPELINE_INITIALIZATION` subworkflow changes are integrated.
 Keep any custom logic you added while merging the template updates.
 
-## `.gitpod.yml`
+### .gitpod.yml
 
 Gitpod configuration has been removed in favor of GitHub Codespaces with devcontainers.
 
-#### Resolution
+##### Resolution
 
 You can safely delete the `.gitpod.yml` file.
-If you were using Gitpod, consider migrating to the new devcontainer setup (`.devcontainer/` directory).
 
-## `subworkflows/local/utils_nfcore_*_pipeline/main.nf`
+### subworkflows/local/utils*nfcore*\*\_pipeline/main.nf
 
 Utility subworkflows have been updated.
 
-#### Resolution
+##### Resolution
 
 Accept changes from the template for the local utility subworkflows to ensure compatibility with the latest nf-core standards.
