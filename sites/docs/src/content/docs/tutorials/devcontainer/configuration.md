@@ -38,24 +38,23 @@ This example configuration file contains some key settings, similar to those use
 
   // Run options for the container
   "remoteUser": "root",
+
+  // Essential for running Apptainer (used with '-profile singularity')
+  // Allows to perform the necessary mount operations within the container
   "privileged": true,
 
-  // Runs a script once the container is ready
+  // Executes the ./.devcontainer/setup.sh script after
+  // the environment is created to perform final configuration
   "onCreateCommand": "./.devcontainer/setup.sh",
 
-  // Plug-and-play devcontainer features
+  // Install modular "plug-and-play" devcontainer features
+  // Specifically the docker-outside-of-docker feature
+  // (https://containers.dev/implementors/features/)
   "features": {
     "ghcr.io/devcontainers/features/docker-outside-of-docker:1.6.3": {}
   }
 }
 ```
-
-| Setting              | Purpose for Nextflow Development                                                                                                                                             |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"image"`            | Specifies the pre-built base image containing Nextflow, nf-test, and other core dependencies                                                                                 |
-| `"privileged": true` | Crucial for running Apptainer (used with the recommended -profile singularity). This setting allows Apptainer to perform the necessary mount operations within the container |
-| `"features"`         | Includes the docker-outside-of-docker [feature](https://containers.dev/implementors/features/), necessary for running docker containers                                      |
-| `"onCreateCommand"`  | Executes the ./.devcontainer/setup.sh script after the environment is created to perform final configuration, such as installing workspace-specific dependencies             |
 
 For a comprehensive list of settings see the [relevant docs](https://containers.dev/implementors/json_reference/#general-properties) of the devcontainer specification
 
