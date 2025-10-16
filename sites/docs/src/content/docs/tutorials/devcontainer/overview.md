@@ -7,7 +7,7 @@ type: "tutorial"
 
 # Devcontainers Introduction
 
-The nf-core repositories hosting tools, modules, and pipelines on Github now offer [devcontainer](https://containers.dev/implementors/spec/) configurations that can conveniently run in [GitHub Codespaces](https://github.com/features/codespaces) in a web browser or in [Visual Studio Code](https://code.visualstudio.com/docs/devcontainers/containers).
+The nf-core repositories hosting tools, modules, and pipelines on GitHub now offer [devcontainer](https://containers.dev/implementors/spec/) configurations that can conveniently run in [GitHub Codespaces](https://github.com/features/codespaces) in a web browser or in [Visual Studio Code](https://code.visualstudio.com/docs/devcontainers/containers).
 Devcontainers offer an easy-to-use environment to develop and test in, that ships with all required software and isolates it from other project environments.
 Any project folder or file can be mounted and openend inside the container with permissions automatically handled.
 Being based on docker images, running devcontaners locally requires a docker daemon installed and running.
@@ -97,7 +97,6 @@ docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is t
 
 **Solution:** Ensure that `-profile singularity` is used. The `docker` profile currently does not work in Codespaces or VS Code devcontainers.
 
-<br>
 
 ### Non-privileged status when using singularity profile
 

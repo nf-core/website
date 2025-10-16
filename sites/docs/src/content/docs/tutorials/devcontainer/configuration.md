@@ -13,7 +13,7 @@ These environments ensure all necessary software is available for developing and
 The Devcontainer utilizes a pre-built custom Docker image (`nfcore/devcontainer:latest`).
 This image includes the core tools for nf-core development and various means to access further dependencies:
 
-- Python 3.13
+- Python
 - nf-core tools
 - Nextflow
 - nf-test
