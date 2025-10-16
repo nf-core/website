@@ -26,7 +26,7 @@ These instances, capable of running nf-core pipelines with test profiles, can be
 More powerful machines are available to paying users (see [Codespaces billing](https://docs.github.com/en/billing/concepts/product-billing/github-codespaces)).
 
 Integrated into GitHub, Codespaces can automatically be used for every nf-core repository.
-To create a Codespace instance, first click on the `Code` button at the top of any GitHub repository.
+To create a Codespace instance, first click on the button labelled "Code" at the top of any GitHub repository.
 
 <p align="center">
   <img src="/images/contributing/devcontainers/codespaces-button.png" alt="codespaces dropdown" width="800"/>
