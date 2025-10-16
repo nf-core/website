@@ -21,6 +21,6 @@ Additionaly, we will also update the nf-core guidelines to make topic channels r
 
 ## Goals (with recommended experience levels)
 
-- Do a release of nf-core/tools with the new topic channels structure
-- Update popular modules to work with topic channels for their versions output
-- Update the guidelines to state that versions output should be using topics
+- Do a release of nf-core/tools with the new topic channels structure (medium, expert)
+- Update popular modules to work with topic channels for their versions output (beginner)
+- Update the guidelines to state that versions output should be using topics (beginner, medium)
