@@ -13,9 +13,9 @@ leaders:
 
 ## Project Aim
 
-In this project we will focus on getting the topics channel PR (https://github.com/nf-core/tools/pull/3779/) merged into the `dev` branch and do a small release of the nf-core tooling. This will require updates to a couple of modules to make sure all tests pass.
+In this project we will focus on getting the topics channel support added to nf-core tools and nf-core modules (see [PR](https://github.com/nf-core/tools/pull/3779/) for supporting it in the tools repo). 
 
-When this release has happened, we will start working on migrating the more popular modules to this new structure.
+When this release has become more widely available, we will start working on migrating the more popular modules to this new structure.
 
 Additionaly, we will also update the nf-core guidelines to make topic channels required for all version outputs in modules.
 
