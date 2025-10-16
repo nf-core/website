@@ -123,9 +123,7 @@ Thank you [@rrahn](https://github.com/rrahn) for implementing this feature!
 
 - **python**: 3.9 reached end of life, so we set 3.10 as the minimum version and also expanded to support Python 3.14
 - **nf-schema**: bumped to 2.5.0 with improved help message creation for future Nextflow versions
-- **Minimum Nextflow version bumped to 25.04.0** to support the latest features
-- **nf-test**: updated to 0.9.3 with the latest bug fixes and improvements
-- **MultiQC**: updated to 1.31 with new modules and features
+- **Minimum Nextflow version bumped to 25.04.0** to support the new download logic
 
 # Changelog
 
@@ -138,6 +136,8 @@ Below, we have collected the most common merge conflicts that you may find and h
 
 ### \*.nf.test.snap - nf-test snapshots
 
+##### Changes
+
 If you use MultiQC in your pipeline, your snapshots will be outdated, because we updated the MultiQC version to 1.31.
 
 ##### Resolution
@@ -145,6 +145,8 @@ If you use MultiQC in your pipeline, your snapshots will be outdated, because we
 Regenerate the snapshots.
 
 ### nextflow.config
+
+##### Changes
 
 - The generic `arm` profile has been replaced with a more specific `arm64` and `emulate_amd64` profile for better ARM64 architecture handling.
 - We also bumped the Nextflow version.
@@ -158,6 +160,8 @@ Regenerate the snapshots.
 
 ### .github/workflows/awstest.yml and .github/workflows/awsfulltest.yml
 
+##### Changes
+
 We replaced many of the `secrets.` variables with organization-wide `vars.` variables.
 
 ##### Resolution
@@ -166,6 +170,8 @@ Accept the new variable references (`vars.` instead of `secrets.`).
 If you previously changed one of these values or added custom changes to these workflows, keep both the new variable references and your modifications.
 
 ### .nftignore
+
+##### Changes
 
 Changes related to the MultiQC update have been made to this file.
 
@@ -176,6 +182,8 @@ Be sure not to add an empty line otherwise pre-commit will complain
 
 ### main.nf
 
+##### Changes
+
 New inputs have been added and the `PIPELINE_INITIALIZATION` subworkflow has been updated.
 
 ##### Resolution
@@ -185,6 +193,8 @@ Keep any custom logic you added while merging the template updates.
 
 ### .gitpod.yml
 
+##### Changes
+
 Gitpod configuration has been removed in favor of GitHub Codespaces with devcontainers.
 
 ##### Resolution
@@ -192,6 +202,8 @@ Gitpod configuration has been removed in favor of GitHub Codespaces with devcont
 You can safely delete the `.gitpod.yml` file.
 
 ### subworkflows/local/utils*nfcore*\*\_pipeline/main.nf
+
+##### Changes
 
 Utility subworkflows have been updated.
 
