@@ -4,7 +4,7 @@ category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C09ADKQ2CHZ/p1760342131872329
 image: "/assets/images/events/2025/hackathon-barcelona/variantprio.jpg"
-image_alt: "Variant in DNA"
+image_alt: "Computer render of a DNA double-helix with a red dot indicating a variation."
 leaders:
   famosab:
     name: Famke Bäuerle
