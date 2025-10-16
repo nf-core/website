@@ -118,7 +118,9 @@ In Codespaces, the git installation is already configured and authenticated in a
 When running devcontainers locally in VS Code, if no git user and email is set up locally, git asks to provide that information.
 The VS Code devcontainer extension places this information into the container after it was entered once outside a devcontainer, directly on the local machine.
 In order to push to a remote reopository, git additionally needs to authenticate against Github.
-This can be done by forwarding the local machine's ssh agent or sharing keys with the container.
+If repositories are cloned via HTTPS, no extra steps are needed.
+
+For using ssh with git, it is required to forward the local machine's ssh agent or to share keys with the container.
 Find more details on this and tutorials to follow along in the official VS Code devcontainer [docs on sharing git credentials](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials).
 
 # Guides
