@@ -104,8 +104,7 @@ You can configure the `nf-core pipelines lint` tests to ignore any of these chec
 the `files_exist` key as follows in your `.nf-core.yml` config file. For example:
 
 ```yaml
-
-
 lint:
   files_exist:
     - assets/multiqc_config.yml
+```
