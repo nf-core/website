@@ -110,7 +110,7 @@ error: while mounting image /proc/self/fd/3: squashfuse_ll exited with status 1:
 
 # Using Git in Devcontainers
 
-All nf-core projects use git for version control, which always comes pre-intalled in devcontainers.
+All nf-core projects use git for version control, which comes pre-installed in devcontainers.
 This means that changes made in a workspace can be added and commited inside the devcontainer.
 
 In Codespaces, the git installation is already configured and authenticated in a clever way based on the Github account information used when creating an instance.
