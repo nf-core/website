@@ -12,6 +12,10 @@ Devcontainers offer an easy-to-use environment to develop and test in, that ship
 Any project folder or file can be mounted and openend inside the container with permissions automatically handled.
 Being based on docker images, running devcontaners locally requires a docker daemon installed and running.
 
+<p align="center">
+    <img src="https://containers.dev/img/dev-container-stages.png" alt="devcontainer overview"/>
+</p>
+
 ## Running in Github Codespaces
 
 GitHub Codespaces is a browser-based development platform that functions very similarly to a Visual Studio Code instance running locally.
