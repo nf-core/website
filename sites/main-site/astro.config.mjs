@@ -152,6 +152,7 @@ export default defineConfig({
             "netlify.app",
             "nf-co.re",
             "nf-core-main-site.netlify.app",
+            "github.com",
         ],
         service: {
             entrypoint: "astro/assets/services/sharp",

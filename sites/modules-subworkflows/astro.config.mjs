@@ -40,7 +40,7 @@ export default defineConfig({
                 cssVariable: "--font-inter",
                 fallbacks: ["sans-serif"],
                 weights: ["300 700"],
-                subsets: ["latin"]
+                subsets: ["latin"],
             },
             {
                 provider: fontProviders.fontsource(),
@@ -123,7 +123,7 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com"],
+        domains: ["raw.githubusercontent.com", "unsplash.com", "github.com"],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
