@@ -83,6 +83,24 @@ After going through these steps, a new instance of VS Code will be created for y
 
 ## Troubleshooting Tips for Devcontainers
 
+### Starting Codespaces from a PR
+
+**Error message (in Codespaces):**
+
+```console
+Codespace could not be created: SKU name 'basicLinux32gb' is not allowed for this repository
+```
+
+<p align="center">
+    <img src="/images/contributing/devcontainers/error-codespaces.png" alt="codespaces could not be created"/>
+</p>
+
+**Solution**: Try creating the Codespaces instance again using the `New with option` button. (see below)
+
+<p align="center">
+    <img src="/images/contributing/devcontainers/error-codespaces-solution.png" alt="fix codespaces could not be created" width=400/>
+</p>
+
 ### Using docker profile in Codespace/VS Code Dev Containers
 
 **Error message:**
