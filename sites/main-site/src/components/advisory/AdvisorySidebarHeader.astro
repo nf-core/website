@@ -253,7 +253,6 @@ const impactSections = [
                     const info = getPersonInfo(reporter);
                     return (
                         <GitHubProfilePictureExtended
-                            client:load
                             username={info.username}
                             affiliation={info.affiliation}
                             size={40}
@@ -272,7 +271,6 @@ const impactSections = [
                     const info = getPersonInfo(reviewer);
                     return (
                         <GitHubProfilePictureExtended
-                            client:load
                             username={info.username}
                             affiliation={info.affiliation}
                             size={40}
