@@ -24,7 +24,7 @@ nextflow run . \
 
 :::note
 We recommend the use of the singularity profile with `-profile singularity{:bash}` to successfully run the pipeline.
-Although docker is available and containers can be run inside the nf-core devcontainers, running nextflow with the docker profile using `-profile docker` is currently not supported yet.
+Although docker is available and containers can be run inside the nf-core devcontainers, running nextflow with the docker profile using `-profile docker{:bash}` is currently not yet supported.
 :::
 
 This should run the test data through nf-core/rnaseq, using apptainer with your results in the folder: `my_result`.
