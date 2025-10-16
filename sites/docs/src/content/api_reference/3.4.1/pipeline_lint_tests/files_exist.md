@@ -105,10 +105,7 @@ the `files_exist` key as follows in your `.nf-core.yml` config file. For example
 
 ```yaml
 
-```
-
-:::
 
 lint:
-: files_exist:
-: - assets/multiqc_config.yml
+  files_exist:
+    - assets/multiqc_config.yml
