@@ -67,10 +67,10 @@ The following steps walk you through setting up VS Code devcontainers on a local
    - Navigate to the `Remote Explorer`
      <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
    - Click the dropdown menu at the top of the panel and select `Dev Containers`
-
    <p align="center">
    <img src="/images/contributing/devcontainers/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
    </p>
+
    - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
    - Select `Clone Repository in Container Volume` from the dropdown menu
    - Select `GitHub` as the remote source, and type the repository name you want to clone (i.e. `nf-core/phageannotator`)
