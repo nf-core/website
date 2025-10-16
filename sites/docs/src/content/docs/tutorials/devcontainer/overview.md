@@ -64,22 +64,20 @@ The following steps walk you through setting up VS Code devcontainers on a local
    The extension tab in VS Code can be opened by pressing Ctrl + Shift + X (CMD + Shift + X).
 
 4. **Clone a Repository in Container Volume**: Once everything is installed, open both Docker Desktop and VS Code prior going through the steps to create a local Dev Container:
+   - Navigate to the `Remote Explorer`
+     <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
+   - Click the dropdown menu at the top of the panel and select `Dev Containers`
 
-- Navigate to the `Remote Explorer`
-  <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
-- Click the dropdown menu at the top of the panel and select `Dev Containers`
-
-<p align="center">
-  <img src="/images/contributing/devcontainers/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
-</p>
-
-- Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
-- Select `Clone Repository in Container Volume` from the dropdown menu
-- Select `GitHub` as the remote source, and type the repository name you want to clone (i.e. `nf-core/phageannotator`)
-- Select which branch the container should be based on
-- Click `+ Create a new colume`
-- Enter the desired volume name (or press `Enter` to use default name)
-- Enter the target folder name (or press `Enter` to use the default name)
+   <p align="center">
+   <img src="/images/contributing/devcontainers/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
+   </p>
+   - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
+   - Select `Clone Repository in Container Volume` from the dropdown menu
+   - Select `GitHub` as the remote source, and type the repository name you want to clone (i.e. `nf-core/phageannotator`)
+   - Select which branch the container should be based on
+   - Click `+ Create a new colume`
+   - Enter the desired volume name (or press `Enter` to use default name)
+   - Enter the target folder name (or press `Enter` to use the default name)
 
 After going through these steps, a new instance of VS Code will be created for your Dev Container! The layout will be similar to Gitpod and Codespaces, so please see nf-core's [Gitpod](/docs/tutorials/gitpod/overview) page for more information about the user interface.
 
