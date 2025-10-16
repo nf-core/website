@@ -34,7 +34,6 @@ The devcontainer method in Codespaces makes it easy to run and test nf-core pipe
 
 ## Testing your module with nf-test
 
-With DSL2, much of pipeline writing is spent writing reusable [modules](https://nf-co.re/modules).
 If you enter the [Codespaces environment for the modules branch](https://github.com/nf-core/modules), you can run nf-test in order to debug a particular module.
 
 You can learn more about `nf-test` in [this nf-core bytesize talk](https://nf-co.re/events/2022/bytesize_nftest).
