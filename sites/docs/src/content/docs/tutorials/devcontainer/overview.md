@@ -79,7 +79,7 @@ The following steps walk you through setting up VS Code devcontainers on a local
 
 After going through these steps, a new instance of VS Code will be created for your Dev Container! The layout will be similar to Gitpod and Codespaces, so please see nf-core's [Gitpod](/docs/tutorials/gitpod/overview) page for more information about the user interface.
 
-## Troubleshooting
+## Troubleshooting Tips for Devcontainers
 
 ### Using docker profile in Codespace/VS Code Dev Containers
 
