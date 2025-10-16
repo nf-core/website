@@ -108,6 +108,19 @@ error: while mounting image /proc/self/fd/3: squashfuse_ll exited with status 1:
     "privileged": true
 ```
 
+# Using Git in Devcontainers
+
+All nf-core projects use git for version control, which always comes pre-intalled in devcontainers.
+This means that changes made in a workspace can be added and commited inside the devcontainer.
+
+In Codespaces, the git installation is already configured and authenticated in a clever way based on the Github account information used when creating an instance.
+
+When running devcontainers locally in VS Code, if no git user and email is set up locally, git asks to provide that information.
+The VS Code devcontainer extension places this information into the container after it was entered once outside a devcontainer, directly on the local machine.
+In order to push to a remote reopository, git additionally needs to authenticate against Github.
+This can be done by forwarding the local machine's ssh agent or sharing keys with the container.
+Find more details on this and tutorials to follow along in the official VS Code devcontainer [docs on sharing git credentials](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials).
+
 # Guides
 
 See the following guides for working with devcontainers:
