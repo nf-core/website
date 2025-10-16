@@ -11,7 +11,7 @@ You can run Codespaces from any nf-core pipeline repository on Github.
 It also works for the nf-core tools, modules, and website repositories.
 
 Take the nf-core/rnaseq pipeline for example:
-It can be test-run from its [repository on Github](https://github.com/nf-core/rnaseq) by clicking the green Code button and then selecting "Create codespace" from the Codespaces tab.
+It can be test-run from its [repository on Github](https://github.com/nf-core/rnaseq) by clicking the green button labelled "Code" and then selecting "Create codespace" from the Codespaces tab.
 Alternatively, visit [github.com/codespaces/new/nf-core/rnaseq](https://github.com/codespaces/new/nf-core/rnaseq) to have more control over the configuration.
 Make sure to also select the larger 4 cpu hardware from "Machine Type".
 
