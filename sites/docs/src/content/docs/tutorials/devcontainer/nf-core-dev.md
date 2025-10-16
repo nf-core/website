@@ -23,6 +23,11 @@ nextflow run nf-core/rnaseq \
     --outdir my_result
 ```
 
+:::note
+Note the use of the singularity profile with `-profile singularity` to successfully run the pipeline.
+Although docker is available and containers can be run inside the nf-core devcontainers, running nextflow with the docker profile using `-profile docker` is currently not supported yet.
+:::
+
 This should run the test data through nf-core/rnaseq, using apptainer with your results in the folder: `my_result`.
 This mamy take some time to complete.
 
@@ -41,6 +46,4 @@ Once you are in the environment, try running an example nf-test for an existing 
 nf-test test --tag <module_name> --profile singularity
 ```
 
-**>>>>> TODO: Add note about not using Docker for now**
-
-**>>>>> TODO: Add section on how to run using Docker**
+<!--**>>>>> TODO: Add section on how to run using Docker**-->
