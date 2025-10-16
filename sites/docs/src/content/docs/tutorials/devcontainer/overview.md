@@ -111,7 +111,6 @@ docker: Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is t
 
 **Solution:** Ensure that `-profile singularity` is used. The `docker` profile currently does not work in Codespaces or VS Code devcontainers.
 
-<br>
 
 ### Non-privileged status when using singularity profile
 
