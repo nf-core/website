@@ -5,7 +5,7 @@ weight: 3
 type: "tutorial"
 ---
 
-## Trying to run a pipeline in Codespaces
+## Running a pipeline in Codespaces
 
 You can run Codespaces from any nf-core pipeline repository on Github.
 It also works for the nf-core tools, modules, and website repositories.
