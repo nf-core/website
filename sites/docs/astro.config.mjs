@@ -117,6 +117,9 @@ export default defineConfig({
             preserveSymlinks: true,
             browser: true,
         },
+        build: {
+            cssCodeSplit: true, // Enable CSS code splitting
+        },
     },
     image: {
         domains: ["raw.githubusercontent.com", "unsplash.com"],

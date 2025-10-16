@@ -141,6 +141,9 @@ export default defineConfig({
             preserveSymlinks: true,
         },
         envPrefix: ["PUBLIC_"], // Remove GITHUB_ prefix to prevent token exposure
+        build: {
+            cssCodeSplit: true, // Enable CSS code splitting
+        },
     },
     image: {
         domains: [
