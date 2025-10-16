@@ -55,7 +55,7 @@ The following steps walk you through setting up VS Code devcontainers on a local
    VS Code can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website.
 
 3. **Install VS Code Remote Development Extension**:
-   The remote development pack allows VS Code to be used for code edition in development containers.
+   The remote development pack includes the [devcontainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and allows VS Code to be used for coding inside development containers.
    This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the extension tab's search bar.
    The extension tab in VS Code can be opened by pressing Ctrl + Shift + X (CMD + Shift + X).
 
