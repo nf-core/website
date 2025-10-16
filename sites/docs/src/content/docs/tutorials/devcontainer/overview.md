@@ -29,13 +29,13 @@ Integrated into GitHub, Codespaces can automatically be used for every nf-core r
 To create a Codespace instance, first click on the `Code` button at the top of any GitHub repository.
 
 <p align="center">
-  <img src="/images/contributing/gitpod/codespaces-button.png" alt="codespaces dropdown" width="800"/>
+  <img src="/images/contributing/devcontainers/codespaces-button.png" alt="codespaces dropdown" width="800"/>
 </p>
 
 This will bring up a dropdown menu, you will then select the `Codespaces` tab and press the `+` sign. This will create a Codespace on the current branch of this repository.
 
 <p align="center">
-  <img src="/images/contributing/gitpod/codespaces-dropdown.png" alt="codespaces dropdown" width="400"/>
+  <img src="/images/contributing/devcontainers/codespaces-dropdown.png" alt="codespaces dropdown" width="400"/>
 </p>
 
 After the Codespace is created, you should see a new window in the browser that looks similar to the VS Code IDE.
@@ -66,11 +66,11 @@ The following steps walk you through setting up VS Code devcontainers on a local
 4. **Clone a Repository in Container Volume**: Once everything is installed, open both Docker Desktop and VS Code prior going through the steps to create a local Dev Container:
 
 - Navigate to the `Remote Explorer`
-  <img src="/images/contributing/gitpod/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
+  <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
 - Click the dropdown menu at the top of the panel and select `Dev Containers`
 
 <p align="center">
-  <img src="/images/contributing/gitpod/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
+  <img src="/images/contributing/devcontainers/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
 </p>
 
 - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
