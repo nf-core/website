@@ -12,9 +12,7 @@ Devcontainers offer an easy-to-use environment to develop and test in, that ship
 Any project folder or file can be mounted and openend inside the container with permissions automatically handled.
 Being based on docker images, running devcontaners locally requires a docker daemon installed and running.
 
-<p align="center">
-    <img src="https://containers.dev/img/dev-container-stages.png" alt="devcontainer overview"/>
-</p>
+![devcontainer overview](https://containers.dev/img/dev-container-stages.png)
 
 ## Running in Github Codespaces
 
@@ -28,15 +26,11 @@ More powerful machines are available to paying users (see [Codespaces billing](h
 Integrated into GitHub, Codespaces can automatically be used for every nf-core repository.
 To create a Codespace instance, first click on the button labelled "Code" at the top of any GitHub repository.
 
-<p align="center">
-  <img src="/images/contributing/devcontainers/codespaces-button.png" alt="codespaces dropdown" width="800"/>
-</p>
+![codespaces button](/images/contributing/devcontainers/codespaces-button.png)
 
 This will bring up a dropdown menu, you will then select the `Codespaces` tab and press the `+` sign. This will create a Codespace on the current branch of this repository.
 
-<p align="center">
-  <img src="/images/contributing/devcontainers/codespaces-dropdown.png" alt="codespaces dropdown" width="400"/>
-</p>
+![codespaces dropdown](/images/contributing/devcontainers/codespaces-dropdown.png)
 
 After the Codespace is created, you should see a new window in the browser that looks similar to the VS Code IDE.
 
@@ -60,17 +54,13 @@ The following steps walk you through setting up VS Code devcontainers on a local
 
 3. **Install VS Code Remote Development Extension**:
    The remote development pack includes the [devcontainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and allows VS Code to be used for coding inside development containers.
-   This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the `Extension Tab` <img src="/images/contributing/devcontainers/extension.png" alt="remote explorer tab" width="25"/> search bar.
-   The extension tab in VS Code can be opened by pressing Ctrl + Shift + X (CMD + Shift + X).
+   This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the `Extension` ![extension tab](/images/contributing/devcontainers/extension.png) tab search bar.
+   The extension tab in VS Code can be opened by pressing Ctrl + Shift + X (CMD + Shift + X on mac).
 
 4. **Clone a Repository in Container Volume**: Once everything is installed, open both Docker Desktop and VS Code prior going through the steps to create a local Dev Container:
-   - Navigate to the `Remote Explorer`
-     <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
+   - Navigate to the `Remote Explorer` ![remote explorer tab](/images/contributing/devcontainers/remote-explorer-tab.png) tab in VS Code
    - Click the dropdown menu at the top of the panel and select `Dev Containers`
-   <p align="center">
-   <img src="/images/contributing/devcontainers/remote-explorer-dropdown.png" alt="remote explorer tab" width="400"/>
-   </p>
-
+     ![remote explorer dropdown](/images/contributing/devcontainers/remote-explorer-dropdown.png)
    - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
    - Select `Clone Repository in Container Volume` from the dropdown menu
    - Select `GitHub` as the remote source, and type the repository name you want to clone (i.e. `nf-core/phageannotator`)
@@ -91,15 +81,11 @@ After going through these steps, a new instance of VS Code will be created for y
 Codespace could not be created: SKU name 'basicLinux32gb' is not allowed for this repository
 ```
 
-<p align="center">
-    <img src="/images/contributing/devcontainers/error-codespaces.png" alt="codespaces could not be created"/>
-</p>
+![codespaces could not be created](/images/contributing/devcontainers/error-codespaces.png)
 
 **Solution**: Try creating the Codespaces instance again using the `New with option` button. (see below)
 
-<p align="center">
-    <img src="/images/contributing/devcontainers/error-codespaces-solution.png" alt="fix codespaces could not be created" width=400/>
-</p>
+![fix codespaces could not be created](/images/contributing/devcontainers/error-codespaces-solution.png)
 
 ### Using docker profile in Codespace/VS Code Dev Containers
 
