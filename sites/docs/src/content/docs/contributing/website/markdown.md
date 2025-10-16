@@ -146,7 +146,7 @@ but has the bonus of also rendering nicely when viewing the rendered markdown on
 
 <div class="w-100">
 
-![GitHub admonition syntax](/images/contributing/github_admonition_syntax.png)
+![GitHub admonition syntax](../../../../assets/images/contributing/github_admonition_syntax.png)
 
 </div>
 
