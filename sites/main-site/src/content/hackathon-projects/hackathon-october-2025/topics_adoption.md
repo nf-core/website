@@ -13,7 +13,7 @@ leaders:
 
 ## Project Aim
 
-In this project we will focus on getting the topics channel support added to nf-core tools and nf-core modules (see [PR](https://github.com/nf-core/tools/pull/3779/) for supporting it in the tools repo). 
+In this project we will focus on getting the topics channel support added to nf-core tools and nf-core modules (see [PR](https://github.com/nf-core/tools/pull/3779/) for supporting it in the tools repo).
 
 When this release has become more widely available, we will start working on migrating the more popular modules to this new structure.
 
