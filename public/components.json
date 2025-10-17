@@ -85032,6 +85032,202 @@
       ]
     },
     {
+      "name": "gecco_convert",
+      "path": "modules/nf-core/gecco/convert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gecco_convert",
+        "description": "This command helps transforming the output files created by\nGECCO into helpful format, should you want to use the results in\ncombination with other tools.\n",
+        "keywords": [
+          "bgc",
+          "reformatting",
+          "clusters",
+          "gbk",
+          "gff",
+          "bigslice",
+          "faa",
+          "fna"
+        ],
+        "tools": [
+          {
+            "gecco": {
+              "description": "Biosynthetic Gene Cluster prediction with Conditional Random Fields.",
+              "homepage": "https://gecco.embl.de",
+              "documentation": "https://gecco.embl.de",
+              "tool_dev_url": "https://github.com/zellerlab/GECCO",
+              "doi": "10.1101/2021.05.03.442509",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "clusters": {
+                "type": "file",
+                "description": "TSV file containing coordinates of gecco predicted clusters and BGC types.\n",
+                "pattern": "*.clusters.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "gbk": {
+                "type": "file",
+                "description": "Per cluster GenBank file containing sequence with annotations\n",
+                "pattern": "*.gbk",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1936"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "mode": {
+              "type": "string",
+              "description": "Either clusters or gbk folder output, depending on what is reformatted",
+              "enum": [
+                "clusters",
+                "gbk"
+              ]
+            }
+          },
+          {
+            "format": {
+              "type": "string",
+              "description": "Format for the output file",
+              "enum": [
+                "gff",
+                "bigslice",
+                "faa",
+                "fna"
+              ]
+            }
+          }
+        ],
+        "output": {
+          "gff": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.gff": {
+                  "type": "file",
+                  "description": "GFF3 converted cluster tables containing the position\nand metadata for all the predicted clusters\n",
+                  "pattern": "*.gff",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bigslice": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.region*.gbk": {
+                  "type": "file",
+                  "description": "Converted and aliased GenBank files so that they can be loaded by BiG-SLiCE\n",
+                  "pattern": "*.region*.gbk",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "faa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.faa": {
+                  "type": "file",
+                  "description": "Amino-acid FASTA converted GenBank files of all the proteins in a cluster\n",
+                  "pattern": "*.faa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fna": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.fna": {
+                  "type": "file",
+                  "description": "Nucleotide sequence FASTA converted GenBank files from the cluster\n",
+                  "pattern": "*.fna",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "gecco_run",
       "path": "modules/nf-core/gecco/run/meta.yml",
       "type": "module",
