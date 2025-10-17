@@ -17,7 +17,7 @@ Make sure to also select the larger 4 cpu hardware from "Machine Type".
 
 Once Codespaces has loaded, a container with all required tools is run automatically and the following command can run the nf-core workflow:
 
-```bash
+````bash
 nextflow run . \
     -profile test,singularity \
     --outdir my_result
@@ -41,6 +41,4 @@ Once you are in the environment, try running an example nf-test for an existing 
 
 ```bash
 nf-test test --tag <module_name> --profile singularity
-```
-
-<!--**>>>>> TODO: Add section on how to run using Docker**-->
+````
