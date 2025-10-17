@@ -7,10 +7,11 @@ startDate: "2025-10-15"
 startTime: "16:00+02:00"
 endDate: "2025-10-15"
 endTime: "17:00+02:00"
+youtubeEmbed: https://youtu.be/gp6Eoun3o0s
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/gp6Eoun3o0s
 ---
 
 # What it takes to deal with the largest livestock datasets in the world

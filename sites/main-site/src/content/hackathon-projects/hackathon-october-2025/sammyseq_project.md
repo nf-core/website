@@ -6,7 +6,7 @@ slack: https://nfcore.slack.com/archives/C025DGRJCDB
 image: "/assets/images/events/2025/hackathon-barcelona/nf-core-sammyseq_logo_colors.png"
 image_alt: "nf-core/sammyseq logo"
 leaders:
-  mirpedrol:
+  daisymut:
     name: Margherita Mutarelli
     slack: "https://nfcore.slack.com/team/U018GB2CSGK"
 ---
