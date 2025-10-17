@@ -40,7 +40,7 @@ An important difference between Gitpod and Codespaces is that `-profile singular
 
 ## Running in Visual Studio Code
 
-As an alternative to Gitpod and Codespaces, which are browser-based, devcontainers can also be created and run locally in VS Code.
+As an alternative to Github Codespaces, devcontainers can also be created and run locally in Visual Studio Code.
 While no usage limits apply, the required setup to run a devcontainer requires more steps.
 Most significantly, since the devcontaienrs system is based on docker images, running devcontaners locally requires a docker daemon installed and running.
 The following steps walk you through setting up VS Code devcontainers on a local machine:
