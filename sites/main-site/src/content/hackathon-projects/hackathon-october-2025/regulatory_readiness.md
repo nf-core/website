@@ -4,7 +4,7 @@ category: special-interest-groups
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C05V42SU8DP
 image: "/assets/images/events/2025/hackathon-barcelona/regulatory_readiness.gif"
-image_alt: "Bart talking in fear of regulatory requirements."
+image_alt: "Animated GIF of Bart Simpson talking in fear of regulatory requirements."
 leaders:
   grst:
     name: Gregor Sturm
