@@ -5,26 +5,36 @@ on:
       - main
   pull_request:
 
+permissions:
+  contents: read
+  pull-requests: write
+  checks: write
+
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
-        with:
-          node-version: 20
       - run: npm install --only=dev
+      - name: Install custom mdx2vast for MDX directive vale support
+        run: npm install -g https://github.com/edmundmiller/mdx2vast.git
       - uses: pre-commit/action@2c7b3805fd2a0fd8c1884dcaebf91fc102a13ecd # v3.0.1
   vale:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
-      - name: Install Vale
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+      - name: Install custom mdx2vast for MDX directive support
+        run: npm install -g https://github.com/edmundmiller/mdx2vast.git
+      - name: Verify Vale setup
         run: |
-          wget https://github.com/errata-ai/vale/releases/download/v3.0.5/vale_3.0.5_Linux_64-bit.tar.gz -O vale.tar.gz
-          tar -xvzf vale.tar.gz vale
-          rm vale.tar.gz
-      - name: Spell check
-        run: |
-          ./vale sync
-          ./vale ${{inputs.DOC_SRC}}
+          echo "Vale config:" && cat .vale.ini
+          echo "mdx2vast installed:" && which mdx2vast
+      - uses: errata-ai/vale-action@v2.1.1
+        with:
+          files: sites/main-site/src/content,sites/docs/src/content,sites/configs/src/content,sites/modules-subworkflows/src/content,sites/pipelines/src/content
+          reporter: github-pr-check
+          fail_on_error: true
+        env:
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
