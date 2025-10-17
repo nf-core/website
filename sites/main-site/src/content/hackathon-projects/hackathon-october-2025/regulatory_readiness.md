@@ -2,7 +2,7 @@
 title: Regulatory Readiness for nf-core pipelines / nf-core stats & tooling
 category: special-interest-groups
 intro_video: ""
-slack: https://app.slack.com/client/TE6CZUZPH/C05V42SU8DP
+slack: https://nfcore.slack.com/archives/C05V42SU8DP
 image: "/assets/images/events/2025/hackathon-barcelona/regulatory_readiness.gif"
 image_alt: "Bart talking in fear of regulatory requirements."
 leaders:
