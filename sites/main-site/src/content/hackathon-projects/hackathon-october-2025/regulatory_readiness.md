@@ -3,8 +3,8 @@ title: Regulatory Readiness for nf-core pipelines / nf-core stats & tooling
 category: special-interest-groups
 intro_video: ""
 slack: https://app.slack.com/client/TE6CZUZPH/C05V42SU8DP
-image: "/assets/images/events/2025/hackathon-barcelona/regulatory_readiness.png"
-image_alt: "A square logo featuring a checklist icon with a green checkmark and a bar chart with an upward green arrow, symbolizing regulatory readiness and growth. Below, bold navy text reads “REGULATORY READINESS"."
+image: "/assets/images/events/2025/hackathon-barcelona/regulatory_readiness.gif"
+image_alt: "Bart talking in fear of regulatory requirements."
 leaders:
   grst:
     name: Gregor Sturm
@@ -23,6 +23,6 @@ We propose enhancing the nf-core/stats page to include richer, more actionable i
 
 ## Goals
 
-- Enhance the stats page: Expand the current page to include comprehensive metrics required for regulatory readiness.
-- Develop proof-of-concept tooling: Create a prototype that generates pipeline-specific reports from available metrics.
-- Pilot implementation: Apply the tooling to 1–2 selected pipelines to validate feasibility and effectiveness.
+- Enhance the stats page: Expand the current page to include comprehensive metrics required for regulatory readiness. [Level: Beginner to Expert, depending on metrics needed]
+- Develop proof-of-concept tooling: Create a prototype that generates pipeline-specific reports from available metrics. [Level: Expert]
+- Pilot implementation: Apply the tooling to 1–2 selected pipelines to validate feasibility and effectiveness. [Level: Expert]
