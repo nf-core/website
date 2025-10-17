@@ -17,10 +17,11 @@ Make sure to also select the larger 4 cpu hardware from "Machine Type".
 
 Once Codespaces has loaded, a container with all required tools is run automatically and the following command can run the nf-core workflow:
 
-````bash
+```bash
 nextflow run . \
     -profile test,singularity \
     --outdir my_result
+```
 
 :::note
 We recommend the use of the singularity profile with `-profile singularity{:bash}` to successfully run the pipeline.
@@ -36,9 +37,8 @@ The devcontainer method in Codespaces makes it easy to run and test nf-core pipe
 
 If you enter the [Codespaces environment for the modules branch](https://github.com/nf-core/modules), you can run nf-test in order to debug a particular module.
 
-
 Once you are in the environment, try running an example nf-test for an existing module:
 
 ```bash
 nf-test test --tag <module_name> --profile singularity
-````
+```
