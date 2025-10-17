@@ -9,9 +9,9 @@ import NfCoreLogo from "@public/images/logo/nf-core-logo.svg";
 import IconSocial from "@components/IconSocial.astro";
 import ThemeSwitch from "@components/ThemeSwitch.svelte";
 import { Icon } from "astro-icon/components";
-import Search from "@components/navbar/Search.svelte";
+import Search from "@components/navbar/Search.astro";
 import { findCurrentGroup } from "@utils/functions";
-import BlogPostLabel from "@components/navbar/BlogPostLabel.svelte";
+import BlogPostLabel from "@components/navbar/BlogPostLabel.astro";
 import type { SidebarEntry } from "@utils/types";
 import { getCollection } from "astro:content";
 
@@ -90,7 +90,7 @@ if (onGoingEvents?.length > 0) {
             )
         }
         <div class:list={["align-self-center d-xl-none", { "me-5": navTocHeadings.length === 0 }]}>
-            <Search id="docsearch-mobile" client:visible />
+            <Search id="docsearch-mobile" />
         </div>
         <button
             class="navbar-toggler border-0"
@@ -164,7 +164,7 @@ if (onGoingEvents?.length > 0) {
                         <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
-                                <BlogPostLabel client:idle timeSpan={blogPostTimeSpan} /></a
+                                <BlogPostLabel timeSpan={blogPostTimeSpan} /></a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
@@ -246,7 +246,7 @@ if (onGoingEvents?.length > 0) {
                     </ul>
                 </li>
                 <div class="align-self-center d-none d-xl-block ms-auto me-2">
-                    <Search id="docsearch-desktop" client:only="svelte" />
+                    <Search id="docsearch-desktop" />
                 </div>
                 <div class="d-none d-xl-block vr mx-1 mx-xxl-2"></div>
 
