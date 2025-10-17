@@ -23,6 +23,6 @@ We propose enhancing the nf-core/stats page to include richer, more actionable i
 
 ## Goals
 
-* Enhance the stats page: Expand the current page to include comprehensive metrics required for regulatory readiness.
-* Develop proof-of-concept tooling: Create a prototype that generates pipeline-specific reports from available metrics.
-* Pilot implementation: Apply the tooling to 1–2 selected pipelines to validate feasibility and effectiveness.
+- Enhance the stats page: Expand the current page to include comprehensive metrics required for regulatory readiness.
+- Develop proof-of-concept tooling: Create a prototype that generates pipeline-specific reports from available metrics.
+- Pilot implementation: Apply the tooling to 1–2 selected pipelines to validate feasibility and effectiveness.
