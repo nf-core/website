@@ -54,11 +54,11 @@ The following steps walk you through setting up VS Code devcontainers on a local
 
 3. **Install VS Code Remote Development Extension**:
    The remote development pack includes the [devcontainers extension](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) and allows VS Code to be used for coding inside development containers.
-   This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the `Extension` ![extension tab](/images/contributing/devcontainers/extension.png) tab search bar.
+   This extension can be downloaded from the [VS Code](https://code.visualstudio.com/Download) website, or by typing `remote development` into the `Extension` <img src="/images/contributing/devcontainers/extension.png" alt="extension tab" width="25"/> tab search bar.
    The extension tab in VS Code can be opened by pressing Ctrl + Shift + X (CMD + Shift + X on mac).
 
 4. **Clone a Repository in Container Volume**: Once everything is installed, open both Docker Desktop and VS Code prior going through the steps to create a local Dev Container:
-   - Navigate to the `Remote Explorer` ![remote explorer tab](/images/contributing/devcontainers/remote-explorer-tab.png) tab in VS Code
+   - Navigate to the `Remote Explorer` <img src="/images/contributing/devcontainers/remote-explorer-tab.png" alt="remote explorer tab" width="25"/> tab in VS Code
    - Click the dropdown menu at the top of the panel and select `Dev Containers`
      ![remote explorer dropdown](/images/contributing/devcontainers/remote-explorer-dropdown.png)
    - Press the `+` sign under the dropdown menu (this is only visible when the cursor is placed over the banner).
