@@ -40425,6 +40425,136 @@
       ]
     },
     {
+      "name": "cmaple",
+      "path": "modules/nf-core/cmaple/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cmaple",
+        "description": "Efficient phylogenetic tree reconstruction for sequences using the CMAPLE algorithm",
+        "keywords": [
+          "phylogeny",
+          "phylogenetic tree",
+          "maximum likelihood",
+          "dna",
+          "amino acid",
+          "alignment",
+          "tree reconstruction",
+          "cmaple",
+          "iqtree"
+        ],
+        "tools": [
+          {
+            "cmaple": {
+              "description": "CMAPLE (Comprehensive Maximum-likelihood Analysis for Phylogenetic Likelihood Estimation)\nis an efficient implementation of the MAPLE algorithm for phylogenetic tree reconstruction,\nparticularly optimized for pathogen sequences with low divergence such as SARS-CoV-2.\nIt is integrated within IQ-TREE.\n",
+              "homepage": "https://github.com/iqtree/cmaple",
+              "documentation": "https://github.com/iqtree/cmaple/wiki/User-Manual",
+              "tool_dev_url": "https://github.com/iqtree/cmaple",
+              "doi": "10.1093/molbev/msae134",
+              "licence": [
+                "GPL-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "aln": {
+                "type": "file",
+                "description": "Multiple sequence alignment file in FASTA, PHYLIP, or MAPLE format",
+                "pattern": "*.{fa,fasta,faa,fna,fas,aln,afa,phy,phylip,maple}"
+              }
+            },
+            {
+              "newick": {
+                "type": "file",
+                "description": "A Newick formatted tree based on multiple sequence alignment",
+                "pattern": "*.{newick,nwk,treefile}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1910"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "treefile": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.treefile": {
+                  "type": "file",
+                  "description": "Maximum likelihood phylogenetic tree in Newick format",
+                  "pattern": "*.treefile",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file containing detailed information about the tree reconstruction process",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "cmseq_polymut",
       "path": "modules/nf-core/cmseq/polymut/meta.yml",
       "type": "module",
@@ -170699,16 +170829,20 @@
             {
               "vcf": {
                 "type": "file",
-                "description": "File containing somatic variants from Mutect2",
-                "pattern": "{*.vcf, *.vcf.gz}",
-                "ontologies": []
+                "description": "VCF containing variant calls",
+                "pattern": "*.vcf.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
           {
             "normal_db": {
               "type": "file",
-              "description": "Database created from a panel of normals",
+              "description": "Normal panel database",
               "ontologies": []
             }
           },
@@ -170776,6 +170910,24 @@
                   "type": "file",
                   "description": "Tab-delimited file containing segmentation results\n",
                   "pattern": "*_dnacopy.seg",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "csv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.csv": {
+                  "type": "file",
+                  "description": "Tab-delimited file containing sample purity, ploidy\nand flags information\n",
+                  "pattern": "${prefix}.csv",
                   "ontologies": []
                 }
               }
@@ -170945,6 +171097,24 @@
               }
             ]
           ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file of the analysis",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -170965,6 +171135,7 @@
           "@lbeltrame"
         ],
         "maintainers": [
+          "@aldosr",
           "@lbeltrame"
         ]
       }
@@ -249313,6 +249484,59 @@
           "version": "3.21.0"
         }
       ]
+    },
+    {
+      "name": "fastq_sanitise_seqkit",
+      "path": "subworkflows/nf-core/fastq_sanitise_seqkit/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_sanitise_seqkit",
+        "description": "Filters and reports malformed FASTQ sequences with seqkit/sana,\nand then pairs any paired-end files using seqkit/pair\n",
+        "keywords": [
+          "fastq",
+          "quality control",
+          "filtering",
+          "malformed",
+          "pairing",
+          "seqkit",
+          "preprocessing"
+        ],
+        "components": [
+          "seqkit/sana",
+          "seqkit/pair"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "channel",
+              "description": "Channel containing sample metadata and FASTQ files.\nStructure: [ val(meta), [ fastq ] ]\nWhere meta is a map containing at least:\n- id: sample identifier\n- single_end: boolean indicating if data is single-end (true) or paired-end (false)\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reads": {
+              "type": "channel",
+              "description": "Channel containing filtered (i.e., non-malformed) and paired FASTQ files.\nFor single-end data: returns filtered reads\nFor paired-end data: returns properly paired reads and any unpaired reads\nStructure: [ val(meta), [ fastq ] ]\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "fastq_subsample_fq_salmon",
