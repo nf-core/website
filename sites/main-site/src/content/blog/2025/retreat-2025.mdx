@@ -1,7 +1,7 @@
 ---
 title: "nf-core core team retreat - September 2025"
 subtitle: "Updates from the nf-core core team retreat."
-pubDate: 2025-10-20T12:00:00+12:00
+pubDate: 2025-10-22T12:00:00+12:00
 headerImage: "/assets/images/blog/retreat-2025/team-wide.jpeg"
 headerImageAlt: "nf-core core team group photo taken during the 2025 retreat in Stockholm, Sweden."
 embedHeaderImage: true
@@ -15,7 +15,14 @@ import { Image } from "astro:assets";
 import aifur from "@assets/images/blog/retreat-2025/aifur.jpeg";
 
 Between September 22nd and 26th, the [nf-core core team](https://nf-co.re/governance#core-team) gathered in Stockholm to tackle the big questions facing our growing community.
-Over four days, we worked through challenges around scaling, developer experience, and sustainability, and came away with a clear roadmap for the year ahead.
+Over four days, we worked through challenges around scaling, developer experience, and sustainability, and came away with a clear set of priorities for the year ahead.
+
+:::tip{title="TLDR;"}
+- Get help writing grants for nf-core work! Join the new  [`#grants`](https://nfcore.slack.com/archives/C09JX8L2L5V) Slack channel.
+- Pipeline-release PR review requirements dropping to 1 core/maintainer.
+- More emphasis on adherence to PR best practices.
+- New nf-core governance team: 📚 Documentation! 🎉  Join [`#team-docs`](https://nfcore.slack.com/archives/C09H9L3R614) to get involved.
+:::
 
 # What did we talk about?
 
@@ -40,7 +47,9 @@ flowchart BT
     outreach --> core
     maintainers --> core
     safety --> steering
-    documentation --> core
+    documentation[documentation ⭐ NEW] --> core
+    
+    style documentation fill:#22ae6340,stroke:#22ae63,stroke-width:2px
 ```
 
 ## Documentation: v2
@@ -64,11 +73,11 @@ Reviews are critical for maintaining quality, but we've heard your frustration. 
 We're making several key changes, including:
 
 - Reducing the requirements for pipeline release reviews from two reviewers to one (core team member or maintainer).
-- Enforcing [conventional](https://www.conventionalcommits.org/en/v1.0.0/) PR titles to enable automated changelogs.
+- Promoting [conventional](https://www.conventionalcommits.org/en/v1.0.0/) PR titles to enable automated changelogs.
 - Adding more release automations.
 - Adding CI warnings for excessively large PRs.
 
-These changes will hopefully enable faster development cycles and quicker releases, allowing improvements to reach users more quickly. Review work will be more appealing, distributed more equitably across the team, helping to prevent burnout and ensure a fair workload distribution. New contributors will find it easier to get started and see their contributions merged, while we maintain the quality standards that make nf-core pipelines trustworthy.
+These changes will hopefully enable faster development cycles and quicker releases, allowing improvements to reach users more quickly. Review work will be more appealing, distributed more equitably across the community, helping to prevent burnout and ensure a fair workload distribution. New contributors will find it easier to get started and see their contributions merged, while we maintain the quality standards that make nf-core pipelines trustworthy.
 
 See the full [RFC](https://github.com/nf-core/proposals/issues/85) for more information.
 
@@ -76,7 +85,7 @@ See the full [RFC](https://github.com/nf-core/proposals/issues/85) for more info
 
 ## Very Important Pipelines (VIPs)
 
-Some nf-core pipelines address urgent scientific needs and, through sheer popularity, reach a scale where a single maintainer or small team struggles to keep up. We developed the concept of 'VIPs', pipelines that adopt team-based development practices, including co-developers, regular development meetings, and documented collaborative maintenance processes.
+Some nf-core pipelines address urgent scientific needs and, through sheer popularity, reach a scale where a single maintainer or small team struggles to keep up. We developed the concept of 'VIPs' _(very important pipelines)_, pipelines that adopt team-based development practices, including co-developers, regular development meetings, and documented collaborative maintenance processes.
 
 We're developing guidance for these practices and will reach out to maintainers of widely used pipelines to suggest adopting them. This approach reduces the burden on individual maintainers, creates more sustainable development of critical pipelines, and lowers the bus factor for important infrastructure.
 
@@ -86,19 +95,19 @@ See the full [RFC](https://github.com/nf-core/proposals/issues/89) for more info
 
 Several pipeline proposals are getting stuck in review, and some pipelines have gone silent with unclear progress. Whilst people's intentions are unfailingly good, this can have a detrimental effect, as it blocks others from starting a similar pipeline under their own steam.
 
-Pipeline proposals will soon require two new components: a description of the MVP (Minimal Viable Pipeline are the smallest and simplest version that can be released initially) and a development plan with defined milestones. These requirements help developers release their first version quickly and prevent pipelines from stalling during extended development periods. Starting with smaller initial releases and providing regular updates also makes the review process faster and easier for both developers and reviewers.
+Pipeline proposals will soon require two new components: a description of the MVP (Minimal Viable Pipeline) and a development plan with defined milestones. The idea of the MVP is to describe the smallest and simplest version that can be released initially, and the development plan puts that in the bigger picture. These requirements help developers release their first version quickly and prevent pipelines from stalling during extended development periods. Starting with smaller initial releases and providing regular updates also makes the review process faster and easier for both developers and reviewers.
 
 ## Infrastructure roadmap
 
 The infrastructure team has an ambitious [roadmap](https://github.com/orgs/nf-core/projects/73) for the coming year. Key projects include:
 
 - A new locally-running [schema builder](https://github.com/nextflow-io/schema-builder) with improved privacy.
-- A config builder.
+- A [config builder](https://github.com/nf-core/tools/issues/2731).
 - Progressive Nextflow syntax adoption (see below).
 - Migration to Seqera Containers across modules (see Migration from Biocontainers to Seqera Containers: [Part 1](https://nf-co.re/blog/2024/seqera-containers-part-1) and [Part 2](https://nf-co.re/blog/2024/seqera-containers-part-2) for details).
-- Expanding Pulumi automation for infrastructure and GitHub operations.
+- Expanding Pulumi automation for infrastructure and [nf-core operations](https://github.com/nf-core/ops).
 - Adding [`nf-prov`](https://registry.nextflow.io/plugins/nf-prov) and [`nf-co2footprint`](https://registry.nextflow.io/plugins/nf-co2footprint) tracking to the pipeline template.
-- Battle-testing template updates with volunteer pipelines before wide deployment.
+- Battle-testing template updates with volunteer pipelines before wide deployment ⚔️ 
 
 These improvements will deliver better tooling, clearer migration paths for new features, more reliable infrastructure, and reduced friction when updating templates.
 
@@ -113,7 +122,7 @@ To manage this, we've developed a phased rollout plan:
 - In March 2027, we'll start to introduce static types with the new process syntax.
 
 ```mermaid
-%%{init: {'themeVariables': {'fontSize':'10px'}, 'gantt': {'useWidth':600, 'topAxis': false}}}%%
+%%{init: {'themeVariables': {'fontSize':'10px', 'sectionBkgColor':'rgba(128, 128, 128, 0.5)', 'sectionBkgColor2':'rgba(128, 128, 128, 0.5)', 'altSectionBkgColor':'rgba(128, 128, 128, 0.0)'}, 'gantt': {'useWidth':600, 'topAxis': false}}}%%
 gantt
     title Phased rollout
     dateFormat YYYY-MM
@@ -129,14 +138,13 @@ gantt
     Workflow outputs and inputs :2026-03, 12M
 
     section Phase 3
-    Static types with new process syntax :2027-03, 12M
+    Static types process syntax :2027-03, 12M
 ```
 
 We'll communicate these changes clearly through blog posts and documentation well in advance. This approach gives visibility into what's changing and when, allowing time to adapt without feeling rushed, while also offering the option to jump ahead with an all-in-one migration.
 
 ## Making it easier to ask for help
 
-We want to make it easier for the community to connect. Whether you have expertise and time to contribute, or you're working on an issue that needs specific skills.
 We've heard from some people that they're able to contribute time, but it comes in short bursts.
 They want to contribute, but can't sign up for long-term maintenance.
 
