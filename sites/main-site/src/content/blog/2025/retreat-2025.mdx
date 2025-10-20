@@ -11,14 +11,15 @@ label:
     - "community"
 ---
 
+import { Image } from "astro:assets";
+
 import aifur from "@assets/images/blog/retreat-2025/aifur.jpeg";
 import team from "@assets/images/blog/retreat-2025/team.jpeg";
 
 Between September 22nd and 26th, the [nf-core core team](https://nf-co.re/governance#core-team) gathered in Stockholm to tackle the big questions facing our growing community.
 Over four days, we worked through challenges around scaling, developer experience, and sustainability, and came away with a clear roadmap for the year ahead.
 
-<Image src={team} alt="nf-core core team out for a walk" height="300" densities={[1.5, 2]} />
-
+<Image src={team} alt="nf-core core team out for a walk." height="300" densities={[1.5, 2]} />
 
 # What did we talk about?
 
@@ -103,10 +104,24 @@ To manage this, we've developed a phased rollout plan:
 - In March 2026, we'll implement strict syntax for pipelines with workflow outputs and inputs.
 - Finally, in March 2027, we'll roll out static types with new process syntax.
 
-[mermaid]
+```mermaid
+gantt
+    title Phased Rollout Plan
+    dateFormat YYYY-MM
+
+    section Phase 1
+    Topics for modules and pipelines           :2025-10, 5M
+    Strict syntax for modules                  :2025-10, 5M
+
+    section Phase 2
+    Strict syntax for pipelines                :2026-03, 12M
+    Workflow outputs and inputs                :2026-03, 12M
+
+    section Phase 3
+    Static types with new process syntax       :2027-03, 1M
+```
 
 We'll communicate these changes clearly through blog posts and documentation well in advance. This approach gives visibility into what's changing and when, allowing time to adapt without feeling rushed while also offering the option to jump ahead with an all-in-one migration.
-
 
 ## Making it easier to ask for help
 
