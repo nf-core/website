@@ -29,15 +29,21 @@ The nf-co2footprint plugin estimates the CO₂ equivalent emissions of workflow 
 
 ## Tasks
 
-### Add nf-co2footprint to your config files ⚙️
+### Add nf-co2footprint to your config files ⚙️ 
+
+<span style="line-height: 120%; font-size:0.8em;">Recommended Experience:</span><span style="background:#0DC09D; border-radius:4px; padding:2px 6px; font-size:0.8em; line-height: 120%;">⭐★★ Nextflow Newcomer</span>
 
 This can be as easy as adding the plugin id to your institution's config, but accuracy may improve by supplying additional parameters. Let's do it together and talk about how this process could be streamlined for other plugin users.
 
 ### Improve cloud-support ☁️
 
+<span style="line-height: 120%; font-size:0.8em;">Recommended Experience:</span><span style="background:#03A9F4; border-radius:4px; padding:2px 6px; font-size:0.8em; line-height: 120%;">⭐⭐★ Cloud Connoisseur</span>
+
 Integrate support for AWS and other cloud providers.
 
 ### nf-core 🤝 nf-co2footprint plugin
+
+<span style="line-height: 120%; font-size:0.8em;">Recommended Experience:</span><span style="background:#24B064; border-radius:4px; padding:2px 6px; font-size:0.8em;">⭐⭐★ nf-core Navigator</span>
 
 How can the plugin be integrated into the nf-core framework? What is still missing for a smooth integration?
 
