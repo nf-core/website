@@ -54,9 +54,9 @@ See [Documentation](https://nf-co.re/governance#documentation) for more informat
 
 Reviews are critical for maintaining quality, but we've heard your frustration. Overwhelmingly large PRs and multiple rounds of review can slow things down, and reviews often fall on the same people.
 
-We're making several key changes, including reducing the requirements for pipeline release reviews, from two reviewers to one (core team member or maintainer). We also want to start enforcing conventional PR titles to enable automated changelogs, more automation around the release,and add CI warnings for excessively large PRs.
+We're making several key changes, including reducing the requirements for pipeline release reviews, from two reviewers to one (core team member or maintainer). We also want to start enforcing [conventional](https://www.conventionalcommits.org/en/v1.0.0/) PR titles to enable automated changelogs, more automation around the release,and add CI warnings for excessively large PRs.
 
-These changes will enable faster development cycles and quicker releases, allowing improvements to reach users more quickly. Review work will be more appealing, distributed more equitably across the team, preventing burnout and ensuring a fair workload distribution. New contributors will find it easier to get started and see their contributions merged, while we maintain the quality standards that make nf-core pipelines trustworthy.
+These changes will enable faster development cycles and quicker releases, allowing improvements to reach users more quickly. Review work will be more appealing, distributed more equitably across the team, helping to prevent burnout and ensure a fair workload distribution. New contributors will find it easier to get started and see their contributions merged, while we maintain the quality standards that make nf-core pipelines trustworthy.
 
 See the full [RFC](https://github.com/nf-core/proposals/issues/85) for more information.
 
@@ -78,7 +78,15 @@ Pipeline proposals will soon require two new components: a description of the MV
 
 ## Infrastructure roadmap
 
-The infrastructure team has an ambitious [roadmap](https://github.com/orgs/nf-core/projects/73) for the coming year. Key projects include a new locally-running [schema builder](https://github.com/nextflow-io/schema-builder) with improved privacy, a config builder, progressive Nextflow syntax adoption (see below), migration to Seqera Containers across modules (see Migration from Biocontainers to Seqera Containers: [Part 1](https://nf-co.re/blog/2024/seqera-containers-part-1) and [Part 2](https://nf-co.re/blog/2024/seqera-containers-part-2) for details), expanded Pulumi automation for infrastructure and GitHub operations, adding [`nf-prov`](https://registry.nextflow.io/plugins/nf-prov) and [`nf-co2footprint`](https://registry.nextflow.io/plugins/nf-co2footprint) tracking to the pipeline template, and battle-testing template updates with volunteer pipelines before wide deployment.
+The infrastructure team has an ambitious [roadmap](https://github.com/orgs/nf-core/projects/73) for the coming year. Key projects include:
+
+- A new locally-running [schema builder](https://github.com/nextflow-io/schema-builder) with improved privacy.
+- A config builder.
+- Progressive Nextflow syntax adoption (see below).
+- Migration to Seqera Containers across modules (see Migration from Biocontainers to Seqera Containers: [Part 1](https://nf-co.re/blog/2024/seqera-containers-part-1) and [Part 2](https://nf-co.re/blog/2024/seqera-containers-part-2) for details).
+- Expanding Pulumi automation for infrastructure and GitHub operations.
+- Adding [`nf-prov`](https://registry.nextflow.io/plugins/nf-prov) and [`nf-co2footprint`](https://registry.nextflow.io/plugins/nf-co2footprint) tracking to the pipeline template.
+- Battle-testing template updates with volunteer pipelines before wide deployment.
 
 These improvements will deliver better tooling, clearer migration paths for new features, more reliable infrastructure, and reduced friction when updating templates.
 
@@ -112,7 +120,7 @@ gantt
     Static types with new process syntax :2027-03, 12M
 ```
 
-We'll communicate these changes clearly through blog posts and documentation well in advance. This approach gives visibility into what's changing and when, allowing time to adapt without feeling rushed while also offering the option to jump ahead with an all-in-one migration.
+We'll communicate these changes clearly through blog posts and documentation well in advance. This approach gives visibility into what's changing and when, allowing time to adapt without feeling rushed, while also offering the option to jump ahead with an all-in-one migration.
 
 ## Making it easier to ask for help
 
@@ -127,10 +135,9 @@ Taken together, we hope that these efforts will create better visibility of wher
 
 ## Funding and grants
 
-There are funding opportunities available for open-source projects, but it's not always clear how to access them for nf-core work. We want to empower community members to apply for grants to dedicate focused work on and with nf-core, and to provide support to them to do so.
+There are funding opportunities available for open-source projects, but it's not always clear how to access them to support nf-core activities. We want to empower community members to apply for grants to dedicate focused work to and with nf-core, and support them in doing so.
 
-To this end, we're adding community guidance for applying for grants related to nf-core, relevant boilerplate stats and text for applications, and a new [`#grants`](https://nfcore.slack.com/archives/C09JX8L2L5V) Slack channel for funding help and discussions and coordination, and identifying cross-community collaboration opportunities.
-This creates easier access to funding opportunities and a stronger, more visible community.
+To this end, we're adding community guidance for applying for grants related to nf-core, including relevant boilerplate stats and text for applications.  We are also creating a new [`#grants`](https://nfcore.slack.com/archives/C09JX8L2L5V) Slack channel for funding support, discussions, coordination, and identifying cross-community collaboration opportunities. This creates easier access to funding opportunities and a stronger, more visible community.
 
 # Looking Ahead
 
