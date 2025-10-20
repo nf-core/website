@@ -22,7 +22,6 @@ leaders:
 
 The nf-co2footprint plugin estimates the CO₂ equivalent emissions of workflow runs. After our first stable release, we are now looking forward to push the integration of our plugin into as many pipelines as possible. We aim to raise individual and collective awareness within the nf-core community about the environmental impact of our computational work.
 
-
 ## Goals
 
 - Update your configs with parameters for accurate CO₂ emission estimations
@@ -41,7 +40,6 @@ Integrate support for AWS and other cloud providers.
 ### nf-core 🤝 nf-co2footprint plugin
 
 How can the plugin be integrated into the nf-core framework? What is still missing for a smooth integration?
-
 
 ## Resources
 
