@@ -29,7 +29,7 @@ The nf-co2footprint plugin estimates the CO₂ equivalent emissions of workflow 
 
 ## Tasks
 
-### Add nf-co2footprint to your config files ⚙️ 
+### Add nf-co2footprint to your config files ⚙️
 
 <span style="line-height: 120%; font-size:0.8em;">Recommended Experience:</span><span style="background:#0DC09D; border-radius:4px; padding:2px 6px; font-size:0.8em; line-height: 120%;">⭐★★ Nextflow Newcomer</span>
 
