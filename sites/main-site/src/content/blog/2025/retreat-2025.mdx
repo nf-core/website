@@ -2,7 +2,7 @@
 title: "nf-core core team retreat - September 2025"
 subtitle: "Updates from the nf-core core team retreat."
 pubDate: 2025-10-20T12:00:00+12:00
-headerImage: "/assets/images/blog/springcleaning2025/kungstradgarden_cherry_tree.jpg"
+headerImage: "/assets/images/blog/retreat-2025/team-wide.jpeg"
 headerImageAlt: "nf-core core team group photo taken during the 2025 retreat in Stockholm, Sweden."
 embedHeaderImage: true
 authors:
@@ -10,6 +10,9 @@ authors:
 label:
     - "community"
 ---
+
+import { Image } from "astro:assets";
+import aifur from "@assets/images/blog/retreat-2025/aifur.jpeg";
 
 Between September 22nd and 26th, the [nf-core core team](https://nf-co.re/governance#core-team) gathered in Stockholm to tackle the big questions facing our growing community.
 Over four days, we worked through challenges around scaling, developer experience, and sustainability, and came away with a clear roadmap for the year ahead.
@@ -93,25 +96,28 @@ Nextflow is evolving, and we need to strike a balance between timely adoption an
 
 To manage this, we've developed a phased rollout plan:
 
-- In October 2025, we'll introduce topics for modules and pipelines and strict syntax for modules.
-- In March 2026, we'll implement strict syntax for pipelines with workflow outputs and inputs.
-- Finally, in March 2027, we'll roll out static types with new process syntax.
+- In October 2025, we'll start to introduce topics for modules and pipelines and strict syntax for modules.
+- In March 2026, we'll start to introduce out strict syntax for pipelines with workflow outputs and inputs.
+- In March 2027, we'll start to introduce out static types with new process syntax.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {'fontSize':'12px'}, 'gantt': {'useWidth':600, 'topAxis': false}}}%%
 gantt
     title Phased Rollout Plan
     dateFormat YYYY-MM
+    tickInterval 12month
+    axisFormat %Y
 
     section Phase 1
-    Topics for modules and pipelines           :2025-10, 5M
-    Strict syntax for modules                  :2025-10, 5M
+    Topics for pipelines        :2025-10, 12M
+    Strict syntax for modules   :2025-10, 12M
 
     section Phase 2
-    Strict syntax for pipelines                :2026-03, 12M
-    Workflow outputs and inputs                :2026-03, 12M
+    Strict syntax for pipelines :2026-03, 12M
+    Workflow outputs and inputs :2026-03, 12M
 
     section Phase 3
-    Static types with new process syntax       :2027-03, 1M
+    Static types with new process syntax :2027-03, 12M
 ```
 
 We'll communicate these changes clearly through blog posts and documentation well in advance. This approach gives visibility into what's changing and when, allowing time to adapt without feeling rushed while also offering the option to jump ahead with an all-in-one migration.
@@ -140,6 +146,11 @@ This creates easier access to funding opportunities and a stronger, more visible
 
 These four days in Stockholm were incredibly productive, and we're excited about the changes coming to nf-core. Every initiative we discussed was driven by one goal: making nf-core better for everyone—whether you're a new user trying to run your first pipeline, a developer contributing modules, or a maintainer shepherding a large project.
 
-Stay tuned to the [`#announcements` channel](https://nfcore.slack.com/archives/CE6P95170) in Slack and the blog for updates as these initiatives roll out. And as always, thank you to everyone who contributes to making nf-core what it is.
+Stay tuned to the [`#announcements`](https://nfcore.slack.com/archives/CE6P95170) in Slack and the blog for updates as these initiatives roll out. And as always, thank you to everyone who contributes to making nf-core what it is.
+
+<Image
+    src={aifur}
+    alt="Much fun was had at the viking-themed restaurant Aifur in Stockholm."
+/>
 
 And yes, we maintained the Stockholm tradition of visiting the viking-themed restaurant Aifur. Much planning and some silliness ensued.
