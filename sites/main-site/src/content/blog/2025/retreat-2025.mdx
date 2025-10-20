@@ -40,14 +40,6 @@ flowchart BT
     documentation --> core
 ```
 
-## Hackathons: A new three-tier model
-
-The hybrid format we have been trialing for the last couple of years has been challenging, particularly for remote participants who sometimes feel overlooked. Supporting heterogeneous groups across multiple time zones is complex, and we needed a better approach.
-
-We're proposing a three-tier structure: online-only March hackathons focused on productivity, in-person May/October events (Boston & Barcelona) centered on networking, and smaller local community hackathons throughout the year supported by a hackathon toolkit. Each hackathon will have a clear purpose, creating a better experience for both in-person and remote participants while expanding opportunities for regional engagement and community building.
-
-> This three-tier model is still under discussion within the [core](https://nf-co.re/governance#core-team) and [outreach](https://nf-co.re/governance#outreach) teams and hasn't been finalized.
-
 ## Documentation: v2
 
 Survey results and community feedback made it clear, our documentation needs work. People told us it's hard to find, sometimes unclear, and occasionally outdated.
@@ -86,7 +78,7 @@ Pipeline proposals will soon require two new components: a description of the MV
 
 ## Infrastructure roadmap
 
-The infrastructure team has an ambitious roadmap for the coming year. Key projects include a new locally-running [schema builder](https://github.com/nextflow-io/schema-builder) with improved privacy, progressive Nextflow syntax adoption (see below), migration to Seqera Containers across modules (see Migration from Biocontainers to Seqera Containers: [Part 1](https://nf-co.re/blog/2024/seqera-containers-part-1) and [Part 2](https://nf-co.re/blog/2024/seqera-containers-part-2) for details), expanded Pulumi automation for infrastructure and GitHub operations, adding [`nf-prov`](https://registry.nextflow.io/plugins/nf-prov) and [`nf-co2footprint`](https://registry.nextflow.io/plugins/nf-co2footprint) tracking to the pipeline template, and battle-testing template updates with volunteer pipelines before wide deployment.
+The infrastructure team has an ambitious [roadmap](https://github.com/orgs/nf-core/projects/73) for the coming year. Key projects include a new locally-running [schema builder](https://github.com/nextflow-io/schema-builder) with improved privacy, a config builder, progressive Nextflow syntax adoption (see below), migration to Seqera Containers across modules (see Migration from Biocontainers to Seqera Containers: [Part 1](https://nf-co.re/blog/2024/seqera-containers-part-1) and [Part 2](https://nf-co.re/blog/2024/seqera-containers-part-2) for details), expanded Pulumi automation for infrastructure and GitHub operations, adding [`nf-prov`](https://registry.nextflow.io/plugins/nf-prov) and [`nf-co2footprint`](https://registry.nextflow.io/plugins/nf-co2footprint) tracking to the pipeline template, and battle-testing template updates with volunteer pipelines before wide deployment.
 
 These improvements will deliver better tooling, clearer migration paths for new features, more reliable infrastructure, and reduced friction when updating templates.
 
@@ -97,11 +89,11 @@ Nextflow is evolving, and we need to strike a balance between timely adoption an
 To manage this, we've developed a phased rollout plan:
 
 - In October 2025, we'll start to introduce topics for modules and pipelines and strict syntax for modules.
-- In March 2026, we'll start to introduce out strict syntax for pipelines with workflow outputs and inputs.
-- In March 2027, we'll start to introduce out static types with new process syntax.
+- In March 2026, we'll start to introduce strict syntax for pipelines with workflow outputs and inputs.
+- In March 2027, we'll start to introduce static types with the new process syntax.
 
 ```mermaid
-%%{init: {'theme':'base', 'themeVariables': {'fontSize':'12px'}, 'gantt': {'useWidth':600, 'topAxis': false}}}%%
+%%{init: {'themeVariables': {'fontSize':'12px'}, 'gantt': {'useWidth':600, 'topAxis': false}}}%%
 gantt
     title Phased Rollout Plan
     dateFormat YYYY-MM
@@ -146,7 +138,7 @@ This creates easier access to funding opportunities and a stronger, more visible
 
 These four days in Stockholm were incredibly productive, and we're excited about the changes coming to nf-core. Every initiative we discussed was driven by one goal: making nf-core better for everyone—whether you're a new user trying to run your first pipeline, a developer contributing modules, or a maintainer shepherding a large project.
 
-Stay tuned to the [`#announcements`](https://nfcore.slack.com/archives/CE6P95170) in Slack and the blog for updates as these initiatives roll out. And as always, thank you to everyone who contributes to making nf-core what it is.
+Stay tuned to the [`#announcements`](https://nfcore.slack.com/archives/CE6P95170) channel in Slack and the blog for updates as these initiatives roll out. And as always, thank you to everyone who contributes to making nf-core what it is.
 
 <Image
     src={aifur}
