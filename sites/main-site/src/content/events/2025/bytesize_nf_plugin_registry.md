@@ -12,6 +12,6 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-The [Nextflow plugin registry](https://registry.nextflow.io/) is a central repository for discovering, sharing, and managing Nextflow plugins. 
+The [Nextflow plugin registry](https://registry.nextflow.io/) is a central repository for discovering, sharing, and managing Nextflow plugins.
 
 Phil Ewels ([@ewels](https://github.com/ewels)) is going to introduce this new resource in this weeks bytesize.
