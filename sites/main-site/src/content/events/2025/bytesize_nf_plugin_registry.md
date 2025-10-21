@@ -1,6 +1,6 @@
 ---
 title: "Bytesize: The Nextflow plugin registry"
-subtitle: Phil Ewel, Seqera
+subtitle: Phil Ewels, Seqera
 type: talk
 startDate: "2025-11-11"
 startTime: "13:00+02:00"
