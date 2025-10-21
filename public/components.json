@@ -57111,6 +57111,334 @@
       ]
     },
     {
+      "name": "diann",
+      "path": "modules/nf-core/diann/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diann",
+        "description": "Generic DIA-NN module for running any DIA-NN operation including in-silico library generation, preliminary analysis, empirical library assembly, individual analysis, and final quantification",
+        "keywords": [
+          "proteomics",
+          "mass spectrometry",
+          "DIA",
+          "spectral library",
+          "quantification"
+        ],
+        "tools": [
+          {
+            "diann": {
+              "description": "DIA-NN - a fast and easy to use tool for processing data independent acquisition (DIA) proteomics data",
+              "homepage": "https://github.com/vdemichev/DiaNN",
+              "documentation": "https://github.com/vdemichev/DiaNN#readme",
+              "tool_dev_url": "https://github.com/vdemichev/DiaNN",
+              "licence": [
+                "Custom",
+                "https://raw.githubusercontent.com/vdemichev/DiaNN/master/LICENSE.txt"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "ms_files": {
+                "type": "file",
+                "description": "MS data file(s) in mzML or Bruker .d format (can be single file or list).\nThermo RAW files are only supported on Linux with DIA-NN 2.0+; older versions\nrequire conversion to mzML or .d format first.\nFor preliminary/assembly/individual analysis, these are actual file paths.\nFor final quantification with --use-quant, this should be an empty list.\n",
+                "pattern": "*.{mzML,raw,d}"
+              }
+            },
+            {
+              "ms_file_names": {
+                "type": "string",
+                "description": "MS file basenames (not paths) as strings (can be single name or list).\nUsed for final quantification step with --use-quant where only filenames are needed.\nFor other analysis steps, this should be an empty list.\nExample: ['sample1.mzML', 'sample2.mzML'] or []\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA database file for peptide searches.\nUse a placeholder file (e.g., 'NO_FASTA_FILE') if not needed for the specific analysis step.\n",
+                "pattern": "*.{fasta,fa}"
+              }
+            },
+            {
+              "library": {
+                "type": "file",
+                "description": "Spectral library file in .speclib or .tsv format.\nUse a placeholder file (e.g., 'NO_LIB_FILE') if not needed for the specific analysis step.\n",
+                "pattern": "*.{speclib,tsv}"
+              }
+            },
+            {
+              "quant": {
+                "type": "directory",
+                "description": "Directory containing .quant files from previous DIA-NN analysis.\nWhen provided, enables --use-quant mode to reuse cached quantification results,\nimproving performance for empirical library assembly and final quantification.\nPass empty list [] if not needed. Files are staged as 'quant/*' in the work directory.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predict_speclib": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.predicted.speclib": {
+                  "type": "file",
+                  "description": "Predicted spectral library from in-silico generation.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.predicted.speclib"
+                }
+              }
+            ]
+          ],
+          "final_speclib": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.speclib": {
+                  "type": "file",
+                  "description": "Empirical spectral library refined from experimental data.\nProduced by the library assembly step, which combines predicted library\ninformation with actual MS measurements to improve search accuracy.\n",
+                  "pattern": "*.speclib"
+                }
+              }
+            ]
+          ],
+          "skyline_speclib": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv.skyline.speclib": {
+                  "type": "file",
+                  "description": "Spectral library in Skyline format for use with Skyline software.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.tsv.skyline.speclib"
+                }
+              }
+            ]
+          ],
+          "diann_quant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.quant": {
+                  "type": "file",
+                  "description": "Quantification results in .quant format (intermediate output for empirical library assembly and final quantification)",
+                  "pattern": "*.quant"
+                }
+              }
+            ]
+          ],
+          "main_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Main DIA-NN report in TSV format containing peptide and protein quantification.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          ],
+          "report_parquet": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.parquet": {
+                  "type": "file",
+                  "description": "Main DIA-NN report in Parquet format for efficient data access.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.parquet"
+                }
+              }
+            ]
+          ],
+          "report_manifest": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.manifest.txt": {
+                  "type": "file",
+                  "description": "Report manifest file listing all output files.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.manifest.txt"
+                }
+              }
+            ]
+          ],
+          "protein_description": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.protein_description.tsv": {
+                  "type": "file",
+                  "description": "Protein descriptions extracted from FASTA headers.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.protein_description.tsv"
+                }
+              }
+            ]
+          ],
+          "report_stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.stats.tsv": {
+                  "type": "file",
+                  "description": "Report statistics including identification and quantification metrics.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.stats.tsv"
+                }
+              }
+            ]
+          ],
+          "pr_matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.pr_matrix.tsv": {
+                  "type": "file",
+                  "description": "Precursor-level quantification matrix (peptides across runs).\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.pr_matrix.tsv"
+                }
+              }
+            ]
+          ],
+          "pg_matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.pg_matrix.tsv": {
+                  "type": "file",
+                  "description": "Protein group-level quantification matrix.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.pg_matrix.tsv"
+                }
+              }
+            ]
+          ],
+          "gg_matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.gg_matrix.tsv": {
+                  "type": "file",
+                  "description": "Gene group-level quantification matrix.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.gg_matrix.tsv"
+                }
+              }
+            ]
+          ],
+          "unique_gene_matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.unique_genes_matrix.tsv": {
+                  "type": "file",
+                  "description": "Unique genes quantification matrix.\nFilename is determined by the prefix (task.ext.prefix or meta.id).\n",
+                  "pattern": "*.unique_genes_matrix.tsv"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log.txt": {
+                  "type": "file",
+                  "description": "DIA-NN log file containing run information and recommended settings",
+                  "pattern": "*.log.txt"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "diann_insilicolibrarygeneration",
       "path": "modules/nf-core/diann/insilicolibrarygeneration/meta.yml",
       "type": "module",
@@ -59168,6 +59496,252 @@
         ],
         "maintainers": [
           "@poddarharsh15"
+        ]
+      }
+    },
+    {
+      "name": "dysgu_run",
+      "path": "modules/nf-core/dysgu/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "dysgu_run",
+        "description": "Dysgu calls structural variants (SVs) from mapped sequencing reads. It is designed for accurate and efficient detection of structural variations.",
+        "keywords": [
+          "structural variants",
+          "sv",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "dysgu": {
+              "description": "Structural variant caller for mapped sequencing data",
+              "homepage": "https://github.com/kcleal/dysgu",
+              "documentation": "https://github.com/kcleal/dysgu/blob/master/README.rst",
+              "tool_dev_url": "https://github.com/kcleal/dysgu",
+              "doi": "10.1093/nar/gkac039",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Input BAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai,crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome reference FASTA file",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Genome reference FASTA index file",
+                "pattern": "*.{fa.fai,fasta.fai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "sites": {
+                "type": "file",
+                "description": "Known sites VCF file",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Regions to include BED file",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta6": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "search_bed": {
+                "type": "file",
+                "description": "Regions to search BED file",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta7": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "exclude_bed": {
+                "type": "file",
+                "description": "Regions to exclude BED file",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "VCF file with identified structural variants",
+                  "pattern": "*.{vcf.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "The index of the BCF/VCF file",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@famosab",
+          "@poddarharsh15"
+        ],
+        "maintainers": [
+          "@poddarharsh15",
+          "@nvnieuwk"
         ]
       }
     },
@@ -64686,6 +65260,131 @@
         ],
         "maintainers": [
           "@muffato"
+        ]
+      }
+    },
+    {
+      "name": "fastcov",
+      "path": "modules/nf-core/fastcov/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fastcov",
+        "description": "Generate a coverage plot from one or more bam files",
+        "keywords": [
+          "coverage",
+          "bam",
+          "map"
+        ],
+        "tools": [
+          {
+            "fastcov": {
+              "description": "Generate a coverage plot from one or more bam files",
+              "homepage": "https://github.com/RaverJay/fastcov/",
+              "documentation": "https://github.com/RaverJay/fastcov/blob/main/README.md",
+              "tool_dev_url": "https://github.com/RaverJay/fastcov/tree/main",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "file_ext": {
+              "type": "string",
+              "description": "output plot file extension string, e.g. `png` or `pdf`"
+            }
+          }
+        ],
+        "output": {
+          "coverage_plot": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{png,svg,pdf}"
+                }
+              },
+              {
+                "${prefix}.${file_ext}": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
+                  "pattern": "*.{png,svg,pdf}"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "log.txt": {
+                  "type": "file",
+                  "description": "Log output redirected to a text file",
+                  "pattern": "log.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1678"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@davidfischer"
+        ],
+        "maintainers": [
+          "@davidfischer"
         ]
       }
     },
@@ -114105,10 +114804,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "magmap",
-          "version": "dev"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -114429,10 +115124,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "magmap",
-          "version": "dev"
-        },
         {
           "name": "taxprofiler",
           "version": "1.2.4"
@@ -173648,6 +174339,459 @@
           "version": "3.21.0"
         }
       ]
+    },
+    {
+      "name": "quantmsutils_diann2mztab",
+      "path": "modules/nf-core/quantmsutils/diann2mztab/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "quantmsutils_diann2mztab",
+        "description": "Convert DIA-NN results to mzTab, MSstats, and Triqler formats using quantms-utils",
+        "keywords": [
+          "quantms-utils",
+          "diann",
+          "mztab",
+          "msstats",
+          "triqler",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "quantms-utils": {
+              "description": "quantms-utils is a Python package for proteomics data processing",
+              "homepage": "https://github.com/bigbio/quantms-utils",
+              "documentation": "https://quantms-utils.readthedocs.io/",
+              "tool_dev_url": "https://github.com/bigbio/quantms-utils",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test', condition:'test' ]\n"
+              }
+            },
+            {
+              "report": {
+                "type": "file",
+                "description": "DIA-NN main report file (tsv or parquet)",
+                "pattern": "*.{tsv,parquet}"
+              }
+            },
+            {
+              "report_pg": {
+                "type": "file",
+                "description": "DIA-NN protein group matrix file",
+                "pattern": "*.tsv"
+              }
+            },
+            {
+              "report_pr": {
+                "type": "file",
+                "description": "DIA-NN precursor matrix file",
+                "pattern": "*.tsv"
+              }
+            },
+            {
+              "version/versions.yml": {
+                "type": "file",
+                "description": "DIA-NN versions file (staged as version/versions.yml)",
+                "pattern": "versions.yml"
+              }
+            },
+            {
+              "exp_design": {
+                "type": "file",
+                "description": "Experimental design file describing sample conditions",
+                "pattern": "*.tsv"
+              }
+            },
+            {
+              "ms_information": {
+                "type": "file",
+                "description": "MS statistics/information files in parquet format",
+                "pattern": "*.parquet"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA database file used for the search",
+                "pattern": "*.{fasta,fa}"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "out_msstats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test', condition:'test' ]\n"
+                }
+              },
+              {
+                "*msstats_in.csv": {
+                  "type": "file",
+                  "description": "MSstats input file for statistical analysis",
+                  "pattern": "*msstats_in.csv"
+                }
+              }
+            ]
+          ],
+          "out_triqler": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test', condition:'test' ]\n"
+                }
+              },
+              {
+                "*triqler_in.tsv": {
+                  "type": "file",
+                  "description": "Triqler input file for protein quantification with uncertainty",
+                  "pattern": "*triqler_in.tsv"
+                }
+              }
+            ]
+          ],
+          "out_mztab": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test', condition:'test' ]\n"
+                }
+              },
+              {
+                "*.mzTab": {
+                  "type": "file",
+                  "description": "mzTab output file (standard proteomics exchange format)",
+                  "pattern": "*.mzTab"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test', condition:'test' ]\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file from conversion process",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@daichengxin",
+          "@wanghong",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@daichengxin",
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "quantmsutils_dianncfg",
+      "path": "modules/nf-core/quantmsutils/dianncfg/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "quantmsutils_dianncfg",
+        "description": "Generate DIA-NN configuration arguments from enzyme and Unimod modification parameters.\nThis module uses quantms-utils to convert enzyme and modification specifications into DIA-NN-compatible command-line arguments.\nOnly supports Unimod modifications. For custom modifications, pass arguments directly to the DIANN module.\n",
+        "keywords": [
+          "quantms-utils",
+          "diann",
+          "configuration",
+          "enzyme",
+          "modifications"
+        ],
+        "tools": [
+          {
+            "quantms-utils": {
+              "description": "quantms-utils is a Python package with scripts and functions for quantitative proteomics data analysis.\nThe dianncfg command converts enzyme and modification parameters to DIA-NN-compatible format.\n",
+              "homepage": "https://github.com/bigbio/quantms-utils",
+              "documentation": "https://github.com/bigbio/quantms-utils",
+              "tool_dev_url": "https://github.com/bigbio/quantms-utils",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:quantms-utils"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "enzyme": {
+                "type": "string",
+                "description": "Enzyme name for protein digestion (e.g., 'Trypsin', 'Trypsin/P')",
+                "pattern": ".*"
+              }
+            },
+            {
+              "fixed_modifications": {
+                "type": "string",
+                "description": "Fixed modifications in Unimod format (e.g., 'Carbamidomethyl (C)')",
+                "pattern": ".*"
+              }
+            },
+            {
+              "variable_modifications": {
+                "type": "string",
+                "description": "Variable modifications in Unimod format (e.g., 'Oxidation (M)')",
+                "pattern": ".*"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "diann_cfg": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "diann_config.cfg": {
+                  "type": "file",
+                  "description": "DIA-NN configuration file containing command-line arguments",
+                  "pattern": "diann_config.cfg"
+                }
+              }
+            ]
+          ],
+          "log": [
+            {
+              "*.log": {
+                "type": "file",
+                "description": "Log file from configuration generation",
+                "pattern": "*.log"
+              }
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@daichengxin",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@daichengxin",
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "quantmsutils_mzmlstatistics",
+      "path": "modules/nf-core/quantmsutils/mzmlstatistics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "quantmsutils_mzmlstatistics",
+        "description": "Generate statistics from mzML files using quantms-utils",
+        "keywords": [
+          "quantms-utils",
+          "mzml",
+          "statistics",
+          "proteomics",
+          "mass spectrometry"
+        ],
+        "tools": [
+          {
+            "quantms-utils": {
+              "description": "A Python package for quantitative mass spectrometry data analysis",
+              "homepage": "https://github.com/bigbio/quantms-utils",
+              "documentation": "https://quantms-utils.readthedocs.io/",
+              "tool_dev_url": "https://github.com/bigbio/quantms-utils",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test' ]\n"
+              }
+            },
+            {
+              "ms_file": {
+                "type": "file",
+                "description": "Input mzML file",
+                "pattern": "*.{mzML,mzml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3244"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ms_statistics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test' ]\n"
+                }
+              },
+              {
+                "*_ms_info.parquet": {
+                  "type": "file",
+                  "description": "MS statistics in parquet format",
+                  "pattern": "*_ms_info.parquet",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ms2_statistics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test' ]\n"
+                }
+              },
+              {
+                "*_ms2_info.parquet": {
+                  "type": "file",
+                  "description": "MS2 statistics in parquet format (optional)",
+                  "pattern": "*_ms2_info.parquet",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "feature_statistics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test' ]\n"
+                }
+              },
+              {
+                "*_feature_info.parquet": {
+                  "type": "file",
+                  "description": "Feature statistics in parquet format (optional)",
+                  "pattern": "*_feature_info.parquet",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', name:'test' ]\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@wanghong",
+          "@daichengxin",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@daichengxin",
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "quartonotebook",
@@ -244945,6 +246089,281 @@
           "@abhi18av",
           "@ramprasadn",
           "@fa2k"
+        ]
+      }
+    },
+    {
+      "name": "dia_proteomics_analysis",
+      "path": "subworkflows/nf-core/dia_proteomics_analysis/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "dia_proteomics_analysis",
+        "description": "Complete DIA-NN proteomics analysis pipeline including in-silico library generation,\npreliminary analysis, empirical library assembly, individual analysis, and final quantification.\nThis subworkflow combines DIA-NN modules with quantms-utils for comprehensive\ndata-independent acquisition (DIA) proteomics data processing.\n",
+        "keywords": [
+          "diann",
+          "proteomics",
+          "dia",
+          "quantification",
+          "spectral library",
+          "quantms-utils"
+        ],
+        "tools": [
+          {
+            "diann": {
+              "description": "DIA-NN is a universal software for data-independent acquisition (DIA) proteomics data processing.\nIt uses deep learning to predict spectral libraries and perform peptide identification and quantification.\n",
+              "homepage": "https://github.com/vdemichev/DiaNN",
+              "documentation": "https://github.com/vdemichev/DiaNN",
+              "tool_dev_url": "https://github.com/vdemichev/DiaNN",
+              "doi": "10.1038/s41592-020-01009-0",
+              "licence": [
+                "https://github.com/vdemichev/DiaNN/blob/1.8.1/LICENSE.txt"
+              ],
+              "identifier": "biotools:diann"
+            }
+          },
+          {
+            "quantms-utils": {
+              "description": "quantms-utils is a Python package with scripts and functions for quantitative proteomics data analysis.\nProvides utilities for DIA-NN configuration, mzML statistics, and format conversion to mzTab.\n",
+              "homepage": "https://github.com/bigbio/quantms-utils",
+              "documentation": "https://github.com/bigbio/quantms-utils",
+              "tool_dev_url": "https://github.com/bigbio/quantms-utils",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:quantms-utils"
+            }
+          }
+        ],
+        "components": [
+          "diann",
+          "quantmsutils/dianncfg",
+          "quantmsutils/mzmlstatistics",
+          "quantmsutils/diann2mztab"
+        ],
+        "input": [
+          {
+            "ch_input": {
+              "type": "channel",
+              "description": "Channel containing tuples of meta maps, mass spectrometry files, and search parameters.\nStructure: [meta, ms_file, enzyme, fixed_mods, variable_mods, precursor_tolerance,\nfragment_tolerance, precursor_tolerance_unit, fragment_tolerance_unit]\ne.g. `[[id:'sample1'], file('sample1.mzML'), 'Trypsin', 'Carbamidomethyl (C)',\n'Oxidation (M)', 10, 20, 'ppm', 'ppm']`\nNote: For Thermo RAW file conversion to mzML, the ThermoRawFileParser module is available\nin nf-core/modules and can be used upstream of this subworkflow.\n",
+              "pattern": "*.{mzML,mzml}"
+            }
+          },
+          {
+            "ch_searchdb": {
+              "type": "channel",
+              "description": "Channel containing tuples of meta maps and protein sequence database in FASTA format.\nStructure: [meta, fasta]\ne.g. `[[id:'uniprot_human'], file('uniprot_human.fasta')]`\n",
+              "pattern": "*.{fasta,fa}"
+            }
+          },
+          {
+            "ch_expdesign": {
+              "type": "channel",
+              "description": "Channel containing tuples of meta maps and experimental design files.\nStructure: [meta, expdesign]\ne.g. `[[id:'experiment1'], file('design.tsv')]`\n",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "random_preanalysis": {
+              "type": "tuple",
+              "description": "Tuple controlling random sampling for preliminary analysis.\nStructure: [boolean, integer, integer] for [enable_random, n_samples, seed]\ne.g. `[true, 5, 42]` to randomly sample 5 files with seed 42\nSet to null or [false, null, null] to use all files\n"
+            }
+          },
+          {
+            "wf_scan_window": {
+              "type": "integer",
+              "description": "Scan window parameter for DIA-NN individual analysis.\nOnly used if wf_scan_window_automatic is false.\n"
+            }
+          },
+          {
+            "wf_mass_acc_automatic": {
+              "type": "boolean",
+              "description": "If true, use automatic mass accuracy settings extracted from DIA-NN preliminary analysis log.\nIf false, use user-provided precursor_tolerance and fragment_tolerance from ch_input.\n"
+            }
+          },
+          {
+            "wf_scan_window_automatic": {
+              "type": "boolean",
+              "description": "If true, use automatic scan window settings extracted from DIA-NN preliminary analysis log.\nIf false, use user-provided wf_scan_window parameter.\n"
+            }
+          },
+          {
+            "wf_diann_debug": {
+              "type": "boolean",
+              "description": "Enable DIA-NN debug output mode for troubleshooting.\n"
+            }
+          },
+          {
+            "wf_pg_level": {
+              "type": "string",
+              "description": "Protein group level for DIA-NN analysis.\nOptions: 'genes', 'proteins', etc.\n"
+            }
+          },
+          {
+            "ch_speclib_in": {
+              "type": "channel",
+              "description": "Optional channel containing pre-generated spectral library file.\nIf provided, skips in-silico library generation.\nApplied to all samples in the workflow.\nStructure: path(speclib)\ne.g. `file('pregenerated.speclib')`\n",
+              "pattern": "*.{speclib,tsv}"
+            }
+          },
+          {
+            "ch_empirical_library_in": {
+              "type": "channel",
+              "description": "Optional channel containing pre-generated empirical library file.\nIf provided, skips preliminary analysis and empirical library assembly.\nApplied to all samples in the workflow.\nStructure: path(empirical_library)\ne.g. `file('empirical_library.speclib')`\n",
+              "pattern": "*.speclib"
+            }
+          },
+          {
+            "ch_empirical_log_in": {
+              "type": "channel",
+              "description": "Optional channel containing assembly log from pre-generated empirical library.\nRequired if ch_empirical_library_in is provided (for extracting mass accuracy settings).\nStructure: path(assembly_log)\ne.g. `file('assembly.log')`\n",
+              "pattern": "*.log"
+            }
+          }
+        ],
+        "output": [
+          {
+            "versions": {
+              "description": "File containing software versions",
+              "structure": [
+                {
+                  "versions": {
+                    "type": "file",
+                    "description": "File containing software versions",
+                    "pattern": "versions.yml"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "diann_report": {
+              "description": "Main DIA-NN report in TSV format containing quantification results",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing experiment and search database information"
+                  }
+                },
+                {
+                  "report": {
+                    "type": "file",
+                    "description": "Main DIA-NN report in TSV format",
+                    "pattern": "*.tsv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "diann_report_parquet": {
+              "description": "Main DIA-NN report in Parquet format containing quantification results",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing experiment and search database information"
+                  }
+                },
+                {
+                  "report": {
+                    "type": "file",
+                    "description": "Main DIA-NN report in Parquet format",
+                    "pattern": "*.parquet"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "mzml_statistics": {
+              "description": "Statistics extracted from mzML files",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information"
+                  }
+                },
+                {
+                  "statistics": {
+                    "type": "file",
+                    "description": "mzML statistics in parquet format",
+                    "pattern": "*_ms_info.parquet"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "msstats_in": {
+              "description": "MSstats-compatible input file for statistical analysis",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing experiment and search database information"
+                  }
+                },
+                {
+                  "msstats": {
+                    "type": "file",
+                    "description": "MSstats input file",
+                    "pattern": "*_msstats_in.csv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "out_triqler": {
+              "description": "Triqler-compatible input file for protein quantification with uncertainty",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing experiment and search database information"
+                  }
+                },
+                {
+                  "triqler": {
+                    "type": "file",
+                    "description": "Triqler input file",
+                    "pattern": "*_triqler_in.tsv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "final_result": {
+              "description": "Final quantification results in mzTab format",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing experiment and search database information"
+                  }
+                },
+                {
+                  "mztab": {
+                    "type": "file",
+                    "description": "Final results in mzTab format (standard proteomics exchange format)",
+                    "pattern": "*.mzTab"
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "authors": [
+          "@daichengxin",
+          "@wanghong",
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@daichengxin",
+          "@pinin4fjords"
         ]
       }
     },
