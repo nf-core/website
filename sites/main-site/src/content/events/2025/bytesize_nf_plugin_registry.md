@@ -13,6 +13,5 @@ locations:
 ---
 
 The [Nextflow plugin registry](https://registry.nextflow.io/) is a central repository for discovering, sharing, and managing Nextflow plugins. 
-Extend Nextflow's capabilities with community-developed plugins for enhanced bioinformatics workflows.
 
 Phil Ewels ([@ewels](https://github.com/ewels)) is going to introduce this new resource in this weeks bytesize.
