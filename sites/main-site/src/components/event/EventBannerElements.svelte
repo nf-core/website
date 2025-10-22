@@ -140,7 +140,7 @@
     .banner-wrapper {
         max-height: 0;
         overflow: hidden;
-        /*transition: max-height 0.3s ease-in-out;*/
+        transition: max-height 0.3s ease-in-out;
     }
 
     .banner-wrapper.visible {
