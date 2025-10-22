@@ -16,7 +16,6 @@ leaders:
     slack: https://nfcore.slack.com/archives/D08KCG9SRSL
 ---
 
-
 ## Summary
 
 The nf-co2footprint plugin estimates the CO₂ equivalent emissions of workflow runs. After our first stable release, we are now looking forward to push the integration of our plugin into as many pipelines as possible. We aim to raise individual and collective awareness within the nf-core community about the environmental impact of our computational work.
