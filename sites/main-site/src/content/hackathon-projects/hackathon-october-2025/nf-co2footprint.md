@@ -1,5 +1,5 @@
 ---
-title: nf-co2footprint plugin 🌱
+title: nf-co2footprint plugin development & integration 🌱
 category: tooling
 slack: https://nfcore.slack.com/channels/nf-co2footprint
 image: /assets/images/events/2025/hackathon-march/globalcore-stripes.png
