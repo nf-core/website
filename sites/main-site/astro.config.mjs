@@ -85,8 +85,8 @@ export default defineConfig({
                     "youtube-icon",
                     "linkedin",
                 ],
-                fa: ["github"],
                 "fa-brands": ["github"],
+                "fa7-solid": ["broadcast-tower", "alarm-clock"],
                 mdi: [
                     "aws",
                     "linkedin",
