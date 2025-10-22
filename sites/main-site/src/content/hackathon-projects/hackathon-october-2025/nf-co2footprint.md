@@ -34,10 +34,10 @@ Our goal is to raise individual and collective awareness within the nf-core comm
   Let’s do it together and discuss how this process could be streamlined for other plugin users.
 
 - **☁️ Improve support for AWS and other cloud providers**  
-  This includes several sub-tasks such as:  
-  - Adding S3 output support  
-  - Automatically detecting the active AWS region and instance type  
-  - Extending the CPU TDP reference table with corresponding cloud hardware specifications  
+  This includes several sub-tasks such as:
+  - Adding S3 output support
+  - Automatically detecting the active AWS region and instance type
+  - Extending the CPU TDP reference table with corresponding cloud hardware specifications
 
 - **Align the plugin config syntax with standard Nextflow style**  
   Ensure consistency, readability, and seamless integration with existing configurations.
