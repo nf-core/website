@@ -18,4 +18,4 @@ head: 15
 tail: 10
 -->
 
-![`nf-core subworkflows info bam_rseqc`](/images/tools/nf-core-subworkflows-info.svg)
+![`nf-core subworkflows info bam_rseqc`](../../../../assets/images/tools/nf-core-subworkflows-info.svg)

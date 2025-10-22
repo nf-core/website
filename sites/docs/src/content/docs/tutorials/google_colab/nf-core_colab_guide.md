@@ -114,7 +114,7 @@ Next, authenticate the connection using your GitHub credentials:
 vscode_colab.login()
 ```
 
-![interactive login popup in cell output](/images/tutorials/google_colab/login.png)
+![interactive login popup in cell output](../../../../assets/images/tutorials/google_colab/login.png)
 
 Follow the displayed instructions to authorize the connection.
 
@@ -130,7 +130,7 @@ vscode_colab.connect(
 )
 ```
 
-![interactive tunnel connection popup in cell output](/images/tutorials/google_colab/connect.png)
+![interactive tunnel connection popup in cell output](../../../../assets/images/tutorials/google_colab/connect.png)
 
 The above step allows for a lot more customization than shown here. Please refer to the library's [vignette](https://github.com/EssenceSentry/vscode-colab) to see if any of these options will suit your needs.
 
