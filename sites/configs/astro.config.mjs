@@ -131,7 +131,7 @@ export default defineConfig({
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com", "github.com", "githubusercontent.com"],
+        domains: ["raw.githubusercontent.com", "unsplash.com", "github.com", "avatars.githubusercontent.com"],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
