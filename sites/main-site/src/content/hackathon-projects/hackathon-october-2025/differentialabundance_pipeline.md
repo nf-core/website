@@ -26,4 +26,9 @@ Please join us if you are interested in this transformation or simply on the tas
 
 ## Goals
 
-Differential abundance analysis, hub pipelines, documentation and more!
+1. Improve the “hub” structure of the pipeline (expert)
+2. Improve multi-config support (expert)
+3. Clean up codebase - parameter redundancy (medium)
+4. Improve error handling (medium)
+5. Improve reporting and visualizations (beginner/medium)
+6. Update documentation (beginner)
