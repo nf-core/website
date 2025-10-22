@@ -5,6 +5,8 @@ node_bundler = "esbuild"
 environment = { NODE_VERSION = "20.19.0" }
 command = "npm run build -w sites/configs"
 ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/configs public/pipelines.json"
+[images]
+remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
 [[headers]]
 for = "/_astro/*"
 [headers.values]
