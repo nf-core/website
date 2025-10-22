@@ -3,6 +3,7 @@ import EventBannerElement from "@components/event/EventBannerElement.svelte";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { markdown } from "@astropub/md";
+import { Icon } from "astro-icon/components";
 
 let events: CollectionEntry<"events">[] = await getCollection("events");
 events = await Promise.all(
@@ -65,14 +66,28 @@ const event_type_icons = {
                     {event_type_classes}
                     {event_type_icons}
                     client:load
-                />
+                >
+                    <Icon
+                        name="fa7-solid:broadcast-tower"
+                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                        aria-hidden="true"
+                        slot="backgroundIcon"
+                    />
+                </EventBannerElement>
                 <EventBannerElement
                     event_time_category={"upcoming"}
                     events={currentEvents}
                     {event_type_classes}
                     {event_type_icons}
                     client:load
-                />
+                >
+                    <Icon
+                        name="fa7-solid:alarm-clock"
+                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                        aria-hidden="true"
+                        slot="backgroundIcon"
+                    />
+                </EventBannerElement>
             </div>
             <div class="triangle-down bg-body-secondary d-none " />
         </div>
@@ -84,6 +99,10 @@ const event_type_icons = {
         display: block !important;
     }
 
+    .homepage-header-fa-background {
+        font-size: 14em;
+        opacity: 0.2;
+    }
     @include media-breakpoint-down(md) {
         .mainpage-subheader-heading {
             padding-top: 2rem;
