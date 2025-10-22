@@ -1,5 +1,6 @@
 ---
-import EventBannerElement from "@components/event/EventBannerElement.svelte";
+import EventBannerElements from "@components/event/EventBannerElements.svelte";
+import EventBannerSection from "@components/event/EventBannerSection.astro";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
 import { markdown } from "@astropub/md";
@@ -7,30 +8,40 @@ import { markdown } from "@astropub/md";
 let events: CollectionEntry<"events">[] = await getCollection("events");
 events = await Promise.all(
     events.map(async (event) => {
-        event.data.subtitle = `${await markdown(event.data.subtitle)}`;
+        event.data.subtitle = `${await markdown(event.data.subtitle.trim())}`;
+        // Detect bytesize events
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
+        }
         return event;
     }),
 );
-let now = new Date().getTime();
+
+// Filter to top-level events only
+events = events.filter((event) => {
+    return event.id.split("/").length === 2;
+});
+
+// Sort by start date
 events = events.sort((a, b) => {
     if (!a.data.start || !b.data.start) return 0;
     return a.data.start.getTime() - b.data.start.getTime();
 });
 
-events = events.filter((event) => {
-    return event.id.split("/").length === 2;
-});
+const now = new Date().getTime();
+
+// Filter to potentially relevant events (broader window for client-side filtering)
 const currentEvents = events.filter((event) => {
-    let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
+    let time_window = 2 * 24 * 60 * 60 * 1000;
     const event_start_unix =
         event.data.announcement?.start && !event.data.announcement.text
             ? new Date(event.data.announcement.start).getTime()
             : event.data.start?.getTime();
     const event_end_unix = event.data.end?.getTime();
 
-    // increase time window to a week for events longer than 5 hours
+    // Increase time window to a week for events longer than 5 hours
     if (event_end_unix - event_start_unix > 5 * 60 * 60 * 1000) {
-        time_window = 8 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte for the same reason as above
+        time_window = 8 * 24 * 60 * 60 * 1000;
     }
     if (event_start_unix < now + time_window && now < event_end_unix) {
         return true;
@@ -45,6 +56,7 @@ const event_type_classes = {
     tutorial: "info",
     training: "warning",
 };
+
 const event_type_icons = {
     bytesize: "fa-solid fa-apple-core",
     hackathon: "fa-solid fa-laptop-code",
@@ -53,40 +65,91 @@ const event_type_icons = {
     tutorial: "fa-solid fa-graduation-cap",
     training: "fa-solid fa-chalkboard-teacher",
 };
+
+// Format duration strings at build time
+const formatDuration = (event: CollectionEntry<"events">) => {
+    const start = event.data.start;
+    const end = event.data.end;
+    const startDate = start.toISOString().split("T")[0];
+    const endDate = end.toISOString().split("T")[0];
+
+    if (startDate === endDate) {
+        return (
+            start.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            }) +
+            "-" +
+            end.toLocaleString("en-US", {
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            })
+        );
+    } else {
+        return (
+            start.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            }) +
+            " - " +
+            end.toLocaleString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                hour: "numeric",
+                minute: "numeric",
+                hour12: false,
+            })
+        );
+    }
+};
 ---
 
 {
     currentEvents.length > 0 && (
         <div>
             <div class="current-event-container bg-body-secondary">
-                <EventBannerElement
-                    event_time_category={"ongoing"}
-                    events={currentEvents}
-                    {event_type_classes}
-                    {event_type_icons}
-                    client:load
-                />
-                <EventBannerElement
-                    event_time_category={"upcoming"}
-                    events={currentEvents}
-                    {event_type_classes}
-                    {event_type_icons}
-                    client:load
-                />
+                <EventBannerElements client:load>
+                    <div slot="ongoing" class="ongoing-event event-container border-bottom border-black-subtle">
+                        <EventBannerSection
+                            events={currentEvents}
+                            eventTypeClasses={event_type_classes}
+                            eventTypeIcons={event_type_icons}
+                            formatDuration={formatDuration}
+                            heading="Ongoing events"
+                            icon="fa-broadcast-tower"
+                            isUpcoming={false}
+                        />
+                    </div>
+                    <div slot="upcoming" class="upcoming-event event-container border-bottom border-black-subtle">
+                        <EventBannerSection
+                            events={currentEvents}
+                            eventTypeClasses={event_type_classes}
+                            eventTypeIcons={event_type_icons}
+                            formatDuration={formatDuration}
+                            heading="Upcoming events"
+                            icon="fa-alarm-clock"
+                            isUpcoming={true}
+                        />
+                    </div>
+                </EventBannerElements>
             </div>
-            <div class="triangle-down bg-body-secondary d-none " />
+            <div class="triangle-down bg-body-secondary d-none" />
         </div>
     )
 }
+
 <style lang="scss">
-    @import "@styles/_variables.scss";
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
         display: block !important;
-    }
-
-    @include media-breakpoint-down(md) {
-        .mainpage-subheader-heading {
-            padding-top: 2rem;
-        }
     }
 </style>

@@ -1,0 +1,160 @@
+---
+import VideoButton from "@components/VideoButton.svelte";
+import ExportEventButton from "@components/event/ExportEventButton.svelte";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+    event: CollectionEntry<"events">;
+    eventTypeClasses: Record<string, string>;
+    eventTypeIcons: Record<string, string>;
+    formattedDuration: string;
+    isUpcoming?: boolean;
+    isMobile?: boolean;
+}
+
+const {
+    event,
+    eventTypeClasses,
+    eventTypeIcons,
+    formattedDuration,
+    isUpcoming = false,
+    isMobile = false,
+} = Astro.props;
+console.log(event.data.subtitle);
+---
+
+<div
+    data-event-item
+    data-event-start={event.data.start.toISOString()}
+    data-event-end={event.data.end.toISOString()}
+    data-event-announcement-start={event.data.announcement?.start
+        ? new Date(event.data.announcement.start).toISOString()
+        : undefined}
+    style="display: none;"
+    class={isMobile ? "text-center" : ""}
+>
+    {
+        isMobile ? (
+            // Mobile layout
+            <div>
+                <h4 class="pt-1 pb-0">
+                    <a href={`events/${event.id}/`} class="text-success text-decoration-none">
+                        {event.data.title}
+                    </a>
+                </h4>
+                <div class="d-sm-none subtitle">
+                    <a
+                        href={`events/${event.id}/`}
+                        class="text-body text-decoration-none"
+                        set:html={event.data.subtitle}
+                    />
+                </div>
+                <div class="small mb-1 mx-3 d-flex flex-column">
+                    <a href={`events/${event.id}/`} class="text-secondary-emphasis text-decoration-none mb-2">
+                        {formattedDuration}
+                    </a>
+                    <div class="btn-group text-nowrap" role="group" aria-label="Event details">
+                        <a href={`events/${event.id}/`} class="btn btn-outline-success">
+                            Event Details
+                        </a>
+                        {isUpcoming ? (
+                            <ExportEventButton
+                                frontmatter={event.data}
+                                add_class="btn-outline-success rounded-start-0"
+                                client:load
+                            />
+                        ) : (
+                            Array.isArray(event.data?.locations) &&
+                            event.data.locations?.some((location) => location?.links && location.links.length > 0) && (
+                                <VideoButton
+                                    urls={event.data.locations}
+                                    btnClass="btn-success rounded-start-0"
+                                    client:load
+                                />
+                            )
+                        )}
+                    </div>
+                </div>
+            </div>
+        ) : (
+            // Desktop layout
+            <div class="w-100 row align-items-center">
+                <div class="col-8 py-lg-2 text-lg-start">
+                    <h5 class="pt-2 pb-0 pb-lg-1 event-title">
+                        <a href={`events/${event.id}/`} class="text-success text-decoration-none">
+                            {event.data.title}
+                        </a>
+                        <span class="ms-1 my-auto">
+                            <span class={`badge bg-${eventTypeClasses[event.data.type]} small`}>
+                                <i class={`${eventTypeIcons[event.data.type]} me-1`} aria-hidden="true" />
+                                {event.data.type}
+                            </span>
+                        </span>
+                    </h5>
+                    <p class="lead mb-1">
+                        <a
+                            href={`events/${event.id}/`}
+                            class="text-body text-decoration-none"
+                            set:html={event.data.subtitle}
+                        />
+                    </p>
+                    <p class="mb-1">
+                        <a href={`events/${event.id}/`} class="text-secondary-emphasis text-decoration-none">
+                            {formattedDuration}
+                        </a>
+                    </p>
+                </div>
+                <div class="col-4 py-lg-2 text-start d-flex flex-column align-items-start">
+                    {isUpcoming ? (
+                        <>
+                            <div class="text-nowrap ps-1">
+                                <h5>Event starts in</h5>
+                                <span class="display-6" data-event-countdown>
+                                    {/* Will be updated by Svelte */}
+                                </span>
+                            </div>
+                            <div class="btn-group my-2" role="group" aria-label="Event details">
+                                <a href={`events/${event.id}/`} class="btn btn-outline-success text-nowrap">
+                                    Event Details
+                                </a>
+                                <ExportEventButton
+                                    frontmatter={event.data}
+                                    client:load
+                                    add_class="btn-outline-success rounded-start-0"
+                                />
+                            </div>
+                        </>
+                    ) : (
+                        <div>
+                            <div class="btn-group" role="group" aria-label="Event details">
+                                <a href={`events/${event.id}/`} class="btn btn-outline-success text-nowrap">
+                                    Event Details
+                                </a>
+                                {Array.isArray(event.data?.locations) &&
+                                    event.data.locations?.some(
+                                        (location) => location?.links && location.links.length > 0,
+                                    ) && (
+                                        <VideoButton
+                                            urls={event.data.locations}
+                                            btnClass="btn-success rounded-start-0"
+                                            client:load
+                                        />
+                                    )}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        )
+    }
+    <hr class="mx-4 my-0 py-0" />
+</div>
+
+<style>
+    hr:last-child {
+        display: none;
+    }
+    :global(.subtitle a p) {
+        margin-bottom: 0.25rem;
+    }
+</style>

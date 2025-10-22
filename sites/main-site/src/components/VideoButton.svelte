@@ -31,15 +31,15 @@
     const getName = (url: EventLocation) => url.name || url.city || "Join";
 </script>
 
-{#if urlArray.length === 1}
+{#if urlArray.length === 1 && urlArray[0].links}
     <a class={"btn text-nowrap " + btnClass} href={getLink(urlArray[0])}>
         <i class={getIcon(urlArray[0]) + " me-1"} aria-hidden="true"></i>
         Join now
     </a>
-{:else if urlArray.length > 1}
+{:else if urlArray.length > 1 && urlArray[0].links}
     <div class="dropdown btn-group" role="group">
         <button
-            class="btn btn-success me-2 dropdown-toggle text-nowrap"
+            class={"btn btn-success me-2 dropdown-toggle text-nowrap " + btnClass}
             type="button"
             data-bs-toggle="dropdown"
             aria-expanded="false"
