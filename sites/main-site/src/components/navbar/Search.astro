@@ -25,10 +25,12 @@ const { id = "docsearch" } = Astro.props;
 </div>
 
 <script>
-    import docsearch from "@docsearch/js";
-    import "@docsearch/css";
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Lazy load DocSearch CSS and JS only when needed
+        const [docsearchModule] = await Promise.all([import("@docsearch/js"), import("@docsearch/css")]);
 
-    document.addEventListener("DOMContentLoaded", () => {
+        const docsearch = docsearchModule.default;
+
         // Initialize all search instances
         const searchContainers = document.querySelectorAll("[data-search-container]");
         searchContainers.forEach((container) => {
