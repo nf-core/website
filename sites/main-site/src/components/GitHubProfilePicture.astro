@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+
 interface Props {
     name: string;
     count?: number;
@@ -39,7 +41,7 @@ const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size
         rel="noopener noreferrer"
         style={`--size:${size};`}
     >
-        <img
+        <Image
             src={avatar_url}
             width={size}
             height={size}
@@ -49,6 +51,8 @@ const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size
             title={tooltipAttr}
             alt={`Github user ${name}`}
             style={`--size:${size};`}
+            height={size}
+            width={size}
         />
         <div class="profile-name text-nowrap overflow-x-auto">
             <slot />

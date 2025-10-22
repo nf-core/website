@@ -13,4 +13,4 @@ This shows documentation about the module on the command line, similar to what's
 working_dir: tmp/nf-core-nextbigthing
 -->
 
-![`nf-core modules info abacas`](/images/tools/nf-core-modules-info.svg)
+![`nf-core modules info abacas`](../../../../assets/images/tools/nf-core-modules-info.svg)

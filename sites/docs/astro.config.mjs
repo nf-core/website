@@ -39,6 +39,7 @@ export default defineConfig({
                 cssVariable: "--font-inter",
                 fallbacks: ["sans-serif"],
                 weights: ["300 700"],
+                subsets: ["latin"],
             },
             {
                 provider: fontProviders.fontsource(),
@@ -116,9 +117,12 @@ export default defineConfig({
             preserveSymlinks: true,
             browser: true,
         },
+        build: {
+            cssCodeSplit: true, // Enable CSS code splitting
+        },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com"],
+        domains: ["raw.githubusercontent.com", "unsplash.com", "github.com"],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },

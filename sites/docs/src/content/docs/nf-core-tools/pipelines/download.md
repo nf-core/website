@@ -19,7 +19,7 @@ Each option has a flag, if all are supplied then it will run without any user in
 working_dir: tmp
 -->
 
-![`nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d`](/images/tools/nf-core-download.svg)
+![`nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d`](../../../../assets/images/tools/nf-core-download.svg)
 
 Once downloaded, you will see something like the following file structure for the downloaded pipeline:
 
@@ -27,7 +27,7 @@ Once downloaded, you will see something like the following file structure for th
 working_dir: tmp
 -->
 
-![`tree -L 2 nf-core-rnaseq/`](/images/tools/nf-core-download-tree.svg)
+![`tree -L 2 nf-core-rnaseq/`](../../../../assets/images/tools/nf-core-download-tree.svg)
 
 You can run the pipeline by simply providing the directory path for the `workflow` folder to your `nextflow run` command:
 

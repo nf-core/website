@@ -3,6 +3,10 @@ title: About nf-core
 description: About nf-core - who we are, how we are organised and how we started.
 ---
 
+import { Image } from "astro:assets";
+import dockerLogo from "@assets/images/docker-horizontal.png";
+import runsOnLogo from "@assets/images/runs-on.png";
+
 # Introduction
 
 The nf-core project is a diverse project spread across many groups.
@@ -23,7 +27,11 @@ Finally, we would specifically like to acknowledge and thank the following spons
 
 ## Seqera
 
-<img src="/images/contributors/colour/seqera.svg" alt="Seqera" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img
+    src="/images/contributors/colour/seqera.svg"
+    alt="Seqera logo"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+/>
 
 Seqera is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
 
@@ -37,11 +45,13 @@ Specifically, Seqera helps nf-core with:
 - A [Seqera Cloud Pro](https://seqera.io/pricing/) account for launching and managing full-size release tests
 - Providing and maintaining Nextflow! ✨
 
-<div class="clearfix"></div>
-
 ## SciLifeLab NGI
 
-<img src="/images/contributors/colour/NGI.svg" alt="SciLifeLab National Genomics Infrastructure" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img
+    src="/images/contributors/colour/NGI.svg"
+    alt="SciLifeLab National Genomics Infrastructure"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+/>
 
 The nf-core community was founded with pipelines from the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/) (NGI).
 The NGI continues to support nf-core across a number of fronts:
@@ -50,29 +60,36 @@ The NGI continues to support nf-core across a number of fronts:
 - Paying for the renewal fees of the nf-core <i class="fab fa-slack me-1"></i> Slack
 - Involvement in the steering group and grant writing
 
-<div class="clearfix"></div>
-
 ## SciLifeLab Data Centre
 
-<img src="/images/contributors/colour/SciLifeLabDC.svg" alt="SciLifeLab Data Centre" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img
+    src="/images/contributors/colour/SciLifeLabDC.svg"
+    alt="SciLifeLab Data Centre"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+/>
 
 The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
 This funding covers a full-time position ([@mashehu](https://github.com/mashehu), Matthias Hörtenhuber) to work on maintainance of nf-core framework code. For example, the [nf-core website](https://nf-co.re/) and the [nf-core/tools package](https://github.com/nf-core/tools/).
 
-<div class="clearfix"></div>
-
 ## Centre for Genomic Regulation
 
-<img src="/images/contributors/colour/CRG.svg" alt="Centre for Genomic Regulation" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img
+    src="/images/contributors/colour/CRG.svg"
+    alt="Centre for Genomic Regulation"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+/>
 
 Nextflow was initially written at the [Centre for Genomic Regulation](https://www.crg.eu/) in [Cedric Notredame's group](https://www.crg.eu/cedric_notredame).
 Cedric's group supports nf-core by funding a position with 50% time spent on core infrastructure development ([@mirpedrol](https://github.com/mirpedrol), Júlia Mir Pedrol).
 
-<div class="clearfix"></div>
-
 ## Amazon Web Services
 
-<img src="/images/contributors/colour/aws.svg" alt="Amazon Web Services" class="float-end darkmode-image me-5 mb-5 w-25 ms-3" style="max-width: 200px">
+<img
+    src="/images/contributors/colour/aws.svg"
+    alt="Amazon Web Services"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    style="max-width: 200px"
+/>
 
 Amazon Web Services (AWS) kindly support nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You can explore and download these pipeline results under the <em class="mx-2"><i class="fab fa-aws me-2"></i> Results</em> tab on each pipeline page.
@@ -80,22 +97,26 @@ You can explore and download these pipeline results under the <em class="mx-2"><
 AWS also hosts the [AWS-iGenomes](https://registry.opendata.aws/aws-igenomes/) resource on the [Registry of Open Data on AWS](https://registry.opendata.aws/).
 This is used by most nf-core pipelines to give free and open access to the reference genomes of over 30 species, by using a simple `--genome` key when running a pipeline.
 
-<div class="clearfix"></div>
-
 ## Microsoft Azure
 
-<img src="/images/contributors/colour/azure.svg" alt="Microsoft Azure" class="float-end darkmode-image me-5 mb-5 ms-3">
+<img
+    src="/images/contributors/colour/azure.svg"
+    alt="Microsoft Azure"
+    class="float-end darkmode-image me-5 mb-5 ms-3"
+/>
 
 Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
-
-<div class="clearfix"></div>
 
 # Past support
 
 ## Chan Zuckerberg Initiative
 
-<img src="/images/contributors/colour/CZI.svg" alt="Chan Zuckerberg Initiative" class="float-end darkmode-image me-5 mb-5 w-25 ms-3">
+<img
+    src="/images/contributors/colour/CZI.svg"
+    alt="Chan Zuckerberg Initiative"
+    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+/>
 
 The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
 We are very grateful to them for supporting nf-core and [Nextflow](https://nextflow.io/) with several grants through their _Essential Open Source Software for Science_ (EOSS) grants:
@@ -116,33 +137,21 @@ Amongst other things, the CZI EOSS grant money enabled the nf-core community to:
 
 The CZI grant employed personnel based at the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/), the [Quantitative Biology Center](http://qbic.life/) in Tübingen Germany, and [Seqera](https://seqera.io/).
 
-<div class="clearfix"></div>
-
 # Open source support
 
 We also thank the following organisations for supporting nf-core through providing us 'open source plans' of their services:
 
-<div class="row row-cols-1 row-cols-lg-4 my-5">
-  <div class="col" style="align-self:center;">
-    <a href="https://www.docker.com/" target="_blank">
-      <img src="/images/docker-horizontal.png" alt="Docker" class="w-75">
-    </a>
-  </div>
-  <div class="col" style="align-self:center;">
-    <a href="https://runs-on.com/" target="_blank">
-      <img src="/images/runs-on.png" alt="RunsOn" class="w-50">
-    </a>
-  </div>
-    <div class="col" style="align-self:center;">
-    <a href="https://gitpod.io/" target="_blank">
-      <img src="/images/contributors/colour/gitpod.svg" alt="Gitpod" class="darkmode-image w-75">
-    </a>
-  </div>
-  <div class="col" style="align-self:center;">
-    <a href="https://hackmd.io/" target="_blank">
-      <img src="/images/contributors/colour/hackmd.svg" alt="HackMD" class="darkmode-image w-75">
-    </a>
-  </div>
+<div class="row row-cols-1 row-cols-lg-3 mb-3 align-items-center">
+        <a href="https://www.docker.com/" class="col text-center" target="_blank">
+            <Image src={dockerLogo} alt="Docker logo" class="not-dimmed" />
+        </a>
+        <a href="https://runs-on.com/" class="col text-center" target="_blank">
+                <Image src={runsOnLogo} alt="RunsOn logo" class="m-auto" />
+            </a>
+        <a href="https://hackmd.io/" class="col"  target="_blank">
+            <img src="/images/contributors/colour/hackmd.svg" alt="HackMD logo" class="darkmode-image" />
+        </a>
+
 </div>
 
 # History of nf-core

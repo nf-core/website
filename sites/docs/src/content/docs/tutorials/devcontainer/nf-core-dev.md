@@ -1,6 +1,7 @@
 ---
 title: Developing pipelines
-subtitle: Creating a new module for the nf-core modules repository.
+shortTitle: Developing pipelines
+subtitle: Developing pipelines and modules in Codespaces
 weight: 3
 type: "tutorial"
 ---
