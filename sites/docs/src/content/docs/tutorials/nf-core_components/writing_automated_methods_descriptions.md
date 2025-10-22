@@ -9,7 +9,7 @@ One of the ways that nf-core pipelines support reproducible analysis and providi
 
 At the end of every nf-core pipeline's MultiQC report, you will find a section entitled _nf-core/<pipeline> Methods description_.
 
-![Example screenshot of the automated methods text from nf-core/taxprofiler](/images/contributing/methods_description/methods_description_example.png)
+![Example screenshot of the automated methods text from nf-core/taxprofiler](../../../../assets/images/contributing/methods_description/methods_description_example.png)
 _Example screenshot of the automated methods text from [nf-core/taxprofiler](https://nf-co.re/taxprofiler/1.2.2/results/taxprofiler/results-80d2fcce1daeb95c69f16832ca253dbaeac8a11e/multiqc/?file=multiqc_report.html)_
 
 This section of the report has a text in typical scientific 'materials and methods' style prose (a methods text and a references section) that a user can directly copy and pasted into draft scientific journal articles.
