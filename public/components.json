@@ -11723,29 +11723,72 @@
               "fasta": {
                 "type": "file",
                 "description": "FASTA file to be annotated. Has to contain at least a non-empty string dummy value.\n",
-                "ontologies": []
+                "pattern": "*.{fa,fas,fna,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
           {
             "db": {
               "type": "file",
-              "description": "Path to the Bakta database. Must have amrfinderplus database directory already installed within it (in a directory called 'amrfinderplus-db/').\n",
-              "ontologies": []
+              "description": "Path to the Bakta database directory. Must have amrfinderplus database directory already installed within it (in a directory called 'amrfinderplus-db/').\n",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/data_1049"
+                }
+              ]
             }
           },
           {
             "proteins": {
               "type": "file",
               "description": "FASTA/GenBank file of trusted proteins to first annotate from (optional)",
-              "ontologies": []
+              "pattern": "*.{fa,fas,fna,fasta,faa}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
             }
           },
           {
             "prodigal_tf": {
               "type": "file",
-              "description": "Training file to use for Prodigal (optional)",
-              "ontologies": []
+              "description": "Training file to use for Prodigal for CDS prediction(optional)",
+              "pattern": "*.{tf,trn}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2333"
+                }
+              ]
+            }
+          },
+          {
+            "regions": {
+              "type": "file",
+              "description": "GFF3 or GenBank file of pre-annotated regions (optional)",
+              "pattern": "*.{gbff,gff3}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2206"
+                }
+              ]
+            }
+          },
+          {
+            "hmms": {
+              "type": "file",
+              "description": "HMM database file for custom annotation (optional)",
+              "pattern": "*.hmm",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1370"
+                }
+              ]
             }
           }
         ],
@@ -11763,7 +11806,11 @@
                   "type": "file",
                   "description": "annotations & sequences in (multi) EMBL format",
                   "pattern": "*.embl",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1927"
+                    }
+                  ]
                 }
               }
             ]
@@ -11781,7 +11828,11 @@
                   "type": "file",
                   "description": "CDS/sORF amino acid sequences as FASTA",
                   "pattern": "*.faa",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -11799,7 +11850,11 @@
                   "type": "file",
                   "description": "feature nucleotide sequences as FASTA",
                   "pattern": "*.ffn",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -11817,7 +11872,11 @@
                   "type": "file",
                   "description": "replicon/contig DNA sequences as FASTA",
                   "pattern": "*.fna",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -11835,7 +11894,11 @@
                   "type": "file",
                   "description": "annotations & sequences in (multi) GenBank format",
                   "pattern": "*.gbff",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1936"
+                    }
+                  ]
                 }
               }
             ]
@@ -11853,7 +11916,11 @@
                   "type": "file",
                   "description": "annotations & sequences in GFF3 format",
                   "pattern": "*.gff3",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
                 }
               }
             ]
@@ -11893,7 +11960,11 @@
                   "type": "file",
                   "description": "hypothetical protein CDS amino acid sequences as FASTA",
                   "pattern": "*.hypotheticals.faa",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               }
             ]
@@ -11933,7 +12004,11 @@
                   "type": "file",
                   "description": "genome statistics and annotation summary",
                   "pattern": "*.txt",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -40698,6 +40773,195 @@
         ],
         "maintainers": [
           "@maxibor"
+        ]
+      }
+    },
+    {
+      "name": "cnaqc",
+      "path": "modules/nf-core/cnaqc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnaqc",
+        "description": "Quality control of copy number data from bulk WGS assays",
+        "keywords": [
+          "WGS",
+          "copy number",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "cnaqc": {
+              "description": "Copy number quality control",
+              "homepage": "https://caravagnalab.github.io/CNAqc/",
+              "documentation": "https://caravagnalab.github.io/CNAqc/",
+              "tool_dev_url": "https://github.com/caravagnalab/CNAqc",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "snv_rds": {
+                "type": "file",
+                "description": "R object with mutation data",
+                "pattern": "*.rds",
+                "ontologies": []
+              }
+            },
+            {
+              "cna_rds": {
+                "type": "file",
+                "description": "R object with copy number data",
+                "pattern": "*.rds",
+                "ontologies": []
+              }
+            },
+            {
+              "tumour_sample": {
+                "type": "string",
+                "description": "string containing sample name",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "qc_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc.rds": {
+                  "type": "file",
+                  "description": "R object containing quality control results for the sample",
+                  "pattern": "*{_qc.rds}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "data_plot_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_data_plot.rds": {
+                  "type": "file",
+                  "description": "R object containing plots of the CNA statistics for the sample",
+                  "pattern": "*{_data_plot.rds}",
+                  "ontologies": []
+                }
+              },
+              {
+                "*_qc_plot.rds": {
+                  "type": "file",
+                  "description": "R object containing plots of the quality control results for the sample",
+                  "pattern": "*{_qc_plot.rds}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "qc_plot_rds": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc_plot.rds": {
+                  "type": "file",
+                  "description": "R object containing plots of the quality control results for the sample",
+                  "pattern": "*{_qc_plot.rds}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plot_pdf_data": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_data.pdf": {
+                  "type": "file",
+                  "description": "plots of the CNA statistics for the sample",
+                  "pattern": "*{_data.pdf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plot_pdf_qc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', tumour_sample:'tumour_sample1_name' ]`\n"
+                }
+              },
+              {
+                "*_qc.pdf": {
+                  "type": "file",
+                  "description": "plots of the quality control results for the sample",
+                  "pattern": "*{_qc.pdf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@vvvirgy"
+        ],
+        "maintainers": [
+          "@vvvirgy"
         ]
       }
     },
