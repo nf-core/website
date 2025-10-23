@@ -14,7 +14,7 @@ jobs:
           site_name: "nf-core"
           max_timeout: 600 # 10 Minutes
       - name: Check for broken links
-        uses: JustinBeckwith/linkinator-action@3d5ba091319fa7b0ac14703761eebb7d100e6f6d # v1
+        uses: JustinBeckwith/linkinator-action@cf305c16947ba91077d8a51fa2cbe155cd60f455 # v2
         with:
           paths: "https://deploy-preview-${{github.event.pull_request.number}}--nf-core.netlify.app"
           recurse: true
