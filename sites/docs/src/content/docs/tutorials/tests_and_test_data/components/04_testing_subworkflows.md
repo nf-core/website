@@ -27,7 +27,7 @@ subworkflows/nf-core/subworkflow/
 
 ### Basic test syntax
 
-The basic syntax for a subworkflow test follows this structure:
+The basic syntax for a subworkflow test `main.nf.test` file follows this structure:
 
 ```groovy
 nextflow_workflow {
@@ -100,7 +100,7 @@ subworkflows/nf-core/fastq_align_qc/
     └── tags.yml
 ```
 
-The final test file (`tests/main.nf.test`) once completed will include comprehensive tagging for all modules in the subworkflow:
+Once completed, the final test file (`tests/main.nf.test`) will include comprehensive tagging for all modules in the subworkflow:
 
 ```groovy
 nextflow_workflow {
