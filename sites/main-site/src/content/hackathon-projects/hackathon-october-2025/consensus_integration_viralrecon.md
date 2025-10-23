@@ -45,4 +45,13 @@ The subworkflow will leverage the PriorCons methodology which uses:
 
 This approach significantly improves consensus quality in highly variable viral genomes while maintaining computational efficiency and providing comprehensive quality metrics.
 
+## Expected Expertise Levels
+
+This project integrates the existing PriorCons tool into nf-core/viralrecon. Work focuses on workflow design, module implementation, and testing.
+
+- **Beginner:** Contribute to documentation, review schema and outputs, and assist with basic workflow tests.  
+- **Intermediate:** Implement and test the new Nextflow modules (`build_priors`, `integrate_consensus`) and integrate them into the viralrecon structure.  
+- **Advanced:** Optimize the integration for nf-core standards, ensure compatibility with existing components, and refine parameter settings.
+
+
 Anyone working with viral sequencing data is welcome to contribute!
