@@ -5,7 +5,7 @@ require_once '../includes/parse_md.php';
 $mainpage_container = false;
 $error_msgs = [];
 // Get available pipelines / releases
-$pipelines_json = json_decode(file_get_contents('pipelines.json'));
+$pipelines_json = json_decode(file_get_contents('https://nf-co.re/pipelines.json'));
 $pipelines = [];
 foreach ($pipelines_json->remote_workflows as $wf) {
     if ($wf->archived) {
