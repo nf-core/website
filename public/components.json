@@ -200513,7 +200513,7 @@
               "reads": {
                 "type": "file",
                 "description": "FastQ files",
-                "pattern": "*.{fq.gz/fastq.gz}",
+                "pattern": "*.{f[aq].gz/fast[aq].gz}",
                 "ontologies": []
               }
             }
@@ -200529,10 +200529,10 @@
                 }
               },
               {
-                "**/*.gz": {
+                "${prefix}/*": {
                   "type": "file",
                   "description": "Split fastq files",
-                  "pattern": "*.{fq.gz/fastq.gz}",
+                  "pattern": "*.{f[aq][.gz]/fast[aq][.gz]}",
                   "ontologies": []
                 }
               }
