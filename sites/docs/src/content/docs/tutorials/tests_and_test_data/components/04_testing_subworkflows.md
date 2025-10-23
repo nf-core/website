@@ -12,44 +12,9 @@ This chapter builds upon the concepts introduced in the module testing chapter, 
 
 If you have not already, we highly recommend reading the [module testing](03_testing_modules.md) chapter first.
 
-## Subworkflow structure
-
-Before diving into testing, let's understand the typical structure of a nf-core subworkflow:
-
-```tree
-subworkflows/nf-core/subworkflow/
-├── main.nf              # Subworkflow definition
-├── meta.yml             # Subworkflow metadata
-└── tests/               # Testing directory
-    ├── main.nf.test     # Test definitions
-    └── nextflow.config  # Optional: test-specific config
-```
-
-### Basic test syntax
-
-The basic syntax for a subworkflow test `main.nf.test` file follows this structure:
-
-```groovy
-nextflow_workflow {
-    name "<NAME>"
-    script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
-    workflow "<WORKFLOW_NAME>"
-
-    test("<TEST_NAME>") {
-        // Test implementation
-    }
-}
-```
-
-:::note
-**Key points:**
-
-- Script paths starting with `./` or `../` are relative to the test script's location.
-- The syntax is very similar to module testing, but uses a `nextflow_workflow` block instead of `nextflow_process`.
-- The `workflow` block is used to specify the name of the subworkflow.
-  :::
-
 ## Key differences from module testing
+
+Before diving into subworkflow test syntax, it's important to understand how subworkflow testing differs from module testing:
 
 **Workflow vs Process outputs:**
 
@@ -96,8 +61,7 @@ subworkflows/nf-core/fastq_align_qc/
 ├── meta.yml
 └── tests/
     ├── main.nf.test
-    ├── nextflow.config
-    └── tags.yml
+    └── nextflow.config
 ```
 
 Once completed, the final test file (`tests/main.nf.test`) will include comprehensive tagging for all modules in the subworkflow:
