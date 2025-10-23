@@ -5,7 +5,7 @@ minHeadingDepth: 2
 maxHeadingDepth: 2
 ---
 
-import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import Profile from "@components/GitHubProfilePictureExtended.astro";
 import ProfileListing from "@components/ProfileListing.astro";
 
 # Governance
@@ -391,16 +391,29 @@ Documentation team members will have write access to documentation repositories 
 
 <ProfileListing
     profiles={[
-{username:"christopher-hakkaart" , affiliation:"Seqera", name:"Chris Hakkart"},
-
-{username:"jfy133" , affiliation:"Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology", name:"James A. Fellows Yates"},
-]}
+        { username: "christopher-hakkaart", affiliation: "Seqera", name: "Chris Hakkaart" },
+        {
+            username: "jfy133",
+            affiliation:
+                "Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology",
+            name: "James A. Fellows Yates",
+        },
+    ]}
 />
 
 ##### Members
 
 <ProfileListing
-    profiles={[{ username: "mirpedrol", affiliation: "Centre for Genomic Regulation (CRG)", name: "Júlia Mir Pedrol" }]}
+    profiles={[
+        { username: "chriswyatt1", affiliation: "University College London", name: "Chris Wyatt" },
+        { username: "mirpedrol", affiliation: "Centre for Genomic Regulation (CRG)", name: "Júlia Mir Pedrol" },
+        {
+            username: "mahesh-panchal",
+            affiliation: "National Bioinformatics Infrastructure Sweden",
+            name: "Mahesh Binzer-Panchal",
+        },
+        { username: "FriederikeHanssen", affiliation: "Seqera", name: "Friederike Hanssen" },
+    ]}
 />
 
 _We are recruiting! Join the [#team-docs](https://nfcore.slack.com/archives/C09H9L3R614) channel to see what we're up to, and reach out to [Chris](https://nfcore.slack.com/team/U024MM1DRKL) or [James](https://nfcore.slack.com/team/D040CUQM72B) on Slack to find out more._
