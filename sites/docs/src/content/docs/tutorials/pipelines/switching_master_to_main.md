@@ -20,7 +20,7 @@ Ensure that your version of `nf-core/tools` matches the pipeline's template vers
 1. Open your repository on GitHub. Make sure you're viewing the `master` branch.
 2. Select **Branches**. It's located to the right of the branch dropdown that shows `master`.
 
-<img width=80% alt="Branches button" src="/images/tutorials/switching_master_to_main/branches_button.png">
+![Branches button](../../../../assets/images/tutorials/switching_master_to_main/branches_button.png)
 
 3. In the **Default** branch section, find the `master` branch and select the **More options** (three-dot) menu, then select **Rename branch**.
 
@@ -28,7 +28,7 @@ Ensure that your version of `nf-core/tools` matches the pipeline's template vers
 You will need permissions to change this setting. If you don't have permission, ask the @core-team for help on Slack.
 :::
 
-<img width=80% alt="Rename branch button" src="/images/tutorials/switching_master_to_main/rename_branch_button.png">
+![Rename branch button](../../../../assets/images/tutorials/switching_master_to_main/rename_branch_button.png)
 
 4.  Rename `master` to `main`.
 5.  Select the **learn more**, then copy the displayed instructions and save them somewhere safe.
@@ -37,7 +37,7 @@ You will need permissions to change this setting. If you don't have permission, 
 These instructions will be useful for all pipeline contributors, so keep this to one side until the end of this tutorial!
 :::
 
-<img width=80% alt="Learn more button" src="/images/tutorials/switching_master_to_main/learn_more_button.png">
+![Learn more button](../../../../assets/images/tutorials/switching_master_to_main/learn_more_button.png)
 
 6. Select **Rename branch**.
 7. Select the **Code** tab and verify you are now on `main`.

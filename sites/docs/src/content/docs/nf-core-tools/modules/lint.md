@@ -19,4 +19,4 @@ working_dir: tmp/modules
 before_command: sed 's/1.13a/1.10/g' modules/nf-core/multiqc/main.nf > modules/nf-core/multiqc/main.nf.tmp && mv modules/nf-core/multiqc/main.nf.tmp modules/nf-core/multiqc/main.nf
 -->
 
-![`nf-core modules lint multiqc`](/images/tools/nf-core-modules-lint.svg)
+![`nf-core modules lint multiqc`](../../../../assets/images/tools/nf-core-modules-lint.svg)

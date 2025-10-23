@@ -15,4 +15,4 @@ extra_env:
   PROFILE: 'conda'
 -->
 
-![`nf-core subworkflows lint bam_stats_samtools`](/images/tools/nf-core-subworkflows-lint.svg)
+![`nf-core subworkflows lint bam_stats_samtools`](../../../../assets/images/tools/nf-core-subworkflows-lint.svg)
