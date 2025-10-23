@@ -1,8 +1,7 @@
 name: Check Broken Links
 
 on:
-  schedule:
-    - cron: "0 0 * * *" # This will run daily at 00:00
+  workflow_dispatch:
 
 jobs:
   linkChecker:
