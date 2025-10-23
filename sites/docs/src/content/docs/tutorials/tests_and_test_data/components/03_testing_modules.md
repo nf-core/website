@@ -10,42 +10,6 @@ The nf-test framework in the nf-core ecosystem enables comprehensive testing for
 
 This chapter covers the fundamentals of nf-core module testing, from basic syntax to advanced scenarios involving chained modules.
 
-### Basic test syntax
-
-The basic syntax for a module test that we define in `main.nf.test` follows this structure:
-
-```groovy title="main.nf.test"
-nextflow_process {
-    name "<NAME>"
-    script "<PATH/TO/NEXTFLOW_SCRIPT.nf>"
-    process "<PROCESS_NAME>"
-
-    test("<TEST_NAME>") {
-        when {
-        }
-
-        then {
-        }
-    }
-}
-```
-
-**Components:**
-
-- `nextflow_process` - Main test block for the process
-- `name` - Descriptive test suite identifier (e.g., "Test Process FASTQC")
-- `script` - Path to the Nextflow script (usually `"../main.nf"`)
-- `process` - Exact process name from the script (case-sensitive)
-- `test()` - Individual test case with descriptive name
-- `when` - Test input setup and execution parameters
-- `then` - Assertions to verify expected behavior and outputs
-
-:::note
-**Key points:**
-
-- Script paths starting with `./` or `../` are relative to the test script's location.
-  :::
-
 ## Understanding snapshots
 
 **What are snapshots?**
@@ -63,29 +27,6 @@ Snapshots are nf-test's way of capturing and validating the expected outputs of 
 - **Automated validation**: No need to manually check every output file
 - **Regression detection**: Automatically catch when module behavior changes
 - **Comprehensive checking**: Validates file content, structure, and metadata
-
-**Example snapshot content:**
-
-```json
-{
-  "sarscov2 - fastq": {
-    "content": [
-      {
-        "0": ["versions.yml:md5,c50aa59475ab20752531545a585f8f2d"],
-        "1": [
-          [
-            {
-              "id": "test",
-              "single_end": false
-            },
-            "test.fastq.gz:md5,68b329da9893e34099c7d8ad5cb9c940"
-          ]
-        ]
-      }
-    ]
-  }
-}
-```
 
 ## Your first simple test walkthrough with an example
 
@@ -137,20 +78,32 @@ nextflow_process {
         }
 
         then {
-            assertAll(
-                { assert process.success },           // Check process completed successfully
-                { assert snapshot(process.out).match() } // Validate outputs match expected snapshot
-            )
+            assert process.success               // Check process completed successfully
+            assert snapshot(process.out).match() // Validate outputs match expected snapshot
         }
     }
 }
 ```
 
-**Key components explained:**
+**Understanding the test structure:**
+
+The nf-test file is organized into several key scopes that define what and how to test:
+
+- `nextflow_process { }` - **Test wrapper**: Declares this is a process-level test
+- `name` - **Test description**: Human-readable name for the test suite
+- `script` - **Module location**: Absolute/Relative path to the `main.nf` file containing the process
+- `process` - **Process name**: The specific process to test (must match the process name in `main.nf`)
+- `test("...")` - **Individual test case**: Each test block defines one scenario to test
+- `when { }` - **Test setup**: Where you define the input data for the process
+- `then { }` - **Assertions**: Where you verify the process behaved as expected
+
+**Inside the test components:**
+
+Now that we understand the overall structure, let's look at the specific elements within the test:
 
 - `[ id:'test' ]` - **meta map**: Contains sample metadata (ID, conditions, etc.)
 - `file('test_file.txt')` - **input file**: The file to process
-- `process.success` - **success check**: Ensures the process didn't fail
+- `process.success` - **success check**: Ensures the process completed without errors
 - `snapshot(process.out).match()` - **output validation**: Compares all outputs to stored snapshot
 
 ### Step 3: Run the test
@@ -195,12 +148,53 @@ After running, check `tests/main.nf.test.snap`:
 
 You can see the the outputs of the module, with an associated `md5sum` which concisely describes the exact contents of the file.
 
-Now you understand the full test cycle! The snapshot ensures your module produces consistent, expected outputs every time. 
+Now you understand the full test cycle! The snapshot ensures your module produces consistent, expected outputs every time.
 
 Any time you change the module - you can run the test again to check to see you did not unexpectedly change an output that should not have been changed.
 
-## Creating a new module with tests
+## Essential assertions
 
+Tests use assertions to verify the expected output of the process specified in the `then` block.
+
+You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
+
+Nextflow process output channels that lack explicit names (i.e., when no [`meta` map](https://nf-co.re/docs/contributing/components/meta_map) is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
+
+For example, if the the module outputs two channels that look like:
+
+- Channel one: `[meta, file1.txt]`
+- Channel two: `[meta, file1.txt]`
+
+Then calling `process.out[0][1]` will first pick Channel one, and then the `file.txt` of this channel.
+
+Below you will find examples of a range of different types of assertions that you can apply to module channel outputs.
+
+```groovy
+// Process completion status
+assert process.success
+assert process.exitStatus == 0
+
+// Output channels
+assert process.out.my_channel != null
+assert process.out.my_channel.size() == 3
+assert process.out.my_channel.get(0) == "expected_value"
+
+// For unnamed channels, use index notation
+assert process.out[0] != null
+assert process.out[0].size() == 3
+
+// Group assertions to see all failures at once
+assertAll(
+    { assert process.success },
+    { assert snapshot(process.out).match() }
+)
+```
+
+:::note
+For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
+:::
+
+## Creating a new module with tests
 
 Now we can dive deeper into specifically making an nf-core module.
 
@@ -297,127 +291,7 @@ nf-core modules test seqtk/sample --profile docker
 
 This will execute the tests and generate snapshot file (`tests/main.nf.test.snap`) for validation.
 
-However, it is often necessary to make more complex test input setups and test assertions due to the complexity of the modules we are testing.
-
-### Essential Assertions
-
-Tests use assertions to verify the expected output of the process specified in the `then` block.
-
-You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
-
-Nextflow process output channels that lack explicit names (i.e., when no [`meta` map](https://nf-co.re/docs/contributing/components/meta_map) is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
-
-For example, if the the module outputs two channels that look like:
-
-- Channel one: `[meta, file1.txt]`
-- Channel two: `[meta, file1.txt]`
-
-Then calling `process.out[0][1]` will first pick Channel one, and then the `file.txt` of this channel.
-
-Below you will find examples of a range of different types of assertions that you can apply to module channel outputs.
-
-
-```groovy
-// Process completion status
-assert process.success
-assert process.exitStatus == 0
-
-// Output channels
-assert process.out.my_channel != null
-assert process.out.my_channel.size() == 3
-assert process.out.my_channel.get(0) == "expected_value"
-
-// For unnamed channels, use index notation
-assert process.out[0] != null
-assert process.out[0].size() == 3
-
-// Group assertions to see all failures at once
-assertAll(
-    { assert process.success },
-    { assert snapshot(process.out).match() }
-)
-```
-
-:::note
-For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
-:::
-
-## Testing an existing module
-
-Let's now examine how we can test an existing module, such as  `bedtools/bamtobed` that is a simple standalone module:
-
-```bash
-cd path/to/modules
-# Run all tests for the module
-nf-core modules test bedtools/bamtobed --profile docker
-```
-
-This will run all tests for the module specified in the `main.nf.test` and display the results, including any failures or snapshot mismatches.
-
-```bash
-
-
-                                          ,--./,-.
-          ___     __   __   __   ___     /,-._.--~\
-    |\ | |__  __ /  ` /  \ |__) |__         }  {
-    | \| |       \__, \__/ |  \ |___     \`-._,-`-,
-                                          `._,._,'
-
-    nf-core/tools version 3.3.2 - https://nf-co.re
-
-
-INFO     Generating nf-test snapshot
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process BEDTOOLS_BAMTOBED                                                                         │
-│                                                                                                        │
-│   Test [824188d1] 'sarscov2 - bam' PASSED (3.335s)                                                     │
-│   Test [f4f6429b] 'stub' PASSED (3.154s)                                                               │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 2 tests in 6.498s                                                                    │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     Generating nf-test snapshot again to check stability
-╭──────────────────────────────────────────── nf-test output ────────────────────────────────────────────╮
-│                                                                                                        │
-│ 🚀 nf-test 0.9.0                                                                                       │
-│ https://www.nf-test.com                                                                                │
-│ (c) 2021 - 2024 Lukas Forer and Sebastian Schoenherr                                                   │
-│                                                                                                        │
-│ Load .nf-test/plugins/nft-bam/0.5.0/nft-bam-0.5.0.jar                                                  │
-│ Load .nf-test/plugins/nft-compress/0.1.0/nft-compress-0.1.0.jar                                        │
-│ Load .nf-test/plugins/nft-vcf/1.0.7/nft-vcf-1.0.7.jar                                                  │
-│ Load .nf-test/plugins/nft-csv/0.1.0/nft-csv-0.1.0.jar                                                  │
-│ Load .nf-test/plugins/nft-utils/0.0.3/nft-utils-0.0.3.jar                                              │
-│ Load .nf-test/plugins/nft-fastq/0.0.1/nft-fastq-0.0.1.jar                                              │
-│ Load .nf-test/plugins/nft-anndata/0.1.0/nft-anndata-0.1.0.jar                                          │
-│                                                                                                        │
-│ Test Process BEDTOOLS_BAMTOBED                                                                         │
-│                                                                                                        │
-│   Test [824188d1] 'sarscov2 - bam' PASSED (3.277s)                                                     │
-│   Test [f4f6429b] 'stub' PASSED (3.161s)                                                               │
-│                                                                                                        │
-│                                                                                                        │
-│ SUCCESS: Executed 2 tests in 6.446s                                                                    │
-│                                                                                                        │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-INFO     All tests passed!
-```
-
-### Stub mode
+## Stub mode testing
 
 All nf-core modules require at a minimum a `stub:` section to allow 'dry run'-like functionality for pipelines.
 This is something that we always want to test for, even if your module also has tests with real data.
@@ -445,6 +319,49 @@ test("custom evalue") {
 :::note
 For modules that can never run full tests due to data being too large or requiring too much resources, this option can alternatively be added at the top of `main.nf.test` to have all tests run in stub mode.
 :::
+
+## Testing parameter variations
+
+Some modules may require additional parameters added to the test command to successfully run.
+
+These can be specified using a `params` input and an [`ext.args` variable](https://nf-co.re/docs/guidelines/components/modules#configuration-of-extargs-in-tests) within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+
+If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
+
+```bash
+touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
+```
+
+```nextflow.config
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+You do not need to modify the contents of this file any further.
+
+Then import the config to the `main.nf.test` file and supply the params in the `when` section of the test.
+
+```main.nf.test
+process "MODULE"
+config "./nextflow.config"
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
 
 ## Testing chained modules
 
@@ -682,50 +599,9 @@ nextflow_process {
 }
 ```
 
-### Testing parameter variations
+## Running and maintaining tests
 
-Some modules may require additional parameters added to the test command to successfully run.
-
-These can be specified using a `params` input and an [`ext.args` variable](https://nf-co.re/docs/guidelines/components/modules#configuration-of-extargs-in-tests) within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
-
-If your module requires a `nextflow.config` file to run, create the file to the module’s `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
-
-```bash
-touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
-```
-
-```nextflow.config
-process {
-  withName: 'MODULE' {
-    ext.args = params.module_args
-  }
-}
-```
-
-You do not need to modify the contents of this file any further.
-
-Then import the config to the `main.nf.test` file and supply the params in the `when` section of the test.
-
-```main.nf.test
-process "MODULE"
-config "./nextflow.config"
-
-when {
-  params {
-    module_args = '--extra_opt1 --extra_opt2'
-  }
-  process {
-    """
-    input[0] = [
-      [ id:'test1', single_end:false ], // meta map
-      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
-    ]
-    """
-  }
-}
-```
-
-## Updating module snapshots
+### Updating module snapshots
 
 Whenever a module is updated that results in changes to output (e.g., due to version bumps of the tool itself), you will need to update snapshots:
 
@@ -754,9 +630,9 @@ If you are using nf-core tools for executing the tests, once the test passes, th
 
 If it is not stable, you will need to refine your assertions.
 
-## Testing with nf-test
+### Running tests with nf-test directly
 
-If you are running with nf-test directly, you can use the `--tag` option to specify which module within the repository to test:
+If you are running with nf-test directly (rather than using `nf-core modules test`), you can use the `--tag` option to specify which module within the repository to test:
 
 ```bash
 nf-test test --profile docker --tag abricate/summary
