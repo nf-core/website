@@ -79,7 +79,7 @@ nextflow_process {
 
         then {
             assert process.success               // Check process completed successfully
-            assert snapshot(process.out).match() // Validate outputs match expected snapshot
+            assert snapshot(sanitizeOutput(process.out)).match() // Validate outputs match expected snapshot
         }
     }
 }
@@ -91,7 +91,7 @@ The nf-test file is organized into several key scopes that define what and how t
 
 - `nextflow_process { }` - **Test wrapper**: Declares this is a process-level test
 - `name` - **Test description**: Human-readable name for the test suite
-- `script` - **Module location**: Absolute/Relative path to the `main.nf` file containing the process
+- `script` - **Module location**: Absolute/Relative path to the `main.nf` file containing the process. Relative paths should start from the location of the current test file.
 - `process` - **Process name**: The specific process to test (must match the process name in `main.nf`)
 - `test("...")` - **Individual test case**: Each test block defines one scenario to test
 - `when { }` - **Test setup**: Where you define the input data for the process
@@ -160,7 +160,7 @@ You can specify multiple assertions to be evaluated together in a single test by
 
 Nextflow process output channels that lack explicit names (i.e., when no [`meta` map](https://nf-co.re/docs/contributing/components/meta_map) is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
 
-For example, if the the module outputs two channels that look like:
+For example, if the module outputs two channels that look like:
 
 - Channel one: `[meta, file1.txt]`
 - Channel two: `[meta, file1.txt]`
@@ -340,7 +340,7 @@ process {
 }
 ```
 
-You do not need to modify the contents of this file any further.
+You do not need to modify the contents of this file any further, except for updating the module name to the expected module.
 
 Then import the config to the `main.nf.test` file and supply the params in the `when` section of the test.
 
