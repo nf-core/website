@@ -34,7 +34,7 @@ Let's walk through creating a basic test step-by-step using the `cat` module as 
 
 ### Step 1: Examine the module
 
-First, let's look at a simple module (`modules/cat/main.nf`):
+First, let's look at a simple example module (`modules/cat/main.nf`):
 
 ```groovy
 process CAT {
@@ -104,7 +104,8 @@ Now that we understand the overall structure, let's look at the specific element
 - `[ id:'test' ]` - **meta map**: Contains sample metadata (ID, conditions, etc.)
 - `file('test_file.txt')` - **input file**: The file to process
 - `process.success` - **success check**: Ensures the process completed without errors
-- `snapshot(process.out).match()` - **output validation**: Compares all outputs to stored snapshot
+- `snapshot(sanitizeOutput(process.out)).match()` - **output validation**: Compares all outputs to stored snapshot
+- `sanitizeOutput()` - **snapshot sanitization**: Cleans process and workflow outputs by removing numbered keys, making snapshots more human-readable
 
 ### Step 3: Run the test
 
@@ -112,7 +113,7 @@ Once you've written the test, you can generate the initial snapshot by running t
 
 ```bash
 cd path/to/modules
-nf-core modules test cat --profile docker (EXAMPLE)
+nf-core modules test cat --profile docker
 ```
 
 **What happens:**
