@@ -68514,7 +68514,13 @@
           "@tillenglert",
           "@mahesh-panchal"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "ffq",
@@ -69861,10 +69867,10 @@
           ]
         },
         "authors": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ],
         "maintainers": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ]
       }
     },
@@ -69967,10 +69973,10 @@
           ]
         },
         "authors": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ],
         "maintainers": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ]
       }
     },
@@ -70068,10 +70074,10 @@
           ]
         },
         "authors": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ],
         "maintainers": [
-          "@mrvollger"
+          "@YiJin-Xiong"
         ]
       }
     },
@@ -139807,6 +139813,10 @@
         },
         {
           "name": "seqinspector",
+          "version": "dev"
+        },
+        {
+          "name": "seqsubmit",
           "version": "dev"
         },
         {
@@ -252697,6 +252707,10 @@
           "version": "dev"
         },
         {
+          "name": "seqsubmit",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         },
@@ -253110,6 +253124,10 @@
           "version": "dev"
         },
         {
+          "name": "seqsubmit",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         },
@@ -253315,6 +253333,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "gwas",
           "version": "dev"
         },
@@ -253499,6 +253521,10 @@
           "version": "dev"
         },
         {
+          "name": "seqsubmit",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.0"
         },
@@ -253628,10 +253654,6 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
-        },
-        {
-          "name": "genomeqc",
-          "version": "dev"
         },
         {
           "name": "isoseq",
