@@ -191,7 +191,7 @@ nextflow_workflow {
 }
 ```
 
-> `bam(bamfile).getReadsMD5()` is a function from the `nft-bam` plugin to get the stable MD5 checksum of the BAM file.
+> `bam(bamfile).getReadsMD5()` is a function from the [`nft-bam`](https://nvnieuwk.github.io/nft-bam/latest/) plugin to get the stable MD5 checksum of the BAM file.
 
 ## Testing parameter variations
 
