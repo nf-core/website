@@ -6,6 +6,7 @@ slack: https://nfcore.slack.com/archives/C0110R22NH3
 leaders:
   germanvallejo:
     name: Germán Vallejo
+    slack: https://nfcore.slack.com/team/U095H3KMQJX
 ---
 
 ## Project Aim
