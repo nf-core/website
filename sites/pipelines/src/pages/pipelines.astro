@@ -1,7 +1,9 @@
 ---
 import pipelines_json from "@public/pipelines.json";
 import ListingLayout from "@layouts/ListingLayout.astro";
-import PipelinesListing from "@components/pipeline/PipelinesListing.svelte";
+import PipelineCard from "@components/pipeline/PipelineCard.svelte";
+import ListingTableHeader from "@components/ListingTableHeader.svelte";
+import PipelinesController from "@components/pipeline/PipelinesController.svelte";
 
 const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
     if (a.releases.length == 1 && b.releases.length > 1) return 1;
@@ -37,5 +39,109 @@ const filter = [
     ]}
     viewTransitions={false}
 >
-    <PipelinesListing filters={filter} pipelines={pipelines} client:load slot="listing-components" />
+    <div class="listing px-2 py-4" slot="listing-components">
+        <!-- Grid View: Server-rendered pipeline cards -->
+        <div class="grid" data-display-style="grid">
+            {
+                pipelines.map((pipeline) => (
+                    <div
+                        class="g-col-12 g-col-md-6 g-col-xl-6 g-col-xxl-4 g-col-xxxl-3 g-col-xxxxl-2 pipeline-item"
+                        data-pipeline-name={pipeline.name}
+                        data-pipeline-status={
+                            pipeline.archived
+                                ? "Archived"
+                                : pipeline.releases.length > 1
+                                  ? "Released"
+                                  : "Under development"
+                        }
+                        data-pipeline-stars={pipeline.stargazers_count}
+                        data-pipeline-date={pipeline.releases[0].published_at}
+                        data-pipeline-description={pipeline.description || ""}
+                        data-pipeline-topics={JSON.stringify(pipeline.topics)}
+                    >
+                        <PipelineCard pipeline={pipeline} />
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Table View: Server-rendered table rows -->
+        <table class="table table-hover table-responsive d-none" data-display-style="table">
+            <thead>
+                <tr>
+                    <ListingTableHeader name="Name" />
+                    <th scope="col">Description</th>
+                    <th scope="col">Released</th>
+                    <ListingTableHeader name="Stars" textEnd={true} />
+                    <ListingTableHeader name="Last release" title="Sort by date of last release" textEnd={true} />
+                </tr>
+            </thead>
+            <tbody>
+                {
+                    pipelines.map((pipeline) => (
+                        <tr
+                            class="pipeline-item"
+                            data-pipeline-name={pipeline.name}
+                            data-pipeline-status={
+                                pipeline.archived
+                                    ? "Archived"
+                                    : pipeline.releases.length > 1
+                                      ? "Released"
+                                      : "Under development"
+                            }
+                            data-pipeline-stars={pipeline.stargazers_count}
+                            data-pipeline-date={pipeline.releases[0].published_at}
+                            data-pipeline-description={pipeline.description || ""}
+                            data-pipeline-topics={JSON.stringify(pipeline.topics)}
+                        >
+                            <td class="name p-0">
+                                <div class="position-relative p-3">
+                                    <a
+                                        class="stretched-link"
+                                        href={`/${pipeline.name}/${pipeline.releases[0].tag_name}/`}
+                                    >
+                                        {pipeline.name}
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="text-small">{pipeline.description}</td>
+                            <td class="text-center">
+                                {pipeline.archived ? (
+                                    <i
+                                        class="fa-solid fa-archive text-info"
+                                        title="archived"
+                                        data-bs-toggle="tooltip"
+                                    />
+                                ) : pipeline.releases.length === 1 ? (
+                                    <i
+                                        class="fa-solid fa-xs fa-wrench text-warning"
+                                        title="under development"
+                                        data-bs-toggle="tooltip"
+                                    />
+                                ) : (
+                                    <i
+                                        class="fa-solid fa-check text-success"
+                                        title="released"
+                                        data-bs-toggle="tooltip"
+                                    />
+                                )}
+                            </td>
+                            <td class="text-end">{pipeline.stargazers_count}</td>
+                            <td class="text-end">
+                                <span>{pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : "-"}</span>
+                            </td>
+                        </tr>
+                    ))
+                }
+            </tbody>
+        </table>
+
+        <!-- No Results Message (hidden by default) -->
+        <div class="alert alert-secondary text-center d-none" role="alert" data-no-results>
+            No pipelines found. Try changing your search query or filters.
+        </div>
+
+        <!-- Controller to handle filtering/sorting via show/hide -->
+        <PipelinesController filters={filter} client:load />
+    </div>
 </ListingLayout>

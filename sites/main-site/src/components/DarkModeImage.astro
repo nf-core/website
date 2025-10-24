@@ -1,0 +1,40 @@
+---
+import { Image } from "astro:assets";
+
+export interface Props {
+    src?: string;
+    lightSrc?: string;
+    darkSrc?: string;
+    alt: string;
+    width: number;
+    height: number;
+    additionalClass?: string;
+    [key: string]: any; // Allow any other Image props to pass through
+}
+
+const { src, lightSrc: propLightSrc, darkSrc: propDarkSrc, alt, width, height, additionalClass, ...rest } = Astro.props;
+
+// Auto-convert between colour and white directories
+let lightSrc = propLightSrc;
+let darkSrc = propDarkSrc;
+
+if (src) {
+    if (src.includes("/colour/")) {
+        lightSrc = src;
+        darkSrc = src.replace("/colour/", "/white/");
+    } else if (src.includes("/white/")) {
+        darkSrc = src;
+        lightSrc = src.replace("/white/", "/colour/");
+    } else {
+        lightSrc = src;
+        darkSrc = src;
+    }
+}
+
+if (!lightSrc || !darkSrc) {
+    throw new Error('DarkModeImage requires either "src" prop or both "lightSrc" and "darkSrc" props');
+}
+---
+
+<Image src={lightSrc} {alt} {width} {height} class:list={["hide-dark", additionalClass]} {...rest} />
+<Image src={darkSrc} {alt} {width} {height} class:list={["hide-light", additionalClass]} {...rest} />
