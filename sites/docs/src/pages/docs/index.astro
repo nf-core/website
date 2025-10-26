@@ -10,11 +10,18 @@ let docs = await getCollection("docs");
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
 
 let sections: SidebarEntry[] = [
-    { type: "group", id: "usage", label: "Usage", entries: [], collapsed: true, icon: "octicon:play-16", weight: 1 },
     {
         type: "group",
-        id: "contributing",
-        label: "Contributing",
+        id: "get-started",
+        label: "Get started",
+        entries: [],
+        collapsed: true,
+        icon: "octicon:play-16",
+        weight: 1 },
+    {
+        type: "group",
+        id: "users",
+        label: "Users",
         entries: [],
         collapsed: true,
         icon: "octicon:git-pull-request-16",
@@ -22,8 +29,8 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "tutorials",
-        label: "Tutorials",
+        id: "developers",
+        label: "Developers",
         entries: [],
         collapsed: true,
         icon: "octicon:mortar-board-16",
@@ -31,8 +38,8 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "guidelines",
-        label: "Guidelines",
+        id: "contributors",
+        label: "Contributors",
         entries: [],
         collapsed: true,
         icon: "octicon:law-16",
@@ -40,8 +47,8 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "checklists",
-        label: "Checklists",
+        id: "community",
+        label: "Community",
         entries: [],
         collapsed: true,
         icon: "octicon:tasklist-16",
@@ -156,7 +163,7 @@ highlightSections = highlightSections.flat();
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
                                     <span class="card-header">
                                         <a
-                                            href={`/docs/${section.label?.replace("/", "-").toLowerCase()}/`}
+                                            href={section.href || `/docs/${section.label?.replace("/", "-").toLowerCase()}/`}
                                             class="text-decoration-none d-flex align-items-center text-reset"
                                         >
                                             {section.icon && <Icon name={section.icon} class={"me-2"} />}
