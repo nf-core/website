@@ -34413,7 +34413,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "spatialxe",
@@ -52914,7 +52914,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -77616,6 +77616,272 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "gatk4_concordance",
+      "path": "modules/nf-core/gatk4/concordance/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_concordance",
+        "description": "Evaluate concordance of an input VCF against a validated truth VCF",
+        "keywords": [
+          "concordance",
+          "gatk4",
+          "gatk",
+          "genomics",
+          "variant calling",
+          "genotyping",
+          "vcf",
+          "comparison"
+        ],
+        "tools": [
+          {
+            "gatk4": {
+              "description": "Genome Analysis Toolkit (GATK4)",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "tool_dev_url": "https://github.com/broadinstitute/gatk",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:gatk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Evaluation VCF file created with a variant caller",
+                "pattern": "*.vcf.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "vcf_tbi": {
+                "type": "file",
+                "description": "Index file for the evaluation VCF",
+                "pattern": "*.vcf.gz.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "truth": {
+                "type": "file",
+                "description": "Truth VCF file created with a variant caller",
+                "pattern": "*.vcf.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_tbi": {
+                "type": "file",
+                "description": "Index file for the truth VCF",
+                "pattern": "*.vcf.gz.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'bed' ]`\n"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "Bed file with the genomic regions included in the library (optional)",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'fasta' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA file",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'fai' ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of the reference FASTA file",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta5": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'dict' ]`\n"
+              }
+            },
+            {
+              "dict": {
+                "type": "file",
+                "description": "Sequence dictionary of the reference FASTA file",
+                "pattern": "*.dict",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "A tab-delimited file containing the metrics with number of TPs, FPs, FNs, Precision, Recall and F1 statistics",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tpfn": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tpfn.vcf": {
+                  "type": "file",
+                  "description": "Eval VCF file with tagged with TP or FN in \"INFO/STATUS\"",
+                  "pattern": "*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tpfp": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tpfp.vcf": {
+                  "type": "file",
+                  "description": "Eval VCF file with tagged with TP or FP in \"INFO/STATUS\"",
+                  "pattern": "*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@kubranarci"
+        ],
+        "maintainers": [
+          "@kubranarci"
         ]
       }
     },
@@ -106653,7 +106919,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -106767,7 +107033,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -132017,7 +132283,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -132111,7 +132377,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -139681,7 +139947,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "multiplesequencealign",
@@ -190530,6 +190796,154 @@
       ]
     },
     {
+      "name": "samtools_splitheader",
+      "path": "modules/nf-core/samtools/splitheader/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_splitheader",
+        "description": "Extract header lines from a SAM/BAM/CRAM file into separate files depending on type",
+        "keywords": [
+          "view",
+          "bam",
+          "sam",
+          "cram",
+          "readgroup",
+          "program",
+          "sequence",
+          "header"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "SAMtools is a set of utilities for interacting with and post-processing\nshort DNA sequence read alignments in the SAM, BAM and CRAM formats, written by Heng Li.\nThese files are generated as output by short read aligners like BWA.\n",
+              "homepage": "http://www.htslib.org/",
+              "documentation": "http://www.htslib.org/doc/samtools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "readgroup": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_readgroups.txt": {
+                  "type": "file",
+                  "description": "Text file containing read group (@RG) lines from SAM header\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "programs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_programs.txt": {
+                  "type": "file",
+                  "description": "Text file containing program (@PG) lines from SAM header\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*_sequences.txt": {
+                  "type": "file",
+                  "description": "Text file containing sequence (@SQ) lines from SAM header\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@matthdsm",
+          "@prototaxites"
+        ],
+        "maintainers": [
+          "@matthdsm",
+          "@prototaxites"
+        ]
+      }
+    },
+    {
       "name": "samtools_stats",
       "path": "modules/nf-core/samtools/stats/meta.yml",
       "type": "module",
@@ -214379,7 +214793,7 @@
       "pipelines": [
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         }
       ]
     },
@@ -252580,7 +252994,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "multiplesequencealign",
@@ -252997,7 +253411,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "multiplesequencealign",
@@ -253402,7 +253816,7 @@
         },
         {
           "name": "molkart",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "multiplesequencealign",
