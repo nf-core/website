@@ -144,19 +144,43 @@ This _only_ works with markdown files fetched from pipeline repositories, so don
 This renders in the same way as regular admonitions on the nf-core website,
 but has the bonus of also rendering nicely when viewing the rendered markdown on [github.com](https://github.com):
 
-<div class="w-50 text-center">
+<div class="w-100">
 
-![GitHub admonition syntax](/images/contributing/github_admonition_syntax.png)
+![GitHub admonition syntax](../../../../assets/images/contributing/github_admonition_syntax.png)
 
 </div>
 
-# Code blocks
+# Code
 
-We use [rehype-pretty-code](https://rehype-pretty-code.netlify.app/) to generate code blocks on the website. This allows us to add line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
+We use [rehype-pretty-code](https://rehype-pretty.pages.dev/) to generate syntax highlighting on the website.
+This allows us to add inline code highlighting, line numbers, highlight lines, add file names to code blocks, etc. These directives can be mixed and matched.
 
-See the [rehype-pretty-code documentation](https://rehype-pretty-code.netlify.app/) for more information.
+See the [rehype-pretty-code documentation](https://rehype-pretty.pages.dev/) for more information.
 
-## Line numbers
+## Inline code
+
+Inline code is rendered using the "`" character.
+
+```md
+Run `echo "Hello, world!"`
+```
+
+Run `echo "Hello, world!"`
+
+You can even specify a language for the code by adding the language at the end enclosed in curly braces and prefixed with a colon, e.g.:
+
+```md
+Run `echo "Hello, world!"{:bash}`
+```
+
+Run `echo "Hello, world!"{:bash}`
+
+## Code blocks
+
+Code blocks are rendered using the "```" character.
+If the specified language is not `plain-text`or`console`, a copy button will be added to the code block.
+
+### Line numbers
 
 ````md
 ```bash showLineNumbers
@@ -170,7 +194,7 @@ echo "Look ma!"
 echo "Code line numbers!"
 ```
 
-## Highlight lines
+### Highlight lines
 
 ````md
 ```bash {1-3,5}
@@ -192,7 +216,7 @@ echo "Third line lucky!"
 # ok, nothing to see from here on..
 ```
 
-## File names
+### File names
 
 You can add a file name to a code block by adding a `title` attribute to the code block, e.g.:
 
@@ -212,7 +236,7 @@ params {
 
 The icon next to the title is based on the file extension.
 
-## Code block captions
+### Code block captions
 
 ````md
 ```groovy caption="Caption me this!"
@@ -224,7 +248,7 @@ The icon next to the title is based on the file extension.
 // My awesome workflow
 ```
 
-## Putting it all together
+### Putting it all together
 
 ````md
 ```groovy showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"

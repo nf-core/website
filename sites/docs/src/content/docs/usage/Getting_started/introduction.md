@@ -35,7 +35,6 @@ Nextflow works best with an active internet connection, as it is able to fetch a
 To run a pipeline:
 
 1. All software dependencies must be installed (Nextflow + Docker / Singularity / Conda). See [Dependency installation](installation.md) for more information.
-
    - Run Nextflow's "hello world" example to confirm all tools are installed and operational:
 
      ```bash
@@ -45,7 +44,6 @@ To run a pipeline:
 2. Choose a pipeline to run. See the available [nf-core pipelines](https://nf-co.re/pipelines). If you have [nf-core tools](https://nf-co.re/tools) installed, run `nf-core pipelines list`.
 
 3. Configure Nextflow to run on your system:
-
    - The simplest way to run is with `-profile docker` (or `singularity`). This instructs Nextflow to execute jobs locally, with Docker (or Singularity) to fulfill software dependencies.
 
    - Conda is also supported with `-profile conda`. However, this option is not recommended, as reproducibility of results can't be guaranteed without containerization.

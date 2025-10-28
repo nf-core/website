@@ -1,0 +1,146 @@
+---
+title: "Maintainers Minutes: April 2025"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2025-05-02T10:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "jfy133"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import sad_maintainers_duck from "@assets/images/blog/maintainers-minutes-2024-06-07/sad-maintainers-duck.png";
+import notifications from "@assets/images/blog/maintainers-minutes-2025-04-24/too-many-notifications.jpg";
+import botoverlords from "@assets/images/blog/maintainers-minutes-2025-04-24/bot-overlords.jpg";
+import saveapolarbear from "@assets/images/blog/maintainers-minutes-2025-04-24/save-a-polar-bear.jpg";
+import { Image } from "astro:assets";
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+After a post-hackathon break to catch our breath in March, in our April meeting we discussed (amongst others) the following topics:
+
+- [Goodbyes and welcomes](#goodbyes-and-welcomes)
+- [Use of CODEOWNER files](#use-of-codeowner-files)
+- [Use of nf-core/modules issues as wishlists](use-of-nf-coremodules-issues-as-wishlists)
+- [Saving more polar bears via optimised AWS megatest configs](saving-more-polar-bears-via-optimised-aws-megatest-configs)
+
+## Goodbyes and welcomes
+
+<Image
+    src={sad_maintainers_duck}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Sad looking cartoon yellow rubber duck with nf-core logo badge on its body, with a large blue tear coming out of its eye."
+/>
+
+During the yearly spring cleaning, the team leads also take the opportunity to review the maintainers team cohort.
+
+We would like to thank the following people for their service and contributions during period on the maintainers team, and will be becoming maintainers team alumni (with hopes of this not being permanent!):
+
+- Anders Jemt
+- Anders Sune Pedersen
+- Carson Miller
+- Christopher Mohr
+- Lili Andersson-Li
+- Sofia Stamouli
+- Rob Syme
+- Gisela Gabernet
+- Harshil Patel
+
+But we are excited welcome the following new members, who have in light of their active community contributions, kindly agreed to join the team!
+
+<Profile username="atrigila">Anabella Trigila</Profile>
+<Profile username="LouisLeNezet">Louis Le Nézet</Profile>
+<Profile username="pontus">Pontus Freyhult</Profile>
+
+## Use of CODEOWNER files
+
+<Image
+    src={notifications}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Captain Jack Sparrow from Pirates of the Caribbean running away from a large crowd of people with the texts 'being added to the nf-core/modules codeowners file' and 'notifications' overlaid on Captain Jack and the crowd respectively."
+/>
+
+Maxime brought up the use of GitHub's [`CODEOWNER`](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners) files.
+These files are used to automate 🛎️ notifications to certain people listed in the file to ensure 'the right people' are informed to look at pull requests.
+
+This had previously been used within nf-core/modules, but was [eventually removed](https://github.com/nf-core/modules/pull/6738) due to complaints from prolific module creators getting inundated by notifications on update PRs of modules they were no longer interested in maintaining themselves.
+
+However Maxime and Edmund proposed resurrecting the use of these files in pipelines (possibly with opt-in).
+The rationale was that even though nf-core is generally 'permissive' with who is allowed to add code to repositories, when it comes to active and popular pipelines, it is important that the core development team keeps abreast of all developments.
+They described a few cases on a large pipeline where code was integrated by a community member and reviewed and merged by another community member without the core development team having an overview or keeping track 😱.
+
+We had a discussion of the pros and cons of such a file, and at the pipeline level there was a general agreement that this should at least be an option for pipeline developers.
+We discussed whether this should just be an opt-in during pipeline creation, or to rather opt-out but otherwise auto-propagate the list of users from the `manifest` section of the `nextflow.config` (using the `maintainers` contributor tag).
+
+There were still a few concerns that possible some developers will complain of getting too many notifications on their pipelines.
+
+We therefore decided that Maxime would ✒️ write a more formal proposal document, in the meantime volunteers will manually add the file to their pipelines (to see if their co-developers complain about notifications), and check the results in 2 months.
+
+## Use of nf-core/modules issues as wishlists
+
+<Image
+    src={botoverlords}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Screenshot of a news presenter from the cartoon The Simpsons with the text 'I for one one welcome our robot overlords'"
+/>
+
+Famke raised an issue she and the nf-core/modules sub-team encountered during the spring cleaning.
+They found that there was a 📈 huge number of open issues on the repository requesting new modules, some very old, that were never assigned to anyone nor worked on.
+The large number made it very hard to go through, check the status of the various issues, and generally reasonably maintain a sense of order.
+
+The sub-team impression was that many people were using the issues page as 'wish list', where someone wants a module integrated into a pipeline, but didn't want to do it themselves (either due to experience or time).
+
+To reduce the maintenance burden for the maintainers team, we discussed a couple of options, including having a singular mega-issue where all module 'requests' were recorded, or only allowing a new-module issue to be created if the person was willing to work on it themselves.
+James' concern was that the list of 'unassigned' modules can sometimes be very useful for training on writing modules or for hackathons where novice participants don't have something specific to work on (or want to practice before working on a specific pipeline).
+Removing or 'hiding' these issues would mean these would potentially hinder teachers or hackathon newcomers effectively begin their contributions.
+
+Eventually we found a compromise via a 🤖 'stale bot' concept that was assigned to Famke to implement.
+New-module issues that are not immediately assigned to work on by someone will be automatically given a 'wishlist' label.
+If it remains unassigned after a period time (initially around a year to ensure we always have a list of 'free' modules for hackathons), the issue will be closed by an automated bot.
+The time period would reset if assigned to someone and then subsequently unassigned (if they could not complete it).
+
+Through this automated mechanism we hope it will make the nf-core/modules (our most popular repository!) more manageable for the community and the maintainers team, freeing up time to work on cooler things (or argue about naming things..., the maintainer team's favourite pasttime 😉).
+
+## Saving more polar bears via optimised AWS megatest configs
+
+<Image
+    src={saveapolarbear}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Photo of a polar bear face with the text 'Save a polarbear, optimise your AWS megatests' overlaid"
+/>
+
+Finally, we briefly looked at a neat [little repository](https://github.com/FloWuenne/megatest-resource-optimization/tree/main/optimized_configs) that Florian (who unfortunately sent his apologies) has made that includes optimised resource-usage configuration files for nf-core pipelines AWS megatests.
+
+This was after observations that many pipeline megatest configurations could be rather wasteful in over- or under-requesting resources on AWS (and in general), resulting in wasted costs and energy by requesting more cpus and memory than their processes actually use (sad 🐻‍❄️).
+
+We discussed whether there should be an automation to generate an optimised config and updating a pipeline's `test_full` config with the optimised config, or some other mechanism to incorporate these into our pipelines.
+
+We decided to ask volunteers to implement Florian's existing optimised configs to see if they cause any problems on a subset of nf-core pipelines before rolling out, and I discuss further on Slack (in fact, the internal maintainers team Slack discussions were already fruitful and @Maxime and @Florian have already come up with a potential non-invasive system without requiring any extra work by pipeline developers - watch this space!)
+
+## Misc
+
+Finally a couple of minor other points were briefly announced in the last couple of minutes:
+
+- James asked for 'live reviews' of his PR to the [test-data specifications](https://nf-co.re/docs/guidelines/components/test_data#replication-of-test-data) to improve community member's use of nf-core/testdatasets
+    - TL;DR: module tests don't need to make sense, the tool just needs to 'work'! Re-use existing test-data as much as possible.
+- Júlia briefly summarised an upcoming small patch release for nf-core/tools to fix a couple of CI bugs that have cropped up in the last couple of weeks related to AWS megatests and Nextflow itself.
+
+## The end
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and Slack threads!
+
+\- :heart: from your #maintainers team!

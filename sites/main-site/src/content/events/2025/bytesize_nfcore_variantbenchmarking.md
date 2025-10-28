@@ -6,13 +6,15 @@ startDate: "2025-04-01"
 startTime: "13:00+01:00"
 endDate: "2025-04-01"
 endTime: "13:30+01:00"
+youtubeEmbed: https://youtu.be/nhrm3M1Fsg8
+embedAt: "variantbenchmarking"
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://youtu.be/nhrm3M1Fsg8
 ---
 
-Definitively not an Aprils fool joke! The nf-core pipeline [nf-core/varianbenchmarking](https://nf-co.re/variantbenchmarking/v1.0.0/) had it's first release and this week Kübra ([@kubranarci](https://github.com/kubranarci)) is going to talk about its use cases and features!
+Definitively not an Aprils fool joke! The nf-core pipeline [nf-core/varianbenchmarking](https://nf-co.re/variantbenchmarking/1.0.0/) had it's first release and this week Kübra ([@kubranarci](https://github.com/kubranarci)) is going to talk about its use cases and features!
 
 nf-core/variantbenchmarking is designed to evaluate and validate the accuracy of variant calling methods in genomic research.
 The pipeline is primarily tuned well for available gold standard truth sets like Genome in a Bottle or SEQC2 but it can be used to compare any two variant calling results.

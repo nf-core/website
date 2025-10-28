@@ -1,0 +1,180 @@
+---
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
+import AdvisorySidebarHeader from "@components/advisory/AdvisorySidebarHeader.astro";
+export async function getStaticPaths() {
+    const advisories = await getCollection("advisories");
+    return advisories.map((advisory) => ({
+        params: {
+            advisory: advisory.id.replace(/\.[^/.]+$/, ""),
+        },
+        props: {
+            advisory: advisory,
+            advisories: advisories,
+        },
+    }));
+}
+const { advisory, advisories } = Astro.props;
+const title = advisory.data.title;
+const subtitle = advisory.data.subtitle;
+let frontmatter = advisory.data;
+let { headings, Content } = await render(advisory);
+
+// add references to heading if available
+if (frontmatter.references) {
+    headings = [...headings, { depth: 1, slug: "references", text: "References" }];
+}
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/advisories/" + advisory.id + ".md";
+
+const addEntriesToSection = (sections, advisories: CollectionEntry<"advisories">[]) => {
+    // First, group advisories by year
+    const advisoriesByYear = advisories.reduce(
+        (acc, advisory) => {
+            const year = advisory.data.publishedDate.getFullYear();
+            if (!acc[year]) {
+                acc[year] = [];
+            }
+            acc[year].push(advisory);
+            return acc;
+        },
+        {} as Record<number, CollectionEntry<"advisories">[]>,
+    );
+
+    // Then, for each year, add the advisories to the corresponding section
+    Object.entries(advisoriesByYear).forEach(([year, yearAdvisories]) => {
+        const yearSection = sections.find((section) => section.id === year);
+        if (!yearSection) return;
+
+        yearAdvisories.forEach((advisory) => {
+            const parts = advisory.id.replace(/\.[^/.]+$/, "").split("/");
+            let currentLevel = yearSection.entries;
+
+            // Skip the year part if it exists in the path
+            const startIndex = parts[0] === year.toString() ? 1 : 0;
+
+            for (let i = startIndex; i < parts.length; i++) {
+                const part = parts[i].replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
+                const existingEntry = currentLevel.find(
+                    (entry) => entry.label === part || entry.label === advisory.data.title,
+                );
+
+                if (existingEntry) {
+                    if (existingEntry.type === "group") {
+                        if (/index\.(md|mdx)$/.test(advisory.id) && i === parts.length - 1) {
+                            existingEntry.href = "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                            existingEntry.isCurrent =
+                                Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                            existingEntry.collapsed =
+                                Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "");
+                        }
+                        currentLevel = existingEntry.entries;
+                    }
+                } else {
+                    const lastPart = i === parts.length - 1;
+                    let title = lastPart ? (advisory.data.shortTitle ?? advisory.data.title) : part;
+                    const newEntry = createLinkOrGroup(
+                        parts.slice(startIndex, i + 1).join("_"),
+                        title,
+                        "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") + "/",
+                        lastPart,
+                        Astro.url.pathname,
+                    );
+                    currentLevel.push(newEntry);
+
+                    if (newEntry.type === "group" && newEntry.entries) {
+                        currentLevel = newEntry.entries;
+                    }
+                }
+            }
+        });
+    });
+};
+
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort(
+    (a, b) => b - a,
+);
+let sections: SidebarEntry[] = years.map((year) => ({
+    id: year.toString(),
+    label: year.toString(),
+    entries: [],
+    type: "group",
+    collapsed: true,
+}));
+
+addEntriesToSection(sections, advisories);
+
+// sort .entries by date
+sections.forEach((year) => {
+    if (year.entries && year.entries.length > 0) {
+        year.entries.sort((a, b) => {
+            const advisoryA = advisories.find(
+                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") + "/" === a.href,
+            );
+            const advisoryB = advisories.find(
+                (advisory) => "/advisories/" + advisory.id.replace(/\.[^/.]+$/, "") + "/" === b.href,
+            );
+            // Ensure both advisories are found before accessing their data
+            if (!advisoryA || !advisoryB) {
+                // If either advisory is missing, keep original order
+                return 0;
+            }
+            return advisoryB.data.publishedDate.getTime() - advisoryA.data.publishedDate.getTime();
+        });
+    }
+});
+
+function getLinkIcon(url: string) {
+    // if github issue
+    if (url.includes("github.com") && url.includes("/issues/")) {
+        return "fas fa-info";
+    } else if (url.includes("github.com") && url.includes("/pull/")) {
+        return "fas fa-code-branch";
+    } else if (url.includes("slack.com")) {
+        return "fab fa-slack";
+    } else {
+        return "fas fa-link";
+    }
+}
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    md_github_url={md_github_url}
+    headings={headings}
+    leftSidebar={true}
+    sections={sections}
+    docSearchTags={[
+        { name: "page_type", content: "advisory" },
+        ...frontmatter.type.map((type) => ({ name: "page_subtype", content: type })),
+    ]}
+    viewTransitions={true}
+    sidebarTitle="Advisories"
+>
+    <Content />
+    {
+        frontmatter.references?.length > 0 && (
+            <div class="advisory-references">
+                <h1 class="mb-3">References</h1>
+                <ul class="list-unstyled">
+                    {frontmatter.references.map((ref) => (
+                        <li class="reference-item mb-3">
+                            <a href={ref.url} target="_blank" rel="noopener noreferrer">
+                                <i class={`${getLinkIcon(ref.url)} fa-fw me-1`} />
+                                <span class="reference-title">{ref.title}</span>
+                            </a>
+                            {ref.description && <p class="reference-description ms-1">{ref.description}</p>}
+                        </li>
+                    ))}
+                </ul>
+            </div>
+        )
+    }
+    <div slot="right-sidebar-top">
+        <AdvisorySidebarHeader frontmatter={frontmatter} />
+    </div>
+</MarkdownTocLayout>

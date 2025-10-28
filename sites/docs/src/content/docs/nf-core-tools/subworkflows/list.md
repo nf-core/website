@@ -18,7 +18,7 @@ working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
-![`nf-core subworkflows list remote`](/images/tools/nf-core-subworkflows-list-remote.svg)
+![`nf-core subworkflows list remote`](../../../../assets/images/tools/nf-core-subworkflows-list-remote.svg)
 
 ## List installed subworkflows
 
@@ -31,4 +31,4 @@ before_command: >
 head: 25
 -->
 
-![`nf-core subworkflows list local`](/images/tools/nf-core-subworkflows-list-local.svg)
+![`nf-core subworkflows list local`](../../../../assets/images/tools/nf-core-subworkflows-list-local.svg)

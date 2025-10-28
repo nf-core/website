@@ -1,6 +1,6 @@
 ---
-import NfCoreLogoDarkbg from "/images/logo/nf-core-logo-darkbg.svg?raw";
-import NfCoreLogo from "/images/logo/nf-core-logo.svg?raw";
+import NfCoreLogoDarkbg from "../../assets/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "../../assets/images/logo/nf-core-logo.svg";
 import IconSocial from "@components/IconSocial.astro";
 ---
 
@@ -11,10 +11,10 @@ import IconSocial from "@components/IconSocial.astro";
                 <div class="">
                     <a href="/" class="text-decoration-none d-inline-block">
                         <div class="hide-dark align-middle">
-                            <Fragment set:html={NfCoreLogo} />
+                            <NfCoreLogo />
                         </div>
                         <div class="hide-light">
-                            <Fragment set:html={NfCoreLogoDarkbg} />
+                            <NfCoreLogoDarkbg />
                         </div>
                     </a>
                     <div class="small d-block">Making awesome workflows since 2018.</div>

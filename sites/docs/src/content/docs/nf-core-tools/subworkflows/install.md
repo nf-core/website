@@ -14,7 +14,7 @@ before_command: >
   echo "repository_type: pipeline" >> .nf-core.yml
 -->
 
-![`nf-core subworkflows install bam_rseqc`](/images/tools/nf-core-subworkflows-install.svg)
+![`nf-core subworkflows install bam_rseqc`](../../../../assets/images/tools/nf-core-subworkflows-install.svg)
 
 You can pass the subworkflow name as an optional argument to `nf-core subworkflows install` like above or select it from a list of available subworkflows by only running `nf-core subworkflows install`.
 
@@ -24,3 +24,9 @@ There are four additional flags that you can use when installing a subworkflow:
 - `--force`: Overwrite a previously installed version of the subworkflow.
 - `--prompt`: Select the subworkflow version using a cli prompt.
 - `--sha <commit_sha>`: Install the subworkflow at a specific commit.
+
+:::note
+You can use the `meta.yml` file to specify different remotes for the components
+in your subworkflow. This is useful when you want to use modules from organisations
+different from the one where the subworkflow is located. For more information, [see our tutorial](/docs/tutorials/external_usage/cross_organisational_subworkflows).
+:::

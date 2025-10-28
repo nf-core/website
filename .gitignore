@@ -1,6 +1,7 @@
 # build output
 dist/
 .output/
+__pycache__
 
 # dependencies
 node_modules/
@@ -11,6 +12,8 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
+# Cursor files
+.cursor
 
 # environment variables
 .env

@@ -17,12 +17,15 @@
     }
 
     let { pipelines, filters } = $props();
-    CurrentFilter.set(filters);
 
-    let currentFilter = $derived($CurrentFilter);
-    let displayStyle = $derived($DisplayStyle);
-    let searchQuery = $derived($SearchQuery);
-    let sortBy = $derived($SortBy);
+    onMount(() => {
+        CurrentFilter.set(filters);
+    });
+
+    let currentFilter = $derived($CurrentFilter || filters);
+    let displayStyle = $derived($DisplayStyle || "grid");
+    let searchQuery = $derived($SearchQuery || "");
+    let sortBy = $derived($SortBy || "Last release");
     let sortInverse = $derived(sortBy.endsWith(";inverse"));
 
     const searchPipelines = (pipeline: Pipeline) => {

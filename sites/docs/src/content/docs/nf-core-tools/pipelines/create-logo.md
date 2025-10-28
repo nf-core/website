@@ -13,4 +13,4 @@ Usage is `nf-core pipelines create-logo <text>`, eg:
 working_dir: tmp
 -->
 
-![`nf-core pipelines create-logo nextbigthing`](/images/tools/nf-core-create-logo.svg)
+![`nf-core pipelines create-logo nextbigthing`](../../../../assets/images/tools/nf-core-create-logo.svg)

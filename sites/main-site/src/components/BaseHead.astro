@@ -1,5 +1,6 @@
 ---
 import { ViewTransitions } from "astro:transitions";
+import { Font } from "astro:assets";
 export interface Props {
     title: string;
     description: string;
@@ -11,7 +12,11 @@ export interface Props {
     }[];
 }
 
-const { title, description, image = "/social_img.png", docSearchTags = [], viewTransitions = false } = Astro.props;
+let { title, description, image = "/social_img.png", docSearchTags = [], viewTransitions = false } = Astro.props;
+
+// remove all html tags from title and description
+title = title?.replaceAll(/<[^>]*>?/g, "");
+description = description?.replaceAll(/<[^>]*>?/g, "");
 ---
 
 <!-- Global Metadata -->
@@ -53,6 +58,9 @@ const { title, description, image = "/social_img.png", docSearchTags = [], viewT
 <meta property="twitter:image" content={new URL(image, Astro.url)} />
 
 {viewTransitions && <ViewTransitions fallback="none" />}
+
+<Font cssVariable="--font-inter" preload />
+<Font cssVariable="--font-maven-pro" preload />
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={"docsearch:" + name} content={content} />)}

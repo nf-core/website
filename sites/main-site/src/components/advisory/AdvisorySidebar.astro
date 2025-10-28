@@ -1,0 +1,67 @@
+---
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+
+export interface Props {
+    advisories: CollectionEntry<"advisories">[];
+    sidebarTitle?: string;
+}
+
+const { advisories, sidebarTitle = "Advisories" } = Astro.props;
+
+// Get unique years and sort them in descending order
+const years = [...new Set(advisories.map((advisory) => advisory.data.publishedDate.getFullYear()))].sort(
+    (a, b) => b - a,
+);
+
+// Create sections for each year
+const sections: SidebarEntry[] = years.map((year) => {
+    const yearAdvisories = advisories
+        .filter((advisory) => advisory.data.publishedDate?.getFullYear() === year)
+        .sort((a, b) => b.data.publishedDate.getTime() - a.data.publishedDate.getTime());
+
+    return {
+        type: "group",
+        label: year.toString(),
+        id: year.toString(),
+        collapsed: true,
+        entries: yearAdvisories.map((advisory) => ({
+            type: "link",
+            label: advisory.data.title,
+            href: "/advisories/" + advisory.id.replace(/\.[^/.]+$/, ""),
+            isCurrent: Astro.url.pathname === "/advisories/" + advisory.id.replace(/\.[^/.]+$/, ""),
+        })),
+    };
+});
+---
+
+<div class="sidebar-left d-none d-md-inline pt-1">
+    {
+        sidebarTitle && (
+            <a href="/advisories" class="sidebar-title text-decoration-none">
+                <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
+            </a>
+        )
+    }
+    <SidebarNav items={sections}>
+        <div class="text-muted" slot="post-nav">
+            <a
+                href="https://nf-co.re/advisories/rss.xml"
+                target="_blank"
+                rel="noopener"
+                class="d-flex align-items-baseline text-muted"
+                title="Subscribe to RSS feed"
+            >
+                <i class="fa-solid fa-rss-square me-2" aria-hidden="true"></i>
+                <span>Subscribe to advisories</span>
+            </a>
+        </div>
+    </SidebarNav>
+</div>
+
+<style lang="scss">
+    .sidebar-left {
+        max-width: 25rem;
+    }
+</style>

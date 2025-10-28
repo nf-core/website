@@ -3,6 +3,7 @@
     import ExportEventButton from "@components/event/ExportEventButton.svelte";
     import LocalDateTime from "@components/event/LocalDateTime.svelte";
     import type { CollectionEntry } from "astro:content";
+    import ListingCard from "../ListingCard.svelte";
 
     export let frontmatter: CollectionEntry<"events">["data"];
     export let slug: string = "";
@@ -18,54 +19,55 @@
         training: "warning",
     };
 
-    const type_class = event_type_classes[type];
     const isSameDay = frontmatter.startDate === frontmatter.endDate;
 </script>
 
-<div class={"card mb-3 rounded-0 rounded-end " + type} style="border-left-color:var(--bs-{type_class});">
-    <div class="card-body">
-        <div class="card-title">
-            <h4 id={"event-" + slug.split("/")[1]} class:h5={narrow}>
-                <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + "/"}>
-                    {frontmatter.title}
-                </a>
-                {#if time_category === "current" && frontmatter.locations}
-                    <div class="float-end d-none d-md-inline">
-                        <VideoButton urls={frontmatter.locations} btnClass="btn-danger" />
-                    </div>
-                {/if}
-            </h4>
-        </div>
-        <div class="card-text">
-            {#if showDescription}
-                <p class="mb-0">{@html frontmatter.subtitle}</p>
+<ListingCard
+    footer={true}
+    cardClass={`mb-3 rounded-start-0 type`}
+    cardStyle={`border-left-color:var(--bs-${event_type_classes[type]})`}
+>
+    {#snippet cardHeader()}
+        <span id={"event-" + slug.split("/")[1]} class={narrow ? "h5" : "h3"}>
+            <a class="text-center" class:text-decoration-none={narrow} href={"/events/" + slug + "/"}>
+                {frontmatter.title}
+            </a>
+            {#if time_category === "current" && frontmatter.locations}
+                <div class="float-end d-none d-md-inline">
+                    <VideoButton urls={frontmatter.locations} btnClass="btn-danger" />
+                </div>
             {/if}
-            <div
-                class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
-                class:justify-content-md-end={!narrow}
-            >
-                <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2" aria-hidden="true"></i>
-                    <LocalDateTime date={frontmatter.start} />
-                    <span>&nbsp;-&nbsp;</span>
-                    {#if isSameDay}
-                        <span
-                            >{new Date(frontmatter.end).toLocaleString("en-US", {
-                                hour: "numeric",
-                                minute: "numeric",
-                                hour12: false,
-                            })}</span
-                        >
-                    {:else}
-                        <LocalDateTime date={frontmatter.end} />
-                    {/if}
-                </p>
-            </div>
+        </span>
+    {/snippet}
+    {#snippet cardBody()}
+        {#if showDescription}
+            <p class="mb-0">{@html frontmatter.subtitle}</p>
+        {/if}
+        <div
+            class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
+            class:justify-content-md-end={!narrow}
+        >
+            <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
+                <i class="fa-regular fa-calendar me-2" aria-hidden="true"></i>
+                <LocalDateTime date={frontmatter.start} />
+                <span>&nbsp;-&nbsp;</span>
+                {#if isSameDay}
+                    <span
+                        >{new Date(frontmatter.end).toLocaleString("en-US", {
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: false,
+                        })}</span
+                    >
+                {:else}
+                    <LocalDateTime date={frontmatter.end} />
+                {/if}
+            </p>
         </div>
-    </div>
-    <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
+    {/snippet}
+    {#snippet cardFooter()}
         <div class="d-flex align-items-center justify-content-between">
-            <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
+            <p class="d-none text-wrap mb-0" class:d-md-inline-block={!narrow}>
                 <LocalDateTime date={frontmatter.start} />
                 <span>&nbsp;-&nbsp;</span>
                 {#if isSameDay}
@@ -97,39 +99,13 @@
                 {/if}
             </div>
         </div>
-    </div>
-</div>
+    {/snippet}
+</ListingCard>
 
 <style lang="scss">
-    @import "bootstrap/scss/functions";
-    @import "bootstrap/scss/mixins";
-    @import "bootstrap/scss/variables";
-
-    .card.rounded-0 {
-        border-left: 5px solid;
-    }
-
-    .narrow .btn:first-child {
-        border-left: 0;
-    }
-
-    @include media-breakpoint-up(md) {
-        .btn-group.float-end:not(.narrow) {
-            .btn:first-child {
-                border-radius: var(--bs-border-radius) 0 0 var(--bs-border-radius) !important;
-            }
-            :global(.btn.dropdown-toggle) {
-                border-radius: 0 var(--bs-border-radius) var(--bs-border-radius) 0 !important;
-            }
-        }
-    }
-
-    @include media-breakpoint-down(md) {
-        .btn-group.float-end {
-            width: 100%;
-            .btn:first-child {
-                border-left: 0;
-            }
+    @media (max-width: 768px) {
+        .text-nowrap {
+            white-space: normal !important;
         }
     }
 </style>
