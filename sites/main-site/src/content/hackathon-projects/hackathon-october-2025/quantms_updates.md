@@ -3,12 +3,12 @@ title: QuantMS updates
 category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C02Q3FL29PD
-image: "/assets/images/events/2025/hackathon-barcelona/ms-proteomics.webp"
-image_alt: "Basic Massspectrometry-based workflow diagram"
+image: /assets/images/events/2025/hackathon-barcelona/ms-proteomics.png
+image_alt: Basic Massspectrometry-based workflow diagram
 leaders:
   enryh:
     name: Henry Webel
-    slack: "https://nfcore.slack.com/team/U07FM4513GD"
+    slack: https://nfcore.slack.com/team/U07FM4513GD
 ---
 
 ## Project Aim
