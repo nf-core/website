@@ -18,7 +18,7 @@ The aim is to address some open issues (or at least lay out a detailed descripti
 The overal goals are to improve the workflow and move it again closer to be fully compatible with nf-core.
 
 :::warning
-This group will work on a pipeline that is currently not developed actively 
+This group will work on a pipeline that is currently not developed actively
 within nf-core, but aligned to the nf-core tools template.
 :::
 
