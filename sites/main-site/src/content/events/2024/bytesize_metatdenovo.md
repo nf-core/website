@@ -6,6 +6,7 @@ startDate: "2024-03-12"
 startTime: "13:00+01:00"
 endDate: "2024-03-12"
 endTime: "13:30+01:00"
+embedAt: "metatdenovo"
 youtubeEmbed: https://youtu.be/DGHq8Lpwh8Q
 locations:
   - name: Online

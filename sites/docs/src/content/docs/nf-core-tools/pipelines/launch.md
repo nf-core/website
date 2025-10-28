@@ -21,7 +21,7 @@ or the path to a directory containing a Nextflow pipeline _(can be any pipeline,
 
 <!-- RICH-CODEX trim_after: "Command line" -->
 
-![`nf-core pipelines launch rnaseq -r 3.8.1`](/images/tools/nf-core-launch-rnaseq.svg)
+![`nf-core pipelines launch rnaseq -r 3.8.1`](../../../../assets/images/tools/nf-core-launch-rnaseq.svg)
 
 Once complete, the wizard will ask you if you want to launch the Nextflow run.
 If not, you can copy and paste the Nextflow command with the `nf-params.json` file of your inputs.

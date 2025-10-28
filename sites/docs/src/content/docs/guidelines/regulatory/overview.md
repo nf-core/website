@@ -193,7 +193,6 @@ Pipeline level:
 - Set of expected results for all controls.
 - Set assay acceptance criteria
 - Set rejection criteria.
-
   - Add automated quality checks that will be stopping points for the pipeline, if fail.
 
 - Store results to an automated report / stats file

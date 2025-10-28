@@ -11,7 +11,7 @@ label:
     - "tools"
 ---
 
-import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
 
 This release contains some template changes and nf-core/tools updates. For a more detailed list of changes, you can read the [changelog](https://github.com/nf-core/tools/releases/tag/2.14.0).
 
@@ -70,7 +70,6 @@ The hackathon in March brought us some new contributors to the tools repository.
 - Files inside the `.github/` folder:
 
     These files are responsible for the Continuous Integration tests. In general, accept all changes made on these files.
-
     - `.github/workflows/ci.yml`: If you added your own tests to this file, for example, you added nf-test tests to your pipeline,
       keep your changes, but accept the template updates related to action versions, e.g.
 

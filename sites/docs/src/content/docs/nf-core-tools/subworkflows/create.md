@@ -27,4 +27,4 @@ working_dir: tmp/modules
 fake_command: nf-core subworkflows create bam_stats_samtools --author @nf-core-bot --force
 -->
 
-![`nf-core subworkflows create bam_stats_samtools --author @nf-core-bot --force`](/images/tools/nf-core-subworkflows-create.svg)
+![`nf-core subworkflows create bam_stats_samtools --author @nf-core-bot --force`](../../../../assets/images/tools/nf-core-subworkflows-create.svg)

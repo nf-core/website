@@ -44,7 +44,7 @@ const { eventPath, showCount = false } = Astro.props;
 const locationPages = (await getCollection("events"))
     .filter((page) => {
         const pagePath = page.id.split("/");
-        return !pagePath[pagePath.length - 1].includes("index.mdx") && pagePath.slice(0, -1).join("/") === eventPath;
+        return !pagePath[pagePath.length - 1].includes("index") && pagePath.slice(0, -1).join("/") === eventPath;
     })
     .map((page) => {
         const country = page.data.locations?.[0]?.country;

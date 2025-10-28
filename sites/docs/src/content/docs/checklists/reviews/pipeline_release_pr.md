@@ -4,6 +4,7 @@ subtitle: Suggestions for reviewing pipeline release PRs
 shortTitle: Pipeline Release PR
 markdownPlugin: checklist
 weight: 10
+parentWeight: 20
 ---
 
 Pipeline release reviews are often quite an overwhelming task, particularly when doing one for the first time.

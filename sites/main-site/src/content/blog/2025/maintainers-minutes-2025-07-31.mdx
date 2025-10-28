@@ -1,0 +1,183 @@
+---
+title: "Maintainers Minutes: July 2025"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2025-07-31T10:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "jfy133"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import datahostingmeme from "@assets/images/blog/maintainers-minutes-2025-07-31/datahosting-meme.jpg";
+import uptodatedocs from "@assets/images/blog/maintainers-minutes-2025-07-31/uptodate-documentation-meme.jpg";
+import dataorganisationmessmeme from "@assets/images/blog/maintainers-minutes-2025-07-31/dataorganisationmessmeme.png";
+import { Image } from "astro:assets";
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+After a short summer break, we returned with a special maintainers meeting dedicated to nf-core/test-datasets.
+nf-core/testdatasets is a GitHub repository that holds the majority of the files we use for the CI testing of our modules, subworkflows, and pipelines.
+
+Interacting with this part of our infrastructure is currently one of the less optimal developer experiences.
+This has been identified based on qualitative impressions from the community by the maintainers and core teams, confirmed with [results from the nf-core/survey](https://nf-co.re/blog/2025/survey-results-2025) from earlier this year, and our own experiences.
+
+As a first step in overhauling this experience we saw in the last major nf-core/tools release the addition of a new sub-command by Julian Flesch ([@JulianFlesch](https://github.com/JulianFlesch)) to help explore the available data files in the nf-core/test-datasets repository.
+However this only acts to alleviate the symptoms of the problems in identifying suitable files, knowing where to put new files, and what is within each file.
+Instead we want to restructure and develop clearer specifications, documentation, and procedures for the test datasets repository.
+
+Therefore this month's meeting was 'taken over' by the [#wg-test-dataset-task-force ](https://nfcore.slack.com/archives/C07B5FK9GKA) leads Simon Simon ([@SPPearce](https://github.com/SPPearce)) and James ([@jfy133](https://github.com/jfy133)) to start the process of redesigning the structure and documentation.
+
+## Scope of discussions
+
+Some things we agreed on throughout the meeting to limit the scope of the discussions was
+
+1. We are primarily trying to address _modules_ test-datasets (not pipelines)
+2. We agreed we want to 'start from scratch' rather than try and adjust the existing repository
+
+## Location
+
+<Image
+    src={datahostingmeme}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Character from lord of the rings saying 'one does not simply change hosting providers'"
+/>
+
+One of the larger discussions we had was where should the test-dataset files go: should we move them to a new service?
+
+We defined a set of criteria that we wanted to meet with the new location:
+
+- Much faster to download (or clone)
+- Support directories
+- Free (or cheap) hosting
+- Doesn't charge for ingress/egress
+
+The pros of continuing using GitHub were:
+
+- ✅ Familiarity of our users with the interface (e.g. for reviewing)
+- ✅ It stays within our existing infrastructure
+- ✅ The 10 MB file limit is a _good thing_ (forcing developers to ensure their tests are fast)
+
+The cons of GitHub were:
+
+- ❌ (Currently) makes a very large repository for cloning
+- ❌ It only supports HTTPs/SSH interaction, so you cannot pass directories from the repository to Nextflow (where only S3 filesystems are supported for directory input)
+- ❌ The 10 MB file limit is a _bad thing_ (some developers cannot physically get their data files that small, e.g. imaging)
+- ❌ It is hard to view the contents of any non-raw textfile
+
+Alternative solutions were proposed:
+
+- HuggingFace
+    - ✅ Suggested by Edmund ([@edmundmiller](https://github.com/edmundmiller)) as a similar interface to GitHub (thus would be familiar)
+    - ✅ Much less restrictive file sizes (up to 5GB per file, and no max number of files)
+    - ❌ But is outside our infrastructure
+    - ❌ Is actually just a `git-lfs`, so actually doesn't provide much difference to GitHub (which also supports git-lfs)
+    - ❌ It would require separate team organisation (not everyone could join and have access)
+- AWS S3:
+    - ✅ Our test-datasets are actually already 'backed up' here
+    - ✅ This is already relatively well supported by our infrastructure and Nextflow (e.g. directory inputs)
+    - ✅ Anabella ([@atrigila](https://github.com/atrigila)) showed services such as [42basepairs](https://42basepairs.com/) that provides ways to see inside common bioinformatics file formats of files on S3
+    - ❌ We were very worried about ingress/egress costs (particularly in our very parallelised CI tests)
+    - ❌ We did not have an immediate solution how community members could 'submit' to a controlled bucket (for cost reasons)
+    - ❌ We weren't sure on the longevity of services like 42basepairs
+- Cloudflare R2
+    - ✅ No ingress/egress fees, 'flat rate' for hosting based on amount
+    - ✅ S3 filesystem
+    - ❌ Would maybe need to ask for open-source credits... but no idea if available
+
+Our main conclusions from these discussions were:
+
+1. We turn on `git-lfs` already for the existing GitHub repository, to make it easier to at least clone it
+2. Edmund would investigate the Cloudflare option to get more information on the pros and cons of this option
+
+## Documentation
+
+<Image
+    src={uptodatedocs}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Character from star wars saying 'up to date documentation, I've not seen this in a long time'"
+/>
+
+Next we moved onto documentation.
+
+Trying to know what was in a module test-data file, how it was generated, and how it linked with other data files within nf-core/test-datasets is a common pain point for the maintainers and community members.
+Currently this relies on both the directory structure of the repository, and also a haphazardly and inconsistent README file in the root of the modules branch.
+
+We had a brainstorming session of what sort of information we would like to recorded about each test data file:
+
+- Keywords
+- Is it real or simulated data?
+- Is it a tool specific file vs a generic file?
+- Command(s) was used to generate
+- Version of the tool(s) was used for generation
+- Source location of any upstream files
+- Who created (author)
+- Bioinformatics specific metadata
+    - Organism derived from
+    - Whole genome
+    - Chromosomes embedded
+    - Individuals
+    - Genome version
+    - Panel
+- Support 'grouped' files (e.g. in bioinformatics paired-end reads, ped/bim/fam, bam/bai)
+
+We then thought about different ideas how to store such metadata:
+
+- Using stricter and descriptive naming file scheme, to record metadata about the file, and a table with aggregating all the files
+- A prose-based `README` markdown file next to each data file
+- A `meta.yaml` file next to each data file akin to nf-core/modules YAML files
+
+Our primary conclusion here was that we needed to consult the community as to what other attributes they feel they need for test-data files.
+In particular we will try to contact different disciplines e.g. via the Special Interest Groups - particularly outside of bioinformatics - to ensure a consensus.
+
+## Structure
+
+<Image
+    src={dataorganisationmessmeme}
+    class="d-block m-auto"
+    width={400}
+    density={[1.5, 2]}
+    alt="Character from futurama saying 'Not sure I'm cleaning a mess or organising a mess'"
+/>
+
+Finally, we briefly touched on the structure for the repository.
+
+During the session there was a general feeling that we wanted per-tool documentation rather than one mega README file.
+Assuming we stick with a GitHub interface we wanted to remove the 'empty' `master` branch and have the module test-data files as the primary landing page.
+
+Simon ([@SPPearce](https://github.com/SPPearce)) also proposed having modules and pipeline test-data in separate locations
+to make it easier to find the right files and reduce the size.
+
+However the structure somewhat would depend on the location we choose, we will wait for the outcome of the location discussions before we continue this.
+For example, if we were to follow an object storage concept, it could be that we go with 'chaos' with no directory structure' and everything is organised and guided via the metadata with an user interface layer (as previously proposed by Maxime ([@maxulysse](https://github.com/maxulysse))).
+
+## Additional considerations
+
+Other points that were brought up such as:
+
+- We should try to somehow 'version' test-datafiles - e.g. using GitHub URLs pointing to a specific hash, to reduce risks of test breaking if someone changes the contents of a test file (although this shouldn't happen) (Jon ([@pinin4fjords](https://github.com/pinin4fjords)))
+- We could maybe consider a 'spill over' location, in case we stick with GitHub and the 10 MB limits are too restrictive for some tools's test-data (which would reduce costs) (Louis ([@LouisLeNezet](https://github.com/LouisLeNezet)))
+- Is there a way to automatically identify data files that have never been used, so we can clean them to save costs (Famke ([@famosab](https://github.com/famosab)))
+    - None of the maintainers present were aware of anything like this, but if a community member has an idea please let us know!!
+- Should we allow 'copying' of a tool's own test-data files or always make our own derived from our existing files (where possible)
+- Could we use an MCP agent to auto-annotate files with metadata as a first pass, some nf-core members have experience with these (Igor ([@itrujnara](https://github.com/itrujnara)))
+
+And of course, we agreed all the decisions above should be converted into [nf-core/proposal RFCs](https://github.com/nf-core/proposals/issues?q=is%3Aissue%20state%3Aopen%20label%3Anew-rfc) to facilitate wider community discussions (these will be announced on GitHub when posted!).
+
+## The end
+
+All of the above are just starting points for discussions, and we will continue to work on these topics in the coming months.
+But we will need a large amount of input from the wider community to ensure the community gets the best experience they want, so we encourage anyone with thoughts and feedback on the above to join the [#wg-test-data-task-force](https://nfcore.slack.com/archives/C07B5FK9GKA) channel and post their ideas there!
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and Slack threads!
+
+\- :heart: from your #maintainers team!

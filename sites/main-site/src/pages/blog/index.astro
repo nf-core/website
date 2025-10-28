@@ -2,7 +2,7 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, render } from "astro:content";
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
-import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
 import { Image } from "astro:assets";
 import { Markdown } from "@astropub/md";
 import type { SidebarEntry } from "@utils/types";
@@ -103,7 +103,6 @@ const sections: SidebarEntry[] = years.map((year) => {
                                                 alt={post.data.headerImageAlt || ""}
                                                 height={240}
                                                 width={512}
-                                                densities={[1.5, 2]}
                                             />
                                         )}
                                         <div class="card-text px-3 pt-2">

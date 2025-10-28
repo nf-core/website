@@ -65,6 +65,44 @@ export const rehypeCheckboxParser: RehypePlugin<[]> = () => (tree: any, file: an
                     headingId: lastVisitedHeading?.properties.id,
                 });
             }
+
+            // Handle checkboxes in paragraphs - look for input anywhere in children
+            if (node.type === 'element' && node.tagName === 'p' && node.children) {
+                const inputChild = node.children.find((child: any) =>
+                    child.tagName === 'input' && child.properties?.type === 'checkbox'
+                );
+
+                if (inputChild) {
+                    const uniqueId = `checkbox-${lastVisitedHeading?.properties.id}-${id++}`;
+
+                    inputChild.properties.id = uniqueId;
+                    inputChild.properties.name = uniqueId;
+                    inputChild.properties.type = 'checkbox';
+                    inputChild.properties.class = 'form-check-input';
+                    inputChild.properties.disabled = false;
+
+                    // Transform the paragraph into a proper Bootstrap form-check div
+                    const oldChildren = node.children;
+
+                    // Replace the paragraph with the Bootstrap div structure
+                    node.tagName = 'div';
+                    node.properties = { class: 'form-check' };
+                    node.children = [
+                        {
+                            type: 'element',
+                            tagName: 'label',
+                            properties: { class: 'form-check-label' },
+                            children: oldChildren,
+                        },
+                    ];
+
+                    file.data.astro.frontmatter.checkboxes.push({
+                        id: uniqueId,
+                        checked: inputChild.properties.checked,
+                        headingId: lastVisitedHeading?.properties.id,
+                    });
+                }
+            }
         });
     }
 };

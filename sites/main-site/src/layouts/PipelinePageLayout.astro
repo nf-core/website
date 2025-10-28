@@ -4,6 +4,9 @@ import SubHeader from "@components/header/SubHeader.astro";
 import TabBar from "@components/TabBar.astro";
 import pipelines_json from "@public/pipelines.json";
 import type { SidebarEntry } from "@utils/types";
+import { getCollection } from "astro:content";
+import semver from "semver";
+import { formatAdvisoryType } from "../components/advisory/advisoryUtils.ts";
 
 export interface Props {
     pipeline: string | undefined;
@@ -46,6 +49,9 @@ if (version === "latest") {
 const url = Astro.url.pathname;
 const baseUrl = "/" + pipeline + "/" + tag_name;
 
+const advisories = await getCollection("advisories", ({ data }) => {
+    return data.pipelines.some((p) => p.name == pipeline && p.versions.includes(semver.valid(semver.coerce(tag_name))));
+});
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
 
 allTabItems = tabItems
@@ -141,7 +147,20 @@ const isDsl2 = pipelineData?.is_DSL2;
         isDsl2={isDsl2}
         is_archived={is_archived}
         slot="sub-header"
-    />
+    >
+        {
+            advisories.map((advisory) => (
+                <div class="alert alert-danger p-1 p-md-3" role="alert">
+                    <span>
+                        A{["a", "e", "i", "o", "u", "y"].includes(advisory.data.type.charAt(0)) ? "n" : ""}{" "}
+                        {advisory.data.type.replace("_", " ")} advisory with severity {advisory.data.severity} has been
+                        issued for this version of the pipeline. <br />
+                        See the <a href={`/advisories/${advisory.id}`}>advisory entry</a> for more information.
+                    </span>
+                </div>
+            ))
+        }
+    </SubHeader>
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>

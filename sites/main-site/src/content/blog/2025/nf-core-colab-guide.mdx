@@ -1,0 +1,202 @@
+---
+title: "Running nf-core pipelines on Google Colab"
+subtitle: "A guide to running and interacting with nf-core pipelines using Colab and VS Code"
+pubDate: 2025-09-02T12:00:00+01:00
+headerImage: "/assets/images/blog/nf-core-colab/blogpost-thumbnail.jpg"
+headerImageAlt: "Epic Handshake between nf-core and colab"
+embedHeaderImage: true
+authors:
+    - "KurayiChawatama"
+label:
+    - "community post"
+---
+
+import { Image } from "astro:assets";
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import colabmeme from "@assets/images/blog/nf-core-colab/colab-meme.jpg";
+import disconnectmeme from "@assets/images/blog/nf-core-colab/colab-disconnected-meme.png";
+import sleepmeme from "@assets/images/blog/nf-core-colab/dont-fall-asleep-meme.png";
+
+## Running nf-core pipelines in Google Colab
+
+Running and developing nf-core pipelines can be computationally intensive, requiring resources not easily available to students, newcomers, or participants in hands-on training workshops.
+Google Colab provides an affordable and sometimes even free, accessible way to leverage powerful cloud hardware for computational tasks, making it an attractive option for students, researchers, and anyone with limited local resources.
+
+To make it easier for people to access such resources, we have just published a new detailed tutorial for running and developing nf-core/Nextflow pipelines in Google Colab is available at [this link](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide)!
+
+In this blog post, we provide background into our own experiences of running and developing Nextflow and nf-core pipelines, describing their pros and cons, but that also motivated the creation of the tutorial.
+
+### Why run pipelines in Google Colab
+
+<Image
+    src={colabmeme}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Butch eats GPUs from the garbage while Tom is handfed in luxury"
+/>
+
+Google Colab provides free credits for basic computational infrastructure, making it an interesting option for people with limited resources to run computational workflows.
+Furthermore, for a small subscription fee, you can even access the latest hardware each year at a fraction of the cost of buying a new PC.
+
+As bioinformatics and data science tasks become more resource-intensive, Colab offers a potentially cost-effective solution for learning and developing large-scale pipelines like those built with Nextflow.
+If you’re a student or developer working on a laptop, Colab can dramatically speed up your workflow.
+For example, you can write and test your code locally, then run it in Colab to take advantage of faster execution and larger memory—saving time and reducing frustration from crashes on limited hardware.
+
+Colab is also ideal for training workshops where participants may not have access to high-performance computing (HPC) clusters.
+Instructors can use real-world, large datasets instead of toy examples, thus giving everyone hands-on experience with industry-scale workflows.
+
+Ultimately, using Colab can help democratize access to advanced pipeline development and best practices, enabling more people to contribute to open-source projects like nf-core.
+
+### Limitations of running pipelines in Colab
+
+<div style={{ display: "flex", gap: "1rem", justifyContent: "center", alignItems: "center", margin: "2rem 0" }}>
+    <Image
+        src={disconnectmeme}
+        width={300}
+        alt="Colab disconnect meme"
+        style={{ borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+    />
+    <Image
+        src={sleepmeme}
+        width={300}
+        alt="Colab sleep meme"
+        style={{ borderRadius: "8px", boxShadow: "0 2px 8px rgba(0,0,0,0.1)" }}
+    />
+</div>
+
+While Google Colab is a powerful and accessible platform, it does have some constraints that you should keep in mind.
+
+In the free tier, the user is subject to session timeouts of unpredictable frequency and limited runtime duration.
+The paid Pro tier, while coming with benefits, will also be subject to session timeouts if the tab your notebook is open in closes for a few minutes.
+This can lead to the stereotypical case of waking up to find your notebook timed out a few minutes after you went to sleep because you temporarily lost internet connection, or didn't plug your laptop all the way in!
+
+The biggest issue that will likely affect someone developing Nextflow pipelines in Colab is the lack of root access.
+
+Due to this lack of root access, it is not possible to run nf-core or any Nextflow pipelines using the typical `-profile docker` or `-profile singularity` container-based configuration profiles.
+This is because `sudo` access is needed to install these engines.
+Thankfully, we can still run pipelines with conda under `-profile conda`.
+
+However, as Google Colab does not support native conda functionality, you need to install the [condacolab](https://pypi.org/project/condacolab/) Python package to serve as a proxy.
+In our experience, this doesn't seem to perform any differently from a shell-based conda installation.
+
+For a step-by-step guide on setting up Conda in Colab, see the [Setting up Conda for Google Colab section of the official nf-core guide](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide#setting-up-conda-for-google-colab).
+
+## Developing with VS Code and Colab
+
+### Why use VS Code with Colab?
+
+Once you've installed your Nextflow, conda, and nf-core pipeline of choice, you're pretty much good to go to run any pipeline you desire.
+However, because of the slightly more common instability of the conda profile when running most pipelines, you're bound to have the pipeline crash at some point and will need to make a script edit somewhere to solve the issue.
+
+While you could get away with developing pipelines inside Colab's built-in terminal using editors like vim or nano, VS Code offers a more robust environment.
+Thankfully, the [vscode-colab](https://github.com/EssenceSentry/vscode-colab) Python library provides just the toolkit you need to take advantage of Colab's powerful hardware in the comfort of VS Code's rich software suite.
+This means you will have access to all your favorite extensions and syntax highlighting in a familiar, seamless GUI!
+The library makes use of the official [VS Code Remote Tunnels](https://code.visualstudio.com/docs/remote/tunnels) to securely and reliably connect Google Colab as well as Kaggle notebooks to a local or browser-based instance of VS Code.
+
+You can read more about the library and even help contribute to new features on its [GitHub repository](https://github.com/EssenceSentry/vscode-colab).
+
+### Limitations of the VS Code Colab approach
+
+**Main limitations:**
+
+- No root access (no Docker/Singularity)
+- Session timeouts
+- `MPLBACKEND` issues
+- Conda is not native
+- Limited GUI for complex workflows
+
+While the `vscode-colab` approach is great, it does have it's downsides.
+
+The biggest issue you will face is frequent disconnections or crashing of the connection tunnel.
+We have seen that if you make sure to set up the other aspects of your Colab environment before starting up the tunnel, disconnections rarely happen (or at least the number is drastically reduced).
+This may be because Colab isn’t designed to reliably support connections from multiple clients or interfaces at the same time.
+
+At the time of writing this blog post, the most annoying issue is that you have to set up the whole VS Code environment with all the extensions from scratch with each run.
+The developer of the `vscode-colab` package did indicate that the ability to save profiles as config files is under development and will be added soon, so make sure to keep an eye on the repo for any such developments.
+
+Although not a huge issue, we find the tunnel construction time of 3-5 minutes to be a bit too long to wait.
+Other than these, the package works great and just about seamlessly gets the job done.
+
+For instructions on how to set up and use VS Code with Colab, see the [Running and Editing Pipelines in VS Code via Colab section of the official nf-core guide](https://nf-co.re/docs/tutorials/google_colab/nf-core-colab-guide#running-and-editing-pipelines-in-vs-code-via-colab).
+
+## Final tips for a Smooth Experience
+
+### Preventing Matplotlib Backend Errors in Colab
+
+When we explore the use of Google Colab for our own work, we encounter specific issues with some pipelines that use tools that have Matplotlib as a dependency.
+
+If you try to run some nf-core pipelines that use such tools with the conda profile in Colab, but without changing the Matplotlib backend, you may see an error like this:
+
+```text
+ValueError: Key backend: 'module://matplotlib_inline.backend_inline' is not a valid value for backend; supported values are ['gtk3agg', 'gtk3cairo', 'gtk4agg', 'gtk4cairo', 'macosx', 'nbagg', 'notebook', 'qtagg', 'qtcairo', 'qt5agg', 'qt5cairo', 'tkagg', 'tkcairo', 'webagg', 'wx', 'wxagg', 'wxcairo', 'agg', 'cairo', 'pdf', 'pgf', 'ps', 'svg', 'template']
+```
+
+This happens because these pipelines (such as `nf-core/scdownstream`) and their dependencies (like Scanpy) import Matplotlib or its submodules. In Colab, the `MPLBACKEND` environment variable is often set to `module://matplotlib_inline.backend_inline` to enable inline plotting in notebooks. However, this backend is not available in headless or non-interactive environments, such as when Nextflow runs a process in a separate shell.
+
+When a pipeline process tries to import Matplotlib, it checks the `MPLBACKEND` value. If it is set to an invalid backend, the process will fail with the error above. This is why you may not see the error with simple demo pipelines (which do not use Matplotlib), but you will encounter it with pipelines that use Scanpy or other tools that rely on Matplotlib for plotting or image processing.
+
+To solve this, always set the `MPLBACKEND` environment variable to a valid backend (such as `Agg`) before running your pipeline. This ensures Matplotlib can render plots in a headless environment and prevents backend errors.
+
+You can do this either by running the following in a code cell:
+
+```python title="Set MPLBACKEND to Agg in a code cell"
+%env MPLBACKEND=Agg
+```
+
+Or alternatively, by running the following command in the terminal:
+
+```bash title="Set MPLBACKEND to Agg in the terminal"
+export MPLBACKEND=Agg
+```
+
+### Overcoming Colab's Storage Limitations
+
+Google Colab's storage is temporary and limited to around 100GB in most cases.
+
+It's important to regularly back up your results to avoid data loss. Mounting your personal Google Drive is convenient for small to moderate outputs, but may not be suitable for large workflow results, which can reach hundreds of gigabytes.
+For larger datasets, consider syncing to external cloud storage or transferring results to institutional or project-specific storage solutions.
+
+Additionally, if you plan on writing and developing your pipelines exclusively in Google Colab, make sure to use `git` and regularly commit and push your code, or alternatively test in Colab but save changes from your local PC and commit to prevent loss of
+
+### Choosing the Right Google Colab VM Instance(Runtime) For Your Workflow
+
+Finally, make sure to pick the VM instance that works best for your task and set up your Nextflow run configuration file accordingly to make the most use of the hardware at your disposal.
+
+Google Colab offers several types of VM instances, each with different hardware profiles
+
+Choosing the right instance can significantly impact the performance and efficiency of your data analysis:
+
+- **Standard (CPU-only) instances:**
+    - Typically provide about 2 vCPUs and 13 GB RAM.
+    - Best for lightweight workflows, small datasets, or tasks without GPU needs.
+
+- **GPU-enabled instances:**
+    - **Colab Pro** offers access to modern NVIDIA GPUs such as **T4** (16 GB VRAM), **L4** (24 GB VRAM), and sometimes **A100** (40 GB VRAM).
+    - These instances usually pair with 2 to 8 vCPUs and 13 GB RAM, or more if High-RAM is enabled.
+    - Ideal for deep learning, image analysis, or workflows that explicitly support GPU acceleration.
+
+- **High-RAM instances:**
+    - Toggle available in **Pro** plans.
+    - Expands RAM from 13 GB to 25–30 GB (sometimes up to 52 GB in Pro+).
+    - May also increase the number of vCPUs, commonly 4 to 8.
+    - Crucial for memory-heavy workflows such as large-scale genomics, transcriptomics, or single-cell data.
+
+When selecting an instance, consider the following:
+
+- **CPU count:** More vCPUs = better for multi-threaded steps. Colab Pro usually provides 2, but High-RAM and GPU runtimes may give 4 to 8 vCPUs.
+- **GPU / VRAM:** Essential only if your tools leverage CUDA; GPUs available include T4 (16 GB), L4 (24 GB), and A100 (40 GB).
+- **RAM:** Ensure data and intermediates fit in memory—RAM ranges from 13 GB (standard) to 30 GB (High-RAM in Pro, and up to 52 GB in Pro+).
+- **Session limits & compute units:** Even with Pro tiers, sessions time out and hardware is not guaranteed, so plan checkpoints and outputs accordingly.
+
+Match your instance type to your workflow’s requirements. Use GPU instances for compute-heavy tasks that utilize machine learning based approaches, high-RAM for large datasets or memory-intensive pipelines, and standard CPU instances for lighter or highly parallelizable nf-core workflows.
+
+---
+
+## Conclusion
+
+Overall, Google Colab could be an interesting option for people looking to run or develop nf-core pipelines but do not have easy access for sufficiently powerful hardware.
+
+We hope this blog post and the tutorial will help kick-start the community members interested in trying out Google Colab for their own nf-core work!
+If you have feedback, questions, or tips, please share them via the nf-core Slack. Your input helps improve the community!
+Happy pipeline development!

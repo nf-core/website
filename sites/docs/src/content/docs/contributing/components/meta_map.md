@@ -117,7 +117,7 @@ Here are some examples:
 // Add to map - adding two maps makes a new Map object
 ch.map { meta, files -> [ meta + [ single_end: files instanceof Path ], files ] }
 
-// Remove certain keys (and their entries) from a map
+// Extract certain keys (and their entries) from a map
 ch.map { meta, files -> [ meta.subMap( ['id','rg'] ), files ] }
   // OR by specifying what not to include
 ch.map { meta, files -> [ meta.findAll { ! it.key in ['single_end'] }, files ] }
@@ -134,7 +134,7 @@ As you can see the `meta map` is a quite flexible way for storing meta data in c
 
 ### Multimaping
 
-It is possible with `multiMap` to split a channel in to and to call them separately afterwards.
+It is possible with `multiMap` to split a channel into two and to call them separately afterwards.
 
 ```groovy
 ch_input = reads.combine(db).multiMap{ it ->

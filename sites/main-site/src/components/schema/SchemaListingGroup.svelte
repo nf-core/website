@@ -5,30 +5,26 @@
 
     let { definition = $bindable(), id } = $props();
 
-    // Go through definition.properties and check if all hidden are set to true
-    let hidden = $state(true);
+    let processedProperties = $derived(() => {
+        if (!definition.properties) return {};
 
-    $effect(() => {
-        // Reset hidden state when definition changes
-        hidden = true;
-        console.log(definition);
-        if (definition.properties) {
-            for (const [title, property] of Object.entries(definition.properties)) {
-                if (!property.hidden) {
-                    hidden = false;
-                    break;
-                }
-            }
-        }
+        const properties = { ...definition.properties };
+        const required = definition.required || [];
 
-        // Get definition.required and assign required=true to the corresponding definition.properties
-        let required = definition.required || [];
+        // Mark required properties without mutating the original
         required.forEach((item) => {
-            if (definition.properties && definition.properties[item]) {
-                definition.properties[item].required = true;
+            if (properties[item]) {
+                properties[item] = { ...properties[item], required: true };
             }
         });
+
+        return properties;
     });
+
+    // Calculate if all properties are hidden using $derived
+    let hidden = $derived(
+        !definition.properties || Object.values(definition.properties).every((property) => property.hidden),
+    );
 </script>
 
 <div class="card my-2" class:collapse={hidden} class:show={$showHidden}>
@@ -49,12 +45,12 @@
     <div class="card-body pb-0">
         <p class="mb-0">
             {#if definition.description}
-                <Markdown md={definition.description} />
+                {@html definition.description_rendered}
             {/if}
         </p>
-        {#if definition.properties}
+        {#if processedProperties()}
             <div class="properties">
-                {#each Object.entries(definition.properties) as [title, property] (title)}
+                {#each Object.entries(processedProperties()) as [title, property] (title)}
                     <SchemaListingElement {title} {property} />
                 {/each}
             </div>

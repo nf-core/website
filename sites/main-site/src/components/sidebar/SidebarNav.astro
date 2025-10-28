@@ -11,8 +11,9 @@ let url = Astro.url.pathname.endsWith("/") ? Astro.url.pathname.slice(0, -1) : A
 url = url.replace(/\.html$/, "");
 ---
 
-<div class="nav sticky-top-under pt-1">
+<div class="nav sticky-top-under pt-1 ms-auto">
     <SidebarSubNav items={items} />
+    <slot name="post-nav" slot="post-nav" />
 </div>
 
 <style lang="scss">
