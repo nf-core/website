@@ -1,7 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 
-import Profile from "@components/GitHubProfilePicture.svelte";
+import Profile from "@components/GitHubProfilePicture.astro";
 import { YouTube } from "@astro-community/astro-embed-youtube";
 
 import { Image } from "astro:assets";
@@ -46,7 +46,7 @@ if (!color && category) {
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col">
+                    <div class={intro_video || image ? "col-lg-8" : "col"}>
                         {
                             proj_url && (
                                 <h3>
@@ -99,24 +99,26 @@ if (!color && category) {
                         }
                     </div>
                     {
-                        intro_video && (
+                        (intro_video || image) && (
                             <div class="col-lg-4">
-                                <YouTube
-                                    id={intro_video}
-                                    poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
-                                />
-                            </div>
-                        )
-                    }
-                    {
-                        image && (
-                            <div class="col-lg-4">
-                                <Image
-                                    src={images["../../.." + image]()}
-                                    width="600"
-                                    alt={image_alt ?? ""}
-                                    style="object-fit: contain;"
-                                />
+                                {intro_video && (
+                                    <div class="mb-2">
+                                        <YouTube
+                                            id={intro_video}
+                                            poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`}
+                                        />
+                                    </div>
+                                )}
+                                {image && (
+                                    <div>
+                                        <Image
+                                            src={images["../../.." + image]()}
+                                            width="600"
+                                            alt={image_alt ?? ""}
+                                            style="object-fit: contain;"
+                                        />
+                                    </div>
+                                )}
                             </div>
                         )
                     }

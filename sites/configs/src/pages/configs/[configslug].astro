@@ -5,6 +5,7 @@ import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
     let files = await getCollection("configs");
@@ -35,14 +36,13 @@ export async function getStaticPaths() {
                         (file) =>
                             file.data.extension === "config" &&
                             file.id.includes("pipeline/") &&
-                            file.id.includes(name) &&
+                            file.id.endsWith("/" + name) &&
                             file.id.split("/").slice(-2, -1).join("/") !== "pipeline",
                     ),
                 },
             };
         });
 }
-
 interface Props {
     md: CollectionEntry<"configs">;
     config: CollectionEntry<"configs">;
@@ -108,7 +108,7 @@ if (pipelineConfigs.length > 0) {
             </div>
             <h1 id="config-file">Config file</h1>
             <p class="my-3">
-                <a href={`https://github.com/nf-core/configs/tree/master/${config.id}`} target="_blank">
+                <a href={`https://github.com/nf-core/configs/tree/master/${config.id}.config`} target="_blank">
                     <i class="fab fa-github me-2"></i>See config file on GitHub
                 </a>
             </p>
@@ -124,7 +124,7 @@ if (pipelineConfigs.length > 0) {
                             <div>
                                 <p class="my-3 scroll-target" id={pipelineConfig.id.split("/").slice(-2, -1).join("/")}>
                                     <a
-                                        href={`https://github.com/nf-core/configs/tree/master/${pipelineConfig.id}`}
+                                        href={`https://github.com/nf-core/configs/tree/master/${pipelineConfig.id}.config`}
                                         target="_blank"
                                     >
                                         <i class="fab fa-github me-2" />
@@ -171,7 +171,7 @@ if (pipelineConfigs.length > 0) {
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
                                 </a>`
                                             : "",
                                     },
@@ -215,7 +215,7 @@ if (pipelineConfigs.length > 0) {
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
                                 </a>`,
                                               },
                                           ]

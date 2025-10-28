@@ -2,6 +2,7 @@
 title: Bringing spatial metabolomics to nf-core
 category: pipelines
 intro_video: ""
+slack: https://nfcore.slack.com/archives/C08JKPV4ZNH
 image: "/assets/images/events/2025/hackathon-march/Spat_metabo_meme.jpg"
 image_alt: "'Excited Jonah Hill' meme, where Jonah hill is screaming from excitment when he heard that spatial metabolomics workflows can be automated with nextflow"
 leaders:
@@ -25,7 +26,6 @@ This will also support METASPACE in-the-loop applications, particularly in spati
 ## Goal
 
 1. Create the following nf-core modules using [Cardinal](https://www.bioconductor.org/packages/release/bioc/html/Cardinal.html):
-
    1. Data import (creating MSImagingExperiment object).
    2. Preprocessing (Primarily peak picking) to generate a centroided dataset -> input for METASPACE.
 

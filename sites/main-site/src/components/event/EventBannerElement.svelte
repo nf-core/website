@@ -133,10 +133,12 @@
             <div class="d-none d-lg-flex">
                 <div class="col-lg-4 overflow-hidden ps-3 position-relative d-flex flex-column justify-content-center">
                     <h4 class="display-4 p-2 pb-0 mb-0 flex-grow-1">{heading_title}</h4>
-                    <i
-                        class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
-                        aria-hidden="true"
-                    ></i>
+                    <slot name="backgroundIcon">
+                        <i
+                            class={`fad ${backgroundIcon} homepage-header-fa-background mt-5 ms-1 ms-xl-5`}
+                            aria-hidden="true"
+                        ></i>
+                    </slot>
                 </div>
                 <div class="flex-grow-1">
                     {#each events as event (event.id)}
@@ -154,11 +156,9 @@
                                         >
                                     </span>
                                 </h5>
-                                <p class="lead mb-1">
-                                    <a href={"events/" + event.id + "/"} class="text-body text-decoration-none"
-                                        >{@html event.data.subtitle}</a
-                                    >
-                                </p>
+                                <a href={"events/" + event.id + "/"} class="text-body text-decoration-none lead"
+                                    >{@html event.data.subtitle}</a
+                                >
                                 {#if event.data.duration}
                                     <p class="mb-1">
                                         <a
@@ -249,11 +249,6 @@
 {/if}
 
 <style lang="scss">
-    .homepage-header-fa-background {
-        position: absolute;
-        font-size: 14em;
-        opacity: 0.2;
-    }
     hr:last-child {
         display: none;
     }

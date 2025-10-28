@@ -6,21 +6,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           # Use @nf-core-bot token to check out so we can push without a PR
           token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
 
       # Add Node.js setup step
       - name: Setup Node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Set up Python
-        uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
         with:
-          python-version: 3.9
+          python-version: 3.14
 
       - name: Remove type:module from package.json
         run: |
@@ -39,7 +39,7 @@ jobs:
         run: pip install nf-core
 
       - name: Generate terminal images with rich-codex
-        uses: ewels/rich-codex@b3dfc37dd668b24d9a00ca52f1cbc4ac6e7d0991 # v1
+        uses: ewels/rich-codex@80de9de011c994f32274bb4cffee140567621d8e # v1
         env:
           COLUMNS: 100
           HIDE_PROGRESS: "true"

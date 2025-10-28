@@ -24,16 +24,16 @@ jobs:
 
     steps:
       # Set up the main website repo
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           fetch-depth: 0 # Don't do a shallow clone
           token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: 20
+          node-version: 22
           cache: "npm"
 
       - name: Install dependencies
@@ -45,7 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 
       - name: create component.json
-        run: npm run build-component-json
+        run: npm run build-component-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
 

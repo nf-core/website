@@ -1,0 +1,162 @@
+---
+title: "Meet the new meta.yml"
+subtitle: "Changes to the structure of the meta.yml file for nf-core modules"
+headerImage: "https://images.unsplash.com/photo-1547057740-4b18aac8eed2"
+headerImageAlt: "A magnifying glass in a forest."
+pubDate: 2025-07-07T12:30:00+01:00
+authors:
+    - "mirpedrol"
+label:
+    - "tools"
+    - "modules"
+maxHeadingDepth: 3
+---
+
+## Introduction
+
+When nf-core modules were introduced, we decided to add a `meta.yml` which contains the metadata of the module.
+This file describes:
+
+- The tool(s) used in the module
+- The structure of the channels
+- The authors of the module
+
+This file has been changing recently.
+We identified improvements that could be made when describing the inputs and outputs of the module.
+And we updated how the channels are described.
+You can see the [first blog-post](https://nf-co.re/blog/2025/modules-ontology) we wrote about this changes for more context.
+
+The first change consisted on grouping the input and output elements by channel. Before, they were all listed at the top level.
+This change makes it easier to understand the channel structure of the module.
+
+But one last detail was still missing. We were not distinguishing between tuple channels and single element channels.
+Now, tuple channels correspond to lists in the `meta.yml` file. While single element channels are not included inside a list.
+You can see the changes in [our PR on the modules repository](https://github.com/nf-core/modules/pull/8747).
+
+This is an example of the `bwa/mem` module.
+See the difference beween tuple channels and single element channels such as `val sorted_bam` in the input and `versions` in the output.
+
+<div class="row">
+    <div class="col-12 col-lg-5">
+        ```groovy title="main.nf" {9}
+        process BWA_MEM {
+
+            ...
+
+            input:
+            tuple val(meta) , path(reads)
+            tuple val(meta2), path(index)
+            tuple val(meta3), path(fasta)
+            val   sort_bam
+
+            output:
+            tuple val(meta), path("*.bam"),  emit: bam,     optional: true
+            tuple val(meta), path("*.cram"), emit: cram,    optional: true
+            tuple val(meta), path("*.csi"),  emit: csi,     optional: true
+            tuple val(meta), path("*.crai"), emit: crai,    optional: true
+            path "versions.yml",             emit: versions
+
+            ...
+
+        }
+        ```
+    </div>
+    <div class="col-12 col-lg-7">
+        ```yml title="meta.yml" caption="New file structure" {26-29}
+        name: bwa_mem
+        ...
+        input:
+            - - meta:
+                    type: map
+                    description: Groovy Map containing sample information
+                - reads:
+                    type: file
+                    description: |
+                    List of input FastQ files of size 1 and 2 for single-end and paired-end data,
+                    respectively.
+            - - meta2:
+                    type: map
+                    description: Groovy Map containing reference information.
+                - index:
+                    type: file
+                    description: BWA genome index files
+                    pattern: "*.{amb,ann,bwt,pac,sa}"
+            - - meta3:
+                    type: map
+                    description: Groovy Map containing sample information
+                - fasta:
+                    type: file
+                    description: Reference genome in FASTA format
+                    pattern: "*.{fasta,fa}"
+            - sort_bam:
+                type: boolean
+                description: use samtools sort (true) or samtools view (false)
+                pattern: "true or false"
+        output:
+            - bam:
+                - - meta:
+                        type: file
+                        description: Groovy Map containing sample information
+                  - "*.bam":
+                        type: file
+                        description: Output BAM file containing read alignments
+                        pattern: "*.{bam}"
+            - cram:
+                - - meta:
+                        type: file
+                        description: Groovy Map containing sample information
+                  - "*.cram":
+                        type: file
+                        description: Output CRAM file containing read alignments
+                        pattern: "*.{cram}"
+            - csi:
+                - - meta:
+                        type: file
+                        description: Groovy Map containing sample information
+                  - "*.csi":
+                        type: file
+                        description: Optional index file for BAM file
+                        pattern: "*.{csi}"
+            - crai:
+                - - meta:
+                        type: file
+                        description: Groovy Map containing sample information
+                  - "*.crai":
+                        type: file
+                        description: Optional index file for CRAM file
+                        pattern: "*.{crai}"
+            - versions:
+                - versions.yml:
+                    type: file
+                    description: File containing software versions
+                    pattern: "versions.yml"
+        ...
+        ```
+    </div>
+
+</div>
+
+To make the switch to the new structure easier for everyone using nf-core modules, you can add `--fix` to you modules lint command.
+
+```bash
+nf-core modules lint --fix bwa/mem
+```
+
+This flag will try to fix all the possible lint failures related to the meta.yml file.
+
+### For nf-core/tools contributors
+
+To help users create nf-core modules, we use a [Jinja2](https://jinja.palletsprojects.com) template.
+Jinja2 is used to create templates for modules, subworkflows, and pipelines.
+With all the recent changes and improvements, this template was starting to get overengineered, with lots of conditionals which make it difficult to follow the code of the file.
+For this reason, we decided to simplify the template, and handle the `meta.yml` file with a YAML library.
+
+Now, the module template `meta.yml` is the most [basic template](https://github.com/nf-core/tools/blob/dev/nf_core/module-template/meta.yml) for an nf-core module. And it doesn't contain any conditionals.
+This file is read as a YAML during module creation. All the possible conditions are checked in the [`generate_meta_yml_file()`](https://github.com/nf-core/tools/blob/dev/nf_core/components/create.py#L524) funciton. And the YAML object is updated accordingly.
+
+This will take into account:
+
+- If the `--empty` flag was provided or not, to add `TODO` comments.
+- If the module should contain a `meta`.
+- It will try to find input and output information on [bio.tools](https://bio.tools/).
+- It will try to complete the input and output files with [EDAM ontology](https://edamontology.org/page) terms.

@@ -12,27 +12,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
       - name: Checkout tools code
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
           path: "tools"
 
       - name: setup node
-        uses: actions/setup-node@1d0ff469b7ec7b3cb9d8673fde0c81c44821de2a # v4
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: "20"
+          node-version: "22"
 
       - name: Install dependencies
         run: |
           npm install remark unist-util-visit
 
       # Install pre-commit
-      - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38 # v5
+      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
         with:
-          python-version: 3.11
+          python-version: 3.14
 
       # install prettier plugins
       - run: npm install --only=dev
@@ -72,7 +72,7 @@ jobs:
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}

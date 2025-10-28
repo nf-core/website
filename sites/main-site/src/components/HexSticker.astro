@@ -1,0 +1,343 @@
+---
+/**
+ * HexSticker.astro
+ * A component for displaying hexagonal stickers with visual effects
+ */
+import { Image } from "astro:assets";
+interface Props {
+    imageUrl: string;
+    alt: string;
+    category?: string;
+    link?: string;
+    description?: string;
+}
+
+const { imageUrl, alt, category = "uncategorized", link, description } = Astro.props;
+
+const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
+---
+
+<div
+    class="hex-container sticker-trigger"
+    data-category={category}
+    data-sticker-img={imageUrl}
+    data-sticker-light-img={lightModeUrl}
+    data-sticker-alt={alt}
+    data-sticker-link={link}
+    data-sticker-description={description}
+    tabindex="0"
+    role="button"
+    aria-label={`View ${alt} sticker`}
+>
+    <div class="hex-sticker">
+        <div class="holographic-foil" aria-hidden="true"></div>
+        <div class="shine-effect" aria-hidden="true"></div>
+        <Image src={imageUrl} alt={alt} class="hide-light" width="150" height="173" />
+        <Image src={lightModeUrl} alt={alt} class="hide-dark" width="150" height="173" />
+    </div>
+</div>
+
+<style>
+    .hex-container {
+        perspective: 800px;
+        margin: var(--hex-margin, 0.5rem);
+        cursor: pointer;
+        text-decoration: none;
+        transform-origin: center center;
+        display: block;
+        width: var(--hex-size, 150px);
+        height: calc(var(--hex-size, 150px) * 1.1547); /* Hexagon height ratio */
+        transition:
+            opacity 0.3s ease,
+            filter 0.3s ease,
+            transform 0.3s ease;
+        will-change: transform;
+        position: relative;
+    }
+
+    /* Adjust for mobile hex grid */
+    @media (max-width: 576px) {
+        .hex-container {
+            /* Ensure proper spacing for the hex grid pattern */
+            margin: var(--hex-margin, 0.4rem);
+        }
+    }
+
+    /* Adjust for very small screens */
+    @media (max-width: 400px) {
+        .hex-container {
+            margin: var(--hex-margin, 0.25rem);
+        }
+    }
+
+    .hex-sticker {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: transparent;
+        transform-origin: center center;
+        will-change: transform;
+        clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+        overflow: hidden;
+        box-shadow:
+            0 1px 3px rgba(0, 0, 0, 0.12),
+            0 1px 2px rgba(0, 0, 0, 0.24);
+    }
+
+    /* Simplified hover effects for mobile */
+    @media (max-width: 576px) {
+        .hex-container:hover .hex-sticker,
+        .hex-container:focus .hex-sticker {
+            filter: brightness(1.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
+    }
+
+    /* Holographic foil effect */
+    .holographic-foil {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.2) 0%,
+            rgba(255, 0, 0, 0.15) 20%,
+            rgba(255, 255, 0, 0.15) 40%,
+            rgba(0, 255, 255, 0.15) 60%,
+            rgba(0, 0, 255, 0.15) 80%,
+            rgba(255, 0, 255, 0.15) 100%
+        );
+        background-size: 200% 200%;
+        mix-blend-mode: soft-light;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    /* Shine effect element */
+    .shine-effect {
+        position: absolute;
+        top: -100%;
+        left: -100%;
+        width: 250%;
+        height: 250%;
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.2) 50%,
+            rgba(255, 255, 255, 0) 100%
+        );
+        transform: rotate(30deg) translateY(0%);
+        opacity: 0;
+        z-index: 3;
+        pointer-events: none;
+        transition:
+            opacity 0.5s ease,
+            transform 0.5s ease-out;
+        will-change: transform, opacity;
+    }
+
+    .hex-sticker img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        background: transparent;
+        transform-origin: center center;
+        will-change: transform;
+        transition: transform 0.3s ease-in-out;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    /* Hover effects for the sticker */
+    .hex-container:hover .hex-sticker,
+    .hex-container:focus .hex-sticker {
+        filter: brightness(1.1) contrast(1.1);
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.18),
+            0 3px 6px rgba(0, 0, 0, 0.18),
+            0 0 12px rgba(255, 255, 255, 0.2);
+    }
+
+    .hex-container:hover .holographic-foil,
+    .hex-container:focus .holographic-foil {
+        opacity: 0.5;
+        animation: rotate-gradient 4s linear infinite;
+    }
+
+    /* Light mode effect adjustments */
+
+    :global([data-bs-theme="light"]) .hex-container:hover .hex-sticker,
+    :global([data-bs-theme="light"]) .hex-container:focus .hex-sticker {
+        filter: brightness(1.1) contrast(1.1);
+        box-shadow:
+            0 6px 12px rgba(0, 0, 0, 0.12),
+            0 3px 6px rgba(0, 0, 0, 0.12),
+            0 0 12px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Light mode holographic effect adjustments */
+    :global(.light-mode) .holographic-foil {
+        mix-blend-mode: color-burn;
+    }
+
+    /* Animations */
+    @keyframes rotate-gradient {
+        0% {
+            background-position: 0% 0%;
+        }
+        100% {
+            background-position: 100% 100%;
+        }
+    }
+
+    /* Reduced motion preferences */
+    @media (prefers-reduced-motion: reduce) {
+        .hex-container:hover .hex-sticker,
+        .hex-container:focus .hex-sticker {
+            transform: scale(1.05);
+            transition: all 0.5s ease;
+        }
+
+        .hex-container:hover .holographic-foil,
+        .hex-container:focus .holographic-foil {
+            animation: none;
+        }
+
+        .hex-container:hover .shine-effect,
+        .hex-container:focus .shine-effect {
+            animation: none;
+            opacity: 0.5;
+        }
+    }
+
+    /* Focus styles for accessibility */
+    .hex-container:focus-visible {
+        outline: 2px solid var(--bs-primary);
+        outline-offset: 4px;
+    }
+</style>
+
+<script>
+    // Minimal JavaScript for tilt effect and keyboard accessibility
+    document.addEventListener("DOMContentLoaded", () => {
+        const hexContainers = document.querySelectorAll(".hex-container");
+
+        // Check if user prefers reduced motion
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        hexContainers.forEach((container) => {
+            const hexSticker = container.querySelector(".hex-sticker");
+            const holographicFoil = container.querySelector(".holographic-foil");
+            const shineEffect = container.querySelector(".shine-effect");
+
+            // Skip tilt effect if user prefers reduced motion
+            if (!prefersReducedMotion && hexSticker) {
+                // Variables for tilt effect
+                const maxTilt = 10; // Maximum tilt angle in degrees
+
+                // Mouse enter event - remove transition for immediate response
+                container.addEventListener("mouseenter", () => {
+                    hexSticker.style.transition = "filter 0.3s ease, box-shadow 0.3s ease";
+                    if (shineEffect) {
+                        shineEffect.style.transition = "opacity 0.8s ease, transform 0.8s ease-out";
+                        shineEffect.style.opacity = "0.3"; // Reduced opacity for more subtle effect
+                    }
+                });
+
+                // Mouse move event - calculate and apply tilt
+                container.addEventListener("mousemove", (e) => {
+                    // Get position of cursor relative to the container
+                    const rect = container.getBoundingClientRect();
+                    const x = e.clientX - rect.left; // X position within the element
+                    const y = e.clientY - rect.top; // Y position within the element
+
+                    // Calculate percentage position (-1 to 1)
+                    const xPercent = (x / rect.width - 0.5) * 2;
+                    const yPercent = (y / rect.height - 0.5) * 2;
+
+                    // Calculate tilt angles
+                    const tiltX = -yPercent * maxTilt; // Invert Y for natural tilt
+                    const tiltY = xPercent * maxTilt;
+
+                    // Apply transform
+                    hexSticker.style.transform = `perspective(800px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+
+                    // Adjust holographic effect opacity based on tilt
+                    if (holographicFoil) {
+                        const tiltMagnitude = Math.sqrt(tiltX * tiltX + tiltY * tiltY) / maxTilt;
+                        holographicFoil.style.opacity = 0.3 + tiltMagnitude * 0.4;
+                    }
+
+                    // Position shine effect based on mouse position
+                    if (shineEffect) {
+                        // Store the current mouse position
+                        container.dataset.lastX = container.dataset.lastX || xPercent;
+                        container.dataset.lastY = container.dataset.lastY || yPercent;
+
+                        // Calculate smoothed position (interpolate between last position and current)
+                        const smoothFactor = 0.08; // Lower value for smoother movement
+                        const smoothedX =
+                            parseFloat(container.dataset.lastX) +
+                            (xPercent - parseFloat(container.dataset.lastX)) * smoothFactor;
+                        const smoothedY =
+                            parseFloat(container.dataset.lastY) +
+                            (yPercent - parseFloat(container.dataset.lastY)) * smoothFactor;
+
+                        // Update stored position
+                        container.dataset.lastX = smoothedX;
+                        container.dataset.lastY = smoothedY;
+
+                        // Calculate angle based on smoothed position
+                        const angle = Math.atan2(smoothedY, smoothedX) * (180 / Math.PI);
+
+                        // Limit the movement range to prevent erratic behavior
+                        const limitedX = Math.max(-1, Math.min(1, smoothedX));
+                        const limitedY = Math.max(-1, Math.min(1, smoothedY));
+
+                        const shineX = -limitedX * 25; // Reduced movement for more subtle effect
+                        const shineY = -limitedY * 25; // Reduced movement for more subtle effect
+
+                        // Apply transform to shine effect with eased transition
+                        shineEffect.style.transform = `rotate(${angle + 90}deg) translate(${shineX}%, ${shineY}%)`;
+                    }
+                });
+
+                // Mouse leave event - restore original state
+                container.addEventListener("mouseleave", () => {
+                    hexSticker.style.transition = "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)";
+                    hexSticker.style.transform = "perspective(800px) rotateX(0deg) rotateY(0deg)";
+
+                    if (holographicFoil) {
+                        holographicFoil.style.opacity = "";
+                    }
+
+                    if (shineEffect) {
+                        // Fade out the shine effect gradually
+                        shineEffect.style.transition = "opacity 0.8s ease-out, transform 0.8s ease-out";
+                        shineEffect.style.opacity = "0";
+                        shineEffect.style.transform = "rotate(30deg) translateY(0%)";
+                    }
+
+                    // Reset the stored positions
+                    container.dataset.lastX = "0";
+                    container.dataset.lastY = "0";
+                });
+            }
+
+            // Handle keyboard events for accessibility
+            container.addEventListener("keydown", (e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    container.click(); // Trigger the click event for the modal
+                }
+            });
+        });
+    });
+</script>
