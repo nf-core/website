@@ -196,7 +196,7 @@ params {
 }
 ```
 
-:::note{"Note on older nf-core pipelines"}
+:::note{title="Note on older nf-core pipelines"}
 
 If you expect users to use older versions of pipelines, we strongly recommend to also specify the `max_*` series of params as below.
 

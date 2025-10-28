@@ -1,0 +1,35 @@
+---
+import AdvisoryListing from "@components/advisory/AdvisoryListing.svelte";
+import PageLayout from "@layouts/PageLayout.astro";
+import AdvisorySidebar from "@components/advisory/AdvisorySidebar.astro";
+import { type CollectionEntry } from "astro:content";
+
+const { title, subtitle, advisories, currentFilters, sidebarTitle = "Advisories" } = Astro.props;
+export interface Props {
+    title: string;
+    subtitle: string;
+    currentFilters: { name: string }[];
+    advisories: CollectionEntry<"advisories">[];
+    sidebarTitle?: string;
+}
+
+advisories.sort((a, b) => {
+    if (!a.data.publishedDate || !b.data.publishedDate) return 0;
+    return a.data.publishedDate.getTime();
+});
+---
+
+<PageLayout
+    title={title || "Advisories"}
+    subtitle={subtitle || "nf-core advisories and security announcements"}
+    viewTransitions={true}
+>
+    <div class="row">
+        <div class="col-12 col-md-2">
+            <AdvisorySidebar {advisories} {sidebarTitle} />
+        </div>
+        <div class="col">
+            <AdvisoryListing {advisories} {currentFilters} client:load />
+        </div>
+    </div>
+</PageLayout>

@@ -14,7 +14,7 @@ before_command: >
 timeout: 30
 -->
 
-![`nf-core subworkflows update --all --no-preview`](/images/tools/nf-core-subworkflows-update.svg)
+![`nf-core subworkflows update --all --no-preview`](../../../../assets/images/tools/nf-core-subworkflows-update.svg)
 
 You can pass the subworkflow name as an optional argument to `nf-core subworkflows update` like above or select it from the list of available subworkflows by only running `nf-core subworkflows update`.
 

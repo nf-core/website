@@ -10,9 +10,7 @@
         currentFilters: { name: string }[];
         currentEvents: CollectionEntry<"events">[];
     }
-
     let { events = [], currentFilters, currentEvents = $bindable() }: Props = $props();
-
     let filteredEvents = $state(events);
     const filterByType = (event: CollectionEntry<"events">) => {
         if ($CurrentFilter.find((f) => f.name === event.data.type)) {
@@ -116,7 +114,7 @@
         return false;
     }
 
-    onMount(() => {
+    onMount(async () => {
         if (currentFilters.length > 0) {
             CurrentFilter.set(currentFilters);
         }
@@ -125,7 +123,7 @@
 
 <div>
     <FilterBar filter={event_types} displayStyle={[]} sortBy={[]} filterName={() => "Event type"}></FilterBar>
-    <div class="events">
+    <div class="events m-auto">
         {#if currentEvents.length > 0}
             <div class="mb-3 col-12">
                 <h2><i class="fa-duotone fa-calendar-exclamation me-3"></i>Currently ongoing</h2>
@@ -174,3 +172,9 @@
         </div>
     </div>
 </div>
+
+<style lang="scss">
+    .events {
+        max-width: 50rem;
+    }
+</style>

@@ -1,5 +1,6 @@
 ---
 import InstallCmd from "@components/InstallCmd.svelte";
+import { getCollection } from "astro:content";
 
 const {
     pipeline = "",
@@ -85,6 +86,7 @@ const shaking = version === "dev" ? "3deg" : "1deg";
                 ""
             )
         }
+        <slot />
         {
             pipeline.length > 0 ? (
                 <a

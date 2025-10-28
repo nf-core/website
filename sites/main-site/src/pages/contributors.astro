@@ -3,10 +3,11 @@ import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
 import pipelines_json from "@public/pipelines.json";
 import contributors_yml from "../config/contributors.yaml";
 import Leaflet from "@components/Leaflet.svelte";
-import GitHubProfilePicture from "@components/GitHubProfilePicture.svelte";
+import GitHubProfilePicture from "@components/GitHubProfilePicture.astro";
 import Admonition from "@components/Admonition.astro";
 import Heading from "@components/Heading.astro";
 import { Icon } from "astro-icon/components";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
@@ -62,7 +63,13 @@ const headings = [
 ];
 ---
 
-<MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url={md_github_url}>
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    headings={headings}
+    md_github_url={md_github_url}
+    leftSidebar={false}
+>
     <Heading level={1} id="introduction">Introduction</Heading>
     <p>
         nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many
@@ -112,7 +119,7 @@ const headings = [
     <div>
         <Leaflet locations={contributors_map} client:only="svelte" />
     </div>
-    <div class="contributor-cards row row-cols-1 row-cols-md-2">
+    <div class="contributor-cards row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxxxl-4 w-100 ms-0">
         {
             contributors_yml.contributors &&
                 contributors_yml.contributors.map((institution) => (
@@ -131,9 +138,12 @@ const headings = [
                                     >
                                         <h3 class="me-1">{institution.full_name}</h3>
                                         {institution.image_fn && (
-                                            <img
+                                            <DarkModeImage
                                                 src={`/images/contributors/colour/${institution.image_fn}`}
-                                                class="institution-logo darkmode-image"
+                                                alt={`${institution.full_name} logo`}
+                                                additionalClass="institution-logo"
+                                                height={350}
+                                                width={350}
                                             />
                                         )}
                                     </a>
@@ -159,6 +169,36 @@ const headings = [
                                         {institution.contact_github.replace("https://github.com/", "")}
                                     </a>
                                 )}
+
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a
+                                        href={institution.bluesky}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="logos:bluesky" color="#1185fe" size="15px" />{" "}
+                                        {institution.bluesky
+                                            .replace("https://bsky.app/profile/", "")
+                                            .replace(".bsky.social", "")}
+                                    </a>
+                                )}
+                                {institution.linkedin && (
+                                    <a
+                                        href={institution.linkedin}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="mdi:linkedin" color="#0077b5" size="15px" />{" "}
+                                        {institution.linkedin
+                                            .replace("https://www.linkedin.com/", "")
+                                            .replace("in/", "")
+                                            .replace("company/", "")
+                                            .replace("/$", "")}
+                                    </a>
+                                )}
                                 {institution.twitter && (
                                     <a
                                         href={"https://twitter.com/" + institution.twitter}
@@ -166,17 +206,6 @@ const headings = [
                                     >
                                         <i class="fab fa-twitter" />{" "}
                                         {institution.twitter.replace("https://twitter.com/", "")}
-                                    </a>
-                                )}
-                                {institution.mastodon && (
-                                    <a href={institution.mastodon} class="">
-                                        <i class="fab fa-mastodon" /> {institution.mastodon}
-                                    </a>
-                                )}
-                                {institution.bluesky && (
-                                    <a href={institution.bluesky} class="">
-                                        <Icon name="simple-icons:bluesky" color="#1185fe" size="30px" />{" "}
-                                        {institution.bluesky}
                                     </a>
                                 )}
                             </div>
@@ -192,7 +221,13 @@ const headings = [
     </p>
 
     <h3 id="dfg_testimonial">
-        <img width="350px" src="/images/contributors/colour/dfg_logo.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/dfg_logo.svg"
+            alt="DFG logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
 
         German National Sequencing Initiative
         <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
@@ -210,7 +245,13 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="easi_genomics_testimonial">
-        <img width="350px" src="/images/contributors/colour/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/EASI-Genomics.svg"
+            alt="EASI-Genomics logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
         EASI-Genomics
         <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a
         >
@@ -231,7 +272,7 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="bovreg_testimonial">
-        <img width="350px" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
+        <img width="350" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
         BovReg
         <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -247,7 +288,13 @@ const headings = [
     </p>
     <div class="clearfix"></div>
     <h3 id="dockstore">
-        <img width="350px" src="/images/contributors/colour/dockstore.svg" class="float-end ps-0" />
+        <DarkModeImage
+            src="/images/contributors/colour/dockstore.svg"
+            alt="Dockstore logo"
+            width={350}
+            height={350}
+            class="float-end ps-0"
+        />
         Dockstore
         <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -264,7 +311,13 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="workflowhub">
-        <img width="250px" src="/images/contributors/colour/workflowhub.svg" class="float-end px-4" />
+        <DarkModeImage
+            src="/images/contributors/colour/workflowhub.svg"
+            alt="Workflow Hub logo"
+            width={250}
+            height={250}
+            class="float-end px-4"
+        />
         Workflow Hub
         <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -283,7 +336,17 @@ const headings = [
 </MarkdownTocLayout>
 <style lang="scss">
     .institution-logo {
-        max-width: 40%;
+        max-width: 30%;
         max-height: 5rem;
+    }
+    :global([data-icon="logos:bluesky"] path),
+    :global([data-icon="mdi:linkedin"] path) {
+        fill: var(--bs-body-color);
+    }
+    :global(.markdown-content) {
+        max-width: 90% !important;
+        p {
+            max-width: 50rem !important;
+        }
     }
 </style>

@@ -94,6 +94,29 @@ The `get(1)` or `[1]` corresponds to the second object of the channel object.
 Most nf-core modules and pipelines typically emit two sub-components of an object: a meta map and the file(s)/directories etc.
 Specifying `get(q)` or `[1]` thus corresponds to the file(s)/directories for recording in a snapshot.
 
+## Debugging
+
+When you assign variables that you inject into the `assertAll`, you can use `println` statements to print these variables during the test for debugging purposes.
+
+The print statements must go within the `then` block, and prior `assertAll`.
+
+```nextflow
+then {
+    def unstable_patterns_auth = [
+        '**/mapped_reads_gc-content_distribution.txt',
+        '**/genome_gc_content_per_window.png',
+        '**/*.{svg,pdf,html}',
+        '*.{svg,pdf,html}',
+        '**/DamageProfiler.log',
+        ]
+
+    println("unstable_patterns_auth: " + unstable_patterns_auth)
+
+    assertAll(
+        { assert snapshot( stable_content_authentication     , stable_name_authentication*.name   ).match("authentication") },
+    ...
+```
+
 ## Additional Reading
 
 - [Updating Snapshots](https://code.askimed.com/nf-test/docs/assertions/snapshots/#updating-snapshots)
@@ -331,13 +354,10 @@ _Motivation_: I want to snapshot all files with stable md5sums, but only snapsho
 
 ```bash
 then {
-    def allFiles = file(process.out.db.get(0).get(1)).listFiles().sort()
-    // Defile all files that have unstable content (ie: timestamp, non-deterministic or any other variable content)
-    def unstableNames = ["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"]
-    // Filter out the unstable files
-    def stableFiles = allFiles.grep { file -> !unstableNames.contains(file.name) }
-    // Collect the stable file names
-    def stableNames = allFiles.grep { file -> unstableNames.contains(file.name) }.collect { file -> file.name }
+    def stablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (!file.isDirectory() && !["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {stablefiles.add(file)} }
+    def unstablefiles = []
+    file(process.out.db.get(0).get(1)).eachFileRecurse{ file -> if (["database.log", "database.fastaid2LCAtaxid", "database.taxids_with_multiple_offspring"].find {file.toString().endsWith(it)}) {unstablefiles.add(file.getName().toString())} }
 
     assertAll(
         { assert process.success },

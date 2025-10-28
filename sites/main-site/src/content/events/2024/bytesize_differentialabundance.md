@@ -6,6 +6,7 @@ startDate: "2024-02-06"
 startTime: "13:00+01:00"
 endDate: "2024-02-06"
 endTime: "13:30+01:00"
+embedAt: "differentialabundance"
 youtubeEmbed: https://youtu.be/Xw43sByskD4
 locations:
   - name: Online

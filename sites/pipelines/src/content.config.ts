@@ -11,6 +11,10 @@ const releases = defineCollection({
     loader: releaseLoader(pipelines_json),
 });
 
+const blog = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "../../sites/main-site/src/content/blog" }),
+});
+
 const events = defineCollection({
     loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "../../sites/main-site/src/content/events" }),
     schema: z
@@ -100,8 +104,14 @@ const events = defineCollection({
         }),
 });
 
+const advisories = defineCollection({
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/advisories" }),
+});
+
 export const collections = {
     pipelines,
     releases,
     events,
+    blog,
+    advisories,
 };

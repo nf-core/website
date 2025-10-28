@@ -1,0 +1,388 @@
+---
+/**
+ * HexGrid.astro
+ * A component for arranging hexagonal elements in a honeycomb pattern
+ */
+
+interface Props {
+    /**
+     * Optional CSS class to add to the container
+     */
+    class?: string;
+
+    /**
+     * Optional ID for the container
+     */
+    id?: string;
+}
+
+const { class: className = "", id } = Astro.props;
+---
+
+<div class:list={["hex-grid-container", className]} id={id} aria-label="Grid of hexagonal stickers">
+    <slot />
+</div>
+
+<style>
+    /* Styles for the hex grid container */
+    .hex-grid-container {
+        position: relative;
+        width: 100%;
+        transition: height 0.4s ease-out;
+
+        /* Bootstrap-compatible responsive margins */
+        --bs-gutter-x: 1.5rem;
+        --bs-gutter-y: 0;
+        padding-right: calc(var(--bs-gutter-x) * 0.5);
+        padding-left: calc(var(--bs-gutter-x) * 0.5);
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    /* Responsive adjustments using Bootstrap 5.3 breakpoints */
+    @media (min-width: 576px) {
+        .hex-grid-container {
+            max-width: 540px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .hex-grid-container {
+            max-width: 720px;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .hex-grid-container {
+            max-width: 960px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .hex-grid-container {
+            max-width: 1140px;
+        }
+    }
+
+    @media (min-width: 1400px) {
+        .hex-grid-container {
+            max-width: 1320px;
+        }
+    }
+</style>
+
+<script>
+    /**
+     * Arranges hexagonal elements in a honeycomb pattern
+     * @param {HTMLElement} container - The container element
+     * @param {HTMLElement[]} hexElements - Array of hexagon elements
+     * @param {Object} options - Configuration options
+     */
+    function arrangeHexGrid(container, hexElements, options = {}) {
+        const defaults = {
+            spacing: 4, // Spacing between hexagons
+            startingRow: 3, // Number of hexagons in the first row
+            maxPerRow: null, // Maximum hexagons per row (calculated automatically if null)
+            hexWidth: null, // Width of a hexagon (calculated from first element if null)
+            hexHeight: null, // Height of a hexagon (calculated from first element if null)
+            minHexPerRow: 1, // Minimum hexagons per row for small screens (changed from 2 to 1)
+            transitionDuration: "0.4s", // Duration for smooth transitions
+            forceEvenRows: false, // Try to make rows more even
+        };
+
+        const settings = { ...defaults, ...options };
+
+        if (!container || !hexElements || hexElements.length === 0) return;
+
+        // Calculate hex dimensions if not provided
+        if (!settings.hexWidth || !settings.hexHeight) {
+            const firstHex = hexElements[0];
+            const rect = firstHex.getBoundingClientRect();
+            settings.hexWidth = rect.width + settings.spacing;
+            settings.hexHeight = rect.height + settings.spacing;
+        }
+
+        // Calculate the maximum number of hexagons per row based on container width
+        if (!settings.maxPerRow) {
+            const containerWidth = container.clientWidth;
+
+            // For all mobile screens, use a small hex grid with 2 columns max
+            if (containerWidth < 576) {
+                settings.maxPerRow = 2;
+                settings.startingRow = 1; // Start with 1 hexagon in first row for proper hex pattern
+            } else {
+                // For larger screens, calculate based on available width
+                settings.maxPerRow = Math.max(Math.floor(containerWidth / settings.hexWidth), settings.minHexPerRow);
+            }
+        }
+
+        // Calculate the horizontal offset for centering
+        const hexHeight = settings.hexHeight;
+        const hexWidth = settings.hexWidth;
+
+        // Adjust vertical overlap for different screen sizes
+        let verticalOverlap = hexHeight * 0.25; // Default vertical overlap
+
+        // Reduce overlap on smaller screens to prevent excessive stacking
+        if (container.clientWidth < 576) {
+            verticalOverlap = hexHeight * 0.15;
+        }
+
+        // Special handling for mobile hex grid
+        const isMobileHexGrid = container.clientWidth < 576;
+
+        // Arrange hexagons in a honeycomb pattern
+        let currentRow = 0;
+        let currentCol = 0;
+        let hexPerRow = settings.startingRow;
+        let increasing = true;
+        let rowsCount = 0;
+
+        // Calculate total rows needed
+        const totalHexagons = hexElements.length;
+        let remainingHexagons = totalHexagons;
+        let tempHexPerRow = settings.startingRow;
+
+        // For mobile layout, use alternating 1-2 pattern
+        if (isMobileHexGrid) {
+            // Calculate rows for alternating 1-2 pattern
+            let isOddRow = true;
+            let rowHexCount = 0;
+            rowsCount = 0;
+
+            for (let i = 0; i < totalHexagons; i++) {
+                if (rowHexCount === 0) {
+                    // Start a new row
+                    rowHexCount = isOddRow ? 1 : 2;
+                    rowsCount++;
+                }
+
+                rowHexCount--;
+                if (rowHexCount === 0) {
+                    isOddRow = !isOddRow;
+                }
+            }
+        } else {
+            // Standard honeycomb calculation for other layouts
+            while (remainingHexagons > 0) {
+                remainingHexagons -= tempHexPerRow;
+                rowsCount++;
+
+                if (tempHexPerRow >= settings.maxPerRow) {
+                    increasing = false;
+                } else if (tempHexPerRow <= settings.startingRow && rowsCount > 1) {
+                    increasing = true;
+                }
+
+                tempHexPerRow = increasing ? tempHexPerRow + 1 : tempHexPerRow - 1;
+                tempHexPerRow = Math.min(Math.max(tempHexPerRow, settings.startingRow), settings.maxPerRow);
+            }
+        }
+
+        // Set container height to accommodate all hexagons
+        container.style.height = `${rowsCount * (hexHeight - verticalOverlap) + verticalOverlap}px`;
+        container.style.position = "relative";
+
+        // Use a DocumentFragment for better performance
+        const fragment = document.createDocumentFragment();
+
+        // Ensure all hexagons have transition property set for smooth movement
+        hexElements.forEach((hex) => {
+            if (
+                !hex.style.transition ||
+                !hex.style.transition.includes("left") ||
+                !hex.style.transition.includes("top")
+            ) {
+                hex.style.transition = `left ${settings.transitionDuration} ease-out, top ${settings.transitionDuration} ease-out`;
+            }
+        });
+
+        // Position each hexagon - use requestAnimationFrame to avoid layout thrashing
+        requestAnimationFrame(() => {
+            let hexIndex = 0;
+
+            if (isMobileHexGrid) {
+                // Special layout for mobile: alternating 1-2 pattern
+                let currentRow = 0;
+                let isOddRow = true;
+
+                while (hexIndex < hexElements.length) {
+                    // Number of hexagons in this row (alternating 1-2 pattern)
+                    const hexInThisRow = isOddRow ? 1 : 2;
+
+                    // Calculate the horizontal offset for centering the row
+                    const rowWidth = hexInThisRow * hexWidth;
+                    const offsetX = (container.clientWidth - rowWidth) / 2;
+
+                    // Position hexagons in the current row
+                    for (let col = 0; col < hexInThisRow && hexIndex < hexElements.length; col++) {
+                        const hex = hexElements[hexIndex];
+
+                        // Calculate position
+                        let x = offsetX + col * hexWidth;
+                        const y = currentRow * (hexHeight - verticalOverlap);
+
+                        // Apply position
+                        hex.style.position = "absolute";
+                        hex.style.left = `${x}px`;
+                        hex.style.top = `${y}px`;
+
+                        // Add row and column information for accessibility
+                        hex.setAttribute("data-row", currentRow.toString());
+                        hex.setAttribute("data-col", col.toString());
+
+                        hexIndex++;
+                    }
+
+                    // Move to next row and toggle pattern
+                    currentRow++;
+                    isOddRow = !isOddRow;
+                }
+            } else {
+                // Standard honeycomb layout for other screen sizes
+                currentRow = 0;
+                hexPerRow = settings.startingRow;
+                increasing = true;
+
+                // Track if we're on an odd or even row for the honeycomb pattern
+                let isOddRow = true;
+
+                while (hexIndex < hexElements.length) {
+                    // Calculate the horizontal offset for centering the row
+                    const rowWidth = hexPerRow * hexWidth;
+
+                    // For proper honeycomb pattern, offset every other row by half a hexagon width
+                    const rowOffsetX = isOddRow ? 0 : hexWidth / 2;
+                    const offsetX = (container.clientWidth - rowWidth) / 2;
+
+                    // Position hexagons in the current row
+                    for (currentCol = 0; currentCol < hexPerRow && hexIndex < hexElements.length; currentCol++) {
+                        const hex = hexElements[hexIndex];
+
+                        // Calculate position
+                        const x = offsetX + currentCol * hexWidth;
+                        const y = currentRow * (hexHeight - verticalOverlap);
+
+                        // Apply position
+                        hex.style.position = "absolute";
+                        hex.style.left = `${x}px`;
+                        hex.style.top = `${y}px`;
+
+                        // Add row and column information for accessibility
+                        hex.setAttribute("data-row", currentRow.toString());
+                        hex.setAttribute("data-col", currentCol.toString());
+
+                        hexIndex++;
+                    }
+
+                    // Update hexagons per row for next row
+                    if (hexPerRow >= settings.maxPerRow) {
+                        increasing = false;
+                    } else if (hexPerRow <= settings.startingRow && currentRow > 0) {
+                        increasing = true;
+                    }
+
+                    hexPerRow = increasing ? hexPerRow + 1 : hexPerRow - 1;
+                    hexPerRow = Math.min(Math.max(hexPerRow, settings.startingRow), settings.maxPerRow);
+                    currentRow++;
+                    isOddRow = !isOddRow;
+                }
+            }
+        });
+    }
+
+    /**
+     * Sets up resize handling for the hex grid
+     * @param {HTMLElement} container - The container element
+     * @param {HTMLElement[]} hexElements - Array of hexagon elements
+     * @param {Object} options - Configuration options
+     * @returns {Function} Cleanup function to remove event listeners
+     */
+    function setupHexGridResizing(container, hexElements, options = {}) {
+        let resizeTimeout;
+        let lastWidth = window.innerWidth;
+        let lastHeight = window.innerHeight;
+        let ticking = false;
+
+        // Throttled resize handler
+        function handleResize() {
+            // Only process if dimensions actually changed significantly (at least 20px)
+            const currentWidth = window.innerWidth;
+            const currentHeight = window.innerHeight;
+
+            const widthChanged = Math.abs(currentWidth - lastWidth) > 20;
+            const heightChanged = Math.abs(currentHeight - lastHeight) > 20;
+
+            if (!widthChanged && !heightChanged) return;
+
+            lastWidth = currentWidth;
+            lastHeight = currentHeight;
+
+            // Clear any existing timeout
+            clearTimeout(resizeTimeout);
+
+            // Don't schedule multiple rAF callbacks
+            if (!ticking) {
+                ticking = true;
+
+                // Use requestAnimationFrame for better performance
+                requestAnimationFrame(() => {
+                    // Set a timeout to avoid too frequent updates
+                    resizeTimeout = setTimeout(() => {
+                        arrangeHexGrid(container, hexElements, options);
+                        ticking = false;
+                    }, 150); // Longer delay for smoother experience
+                });
+            }
+        }
+
+        // Debounced version for final layout after resize ends
+        function handleResizeEnd() {
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                arrangeHexGrid(container, hexElements, options);
+            }, 250);
+        }
+
+        // Listen for both window resize and orientation change for mobile
+        window.addEventListener("resize", handleResize, { passive: true });
+        window.addEventListener("resize", handleResizeEnd, { passive: true });
+        window.addEventListener("orientationchange", handleResizeEnd);
+
+        // Initial arrangement
+        arrangeHexGrid(container, hexElements, options);
+
+        // Return cleanup function
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            window.removeEventListener("resize", handleResizeEnd);
+            window.removeEventListener("orientationchange", handleResizeEnd);
+        };
+    }
+
+    // Initialize any hex grids on the page
+    document.addEventListener("DOMContentLoaded", () => {
+        const hexGrids = document.querySelectorAll(".hex-grid-container");
+        hexGrids.forEach((grid) => {
+            const hexElements = Array.from(grid.querySelectorAll(".hex-container"));
+            if (hexElements.length > 0) {
+                // Determine appropriate starting row based on screen width
+                let startingRow = 3; // Default for larger screens
+
+                if (window.innerWidth < 576) {
+                    startingRow = 1; // Start with 1 for proper hex pattern on mobile
+                } else if (window.innerWidth < 768) {
+                    startingRow = 2; // Slightly smaller starting row for medium screens
+                }
+
+                setupHexGridResizing(grid, hexElements, {
+                    spacing: 4, // Moderate spacing for a tighter grid without overlap
+                    startingRow: startingRow,
+                    minHexPerRow: 2, // Always maintain at least 2 hexagons per row for hex pattern
+                    transitionDuration: "0.4s", // Smooth transition duration
+                    forceEvenRows: true, // Try to make rows more even
+                });
+            }
+        });
+    });
+</script>

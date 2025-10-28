@@ -1,24 +1,36 @@
 {
-    $schema: 'https://docs.renovatebot.com/renovate-schema.json',
-    extends: ['github>nf-core/ops//.github/renovate/default.json5', 'config:recommended', 'schedule:monthly'],
+    $schema: "https://docs.renovatebot.com/renovate-schema.json",
+    extends: [
+        "github>nf-core/ops//.github/renovate/default.json5",
+        "config:recommended",
+        "schedule:monthly",
+    ],
     npm: {
         enabled: false,
     },
+    packageRules: [
+        {
+            matchManagers: ["custom.regex"],
+            matchFileNames: [".pre-commit-config.yaml"],
+            groupName: "pre-commit npm dependencies",
+            groupSlug: "pre-commit-npm",
+        },
+    ],
     customManagers: [
         {
-            customType: 'regex',
-            fileMatch: ['^linting\\.yml$'],
-            matchStrings: ['https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz'],
-            datasourceTemplate: 'github-release-attachments',
+            customType: "regex",
+            managerFilePatterns: ["/^linting\\.yml$/"],
+            matchStrings: [
+                "https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz",
+            ],
+            datasourceTemplate: "github-release-attachments",
         },
         {
-            customType: 'regex',
-            fileMatch: ['^\\.pre-commit-config\\.yaml$'],
-            matchStrings: [
-                '- (?<depName>[^@]+)@(?<currentValue>[^\\s]+)'
-            ],
-            datasourceTemplate: 'npm',
-            versioningTemplate: 'semver'
-        }
+            customType: "regex",
+            managerFilePatterns: ["/.pre-commit-config.yaml$/"],
+            matchStrings: ["- (?<depName>[^@\\s]+)@(?<currentValue>[^\\s#]+)"],
+            datasourceTemplate: "npm",
+            versioningTemplate: "npm",
+        },
     ],
 }

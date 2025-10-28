@@ -6,9 +6,15 @@ intro_video: ""
 image: "/assets/images/events/2025/hackathon-march/hack_proteinfold.gif"
 image_alt: nf-core proteinfold hack
 leaders:
+  keiran-rowell-unsw:
+    name: Keiran Rowell
+    slack: "https://nfcore.slack.com/archives/D08JCBP586S"
   ziadbkh:
     name: Ziad Al-Bkhetan
     slack: "https://nfcore.slack.com/archives/D07F382KXLL"
+  abotlp:
+    name: Patri Bota
+    slack: "https://nfcore.slack.com/archives/D088H59JNMV"
   joseespinosa:
     name: Jose Espinosa-Carrasco
     slack: "https://nfcore.slack.com/archives/DTBAM1ZJS"

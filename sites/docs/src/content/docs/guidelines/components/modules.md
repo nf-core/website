@@ -120,13 +120,14 @@ E.g. in the first example, `bwa mem` is the first tool so is given `$args`, `sam
 ### Types of meta fields
 
 Modules MUST NOT use 'custom' hardcoded `meta` fields.
+This means both that they should not be referred to within the module as expected input, nor generate new fields as output.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
-Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team.
+Proposals for other 'standard' fields for other disciplines must be discussed with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
 :::info{title="Rationale" collapse}
 Modules should be written to allow as much flexibility to pipeline developers as possible.
 
-Hardcoding `meta` fields in a module will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
+Hardcoding `meta` fields in a module both as input and output will reduce the freedom of developers to use their own names for metadata, which would make more sense in that particular context.
 
 As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
 
@@ -273,13 +274,9 @@ process {
 
 ### Capturing STDOUT and STDERR
 
-In some cases, STDOUT and STDERR may need to be saved to file, for example for reporting purposes.
-Use the shell command `tee` to simultaneously capture and preserve the streams.
-This allows for the streams to be captured by the job scheduler's stream logging capabilities and print them to screen when Nextflow encounters an error.
+In some cases, you may need to save STDOUT and STDERR to a file, for example, for reporting or debugging purposes. The `tee` shell command allows you to simultaneously capture and preserve these streams.
 
-This also ensures that they are captured by Nextflow.
-
-If information is only written to files, it could potentially be lost when the job scheduler gives up the job allocation.
+This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error. This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error. The stream output is preserved in the process's `.command.log` and `.command.err` files. If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
 ```groovy {7-8}
 script:
@@ -288,13 +285,18 @@ tool \\
   --input $input \\
   --threads $task.cpus \\
   --output_prefix $prefix \\
-  2> >( tee ${prefix}.stderr.log >&2 ) \\
+  2>| >( tee ${prefix}.stderr.log >&2 ) \\
   | tee ${prefix}.stdout.log
 """
 ```
 
-Similarly, if the tool captures STDOUT or STDERR to a file itself, it is best to send those to the corresponding streams as well.
-Since a timeout may mean execution is aborted, it may make most sense to have background tasks do that.
+:::tip{title="Reason for forced stream redirect" collapse}
+
+Nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
+
+:::
+
+Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well. For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
 
 ```groovy {3-4}
 script:
@@ -302,6 +304,7 @@ script:
 tail -F stored_stderr.log >&2 &
 tail -F stored_stdout.log &
 tool arguments
+wait
 """
 ```
 
@@ -457,11 +460,17 @@ Channel names MUST follow `snake_case` convention and be all lower case.
 Output file (and/or directory) names SHOULD just consist of only `${prefix}` and the file-format suffix (e.g. `${prefix}.fq.gz` or `${prefix}.bam`).
 
 - This is primarily for re-usability so that other developers have complete flexibility to name their output files however they wish when using the same module.
-- As a result of using this syntax, if the module has the same named inputs and outputs then you can add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `args.prefix` variable to rename the output files so they don't clash.
+- As a result of using this syntax, if the module could _potentially_ have the same named inputs and outputs add a line in the `script` section like below (another example [here](https://github.com/nf-core/modules/blob/e20e57f90b6787ac9a010a980cf6ea98bd990046/modules/lima/main.nf#L37)) which will raise an error asking the developer to change the `ext.prefix` variable to rename the output files so they don't clash.
 
   ```groovy
   script:
   if ("$bam" == "${prefix}.bam") error "Input and output names are the same, set prefix in module configuration to disambiguate!"
+  ```
+
+- If the input and output files are likely to have the same name, then an appropriate default prefix may be set, for example:
+
+  ```nextflow
+  def prefix = task.ext.prefix ?: "${meta.id}_sorted"
   ```
 
 ## Input/output options
@@ -620,7 +629,7 @@ Input/output types MUST only be of the following categories: `map`, `file`, `dir
 
 Input/output entries MUST match a corresponding channel in the module itself
 
-- There should be a one-to-one relationship between the module and the `meta.yaml`
+- There should be a one-to-one relationship between the module's inputs and outputs and those described in `meta.yml`
 - Input/output entries MUST NOT combine multiple output channels
 
 ### Useful input/output descriptions
@@ -632,6 +641,14 @@ Input/output descriptions SHOULD be descriptive of the contents of file
 ### Input/output glob pattern
 
 Input/output patterns (if present) MUST follow a [Java glob pattern](https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob)
+
+### Ontology
+
+- Module `meta.yml` files SHOULD contain a [bio.tools](https://bio.tools/) ID when available.
+- Module `meta.yml` files SHOULD contain ontology URLs for files when relevant.
+
+Some bioinformatics tools listed on `bio.tools` already have a list of inputs and outputs with their format that you can use (for example see: [FastQC](https://bio.tools/fastqc)), the EDAM ontology term can be obtained by clicking on the relevant format in the input section of the diagrams.
+Otherwise, you can get the ontology terms for a given format by searching the term in the EBI's [Ontology Lookup Service](https://www.ebi.ac.uk/ols4/ontologies/edam) (recommended), or the [EDAM browser](https://edamontology.github.io/edam-browser/#topic_0091).
 
 ### Indication of input channel requirement
 
@@ -770,6 +787,14 @@ If the test were to work 'standalone,' the pipeline would need to include all th
 Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate module tests again.
 :::
 
+:::note
+CI tests for nf-core modules, subworkflows, or pipeline are **not** required to produce _meaningful_ output.
+
+The main goal for nf-core CI tests are to ensure a given tool 'happily' executes without errors.
+
+It is OK for a test to produce nonsense output, or find 'nothing', as long as the tool does not crash or produce an error.
+:::
+
 ### Snapshots
 
 Only one snapshot is allowed per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
@@ -832,6 +857,18 @@ Input data SHOULD be referenced with the `modules_testdata_base_path` parameter:
 ```groovy
 file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/bam/test.paired_end.sorted.bam', checkIfExists: true)
 ```
+
+:::info
+CI tests for nf-core modules, subworkflows, or pipeline are **not** required to produce _meaningful_ output.
+
+The main goal for nf-core CI tests are to ensure a given tool 'happily' executes without errors.
+
+It is OK for a test to produce nonsense output, or find 'nothing', as long as the tool does not crash or produce an error.
+
+You SHOULD therefore reuse existing test-data from the modules branch of [nf-core/test-datasets](https://github.com/nf-core/test-datasets) as far as possible to reduce the size of our test dataset repository.
+
+You SHOULD only upload new test data to nf-core/test-datasets if there is absolutely no other option within the existing test-data archive.
+:::
 
 ### Configuration of ext.args in tests
 

@@ -1,5 +1,5 @@
 ---
-title: Custom containers
+title: Custom Docker images
 subtitle: What to do with custom containers that are hosted on docker.io or ghcr.io
 menu:
   main:
@@ -7,7 +7,9 @@ menu:
 ---
 
 If a pipeline cannot be constructed with bioconda and therefore cannot be found on biocontainers, please contact `@core-team` on slack to discuss the best way to proceed.
+
 If possible, we prefer to mirror the container and host it on `quay.io` in the nf-core organisation to ensure future reproducibility (ie. that a container that the pipeline relies on will not be deleted by a 3rd party in the future).
+
 To do this, a core-team member should run the following commands:
 
 ```bash

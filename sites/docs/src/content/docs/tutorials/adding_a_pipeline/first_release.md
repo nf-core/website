@@ -41,8 +41,8 @@ To get your pipeline reviewed for its initial release, do the following:
 1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
    special case and all of the tests should pass.
 
-1. Once the tests are passing, request a review from the core team. You can use the
-   [#request-review](https://app.slack.com/client/TE6CZUZPH/CQY2U5QU9) slack channel for this.
+1. Once the tests are passing, request two reviews, with one from the core team. You can use the
+   [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) slack channel for this.
 
 What happens next depends on the state of your master branch:
 
@@ -54,7 +54,7 @@ What happens next depends on the state of your master branch:
   team may merge your PR and create a pseudo-PR against the first commit in the
   pipeline. This gives the PR review interface showing all code that you've written.
 
-In either case we will go through everything and request changes that we think are
+In either case the two reviewers will go through everything and request changes that we think are
 necessary until you're good to go. Common things that are flagged at this point are:
 
 - A clear, short but descriptive readme
@@ -65,6 +65,14 @@ We typically tend to have two reviewers for most of the crucial code changes, e.
 new major features to an existing pipeline or making an entirely new pipeline release. You
 can also ping people from the nf-core core or maintainers team to review your pipeline
 code by `@`ing them.
+
+:::tip
+While you're waiting, try reviewing another release pull request from another community member!
+
+Don't feel shy, it's a good way to start and get a better understanding reviews work, and the more eyes the better!
+
+See the documentation pinned on the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) for instructions.
+:::
 
 ## Making the release
 

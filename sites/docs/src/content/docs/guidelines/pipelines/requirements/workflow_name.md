@@ -19,7 +19,7 @@ so that the pipeline assets are named consistently across systems.
 We strongly recommend that names are self-descriptive towards the data or analysis type the pipeline will be using or performing.
 Users of the pipeline should be able to get a good idea of what the pipeline does from just the name.
 
-Names must be approved by the nf-core community [(`#new-pipelines`)](https://nfcore.slack.com/archives/CE6SDEDAA).
+Names must be approved by the nf-core community [(nf-core/proposals)](https://github.com/nf-core/proposals/issues).
 
 Please refer to your pipeline with the `nf-core` prefix in written materials, for example `nf-core/yourpipeline`.
 

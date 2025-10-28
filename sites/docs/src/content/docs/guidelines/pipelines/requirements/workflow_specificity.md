@@ -12,4 +12,4 @@ However, if the _purpose_ of the pipeline tasks and results are different, then 
 
 If you would like to use a different set of tools to do a comparable analysis, then this should be added to the existing pipeline instead of creating something new.
 
-If in doubt, you can always ask on the [`#new-pipelines`](https://nfcore.slack.com/archives/CE6SDEDAA) nf-core Slack channel, which is designed for exactly these kinds of discussions.
+If in doubt, you can always ask on the [`#help`](https://nfcore.slack.com/channels/help) nf-core Slack channel, which is designed for exactly these kinds of discussions.
