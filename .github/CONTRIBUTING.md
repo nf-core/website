@@ -13,7 +13,7 @@ Hi there! Many thanks for taking an interest in improving the nf-core website.
 ## Instructions to add your institution to the list of contributors
 
 1. Fork this repo
-2. Add your institute details and your name to the [contributors.yaml](../src/config/contributors.yaml)
+2. Add your institute details and your name to the [contributors.yaml](../sites/main-site/src/config/contributors.yaml)
 
 Here's the desired format
 

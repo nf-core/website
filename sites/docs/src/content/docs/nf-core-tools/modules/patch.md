@@ -12,7 +12,7 @@ working_dir: tmp/nf-core-nextbigthing
 before_command:  sed "s/process_medium/process_low/g" modules/nf-core/fastqc/main.nf > modules/nf-core/fastqc/main.nf.patch && mv modules/nf-core/fastqc/main.nf.patch modules/nf-core/fastqc/main.nf
 -->
 
-![`nf-core modules patch fastqc`](/images/tools/nf-core-modules-patch.svg)
+![`nf-core modules patch fastqc`](../../../../assets/images/tools/nf-core-modules-patch.svg)
 
 The generated patches work with `nf-core modules update`: when you install a new version of the module, the command tries to apply
 the patch automatically. The patch application fails if the new version of the module modifies the same lines as the patch. In this case,

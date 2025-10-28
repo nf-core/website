@@ -30,7 +30,7 @@ timeout: 10
 after_command: rm nf-params.json
 -->
 
-![`nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json`](/images/tools/nf-core-schema-validate.svg)
+![`nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json`](../../../../assets/images/tools/nf-core-schema-validate.svg)
 
 The `pipeline` option can be a directory containing a pipeline, a path to a schema file or the name of an nf-core pipeline (which will be downloaded using `nextflow pull`).
 
@@ -51,7 +51,7 @@ timeout: 10
 before_command: sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && mv nextflow_schema.json.tmp nextflow_schema.json
 -->
 
-![`nf-core pipelines schema build --no-prompts`](/images/tools/nf-core-schema-build.svg)
+![`nf-core pipelines schema build --no-prompts`](../../../../assets/images/tools/nf-core-schema-build.svg)
 
 There are four flags that you can use with this command:
 
@@ -107,4 +107,4 @@ Usage is `nf-core pipelines schema lint <schema>` (defaulting to `nextflow_schem
 working_dir: tmp/nf-core-nextbigthing
 -->
 
-![`nf-core pipelines schema lint`](/images/tools/nf-core-schema-lint.svg)
+![`nf-core pipelines schema lint`](../../../../assets/images/tools/nf-core-schema-lint.svg)
