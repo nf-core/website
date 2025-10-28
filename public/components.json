@@ -1009,7 +1009,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "taxprofiler",
@@ -13690,10 +13690,28 @@
                 }
               },
               {
-                "output/*.html": {
+                "output/*_QC.html": {
                   "type": "file",
                   "description": "QC HTML report",
-                  "pattern": "output/*.html",
+                  "pattern": "output//*_QC.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "multiqc_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "output/multiqc_report.html": {
+                  "type": "file",
+                  "description": "Multiqc HTML report",
+                  "pattern": "output/multiqc_report.html",
                   "ontologies": []
                 }
               }
@@ -14439,7 +14457,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "metatdenovo",
@@ -15917,7 +15935,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -16662,7 +16680,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "pacvar",
@@ -19358,7 +19376,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "phaseimpute",
@@ -28707,7 +28725,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -31714,7 +31732,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -31905,7 +31923,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -32200,7 +32218,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -32489,7 +32507,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -32674,7 +32692,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -32836,7 +32854,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -33548,7 +33566,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -36926,7 +36944,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -37054,7 +37072,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -37206,7 +37224,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -37349,7 +37367,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -38359,7 +38377,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -40975,7 +40993,13 @@
         "maintainers": [
           "@vvvirgy"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cnvkit_access",
@@ -43440,7 +43464,13 @@
         "maintainers": [
           "@prototaxites"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mag",
+          "version": "5.1.0"
+        }
+      ]
     },
     {
       "name": "concoct_concoct",
@@ -43655,7 +43685,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -43773,7 +43803,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -43894,7 +43924,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -44004,7 +44034,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -44110,7 +44140,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -48116,7 +48146,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "multiplesequencealign",
@@ -51440,7 +51470,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -51550,7 +51580,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -66397,7 +66427,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "nascent",
@@ -66888,7 +66918,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -70227,7 +70257,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "taxprofiler",
@@ -70791,7 +70821,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -72425,7 +72455,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "radseq",
@@ -88262,7 +88292,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "phageannotator",
@@ -88644,7 +88674,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "phageannotator",
@@ -96284,7 +96314,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -96743,7 +96773,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -96853,7 +96883,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -96982,7 +97012,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -97131,7 +97161,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "marsseq",
@@ -126134,7 +126164,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -127170,7 +127200,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -129686,7 +129716,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -129884,7 +129914,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -130307,7 +130337,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -130803,7 +130833,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -133107,7 +133137,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "methylong",
@@ -133227,7 +133257,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "radseq",
@@ -135723,7 +135753,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -139899,7 +139929,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -142926,7 +142956,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "nanoseq",
@@ -143288,7 +143318,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "nanoseq",
@@ -143434,7 +143464,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "taxprofiler",
@@ -167637,7 +167667,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "taxprofiler",
@@ -167780,7 +167810,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "methylong",
@@ -169121,7 +169151,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "metapep",
@@ -169443,7 +169473,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -173297,7 +173327,13 @@
           "@giorgiagandolfi",
           "@elena-buscaroli"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pycoqc",
@@ -173529,7 +173565,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -173638,7 +173674,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -188018,7 +188054,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "methylong",
@@ -189464,7 +189500,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -191109,7 +191145,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -201096,7 +201132,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -201697,7 +201733,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "metatdenovo",
@@ -212077,7 +212113,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "metatdenovo",
@@ -224047,7 +224083,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -226504,7 +226540,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "sammyseq",
@@ -230808,7 +230844,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "metatdenovo",
@@ -236888,7 +236924,13 @@
         "maintainers": [
           "@giorgiagandolfi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "tumourevo",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "viennarna_rnacofold",
@@ -247560,7 +247602,7 @@
       "pipelines": [
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -252946,7 +252988,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -253363,7 +253405,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
@@ -253776,7 +253818,7 @@
         },
         {
           "name": "mag",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "magmap",
