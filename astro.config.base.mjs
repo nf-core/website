@@ -125,7 +125,7 @@ export default {
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com"],
+        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com", "github.com"],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
