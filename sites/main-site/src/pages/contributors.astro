@@ -7,6 +7,7 @@ import GitHubProfilePicture from "@components/GitHubProfilePicture.astro";
 import Admonition from "@components/Admonition.astro";
 import Heading from "@components/Heading.astro";
 import { Icon } from "astro-icon/components";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
@@ -137,9 +138,12 @@ const headings = [
                                     >
                                         <h3 class="me-1">{institution.full_name}</h3>
                                         {institution.image_fn && (
-                                            <img
+                                            <DarkModeImage
                                                 src={`/images/contributors/colour/${institution.image_fn}`}
-                                                class="institution-logo darkmode-image"
+                                                alt={`${institution.full_name} logo`}
+                                                additionalClass="institution-logo"
+                                                height={350}
+                                                width={350}
                                             />
                                         )}
                                     </a>
@@ -217,7 +221,13 @@ const headings = [
     </p>
 
     <h3 id="dfg_testimonial">
-        <img width="350px" src="/images/contributors/colour/dfg_logo.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/dfg_logo.svg"
+            alt="DFG logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
 
         German National Sequencing Initiative
         <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
@@ -235,7 +245,13 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="easi_genomics_testimonial">
-        <img width="350px" src="/images/contributors/colour/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/EASI-Genomics.svg"
+            alt="EASI-Genomics logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
         EASI-Genomics
         <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a
         >
@@ -256,7 +272,7 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="bovreg_testimonial">
-        <img width="350px" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
+        <img width="350" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
         BovReg
         <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -272,7 +288,13 @@ const headings = [
     </p>
     <div class="clearfix"></div>
     <h3 id="dockstore">
-        <img width="350px" src="/images/contributors/colour/dockstore.svg" class="float-end ps-0" />
+        <DarkModeImage
+            src="/images/contributors/colour/dockstore.svg"
+            alt="Dockstore logo"
+            width={350}
+            height={350}
+            class="float-end ps-0"
+        />
         Dockstore
         <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -289,7 +311,13 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="workflowhub">
-        <img width="250px" src="/images/contributors/colour/workflowhub.svg" class="float-end px-4" />
+        <DarkModeImage
+            src="/images/contributors/colour/workflowhub.svg"
+            alt="Workflow Hub logo"
+            width={250}
+            height={250}
+            class="float-end px-4"
+        />
         Workflow Hub
         <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
