@@ -183,6 +183,11 @@ The topic output qualifier is a new feature in Nextflow that provides a streamli
 This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
 See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
+:::warning
+For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml.
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
+:::
+
 :::tip{title="Tips for extracting the version string" collapse}
 
 `sed{:bash}` is a powerful stream editor that can be used to manipulate the input text into the desired output.
