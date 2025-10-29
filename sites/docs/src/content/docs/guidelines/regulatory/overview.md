@@ -35,7 +35,7 @@ nf-core has developed a systematic approach to pipeline validation that balances
 
 🔄 **Institution-specific validation** within their target environment
 🔄 **Regulatory compliance** according to applicable standards
-🔄 **Infrastructure validation** (CSV and system-level requirements)
+🔄 **Infrastructure validation** (CSV and system-level requirements, aka IQ/PQ/OQ)
 🔄 **Risk assessment** for their specific use cases
 🔄 **Ongoing maintenance** and re-validation as needed
 
