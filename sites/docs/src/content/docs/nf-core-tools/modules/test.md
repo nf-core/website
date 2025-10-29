@@ -17,7 +17,7 @@ extra_env:
   PROFILE: 'conda'
 -->
 
-![`nf-core modules test fastqc --no-prompts`](/images/tools/nf-core-modules-test.svg)
+![`nf-core modules test fastqc --no-prompts`](../../../../assets/images/tools/nf-core-modules-test.svg)
 
 In case you changed something in the test and want to update the snapshot, run
 

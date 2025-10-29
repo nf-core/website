@@ -1,0 +1,60 @@
+---
+import GitHubProfilePicture from "./GitHubProfilePicture.astro";
+
+interface Props {
+    username: string;
+    affiliation?: string;
+    size?: number;
+    wrapperClasses?: string;
+    labelClasses?: string;
+    containerQuery?: boolean;
+    imgClasses?: string;
+}
+
+const {
+    username,
+    affiliation = "",
+    size = 50,
+    wrapperClasses = "",
+    labelClasses = "",
+    containerQuery = false,
+    imgClasses = "",
+} = Astro.props;
+
+const affiliation_str =
+    affiliation.length > 0
+        ? `<div class="small"><abbr class="d-block affiliation" data-bs-placement="bottom" data-bs-toggle="tooltip" title="${affiliation}">${affiliation}</abbr></div>`
+        : "";
+const computedLabelClasses = affiliation.length > 0 ? labelClasses + " small" : labelClasses;
+---
+
+<GitHubProfilePicture
+    wrapperClasses={"d-block " + wrapperClasses}
+    linkClasses="btn btn-light rounded-pill mb-2 p-0 d-flex align-items-center"
+    image={"https://github.com/" + username + ".png"}
+    name={username}
+    circle={true}
+    size={Math.max(size, 25)}
+    {containerQuery}
+    {imgClasses}
+>
+    <div class:list={["ms-2 pe-2 text-start d-flex flex-column profile-name", computedLabelClasses]}>
+        <div class:list={["ps-2 pe-3", computedLabelClasses]}>
+            <slot>@{username}</slot>
+            <Fragment set:html={affiliation_str} />
+        </div>
+    </div>
+</GitHubProfilePicture>
+
+<style lang="scss">
+    :global(.profile-name p) {
+        margin-bottom: 0;
+    }
+    :global(.affiliation) {
+        max-width: 15rem;
+        overflow: hidden;
+    }
+    :global(.github-link:hover .affiliation) {
+        max-width: 100%;
+    }
+</style>
