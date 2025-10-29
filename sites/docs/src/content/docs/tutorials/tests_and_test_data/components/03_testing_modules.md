@@ -95,7 +95,7 @@ The nf-test file is organized into several key scopes that define what and how t
 - `process` - **Process name**: The specific process to test (must match the process name in `main.nf`)
 - `test("...")` - **Individual test case**: Each test block defines one scenario to test
 - `when { }` - **Test setup**: Where you define the input data for the process
-- `then { }` - **Assertions**: Where you verify the process behaved as expected
+- `then { }` - **Assertions**: Where you specify what and how to check that the process behaved as expected
 
 **Inside the test components:**
 
@@ -109,7 +109,7 @@ Now that we understand the overall structure, let's look at the specific element
 
 ### Step 3: Run the test
 
-Once you've written the test, you can generate the initial snapshot by running the test.
+Once you've written the test, you can generate the initial snapshot by running the test using nf-core tools.
 
 ```bash
 cd path/to/modules
@@ -123,6 +123,11 @@ nf-core modules test cat --profile docker
 3. **First run**: Generates `tests/main.nf.test.snap` with output checksums
 4. **Second run**: Validates outputs match the generated snapshot
 5. Reports PASS/FAIL
+
+:::info
+Note that nf-core tools wraps around `nf-test` commands itself.
+nf-core tools commands are not 1:1 equivalent with 'raw' nf-test commands.
+::: 
 
 ### Step 4: Examine the generated snapshot
 
@@ -147,7 +152,7 @@ After running, check `tests/main.nf.test.snap`:
 }
 ```
 
-You can see the the outputs of the module, with an associated `md5sum` which concisely describes the exact contents of the file.
+You can see the the outputs of the module, with an associated `md5sum` which concisely describes the exact contents of the two output files: the concatenated file, and the nf-core `versions.yml` file.
 
 Now you understand the full test cycle! The snapshot ensures your module produces consistent, expected outputs every time.
 
@@ -197,7 +202,7 @@ For more nf-test assertion patterns, see the [nf-test assertions examples docume
 
 ## Creating a new module with tests
 
-Now we can dive deeper into specifically making an nf-core module.
+Now we can dive deeper into a step-by-step guide for specifically making an nf-core module.
 
 When creating a new module using `nf-core/tools`, a test file is automatically generated based on the template.
 
@@ -218,7 +223,7 @@ modules/nf-core/tool/subtool/
     └── nextflow.config  # Optional: test-specific config
 ```
 
-We can then edit the test file (`tests/main.nf.test`) to specify the test's input data via the `input[0]` and `input[1]` channels in the `when` block.
+After writing the module under `main.nf` and being ready to write the tests, we can edit the test file (`tests/main.nf.test`) to specify the test's input data via the `input[0]` and `input[1]` channels in the `when` block.
 
 Then in the `test` block, we can define what we want to go into the snapshot, or in otherwords what to generate to compare subsequent runs against.
 
@@ -373,7 +378,7 @@ It serves as a mechanism to prepare the required input data or set up essential 
 
 Within a `setup` block, you can use the `run` method to define and execute multiple dependent processes or workflows.
 
-Here's a basic example of how a setup block looks:
+Here's a basic dummy example of how a setup block looks:
 
 ```groovy
 nextflow_process {
@@ -414,6 +419,8 @@ nextflow_process {
 :::warning
 Please keep in mind that changes in processes or workflows executed in the setup method can result in a failed test of a downstream module.
 :::
+
+Now lets look at more explicit examples.
 
 ### Global `setup` method (for all tests)
 
