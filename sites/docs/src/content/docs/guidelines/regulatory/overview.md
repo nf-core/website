@@ -294,57 +294,33 @@ Comprehensive documentation supports validation and ensures consistent usage:
 
 ## Implementation Guidance
 
-### Step-by-Step Validation Process
+### Validation Process Overview
+
+The validation process for nf-core pipelines follows a structured approach across five key phases:
 
 #### 1. Preparation Phase
 
-```
-□ Download pipeline validation report from nf-core release
-□ Define intended use and regulatory requirements
-□ Identify applicable standards and compliance frameworks
-□ Assemble validation team with appropriate expertise
-□ Establish validation protocols and acceptance criteria
-```
+Begin by obtaining the nf-core validation readiness report for your target pipeline version. Define your intended use case and identify applicable regulatory requirements (e.g., FDA SaMD, CLIA, CE Mark, LDT). Assemble a validation team with appropriate expertise and establish validation protocols and acceptance criteria aligned with your institutional needs.
 
 #### 2. Risk Assessment
 
-```
-□ Review nf-core risk indicators and community metrics
-□ Conduct institution-specific risk analysis
-□ Identify critical control points and testing requirements
-□ Document risk mitigation strategies
-□ Establish ongoing monitoring procedures
-```
+Review the risk indicators provided in the nf-core validation report and conduct an institution-specific risk analysis. Identify critical control points related to execution failures, data integrity, analytical accuracy, reproducibility, and security. Document your risk mitigation strategies and establish ongoing monitoring procedures appropriate for your risk profile.
 
-#### 3. Functional Validation
+#### 3. Validation Execution
 
-```
-□ Set up validated computing environment
-□ Execute nf-core test profiles successfully
-□ Perform integration testing with institutional data
-□ Validate analytical performance against specifications
-□ Document all testing evidence and results
-```
+Set up your validated computing environment and execute the nf-core test profiles to verify functional performance. Perform integration testing with institutional data and validate analytical performance against your established specifications. Document all testing evidence and results comprehensively to support your validation package.
 
 #### 4. Operational Validation
 
-```
-□ Establish standard operating procedures (SOPs)
-□ Train personnel on validated procedures
-□ Implement quality control measures
-□ Establish data management and retention procedures
-□ Create incident response and change control processes
-```
+Establish standard operating procedures (SOPs) for consistent pipeline operation, train personnel on validated procedures, and implement quality control measures. Set up data management and retention procedures, and create incident response and change control processes appropriate for your regulatory context.
 
 #### 5. Ongoing Maintenance
 
-```
-□ Monitor pipeline updates and security advisories
-□ Assess impact of changes through change control
-□ Maintain validation status through periodic review
-□ Update procedures as requirements evolve
-□ Participate in community feedback and improvement
-```
+Monitor pipeline updates and security advisories from the nf-core community. Assess the impact of changes through your change control process, maintain validation status through periodic review, and update procedures as requirements evolve. Participate in community feedback to contribute to continuous improvement.
+
+:::tip
+For a detailed, actionable checklist covering each phase of the validation process, refer to the [Pipeline Validation Checklist](./checklist).
+:::
 
 ### Gap Analysis and Improvement
 
