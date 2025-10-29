@@ -118,7 +118,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -9521,7 +9521,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -9848,7 +9848,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -12761,21 +12761,55 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bamstats": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bamstats": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bamstats --version | grep \"version: \" | sed -e s\"/version: //": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
           ]
         },
+        "topics": [
+          {
+            "versions": [
+              [
+                {
+                  "process": {
+                    "type": "string",
+                    "description": "The process the versions were collected from"
+                  }
+                },
+                {
+                  "tool": {
+                    "type": "string",
+                    "description": "The tool name"
+                  }
+                },
+                {
+                  "version": {
+                    "type": "string",
+                    "description": "The version of the tool"
+                  }
+                }
+              ]
+            ]
+          }
+        ],
         "authors": [
           "@johnoooh"
         ]
@@ -13487,7 +13521,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -13826,7 +13860,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -15943,7 +15977,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -16562,7 +16596,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -17161,7 +17195,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -17348,7 +17382,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -18450,7 +18484,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -18902,7 +18936,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -19216,7 +19250,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -19626,7 +19660,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -19860,7 +19894,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -20986,7 +21020,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -21673,7 +21707,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -21796,7 +21830,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -26249,7 +26283,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -26513,7 +26547,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -27340,7 +27374,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -27507,7 +27541,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -31800,7 +31834,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -34745,7 +34779,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -37477,7 +37511,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -49642,10 +49676,6 @@
         {
           "name": "viralintegration",
           "version": "0.1.1"
-        },
-        {
-          "name": "viralrecon",
-          "version": "2.6.0"
         }
       ]
     },
@@ -50008,7 +50038,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -50893,6 +50923,10 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
+        },
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
         }
       ]
     },
@@ -64084,7 +64118,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "taxprofiler",
@@ -66411,7 +66445,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -66479,7 +66513,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -66850,7 +66884,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -67069,10 +67103,6 @@
           "version": "dev"
         },
         {
-          "name": "variantprioritization",
-          "version": "dev"
-        },
-        {
           "name": "viralintegration",
           "version": "0.1.1"
         },
@@ -67082,7 +67112,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -72238,7 +72268,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -72626,7 +72656,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "freyja_demix",
@@ -72758,7 +72794,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "freyja_update",
@@ -72855,7 +72897,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "freyja_variants",
@@ -72966,7 +73014,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "fusioncatcher_build",
@@ -97253,7 +97307,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -110027,7 +110081,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -110154,7 +110208,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -110304,7 +110358,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -115363,7 +115417,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "detaxizer",
@@ -115387,7 +115441,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -126776,7 +126830,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -132109,7 +132163,13 @@
         "authors": [
           "@ziadbkh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.7.0"
+        }
+      ]
     },
     {
       "name": "midas_run",
@@ -132536,7 +132596,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -137696,7 +137756,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -139845,7 +139905,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -140170,6 +140230,10 @@
         {
           "name": "viralintegration",
           "version": "0.1.1"
+        },
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
         }
       ]
     },
@@ -143334,7 +143398,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -144253,7 +144317,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -144532,7 +144596,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -151323,7 +151387,13 @@
           "@kevinmenden",
           "@drpatelh"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "pangolin_updatedata",
@@ -151391,7 +151461,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "parabricks_applybqsr",
@@ -158493,7 +158569,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -159853,7 +159929,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -162269,7 +162345,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -173448,7 +173524,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -175783,7 +175859,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -186027,7 +186103,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -188864,7 +188940,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -189162,7 +189238,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -189620,7 +189696,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -190827,7 +190903,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -191233,7 +191309,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -191569,7 +191645,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -201929,7 +202005,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "pathogensurveillance",
@@ -203654,7 +203730,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -212129,7 +212205,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -220962,7 +221038,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -221301,7 +221377,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -230572,7 +230648,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -230816,7 +230892,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "differentialabundance",
@@ -230960,7 +231036,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -234159,7 +234235,7 @@
       "pipelines": [
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -244431,7 +244507,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -245303,7 +245379,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -245589,7 +245665,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -246502,7 +246578,13 @@
         "maintainers": [
           "@Joon-Klaps"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
+        }
+      ]
     },
     {
       "name": "bcl_demultiplex",
@@ -246601,7 +246683,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -249078,7 +249160,7 @@
         },
         {
           "name": "viralrecon",
-          "version": "2.6.0"
+          "version": "3.0.0"
         }
       ]
     },
@@ -250436,7 +250518,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         }
       ]
     },
@@ -252908,7 +252990,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -253221,6 +253303,10 @@
         {
           "name": "viralmetagenome",
           "version": "0.1.2"
+        },
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
         }
       ]
     },
@@ -253325,7 +253411,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -253638,6 +253724,10 @@
         {
           "name": "viralmetagenome",
           "version": "0.1.2"
+        },
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
         }
       ]
     },
@@ -253750,7 +253840,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.6.1"
+          "version": "1.7.0"
         },
         {
           "name": "denovotranscript",
@@ -254035,6 +254125,10 @@
         {
           "name": "viralmetagenome",
           "version": "0.1.2"
+        },
+        {
+          "name": "viralrecon",
+          "version": "3.0.0"
         }
       ]
     },
