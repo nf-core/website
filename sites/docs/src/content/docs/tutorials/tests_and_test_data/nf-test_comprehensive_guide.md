@@ -17,11 +17,12 @@ This guide provides everything needed to create robust, maintainable tests for m
 1. [Installation](./components/01_installation.md) - Setting up nf-test in your development environment
 2. [Project setup](./components/02_project_setup.md) - Configuring your nf-core pipeline repository for testing with nf-test
 
-<!--
 ### Component Testing
 
 3. [Testing modules](./components/03_testing_modules.md) - Testing individual nf-core modules
 4. [Testing subworkflows](./components/04_testing_subworkflows.md) - Testing nf-core subworkflows
+
+<!--
 5. [Testing pipelines](./components/05_testing_pipelines.md) - End-to-end pipeline testing
 6. [nf-test assertions](./components/06_assertions.md) - Comprehensive assertion patterns and verification techniques
 
