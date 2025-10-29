@@ -97,8 +97,9 @@ The nf-core community continuously evaluates and enhances the metrics collection
 - **Metric Enhancement**: Addition of new quality indicators based on community needs
 - **Tooling Development**: Improvement of automated collection and reporting systems
 
-> [!TIP]
-> To request additional metrics or report enhancements, please engage with the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory) or open an issue in the [nf-core/stats repository](https://github.com/nf-core/stats).
+:::note
+To request additional metrics or report enhancements, please engage with the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory) or open an issue in the [nf-core/stats repository](https://github.com/nf-core/stats).
+:::
 
 ## Regulatory Context
 
@@ -377,99 +378,6 @@ Comprehensive documentation supports validation and ensures consistent usage:
 - **Trend Analysis**: Analyze patterns in pipeline usage and performance
 - **Continuous Improvement**: Regular review and enhancement of validation processes
 
-> [!SUCCESS]
-> By following this structured approach and leveraging nf-core's comprehensive metrics and reporting system, institutions can efficiently validate nf-core pipelines while maintaining the flexibility to meet their specific regulatory and operational requirements.
-
-#### Change Management
-
-In software development, change management refers to the process of tracking and controlling modifications to code and documentation throughout the _software development lifecycle_, ensuring transparency, accountability, and risk mitigation. In regulated bioinformatics environments, change management practices are essential for maintaining compliance, and reproducibility. Within nf-core pipelines, change management is structured as follows:
-
-- Requests for changes, bug reports, and enhancement suggestions can be submitted by any user or community member, ensuring transparent and open community-driven improvement.
-- Each pipeline and module follows a Pull Request (PR) template checklist, which helps contributors meet minimum submission requirements.
-- Proposed changes must include system and unit tests, which are automatically validated through the continuous integration/continuous deployment (CI/CD) framework, reducing manual testing overhead.
-- Changes to development branches require peer review, with each PR needing at least one review before merging into dev branches and at least two reviews before merging into the _main_ branch.
-- Automated tests are triggered on each PR to confirm that existing functionality remains unaffected.
-- Automated linting checks are performed on each PR, enforcing coding standards and preventing stylistic issues.
-- Direct changes to the main branch are not permitted, protecting the integrity of the production-ready code.
-- During pipeline release, reviewers must verify that the pipeline adheres to nf-core’s central principles (such as reproducibility, thorough documentation, and compliance with the nf-core template). Any new pipeline submission requires approval from the nf-core core team before integration into the nf-core repository.
-
-**Do I need to re-validate my pipeline every time a change is made?**
-In a validated environment, the Risk Assessment process will determine the level of testing required for each change. Minor or non-impactful changes may require testing related to the specific component but major changes may require broader re-validation. Significant changes to the entire pipeline would need a complete re-validation to ensure compliance and integrity.
-
-#### Security
-
-- Patching and updates (including frequency, monitoring of vulnerabilities and third party libraries), requirements management and technical documentation (traceability, reusability, granularity, updates)
-
-### Documentation
-
-#### General documentation
-
-Make sure the pipeline documentation is available and complete.
-This should cover at least general aspects of the pipeline and provide a functional default config enabling users to run a basic example.
-It should cover subworkflow specific options of the pipeline if there are multiple paths available within a pipeline.
-
-#### Standard operating procedure (SOP)
-
-Establish comprehensive step-by-step instructions, that allow anyone operating the pipeline to do a full run-through for the validated use-case in a consistent way.
-It should mention any quality checkpoints or acceptance criteria that need to be applied.
-
-## Testing
-
-#### Functional tests
-
-Functional tests are the tests that nf-core provides to a large extent already for you.
-These validate that modules, subworkflows and entire workflow
-work functionally, e.g. can be run and produce outputs. These do not cover the full requirements of a validation of an analysis pipeline, which involves integrative tests too.
-
-#### Integrative tests
-
-If you are interested in validating an nf-core pipeline, you are responsible for designing and executing integrative tests that comply with regulatory requirements.
-These typically include running validation within your target environment, with data that you will experience during your production setup, e.g. data coming from a sequencing provider using a special kit and in a specific format.
-We refer to these tests as integrative tests, which is slightly
-
-TODO integrate this together in one coherent seection
-
-nf-core provides several levels of functional tests for pipelines at each potential stage that composes a pipeline:
-
-- **modules**: We have nf-tests that cover the most atomic units of a pipeline - modules and snapshot the inputs and outputs of a module
-- **subworkflows**: We provide nf-tests that cover combined modules (a subworkflow, a certain set of modules within a pipeline)
-- **workflows**: We provide test profiles that run the entire pipeline end-to-end with a profile for all available potential subroutes through the analysis pipeline itself
-
-Our plan is to add **analytical performance** tests for pipelines that snapshot and test analytical performance of the pipeline.
-
-We advise you to employ [nf-schema] to perform runtime validation of the config parameters and/or parsed sample sheets.
-
-integrative testing
-
-### Features to include:
-
-Pipeline level:
-
-- Integration testing: an analysis of the test in the production environment with real data
-  - Compare the performance of the test system in your dataset with those
-    specifications defined by the user. This includes the following performance
-    characteristics:
-    • Accuracy
-    • Precision
-    • Reportable range [if applicable]
-    • Reference intervals/range (normal values) for the laboratory’s patient population [if applicable]
-- Controls to be included to unit tests: [if applicable]
-  • Positive control
-  • Negative control
-  • Additional controls (for example PCR reagent controls, amplification control gene, calibration curve,... )
-- Set of expected results for all controls.
-- Set assay acceptance criteria
-- Set rejection criteria.
-  - Add automated quality checks that will be stopping points for the pipeline, if fail.
-
-- Store results to an automated report / stats file
-- Automate risk management based on results stored in the stats file
-
-## Maintenance
-
-- Continous development
-- Collect bug reports and if possible write a test that covers the affected code.
-- Collect testing logs and a history of benchmarking metrics
-- Prioritize suggestions for new functionality
-- User communication / communication guidelines
-- Nf-core template updates create a new minor release at minimum --> not just a patch release
+:::info
+By following this structured approach and leveraging nf-core's comprehensive metrics and reporting system, institutions can efficiently validate nf-core pipelines while maintaining the flexibility to meet their specific regulatory and operational requirements.
+:::
