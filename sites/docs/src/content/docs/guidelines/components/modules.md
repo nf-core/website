@@ -204,7 +204,7 @@ tool --version | sed '1!d'
 :::
 
 :::note
-For not yet converted modules, you will see a different approach for collectiong versions. Even though the approach is deprecated, we kept it below for reference.
+For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, we kept it below for reference.
 :::
 
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
