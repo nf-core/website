@@ -14,7 +14,7 @@ This chapter covers the fundamentals of nf-core module testing, from basic synta
 
 **What are snapshots?**
 
-Snapshots are nf-test's way of capturing and validating the expected outputs of your tests. When you run a test for the first time, nf-test creates a `.snap` file containing checksums, file names, and other metadata about that describe how a module's output should look like.
+Snapshots are nf-test's way of capturing and validating the expected outputs of your tests. When you run a test for the first time, nf-test creates a `.snap` file containing checksums, file names, and other metadata that describes how a module's output should look like.
 
 **How snapshot matching works:**
 
@@ -101,8 +101,13 @@ The nf-test file is organized into several key scopes that define what and how t
 
 Now that we understand the overall structure, let's look at the specific elements within the test:
 
+**When section (input setup):**
+
 - `[ id:'test' ]` - **meta map**: Contains sample metadata (ID, conditions, etc.)
 - `file('test_file.txt')` - **input file**: The file to process
+
+**Then section (assertions):**
+
 - `process.success` - **success check**: Ensures the process completed without errors
 - `snapshot(sanitizeOutput(process.out)).match()` - **output validation**: Compares all outputs to stored snapshot
 - `sanitizeOutput()` - **snapshot sanitization**: Cleans process and workflow outputs by removing numbered keys, making snapshots more human-readable
@@ -127,7 +132,7 @@ nf-core modules test cat --profile docker
 :::info
 Note that nf-core tools wraps around `nf-test` commands itself.
 nf-core tools commands are not 1:1 equivalent with 'raw' nf-test commands.
-::: 
+:::
 
 ### Step 4: Examine the generated snapshot
 
@@ -152,11 +157,11 @@ After running, check `tests/main.nf.test.snap`:
 }
 ```
 
-You can see the the outputs of the module, with an associated `md5sum` which concisely describes the exact contents of the two output files: the concatenated file, and the nf-core `versions.yml` file.
+You can see the outputs of the module, with an associated `md5sum` which concisely describes the exact contents of the two output files: the concatenated file, and the nf-core `versions.yml` file.
 
 Now you understand the full test cycle! The snapshot ensures your module produces consistent, expected outputs every time.
 
-Any time you change the module - you can run the test again to check to see you did not unexpectedly change an output that should not have been changed.
+Any time you change the module - you can run the test again to check that you did not unexpectedly change an output that should not have been changed.
 
 ## Essential assertions
 
@@ -164,14 +169,23 @@ Tests use assertions to verify the expected output of the process specified in t
 
 You can specify multiple assertions to be evaluated together in a single test by specifying them within an `assertAll` block.
 
-Nextflow process output channels that lack explicit names (i.e., when no [`meta` map](https://nf-co.re/docs/contributing/components/meta_map) is present) can be addressed using square brackets and the corresponding index, for example `process.out[0]` for the first channel and `process.out[0][1]` for the second element of the first channel.
+Nextflow process output channels that lack explicit names (i.e., no `emit:` label in the process definition) can be addressed using square bracket index notation. For example, `process.out[0]` accesses the first output channel.
 
-For example, if the module outputs two channels that look like:
+When a channel contains a tuple with multiple elements, you can use additional indices to access specific elements within that tuple, such as `process.out[0][1]` to access the second element of the first channel.
 
-- Channel one: `[meta, file1.txt]`
-- Channel two: `[meta, file1.txt]`
+For example, the CAT process from earlier has two output channels with explicit emit labels:
 
-Then calling `process.out[0][1]` will first pick Channel one, and then the `file.txt` of this channel.
+```groovy
+output:
+tuple val(meta), path("${prefix}"), emit: file_out
+path "versions.yml"               , emit: versions
+```
+
+You can access these outputs either by name or by index:
+
+- `process.out.file_out` or `process.out[0]` - accesses the first output channel `[meta, file]`
+- `process.out.versions` or `process.out[1]` - accesses the second output channel `versions.yml`
+- `process.out.file_out[1]` or `process.out[0][1]` - accesses just the file from the first channel tuple
 
 Below you will find examples of a range of different types of assertions that you can apply to module channel outputs.
 
@@ -225,9 +239,9 @@ modules/nf-core/tool/subtool/
 
 After writing the module under `main.nf` and being ready to write the tests, we can edit the test file (`tests/main.nf.test`) to specify the test's input data via the `input[0]` and `input[1]` channels in the `when` block.
 
-Then in the `test` block, we can define what we want to go into the snapshot, or in otherwords what to generate to compare subsequent runs against.
+Then in the `test` block, we can define what we want to go into the snapshot, or in other words what to generate to compare subsequent runs against.
 
-In this case we will record the subsampling an input FASTQ file (`then:`) through generating `md5sums` of all output from module (where `md5sums` are the default method of recording a file with nf-test).
+In this case we will record the subsampling of an input FASTQ file (`then:`) through generating `md5sums` of all output from the module (where `md5sums` are the default method of recording a file with nf-test).
 
 ```groovy
 nextflow_process {
@@ -262,30 +276,6 @@ nextflow_process {
             )
         }
     }
-
-    test("sarscov2 - fastq - stub") {
-
-        options "-stub"
-
-        when {
-            process {
-                """
-                input[0] = [
-                    [ id:'test', single_end:false ], // meta map
-                    file(params.modules_testdata_base_path + 'genomics/sarscov2/illumina/fastq/test_1.fastq.gz', checkIfExists: true)
-                ]
-                input[1] = 10
-                """
-            }
-        }
-
-        then {
-            assertAll(
-                { assert process.success },
-                { assert snapshot(process.out).match() }
-            )
-        }
-    }
 }
 ```
 
@@ -295,7 +285,7 @@ Once we've added the assertions in the `then` block, we run the tests to create 
 nf-core modules test seqtk/sample --profile docker
 ```
 
-This will execute the tests and generate snapshot file (`tests/main.nf.test.snap`) for validation.
+This will execute the tests and generate a snapshot file (`tests/main.nf.test.snap`) for validation.
 
 ## Stub mode testing
 
@@ -332,7 +322,7 @@ Some modules may require additional parameters added to the test command to succ
 
 These can be specified using a `params` input and an [`ext.args` variable](https://nf-co.re/docs/guidelines/components/modules#configuration-of-extargs-in-tests) within the process scope of the `nextflow.config` file, which exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
+If your module requires a `nextflow.config` file to run, create the file in the module's `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
 
 ```bash
 touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
@@ -348,7 +338,7 @@ process {
 
 You do not need to modify the contents of this file any further, except for updating the module name to the expected module.
 
-Then import the config to the `main.nf.test` file and supply the params in the `when` section of the test.
+Then import the config into the `main.nf.test` file and supply the params in the `when` section of the test.
 
 ```main.nf.test
 process "MODULE"
@@ -420,7 +410,7 @@ nextflow_process {
 Please keep in mind that changes in processes or workflows executed in the setup method can result in a failed test of a downstream module.
 :::
 
-Now lets look at more explicit examples.
+Now let's look at more explicit examples.
 
 ### Global `setup` method (for all tests)
 
