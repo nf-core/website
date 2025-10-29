@@ -1,0 +1,141 @@
+---
+title: "Topic: Topics"
+subtitle: "How to adopt Topic channels in your favorite module"
+pubDate: 2025-10-20T20:00:00+01:00
+headerImage: ""
+headerImageAlt: ""
+embedHeaderImage: true
+authors:
+    - "mapo9"
+    - "nvnieuwk"
+    - "mribeirodantas"
+    - "kobelavaerts"
+    - "wangdepin"
+    - "yadavbha"
+label:
+    - "community"
+---
+
+:::tip{title="TLDR;"}
+
+- We are adopting topic channels to replace the versions.yml.
+- For now both options are valid, but this will change.
+- No more mixing of version channels.
+  :::
+
+# What are topic channels
+
+Say goodbye to writing a version.yml for each module and mixing the channels together. To improve on this end, we will be adopting topic channels.
+Topic channels can collect values from multiple sources automatically, just by sharing the same topic name.
+This means no more tangled channel wiring or mix operator chains. With topic channels,
+you can now broadcast and collect data across your pipeline more naturally.
+
+See also the [channels documention](https://www.nextflow.io/docs/latest/reference/channel.html#topic), INSERT OTHER DOCUS THERE
+
+````
+process  {
+  output:
+  val('hello'), topic: my_topic
+
+  // ...
+}
+
+process bye {
+  output:
+  val('bye'), topic: my_topic
+
+  // ...
+}
+````
+
+# How can you adopt your module
+
+1. main.nf
+2. Semi-automatic meta.yml update
+2. tests/main.nf.test
+3. Update snapshot
+4. fix nf-core/subworkflows
+
+We already changed a few modules to the topic way of doing these. See e.g. [FASTQC module](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf).
+
+Let's get to work. Grab any nf-core module
+
+## main.nf
+
+You can delete this section, we don't want to write to `version.yml` files any more:
+
+````
+cat <<-END_VERSIONS > versions.yml
+"${task.process}":
+    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
+END_VERSIONS
+"""
+````
+Then, you can adapt the output section:
+
+````
+output:
+tuple val(meta), path("*.html"), emit: html
+tuple val(meta), path("*.zip") , emit: zip
+path  "versions.yml"           , emit: versions
+````
+
+to
+
+````
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+````
+
+
+## meta.yml
+
+Update the meta.yml using nf-core/tools. Then fill in the version information
+````
+  versions_fastqc:
+    - - ${task.process}:
+          type: string
+          description: The process the versions were collected from
+      - fastqc:
+          type: string
+          description: The tool name
+      - fastqc --version | sed "/FastQC v/!d; s/.*v//:
+          type: string
+          description: The command used to generate the version of the tool
+topics:
+  - versions:
+      - - process:
+            type: string
+            description: The process the versions were collected from
+        - tool:
+            type: string
+            description: The tool name
+        - version:
+            type: string
+            description: The version of the tool
+````
+
+
+## tests/main.nf.test
+
+This might be a little more tricky for some of your modules, but a good start to catch the version in the snapshot is:
+````
+process.out.findAll { key, val -> key.startsWith("versions")}
+````
+
+## Update snapshot
+
+As no version.yml exists anymore, you will have to update the snapshot. 
+
+## fix nf-core/subworkflows
+
+All nf-core/subworkflows which are calling your module will fail now because no version.yml is created to use the `mix` operator on.
+So, you should remove all occurences of:
+
+````
+ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+````
+
+Make sure to update the snapshots the of the subworkflows as well.
+
+
+
