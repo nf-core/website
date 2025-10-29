@@ -1,11 +1,12 @@
 ---
 title: About nf-core
-description: About nf-core - who we are, how we are organised and how we started.
+description: Who we are, how we are organised and how we started.
 ---
 
 import { Image } from "astro:assets";
 import dockerLogo from "@assets/images/docker-horizontal.png";
 import runsOnLogo from "@assets/images/runs-on.png";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 # Introduction
 
@@ -27,10 +28,13 @@ Finally, we would specifically like to acknowledge and thank the following spons
 
 ## Seqera
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/seqera.svg"
     alt="Seqera logo"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
+
 />
 
 Seqera is the leading provider of open source workflow orchestration software needed for data pipeline processing, cloud infrastructure, and secure collaboration.
@@ -47,10 +51,13 @@ Specifically, Seqera helps nf-core with:
 
 ## SciLifeLab NGI
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/NGI.svg"
     alt="SciLifeLab National Genomics Infrastructure"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
+
 />
 
 The nf-core community was founded with pipelines from the [SciLifeLab National Genomics Infrastructure](https://ngisweden.scilifelab.se/) (NGI).
@@ -62,10 +69,13 @@ The NGI continues to support nf-core across a number of fronts:
 
 ## SciLifeLab Data Centre
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/SciLifeLabDC.svg"
     alt="SciLifeLab Data Centre"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
+
 />
 
 The [SciLifeLab Data Centre](https://www.scilifelab.se/data/) supports nf-core with funding from the [SciLifeLab & Wallenberg National Program for Data-Driven Life Science](https://www.scilifelab.se/data-driven/).
@@ -73,10 +83,13 @@ This funding covers a full-time position ([@mashehu](https://github.com/mashehu)
 
 ## Centre for Genomic Regulation
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/CRG.svg"
     alt="Centre for Genomic Regulation"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
+
 />
 
 Nextflow was initially written at the [Centre for Genomic Regulation](https://www.crg.eu/) in [Cedric Notredame's group](https://www.crg.eu/cedric_notredame).
@@ -84,11 +97,14 @@ Cedric's group supports nf-core by funding a position with 50% time spent on cor
 
 ## Amazon Web Services
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/aws.svg"
     alt="Amazon Web Services"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
     style="max-width: 200px"
+
 />
 
 Amazon Web Services (AWS) kindly support nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
@@ -99,11 +115,7 @@ This is used by most nf-core pipelines to give free and open access to the refer
 
 ## Microsoft Azure
 
-<img
-    src="/images/contributors/colour/azure.svg"
-    alt="Microsoft Azure"
-    class="float-end darkmode-image me-5 mb-5 ms-3"
-/>
+<DarkModeImage src="/images/contributors/colour/azure.svg" alt="Microsoft Azure" class="float-end me-5 mb-5 ms-3" />
 
 Microsoft Azure also kindly supports nf-core with cloud compute credits to run each nf-core analysis pipeline with full-size benchmark datasets on every release.
 You will soon be able to explore and download these pipeline results on the nf-core website, on each pipeline page.
@@ -112,10 +124,13 @@ You will soon be able to explore and download these pipeline results on the nf-c
 
 ## Chan Zuckerberg Initiative
 
-<img
+<DarkModeImage
     src="/images/contributors/colour/CZI.svg"
     alt="Chan Zuckerberg Initiative"
-    class="float-end darkmode-image me-5 mb-5 w-25 ms-3"
+    class="float-end me-5 mb-5 w-25 ms-3"
+    width={200}
+    height={100}
+
 />
 
 The Chan Zuckerberg Initiative (CZI) is a great supporter of scientific open-source software.
@@ -149,7 +164,7 @@ We also thank the following organisations for supporting nf-core through providi
                 <Image src={runsOnLogo} alt="RunsOn logo" class="m-auto" />
             </a>
         <a href="https://hackmd.io/" class="col"  target="_blank">
-            <img src="/images/contributors/colour/hackmd.svg" alt="HackMD logo" class="darkmode-image" />
+            <DarkModeImage src="/images/contributors/colour/hackmd.svg" alt="HackMD logo" />
         </a>
 
 </div>
