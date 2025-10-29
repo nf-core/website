@@ -230,24 +230,24 @@ All nf-core pipelines must meet standardized quality criteria that support valid
 
 #### Development Standards
 
-- **Semantic Versioning**: Clear version management with defined backward compatibility [https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning](Semantic Versioning Guideline)
-- **Code Quality**: Adherence to coding standards and automated linting [https://nf-co.re/docs/guidelines/pipelines/requirements/linting](Linting Guideline)
+- **Semantic Versioning**: Clear version management with defined backward compatibility [Semantic Versioning Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning)
+- **Code Quality**: Adherence to coding standards and automated linting [Linting Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/linting)
 - **Testing Framework**: Comprehensive functional and integration tests
-- **Documentation**: Complete usage instructions and parameter documentation [https://nf-co.re/docs/guidelines/pipelines/requirements/docs](Docs Guideline)
+- **Documentation**: Complete usage instructions and parameter documentation [Docs Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/docs)
 
 #### Change Management
 
-- **Pull Request Process**: Mandatory peer review for all changes [https://nf-co.re/docs/checklists/reviews/pipeline_release_pr](Release Pull Request Guideline)
-- **Automated Testing**: CI/CD pipeline validation for every change [https://nf-co.re/docs/guidelines/pipelines/requirements/ci_testing](CI Testing Guidelines)
-- **Release Process**: Structured release workflow with quality checkpoints [https://nf-co.re/docs/checklists/pipeline_release](Release Proces Guideline)
+- **Pull Request Process**: Mandatory peer review for all changes [Release Pull Request Guideline](https://nf-co.re/docs/checklists/reviews/pipeline_release_pr)
+- **Automated Testing**: CI/CD pipeline validation for every change [CI Testing Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/ci_testing)
+- **Release Process**: Structured release workflow with quality checkpoints [Release Process Guideline](https://nf-co.re/docs/checklists/pipeline_release)
 - **Issue Tracking**: Transparent bug reporting and feature request management (entirely open, on respective Github repository of each pipeline)
 
 #### Security and Compliance
 
-- **Dependency Management**: Fixed software versions in containerized environments [https://nf-co.re/docs/guidelines/pipelines/requirements/docker](Software containerization guidelines)
+- **Dependency Management**: Fixed software versions in containerized environments [Software containerization guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/docker)
 - **Vulnerability Scanning**: Regular security assessment of dependencies (responsibility of user/institution, as not easily generalizable). Containers hosted at Seqera Containers are automatically scanned.
-- **License Compliance**: Clear licensing for all components [https://nf-co.re/docs/guidelines/pipelines/requirements/mit_license](Licence Guidelines)
-- **Access Control**: Controlled access to pipeline repositories and releases [https://nf-co.re/governance](Governance at nf-core)
+- **License Compliance**: Clear licensing for all components [Licence Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/mit_license)
+- **Access Control**: Controlled access to pipeline repositories and releases [Governance at nf-core](https://nf-co.re/governance)
 
 ### Testing Framework
 
