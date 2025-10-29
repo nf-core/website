@@ -139,8 +139,9 @@ Regulatory requirements vary by jurisdiction and intended use. Common standards 
 - [FDA Consensus Standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices)
 - [EU Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
 
-> [!NOTE]
-> Computerized Systems Validation (CSV) requirements for infrastructure and IT systems are outside the scope of this guidance. Please consult with your IT and compliance teams for CSV requirements.
+:::note
+Computerized Systems Validation (CSV) requirements for infrastructure and IT systems are outside the scope of this guidance. Please consult with your IT and compliance teams for CSV requirements.
+:::
 
 ## Using nf-core Validation Reports
 
