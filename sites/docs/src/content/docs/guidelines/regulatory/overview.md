@@ -25,19 +25,19 @@ nf-core has developed a systematic approach to pipeline validation that balances
 
 ### What nf-core Provides
 
-* **Comprehensive metrics collection** via nf-core/stats
-* **Automated validation readiness reports** with each pipeline release
-* **Quality assurance frameworks** (testing, documentation, versioning)
-* **Implementation guidance** for institutional validation
-* **Continuous improvement** through gap identification and community feedback
+- **Comprehensive metrics collection** via nf-core/stats
+- **Automated validation readiness reports** with each pipeline release
+- **Quality assurance frameworks** (testing, documentation, versioning)
+- **Implementation guidance** for institutional validation
+- **Continuous improvement** through gap identification and community feedback
 
 ### What Users Are Responsible For
 
-*  **Institution-specific validation** within their target environment
-*  **Regulatory compliance** according to applicable standards
-*  **Infrastructure validation** (CSV and system-level requirements, aka IQ/PQ/OQ)
-*  **Risk assessment** for their specific use cases
-*  **Ongoing maintenance** and re-validation as needed
+- **Institution-specific validation** within their target environment
+- **Regulatory compliance** according to applicable standards
+- **Infrastructure validation** (CSV and system-level requirements, aka IQ/PQ/OQ)
+- **Risk assessment** for their specific use cases
+- **Ongoing maintenance** and re-validation as needed
 
 > [!NOTE]
 > nf-core provides the foundation for validation through standardized metrics and quality assurance, but cannot provide complete "off-the-shelf" validation reports. Each institution must perform their own validation according to their specific regulatory requirements and risk assessment.
