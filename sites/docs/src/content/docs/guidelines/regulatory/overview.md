@@ -211,26 +211,26 @@ Using the nf-core report as a foundation, institutions should follow these steps
 All nf-core pipelines must meet standardized quality criteria that support validation efforts:
 
 #### Development Standards
-- **Semantic Versioning**: Clear version management with defined backward compatibility
-- **Code Quality**: Adherence to coding standards and automated linting
+- **Semantic Versioning**: Clear version management with defined backward compatibility [https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning](Semantic Versioning Guideline)
+- **Code Quality**: Adherence to coding standards and automated linting [https://nf-co.re/docs/guidelines/pipelines/requirements/linting](Linting Guideline)
 - **Testing Framework**: Comprehensive functional and integration tests
-- **Documentation**: Complete usage instructions and parameter documentation
+- **Documentation**: Complete usage instructions and parameter documentation [https://nf-co.re/docs/guidelines/pipelines/requirements/docs](Docs Guideline)
 
 #### Change Management
-- **Pull Request Process**: Mandatory peer review for all changes
-- **Automated Testing**: CI/CD pipeline validation for every change
-- **Release Process**: Structured release workflow with quality checkpoints
-- **Issue Tracking**: Transparent bug reporting and feature request management
+- **Pull Request Process**: Mandatory peer review for all changes [https://nf-co.re/docs/checklists/reviews/pipeline_release_pr](Release Pull Request Guideline)
+- **Automated Testing**: CI/CD pipeline validation for every change [https://nf-co.re/docs/guidelines/pipelines/requirements/ci_testing](CI Testing Guidelines)
+- **Release Process**: Structured release workflow with quality checkpoints [https://nf-co.re/docs/checklists/pipeline_release](Release Proces Guideline)
+- **Issue Tracking**: Transparent bug reporting and feature request management (entirely open, on respective Github repository of each pipeline)
 
 #### Security and Compliance
-- **Dependency Management**: Fixed software versions in containerized environments
-- **Vulnerability Scanning**: Regular security assessment of dependencies
-- **License Compliance**: Clear licensing for all components
-- **Access Control**: Controlled access to pipeline repositories and releases
+- **Dependency Management**: Fixed software versions in containerized environments [https://nf-co.re/docs/guidelines/pipelines/requirements/docker](Software containerization guidelines)
+- **Vulnerability Scanning**: Regular security assessment of dependencies (responsibility of user/institution, as not easily generalizable). Containers hosted at Seqera Containers are automatically scanned.
+- **License Compliance**: Clear licensing for all components [https://nf-co.re/docs/guidelines/pipelines/requirements/mit_license](Licence Guidelines)
+- **Access Control**: Controlled access to pipeline repositories and releases [https://nf-co.re/governance](Governance at nf-core)
 
 ### Testing Framework
 
-nf-core provides comprehensive testing at multiple levels to ensure pipeline quality:
+nf-core provides comprehensive testing at multiple levels to ensure pipeline quality. Some aspects however are too specific to individual methodology, institutional requirements, so these are not covered by the nf-core community per se. Particularly the integration testing and performance testing of nf-core pipelines is considered out of scope for the regulatory readiness documentation for each pipeline as this is highly dependent on the individual infrastructure and thus falls under either Computer Systems Validation (CSV) and/or local integration.
 
 #### Functional Testing
 - **Module Tests**: Validate individual pipeline components using [nf-test](https://www.nf-test.com/)
