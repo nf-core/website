@@ -222,8 +222,9 @@ Using the nf-core report as a foundation, institutions should follow these steps
 - **Traceability**: Maintain complete audit trails of data processing
 - **Retention**: Implement appropriate data retention policies
 
-> [!IMPORTANT]
-> The nf-core validation report provides a foundation, but each institution must validate the pipeline within their specific environment, with their data, and according to their regulatory requirements.
+:::warning
+The nf-core validation report provides a foundation, but each institution must validate the pipeline within their specific environment, with their data, and according to their regulatory requirements.
+:::
 
 ## Community Standards and Guidelines
 
