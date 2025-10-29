@@ -39,12 +39,13 @@ nf-core has developed a systematic approach to pipeline validation that balances
 *  **Risk assessment** for their specific use cases
 *  **Ongoing maintenance** and re-validation as needed
 
-> [!NOTE]
-> nf-core provides the foundation for validation through standardized metrics and quality assurance, but cannot provide complete "off-the-shelf" validation reports. Each institution must perform their own validation according to their specific regulatory requirements and risk assessment.
+:::note
+nf-core provides the foundation for validation through standardized metrics and quality assurance, but cannot provide complete "off-the-shelf" validation reports. Each institution must perform their own validation according to their specific regulatory requirements and risk assessment.
+:::
 
 A simplistic diagram of what you as a user intending to work under regulation would provide compared to what nf-core can provide you with is outlined below in the figure:
 
-![Regulatory validation overview](../../../../assets/images/regulatory/regulatory_layers_nfcore.png)
+![Regulatory validation overview](../../../assets/images/regulatory/regulatory_layers_nfcore.png)
 
 ## nf-core Metrics & Reporting System
 

@@ -2,12 +2,14 @@
 title: Pipeline validation checklist
 subtitle: A practical checklist for validating nf-core pipelines in your institution
 weight: 10
+markdownPlugin: checklist
 ---
 
 This checklist guides you through the validation process for nf-core pipelines based on the principles outlined in the overview documentation. Complete each section according to your institutional requirements and regulatory context.
 
-> [!NOTE]
-> This checklist serves as a comprehensive framework, though certain sections vary in detail by design. Some aspects, such as Computer Systems Validation (CSV), are deliberately kept concise as they fall outside the scope of the nf-core community and require institution-specific implementation tailored to individual organizational requirements and regulatory contexts.
+:::note
+This checklist serves as a comprehensive framework, though certain sections vary in detail by design. Some aspects, such as Computer Systems Validation (CSV), are deliberately kept concise as they fall outside the scope of the nf-core community and require institution-specific implementation tailored to individual organizational requirements and regulatory contexts.
+:::
 
 # Phase 1: Initial Assessment
 
@@ -161,5 +163,6 @@ This checklist guides you through the validation process for nf-core pipelines b
 - [ ] Plan patching and update schedule
 - [ ] Assess third-party library risks
 
-> [!CAUTION]
-> This checklist provides a framework based on nf-core's validation approach. Adapt it to your specific regulatory requirements, institutional policies, and risk assessment outcomes. This is not necessarily complete or applies to all potential cases, but should serve as a go-to-resource that facilitates doing a pipeline validation at your respective institution and also facilitate finding appropriate lines of thought by regulatory authorities for example.
+:::warning{title="Caution"}
+This checklist provides a framework based on nf-core's validation approach. Adapt it to your specific regulatory requirements, institutional policies, and risk assessment outcomes. This is not necessarily complete or applies to all potential cases, but should serve as a go-to-resource that facilitates doing a pipeline validation at your respective institution and also facilitate finding appropriate lines of thought by regulatory authorities for example.
+:::
