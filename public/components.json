@@ -51832,6 +51832,143 @@
       ]
     },
     {
+      "name": "deacon_filter",
+      "path": "modules/nf-core/deacon/filter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_filter",
+        "description": "Filter DNA sequences using index of reference genome",
+        "keywords": [
+          "filter",
+          "index",
+          "fasta",
+          "fastq",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Deacon minimizer index file",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data, respectively.",
+                "pattern": "*.{fastq,fastq.gz,fqs,fqs.gz,fq,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastq_filtered": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}*.fq": {
+                  "type": "file",
+                  "description": "List of output filtered FastQ files of size 1 and 2 for single-end and paired-end data, respectively.",
+                  "pattern": "*.fq",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.json": {
+                  "type": "file",
+                  "description": "JSON file containing summary of results.",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@Baksic-Ivan",
+          "@Omer0191"
+        ],
+        "maintainers": [
+          "@Baksic-Ivan",
+          "@Omer0191",
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "deacon_index",
       "path": "modules/nf-core/deacon/index/meta.yml",
       "type": "module",
@@ -140132,6 +140269,10 @@
           "version": "1.1.0"
         },
         {
+          "name": "ribomsqc",
+          "version": "dev"
+        },
+        {
           "name": "riboseq",
           "version": "1.1.0"
         },
@@ -199519,6 +199660,104 @@
       ]
     },
     {
+      "name": "seqfu_check",
+      "path": "modules/nf-core/seqfu/check/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqfu_check",
+        "description": "Evaluates the integrity of DNA FASTQ files",
+        "keywords": [
+          "check",
+          "seqfu",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "seqfu": {
+              "description": "A general-purpose program to manipulate and parse information from FASTQ files",
+              "homepage": "https://telatin.github.io/seqfu2/",
+              "documentation": "https://telatin.github.io/seqfu2/tools/check.html#usage",
+              "tool_dev_url": "https://github.com/telatin/seqfu2",
+              "doi": "10.3390/bioengineering8050059",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqfu"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Either fastq file(s) or directory containing fastq files to be checked",
+                "pattern": "*.{fq,fastq}[.gz]",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1931"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "check": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated output file with basic sequence statistics.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@kornkv",
+          "@mrozon-zip"
+        ],
+        "maintainers": [
+          "@kornkv",
+          "@mrozon-zip",
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "seqfu_derep",
       "path": "modules/nf-core/seqfu/derep/meta.yml",
       "type": "module",
@@ -251366,6 +251605,84 @@
         ],
         "maintainers": [
           "@SPPearce"
+        ]
+      }
+    },
+    {
+      "name": "fastq_preprocess",
+      "path": "subworkflows/nf-core/fastq_preprocess/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_preprocess",
+        "description": "Subworkflow that preprocesses FASTQ files",
+        "keywords": [
+          "fasta",
+          "seqkit",
+          "preprocessing"
+        ],
+        "components": [
+          "fastq_sanitise_seqkit",
+          "seqkit/sana",
+          "seqkit/pair",
+          "seqkit/seq",
+          "seqkit/replace",
+          "seqkit/rmdup"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "channel",
+              "description": "Channel containing sample metadata and FASTQ files.\nStructure: [ val(meta), [ fastq ] ]\nWhere meta is a map containing at least:\n- id: sample identifier\n- single_end: boolean indicating if data is single-end (true) or paired-end (false)\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "skip_seqkit_sana_pair": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_sana_pair subworkflow.\n"
+            }
+          },
+          {
+            "skip_seqkit_seq": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_seq process.\n"
+            }
+          },
+          {
+            "skip_seqkit_replace": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_replace process.\n"
+            }
+          },
+          {
+            "skip_seqkit_rmdup": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_rmdup process.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reads": {
+              "type": "channel",
+              "description": "Channel containing filtered FASTQ files.\nStructure: [ val(meta), [ fastq ] ]\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@maia-munteanu"
+        ],
+        "maintainers": [
+          "@maia-munteanu",
+          "@vagkaratzas"
         ]
       }
     },
