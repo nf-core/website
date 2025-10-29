@@ -179,25 +179,14 @@ Only if a tool reads the input multiple times, it is required to uncompress the 
 
 ### Emission of versions
 
-Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+The topic output qualifier is a new feature in Nextflow that provides a streamlined approach to collecting outputs from multiple processes across a pipeline.
+This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
+See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
-```bash
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
-    samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
-END_VERSIONS
-```
-
-resulting in, for instance,
-
-```yaml
-"FASTQC":
-  fastqc: 0.11.9
-  samtools: 1.12
-```
-
-All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
+:::warning
+For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml.
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
+:::
 
 :::tip{title="Tips for extracting the version string" collapse}
 
@@ -218,6 +207,30 @@ tool --version | sed '1!d'
 - Use `|| true` for tools that exit with a non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`.
 
 :::
+
+:::note
+For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, we kept it below for reference.
+:::
+
+Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
+
+```bash
+cat <<-END_VERSIONS > versions.yml
+"${task.process}":
+    fastqc: \$( fastqc --version | sed -e "s/FastQC v//g" )
+    samtools: \$( samtools --version |& sed '1!d ; s/samtools //' )
+END_VERSIONS
+```
+
+resulting in, for instance,
+
+```yaml
+"FASTQC":
+  fastqc: 0.11.9
+  samtools: 1.12
+```
+
+All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
 We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file line-by-line as we believe the latter makes it easy to accidentally overwrite the file.
 Moreover, the exit status of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does no erroneously terminate the module.
