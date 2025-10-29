@@ -45,7 +45,7 @@ nf-core provides the foundation for validation through standardized metrics and 
 
 A simplistic diagram of what you as a user intending to work under regulation would provide compared to what nf-core can provide you with is outlined below in the figure:
 
-![Regulatory validation overview](../../../assets/images/regulatory/regulatory_layers_nfcore.png)
+![Regulatory validation overview](../../../../assets/images/regulatory/regulatory_layers_nfcore.png)
 
 ## nf-core Metrics & Reporting System
 
