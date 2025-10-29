@@ -179,7 +179,9 @@ Only if a tool reads the input multiple times, it is required to uncompress the 
 
 ### Emission of versions
 
-The topic output qualifier is a new feature in Nextflow that provides a streamlined approach to collecting outputs from multiple processes across a pipeline. This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required. Check the fastqc module for an example [here](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16).
+The topic output qualifier is a new feature in Nextflow that provides a streamlined approach to collecting outputs from multiple processes across a pipeline.
+This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
+See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
 :::tip{title="Tips for extracting the version string" collapse}
 
@@ -201,7 +203,9 @@ tool --version | sed '1!d'
 
 :::
 
+:::note
 For not yet converted modules, you will see a different approach for collectiong versions. Even though the approach is deprecated, we kept it below for reference.
+:::
 
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
