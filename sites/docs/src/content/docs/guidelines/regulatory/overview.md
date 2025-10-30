@@ -92,10 +92,10 @@ Each nf-core pipeline release automatically generates a comprehensive PDF valida
 
 The nf-core community continuously evaluates and enhances the metrics collection system:
 
-- **Community Feedback**: Regular review of validation requirements across different domains
-- **Standards Evolution**: Adaptation to changing regulatory landscapes
-- **Metric Enhancement**: Addition of new quality indicators based on community needs
-- **Tooling Development**: Improvement of automated collection and reporting systems
+- **Community feedback**: Regular review of validation requirements across different domains
+- **Standards evolution**: Adaptation to changing regulatory landscapes
+- **Metric enhancement**: Addition of new quality indicators based on community needs
+- **Tooling development**: Improvement of automated collection and reporting systems
 
 :::note
 To request additional metrics or report enhancements, please engage with the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory) or open an issue in the [nf-core/stats repository](https://github.com/nf-core/stats).
