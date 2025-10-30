@@ -248,33 +248,33 @@ All nf-core pipelines must meet standardized quality criteria that support valid
 
 #### Security and Compliance
 
-- **Dependency Management**: Fixed software versions in containerized environments [Software containerization guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/docker)
-- **Vulnerability Scanning**: Regular security assessment of dependencies (responsibility of user/institution, as not easily generalizable). Containers hosted at Seqera Containers are automatically scanned.
-- **License Compliance**: Clear licensing for all components [Licence Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/mit_license)
-- **Access Control**: Controlled access to pipeline repositories and releases [Governance at nf-core](https://nf-co.re/governance)
+- **Dependency management**: Fixed software versions in containerized environments [Software containerization guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/docker)
+- **Vulnerability scanning**: Regular security assessment of dependencies (responsibility of user/institution, as not easily generalizable). Containers hosted at Seqera Containers are automatically scanned.
+- **License compliance**: Clear licensing for all components [Licence Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/mit_license)
+- **Access control**: Controlled access to pipeline repositories and releases [Governance at nf-core](https://nf-co.re/governance)
 
-### Testing Framework
+### Testing framework
 
 nf-core provides comprehensive testing at multiple levels to ensure pipeline quality. Some aspects however are too specific to individual methodology, institutional requirements, so these are not covered by the nf-core community per se. Particularly the integration testing and performance testing of nf-core pipelines is considered out of scope for the regulatory readiness documentation for each pipeline as this is highly dependent on the individual infrastructure and thus falls under either Computer Systems Validation (CSV) and/or local integration.
 
-#### Functional Testing
+#### Functional testing
 
-- **Module Tests**: Validate individual pipeline components using [nf-test](https://www.nf-test.com/)
-- **Subworkflow Tests**: Test combined modules and workflow sections
-- **Pipeline Tests**: End-to-end testing with multiple test profiles
-- **Regression Testing**: Automated testing to prevent functional regressions
+- **Module tests**: Validate individual pipeline components using [nf-test](https://www.nf-test.com/)
+- **Subworkflow tests**: Test combined modules and workflow sections
+- **Pipeline tests**: End-to-end testing with multiple test profiles
+- **Regression testing**: Automated testing to prevent functional regressions
 
-#### Performance Testing
+#### Performance testing
 
 - **Resource usage**: Monitor computational requirements and efficiency
 - **Scalability**: Test pipeline performance across different dataset sizes
 - **Benchmarking**: Track performance metrics over time
 
-#### Integration Testing
+#### Integration testing
 
-- **Environment Testing**: Validate execution across different computing environments
-- **Data Format Testing**: Ensure compatibility with various input formats
-- **Output Validation**: Verify expected outputs and quality metrics
+- **Environment testing**: Validate execution across different computing environments
+- **Data format testing**: Ensure compatibility with various input formats
+- **Output validation**: Verify expected outputs and quality metrics
 
 ### Documentation standards
 
