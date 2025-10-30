@@ -78,17 +78,17 @@ Each nf-core pipeline release automatically generates a comprehensive PDF valida
 
 #### Community indicators
 
-- **Maintenance Activity**: Issue resolution rates, update frequency
-- **User Adoption**: Download statistics, citation metrics
-- **Contributor Engagement**: Review processes, contribution patterns
+- **Maintenance activity**: Issue resolution rates, update frequency
+- **User adoption**: Download statistics, citation metrics
+- **Contributor engagement**: Review processes, contribution patterns
 
-#### Risk Assessment Factors
+#### Risk assessment factors
 
-- **Complexity Analysis**: Pipeline complexity scoring
-- **Stability Indicators**: Error rates, failure patterns
-- **Change Management**: Update frequency and impact analysis
+- **Complexity analysis**: Pipeline complexity scoring
+- **Stability indicators**: Error rates, failure patterns
+- **Change management**: Update frequency and impact analysis
 
-### Gap Identification and Improvement
+### Gap identification and improvement
 
 The nf-core community continuously evaluates and enhances the metrics collection system:
 
@@ -101,21 +101,21 @@ The nf-core community continuously evaluates and enhances the metrics collection
 To request additional metrics or report enhancements, please engage with the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory) or open an issue in the [nf-core/stats repository](https://github.com/nf-core/stats).
 :::
 
-## Regulatory Context
+## Regulatory context
 
-### Risk-Based Validation Principles
+### Risk-based validation principles
 
 Pipeline validation follows risk-based approaches that consider the development, implementation, and integration of analysis pipelines as potential sources of risk. Common risks include:
 
-- **Execution Failures**: Risk of pipeline not producing expected outputs
-- **Data Integrity**: Risk of data corruption or loss during processing
-- **Analytical Accuracy**: Risk of incorrect or inconsistent results
+- **Execution failures**: Risk of pipeline not producing expected outputs
+- **Data integrity**: Risk of data corruption or loss during processing
+- **Analytical accuracy**: Risk of incorrect or inconsistent results
 - **Reproducibility**: Risk of inability to replicate results across runs
 - **Security**: Risk of unauthorized access or data breaches
 
 These risks are mitigated through appropriate measures such as comprehensive testing, documentation, version control, and quality assurance processes.
 
-### Applicable Standards
+### Applicable standards
 
 Regulatory requirements vary by jurisdiction and intended use. Common standards that may apply to bioinformatics pipelines include:
 
@@ -129,96 +129,96 @@ Regulatory requirements vary by jurisdiction and intended use. Common standards 
 - [FDA LDT Regulations](https://www.fda.gov/medical-devices/in-vitro-diagnostics/laboratory-developed-tests)
 - [CLIA Validation Requirements](https://www.cms.gov/regulations-and-guidance/legislation/clia/downloads/6064bk.pdf)
 
-#### Medical Device Registration
+#### Medical device registration
 
-- [CE Mark Registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
-- [EU Medical Device Guidelines](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
+- [CE mark registration](https://europa.eu/youreurope/business/product-requirements/labels-markings/ce-marking/index_en.htm)
+- [EU medical device guidelines](https://health.ec.europa.eu/system/files/2021-10/mdcg_2021-24_en_0.pdf)
 
-#### Harmonization Efforts
+#### Harmonization efforts
 
-- [FDA Consensus Standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices)
-- [EU Harmonized Standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
+- [FDA consensus standards](https://www.fda.gov/regulatory-information/search-fda-guidance-documents/appropriate-use-voluntary-consensus-standards-premarket-submissions-medical-devices)
+- [EU harmonized standards](https://single-market-economy.ec.europa.eu/single-market/european-standards/harmonised-standards_en)
 
 :::note
 Computerized Systems Validation (CSV) requirements for infrastructure and IT systems are outside the scope of this guidance. Please consult with your IT and compliance teams for CSV requirements.
 :::
 
-## Using nf-core Validation Reports
+## Using nf-core validation reports
 
-### Interpreting the Automated Reports
+### Interpreting the automated reports
 
 The validation readiness reports provide a standardized foundation for institutional validation. Key sections to review include:
 
-#### 1. **Executive Summary**
+#### 1. **Executive summary**
 
 - Overall pipeline maturity score
 - Critical risk indicators
 - Recommended validation approach
 
-#### 2. **Quality Metrics Analysis**
+#### 2. **Quality metrics analysis**
 
 - Testing coverage and pass rates
 - Documentation completeness scores
 - Code quality indicators
 - Community engagement metrics
 
-#### 3. **Risk Assessment Matrix**
+#### 3. **Risk assessment matrix**
 
 - Identified risk factors specific to the pipeline
 - Severity and likelihood assessments
 - Recommended mitigation strategies
 
-#### 4. **Compliance Readiness**
+#### 4. **Compliance readiness**
 
 - Alignment with common regulatory requirements
 - Gap analysis for specific use cases
 - Documentation and traceability indicators
 
-### Institution-Specific Validation Process
+### Institution-specific validation process
 
 Using the nf-core report as a foundation, institutions should follow these steps:
 
-#### Phase 1: Initial Assessment
+#### Phase 1: Initial assessment
 
 1. **Review nf-core validation report** for the target pipeline version
 2. **Define intended use** and applicable regulatory requirements
 3. **Conduct risk assessment** based on institutional context
 4. **Identify validation scope** and required evidence
 
-#### Phase 2: Gap Analysis
+#### Phase 2: Gap analysis
 
 1. **Compare nf-core metrics** against institutional requirements
 2. **Identify additional testing** needs for specific use cases
 3. **Assess infrastructure requirements** and CSV considerations
 4. **Plan integration testing** with institutional data and systems
 
-#### Phase 3: Validation Execution
+#### Phase 3: Validation execution
 
 1. **Perform functional verification** in target environment
 2. **Execute integration testing** with representative datasets
 3. **Validate analytical performance** against established criteria
 4. **Document evidence** of compliance and performance
 
-#### Phase 4: Ongoing Maintenance
+#### Phase 4: Ongoing maintenance
 
 1. **Monitor pipeline updates** and assess impact
 2. **Maintain validation status** through change control
 3. **Update validation** as requirements evolve
 4. **Participate in community** feedback and improvement
 
-### Infrastructure Considerations
+### Infrastructure considerations
 
-#### Computing Environment
+#### Computing environment
 
 - **Reproducibility**: Ensure consistent execution across runs
 - **Security**: Implement appropriate access controls and audit trails
 - **Performance**: Validate pipeline performance under expected loads
 - **Backup/Recovery**: Establish data protection and recovery procedures
 
-#### Data Management
+#### Data management
 
-- **Input Validation**: Verify data integrity and format compliance
-- **Output Verification**: Confirm expected outputs and quality metrics
+- **Input validation**: Verify data integrity and format compliance
+- **Output verification**: Confirm expected outputs and quality metrics
 - **Traceability**: Maintain complete audit trails of data processing
 - **Retention**: Implement appropriate data retention policies
 
@@ -226,27 +226,27 @@ Using the nf-core report as a foundation, institutions should follow these steps
 The nf-core validation report provides a foundation, but each institution must validate the pipeline within their specific environment, with their data, and according to their regulatory requirements.
 :::
 
-## Community Standards and Guidelines
+## Community standards and guidelines
 
-### Pipeline Quality Requirements
+### Pipeline quality requirements
 
 All nf-core pipelines must meet standardized quality criteria that support validation efforts:
 
-#### Development Standards
+#### Development standards
 
-- **Semantic Versioning**: Clear version management with defined backward compatibility [Semantic Versioning Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning)
-- **Code Quality**: Adherence to coding standards and automated linting [Linting Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/linting)
-- **Testing Framework**: Comprehensive functional and integration tests
+- **Semantic versioning**: Clear version management with defined backward compatibility [Semantic Versioning Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/semantic_versioning)
+- **Code quality**: Adherence to coding standards and automated linting [Linting Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/linting)
+- **Testing framework**: Comprehensive functional and integration tests
 - **Documentation**: Complete usage instructions and parameter documentation [Docs Guideline](https://nf-co.re/docs/guidelines/pipelines/requirements/docs)
 
-#### Change Management
+#### Change management
 
-- **Pull Request Process**: Mandatory peer review for all changes [Release Pull Request Guideline](https://nf-co.re/docs/checklists/reviews/pipeline_release_pr)
-- **Automated Testing**: CI/CD pipeline validation for every change [CI Testing Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/ci_testing)
-- **Release Process**: Structured release workflow with quality checkpoints [Release Process Guideline](https://nf-co.re/docs/checklists/pipeline_release)
-- **Issue Tracking**: Transparent bug reporting and feature request management (entirely open, on respective Github repository of each pipeline)
+- **Pull request process**: Mandatory peer review for all changes [Release Pull Request guideline](https://nf-co.re/docs/checklists/reviews/pipeline_release_pr)
+- **Automated testing**: CI/CD pipeline validation for every change [CI Testing Guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/ci_testing)
+- **Release process**: Structured release workflow with quality checkpoints [Release Process guideline](https://nf-co.re/docs/checklists/pipeline_release)
+- **Issue tracking**: Transparent bug reporting and feature request management (entirely open, on respective Github repository of each pipeline)
 
-#### Security and Compliance
+#### Security and compliance
 
 - **Dependency management**: Fixed software versions in containerized environments [Software containerization guidelines](https://nf-co.re/docs/guidelines/pipelines/requirements/docker)
 - **Vulnerability scanning**: Regular security assessment of dependencies (responsibility of user/institution, as not easily generalizable). Containers hosted at Seqera Containers are automatically scanned.
