@@ -23,7 +23,7 @@ nf-core has developed a systematic approach to pipeline validation that balances
 - **Community standards**: The nf-core community maintains consistent quality standards across all pipelines through established guidelines and testing frameworks
 - **User flexibility**: Institutions use nf-core reports as a foundation for their own validation processes, tailored to specific regulatory requirements and infrastructure
 
-### What nf-core Provides
+### What nf-core provides
 
 - **Comprehensive metrics collection** via nf-core/stats
 - **Automated validation readiness reports** with each pipeline release
@@ -31,7 +31,7 @@ nf-core has developed a systematic approach to pipeline validation that balances
 - **Implementation guidance** for institutional validation
 - **Continuous improvement** through gap identification and community feedback
 
-### What Users Are Responsible For
+### What users are responsible for
 
 - **Institution-specific validation** within their target environment
 - **Regulatory compliance** according to applicable standards
@@ -47,9 +47,9 @@ A simplistic diagram of what you as a user intending to work under regulation wo
 
 ![Regulatory validation overview](../../../../assets/images/regulatory/regulatory_layers_nfcore.png)
 
-## nf-core Metrics & Reporting System
+## nf-core metrics and reporting system
 
-### nf-core/stats Service
+### nf-core/stats service
 
 The [nf-core/stats](https://github.com/nf-core/stats) service serves as the central repository for collecting, storing, and analyzing pipeline quality metrics. This system automatically:
 
@@ -59,24 +59,24 @@ The [nf-core/stats](https://github.com/nf-core/stats) service serves as the cent
 - **Evaluates pipeline maturity** (release history, stability indicators)
 - **Provides historical data** for trend analysis and continuous improvement
 
-### Automated Validation Reports
+### Automated validation reports
 
 Each nf-core pipeline release automatically generates a comprehensive PDF validation readiness report containing:
 
-#### Pipeline Overview
+#### Pipeline overview
 
 - Release information and semantic versioning details
 - Community metrics (contributors, users, maintenance activity)
 - Licensing and governance information
 
-#### Quality Metrics
+#### Quality metrics
 
-- **Testing Coverage**: Functional and integration test results
-- **Documentation Quality**: Completeness and clarity assessments
-- **Code Quality**: Linting, standards compliance, security scanning
-- **Dependency Management**: Tool versions, container specifications
+- **Testing coverage**: Functional and integration test results
+- **Documentation quality**: Completeness and clarity assessments
+- **Code quality**: Linting, standards compliance, security scanning
+- **Dependency management**: Tool versions, container specifications
 
-#### Community Indicators
+#### Community indicators
 
 - **Maintenance Activity**: Issue resolution rates, update frequency
 - **User Adoption**: Download statistics, citation metrics
@@ -266,7 +266,7 @@ nf-core provides comprehensive testing at multiple levels to ensure pipeline qua
 
 #### Performance Testing
 
-- **Resource Usage**: Monitor computational requirements and efficiency
+- **Resource usage**: Monitor computational requirements and efficiency
 - **Scalability**: Test pipeline performance across different dataset sizes
 - **Benchmarking**: Track performance metrics over time
 
@@ -287,14 +287,14 @@ Comprehensive documentation supports validation and ensures consistent usage:
 - **Output Documentation**: Description of all pipeline outputs and their interpretation
 - **Troubleshooting Guides**: Common issues and resolution strategies
 
-#### Technical Documentation
+#### Technical documentation
 
-- **Architecture Overview**: Pipeline structure and workflow design
-- **Module Documentation**: Individual component specifications
-- **Dependency Documentation**: Complete list of software dependencies and versions
-- **Configuration Guidelines**: Environment setup and configuration requirements
+- **Architecture overview**: Pipeline structure and workflow design
+- **Module documentation**: Individual component specifications
+- **Dependency documentation**: Complete list of software dependencies and versions
+- **Configuration guidelines**: Environment setup and configuration requirements
 
-## Implementation Guidance
+## Implementation guidance
 
 ### Validation Process Overview
 
