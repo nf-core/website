@@ -29,16 +29,16 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Document risk mitigation strategies
 - [ ] Define ongoing monitoring procedures
 
-# Phase 2: Gap Analysis
+# Phase 2: Gap analysis
 
-## Review nf-core Metrics
+## Review nf-core metrics
 
 - [ ] Examine testing coverage and pass rates
 - [ ] Review documentation completeness scores
 - [ ] Check code quality indicators
 - [ ] Assess community engagement metrics (contributors, maintenance activity, issue resolution)
 
-## Identify Additional Requirements
+## Identify additional requirements
 
 - [ ] Compare nf-core metrics against institutional requirements
 - [ ] Identify additional testing needs for your specific use case
@@ -46,9 +46,9 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Plan integration testing with institutional data and systems
 - [ ] Document validation scope and required evidence
 
-# Phase 3: Validation Execution
+# Phase 3: Validation execution
 
-## Computing Environment
+## Computing environment
 
 - [ ] Set up validated computing environment
 - [ ] Ensure consistent execution across runs (reproducibility)
@@ -56,7 +56,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Validate pipeline performance under expected loads
 - [ ] Establish data protection and recovery procedures
 
-## Functional Validation
+## Functional validation
 
 - [ ] Execute all nf-core test profiles successfully
 - [ ] Verify module-level tests pass using nf-test
@@ -64,7 +64,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Validate end-to-end pipeline execution with test profiles
 - [ ] Document all testing evidence and results
 
-## Integration Testing
+## Integration testing
 
 - [ ] Execute integration testing with institutional data in production environment
 - [ ] Test with data in expected formats from your sequencing provider
@@ -72,7 +72,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Include appropriate controls (positive control, negative control, additional controls if applicable)
 - [ ] Define and verify expected results for all controls
 
-## Data Management
+## Data management
 
 - [ ] Validate input data integrity and format compliance
 - [ ] Verify expected outputs and quality metrics
@@ -81,7 +81,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Use nf-schema for runtime validation of config parameters and sample sheets
 - [ ] Ensure pipelines are running with the `nf-prov` plugin enabled, creating further traceability outputs for auditing purposes
 
-## Quality Control
+## Quality control
 
 - [ ] Set assay acceptance criteria
 - [ ] Set rejection criteria
@@ -89,9 +89,9 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Store results to automated report/stats file
 - [ ] Implement automated risk management based on stored results
 
-# Phase 4: Operational Validation
+# Phase 4: Operational validation
 
-## Standard Operating Procedures
+## Standard operating procedures
 
 - [ ] Create comprehensive step-by-step instructions for consistent pipeline operation
 - [ ] Document validated use-case run-through procedures
@@ -99,7 +99,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Establish incident response procedures
 - [ ] Create change control processes
 
-## Personnel and Training
+## Personnel and training
 
 - [ ] Train personnel on validated procedures
 - [ ] Establish competency assessment protocols
@@ -112,9 +112,9 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Document subworkflow-specific options if multiple paths exist
 - [ ] Maintain validation documentation package
 
-# Phase 5: Ongoing Maintenance
+# Phase 5: Ongoing maintenance
 
-## Change Management
+## Change management
 
 - [ ] Monitor pipeline updates and security advisories from nf-core
 - [ ] Assess impact of changes through institutional change control process
@@ -123,7 +123,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Track and resolve validation-related issues
 - [ ] Update validation documentation as needed
 
-## Quality Monitoring
+## Quality monitoring
 
 - [ ] Collect and review testing logs
 - [ ] Maintain history of benchmarking metrics
@@ -132,7 +132,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Monitor pipeline performance over time
 - [ ] Analyze trends in pipeline usage and performance
 
-## Community Engagement
+## Community engagement
 
 - [ ] Participate in nf-core regulatory special interest group
 - [ ] Provide feedback on validation reports and metrics
@@ -140,9 +140,9 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Contribute to pipeline documentation and test cases
 - [ ] Stay informed on nf-core template updates (trigger new minor release minimum)
 
-# Additional Considerations
+# Additional considerations
 
-## Versioning and Releases
+## Versioning and releases
 
 - [ ] Verify pipeline uses semantic versioning
 - [ ] Track pipeline version used in validation

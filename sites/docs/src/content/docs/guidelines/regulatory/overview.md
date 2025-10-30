@@ -8,20 +8,20 @@ weight: 1
 
 nf-core aims to produce high-quality Nextflow pipelines that facilitate validation and regulatory compliance through a comprehensive metrics-based approach. The community is organized around the [regulatory special interest group](https://nf-co.re/special-interest-groups/regulatory), where stakeholders collaborate to define and implement validation standards.
 
-## Document Version
+## Document version
 
 2.0.0 draft
 
-## nf-core Validation Strategy
+## nf-core validation strategy
 
 nf-core has developed a systematic approach to pipeline validation that balances community-driven quality assurance with institutional flexibility:
 
-### Our Approach
+### Our approach
 
-- **Metrics Collection**: nf-core automatically collects and maintains comprehensive quality metrics for all pipelines through the nf-core/stats service
-- **Validation Readiness Reports**: Each pipeline release includes an automated PDF report containing validation-relevant metrics and quality indicators
-- **Community Standards**: The nf-core community maintains consistent quality standards across all pipelines through established guidelines and testing frameworks
-- **User Flexibility**: Institutions use nf-core reports as a foundation for their own validation processes, tailored to specific regulatory requirements and infrastructure
+- **Metrics collection**: nf-core automatically collects and maintains comprehensive quality metrics for all pipelines through the nf-core/stats service
+- **Validation readiness reports**: Each pipeline release includes an automated PDF report containing validation-relevant metrics and quality indicators
+- **Community standards**: The nf-core community maintains consistent quality standards across all pipelines through established guidelines and testing frameworks
+- **User flexibility**: Institutions use nf-core reports as a foundation for their own validation processes, tailored to specific regulatory requirements and infrastructure
 
 ### What nf-core Provides
 
