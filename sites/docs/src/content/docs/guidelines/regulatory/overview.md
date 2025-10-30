@@ -349,7 +349,7 @@ For a detailed, actionable checklist covering each phase of the validation proce
 - **Re-validation**: Appropriate level of testing for changes
 - **Documentation Updates**: Maintain current validation documentation
 
-#### Quality Monitoring
+#### Quality monitoring
 
 - **Performance tracking**: Monitor pipeline performance over time
 - **Issue resolution**: Track and resolve validation-related issues
