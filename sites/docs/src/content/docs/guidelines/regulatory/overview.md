@@ -276,7 +276,7 @@ nf-core provides comprehensive testing at multiple levels to ensure pipeline qua
 - **Data Format Testing**: Ensure compatibility with various input formats
 - **Output Validation**: Verify expected outputs and quality metrics
 
-### Documentation Standards
+### Documentation standards
 
 Comprehensive documentation supports validation and ensures consistent usage:
 
@@ -344,7 +344,7 @@ For a detailed, actionable checklist covering each phase of the validation proce
 
 #### Change management
 
-- **Version Updates**: Systematic evaluation of pipeline updates
+- **Version updates**: Systematic evaluation of pipeline updates
 - **Impact Assessment**: Risk-based analysis of changes
 - **Re-validation**: Appropriate level of testing for changes
 - **Documentation Updates**: Maintain current validation documentation
