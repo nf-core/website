@@ -280,7 +280,7 @@ nf-core provides comprehensive testing at multiple levels to ensure pipeline qua
 
 Comprehensive documentation supports validation and ensures consistent usage:
 
-#### User Documentation
+#### User documentation
 
 - **Usage instructions**: Clear step-by-step execution guidance
 - **Parameter documentation**: Complete description of all configurable options
@@ -304,19 +304,19 @@ The validation process for nf-core pipelines follows a structured approach acros
 
 Begin by obtaining the nf-core validation readiness report for your target pipeline version. Define your intended use case and identify applicable regulatory requirements (e.g., FDA SaMD, CLIA, CE Mark, LDT). Assemble a validation team with appropriate expertise and establish validation protocols and acceptance criteria aligned with your institutional needs.
 
-#### 2. Risk Assessment
+#### 2. Risk assessment
 
 Review the risk indicators provided in the nf-core validation report and conduct an institution-specific risk analysis. Identify critical control points related to execution failures, data integrity, analytical accuracy, reproducibility, and security. Document your risk mitigation strategies and establish ongoing monitoring procedures appropriate for your risk profile.
 
-#### 3. Validation Execution
+#### 3. Validation execution
 
 Set up your validated computing environment and execute the nf-core test profiles to verify functional performance. Perform integration testing with institutional data and validate analytical performance against your established specifications. Document all testing evidence and results comprehensively to support your validation package.
 
-#### 4. Operational Validation
+#### 4. Operational validation
 
 Establish standard operating procedures (SOPs) for consistent pipeline operation, train personnel on validated procedures, and implement quality control measures. Set up data management and retention procedures, and create incident response and change control processes appropriate for your regulatory context.
 
-#### 5. Ongoing Maintenance
+#### 5. Ongoing maintenance
 
 Monitor pipeline updates and security advisories from the nf-core community. Assess the impact of changes through your change control process, maintain validation status through periodic review, and update procedures as requirements evolve. Participate in community feedback to contribute to continuous improvement.
 
@@ -324,25 +324,25 @@ Monitor pipeline updates and security advisories from the nf-core community. Ass
 For a detailed, actionable checklist covering each phase of the validation process, refer to the [Pipeline Validation Checklist](./checklist).
 :::
 
-### Gap Analysis and Improvement
+### Gap analysis and improvement
 
-#### Identifying Validation Gaps
+#### Identifying validation gaps
 
-- **Regulatory Requirements**: Compare nf-core metrics against specific compliance needs
-- **Technical Requirements**: Assess infrastructure and integration requirements
-- **Analytical Requirements**: Evaluate performance specifications and acceptance criteria
-- **Documentation Requirements**: Identify additional documentation needs
+- **Regulatory requirements**: Compare nf-core metrics against specific compliance needs
+- **Technical requirements**: Assess infrastructure and integration requirements
+- **Analytical requirements**: Evaluate performance specifications and acceptance criteria
+- **Documentation requirements**: Identify additional documentation needs
 
-#### Improvement Pathways
+#### Improvement pathways
 
-- **Community Engagement**: Participate in nf-core regulatory working groups
-- **Metric Enhancement**: Propose additional metrics through nf-core/stats
-- **Documentation Contributions**: Contribute to pipeline documentation and guides
-- **Testing Contributions**: Develop and share additional test cases
+- **Community engagement**: Participate in nf-core regulatory working groups
+- **Metric enhancement**: Propose additional metrics through nf-core/stats
+- **Documentation contributions**: Contribute to pipeline documentation and guides
+- **Testing contributions**: Develop and share additional test cases
 
-### Maintenance and Continuous Improvement
+### Maintenance and continuous improvement
 
-#### Change Management
+#### Change management
 
 - **Version Updates**: Systematic evaluation of pipeline updates
 - **Impact Assessment**: Risk-based analysis of changes
@@ -351,10 +351,10 @@ For a detailed, actionable checklist covering each phase of the validation proce
 
 #### Quality Monitoring
 
-- **Performance Tracking**: Monitor pipeline performance over time
-- **Issue Resolution**: Track and resolve validation-related issues
-- **Trend Analysis**: Analyze patterns in pipeline usage and performance
-- **Continuous Improvement**: Regular review and enhancement of validation processes
+- **Performance tracking**: Monitor pipeline performance over time
+- **Issue resolution**: Track and resolve validation-related issues
+- **Trend analysis**: Analyze patterns in pipeline usage and performance
+- **Continuous improvement**: Regular review and enhancement of validation processes
 
 :::info
 By following this structured approach and leveraging nf-core's comprehensive metrics and reporting system, institutions can efficiently validate nf-core pipelines while maintaining the flexibility to meet their specific regulatory and operational requirements.
