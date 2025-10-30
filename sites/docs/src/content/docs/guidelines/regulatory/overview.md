@@ -282,10 +282,10 @@ Comprehensive documentation supports validation and ensures consistent usage:
 
 #### User Documentation
 
-- **Usage Instructions**: Clear step-by-step execution guidance
-- **Parameter Documentation**: Complete description of all configurable options
-- **Output Documentation**: Description of all pipeline outputs and their interpretation
-- **Troubleshooting Guides**: Common issues and resolution strategies
+- **Usage instructions**: Clear step-by-step execution guidance
+- **Parameter documentation**: Complete description of all configurable options
+- **Output documentation**: Description of all pipeline outputs and their interpretation
+- **Troubleshooting guides**: Common issues and resolution strategies
 
 #### Technical documentation
 
@@ -296,11 +296,11 @@ Comprehensive documentation supports validation and ensures consistent usage:
 
 ## Implementation guidance
 
-### Validation Process Overview
+### Validation process overview
 
 The validation process for nf-core pipelines follows a structured approach across five key phases:
 
-#### 1. Preparation Phase
+#### 1. Preparation phase
 
 Begin by obtaining the nf-core validation readiness report for your target pipeline version. Define your intended use case and identify applicable regulatory requirements (e.g., FDA SaMD, CLIA, CE Mark, LDT). Assemble a validation team with appropriate expertise and establish validation protocols and acceptance criteria aligned with your institutional needs.
 
