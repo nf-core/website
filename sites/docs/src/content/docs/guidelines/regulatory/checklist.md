@@ -21,7 +21,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Assemble validation team with appropriate expertise
 - [ ] Establish validation protocols and acceptance criteria
 
-## Risk Assessment
+## Risk assessment
 
 - [ ] Review nf-core risk indicators from the validation report
 - [ ] Conduct institution-specific risk analysis for your use case
