@@ -11,7 +11,7 @@ This checklist guides you through the validation process for nf-core pipelines b
 This checklist serves as a comprehensive framework, though certain sections vary in detail by design. Some aspects, such as Computer Systems Validation (CSV), are deliberately kept concise as they fall outside the scope of the nf-core community and require institution-specific implementation tailored to individual organizational requirements and regulatory contexts.
 :::
 
-# Phase 1: Initial Assessment
+# Phase 1: Initial assessment
 
 ## Preparation
 
