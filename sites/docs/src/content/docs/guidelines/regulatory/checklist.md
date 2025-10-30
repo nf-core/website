@@ -149,7 +149,7 @@ This checklist serves as a comprehensive framework, though certain sections vary
 - [ ] Monitor backward compatibility across versions
 - [ ] Document version-specific validation status
 
-## Licensing and Governance
+## Licensing and governance
 
 - [ ] Review pipeline license compliance (MIT license)
 - [ ] Verify dependency licenses
