@@ -1,0 +1,135 @@
+---
+title: Hackathon - March 2026
+subtitle: A virtual hackathon to develop nf-core together
+type: hackathon
+startDate: "2026-03-11"
+startTime: "10:00+02:00"
+endDate: "2026-03-13"
+endTime: "17:00+02:00"
+start: 2026-03-11T00:00:00+00:00
+end: 2026-03-13T00:00:00+00:00
+locations:
+    - name: Online
+importTypeform: true
+hackathonProjectListModals: hackathon-march-2026
+markdownPlugin: checklist
+# announcement:
+#     text: "Registration for the online March 2026 hackathon opening soon!"
+#     start: 2026-02-01T00:00:00+01:00
+#     end: 2026-03-10T00:00:00+01:00
+---
+
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
+
+# Welcome
+
+Join us online **March 11-13, 2026**, for the nf-core hackathon! 🗓️
+
+:::info{title="Key dates"}
+
+- **November 2025**: Project proposals open
+- **February 1st 2026**: Registration opens
+- **March 11th - 13th 2026**: Hackathon
+
+:::
+
+To get a feel for how the event will work, check out the similar style hackathons
+that we held in [2024](/events/2024/hackathon-march-2024) and [2025](/events/2025/hackathon-march-2025).
+
+:::tip{.fa-globe title="Time zones"}
+
+The hackathon runs from March 11-13, wherever you are.
+Event attendees will span the globe, so there should be some people online.
+Most people will work 9am - 5pm each day.
+
+:::
+
+## Registration
+
+Registration details coming soon!
+
+# Schedule
+
+We'll keep the main schedule intentionally light to accommodate different time zones and allow for flexibility.
+We'll have daily wrap-ups and social events planned.
+Happy hacking!
+
+- Daily wrap-up sessions (times TBD)
+- Quiz social events
+- _more details coming soon.._
+
+# Projects
+
+We'll work in projects during the hackathon. Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-march-2026` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2026).
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+## List of projects
+
+<HackathonModalProjectList eventPath="hackathon-march-2026" />
+
+# Social activities
+
+During the hackathon, we will have a bit of light-hearted fun and games for you to play!
+Special prizes are up for grabs for the winners!
+
+- Online quiz
+- Hackathon bingo
+- _more coming soon.._
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+- [ ] Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- [ ] If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- [ ] Join the nf-core slack and the hackathon channel (details coming soon)
+- [ ] [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- [ ] Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
+
+## Hackathon playlist
+
+A community Spotify playlist was created during the first ever nf-core hackathon, and many songs have been added since.
+Feel free to tune in and enjoy the somewhat eclectic mix!
+
+<a href="https://open.spotify.com/playlist/6LyhtB3bllSwNbK9iDNVgH">
+    <picture>
+        <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_dark.png"
+        ></source>
+        <img
+            alt="nf-core/hackathon playlist"
+            src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_light.png"
+        ></img>
+    </picture>
+</a>
