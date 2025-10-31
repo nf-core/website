@@ -26703,7 +26703,17 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": {
+                        "filename": "co2footprint_summary_2025-05-28_13-38-21.txt",
+                        "co2e_emissions": 169.72,
+                        "energy_consumption": 357.36
+                    }
                 },
                 {
                     "tag_name": "1.1.0",
@@ -26758,7 +26768,17 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.4",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": {
+                        "filename": "co2footprint_summary_2025-04-23_13-14-22.txt",
+                        "co2e_emissions": 8.38,
+                        "energy_consumption": 17.63
+                    }
                 },
                 {
                     "tag_name": "1.0.0",
@@ -26804,7 +26824,13 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.1",
-                    "nf_core_version": "2.14.1"
+                    "nf_core_version": "2.14.1",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": null
                 },
                 {
                     "tag_name": "dev",
@@ -26859,7 +26885,13 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0",
+                        "nf-co2footprint@1.0.0-beta",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
