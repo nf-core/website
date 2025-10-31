@@ -23,10 +23,8 @@ let sections: SidebarEntry[] = [
         type: "group",
         id: "get-started",
         label: "Get started",
-        href: "/docs/get_started",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/get-started",
-        collapsed: Astro.url.pathname !== "/docs/get-started/",
+        collapsed: true,
         icon: "octicon:play-16",
     },
     {
@@ -34,8 +32,7 @@ let sections: SidebarEntry[] = [
         id: "users",
         label: "Users",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/users",
-        collapsed: Astro.url.pathname !== "/docs/users/",
+        collapsed: true,
         icon: "octicon:git-pull-request-16",
     },
     {
@@ -43,8 +40,7 @@ let sections: SidebarEntry[] = [
         id: "developers",
         label: "Developers",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/developers",
-        collapsed: Astro.url.pathname !== "/docs/developers/",
+        collapsed: true,
         icon: "octicon:mortar-board-16",
     },
     {
@@ -52,8 +48,7 @@ let sections: SidebarEntry[] = [
         id: "contributors",
         label: "Contributors",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/contributors",
-        collapsed: Astro.url.pathname !== "/docs/contributors/",
+        collapsed: true,
         icon: "octicon:law-16",
     },
     {
@@ -61,8 +56,7 @@ let sections: SidebarEntry[] = [
         id: "community",
         label: "Community",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/community",
-        collapsed: Astro.url.pathname !== "/docs/community/",
+        collapsed: true,
         icon: "octicon:tasklist-16",
     },
     {
@@ -70,8 +64,7 @@ let sections: SidebarEntry[] = [
         id: "nf-core-tools",
         label: "nf-core/tools",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/nf-core-tools",
-        collapsed: Astro.url.pathname !== "/docs/nf-core-tools/",
+        collapsed: true,
         icon: "octicon:tools-16",
     },
 ];

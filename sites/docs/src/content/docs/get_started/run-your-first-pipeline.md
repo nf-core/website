@@ -5,10 +5,4 @@ shortTitle: Your first pipeline
 weight: 3
 ---
 
-# H1
 
-## H2
-
-### H3
-
-#### H4

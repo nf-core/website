@@ -1,7 +1,7 @@
 ---
 title: Getting started
 subtitle: What is nf-core and how to run a pipeline
-weight: 3
+weight: 1
 ---
 
-
+This needs to contain text
