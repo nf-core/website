@@ -57,6 +57,21 @@ export const findCurrentGroup = (sections: SidebarEntry[]) => {
     return currentGroup;
 };
 
+export const findParentOfGroup = (sections: SidebarEntry[], targetGroup: SidebarEntry[]): SidebarEntry | null => {
+    for (const section of sections) {
+        if (section.type === 'group' && section.entries) {
+            if (section.entries === targetGroup) {
+                return section;
+            }
+            const found = findParentOfGroup(section.entries, targetGroup);
+            if (found) {
+                return found;
+            }
+        }
+    }
+    return null;
+};
+
 export const findByProperty = (obj: object, predicate: (obj: object) => boolean) => {
     if (predicate(obj)) return obj;
     for (const n of Object.values(obj)
@@ -90,6 +105,7 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
     docs.forEach((doc) => {
         const parts = doc.id.replace(/\.[^/.]+$/, '').split('/');
         let currentLevel = sections;
+        const isIndexFile = parts[parts.length - 1] === 'index';
 
         parts.forEach((part, i) => {
             let label = part.replaceAll('_', ' ')?.replace(/(^)\S/g, (match) => match.toUpperCase());
@@ -108,11 +124,25 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
             }
 
             if (existingEntry) {
+                // If this is an index file at the last part, set href on the parent group
+                if (isIndexFile && lastPart && part === 'index') {
+                    // Don't create a new entry, just update the parent
+                    return;
+                }
+                // If this is the second-to-last part and the file is an index, add href to this group
+                if (isIndexFile && secondToLastPart) {
+                    existingEntry.href = url_prefix + doc.id.replace(/\.[^/.]+$/, '');
+                }
                 currentLevel = existingEntry.entries;
                 if (secondToLastPart && doc.data.parentWeight) {
                     existingEntry.weight = doc.data.parentWeight;
                 }
             } else {
+                // If this is an index file at the last part, don't create a new entry
+                if (isIndexFile && lastPart && part === 'index') {
+                    return;
+                }
+
                 const newEntry = createLinkOrGroup(
                     parts.slice(0, i + 1).join('_'),
                     lastPart ? doc.data.shortTitle || label : label,
@@ -121,6 +151,12 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
                     url,
                     secondToLastPart && doc.data.parentWeight ? doc.data.parentWeight : doc.data.weight,
                 );
+
+                // If this is the second-to-last part and the file is an index, add href to the new group
+                if (isIndexFile && secondToLastPart) {
+                    newEntry.href = url_prefix + doc.id.replace(/\.[^/.]+$/, '');
+                }
+
                 currentLevel.push(newEntry);
 
                 if (newEntry.type === 'group' && newEntry.entries) {
