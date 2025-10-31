@@ -2,7 +2,7 @@
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
-### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False){:python}`
+### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False, blog_post: str = ''){:python}`
 
 Bases: `object`
 
