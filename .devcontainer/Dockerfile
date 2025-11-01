@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/devcontainers/javascript-node:1-20-bookworm@sha256:428d4ed6264774619bc353fc7dc98e41b4c01b603a638db9a549e66ed86edd15
+FROM mcr.microsoft.com/devcontainers/javascript-node:4-20-bookworm@sha256:b32c7d3f03c813ff653ca5859aa74946a7c98663a2aa2c0affe1265e17e5a2e7
 
 # Set working directory
 WORKDIR /workspace
