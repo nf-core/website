@@ -41,7 +41,7 @@ To update a module to use topic channels for version outputs:
 
 1. Add a `type` and `description` field for each field in the versions output. Use the following template:
 
-   ```yaml
+   ```yaml title="meta.yml"
    versions_<tool>:
      - - ${task.process}:
            type: string
