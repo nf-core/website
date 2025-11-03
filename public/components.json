@@ -62200,7 +62200,7 @@
               }
             ]
           ],
-          "unclassified_fa": [
+          "unclassified": [
             [
               {
                 "meta": {
@@ -62209,15 +62209,15 @@
                 }
               },
               {
-                "${prefix}_unclassified_mapped.fasta": {
+                "${prefix}_unclassified_mapped.*": {
                   "type": "file",
                   "description": "Output file with unclassified sequences",
-                  "pattern": "*{.fasta}"
+                  "pattern": "*{.fasta,.fastq}"
                 }
               }
             ]
           ],
-          "unmapped_fa": [
+          "unmapped": [
             [
               {
                 "meta": {
@@ -62226,10 +62226,10 @@
                 }
               },
               {
-                "${prefix}_unmapped.fasta": {
+                "${prefix}_unmapped.*": {
                   "type": "file",
                   "description": "Output file with unmapped sequences",
-                  "pattern": "*{.fasta}"
+                  "pattern": "*{.fasta,.fastq}"
                 }
               }
             ]
