@@ -17,7 +17,7 @@ To update a module to use topic channels for version outputs:
 
 1. Open the modules `main.nf` file.
 
-   Each one of these files will have a piece of code that looks like this:
+1. Identify the code that looks similar to the following:
 
    ```groovy
    cat <<-END_VERSIONS > versions.yml
