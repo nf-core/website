@@ -15,7 +15,7 @@ In this tutorial, we will go through the steps needed to update existing nf-core
 
 To update a module to use topic channels for version outputs:
 
-1. Go the the `main.nf` file of the module you want to update.
+1. Open the modules `main.nf` file.
 
    Each one of these files will have a piece of code that looks like this:
 
