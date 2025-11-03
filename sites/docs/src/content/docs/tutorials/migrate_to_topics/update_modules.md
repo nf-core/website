@@ -97,7 +97,7 @@ Modules that use template scripts for version outputs will need to be updated sl
 
 1. Update the `path "versions.yml", emit: versions` line to the following:
 
-   ```groovy
+   ```groovy title="main.nf"
    path "versions.yml", emit: versions, topic: versions
    ```
 
