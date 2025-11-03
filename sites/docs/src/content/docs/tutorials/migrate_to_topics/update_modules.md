@@ -58,7 +58,7 @@ To update a module to use topic channels for version outputs:
 
 1. Add the topics block to the `meta.yml`file. Ideally, underneath the outputs section:
 
-  ```yaml
+  ```yaml title="meta.yml"
   topics:
     - versions:
         - - process:
