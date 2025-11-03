@@ -103,7 +103,7 @@ Modules that use template scripts for version outputs will need to be updated sl
 
 1. Add the following lines to the `meta.yml` file underneath the outputs section:
 
-   ```yaml
+   ```yaml title="meta.yml"
    versions:
      - versions.yml:
          type: file
