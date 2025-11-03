@@ -39,7 +39,7 @@ To update a module to use topic channels for version outputs:
 
 1. Run `nf-core modules lint <module_name> --fix` to automatically update the `meta.yml` file with the new topic outputs.
 
-5. Add a `type` and `description` field for each field in the versions output. You can use the following template for this:
+1. Add a `type` and `description` field for each field in the versions output. Use the following template:
 
    ```yaml
    versions_<tool>:
