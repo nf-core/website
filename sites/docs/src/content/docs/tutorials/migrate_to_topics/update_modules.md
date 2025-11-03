@@ -93,7 +93,7 @@ To update a module to use topic channels for version outputs:
 
 Modules that use template scripts for version outputs will need to be updated slightly differently:
 
-1. Go to the `main.nf` file of the module you want to update.
+1. Open the modules `main.nf` file.
 
 2. Update the `path "versions.yml", emit: versions` line to this:
 
