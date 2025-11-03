@@ -27,7 +27,7 @@ To update a module to use topic channels for version outputs:
    END_VERSIONS
    ```
 
-2. Remove the `versions.yml` file from the `output` block.
+1. Remove the `versions.yml` file from the `output` block.
 
 3. Add the following new outputs for each tool used in the module:
 
