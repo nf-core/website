@@ -13,7 +13,7 @@ In this tutorial, we will go through the steps needed to update existing nf-core
 
 ## Updating standard modules
 
-To update a module to use topic channels for version outputs, follow these steps:
+To update a module to use topic channels for version outputs:
 
 1. Go the the `main.nf` file of the module you want to update.
 
