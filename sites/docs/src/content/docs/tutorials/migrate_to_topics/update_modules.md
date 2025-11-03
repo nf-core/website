@@ -7,9 +7,9 @@ In this tutorial, we will go through the steps needed to update existing nf-core
 
 ## Prerequisites
 
-- The latest version of `nf-core/tools` (version 3.5.0 or higher)
-- The modules repository is cloned locally or open in some development environment.
-- Nextflow version 25.04.0 or higher is installed.
+- nf-core tools version 3.5.0 or higher
+- A clone of the `nf-core/modules` repository
+- Nextflow version 25.04.0 or higher
 
 ## Updating standard modules
 
