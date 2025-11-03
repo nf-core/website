@@ -29,7 +29,7 @@ To update a module to use topic channels for version outputs:
 
 1. Remove the `versions.yml` file from the `output` block.
 
-3. Add the following new outputs for each tool used in the module:
+1. Add the following outputs for each tool in the module:
 
    ```groovy
    tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
