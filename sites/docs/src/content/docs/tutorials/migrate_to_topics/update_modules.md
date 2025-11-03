@@ -58,19 +58,19 @@ To update a module to use topic channels for version outputs:
 
 1. Add the topics block to the `meta.yml`file. Ideally, underneath the outputs section:
 
-```yaml
-topics:
-  - versions:
-      - - process:
-            type: string
-            description: The process the versions were collected from
-        - tool:
-            type: string
-            description: The tool name
-        - version:
-            type: string
-            description: The version of the tool
-```
+  ```yaml
+  topics:
+    - versions:
+        - - process:
+              type: string
+              description: The process the versions were collected from
+          - tool:
+              type: string
+              description: The tool name
+          - version:
+              type: string
+              description: The version of the tool
+  ```
 
 7. Update the `main.nf.test` file to check for the new versions outputs.
 
