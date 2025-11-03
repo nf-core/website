@@ -77,15 +77,17 @@ To update a module to use topic channels for version outputs:
   - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
   - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
 
-8. Run the tests to regenerate the snapshots:
+1. Run the tests to regenerate the snapshots:
 
    ```bash
    nf-core modules test <module_name> --update
    ```
 
-9. Check that the snapshot is correct and that all versions are being captured correctly. If not, please return to step 3 and update anything wrong with the module.
+1. Check that the snapshot is correct and that all versions are being captured correctly. If not, return to step 3 and update any incorrect information in the module.
 
-10. Commit and push your changes to your fork and open a pull request to the main nf-core/modules repository.
+1. Commit and push your changes to your fork.
+
+1. Open a pull request to the main `nf-core/modules` repository.
 
 ## Template migration
 
