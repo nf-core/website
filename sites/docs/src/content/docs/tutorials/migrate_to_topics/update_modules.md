@@ -19,7 +19,7 @@ To update a module to use topic channels for version outputs:
 
 1. Identify the code that looks similar to the following:
 
-   ```groovy
+   ```groovy title="main.nf"
    cat <<-END_VERSIONS > versions.yml
    "${task.process}":
        <tool1>: \$(tool1 --version)
