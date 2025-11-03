@@ -35,7 +35,7 @@ To update a module to use topic channels for version outputs:
    tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
    ```
 
-   Update `<tool1>` and `tool1 --version` with the actual tool name and version command. Repeat this for each tool used in the module.
+   Update `<tool1>` and `tool1 --version` with the tool name and version command. Repeat this for each tool used in the module.
 
 4. Run `nf-core modules lint <module_name> --fix` to automatically update the `meta.yml` file with the new topic outputs.
 
