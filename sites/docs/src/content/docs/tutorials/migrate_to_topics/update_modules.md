@@ -72,10 +72,10 @@ To update a module to use topic channels for version outputs:
               description: The version of the tool
   ```
 
-7. Update the `main.nf.test` file to check for the new versions outputs.
+1. Update the `main.nf.test` file to check for the new version outputs.
 
-- If the test runs on all process output (`snapshot(process.out).match()`), you don't have to do anything.
-- If the test checks for specific outputs, you will need to update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
+  - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
+  - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
 
 8. Run the tests to regenerate the snapshots:
 
