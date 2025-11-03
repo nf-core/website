@@ -101,7 +101,7 @@ Modules that use template scripts for version outputs will need to be updated sl
    path "versions.yml", emit: versions, topic: versions
    ```
 
-3. Add the following lines to the `meta.yml` file underneath the outputs section:
+1. Add the following lines to the `meta.yml` file underneath the outputs section:
 
    ```yaml
    versions:
@@ -110,4 +110,6 @@ Modules that use template scripts for version outputs will need to be updated sl
          description: YAML file containing versions of tools used in the module
    ```
 
-4. Commit and push your changes to your fork and open a pull request to the main nf-core/modules repository.
+1. Commit and push your changes to your fork.
+
+1. Open a pull request to the main `nf-core/modules` repository.
