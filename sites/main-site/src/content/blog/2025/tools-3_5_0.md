@@ -49,7 +49,7 @@ We outlined future adoptions of new Nextflow syntax elements in the nf-core infr
 
 ## AWS bug fix
 
-We introduced a bug in the `nextflow.config` for pipelines using iGenomes, leading to permission errors when querying AWS S3 buckets.
+With nf-core/tools v3.4.0, we introduced a bug in the `nextflow.config` for pipelines using iGenomes, leading to permission errors when querying AWS S3 buckets.
 This has been fixed in this release.
 
 ## Changes on sync PRs
