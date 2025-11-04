@@ -10,7 +10,7 @@ label:
   - "tools"
 ---
 
-This release is a smaller scoped release, but comes bigger changes the syntax in nf-core/modules.
+This release is small in scope, but introduces major changes to the syntax in nf-core/modules.
 
 ## Topic channels for version handling in modules
 
