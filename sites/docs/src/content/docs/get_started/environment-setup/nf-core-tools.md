@@ -192,6 +192,5 @@ pip install nf-core
 
 For more information about installing nf-core tools, see:
 
-<!-- TODO: Add link to full installation page -->
 <!-- TODO: Add link to nf-core tools page -->
 - nf-core tools install
