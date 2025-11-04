@@ -24,6 +24,7 @@ ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
 
 The above error can be fixed by removing the line that references `SAMTOOLS_SORT.out.versions`, as shown below:
 
-```nextflow
+```diff
 SAMTOOLS_SORT(input)
+-ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
 ```
