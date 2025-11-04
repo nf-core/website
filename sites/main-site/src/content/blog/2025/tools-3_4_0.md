@@ -5,14 +5,12 @@ headerImage: "https://images.unsplash.com/photo-1592963219683-3593d83276af"
 headerImageAlt: "Photo of a man staring at a high stack of shipping containers."
 pubDate: 2025-10-16T12:00:00+02:00
 authors:
-    - "mashehu"
-    - "mirpedrol"
+  - "mashehu"
+  - "mirpedrol"
 label:
-    - "tools"
+  - "tools"
 maxHeadingDepth: 3
 ---
-
-import { YouTube } from "@astro-community/astro-embed-youtube";
 
 This release brings significant improvements to the download command, a new devcontainer setup, and better ARM64 architecture handling.
 As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
