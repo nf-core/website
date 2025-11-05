@@ -11,6 +11,14 @@ Nextflow pipelines can specify software dependencies within the pipeline definit
 
 nf-core pipelines are designed to work with multiple container and compute environment management systems. Each pipeline declares its required software tools, and users specify which management system to use via a configuration profile at runtime. The pipeline then automatically retrieves and utilizes the appropriate containers or environments for each step.
 
+:::tip
+The recommended software management system depends on your computing environment:
+
+- **Local computers:** [Docker](#docker) is recommended for personal workstations and laptops.
+- **HPC clusters:** Consult your system administrator, as many clusters have [Singularity](#singularity), [Apptainer](#apptainer), or [Shifter](#shifter) pre-installed.
+- **When containers are unavailable:** [Conda or Mamba](#condamamba) provide fallback options.
+:::
+
 ## Software management systems
 
 nf-core pipelines support several different systems for managing software dependencies. The best choice depends on your computing environment and whether you have administrator privileges.
@@ -64,17 +72,5 @@ Conda environments may provide poorer reproducibility than container-based metho
 :::
 
 For installation instructions, see [Mamba installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
-
-## Choosing what to install
-
-The recommended software management system depends on your computing environment:
-
-- **Local computers:** Docker is recommended for personal workstations and laptops
-- **HPC clusters:** Consult your system administrator, as many clusters have Singularity, Apptainer, or Shifter pre-installed
-- **When containers are unavailable:** Conda or Mamba provide fallback options
-
-:::tip
-Installation of all systems is not necessary. Select the system that best suits your computing environment.
-:::
 
 <!-- TODO: Add additional resources -->
