@@ -10,7 +10,6 @@ import {
     sanitizeNfCoreLabels,
     findByProperty,
     getSectionParents,
-    findParentOfGroup,
 } from "@utils/functions";
 import { Icon } from "astro-icon/components";
 import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
@@ -105,46 +104,26 @@ if (currentGroup.length > 0) {
     if (currentGroupIndex === -1) {
         console.error("Could not find current page " + Astro.url.pathname + " in docs collection");
     }
-    if (currentElement && currentElement.type === "group" && currentElement.entries && currentElement.entries.length > 0) {
-        // If we're on an index page of a group, next page is the first entry in that group
-        next_page = {
-            title: currentElement.entries[0].label,
-            slug: currentElement.entries[0].href,
-        };
-
-        // For prev_page, look at the previous sibling in the parent group
-        if (currentGroupIndex > 0 && currentGroup[currentGroupIndex - 1]?.href) {
-            prev_page = {
-                title: currentGroup[currentGroupIndex - 1].label,
-                slug: currentGroup[currentGroupIndex - 1].href,
-            };
-        } else if (currentGroupIndex === 0) {
-            // If this is the first item, prev could be the parent index
-            const parentGroup = findParentOfGroup(sections, currentGroup);
-
-            if (parentGroup && parentGroup.href) {
-                prev_page = { title: parentGroup.label, slug: parentGroup.href };
-            } else {
-                // Otherwise, try to find the grandparent
-                const parentHref = currentGroup[0].href?.split("/").slice(0, -1).join("/");
-                const grandparentSection = findByProperty(sections, (val) => val.href === parentHref);
-                prev_page = grandparentSection && parentHref ? { title: grandparentSection.label || "Introduction", slug: parentHref } : null;
-            }
-        }
+    if (currentElement && currentElement.type === "group" && currentElement.entries.length > 1) {
+        currentElement.entries[0].href?.endsWith(Astro.url.pathname)
+            ? (next_page = {
+                  title: currentElement.entries[1].label,
+                  slug: currentElement.entries[1].href,
+              })
+            : (next_page = {
+                  title: currentElement.entries[0].label,
+                  slug: currentElement.entries[0].href,
+              });
     } else {
         if (currentGroupIndex === 0) {
-            // Find the parent group that contains the current group
-            const parentGroup = findParentOfGroup(sections, currentGroup);
+            const parentHref = currentGroup[0].href?.split("/").slice(0, -1).join("/");
 
-            // If parent has an href (index page), link to it
-            if (parentGroup && parentGroup.href) {
-                prev_page = { title: parentGroup.label, slug: parentGroup.href };
-            } else {
-                // Otherwise, try to find the grandparent
-                const parentHref = currentGroup[0].href?.split("/").slice(0, -1).join("/");
-                const grandparentSection = findByProperty(sections, (val) => val.href === parentHref);
-                prev_page = grandparentSection && parentHref ? { title: grandparentSection.label || "Introduction", slug: parentHref } : null;
-            }
+            // find parentHref in sections in different depths
+            const parentSection = findByProperty(sections, (val) => val.href === parentHref)?.entries?.find(
+                (entry) => entry.entries && entry.entries == currentGroup,
+            );
+
+            prev_page = parentSection && parentHref ? { title: "Introduction", slug: parentHref } : null;
         } else if (currentGroup[currentGroupIndex - 1] && currentGroup[currentGroupIndex - 1].href) {
             prev_page = {
                 title: currentGroup[currentGroupIndex - 1].label,
@@ -156,33 +135,6 @@ if (currentGroup.length > 0) {
                 title: currentGroup[currentGroupIndex + 1].label,
                 slug: currentGroup[currentGroupIndex + 1].href,
             };
-        } else if (currentGroupIndex === currentGroup.length - 1) {
-            // We're at the last item in this group, find the next item in the parent group
-            const parentGroup = findParentOfGroup(sections, currentGroup);
-            if (parentGroup) {
-                // Find the parent's parent to get its siblings
-                const grandparentGroup = findParentOfGroup(sections, parentGroup.entries);
-                if (grandparentGroup && grandparentGroup.entries) {
-                    const parentIndex = grandparentGroup.entries.findIndex(entry => entry === parentGroup);
-                    if (parentIndex !== -1 && parentIndex < grandparentGroup.entries.length - 1) {
-                        const nextSibling = grandparentGroup.entries[parentIndex + 1];
-                        // If next sibling has an href (index page), use it
-                        if (nextSibling.href) {
-                            next_page = {
-                                title: nextSibling.label,
-                                slug: nextSibling.href,
-                            };
-                        }
-                        // Otherwise, if it has entries, use the first entry
-                        else if (nextSibling.type === 'group' && nextSibling.entries && nextSibling.entries.length > 0 && nextSibling.entries[0].href) {
-                            next_page = {
-                                title: nextSibling.entries[0].label,
-                                slug: nextSibling.entries[0].href,
-                            };
-                        }
-                    }
-                }
-            }
         }
     }
 }
