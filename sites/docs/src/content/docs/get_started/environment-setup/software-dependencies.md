@@ -9,9 +9,9 @@ Nextflow pipelines can specify software dependencies within the pipeline definit
 
 ## How pipeline software works
 
-nf-core pipelines are designed to work with multiple software management systems. Each pipeline declares its required software tools, and users specify which management system to use via a configuration profile at runtime. The pipeline then automatically retrieves and utilizes the appropriate containers or environments for each step.
+nf-core pipelines are designed to work with multiple container and compute environment management systems. Each pipeline declares its required software tools, and users specify which management system to use via a configuration profile at runtime. The pipeline then automatically retrieves and utilizes the appropriate containers or environments for each step.
 
-## Choosing a software management system
+## Software management systems
 
 nf-core pipelines support several different systems for managing software dependencies. The best choice depends on your computing environment and whether you have administrator privileges.
 
@@ -65,21 +65,7 @@ Conda environments may provide poorer reproducibility than container-based metho
 
 For installation instructions, see [Mamba installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
 
-## Using configuration profiles
-
-To specify which software management system an nf-core pipeline should use, include the `-profile` flag when executing the pipeline:
-
-```bash
-nextflow run nf-core/<pipeline> -profile docker
-```
-
-Multiple profiles can be combined using comma separation. For example, to combine a software management profile with a custom institutional configuration:
-
-```bash
-nextflow run nf-core/<pipeline> -profile docker,my_institution
-```
-
-## What to install
+## Choosing what to install
 
 The recommended software management system depends on your computing environment:
 
@@ -91,7 +77,4 @@ The recommended software management system depends on your computing environment
 Installation of all systems is not necessary. Select the system that best suits your computing environment.
 :::
 
-## Additional resources
-
-<!-- TODO: Add links -->
-- Something
+<!-- TODO: Add additional resources -->

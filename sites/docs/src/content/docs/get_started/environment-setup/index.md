@@ -11,7 +11,7 @@ To work with nf-core pipelines, you will need to set up your computing environme
 The core requirements for running nf-core pipelines are:
 
 1. **[Nextflow](./nextflow.md)**: The workflow management system that powers all nf-core pipelines
-2. **[Software dependency manager](./software-dependencies.md)**: A system to handle pipeline software (e.g., Docker, Singularity, or Conda)
+2. **[Container or compute environment manager](./software-dependencies.md)**: A system to handle pipeline software (e.g., Docker, Singularity, or Conda)
 
 These additional tools are recommended for development:
 
@@ -23,7 +23,7 @@ These additional tools are recommended for development:
 If you are new to nf-core, we recommend following the guides in order:
 
 1. [Install Nextflow](./nextflow.md)
-2. Set up a [software dependency manager](./software-dependencies.md) based on your system
+2. Set up a [Container or compute environment manager](./software-dependencies.md) based on your system
 3. Install [nf-core tools](./nf-core-tools.md) for additional utilities and pipeline management features
 4. Set up [VS Code](./vs-code.md) with the recommended extensions ff you plan to develop pipelines
 
