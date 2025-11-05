@@ -56,34 +56,18 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                         <details open={containsCurrent || item.isCurrent || !item.collapsed}>
                             <summary aria-current={item.isCurrent && "page"}>
                                 <div class:list={[{ h6: !nested }, "group-label flex-grow-1"]}>
-                                    {item.href ? (
-                                        <a
-                                            href={item.href}
-                                            class="group-header d-flex align-items-start text-decoration-none"
-                                            data-weight={item.weight}
-                                        >
-                                            {item.icon &&
-                                                (item.icon.includes(":") ? (
-                                                    <Icon name={item.icon} class="me-2 fs-5" is:inline />
-                                                ) : (
-                                                    <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
-                                                ))}
-                                            <span set:html={sanitizeNfCoreLabels(item.label)} />
-                                        </a>
-                                    ) : (
-                                        <span
-                                            class="group-header d-flex align-items-start"
-                                            data-weight={item.weight}
-                                            set:html={sanitizeNfCoreLabels(item.label)}
-                                        >
-                                            {item.icon &&
-                                                (item.icon.includes(":") ? (
-                                                    <Icon name={item.icon} class="me-2 fs-5" is:inline />
-                                                ) : (
-                                                    <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
-                                                ))}
-                                        </span>
-                                    )}
+                                    <span
+                                        class="group-header d-flex align-items-start"
+                                        data-weight={item.weight}
+                                        set:html={sanitizeNfCoreLabels(item.label)}
+                                    >
+                                        {item.icon &&
+                                            (item.icon.includes(":") ? (
+                                                <Icon name={item.icon} class="me-2 fs-5" is:inline />
+                                            ) : (
+                                                <i class={`me-2 fa-fw mt-1 ${item.icon} text-reset`} />
+                                            ))}
+                                    </span>
                                 </div>
                                 <div class="hover-target">
                                     <i class:list={["fa-solid fa-chevron-right fa-xs mx-3 h-100 caret"]} />
@@ -120,14 +104,9 @@ const flattenSidebar = (sidebar: SidebarEntry[]): SidebarEntry[] => {
                 background-color: transparentize($success, 0.85);
             }
         }
-        a.group-header {
-            color: var(--bs-body-color);
-            &:hover {
-                color: var(--bs-success);
-            }
-        }
         & summary[aria-current="page"] .group-label a:hover {
-            color: var(--bs-success);
+            color: var(--bs-body-color);
+            background-color: transparentize($success, 1);
         }
         .section-link {
             color: var(--bs-secondary-color);

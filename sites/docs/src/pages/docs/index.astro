@@ -164,7 +164,7 @@ highlightSections = highlightSections.flat();
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
                                     <span class="card-header">
                                         <a
-                                            href={section.href || `/docs/${section.label?.replace("/", "-").toLowerCase()}/`}
+                                            href={`/docs/${section.label?.replace("/", "-").toLowerCase()}/`}
                                             class="text-decoration-none d-flex align-items-center text-reset"
                                         >
                                             {section.icon && <Icon name={section.icon} class={"me-2"} />}
