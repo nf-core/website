@@ -2,7 +2,7 @@
 title: nf-core tools
 subtitle: Learn how to install nf-core/tools
 shortTitle: nf-core tools
-weight: 2
+weight: 3
 ---
 
 nf-core tools is a Python package that provides command-line utilities for working with nf-core pipelines. While optional, it offers helpful features for downloading, launching, and developing pipelines.

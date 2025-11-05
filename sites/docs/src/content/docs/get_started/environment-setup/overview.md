@@ -1,7 +1,7 @@
 ---
 title: Environment setup
 subtitle: Setting up your environment for nf-core
-weight: 2
+weight: 1
 ---
 
 To work with nf-core pipelines, you will need to set up your computing environment with some essential tools. This section guides you through installing and configuring everything you need to get started.
