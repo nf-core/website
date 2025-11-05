@@ -15,7 +15,7 @@ VS Code is available for Windows, macOS, and Linux. Download and install it from
 Windows users should first configure WSL for the optimal development experience. See [Set up a WSL development environment](https://learn.microsoft.com/en-us/windows/wsl/setup/environment) for more information.
 :::
 
-## Essential Extensions
+## Recommended extensions
 
 Extensions enhance VS Code with additional features. To install an extension:
 
@@ -24,7 +24,7 @@ Extensions enhance VS Code with additional features. To install an extension:
 3. Search for the extension name
 4. Click **Install**
 
-### Nextflow Extension
+### Nextflow extension
 
 The official [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) provides comprehensive language support for Nextflow development, including:
 
@@ -40,9 +40,9 @@ The official [Nextflow extension](https://marketplace.visualstudio.com/items?ite
 
 This extension enforces Nextflow syntax standards and significantly improves your development workflow.
 
-### nf-core Extension Pack
+### nf-core extension pack
 
-The [nf-core Extension Pack](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack) is a community-curated collection of useful tools for pipeline development and documentation:
+The [nf-core extension pack](https://marketplace.visualstudio.com/items?itemName=nf-core.nf-core-extensionpack) is a community-curated collection of useful tools for pipeline development and documentation:
 
 - **Apptainer/Singularity**: Syntax highlighting for Apptainer/Singularity definition files
 - **Docker**: Create, manage, and debug containerized applications
@@ -56,7 +56,7 @@ The [nf-core Extension Pack](https://marketplace.visualstudio.com/items?itemName
 - **Todo Tree**: Shows TODO, FIXME, and similar comment tags in a tree view
 - **YAML**: YAML language support with built-in Kubernetes syntax support
 
-### Remote Development Pack
+### Remote development pack
 
 For developers working with WSL, SSH, or containers, the [Remote Development extension pack](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.vscode-remote-extensionpack) enables full VS Code functionality in remote environments. It includes:
 
@@ -64,7 +64,7 @@ For developers working with WSL, SSH, or containers, the [Remote Development ext
 - **Dev Containers**: Develop inside Docker containers
 - **WSL**: Work seamlessly in Windows Subsystem for Linux
 
-## Other Editors
+## Other editors
 
 While VS Code is widely used, several other editors also support Nextflow development:
 
