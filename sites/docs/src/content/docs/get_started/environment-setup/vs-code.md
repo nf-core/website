@@ -17,12 +17,14 @@ Windows users should first configure WSL for the optimal development experience.
 
 ## Recommended extensions
 
-Extensions enhance VS Code with additional features. To install an extension:
+Extensions enhance VS Code with additional features.
+
+To install an extension:
 
 1. Open VS Code
-2. Click the Extensions icon in the left sidebar (or press `Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. Select the Extensions icon in the left sidebar
 3. Search for the extension name
-4. Click **Install**
+4. Select **Install**
 
 ### Nextflow extension
 
