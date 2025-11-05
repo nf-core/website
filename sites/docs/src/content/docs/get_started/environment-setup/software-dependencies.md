@@ -2,7 +2,7 @@
 title: Manage software dependencies
 subtitle: Learn how to manage software dependencies
 shortTitle: Software dependencies
-weight: 2
+weight: 3
 ---
 
 Nextflow pipelines can specify software dependencies within the pipeline definition itself. Users are not required to manually install analysis tools, as the pipeline manages software provisioning through containerization or package management systems.

@@ -2,7 +2,7 @@
 title: Install VS Code
 subtitle: Learn how to install VS Code and useful extensions
 shortTitle: VS Code
-weight: 3
+weight: 5
 ---
 
 Visual Studio Code (VS Code) is a popular, free, and open-source code editor that supports Nextflow and nf-core pipeline development.

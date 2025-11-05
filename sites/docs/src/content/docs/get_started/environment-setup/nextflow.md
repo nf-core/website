@@ -2,7 +2,7 @@
 title: Installing Nextflow
 subtitle: Learn how to install Nextflow
 shortTitle: Nextflow
-weight: 1
+weight: 2
 ---
 
 Nextflow is the workflow management system that runs all nf-core pipelines. This page will walk you through installing and configuring Nextflow on your system.
