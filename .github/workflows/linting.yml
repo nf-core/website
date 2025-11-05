@@ -18,6 +18,12 @@ jobs:
         with:
           python-version: "3.14"
 
+      - name: setup node
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
+        with:
+          node-version: "22"
+          cache: npm
+
       - name: Cache pre-commit
         uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4
         with:
@@ -28,6 +34,9 @@ jobs:
 
       - name: Install pre-commit
         run: pip install pre-commit
+
+      - name: Install prettier plugins
+        run: npm install --only=dev
 
       - name: Run pre-commit
         run: pre-commit run --all-files
