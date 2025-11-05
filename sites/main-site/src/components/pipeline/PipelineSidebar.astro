@@ -56,7 +56,6 @@ const videoId = videoUrl
           .replace("https://youtube.com/watch?v=", "")
     : "";
 const release = meta.releases.filter((release) => release.tag_name === version)[0];
-console.log(release);
 const modules: string[] = release.components?.modules || [];
 const subworkflows: string[] = release.components?.subworkflows || [];
 ---
