@@ -151,7 +151,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -760,7 +764,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -913,7 +921,11 @@
                         "subworkflows": []
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -927,12 +939,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/ampliseq",
             "created_at": "2018-09-26T15:24:54Z",
-            "updated_at": "2025-10-28T13:42:22Z",
+            "updated_at": "2025-11-04T17:10:02Z",
             "pushed_at": "2025-11-03T15:45:15Z",
             "homepage": "https://nf-co.re/ampliseq",
             "size": 19089,
-            "stargazers_count": 224,
-            "watchers_count": 224,
+            "stargazers_count": 225,
+            "watchers_count": 225,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -968,7 +980,7 @@
             "visibility": "public",
             "forks": 147,
             "open_issues": 26,
-            "watchers": 224,
+            "watchers": 225,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -2014,7 +2026,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -2029,9 +2045,9 @@
             "url": "https://api.github.com/repos/nf-core/atacseq",
             "created_at": "2018-11-05T17:49:32Z",
             "updated_at": "2025-10-15T15:26:28Z",
-            "pushed_at": "2025-10-30T21:38:07Z",
+            "pushed_at": "2025-11-04T21:35:33Z",
             "homepage": "https://nf-co.re/atacseq",
-            "size": 10335,
+            "size": 10217,
             "stargazers_count": 213,
             "watchers_count": 213,
             "language": "Nextflow",
@@ -2044,7 +2060,7 @@
             "forks_count": 128,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 47,
+            "open_issues_count": 49,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -2054,7 +2070,7 @@
             ],
             "visibility": "public",
             "forks": 128,
-            "open_issues": 47,
+            "open_issues": 49,
             "watchers": 213,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -2118,7 +2134,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/atacseq",
             "contributors": [
                 {
@@ -2568,7 +2584,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-validation"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -3158,7 +3178,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -3421,7 +3445,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -3793,7 +3821,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -4025,7 +4057,9 @@
                         ]
                     },
                     "nextflow_version": "!>=21.10.3",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -4276,7 +4310,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -4456,7 +4494,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -4483,10 +4525,10 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 161,
+            "forks_count": 162,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 34,
+            "open_issues_count": 37,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -4498,8 +4540,8 @@
                 "peak-calling"
             ],
             "visibility": "public",
-            "forks": 161,
-            "open_issues": 34,
+            "forks": 162,
+            "open_issues": 37,
             "watchers": 227,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -4535,7 +4577,7 @@
                     "status": "enabled"
                 }
             },
-            "network_count": 161,
+            "network_count": 162,
             "subscribers_count": 158,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -4562,7 +4604,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 5,
+            "open_pr_count": 6,
             "repository_url": "https://github.com/nf-core/chipseq",
             "contributors": [
                 {
@@ -4911,7 +4953,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -5356,7 +5402,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -5611,7 +5661,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -5786,7 +5838,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": ">=20.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -5816,7 +5870,7 @@
             "forks_count": 5,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 2,
+            "open_issues_count": 3,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -5828,7 +5882,7 @@
             ],
             "visibility": "public",
             "forks": 5,
-            "open_issues": 2,
+            "open_issues": 3,
             "watchers": 13,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -6069,7 +6123,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.0",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -6272,7 +6330,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -6518,7 +6580,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -7025,7 +7091,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -7754,7 +7824,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -7907,7 +7981,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -8474,7 +8552,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -9109,7 +9191,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -9971,7 +10057,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -10654,7 +10744,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -10946,7 +11040,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -11190,7 +11288,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": ">=20.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -11728,7 +11828,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -11940,7 +12044,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -12110,7 +12218,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -12343,7 +12455,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -12534,7 +12650,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -13199,7 +13317,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -13577,7 +13697,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -13744,7 +13868,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": "2.14.1"
+                    "nf_core_version": "2.14.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -14107,7 +14235,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -14137,7 +14269,7 @@
             "forks_count": 16,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 11,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -14149,7 +14281,7 @@
             ],
             "visibility": "public",
             "forks": 16,
-            "open_issues": 10,
+            "open_issues": 11,
             "watchers": 25,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -14393,7 +14525,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -14917,7 +15053,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -15823,7 +15963,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -15977,7 +16121,9 @@
                         ]
                     },
                     "nextflow_version": "!>=21.10.3",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -16318,7 +16464,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -16332,10 +16482,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/genomeqc",
             "created_at": "2024-09-25T13:21:38Z",
-            "updated_at": "2025-10-31T10:17:22Z",
-            "pushed_at": "2025-10-31T14:23:29Z",
+            "updated_at": "2025-11-04T17:40:10Z",
+            "pushed_at": "2025-11-04T17:40:04Z",
             "homepage": "https://nf-co.re/genomeqc",
-            "size": 2845,
+            "size": 2874,
             "stargazers_count": 18,
             "watchers_count": 18,
             "language": "Nextflow",
@@ -16435,7 +16585,7 @@
             "contributors": [
                 {
                     "name": "FernandoDuarteF",
-                    "count": 203,
+                    "count": 213,
                     "avatar_url": "https://avatars.githubusercontent.com/u/123090819?v=4"
                 },
                 {
@@ -16475,7 +16625,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "0d54eaafa022783960cd53b387a1cd434c009c04",
+            "head_sha": "3a12a2ef50ddfb017f74dd8011579788de5a3759",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -16495,8 +16645,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-10-31T10:17:09Z",
-                    "tag_sha": "0d54eaafa022783960cd53b387a1cd434c009c04",
+                    "published_at": "2025-11-04T17:40:03Z",
+                    "tag_sha": "3a12a2ef50ddfb017f74dd8011579788de5a3759",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -16540,7 +16690,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -16681,7 +16835,9 @@
                         ]
                     },
                     "nextflow_version": "!>=21.10.3",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -16882,7 +17038,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -17146,7 +17306,9 @@
                         ]
                     },
                     "nextflow_version": "!>=22.10.1",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -17487,7 +17649,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -17757,7 +17921,9 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -18139,7 +18305,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -18311,7 +18481,9 @@
                         ]
                     },
                     "nextflow_version": "!>=21.10.3",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -18718,7 +18890,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -18925,7 +19101,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.1.1"
+                    "nf_core_version": "3.1.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -19725,7 +19903,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -19937,7 +20119,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -19954,7 +20140,7 @@
             "updated_at": "2025-11-04T13:22:39Z",
             "pushed_at": "2025-11-04T13:22:33Z",
             "homepage": "https://nf-co.re/lsmquant",
-            "size": 1765,
+            "size": 1789,
             "stargazers_count": 5,
             "watchers_count": 5,
             "language": "Nextflow",
@@ -20101,7 +20287,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -20116,9 +20306,9 @@
             "url": "https://api.github.com/repos/nf-core/mag",
             "created_at": "2018-05-22T06:06:58Z",
             "updated_at": "2025-10-30T12:02:53Z",
-            "pushed_at": "2025-11-04T08:59:13Z",
+            "pushed_at": "2025-11-04T18:29:08Z",
             "homepage": "https://nf-co.re/mag",
-            "size": 43579,
+            "size": 43720,
             "stargazers_count": 250,
             "watchers_count": 250,
             "language": "Nextflow",
@@ -20131,7 +20321,7 @@
             "forks_count": 142,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 86,
+            "open_issues_count": 81,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -20147,7 +20337,7 @@
             ],
             "visibility": "public",
             "forks": 142,
-            "open_issues": 86,
+            "open_issues": 81,
             "watchers": 250,
             "default_branch": "main",
             "temp_clone_token": "",
@@ -20214,7 +20404,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 14,
+            "open_pr_count": 12,
             "repository_url": "https://github.com/nf-core/mag",
             "contributors": [
                 {
@@ -22096,8 +22286,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-04T08:59:13Z",
-                    "tag_sha": "bb77ce677965274ddaa5d8218894971c611214fb",
+                    "published_at": "2025-11-04T18:29:07Z",
+                    "tag_sha": "5c4f4b852ef5d6c1b204d6d9efaa48524f7c1410",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -22181,7 +22371,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -22339,7 +22533,9 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -22632,7 +22828,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-validation"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -22662,7 +22862,7 @@
             "forks_count": 20,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 38,
+            "open_issues_count": 39,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -22682,7 +22882,7 @@
             ],
             "visibility": "public",
             "forks": 20,
-            "open_issues": 38,
+            "open_issues": 39,
             "watchers": 25,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -22747,7 +22947,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 7,
+            "open_pr_count": 8,
             "repository_url": "https://github.com/nf-core/mcmicro",
             "contributors": [
                 {
@@ -22834,7 +23034,9 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -22992,7 +23194,9 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -23235,7 +23439,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": "2.14.1"
+                    "nf_core_version": "2.14.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -23427,7 +23635,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -23927,7 +24139,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -24077,7 +24293,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -24310,7 +24530,9 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -25305,7 +25527,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -25320,9 +25546,9 @@
             "url": "https://api.github.com/repos/nf-core/mhcquant",
             "created_at": "2018-10-24T14:28:19Z",
             "updated_at": "2025-10-23T20:22:20Z",
-            "pushed_at": "2025-11-04T07:26:48Z",
+            "pushed_at": "2025-11-04T16:23:49Z",
             "homepage": "https://nf-co.re/mhcquant",
-            "size": 27441,
+            "size": 27448,
             "stargazers_count": 39,
             "watchers_count": 39,
             "language": "Nextflow",
@@ -25875,8 +26101,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-04T07:26:47Z",
-                    "tag_sha": "ca8c2b5629cc09757773e5e1402cf9680a9b0ce3",
+                    "published_at": "2025-11-04T16:23:48Z",
+                    "tag_sha": "7401dc254f279ab2f352773580ad250390f84595",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -25905,7 +26131,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -26060,7 +26290,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -26219,7 +26453,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": ">=19.10.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -26485,7 +26721,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -27281,7 +27521,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -27609,7 +27851,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -28200,7 +28446,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -28493,7 +28743,9 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -28844,7 +29096,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -29124,7 +29380,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -29527,7 +29787,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -29923,7 +30187,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -29938,9 +30206,9 @@
             "url": "https://api.github.com/repos/nf-core/panoramaseq",
             "created_at": "2025-06-02T12:02:44Z",
             "updated_at": "2025-10-10T13:24:19Z",
-            "pushed_at": "2025-11-04T09:12:48Z",
+            "pushed_at": "2025-11-04T15:13:05Z",
             "homepage": "https://nf-co.re/panoramaseq",
-            "size": 11708,
+            "size": 11745,
             "stargazers_count": 0,
             "watchers_count": 0,
             "language": "HTML",
@@ -30078,7 +30346,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -30373,7 +30645,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -30554,7 +30830,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": ">=20.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -30744,7 +31022,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [
+                        "nf-validation"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -30774,7 +31056,7 @@
             "forks_count": 21,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 17,
+            "open_issues_count": 18,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -30787,7 +31069,7 @@
             ],
             "visibility": "public",
             "forks": 21,
-            "open_issues": 17,
+            "open_issues": 18,
             "watchers": 25,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -30858,7 +31140,7 @@
                 "workflow",
                 "pipeline"
             ],
-            "open_pr_count": 3,
+            "open_pr_count": 4,
             "repository_url": "https://github.com/nf-core/phaseimpute",
             "contributors": [
                 {
@@ -31039,7 +31321,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -31288,7 +31574,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -31697,7 +31987,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -31872,7 +32166,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.3.1"
+                    "nf_core_version": "3.3.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -31887,9 +32185,9 @@
             "url": "https://api.github.com/repos/nf-core/proteinfamilies",
             "created_at": "2024-11-04T15:37:09Z",
             "updated_at": "2025-10-17T15:51:59Z",
-            "pushed_at": "2025-11-04T13:44:10Z",
+            "pushed_at": "2025-11-04T18:04:48Z",
             "homepage": "https://nf-co.re/proteinfamilies",
-            "size": 6518,
+            "size": 6522,
             "stargazers_count": 21,
             "watchers_count": 21,
             "language": "Nextflow",
@@ -32343,7 +32641,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -32650,7 +32952,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -32834,7 +33140,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": "!>=20.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -33502,7 +33810,9 @@
                         ]
                     },
                     "nextflow_version": "!>=21.10.3",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -33688,7 +33998,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -35349,7 +35663,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -35363,10 +35681,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rarevariantburden",
             "created_at": "2025-03-17T17:23:53Z",
-            "updated_at": "2025-10-29T15:48:35Z",
-            "pushed_at": "2025-10-29T15:48:32Z",
+            "updated_at": "2025-11-04T22:11:28Z",
+            "pushed_at": "2025-11-04T22:11:24Z",
             "homepage": "https://nf-co.re/rarevariantburden",
-            "size": 7765,
+            "size": 7766,
             "stargazers_count": 0,
             "watchers_count": 0,
             "language": "Nextflow",
@@ -35459,12 +35777,12 @@
             "contributors": [
                 {
                     "name": "saima-tithi-stjude",
-                    "count": 56,
+                    "count": 57,
                     "avatar_url": "https://avatars.githubusercontent.com/u/130912882?v=4"
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "ea97179238b4eb0ad83e5f81080c20b0b494db0b",
+            "head_sha": "8babe723345d7903bff76da0bf07ecad03f3d5da",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -35486,8 +35804,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-10-29T15:47:48Z",
-                    "tag_sha": "ea97179238b4eb0ad83e5f81080c20b0b494db0b",
+                    "published_at": "2025-11-04T22:10:23Z",
+                    "tag_sha": "8babe723345d7903bff76da0bf07ecad03f3d5da",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -35502,7 +35820,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -35726,7 +36048,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -35947,7 +36273,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -36208,7 +36538,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -36365,7 +36699,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -36801,7 +37139,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-schema@2.3.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -37036,7 +37378,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -37933,7 +38277,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -37947,12 +38295,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/rnaseq",
             "created_at": "2018-03-29T13:10:58Z",
-            "updated_at": "2025-11-04T04:03:52Z",
-            "pushed_at": "2025-11-04T10:38:16Z",
+            "updated_at": "2025-11-04T18:41:45Z",
+            "pushed_at": "2025-11-04T17:28:23Z",
             "homepage": "https://nf-co.re/rnaseq",
             "size": 75745,
-            "stargazers_count": 1127,
-            "watchers_count": 1127,
+            "stargazers_count": 1128,
+            "watchers_count": 1128,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": false,
@@ -37974,7 +38322,7 @@
             "visibility": "public",
             "forks": 807,
             "open_issues": 78,
-            "watchers": 1127,
+            "watchers": 1128,
             "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -40678,7 +41026,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -41118,7 +41470,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -41703,7 +42059,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.10.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -41718,9 +42078,9 @@
             "url": "https://api.github.com/repos/nf-core/sammyseq",
             "created_at": "2022-10-12T09:18:16Z",
             "updated_at": "2025-10-31T20:48:46Z",
-            "pushed_at": "2025-11-04T13:33:38Z",
+            "pushed_at": "2025-11-04T19:22:20Z",
             "homepage": "https://nf-co.re/sammyseq",
-            "size": 86378,
+            "size": 86381,
             "stargazers_count": 5,
             "watchers_count": 5,
             "language": "Nextflow",
@@ -41946,7 +42306,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-validation"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -41961,9 +42325,9 @@
             "url": "https://api.github.com/repos/nf-core/sarek",
             "created_at": "2019-04-30T15:43:00Z",
             "updated_at": "2025-11-03T06:00:55Z",
-            "pushed_at": "2025-11-04T12:58:19Z",
+            "pushed_at": "2025-11-04T17:51:05Z",
             "homepage": "https://nf-co.re/sarek",
-            "size": 115619,
+            "size": 117067,
             "stargazers_count": 499,
             "watchers_count": 499,
             "language": "Nextflow",
@@ -41976,7 +42340,7 @@
             "forks_count": 488,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 338,
+            "open_issues_count": 337,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -41995,7 +42359,7 @@
             ],
             "visibility": "public",
             "forks": 488,
-            "open_issues": 338,
+            "open_issues": 337,
             "watchers": 499,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -44992,8 +45356,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-04T12:58:15Z",
-                    "tag_sha": "25d9fb6b6b05c94d77e0d9dec6a7133550eb426d",
+                    "published_at": "2025-11-04T15:57:29Z",
+                    "tag_sha": "da31547643bfa825b9cdd5acf8b4f0991cd0940e",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -45014,6 +45378,7 @@
                             "bcftools_norm",
                             "bcftools_sort",
                             "bcftools_stats",
+                            "bcftools_view",
                             "bwa_index",
                             "bwa_mem",
                             "bwamem2_index",
@@ -45131,7 +45496,13 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.8",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-schema@2.4.2",
+                        "nf-prov@1.2.2",
+                        "nf-fgbio@1.0.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -45368,7 +45739,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -46134,7 +46509,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.2.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -46161,7 +46540,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 203,
+            "forks_count": 204,
             "archived": false,
             "disabled": false,
             "open_issues_count": 80,
@@ -46180,7 +46559,7 @@
                 "star-solo"
             ],
             "visibility": "public",
-            "forks": 203,
+            "forks": 204,
             "open_issues": 80,
             "watchers": 298,
             "default_branch": "master",
@@ -46217,7 +46596,7 @@
                     "status": "enabled"
                 }
             },
-            "network_count": 203,
+            "network_count": 204,
             "subscribers_count": 148,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -47071,7 +47450,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -47243,7 +47626,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -47418,7 +47805,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -47796,7 +48187,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": ">=19.10.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -48852,7 +49245,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-schema@2.1.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -48866,10 +49263,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/sopa",
             "created_at": "2025-02-27T12:56:57Z",
-            "updated_at": "2025-11-03T16:31:50Z",
-            "pushed_at": "2025-11-03T16:31:52Z",
+            "updated_at": "2025-11-04T17:04:08Z",
+            "pushed_at": "2025-11-04T17:04:04Z",
             "homepage": "https://nf-co.re/sopa/dev/",
-            "size": 543,
+            "size": 562,
             "stargazers_count": 11,
             "watchers_count": 11,
             "language": "Nextflow",
@@ -48964,7 +49361,7 @@
             "contributors": [
                 {
                     "name": "quentinblampey",
-                    "count": 201,
+                    "count": 205,
                     "avatar_url": "https://avatars.githubusercontent.com/u/33903498?v=4"
                 },
                 {
@@ -48974,7 +49371,7 @@
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "193f9c696820f21bde45166842a2eec452219f62",
+            "head_sha": "0dd21c6e8619acf8cda35f86755ece1122639248",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -48996,8 +49393,8 @@
             "releases": [
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-03T16:31:46Z",
-                    "tag_sha": "193f9c696820f21bde45166842a2eec452219f62",
+                    "published_at": "2025-11-04T17:04:02Z",
+                    "tag_sha": "0dd21c6e8619acf8cda35f86755ece1122639248",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -49015,7 +49412,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -49030,9 +49431,9 @@
             "url": "https://api.github.com/repos/nf-core/spatialvi",
             "created_at": "2022-02-23T20:44:38Z",
             "updated_at": "2025-10-22T10:08:15Z",
-            "pushed_at": "2025-10-31T13:55:25Z",
+            "pushed_at": "2025-11-04T15:28:58Z",
             "homepage": "https://nf-co.re/spatialvi",
-            "size": 7477,
+            "size": 7482,
             "stargazers_count": 66,
             "watchers_count": 66,
             "language": "Nextflow",
@@ -49045,7 +49446,7 @@
             "forks_count": 28,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 8,
+            "open_issues_count": 9,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -49064,7 +49465,7 @@
             ],
             "visibility": "public",
             "forks": 28,
-            "open_issues": 8,
+            "open_issues": 9,
             "watchers": 66,
             "default_branch": "dev",
             "temp_clone_token": "",
@@ -49130,7 +49531,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 1,
+            "open_pr_count": 2,
             "repository_url": "https://github.com/nf-core/spatialvi",
             "contributors": [
                 {
@@ -49210,7 +49611,9 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -49379,7 +49782,9 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -49522,7 +49927,9 @@
                         "docs/usage.md"
                     ],
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -49839,7 +50246,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.00",
-                    "nf_core_version": "3.2.1"
+                    "nf_core_version": "3.2.1",
+                    "plugins": [
+                        "nf-schema@2.0.0"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -49854,9 +50265,9 @@
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
             "updated_at": "2025-10-28T19:07:29Z",
-            "pushed_at": "2025-11-04T13:46:21Z",
+            "pushed_at": "2025-11-04T14:44:36Z",
             "homepage": "https://nf-co.re/taxprofiler",
-            "size": 17263,
+            "size": 17270,
             "stargazers_count": 168,
             "watchers_count": 168,
             "language": "Nextflow",
@@ -49869,7 +50280,7 @@
             "forks_count": 59,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 50,
+            "open_issues_count": 49,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -49888,7 +50299,7 @@
             ],
             "visibility": "public",
             "forks": 59,
-            "open_issues": 50,
+            "open_issues": 49,
             "watchers": 168,
             "default_branch": "master",
             "temp_clone_token": "",
@@ -49955,7 +50366,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 7,
+            "open_pr_count": 6,
             "repository_url": "https://github.com/nf-core/taxprofiler",
             "contributors": [
                 {
@@ -51199,8 +51610,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-04T13:23:25Z",
-                    "tag_sha": "3ec09bce6cc23532dba774364bc6cdc9cca80f55",
+                    "published_at": "2025-11-04T14:44:34Z",
+                    "tag_sha": "8bd5d8c48f0338c34c504fa5f3285aeae2baa89e",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -51271,7 +51682,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.2",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -51459,7 +51874,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.0.2"
+                    "nf_core_version": "3.0.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -51647,7 +52066,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.10.5",
-                    "nf_core_version": "3.3.2"
+                    "nf_core_version": "3.3.2",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -51805,7 +52228,11 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [
+                        "nf-validation@1.1.3"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -52025,7 +52452,9 @@
                         ]
                     },
                     "nextflow_version": "!>=24.04.2",
-                    "nf_core_version": "3.2.0"
+                    "nf_core_version": "3.2.0",
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -52458,7 +52887,12 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2",
+                        "nf-prov@1.2.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -52624,7 +53058,9 @@
                         ]
                     },
                     "nextflow_version": "!>=22.10.1",
-                    "nf_core_version": null
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -52802,7 +53238,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.4.2"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -52980,7 +53420,7 @@
             "has_wiki": false,
             "has_pages": false,
             "has_discussions": false,
-            "forks_count": 11,
+            "forks_count": 10,
             "archived": false,
             "disabled": false,
             "open_issues_count": 24,
@@ -52995,7 +53435,7 @@
                 "virusintegrationfinder"
             ],
             "visibility": "public",
-            "forks": 11,
+            "forks": 10,
             "open_issues": 24,
             "watchers": 17,
             "default_branch": "master",
@@ -53032,7 +53472,7 @@
                     "status": "enabled"
                 }
             },
-            "network_count": 11,
+            "network_count": 10,
             "subscribers_count": 168,
             "team_contributors_permission_push": true,
             "team_contributors_permission_admin": false,
@@ -53182,7 +53622,11 @@
                         ]
                     },
                     "nextflow_version": "!>=23.04.0",
-                    "nf_core_version": "2.14.1"
+                    "nf_core_version": "2.14.1",
+                    "plugins": [
+                        "nf-validation"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -53196,10 +53640,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/viralmetagenome",
             "created_at": "2023-01-12T16:00:46Z",
-            "updated_at": "2025-11-03T16:06:54Z",
-            "pushed_at": "2025-11-04T14:10:48Z",
-            "homepage": "https://nf-co.re/viralmetagenome/dev/",
-            "size": 68191,
+            "updated_at": "2025-11-04T14:48:15Z",
+            "pushed_at": "2025-11-04T16:05:42Z",
+            "homepage": "https://nf-co.re/viralmetagenome/",
+            "size": 68211,
             "stargazers_count": 25,
             "watchers_count": 25,
             "language": "Nextflow",
@@ -53212,7 +53656,7 @@
             "forks_count": 4,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 14,
+            "open_issues_count": 10,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": true,
@@ -53226,9 +53670,9 @@
             ],
             "visibility": "public",
             "forks": 4,
-            "open_issues": 14,
+            "open_issues": 10,
             "watchers": 25,
-            "default_branch": "dev",
+            "default_branch": "master",
             "temp_clone_token": "",
             "allow_squash_merge": true,
             "allow_merge_commit": true,
@@ -53293,12 +53737,12 @@
             "dev_uses_ruleset": true,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 3,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/viralmetagenome",
             "contributors": [
                 {
                     "name": "Joon-Klaps",
-                    "count": 1371,
+                    "count": 1372,
                     "avatar_url": "https://avatars.githubusercontent.com/u/61584065?v=4"
                 },
                 {
@@ -53317,13 +53761,13 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/7768245?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "0d0d106c68ab69896892b6a60a7ad12321364029",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/viralmetagenome/compare/0d0d106c68ab69896892b6a60a7ad12321364029...c882656699bb80541753242b3a797253946edc5c",
+            "released_after_tools": true,
+            "head_sha": "0430440a44ef505ef2d0e60c29fbb81d26ead6c1",
+            "last_release_is_head": true,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/viralmetagenome/compare/0430440a44ef505ef2d0e60c29fbb81d26ead6c1...0430440a44ef505ef2d0e60c29fbb81d26ead6c1",
             "commits_to_dev": 30,
             "is_DSL2": true,
-            "has_nf_test": false,
+            "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
                 "nf-schema@2.5.1"
@@ -53338,6 +53782,109 @@
                 "defaultBranch": "master"
             },
             "releases": [
+                {
+                    "tag_name": "1.0.0",
+                    "published_at": "2025-11-04T14:15:30Z",
+                    "tag_sha": "0430440a44ef505ef2d0e60c29fbb81d26ead6c1",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/databases.md",
+                        "docs/usage/workflow/1_overview.md",
+                        "docs/usage/workflow/2_preprocessing.md",
+                        "docs/usage/workflow/3_metagenomic_diversity.md",
+                        "docs/usage/workflow/4_assembly_polishing.md",
+                        "docs/usage/workflow/5_variant_and_refinement.md",
+                        "docs/usage/workflow/6_consensus_qc.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bbmap_bbduk",
+                            "bcftools_consensus",
+                            "bcftools_filter",
+                            "bcftools_mpileup",
+                            "bcftools_norm",
+                            "bcftools_sort",
+                            "bcftools_stats",
+                            "bedtools_maskfasta",
+                            "bedtools_merge",
+                            "blast_blastn",
+                            "blast_makeblastdb",
+                            "bowtie2_align",
+                            "bowtie2_build",
+                            "bracken_bracken",
+                            "bwamem2_index",
+                            "bwamem2_mem",
+                            "cat_cat",
+                            "cat_fastq",
+                            "cdhit_cdhitest",
+                            "checkv_downloaddatabase",
+                            "checkv_endtoend",
+                            "fastp",
+                            "fastqc",
+                            "gunzip",
+                            "humid",
+                            "ivar_consensus",
+                            "ivar_variants",
+                            "kaiju_kaiju",
+                            "kaiju_kaiju2krona",
+                            "kaiju_kaiju2table",
+                            "kraken2_kraken2",
+                            "krakentools_kreport2krona",
+                            "krona_ktimporttext",
+                            "mafft_align",
+                            "mash_dist",
+                            "mash_screen",
+                            "mash_sketch",
+                            "megahit",
+                            "minimap2_align",
+                            "minimap2_index",
+                            "mmseqs_cluster",
+                            "mmseqs_createdb",
+                            "mmseqs_createtsv",
+                            "mmseqs_easysearch",
+                            "mmseqs_linclust",
+                            "mosdepth",
+                            "multiqc",
+                            "picard_collectmultiplemetrics",
+                            "picard_markduplicates",
+                            "prinseqplusplus",
+                            "prokka",
+                            "quast",
+                            "samtools_faidx",
+                            "samtools_flagstat",
+                            "samtools_idxstats",
+                            "samtools_index",
+                            "samtools_sort",
+                            "samtools_stats",
+                            "snpeff_snpeff",
+                            "spades",
+                            "tabix_tabix",
+                            "trimmomatic",
+                            "trinity",
+                            "umitools_dedup",
+                            "umitools_extract",
+                            "untar",
+                            "vrhyme_vrhyme",
+                            "vsearch_cluster",
+                            "xz_decompress"
+                        ],
+                        "subworkflows": [
+                            "bam_stats_samtools",
+                            "fastq_fastqc_umitools_fastp",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.04.0",
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "0.1.2",
                     "published_at": "2025-02-28T14:53:46Z",
@@ -53524,8 +54071,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2025-11-03T16:06:50Z",
-                    "tag_sha": "0d0d106c68ab69896892b6a60a7ad12321364029",
+                    "published_at": "2025-11-04T16:05:42Z",
+                    "tag_sha": "91fa95f176e9e9ab1bb8b60f086310d839510de4",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -53619,7 +54166,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         },
@@ -54567,7 +55118,11 @@
                         ]
                     },
                     "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.4.1"
+                    "nf_core_version": "3.4.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
                 }
             ]
         }
