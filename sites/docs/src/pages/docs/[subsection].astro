@@ -7,7 +7,7 @@ import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
 import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
 export async function getStaticPaths() {
-    return ["tutorials", "usage", "contributing", "nf-core-tools", "checklists", "guidelines"].map((subsection) => ({
+    return ["get-started", "users", "developers", "contributors", "community", "nf-core-tools"].map((subsection) => ({
         params: {
             subsection: subsection,
         },
