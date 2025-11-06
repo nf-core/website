@@ -1,5 +1,8 @@
-<img src="sites/main-site/src/assets/images/logo/nf-core-logo.svg#gh-light-mode-only" width="400">
-<img src="sites/main-site/src/assets/images/logo/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
+<picture>
+  <source srcset="sites/main-site/src/assets/images/logo/nf-core-logo-darkbg.svg" media="(prefers-color-scheme: dark)">
+  <source srcset="sites/main-site/src/assets/images/logo/nf-core-logo.svg" media="(prefers-color-scheme: light)">
+  <img src="sites/main-site/src/assets/images/logo/nf-core-logo.svg" alt="nf-core logo" width="400">
+</picture>
 
 # [nf-co.re](https://github.com/nf-core/website)
 
@@ -51,7 +54,7 @@ or
 npm run dev --workspace sites/docs
 ```
 
-For sub-sites (`sites/pipelines`, `sites/pipeline-results`, `sites/configs`, `sites/modules-subworkflows`) that are pulling data from GitHub API, you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
+For sub-sites (`sites/pipelines`, `sites/pipeline-results`, `sites/configs`, `sites/modules-subworkflows`, `sites/stickers`)) that are pulling data from GitHub API, you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 Add the `.env` file to the root of the repository with the following content:
 
@@ -86,6 +89,7 @@ The main sub-sites are:
 - `sites/modules-subworkflows` - modules and subworkflows pages
 - `sites/pipelines` - pipeline pages
 - `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+- `sites/stickers` - nf-core sticker gallery automatically generated based on the entries in [nf-core/logos](https://github.com/nf-core/logos/)
 
 Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
 
