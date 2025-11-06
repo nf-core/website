@@ -5,15 +5,7 @@ pubDate: 2025-11-06
 headerImage: "/assets/images/blog/hackathon-topic/topics_team.jpg"
 headerImageAlt: "Topic project members during nf-core Hackathon 2025 in Barcelona"
 embedHeaderImage: true
-authors:
-    [ "mapo9",
-    "nvnieuwk",
-    "mribeirodantas",
-    "kobelavaerts",
-    "wangdepin",
-    "yadavbha", 
-    "eit-maxlcummins",
-    ]
+authors: ["mapo9", "nvnieuwk", "mribeirodantas", "kobelavaerts", "wangdepin", "yadavbha", "eit-maxlcummins"]
 label:
     - "community"
 ---
@@ -28,7 +20,6 @@ import { Image } from "astro:assets";
 - No more mixing of version channels.
   :::
 
-
 <Image
     src={topicspooh}
     class="d-block m-auto mb-2"
@@ -36,7 +27,6 @@ import { Image } from "astro:assets";
     density={[1.5, 2]}
     alt="Winnie the Pooh meme on topics usage. Upper winnie is sad working on some topic on the hackathon, lower winnie is sophisticated as working on the topic channels"
 />
-
 
 # What are topic channels
 
@@ -63,16 +53,16 @@ process bye {
 
 See also the [channels documention](https://www.nextflow.io/docs/latest/reference/channel.html#topic) and the [migration tutorial](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
 
-
-
 # How to adopt your module
+
 :::tip{title="Workflow"}
+
 1. Adapt main.nf
 2. Perform semi-automatic meta.yml update
 3. Catch version in tests/main.nf.test
 4. Update snapshot
 5. Fix dependent nf-core/subworkflows
-:::
+   :::
 
 Let's get to work. Grab any nf-core module
 
@@ -93,12 +83,11 @@ tuple val(meta), path("*.zip") , emit: zip
 -END_VERSIONS
 ```
 
-
 ## 2. Semi-automatic meta.yml update
 
 Update the meta.yml using nf-core/tools. Then fill in the version information.  
-You can update the meta.yml conveniently using   
- ```nf-core modules <MODULE_NAME> lint --fix```
+You can update the meta.yml conveniently using  
+ `nf-core modules <MODULE_NAME> lint --fix`
 
 ```
   versions_fastqc:
@@ -146,4 +135,3 @@ ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 ```
 
 Make sure to update the snapshots of the subworkflows as well.
-
