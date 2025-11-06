@@ -18,12 +18,25 @@ label:
     - "community"
 ---
 
+import topicmeme from "@assets/images/blog/hackathon-topic/topic_versions.png";
+import { Image } from "astro:assets";
+
 :::tip{title="TLDR;"}
 
 - We are adopting topic channels to replace the versions.yml.
 - For now both options are valid, but this will change.
 - No more mixing of version channels.
   :::
+
+
+<Image
+    src={topicmeme}
+    class="d-block m-auto mb-2"
+    width={400}
+    density={[1.5, 2]}
+    alt="potus holding up a folder with two pages. Left one saying 'version.yml files are banned', right one saying 'use topic channels'"
+/>
+
 
 # What are topic channels
 
@@ -65,34 +78,27 @@ Let's get to work. Grab any nf-core module
 
 ## 1. Adapt main.nf
 
-You can delete this section, we don't want to write to `version.yml` files any more:
+No need to write to `version.yml` files any more, we emit a topic channel in the output section instead.
 
-```
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
-END_VERSIONS
-"""
-```
-
-Then, you can adapt the output section:
-
-```
+```diff title="main.nf"
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip
-path  "versions.yml"           , emit: versions
+-path  "versions.yml"           , emit: versions
++tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+︙
+-cat <<-END_VERSIONS > versions.yml
+-"${task.process}":
+-    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
+-END_VERSIONS
 ```
 
-to
-
-```
-tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
-```
 
 ## 2. Semi-automatic meta.yml update
 
-Update the meta.yml using nf-core/tools. Then fill in the version information
+Update the meta.yml using nf-core/tools. Then fill in the version information.  
+You can update the meta.yml conveniently using   
+ ```nf-core modules <MODULE_NAME> lint --fix```
 
 ```
   versions_fastqc:
@@ -140,3 +146,4 @@ ch_versions = ch_versions.mix(FASTQC.out.versions.first())
 ```
 
 Make sure to update the snapshots of the subworkflows as well.
+
