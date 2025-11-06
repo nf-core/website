@@ -3,8 +3,8 @@ external_node_modules = ["vscode-oniguruma", "shiki"]
 node_bundler = "esbuild"
 [build]
 environment = { NODE_VERSION = "22" }
-command = "npm run build -w sites/pipelines"
-ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/pipelines public/pipelines.json"
+command = "npm run build -w sites/stickers"
+ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/stickers"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
 [[headers]]
