@@ -87,16 +87,6 @@ Helper method to parse JSON response and create pretty-printed string.
 Try to check out the origin/TEMPLATE in a new TEMPLATE branch.
 If this fails, try to check out an existing local TEMPLATE branch.
 
-#### `close_open_pr(pr) → bool{:python}`
-
-Given a PR API response, add a comment and close.
-
-#### `close_open_template_merge_prs(){:python}`
-
-Get all template merging branches (starting with ‘nf-core-template-merge-‘)
-and check for any open PRs from these branches to the self.from_branch
-If open PRs are found, add a comment and close them
-
 #### `commit_template_changes(){:python}`
 
 If we have any changes with the new template files, make a git commit
