@@ -22,6 +22,7 @@ but making it as easy as possible for pipeline maintainers to adpot them.
 The changes will be introduced into Nextflow gradually, and we will do so in nf-core too:
 
 For every one of the changes, we will wait until the following release to adopt the changes in nf-core.
+
 1. First, we will allow the new functionalities in the pipeline template, and nf-core linting will warn you if you are using the old syntax (without failing!).
 2. Then, we will switch linting to a failure for old Nextflow syntax, making it mandatory to update your pipeline to the new one.
 
@@ -68,7 +69,7 @@ In order to make it easier for maintainers to adopt these changes,
 we have implemented a couple of new changes to the pipeline template sync process:
 
 - The template sync PRs that are opened to pipeline repositories with every new nf-core/tools will remain open,
-even if a new tools release is made.
+  even if a new tools release is made.
 
 This will allow you to choose if you want to add these changes one at a time,
 or wait until you receive multiple tools releases and do a single template update in bulk.
