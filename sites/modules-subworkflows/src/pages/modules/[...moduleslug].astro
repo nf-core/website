@@ -72,6 +72,13 @@ function truncatURLs(url: string) {
                 <div class="module output mb-5">
                     <ComponentParamTable name={"Output"} icon={"fa-sign-out"} params={module.meta.output} />
                 </div>
+                {
+                    module.meta.topics && (
+                        <div class="module topics mb-5">
+                            <ComponentParamTable name={"Topics"} icon={"fa-tag"} params={module.meta.topics} />
+                        </div>
+                    )
+                }
             </div>
             <div class="module-tools col-12">
                 <h2>
