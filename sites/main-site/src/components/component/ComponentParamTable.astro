@@ -25,12 +25,12 @@ export interface Props {
     icon: string;
     params?: Params;
 }
-if (name === "Input" || name === "Output") {
+if (name === "Input" || name === "Output" || name === "Topics") {
     // console.log('is Array', Array.isArray(params));
     const paramsArray = Array.isArray(params) ? params : [params];
     params = paramsArray.map((param, i) => {
         const paramArray = Array.isArray(param) ? param : [param];
-        return name === "Output" && paramArray.length === 1
+        return (name === "Output" || name === "Topics") && paramArray.length === 1
             ? paramArray[0]
             : { [`${name.toLowerCase()}[${i}]`]: paramArray };
     });
