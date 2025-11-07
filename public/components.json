@@ -20723,39 +20723,56 @@
                 "pattern": "*.{vcf,vcf.gz}",
                 "ontologies": []
               }
+            },
+            {
+              "vcf_index": {
+                "type": "file",
+                "description": "target VCF input file index",
+                "pattern": "*.{vcf,vcf.gz}.{tbi,csi}",
+                "ontologies": []
+              }
+            },
+            {
+              "refpanel": {
+                "type": "file",
+                "description": "target reference panel",
+                "ontologies": [],
+                "pattern": "*.{vcf,vcf.gz}"
+              }
+            },
+            {
+              "refpanel_index": {
+                "type": "file",
+                "description": "target reference panel index",
+                "ontologies": [],
+                "pattern": "*.{vcf,vcf.gz}.{tbi,csi}"
+              }
+            },
+            {
+              "genmap": {
+                "type": "file",
+                "description": "a PLINK format genetic map with cM units",
+                "pattern": "*.{map,map.gz,map.zip}",
+                "ontologies": []
+              }
+            },
+            {
+              "exclsamples": {
+                "type": "file",
+                "description": "text file containing samples one sample per line to be excluded from the analysis",
+                "pattern": "*.*",
+                "ontologies": []
+              }
+            },
+            {
+              "exclmarkers": {
+                "type": "file",
+                "description": "text file containing markers one marker per line to be excluded from the analysis",
+                "pattern": "*.*",
+                "ontologies": []
+              }
             }
-          ],
-          {
-            "refpanel": {
-              "type": "file",
-              "description": "target reference panel",
-              "ontologies": []
-            }
-          },
-          {
-            "genmap": {
-              "type": "file",
-              "description": "a PLINK format genetic map with cM units",
-              "pattern": "*.{map,map.gz,map.zip}",
-              "ontologies": []
-            }
-          },
-          {
-            "exclsamples": {
-              "type": "file",
-              "description": "text file containing samples one sample per line to be excluded from the analysis",
-              "pattern": "*.*",
-              "ontologies": []
-            }
-          },
-          {
-            "exclmarkers": {
-              "type": "file",
-              "description": "text file containing markers one marker per line to be excluded from the analysis",
-              "pattern": "*.*",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "vcf": [
@@ -121562,7 +121579,7 @@
               }
             },
             {
-              "snps": {
+              "snvs": {
                 "type": "file",
                 "description": "VCF file with SNPs (and INDELs)",
                 "pattern": "*.{vcf,vcf.gz}",
@@ -121620,7 +121637,7 @@
           ]
         ],
         "output": {
-          "vcf": [
+          "snv_vcf": [
             [
               {
                 "meta": {
@@ -121629,9 +121646,53 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
-                  "description": "Compressed VCF file with phased variants",
+                  "description": "Compressed VCF file with phased SNVs and indels",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sv_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_SV.vcf.gz": {
+                  "type": "file",
+                  "description": "Compressed VCF file with phased SVs",
+                  "pattern": "*_SV.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "mod_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}_mod.vcf.gz": {
+                  "type": "file",
+                  "description": "Compressed VCF file with phased modifications",
                   "pattern": "*.vcf.gz",
                   "ontologies": [
                     {
@@ -159903,6 +159964,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "seqinspector",
+          "version": "dev"
+        },
+        {
           "name": "ssds",
           "version": "dev"
         },
@@ -180930,6 +180995,135 @@
       ]
     },
     {
+      "name": "ribodetector",
+      "path": "modules/nf-core/ribodetector/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ribodetector",
+        "description": "Accurate and rapid RiboRNA sequences Detector based on deep learning",
+        "keywords": [
+          "RNA",
+          "RNAseq",
+          "rRNA",
+          "ribosomal RNA",
+          "rRNA depletion",
+          "rRNA removal",
+          "rRNA filtering",
+          "deep learning",
+          "Riboseq",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "ribodetector": {
+              "description": "Accurate and rapid RiboRNA sequences detector based on deep learning. RiboDetector uses a deep learning approach to identify rRNA sequences in ribosome profiling (Ribo-seq) data. It can be used to filter out rRNA reads from Ribo-seq datasets, improving the quality of downstream analyses. As of version 0.3.1, Ribodetector doesn't support setting a random seed, so results may not be fully deterministic across runs.",
+              "homepage": "https://github.com/hzi-bifo/RiboDetector",
+              "documentation": "https://github.com/hzi-bifo/RiboDetector",
+              "tool_dev_url": "https://github.com/hzi-bifo/RiboDetector",
+              "doi": "10.1093/nar/gkac112",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:ribodetector"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing riboseq sample information\ne.g. `[ id:'sample1', single_end:false ]\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "length": {
+              "type": "integer",
+              "description": "Sequencing read length (mean length). Note: the accuracy reduces for reads shorter than 40\n",
+              "pattern": "integer >= 1"
+            }
+          }
+        ],
+        "output": {
+          "fastq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.nonrna*.fastq.gz": {
+                  "type": "file",
+                  "description": "rRNA depleted FastQ files",
+                  "pattern": "*.nonrna*.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file from RiboDetector",
+                  "pattern": "*.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@maxibor"
+        ],
+        "maintainers": [
+          "@maxibor"
+        ]
+      }
+    },
+    {
       "name": "ribotish_predict",
       "path": "modules/nf-core/ribotish/predict/meta.yml",
       "type": "module",
@@ -189707,6 +189901,10 @@
           "version": "1.2.1"
         },
         {
+          "name": "seqinspector",
+          "version": "dev"
+        },
+        {
           "name": "tfactivity",
           "version": "dev"
         },
@@ -191171,6 +191369,10 @@
         {
           "name": "scnanoseq",
           "version": "1.2.1"
+        },
+        {
+          "name": "seqinspector",
+          "version": "dev"
         },
         {
           "name": "smrnaseq",
