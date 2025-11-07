@@ -38,6 +38,9 @@ We updated the modules template, so if you run `nf-core modules create{:bash}` y
 For now nf-core linting accepts both ways to collect versions, but gives a warning if you use the old syntax.
 In your pipeline you can mix and match modules with the new and old syntax.
 
+:::note
+Note that the channel called `versions` is now renamed to `versions_<TOOL NAME>`, so you will have to adapt the channel names if you want to continue using the old logic for collection versions.
+:::
 We will slowly migrate all nf-core modules to the new syntax.
 
 For more information on how to migrate and handle these new modules, please refer to the [migration guide](/docs/tutorials/migrate_to_topics/update_modules).
