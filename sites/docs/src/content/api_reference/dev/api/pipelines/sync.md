@@ -2,7 +2,7 @@
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
-### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False){:python}`
+### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False, blog_post: str = ''){:python}`
 
 Bases: `object`
 
@@ -86,16 +86,6 @@ Helper method to parse JSON response and create pretty-printed string.
 
 Try to check out the origin/TEMPLATE in a new TEMPLATE branch.
 If this fails, try to check out an existing local TEMPLATE branch.
-
-#### `close_open_pr(pr) → bool{:python}`
-
-Given a PR API response, add a comment and close.
-
-#### `close_open_template_merge_prs(){:python}`
-
-Get all template merging branches (starting with ‘nf-core-template-merge-‘)
-and check for any open PRs from these branches to the self.from_branch
-If open PRs are found, add a comment and close them
 
 #### `commit_template_changes(){:python}`
 

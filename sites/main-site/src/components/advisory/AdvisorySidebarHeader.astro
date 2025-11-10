@@ -1,6 +1,6 @@
 ---
 import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
-import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.svelte";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
 import nextflowIcon from "../../icons/logos/nextflow.svg?raw";
 import {
     formatAdvisoryType,
@@ -253,7 +253,6 @@ const impactSections = [
                     const info = getPersonInfo(reporter);
                     return (
                         <GitHubProfilePictureExtended
-                            client:load
                             username={info.username}
                             affiliation={info.affiliation}
                             size={40}
@@ -272,7 +271,6 @@ const impactSections = [
                     const info = getPersonInfo(reviewer);
                     return (
                         <GitHubProfilePictureExtended
-                            client:load
                             username={info.username}
                             affiliation={info.affiliation}
                             size={40}
