@@ -49,6 +49,7 @@ Not all pipelines are suitable for inclusion in the main nf-core community (eg. 
 ## Pre-existing pipelines
 
 In some cases, you might have a general-purpose Nextflow pipeline you built outside of nf-core that you believe would be a valuable addition to the community. We welcome this type of contribution. However, you should be aware of several caveats in this scenario:
+
 - If there is already a released or in-development nf-core pipeline with an identical or highly similar purpose, we will ask you to contribute to it, even if your pipeline is more mature at the time of submission.
 - You might have to make major (possibly breaking) changes to your pipeline to meet [the guidelines](/docs/guidelines/pipelines/overview).
 - Due to the nf-core naming policy, the pipeline will most likely need a new, descriptive name within nf-core.
