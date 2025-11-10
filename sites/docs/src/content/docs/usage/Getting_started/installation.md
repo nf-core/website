@@ -167,7 +167,7 @@ For example, `-profile docker` or `-profile conda`.
 
 The pipeline needs no installation - Nextflow will automatically fetch it from GitHub if `nf-core/<pipeline-name>` is specified as the pipeline name.
 
-This method requires an internet connection. If you're running on a system that has no internet connection, please see [Running Offline](./offline).
+This method requires an internet connection. If you're running on a system that has no internet connection, please see [Running Offline](/docs/usage/getting_started/offline).
 
 ### Development
 
