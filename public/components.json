@@ -11483,7 +11483,7 @@
                 }
               },
               {
-                "clustering/qc_pass/*/*.gfa": {
+                "$prefix/clustering/qc_pass/*/*.gfa": {
                   "type": "file",
                   "description": "Aassembly graphs of clustered contigs.",
                   "pattern": "clustering/qc_pass/*/*.gfa",
@@ -11505,7 +11505,7 @@
                 }
               },
               {
-                "clustering/qc_pass/*/*.yaml": {
+                "$prefix/clustering/qc_pass/*/*.yaml": {
                   "type": "file",
                   "description": "Per-cluster metrics reported by Autocycler.",
                   "pattern": "clustering/qc_pass/*/*.yaml",
@@ -11527,7 +11527,7 @@
                 }
               },
               {
-                "clustering/*.newick": {
+                "$prefix/clustering/*.newick": {
                   "type": "file",
                   "description": "Newick tree relating contigs.",
                   "pattern": "clustering/*.newick"
@@ -11544,7 +11544,7 @@
                 }
               },
               {
-                "clustering/*.tsv": {
+                "$prefix/clustering/*.tsv": {
                   "type": "file",
                   "description": "Tabular summary of cluster relationships.",
                   "pattern": "clustering/*.tsv"
@@ -11561,7 +11561,7 @@
                 }
               },
               {
-                "clustering/*.phylip": {
+                "$prefix/clustering/*.phylip": {
                   "type": "file",
                   "description": "Pairwise distance matrix in PHYLIP format.",
                   "pattern": "clustering/*.phylip"
@@ -11578,7 +11578,7 @@
                 }
               },
               {
-                "clustering/*.yaml": {
+                "$prefix/clustering/*.yaml": {
                   "type": "file",
                   "description": "Run-level statistics for the clustering step.",
                   "pattern": "clustering/*.yaml",
@@ -11922,7 +11922,7 @@
                 }
               },
               {
-                "3_bridged.gfa": {
+                "$prefix/3_bridged.gfa": {
                   "type": "file",
                   "description": "Assembly graph with bridges resolved.",
                   "pattern": "3_bridged.gfa",
@@ -11944,7 +11944,7 @@
                 }
               },
               {
-                "4_merged.gfa": {
+                "$prefix/4_merged.gfa": {
                   "type": "file",
                   "description": "Merged assembly graph after bridging.",
                   "pattern": "4_merged.gfa",
@@ -11966,7 +11966,7 @@
                 }
               },
               {
-                "5_final.gfa": {
+                "$prefix/5_final.gfa": {
                   "type": "file",
                   "description": "Final resolved assembly graph.",
                   "pattern": "5_final.gfa",
@@ -12159,7 +12159,7 @@
                 }
               },
               {
-                "*.gfa": {
+                "$prefix/*.gfa": {
                   "type": "file",
                   "description": "Trimmed assembly graphs emitted by Autocycler.",
                   "pattern": "*.gfa",
@@ -12181,7 +12181,7 @@
                 }
               },
               {
-                "*.yaml": {
+                "$prefix/*.yaml": {
                   "type": "file",
                   "description": "Trimming statistics for each cluster.",
                   "pattern": "*.yaml",
@@ -52758,10 +52758,10 @@
                 }
               },
               {
-                "${prefix}*.fq": {
+                "${prefix}*.fq.gz": {
                   "type": "file",
-                  "description": "List of output filtered FastQ files of size 1 and 2 for single-end and paired-end data, respectively.",
-                  "pattern": "*.fq",
+                  "description": "List of output filtered FastQ files of size 1 and 2, for single-end and paired-end data, respectively.",
+                  "pattern": "*.fq.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1930"
@@ -253576,6 +253576,96 @@
       ]
     },
     {
+      "name": "fastq_fetch_clean_hostile",
+      "path": "subworkflows/nf-core/fastq_fetch_clean_hostile/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_fetch_clean_hostile",
+        "description": "Downloads required reference genomes for hostile and removes host reads from short-read FASTQ sequencing files",
+        "keywords": [
+          "hostile",
+          "decontamination",
+          "human removal",
+          "download",
+          "host removal",
+          "clean"
+        ],
+        "components": [
+          "hostile/fetch",
+          "hostile/clean"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Input FASTQ files for hostile cleaning",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "reference_name": {
+              "type": "string",
+              "description": "Name of the reference to align against and thus remove mapped reads to."
+            }
+          },
+          {
+            "reference_dir": {
+              "type": "directory",
+              "description": "Directory containing index file(s) corresponding to the preferred aligner (bowtie2 short reads or minimap for long reads).\nNote that single end data is assumed to be long reads. If you have single-end short read you must supply both the BowTie2\nindices AND explicitly specify `--aligner bowtie2`\n"
+            }
+          },
+          {
+            "index_name": {
+              "type": "string",
+              "description": "Name of the reference genome index to download for hostile fetch if the reference is not provided."
+            }
+          }
+        ],
+        "output": [
+          {
+            "reference": {
+              "type": "channel",
+              "description": "Channel containing reference name and directory with index files for Hostile.\nStructure: [ val(reference_name), path(reference_dir) ]\n"
+            }
+          },
+          {
+            "fastq": {
+              "type": "file",
+              "description": "Channel containing sample metadata and cleaned FASTQ files.\nStructure: [ val(meta), path(*.fastq.gz) ]\n",
+              "pattern": "*.{fastq,fq,fastq.gz,fq.gz}"
+            }
+          },
+          {
+            "json": {
+              "type": "channel",
+              "description": "Channel containing sample metadata and Hostile cleaning log in JSON format.\nStructure: [ val(meta), path(*.json) ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@maia-munteanu"
+        ],
+        "maintainers": [
+          "@maia-munteanu",
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "fastq_find_mirna_mirdeep2",
       "path": "subworkflows/nf-core/fastq_find_mirna_mirdeep2/meta.yml",
       "type": "subworkflow",
@@ -253766,6 +253856,75 @@
         "maintainers": [
           "@pablo-scd",
           "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "fastq_index_filter_deacon",
+      "path": "subworkflows/nf-core/fastq_index_filter_deacon/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_index_filter_deacon",
+        "description": "Decontaminate FastQ files by filtering reads that match a reference genome using Deacon\n",
+        "keywords": [
+          "filter",
+          "index",
+          "fasta",
+          "fastq",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "components": [
+          "deacon/index",
+          "deacon/filter"
+        ],
+        "input": [
+          {
+            "ch_fasta_reads": {
+              "type": "file",
+              "description": "Input genome fasta file and a list of FastQ files of size 1 and 2 for single-end and paired-end data, respectively.\nStructure: [ val(meta), path(fasta), [ path(reads) ] ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "index": {
+              "type": "file",
+              "description": "Deacon minimizer index file\nStructure: [ val(meta), path(index) ]\n",
+              "pattern": ".idx"
+            }
+          },
+          {
+            "fastq_filtered": {
+              "type": "file",
+              "description": "List of output filtered FastQ files of size 1 and 2 for single-end and paired-end data, respectively.\nStructure: [ val(meta), path(${prefix}*.fq) ]\n",
+              "pattern": "*.fq.gz"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "JSON file containing summary of results.\nStructure: [ val(meta), path(${prefix}.json) ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Baksic-Ivan",
+          "@Omer0191"
+        ],
+        "maintainers": [
+          "@Baksic-Ivan",
+          "@Omer0191"
         ]
       }
     },
