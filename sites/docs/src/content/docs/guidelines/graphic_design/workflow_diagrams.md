@@ -8,7 +8,7 @@ This helps new users get an overview of a workflow when visiting a pipeline webp
 
 Most workflow diagrams are made by hand using vector image editors such as the open-source [Inkscape](https://inkscape.org/) or commercial suites such as [Adobe Illustrator](https://www.adobe.com/products/illustrator.html). Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) or [LucidChart](https://www.lucidchart.com/pages/). All examples and components below can be opened in these editors, and various parts borrowed and/or modified as necessary.
 
-The components are also made available on [bioicons](https://bioicons.com), which offers extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/) to directly import them there.
+The components are also made available on [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg), which offers extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/) to directly import them there.
 
 ### Examples
 
@@ -47,7 +47,7 @@ For even more convenience you can use the following asset library [nf-core xml i
 To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```bash
-https://github.com/nf-core/website/raw/main/public/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml
+https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml
 ```
 
-Additionally, the components can be used via [bioicons](https://bioicons.com).
+Additionally, the components can be used via [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg).
