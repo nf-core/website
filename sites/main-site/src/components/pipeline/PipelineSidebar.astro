@@ -55,9 +55,11 @@ const videoId = videoUrl
           .replace("https://youtu.be/", "")
           .replace("https://youtube.com/watch?v=", "")
     : "";
-const release = meta.releases.filter((release) => release.tag_name === version)[0];
-const modules: string[] = release.components?.modules || [];
-const subworkflows: string[] = release.components?.subworkflows || [];
+const version_name = version === "latest" ? meta.releases[0].tag_name : version;
+const release = meta.releases.filter((release) => release.tag_name === version_name)[0];
+
+const modules: string[] = release?.components?.modules || [];
+const subworkflows: string[] = release?.components?.subworkflows || [];
 ---
 
 <div class="sidebar mt-3 sticky-top-under">
