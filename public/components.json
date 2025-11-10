@@ -105402,7 +105402,6 @@
           "hostile",
           "decontamination",
           "human removal",
-          "download",
           "host removal",
           "clean"
         ],
@@ -105446,7 +105445,7 @@
             {
               "reference_name": {
                 "type": "string",
-                "description": "Name of the reference to align against and thus remove mapped reads to.\nTypically corresponds\n"
+                "description": "Name of the reference to align against and thus remove mapped reads to.\n"
               }
             },
             {
@@ -105473,8 +105472,8 @@
               },
               {
                 "*.fastq.gz": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "type": "file",
+                  "description": "Cleaned FASTQ files with host reads removed\n",
                   "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
                   "ontologies": [
                     {
@@ -105495,8 +105494,8 @@
               },
               {
                 "*.json": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
+                  "type": "file",
+                  "description": "JSON report containing statistics from hostile cleaning\n",
                   "pattern": "*.json",
                   "ontologies": [
                     {
