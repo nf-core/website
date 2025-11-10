@@ -12,12 +12,16 @@ label:
 maxHeadingDepth: 3
 ---
 
+## Upcoming changes to Nextflow syntax
+
 During the Nextflow Summit 2025, Ben Sherman introduced all the changes that are comming to Nextflow with the next versions.
 There is also a [Nextflow blogpost](https://seqera.io/blog/nextflow-updates-strict-syntax-data-lineage/) talking about the changes that we will start seeing within the next Nextflow releases.
 
 As always, in nf-core we try to keep up to date with new Nextflow features, and follow the standards.
 For this reason, we have thought of the best way to deliver all these goodies to all our nf-core pipelines through template updates,
 but making it as easy as possible for pipeline maintainers to adpot them.
+
+## nf-core syntax adoption
 
 The changes will be introduced into Nextflow gradually, and we will do so in nf-core too:
 
@@ -68,20 +72,16 @@ In nf-core, we will adopt these changes in the following timeline:
 In order to make it easier for maintainers to adopt these changes,
 we have implemented a couple of new changes to the pipeline template sync process:
 
-- The template sync PRs that are opened to pipeline repositories with every new nf-core/tools will remain open,
+1. The template sync PRs that are opened to pipeline repositories with every new nf-core/tools will remain open,
   even if a new tools release is made.
-
-This will allow you to choose if you want to add these changes one at a time,
-or wait until you receive multiple tools releases and do a single template update in bulk.
-
-We recommend that you keep up to date with template updates,
-to have smaller changes and make the update and review process smother.
-
-- All sync PRs will include a direct link to the nf-core/tools release blog post.
-
-This blog posts include a description of the changes made in this release,
-and a list of tips on how to implemente these changes to your pipeline,
-as well as guidance on how to resolve merge conflicts.
+    - This will allow you to choose if you want to add these changes one at a time,
+       or wait until you receive multiple tools releases and do a single template update in bulk.
+    - We recommend that you keep up to date with template updates,
+      to have smaller changes and make the update and review process smother.
+2. All sync PRs will include a direct link to the nf-core/tools release blog post.
+    - This blog posts include a description of the changes made in this release,
+      and a list of tips on how to implemente these changes to your pipeline,
+      as well as guidance on how to resolve merge conflicts.
 
 ## Where to ask for help
 
