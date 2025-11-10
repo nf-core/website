@@ -3,7 +3,7 @@
  * HexSticker.astro
  * A component for displaying hexagonal stickers with visual effects
  */
-
+import { Image } from "astro:assets";
 interface Props {
     imageUrl: string;
     alt: string;
@@ -32,8 +32,8 @@ const lightModeUrl = imageUrl.replace("-dark.png", "-light.png");
     <div class="hex-sticker">
         <div class="holographic-foil" aria-hidden="true"></div>
         <div class="shine-effect" aria-hidden="true"></div>
-        <img src={imageUrl} alt={alt} class="hide-light" loading="lazy" width="150" height="173" />
-        <img src={lightModeUrl} alt={alt} class="hide-dark" loading="lazy" width="150" height="173" />
+        <Image src={imageUrl} alt={alt} class="hide-light" width="150" height="173" />
+        <Image src={lightModeUrl} alt={alt} class="hide-dark" width="150" height="173" />
     </div>
 </div>
 

@@ -17,7 +17,7 @@ extra_env:
   PROFILE: 'conda'
 -->
 
-![`nf-core subworkflows test bam_rseqc --no-prompts`](/images/tools/nf-core-subworkflows-test.svg)
+![`nf-core subworkflows test bam_rseqc --no-prompts`](../../../../assets/images/tools/nf-core-subworkflows-test.svg)
 
 In case you changed something in the test and want to update the snapshot, run
 

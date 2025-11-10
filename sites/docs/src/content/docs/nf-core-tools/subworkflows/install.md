@@ -14,7 +14,7 @@ before_command: >
   echo "repository_type: pipeline" >> .nf-core.yml
 -->
 
-![`nf-core subworkflows install bam_rseqc`](/images/tools/nf-core-subworkflows-install.svg)
+![`nf-core subworkflows install bam_rseqc`](../../../../assets/images/tools/nf-core-subworkflows-install.svg)
 
 You can pass the subworkflow name as an optional argument to `nf-core subworkflows install` like above or select it from a list of available subworkflows by only running `nf-core subworkflows install`.
 
