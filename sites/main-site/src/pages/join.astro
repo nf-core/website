@@ -42,10 +42,10 @@ const headings = [
         fa_icon: "fa-brands fa-youtube",
     },
     {
-        text: "Gather Town",
-        slug: "gather-town",
+        text: "WorkAdventure",
+        slug: "workadventure",
         depth: 1,
-        fa_icon: "fa-regular fa-grapes fa-rotate-270",
+        fa_icon: "fa-regular fa-mug-hot",
     },
 ];
 ---
@@ -212,16 +212,19 @@ const headings = [
     <script src="https://apis.google.com/js/platform.js"></script>
     <div class="g-ytsubscribe" data-channelid="UCfdY8g6eA6IuYZ8oyyNsabQ" data-layout="full" data-count="default"></div>
 
-    <h1 id="gather-town" class="mt-5">
+    <h1 id="workadventure" class="mt-5">
         <span class="join-pull-img bg-body">
-            <Icon name="gather-town" alt="Gather.town logo" height="120px" width="120px" />
+            <Icon name="workadventure" alt="WorkAdventu.re logo" height="120px" width="120px" />
         </span>
-        Gather Town
-        <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+        WorkAdventure
+        <a href="
+                #workadventure" class="header-link"
+            ><span class="fas fa-link" aria-hidden="true"></span></a
+        >
     </h1>
     <p>
-        nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office"
-            >gather.town</a
+        nf-core has a virtual meeting workspace on <a href="https://play.workadventu.re/@/nf-core/nf-core/office"
+            >WorkAdventure</a
         > for collaboration. The space is always open, but usage requires adherence to the <a
             href="https://nf-co.re/code_of_conduct">nf-core code of conduct</a
         >
@@ -235,5 +238,11 @@ const headings = [
     .join-pull-img {
         float: right;
         padding-left: 1.5rem;
+    }
+    :global([data-icon="workadventure"]) {
+        color: #1b2a41;
+    }
+    :global([data-bs-theme="dark"]) :global([data-icon="workadventure"]) {
+        color: var(--bs-body-color);
     }
 </style>
