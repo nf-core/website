@@ -43,8 +43,7 @@ nextflow clean -before $(nextflow log -q | tail -n 1)
 
 Nextflow supports automatic work directory cleanup upon successful pipeline completion through configuration directives:
 
-```groovy
-// nextflow.config
+```groovy title="nextflow.config"
 cleanup = true
 ```
 
@@ -52,27 +51,11 @@ cleanup = true
 Enabling automatic cleanup prevents the use of resume functionality for the affected pipeline execution. This configuration suits production pipelines where output reproducibility is assured and resume capability isn't required.
 :::
 
-### Development optimization
-
-During pipeline development, reduced dataset sizes significantly decrease storage requirements and accelerate iteration:
-
-```bash
-# Generate test dataset
-head -n 40000 production_data.fastq > test_dataset.fastq
-```
-
-This approach provides:
-
-- Storage reduction from gigabytes to megabytes
-- Execution time reduction from hours to minutes
-- Rapid debugging and testing cycles
-
 ### Dynamic intermediate file management with nf-boost
 
 The [`nf-boost`](https://registry.nextflow.io/plugins/nf-boost) plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
 
-```groovy
-// nextflow.config
+```groovy title="nextflow.config"
 plugins {
     id 'nf-boost'
 }
@@ -158,17 +141,15 @@ Develop environment-specific configuration profiles:
 ```groovy
 profiles {
     development {
-        cleanup = false  // Preserve artifacts for debugging
-        process.scratch = false
+        cleanup = false  // Wipe work directories after a successful run
     }
 
     production {
-        cleanup = true  // Enable automatic cleanup
+        cleanup = true  // Wipe work directories after a successful run
         process.scratch = '/local/scratch'
     }
 
     resource_constrained {
-        cleanup = false
         process {
             withLabel: 'high_storage' {
                 scratch = true
