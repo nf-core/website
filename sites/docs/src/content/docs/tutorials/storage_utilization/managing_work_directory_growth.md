@@ -108,6 +108,7 @@ process SEQUENCE_ALIGNMENT {
     """
 }
 ```
+
 :::tip
 This configuration is particularly beneficial in HPC environments where it reduces network filesystem overhead.
 :::
