@@ -69,7 +69,7 @@ This approach provides:
 
 ### Dynamic intermediate file management with nf-boost
 
-The `nf-boost` plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
+The [`nf-boost`](https://registry.nextflow.io/plugins/nf-boost) plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
 
 ```groovy
 // nextflow.config
@@ -82,6 +82,8 @@ boost {
     cleanupInterval = '180s'  // Cleanup evaluation interval
 }
 ```
+
+See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 ### Scratch directory implementation
 
