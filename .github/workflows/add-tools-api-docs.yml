@@ -23,7 +23,7 @@ jobs:
       - name: setup node
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Install dependencies
         run: |
