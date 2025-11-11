@@ -245122,26 +245122,26 @@
                   }
                 ]
               }
+            },
+            {
+              "map_file": {
+                "type": "file",
+                "description": "YAML file containing a map to be used in the template",
+                "pattern": "*.{yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "map": {
+                "type": "map",
+                "description": "Groovy Map containing mapping information to be used in the template\ne.g. `[ key: value ]` with key being a wildcard in the template\n"
+              }
             }
-          ],
-          {
-            "map_file": {
-              "type": "file",
-              "description": "YAML file containing a map to be used in the template",
-              "pattern": "*.{yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "map": {
-              "type": "map",
-              "description": "Groovy Map containing mapping information to be used in the template\ne.g. `[ key: value ]` with key being a wildcard in the template\n"
-            }
-          }
+          ]
         ],
         "output": {
           "rendered": [
