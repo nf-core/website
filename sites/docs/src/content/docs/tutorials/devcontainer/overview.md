@@ -126,4 +126,3 @@ If repositories are cloned via HTTPS, no extra steps are needed.
 
 For using ssh with git, it is required to forward the local machine's ssh agent or to share keys with the container.
 Find more details on this and tutorials to follow along in the official VS Code devcontainer [docs on sharing git credentials](https://code.visualstudio.com/remote/advancedcontainers/sharing-git-credentials).
-
