@@ -3,9 +3,9 @@ title: "Bytesize: nf-core pipeline template walk through V2"
 subtitle: Júlia Mir Pedrol, CRG
 type: talk
 startDate: "2025-11-25"
-startTime: "13:00+02:00"
+startTime: "13:00+01:00"
 endDate: "2025-11-25"
-endTime: "13:30+02:00"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:
