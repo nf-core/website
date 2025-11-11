@@ -17,20 +17,20 @@ maxHeadingDepth: 3
 During the Nextflow Summit 2025, Ben Sherman introduced all the changes that are comming to Nextflow with the next versions.
 There is also a [Nextflow blogpost](https://seqera.io/blog/nextflow-updates-strict-syntax-data-lineage/) talking about the changes that we will start seeing within the next Nextflow releases.
 
-As always, in nf-core we try to keep up to date with new Nextflow features, and follow the standards.
+As always, in nf-core, we try to keep up-to-date with the latest Nextflow features and standards.
 For this reason, we have thought of the best way to deliver all these goodies to all our nf-core pipelines through template updates,
 but making it as easy as possible for pipeline maintainers to adopt them.
 
 ## nf-core syntax adoption
 
-The changes will be introduced into Nextflow gradually, and we will do so in nf-core too:
+The syntax changes will be introduced into Nextflow gradually, and we will do so in nf-core:
 
 For every one of the changes, we will wait until the following release to adopt the changes in nf-core.
 
 1. First, we will allow the new functionalities in the pipeline template, and nf-core linting will warn you if you are using the old syntax (without failing!).
 2. Then, we will switch linting to a failure for old Nextflow syntax, making it mandatory to update your pipeline to the new one.
 
-Here is a detailed roadmap of the incomming changes:
+Here is a detailed roadmap of the incoming changes:
 
 ![Line diagram outlining the different planned adoptions](../../../assets/images/blog/nextflow_syntax_nf-core_roadmap/timeline-light-bg.png)
 
@@ -42,7 +42,7 @@ These are the changes that will be (or have been) included in each Nextflow vers
 - Nextflow v25.10
   - workflow params
   - workflow outputs
-  - worklfow `onComplete:` and `onError:` section
+  - workflow `onComplete:` and `onError:` section
   - type annotations
   - typed process inputs/outputs
 - Nextflow v26.04
@@ -63,13 +63,13 @@ In nf-core, we will adopt these changes in the following timeline:
 - Fall 2026:
   - Static types and records are added to the pipeline template
   - New process syntax is added to the pipeline template
-- Sprint 2027
+- Spring 2027
   - Static types and records are mandatory
   - New process syntax is mandatory
 
 ## How to adopt all these changes in a pipeline
 
-In order to make it easier for maintainers to adopt these changes,
+In order to make it easier for maintainers to adopt Nextflow syntax changes,
 we have implemented a couple of new changes to the pipeline template sync process:
 
 1. The template sync PRs that are opened to pipeline repositories with every new nf-core/tools will remain open,
@@ -85,7 +85,7 @@ we have implemented a couple of new changes to the pipeline template sync proces
 
 ## Where to ask for help
 
-There are multiple ways you can get help with these updates:
+See the following links to learn more or get help with these updates:
 
 - The [nf-core blog post](https://nf-co.re/blog) for each tools release
 - The [Nextflow documentation](https://www.nextflow.io/docs/latest/strict-syntax.html)
