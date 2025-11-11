@@ -28,12 +28,12 @@ nextflow clean -f -before $(nextflow log -q | tail -n 1)
 
 Command components:
 
-- `nextflow log -q`: Retrieves execution history without headers
-- `tail -n 1`: Isolates the most recent execution identifier
-- `-before`: Specifies cleanup of executions preceding the specified run
-- `-f`: Executes deletion without confirmation
+- `nextflow log -q{:bash}`: Retrieves execution history without headers
+- `tail -n 1{:bash}`: Isolates the most recent execution identifier
+- `-before{:bash}`: Specifies cleanup of executions preceding the specified run
+- `-f{:bash}`: Executes deletion without confirmation
 
-For verification, perform a dry run by omitting `-f`:
+For verification, perform a dry run by omitting `-f{:bash}`:
 
 ```bash
 nextflow clean -before $(nextflow log -q | tail -n 1)
