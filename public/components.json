@@ -15365,10 +15365,10 @@
         "output": {
           "index": [
             {
-              "bbsplit": {
+              "bbsplit_index": {
                 "type": "directory",
                 "description": "Directory with index files",
-                "pattern": "bbsplit"
+                "pattern": "bbsplit_index"
               }
             }
           ],
@@ -15469,11 +15469,13 @@
         },
         "authors": [
           "@joseespinosa",
-          "@drpatelh"
+          "@drpatelh",
+          "@pinin4fjords"
         ],
         "maintainers": [
           "@joseespinosa",
-          "@drpatelh"
+          "@drpatelh",
+          "@pinin4fjords"
         ]
       },
       "pipelines": [
@@ -30127,6 +30129,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "deepmutscan",
+          "version": "dev"
+        },
+        {
           "name": "fastquorum",
           "version": "1.2.0"
         },
@@ -30412,6 +30418,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "deepmutscan",
+          "version": "dev"
         },
         {
           "name": "hgtseq",
@@ -67863,6 +67873,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "deepmutscan",
+          "version": "dev"
         },
         {
           "name": "demo",
@@ -140980,6 +140994,10 @@
         },
         {
           "name": "datasync",
+          "version": "dev"
+        },
+        {
+          "name": "deepmutscan",
           "version": "dev"
         },
         {
@@ -255719,6 +255737,10 @@
           "version": "dev"
         },
         {
+          "name": "deepmutscan",
+          "version": "dev"
+        },
+        {
           "name": "demo",
           "version": "1.0.2"
         },
@@ -256137,6 +256159,10 @@
         },
         {
           "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
+          "name": "deepmutscan",
           "version": "dev"
         },
         {
@@ -256566,6 +256592,10 @@
         },
         {
           "name": "deepmodeloptim",
+          "version": "dev"
+        },
+        {
+          "name": "deepmutscan",
           "version": "dev"
         },
         {

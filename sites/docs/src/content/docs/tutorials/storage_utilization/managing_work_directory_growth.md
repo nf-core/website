@@ -30,12 +30,12 @@ nextflow clean -f -before $(nextflow log -q | tail -n 1)
 
 Command components:
 
-- `nextflow log -q`: Retrieves execution history without headers
-- `tail -n 1`: Isolates the most recent execution identifier
-- `-before`: Specifies cleanup of executions preceding the specified run
-- `-f`: Executes deletion without confirmation
+- `nextflow log -q{:bash}`: Retrieves execution history without headers
+- `tail -n 1{:bash}`: Isolates the most recent execution identifier
+- `-before{:bash}`: Specifies cleanup of executions preceding the specified run
+- `-f{:bash}`: Executes deletion without confirmation
 
-For verification, omitting `-f` enables a dry run:
+For verification, perform a dry run by omitting `-f{:bash}`:
 
 ```bash
 nextflow clean -before $(nextflow log -q | tail -n 1)
@@ -45,47 +45,13 @@ nextflow clean -before $(nextflow log -q | tail -n 1)
 
 Nextflow supports automatic work directory cleanup upon successful pipeline completion through configuration directives:
 
-```groovy
-// nextflow.config
+```groovy title="nextflow.config"
 cleanup = true
 ```
 
 :::note
 Enabling automatic cleanup prevents the use of resume functionality for the affected pipeline execution. This configuration suits production pipelines where output reproducibility is assured and resume capability isn't required.
 :::
-
-### Development optimization
-
-During pipeline development, reduced dataset sizes significantly decrease storage requirements and accelerate iteration:
-
-```bash
-# Generate test dataset
-head -n 40000 production_data.fastq > test_dataset.fastq
-```
-
-This approach provides:
-
-- Storage reduction from gigabytes to megabytes
-- Execution time reduction from hours to minutes
-- Rapid debugging and testing cycles
-
-### Dynamic intermediate file management with nf-boost
-
-The [`nf-boost`](https://registry.nextflow.io/plugins/nf-boost) plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
-
-```groovy
-// nextflow.config
-plugins {
-    id 'nf-boost'
-}
-
-boost {
-    cleanup = true
-    cleanupInterval = '180s'  // Cleanup evaluation interval
-}
-```
-
-See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 ### Scratch directory implementation
 
@@ -110,9 +76,27 @@ process SEQUENCE_ALIGNMENT {
     """
 }
 ```
+
 :::tip
 This configuration is particularly beneficial in HPC environments where it reduces network filesystem overhead.
 :::
+
+### Dynamic intermediate file management with nf-boost
+
+The [`nf-boost`](https://registry.nextflow.io/plugins/nf-boost) plugin implements intelligent cleanup mechanisms that remove intermediate files during pipeline execution as they become unnecessary:
+
+```groovy title="nextflow.config"
+plugins {
+    id 'nf-boost'
+}
+
+boost {
+    cleanup = true
+    cleanupInterval = '180s'  // Cleanup evaluation interval
+}
+```
+
+See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 ### Pipeline optimization strategies
 
@@ -138,46 +122,6 @@ process OPTIMIZED_ANALYSIS {
     producer_process ${input_data} > temp_pipe &
     consumer_process temp_pipe > final_results.txt
     """
-}
-```
-
-## Implementation practices
-
-The following sections describe implementation practices that utilize some of the described management options.
-
-### Automated maintenance procedures
-
-Implement scheduled cleanup through system scheduling:
-
-```bash
-# Crontab entry for weekly cleanup of executions older than 7 days
-0 2 * * 0 nextflow clean -before 7.days -f
-```
-
-### Configuration management
-
-Develop environment-specific configuration profiles:
-
-```groovy
-profiles {
-    development {
-        cleanup = false  // Preserve artifacts for debugging
-        process.scratch = false
-    }
-
-    production {
-        cleanup = true  // Enable automatic cleanup
-        process.scratch = '/local/scratch'
-    }
-
-    resource_constrained {
-        cleanup = false
-        process {
-            withLabel: 'high_storage' {
-                scratch = true
-            }
-        }
-    }
 }
 ```
 
