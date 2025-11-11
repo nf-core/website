@@ -18,6 +18,8 @@ In production environments processing large-scale genomic datasets, work directo
 
 ## Storage management options
 
+The following sections describe ways to manage the storage of files.
+
 ### Selective post-execution cleanup
 
 Nextflow's built-in `clean` command enables targeted removal of work directories. The following command removes directories from the most recent execution:
@@ -33,7 +35,7 @@ Command components:
 - `-before`: Specifies cleanup of executions preceding the specified run
 - `-f`: Executes deletion without confirmation
 
-For verification, perform a dry run by omitting `-f`:
+For verification, omitting `-f` enables a dry run:
 
 ```bash
 nextflow clean -before $(nextflow log -q | tail -n 1)
@@ -140,6 +142,8 @@ process OPTIMIZED_ANALYSIS {
 ```
 
 ## Implementation practices
+
+The following sections describe implementation practices that utilize some of the described management options.
 
 ### Automated maintenance procedures
 
