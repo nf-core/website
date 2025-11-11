@@ -4,7 +4,7 @@ description: The nf-core code of conduct
 md_github_url: https://github.com/nf-core/website/blob/main/CODE_OF_CONDUCT.md
 ---
 
-# Code of Conduct at nf-core (v1.4)
+# Code of Conduct at nf-core (v1.5)
 
 ## Our Pledge
 
@@ -42,7 +42,7 @@ Our Safety Officers are Saba Nafees, Cris Tuñí, and Michael Heuer.
 
 nf-core is a young and growing community that welcomes contributions from anyone with a shared vision for [Open Science Policies](https://www.fosteropenscience.eu/taxonomy/term/8). Open science policies encompass inclusive behaviours and we strive to build and maintain a safe and inclusive environment for all individuals.
 
-We have therefore adopted this CoC, which we require all members of our community and attendees of nf-core events to adhere to in all our workspaces at all times. Workspaces include, but are not limited to, Slack, meetings on Zoom, gather.town, YouTube live etc.
+We have therefore adopted this CoC, which we require all members of our community and attendees of nf-core events to adhere to in all our workspaces at all times. Workspaces include, but are not limited to, Slack, meetings on Zoom, workadventu.re, YouTube live etc.
 
 Our CoC will be strictly enforced and the nf-core team reserves the right to exclude participants who do not comply with our guidelines from our workspaces and future nf-core activities.
 
@@ -60,13 +60,13 @@ Members of the core team or the Safety Team who violate the CoC will be required
 
 ## When and where does this Code of Conduct apply?
 
-Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events, such as hackathons, workshops, bytesize, and collaborative workspaces on gather.town. These guidelines include, but are not limited to, the following (listed alphabetically and therefore in no order of preference):
+Participation in the nf-core community is contingent on following these guidelines in all our workspaces and events, such as hackathons, workshops, bytesize, and collaborative workspaces on workadventu.re. These guidelines include, but are not limited to, the following (listed alphabetically and therefore in no order of preference):
 
 - Communicating with an official project email address.
 - Communicating with community members within the nf-core Slack organisation.
 - Participating in hackathons organised by nf-core (both online and in-person events).
-- Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence, and on the nf-core gather.town workspace.
-- Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, gather.town, Jitsi, YouTube live etc.
+- Participating in collaborative work on GitHub, Google Suite, community calls, mentorship meetings, email correspondence, and on the nf-core workadventu.re workspace.
+- Participating in workshops, training, and seminar series organised by nf-core (both online and in-person events). This applies to events hosted on web-based platforms such as Zoom, workadventu.re, Jitsi, YouTube live etc.
 - Representing nf-core on social media. This includes both official and personal accounts.
 
 :::tip
@@ -165,7 +165,7 @@ Actions taken by the nf-core’s Safety Team may include, but are not limited to
 
 - Asking anyone to stop a behaviour.
 - Asking anyone to leave the event and online spaces either temporarily, for the remainder of the event, or permanently.
-- Removing access to the gather.town and Slack, either temporarily or permanently.
+- Removing access to the workadventu.re and Slack, either temporarily or permanently.
 - Communicating to all participants to reinforce our expectations for conduct and remind what is unacceptable behaviour; this may be public for practical reasons.
 - Communicating to all participants that an incident has taken place and how we will act or have acted — this may be for the purpose of letting event participants know we are aware of and dealing with the incident.
 - Banning anyone from participating in nf-core-managed spaces, future events, and activities, either temporarily or permanently.
@@ -190,7 +190,7 @@ Actions taken by the nf-core’s Safety Team may include, but are not limited to
 
 ### v1.3 - December 10th, 2021
 
-- Added a statement that the CoC applies to nf-core gather.town workspaces. Corrected typographical errors in the text.
+- Added a statement that the CoC applies to nf-core workadventu.re workspaces. Corrected typographical errors in the text.
 
 ### v1.2 - November 12th, 2021
 
