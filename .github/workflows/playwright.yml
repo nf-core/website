@@ -41,7 +41,7 @@ jobs:
           # done
         env:
           PLAYWRIGHT_TEST_BASE_URL: "https://deploy-preview-${{github.event.pull_request.number}}--nf-core-main-site.netlify.app"
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5
         if: always()
         with:
           name: playwright-report
