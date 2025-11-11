@@ -58,24 +58,23 @@ To update a module to use topic channels for version outputs:
 
 1. Add the topics block to the `meta.yml`file. Ideally, underneath the outputs section:
 
-    ```yaml title="meta.yml"
-    topics:
-      - versions:
-          - - process:
-                type: string
-                description: The process the versions were collected from
-            - tool:
-                type: string
-                description: The tool name
-            - version:
-                type: string
-                description: The version of the tool
-    ```
+   ```yaml title="meta.yml"
+   topics:
+     - versions:
+         - - process:
+               type: string
+               description: The process the versions were collected from
+           - tool:
+               type: string
+               description: The tool name
+           - version:
+               type: string
+               description: The version of the tool
+   ```
 
 1. Update the `main.nf.test` file to check for the new version outputs.
-
-    - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
-    - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
+   - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
+   - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
 
 1. Run the tests to regenerate the snapshots:
 
