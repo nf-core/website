@@ -113,8 +113,8 @@ process OPTIMIZED_ANALYSIS {
     script:
     """
     # Utilize pipe operations to avoid intermediate files
-    initial_process ${input_data} | \
-    intermediate_transform | \
+    initial_process ${input_data} | \\
+    intermediate_transform | \\
     final_analysis > final_results.txt
 
     # Implement named pipes for file-dependent tools
