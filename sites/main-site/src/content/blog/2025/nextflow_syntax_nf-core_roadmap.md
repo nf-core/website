@@ -53,17 +53,17 @@ These are the changes that will be (or have been) included in each Nextflow vers
 
 In nf-core, we will adopt these changes in the following timeline:
 
-- Fall 2025:
+- 4th Quarter 2025:
   - Topic channels are allowed (nf-core tools version 3.5.0 released in November 2025)
-- Spring 2026:
+- 2nd Quarter 2026:
   - Topic channels are mandatory
   - Strict syntax is mandatory
   - Static types and records are allowed
   - New process syntax is allowed
-- Fall 2026:
+- 4th Quarter 2026:
   - Static types and records are added to the pipeline template
   - New process syntax is added to the pipeline template
-- Spring 2027
+- 2nd Quarter 2027
   - Static types and records are mandatory
   - New process syntax is mandatory
 
