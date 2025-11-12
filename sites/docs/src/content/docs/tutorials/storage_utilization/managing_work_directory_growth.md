@@ -22,7 +22,7 @@ The following sections describe ways to manage the storage of files.
 
 ### Selective post-execution cleanup
 
-Nextflow's built-in `clean` command enables targeted removal of work directories. The following command removes directories from the most recent execution:
+Nextflow's built-in `clean` command enables targeted removal of work directories. The following command preserves work directories from the current execution while removing directories from previous executions:
 
 ```bash
 nextflow clean -f -before $(nextflow log -q | tail -n 1)
@@ -30,15 +30,15 @@ nextflow clean -f -before $(nextflow log -q | tail -n 1)
 
 Command components:
 
-- `nextflow log -q{:bash}`: Retrieves execution history without headers
+- `nextflow log -q{:bash}`: Returns a list of run names
 - `tail -n 1{:bash}`: Isolates the most recent execution identifier
 - `-before{:bash}`: Specifies cleanup of executions preceding the specified run
 - `-f{:bash}`: Executes deletion without confirmation
 
-For verification, perform a dry run by omitting `-f{:bash}`:
+For verification, perform a dry run using the `-n{:bash}` option:
 
 ```bash
-nextflow clean -before $(nextflow log -q | tail -n 1)
+nextflow clean -n -before $(nextflow log -q | tail -n 1)
 ```
 
 ### Automated cleanup configuration
@@ -121,6 +121,10 @@ process OPTIMIZED_ANALYSIS {
     mkfifo temp_pipe
     producer_process ${input_data} > temp_pipe &
     consumer_process temp_pipe > final_results.txt
+    rm temp_pipe
+
+    # Use process substitution to avoid intermediate files
+    paste <( cat ${input_data} ) <( cat ${input_data} ) > final_results.txt
     """
 }
 ```
