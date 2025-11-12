@@ -162530,7 +162530,7 @@
                 }
               },
               {
-                "${prefix}/*_metagenome_out/pred_metagenome_unstrat.tsv.gz": {
+                "${prefix}_metagenome_*_abundances.tsv.gz": {
                   "type": "file",
                   "description": "Predicted metagenome functional abundances (unstratified)",
                   "pattern": "pred_metagenome_unstrat.tsv.gz",
@@ -162552,7 +162552,7 @@
                 }
               },
               {
-                "${prefix}/pathways_out/path_abun_unstrat.tsv.gz": {
+                "${prefix}_pathway_abundances.tsv.gz": {
                   "type": "file",
                   "description": "Predicted pathway abundances (unstratified)",
                   "pattern": "path_abun_unstrat.tsv.gz",
@@ -222515,15 +222515,15 @@
               {
                 "my_sketches/*.sylsp": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
+                  "description": "Output sylph sketch files of input reads for profiling\n",
                   "pattern": "my_sketches/*.sylsp"
                 }
               },
               {
                 "database.syldb": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "my_sketches/*.sylsp"
+                  "description": "Output sylph database files for profiling against database\n",
+                  "pattern": "*.syldb"
                 }
               }
             ]
@@ -222549,6 +222549,193 @@
         ],
         "maintainers": [
           "@sofstam"
+        ]
+      }
+    },
+    {
+      "name": "sylph_sketchgenomes",
+      "path": "modules/nf-core/sylph/sketchgenomes/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sylph_sketchgenomes",
+        "description": "Sylph profile command for taxonoming profiling of genomes",
+        "keywords": [
+          "profile",
+          "metagenomics",
+          "sylph",
+          "classification",
+          "genomes",
+          "sketch"
+        ],
+        "tools": [
+          {
+            "sylph": {
+              "description": "Sylph quickly enables querying of genomes against even low-coverage shotgun metagenomes to find nearest neighbour ANI.",
+              "homepage": "https://github.com/bluenote-1577/sylph",
+              "documentation": "https://github.com/bluenote-1577/sylph",
+              "tool_dev_url": "https://github.com/bluenote-1577/sylph",
+              "doi": "10.1038/s41587-024-02412-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:sylph"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "List of reference genome FASTA file to convert to sylph database file",
+                "pattern": "*.{fasta,fas,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "syldb": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.syldb": {
+                  "type": "file",
+                  "description": "Sylph database sketch file for profiling",
+                  "pattern": "*.syldb"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jfy133"
+        ],
+        "maintainers": [
+          "@jfy133"
+        ]
+      }
+    },
+    {
+      "name": "sylph_sketchsamples",
+      "path": "modules/nf-core/sylph/sketchsamples/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sylph_sketchsamples",
+        "description": "Sketching/indexing sequencing reads",
+        "keywords": [
+          "sketch",
+          "metagenomics",
+          "sylph",
+          "samples",
+          "indexing"
+        ],
+        "tools": [
+          {
+            "sylph": {
+              "description": "Sylph quickly enables querying of genomes against even low-coverage shotgun metagenomes to find nearest neighbour ANI.",
+              "homepage": "https://github.com/bluenote-1577/sylph",
+              "documentation": "https://github.com/bluenote-1577/sylph",
+              "tool_dev_url": "https://github.com/bluenote-1577/sylph",
+              "doi": "10.1038/s41587-024-02412-y",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:sylph"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Input fastq files",
+                "pattern": "*.{fq,fastq,fq.gz,fastq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sylsp": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "my_sketches/*.sylsp": {
+                  "type": "map",
+                  "description": "Output sylph sketch files for profiling\n",
+                  "pattern": "my_sketches/*.sylsp"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@jiahang1234",
+          "@sofstam"
+        ],
+        "maintainers": [
+          "@sofstam",
+          "@jfy133"
         ]
       }
     },
