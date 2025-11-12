@@ -73,6 +73,24 @@ GitHub repository name
 - **Type:**
   str
 
+#### `_clean_up_empty_dirs(){:python}`
+
+Delete empty directories in the repository
+
+Walks the directory tree from the bottom up, deleting empty directories as it goes.
+
+#### `_delete_tracked_files(){:python}`
+
+Delete all tracked files in the repository
+
+#### `_get_ignored_files() → list[str]{:python}`
+
+Get a list of all files in the repo ignored by git.
+
+#### `_get_tracked_files() → list[str]{:python}`
+
+Get a list of all files in the repo tracked by git.
+
 #### _`static{:python}`_`_parse_json_response(response) → tuple[Any, str]{:python}`
 
 Helper method to parse JSON response and create pretty-printed string.
@@ -96,9 +114,9 @@ If we have any changes with the new template files, make a git commit
 Create a new branch from the updated TEMPLATE branch
 This branch will then be used to create the PR
 
-#### `delete_template_branch_files(){:python}`
+#### `delete_tracked_template_branch_files(){:python}`
 
-Delete all files in the TEMPLATE branch
+Delete all tracked files and subsequent empty directories in the TEMPLATE branch
 
 #### `get_wf_config(){:python}`
 
