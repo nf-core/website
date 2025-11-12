@@ -11,7 +11,7 @@ locations:
     links: "#registration"
 ---
 
-The developers of the [nf-core/airrflow](https://nf-co.re/airrflow) workflow for BCR and TCR data analysis are organizing a virtual workshop to introduce researchers to the workflow.
+The developers of the [nf-core/airrflow](https://nf-co.re/airrflow) workflow for BCR and TCR data analysis are organizing a virtual workshop to introduce researchers to the workflow on December 4, 2025 from 13:30 to 15:00 ET.
 
 The workshop will begin with an introduction to nf-core/airrfow, highlighting newly implemented features, followed by a hands-on session demonstrating how to run the workflow using example data, based on the [nf-core/airrflow single-cell tutorial](https://nf-co.re/airrflow/docs/usage/single_cell_tutorial).
 
@@ -28,7 +28,3 @@ The workshop will be hosted online via [zoom.com](https://zoom.com), with the sp
 ## Pre-requisites
 
 Participants should have a basic knowledge of command line usage in a unix system (linux / MacOS), basic concepts of sequencing data analysis and a general idea of what adaptive immune repertoires are.
-
-## Preparation
-
-To prepare for the training, please follow the [Pre-requisites section](https://nf-co.re/airrflow/docs/usage/single_cell_tutorial#pre-requisites) of the nf-core/airrflow single-cell tutorial. We recommend using GitPod to follow the training to ensure that all the required tools are installed.
