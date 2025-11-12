@@ -22,9 +22,13 @@ The [`nf-core/demo`] pipeline runs three processes:
 
 It is purposefully lightweight and should run within a few minutes on most systems.
 
-## Quick start with test data
+## Quick start
 
-To get started quickly:
+The following sections cover common operations for getting started with `nf-core/demo`.
+
+### Use test data
+
+To run `nf-core/demo` with test data:
 
 1. Run `nf-core/demo` with the built-in test profile and a profile to manage software dependencies:
 
@@ -53,7 +57,7 @@ To get started quickly:
     └── pipeline_info/   # Execution logs and metadata
     ```
 
-## Running with your own data
+### Use your own data
 
 To run `nf-core/demo` with your own sequencing data:
 
@@ -85,7 +89,7 @@ To run `nf-core/demo` with your own sequencing data:
     Replace `<docker>` with your preferred software dependency and compute environment manager.
 
 
-## Using parameter files
+### Use parameter files
 
 To run `nf-core/demo` with a parameters file:
 
@@ -112,9 +116,9 @@ To run `nf-core/demo` with a parameters file:
     Parameter files make it easier to rerun pipelines with the same settings and keep track of your analysis configurations.
     :::
 
-## Resuming interrupted runs
+### Resume interrupted runs
 
-Nextflow caches completed steps. If a run is interrupted, use `-resume` to continue:
+To resume an interrupted run, add the `-resume` flag:
 
 ```bash
 nextflow run nf-core/demo \
@@ -126,9 +130,9 @@ nextflow run nf-core/demo \
 
 Only steps with changed inputs will re-execute, saving time and computational resources.
 
-## Version control for reproducibility
+### Version control
 
-For reproducible analyses, specify a pipeline version with `-r`:
+To specify a pipeline version, add the `-r` option with a version, revision, or commit ID:
 
 ```bash
 nextflow run nf-core/demo \
