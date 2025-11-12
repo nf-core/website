@@ -2,7 +2,7 @@
 title: nf-core tools
 subtitle: Learn how to install nf-core/tools
 shortTitle: nf-core tools
-weight: 3
+weight: 4
 ---
 
 nf-core tools is a Python package that provides command-line utilities for working with nf-core pipelines. While optional, it offers helpful features for downloading, launching, and developing pipelines.
@@ -15,11 +15,11 @@ The nf-core tools package provides commands for:
 - Creating and developing new pipelines and components
 - Linting and validating pipeline code
 
-## Install nf-core tools
+## Installing nf-core tools
 
 nf-core tools can be installed using Conda, pip, or Docker. Choose the method that best fits your environment.
 
-### Conda installation
+### Install with Conda
 
 Conda is the recommended installation method as it handles all dependencies automatically.
 
@@ -58,7 +58,7 @@ Alternatively, create a dedicated environment with both nf-core tools and Nextfl
     nextflow -version
     ```
 
-### pip installation
+### Install with pip
 
 To install nf-core tools with pip:
 
@@ -78,7 +78,7 @@ To install nf-core tools with pip:
 When using pip, ensure you have Python 3.8 or later installed. You may need to use `pip3` instead of `pip` depending on your system configuration.
 :::
 
-### Docker installation
+### Install with Docker
 
 To use nf-core tools with Docker:
 
@@ -108,11 +108,11 @@ To use nf-core tools with Docker:
         nf-core --help
         ```
 
-## Update nf-core tools
+## Updating nf-core tools
 
 To keep nf-core tools up to date with the latest features and bug fixes, update regularly using your installation method.
 
-### Update with Conda
+### Update Conda install
 
 To update your nf-core tools Conda install,  run:
 
@@ -120,7 +120,7 @@ To update your nf-core tools Conda install,  run:
 conda update nf-core
 ```
 
-### Update with pip
+### Update pip install
 
 To update your nf-core tools pip install, run:
 
@@ -128,7 +128,7 @@ To update your nf-core tools pip install, run:
 pip install --upgrade nf-core
 ```
 
-### Update Docker image
+### Update Docker install
 
 To update nf-core tools docker image, run:
 
