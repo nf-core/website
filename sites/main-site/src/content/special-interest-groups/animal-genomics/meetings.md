@@ -11,6 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+|             Nov 19, 2025 | Ekaterina Osipova (Harvard University, USA)                                                                                | [November Meeting](/events/2025/SIG_animalgenomics_Nov)       |
 |             Oct 15, 2025 | Daniela Lourenco (University of Georgia, USA)                                                                                | [October Meeting](/events/2025/SIG_animalgenomics_Oct)       |
 |             Sep 17, 2025 | Brenda Murdoch & Temitayo Olangunju (University of Idaho, USA)                                                               | [September Meeting](/events/2025/SIG_animalgenomics_Sep)     |
 |             Jul 16, 2025 | Luca Fontanesi (University of Bologna, Italy)                                                                                | [July Meeting](/events/2025/SIG_animalgenomics_Jul)          |
