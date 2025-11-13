@@ -20,7 +20,7 @@ jobs:
           cache: npm
 
       - name: Install prettier plugins
-        run: npm install --only=dev
+        run: npm install --omit=prod
 
       - name: Run prek
         uses: j178/prek-action@v1
