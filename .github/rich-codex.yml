@@ -11,6 +11,8 @@ outputs:
       mkdir tmp && cd tmp && \
       nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
     fake_command: nf-core pipelines create
+    head: 12
+    tail: 14
     img_paths:
       - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_create.svg
   - command: cd tmp/nf-core-demo && git status

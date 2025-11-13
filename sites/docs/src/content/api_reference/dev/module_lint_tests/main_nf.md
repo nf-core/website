@@ -14,7 +14,7 @@ The test checks for the following:
 - The module has a process label and it is among
   the standard ones.
 - If a `meta` map is defined as one of the modules
-  inputs it should be defined as one of the outputs,
+  inputs it should be defined as one of the emits,
   and be correctly configured in the `saveAs` function.
 - The module script section should contain definitions
   of `software` and `prefix`
