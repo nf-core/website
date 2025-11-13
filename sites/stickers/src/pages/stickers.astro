@@ -1,6 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
-import HexStickerGallery from "../components/HexStickerGallery.astro";
+import HexStickerGallery from "@components/HexStickerGallery.astro";
 import { getCollection } from "astro:content";
 
 // Get stickers from the content collection and map to the expected format
@@ -16,7 +16,7 @@ stickersCollection = stickersCollection.filter(
         ),
 );
 
-const CATEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams"];
+const CATEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams", "miscellaneous"];
 // sort stickersCollection by category
 stickersCollection.sort((a, b) => {
     const aIndex = CATEGORIES.indexOf(a.rendered?.metadata?.category as string);
