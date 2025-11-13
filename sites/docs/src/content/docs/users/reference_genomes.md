@@ -59,7 +59,7 @@ To check the version of annotations used by AWS iGenomes:
 1. Download the README file from the iGenomes S3 bucket using AWS CLI:
 
     ```bash
-    aws s3 cp --no-sign-request s3://ngi-igenomes/igenomes/Homo_sapiens/Ensembl/GRCh37/Annotation/README.txt .
+    aws s3 cp --no-sign-request s3://ngi-igenomes/igenomes/Homo_sapiens/Ensembl/GRCh37/Annotation/README.txt
     ```
 
 1. View the README to see annotation details:
@@ -117,11 +117,11 @@ Using GRCh38 as an example:
     ```
 
     :::note
-    The pipeline will generate and save reference assets. For example, the STAR index will be stored in `<RESULTS_DIR>/genome/index/star`.
+    The pipeline will generate and save reference assets. For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
     :::
 
 1. Move generated assets to a central, persistent storage location for re-use in future runs.
-1. Use pre-generated indices in future runs**
+1. Use pre-generated indices in future runs.
 
     ```bash
     nextflow run \
@@ -148,7 +148,7 @@ Refgenie allows you to:
 
 To set up Refgenie:
 
-1. Install Refgenie following the [official documentation](http://refgenie.databio.org/)
+1. Install Refgenie following the [official documentation](http://refgenie.databio.org/).
 1. Initialize Refgenie.
 
     :::note
@@ -165,8 +165,8 @@ To set up Refgenie:
     Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`. For example:
 
     ```json
-    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten
-    // To make changes here, use refgenie to update the reference genome data
+    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.
+    // To make changes here, use refgenie to update the reference genome data.
     params {
       genomes {
         't7' {
@@ -188,15 +188,15 @@ To set up Refgenie:
 
 When Refgenie asset names differ from nf-core expectations:
 
-1. Create `alias_translations.yaml` in your Refgenie config directory
-2. Map Refgenie aliases to nf-core parameter names
+1. Create `alias_translations.yaml` in your Refgenie config directory.
+2. Map Refgenie aliases to nf-core parameter names.
 
     ```yaml title="alias_translations.yaml"
     ensembl_gtf: gtf
     star_index: star
     ```
 
-3. Save the file
+3. Save the file.
 
 :::note
 Configuration automatically uses the translations.
