@@ -164,14 +164,14 @@ To use Refgenie:
 
     Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`. For example:
 
-    ```json
+    ```console
     // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.
     // To make changes here, use refgenie to update the reference genome data.
     params {
       genomes {
         't7' {
-          bowtie2_index        = "<path_to_refgenie_genomes>/alias/t7/bowtie2_index/default/t7"
-          fasta                = "<path_to_refgenie_genomes>/alias/t7/fasta/default/t7.fa"
+          bowtie2_index     = "<path_to_refgenie_genomes>/alias/t7/bowtie2_index/default/t7"
+          fasta             = "<path_to_refgenie_genomes>/alias/t7/fasta/default/t7.fa"
         }
       }
     }
@@ -189,7 +189,7 @@ To use Refgenie:
 When Refgenie asset names differ from nf-core expectations:
 
 1. Create `alias_translations.yaml` in your Refgenie config directory.
-2. Map Refgenie aliases to nf-core parameter names.
+2. Map Refgenie aliases to nf-core parameter names. For example:
 
     ```yaml title="alias_translations.yaml"
     ensembl_gtf: gtf
