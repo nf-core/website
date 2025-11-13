@@ -97,7 +97,10 @@ export default defineConfig({
     build: {
         inlineStylesheets: "auto",
         format: "file",
-        assetsPrefix: "https://nf-core-docs.netlify.app/",
+        assetsPrefix:
+            process.env.CONTEXT === "production"
+                ? "https://nf-core-docs.netlify.app/"
+                : process.env.DEPLOY_PRIME_URL,
     },
     vite: {
         css: {
