@@ -6,10 +6,9 @@ headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wid
 headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
 embedHeaderImage: true
 authors:
-    - "maxulysse"
+  - "maxulysse"
 label:
-    - "maintainers"
-
+  - "maintainers"
 ---
 
 The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly team meetings.
