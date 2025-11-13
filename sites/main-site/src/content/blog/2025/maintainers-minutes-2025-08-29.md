@@ -9,10 +9,8 @@ authors:
     - "maxulysse"
 label:
     - "maintainers"
----
 
-import Profile from "@components/GitHubProfilePictureExtended.astro";
-import { Image } from "astro:assets";
+---
 
 The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers) by providing brief summaries of the monthly team meetings.
 
