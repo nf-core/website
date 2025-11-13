@@ -146,7 +146,7 @@ Refgenie allows you to:
 
 ### Use Refgenie
 
-To set up Refgenie:
+To use Refgenie:
 
 1. Install Refgenie following the [official documentation](http://refgenie.databio.org/).
 1. Initialize Refgenie.
