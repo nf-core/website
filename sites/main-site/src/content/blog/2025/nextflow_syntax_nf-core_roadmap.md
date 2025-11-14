@@ -39,13 +39,13 @@ These are the changes that will be (or have been) included in each Nextflow vers
 - Nextflow v25.04:
   - topic channels
   - workflow outputs (preview)
-- Nextflow v25.10
+- Nextflow v25.10:
   - workflow params
   - workflow outputs
   - workflow `onComplete:` and `onError:` section
   - type annotations
   - typed process inputs/outputs
-- Nextflow v26.04
+- Nextflow v26.04:
   - record types
   - dataflow
   - typed processes
@@ -53,17 +53,17 @@ These are the changes that will be (or have been) included in each Nextflow vers
 
 In nf-core, we will adopt these changes in the following timeline:
 
-- 4th Quarter 2025:
+- 4th quarter 2025:
   - Topic channels are allowed (nf-core tools version 3.5.0 released in November 2025)
-- 2nd Quarter 2026:
+- 2nd quarter 2026:
   - Topic channels are mandatory
   - Strict syntax is mandatory
   - Static types and records are allowed
   - New process syntax is allowed
-- 4th Quarter 2026:
+- 4th quarter 2026:
   - Static types and records are added to the pipeline template
   - New process syntax is added to the pipeline template
-- 2nd Quarter 2027
+- 2nd quarter 2027:
   - Static types and records are mandatory
   - New process syntax is mandatory
 
