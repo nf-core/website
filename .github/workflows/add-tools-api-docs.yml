@@ -29,17 +29,6 @@ jobs:
         run: |
           npm install remark unist-util-visit
 
-      # Install pre-commit
-      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
-        with:
-          python-version: 3.14
-
-      # install prettier plugins
-      - run: npm install --only=dev
-
-      - name: Install pre-commit
-        run: pip install pre-commit
-
       - name: install nf-core
         run: |
           cd tools
@@ -54,9 +43,13 @@ jobs:
       - name: remove tools code
         run: rm -rf tools
 
-      - name: Run pre-commit
+      - uses: j178/prek-action@v1
+        with:
+          install-only: true
+
+      - name: Run prek
         id: pre-commit
-        run: git add . && pre-commit run --all-files
+        run: git add . && prek run --all-files
         continue-on-error: true
 
       - name: Commit & push changes
