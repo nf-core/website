@@ -5,6 +5,7 @@ import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
     let files = await getCollection("configs");
@@ -170,7 +171,7 @@ if (pipelineConfigs.length > 0) {
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
                                 </a>`
                                             : "",
                                     },
@@ -214,7 +215,7 @@ if (pipelineConfigs.length > 0) {
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
                                 </a>`,
                                               },
                                           ]

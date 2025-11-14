@@ -10,9 +10,7 @@
         currentFilters: { name: string }[];
         currentEvents: CollectionEntry<"events">[];
     }
-
     let { events = [], currentFilters, currentEvents = $bindable() }: Props = $props();
-
     let filteredEvents = $state(events);
     const filterByType = (event: CollectionEntry<"events">) => {
         if ($CurrentFilter.find((f) => f.name === event.data.type)) {
@@ -116,7 +114,7 @@
         return false;
     }
 
-    onMount(() => {
+    onMount(async () => {
         if (currentFilters.length > 0) {
             CurrentFilter.set(currentFilters);
         }

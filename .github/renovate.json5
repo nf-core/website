@@ -8,6 +8,11 @@
     npm: {
         enabled: false,
     },
+    // Override :automergeBranch from default.json5 to use PR-based auto-merge
+    // This respects branch protection rules that require PRs
+    platformAutomerge: true,
+    automergeType: "pr",
+    automergeStrategy: "rebase",
     packageRules: [
         {
             matchManagers: ["custom.regex"],

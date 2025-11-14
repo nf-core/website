@@ -18,4 +18,4 @@ You can use the `licences` subcommand to fetch and print the software licence fr
 timeout: 10
 -->
 
-![`nf-core pipelines licences deepvariant`](/images/tools/nf-core-licences.svg)
+![`nf-core pipelines licences deepvariant`](../../../../assets/images/tools/nf-core-licences.svg)

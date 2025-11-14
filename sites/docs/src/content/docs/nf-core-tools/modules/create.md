@@ -33,4 +33,4 @@ before_command: git clone https://github.com/nf-core/modules.git && cd modules
 fake_command: nf-core modules create fastqc --author @nf-core-bot  --label process_low --meta --force
 -->
 
-![`cd modules && nf-core modules create fastqc --author @nf-core-bot  --label process_low --meta --force`](/images/tools/nf-core-modules-create.svg)
+![`cd modules && nf-core modules create fastqc --author @nf-core-bot  --label process_low --meta --force`](../../../../assets/images/tools/nf-core-modules-create.svg)

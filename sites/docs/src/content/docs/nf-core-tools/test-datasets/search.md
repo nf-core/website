@@ -20,7 +20,7 @@ The subcommand fetches, filters and searches through the filetree of a branch of
 A query can be specified as a command line argument to pre-populate the search field and if the query is unambiguous return the matching file without prompting.
 A branch name to limit the search to is always required and if none is specified via the command line, the user will also be prompted to enter one.
 
-![`nf-core test-datasets search --branch mag minigut_reads`](/images/tools/nf-core-test-datasets-search.svg)
+![`nf-core test-datasets search --branch mag minigut_reads`](../../../../assets/images/tools/nf-core-test-datasets-search.svg)
 
 :::note
 To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).

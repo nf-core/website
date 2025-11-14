@@ -18,7 +18,7 @@ before_command: >
 fake_command: nf-core lint
 -->
 
-![`nf-core pipelines lint`](/images/tools/nf-core-lint.svg)
+![`nf-core pipelines lint`](../../../../assets/images/tools/nf-core-lint.svg)
 
 You can use the `-k` / `--key` flag to run only named tests for faster debugging, eg: `nf-core pipelines lint -k files_exist -k files_unchanged`. The `nf-core pipelines lint` command lints the current working directory by default, to specify another directory you can use `--dir <directory>`.
 

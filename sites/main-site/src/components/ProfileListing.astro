@@ -1,0 +1,26 @@
+---
+// ProfileListing.astro - Renders a list of profiles in a flex container
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+
+interface ProfileItem {
+    username: string;
+    name?: string;
+    affiliation?: string;
+}
+
+interface Props {
+    profiles: ProfileItem[];
+}
+
+const { profiles } = Astro.props;
+---
+
+<div class="d-flex flex-wrap">
+    {
+        profiles.map((profile) => (
+            <Profile username={profile.username} affiliation={profile.affiliation}>
+                {profile.name}
+            </Profile>
+        ))
+    }
+</div>
