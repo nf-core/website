@@ -1612,13 +1612,7 @@
         "maintainers": [
           "@atrigila"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "agat_convertspgff2gtf",
@@ -1847,7 +1841,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         }
       ]
     },
@@ -8813,13 +8807,7 @@
           "@praveenraj2018",
           "@rannick"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "arriba_download",
@@ -9105,13 +9093,7 @@
         "authors": [
           "@rannick"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "art_illumina",
@@ -14992,7 +14974,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "magmap",
@@ -15727,7 +15709,13 @@
         "maintainers": [
           "@sppearce"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "detaxizer",
+          "version": "1.3.0"
+        }
+      ]
     },
     {
       "name": "bbmap_index",
@@ -23953,10 +23941,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "smrnaseq",
           "version": "2.4.0"
         }
@@ -27074,7 +27058,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "phageannotator",
@@ -27338,7 +27322,7 @@
       "pipelines": [
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "phageannotator",
@@ -28909,7 +28893,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -32472,7 +32456,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "sarek",
@@ -32655,7 +32639,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -37456,7 +37440,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -49493,13 +49477,7 @@
         "maintainers": [
           "@anoronh4"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "ctatsplicing_startocancerintrons",
@@ -49824,13 +49802,7 @@
         "maintainers": [
           "@anoronh4"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "ctree",
@@ -50517,6 +50489,10 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1b"
         },
         {
           "name": "rnasplice",
@@ -58454,7 +58430,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -67449,7 +67425,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "lncpipe",
@@ -67485,7 +67461,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -67892,7 +67868,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "evexplorer",
@@ -68036,7 +68012,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -71389,7 +71365,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -71498,7 +71474,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -74229,13 +74205,7 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "fusioninspector",
@@ -74501,13 +74471,7 @@
           "@alanmmobbs93",
           "@martings"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "fusionreport_detect",
@@ -74790,13 +74754,7 @@
         "authors": [
           "@praveenraj2018, @rannick"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "fusionreport_download",
@@ -74862,13 +74820,7 @@
         "authors": [
           "@praveenraj2018"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "galah",
@@ -75456,7 +75408,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -77585,7 +77537,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnavar",
@@ -79323,7 +79275,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnavar",
@@ -82518,7 +82470,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "sarek",
@@ -91554,10 +91506,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -113532,7 +113480,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -115274,7 +115222,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -115387,7 +115335,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -116027,7 +115975,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -116216,7 +116164,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -116470,7 +116418,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "hgtseq",
@@ -116917,7 +116865,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -124572,7 +124520,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -132714,6 +132662,141 @@
         ],
         "maintainers": [
           "@Dewey-Wang"
+        ]
+      }
+    },
+    {
+      "name": "methbat_profile",
+      "path": "modules/nf-core/methbat/profile/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "methbat_profile",
+        "description": "Runs methbat profile command to create methylation profiles for regions of interest from CpG metrics.",
+        "keywords": [
+          "methylation",
+          "epigenetics",
+          "pacbio"
+        ],
+        "tools": [
+          {
+            "methbat": {
+              "description": "A battery of methylation tools for PacBio HiFi reads",
+              "homepage": "https://github.com/PacificBiosciences/MethBat",
+              "documentation": "https://github.com/PacificBiosciences/MethBat/tree/main/docs",
+              "tool_dev_url": "https://github.com/PacificBiosciences/MethBat",
+              "licence": [
+                "BSD-3-clause-Clear"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "files": {
+                "type": "file",
+                "description": "Zipped pb-cpg-tools output files and index files",
+                "pattern": "*.{bed.gz, bed.gz.tbi}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "regions": {
+                "type": "file",
+                "description": "Background profile with regions of interest",
+                "pattern": "*.{tsv,csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "region_profile": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Methylation profile for regions of interest",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "asm_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "BED file with individual ASM CpG loci, produced by '--output-asm-bed' flag",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@inemesb"
+        ],
+        "maintainers": [
+          "@inemesb"
         ]
       }
     },
@@ -140986,7 +141069,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "crisprseq",
@@ -141014,7 +141097,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -141246,7 +141329,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -159831,7 +159914,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         }
       ]
     },
@@ -160139,13 +160222,7 @@
         "maintainers": [
           "@anoronh4"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "picard_collectwgsmetrics",
@@ -160293,7 +160370,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "variantcatalogue",
@@ -162676,7 +162753,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "magmap",
@@ -186957,10 +187034,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -187147,10 +187220,6 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -189245,10 +189314,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnavar",
           "version": "1.2.1"
         },
@@ -189941,7 +190006,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnavar",
@@ -190670,10 +190735,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -190962,10 +191023,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -191403,7 +191460,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -192764,7 +192821,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -193161,10 +193218,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -193519,6 +193572,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "3.0.1b"
         },
         {
           "name": "sammyseq",
@@ -213433,6 +213490,10 @@
       },
       "pipelines": [
         {
+          "name": "createtaxdb",
+          "version": "2.0.0"
+        },
+        {
           "name": "magmap",
           "version": "dev"
         }
@@ -213533,6 +213594,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "2.0.0"
+        },
         {
           "name": "magmap",
           "version": "dev"
@@ -216101,7 +216166,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -216261,7 +216326,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -217292,13 +217357,7 @@
         "maintainers": [
           "@praveenraj2018"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "starfusion_detect",
@@ -217435,13 +217494,7 @@
         "authors": [
           "@praveenraj2018"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "stecfinder",
@@ -218611,7 +218664,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         }
       ]
     },
@@ -218771,7 +218824,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.0.0"
+          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -222679,7 +222732,13 @@
         "maintainers": [
           "@jfy133"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "createtaxdb",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "sylph_sketchsamples",
@@ -223902,13 +223961,7 @@
         "maintainers": [
           "@jfy133"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "createtaxdb",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "taxonkit_lineage",
@@ -231148,10 +231201,6 @@
         {
           "name": "circrna",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         }
       ]
     },
@@ -232434,10 +232483,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -233464,7 +233509,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "lsmquant",
@@ -247756,10 +247801,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -248038,10 +248079,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnaseq",
           "version": "3.21.0"
         },
@@ -248135,13 +248172,7 @@
           "@rannick",
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "bam_subsampledepth_samtools",
@@ -250297,7 +250328,7 @@
       "pipelines": [
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -252990,10 +253021,6 @@
           "version": "dev"
         },
         {
-          "name": "rnafusion",
-          "version": "4.0.0"
-        },
-        {
           "name": "rnavar",
           "version": "1.2.1"
         }
@@ -253620,10 +253647,6 @@
         {
           "name": "riboseq",
           "version": "1.1.0"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -255945,7 +255968,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "crisprseq",
@@ -255977,7 +256000,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "differentialabundance",
@@ -256194,10 +256217,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -256370,7 +256389,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "crisprseq",
@@ -256402,7 +256421,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "differentialabundance",
@@ -256619,10 +256638,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
@@ -256803,7 +256818,7 @@
         },
         {
           "name": "createtaxdb",
-          "version": "1.0.0"
+          "version": "2.0.0"
         },
         {
           "name": "crisprseq",
@@ -256835,7 +256850,7 @@
         },
         {
           "name": "detaxizer",
-          "version": "1.2.0"
+          "version": "1.3.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -257024,10 +257039,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.0.0"
         },
         {
           "name": "rnaseq",
