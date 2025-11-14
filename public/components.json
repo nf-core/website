@@ -212673,7 +212673,7 @@
             "souporcell": {
               "description": "Clustering scRNAseq by genotypes.",
               "homepage": "https://github.com/wheaton5/souporcell",
-              "documentation": "https://github.com/wheaton5/souporcell",
+              "documentation": "https://demultiplexing-doublet-detecting-docs.readthedocs.io/en/latest/Souporcell.html",
               "tool_dev_url": "https://github.com/wheaton5/souporcell",
               "doi": "10.1101/699637v1",
               "licence": [
@@ -212696,7 +212696,11 @@
                 "type": "file",
                 "description": "A BAM file from cellranger containing single-cell RNA-seq alignments.",
                 "pattern": "*.bam",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
               }
             },
             {
@@ -212709,6 +212713,12 @@
                     "edam": "http://edamontology.org/format_3475"
                   }
                 ]
+              }
+            },
+            {
+              "clusters": {
+                "type": "integer",
+                "description": "Number of clusters."
               }
             }
           ],
@@ -212724,18 +212734,38 @@
                 "type": "file",
                 "description": "A reference fasta file.",
                 "pattern": "*.fasta",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
-          ],
-          {
-            "clusters": {
-              "type": "integer",
-              "description": "Number of clusters."
-            }
-          }
+          ]
         ],
         "output": {
+          "clusters": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/clusters.tsv": {
+                  "type": "file",
+                  "description": "TSV file listing cell barcodes with singlet/doublet status, assigned cluster, and per-cluster log-loss metrics",
+                  "pattern": "clusters.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "vcf": [
             [
               {
@@ -212745,16 +212775,20 @@
                 }
               },
               {
-                "*/*.vcf": {
+                "*/cluster_genotypes.vcf": {
                   "type": "file",
-                  "description": "VCF file containing genotype information",
-                  "pattern": "*.vcf",
-                  "ontologies": []
+                  "description": "A `vcf` with genotypes for each cluster for each variant in the input `vcf` from freebayes.",
+                  "pattern": "cluster_genotypes.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "tsv": [
+          "ambient_rna": [
             [
               {
                 "meta": {
@@ -212763,13 +212797,13 @@
                 }
               },
               {
-                "*/*.tsv": {
+                "*/ambient_rna.txt": {
                   "type": "file",
-                  "description": "TSV file containing clustering results",
-                  "pattern": "*.tsv",
+                  "description": "Contains the ambient RNA percentage detected",
+                  "pattern": "ambient_rna.txt",
                   "ontologies": [
                     {
-                      "edam": "http://edamontology.org/format_3475"
+                      "edam": "http://edamontology.org/format_2330"
                     }
                   ]
                 }
@@ -212792,10 +212826,12 @@
           ]
         },
         "authors": [
-          "@seohyonkim"
+          "@seohyonkim",
+          "@LuisHeinzlmeier"
         ],
         "maintainers": [
-          "@seohyonkim"
+          "@seohyonkim",
+          "@LuisHeinzlmeier"
         ]
       }
     },
