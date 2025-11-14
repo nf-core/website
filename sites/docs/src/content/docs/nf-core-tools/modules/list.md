@@ -18,7 +18,7 @@ working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
-![`nf-core modules list remote`](/images/tools/nf-core-modules-list-remote.svg)
+![`nf-core modules list remote`](../../../../assets/images/tools/nf-core-modules-list-remote.svg)
 
 ## List installed modules
 
@@ -29,4 +29,4 @@ working_dir: tmp/nf-core-nextbigthing
 head: 25
 -->
 
-![`nf-core modules list local`](/images/tools/nf-core-modules-list-local.svg)
+![`nf-core modules list local`](../../../../assets/images/tools/nf-core-modules-list-local.svg)

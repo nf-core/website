@@ -25,7 +25,6 @@ export interface Props {
     icon: string;
     params?: Params;
 }
-console.log("params_start", params);
 if (name === "Input" || name === "Output") {
     // console.log('is Array', Array.isArray(params));
     const paramsArray = Array.isArray(params) ? params : [params];

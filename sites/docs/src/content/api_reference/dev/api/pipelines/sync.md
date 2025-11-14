@@ -2,7 +2,7 @@
 
 Synchronise a pipeline TEMPLATE branch with the template.
 
-### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False){:python}`
+### _`class{:python}`_`nf_core.pipelines.sync.PipelineSync(pipeline_dir: str | Path, from_branch: str | None = None, make_pr: bool = False, gh_repo: str | None = None, gh_username: str | None = None, template_yaml_path: str | None = None, force_pr: bool = False, blog_post: str = ''){:python}`
 
 Bases: `object`
 
@@ -73,6 +73,24 @@ GitHub repository name
 - **Type:**
   str
 
+#### `_clean_up_empty_dirs(){:python}`
+
+Delete empty directories in the repository
+
+Walks the directory tree from the bottom up, deleting empty directories as it goes.
+
+#### `_delete_tracked_files(){:python}`
+
+Delete all tracked files in the repository
+
+#### `_get_ignored_files() → list[str]{:python}`
+
+Get a list of all files in the repo ignored by git.
+
+#### `_get_tracked_files() → list[str]{:python}`
+
+Get a list of all files in the repo tracked by git.
+
 #### _`static{:python}`_`_parse_json_response(response) → tuple[Any, str]{:python}`
 
 Helper method to parse JSON response and create pretty-printed string.
@@ -87,16 +105,6 @@ Helper method to parse JSON response and create pretty-printed string.
 Try to check out the origin/TEMPLATE in a new TEMPLATE branch.
 If this fails, try to check out an existing local TEMPLATE branch.
 
-#### `close_open_pr(pr) → bool{:python}`
-
-Given a PR API response, add a comment and close.
-
-#### `close_open_template_merge_prs(){:python}`
-
-Get all template merging branches (starting with ‘nf-core-template-merge-‘)
-and check for any open PRs from these branches to the self.from_branch
-If open PRs are found, add a comment and close them
-
 #### `commit_template_changes(){:python}`
 
 If we have any changes with the new template files, make a git commit
@@ -106,9 +114,9 @@ If we have any changes with the new template files, make a git commit
 Create a new branch from the updated TEMPLATE branch
 This branch will then be used to create the PR
 
-#### `delete_template_branch_files(){:python}`
+#### `delete_tracked_template_branch_files(){:python}`
 
-Delete all files in the TEMPLATE branch
+Delete all tracked files and subsequent empty directories in the TEMPLATE branch
 
 #### `get_wf_config(){:python}`
 

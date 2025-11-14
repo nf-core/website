@@ -1,6 +1,7 @@
 ---
 title: nf-core training
 subtitle: In-depth tutorials for newcomers typically used for workshops
+weight: 10
 ---
 
 This section provides a range of detailed and in-depth tutorials aimed at newcomers to nf-core.
