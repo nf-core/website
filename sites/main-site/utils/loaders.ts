@@ -399,9 +399,10 @@ class GitHubContentFetcher {
             if (id) processedIds.add(id);
         }
 
-        // Clean up deleted files
+        // Clean up deleted files (only for this repo/ref)
+        const repoRefPrefix = `${this.repo}/${this.ref}/`;
         for (const id of store.keys()) {
-            if (!processedIds.has(id)) {
+            if (id.startsWith(repoRefPrefix) && !processedIds.has(id)) {
                 logger.debug(`Removing deleted file: ${id}`);
                 store.delete(id);
             }
