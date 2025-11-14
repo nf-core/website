@@ -6,9 +6,9 @@ headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wid
 headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
 embedHeaderImage: true
 authors:
-    - "maxulysse"
+  - "maxulysse"
 label:
-    - "maintainers"
+  - "maintainers"
 ---
 
 import Profile from "@components/GitHubProfilePictureExtended.astro";
@@ -71,8 +71,8 @@ We thought about ideas to improve it, and came up with the following:
 
 - Consider moving the helpdesk to a later time slot so that it is outside of the busiest hours.
 - Pump up on the communication, and make it more visible
-    - Explaining clearly what the helpdesk is, and that there are clearly no stupid questions
-    - See with the outreach team if we can get more visibility
+  - Explaining clearly what the helpdesk is, and that there are clearly no stupid questions
+  - See with the outreach team if we can get more visibility
 
 Since we have all our sessions planed ahead, we can maybe communicate about it in a more efficient manner, as we currently rely on the people hosting the helpdesk to communicate about it.
 
