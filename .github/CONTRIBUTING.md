@@ -63,9 +63,11 @@ When you create a pull request with changes, Github Actions will run automatic t
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.
 For now, the main test is for syntax formatting using prettier.
 We use pre-commit to ensure that your code is formatted correctly before submitting your pull request. To automatically check your code before commiting, install [prek](https://prek.j178.dev/installation/) (comes installed as a dev dependency) and the pre-commit hooks defined in `pre-commit.config.yaml`:
-``
+
+```
 prek install --install-hooks
-``
+```
+
 You can manually run the tests using `prek run --all-files` to run all tests.
 
 ## Getting help
