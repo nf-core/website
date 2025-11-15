@@ -223371,7 +223371,7 @@
           ]
         ],
         "output": {
-          "gz_tbi": [
+          "gz_index": [
             [
               {
                 "meta": {
@@ -223392,40 +223392,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "tabix index file",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "gz_csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.gz": {
-                  "type": "file",
-                  "description": "bgzipped tab-delimited genome file",
-                  "pattern": "*.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "csi index file",
-                  "pattern": "*.csi",
+                  "description": "Tabix index file (either tbi or csi)",
+                  "pattern": "*.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -223535,7 +223505,7 @@
           ]
         ],
         "output": {
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -223544,28 +223514,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "tabix index file",
-                  "pattern": "*.{tbi}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "coordinate sorted index file",
-                  "pattern": "*.{csi}",
+                  "description": "Tabix index file (either tbi or csi)",
+                  "pattern": "*.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -234589,26 +234541,26 @@
                   }
                 ]
               }
+            },
+            {
+              "scenario": {
+                "type": "file",
+                "description": "Yaml file containing scenario information (optional)",
+                "pattern": "*.{yml,yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "scenario_aliases": {
+                "type": "list",
+                "description": "List of aliases for the scenario (optional)"
+              }
             }
-          ],
-          {
-            "scenario": {
-              "type": "file",
-              "description": "Yaml file containing scenario information (optional)",
-              "pattern": "*.{yml,yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "scenario_aliases": {
-              "type": "list",
-              "description": "List of aliases for the scenario (optional)"
-            }
-          }
+          ]
         ],
         "output": {
           "bcf": [
@@ -234721,14 +234673,6 @@
                   }
                 ]
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "fasta": {
@@ -234740,14 +234684,6 @@
                     "edam": "http://edamontology.org/format_1929"
                   }
                 ]
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference index information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
@@ -234895,14 +234831,6 @@
                   }
                 ]
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "fasta": {
@@ -234914,14 +234842,6 @@
                     "edam": "http://edamontology.org/format_1929"
                   }
                 ]
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference index information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
