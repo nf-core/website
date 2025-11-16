@@ -53,7 +53,7 @@ For clarity and translation:
 
 ## Text formatting
 
-- Bold for UI elements: buttons, menu items, page names (match exact capitalisation)
+- **Bold** for UI elements: buttons, menu items, page names (match exact capitalisation)
 - `Code formatting` for: filenames, paths, parameters, commands, variable names, error messages, user inputs
 - Code blocks for multi-line examples and command-line instructions
 - _Italics_ sparingly, primarily for emphasis
