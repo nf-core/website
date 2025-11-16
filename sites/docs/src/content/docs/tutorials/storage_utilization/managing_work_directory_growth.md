@@ -30,7 +30,7 @@ For verification, perform a dry run with the `-n{:bash}` option:
 nextflow clean -n last
 ```
 
-To remove files, use the `-n{:bash}` option:
+To remove files, use the `-f{:bash}` option:
 
 ```bash
 nextflow clean -f last
