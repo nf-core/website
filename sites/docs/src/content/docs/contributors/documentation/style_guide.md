@@ -109,16 +109,15 @@ When showing examples with values users must replace:
 - Use tables to organise complex information
 - **No empty cells** — use "N/A" or "None" instead
 - Use **sentence case** for headers
-- Keep columns consistently spaced
 - Place description columns on the right when possible
 
 ## Images and screenshots
 
 - Use sparingly — text is easier to maintain and translate
-- Compress images to reduce file size
+- Compress images to reduce file size when possible
 - Keep dimensions reasonable (max 1000px wide, 500px tall)
 - Remove any personally identifiable information
-- Use realistic examples (not placeholder text like "lorem ipsum")
+- Use realistic examples (not placeholder text like "_lorem ipsum_")
 
 ### Alt text
 
@@ -146,9 +145,9 @@ Don't stack multiple alerts consecutively — combine or restructure the content
 - Avoid acronyms in page titles unless widely recognised
 - Pluralise without apostrophes: "APIs" not "API's"
 
-## Writing style tips
+## Writing tips
 
-- **Get to the point** — don't write "This page explains..." — just explain it
+- **Get to the point** — just explain it
 - **Focus on facts** — avoid marketing language and subjective claims
 - **Be specific** — instead of "improves performance", say "reduces build time by 50%"
 - **Stay current** — don't promise future features; link to issues if relevant
