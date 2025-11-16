@@ -10,8 +10,10 @@ Documentation topic types provide a framework for organizing content. Using cons
 nf-core documentation follows the CTRT framework: Concept, Task, Reference, and Troubleshooting. Most pages combine multiple topic types—for example, starting with a concept introduction followed by task instructions.
 
 :::tip
-Contact #team-docs for documentation help and advice.
+Need help or have questions about documentation? Contact the nf-core docs-team on Slack at **#team-docs**. We're here to help!
 :::
+
+<!-- TODO: Add links to nf-core Slack -->
 
 ## Concept
 

@@ -5,7 +5,15 @@ shortTitle: Style guide
 weight: 3
 ---
 
+<!-- TODO: Add high level section here -->
+
 This guide covers the essential styling rules for nf-core documentation.
+
+:::tip
+Need help or have questions about documentation? Contact the nf-core docs-team on Slack at **#team-docs**. We're here to help!
+:::
+
+<!-- TODO: Add links to nf-core Slack -->
 
 ## Voice and tone
 
