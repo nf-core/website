@@ -1,6 +1,6 @@
 ---
 title: Style guide
-subtitle: Style guide
+subtitle: nf-core style guide rules
 shortTitle: Style guide
 weight: 3
 ---

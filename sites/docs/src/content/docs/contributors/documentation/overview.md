@@ -1,7 +1,7 @@
 ---
-title: Overview
+title: nf-core documentation
 subtitle: Learn about nf-core documentation
-shortTitle: nf-core documentation
+shortTitle: Overview
 weight: 1
 ---
 
