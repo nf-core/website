@@ -164,7 +164,7 @@ To use Refgenie:
 
     Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`. For example:
 
-    ```console
+    ```groovy title="refgenie_genomes.config"
     // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.
     // To make changes here, use refgenie to update the reference genome data.
     params {
