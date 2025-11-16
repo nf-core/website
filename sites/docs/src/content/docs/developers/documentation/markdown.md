@@ -75,7 +75,7 @@ One of the troublesome circumstances was the Plural nature of this Galactic Sect
 One of the troublesome circumstances was the Plural nature of this Galactic Sector, where the possible `continually` interfered with the probable.
 :::
 
-### Custom title
+### Custom titles
 
 You can replace the default title with a custom one by adding a title attribute to the admonition, for example:
 
@@ -89,7 +89,7 @@ Arthur Dent was grappling with his consciousness the way one grapples with a los
 Arthur Dent was grappling with his consciousness the way one grapples with a lost bar of soap in the bath. He lay, panting heavily in the wet air, and tried feeling bits of himself to see where he might be hurt. Wherever he touched himself, he encountered a pain. After a short while he worked out that this was because it was his hand that was hurting. Arthur nodded intelligently. Today was one of those bad days.
 :::
 
-### Custom icon
+### Custom icons
 
 You can replace the default icon with a custom one by adding a [fontawesome icon class name](https://fontawesome.com/icons/) with a leading period to the admonition, for example:
 
@@ -103,7 +103,7 @@ Another thing that got forgotten was the fact that against all probability a spe
 Another thing that got forgotten was the fact that against all probability a sperm whale had suddenly been called into existence several miles above the surface of an alien planet.
 :::
 
-### Custom icon and title
+### Custom icons and titles
 
 When changing both title and icon, the <span class="fw-semibold">order is important</span>. You need to first specify the icon and then the title, for example:
 
