@@ -132,7 +132,7 @@ Many people have speculated that if we knew exactly why the bowl of petunias had
 ### GitHub style admonitions
 
 For `README.md` files, you can also use the [GitHub style admonitions/alerts](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#alerts).
-This _only_ works with markdown files fetched from pipeline repositories, so don't use it in markdown files in the website repo.
+This _only_ works with markdown files fetched from pipeline repositories. Don't use it in markdown files in the website repo.
 
 ```md
 > [!NOTE]
@@ -141,12 +141,6 @@ This _only_ works with markdown files fetched from pipeline repositories, so don
 
 This renders in the same way as regular admonitions on the nf-core website,
 but has the bonus of also rendering nicely when viewing the rendered markdown on [github.com](https://github.com):
-
-<div class="w-100">
-
-![GitHub admonition syntax](../../../../assets/images/contributing/github_admonition_syntax.png)
-
-</div>
 
 ## Code
 
@@ -176,7 +170,8 @@ Run `echo "Hello, world!"{:bash}`
 ### Code blocks
 
 Code blocks are rendered using the "```" character.
-If the specified language is not `plain-text` or `console`, a copy button will be added to the code block.
+If the specified language is not `plain-text` or `console`.
+A copy button will be added to the code block.
 
 #### Line numbers
 
@@ -344,8 +339,6 @@ gets rendered as:
 
 <h3>1.1. Subsubheading</h3>
 
-## Special documentation styling
-
-### Checklist
+## Checklists
 
 Checklists are used to provide a list of items that need to be checked off. By adding `markdownPlugin: checklist` to the frontmatter of a markdown file, all check-list items will be converted to special elements, including synced state per session and a progress bar next to their heading in the left Sidebar.
