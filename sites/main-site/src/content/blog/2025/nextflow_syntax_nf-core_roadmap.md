@@ -3,7 +3,7 @@ title: "The nf-core roadmap for adopting the new Nextflow syntax"
 subtitle: "Not DSL3"
 headerImage: "https://images.unsplash.com/photo-1455390582262-044cdead277a"
 headerImageAlt: "Fountain pen on black lined paper"
-pubDate: 2025-11-07T12:00:00+02:00
+pubDate: 2025-11-17T12:00:00+02:00
 authors:
   - "mirpedrol"
   - "mashehu"
