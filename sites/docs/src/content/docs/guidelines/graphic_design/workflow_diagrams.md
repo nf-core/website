@@ -43,7 +43,7 @@ Click the schematic image to see the original.
 ### Use draw.io
 
 The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
-For even more convenience you can use the following asset library [nf-core xml item library](../../../../assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml). It contains all of the components from the cheatsheet above.
+For even more convenience you can use the following asset library [nf-core xml item library](https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml). It contains all of the components from the cheatsheet above.
 To import it to draw.io use "File / Open library from / URL..." and paste:
 
 ```bash
