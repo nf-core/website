@@ -35,8 +35,6 @@ Need help or have questions about documentation? Contact the nf-core docs-team o
 
 ### Words to avoid
 
-For clarity and translation:
-
 - "simply", "easily", "just", these can be discouraging
 - Ambiguous pronouns like "it", be specific if you can
 - Latin abbreviations (e.g., i.e.), spell them out ("for example", "that is")
