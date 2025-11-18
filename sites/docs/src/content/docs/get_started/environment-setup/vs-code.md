@@ -93,10 +93,10 @@ Sublime Text benefits from a [community-built plugin](https://packagecontrol.io/
 - Auto-completion and information panels
 - Common code snippets
 
-The plugin is available through Package Control.
+The plugin is available through package control.
 
 ## Additional resources
 
 For more information about installing install VS Code and other useful extensions, see:
 
-- Nextflow [Environment setup](https://nextflow.io/docs/latest/developer-env.html)
+- Nextflow [environment setup](https://nextflow.io/docs/latest/developer-env.html)
