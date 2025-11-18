@@ -2,7 +2,7 @@
 title: nf-core documentation
 subtitle: Learn how to contribute nf-core documentation
 shortTitle: Documentation
-weight: 1
+weight: 2
 ---
 
 Everyone is welcome to contribute to nf-core documentation. Whether you're fixing a typo, clarifying instructions, or writing new guides, your contributions help make nf-core more accessible to the community.
