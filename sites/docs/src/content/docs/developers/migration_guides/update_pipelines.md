@@ -1,11 +1,11 @@
 ---
 title: Migrate to topic channels
 description: Learn how to migrate nf-core modules and pipelines to use topic channels
-shortTitle: Migrate to topic channels
+shortTitle: Topic channels
 weight: 1
 ---
 
-[Topic](https://www.nextflow.io/docs/latest/process-typed.html#topics) channels are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines. Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
+[Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines. Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
 
 This migration guide provides step-by-step instructions for three different scenarios:
 
@@ -144,14 +144,14 @@ To migrate a pipelines to use topic channels for version outputs:
    ERROR ~ No such variable: Exception evaluating property 'versions' for nextflow.script.ChannelOut, Reason: groovy.lang.MissingPropertyException: No such property: versions for class: groovyx.gpars.dataflow.DataflowBroadcast
    ```
 
-   Example: A workflow using the `samtools/sort` module might have code like this:
+   **Example**: A workflow using the `samtools/sort` module might have code like this:
 
    ```nextflow
    SAMTOOLS_SORT(input)
    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
    ```
 
-   Fix: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
+   **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
 
    ```diff
    SAMTOOLS_SORT(input)
