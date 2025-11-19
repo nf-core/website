@@ -12,9 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
       - name: Checkout tools code
-        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
+        uses: actions/checkout@93cb6efe18208431cddfb8368fd83d5badbf9bfd # v5
         with:
           repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
@@ -23,22 +23,11 @@ jobs:
       - name: setup node
         uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
         with:
-          node-version: "22"
+          node-version: "24"
 
       - name: Install dependencies
         run: |
           npm install remark unist-util-visit
-
-      # Install pre-commit
-      - uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6
-        with:
-          python-version: 3.14
-
-      # install prettier plugins
-      - run: npm install --only=dev
-
-      - name: Install pre-commit
-        run: pip install pre-commit
 
       - name: install nf-core
         run: |
@@ -54,9 +43,13 @@ jobs:
       - name: remove tools code
         run: rm -rf tools
 
-      - name: Run pre-commit
+      - uses: j178/prek-action@91fd7d7cf70ae1dee9f4f44e7dfa5d1073fe6623 # v1
+        with:
+          install-only: true
+
+      - name: Run prek
         id: pre-commit
-        run: git add . && pre-commit run --all-files
+        run: git add . && prek run --all-files
         continue-on-error: true
 
       - name: Commit & push changes

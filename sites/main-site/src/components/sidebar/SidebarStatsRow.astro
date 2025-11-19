@@ -17,9 +17,8 @@ export interface Props {
             if (entry.title && entry.value) {
                 return (
                     <div class="col mb-1">
-                        <h6 class="text-body-secondary my-1">
+                        <h6 class="text-body-secondary my-1" set:html={entry.title}>
                             {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
-                            {entry.title}
                         </h6>
                         <div class="overflow-x-auto" set:html={entry.value}>
                             <slot />
