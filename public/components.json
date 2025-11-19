@@ -10502,7 +10502,6 @@
           "ataqv",
           "ATAC-seq",
           "qc",
-          "ataqv",
           "mkarv"
         ],
         "tools": [
@@ -12205,7 +12204,7 @@
       "type": "module",
       "meta": {
         "name": "backsub",
-        "description": "Pixel-by-pixel channel subtraction scaled by exposure times of pre-stitched `tif` images.",
+        "description": "Pixel-by-pixel channel subtraction tool for multiplexed immunofluorescence data.",
         "keywords": [
           "background",
           "cycif",
@@ -12217,7 +12216,7 @@
         "tools": [
           {
             "backsub": {
-              "description": "Module for pixel-by-pixel channel subtraction scaled by exposure times",
+              "description": "Pixel-by-pixel channel subtraction tool for multiplexed immunofluorescence data",
               "homepage": "https://github.com/SchapiroLabor/Background_subtraction",
               "documentation": "https://github.com/SchapiroLabor/Background_subtraction/blob/master/README.md",
               "tool_dev_url": "https://github.com/SchapiroLabor/Background_subtraction",
@@ -12241,7 +12240,11 @@
                 "type": "file",
                 "description": "Multi-channel image file",
                 "pattern": "*.{tif,tiff}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
               }
             }
           ],
@@ -12280,7 +12283,11 @@
                   "type": "file",
                   "description": "Background corrected pyramidal ome.tif",
                   "pattern": "*.{tif}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3727"
+                    }
+                  ]
                 }
               }
             ]
@@ -24576,7 +24583,7 @@
         "tools": [
           {
             "biomformat": {
-              "description": "Biological Observation Matrix (BIOM) format. \nThis package includes basic tools for converting, summarizing, and adding metadata to biom-format files.\n",
+              "description": "Biological Observation Matrix (BIOM) format.\nThis package includes basic tools for converting, summarizing, and adding metadata to biom-format files.\n",
               "homepage": "http://biom-format.org/index.html",
               "documentation": "http://biom-format.org/documentation/index.html",
               "tool_dev_url": "https://github.com/biocore/biom-format",
@@ -29078,145 +29085,143 @@
             }
           ]
         ],
-        "output": [
-          {
-            "gtf": [
+        "output": {
+          "gtf": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "Gene transfer format file as output by BRAKER3",
                   "pattern": "*.{gtf}"
                 }
-              },
-              {
-                "$prefix/braker.gtf": {
-                  "type": "file",
-                  "description": "Gene transfer format file as output by BRAKER3",
-                  "pattern": "*.{gtf}"
-                }
               }
-            ]
-          },
-          {
-            "cds": [
+            ],
+            {
+              "$prefix/braker.gtf": {
+                "type": "file",
+                "description": "Gene transfer format file as output by BRAKER3",
+                "pattern": "*.{gtf}"
+              }
+            }
+          ],
+          "cds": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "Coding sequence file as output by BRAKER3",
                   "pattern": "*.{codingseq}"
                 }
-              },
-              {
-                "$prefix/braker.codingseq": {
-                  "type": "file",
-                  "description": "Coding sequence file as output by BRAKER3",
-                  "pattern": "*.{codingseq}"
-                }
               }
-            ]
-          },
-          {
-            "aa": [
+            ],
+            {
+              "$prefix/braker.codingseq": {
+                "type": "file",
+                "description": "Coding sequence file as output by BRAKER3",
+                "pattern": "*.{codingseq}"
+              }
+            }
+          ],
+          "aa": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "Protein sequence file as output by BRAKER3",
                   "pattern": "*.{aa}"
                 }
-              },
-              {
-                "$prefix/braker.aa": {
-                  "type": "file",
-                  "description": "Protein sequence file as output by BRAKER3",
-                  "pattern": "*.{aa}"
-                }
               }
-            ]
-          },
-          {
-            "log": [
+            ],
+            {
+              "$prefix/braker.aa": {
+                "type": "file",
+                "description": "Protein sequence file as output by BRAKER3",
+                "pattern": "*.{aa}"
+              }
+            }
+          ],
+          "log": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "BRAKER3 log file",
                   "pattern": "*.log"
                 }
-              },
-              {
-                "$prefix/braker.log": {
-                  "type": "file",
-                  "description": "BRAKER3 log file",
-                  "pattern": "*.log"
-                }
               }
-            ]
-          },
-          {
-            "hintsfile": [
+            ],
+            {
+              "$prefix/braker.log": {
+                "type": "file",
+                "description": "BRAKER3 log file",
+                "pattern": "*.log"
+              }
+            }
+          ],
+          "hintsfile": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "Hints file as output by BRAKER3",
                   "pattern": "*hintsfile.{gff}"
                 }
-              },
-              {
-                "$prefix/hintsfile.gff": {
-                  "type": "file",
-                  "description": "Hints file as output by BRAKER3",
-                  "pattern": "*hintsfile.{gff}"
-                }
               }
-            ]
-          },
-          {
-            "gff3": [
+            ],
+            {
+              "$prefix/hintsfile.gff": {
+                "type": "file",
+                "description": "Hints file as output by BRAKER3",
+                "pattern": "*hintsfile.{gff}"
+              }
+            }
+          ],
+          "gff3": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "GFF3 file as output by BRAKER3",
                   "pattern": "*.{gff3}"
                 }
-              },
-              {
-                "$prefix/braker.gff3": {
-                  "type": "file",
-                  "description": "GFF3 file as output by BRAKER3",
-                  "pattern": "*.{gff3}"
-                }
               }
-            ]
-          },
-          {
-            "citations": [
+            ],
+            {
+              "$prefix/braker.gff3": {
+                "type": "file",
+                "description": "GFF3 file as output by BRAKER3",
+                "pattern": "*.{gff3}"
+              }
+            }
+          ],
+          "citations": [
+            [
               {
                 "meta": {
                   "type": "file",
                   "description": "BRAKER3 citations",
                   "pattern": "what-to-cite.txt"
                 }
-              },
-              {
-                "$prefix/what-to-cite.txt": {
-                  "type": "file",
-                  "description": "BRAKER3 citations",
-                  "pattern": "what-to-cite.txt"
-                }
               }
-            ]
-          },
-          {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml"
-                }
+            ],
+            {
+              "$prefix/what-to-cite.txt": {
+                "type": "file",
+                "description": "BRAKER3 citations",
+                "pattern": "what-to-cite.txt"
               }
-            ]
-          }
-        ],
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
         "authors": [
           "@kherronism",
           "@GallVp"
@@ -39973,8 +39978,9 @@
         "name": "circularmapper_circulargenerator",
         "description": "A method to improve mappings on circular genomes, using the BWA mapper.",
         "keywords": [
-          "sort",
-          "example",
+          "bwa",
+          "circular",
+          "mapping",
           "genomics"
         ],
         "tools": [
@@ -40495,8 +40501,9 @@
         "description": "binning of metagenomic sequences",
         "keywords": [
           "sort",
-          "example",
-          "genomics"
+          "genomics",
+          "binning",
+          "metagenomics"
         ],
         "tools": [
           {
@@ -46041,8 +46048,7 @@
         "keywords": [
           "cooler/balance",
           "cooler",
-          "cool",
-          "cooler"
+          "cool"
         ],
         "tools": [
           {
@@ -46790,23 +46796,23 @@
               "cool": {
                 "type": "file",
                 "description": "cool file",
-                "pattern": "*.cool"
+                "pattern": "*.cool",
+                "ontologies": []
               }
             }
           ],
-          [
-            {
-              "bed": {
-                "type": "file",
-                "description": "bed file, phasing track for orienting and ranking eigenvectors,provided as /path/to/track::track_value_column_name",
-                "pattern": "*.bed"
-              }
-            }
-          ]
-        ],
-        "output": [
           {
-            "result": [
+            "bed": {
+              "type": "file",
+              "description": "bed file, phasing track for orienting and ranking eigenvectors,provided as /path/to/track::track_value_column_name",
+              "pattern": "*.bed",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "result": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -46816,13 +46822,14 @@
               {
                 "*compartment*": {
                   "type": "file",
-                  "description": "BED-like file for compartment track"
+                  "description": "BED-like file for compartment track",
+                  "ontologies": []
                 }
               }
             ]
-          },
-          {
-            "bigwig": [
+          ],
+          "bigwig": [
+            [
               {
                 "meta": {
                   "type": "map",
@@ -46841,19 +46848,22 @@
                 }
               }
             ]
-          },
-          {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml"
-                }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
-            ]
-          }
-        ],
+            }
+          ]
+        },
         "authors": [
           "@Thibault-Poinsignon"
         ]
@@ -58776,7 +58786,7 @@
         "tools": [
           {
             "diann": {
-              "description": "DIA-NN is a universal software for data-independent acquisition (DIA) proteomics data processing. \nIt uses deep learning to predict spectral libraries and perform peptide identification and quantification.\n",
+              "description": "DIA-NN is a universal software for data-independent acquisition (DIA) proteomics data processing.\nIt uses deep learning to predict spectral libraries and perform peptide identification and quantification.\n",
               "homepage": "https://github.com/vdemichev/DiaNN",
               "documentation": "https://github.com/vdemichev/DiaNN",
               "tool_dev_url": "https://github.com/vdemichev/DiaNN",
@@ -74866,7 +74876,7 @@
             {
               "qc_table": {
                 "type": "file",
-                "description": "(optional) A summary TSV from either CheckM [https://nf-co.re/modules/checkm_lineagewf],\nCheckM2 [https://nf-co.re/modules/checkm2_predict/], or a CSV \nin drep-style format [https://github.com/MrOlm/drep] with three columnns,\n`genome,completeness,contamination`. In both cases the first column should contain the \nnames of the input genome files, minus the last file extension \n(i.e. if the genome is gzipped, the genome name should \nretain the .fasta extension).\n",
+                "description": "(optional) A summary TSV from either CheckM [https://nf-co.re/modules/checkm_lineagewf],\nCheckM2 [https://nf-co.re/modules/checkm2_predict/], or a CSV\nin drep-style format [https://github.com/MrOlm/drep] with three columnns,\n`genome,completeness,contamination`. In both cases the first column should contain the\nnames of the input genome files, minus the last file extension\n(i.e. if the genome is gzipped, the genome name should\nretain the .fasta extension).\n",
                 "pattern": "*.{csv,tsv}",
                 "ontologies": [
                   {
@@ -97495,8 +97505,8 @@
         "description": "Sort GTF files in chr/pos/feature order",
         "keywords": [
           "sort",
-          "example",
-          "genomics"
+          "genomics",
+          "gtf"
         ],
         "tools": [
           {
@@ -102106,6 +102116,202 @@
       ]
     },
     {
+      "name": "hificnv",
+      "path": "modules/nf-core/hificnv/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hificnv",
+        "description": "Copy number variant calling from PacBio HiFi reads",
+        "keywords": [
+          "copy number variation",
+          "cnv",
+          "PacBio",
+          "HiFi",
+          "long reads",
+          "structural variation"
+        ],
+        "tools": [
+          {
+            "hificnv": {
+              "description": "Copy number variant caller designed for PacBio HiFi reads",
+              "homepage": "https://github.com/PacificBiosciences/HiFiCNV",
+              "documentation": "https://github.com/PacificBiosciences/HiFiCNV",
+              "tool_dev_url": "https://github.com/PacificBiosciences/HiFiCNV",
+              "doi": "10.1093/bioinformatics/btac808",
+              "licence": [
+                "Pacific Biosciences Software License Agreement"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM or CRAM file from PacBio HiFi reads",
+                "pattern": "*.{bam,cram}"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file (CSI, CRAI, or BAI format)",
+                "pattern": "*.{bai,csi,crai}"
+              }
+            },
+            {
+              "maf": {
+                "type": "file",
+                "description": "Minor allele frequency file (VCF format)",
+                "pattern": "*.{vcf,vcf.gz}",
+                "optional": true
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference genome information\ne.g. `[ id:'GATK.GRCh38' ]`\n"
+              }
+            },
+            {
+              "ref": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing exclude regions information\ne.g. `[ id:'excluded_regions' ]`\n"
+              }
+            },
+            {
+              "exclude": {
+                "type": "file",
+                "description": "BED file containing regions to exclude from CNV calling",
+                "pattern": "*.{bed,bed.gz}",
+                "optional": true
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing expected copy number information\ne.g. `[ id:'male_expected_cn' ]`\n"
+              }
+            },
+            {
+              "expected_cn": {
+                "type": "file",
+                "description": "BED file containing expected copy number regions",
+                "pattern": "*.{bed,bed.gz}",
+                "optional": true
+              }
+            }
+          ]
+        ],
+        "output": {
+          "copynum": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.copynum.bedgraph": {
+                  "type": "file",
+                  "description": "Copy number bedGraph file",
+                  "pattern": "*.copynum.bedgraph"
+                }
+              }
+            ]
+          ],
+          "depth": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.depth.bw": {
+                  "type": "file",
+                  "description": "Depth coverage bigWig file",
+                  "pattern": "*.depth.bw"
+                }
+              }
+            ]
+          ],
+          "maf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.maf.bw": {
+                  "type": "file",
+                  "description": "Minor allele frequency bigWig file",
+                  "pattern": "*.maf.bw",
+                  "optional": true
+                }
+              }
+            ]
+          ],
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Copy number variants in VCF format",
+                  "pattern": "*.{vcf.gz}"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@chaochaowong"
+        ],
+        "maintainers": [
+          "@chaochaowong"
+        ]
+      }
+    },
+    {
       "name": "hiphase",
       "path": "modules/nf-core/hiphase/meta.yml",
       "type": "module",
@@ -102113,9 +102319,10 @@
         "name": "hiphase",
         "description": "pacbio structural variant calling tool",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "pacbio",
+          "structural variant",
+          "phasing",
+          "pacbio hifi"
         ],
         "tools": [
           {
@@ -120129,7 +120336,7 @@
       "type": "module",
       "meta": {
         "name": "links",
-        "description": "LINKS is a genomics application for scaffolding genome assemblies with long reads,\nsuch as those produced by Oxford Nanopore Technologies Ltd. \nIt can be used to scaffold high-quality draft genome assemblies with any long sequences \n(eg. ONT reads, PacBio reads, other draft genomes, etc). \nIt is also used to scaffold contig pairs linked by ARCS/ARKS.\nThis module is for LINKS >=2.0.0 and does not support MPET input.\n",
+        "description": "LINKS is a genomics application for scaffolding genome assemblies with long reads,\nsuch as those produced by Oxford Nanopore Technologies Ltd.\nIt can be used to scaffold high-quality draft genome assemblies with any long sequences\n(eg. ONT reads, PacBio reads, other draft genomes, etc).\nIt is also used to scaffold contig pairs linked by ARCS/ARKS.\nThis module is for LINKS >=2.0.0 and does not support MPET input.\n",
         "keywords": [
           "scaffold",
           "long-reads",
@@ -120312,7 +120519,7 @@
               {
                 "*.gv": {
                   "type": "file",
-                  "description": "scaffold graph (for visualizing merges), can be rendered \nin neato, graphviz, etc\n",
+                  "description": "scaffold graph (for visualizing merges), can be rendered\nin neato, graphviz, etc\n",
                   "pattern": "*.gv",
                   "ontologies": []
                 }
@@ -120374,7 +120581,7 @@
               {
                 "*.tigpair_checkpoint.tsv": {
                   "type": "file",
-                  "description": "if -b BASNAME.tigpair_checkpoint.tsv is present, \nLINKS will skip the kmer pair extraction and contig pairing stages.\nDelete this file to force LINKS to start at the beginning.\nThis file can be used to: \n1) quickly test parameters (-l min. links / -a min. links ratio), \n2) quickly recover from crash,\n3) explore very large kmer spaces,\n4) scaffold with output of ARCS\n",
+                  "description": "if -b BASNAME.tigpair_checkpoint.tsv is present,\nLINKS will skip the kmer pair extraction and contig pairing stages.\nDelete this file to force LINKS to start at the beginning.\nThis file can be used to:\n1) quickly test parameters (-l min. links / -a min. links ratio),\n2) quickly recover from crash,\n3) explore very large kmer spaces,\n4) scaffold with output of ARCS\n",
                   "pattern": "*.tigpair_checkpoint.tsv",
                   "ontologies": [
                     {
@@ -129552,7 +129759,12 @@
                 }
               },
               {
-                "*${input_mat}.hap.ktab*": {}
+                "*${input_mat}.hap.ktab*": {
+                  "type": "file",
+                  "description": "Maternal haplotype-specific k-mer table files generated by HAPmaker from FastK tables.\n",
+                  "pattern": "*.hap.ktab*",
+                  "ontologies": []
+                }
               }
             ]
           ],
@@ -129565,7 +129777,12 @@
                 }
               },
               {
-                "*${input_pat}.hap.ktab*": {}
+                "*${input_pat}.hap.ktab*": {
+                  "type": "file",
+                  "description": "Paternal haplotype-specific k-mer table files generated by HAPmaker from FastK tables.\n",
+                  "pattern": "*.hap.ktab*",
+                  "ontologies": []
+                }
               }
             ]
           ],
@@ -147560,7 +147777,16 @@
                 }
               },
               {
-                "*.tsv": {}
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Nonpareil summary data in TSV format",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
               }
             ]
           ],
@@ -147573,7 +147799,16 @@
                 }
               },
               {
-                "*.csv": {}
+                "*.csv": {
+                  "type": "file",
+                  "description": "Nonpareil summary data in CSV format",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
               }
             ]
           ],
@@ -147586,7 +147821,16 @@
                 }
               },
               {
-                "*.pdf": {}
+                "*.pdf": {
+                  "type": "file",
+                  "description": "Nonpareil curves plot in PDF format",
+                  "pattern": "*.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
               }
             ]
           ],
@@ -156143,7 +156387,16 @@
                 }
               },
               {
-                "*.report.txt": {}
+                "*.report.txt": {
+                  "type": "file",
+                  "description": "CCS report in text format",
+                  "pattern": "*.report.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
               }
             ]
           ],
@@ -156156,7 +156409,16 @@
                 }
               },
               {
-                "*.report.json": {}
+                "*.report.json": {
+                  "type": "file",
+                  "description": "CCS report in JSON format",
+                  "pattern": "*.report.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
               }
             ]
           ],
@@ -179973,7 +180235,7 @@
         "description": "A utility script to assist to convert old RepeatMasker *.out files to version 3 gff files.",
         "keywords": [
           "sort",
-          "example",
+          "repeatmasker",
           "genomics"
         ],
         "tools": [
@@ -186782,7 +187044,16 @@
               }
             },
             {
-              "*.mzML": {}
+              "*.mzML": {
+                "type": "file",
+                "description": "mzML files for proteomics search",
+                "pattern": "*.mzML",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3244"
+                  }
+                ]
+              }
             }
           ],
           [
@@ -186796,8 +187067,12 @@
               "fasta_proteome": {
                 "type": "file",
                 "description": "proteome database in fasta format",
-                "pattern": "*.{fasta, fasta.gz}",
-                "ontologies": []
+                "pattern": "*.{fasta,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -186812,7 +187087,7 @@
               "base_config": {
                 "type": "file",
                 "description": "sage configuration json",
-                "pattern": "*.{json}",
+                "pattern": "*.json",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3464"
@@ -187562,6 +187837,120 @@
           "version": "2.0.0"
         }
       ]
+    },
+    {
+      "name": "sambamba_depth",
+      "path": "modules/nf-core/sambamba/depth/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sambamba_depth",
+        "description": "Outputs a coverage file from bam files",
+        "keywords": [
+          "depth",
+          "coverage",
+          "sambamba"
+        ],
+        "tools": [
+          {
+            "sambamba": {
+              "description": "Tools for working with SAM/BAM data",
+              "homepage": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
+              "documentation": "https://lomereiter.github.io/sambamba/docs/sambamba-view.html",
+              "tool_dev_url": "https://github.com/biod/sambamba",
+              "doi": "10.1093/bioinformatics/btv098",
+              "licence": [
+                "GPL v2"
+              ],
+              "identifier": "biotools:sambamba"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAI file",
+                "pattern": "*.{bai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "mode": {
+              "type": "string",
+              "description": "Analysis mode can be region, window, base",
+              "pattern": "region|window|base"
+            }
+          }
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.bed": {
+                  "type": "file",
+                  "description": "bed file",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@peterpru"
+        ],
+        "maintainers": [
+          "@peterpru"
+        ]
+      }
     },
     {
       "name": "sambamba_flagstat",
@@ -194521,41 +194910,37 @@
             }
           ]
         ],
-        "output": [
-          {
-            "h5ad": [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
-                }
-              },
-              {
-                "*.h5ad": {
-                  "type": "file",
-                  "description": "Filtered AnnData object",
-                  "pattern": "*.h5ad",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3590"
-                    }
-                  ]
-                }
+        "output": {
+          "h5ad": [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
-            ]
-          },
-          {
-            "versions": [
-              {
-                "versions.yml": {
-                  "type": "file",
-                  "description": "File containing software versions",
-                  "pattern": "versions.yml"
-                }
+            },
+            {
+              "*.h5ad": {
+                "type": "file",
+                "description": "Filtered AnnData object",
+                "pattern": "*.h5ad",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3590"
+                  }
+                ]
               }
-            ]
-          }
-        ],
+            }
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
         "authors": [
           "@nictru"
         ],
@@ -203611,7 +203996,7 @@
         "tools": [
           {
             "seqtk_comp": {
-              "description": "Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format. \nThe seqtk comp command computes base composition, sequence length, and GC content for quality control.\n",
+              "description": "Seqtk is a fast and lightweight tool for processing sequences in the FASTA or FASTQ format.\nThe seqtk comp command computes base composition, sequence length, and GC content for quality control.\n",
               "homepage": "https://github.com/lh3/seqtk",
               "documentation": "https://docs.csc.fi/apps/seqtk/",
               "tool_dev_url": "https://github.com/lh3/seqtk",
@@ -210213,7 +210598,12 @@
                 }
               },
               {
-                ".snakemake": {}
+                ".snakemake": {
+                  "type": "directory",
+                  "description": "Hidden directory containing Snakemake execution logs and metadata",
+                  "pattern": ".snakemake",
+                  "ontologies": []
+                }
               }
             ]
           ],
@@ -215202,12 +215592,16 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*/*.sra"
+                  "description": "Groovy Map containing sample information e.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
-                "id": {}
+                "id": {
+                  "type": "directory",
+                  "description": "Directory containing SRA data files",
+                  "pattern": "*/*.sra",
+                  "ontologies": []
+                }
               }
             ]
           ],
@@ -225849,7 +226243,10 @@
         "input": [
           [
             {
-              "meta": {}
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
             },
             {
               "bam": {
@@ -229242,9 +229639,10 @@
         "name": "trust4",
         "description": "Run TRUST4 on RNA-seq data",
         "keywords": [
-          "sort",
-          "example",
-          "genomics"
+          "tcr",
+          "bcr",
+          "genomic",
+          "assembly"
         ],
         "tools": [
           {
@@ -230412,7 +230810,10 @@
               }
             },
             {
-              "quants/*": {}
+              "quants/*": {
+                "type": "file",
+                "description": "Quantification files\n"
+              }
             }
           ],
           [
@@ -230441,7 +230842,7 @@
           {
             "quant_type": {
               "type": "string",
-              "description": "Quantification type, 'kallisto' or 'salmon'"
+              "description": "Quantification type, `kallisto` or `salmon`"
             }
           }
         ],
