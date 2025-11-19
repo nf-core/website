@@ -67,6 +67,11 @@ to make it easier for pipeline maintainers to access documentation about the upd
 
 To learn more about these decisions, you can read the above mentioned blogpost about the Nextflow syntax roadmap for nf-core. [ADD LINK]
 
+## 3.5.1
+
+Before we actually started the automated template sync, we found a small bug in the updated version of `nf-core pipelines sync`, which was fixed in 3.5.1.
+These are the only changes in this patch release.
+
 ## Changelog
 
 You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.5.0).
