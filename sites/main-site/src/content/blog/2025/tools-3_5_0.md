@@ -75,3 +75,17 @@ These are the only changes in this patch release.
 You can find the complete changelog and technical details [on GitHub](https://github.com/nf-core/tools/releases/tag/3.5.0).
 
 As always, if you have any problems or run into any bugs, reach out on the [#tools slack channel](https://nfcore.slack.com/archives/CE5LG7WMB).
+
+## Resolving conflicts on pipeline sync PRs
+
+With this release, there are few merge conflicts, but they are still worth mentioning:
+
+### Changing `Channel` to `channel`
+
+As part of the new Nextflow strict syntax, we have changed all the mentions of `Channel` to `channel` (note the lower case `c`).
+This might have introduced some merge conflicts in youyr `.nf` files if you have modified them from the template,
+for example in `subworkflows/local/utils_nfcore_crisprseq_pipeline/main.nf`.
+
+* Resolution *
+
+Keep your changes, and afterwards change all mentions of `Channel` to `channel`.
