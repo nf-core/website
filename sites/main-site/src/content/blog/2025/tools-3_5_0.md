@@ -13,7 +13,7 @@ label:
 
 This release is small in scope, but introduces major changes to the syntax in nf-core/modules.
 These changes are part of the comming Nextflow syntax changes, which will be delivered to pipelines through template updates gradually.
-For more information on the Nextflow syntax adoption in nf-core pipelines, you can read [the blogpost](INSERT BLOGPOST LINK) detailing the roadmap.
+For more information on the Nextflow syntax adoption in nf-core pipelines, you can read [the blogpost](https://nf-co.re/blog/2025/nextflow_syntax_nf-core_roadmap) detailing the roadmap.
 
 ## Topic channels for version handling in modules
 
@@ -45,11 +45,9 @@ Note that the channel called `versions` is now renamed to `versions_<TOOL NAME>`
 We will slowly migrate all nf-core modules to the new syntax.
 
 For more information on how to migrate and handle these new modules, please refer to the [migration guide](/docs/tutorials/migrate_to_topics/update_modules).
-For more information about topic channels in general, we have a dedicated blogpost [INSERT LINK!]
+For more information about topic channels in general, we have a dedicated [blogpost about it](blog/2025/version_topics).
 
 We outlined future adoptions of new Nextflow syntax elements in the nf-core infrastructure talk during the Nextflow summit 20205 and in an upcoming blog post.
-
-<!--FIXME update with link to blogpost-->
 
 ## AWS bug fix
 
@@ -65,7 +63,7 @@ Now, we will keep all PRs open. This will make it easier to do incremental templ
 As a new detail, the sync PRs will also include a link to the tools release blogpost,
 to make it easier for pipeline maintainers to access documentation about the updates.
 
-To learn more about these decisions, you can read the above mentioned blogpost about the Nextflow syntax roadmap for nf-core. [ADD LINK]
+To learn more about these decisions, you can read the above mentioned [blogpost about the Nextflow syntax roadmap for nf-core](https://nf-co.re/blog/2025/nextflow_syntax_nf-core_roadmap).
 
 ## 3.5.1
 
