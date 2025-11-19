@@ -83,8 +83,8 @@ With this release, there are few merge conflicts, but they are still worth menti
 ### Changing `Channel` to `channel`
 
 As part of the new Nextflow strict syntax, we have changed all the mentions of `Channel` to `channel` (note the lower case `c`).
-This might have introduced some merge conflicts in youyr `.nf` files if you have modified them from the template,
-for example in `subworkflows/local/utils_nfcore_crisprseq_pipeline/main.nf`.
+This might have introduced some merge conflicts in your `*.nf` files if you have modified them from the template,
+for example in `subworkflows/local/utils_nfcore_$PIPELINE_pipeline/main.nf`.
 
 * Resolution *
 
