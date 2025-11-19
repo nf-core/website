@@ -3,7 +3,7 @@ title: "nf-core/tools - 3.5.0"
 subtitle: "Hot topic release"
 headerImage: "https://images.unsplash.com/photo-1696192228333-e108d82a7829"
 headerImageAlt: "Photo of a motorbike full with plastic bags filled with water and gold fish."
-pubDate: 2025-11-07T12:00:00+02:00
+pubDate: 2025-11-19T12:00:00+02:00
 authors:
   - "mashehu"
   - "mirpedrol"
