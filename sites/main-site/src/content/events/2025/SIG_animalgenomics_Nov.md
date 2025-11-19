@@ -3,9 +3,9 @@ title: "#animal-genomics: Meeting"
 subtitle: Ekaterina Osipova (Harvard University)
 
 type: talk
-startDate: "2025-05-21"
+startDate: "2025-11-19"
 startTime: "16:00+01:00"
-endDate: "2025-05-21"
+endDate: "2025-11-19"
 endTime: "17:00+01:00"
 locations:
   - name: Online
