@@ -86,6 +86,6 @@ As part of the new Nextflow strict syntax, we have changed all the mentions of `
 This might have introduced some merge conflicts in your `*.nf` files if you have modified them from the template,
 for example in `subworkflows/local/utils_nfcore_$PIPELINE_pipeline/main.nf`.
 
-* Resolution *
+- Resolution \*
 
 Keep your changes, and afterwards change all mentions of `Channel` to `channel`.
