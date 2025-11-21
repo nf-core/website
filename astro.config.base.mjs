@@ -59,6 +59,7 @@ export default {
                 weights: ["300 700"],
             },
         ],
+        svgo: true,
     },
     integrations: [
         svelte(),
