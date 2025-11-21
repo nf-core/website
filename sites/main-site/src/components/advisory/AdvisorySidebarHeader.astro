@@ -247,7 +247,7 @@ const impactSections = [
                         title: sameReporterAndReviewer ? "Reported by and reviewed by" : "Reported by",
                     },
                 ]}
-                lastChild={sameReporterAndReviewer}
+                lastChild={sameReporterAndReviewer ?? false}
             >
                 {frontmatter.reporter.map((reporter) => {
                     const info = getPersonInfo(reporter);
