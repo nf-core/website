@@ -14,6 +14,7 @@ import addClasses from "rehype-class-names";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
+import { transformerNotationDiff } from '@shikijs/transformers'
 import rehypeSlug from "rehype-slug";
 import urls from "rehype-urls";
 import rehypeWrap from "rehype-wrap-all";
@@ -182,6 +183,9 @@ export default {
                         dark: "github-dark-dimmed",
                         light: "github-light",
                     },
+                    transformers: [
+                        transformerNotationDiff(),
+                    ],
                 },
             ],
             rehypeKatex,
