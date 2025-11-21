@@ -35,6 +35,7 @@ figure[data-rehype-pretty-code-figure] mark[data-highlighted-chars] {
     }
   }
 }
+
 body {
   font-feature-settings: "ss03"; // curved r https://rsms.me/inter/#features/ss03
   text-rendering: optimizeLegibility; // enables kerning and ligatures for smaller font sizes
@@ -359,6 +360,36 @@ code:not(pre code),
       }
     }
   }
+}
+
+pre.has-diff .diff.add {
+  background-color: tint-color($success-text-emphasis-dark, 75%);
+  border-left: 2px solid $success-text-emphasis-dark;
+  span {
+    background-color: tint-color($success-text-emphasis-dark, 75%);
+  }
+}
+
+pre.has-diff .diff.add::before {
+  content: "+";
+  position: absolute;
+  left: 0.45em; /* Adjust as needed */
+  color: $success-text-emphasis-dark;
+}
+
+pre.has-diff .diff.remove {
+  background-color: tint-color($danger-text-emphasis-dark, 80%);
+  border-left: 2px solid $danger-text-emphasis-dark;
+  span {
+    background-color: tint-color($danger-text-emphasis-dark, 80%);
+  }
+}
+
+pre.has-diff .diff.remove::before {
+  content: "−";
+  position: absolute;
+  left: 0.5em;
+  color: $danger-text-emphasis-dark;
 }
 
 .sticky-top-under {
@@ -1551,6 +1582,31 @@ div.mermaid {
       }
     }
   }
+
+  pre.has-diff .diff.add {
+    background-color: shade-color($success-text-emphasis-dark, 65%);
+    border-left: 2px solid shade-color($success-text-emphasis-dark, 25%);
+    span {
+      background-color: shade-color($success-text-emphasis-dark, 65%);
+    }
+  }
+
+  pre.has-diff .diff.add::before {
+    color: shade-color($success-text-emphasis-dark, 25%);
+  }
+
+  pre.has-diff .diff.remove {
+    background-color: shade-color($danger-text-emphasis-dark, 70%);
+    border-left: 2px solid shade-color($danger-text-emphasis-dark, 25%);
+    span {
+      background-color: shade-color($danger-text-emphasis-dark, 70%);
+    }
+  }
+
+  pre.has-diff .diff.remove::before {
+    color: shade-color($danger-text-emphasis-dark, 25%);
+  }
+
   figure[data-rehype-pretty-code-figure] [data-theme*=" "] [data-highlighted-line] {
     background-color: shade-color($success-text-emphasis-dark, 70%);
     border-left: 2px solid shade-color($success-text-emphasis-dark, 25%);
