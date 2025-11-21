@@ -22,17 +22,17 @@ This means we don't write the tool versions to a `versions.yml` file anymore, bu
 
 The main change happens in the `main.nf` files:
 
-```diff title="main.nf"
+```groovy title="main.nf"
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip
--path  "versions.yml"           , emit: versions
-+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+path  "versions.yml"           , emit: versions // [!code --]
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions // [!code ++]
 ︙
--cat <<-END_VERSIONS > versions.yml
--"${task.process}":
--    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
--END_VERSIONS
+cat <<-END_VERSIONS > versions.yml // [!code --]
+"${task.process}": // [!code --]
+    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' ) // [!code --]
+END_VERSIONS // [!code --]
 ```
 
 We updated the modules template, so if you run `nf-core modules create{:bash}` you will get the new syntax.
@@ -65,7 +65,7 @@ to make it easier for pipeline maintainers to access documentation about the upd
 
 To learn more about these decisions, you can read the above mentioned [blogpost about the Nextflow syntax roadmap for nf-core](https://nf-co.re/blog/2025/nextflow_syntax_nf-core_roadmap).
 
-## 3.5.1
+## Patch release 3.5.1
 
 Before we actually started the automated template sync, we found a small bug in the updated version of `nf-core pipelines sync`, which was fixed in 3.5.1.
 These are the only changes in this patch release.
