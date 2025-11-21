@@ -178,7 +178,7 @@ export default {
                     defaultLang: "plaintext",
                     keepBackground: true,
                     theme: {
-                        dark: "github-dark",
+                        dark: "github-dark-dimmed",
                         light: "github-light",
                     },
                 },
