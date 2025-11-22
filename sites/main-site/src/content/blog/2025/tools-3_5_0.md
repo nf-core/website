@@ -45,7 +45,7 @@ Note that the channel called `versions` is now renamed to `versions_<TOOL NAME>`
 We will slowly migrate all nf-core modules to the new syntax.
 
 For more information on how to migrate and handle these new modules, please refer to the [migration guide](/docs/tutorials/migrate_to_topics/update_modules).
-For more information about topic channels in general, we have a dedicated [blogpost about it](blog/2025/version_topics).
+For more information about topic channels in general, we have a dedicated [blogpost about it](/blog/2025/version_topics).
 
 We outlined future adoptions of new Nextflow syntax elements in the nf-core infrastructure talk during the Nextflow summit 20205 and in an upcoming blog post.
 
