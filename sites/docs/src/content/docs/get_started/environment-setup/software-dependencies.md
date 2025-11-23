@@ -17,7 +17,7 @@ The recommended software management system depends on your computing environment
 - **Local computers**: [Docker](#docker) is recommended for personal workstations and laptops.
 - **HPC clusters**: Consult your system administrator, as many clusters have [Singularity](#singularity), [Apptainer](#apptainer), or [Shifter](#shifter) pre-installed.
 - **When containers are unavailable**: [Conda or Mamba](#condamamba) provide fallback options.
-:::
+  :::
 
 ## Software management systems
 

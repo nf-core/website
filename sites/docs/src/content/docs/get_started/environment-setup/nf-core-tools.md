@@ -27,36 +27,36 @@ To install nf-core tools with Conda:
 
 1. Install nf-core tools in your current environment:
 
-    ```bash
-    conda install nf-core
-    ```
+   ```bash
+   conda install nf-core
+   ```
 
 1. Verify the installation:
 
-    ```bash
-    nf-core --version
-    ```
+   ```bash
+   nf-core --version
+   ```
 
 Alternatively, create a dedicated environment with both nf-core tools and Nextflow:
 
 1. Create a new environment:
 
-    ```bash
-    conda create --name nf-core-env nf-core nextflow
-    ```
+   ```bash
+   conda create --name nf-core-env nf-core nextflow
+   ```
 
 1. Activate the environment:
 
-    ```bash
-    conda activate nf-core-env
-    ```
+   ```bash
+   conda activate nf-core-env
+   ```
 
 1. Verify the installation:
 
-    ```bash
-    nf-core --version
-    nextflow -version
-    ```
+   ```bash
+   nf-core --version
+   nextflow -version
+   ```
 
 ### Install with pip
 
@@ -64,15 +64,15 @@ To install nf-core tools with pip:
 
 1. Install the package:
 
-    ```bash
-    pip install nf-core
-    ```
+   ```bash
+   pip install nf-core
+   ```
 
 1. Verify the installation:
 
-    ```bash
-    nf-core --version
-    ```
+   ```bash
+   nf-core --version
+   ```
 
 :::note
 When using pip, ensure you have Python 3.8 or later installed. You may need to use `pip3` instead of `pip` depending on your system configuration.
@@ -84,29 +84,29 @@ To use nf-core tools with Docker:
 
 1. Pull the `nfcore/tools` Docker image:
 
-    ```bash
-    docker pull nfcore/tools
-    ```
+   ```bash
+   docker pull nfcore/tools
+   ```
 
 1. Run nf-core tools commands using Docker:
 
-    ```bash
-    docker run -itv `pwd`:`pwd` -w `pwd` -u $(id -u):$(id -g) nfcore/tools --help
-    ```
+   ```bash
+   docker run -itv `pwd`:`pwd` -w `pwd` -u $(id -u):$(id -g) nfcore/tools --help
+   ```
 
 1. (Optional) Create an alias to simplify commands:
 
-    1. Add an alias in your `~/.bashrc` or `~/.zshrc`
+   1. Add an alias in your `~/.bashrc` or `~/.zshrc`
 
-        ```bash
-        alias nf-core="docker run -itv \`pwd\`:\`pwd\` -w \`pwd\` -u $(id -u):$(id -g) nfcore/tools"
-        ```
+      ```bash
+      alias nf-core="docker run -itv \`pwd\`:\`pwd\` -w \`pwd\` -u $(id -u):$(id -g) nfcore/tools"
+      ```
 
-    1. Run `nf-core` directly:
+   1. Run `nf-core` directly:
 
-        ```bash
-        nf-core --help
-        ```
+      ```bash
+      nf-core --help
+      ```
 
 ## Updating nf-core tools
 
@@ -114,7 +114,7 @@ To keep nf-core tools up to date with the latest features and bug fixes, update 
 
 ### Update Conda install
 
-To update your nf-core tools Conda install,  run:
+To update your nf-core tools Conda install, run:
 
 ```bash
 conda update nf-core
@@ -193,4 +193,5 @@ pip install nf-core
 For more information about installing nf-core tools, see:
 
 <!-- TODO: Add link to nf-core tools page -->
+
 - nf-core tools install

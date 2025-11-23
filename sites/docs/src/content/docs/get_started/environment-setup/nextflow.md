@@ -12,7 +12,7 @@ You will need the following to get started:
 
 - Bash version 3.2 or later
 - Java version 17 or later (up to Java 25)
-:::
+  :::
 
 ## Install Nextflow
 
@@ -26,32 +26,32 @@ To install Nextflow with the self-installing package:
 
 1. Download and install Nextflow:
 
-    ```bash
-    curl -s https://get.nextflow.io | bash
-    ```
+   ```bash
+   curl -s https://get.nextflow.io | bash
+   ```
 
 1. Make the binary executable:
 
-    ```bash
-    chmod +x nextflow
-    ```
+   ```bash
+   chmod +x nextflow
+   ```
 
 1. Move Nextflow to a directory in your `$PATH`:
 
-    ```bash
-    mkdir -p $HOME/.local/bin/
-    mv nextflow $HOME/.local/bin/
-    ```
+   ```bash
+   mkdir -p $HOME/.local/bin/
+   mv nextflow $HOME/.local/bin/
+   ```
 
-    :::note
-    Common directories for executables include `$HOME/.local/bin/`, `/usr/local/bin/`, or `$HOME/bin/`. Make sure the directory you choose is in your `$PATH` environment variable.
-    :::
+   :::note
+   Common directories for executables include `$HOME/.local/bin/`, `/usr/local/bin/`, or `$HOME/bin/`. Make sure the directory you choose is in your `$PATH` environment variable.
+   :::
 
 1. Verify the installation:
 
-    ```bash
-    nextflow info
-    ```
+   ```bash
+   nextflow info
+   ```
 
 ### Conda installation
 
@@ -59,21 +59,21 @@ To install Nextflow with Conda:
 
 1. Create an environment with Nextflow:
 
-    ```bash
-    conda create --name nf-env bioconda::nextflow
-    ```
+   ```bash
+   conda create --name nf-env bioconda::nextflow
+   ```
 
 1. Activate the environment:
 
-    ```bash
-    source activate nf-env
-    ```
+   ```bash
+   source activate nf-env
+   ```
 
 1. Confirm Nextflow is installed correctly:
 
-    ```bash
-    nextflow infoactivate nf-env
-    ```
+   ```bash
+   nextflow infoactivate nf-env
+   ```
 
 :::warning
 The Conda installation method is not recommended as it may install outdated versions and cause dependency conflicts. Use the self-installing package method when possible.
@@ -89,16 +89,15 @@ To use the standalone distribution:
 
 1. Grant execution permissions to the downloaded file. For example:
 
-    ```bash
-    chmod +x nextflow-25.10.0-dist
-    ```
+   ```bash
+   chmod +x nextflow-25.10.0-dist
+   ```
 
 1. Use it as a drop-in replacement for nextflow command. For example:
 
-    ```bash
-    ./nextflow-25.10.0-dist run info
-    ```
-
+   ```bash
+   ./nextflow-25.10.0-dist run info
+   ```
 
 Replace `25.10.0` with your desired version number.
 
@@ -110,23 +109,23 @@ To install Java with SDKMAN:
 
 1. Install SDKMAN:
 
-    ```bash
-    curl -s https://get.sdkman.io | bash
-    ```
+   ```bash
+   curl -s https://get.sdkman.io | bash
+   ```
 
 1. Open a new terminal.
 
 1. Install Java:
 
-    ```bash
-    sdk install java 17.0.10-tem
-    ```
+   ```bash
+   sdk install java 17.0.10-tem
+   ```
 
 1. Confirm that Java is installed correctly:
 
-    ```bash
-    java -version
-    ```
+   ```bash
+   java -version
+   ```
 
 ## Update Nextflow
 
@@ -160,21 +159,21 @@ To pin a specific Nextflow version:
 
 - For a single command, prefix the Nextflow command with the `NXF_VER` variable:
 
-    ```bash
-    NXF_VER=23.10.0 nextflow run nf-core/rnaseq
-    ```
+  ```bash
+  NXF_VER=23.10.0 nextflow run nf-core/rnaseq
+  ```
 
 - For your current terminal session, export the `NXF_VER` variable:
 
-    ```bash
-    export NXF_VER=23.10.0
-    ```
+  ```bash
+  export NXF_VER=23.10.0
+  ```
 
 - For persistent usage, add the export `NXF_VER` variable command to `~/.bashrc` or `~/.zshrc`:
 
-    ```bash
-    export NXF_VER=23.10.0
-    ```
+  ```bash
+  export NXF_VER=23.10.0
+  ```
 
 :::tip
 Pinning a specific Nextflow version can help ensure reproducibility across different runs and environments.

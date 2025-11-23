@@ -170,7 +170,7 @@ Run `echo "Hello, world!"{:bash}`
 ### Code blocks
 
 Code blocks are rendered using the "```" character.
-If the specified language is not `plain-text` or `console`.
+If the specified language is not `plain-text`or`console`.
 A copy button will be added to the code block.
 
 #### Line numbers
