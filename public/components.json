@@ -141217,10 +141217,10 @@
         "output": {
           "report": [
             {
-              "*multiqc_report.html": {
+              "*.html": {
                 "type": "file",
                 "description": "MultiQC report file",
-                "pattern": "multiqc_report.html",
+                "pattern": ".html",
                 "ontologies": []
               }
             }
