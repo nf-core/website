@@ -41,9 +41,9 @@ If you wish to do so, please use the following guidelines when creating your mar
 
    - Keep the mark simple, so easy to visualise.
 
-   :::tip
-   A guiding principle in this regard is whether the mark remains recognizable even when presented as an emoji (128x128px).
-   :::
+     :::tip
+     A guiding principle in this regard is whether the mark remains recognizable even when presented as an emoji (128x128px).
+     :::
 
 1. Colouring:
    - Limit the number of colours.
