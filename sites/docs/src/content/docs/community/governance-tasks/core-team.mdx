@@ -13,7 +13,7 @@ Core team members rotate week 'on-call' duties to manage community operations an
 To approve and setup a new [nf-core pipeline](https://github.com/nf-core/proposals):
 
 1. **Core**: Update the _project status_ on the issue to 'Proposed'
-2. **Community**: Discuss benefits and limitations of the proposal:
+1. **Community**: Discuss benefits and limitations of the proposal:
 
     - Emphasise collaboration
 
@@ -24,23 +24,28 @@ To approve and setup a new [nf-core pipeline](https://github.com/nf-core/proposa
     - Ensure proposal follows [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview).
     - In some cases, promote 'partial acceptance', i.e., if upstream steps already covered in another pipeline, propose new pipeline of just non-overlapping steps.
 
-3. **Core**: Check proposal has received approval in [nf-core/proposals](https://github.com/nf-core/proposals) from either:
+1. **Core**: Check proposal has received approval in [nf-core/proposals](https://github.com/nf-core/proposals) from either:
     - Two members of the core team.
     - One member of the core team and one member of the maintainers team.
-4. **Core**: Make final decision:
+1. **Core**: Make final decision:
     - If accepted: update the Project status on the issue to 'Accepted'.
     - If not accepted: update the project status to 'Turned down' (process ends here).
-5. **Core**: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name)
-6. **Core**: Create a slack channel with approved pipeline name:
+1. **Core**: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name)
+1. **Core**: Create a slack channel with approved pipeline name:
     - Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline).
-7. **Core**: Add the main developer(s) to:
+1. **Core**: Add the main developer(s) to:
     - [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H).
     - [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
-8. **Core**: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
-9. **Core/Dev**: Use `nf-core pipelines create` to create a git repository and push it to GitHub.
-10. **Core/Dev**: Once first release (mostly) ready:
+1. **Core**: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+1. **Core/Dev**: Set up the pipeline repository:
+    - If development started in a custom (non-nf-core) repo, [transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core.
+    - If starting fresh, create a new GitHub repository with the name of the pipeline.
+1. **Core**: Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list.
+1. **Core/Dev**: Use `nf-core pipelines create` to create a git repository and push it to GitHub.
+1. **Core/Dev**: Once first release (mostly) ready:
     - Transfer the repository to nf-core GitHub organisation and remove the repository on the local machine/user account.
-11. **Core/Dev**: Trigger the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml) to sync the `nf-co.re` pipelines page:
+1. **Core/Dev**: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is listed.
+1. **Core/Dev**: Trigger the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml) to sync the `nf-co.re` pipelines page:
     - **Website repo > Actions > Build json files and md-cache > Run workflow > From main**.
 
 ## Upload test data to a S3 bucket
