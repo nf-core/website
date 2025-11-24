@@ -27,8 +27,11 @@ Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approv
     - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
     - [ ] [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
 8. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
-9. [ ] Core/Dev: Create the git repository using `nf-core pipelines create` and push it to GitHub.
-10. [ ] Core/Dev: Once first release (mostly) ready: transfer the repository to nf-core GitHub organisation and delete the repository on local the machine/user account.
+9. [ ] Core/Dev: Was the development started in a custom (non nf-core) repo?
+    9.1. YES: [Transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core.
+    9.2. NO: Create a new GitHub repository with the name of the pipeline.
+10. Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the webiste pipeline list (until first release of the pipeline).
+10. [ ] Core/Dev: After first release, remove the pipeline name form the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build.
 11. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
     - Website repo > Actions > Build json files and md-cache > Run workflow > From main.
 
