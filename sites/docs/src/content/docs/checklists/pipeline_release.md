@@ -42,7 +42,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] While you're waiting for reviews on your PR, review another community member's release PR (see pinned message in the channel above)
 - [ ] Once your PR approved by two reviewers, merge your PR into `master`/`main`
   - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
-- [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
+- [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI. Use the Slack channel `#request-core`.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
 
   :::note
