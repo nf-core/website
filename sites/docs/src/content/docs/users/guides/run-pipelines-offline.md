@@ -1,7 +1,8 @@
 ---
-title: Run pipelines offline
+title: Run nf-core pipelines offline
 subtitle: Learn how to use nf-core pipelines without an internet connection
-weight: 1
+shortTitle: Run nf-core pipelines offline
+parentWeight: 100
 ---
 
 nf-core pipelines automatically fetche nearly everything it needs to run. However, you can also run nf-core pipelines on systems without internet access by preparing everything in advance.
@@ -68,8 +69,8 @@ To transfer pipeline code to an offline system:
 
 ## Reference genomes
 
-To use these references, download and transfer them to your offline cluster.
-See [Reference genomes](./reference_genomes.md) to configure the references base path.
+To use nf-core reference genomes offline, download and transfer them to your offline cluster.
+See [Reference genomes](./reference_genomes.md) for more information.
 
 ## Additional resources
 
