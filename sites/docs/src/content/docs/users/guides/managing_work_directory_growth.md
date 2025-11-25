@@ -2,6 +2,7 @@
 title: Manage work directory growth
 subtitle: A guide for efficient storage utilization
 shortTitle: Manage work directory growth
+parentWeight: 100
 ---
 
 The management of intermediate files generated during Nextflow pipeline execution is a challenge for some workflows. As pipelines increase in complexity and scale, work directories can rapidly consume available storage, potentially leading to pipeline failures. This guide summarizes strategies for managing work directory growth while maintaining pipeline reproducibility and debugging capabilities.
