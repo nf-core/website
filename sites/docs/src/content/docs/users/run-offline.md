@@ -60,8 +60,6 @@ To transfer pipeline code to an offline system:
    - `workflow`: The pipeline files
    - `config`: [nf-core/configs](https://github.com/nf-core/configs) files
    - `singularity`: Singularity images (if you used `--container singularity`)
-
-   The download tool adjusts the pipeline code to expect these relative paths. If you keep them together it should work as is.
    :::
 
    :::tip
