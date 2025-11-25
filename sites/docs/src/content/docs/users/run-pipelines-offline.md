@@ -1,37 +1,39 @@
 ---
-title: Run nf-core pipelines offline
+title: Running nf-core pipelines offline
 subtitle: Learn how to use nf-core pipelines without an internet connection
-shortTitle: Run nf-core pipelines offline
-parentWeight: 100
+shortTitle: Running pipelines offline
+weight: 1
 ---
 
-nf-core pipelines automatically fetche nearly everything it needs to run. However, you can also run nf-core pipelines on systems without internet access by preparing everything in advance.
+nf-core pipelines are designed to automatically fetch everything they need to run, including pipeline code, container images, and reference data. However, many high-performance computing (HPC) environments restrict internet access on compute nodes for security reasons. In such cases, you can still run nf-core pipelines by preparing all required components in advance on a system with internet access, then transferring them to your offline environment.
 
-You need:
+Running pipelines offline requires three main components:
 
-- [Nextflow](#nextflow)
-- [Pipeline code with its dependencies](#pipeline-code)
-- [Reference genomes](#reference-genomes) (if applicable)
+- **Nextflow runtime**: The Nextflow workflow engine and its plugins
+- **Pipeline code**: The nf-core pipeline itself, along with container images
+- **Reference data**: Genome files and other reference datasets (if needed by your pipeline)
 
-This guide walks you through running nf-core pipelines offline.
+## Offline setup
 
-## Nextflow
+The following sections describe how to prepare each component for offline execution.
+
+### Transfer Nextflow offline
 
 To transfer Nextflow to an offline system:
 
 1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
 1. Run your pipeline locally.
 
-    :::note
-    Nextflow fetches the required plugins. It does not need to run to completion.
-    :::
+   :::note
+   Nextflow fetches the required plugins. It does not need to run to completion.
+   :::
 
 1. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
 1. In your Nextflow configuration file, specify each plugin (both name and version), including default plugins.
 
-    :::note
-    This prevents Nextflow from trying to download newer versions of plugins.
-    :::
+   :::note
+   This prevents Nextflow from trying to download newer versions of plugins.
+   :::
 
 1. Add the following environment variable in your `~/.bashrc` file:
 
@@ -39,7 +41,7 @@ To transfer Nextflow to an offline system:
    export NXF_OFFLINE='true'
    ```
 
-## Pipeline code
+### Transfer pipeline code offline
 
 To transfer pipeline code to an offline system:
 
@@ -61,13 +63,13 @@ To transfer pipeline code to an offline system:
    - `workflow`: The pipeline files
    - `config`: [nf-core/configs](https://github.com/nf-core/configs) files
    - `singularity`: Singularity images (if you used `--container singularity`)
-   :::
+     :::
 
    :::tip
    If you are downloading _directly_ to the offline storage (e.g., a head node with internet access whilst compute nodes are offline), use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable. This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
    :::
 
-## Reference genomes
+### Transfer reference genomes offline
 
 To use nf-core reference genomes offline, download and transfer them to your offline cluster.
 See [Reference genomes](./reference_genomes.md) for more information.
