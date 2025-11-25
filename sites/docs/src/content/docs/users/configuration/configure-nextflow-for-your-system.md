@@ -201,6 +201,7 @@ You can override the default container by creating a custom configuration file a
 1. Find the latest Biocontainer version on [Quay.io](https://quay.io/repository/biocontainers/pangolin?tag=latest&tab=tags) for Docker or [Galaxy Project](https://depot.galaxyproject.org/singularity/) for Singularity
    - The container version tag is identical for both systems but must include the build ID (e.g., `--pyhdfd78af_1`)
 1. Create the custom configuration:
+
    - For Docker:
 
      ```groovy
