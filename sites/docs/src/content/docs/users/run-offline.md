@@ -21,16 +21,16 @@ To transfer Nextflow to an offline system:
 1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
 1. Run your pipeline locally.
 
-:::note
-Nextflow fetches the required plugins. It does not need to run to completion.
-:::
+    :::note
+    Nextflow fetches the required plugins. It does not need to run to completion.
+    :::
 
 1. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
 1. In your Nextflow configuration file, specify each plugin (both name and version), including default plugins.
 
-:::note
-This prevents Nextflow from trying to download newer versions of plugins.
-:::
+    :::note
+    This prevents Nextflow from trying to download newer versions of plugins.
+    :::
 
 1. Add the following environment variable in your `~/.bashrc` file:
 
