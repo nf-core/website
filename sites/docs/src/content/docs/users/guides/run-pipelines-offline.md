@@ -13,7 +13,7 @@ You need:
 - [Pipeline code with its dependencies](#pipeline-code)
 - [Reference genomes](#reference-genomes) (if applicable)
 
-This guide walks you through running pipelines offline.
+This guide walks you through running nf-core pipelines offline.
 
 ## Nextflow
 
