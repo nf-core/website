@@ -21,7 +21,7 @@ To transfer Nextflow to an offline system:
 1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
 1. Run your pipeline locally.
 
-:::
+:::note
 Nextflow fetches the required plugins. It does not need to run to completion.
 :::
 
