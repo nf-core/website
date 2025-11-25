@@ -40787,7 +40787,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -65349,7 +65349,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -71400,7 +71400,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -101534,7 +101534,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -104105,7 +104105,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -104227,7 +104227,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -104753,7 +104753,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -123898,7 +123898,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -136817,7 +136817,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -136924,7 +136924,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -137025,6 +137025,132 @@
           "version": "1.1.1"
         }
       ]
+    },
+    {
+      "name": "mmseqs_createtaxdb",
+      "path": "modules/nf-core/mmseqs/createtaxdb/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mmseqs_createtaxdb",
+        "description": "Adds taxonomy information to an existing MMseqs2 database",
+        "keywords": [
+          "protein sequence",
+          "databases",
+          "clustering",
+          "searching",
+          "taxonomy"
+        ],
+        "tools": [
+          {
+            "mmseqs": {
+              "description": "MMseqs2: ultra fast and sensitive sequence search and clustering suite",
+              "homepage": "https://github.com/soedinglab/MMseqs2",
+              "documentation": "https://mmseqs.com/latest/userguide.pdf",
+              "tool_dev_url": "https://github.com/soedinglab/MMseqs2",
+              "doi": "10.1093/bioinformatics/btw006",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:mmseqs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "db": {
+                "type": "directory",
+                "description": "Directory containing the MMseqs2 database\n",
+                "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "taxdump_dir": {
+                "type": "directory",
+                "description": "Directory containing NCBI taxonomy dump files (names.dmp, nodes.dmp, merged.dmp).\nIf not provided, the module will attempt to download them from NCBI\n",
+                "pattern": "*"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "tax_mapping_file": {
+                "type": "file",
+                "description": "File mapping sequence IDs to taxonomy IDs.\nIf not provided, the module will attempt to download the Uniprot id mapping file\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "db_with_taxonomy": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "db": {
+                  "type": "directory",
+                  "description": "Directory containing the database with added taxonomy information\n",
+                  "pattern": "*"
+                }
+              }
+            ]
+          ],
+          "versions_mmseqs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mmseqs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mmseqs | grep 'Version' | sed 's/MMseqs2 Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@dialvarezs"
+        ],
+        "maintainers": [
+          "@dialvarezs"
+        ]
+      }
     },
     {
       "name": "mmseqs_createtsv",
@@ -137153,7 +137279,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -137577,7 +137703,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -141535,7 +141661,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfold",
@@ -202220,7 +202346,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "seqinspector",
@@ -202951,7 +203077,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "smrnaseq",
@@ -203076,7 +203202,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -203303,7 +203429,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -233683,7 +233809,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfold",
@@ -250547,7 +250673,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -255997,7 +256123,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         }
       ]
     },
@@ -256700,7 +256826,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfold",
@@ -257121,7 +257247,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "proteinfold",
@@ -257534,7 +257660,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.0.0"
+          "version": "2.1.0"
         },
         {
           "name": "rangeland",
