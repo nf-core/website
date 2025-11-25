@@ -7,15 +7,13 @@ weight: 1
 
 nf-core pipelines are designed to automatically fetch everything they need to run, including pipeline code, container images, and reference data. However, many high-performance computing (HPC) environments restrict internet access on compute nodes for security reasons. In such cases, you can still run nf-core pipelines by preparing all required components in advance on a system with internet access, then transferring them to your offline environment.
 
+## Offline setup
+
 Running pipelines offline requires three main components:
 
 - **Nextflow runtime**: The Nextflow workflow engine and its plugins
 - **Pipeline code**: The nf-core pipeline itself, along with container images
 - **Reference data**: Genome files and other reference datasets (if needed by your pipeline)
-
-## Offline setup
-
-The following sections describe how to prepare each component for offline execution.
 
 ### Transfer Nextflow offline
 
