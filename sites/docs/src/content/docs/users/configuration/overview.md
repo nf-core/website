@@ -118,14 +118,6 @@ Use `-params-file` with YAML or JSON format instead.
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).
 :::
 
-## Next steps
-
-After understanding the basics of configuration, see [Configure pipelines for your system](./configure-nextflow-for-your-system.md) to learn how to:
-
-- Set up your executor for HPC or cloud platforms
-- Optimize resource allocation for your infrastructure
-- Customize container registries and tool versions
-
 ## Additional resources
 
 For more information about configuration syntax and parameters, see:
