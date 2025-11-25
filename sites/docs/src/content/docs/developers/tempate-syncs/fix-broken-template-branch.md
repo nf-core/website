@@ -13,9 +13,9 @@ Check whether `dev` was accidentally merged into `TEMPLATE`:
 
 1. Review the number of commits in your `TEMPLATE` branch.
 
-  :::note
-  A healthy `TEMPLATE` branch typically has approximately 5-15 commits, depending on how many template updates your pipeline has received.
-  :::
+:::note
+A healthy `TEMPLATE` branch typically has approximately 5-15 commits, depending on how many template updates your pipeline has received.
+:::
 
 1. Check your repository's **Network Graph** under the **Insights** tab.
 1. Look through the `TEMPLATE` branch commit history for a commit message like 'Merge branch 'dev' into TEMPLATE`'.
