@@ -1,8 +1,9 @@
 ---
 title: Review checklist for nf-core/tools
 subtitle: A checklist for reviewing PRs in the nf-core/tools repository
-shortTitle: nf-core/tools PR
+shortTitle: "nf-core/tools "
 markdownPlugin: checklist
+weight: 3
 ---
 
 <!-- TODO: Add links to other pages and guide where possible -->

@@ -1,8 +1,9 @@
 ---
 title: Review checklist for nf-core components
 subtitle: A checklist for reviewing PRs in the nf-core/modules repository
-shortTitle: Component PR
+shortTitle: Components
 markdownPlugin: checklist
+weight: 1
 ---
 
 <!-- TODO: Add links to other pages and guide where possible -->
