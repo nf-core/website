@@ -29,7 +29,7 @@ for questions or issues.
 
 Explain how users at your institution should use the profile:
 
-```markdown
+````markdown
 ## Using the profile
 
 To use this profile, specify it when running any nf-core pipeline:
@@ -40,11 +40,11 @@ nextflow run nf-core/<pipeline_name> -profile big_university
 
 This will automatically apply all cluster-specific settings including executor,
 resource limits, and container configurations.
-```
+````
 
 Include any sub-profiles if you defined them:
 
-```markdown
+````markdown
 ### Sub-profiles
 
 The following sub-profiles are available for specialized resources:
@@ -57,7 +57,7 @@ Example:
 \```bash
 nextflow run nf-core/rnaseq -profile big_university,bigmem
 \```
-```
+````
 
 ### Prerequisites and setup
 
@@ -106,12 +106,12 @@ If your cluster has multiple queues with different characteristics:
 ```markdown
 ## Available queues
 
-| Queue     | Max CPUs | Max Memory | Max Time | Purpose           |
-| --------- | -------- | ---------- | -------- | ----------------- |
-| general   | 128      | 2TB        | 720h     | Standard jobs     |
-| short     | 64       | 512GB      | 1h       | Quick jobs        |
-| long      | 64       | 1TB        | 2160h    | Extended jobs     |
-| bigmem    | 64       | 4TB        | 168h     | Memory-intensive  |
+| Queue   | Max CPUs | Max Memory | Max Time | Purpose          |
+| ------- | -------- | ---------- | -------- | ---------------- |
+| general | 128      | 2TB        | 720h     | Standard jobs    |
+| short   | 64       | 512GB      | 1h       | Quick jobs       |
+| long    | 64       | 1TB        | 2160h    | Extended jobs    |
+| bigmem  | 64       | 4TB        | 168h     | Memory-intensive |
 
 The profile automatically routes jobs to appropriate queues based on requirements.
 ```
@@ -144,7 +144,7 @@ Document any cluster-specific issues or limitations:
 
 Include common problems and solutions:
 
-```markdown
+````markdown
 ## Troubleshooting
 
 ### Out of memory errors
@@ -163,7 +163,7 @@ Move your work directory to `/scratch` if you exceed `/home` quota:
 cd /scratch/$USER
 nextflow run nf-core/<pipeline_name> -profile big_university
 \```
-```
+````
 
 ### Contact information
 
@@ -185,7 +185,7 @@ For issues with nf-core pipelines, see the [nf-core website](https://nf-co.re).
 
 Here is a complete example combining all sections:
 
-```markdown
+````markdown
 # Big University HPC Configuration
 
 Configuration profile for the Big University HPC cluster.
@@ -253,7 +253,7 @@ For issues related to this profile or the Big University HPC cluster:
 - Documentation: https://hpc.biguniversity.edu/docs
 
 For issues with nf-core pipelines, see the [nf-core website](https://nf-co.re).
-```
+````
 
 ## Next steps
 
