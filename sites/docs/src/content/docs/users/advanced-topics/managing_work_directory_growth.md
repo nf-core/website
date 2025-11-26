@@ -1,7 +1,7 @@
 ---
-title: Manage work directory growth
+title: Managing work directory growth
 subtitle: A guide for efficient storage utilization
-shortTitle: Manage work directory growth
+shortTitle: Managing work directory growth
 parentWeight: 100
 ---
 
