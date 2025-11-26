@@ -42,12 +42,13 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] While you're waiting for reviews on your PR, review another community member's release PR (see pinned message in the channel above)
 - [ ] Once your PR approved by two reviewers, merge your PR into `master`/`main`
   - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
-- [ ] (**First release only**) Ask a core team member to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
+- [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to activate the Zenodo functionality for this repository, which will be used to generate a DOI.
 - [ ] Go to GitHub and [create a new release for your pipeline](https://help.github.com/en/articles/creating-releases)
 
   :::note
   Use _exactly_ the same version as in the code (e.g. `1.0.0`) - **do not prefix with v** (e.g. not `v1.0.0`).
   :::
+
   - [ ] Optional: Also include your [nice code name](http://www.codenamegenerator.com/) in your pipeline release title (see above with `CHANGELOG.md`).
         For example releases in nf-core/rnaseq follow the pattern:
     - Prefix = Metal
