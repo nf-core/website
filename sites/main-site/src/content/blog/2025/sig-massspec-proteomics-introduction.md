@@ -1,13 +1,18 @@
 ---
 title: "The Mass Spectrometry Proteomics Special Interest Group"
-subtitle: "Unifying efforts for proteomics data analysis in nf-core"
+subtitle: "Unifying efforts for mass spectrometry data analysis in nf-core"
 pubDate: 2025-11-26T12:00:00+01:00
+headerImage: https://images.unsplash.com/photo-1483428400520-675ef69a3bc4
+headerImageAlt: "Photo by Hudson Hintze on Unsplash"
 authors:
-  - massspec-proteomics SIG
+  - "DongzeHe"
 tags:
   - proteomics
   - mass-spectrometry
   - special-interest-group
+label:
+  - "massspec-proteomics"
+embedHeaderImage: false
 ---
 
 We are excited to announce the formation of `massspec-proteomics`, the **Mass Spectrometry Proteomics** special interest group within nf-core!
