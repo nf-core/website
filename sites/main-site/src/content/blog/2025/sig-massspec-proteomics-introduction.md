@@ -39,8 +39,8 @@ To achieve this, we are prioritizing:
 
 Whether you are a developer working on a specific tool, a bioinformatician building pipelines, or a user with feedback on current workflows, we want to hear from you.
 
-* **Slack:** Join the discussion in the `#massspec-proteomics` channel on the [nf-core Slack](https://nf-co.re/join).
+- **Slack:** Join the discussion in the `#massspec-proteomics` channel on the [nf-core Slack](https://nf-co.re/join).
 
-* **Meetings:** We will be organizing regular virtual meetings to discuss technical challenges and roadmap planning. Keep an eye on the Slack channel for the schedule.
+- **Meetings:** We will be organizing regular virtual meetings to discuss technical challenges and roadmap planning. Keep an eye on the Slack channel for the schedule.
 
 We look forward to building the future of nf-core proteomics with you!
