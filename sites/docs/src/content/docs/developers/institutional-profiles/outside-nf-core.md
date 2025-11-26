@@ -1,7 +1,7 @@
 ---
-title: Using nf-core configs outside nf-core
+title: Using nf-core/configs outside nf-core
 subtitle: Learn how to integrate institutional profiles into custom workflows
-shortTitle: Profiles outside nf-core
+shortTitle: nf-core/configs outside nf-core
 weight: 7
 ---
 
@@ -22,7 +22,7 @@ To integrate nf-core configs outside nf-core:
    ```
 
    :::note
-   Older nf-core templates (pre-v3.0.0) and Nextflow versions before 24.04.0 require alternative syntax using the `check_max()` function to enforce resource limits.
+   Old nf-core templates (pre-v3.0.0) and Nextflow versions before 24.04.0 require alternative syntax using the `check_max()` function to enforce resource limits.
    :::
 
 1. In your top-level `nextflow.config`, define parameters for accessing the institutional configs repository:

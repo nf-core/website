@@ -7,7 +7,7 @@ parentWeight: 100
 
 This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments. Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure. You can run pipelines directly in the browser or integrate with VS Code for enhanced development capabilities.
 
-:::note
+:::warning
 Google Colab sessions have limitations including timeouts (typically 12 hours), restricted storage (approximately 100 GB), and no root access. For production workloads, consider dedicated cloud computing resources.
 :::
 
