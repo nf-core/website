@@ -6,6 +6,8 @@ weight: 3
 
 Advisories serve as structured, long-lived notices for significant technical issues affecting nf-core components. They prioritise clarity and practical value, helping users avoid common pitfalls.
 
+<!-- TODO: Add image of advisory somewhere on this page -->
+
 ## What are advisories?
 
 Advisories address problems substantial enough to consume hours of user troubleshooting. They provide structured information about:
