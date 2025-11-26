@@ -39,4 +39,3 @@ For more information, see [Presentations](/community/brand/presentations).
 Components and examples for creating pipeline diagrams using vector editors like Inkscape, Adobe Illustrator, or draw.io.
 
 For more information, see [Workflow schematics](/community/brand/workflow-schematics).
-

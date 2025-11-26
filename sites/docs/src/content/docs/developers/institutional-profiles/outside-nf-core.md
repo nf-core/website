@@ -13,47 +13,47 @@ To integrate nf-core configs outside nf-core:
 
 1. Create a `conf/base.config` file with default process resources:
 
-    ```groovy
-    process {
-        cpus   = 1
-        memory = 7.GB
-        time   = 4.h
-    }
-    ```
+   ```groovy
+   process {
+       cpus   = 1
+       memory = 7.GB
+       time   = 4.h
+   }
+   ```
 
-    :::note
-    Older nf-core templates (pre-v3.0.0) and Nextflow versions before 24.04.0 require alternative syntax using the `check_max()` function to enforce resource limits.
-    :::
+   :::note
+   Older nf-core templates (pre-v3.0.0) and Nextflow versions before 24.04.0 require alternative syntax using the `check_max()` function to enforce resource limits.
+   :::
 
 1. In your top-level `nextflow.config`, define parameters for accessing the institutional configs repository:
 
-    ```groovy
-    params {
-      custom_config_version      = 'master'
-      custom_config_base         = "https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}"
-    }
-    ```
+   ```groovy
+   params {
+     custom_config_version      = 'master'
+     custom_config_base         = "https://raw.githubusercontent.com/nf-core/configs/${params.custom_config_version}"
+   }
+   ```
 
 1. Include the base configuration file in your `nextflow.config`:
 
-    ```groovy
-    includeConfig 'conf/base.config'
-    ```
+   ```groovy
+   includeConfig 'conf/base.config'
+   ```
 
 1. Load the nf-core institutional repository:
 
-    ```groovy
-    includeConfig !System.getenv('NXF_OFFLINE') && params.custom_config_base ? "${params.custom_config_base}/nfcore_custom.config" : "/dev/null"
-    ```
+   ```groovy
+   includeConfig !System.getenv('NXF_OFFLINE') && params.custom_config_base ? "${params.custom_config_base}/nfcore_custom.config" : "/dev/null"
+   ```
 
-    :::note
-    This conditional statement:
+   :::note
+   This conditional statement:
 
-    - Checks if Nextflow is running in offline mode
-    - Verifies the `custom_config_base` parameter exists
-    - Loads the nf-core configs if both conditions are met
-    - Falls back to `/dev/null` if offline or the parameter is not set
-    :::
+   - Checks if Nextflow is running in offline mode
+   - Verifies the `custom_config_base` parameter exists
+   - Loads the nf-core configs if both conditions are met
+   - Falls back to `/dev/null` if offline or the parameter is not set
+     :::
 
 ## Alternative approach
 

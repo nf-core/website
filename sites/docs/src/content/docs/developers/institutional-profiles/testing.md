@@ -241,4 +241,3 @@ Verify that job retries work correctly by checking the Nextflow log for retry me
 After successful testing, you are ready to submit your profile to the nf-core/configs repository.
 
 <!-- TODO: Link to page about making PRs -->
-
