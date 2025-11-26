@@ -78,3 +78,9 @@ See [Documentation requirements](./documentation.md) for more information.
 Before submitting your profile, test it thoroughly to verify correct settings, container engine detection, and scheduler job submissions. Testing prevents issues for future users.
 
 See [Testing profiles](./testing.md) for more information.
+
+## Using profiles outside nf-core
+
+Institutional profiles can be integrated into custom Nextflow workflows and scripts, not just nf-core pipelines. This enables you to leverage centralized cluster configurations across all your Nextflow projects.
+
+See [Using nf-core configs outside nf-core](./outside-nf-core.md) for more information.
