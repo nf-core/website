@@ -10,7 +10,9 @@ If a pipeline cannot be constructed with bioconda and therefore cannot be found 
 
 If possible, we prefer to mirror the container and host it on `quay.io` in the nf-core organisation to ensure future reproducibility (ie. that a container that the pipeline relies on will not be deleted by a 3rd party in the future).
 
-To do this, a core-team member should run the following commands:
+To request the mirroring, please request the mirroring via the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel
+
+Then, a core-team member will run the following commands:
 
 ```bash
 docker pull <ORGANISATION>/<TOOL>:<TAG>
