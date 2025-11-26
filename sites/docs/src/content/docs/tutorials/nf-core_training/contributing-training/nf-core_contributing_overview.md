@@ -409,7 +409,7 @@ A lot of stuff happens automatically when you do this: the website will update i
 Your pipeline will also appear in the `nf-core pipelines list` command output and in various other locations.
 
 Unfortunately, at the time of writing, the Zenodo (automated DOI assignment for releases) services are not created automatically.
-These can only be set up by _nf-core_ administrators, so please ask someone to do this for you on Slack.
+These can only be set up by _nf-core_ administrators, so please ask someone to do this for you on Slack via the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel.
 
 ### Initial community review
 

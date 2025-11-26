@@ -41,7 +41,7 @@ To get your pipeline reviewed for its initial release, do the following:
 1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
    special case and all of the tests should pass.
 
-1. Once the tests are passing, request two reviews, with one from the core team. You can use the
+1. Once the tests are passing, request two reviews, with one from the core or maintainers team. You can use the
    [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) slack channel for this.
 
 What happens next depends on the state of your master branch:
