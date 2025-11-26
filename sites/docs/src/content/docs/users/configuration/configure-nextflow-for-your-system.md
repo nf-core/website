@@ -1,20 +1,12 @@
 ---
-title: Configure pipelines for your system
+title: Configuring pipelines for your system
 subtitle: Learn how to configure pipelines for your system
-shortTitle: Configure pipelines for your system
+shortTitle: Configuring pipelines for your system
 weight: 2
 ---
 
 nf-core pipelines work on different computational infrastructures, from laptops to HPC clusters and cloud platforms.
 This page shows you how to configure pipelines to match your system's capabilities.
-
-## Change your executor
-
-Nextflow pipelines run in local mode by default, executing jobs on the same system where Nextflow runs.
-Most users need to specify an executor to tell Nextflow how to submit jobs to a job scheduler (e.g., SGE, LSF, Slurm, PBS, or AWS Batch).
-
-You can configure the executor in shared configuration profiles or in custom configuration files.
-For more information about executors, see [Executors](https://www.nextflow.io/docs/latest/executor.html#executor-page).
 
 ## Understand workflow resources
 
@@ -114,6 +106,14 @@ See the Nextflow documentation for [memory](https://www.nextflow.io/docs/latest/
 :::
 
 If the pipeline defaults need adjustment, contact the pipeline developers on Slack in the pipeline channel or submit a GitHub issue on the pipeline repository.
+
+## Change your executor
+
+Nextflow pipelines run in local mode by default, executing jobs on the same system where Nextflow runs.
+Most users need to specify an executor to tell Nextflow how to submit jobs to a job scheduler (e.g., SGE, LSF, Slurm, PBS, or AWS Batch).
+
+You can configure the executor in shared configuration profiles or in custom configuration files.
+For more information about executors, see [Executors](https://www.nextflow.io/docs/latest/executor.html#executor-page).
 
 ## Set max resources
 

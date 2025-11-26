@@ -30,7 +30,7 @@ For more information, see [Logos](/community/brand/logos).
 
 ## Presentations
 
-Guidelines and examples for presenting nf-core at conferences through posters and oral presentations. All presentations should acknowledge the nf-core community.
+Guidelines and examples for presenting nf-core at conferences through posters and oral presentations.
 
 For more information, see [Presentations](/community/brand/presentations).
 
