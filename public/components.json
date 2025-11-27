@@ -227163,6 +227163,18 @@
                 "pattern": "*.{bam,cram}",
                 "ontologies": []
               }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Index of BAM/CRAM file",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
             }
           ],
           [
