@@ -1,7 +1,7 @@
 ---
 title: Configuring pipelines for your system
 subtitle: Learn how to configure pipelines for your system
-shortTitle: Configuring pipelines for your system
+shortTitle: System requirements
 weight: 2
 ---
 
