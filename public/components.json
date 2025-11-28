@@ -256983,6 +256983,120 @@
       }
     },
     {
+      "name": "fastq_decontaminate_deacon_hostile",
+      "path": "subworkflows/nf-core/fastq_decontaminate_deacon_hostile/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_decontaminate_deacon_hostile",
+        "description": "Decontaminate FastQ files by filtering reads that match a reference genome using Deacon or Hostile",
+        "keywords": [
+          "hostile",
+          "deacon",
+          "filter",
+          "index",
+          "fasta",
+          "fastq",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "components": [
+          "hostile/fetch",
+          "hostile/clean",
+          "deacon/index",
+          "deacon/filter",
+          "fastq_fetch_clean_hostile",
+          "fastq_index_filter_deacon"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "file",
+              "description": "List of FastQ files of size 1 and 2 for single-end and paired-end data, respectively.\nStructure: [ val(meta), [ path(reads) ] ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "Input genome fasta file used by Deacon. Meta must match the meta of ch_reads.\nStructure: [ val(meta), [ path(fasta) ] ]\n"
+            }
+          },
+          {
+            "ch_reference": {
+              "type": "directory",
+              "description": "Directory containing index file(s) corresponding to the preferred aligner (bowtie2 short reads or minimap for long reads) used by Hostile.\nNote that single end data is assumed to be long reads. If you have single-end short read you must supply both the BowTie2\nindices AND explicitly specify `--aligner bowtie2`\n"
+            }
+          },
+          {
+            "index_name": {
+              "type": "string",
+              "description": "Name of the reference genome index to download for Hostile fetch if the reference is not provided."
+            }
+          },
+          {
+            "decontaminator": {
+              "type": "string",
+              "description": "Name of the deacontamination tool to use.",
+              "enum": [
+                "deacon",
+                "hostile"
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "fastq_filtered": {
+              "type": "file",
+              "description": "List of output filtered FastQ files of size 1 and 2 for single-end and paired-end data, respectively.\nStructure: [ val(meta), path(${prefix}*.fq.gz) ]\n",
+              "pattern": "*.fq.gz"
+            }
+          },
+          {
+            "reference": {
+              "type": "channel",
+              "description": "Channel containing reference name and directory with index files for Hostile.\nStructure: [ val(reference_name), path(reference_dir) ]\n"
+            }
+          },
+          {
+            "json": {
+              "type": "channel",
+              "description": "Channel containing sample metadata and Hostile cleaning log in JSON format.\nStructure: [ val(meta), path(*.json) ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "index": {
+              "type": "file",
+              "description": "Deacon minimizer index file.\nStructure: [ val(meta), path(index) ]\n",
+              "pattern": ".idx"
+            }
+          },
+          {
+            "summary": {
+              "type": "file",
+              "description": "JSON file containing summary of results.\nStructure: [ val(meta), path(${prefix}.json) ]\n",
+              "pattern": "*.json"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@Baksic-Ivan"
+        ],
+        "maintainers": [
+          "@Baksic-Ivan"
+        ]
+      }
+    },
+    {
       "name": "fastq_download_prefetch_fasterqdump_sratools",
       "path": "subworkflows/nf-core/fastq_download_prefetch_fasterqdump_sratools/meta.yml",
       "type": "subworkflow",
