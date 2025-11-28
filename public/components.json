@@ -179513,6 +179513,12 @@
               "description": "Output format (.csv for comma delimiter, .ssv for semicolon, and .tsv or .tab for tab)",
               "pattern": "^(csv|ssv|tsv|tab)$"
             }
+          },
+          {
+            "skip_input_format_check": {
+              "type": "boolean",
+              "description": "Skip input format check (by default QSV checks input format based on file extension)"
+            }
           }
         ],
         "output": {
@@ -179542,6 +179548,30 @@
             ]
           ],
           "versions_qsv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qsv --version | cut -d' ' -f2 | cut -d'-' -f1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
             [
               {
                 "${task.process}": {
@@ -258063,6 +258093,8 @@
           "cat",
           "cat/fastq",
           "fq/lint",
+          "ribodetector",
+          "seqkit/stats",
           "sortmerna",
           "fastq_subsample_fq_salmon",
           "fastq_fastqc_umitools_trimgalore",
@@ -258252,6 +258284,12 @@
             }
           },
           {
+            "skip_linting": {
+              "type": "boolean",
+              "description": "Whether to skip linting of FastQ files"
+            }
+          },
+          {
             "make_salmon_index": {
               "type": "boolean",
               "description": "Whether to create salmon index before running salmon quant"
@@ -258266,7 +258304,11 @@
           {
             "trimmer": {
               "type": "string",
-              "description": "Specifies the trimming tool to use - available options are 'trimgalore' and 'fastp'"
+              "description": "Specifies the trimming tool to use",
+              "enum": [
+                "trimgalore",
+                "fastp"
+              ]
             }
           },
           {
@@ -258282,9 +258324,25 @@
             }
           },
           {
+            "fastp_merge": {
+              "type": "boolean",
+              "description": "For FASTP, save merged fastqs stitching together read1 and read2 for paired end reads\n"
+            }
+          },
+          {
             "remove_ribo_rna": {
               "type": "boolean",
-              "description": "Enable the removal of reads derived from ribosomal RNA using SortMeRNA?"
+              "description": "Enable the removal of reads derived from ribosomal RNA"
+            }
+          },
+          {
+            "ribo_removal_tool": {
+              "type": "string",
+              "description": "Specifies the rRNA removal tool to use",
+              "enum": [
+                "sortmerna",
+                "ribodetector"
+              ]
             }
           },
           {
@@ -258310,18 +258368,6 @@
             "unstranded_threshold": {
               "type": "float",
               "description": "The difference in fraction of stranded reads assigned to 'forward' and 'reverse' below which a sample is classified as 'unstranded'."
-            }
-          },
-          {
-            "skip_linting": {
-              "type": "boolean",
-              "description": "Whether to skip linting of FastQ files"
-            }
-          },
-          {
-            "fastp_merge": {
-              "type": "boolean",
-              "description": "For FASTP, save merged fastqs stitching together read1 and read2 for paired end reads\n"
             }
           }
         ],
