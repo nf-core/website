@@ -12,6 +12,7 @@ This guide demonstrates how to change a pipeline's default branch from `master` 
 You will need the following to get started:
 
 - Admin privileges for the GitHub repository
+    - If you don’t have permission, ask `@core-team` for help on Slack.
 - nf-core tools
 
 :::
