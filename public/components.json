@@ -229107,7 +229107,14 @@
                 "type": "file",
                 "description": "Input sequences in FASTA format",
                 "pattern": "*.{fa,fasta}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -229123,7 +229130,11 @@
                 "type": "file",
                 "description": "Input guide tree in Newick format",
                 "pattern": "*.{dnd}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -229138,16 +229149,22 @@
               "template": {
                 "type": "file",
                 "description": "T_coffee template file that maps sequences to the accessory information files to be used.",
-                "pattern": "*",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             },
             {
               "accessory_information": {
                 "type": "file",
                 "description": "Accessory files to be used in the alignment. For example, it could be protein structures or secondary structures.",
-                "pattern": "*",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1476"
+                  }
+                ]
               }
             }
           ],
@@ -229172,7 +229189,17 @@
                   "type": "file",
                   "description": "Alignment file in FASTA format. May be gzipped.",
                   "pattern": "*.aln{.gz,}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
@@ -237465,7 +237492,14 @@
                 "type": "file",
                 "description": "Input sequences in FASTA format",
                 "pattern": "*.{fa,fasta}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1919"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -237481,7 +237515,11 @@
                 "type": "file",
                 "description": "Input guide tree in Newick format",
                 "pattern": "*.{dnd}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2006"
+                  }
+                ]
               }
             }
           ],
@@ -237506,7 +237544,17 @@
                   "type": "file",
                   "description": "Alignment file, in FASTA format. May be gzipped or uncompressed, depending on if compress is set to true or false",
                   "pattern": "*.aln{.gz,}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2554"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1921"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1984"
+                    }
+                  ]
                 }
               }
             ]
