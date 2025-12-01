@@ -320,7 +320,7 @@ nextflow run nf-core/pipeline -profile docker
 **Error message:**
 
 ```console
-Failed to submit process to grid scheduler for execution
+Failed to submit process to grid scheduler for execution.
 ```
 
 **Solution:**
@@ -340,10 +340,10 @@ Manually submit the failed job to see the actual error:
 
 ### Invalid executor configuration
 
-**Problem:**
+**Error message:**
 
 ```console
-sbatch: error: Invalid account or account/partition combination specified
+sbatch: error: Invalid account or account/partition combination specified.
 ```
 
 **Cause:**
