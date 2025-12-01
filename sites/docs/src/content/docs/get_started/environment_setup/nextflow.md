@@ -183,15 +183,23 @@ Pinning a specific Nextflow version can help ensure reproducibility across diffe
 
 ### Java version issues
 
-**Problem:** Error about incompatible Java version
+**Problem:**
 
-**Solution:** Ensure you have Java 17 or later installed. Check your version with `java -version` and install a compatible version using SDKMAN (see [Install Java](#installing-java)).
+Error about incompatible Java version
+
+**Solution:**
+
+Ensure you have Java 17 or later installed. Check your version with `java -version` and install a compatible version using SDKMAN (see [Install Java](#installing-java)).
 
 ### Permission denied errors
 
-**Problem:** Cannot execute Nextflow after installation
+**Problem:**
 
-**Solution:** Make sure the Nextflow executable has execution permissions:
+Cannot execute Nextflow after installation
+
+**Solution:**
+
+Make sure the Nextflow executable has execution permissions:
 
 ```bash
 chmod +x /path/to/nextflow
@@ -199,18 +207,26 @@ chmod +x /path/to/nextflow
 
 ### Update failures
 
-**Problem:** `nextflow self-update` fails
+**Problem:**
 
-**Solution:** The update can fail if Nextflow is installed in a directory with restricted permissions. Either:
+`nextflow self-update` fails
+
+**Solution:**
+
+The update can fail if Nextflow is installed in a directory with restricted permissions. Either:
 
 - Request elevated permissions to update in the current location
 - Reinstall Nextflow in a directory where you have write permissions
 
 ### Command not found
 
-**Problem:** `nextflow: command not found`
+**Error message:**
 
-**Solution:** Ensure Nextflow is in a directory included in your `$PATH`. Add the directory to your PATH by adding this line to `~/.bashrc` or `~/.zshrc`:
+`nextflow: command not found`
+
+**Solution:**
+
+Ensure Nextflow is in a directory included in your `$PATH`. Add the directory to your PATH by adding this line to `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -224,9 +240,13 @@ source ~/.bashrc  # or source ~/.zshrc
 
 ### Conda installation issues
 
-**Problem:** Outdated Nextflow version or dependency conflicts with Conda
+**Problem:**
 
-**Solution:** Uninstall the Conda version and use the self-installing package method instead:
+Outdated Nextflow version or dependency conflicts with Conda
+
+**Solution:**
+
+Uninstall the Conda version and use the self-installing package method instead:
 
 ```bash
 conda deactivate
@@ -236,9 +256,13 @@ curl -s https://get.nextflow.io | bash
 
 ### Checking for migration requirements
 
-**Problem:** Pipeline fails after updating Nextflow
+**Problem:**
 
-**Solution:** When updating across major stable releases, consult the [Nextflow migration guides](https://nextflow.io/docs/latest/migration.html) and [changelog](https://github.com/nextflow-io/nextflow/releases) for breaking changes that may affect your pipelines.
+Pipeline fails after updating Nextflow
+
+**Solution:**
+
+When updating across major stable releases, consult the [Nextflow migration guides](https://nextflow.io/docs/latest/migration.html) and [changelog](https://github.com/nextflow-io/nextflow/releases) for breaking changes that may affect your pipelines.
 
 ## Additional resources
 
