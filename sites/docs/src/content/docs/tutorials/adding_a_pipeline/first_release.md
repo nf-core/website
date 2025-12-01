@@ -103,6 +103,12 @@ Additionally, private pipelines will not be given preference over another pipeli
 
 If you are considering developing a pipeline in private that you hope to release it through nf-core, please contact the nf-core core-team on Slack so we can discuss a pre-release strategy.
 
+# Showing your pipeline in the nf-core website
+
+Make sure that your pipeline does not appear in the [list of repositories](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignored form the website build.
+
+If your pipeline appear there, open a PR removing it, and ask a core-team member to approve the PR.
+
 # Subsequent releases
 
 Once you've made your first release you can continue to work on your fork and make pull-requests
