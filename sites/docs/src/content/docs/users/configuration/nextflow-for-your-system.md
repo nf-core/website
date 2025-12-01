@@ -8,7 +8,7 @@ weight: 2
 nf-core pipelines work on different computational infrastructures, from laptops to HPC clusters and cloud platforms.
 This page shows you how to configure pipelines to match your system's capabilities.
 
-## Understand workflow resources
+## Workflow resources
 
 The base configuration of nf-core pipelines defines default resource allocations for each workflow step (e.g., in the [`base.config`](https://github.com/nf-core/rnaseq/blob/master/conf/base.config) file).
 
@@ -295,27 +295,37 @@ Copy existing parameters from the pipeline's `conf/modules.config` file to ensur
 Pipeline developers provide no warranty when you update tool parameters or change `ext.args`.
 :::
 
-## Debugging
+## Troubleshooting
 
 ### Pipeline crashes immediately
 
-**Problem**: Pipeline fails at the first process.
+**Problem:**
 
-**Cause**: No container or environment profile specified.
+Pipeline fails at the first process.
 
-**Solution**: Add `-profile docker`, `-profile singularity`, or `-profile conda` to your command:
+**Cause:**
+
+No container or environment profile specified.
+
+**Solution:**
+
+Add `-profile docker`, `-profile singularity`, or `-profile conda` to your command:
 
 ```bash
 nextflow run nf-core/pipeline -profile docker
 ```
 
-Without a profile, Nextflow expects all tools to be manually installed on your system.
-
 ### Cluster job submission fails
 
-**Problem**: Error message like "Failed to submit process to grid scheduler for execution" with no details.
+**Error message:**
 
-**Solution**: Manually submit the failed job to see the actual error:
+```console
+Failed to submit process to grid scheduler for execution
+```
+
+**Solution:**
+
+Manually submit the failed job to see the actual error:
 
 1. Navigate to the work directory shown in the error
 2. Submit the command file directly to your scheduler:
@@ -330,15 +340,19 @@ Without a profile, Nextflow expects all tools to be manually installed on your s
 
 ### Invalid executor configuration
 
-**Problem**: Error like "sbatch: error: Invalid account or account/partition combination specified".
+**Problem:**
 
-**Common causes**:
+```console
+sbatch: error: Invalid account or account/partition combination specified
+```
+
+**Cause:**
 
 - Missing cluster profile in `-profile` parameter
 - Incorrectly specified executor in your configuration
 - Resource requests exceed your cluster limits
 
-**Solution**:
+**Solution:**
 
 - Check if your institution has a profile in [nf-core/configs](https://github.com/nf-core/configs)
 - Verify your executor name matches your scheduler (for example, `slurm` not `SLURM`)
@@ -346,11 +360,19 @@ Without a profile, Nextflow expects all tools to be manually installed on your s
 
 ### Singularity bind path errors
 
-**Problem**: "ERROR: Failed to resolve path to /home/path: No such file or directory".
+**Error message:**
 
-**Cause**: Singularity cannot access your file system paths.
+```console
+ERROR: Failed to resolve path to /home/path: No such file or directory
+```
 
-**Solution**: Add bind paths to your Nextflow configuration:
+**Cause:**
+
+Singularity cannot access your file system paths.
+
+**Solution:**
+
+Add bind paths to your Nextflow configuration:
 
 ```groovy
 singularity {
@@ -364,11 +386,17 @@ Or update your Singularity system configuration at `/etc/singularity/singularity
 
 ### Container not updating
 
-**Problem**: Pipeline uses old tool versions despite specifying `dev` branch.
+**Problem:**
 
-**Cause**: Docker does not automatically update local images.
+Pipeline uses old tool versions despite specifying `dev` branch.
 
-**Solution**: Manually pull the latest container:
+**Cause:**
+
+Docker does not automatically update local images.
+
+**Solution:**
+
+Manually pull the latest container:
 
 ```bash
 docker pull nfcore/pipeline:dev

@@ -140,9 +140,13 @@ docker pull nfcore/tools
 
 ### Command not found
 
-**Problem:** `nf-core: command not found`
+**Error message:**
 
-**Solution:** Ensure nf-core tools is installed in an active environment:
+`nf-core: command not found`
+
+**Solution:**
+
+Ensure nf-core tools is installed in an active environment:
 
 - For Conda: Run `conda activate nf-core-env` if you installed in a separate environment
 - For pip: Ensure the Python scripts directory is in your `$PATH`
@@ -150,9 +154,13 @@ docker pull nfcore/tools
 
 ### Python version issues
 
-**Problem:** Installation fails due to Python version
+**Problem:**
 
-**Solution:** nf-core tools requires Python 3.8 or later. Check your version with:
+Installation fails due to Python version
+
+**Solution:**
+
+nf-core tools requires Python 3.8 or later. Check your version with:
 
 ```bash
 python --version
@@ -166,9 +174,13 @@ conda create --name nf-core-env python=3.11 nf-core
 
 ### Permission errors with pip
 
-**Problem:** Permission denied when installing with pip
+**Problem:**
 
-**Solution:** Install in your user directory instead:
+Permission denied when installing with pip
+
+**Solution:**
+
+Install in your user directory instead:
 
 ```bash
 pip install --user nf-core
@@ -184,9 +196,13 @@ pip install nf-core
 
 ### Docker file permissions
 
-**Problem:** Files created by Docker have wrong ownership
+**Problem:**
 
-**Solution:** Always include the `-u $(id -u):$(id -g)` flag when running Docker commands, or use the alias provided in the Docker installation section.
+Files created by Docker have wrong ownership
+
+**Solution:**
+
+Always include the `-u $(id -u):$(id -g)` flag when running Docker commands, or use the alias provided in the Docker installation section.
 
 ## Additional resources
 
