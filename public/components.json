@@ -56881,6 +56881,25 @@
               }
             ]
           ],
+          "report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.visual_report.html": {
+                  "type": "file",
+                  "description": "Visual report in HTML format",
+                  "pattern": "*.html",
+                  "optional": true,
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -205550,6 +205569,10 @@
       },
       "pipelines": [
         {
+          "name": "proteinannotator",
+          "version": "dev"
+        },
+        {
           "name": "proteinfamilies",
           "version": "2.1.0"
         },
@@ -206281,6 +206304,10 @@
       },
       "pipelines": [
         {
+          "name": "proteinannotator",
+          "version": "dev"
+        },
+        {
           "name": "proteinfamilies",
           "version": "2.1.0"
         },
@@ -206405,6 +206432,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "proteinannotator",
+          "version": "dev"
+        },
         {
           "name": "proteinfamilies",
           "version": "2.1.0"
@@ -206630,6 +206661,10 @@
         },
         {
           "name": "genomeqc",
+          "version": "dev"
+        },
+        {
+          "name": "proteinannotator",
           "version": "dev"
         },
         {
@@ -254229,6 +254264,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "proteinannotator",
+          "version": "dev"
+        },
         {
           "name": "proteinfamilies",
           "version": "2.1.0"
