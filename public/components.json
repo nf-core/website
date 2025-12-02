@@ -16314,7 +16314,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -16618,7 +16618,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -17046,7 +17046,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -17501,7 +17501,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -17765,7 +17765,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -17958,7 +17958,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -18129,7 +18129,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -18994,7 +18994,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -19259,7 +19259,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralrecon",
@@ -20005,7 +20005,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -20193,7 +20193,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -20836,6 +20836,10 @@
         {
           "name": "alleleexpression",
           "version": "dev"
+        },
+        {
+          "name": "phaseimpute",
+          "version": "1.1.0"
         }
       ]
     },
@@ -22273,7 +22277,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -90193,7 +90197,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "references",
@@ -94514,7 +94518,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -94830,7 +94834,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -94932,7 +94936,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -95142,7 +95146,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -95377,7 +95381,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -95721,7 +95725,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -95873,7 +95877,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -100958,7 +100962,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinfold",
@@ -136973,7 +136977,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "minimac4_impute",
@@ -137133,7 +137143,13 @@
         "maintainers": [
           "@LouisLeNezet"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "phaseimpute",
+          "version": "1.1.0"
+        }
+      ]
     },
     {
       "name": "minimap2_align",
@@ -144397,7 +144413,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
@@ -159731,6 +159747,158 @@
       ]
     },
     {
+      "name": "pbmarkdup",
+      "path": "modules/nf-core/pbmarkdup/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pbmarkdup",
+        "description": "Takes one or multiple sequencing chips of an amplified library as HiFi reads and marks or removes\nduplicates.\n",
+        "keywords": [
+          "markdup",
+          "bam",
+          "fastq",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "pbmarkdup": {
+              "description": "pbmarkdup identifies and marks duplicate reads in PacBio HiFi (CCS) data. It clusters\nhighly similar CCS reads to detect PCR duplicates and flags them in the output files\n(BAM,FASTQ,FASTA) (duplicate bit 0x400), optionally removing duplicates.\n(duplicate bit 0x400), optionally removing duplicates.\n",
+              "homepage": "https://github.com/PacificBiosciences/pbmarkdup",
+              "documentation": "https://github.com/PacificBiosciences/pbmarkdup",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": "biotools:pbmarkdup"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "input": {
+                "type": "file",
+                "description": "Sequencing reads in BAM, FASTQ, or FASTA format.\n",
+                "pattern": "*.{bam,f*a,/.*f.*\\.gz/}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2546"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "markduped": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${suffix}": {
+                  "type": "file",
+                  "description": "Markduplicated sequencing reads in the same format as the input file.\n",
+                  "pattern": "*.{bam,f*a,/.*f.*\\.gz/}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2546"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "dupfile": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${dupfile_name}": {
+                  "type": "file",
+                  "description": "(Optional) File listing duplicate reads (Specify by --dup-file).\n",
+                  "pattern": "*.{bam,f*a,/.*f.*\\.gz/}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2546"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.pbmarkdup.log": {
+                  "type": "file",
+                  "description": "Log file generated by pbmarkdup (if --log-level is specified).\n",
+                  "pattern": "*.pbmarkdup.log",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@sainsachiko"
+        ],
+        "maintainers": [
+          "@sainsachiko"
+        ]
+      }
+    },
+    {
       "name": "pbmm2_align",
       "path": "modules/nf-core/pbmm2/align/meta.yml",
       "type": "module",
@@ -162980,6 +163148,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "seqinspector",
+          "version": "dev"
+        },
+        {
           "name": "variantcatalogue",
           "version": "dev"
         }
@@ -163654,6 +163826,10 @@
         {
           "name": "pathogensurveillance",
           "version": "1.0.0"
+        },
+        {
+          "name": "seqinspector",
+          "version": "dev"
         },
         {
           "name": "variantbenchmarking",
@@ -181171,7 +181347,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -192962,7 +193138,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -193161,7 +193337,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -193493,7 +193669,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -194943,7 +195119,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -195394,7 +195570,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -195642,7 +195818,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tfactivity",
@@ -197162,7 +197338,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -209478,7 +209654,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -209658,7 +209834,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -221480,7 +221656,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -226941,7 +227117,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -227240,7 +227416,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -240105,7 +240281,7 @@
       "pipelines": [
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -260536,7 +260712,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
@@ -260957,7 +261133,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
@@ -261370,7 +261546,7 @@
         },
         {
           "name": "phaseimpute",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
