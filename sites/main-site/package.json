@@ -20,7 +20,7 @@
         "@astrojs/rss": "^4.0.14",
         "@astrojs/sitemap": "^3.6.0",
         "@astrojs/svelte": "^7.2.2",
-        "@astropub/md": "https://gitpkg.vercel.app/mashehu/astropub-md/packages/md?main",
+        "@astropub/md": "^1.0.0",
         "@date-fns/tz": "^1.4.1",
         "@docsearch/css": "^4.3.2",
         "@docsearch/js": "^4.3.2",
@@ -35,7 +35,7 @@
         "@iconify-json/octicon": "^1.2.19",
         "@iconify-json/pepicons-print": "^1.2.1",
         "@iconify-json/ri": "^1.2.6",
-        "@iconify-json/simple-icons": "^1.2.59",
+        "@iconify-json/simple-icons": "^1.2.60",
         "@iconify/utils": "^3.0.2",
         "@nanostores/persistent": "^1.2.0",
         "@octokit/types": "^16.0.0",
@@ -104,5 +104,10 @@
         "progress": "^2.0.3",
         "sass-embedded": "^1.93.3"
     },
-    "packageManager": "npm@11.6.2"
+    "packageManager": "npm@11.6.2",
+    "overrides": {
+        "@astropub/md": {
+            "@astrojs/markdown-remark": "$@astrojs/markdown-remark"
+        }
+    }
 }
