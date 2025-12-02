@@ -5,6 +5,8 @@ shortTitle: External use
 weight: 10
 ---
 
+<!-- TODO: Add links to this page from contributing and developing pages, maybe move this to developing? -->
+
 Whenever possible, you should contribute to existing nf-core pipelines. However, in some cases, this may not be possible or appropriate. In this case, you should still use parts of nf-core best practices for your own non-nf-core pipeline. This guide describes how to use nf-core code without making official nf-core pipelines.
 
 If you use nf-core code or infrastructure for your own pipeline development, you must acknowledge the nf-core initiative and follow these guidelines for proper attribution and branding.
