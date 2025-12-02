@@ -1,7 +1,7 @@
 ---
-title: Manually sync your pipeline
+title: Manually syncing your pipeline
 subtitle: How to manually synchronise your nf-core pipeline with the latest nf-core/tools template
-shortTitle: Manually sync your pipeline
+shortTitle: Manually syncing your pipeline
 weight: 3
 ---
 
