@@ -37,7 +37,8 @@ A significant portion of the meeting focused on making our release process more 
 
 ### Trunk-based development
 
-We discussed the proposal for [trunk-based development](https://github.com/nf-core/proposals/issues/49). While this approach could streamline our workflow, it raises concerns about traceability. Since most beginners run pipelines without the `-r TAG` flag, they would automatically pull the most recent version, making it harder to track which version users are actually running.
+We discussed the proposal for [trunk-based development](https://github.com/nf-core/proposals/issues/49).
+While this approach could streamline our workflow, it raises concerns about traceability. Since most beginners run pipelines without the `-r TAG` flag, they would automatically pull the most recent version, making it harder to track which version users are actually running.
 
 ### Review bottlenecks
 
@@ -59,7 +60,8 @@ The goal is to catch and fix linting issues earlier in the development process, 
 
 ## Infrastructure updates
 
-[@mashehu](https://github.com/mashehu) has implemented new CI for the nf-core/test-datasets repository that now warns when files are being deleted. This should help prevent accidental removal of test data.
+[@mashehu](https://github.com/mashehu) has implemented new CI for the nf-core/test-datasets repository that now warns when files are being deleted.
+This should help prevent accidental removal of test data.
 
 ## Topic channels
 
