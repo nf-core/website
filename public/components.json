@@ -8414,6 +8414,10 @@
       },
       "pipelines": [
         {
+          "name": "proteinannotator",
+          "version": "dev"
+        },
+        {
           "name": "proteinfold",
           "version": "1.1.1"
         }
@@ -107489,6 +107493,10 @@
         {
           "name": "phyloplace",
           "version": "2.0.0"
+        },
+        {
+          "name": "proteinannotator",
+          "version": "dev"
         },
         {
           "name": "proteinfamilies",
@@ -228685,6 +228693,9 @@
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1476"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1477"
                   }
                 ]
               }
