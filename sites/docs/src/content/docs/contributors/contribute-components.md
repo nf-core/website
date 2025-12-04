@@ -1,26 +1,23 @@
 ---
-title: Contributing components
-subtitle: How to contribute modules and subworkflows to nf-core
-shortTitle: Contributing components
+title: Components
+subtitle: Contributing modules and subworkflows to nf-core
+shortTitle: Components
 ---
 
 <!-- TODO: Add links -->
 <!-- TODO: Revise is test data and testing should be expanded here, my 2 cents is is it should be another page -->
-
-This guide explains how to contribute modules and subworkflows to the [nf-core/modules repository](https://github.com/nf-core/modules). For detailed information about writing components, see the [writing components guide](LINK).
-
-## What are nf-core components?
 
 nf-core modules and subworkflows are reusable Nextflow components shared across pipelines:
 
 - **Modules**: Individual tool wrappers that represent single processes
 - **Subworkflows**: Combinations of multiple modules into cohesive analysis units
 
-All components in nf-core/modules are reviewed, tested, and maintained by the community.
+Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery. The nf-core community strongly encourages all members to contribute their expertise and welcomes contributions of any scale.
 
-## Prerequisites
+This guide explains how to contribute modules and subworkflows to the [nf-core/modules repository](https://github.com/nf-core/modules). For detailed information about writing components, see[Writing Components](LINK).
 
-Before contributing, ensure you have:
+:::note{title="Prerequisites"}
+You will need the following to get started:
 
 - [Nextflow version 21.04.0 or later](../../get_started/environment_setup/nextflow.md)
 - [nf-core/tools version 2.7 or later](../../get_started/environment_setup/nf-core-tools.md)
@@ -29,134 +26,118 @@ Before contributing, ensure you have:
 - A container engine ([Docker](../../get_started/environment_setup/software-dependencies.md#docker), [Singularity](../../get_started/environment_setup/software-dependencies.md#singularity), or [Conda](../../get_started/environment_setup/software-dependencies.md#condamamba))
 - A [GitHub account](https://github.com/signup)
 
-## Contribution workflow
-
-### 1. Check if the component already exists
-
-Before starting, verify the component doesn't already exist:
-
-```bash
-nf-core modules list
-```
-
-Also check:
-
-- The [nf-core/modules repository](https://github.com/nf-core/modules)
-- Open [pull requests](https://github.com/nf-core/modules/pulls)
-- Open [issues](https://github.com/nf-core/modules/issues)
-
-### 2. Create an issue
-
-If the component doesn't exist, create an [issue](https://github.com/nf-core/modules/issues) to let others know you're working on it:
-
-- Use a clear title, e.g., "New module: fastqc"
-- Describe what the component will do
-- Add yourself to the **Assignees**
-
-This prevents duplicate work and allows the community to provide feedback early.
-
-### 3. Fork and clone the repository
-
-Fork the repository to your GitHub account and clone it locally:
-
-```bash
-git clone https://github.com/<github_username>/modules.git nf-core-modules
-cd nf-core-modules
-git remote add upstream https://github.com/nf-core/modules.git
-git checkout -b <component_name>
-pre-commit install
-```
-
-:::note
-The `pre-commit install` command sets up automatic code quality checks.
 :::
 
-### 4. Write your component
+## Contribute a component
 
-Use nf-core/tools to generate the component structure:
+1. Check if the component already exists:
 
-- **For modules:**
+    ```bash
+    nf-core modules list
+    ```
 
-  ```bash
-  nf-core modules create
-  ```
+    Also check:
 
-- **For subworkflows:**
+    - The [nf-core/modules repository](https://github.com/nf-core/modules)
+    - Open [pull requests](https://github.com/nf-core/modules/pulls)
+    - Open [issues](https://github.com/nf-core/modules/issues)
 
-  ```bash
-  nf-core subworkflows create
-  ```
+1. Create an [issue](https://github.com/nf-core/modules/issues) to let others know you're working on it:
 
-The `create` command creates the necessary files and directory structure:
+    - Use a clear title, e.g., "New module: fastqc"
+    - Describe what the component will do
+    - Add yourself to the **Assignees**
 
-- **`main.nf`**: The main script containing the process definition with TODO statements to guide you
-- **`meta.yml`**: Metadata file storing general information about the module and input/output descriptions
-- **`tests/main.nf.test`**: Test workflow to unit test the module outputs (required for all modules)
+1. Fork the repository to your GitHub account and clone it locally:
 
-For detailed information about writing modules and subworkflows, see the [writing components guide](LINK).
+    ```bash
+    git clone https://github.com/<github_username>/modules.git nf-core-modules
+    cd nf-core-modules
+    git remote add upstream https://github.com/nf-core/modules.git
+    git checkout -b <component_name>
+    pre-commit install
+    ```
 
-### 5. Test your component
+    :::note
+    The `pre-commit install` command sets up automatic code quality checks.
+    :::
 
-Before submitting, thoroughly test your component:
+1. Write your component:
 
-```bash
-nf-core modules lint <component_name>
-nf-core modules test <component_name>
-```
+    - Use nf-core/tools to generate the component structure:
 
-The linting checks ensure your component follows nf-core standards. All tests must pass before submission.
+        - **Modules:**
 
-See LINK for more information about lint and test.
+          ```bash
+          nf-core modules create
+          ```
 
-### 6. Commit and push your changes
+        - **Subworkflows:**
 
-Commit your changes with a clear message:
+          ```bash
+          nf-core subworkflows create
+          ```
 
-```bash
-git add .
-git commit -m "Add new module: <component_name>"
-git push origin <component_name>
-```
+    :::note
+    The `create` command creates the necessary files and directory structure:
 
-The pre-commit hooks will automatically check your code before committing.
+    - **`main.nf`**: The main script containing the process definition with TODO statements to guide you
+    - **`meta.yml`**: Metadata file storing general information about the module and input/output descriptions
+    - **`tests/main.nf.test`**: Test workflow to unit test the module outputs (required for all modules)
 
-:::tip
-Before creating a pull request, sync your branch with upstream to apply your changes on top of the latest updates:
+    For detailed information about writing modules and subworkflows, see the [writing components guide](LINK).
+    :::
 
-```bash
-git pull --rebase upstream master
-```
-:::
+1. Before submitting, thoroughly test your component:
 
-### 7. Create a pull request
+    ```bash
+    nf-core modules lint <component_name>
+    ```
 
-Go to the [nf-core/modules repository](https://github.com/nf-core/modules) and create a pull request from your branch. In the pull request:
+    ```bash
+    nf-core modules test <component_name>
+    ```
 
-- Reference the issue you created
-- Describe what the component does
-- Explain how you tested it
-- Include example commands or screenshots if helpful
+    :::note
+    The linting checks ensure your component follows nf-core standards. All tests must pass before submission. See LINK for more information about lint and test.
+    :::
 
-Use the pull request template provided by the repository.
+1. Commit and push your changes with a clear message:
 
-### 8. Respond to review feedback
+    ```bash
+    git add .
+    git commit -m "Add new module: <component_name>"
+    git push origin <component_name>
+    ```
 
-The nf-core maintainers will review your contribution and may request changes. Common feedback includes:
+    :::tip
+    Before creating a pull request, sync your branch with upstream to apply your changes on top of the latest updates:
 
-- Code style improvements
-- Additional tests
-- Documentation clarifications
-- Container or dependency updates
+    ```bash
+    git pull --rebase upstream master
+    ```
+    :::
+1. Go to the [nf-core/modules repository](https://github.com/nf-core/modules) and create a pull request from your branch:
 
-Address feedback by pushing new commits to your branch. The pull request will automatically update.
+    - Use the pull request template provided by the repository:
 
-### 9. After merge
+        - Reference the issue you created
+        - Describe what the component does
+        - Explain how you tested it
+        - Include example commands or screenshots if helpful
 
-Once your pull request is approved and merged:
+1. Address review feedback
 
-- Your component becomes available to all nf-core users
-- It will be automatically tested with every nf-core/modules update
-- You will be listed as a contributor to nf-core/modules
+    :::note
+    The nf-core maintainers will review your contribution and may request changes. Common feedback includes:
+
+    - Code style improvements
+    - Additional tests
+    - Documentation clarifications
+    - Container or dependency updates
+    :::
+
+1. When approved, merge your pull request
 
 ## Additional resources
 
@@ -169,4 +150,4 @@ If you need assistance:
 
 The nf-core community is here to help. Don't hesitate to ask questions.
 
-<!-- TODO: Add links to resources -->
+<!-- TODO: Add links to -->
