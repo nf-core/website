@@ -45,7 +45,7 @@ To start a review for the initial release of your pipeline:
 2. Make a pull request from the `dev` branch to `TEMPLATE_<TOOLS_VERSION>` branch on the nf-core fork. This is a
    special case and all of the tests should pass.
 
-3. Once the tests are passing, request two reviews, with one from the core team. Use the
+1. Once the tests are passing, request two reviews, with one from the core or maintainers team. You can use the
    [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) slack channel for this.
 
 What happens next depends on the state of your master branch:
@@ -106,6 +106,12 @@ Pipelines developed in private won't be given any special treatment and will be 
 Additionally, private pipelines will not be given preference over another pipeline that has been developed in the open. If you are developing a pipeline privately, please be aware that another pipeline may be released before yours. In this case, we may not be able to accept your pipeline into nf-core and you may need to release it independently or merge it with the pipeline that has already been released.
 
 If you are considering developing a pipeline in private that you hope to release it through nf-core, please contact the nf-core core-team on Slack so we can discuss a pre-release strategy.
+
+# Showing your pipeline in the nf-core website
+
+Make sure that your pipeline does not appear in the [list of repositories](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignored form the website build.
+
+If your pipeline appear there, open a PR removing it, and ask a core-team member to approve the PR.
 
 # Subsequent releases
 
