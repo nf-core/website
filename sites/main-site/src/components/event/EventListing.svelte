@@ -11,7 +11,7 @@
         currentEvents: CollectionEntry<"events">[];
     }
     let { events = [], currentFilters, currentEvents = $bindable() }: Props = $props();
-    let filteredEvents = $state(events);
+
     const filterByType = (event: CollectionEntry<"events">) => {
         if ($CurrentFilter.find((f) => f.name === event.data.type)) {
             return true;
@@ -36,6 +36,8 @@
         }
         return false;
     };
+
+    let filteredEvents = $derived(events.filter(filterByType).filter(searchEvents));
 
     function hasRequiredDates(
         event: CollectionEntry<"events">,
@@ -78,10 +80,6 @@
             return event.data.start && event.data.start < today && event.data.end && event.data.end > today;
         }),
     );
-
-    $effect(() => {
-        filteredEvents = events.filter(filterByType).filter(searchEvents);
-    });
 
     $effect(() => {
         currentEvents = currentEventsFiltered;
