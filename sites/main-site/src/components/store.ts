@@ -13,29 +13,16 @@ export const CurrentFilter = atom<{ name: string }[]>([{ name: "" }]);
 export const Filters = atom<FilterItem[]>([]);
 export const SortBy = atom<string>("");
 
-export const DisplayStyle = persistentAtom<string>('DisplayStyle', 'grid', {
-    encode: JSON.stringify,
-    decode(value) {
-        try {
-            return JSON.parse(value);
-        } catch {
-            return 'grid';
-        }
-    },
-});
+// Use regular atom during SSR, persistentAtom only in browser
+const isBrowser = typeof window !== 'undefined';
 
-export const Checkboxes = persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [], {
-    encode(value) {
-        return JSON.stringify(value);
-    },
-    decode(value) {
-        try {
-            return JSON.parse(value);
-        } catch {
-            return [];
-        }
-    },
-});
+export const DisplayStyle = isBrowser
+    ? persistentAtom<string>('DisplayStyle', 'grid')
+    : atom<string>('grid');
+
+export const Checkboxes = isBrowser
+    ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [])
+    : atom<Array<{ id: string; checked: boolean }>>([])
 export const currentHeading = atom("");
 export const currentPage = atom<number>(1);
 export const CurrentTab = atom<string>("");
