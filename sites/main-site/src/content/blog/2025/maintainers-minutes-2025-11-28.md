@@ -1,7 +1,7 @@
 ---
 title: "Maintainers Minutes: November 2025"
 subtitle: "Keeping you informed of the latest maintainers discussions"
-pubDate: 2025-11-28T10:00:00+01:00
+pubDate: 2025-12-08T10:00:00+01:00
 headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
 headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
 embedHeaderImage: false
