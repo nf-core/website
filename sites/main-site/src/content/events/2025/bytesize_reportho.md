@@ -9,7 +9,7 @@ endTime: "13:30+01:00"
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://stockholmuniversity.zoom.us/j/66855293599
 ---
 
 This week, Igor ([@itrujnara](https://github.com/itrujnara)) is updating us on the newest features in the nf-core/reportho pipeline.
