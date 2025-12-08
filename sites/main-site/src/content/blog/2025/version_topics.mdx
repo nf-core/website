@@ -1,0 +1,137 @@
+---
+title: "Topic: Topics"
+subtitle: "How to adopt Topic channels in your favorite nf-core module"
+pubDate: 2025-11-19T12:00:00+02:00
+headerImage: "/assets/images/blog/hackathon-topic/topics_team.jpg"
+headerImageAlt: "Topic project members during nf-core Hackathon 2025 in Barcelona"
+embedHeaderImage: true
+authors: ["mapo9", "nvnieuwk", "mribeirodantas", "kobelavaerts", "wangdepin", "yadavbha", "eit-maxlcummins"]
+label:
+    - "community"
+---
+
+import topicspooh from "../../../assets/images/blog/hackathon-topic/topics_pooh.jpg";
+import { Image } from "astro:assets";
+
+:::tip{title="TLDR;"}
+
+- We are adopting topic channels to replace the versions.yml.
+- For now both options are valid, but this will change.
+- No more mixing of version channels.
+  :::
+
+<Image
+    src={topicspooh}
+    class="d-block m-auto mb-2"
+    width={400}
+    density={[1.5, 2]}
+    alt="Winnie the Pooh meme on topics usage. Upper winnie is sad working on some topic on the hackathon, lower winnie is sophisticated as working on the topic channels"
+/>
+
+# What are topic channels
+
+Say goodbye to writing a version.yml for each module and mixing the channels together. To improve here, we will be adopting topic channels.
+Topic channels can collect values from multiple sources automatically, just by sharing the same topic name.
+This means no more tangled channel wiring or mix operator chains. With topic channels,
+you can now broadcast and collect data across your pipeline more naturally.
+
+```groovy title="main.nf"
+process  {
+  output:
+  val('hello'), topic: my_topic
+
+  // ...
+}
+
+process bye {
+  output:
+  val('bye'), topic: my_topic
+
+  // ...
+}
+```
+
+See also the [channels documention](https://www.nextflow.io/docs/latest/reference/channel.html#topic) and the [migration tutorial](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
+
+# How to adopt your module
+
+:::tip{title="Workflow"}
+
+1. Adapt main.nf
+2. Perform semi-automatic meta.yml update
+3. Catch version in tests/main.nf.test
+4. Update snapshot
+5. Fix dependent nf-core/subworkflows
+   :::
+
+Let's get to work. Grab any nf-core module
+
+## 1. Adapt main.nf
+
+No need to write to `version.yml` files any more, we emit a topic channel in the output section instead.
+
+```diff title="main.nf"
+output:
+tuple val(meta), path("*.html"), emit: html
+tuple val(meta), path("*.zip") , emit: zip
+-path  "versions.yml"           , emit: versions
++tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+︙
+-cat <<-END_VERSIONS > versions.yml
+-"${task.process}":
+-    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
+-END_VERSIONS
+```
+
+## 2. Semi-automatic meta.yml update
+
+Update the meta.yml using nf-core/tools. Then fill in the version information.
+You can update the meta.yml conveniently using
+`nf-core modules lint <MODULE_NAME> --fix`
+
+```yaml title="meta.yml"
+  versions_fastqc:
+    - - ${task.process}:
+          type: string
+          description: The process the versions were collected from
+      - fastqc:
+          type: string
+          description: The tool name
+      - fastqc --version | sed "/FastQC v/!d; s/.*v//":
+          type: string
+          description: The command used to generate the version of the tool
+topics:
+    versions:
+        - - ${task.process}:
+            type: string
+            description: The process the versions were collected from
+        - fastqc:
+            type: string
+            description: The tool name
+        - fastqc --version | sed "/FastQC v/!d; s/.*v//:
+            type: string
+            description: The command used to generate the version of the tool
+```
+
+## 3. Catch version in tests/main.nf.test
+
+This might be a little more tricky for some of your modules, but a good start to catch the version in the snapshot is:
+
+```groovy title="main.nf.test"
+process.out.findAll { key, val -> key.startsWith("versions")}
+```
+
+## 4. Update snapshot
+
+As no version.yml exists anymore, you will have to update the snapshot.
+
+## 5. Fix dependent nf-core/subworkflows
+
+All nf-core/subworkflows which are calling your module will fail now because no version.yml is created to use the `mix` operator on.
+So, you should remove all occurences of:
+
+```groovy title="main.nf"
+ch_versions = ch_versions.mix(FASTQC.out.versions.first())
+```
+
+Make sure to update the snapshots of the subworkflows as well.

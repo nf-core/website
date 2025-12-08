@@ -1,5 +1,5 @@
-import { persistentAtom } from '@nanostores/persistent';
-import { atom } from 'nanostores';
+import { atom } from "nanostores";
+import { persistentAtom } from "@nanostores/persistent";
 
 export interface FilterItem {
     name: string;
@@ -9,35 +9,23 @@ export interface FilterItem {
     count?: number;
 }
 
-export const CurrentFilter = atom<{ name: string }[]>([{ name: '' }]);
+export const CurrentFilter = atom<{ name: string }[]>([{ name: "" }]);
 export const Filters = atom<FilterItem[]>([]);
-export const SortBy = atom<string>('');
-// add persistentatom for display style to be either table or grid
+export const SortBy = atom<string>("");
 
-export const DisplayStyle = persistentAtom<string>('DisplayStyle', 'grid', {
-    encode(value) {
-        return JSON.stringify(value);
-    },
-    decode(value) {
-        return JSON.parse(value);
-    },
-});
+// Use regular atom during SSR, persistentAtom only in browser
+const isBrowser = typeof window !== 'undefined';
 
-export const Checkboxes = persistentAtom<Array<{id: string, checked: boolean}>>('Checkboxes', [], {
-    encode(value) {
-        return JSON.stringify(value);
-    },
-    decode(value) {
-        try {
-            return JSON.parse(value);
-        } catch {
-            return [];
-        }
-    },
-});
-export const currentHeading = atom('');
+export const DisplayStyle = isBrowser
+    ? persistentAtom<string>('DisplayStyle', 'grid')
+    : atom<string>('grid');
+
+export const Checkboxes = isBrowser
+    ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [])
+    : atom<Array<{ id: string; checked: boolean }>>([])
+export const currentHeading = atom("");
 export const currentPage = atom<number>(1);
-export const CurrentTab = atom<string>('');
-export const SearchQuery = atom<string>('');
+export const CurrentTab = atom<string>("");
+export const SearchQuery = atom<string>("");
 export const showHidden = atom<boolean>(false);
 export const showHelp = atom<boolean>(false);

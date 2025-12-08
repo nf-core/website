@@ -3,14 +3,15 @@ title: "#animal-genomics: Meeting"
 subtitle: Ekaterina Osipova (Harvard University)
 
 type: talk
-startDate: "2025-05-21"
+startDate: "2025-11-19"
 startTime: "16:00+01:00"
-endDate: "2025-05-21"
+endDate: "2025-11-19"
 endTime: "17:00+01:00"
+youtubeEmbed: https://youtu.be/X2mRfmZoEiI
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/99370728121
+      - https://youtu.be/X2mRfmZoEiI
 ---
 
 ## Sugar rush: Genomics of extreme metabolic adaptations in nectar birds
