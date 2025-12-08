@@ -1,6 +1,6 @@
 ---
 title: Testing profiles
-subtitle: Learn how to test your institutional profile before submission
+subtitle: Testing your institutional profile before submission
 shortTitle: Testing
 weight: 6
 ---

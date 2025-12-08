@@ -1,6 +1,6 @@
 ---
 title: File structure requirements
-subtitle: Learn which files to create or modify for your institutional profile
+subtitle: Which files to create or modify for your institutional profile
 shortTitle: File structure
 weight: 3
 ---

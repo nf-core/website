@@ -1,6 +1,6 @@
 ---
 title: Topic types
-subtitle: Learn about documentation topic types
+subtitle: Documentation topic types
 shortTitle: Topic types
 weight: 3
 ---

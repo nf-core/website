@@ -1,6 +1,6 @@
 ---
 title: Template syncs
-subtitle: Learn how nf-core pipelines are kept up to date with community standards
+subtitle: How nf-core pipelines are kept up to date with community standards
 weight: 1
 ---
 

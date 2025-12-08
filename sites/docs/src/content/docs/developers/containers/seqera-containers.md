@@ -1,6 +1,6 @@
 ---
 title: Seqera Containers
-subtitle: Use Seqera Containers in nf-core modules
+subtitle: Using Seqera Containers in nf-core modules
 shortTitle: Seqera Containers
 weight: 2
 ---

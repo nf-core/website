@@ -1,6 +1,6 @@
 ---
 title: Fixing a broken TEMPLATE branch
-description: Learn how to fix a broken TEMPLATE branch
+description: How to fix a broken TEMPLATE branch
 shortTitle: Fixing a broken TEMPLATE branch
 weight: 2
 ---

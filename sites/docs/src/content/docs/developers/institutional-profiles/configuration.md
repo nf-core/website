@@ -1,6 +1,6 @@
 ---
 title: Configuration file components
-subtitle: Learn how to structure your institutional profile configuration
+subtitle: Structuring your institutional profile configuration
 shortTitle: Configuration
 weight: 4
 ---

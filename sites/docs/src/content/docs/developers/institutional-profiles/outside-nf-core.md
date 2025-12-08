@@ -1,6 +1,6 @@
 ---
 title: Using nf-core/configs outside nf-core
-subtitle: Learn how to integrate institutional profiles into custom workflows
+subtitle: Integrating institutional profiles into custom workflows
 shortTitle: nf-core/configs outside nf-core
 weight: 7
 ---

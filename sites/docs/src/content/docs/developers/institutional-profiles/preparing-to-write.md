@@ -1,6 +1,6 @@
 ---
 title: Preparing to write a profile
-subtitle: Gather the information you need before creating an institutional profile
+subtitle: Information you need before creating an institutional profile
 shortTitle: Preparing to write
 weight: 2
 ---
