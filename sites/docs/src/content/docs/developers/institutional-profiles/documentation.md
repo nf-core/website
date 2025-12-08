@@ -1,6 +1,6 @@
 ---
 title: Documentation requirements
-subtitle: Learn what to include in your institutional profile documentation
+subtitle: What to include in your institutional profile documentation
 shortTitle: Documentation
 weight: 5
 ---

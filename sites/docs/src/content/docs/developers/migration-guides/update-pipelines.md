@@ -1,6 +1,6 @@
 ---
 title: Migrating to topic channels
-description: Learn how to migrate nf-core modules and pipelines to use topic channels
+description: Migrating nf-core modules and pipelines to use topic channels
 shortTitle: Migrating to topic channels
 parentWeight: 100
 ---

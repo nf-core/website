@@ -1,6 +1,6 @@
 ---
 title: Markdown on the nf-core website
-subtitle: Learn about special content elements on nf-co.re
+subtitle: Special content elements on nf-co.re
 shortTitle: Markdown
 weight: 4
 ---

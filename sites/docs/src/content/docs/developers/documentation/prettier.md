@@ -1,6 +1,6 @@
 ---
 title: Code formatting
-subtitle: Use Prettier and Ruff to maintain consistent code style
+subtitle: Using Prettier and Ruff to maintain consistent code style
 shortTitle: Code formatting
 weight: 5
 ---

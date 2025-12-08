@@ -1,6 +1,6 @@
 ---
 title: ARM64 on Bioconda
-subtitle: Enable existing Bioconda and Conda-forge packages to work on ARM64 architecture
+subtitle: Enabling existing Bioconda and Conda-forge packages to work on ARM64 architecture
 shortTitle: ARM64 on Bioconda
 weight: 1
 ---

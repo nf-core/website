@@ -1,6 +1,6 @@
 ---
 title: nf-core documentation
-subtitle: Learn how to contribute nf-core documentation
+subtitle: Contributing nf-core documentation
 shortTitle: Documentation
 weight: 2
 ---

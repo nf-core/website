@@ -1,7 +1,7 @@
 ---
 title: Reviewing pipeline releases
-subtitle: Learn how to review nf-core pipeline release pull requests
-shortTitle: Pipeline releases
+subtitle: Review nf-core pipeline release pull requests
+shortTitle: Reviewing pipeline releases
 markdownPlugin: checklist
 ---
 
