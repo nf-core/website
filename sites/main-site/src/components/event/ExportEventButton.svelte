@@ -16,7 +16,7 @@
     } else if (frontmatter.locationURL) {
         event_location = frontmatter.locationURL.join(", ");
     }
-    const calendar_event = {
+    const calendar_event = $derived({
         title: frontmatter.title,
         description: frontmatter.subtitle,
         start: frontmatter.start.toISOString().includes("00:00:00")
@@ -27,7 +27,7 @@
             : frontmatter.end,
         location: event_location,
         allDay: frontmatter.start.toISOString().includes("00:00:00"),
-    };
+    });
 
     const removeTimeFromICSDate = (ics: string) => {
         // find DTSTART or DTEND lines and drop the time completely
