@@ -102520,19 +102520,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_haplogrep3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "haplogrep3": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\\\([0-9.]\\\\+\\\\'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "haplogrep3": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\\\([0-9.]\\\\+\\\\'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -200310,19 +200342,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_semibin": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "SemiBin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "SemiBin": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SemiBin2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -259432,6 +259496,7 @@
           "ribodetector",
           "samtools/fastq",
           "samtools/view",
+          "seqkit/replace",
           "seqkit/stats",
           "sortmerna"
         ],
