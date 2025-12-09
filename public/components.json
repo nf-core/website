@@ -20959,19 +20959,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bedgovcf": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "bedgovcf": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bedgovcf --version 2>&1 | sed 's/^bedgovcf version //'": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
               }
-            }
+            ]
+          ],
+          "versions_bgzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "bedgovcf": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bedgovcf --version 2>&1 | sed 's/^bedgovcf version //'": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process name"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib": {
+                  "type": "eval",
+                  "description": "The tool version"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -154139,6 +154213,131 @@
       ]
     },
     {
+      "name": "orfipy",
+      "path": "modules/nf-core/orfipy/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "orfipy",
+        "description": "orfipy is a tool written in python/cython to extract ORFs in an extremely and fast and flexible manner.",
+        "keywords": [
+          "orfipy",
+          "orfs",
+          "open reading frames"
+        ],
+        "tools": [
+          {
+            "orfipy": {
+              "description": "orfipy: fast and flexible search for open reading frames in fasta sequences",
+              "homepage": "https://github.com/urmi-21/orfipy",
+              "documentation": "https://github.com/urmi-21/orfipy/blob/master/README.md",
+              "tool_dev_url": "https://github.com/urmi-21/orfipy",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:orfipy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', fasta ]\n"
+              }
+            },
+            {
+              "infile": {
+                "type": "file",
+                "description": "Input file, in plain Fasta/Fastq or gzipped format, containing Nucletide sequences",
+                "pattern": "*.{fasta,fa,fastq,fastq.gz,fq,fa.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', fasta ]\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}.bed": {
+                  "type": "file",
+                  "description": "Output BED file containing the coordinates of predicted ORFs",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3673"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_orfipy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "orfipy": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "orfipy --version | sed 's/.*version //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "orfipy": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "orfipy --version | sed 's/.*version //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
       "name": "orthofinder",
       "path": "modules/nf-core/orthofinder/meta.yml",
       "type": "module",
@@ -209896,14 +210095,6 @@
                 "description": "Target region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nFor chrX, please treat PAR and non-PAR regions as different choromosome in order to avoid mixing ploidy.\n",
                 "pattern": "chrXX:leftBufferPosition-rightBufferPosition"
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "reference": {
@@ -209919,14 +210110,6 @@
                 "description": "Index file of the Reference panel file.",
                 "pattern": "*.{vcf.gz.csi,bcf.gz.csi}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
@@ -209944,19 +210127,11 @@
                 "pattern": "*.{vcf.gz.csi,bcf.gz.csi}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "map": {
                 "type": "file",
-                "description": "File containing the genetic map.",
+                "description": "File containing the genetic map in Glimpse format.",
                 "pattern": "*.gmap",
                 "ontologies": []
               }
@@ -209973,10 +210148,10 @@
                 }
               },
               {
-                "*.{vcf,bcf,vcf.gz,bcf.gz}": {
+                "*.{bcf,graph,bh}": {
                   "type": "file",
-                  "description": "Phased variant dataset in VCF/BCF format.",
-                  "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}",
+                  "description": "Phased variant dataset in BCF, GRAPH or XCF binary format.",
+                  "pattern": "*.{bcf,graph,bh}",
                   "ontologies": []
                 }
               }
@@ -210078,14 +210253,6 @@
                 "description": "Region to be considered in --input-plain (e.g. chr20:1000000-2000000 or chr20).\nFor chrX, please treat PAR and non-PAR regions as different choromosome in order to avoid mixing ploidy.\n",
                 "pattern": "chrXX:leftBufferPosition-rightBufferPosition"
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "scaffold": {
@@ -210109,19 +210276,11 @@
                 "description": "Region to be considered in --scaffold (e.g. chr20:1000000-2000000 or chr20).\n",
                 "pattern": "chrXX:leftBufferPosition-rightBufferPosition"
               }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "map": {
                 "type": "file",
-                "description": "File containing the genetic map.",
+                "description": "File containing the genetic map in Glimpse format.",
                 "pattern": "*.gmap",
                 "ontologies": []
               }
@@ -210236,14 +210395,6 @@
                 "pattern": "*.{txt, tsv}",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
             },
             {
               "truth": {
@@ -210259,14 +210410,6 @@
                 "description": "Index file of the truth VCF/BCF file.",
                 "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}",
                 "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
               }
             },
             {
@@ -246979,6 +247122,203 @@
       }
     },
     {
+      "name": "whatshap_stats",
+      "path": "modules/nf-core/whatshap/stats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "whatshap_stats",
+        "description": "Compute statistics from phased variant file using Whatshap",
+        "keywords": [
+          "vcf",
+          "whatshap",
+          "stats",
+          "phasing",
+          "phase"
+        ],
+        "tools": [
+          {
+            "whatshap": {
+              "description": "Phase genomic variants using DNA sequencing reads (haplotype assembly).",
+              "args_id": "$args",
+              "homepage": "https://whatshap.readthedocs.io",
+              "documentation": "https://whatshap.readthedocs.io",
+              "tool_dev_url": "https://github.com/whatshap/whatshap",
+              "doi": "10.1101/085050",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:whatshap"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Phased variant vcf file",
+                "pattern": "*.vcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "include_tsv_output": {
+              "type": "boolean",
+              "description": "Whether to include TSV output file",
+              "default": false
+            }
+          },
+          {
+            "include_gtf_output": {
+              "type": "boolean",
+              "description": "Whether to include GTF output file",
+              "default": false
+            }
+          },
+          {
+            "inlude_block_output": {
+              "type": "boolean",
+              "description": "Whether to include block list output file",
+              "default": false
+            }
+          }
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Whatshap stats output in TSV format",
+                  "pattern": "*.tsv"
+                }
+              }
+            ]
+          ],
+          "gtf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}.gtf": {
+                  "type": "file",
+                  "description": "Whatshap stats output in GTF format",
+                  "pattern": "*.gtf"
+                }
+              }
+            ]
+          ],
+          "block": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}.txt": {
+                  "type": "file",
+                  "description": "Whatshap stats block list output",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "Whatshap stats output in TXT format",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          ],
+          "versions_whatshap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whatshap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whatshap --version": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whatshap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whatshap --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@eliottBo"
+        ],
+        "maintainers": [
+          "@eliottBo"
+        ]
+      }
+    },
+    {
       "name": "windowmasker_convert",
       "path": "modules/nf-core/windowmasker/convert/meta.yml",
       "type": "module",
@@ -262803,98 +263143,222 @@
       "path": "subworkflows/nf-core/vcf_phase_shapeit5/meta.yml",
       "type": "subworkflow",
       "meta": {
-        "name": "vcf_phase_shapeit5",
-        "description": "Phase vcf panel with Shapeit5 tools",
+        "name": "VCF_PHASE_SHAPEIT5",
+        "description": "Subworkflow to phase a reference panel VCF file using SHAPEIT5.\nThe panel is first chunked by chromosome by glimpse2/chunk,\nthen genotypes are phased with shapeit5/phasecommon and\nfinally the chunks are merged back together by shapeit5/ligate by chromosomes.\nMeta map of all channels will be used to perform joint operations.\n\"regionout\" key will be added to the meta map to distinguish the different file\nbefore ligation and therefore should not be used.\n",
         "keywords": [
-          "chunk",
+          "VCF",
           "phase",
-          "ligate",
-          "index",
-          "vcf"
+          "shapeit5",
+          "haplotype"
         ],
         "components": [
-          "bedtools/makewindows",
+          "glimpse2/chunk",
           "shapeit5/phasecommon",
           "shapeit5/ligate",
           "bcftools/index"
         ],
         "input": [
           {
-            "meta": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            "ch_vcf": {
+              "description": "Channel with target VCF files",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "vcf": null,
+                  "type": "file",
+                  "description": "VCF file",
+                  "pattern": "*.{vcf,bcf,vcf.gz}"
+                },
+                {
+                  "index": null,
+                  "type": "file",
+                  "description": "VCF index file",
+                  "pattern": "*.{tbi,csi}"
+                },
+                {
+                  "pedigree": null,
+                  "type": "file",
+                  "description": {
+                    "Pedigree information in the following format": "offspring father mother."
+                  },
+                  "pattern": "*.{txt, tsv}"
+                },
+                {
+                  "region": null,
+                  "type": "string",
+                  "description": "Region to perform the chunking on for GLIMPSE2_chunk",
+                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
+                }
+              ]
             }
           },
           {
-            "ch_vcf": {
-              "type": "file",
-              "description": "Target dataset in VCF/BCF format defined at all variable positions.\nIndex file of the input VCF/BCF file containing genotype likelihoods.\nPedigree information in the following format: offspring father mother.\nTarget region, usually a full chromosome (e.g. chr20:1000000-2000000 or chr20).\nThe file could possibly be without GT field (for efficiency reasons a file containing only the positions is recommended).\nStructure: [ val(meta), path(vcf), path(csi), path(pedigree), val(region) ]\n"
+            "ch_chunks": {
+              "description": "Channel with region data",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map that will be combined with the input data map"
+                },
+                {
+                  "regionout": null,
+                  "type": "string",
+                  "description": "Region to perform the phasing on",
+                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
+                }
+              ]
             }
           },
           {
             "ch_ref": {
-              "type": "file",
-              "description": "Reference panel of haplotypes in VCF/BCF format.\nIndex file of the Reference panel file.\nStructure: [ val(meta), path(ref), path(csi) ]\n"
+              "description": "Channel with reference phased VCF files",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "vcf": null,
+                  "type": "file",
+                  "description": "VCF file",
+                  "pattern": "*.{vcf,bcf,vcf.gz}"
+                },
+                {
+                  "index": null,
+                  "type": "file",
+                  "description": "VCF index file",
+                  "pattern": "*.{tbi,csi}"
+                }
+              ]
             }
           },
           {
             "ch_scaffold": {
-              "type": "file",
-              "description": "Scaffold of haplotypes in VCF/BCF format.\nIndex file of the Scaffold of haplotypes file.\nStructure: [ val(meta), path(scaffold), path(csi) ]\n"
+              "description": "Channel with reference scaffold VCF files",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "vcf": null,
+                  "type": "file",
+                  "description": "VCF file",
+                  "pattern": "*.{vcf,bcf,vcf.gz}"
+                },
+                {
+                  "index": null,
+                  "type": "file",
+                  "description": "VCF index file",
+                  "pattern": "*.{tbi,csi}"
+                }
+              ]
             }
           },
           {
             "ch_map": {
-              "type": "file",
-              "description": "File containing the genetic map.",
-              "Structure": [
-                "val(meta)",
-                "path(map)"
+              "description": "Channel with genetic map data (optional)",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "map": null,
+                  "type": "file",
+                  "description": "Map file in GLIMPSE format",
+                  "pattern": "*.map"
+                }
+              ]
+            }
+          },
+          {
+            "chunk": {
+              "type": "boolean",
+              "description": "Whether to perform chunking of the input data before imputation."
+            }
+          },
+          {
+            "chunk_model": {
+              "description": "Chunk model for GLIMPSE2_chunk",
+              "type": "string",
+              "enum": [
+                "recursive",
+                "sequential"
               ]
             }
           }
         ],
         "output": [
           {
-            "meta": {
-              "type": "map",
-              "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+            "chunks": {
+              "description": "Channel with chunks regions",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "regionout": null,
+                  "type": "string",
+                  "description": "Region to perform the phasing on",
+                  "pattern": "[chr]+[0-9]+:[0-9]+-[0-9]+"
+                }
+              ]
             }
           },
           {
-            "bed": {
-              "type": "file",
-              "description": "BED file containing the windows",
-              "pattern": "*.bed"
-            }
-          },
-          {
-            "variants_phased": {
-              "type": "file",
-              "description": "Phased haplotypes in VCF/BCF format.",
-              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
-            }
-          },
-          {
-            "variants_index": {
-              "type": "file",
-              "description": "CSI bcftools index",
-              "pattern": "*.csi"
+            "vcf_index": {
+              "description": "Channel with phased VCF files",
+              "structure": [
+                {
+                  "meta": null,
+                  "type": "map",
+                  "description": "Metadata map"
+                },
+                {
+                  "vcf": null,
+                  "type": "file",
+                  "description": "VCF file",
+                  "pattern": "*.{vcf,bcf,vcf.gz}"
+                },
+                {
+                  "index": null,
+                  "type": "file",
+                  "description": "VCF index file",
+                  "pattern": "*.{tbi,csi}"
+                }
+              ]
             }
           },
           {
             "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
+              "description": "Channel containing software versions file",
+              "structure": [
+                {
+                  "versions.yml": {
+                    "type": "file",
+                    "description": "File containing versions of the software used"
+                  }
+                }
+              ]
             }
           }
         ],
         "authors": [
-          "@LouisLeNezet"
+          "@louislenezet"
         ],
         "maintainers": [
-          "@LouisLeNezet"
+          "@louislenezet"
         ]
       }
     }
