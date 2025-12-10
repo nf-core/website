@@ -13557,9 +13557,9 @@
                 }
               },
               {
-                "bamstats --version | grep \"version: \" | sed -e s\"/version: //": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "bamstats --version | grep \"version: \" | sed -e s\"/version: //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -13581,7 +13581,7 @@
                 }
               },
               {
-                "bamstats --version | grep \"version: \" | sed -e s\"/version: //": {
+                "bamstats --version | grep \"version: \" | sed -e s\"/version: //\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -20996,9 +20996,9 @@
                 }
               },
               {
-                "bgzip --version | head -1 | sed \"s/bgzip (htslib": {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib) //\"": {
                   "type": "eval",
-                  "description": "The tool version"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -21040,9 +21040,9 @@
                 }
               },
               {
-                "bgzip --version | head -1 | sed \"s/bgzip (htslib": {
+                "bgzip --version | head -1 | sed \"s/bgzip (htslib) //\"": {
                   "type": "eval",
-                  "description": "The tool version"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -41577,6 +41577,156 @@
           "version": "1.1.1"
         }
       ]
+    },
+    {
+      "name": "clusty",
+      "path": "modules/nf-core/clusty/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "clusty",
+        "description": "Clusty is a tool for large-scale clustering using sparse distance matrices, suitable for datasets with millions of objects.",
+        "keywords": [
+          "cluster",
+          "network",
+          "contig",
+          "scaffold",
+          "alignment",
+          "protein"
+        ],
+        "tools": [
+          {
+            "clusty": {
+              "description": "Clusty is a tool for large-scale data clustering.",
+              "homepage": "https://github.com/refresh-bio/clusty",
+              "documentation": "https://github.com/refresh-bio/clusty",
+              "tool_dev_url": "https://github.com/refresh-bio/clusty",
+              "doi": "10.1038/s41592-025-02701-7",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "distances": {
+                "type": "file",
+                "description": "pairwise distances file (e.g., TSV format)",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "objects": {
+                "type": "file",
+                "description": "Optional TSV file containing object identifiers",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "assignments": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV file with cluster assignments",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_clusty": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clusty": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo $(clusty --version 2>&1": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clusty": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo $(clusty --version 2>&1": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Joon-Klaps"
+        ],
+        "maintainers": [
+          "@Joon-Klaps"
+        ]
+      }
     },
     {
       "name": "cmaple",
@@ -70590,9 +70740,9 @@
                 }
               },
               {
-                "fastqc --version | sed \"/FastQC v/!d; s/.*v//": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "fastqc --version | sed \"/FastQC v/!d; s/.*v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -70614,9 +70764,9 @@
                 }
               },
               {
-                "fastqc --version | sed \"/FastQC v/!d; s/.*v//": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "fastqc --version | sed \"/FastQC v/!d; s/.*v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -102609,9 +102759,9 @@
                 }
               },
               {
-                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\\\([0-9.]\\\\+\\\\'": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\([0-9.]\\+\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -102633,9 +102783,9 @@
                 }
               },
               {
-                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\\\([0-9.]\\\\+\\\\'": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "haplogrep3 | sed -n 's/.*Haplogrep 3 \\([0-9.]\\+\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -144276,9 +144426,9 @@
                 }
               },
               {
-                "multiqc --version | sed \"s/.* //g": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "multiqc --version | sed \"s/.* //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -144300,9 +144450,9 @@
                 }
               },
               {
-                "multiqc --version | sed \"s/.* //g": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "multiqc --version | sed \"s/.* //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -185065,9 +185215,9 @@
                 }
               },
               {
-                "ribodetector --version | sed \"s/ribodetector //": {
-                  "type": "string",
-                  "description": "Version of ribodetector used"
+                "ribodetector --version | sed \"s/ribodetector //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -185089,9 +185239,9 @@
                 }
               },
               {
-                "ribodetector --version | sed \"s/ribodetector //": {
-                  "type": "string",
-                  "description": "Version of ribodetector used"
+                "ribodetector --version | sed \"s/ribodetector //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -197146,9 +197296,9 @@
                 }
               },
               {
-                "samtools version | sed \"1!d;s/.* //": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -197160,19 +197310,19 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The process the versions were collected from"
+                  "description": "Name of the process"
                 }
               },
               {
                 "samtools": {
                   "type": "string",
-                  "description": "The tool name"
+                  "description": "Name of the tool"
                 }
               },
               {
-                "samtools version | sed \"1!d;s/.* //": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -197572,9 +197722,9 @@
                 }
               },
               {
-                "samtools --version | head -1 | sed -e \"s/samtools //": {
-                  "type": "string",
-                  "description": "Version of samtools used"
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -197596,9 +197746,9 @@
                 }
               },
               {
-                "samtools --version | head -1 | sed -e \"s/samtools //": {
-                  "type": "string",
-                  "description": "Version of samtools used"
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -227841,9 +227991,9 @@
                 }
               },
               {
-                "tabix -h 2>&1 | grep -oP 'Version:\\\\s*\\\\K[^\\\\s]+'": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -227865,9 +228015,9 @@
                 }
               },
               {
-                "tabix -h 2>&1 | grep -oP 'Version:\\\\s*\\\\K[^\\\\s]+'": {
-                  "type": "string",
-                  "description": "The command used to generate the version of the tool"
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -230131,6 +230281,280 @@
       ]
     },
     {
+      "name": "td2_longorfs",
+      "path": "modules/nf-core/td2/longorfs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "td2_longorfs",
+        "description": "TD2 identifies candidate coding regions within transcript sequences, such as those generated by de novo RNA-Seq transcript assembly",
+        "keywords": [
+          "td2",
+          "orfs",
+          "longorfs",
+          "transcripts"
+        ],
+        "tools": [
+          {
+            "td2": {
+              "description": "TD2 identifies candidate coding regions within transcript sequences, such as those generated by de novo RNA-Seq transcript assembly",
+              "homepage": "https://github.com/Markusjsommer/TD2",
+              "documentation": "https://github.com/Markusjsommer/TD2",
+              "tool_dev_url": "https://github.com/Markusjsommer/TD2",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Fasta file containing the target transcript sequences",
+                "pattern": "*.{fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "orfs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/longest_orfs.{cds,gff3,pep}": {
+                  "type": "file",
+                  "description": "Files containing the longest ORFs predicted from the input transcript sequences",
+                  "pattern": "${prefix}/longest_orfs.{cds,gff3,pep}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1960"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_td2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TD2.LongOrfs": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "string",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TD2.LongOrfs": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "string",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "td2_predict",
+      "path": "modules/nf-core/td2/predict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "td2_predict",
+        "description": "TD2 identifies candidate coding regions within transcript sequences, such as those generated by de novo RNA-Seq transcript assembly",
+        "keywords": [
+          "predict",
+          "orfs",
+          "coding regions",
+          "td2.predict"
+        ],
+        "tools": [
+          {
+            "td2": {
+              "description": "TD2 identifies candidate coding regions within transcript sequences, such as those generated by de novo RNA-Seq transcript assembly",
+              "homepage": "https://github.com/Markusjsommer/TD2",
+              "documentation": "https://github.com/Markusjsommer/TD2",
+              "tool_dev_url": "https://github.com/Markusjsommer/TD2",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Transcripts fasta file",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "orfs_dir": {
+                "type": "file",
+                "description": "Directory containing the ORF prediction files generated by the `td2_longorfs` module",
+                "pattern": "orfs_dir/",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predictions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/*.TD2.{bed,cds,gff3,pep}": {
+                  "type": "file",
+                  "description": "Files containing the TD2 ORF predictions for the input transcript sequences",
+                  "pattern": "${prefix}/*.TD2.{bed,cds,gff3,pep}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_td2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TD2.Predict": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "string",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "TD2.Predict": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "string",
+                  "description": "The tool version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
       "name": "telseq",
       "path": "modules/nf-core/telseq/meta.yml",
       "type": "module",
@@ -232357,19 +232781,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trgt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -232490,19 +232946,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trgt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -232661,19 +233149,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_trgt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trgt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "trgt --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -259307,6 +259827,84 @@
         "description": "Subworkflow that preprocesses FASTQ files",
         "keywords": [
           "fasta",
+          "seqkit",
+          "preprocessing"
+        ],
+        "components": [
+          "fastq_sanitise_seqkit",
+          "seqkit/sana",
+          "seqkit/pair",
+          "seqkit/seq",
+          "seqkit/replace",
+          "seqkit/rmdup"
+        ],
+        "input": [
+          {
+            "ch_reads": {
+              "type": "channel",
+              "description": "Channel containing sample metadata and FASTQ files.\nStructure: [ val(meta), [ fastq ] ]\nWhere meta is a map containing at least:\n- id: sample identifier\n- single_end: boolean indicating if data is single-end (true) or paired-end (false)\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "skip_seqkit_sana_pair": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_sana_pair subworkflow.\n"
+            }
+          },
+          {
+            "skip_seqkit_seq": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_seq process.\n"
+            }
+          },
+          {
+            "skip_seqkit_replace": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_replace process.\n"
+            }
+          },
+          {
+            "skip_seqkit_rmdup": {
+              "type": "boolean",
+              "description": "If true, skips the seqkit_rmdup process.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "reads": {
+              "type": "channel",
+              "description": "Channel containing filtered FASTQ files.\nStructure: [ val(meta), [ fastq ] ]\n",
+              "pattern": "*.{fastq,fastq.gz,fq,fq.gz}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@maia-munteanu"
+        ],
+        "maintainers": [
+          "@maia-munteanu",
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "fastq_preprocess_seqkit",
+      "path": "subworkflows/nf-core/fastq_preprocess_seqkit/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_preprocess_seqkit",
+        "description": "Subworkflow that preprocesses FASTQ files",
+        "keywords": [
+          "fastq",
           "seqkit",
           "preprocessing"
         ],
