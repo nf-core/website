@@ -10,13 +10,15 @@
 
     let { frontmatter = {}, add_class = "btn-outline-success" }: Props = $props();
 
-    let event_location = "";
-    if (typeof frontmatter.locationURL === "string") {
-        event_location = frontmatter.locationURL;
-    } else if (frontmatter.locationURL) {
-        event_location = frontmatter.locationURL.join(", ");
-    }
-    const calendar_event = {
+    const event_location = $derived(
+        typeof frontmatter.locationURL === "string"
+            ? frontmatter.locationURL
+            : frontmatter.locationURL
+              ? frontmatter.locationURL.join(", ")
+              : "",
+    );
+
+    const calendar_event = $derived({
         title: frontmatter.title,
         description: frontmatter.subtitle,
         start: frontmatter.start.toISOString().includes("00:00:00")
@@ -27,7 +29,7 @@
             : frontmatter.end,
         location: event_location,
         allDay: frontmatter.start.toISOString().includes("00:00:00"),
-    };
+    });
 
     const removeTimeFromICSDate = (ics: string) => {
         // find DTSTART or DTEND lines and drop the time completely
@@ -55,22 +57,27 @@
         return url.split("?")[0] + "?" + params.toString();
     };
 
-    // Initialize the calendar objects
-    const calendarData = $state({
-        google: new GoogleCalendar(calendar_event, true).render(),
-        outlook: new OutlookCalendar(calendar_event).render(),
-        ical: new ICalendar(calendar_event).render(),
+    // Initialize the calendar objects with derived values
+    const calendarData = $derived.by(() => {
+        const google = new GoogleCalendar(calendar_event, true).render();
+        const outlook = new OutlookCalendar(calendar_event).render();
+        let ical = new ICalendar(calendar_event).render();
+
+        // Apply modifications if needed
+        if (calendar_event.allDay) {
+            ical = removeTimeFromICSDate(ical);
+            return {
+                google: removeTimeFromCalendarURL(google, true),
+                outlook: removeTimeFromCalendarURL(outlook),
+                ical: ical,
+            };
+        }
+
+        return { google, outlook, ical };
     });
 
-    // Apply modifications if needed
-    if (calendar_event.allDay) {
-        calendarData.ical = removeTimeFromICSDate(calendarData.ical);
-        calendarData.google = removeTimeFromCalendarURL(calendarData.google, true);
-        calendarData.outlook = removeTimeFromCalendarURL(calendarData.outlook);
-    }
-
     // Create the blob from the ical data
-    const icalBlob = $state(new Blob([calendarData.ical], { type: "text/calendar;charset=utf-8" }));
+    const icalBlob = $derived(new Blob([calendarData.ical], { type: "text/calendar;charset=utf-8" }));
 
     function downloadIcal() {
         saveAs(icalBlob, frontmatter.title.replace(/[^a-z0-9]/gi, "_").toLowerCase() + ".ics");

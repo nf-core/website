@@ -21,8 +21,16 @@ export const DisplayStyle = isBrowser
     : atom<string>('grid');
 
 export const Checkboxes = isBrowser
-    ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [])
-    : atom<Array<{ id: string; checked: boolean }>>([])
+    ? persistentAtom<Array<{ id: string; checked: boolean }>>("Checkboxes", [], {
+        decode: (value) => {
+            try {
+                return JSON.parse(value);
+            } catch {
+                return [];
+            }
+        },
+    })
+    : atom<Array<{ id: string; checked: boolean }>>([]);
 export const currentHeading = atom("");
 export const currentPage = atom<number>(1);
 export const CurrentTab = atom<string>("");
