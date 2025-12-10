@@ -4,11 +4,10 @@ subtitle: Guidance for distinguishing between different types of contributors to
 parentWeight: 10
 ---
 
-All nf-core pipelines have a `nextflow.config` file, that within which has a 'manifest' listing all contributors to a pipeline.
+Each nf-core pipeline includes a `nextflow.config` file with a manifest that lists all pipeline contributors.
+The manifest includes a `contributions` attribute that describes what each person contributed to the pipeline.
 
-This section of the manifest have a specific attribute called 'contributions' that is designed to describe what each person has done for the pipeline.
-
-In this page we will describe the nf-core community's guidance on how to use the contribution attribution, to maximise community recognition to all of out pipelines.
+This page outlines the nf-core community's guidelines for attributing contributions to recognize all contributors to our pipelines.
 
 ## Contribution types
 
