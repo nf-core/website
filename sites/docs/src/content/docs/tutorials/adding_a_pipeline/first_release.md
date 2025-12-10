@@ -36,12 +36,16 @@ Use `nf-core pipelines lint --release`. This will check that your code conforms 
 Ok - now the tough bit - does your workflow stand up to the scrutiny of the nf-core team?!
 Not to worry, we're a friendly bunch.
 
-To get your pipeline reviewed for its initial release, do the following:
+To start a review for the initial release of your pipeline:
 
-1. Make a pull-request from the `dev` branch to `master` on the nf-core fork. This is a
+1. Create a new branch named `TEMPLATE_<TOOLS_VERSION>`, based on the version of `TEMPLATE` from the `dev `branch you plan to merge into `master`.
+   The commit message from @nf-core-bot will help you figure out what tool versions were used.
+   For example, if the tools sync commit message was `Template update for nf-core/tools version 1.13`, call the branch `TEMPLATE_1.13`.
+
+2. Make a pull request from the `dev` branch to `TEMPLATE_<TOOLS_VERSION>` branch on the nf-core fork. This is a
    special case and all of the tests should pass.
 
-1. Once the tests are passing, request two reviews, with one from the core or maintainers team. You can use the
+3. Once the tests are passing, request two reviews, with one from the core or maintainers team. You can use the
    [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) slack channel for this.
 
 What happens next depends on the state of your master branch:
