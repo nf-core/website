@@ -32669,19 +32669,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "cat": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "cat --version 2>&1 | head -n 1 | sed 's/^.*coreutils) //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "cat": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "cat --version 2>&1 | head -n 1 | sed 's/^.*coreutils) //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -144411,30 +144443,6 @@
               }
             }
           ],
-          "versions_multiqc": [
-            [
-              {
-                "${task.process}": {
-                  "type": "string",
-                  "description": "The process the versions were collected from"
-                }
-              },
-              {
-                "multiqc": {
-                  "type": "string",
-                  "description": "The tool name"
-                }
-              },
-              {
-                "multiqc --version | sed \"s/.* //g\"": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
-                }
-              }
-            ]
-          ]
-        },
-        "topics": {
           "versions": [
             [
               {
@@ -161191,7 +161199,13 @@
         "maintainers": [
           "@famosab"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantprioritization",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pear",
@@ -188360,6 +188374,210 @@
           "version": "3.22.1"
         }
       ]
+    },
+    {
+      "name": "rseqc_splitbam",
+      "path": "modules/nf-core/rseqc/splitbam/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rseqc_splitbam",
+        "description": "Split BAM file based on gene list in BED format",
+        "keywords": [
+          "bam",
+          "split",
+          "rnaseq",
+          "quality control"
+        ],
+        "tools": [
+          {
+            "rseqc": {
+              "description": "RSeQC package provides a number of useful modules that can comprehensively evaluate\nhigh throughput sequence data especially RNA-seq data.\n",
+              "homepage": "http://rseqc.sourceforge.net/",
+              "documentation": "http://rseqc.sourceforge.net/",
+              "tool_dev_url": "https://github.com/MonashBioinformaticsPlatform/RSeQC",
+              "doi": "10.1093/bioinformatics/bts356",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:rseqc"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Gene list in BED format to split the BAM by",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "in_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.in.bam": {
+                  "type": "file",
+                  "description": "BAM file containing reads that mapped to the gene list",
+                  "pattern": "*.in.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ex_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.ex.bam": {
+                  "type": "file",
+                  "description": "BAM file containing reads that did not map to the gene list",
+                  "pattern": "*.ex.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "junk_bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.junk.bam": {
+                  "type": "file",
+                  "description": "BAM file containing QC failed or unmapped reads",
+                  "pattern": "*.junk.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "split_bam.py --version | sed \"s/split_bam.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "split_bam.py --version | sed \"s/split_bam.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@rhassaine"
+        ],
+        "maintainers": [
+          "@rhassaine"
+        ]
+      }
     },
     {
       "name": "rseqc_tin",
@@ -222420,6 +222638,177 @@
       }
     },
     {
+      "name": "strdrop_call",
+      "path": "modules/nf-core/strdrop/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "strdrop_call",
+        "description": "Detect drops in STR coverage",
+        "keywords": [
+          "str",
+          "vcf",
+          "lrs"
+        ],
+        "tools": [
+          {
+            "strdrop": {
+              "description": "Flag STR coverage drops in LRS data",
+              "homepage": "https://github.com/dnil/strdrop",
+              "documentation": "https://github.com/dnil/strdrop/blob/main/docs/README.md",
+              "tool_dev_url": "https://github.com/dnil/strdrop",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input STR call VCF file",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing training set information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "training_set_json": {
+                "type": "file",
+                "description": "Input training set as json",
+                "pattern": "*.json",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing training set information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "training_set_vcfs": {
+                "type": "file",
+                "description": "Input training set as VCF files",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Output annotated VCF file",
+                  "pattern": "*.{vcf.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_strdrop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "strdrop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "strdrop --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "strdrop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "strdrop --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@fellen31"
+        ],
+        "maintainers": [
+          "@fellen31"
+        ]
+      }
+    },
+    {
       "name": "strdust",
       "path": "modules/nf-core/strdust/meta.yml",
       "type": "module",
@@ -238203,6 +238592,10 @@
         },
         {
           "name": "tumourevo",
+          "version": "dev"
+        },
+        {
+          "name": "variantprioritization",
           "version": "dev"
         },
         {
