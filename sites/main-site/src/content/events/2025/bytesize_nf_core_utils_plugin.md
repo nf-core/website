@@ -2,9 +2,9 @@
 title: "Bytesize: The nf-core-utils plugin"
 subtitle: Edmund Miller, Seqera
 type: talk
-startDate: "2025-12-16"
+startDate: "2026-01-13"
 startTime: "13:00+01:00"
-endDate: "2025-12-16"
+endDate: "2026-01-13"
 endTime: "13:30+01:00"
 locations:
   - name: Online
