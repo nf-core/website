@@ -32518,19 +32518,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pigz": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pigz --version 2>&1 | sed 's/pigz //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pigz": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pigz --version 2>&1 | sed 's/pigz //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -164024,6 +164056,160 @@
       }
     },
     {
+      "name": "picard_collectvariantcallingmetrics",
+      "path": "modules/nf-core/picard/collectvariantcallingmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "picard_collectvariantcallingmetrics",
+        "description": "Collects per-sample and aggregate (spanning all samples) metrics from the provided VCF file",
+        "keywords": [
+          "vcf",
+          "metrics",
+          "variant calling",
+          "statistics"
+        ],
+        "tools": [
+          {
+            "picard": {
+              "description": "A set of command line tools (in Java) for manipulating high-throughput sequencing (HTS) data and formats such as SAM/BAM/CRAM and VCF.",
+              "homepage": "https://broadinstitute.github.io/picard/",
+              "documentation": "https://broadinstitute.github.io/picard/",
+              "tool_dev_url": "https://github.com/broadinstitute/picard",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:picard_tools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file for analysis",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Index file for the input VCF file",
+                "pattern": "*.{idx,tbi}"
+              }
+            },
+            {
+              "intervals_file": {
+                "type": "file",
+                "description": "Optional BED file specifying target intervals",
+                "pattern": "*.{bed,bed.gz,intervals_list}"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference sequence file",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "dict": {
+                "type": "file",
+                "description": "Reference sequence dictionary file",
+                "pattern": "*.{dict}"
+              }
+            },
+            {
+              "dbsnp": {
+                "type": "file",
+                "description": "Reference dbSNP file in dbSNP or VCF format",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "dbsnp_index": {
+                "type": "file",
+                "description": "Reference dbSNP file in dbSNP or VCF format",
+                "pattern": "*.{idx,tbi}"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "detail_metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.variant_calling_detail_metrics": {
+                  "type": "file",
+                  "description": "Detailed variant calling metrics file",
+                  "pattern": "*.variant_calling_detail_metrics"
+                }
+              }
+            ]
+          ],
+          "summary_metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.variant_calling_summary_metrics": {
+                  "type": "file",
+                  "description": "Summary variant calling metrics file",
+                  "pattern": "*.variant_calling_summary_metrics"
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@georgiakes"
+        ],
+        "maintainers": [
+          "@georgiakes"
+        ]
+      }
+    },
+    {
       "name": "picard_collectwgsmetrics",
       "path": "modules/nf-core/picard/collectwgsmetrics/meta.yml",
       "type": "module",
@@ -167832,6 +168018,419 @@
           "version": "3.0.0"
         }
       ]
+    },
+    {
+      "name": "plastid_make_wiggle",
+      "path": "modules/nf-core/plastid/make_wiggle/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plastid_make_wiggle",
+        "description": "Create wiggle or bedGraph files from alignment files after applying a read mapping rule (e.g. to map ribosome-protected footprints at their P-sites), for visualization in a genome browser",
+        "keywords": [
+          "genomics",
+          "riboseq",
+          "psite",
+          "wiggle",
+          "bedgraph"
+        ],
+        "tools": [
+          {
+            "plastid": {
+              "description": "Nucleotide-resolution analysis of next-generation sequencing and genomics data",
+              "homepage": "https://github.com/joshuagryphon/plastid",
+              "documentation": "https://plastid.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/joshuagryphon/plastid",
+              "doi": "10.1186/s12864-016-3278-x",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:plastid"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Genome BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bam_index": {
+                "type": "file",
+                "description": "Genome BAM index file",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            },
+            {
+              "p_offsets": {
+                "type": "file",
+                "description": "Selected p-site offset for each read length (output from plastid_psite).\nRequired when mapping_rule is 'fiveprime_variable', otherwise pass empty list [].\n",
+                "pattern": "*_p_offsets.txt",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "mapping_rule": {
+              "type": "string",
+              "description": "Read mapping rule. Use 'fiveprime_variable' with p_offsets file to map reads to P-sites.\n",
+              "enum": [
+                "fiveprime",
+                "threeprime",
+                "center",
+                "fiveprime_variable"
+              ]
+            }
+          }
+        ],
+        "output": {
+          "tracks": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.{wig,bedgraph}": {
+                  "type": "file",
+                  "description": "wig/bedgraph tracks for forward and reverse strands",
+                  "pattern": "*.{wig,bedgraph}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3005"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3583"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@suhrig"
+        ],
+        "maintainers": [
+          "@suhrig"
+        ]
+      }
+    },
+    {
+      "name": "plastid_metagene_generate",
+      "path": "modules/nf-core/plastid/metagene_generate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plastid_metagene_generate",
+        "description": "Compute a metagene profile of read alignments, counts, or quantitative data over one or more regions of interest, optionally applying a mapping rule",
+        "keywords": [
+          "genomics",
+          "riboseq",
+          "psite"
+        ],
+        "tools": [
+          {
+            "plastid": {
+              "description": "Nucleotide-resolution analysis of next-generation sequencing and genomics data",
+              "homepage": "https://github.com/joshuagryphon/plastid",
+              "documentation": "https://plastid.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/joshuagryphon/plastid",
+              "doi": "10.1186/s12864-016-3278-x",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:plastid"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Map containing reference information for the reference genome annotation file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "annotation file of reference genome (BED, bigBed, GTF, GFF3)",
+                "pattern": "*.{bed,bigbed,gtf,gff3}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3004"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "rois_txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Map containing reference information for the reference genome annotation file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+                }
+              },
+              {
+                "*_rois.txt": {
+                  "type": "file",
+                  "description": "Tab-delimited text file describing the maximal spanning window for each gene",
+                  "pattern": "*_rois.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "rois_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Map containing reference information for the reference genome annotation file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+                }
+              },
+              {
+                "*_rois.bed": {
+                  "type": "file",
+                  "description": "Maximal spanning windows in BED format for visualization in a genome\nbrowser. The thickly-rendered portion of a window indicates its landmark.\n",
+                  "pattern": "*_rois.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@suhrig"
+        ],
+        "maintainers": [
+          "@suhrig"
+        ]
+      }
+    },
+    {
+      "name": "plastid_psite",
+      "path": "modules/nf-core/plastid/psite/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "plastid_psite",
+        "description": "Estimate position of ribosomal P-site within ribosome profiling read alignments as a function of read length",
+        "keywords": [
+          "genomics",
+          "riboseq",
+          "psite"
+        ],
+        "tools": [
+          {
+            "plastid": {
+              "description": "Nucleotide-resolution analysis of next-generation sequencing and genomics data",
+              "homepage": "https://github.com/joshuagryphon/plastid",
+              "documentation": "https://plastid.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/joshuagryphon/plastid",
+              "doi": "10.1186/s12864-016-3278-x",
+              "licence": [
+                "BSD-3-clause"
+              ],
+              "identifier": "biotools:plastid"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Genome BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bam_index": {
+                "type": "file",
+                "description": "Genome BAM index file",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Map containing reference information for the reference genome GTF file\ne.g. `[ id:'Ensembl human v.111' ]`\n"
+              }
+            },
+            {
+              "rois_txt": {
+                "type": "file",
+                "description": "Tab-delimited text file describing the maximal spanning\nwindow for each gene (output from plastid_metagene_generate)\n",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "metagene_profiles": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_metagene_profiles.txt": {
+                  "type": "file",
+                  "description": "Matrix containing metagene profile for each read length",
+                  "pattern": "*_metagene_profiles.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "p_offsets_png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_p_offsets.png": {
+                  "type": "file",
+                  "description": "Graphical illustration of metagene profiles",
+                  "pattern": "*_p_offsets.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "p_offsets": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*_p_offsets.txt": {
+                  "type": "file",
+                  "description": "Selected p-site offset for each read length",
+                  "pattern": "*_p_offsets.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@suhrig"
+        ],
+        "maintainers": [
+          "@suhrig"
+        ]
+      }
     },
     {
       "name": "platypus",
@@ -233335,6 +233934,24 @@
               }
             ]
           ],
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.{tbi,csi}": {
+                  "type": "file",
+                  "description": "Index of merged output file",
+                  "pattern": "*.{tbi,csi}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions_trgt": [
             [
               {
@@ -248035,6 +248652,171 @@
       }
     },
     {
+      "name": "whatshap_phase",
+      "path": "modules/nf-core/whatshap/phase/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "whatshap_phase",
+        "description": "Phase variants in a VCF file using long-read sequencing data",
+        "keywords": [
+          "phasing",
+          "haplotypes",
+          "vcf",
+          "long-reads",
+          "nanopore",
+          "pacbio"
+        ],
+        "tools": [
+          {
+            "whatshap": {
+              "description": "WhatsHap is a software for phasing genomic variants using DNA sequencing\nreads, also called read-based phasing or haplotype assembly.\n",
+              "homepage": "https://whatshap.readthedocs.io/",
+              "documentation": "https://whatshap.readthedocs.io/",
+              "tool_dev_url": "https://github.com/whatshap/whatshap",
+              "doi": "10.1101/085050",
+              "licence": [
+                "MIT"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF file with unphased variants (can be gzipped)",
+                "pattern": "*.{vcf,vcf.gz}"
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "VCF index file (optional but recommended)",
+                "pattern": "*.{tbi,csi}"
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing bam information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file with aligned reads",
+                "pattern": "*.bam"
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file (optional but recommended)",
+                "pattern": "*.bai"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fa,fasta}"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Reference genome index",
+                "pattern": "*.fai"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Bgzipped phased VCF file",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Phased VCF index file",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@haidyi"
+        ],
+        "maintainers": [
+          "@haidyi"
+        ]
+      }
+    },
+    {
       "name": "whatshap_stats",
       "path": "modules/nf-core/whatshap/stats/meta.yml",
       "type": "module",
@@ -261552,6 +262334,112 @@
           "version": "2.3.0"
         }
       ]
+    },
+    {
+      "name": "mafft_align",
+      "path": "subworkflows/nf-core/mafft_align/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "mafft_align",
+        "description": "Prepare channels for running MAFFT/align",
+        "keywords": [
+          "msa",
+          "mafft",
+          "align"
+        ],
+        "components": [
+          "mafft/align"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "The input channel containing the FASTA files\n",
+              "pattern": "*.{bam/cram/sam}",
+              "structure": [
+                [
+                  {
+                    "meta": {
+                      "type": "map",
+                      "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                    }
+                  },
+                  {
+                    "fasta": {
+                      "type": "file",
+                      "description": "Input sequences in FASTA format",
+                      "pattern": "*.{fa,fasta}",
+                      "ontologies": [
+                        {
+                          "edam": "http://edamontology.org/format_1929"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              ]
+            }
+          }
+        ],
+        "output": [
+          {
+            "alignment": {
+              "type": "file",
+              "description": "Channel containing the alignment file in fasta format.",
+              "structure": [
+                [
+                  {
+                    "meta": {
+                      "type": "map",
+                      "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+                    }
+                  },
+                  {
+                    "*.aln.gz": {
+                      "type": "file",
+                      "description": "Alignment file, in FASTA format.",
+                      "pattern": "*.aln.gz",
+                      "ontologies": [
+                        {
+                          "edam": "http://edamontology.org/format_1984"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              ]
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "Channel containing the software versions YAML file",
+              "structure": [
+                {
+                  "versions.yml": {
+                    "type": "file",
+                    "description": "File containing software versions",
+                    "pattern": "versions.yml",
+                    "ontologies": [
+                      {
+                        "edam": "http://edamontology.org/format_3750"
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "authors": [
+          "@mirpedrol"
+        ],
+        "maintainers": [
+          "@mirpedrol",
+          "@luisas",
+          "@JoseEspinosa"
+        ]
+      }
     },
     {
       "name": "mmseqs_contig_taxonomy",
