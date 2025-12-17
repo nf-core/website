@@ -10,14 +10,14 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Required `path` channel inputs
 
-You MUST define input channel `path` declarations for all _possible_ input files (i.e. both required and optional files).
+Input channel `path` declarations MUST be defined for all _possible_ input files (i.e., both required and optional files).
 
-- You MAY define directly associated auxiliary files to an input file within the same input channel alongside the main input channel (e.g., [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
-- You MAY define other generic auxiliary files used across different input files using a dedicated input channel (e.g., [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
+- Directly associated auxiliary files to an input file MAY be defined within the same input channel alongside the main input channel (e.g., [BAM and BAI](https://github.com/nf-core/modules/blob/e937c7950af70930d1f34bb961403d9d2aa81c7d/modules/samtools/flagstat/main.nf#L22)).
+- Other generic auxiliary files used across different input files MAY be defined using a dedicated input channel (e.g., [reference files](https://github.com/nf-core/modules/blob/3cabc95d0ed8a5a4e07b8f9b1d1f7ff9a70f61e1/modules/bwa/mem/main.nf#L21-L23)).
 
 ## Required `val` channel inputs
 
-You SHOULD define input channel `val` declarations for all mandatory non-file inputs that are essential for the functioning of the tool (e.g., parameters, flags etc).
+Input channel `val` declarations SHOULD be defined for all mandatory non-file inputs that are essential for the functioning of the tool (e.g., parameters, flags etc).
 
 - Mandatory non-file inputs are options that the tool MUST have to be able to be run.
 - These non-file inputs are typically booleans or strings, and must be documented as such in the corresponding entry in the `meta.yaml`.
@@ -52,7 +52,7 @@ When one and only one of multiple argument are required:
 
 ## Output channel emissions
 
-You MUST emit named file extensions for ALL output channels. For example, `path "*.txt", emit: txt`.
+Named file extensions MUST be emitted for ALL output channels. For example, `path "*.txt", emit: txt`.
 
 ## Optional inputs
 

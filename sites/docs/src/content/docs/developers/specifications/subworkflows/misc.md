@@ -1,9 +1,7 @@
 ---
 title: Misc
-subtitle: Miscellaneous module specifications
-markdownPlugin: addNumbersToHeadings
-shortTitle: Misc
-weight: 9
+subtitle: Miscellaneous specifications for nf-core Nextflow DSL2 subworkflows
+weight: 7
 ---
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
