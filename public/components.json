@@ -41851,8 +41851,22 @@
             {
               "aln": {
                 "type": "file",
-                "description": "Multiple sequence alignment file in FASTA, PHYLIP, or MAPLE format",
-                "pattern": "*.{fa,fasta,faa,fna,fas,aln,afa,phy,phylip,maple}"
+                "description": "Multiple sequence alignment file in FASTA, PHYLIP, or MAPLE format.\nCan be gzipped on uncompressed.\n",
+                "pattern": "*.{fa,fasta,faa,fna,fas,aln,afa,phy,phylip,maple}{.gz,}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0863"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1997"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             },
             {
@@ -41914,19 +41928,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cmaple": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cmaple": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cmaple --help | grep -m1 -oE \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cmaple": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cmaple --help | grep -m1 -oE \"[0-9]+(\\.[0-9]+)+\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
