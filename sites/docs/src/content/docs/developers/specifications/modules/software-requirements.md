@@ -13,8 +13,8 @@ Where possible nf-core will use BioContainers to fetch pre-built software contai
 
 ## Use of container directives
 
-You SHOULD declare software requirements within the module file using the Nextflow `container` directive.
-For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill in the appropriate Conda / Docker / Singularity definitions by parsing the information you provide in the first part of the module name:
+Software requirements SHOULD be declared within the module file using the Nextflow `container` directive.
+For single-tool BioContainers, the `nf-core modules create` command will automatically fetch and fill in the appropriate Conda / Docker / Singularity definitions by parsing the information provided in the first part of the module name:
 
 ```groovy
 conda "bioconda::fastqc=0.11.9"
@@ -25,16 +25,16 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
 
 ## Use of conda directive
 
-If the software is available on Conda, you MUST also define it in an `environment.yml` file alongside the `main.nf` of the module, and pass it to the Nextflow `conda` directive within `main.nf`.
+If the software is available on Conda, also define it in an `environment.yml` file alongside the `main.nf` of the module, and pass it to the Nextflow `conda` directive within `main.nf`.
 
-Using `bioconda::bwa=0.7.17` as an example, you MUST pin software to the channel (i.e. `bioconda`) and version (i.e. `0.7.17`).
+Using `bioconda::bwa=0.7.17` as an example, pin software to the channel (i.e., `bioconda`) and version (i.e., `0.7.17`).
 
-You MUST NOT pin Conda packages to a build because they can vary on different platforms.
+Do not pin Conda packages to a build because they can vary on different platforms.
 
 ## Re-use of multi-tool containers
 
 Multi-tool containers are also available on BioContainers. For example, [`bwa` and `samtools`](https://biocontainers.pro/#/tools/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40).
-You can install and use the [`galaxy-tool-util`](https://anaconda.org/bioconda/galaxy-tool-util) package to search for both single- and multi-tool containers available in Conda, Docker and Singularity format. For example, to search for Docker (hosted on Quay.io) and Singularity multi-tool containers with both `bowtie` and `samtools` installed you can use the following command:
+Install and use the [`galaxy-tool-util`](https://anaconda.org/bioconda/galaxy-tool-util) package to search for both single- and multi-tool containers available in Conda, Docker and Singularity format. For example, to search for Docker (hosted on Quay.io) and Singularity multi-tool containers with both `bowtie` and `samtools` installed, use the following command:
 
 ```console
 mulled-search --destination quay singularity --channel bioconda --search bowtie samtools | grep "mulled"
@@ -59,7 +59,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
   singularity  mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f  185a25ca79923df85b58f42deb48f5ac4481e91f-0  wget https://depot.galaxyproject.org/singularity/mulled-v2-3a59640f3fe1ed11819984087d31d68600200c3f:185a25ca79923df85b58f42deb48f5ac4481e91f-0
   ```
 
-- You can copy and paste the `mulled-*` path into the relevant Docker and Singularity lines in the Nextflow `process` definition of your module
+- Copy and paste the `mulled-*` path into the relevant Docker and Singularity lines in the Nextflow `process` definition of the module
 - To confirm that this is correct, spin up a temporary Docker container:
 
   ```console
@@ -75,7 +75,7 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
   The packages should reflect those added to the multi-package-containers repo `hash.tsv` file.
 
-- If the multi-tool container already exists and you want to obtain the `mulled-*` path, you can use [this](https://midnighter.github.io/mulled) helper tool.
+- If the multi-tool container already exists, use [this](https://midnighter.github.io/mulled) helper tool to obtain the `mulled-*` path.
 
 ## Software not on Bioconda
 

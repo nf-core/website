@@ -10,11 +10,11 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Module documentation is required
 
-Your module MUST have a `meta.yaml` in the same directory as the module `main.nf`.
+The module MUST have a `meta.yaml` in the same directory as the module `main.nf`.
 
 ## Number of keywords
 
-Your keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords. Your keywords MUST NOT be solely the (sub)tool name.
+Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords. Keywords MUST NOT be solely the (sub)tool name.
 
 :::info
 For multi-tool modules, add the keyword `multi-tool` and all the (sub)tools.
@@ -22,11 +22,11 @@ For multi-tool modules, add the keyword `multi-tool` and all the (sub)tools.
 
 ## Keyword formatting
 
-Your keywords MUST be all lower case.
+Keywords MUST be all lower case.
 
 ## Documenting of all tools
 
-Your tools section MUST list every tool used in the module. For example:
+The tools section MUST list every tool used in the module. For example:
 
 ```yml
 tools:
@@ -36,7 +36,7 @@ tools:
 
 ## Documentation of args of each piped or multiple command
 
-Your tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for. A single tool module will only have `args_id: "$args"`.
+The tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for. A single tool module will only have `args_id: "$args"`.
 
 ```yml
 tools:
@@ -50,16 +50,16 @@ tools:
 
 ## Required channel documentation
 
-You SHOULD only include entries of input and output channels in the Input and Output sections of the `meta.yaml`.
+Only include entries of input and output channels in the Input and Output sections of the `meta.yaml`.
 
 ## Documentation of tuples
 
-You MUST split input and output tuples into separate entries.
+Split input and output tuples into separate entries.
 That is, `meta` should be a separate entry to the `file` it is associated with.
 
 ## Input and output channel types
 
-You MUST use only the following categories for input/output types:
+Use only the following categories for input/output types:
 
 - `map`
 - `file`

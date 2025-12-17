@@ -10,15 +10,15 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Required and optional input files
 
-You MUST include all mandatory and optional input files in `input` channel definitions.
+All mandatory and optional input files MUST be included in `input` channel definitions.
 
 ## Non-file mandatory command arguments
 
-You SHOULD provide non-file mandatory arguments required for the module to run without error as value channels (e.g., `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)).
+Non-file mandatory arguments required for the module to run without error SHOULD be provided as value channels (e.g., `lib_type` in [salmon/quant](https://github.com/nf-core/modules/blob/master/modules/nf-core/salmon/quant/main.nf)).
 
 ## Optional command arguments
 
-You MUST provide all _non-mandatory_ command-line tool _non-file_ arguments as a string via the `$task.ext.args` variable.
+All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
 
 Supply `task.ext.args` from the `modules.config` file by assigning a closure that returns a string to `ext.args`.
 The closure allows parameters supplied in a config with `-c` to be updated.
@@ -66,7 +66,7 @@ ext.args = { "--id ${meta.id}" }
 
 ## Use of multi-command piping
 
-You SHOULD add software that can be piped together to separate module files unless this provides run-time or storage advantages.
+Software that can be piped together SHOULD be added to separate module files unless this provides run-time or storage advantages.
 
 For example, using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
@@ -77,9 +77,9 @@ bwa mem $args | samtools view $args2 -B -T ref.fasta
 :::info
 Multi-tool modules in `nf-core/modules` increase the burden on nf-core maintainers.
 Where possible, implement multi-tool modules as local modules in the nf-core pipeline.
-If another nf-core pipeline needs to use this module, you can make a PR to add it to nf-core/modules.
+If another nf-core pipeline needs to use this module, make a PR to add it to nf-core/modules.
 For guidelines regarding multi-tool modules, search this page for the phrase `multi-tool`.
-You can search for existing local multi-tool modules using the GitHub search box across the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
+Search for existing local multi-tool modules using the GitHub search box across the nf-core org for terms such as `args2` `samtools` `collate` `fastq`.
 
 ```plaintext
 org:nf-core args2 samtools collate fastq
@@ -113,10 +113,10 @@ For example, in the first example, `bwa mem` is the first tool so is given `$arg
 
 ## Types of meta fields
 
-You MUST NOT use 'custom' hardcoded `meta` fields in modules.
-You should not refer to them within the module as expected input, nor generate new fields as output.
+'Custom' hardcoded `meta` fields MUST NOT be used in modules.
+Do not refer to them within the module as expected input, nor generate new fields as output.
 The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
-You must discuss proposals for other 'standard' fields for other disciplines with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
+Discuss proposals for other 'standard' fields for other disciplines with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
 :::info{title="Rationale" collapse}
 Write modules to allow as much flexibility to pipeline developers as possible.
@@ -147,7 +147,7 @@ my_command $args input.txt output.txt
 
 ## Compression of input and output files
 
-Where applicable, you SHOULD use compressed files as input and output:
+Where applicable, compressed files SHOULD be used as input and output:
 
 - `*.fastq.gz` and NOT `*.fastq`
 - `*.bam` and NOT `*.sam`
@@ -229,7 +229,7 @@ All reported versions MUST be without a leading `v` or similar (that is, must st
 A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
 The exit status of sub-shells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
 
-If the software is unable to output a version number on the command-line, you can manually specify a variable called `VERSION` to provide this information. For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
+If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information. For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
 
 Include the accompanying comments above the software packing directives and beside the version string.
 
@@ -261,12 +261,12 @@ END_VERSIONS
 }
 ```
 
-If the HEREDOC cannot be used because the script is not bash, you MUST write the `versions.yml` directly. For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+If the HEREDOC cannot be used because the script is not bash, write the `versions.yml` directly. For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
 ## Presence of when statement
 
-You MUST NOT change the `when` statement in the process definition.
-You can instead supply `when` conditions using the `process.ext.when` directive in a configuration file.
+The `when` statement MUST NOT be changed in the process definition.
+Supply `when` conditions using the `process.ext.when` directive in a configuration file instead.
 
 ```groovy
 process {
@@ -281,7 +281,7 @@ process {
 
 ## Capturing STDOUT and STDERR
 
-You may need to save STDOUT and STDERR to a file for reporting or debugging. The `tee` shell command captures and preserves these streams simultaneously.
+STDOUT and STDERR may need to be saved to a file for reporting or debugging. The `tee` shell command captures and preserves these streams simultaneously.
 
 This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error. This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error. The stream output is preserved in the process's `.command.log` and `.command.err` files. If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
@@ -299,7 +299,7 @@ tool \\
 
 :::tip{title="Reason for forced stream redirect" collapse}
 
-Nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
+nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
 
 :::
 
@@ -318,7 +318,7 @@ wait
 ## Capturing exit codes
 
 Some tools do not exit with the expected exit code of 0 upon successful execution.
-In these cases you can use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
+In these cases, use the `||` operator to run another useful command when the exit code is not 0 (for example, testing if a file is not size 0).
 
 ```groovy {6}
 script:
@@ -340,7 +340,7 @@ Alternative suggestions:
 ## Script inclusion
 
 Module templates separate scientific logic from workflow-specific logic, improving code clarity and maintainability.
-If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), you MUST provide it through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), provide it through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
 
 :::note
 We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts.
@@ -356,11 +356,11 @@ If the script content remains at a readable length, the code MAY be embedded dir
 
 ### Module template location
 
-You MUST place the template in a directory called `templates/` in the same directory as the module `main.nf`.
+Place the template in a directory called `templates/` in the same directory as the module `main.nf`.
 
-You MUST name the template file after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
+Name the template file after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
 
-You can then refer to the template file within the module using the template function:
+Refer to the template file within the module using the template function:
 
     ```nextflow
     script:
@@ -401,7 +401,7 @@ See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4
 
 A templated module MUST have a stub block in the same way as any other module. For example, use `touch` to generate empty files and versions. See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
 
-You MAY use an inline command to call the version for libraries for the `versions.yml` in this case.
+An inline command MAY be used to call the version for libraries for the `versions.yml` in this case.
 For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
 
 ## Stubs
@@ -412,11 +412,11 @@ For an R example see [deseq2/differential](https://github.com/nf-core/modules/bl
 
 ### Stub block prefix and versions
 
-You MUST include the same variables (for example, `prefix`) and HEREDOC code in the stub block as in the main script block.
+Include the same variables (for example, `prefix`) and HEREDOC code in the stub block as in the main script block.
 
 ### Stub files for all output channels
 
-You MUST include the creation of at least one file for every output channel (both mandatory and optional) in the stub block, generated with touch, for example:
+Include the creation of at least one file for every output channel (both mandatory and optional) in the stub block, generated with touch, for example:
 
 ```groovy
 stub:
@@ -429,7 +429,7 @@ Ideally, the stub block should reproduce as much as possible the number of files
 
 ### Stub gzip files must use echo and pipe
 
-You MUST use the syntax in the following example for stub files output as gzip compressed:
+Use the syntax in the following example for stub files output as gzip compressed:
 
 ```bash
 echo "" | gzip > ${prefix}.txt.gz
@@ -438,5 +438,5 @@ echo "" | gzip > ${prefix}.txt.gz
 :::info{title="Rationale" collapse}
 Touching a file with the file name ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and cannot be read.
 
-You must generate a valid gzipped file for nf-test to accept it during tests.
+Generate a valid gzipped file for nf-test to accept it during tests.
 :::
