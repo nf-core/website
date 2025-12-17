@@ -188935,6 +188935,14 @@
                 "pattern": "*.{bam}",
                 "ontologies": []
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
             }
           ]
         ],
@@ -188959,28 +188967,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bam_stat.py --version | sed \"s/bam_stat.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bam_stat.py --version | sed \"s/bam_stat.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189039,6 +189081,14 @@
                 "pattern": "*.{bam}",
                 "ontologies": []
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
             }
           ],
           {
@@ -189071,28 +189121,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "infer_experiment.py --version | sed \"s/infer_experiment.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "infer_experiment.py --version | sed \"s/infer_experiment.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189149,6 +189233,14 @@
                 "type": "file",
                 "description": "the alignment in bam format",
                 "pattern": "*.{bam}",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
                 "ontologies": []
               }
             }
@@ -189267,28 +189359,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "inner_distance.py --version | sed \"s/inner_distance.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "inner_distance.py --version | sed \"s/inner_distance.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189345,6 +189471,14 @@
                 "type": "file",
                 "description": "the alignment in bam format",
                 "pattern": "*.{bam}",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
                 "ontologies": []
               }
             }
@@ -189499,28 +189633,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "junction_annotation.py --version | sed \"s/junction_annotation.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "junction_annotation.py --version | sed \"s/junction_annotation.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189579,6 +189747,14 @@
                 "pattern": "*.{bam}",
                 "ontologies": []
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
             }
           ],
           {
@@ -189631,28 +189807,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "junction_saturation.py --version | sed \"s/junction_saturation.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "junction_saturation.py --version | sed \"s/junction_saturation.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189711,6 +189921,14 @@
                 "pattern": "*.{bam}",
                 "ontologies": []
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
             }
           ],
           {
@@ -189743,28 +189961,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "read_distribution.py --version | sed \"s/read_distribution.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "read_distribution.py --version | sed \"s/read_distribution.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -189826,6 +190078,14 @@
                 "type": "file",
                 "description": "the alignment in bam format",
                 "pattern": "*.{bam}",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
                 "ontologies": []
               }
             }
@@ -189916,28 +190176,62 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "read_duplication.py --version | sed \"s/read_duplication.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "read_duplication.py --version | sed \"s/read_duplication.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ],
         "maintainers": [
           "@drpatelh",
-          "@kevinmenden"
+          "@kevinmenden",
+          "@rhassaine"
         ]
       },
       "pipelines": [
@@ -190260,26 +190554,60 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rseqc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tin.py --version | sed \"s/tin.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rseqc": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tin.py --version | sed \"s/tin.py //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@drpatelh"
+          "@drpatelh",
+          "@rhassaine"
         ],
         "maintainers": [
-          "@drpatelh"
+          "@drpatelh",
+          "@rhassaine"
         ]
       },
       "pipelines": [
