@@ -10,7 +10,7 @@ The nf-core specifications define standards and best practices for developing ro
 
 These specifications are the result of collaborative development by the nf-core community. They address common challenges in workflow development, from managing software dependencies and computational resources to ensuring reproducibility and facilitating community contributions.
 
-## Module Specifications
+## Module specifications
 
 The following specifications define standards for developing nf-core modules:
 
@@ -24,7 +24,7 @@ The following specifications define standards for developing nf-core modules:
 - **[Testing](/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
 - **[Miscellaneous](/developers/specifications/modules/misc):** Code formatting standards including the "Harshil Alignment" format.
 
-## Subworkflow Specifications
+## Subworkflow specifications
 
 The following specifications define standards for developing nf-core subworkflows:
 
