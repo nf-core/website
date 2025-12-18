@@ -260753,7 +260753,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "fastq_align_dedup_bwamem",
-        "description": "Performs alignment of DNA or TAPS-treated reads using bwamem, sort and deduplicate",
+        "description": "Performs alignment of DNA or TAPS-treated reads using bwamem or parabricks/fq2bam, sort and deduplicate",
         "keywords": [
           "bwamem",
           "alignment",
@@ -260765,9 +260765,11 @@
           "bam"
         ],
         "components": [
+          "parabricks/fq2bam",
           "samtools/index",
           "picard/addorreplacereadgroups",
           "picard/markduplicates",
+          "bam_sort_stats_samtools",
           "fastq_align_bwa"
         ],
         "input": [
@@ -260801,6 +260803,33 @@
             "skip_deduplication": {
               "type": "boolean",
               "description": "Skip deduplication of aligned reads\n"
+            }
+          },
+          {
+            "use_gpu": {
+              "type": "boolean",
+              "description": "Use GPU for alignment\n"
+            }
+          },
+          {
+            "output_fmt": {
+              "type": "string",
+              "description": "Output format for the alignment. Options are 'bam' or 'cram'",
+              "pattern": "{bam,cram}"
+            }
+          },
+          {
+            "interval_file": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(interval file) ]\n",
+              "pattern": "*.{bed,intervals}"
+            }
+          },
+          {
+            "known_sites": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(known sites) ]\n",
+              "pattern": "*.{vcf,vcf.gz}"
             }
           }
         ],
@@ -260852,13 +260881,6 @@
               "type": "file",
               "description": "Channel containing files for MultiQC input (metrics, stats, flagstat, idxstats).\nStructure: [ path(file) ]\n",
               "pattern": "*{.txt,.stats,.flagstat,.idxstats}"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
             }
           }
         ],
