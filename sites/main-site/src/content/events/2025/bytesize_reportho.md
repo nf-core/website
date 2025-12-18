@@ -6,10 +6,11 @@ startDate: "2025-12-09"
 startTime: "13:00+01:00"
 endDate: "2025-12-09"
 endTime: "13:30+01:00"
+youtubeEmbed: https://youtu.be/KIKb1LyX2vw
 locations:
   - name: Online
     links:
-      - https://stockholmuniversity.zoom.us/j/66855293599
+      - https://youtu.be/KIKb1LyX2vw
 ---
 
 This week, Igor ([@itrujnara](https://github.com/itrujnara)) is updating us on the newest features in the nf-core/reportho pipeline.
