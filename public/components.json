@@ -17941,28 +17941,58 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bcftools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bcftools --version | sed -n '1s/.* //p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bcftools --version | sed -n '1s/.* //p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@joseespinosa",
-          "@drpatelh"
+          "@joseespinosa"
         ],
         "maintainers": [
-          "@joseespinosa",
-          "@drpatelh"
+          "@joseespinosa"
         ]
       },
       "pipelines": [
@@ -198362,19 +198392,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -1 | sed -e \"s/samtools //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -198382,7 +198444,6 @@
           "@joseespinosa"
         ],
         "maintainers": [
-          "@drpatelh",
           "@joseespinosa"
         ]
       },
