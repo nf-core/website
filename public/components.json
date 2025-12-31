@@ -105820,6 +105820,28 @@
           ]
         ],
         "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Phased BAM file with haplotag information",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "vcf": [
             [
               {
@@ -105833,7 +105855,11 @@
                   "type": "file",
                   "description": "Phased VCF file",
                   "pattern": "*.vcf",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
                 }
               }
             ]
