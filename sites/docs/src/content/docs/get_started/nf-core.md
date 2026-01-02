@@ -1,6 +1,6 @@
 ---
 title: What is nf-core?
-subtitle: What is nf-core and how to run a pipeline
+subtitle: Learn about nf-core
 shortTitle: What is nf-core?
 weight: 1
 ---
