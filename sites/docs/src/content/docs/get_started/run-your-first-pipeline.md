@@ -1,6 +1,6 @@
 ---
 title: Run your first pipeline
-subtitle: Run the nf-core/demo pipeline
+subtitle: Learn how to run the nf-core/demo pipeline
 shortTitle: Run your first pipeline
 weight: 3
 ---

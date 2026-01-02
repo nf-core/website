@@ -4,10 +4,9 @@ import { getCollection } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { addEntriesToSection, sanitizeNfCoreLabels } from "@utils/functions";
 import { Icon } from "astro-icon/components";
-import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
 
 let docs = await getCollection("docs");
-import SidebarNav from "@components/sidebar/SidebarNav.astro";
 
 let sections: SidebarEntry[] = [
     {
@@ -119,64 +118,125 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
     return entries;
 };
 
-let highlightSections = [];
-["Introduction", "Adding modules to pipelines", "Assertions", "nf-core-tools/Installation"].forEach((label) => {
-    let parentLabel = label.includes("/") ? label.split("/")[0] : undefined;
-    label = parentLabel ? label.split("/")[1] : label;
-    let entries = findEntriesWithLabel(sections, label, parentLabel?.replace("nf-core-tools", "nf-core/tools"));
+// Define featured "Get started" pages - these will be large cards with icons
+const featuredPages = [
+    { label: "What is nf-core?", parent: undefined, icon: "octicon:play-16" },
+    { label: "Overview", parent: "Environment setup", icon: "octicon:gear-16", overrideTitle: "Environment setup" },
+    { label: "Run your first pipeline", parent: undefined, icon: "octicon:terminal-16" }
+];
+
+// Find featured page entries
+const featuredEntries = featuredPages.map(({ label, parent, icon, overrideTitle }) => {
+    const entries = findEntriesWithLabel(sections, label, parent);
     if (entries.length === 0) {
-        console.error(`No entry found for label: ${label}`);
+        console.warn(`No entry found for label: ${label} with parent: ${parent}`);
     }
-    highlightSections.push(entries);
+    const entry = entries[0];
+    if (entry) {
+        entry.customIcon = icon;
+        if (overrideTitle) {
+            entry.overrideTitle = overrideTitle;
+        }
+    }
+    return entry;
+}).filter(Boolean);
+
+// Define main sections with important pages
+const mainSections = [
+    {
+        section: "Essentials",
+        icon: "octicon:checklist-16",
+        pages: ["Configuration", "Reference genomes", "Run pipelines offline", "Advanced topics"]
+    },
+    {
+        section: "Popular topics",
+        icon: "octicon:flame-16",
+        pages: ["Adding modules to pipelines", "Testing", "Assertions", "Creating pipelines"]
+    }
+];
+
+// Find and attach metadata for main sections
+const sectionCards = mainSections.map(({ section, icon, pages }) => {
+    const pageEntries = pages.map(pagePath => {
+        let parentLabel = pagePath.includes("/") ? pagePath.split("/")[0] : undefined;
+        let label = parentLabel ? pagePath.split("/")[1] : pagePath;
+        let entries = findEntriesWithLabel(sections, label, parentLabel?.replace("nf-core-tools", "nf-core/tools"));
+        if (entries.length === 0) {
+            console.warn(`No entry found for label: ${pagePath}`);
+        }
+        return entries[0];
+    }).filter(Boolean);
+
+    return {
+        section: section,
+        icon: icon,
+        pages: pageEntries
+    };
 });
-highlightSections = highlightSections.flat();
 ---
 
 <PageLayout
-    title="Docs"
+    title="nf-core documentation"
     subtitle="How to use nf-core pipelines and contribute to the nf-core community"
     mainpage_container={false}
 >
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-xl-8 order-2">
-                <div class="grid">
-                    {
-                        highlightSections &&
-                            highlightSections.map((section, i) => (
-                                <>
-                                    {/* {i % 2 !== 0 && <div class="d-none d-md-block g-col-md-3" />} */}
-                                    <div class="g-col-12 g-col-md-6 card position-relative">
+                <div class="index-content">
+                    <!-- Intro Text -->
+                    <div class="intro-text mb-4">
+                        <p>
+                            nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. This documentation will help you get started with running nf-core pipelines, understand best practices for contributing to the community, and learn how to develop your own pipelines. Whether you're a new user or an experienced developer, you'll find the resources you need to make the most of nf-core.
+                        </p>
+                    </div>
+
+                    <!-- Featured Cards -->
+                    <div class="featured-section mb-5">
+                    <div class="card-grid featured-grid">
+                        {
+                            featuredEntries.map((page) => (
+                                <a href={page.href} class="text-decoration-none">
+                                    <div class="card h-100 featured-card">
                                         <div class="card-body">
-                                            <a href={section.href} class="h4 stretched-link text-decoration-none">
-                                                {section.metadata.data.title}
-                                            </a>
-                                            <div class="card-text">{section.metadata.data.subtitle}</div>
+                                            <div class="featured-icon mb-3">
+                                                <Icon name={page.customIcon} />
+                                            </div>
+                                            <h3 class="h5 card-title mb-0">{page.overrideTitle || page.metadata?.data.title || page.label}</h3>
                                         </div>
                                     </div>
-                                    {/* {i % 2 === 0 && <div class="d-none d-md-block g-col-md-3" />} */}
-                                </>
+                                </a>
                             ))
-                    }
+                        }
+                    </div>
+                </div>
+
+                <!-- Main Sections -->
+                <div class="card-grid section-grid">
                     {
-                        sections &&
-                            sections.map((section) => (
-                                <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
-                                    <span class="card-header">
-                                        <a
-                                            href={`/docs/${section.label?.replace("/", "-").replace(/\s+/g, "-").toLowerCase()}/`}
-                                            class="text-decoration-none d-flex align-items-center text-reset"
-                                        >
-                                            {section.icon && <Icon name={section.icon} class={"me-2"} />}
-                                            {sanitizeNfCoreLabels(section.label)}
-                                        </a>
-                                    </span>
-                                    <ul class="card-body mb-0 list-unstyled" id={section.label?.replace("/", "-")}>
-                                        {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
+                        sectionCards.map((section) => (
+                            <div class="card h-100 section-card">
+                                <div class="card-header">
+                                    <h3 class="h6 mb-0 d-flex align-items-center">
+                                        {section.icon && <Icon name={section.icon} class="me-2" />}
+                                        {section.section}
+                                    </h3>
+                                </div>
+                                <div class="card-body">
+                                    <ul class="list-unstyled mb-0">
+                                        {section.pages.map((page) => (
+                                            <li class="mb-2">
+                                                <a href={page.href} class="text-decoration-none">
+                                                    {page.metadata?.data.title || page.label}
+                                                </a>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
-                            ))
+                            </div>
+                        ))
                     }
+                </div>
                 </div>
             </div>
             <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">
@@ -186,32 +246,117 @@ highlightSections = highlightSections.flat();
     </div>
 </PageLayout>
 <style>
-    li a {
-        text-decoration: none;
+    /* Index content wrapper - match markdown content width */
+    .index-content {
+        max-width: 50rem;
+        width: 100%;
+    }
+
+    /* Intro Text */
+    .intro-text {
+        .lead {
+            color: var(--bs-body-color);
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+    }
+
+    /* Card grid layouts */
+    .card-grid {
+        display: grid;
+        gap: 1rem;
+    }
+
+    .featured-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    .section-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    @media (max-width: 991px) {
+        .featured-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 767px) {
+        .featured-grid,
+        .section-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    /* Featured "Get Started" Cards */
+    .featured-card {
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        transition: border-color 0.2s ease-in-out;
 
         &:hover {
-            text-decoration: underline;
+            border-color: var(--bs-secondary);
+
+            .card-title {
+                text-decoration: underline;
+            }
+        }
+
+        .card-body {
+            padding: 1.5rem;
+        }
+
+        .featured-icon {
+            font-size: 48px;
+            line-height: 1;
+
+            :global(svg) {
+                width: 96px !important;
+                height: 96px !important;
+                color: var(--bs-primary);
+            }
+        }
+
+        .card-title {
+            color: var(--bs-heading-color);
+            font-weight: 600;
+            font-size: 1.25rem;
         }
     }
-    .card-header:hover {
-        text-decoration: underline;
-    }
-    .card.position-relative:hover {
-        border-color: var(--bs-secondary-color);
-        & a {
-            text-decoration: underline !important;
+
+    /* Section Cards */
+    .section-card {
+        border: 1px solid var(--bs-border-color);
+
+        .card-header {
+            background-color: var(--bs-body-secondary-bg);
+            border-bottom: 1px solid var(--bs-border-color);
+            padding: 0.75rem 1rem;
+            font-weight: 600;
+
+            :global(svg) {
+                width: 20px;
+                height: 20px;
+            }
         }
-    }
-</style>
-<style is:global>
-    .card li {
-        a,
-        summary {
-            border-inline-end: none !important;
+
+        .card-body {
+            padding: 1rem;
         }
-        a:hover {
-            text-decoration: underline !important;
-            background-color: transparent !important;
+
+        a {
+            color: var(--bs-link-color);
+
+            &:hover {
+                text-decoration: underline !important;
+            }
+        }
+
+        li {
+            line-height: 1.6;
         }
     }
 </style>
