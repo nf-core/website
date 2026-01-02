@@ -1,6 +1,7 @@
 ---
 title: Environment setup
 subtitle: Setting up your environment for nf-core
+parentWeight: 2
 weight: 1
 ---
 
