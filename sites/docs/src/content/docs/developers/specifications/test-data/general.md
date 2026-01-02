@@ -1,7 +1,6 @@
 ---
 title: General
 subtitle: General guidelines for nf-core test data
-markdownPlugin: addNumbersToHeadings
 shortTitle: General
 weight: 1
 ---
