@@ -170,12 +170,16 @@ const mainSections = [
     {
         section: "Specifications",
         icon: "octicon:checklist-16",
-        pages: ["Pipeline", "Modules", "Subworkflows", "Output"]
+        pages: [
+            { title: "Components", href: "/docs/specifications/components/overview" },
+            { title: "Pipelines", href: "/docs/specifications/pipelines/overview" },
+            { title: "Test data", href: "/docs/specifications/test-data/overview" }
+        ]
     },
     {
         section: "Community",
         icon: "mdi:sprout",
-        pages: ["Governance", "Brand", "Terminology", "Advisories"]
+        pages: ["Governance", "Brand", "Advisories"]
     },
     {
         section: "nf-core/tools",
@@ -186,7 +190,18 @@ const mainSections = [
 
 // Find and attach metadata for main sections
 const sectionCards = mainSections.map(({ section, icon, pages }) => {
-    const pageEntries = pages.map(pagePath => {
+    const pageEntries = pages.map(page => {
+        // Handle custom page objects with title and href
+        if (typeof page === 'object' && page.title && page.href) {
+            return {
+                label: page.title,
+                href: page.href,
+                metadata: { data: { title: page.title } }
+            };
+        }
+
+        // Handle string-based pages (existing behavior)
+        let pagePath = page;
         let parentLabel = pagePath.includes("/") ? pagePath.split("/")[0] : undefined;
         let label = parentLabel ? pagePath.split("/")[1] : pagePath;
         let entries = findEntriesWithLabel(sections, label, parentLabel?.replace("nf-core-tools", "nf-core/tools"));
@@ -241,7 +256,7 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
                 <div class="mb-5">
                     <h2 class="section-heading mb-2">Recommended pages</h2>
                     <p class="mb-4">
-                        Explore commonly used concepts, guides, reference, and troubleshooting.
+                        Browse pages covering key concepts, guides, reference documentation, and troubleshooting.
                     </p>
                 <div class="card-grid section-grid">
                     {
