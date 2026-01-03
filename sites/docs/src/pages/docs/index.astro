@@ -129,26 +129,18 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
 
 // Define featured "Get started" pages - these will be large cards with icons
 const featuredPages = [
-    { label: "What is nf-core?", parent: undefined, icon: "octicon:play-16" },
-    { label: "Overview", parent: "Environment setup", icon: "octicon:gear-16", overrideTitle: "Environment setup" },
-    { label: "Run your first pipeline", parent: undefined, icon: "octicon:terminal-16" }
+    { title: "What is nf-core?", href: "/docs/get_started/nf-core", icon: "octicon:play-16" },
+    { title: "Environment setup", href: "/docs/get_started/environment_setup/overview", icon: "octicon:gear-16" },
+    { title: "Run your first pipeline", href: "/docs/get_started/run-your-first-pipeline", icon: "octicon:terminal-16" }
 ];
 
-// Find featured page entries
-const featuredEntries = featuredPages.map(({ label, parent, icon, overrideTitle }) => {
-    const entries = findEntriesWithLabel(sections, label, parent);
-    if (entries.length === 0) {
-        console.warn(`No entry found for label: ${label} with parent: ${parent}`);
-    }
-    const entry = entries[0];
-    if (entry) {
-        entry.customIcon = icon;
-        if (overrideTitle) {
-            entry.overrideTitle = overrideTitle;
-        }
-    }
-    return entry;
-}).filter(Boolean);
+// Create featured page entries
+const featuredEntries = featuredPages.map(({ title, href, icon }) => ({
+    label: title,
+    href: href,
+    customIcon: icon,
+    metadata: { data: { title: title } }
+}));
 
 // Define main sections with important pages
 const mainSections = [
@@ -165,7 +157,9 @@ const mainSections = [
     {
         section: "Contributors",
         icon: "octicon:git-pull-request-16",
-        pages: ["How to contribute to nf-core", "Contribute components", "Pipeline release", "Reviewing pull requests"]
+        pages: [
+            { title: "How to contribute to nf-core", href: "/docs/contributors/how-to-contribute-to-nf-core" }
+        ]
     },
     {
         section: "Specifications",
@@ -179,7 +173,10 @@ const mainSections = [
     {
         section: "Community",
         icon: "mdi:sprout",
-        pages: ["Governance", "Brand", "Advisories"]
+        pages: [
+            { title: "Brand", href: "/docs/community/brand/overview" },
+            { title: "Advisories", href: "/docs/community/advisories" }
+        ]
     },
     {
         section: "nf-core/tools",
@@ -221,7 +218,7 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
 
 <PageLayout
     title="nf-core documentation"
-    subtitle="How to use nf-core pipelines and contribute to the nf-core community"
+    subtitle="Learn to use nf-core pipelines, develop workflows, and contribute to the community"
     mainpage_container={false}
 >
     <div class="container-fluid main-content">

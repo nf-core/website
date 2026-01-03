@@ -1,5 +1,5 @@
 ---
-title: Publishing advisories
+title: Advisories
 subtitle: Learn how to create and publish advisories for nf-core components
 weight: 3
 ---
