@@ -1,16 +1,13 @@
 ---
-title: Overview
-subtitle: Guidelines and requirements for nf-core pipelines.
+title: Pipelines
+subtitle: Specifications for nf-core pipelines
 weight: 1
 parentWeight: 20
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+nf-core pipelines are end-to-end analysis workflows that combine multiple tools and processes to analyze biological data. These specifications define the standards for developing high-quality, reproducible pipelines that can be shared and maintained by the nf-core community.
 
-## Introduction
-
-The aim of nf-core is to have standardised best-practice pipelines.
-To ensure this standardisation, we maintain a set of guidelines which all nf-core pipelines MUST adhere to.
+The specifications are organized into **requirements** (mandatory standards all nf-core pipelines MUST follow) and **recommendations** (best practices pipelines SHOULD adopt where applicable). While these specifications are mandatory for pipelines contributed to the nf-core repository, they represent proven best practices for developing professional-grade Nextflow pipelines that can benefit any workflow development project.
 
 :::tip
 If you're thinking of adding a new pipeline to nf-core or contributing to an existing pipeline, see [adding a new pipeline](/docs/tutorials/adding_a_pipeline/overview) and [contributing to a pipeline](/docs/tutorials/contributing_to_nf-core/contributing_to_pipelines).
@@ -18,13 +15,8 @@ If you're thinking of adding a new pipeline to nf-core or contributing to an exi
 
 <!-- TODO: Update links -->
 
-The following lists an overview of the guidelines. Follow links to dedicated pages for more details about a given topic.
-
 :::warning{title="Build with the community"}
-nf-core is a community of builders, not a registry of pipelines.
-Please propose your pipeline and develop with us, rather than
-proposing an already-complete pipeline.
-See recommendation: [Build with the community](/docs/guidelines/pipelines/recommendations/build_with_community)
+nf-core is a community of builders, not a registry of pipelines. Propose your pipeline and develop with us, rather than proposing an already-complete pipeline. See recommendation: [Build with the community](/docs/guidelines/pipelines/recommendations/build_with_community)
 :::
 
 ## Requirements
