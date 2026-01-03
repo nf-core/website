@@ -2,7 +2,7 @@
 title: General
 subtitle: General guidelines for nf-core test data
 shortTitle: General
-weight: 1
+weight: 2
 ---
 
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).

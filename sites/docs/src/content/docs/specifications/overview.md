@@ -1,45 +1,60 @@
 ---
-title: Specifications
-subtitle: Specifications for writing nf-core components and pipelines
+title: Overview
+subtitle: Guidelines and requirements for nf-core contributions and best practices.
 weight: 1
 ---
 
-## Overview
-
-The nf-core specifications define standards and best practices for developing robust, reproducible, and maintainable Nextflow components and pipelines. While these specifications are written primarily for nf-core contributors and are enforced in the nf-core modules and pipelines repositories, the principles and patterns documented here represent proven approaches to writing high-quality bioinformatics workflows that can benefit the broader Nextflow community.
+The nf-core specifications define standards and best practices for developing robust, reproducible, and maintainable Nextflow components and pipelines. While these specifications are written primarily for nf-core contributors and are enforced in nf-core repositories, the principles and patterns documented here represent proven approaches to writing high-quality bioinformatics workflows that can benefit the broader Nextflow community.
 
 These specifications are the result of collaborative development by the nf-core community. They address common challenges in workflow development, from managing software dependencies and computational resources to ensuring reproducibility and facilitating community contributions.
 
-## Module specifications
+## Specification categories
 
-The following specifications define standards for developing nf-core modules:
+The nf-core specifications are organized into three main categories:
 
-- **[General](/developers/specifications/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
-- **[Naming conventions](/developers/specifications/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
-- **[Input/output options](/developers/specifications/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
-- **[Documentation](/developers/specifications/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
-- **[Module parameters](/developers/specifications/modules/module-parameters):** Guidelines for parameter usage ensuring modules remain flexible and reusable across different pipeline contexts.
-- **[Resource requirements](/developers/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
-- **[Software requirements](/developers/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
-- **[Testing](/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
-- **[Miscellaneous](/developers/specifications/modules/misc):** Code formatting standards including the "Harshil Alignment" format.
+### Components
 
-## Subworkflow specifications
+Standards for developing reusable nf-core modules and subworkflows. These specifications ensure consistency across the nf-core component library and facilitate sharing and maintenance of workflow building blocks.
 
-The following specifications define standards for developing nf-core subworkflows:
+- **[Module specifications](/developers/specifications/components/modules):** Guidelines for developing individual process wrappers
+- **[Subworkflow specifications](/developers/specifications/components/subworkflows):** Standards for combining modules into reusable workflow units
 
-- **[General](/developers/specifications/subworkflows/general):** Foundation for subworkflow development including minimum subworkflow size and version reporting channels.
-- **[Naming conventions](/developers/specifications/subworkflows/naming-conventions):** Standards for naming subworkflow files, parameters, functions, channels, and input/output structures.
-- **[Input/output options](/developers/specifications/subworkflows/input-output-options):** Guidelines for defining required input and output channels, and handling optional inputs.
-- **[Subworkflow parameters](/developers/specifications/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
-- **[Documentation](/developers/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
-- **[Testing](/developers/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
-- **[Miscellaneous](/developers/specifications/subworkflows/misc):** Code formatting standards including the "Harshil Alignment" format.
+### Pipelines
 
-## Test data specifications
+Requirements and recommendations for nf-core end-to-end analysis pipelines. These specifications define what it means to be an nf-core pipeline and provide best practice guidance.
 
-The following specifications define standards for managing test data in nf-core:
+- **[Pipeline requirements](/developers/specifications/pipelines/requirements):** Mandatory standards all nf-core pipelines MUST follow
+- **[Pipeline recommendations](/developers/specifications/pipelines/recommendations):** Best practices nf-core pipelines SHOULD adopt where applicable
 
-- **[General](/developers/specifications/test-data/general):** Guidelines for test data replication, file size limits, licensing requirements, and documentation standards.
-- **[Modules](/developers/specifications/test-data/modules):** Module-specific guidelines for reusing existing test data, handling large datasets with stubs, organization structure, and naming conventions.
+### Test Data
 
+Guidelines for managing test data used in continuous integration and testing of nf-core components and pipelines.
+
+- **[Test data specifications](/developers/specifications/test-data):** Standards for test data organization, size, licensing, and documentation
+
+## Ask the community
+
+The instructions below are subject to interpretation and specific scenarios.
+If in doubt, ask the community for feedback on the [#help slack channel](https://nfcore.slack.com/channels/help).
+
+## If the guidelines don't fit
+
+The guidelines are relatively rigid and may not be for everyone.
+If that's the case, there is still a lot of ways that you can get involved with nf-core!
+
+The nf-core best practices, tooling and community are helpful for anyone building Nextflow pipelines, even if they are not a good fit for being listed as official nf-core pipelines.
+You are very welcome to use the helper tools and collaborate on modules / subworkflows / ideas.
+Indeed, numerous pipelines outside of nf-core now extensively use and contribute back to [nf-core/modules](https://github.com/nf-core/modules).
+
+If using nf-core tools and especially the template, you MUST NOT call your pipeline `nf-core/<pipeline>`.
+Your pipeline SHOULD be described as "using" nf-core rather than "being" nf-core.
+Remember that you can generate a pipeline with `nf-core pipelines create` that excludes nf-core branding.
+Citation and acknowledgement of the work that goes into these tools and templates is welcome.
+
+If a pipeline is found to be violating the nf-core guidelines _after_ it has been added to the community, issues will be addressed:
+
+1. The core team will attempt to resolve problems with the pipeline maintainers through discussion. Hopefully the pipeline can then be updated so that it adheres to the guidelines.
+1. If this is not possible, the core team will make a recommendation to the steering committee about what action to take. Such actions could include archiving the pipeline or removing it completely.
+
+All members of the nf-core community must adhere to the [nf-core code of conduct](https://nf-co.re/code_of_conduct).
+The guidelines and actions within the code of conduct take precedence over the development pipelines described in this page.
