@@ -35,3 +35,11 @@ The following specifications define standards for developing nf-core subworkflow
 - **[Documentation](/developers/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
 - **[Testing](/developers/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
 - **[Miscellaneous](/developers/specifications/subworkflows/misc):** Code formatting standards including the "Harshil Alignment" format.
+
+## Test data specifications
+
+The following specifications define standards for managing test data in nf-core:
+
+- **[General](/developers/specifications/test-data/general):** Guidelines for test data replication, file size limits, licensing requirements, and documentation standards.
+- **[Modules](/developers/specifications/test-data/modules):** Module-specific guidelines for reusing existing test data, handling large datasets with stubs, organization structure, and naming conventions.
+

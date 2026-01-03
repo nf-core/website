@@ -122,6 +122,6 @@ Generate a parameters file using the **Launch** button on the [nf-co.re website]
 
 For more information about configuration syntax and parameters, see:
 
-- [Nextflow config](https://www.nextflow.io/docs/latest/config.html).
+- [Nextflow config](https://www.nextflow.io/docs/latest/config.html)
 
 <!-- TODO: Add links, if any -->
