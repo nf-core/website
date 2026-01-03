@@ -24,7 +24,7 @@ let sections: SidebarEntry[] = [
         label: "Users",
         entries: [],
         collapsed: true,
-        icon: "octicon:git-pull-request-16",
+        icon: "octicon:git-branch-16",
         weight: 2,
     },
     {
@@ -33,7 +33,7 @@ let sections: SidebarEntry[] = [
         label: "Developers",
         entries: [],
         collapsed: true,
-        icon: "octicon:mortar-board-16",
+        icon: "octicon:git-commit-16",
         weight: 3,
     },
     {
@@ -42,8 +42,17 @@ let sections: SidebarEntry[] = [
         label: "Contributors",
         entries: [],
         collapsed: true,
-        icon: "octicon:law-16",
+        icon: "octicon:git-pull-request-16",
         weight: 4,
+    },
+    {
+        type: "group",
+        id: "specifications",
+        label: "Specifications",
+        entries: [],
+        collapsed: true,
+        icon: "octicon:checklist-16",
+        weight: 5,
     },
     {
         type: "group",
@@ -51,8 +60,8 @@ let sections: SidebarEntry[] = [
         label: "Community",
         entries: [],
         collapsed: true,
-        icon: "octicon:tasklist-16",
-        weight: 5,
+        icon: "mdi:sprout",
+        weight: 6,
     },
     {
         type: "group",
@@ -61,7 +70,7 @@ let sections: SidebarEntry[] = [
         entries: [],
         collapsed: true,
         icon: "octicon:tools-16",
-        weight: 6,
+        weight: 7,
     },
 ];
 
@@ -144,14 +153,34 @@ const featuredEntries = featuredPages.map(({ label, parent, icon, overrideTitle 
 // Define main sections with important pages
 const mainSections = [
     {
-        section: "Essentials",
-        icon: "octicon:checklist-16",
+        section: "Users",
+        icon: "octicon:git-branch-16",
         pages: ["Configuration", "Reference genomes", "Run pipelines offline", "Advanced topics"]
     },
     {
-        section: "Popular topics",
-        icon: "octicon:flame-16",
-        pages: ["Adding modules to pipelines", "Testing", "Assertions", "Creating pipelines"]
+        section: "Developers",
+        icon: "octicon:git-commit-16",
+        pages: ["Creating pipelines", "Adding modules to pipelines", "Testing", "Assertions"]
+    },
+    {
+        section: "Contributors",
+        icon: "octicon:git-pull-request-16",
+        pages: ["How to contribute to nf-core", "Contribute components", "Pipeline release", "Reviewing pull requests"]
+    },
+    {
+        section: "Specifications",
+        icon: "octicon:checklist-16",
+        pages: ["Pipeline", "Modules", "Subworkflows", "Output"]
+    },
+    {
+        section: "Community",
+        icon: "mdi:sprout",
+        pages: ["Governance", "Brand", "Terminology", "Advisories"]
+    },
+    {
+        section: "nf-core/tools",
+        icon: "octicon:tools-16",
+        pages: ["Installation", "Pipelines commands", "Components commands", "Schema commands"]
     }
 ];
 
@@ -184,15 +213,12 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
         <div class="row">
             <div class="col-12 col-xl-8 order-2">
                 <div class="index-content">
-                    <!-- Intro Text -->
-                    <div class="intro-text mb-4">
-                        <p>
-                            nf-core is a community effort to collect a curated set of analysis pipelines built using Nextflow. This documentation will help you get started with running nf-core pipelines, understand best practices for contributing to the community, and learn how to develop your own pipelines. Whether you're a new user or an experienced developer, you'll find the resources you need to make the most of nf-core.
-                        </p>
-                    </div>
-
                     <!-- Featured Cards -->
                     <div class="featured-section mb-5">
+                        <h2 class="section-heading mb-2">Get started</h2>
+                        <p class="mb-4">
+                            New to nf-core? Start here to learn the basics and run your first pipeline.
+                        </p>
                     <div class="card-grid featured-grid">
                         {
                             featuredEntries.map((page) => (
@@ -212,12 +238,17 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
                 </div>
 
                 <!-- Main Sections -->
+                <div class="mb-5">
+                    <h2 class="section-heading mb-2">Popular pages</h2>
+                    <p class="mb-4">
+                        Explore commonly used resources and topics in the nf-core ecosystem.
+                    </p>
                 <div class="card-grid section-grid">
                     {
                         sectionCards.map((section) => (
                             <div class="card h-100 section-card">
                                 <div class="card-header">
-                                    <h3 class="h6 mb-0 d-flex align-items-center">
+                                    <h3 class="mb-0 d-flex align-items-center">
                                         {section.icon && <Icon name={section.icon} class="me-2" />}
                                         {section.section}
                                     </h3>
@@ -236,6 +267,7 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
                             </div>
                         ))
                     }
+                </div>
                 </div>
                 </div>
             </div>
@@ -262,6 +294,19 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
         }
     }
 
+    /* Section headings */
+    .section-heading {
+        color: var(--bs-heading-color);
+        font-weight: 600;
+        font-size: 1.75rem;
+    }
+
+    .section-subheading {
+        color: var(--bs-secondary-color);
+        font-size: 1.25rem;
+        line-height: 1.5;
+    }
+
     /* Card grid layouts */
     .card-grid {
         display: grid;
@@ -274,12 +319,16 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
     }
 
     .section-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         gap: 1rem;
     }
 
     @media (max-width: 991px) {
         .featured-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .section-grid {
             grid-template-columns: repeat(2, 1fr);
         }
     }
@@ -335,7 +384,12 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
             background-color: var(--bs-body-secondary-bg);
             border-bottom: 1px solid var(--bs-border-color);
             padding: 0.75rem 1rem;
-            font-weight: 600;
+
+            h3 {
+                font-size: 1rem !important;
+                font-weight: 600;
+                line-height: 1.6;
+            }
 
             :global(svg) {
                 width: 20px;
@@ -345,10 +399,12 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
 
         .card-body {
             padding: 1rem;
+            font-size: 1rem;
         }
 
         a {
             color: var(--bs-link-color);
+            font-size: 1rem;
 
             &:hover {
                 text-decoration: underline !important;
