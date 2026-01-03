@@ -1,5 +1,5 @@
 ---
-title: Overview
+title: nf-core specifications
 subtitle: Guidelines and requirements for nf-core contributions and best practices.
 weight: 1
 ---
