@@ -2,7 +2,7 @@
 title: Test Data
 subtitle: Specifications for managing test data in nf-core
 weight: 1
-parentWeight: 30
+parentWeight: 40
 ---
 
 Test data is essential for automated testing and continuous integration of nf-core components and pipelines. These specifications define standards for organizing, documenting, and managing test datasets to ensure reproducible testing across the nf-core ecosystem.
