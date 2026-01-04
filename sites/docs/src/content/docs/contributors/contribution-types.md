@@ -62,13 +62,15 @@ The nf-core/mag pipeline demonstrates how to distinguish between the different c
 
 ![](@assets/images/mag_contributors_plot.png)
 
+<!-- TODO: Fix link -->
+
 - Hadrien was the original architect and wrote the majority of v1 of the pipeline from 2018, and finished developing v1 in 2020. He is therefore an author.
 - Daniel and Sabrina started assisting Hadrien in 2019, and took over as the lead maintainers between 2019 and 2022, keeping the pipeline up to date and adding new features. During this period they were maintainers.
 - Maxime and James started occasionally contributing features and bug fixes between 2020 and 2021, but were not handling the project management. During this period they were contributors.
 - In 2023, Sabrina moved on and stepped down as a project lead. She then moved to an author designation.
 - When Sabrina stepped down, James took over managing the roadmap and triaging bug fixes. He thus changed from contributor to maintainer status.
 
-## Final notes
+## Best practices
 
 A person can have one or more contribution designations.
 Evaluate each contributor's role and apply the appropriate types.
