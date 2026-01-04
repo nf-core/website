@@ -70,6 +70,7 @@ export default defineConfig({
                 "fa-brands": ["github"],
                 mdi: ["aws", "slack", "youtube", "sprout"],
                 octicon: [
+                    "book-16",
                     "checklist-16",
                     "chevron-right-16",
                     "file-code-16",
