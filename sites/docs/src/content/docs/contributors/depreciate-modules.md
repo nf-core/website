@@ -1,6 +1,7 @@
 ---
 title: Deprecating modules
 subtitle: How to deprecate a module or subworkflow
+shortTitle: Deprecating modules
 ---
 
 ## Deprecating a module

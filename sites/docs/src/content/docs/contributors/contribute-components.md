@@ -1,7 +1,7 @@
 ---
-title: Components
-subtitle: Contributing modules and subworkflows to nf-core
-shortTitle: Components
+title: Contributing components
+subtitle: How to contribute modules and subworkflows to nf-core
+shortTitle: Contributing components
 ---
 
 <!-- TODO: Add links -->
