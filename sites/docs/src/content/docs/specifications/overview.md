@@ -32,6 +32,12 @@ Guidelines for managing test data used in continuous integration and testing of 
 
 - **[Test data specifications](/developers/specifications/test-data):** Standards for test data organization, size, licensing, and documentation
 
+### Reviews
+
+Best practices for reviewing pull requests and managing the collaborative development process within nf-core repositories.
+
+- **[PR review guidelines](/developers/specifications/reviews):** Standards for requesting reviews, merging pull requests, managing feedback, and commit strategies
+
 ## Ask the community
 
 The instructions below are subject to interpretation and specific scenarios.

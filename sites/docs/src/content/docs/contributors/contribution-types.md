@@ -60,7 +60,7 @@ Contributors can be both current and past.
 
 The nf-core/mag pipeline demonstrates how to distinguish between the different contribution types.
 
-![](@assets/images/mag_contributors_plot.png)
+<!-- /images/mag_contributors_plot.png -->
 
 <!-- TODO: Fix link -->
 
