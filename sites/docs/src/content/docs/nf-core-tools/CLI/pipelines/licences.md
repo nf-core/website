@@ -1,0 +1,20 @@
+---
+title: Software licences
+subtitle: Automatically print software licences for DSL1 pipelines.
+shortTitle: licences
+weight: 50
+---
+
+:::warning
+This command does not currently work for DSL2 pipelines.
+See [tools#905](https://github.com/nf-core/tools/issues/905)
+and [tools#1712](https://github.com/nf-core/tools/issues/1712) for updates.
+:::
+
+Use the `licences` subcommand to fetch and print the software licence from each conda or PyPI package used in an nf-core pipeline.
+
+<!-- RICH-CODEX
+timeout: 10
+-->
+
+![`nf-core pipelines licences deepvariant`](../../../../../assets/images/tools/nf-core-licences.svg)

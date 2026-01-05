@@ -1,7 +1,7 @@
 ---
 title: Contributing to existing pipelines
 subtitle: How to contribute to existing nf-core pipelines
-shortTitle: Contributing to existing pipelines
+shortTitle: Existing pipelines
 ---
 
 nf-core pipelines are community-driven bioinformatics workflows that enable reproducible analyses across research groups. Contributing to existing pipelines helps improve functionality, fix bugs, and add new features that benefit the entire community.

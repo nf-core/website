@@ -62,6 +62,10 @@ To add an nf-core module to your pipeline with nf-core tools:
 
 1. Run Prettier to format your code.
 
+    ```bash
+    prettier -w
+    ```
+
 1. Run the pipeline locally with test data to verify:
 
     - The module executes successfully
