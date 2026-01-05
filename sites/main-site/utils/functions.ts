@@ -97,6 +97,10 @@ export const addEntriesToSection = (sections, docs: CollectionEntry<'docs'>[], u
             if (label === 'Nf-core-tools') {
                 label = 'nf-core/tools';
             }
+            // replace Cli with CLI
+            if (label === 'Cli') {
+                label = 'CLI';
+            }
             const existingEntry = currentLevel.find((entry) => entry?.label === label);
             const lastPart = i === parts.length - 1;
             const secondToLastPart = i === parts.length - 2;
