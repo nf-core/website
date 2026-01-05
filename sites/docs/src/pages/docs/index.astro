@@ -217,9 +217,9 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
 
 // Define training cards
 const trainingCards = [
-    { title: "Nextflow training", href: "https://training.nextflow.io/latest/", icon: "octicon:book-16" },
-    { title: "Hello nf-core", href: "https://training.nextflow.io/latest/hello_nf-core/", icon: "octicon:mortar-board-16" }
-];
+    { title: "Nextflow documentation", href: "https://www.nextflow.io/docs/latest/index.html", icon: "octicon:book-16" },
+    { title: "Nextflow and nf-core training", href: "https://training.nextflow.io/latest/", icon: "octicon:mortar-board-16" }
+    ];
 ---
 
 <PageLayout
@@ -288,13 +288,13 @@ const trainingCards = [
                 </div>
                 </div>
 
-                <!-- Training Section -->
+                <!-- Other Resources Section -->
                 <div class="mb-5">
                     <h2 class="section-heading mb-2">Other resources</h2>
                     <p class="mb-4">
                         Learn Nextflow and nf-core through comprehensive tutorials and hands-on training materials.
                     </p>
-                    <div class="card-grid training-grid">
+                    <div class="card-grid resources-grid">
                         {
                             trainingCards.map((card) => (
                                 <a href={card.href} class="text-decoration-none">
@@ -365,7 +365,7 @@ const trainingCards = [
         gap: 1rem;
     }
 
-    .training-grid {
+    .resources-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5rem;
     }
@@ -383,7 +383,7 @@ const trainingCards = [
     @media (max-width: 767px) {
         .featured-grid,
         .section-grid,
-        .training-grid {
+        .resources-grid {
             grid-template-columns: 1fr;
         }
     }
