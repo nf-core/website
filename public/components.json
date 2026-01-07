@@ -164318,19 +164318,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_picard": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "picard": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "picard CollectHsMetrics --version 2>&1 | sed -n 's/^Version:*//p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "picard": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "picard CollectHsMetrics --version 2>&1 | sed -n 's/^Version:*//p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -205664,6 +205696,192 @@
           "version": "3.7.1"
         }
       ]
+    },
+    {
+      "name": "sentieon_hsmetrics",
+      "path": "modules/nf-core/sentieon/hsmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "sentieon_hsmetrics",
+        "description": "Collects hybrid-selection (HS) metrics for a SAM or BAM file.",
+        "keywords": [
+          "metrics",
+          "bam",
+          "sentieon"
+        ],
+        "tools": [
+          {
+            "sentieon": {
+              "description": "Sentieon® provides complete solutions for secondary DNA/RNA analysis for a variety of sequencing platforms, including short and long reads.\nOur software improves upon BWA, STAR, Minimap2, GATK, HaplotypeCaller, Mutect, and Mutect2 based pipelines and is deployable on any generic-CPU-based computing system.\n",
+              "homepage": "https://www.sentieon.com/",
+              "documentation": "https://www.sentieon.com/",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test']`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM/CRAM/SAM file",
+                "pattern": "*.{bam,cram,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Index of the BAM/CRAM/SAM file",
+                "pattern": "*.{bai,crai,sai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            },
+            {
+              "bait_intervals": {
+                "type": "file",
+                "description": "An interval file that contains the locations of the baits used.",
+                "pattern": "*.{interval_list,bed,bed.gz}",
+                "ontologies": []
+              }
+            },
+            {
+              "target_intervals": {
+                "type": "file",
+                "description": "An interval file that contains the locations of the targets.",
+                "pattern": "*.{interval_list,bed,bed.gz}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome fasta file",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of the genome fasta file",
+                "pattern": "*.fai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Alignment metrics related to how many reads overlap the target/bait regions.",
+                  "pattern": "*.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed 's/.*-//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed 's/.*-//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
     },
     {
       "name": "sentieon_qualcal",
