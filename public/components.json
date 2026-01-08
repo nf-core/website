@@ -101577,7 +101577,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "nascent",
@@ -142920,19 +142920,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mosdepth": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "mosdepth": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "mosdepth --version | sed 's/mosdepth //g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "mosdepth": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "mosdepth --version | sed 's/mosdepth //g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -142943,7 +142975,6 @@
         ],
         "maintainers": [
           "@joseespinosa",
-          "@drpatelh",
           "@ramprasadn",
           "@matthdsm"
         ]
@@ -145294,7 +145325,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "mitodetect",
@@ -153683,7 +153714,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -153813,7 +153844,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -153915,7 +153946,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154039,7 +154070,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154130,7 +154161,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154224,7 +154255,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154319,7 +154350,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154413,7 +154444,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154515,7 +154546,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -154640,7 +154671,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -234557,7 +234588,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "ribomsqc",
@@ -266631,7 +266662,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "mitodetect",
@@ -267048,7 +267079,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "mitodetect",
@@ -267457,7 +267488,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "mitodetect",
