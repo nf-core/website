@@ -181,14 +181,9 @@ Only if a tool reads the input multiple times, it is required to uncompress the 
 
 The topic output qualifier is a new feature in Nextflow that provides a streamlined approach to collecting outputs from multiple processes across a pipeline.
 This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
-See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
+See the [fastqc module](https://github.com/nf-core/modules/blob/d5416e7fb4d202b26a8ec9ebd3d2756907a16ec9/modules/nf-core/fastqc/main.nf#L16) as an example.
 
-:::warning
-For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml.
-The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
-:::
-
-:::tip{title="Tips for extracting the version string" collapse}
+:::note{title="Tips for extracting the version string" collapse}
 
 `sed{:bash}` is a powerful stream editor that can be used to manipulate the input text into the desired output.
 Start by piping the output of the version command to `sed{:bash}` and try to select the line with the version number:
@@ -208,10 +203,58 @@ tool --version | sed '1!d'
 
 :::
 
+Where applicable, each module command MUST emit one output per tool containing the process name, the tool name and the tool version, e.g.
+
+```bash
+output:
+<other outputs>
+tuple val("${task.process}"), val("fastqc"), eval("fastqc --version | sed -e 's/FastQC v//g'"), emit: versions_fastqc, topic: versions
+tuple val("${task.process}"), val("samtools"), eval("samtools --version |& sed '1!d ; s/samtools //'"), emit: versions_samtools, topic: versions
+```
+
+resulting in, for instance,
+
+```bash
+["FASTQC", "fastqc", "0.11.9"] # FASTQC.out.versions_fastqc
+["SAMTOOLS_VIEW", "samtools", "1.12"] # FASTQC.out.versions_samtools
+```
+
+All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
+
+If the software is unable to output a version number on the command-line then the version can be directly specified using `val()` instead of `eval()`
+
+Please include the accompanying comments above the software packing directives and beside the version output.
+
+```groovy {4,14}
+process TOOL {
+
+...
+// WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
+conda "${moduleDir}/environment.yml"
+   container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+   'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
+   'biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+
+...
+
+output:
+tuple val("${task.process}"), val("tool"), val("0.9.1"), emit: versions_tool, topic: versions
+// WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+
+...
+}
+```
+
+:::warning
+For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml (see below).
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
+:::
+
 :::note
 For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, we kept it below for reference.
 :::
 
+:::tip{title="Deprecated approach for emitting versions" collapse}
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
 ```bash
@@ -268,6 +311,7 @@ END_VERSIONS
 ```
 
 If the HEREDOC cannot be used because the script is not bash, the `versions.yml` MUST be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+:::
 
 ### Presence of when statement
 
