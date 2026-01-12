@@ -173,16 +173,11 @@ Only if a tool reads the input multiple times, uncompress the file before runnin
 
 ## Emission of versions
 
-The topic output qualifier in Nextflow collects outputs from multiple processes across a pipeline.
-Use this feature in nf-core modules to collect version information from all tools without complex channel mixing logic.
-See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
+The topic output qualifier is a new feature in Nextflow that provides a streamlined approach to collecting outputs from multiple processes across a pipeline.
+This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
+See the [fastqc module](https://github.com/nf-core/modules/blob/d5416e7fb4d202b26a8ec9ebd3d2756907a16ec9/modules/nf-core/fastqc/main.nf#L16) as an example.
 
-:::warning
-For modules that use the template process directive, they will currently continue to depend on the old approach with `versions.yml`.
-The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic.
-:::
-
-:::tip{title="Tips for extracting the version string" collapse}
+:::note{title="Tips for extracting the version string" collapse}
 
 `sed{:bash}` is a powerful stream editor that can be used to manipulate the input text into the desired output.
 Start by piping the output of the version command to `sed{:bash}` and try to select the line with the version number:
@@ -192,21 +187,69 @@ tool --version | sed '1!d'
 ```
 
 - `sed '1!d'{:bash}` Extracts only line 1 of the output printed by `tools --version{:bash}`.
-- The line to process can also be selected using a pattern instead of a number: `sed '/pattern/!d'{:bash}`. For example, `sed '/version:/!d'{:bash}`.
+- The line to process can also be selected using a pattern instead of a number: `sed '/pattern/!d'{:bash}`, e.g. `sed '/version:/!d'{:bash}`.
 - If the line extraction hasn't worked, then it's likely the version information is written to stderr, rather than stdout.
   In this case capture stderr using `|&{:bash}` which is shorthand for `2>&1 |{:bash}`.
 - `sed 's/pattern/replacement/'{:bash}` can be used to remove parts of a string. `.` matches any character, `+` matches 1 or more times.
-- You can separate `sed{:bash}` commands using `;`. Often the pattern: `sed 'filter line ; replace string'{:bash}` is enough to get the version number.
+- You can separate `sed{:bash}` commands using `;`. Often the pattern : `sed 'filter line ; replace string'{:bash}` is enough to get the version number.
 - It is not necessary to use `echo`, `head`, `tail`, or `grep`.
 - Use `|| true` for tools that exit with a non-zero error code: `command --version || true{:bash}` or `command --version | sed ... || true{:bash}`.
 
 :::
 
-:::note
-For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, it is shown below for reference.
+Where applicable, each module command MUST emit one output per tool containing the process name, the tool name and the tool version, e.g.
+
+```bash
+output:
+<other outputs>
+tuple val("${task.process}"), val("fastqc"), eval("fastqc --version | sed -e 's/FastQC v//g'"), emit: versions_fastqc, topic: versions
+tuple val("${task.process}"), val("samtools"), eval("samtools --version |& sed '1!d ; s/samtools //'"), emit: versions_samtools, topic: versions
+```
+
+resulting in, for instance,
+
+```bash
+["FASTQC", "fastqc", "0.11.9"] # FASTQC.out.versions_fastqc
+["SAMTOOLS_VIEW", "samtools", "1.12"] # FASTQC.out.versions_samtools
+```
+
+All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
+
+If the software is unable to output a version number on the command-line then the version can be directly specified using `val()` instead of `eval()`
+
+Please include the accompanying comments above the software packing directives and beside the version output.
+
+```groovy {4,14}
+process TOOL {
+
+...
+// WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
+conda "${moduleDir}/environment.yml"
+   container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+   'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
+   'biocontainers/tool:0.9.1--pl526hc9558a2_3' }"
+
+...
+
+output:
+tuple val("${task.process}"), val("tool"), val("0.9.1"), emit: versions_tool, topic: versions
+// WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
+
+...
+}
+```
+
+:::warning
+For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml (see below).
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
 :::
 
-Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, for example:
+:::note
+For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, we kept it below for reference.
+:::
+
+:::tip{title="Deprecated approach for emitting versions" collapse}
+Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, e.g.
 
 ```bash
 cat <<-END_VERSIONS > versions.yml
@@ -224,20 +267,20 @@ resulting in, for instance,
   samtools: 1.12
 ```
 
-All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
+All reported versions MUST be without a leading `v` or similar (i.e. must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
-A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
-The exit status of sub-shells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
+We chose a [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) over piping into the versions file line-by-line as we believe the latter makes it easy to accidentally overwrite the file.
+Moreover, the exit status of the sub-shells evaluated in within the HEREDOC is ignored, ensuring that a tool's version command does no erroneously terminate the module.
 
-If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information. For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
+If the software is unable to output a version number on the command-line then a variable called `VERSION` can be manually specified to provide this information e.g. [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
 
-Include the accompanying comments above the software packing directives and beside the version string.
+Please include the accompanying comments above the software packing directives and beside the version string.
 
 ```groovy {4,15,21}
 process TOOL {
 
 ...
-// WARN: Version information not provided by tool on CLI. Update version string below when bumping container versions.
+// WARN: Version information not provided by tool on CLI. Please update version string below when bumping container versions.
 conda "${moduleDir}/environment.yml"
    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
    'https://depot.galaxyproject.org/singularity/tool:0.9.1--pl526hc9558a2_3' :
@@ -248,7 +291,7 @@ conda "${moduleDir}/environment.yml"
 script:
 def args = task.ext.args ?: ''
 def prefix = task.ext.prefix ?: "${meta.id}"
-def VERSION = '0.9.1' // WARN: Version information not provided by tool on CLI. Update this string when bumping container versions.
+def VERSION = '0.9.1' // WARN: Version information not provided by tool on CLI. Please update this string when bumping container versions.
 """
 ...
 
@@ -261,12 +304,13 @@ END_VERSIONS
 }
 ```
 
-If the HEREDOC cannot be used because the script is not bash, write the `versions.yml` directly. For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+If the HEREDOC cannot be used because the script is not bash, the `versions.yml` MUST be written directly e.g. [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+:::
 
-## Presence of when statement
+### Presence of when statement
 
-The `when` statement MUST NOT be changed in the process definition.
-Supply `when` conditions using the `process.ext.when` directive in a configuration file instead.
+The process definition MUST NOT change the `when` statement.
+`when` conditions can instead be supplied using the `process.ext.when` directive in a configuration file.
 
 ```groovy
 process {
