@@ -34,7 +34,6 @@ To publish and advisory:
    1. Fork the [nf-core website repository](https://github.com/nf-core/website)
    1. Add a new Markdown or MDX file to `sites/main-site/src/content/advisory`
 1. Add frontmatter:
-
    - Reference existing advisories as templates for structure and formatting
    - Use the following as a template:
 

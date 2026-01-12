@@ -32,9 +32,9 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
 
 1. Add your required packages to the search bar. You can paste package names directly from your `environment.yml` file.
 
-    :::tip
-    Test your `environment.yml` file locally using conda before generating containers. This helps verify package compatibility and catch potential issues early.
-    :::
+   :::tip
+   Test your `environment.yml` file locally using conda before generating containers. This helps verify package compatibility and catch potential issues early.
+   :::
 
 1. Set the **Container** setting to **Docker**
 
@@ -49,8 +49,7 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
 1. Wait for the build to complete successfully
 
 1. Check the **HTTPS** checkbox
-
-    - This option only appears after a successful build
+   - This option only appears after a successful build
 
 1. Copy the generated Singularity URL including the full `https://community-cr-prod...` prefix
 
@@ -62,9 +61,9 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
        'community.wave.seqera.io/<docker-container-id>' }"
    ```
 
-    :::warning
-    Docker URLs should not include the `https://` prefix, while Singularity URLs must include it. The HTTPS checkbox for Singularity only appears after the container builds successfully.
-    :::
+   :::warning
+   Docker URLs should not include the `https://` prefix, while Singularity URLs must include it. The HTTPS checkbox for Singularity only appears after the container builds successfully.
+   :::
 
 ## Additional resources
 
