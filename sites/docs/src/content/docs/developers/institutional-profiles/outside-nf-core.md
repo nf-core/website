@@ -48,7 +48,6 @@ To integrate nf-core configs outside nf-core:
 
    :::note
    This conditional statement:
-
    - Checks if Nextflow is running in offline mode
    - Verifies the `custom_config_base` parameter exists
    - Loads the nf-core configs if both conditions are met

@@ -29,20 +29,17 @@ To contribute features, bug fixes, or improvements to existing nf-core pipelines
 To propose a new nf-core pipeline:
 
 1. Create a proposal on the [nf-core/proposals](https://github.com/nf-core/proposals) repository.
-
-    - Use the dedicated issue template for new pipeline proposals.
-    - Fill out the form with key information about the pipeline you want to write.
+   - Use the dedicated issue template for new pipeline proposals.
+   - Fill out the form with key information about the pipeline you want to write.
 
 1. Wait for the proposal to be reviewed.
-
-    - The proposal will be discussed and checked for uniqueness to ensure minimal overlap with existing pipelines.
-    - Once accepted, the proposal will be added to the [new pipeline tracking board](https://github.com/orgs/nf-core/projects/104) on GitHub.
-    - The core team will create a Slack channel for your pipeline.
+   - The proposal will be discussed and checked for uniqueness to ensure minimal overlap with existing pipelines.
+   - Once accepted, the proposal will be added to the [new pipeline tracking board](https://github.com/orgs/nf-core/projects/104) on GitHub.
+   - The core team will create a Slack channel for your pipeline.
 
 1. Join the following Slack channels:
-
-    - [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) for major change announcements and general pipeline development discussion.
-    - [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to coordinate the two reviews required for your first release.
+   - [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) for major change announcements and general pipeline development discussion.
+   - [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to coordinate the two reviews required for your first release.
 
 ## Create the pipeline from the template
 
@@ -50,20 +47,20 @@ To create a new pipeline from the nf-core template:
 
 1. Create the pipeline using the nf-core command-line tool:
 
-    ```bash
-    nf-core pipelines create
-    ```
+   ```bash
+   nf-core pipelines create
+   ```
 
-    - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/create) for detailed instructions.
-    - This command creates the correct file structure, boilerplate code, and git infrastructure for template synchronization.
+   - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/create) for detailed instructions.
+   - This command creates the correct file structure, boilerplate code, and git infrastructure for template synchronization.
 
 1. Switch to the `dev` branch:
 
-    ```bash
-    git checkout dev
-    ```
+   ```bash
+   git checkout dev
+   ```
 
-    - All development should happen on `dev` or on other branches that get merged into `dev`.
+   - All development should happen on `dev` or on other branches that get merged into `dev`.
 
 :::tip
 If you have an existing Nextflow pipeline, start fresh with the nf-core template and copy your code into the relevant places. This approach is usually easier than converting an existing pipeline. Contact the core team on Slack if you need guidance.
@@ -74,24 +71,23 @@ If you have an existing Nextflow pipeline, start fresh with the nf-core template
 To push your new pipeline to GitHub:
 
 1. Create an empty repository on GitHub under your personal account.
-
-    - Go to GitHub and select **+** then **New Repository**.
-    - Do not initialise the repository with any files (`README`, `LICENSE`, or `.gitignore`). The nf-core template already includes these files.
+   - Go to GitHub and select **+** then **New Repository**.
+   - Do not initialise the repository with any files (`README`, `LICENSE`, or `.gitignore`). The nf-core template already includes these files.
 
 1. Add the GitHub repository as a remote to your local git repository:
 
-    ```bash
-    git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
-    ```
+   ```bash
+   git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
+   ```
 
 1. Push all branches to the remote GitHub repository:
 
-    ```bash
-    git push --all origin
-    ```
+   ```bash
+   git push --all origin
+   ```
 
-    - The `nf-core pipelines create` command generates three standard nf-core branches (`master`, `dev`, and `TEMPLATE`) with an initial commit shared between them.
-    - This git structure is required for automatic template synchronisation.
+   - The `nf-core pipelines create` command generates three standard nf-core branches (`master`, `dev`, and `TEMPLATE`) with an initial commit shared between them.
+   - This git structure is required for automatic template synchronisation.
 
 You should now see the nf-core template and branches in the GitHub web interface.
 
@@ -107,26 +103,25 @@ To develop your pipeline:
 
 1. Run the nf-core linting tool regularly to ensure your pipeline meets nf-core standards:
 
-    ```bash
-    nf-core pipelines lint
-    ```
+   ```bash
+   nf-core pipelines lint
+   ```
 
-    - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/lint) for more information.
-    - GitHub Actions also runs this automatically, and you will receive notifications if tests fail.
+   - See the [nf-core tools documentation](/docs/nf-core-tools/pipelines/lint) for more information.
+   - GitHub Actions also runs this automatically, and you will receive notifications if tests fail.
 
 1. Test the pipeline locally with test data to verify:
-
-    - The pipeline executes successfully.
-    - Outputs are generated correctly.
-    - No errors or warnings occur.
+   - The pipeline executes successfully.
+   - Outputs are generated correctly.
+   - No errors or warnings occur.
 
 1. Use the `debug` profile when testing to get additional information:
 
-    ```bash
-    nextflow run <pipeline_name> -profile debug
-    ```
+   ```bash
+   nextflow run <pipeline_name> -profile debug
+   ```
 
-    - This enables warnings about process selectors, shows additional debug output, and disables cleanup.
+   - This enables warnings about process selectors, shows additional debug output, and disables cleanup.
 
 ## Set up test data
 
@@ -144,52 +139,48 @@ To add your test data to the nf-core/test-datasets repository:
 
 1. Clone the repository and create a new branch for your pipeline:
 
-    ```bash
-    git clone https://github.com/<YOUR_USERNAME>/test-datasets.git
-    cd test-datasets
-    git checkout -b <pipeline_name>
-    ```
+   ```bash
+   git clone https://github.com/<YOUR_USERNAME>/test-datasets.git
+   cd test-datasets
+   git checkout -b <pipeline_name>
+   ```
 
 1. Add your test data files.
-
-    - Test data files must be very small due to GitHub file size limits and GitHub Actions timeout constraints.
-    - Use minimal reference data such as PhiX, yeast, or part of a chromosome.
-    - Aggressively subsample input data to be as small as possible while still testing pipeline functionality.
+   - Test data files must be very small due to GitHub file size limits and GitHub Actions timeout constraints.
+   - Use minimal reference data such as PhiX, yeast, or part of a chromosome.
+   - Aggressively subsample input data to be as small as possible while still testing pipeline functionality.
 
 1. Ask for advice in the [#test-data](https://nfcore.slack.com/channels/test-data) Slack channel before adding test data.
 
 1. Push the new files to GitHub:
 
-    ```bash
-    git add .
-    git commit -m "Add test data for <pipeline_name>"
-    git push --set-upstream origin <pipeline_name>
-    ```
+   ```bash
+   git add .
+   git commit -m "Add test data for <pipeline_name>"
+   git push --set-upstream origin <pipeline_name>
+   ```
 
 1. Create a pull request against the main [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository.
-
-    - First, create a new branch with your pipeline name using the GitHub web interface on the [nf-core/test-datasets repository](https://github.com/nf-core/test-datasets/).
-    - Then open a pull request and select this branch as the target.
+   - First, create a new branch with your pipeline name using the GitHub web interface on the [nf-core/test-datasets repository](https://github.com/nf-core/test-datasets/).
+   - Then open a pull request and select this branch as the target.
 
 ### Configure the test profile
 
 To configure the test profile in your pipeline:
 
 1. Edit the `conf/test.config` file.
-
-    - Replace the example URLs with URLs to your test data files in the nf-core/test-datasets repository.
-    - View files on GitHub and select **Raw** to get the direct URL.
+   - Replace the example URLs with URLs to your test data files in the nf-core/test-datasets repository.
+   - View files on GitHub and select **Raw** to get the direct URL.
 
 1. Add required parameters to ensure the pipeline runs with minimal additional flags.
-
-    - The `test` profile can be combined with other profiles such as `docker` or `conda`.
-    - Do not specify a hardware environment in the test configuration.
+   - The `test` profile can be combined with other profiles such as `docker` or `conda`.
+   - Do not specify a hardware environment in the test configuration.
 
 1. Run the pipeline with the test profile to verify it works:
 
-    ```bash
-    nextflow run <pipeline_name> -profile test,docker --outdir <OUTDIR>
-    ```
+   ```bash
+   nextflow run <pipeline_name> -profile test,docker --outdir <OUTDIR>
+   ```
 
 1. Update the `.github/workflows/` YAML files if you modify the test command.
 
@@ -209,8 +200,7 @@ See the [test data specifications](/docs/specifications/test-data/general) for c
 You will need a full-size test dataset for the `test_full` profile:
 
 1. Request upload to nf-core AWS S3 test buckets in the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) Slack channel.
-
-    - This dataset produces realistic output when executed on each release.
+   - This dataset produces realistic output when executed on each release.
 
 ## Move your pipeline to nf-core
 
@@ -221,10 +211,9 @@ To move your pipeline to the nf-core organisation:
 1. Announce on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) Slack channel that you need a core team member to move your repository.
 
 1. Transfer repository ownership to nf-core:
-
-    - Go to your repository settings.
-    - Under the **General** page, find the **Danger Zone** section.
-    - Select **Transfer Ownership** and transfer to the nf-core organisation.
+   - Go to your repository settings.
+   - Under the **General** page, find the **Danger Zone** section.
+   - Select **Transfer Ownership** and transfer to the nf-core organisation.
 
 1. Fork the transferred repository back to your account to continue development.
 
@@ -241,14 +230,12 @@ Repositories should be transferred instead of forked to nf-core. Forking causes 
 To set up the branch structure:
 
 1. Ensure your repository has `dev` and `master` branches.
-
-    - The `master` branch contains the latest stable release code.
-    - The `dev` branch contains the latest development code.
+   - The `master` branch contains the latest stable release code.
+   - The `dev` branch contains the latest development code.
 
 1. Set `dev` as the default branch before the first release.
-
-    - This ensures users run the latest development code by default.
-    - After the first release, set the default branch to `master` so users run the latest stable release by default.
+   - This ensures users run the latest development code by default.
+   - After the first release, set the default branch to `master` so users run the latest stable release by default.
 
 ### Configure repository settings
 
@@ -279,13 +266,13 @@ To prepare for release:
 
 1. Update the version number on the `dev` branch:
 
-    ```bash
-    nf-core pipelines bump-version --nextflow <new_version>
-    ```
+   ```bash
+   nf-core pipelines bump-version --nextflow <new_version>
+   ```
 
-    - The first release should be version `1.0.0` (pre-releases are discouraged).
-    - During development, use numeric versions with `dev` at the end (for example, `0.0.0dev`).
-    - Release versions must be numeric and follow [Semantic Versioning](https://semver.org/).
+   - The first release should be version `1.0.0` (pre-releases are discouraged).
+   - During development, use numeric versions with `dev` at the end (for example, `0.0.0dev`).
+   - Release versions must be numeric and follow [Semantic Versioning](https://semver.org/).
 
 :::tip
 The version number exists in many places throughout the codebase. Use `nf-core pipelines bump-version` to update all occurrences consistently rather than editing manually.
@@ -306,13 +293,11 @@ Your pipeline requires review by the nf-core community before release.
 To get your pipeline reviewed:
 
 1. Create a pull request from the `dev` branch to `master` on the nf-core repository.
-
-    - This is a special case where all tests should pass.
-    - Ensure all automated tests complete successfully.
+   - This is a special case where all tests should pass.
+   - Ensure all automated tests complete successfully.
 
 1. Request two reviews, with at least one from the core or maintainers team.
-
-    - Use the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) Slack channel to coordinate reviews.
+   - Use the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) Slack channel to coordinate reviews.
 
 The review process depends on your `master` branch state:
 
@@ -334,9 +319,8 @@ While waiting for review, consider reviewing another community member's release 
 Once reviewers approve your pull request:
 
 1. Add a changelog entry describing the pipeline functionality at release.
-
-    - Describe the general features and capabilities.
-    - Tag contributors with their GitHub handles so their icons appear on the release page.
+   - Describe the general features and capabilities.
+   - Tag contributors with their GitHub handles so their icons appear on the release page.
 
 1. Follow the [pipeline release checklist](/docs/contributors/pipeline-release) to complete the release process.
 
@@ -367,14 +351,12 @@ Verify that your pipeline appears on the nf-core website:
 After your first release, continue development following these practices:
 
 1. Make pull requests against the `dev` branch on the nf-core repository.
-
-    - All pull requests to `dev` should be reviewed before merging.
+   - All pull requests to `dev` should be reviewed before merging.
 
 1. When ready for a new release:
-
-    - Update the version number using `nf-core pipelines bump-version`.
-    - Create a pull request against `master`.
-    - If tests pass, the pull request can be merged and a new release made.
+   - Update the version number using `nf-core pipelines bump-version`.
+   - Create a pull request against `master`.
+   - If tests pass, the pull request can be merged and a new release made.
 
 :::note
 The `master` branch should only contain the commit from the latest release. This is important because the commit ID is used to determine whether a pipeline is up to date.

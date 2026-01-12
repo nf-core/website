@@ -38,7 +38,6 @@ Some developers may add branding to their own pipelines by extending the default
 If you wish to do so, please use the following guidelines when creating your mark:
 
 1. Simplicity:
-
    - Keep the mark simple, so easy to visualise.
 
      :::tip

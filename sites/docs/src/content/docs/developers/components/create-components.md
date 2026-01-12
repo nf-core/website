@@ -25,9 +25,9 @@ Before creating a new component, verify it doesn't already exist by:
 
 1. Using the `nf-core modules list` command:
 
-    ```bash
-    nf-core modules list
-    ```
+   ```bash
+   nf-core modules list
+   ```
 
 1. Checking the [nf-core/modules repository](https://github.com/nf-core/modules).
 
@@ -41,53 +41,48 @@ To create a new module or subworkflow:
 
 1. Create a new branch in your local repository:
 
-    ```bash
-    git checkout -b <component-name>
-    ```
+   ```bash
+   git checkout -b <component-name>
+   ```
 
 1. Use nf-core/tools to generate the component structure:
+   - For modules:
 
-    - For modules:
+     ```bash
+     nf-core modules create
+     ```
 
-      ```bash
-      nf-core modules create
-      ```
+   - For subworkflows:
 
-    - For subworkflows:
+     ```bash
+     nf-core subworkflows create
+     ```
 
-      ```bash
-      nf-core subworkflows create
-      ```
-
-    The create command generates three core files with a standard structure:
-
-    - **`main.nf`**: The main script containing the process or workflow definition with TODO statements to guide you through implementation.
-    - **`meta.yml`**: Metadata file storing general information, author details, and input/output descriptions. This file is validated against a JSON schema to ensure consistency.
-    - **`tests/main.nf.test`**: Test workflow to unit test the component outputs. All components must include tests.
+   The create command generates three core files with a standard structure:
+   - **`main.nf`**: The main script containing the process or workflow definition with TODO statements to guide you through implementation.
+   - **`meta.yml`**: Metadata file storing general information, author details, and input/output descriptions. This file is validated against a JSON schema to ensure consistency.
+   - **`tests/main.nf.test`**: Test workflow to unit test the component outputs. All components must include tests.
 
 ## Write your component
 
 To implement your component:
 
 1. Follow the TODO statements in the generated `main.nf` file.
-
-    - Implement the tool command or workflow logic.
-    - Populate version channels using eval output qualifiers.
-    - Ensure adherence to [component specifications](LINK).
+   - Implement the tool command or workflow logic.
+   - Populate version channels using eval output qualifiers.
+   - Ensure adherence to [component specifications](LINK).
 
 1. Complete the `meta.yml` file with comprehensive metadata.
-
-    - Fill in all required metadata fields.
-    - Document all inputs and outputs with descriptions.
-    - Include tool references and version information.
+   - Fill in all required metadata fields.
+   - Document all inputs and outputs with descriptions.
+   - Include tool references and version information.
 
 1. Write comprehensive tests in `tests/main.nf.test`.
-
-    - Use minimal test data from `tests/config/test_data.config` when possible.
-    - Follow test-data specifications to keep test datasets small and fast.
-    - Create test snapshots to verify outputs match expected results.
-    - Add multiple test scenarios if applicable (e.g., single-end and paired-end data).
-    - For large datasets requiring stub tests, document alternative testing procedures.
+   - Use minimal test data from `tests/config/test_data.config` when possible.
+   - Follow test-data specifications to keep test datasets small and fast.
+   - Create test snapshots to verify outputs match expected results.
+   - Add multiple test scenarios if applicable (e.g., single-end and paired-end data).
+   - For large datasets requiring stub tests, document alternative testing procedures.
 
 :::note
 All components require test workflows. Tests validate that your component works correctly and prevent regressions when changes are made.
@@ -98,36 +93,34 @@ All components require test workflows. Tests validate that your component works 
 Before contributing your component, thoroughly test it to ensure it meets nf-core standards:
 
 1. Run the linting tool to check code quality and adherence to nf-core standards:
+   - For modules:
 
-    - For modules:
+     ```bash
+     nf-core modules lint <module_name>
+     ```
 
-      ```bash
-      nf-core modules lint <module_name>
-      ```
+   - For subworkflows:
 
-    - For subworkflows:
+     ```bash
+     nf-core subworkflows lint <subworkflow_name>
+     ```
 
-      ```bash
-      nf-core subworkflows lint <subworkflow_name>
-      ```
-
-    The linting tool checks for common issues such as missing files, incorrect formatting, and invalid metadata.
+   The linting tool checks for common issues such as missing files, incorrect formatting, and invalid metadata.
 
 1. Run the component tests:
+   - For modules:
 
-    - For modules:
+     ```bash
+     nf-core modules test <module_name>
+     ```
 
-      ```bash
-      nf-core modules test <module_name>
-      ```
+   - For subworkflows:
 
-    - For subworkflows:
+     ```bash
+     nf-core subworkflows test <subworkflow_name>
+     ```
 
-      ```bash
-      nf-core subworkflows test <subworkflow_name>
-      ```
-
-    All tests must pass before you can contribute your component.
+   All tests must pass before you can contribute your component.
 
 :::tip
 GitHub Actions automatically runs these tests when you submit a pull request, but running them locally first helps catch issues early.

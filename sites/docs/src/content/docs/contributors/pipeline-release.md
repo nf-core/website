@@ -51,9 +51,9 @@ Verify that all local modules in `modules/local/` include:
 - [ ] Version reporting for complex modules (simple operations like single `grep` commands don't need version reporting)
 - [ ] Consider whether local modules belong in `nf-core/modules` instead
 
-    :::note
-    If a module could be useful across multiple pipelines, suggest moving it to the shared repository for broader community benefit.
-    :::
+  :::note
+  If a module could be useful across multiple pipelines, suggest moving it to the shared repository for broader community benefit.
+  :::
 
 ## Review documentation
 
@@ -98,9 +98,9 @@ Proofread documentation for:
 - [ ] Grammatical errors
 - [ ] Unclear explanations
 
-    :::note
-    Well-written documentation helps users get started quickly and reduces support requests.
-    :::
+  :::note
+  Well-written documentation helps users get started quickly and reduces support requests.
+  :::
 
 ## Review code quality
 
@@ -136,8 +136,8 @@ To keep reviews focused and efficient, you don't need to:
 - Comment on scientific accuracy unless you're familiar with the topic
 - Require major code optimisation at the release stage
 
-    :::note
-    You can suggest small code optimisation. However, larger code optimisation shouldn't necessarily be required for release.
-    :::
+  :::note
+  You can suggest small code optimisation. However, larger code optimisation shouldn't necessarily be required for release.
+  :::
 
 Remember that your review helps maintain quality across the nf-core ecosystem. Thank you for contributing your time to make nf-core pipelines better for everyone.

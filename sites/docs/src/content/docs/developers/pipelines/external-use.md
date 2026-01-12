@@ -36,9 +36,9 @@ Replace the following:
 
 - References to the pipeline name that include the `nf-core/` suffix.
 
-    :::warning
-    If you still wish to use the `nf-core tools` linting functionality, this may cause linting failures. Create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests. See linting config for more information. <!-- TODO: Add link to linting config -->
-    :::
+  :::warning
+  If you still wish to use the `nf-core tools` linting functionality, this may cause linting failures. Create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests. See linting config for more information. <!-- TODO: Add link to linting config -->
+  :::
 
 ### `README`
 
@@ -50,9 +50,9 @@ Remove the following:
 - References to the nf-core Slack workspace
 - (Optional) Reference to nf-core/configs in `Quick Start`
 
-   :::note
-   In many cases it is still reasonable to use these configs for non-nf-core pipelines as they typically only modify generic Nextflow options.
-   :::
+  :::note
+  In many cases it is still reasonable to use these configs for non-nf-core pipelines as they typically only modify generic Nextflow options.
+  :::
 
 Replace the following:
 
@@ -78,17 +78,17 @@ Remove the following:
 - `docs/usage.md`: Reference to the nf-core Slack workspace
 - (Optional) Reference to nf-core/configs in `-profile`
 
-   :::note
-   In many cases it is still reasonable to use these configs for non-nf-core pipelines as they typically only modify generic Nextflow options.
-   :::
+  :::note
+  In many cases it is still reasonable to use these configs for non-nf-core pipelines as they typically only modify generic Nextflow options.
+  :::
 
 Replace the following:
 
 - The nf-core logo under `docs/images`
 
-   :::note
-   You will also have to change the filename/path at the top the main repository `README`
-   :::
+  :::note
+  You will also have to change the filename/path at the top the main repository `README`
+  :::
 
 ### `.github/`
 
@@ -98,10 +98,10 @@ Remove the following:
 - `CONTRIBUTING.md`: References to the nf-core Slack workspace
 - `CONTRIBUTING.md`: (Optional) References to the nf-core/tools linting tests
 - `workflows/`: nf-core specific GitHub actions YAMLs
-   - `push_dockerhub*`
+  - `push_dockerhub*`
 - `workflows/`: (Optional) nf-core linting tests under (Note: you can alternatively keep linting and [configure](#general) to ignore certain tests)
-   - `linting.yml`
-   - `linting_comment.yml`
+  - `linting.yml`
+  - `linting_comment.yml`
 - `workflows/`: (Optiona) AWS test GitHub action workflows
 - `ISSUE_TEMPLATE/` Remove references to nf-core website in all templates and config files
 
