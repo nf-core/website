@@ -14682,8 +14682,8 @@
             {
               "image": {
                 "type": "file",
-                "description": "Tiff file to be used for dark and flat field illumination correction",
-                "pattern": "*.{tiff,tif}",
+                "description": "BioFormats-compatible image file to be used for dark and flat field illumination correction",
+                "pattern": "*.{ome.tiff,ome.tif,rcpnl,btf,nd2,tiff,tif,czi}",
                 "ontologies": []
               }
             }
@@ -14699,18 +14699,18 @@
                 }
               },
               {
-                "*-dfp.tiff": {
+                "*-dfp.ome.tif": {
                   "type": "file",
-                  "description": "Tiff fields for dark field illumination correction",
-                  "pattern": "*.{tiff}",
+                  "description": "OME-TIFF fields for dark field illumination correction",
+                  "pattern": "*.{ome.tif}",
                   "ontologies": []
                 }
               },
               {
-                "*-ffp.tiff": {
+                "*-ffp.ome.tif": {
                   "type": "file",
-                  "description": "Tiff fields for flat field illumination correction",
-                  "pattern": "*.{tiff}",
+                  "description": "OME-TIFF fields for flat field illumination correction",
+                  "pattern": "*.{ome.tif}",
                   "ontologies": []
                 }
               }
