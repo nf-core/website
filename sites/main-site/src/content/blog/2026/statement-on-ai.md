@@ -9,7 +9,7 @@ label:
   - "community"
 ---
 
-![Badly photoshop image of a Pigeon developing code on a laptop, and Maxime Garcia giving a thumbs up from the laptop screen](../../../assets/images/blog/satement-on-ai/maxime-pigeon.png)
+![Badly photoshop image of a Pigeon developing code on a laptop, and Maxime Garcia giving a thumbs up from the laptop screen](../../../assets/images/blog/statement-on-ai/maxime-pigeon.png)
 
 > If a pigeon were to commit good code, I would accept it
 
