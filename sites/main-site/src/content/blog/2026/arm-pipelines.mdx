@@ -24,7 +24,7 @@ ARM-based processors like AWS Graviton offer significant advantages over traditi
 
 Beyond the financial benefits, ARM processors consume less power, making them a greener choice for compute-intensive workflows.
 
-For developers, there's another compelling reason: Apple Silicon. With ARM support in Bioconda, you can now run your pipelines natively on Mac M1, M2, M3, and M4 machines without emulation overhead. As we discovered during this project, Docker on Mac runs linux/arm64 containers natively (since Docker runs in a Linux VM), so ARM containers are actually faster than emulated x86 ones on Apple Silicon.
+For developers, there's another compelling reason: Apple Silicon. With ARM support in Bioconda, you can now run your pipelines natively on Mac M1-M5 machines without emulation overhead. As we discovered during this project, Docker on Mac runs linux/arm64 containers natively (since Docker runs in a Linux VM), so ARM containers are actually faster than emulated x86 ones on Apple Silicon. Oxford Nanopore's benchmarking showed [4-5x speedups when running native ARM containers on Mac](https://epi2me.nanoporetech.com/inkling/) compared to emulated x86.
 
 ## The challenge: software availability
 
@@ -38,7 +38,7 @@ _Brendan Bouffler and David Lecomber's Nextflow Summit 2024 talk on running pipe
 
 ## A community-wide porting effort
 
-In October 2024, we created the [`#arm64` channel](https://nf-co.re/join) on the nf-core Slack to coordinate efforts. [David Lecomber](https://github.com/dslarm) from Arm led an intensive package porting effort, working alongside [Pablo Gonzalez de Aledo](https://github.com/pabloaledo) at Seqera and [Angel Pizarro](https://github.com/delagoya) at AWS. Between them, David and Pablo have submitted [_nearly 300_ PRs to Bioconda recipes](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+author%3Apabloaledo+author%3Adslarm) to enable ARM builds.
+In October 2024, we created the [`#arm64` channel](https://nf-co.re/join) on the nf-core Slack to coordinate efforts. [David Lecomber](https://github.com/dslarm), then at Arm, led an intensive package porting effort, working alongside [Pablo Gonzalez de Aledo](https://github.com/pabloaledo) at Seqera and [Angel Pizarro](https://github.com/delagoya) at AWS. Between them, David and Pablo have submitted [_nearly 300_ PRs to Bioconda recipes](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+author%3Apabloaledo+author%3Adslarm) to enable ARM builds.
 
 The approach was methodical. Phil Ewels built [discovery scripts](https://github.com/ewels/nf-core-arm-discovery) to identify which conda packages were used across all nf-core pipelines, then tested whether each package could build successfully for ARM using Seqera's Wave container service. Packages that failed were prioritized based on how many pipelines they blocked.
 
@@ -188,13 +188,14 @@ This means the manual package porting work happening now is laying the foundatio
 
 This work wouldn't have been possible without the contributions of many people. Special thanks to:
 
-- **David Lecomber (Arm)** for his tireless work on package porting - submitting hundreds of PRs and creating comprehensive documentation
+- **David Lecomber (formerly of Arm)** for his tireless work on package porting - submitting hundreds of PRs and creating comprehensive documentation
 - **Angel Pizarro (AWS)** for benchmarking, advocacy, CloudFormation templates, and testing infrastructure
 - **Brendan Bouffler (AWS)** for his belief in the project and coordinating support and resources
 - **Pablo Gonzalez de Aledo (Seqera)** for tooling, Wave integration, and early package porting work
 - **Edmund Miller** for implementing ARM CI testing in nf-core/modules and pipelines
 - **Roman Valls Guimera** for getting oncoanalyser running on ARM and extensive debugging
 - **Maxime U Garcia** for pipeline fixes and coordination
+- **Arm** for enabling David's time to work on this project
 
 The entire **Bioconda maintainer team** for their support and rapid reviews
 
