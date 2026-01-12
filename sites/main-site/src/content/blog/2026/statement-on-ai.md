@@ -4,9 +4,9 @@ subtitle: "Core team statement on AI within nf-core"
 pubDate: 2026-01-21T10:00:00+01:00
 embedHeaderImage: true
 authors:
-    - "James Fellows Yates"
+  - "James Fellows Yates"
 label:
-    - "community"
+  - "community"
 ---
 
 ![Badly photoshop image of a Pigeon developing code on a laptop, and Maxime Garcia giving a thumbs up from the laptop screen](../../../assets/images/blog/satement-on-ai/maxime-pigeon.png)
@@ -20,6 +20,7 @@ label:
 nf-core's policy remains unchanged. Humans are still ultimately responsible for their submitted code.
 
 If you're using AI tools, try to stick by these guidelines:
+
 - Keep PRs as small and focussed as possible
 - Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
 - Review all generated code yourself before opening a PR, and ensure that you understand it all
