@@ -1,5 +1,5 @@
 {
-    "name": "@nf-co.re/modules-subworkflows",
+    "name": "@nf-co.re/stickers",
     "type": "module",
     "version": "0.0.1",
     "private": true,
@@ -8,9 +8,6 @@
         "start": "astro dev",
         "build-preview": "astro build && astro preview",
         "build": "NODE_OPTIONS='--max-old-space-size=4096' astro build",
-        "preview": "astro preview",
-        "build-pipeline-json": "node ../../bin/pipelines.json.js",
-        "build-component-json": "node ../../bin/components.json.js",
         "test": "playwright test"
     },
     "dependencies": {
@@ -22,7 +19,6 @@
         "@iconify-json/fluent": "^1.2.36",
         "@iconify-json/logos": "^1.2.10",
         "@iconify-json/mdi": "^1.2.3",
-        "@iconify-json/octicon": "^1.2.19",
-        "svelte-exmarkdown": "^5.0.2"
+        "@iconify-json/octicon": "^1.2.19"
     }
 }
