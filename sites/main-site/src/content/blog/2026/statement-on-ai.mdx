@@ -19,12 +19,18 @@ label:
 
 nf-core's policy remains unchanged. Humans are still ultimately responsible for their submitted code.
 
+If you're using AI tools, try to stick by these guidelines:
+- Keep PRs as small and focussed as possible
+- Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
+- Review all generated code yourself before opening a PR, and ensure that you understand it all
+- Engage with the community review process and expect to make revisions
+
 ## Background
 
-As everyone reading this is most likely aware, artifical intelligence (AI) and particularly Large Language Models (LLMs) have exploded in usage in many areas of society.
+As everyone reading this is most likely aware, Large Language Models (LLMs) have exploded in usage in many areas of society usually under the term artifical intelligence (AI).
 Particualy in software development, many tools and services have been developed and adopted by many companies, institutes, and developers.
 
-However, despite the use of AI and LLMs remain a contentious topic, with many conflicting opinions on their use, ethics, and implications remaining.
+However, despite the use of AI/LLMs remain a contentious topic, with many conflicting opinions on their use, ethics, and implications remaining.
 
 Within nf-core, two discussions have recently taken place regarding the use of AI in code contributions [^1] [^2], with two main viewpoints emerging of strong enthusiasm vs skepticism.
 
@@ -48,9 +54,9 @@ For the people who were very much in favour, they felt that:
 On the flip side people who were more skeptical said they worried about:
 
 - AI code and automated reviews having variable and inconsistent quality
-- Risk of increasing prevelance of 'drive-by PRs'
-- Risk of increasing the prelevance of low-effort but large contributions with significant code changes outside original scope (particularly from Agentic generated code)
-- Moral, ethical, and legal questions such as source data attribution remains unaddressed
+- Risk of increasing prevelance of 'drive-by PRs' with limited engagement by author
+- Risk of increasing the prelevance of low-effort but large contributions with significant code changes outside original scope
+- Moral, ethical, environmental, and legal questions such as source data attribution remains unaddressed
 - Ultimately risking greater waste of reviewer and community maintenance time
 
 ## nf-core's stance
@@ -67,8 +73,8 @@ We will continue to encourage community members to be open and honest, for examp
 The community will be mindful when assisting members who wish to apply AI tools to nf-core development, that we do not impact the experience of others.
 For example, we will aim to not clutter the template with many AI helper files where unnecessary (e.g. `AGENT.md`, `CLAUDE.md`, `.mcp.json` etc.), but will consult with the community via blog posts and RFCs on [nf-core/proposals](https://github.com/nf-core/proposals).
 
-We will also aim to further develop and promote best practice guidelines and etiquette, that will reduce the risk of low-quality large or drive-by PRs.
-For example, we will find approaches to encourage smaller, incremental feature PRs - something that will also benefit 'human' contributors, such as through faster review response time.
+We will also aim to further develop and promote best practice guidelines and etiquette.
+For example, we hope to find approaches that encourage smaller, incremental feature PRs - something that will also benefit 'human' contributors, such as through faster review response time.
 
 Finally, we will continue to monitor the situation and community feedback.
 If at any point you have concerns about a PR or possible adoption of AI features in the community, feel free to contact the core team.
