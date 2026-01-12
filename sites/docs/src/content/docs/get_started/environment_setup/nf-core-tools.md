@@ -95,7 +95,6 @@ To use nf-core tools with Docker:
    ```
 
 1. (Optional) Create an alias to simplify commands:
-
    1. Add an alias in your `~/.bashrc` or `~/.zshrc`
 
       ```bash

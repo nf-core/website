@@ -99,7 +99,6 @@ To use nf-core tools with Docker:
    - `-u` sets your local user account as the user inside the container, so that any files created have the correct ownership permissions
 
 1. (Optional) Create an alias to simplify commands:
-
    1. Add an alias in your `~/.bashrc` or `~/.zshrc`:
 
       ```bash
@@ -204,8 +203,8 @@ export NFCORE_NO_VERSION_CHECK=1
 
 Auto-completion for the `nf-core` command is available for bash, zsh, and fish. To activate it, add the following lines to the respective shell config files:
 
-| Shell | Config file                               | Command                                             |
-| ----- | ----------------------------------------- | --------------------------------------------------- |
+| Shell | Config file                               | Command                                            |
+| ----- | ----------------------------------------- | -------------------------------------------------- |
 | bash  | `~/.bashrc`                               | `eval "$(_NF_CORE_COMPLETE=bash_source nf-core)"`  |
 | zsh   | `~/.zshrc`                                | `eval "$(_NF_CORE_COMPLETE=zsh_source nf-core)"`   |
 | fish  | `~/.config/fish/completions/nf-core.fish` | `eval (env _NF_CORE_COMPLETE=fish_source nf-core)` |
