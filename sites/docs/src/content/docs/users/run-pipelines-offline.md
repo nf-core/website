@@ -57,7 +57,6 @@ To transfer pipeline code to an offline system:
 
    :::note
    The archive contains directories called:
-
    - `workflow`: The pipeline files
    - `config`: [nf-core/configs](https://github.com/nf-core/configs) files
    - `singularity`: Singularity images (if you used `--container singularity`)
