@@ -145552,35 +145552,35 @@
         ],
         "containers": {
           "conda": {
-            "linux_amd64": {
-              "lock_file": "https://wave.seqera.io/v1alpha1/builds/bd-d58f60e4deb769bf_1/condalock"
+            "linux/amd64": {
+              "lock_file": "https://wave.seqera.io/v1alpha1/builds/bd-ee7739d47738383b_1/condalock"
             },
-            "linux_arm64": {
-              "lock_file": "https://wave.seqera.io/v1alpha1/builds/bd-193776baee4194db_1/condalock"
+            "linux/arm64": {
+              "lock_file": "https://wave.seqera.io/v1alpha1/builds/bd-58d7dee710ab3aa8_1/condalock"
             }
           },
           "docker": {
-            "linux_amd64": {
-              "build_id": "bd-d58f60e4deb769bf_1",
-              "name": "community.wave.seqera.io/library/multiqc:1.32--d58f60e4deb769bf",
-              "scanId": "sc-d76ac07493e940b4_6"
+            "linux/amd64": {
+              "build_id": "bd-ee7739d47738383b_1",
+              "name": "community.wave.seqera.io/library/multiqc:1.33--ee7739d47738383b",
+              "scanId": "sc-6ddec592dcadd583_4"
             },
-            "linux_arm64": {
-              "build_id": "bd-193776baee4194db_1",
-              "name": "community.wave.seqera.io/library/multiqc:1.32--193776baee4194db",
-              "scanId": "sc-86caded0bff8246e_3"
+            "linux/arm64": {
+              "build_id": "bd-58d7dee710ab3aa8_1",
+              "name": "community.wave.seqera.io/library/multiqc:1.33--58d7dee710ab3aa8",
+              "scanId": "sc-a04c42273e34c55c_2"
             }
           },
           "singularity": {
-            "linux_amd64": {
-              "build_id": "bd-e649ffa094d1ef4a_1",
-              "name": "oras://community.wave.seqera.io/library/multiqc:1.32--e649ffa094d1ef4a",
-              "https": "https://community.wave.seqera.io/v2/library/multiqc/blobs/sha256:8c6c120d559d7ee04c7442b61ad7cf5a9e8970be5feefb37d68eeaa60c1034eb"
+            "linux/amd64": {
+              "build_id": "bd-e3576ddf588fa00d_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/34/34e733a9ae16a27e80fe00f863ea1479c96416017f24a907996126283e7ecd4d/data",
+              "name": "oras://community.wave.seqera.io/library/multiqc:1.33--e3576ddf588fa00d"
             },
-            "linux_arm64": {
-              "build_id": "bd-aee0064f5570ef22_1",
-              "name": "oras://community.wave.seqera.io/library/multiqc:1.32--aee0064f5570ef22",
-              "https": "https://community.wave.seqera.io/v2/library/multiqc/blobs/sha256:f02c59ebf6e9a00aa954ee8188a4ecc5c743e18f40b9215a242f67606a00f9cf"
+            "linux/arm64": {
+              "build_id": "bd-2537ca5f8445e3c2_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/78/78b89e91d89e9cc99ad5ade5be311f347838cb2acbfb4f13bc343b170be09ce4/data",
+              "name": "oras://community.wave.seqera.io/library/multiqc:1.33--2537ca5f8445e3c2"
             }
           }
         }
@@ -195009,6 +195009,210 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "samclip",
+      "path": "modules/nf-core/samclip/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samclip",
+        "description": "Filters SAM/BAM/CRAM files for soft and hard clipped alignments",
+        "keywords": [
+          "soft-clipped reads",
+          "hard-clipped reads",
+          "clipping",
+          "genomics",
+          "sam",
+          "bam",
+          "cram"
+        ],
+        "tools": [
+          {
+            "samclip": {
+              "description": "Filters SAM file for soft and hard clipped alignments",
+              "homepage": "https://github.com/tseemann/samclip",
+              "documentation": "https://github.com/tseemann/samclip",
+              "tool_dev_url": "https://github.com/tseemann/samclip",
+              "doi": "no DOI available",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:samclip"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing fasta reference information\ne.g. `[ id:'ref' ]`\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "reference FASTA file\n",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "reference_index": {
+                "type": "file",
+                "description": "reference FASTA file index\n",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1']`"
+                }
+              },
+              {
+                "*.{bam,cram}": {
+                  "type": "file",
+                  "description": "Filtered BAM/CRAM file",
+                  "pattern": "*.{bam,cram}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_samclip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "samclip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samclip --version | sed 's/^.*samclip //g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "samclip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samclip --version | sed 's/^.*samclip //g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
+        ]
+      }
     },
     {
       "name": "samshee",
