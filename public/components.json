@@ -32633,6 +32633,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "genomeqc",
+          "version": "dev"
+        },
+        {
           "name": "magmap",
           "version": "1.0.0"
         },
@@ -34919,6 +34923,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        },
         {
           "name": "viralmetagenome",
           "version": "1.0.1"
@@ -185788,7 +185796,13 @@
           "@kherronism",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "repeatmasker_rmouttogff3",
@@ -185960,7 +185974,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "repeatmodeler_repeatmodeler",
@@ -186083,7 +186103,13 @@
         "maintainers": [
           "@GallVp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomeqc",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "resfinder_run",
@@ -265235,6 +265261,126 @@
         ],
         "maintainers": [
           "@maia-munteanu",
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "fastq_qc_stats",
+      "path": "subworkflows/nf-core/fastq_qc_stats/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_qc_stats",
+        "description": "Generate statistics for short read sequencing data using multiple tools",
+        "keywords": [
+          "fastq",
+          "qc",
+          "fastqc",
+          "seqfu",
+          "seqkit",
+          "seqtk"
+        ],
+        "components": [
+          "fastqc",
+          "seqfu/check",
+          "seqfu/stats",
+          "seqkit/stats",
+          "seqtk/comp"
+        ],
+        "input": [
+          {
+            "reads": {
+              "type": "file",
+              "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end data,\nrespectively.\n"
+            }
+          },
+          {
+            "skip_fastqc": {
+              "type": "boolean",
+              "description": "Skip fastqc process\n"
+            }
+          },
+          {
+            "skip_seqfu_check": {
+              "type": "boolean",
+              "description": "Skip seqfu_check process\n"
+            }
+          },
+          {
+            "skip_seqfu_stats": {
+              "type": "boolean",
+              "description": "Skip seqfu_stats process\n"
+            }
+          },
+          {
+            "skip_seqkit_stats": {
+              "type": "boolean",
+              "description": "Skip seqkit_stats process\n"
+            }
+          },
+          {
+            "skip_seqtk_comp": {
+              "type": "boolean",
+              "description": "Skip seqtk_comp process\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fastqc_html": {
+              "type": "file",
+              "description": "FastQC report",
+              "pattern": "*_fastqc.html"
+            }
+          },
+          {
+            "fastqc_zip": {
+              "type": "file",
+              "description": "FastQC report archive",
+              "pattern": "*_fastqc.zip"
+            }
+          },
+          {
+            "seqfu_check": {
+              "type": "file",
+              "description": "seqfu check tsv report",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "seqfu_stats": {
+              "type": "file",
+              "description": "seqfu stats tsv report",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "seqfu_multiqc": {
+              "type": "file",
+              "description": "seqfu stats MultiQC report",
+              "pattern": "*_mqc.txt"
+            }
+          },
+          {
+            "seqkit_stats": {
+              "type": "file",
+              "description": "seqkit stats report",
+              "pattern": "*.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pablo-scd"
+        ],
+        "maintainers": [
+          "@pablo-scd",
           "@vagkaratzas"
         ]
       }
