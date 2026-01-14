@@ -14,7 +14,7 @@ import addClasses from "rehype-class-names";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeKatex from "rehype-katex";
 import rehypePrettyCode from "rehype-pretty-code";
-import { transformerNotationDiff } from '@shikijs/transformers'
+import { transformerNotationDiff } from "@shikijs/transformers";
 import rehypeSlug from "rehype-slug";
 import urls from "rehype-urls";
 import rehypeWrap from "rehype-wrap-all";
@@ -22,7 +22,7 @@ import remarkDirective from "remark-directive";
 import emoji from "remark-emoji";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import markdownIntegration from "@astropub/md";
+import markdownIntegration from "@mashehu/astropub-md";
 import icon from "astro-icon";
 
 /**
@@ -183,9 +183,7 @@ export default {
                         dark: "github-dark-dimmed",
                         light: "github-light",
                     },
-                    transformers: [
-                        transformerNotationDiff(),
-                    ],
+                    transformers: [transformerNotationDiff()],
                 },
             ],
             rehypeKatex,
