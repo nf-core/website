@@ -124690,6 +124690,278 @@
       }
     },
     {
+      "name": "localcdsearch_annotate",
+      "path": "modules/nf-core/localcdsearch/annotate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "localcdsearch_annotate",
+        "description": "A command-line tool for local protein domain annotation using NCBI's Conserved Domain Database (CDD)",
+        "keywords": [
+          "cdd",
+          "rpsblast",
+          "rpsbproc",
+          "protein",
+          "domain",
+          "annotation"
+        ],
+        "tools": [
+          {
+            "localcdsearch": {
+              "description": "Protein annotation using local PSSM databases from CDD.",
+              "homepage": "https://github.com/apcamargo/local-cd-search",
+              "documentation": "https://github.com/apcamargo/local-cd-search",
+              "tool_dev_url": "https://github.com/apcamargo/local-cd-search",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta file containing protein queries sequences",
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "db": {
+              "type": "directory",
+              "description": "Directory containing the metadata and databse directories",
+              "pattern": "*"
+            }
+          },
+          {
+            "sites": {
+              "type": "boolean",
+              "description": "When true an extra tsv output file is generated"
+            }
+          }
+        ],
+        "output": {
+          "result": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_results.tsv": {
+                  "type": "file",
+                  "description": "tab-separated file with hits filtered by CDD's curated bit-score thresholds",
+                  "pattern": "*_results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "annot_sites": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_sites.tsv": {
+                  "type": "file",
+                  "description": "If --sites-output is specified, an additional tab-separated file is created with functional site annotations",
+                  "pattern": "*_sites.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_localcdsearch": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "local-cd-search": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "local-cd-search": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Ales-ibt"
+        ],
+        "maintainers": [
+          "@Ales-ibt"
+        ]
+      }
+    },
+    {
+      "name": "localcdsearch_download",
+      "path": "modules/nf-core/localcdsearch/download/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "localcdsearch_download",
+        "description": "A command-line tool for downloading databases for local protein domain annotation using NCBI's Conserved Domain Database (CDD)",
+        "keywords": [
+          "cdd",
+          "rpsblast",
+          "rpsbproc",
+          "protein",
+          "domain",
+          "annotation",
+          "download"
+        ],
+        "tools": [
+          {
+            "localcdsearch": {
+              "description": "Protein annotation using local PSSM databases from CDD.",
+              "homepage": "https://github.com/apcamargo/local-cd-search",
+              "documentation": "https://github.com/apcamargo/local-cd-search",
+              "tool_dev_url": "https://github.com/apcamargo/local-cd-search",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          {
+            "databases": {
+              "type": "list",
+              "description": "List of database names to download. Can be a single database name or multiple names.\nValid options: cdd, cdd_ncbi, cog, kog, pfam, prk, smart, tigr\n",
+              "pattern": "cdd|cdd_ncbi|cog|kog|pfam|prk|smart|tigr"
+            }
+          }
+        ],
+        "output": {
+          "db": [
+            {
+              "database/": {
+                "type": "directory",
+                "description": "Directory containing downloaded CDD databases",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1049"
+                  }
+                ]
+              }
+            }
+          ],
+          "versions_localcdsearch": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "local-cd-search": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "local-cd-search": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo ${VERSION}": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Ales-ibt"
+        ],
+        "maintainers": [
+          "@Ales-ibt"
+        ]
+      }
+    },
+    {
       "name": "lofreq_alnqual",
       "path": "modules/nf-core/lofreq/alnqual/meta.yml",
       "type": "module",
@@ -252358,19 +252630,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_whatshap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whatshap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whatshap --version": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whatshap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whatshap --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
