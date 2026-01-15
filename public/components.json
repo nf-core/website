@@ -235454,6 +235454,255 @@
       }
     },
     {
+      "name": "tetranscripts",
+      "path": "modules/nf-core/tetranscripts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "tetranscripts",
+        "description": "Runs TEtranscripts which summarises transposable element content of a bam file.",
+        "keywords": [
+          "transposable",
+          "TE",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "tetranscripts": {
+              "description": "A package for including transposable elements in differential enrichment analysis of sequencing datasets.",
+              "homepage": "https://github.com/mhammell-laboratory/TEtranscripts",
+              "documentation": "https://hammelllab.labsites.cshl.edu/software/#TEtranscripts",
+              "tool_dev_url": "https://github.com/mhammell-laboratory/TEtranscripts",
+              "doi": "10.1093/bioinformatics/btv422",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:tetranscripts"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta_t": {
+                "type": "map",
+                "description": "Groovy Map containing treatment sample information. e.g. `[\nid:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam_t": {
+                "type": "file",
+                "description": "A BAM file for the treatment condition",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta_c": {
+                "type": "map",
+                "description": "Groovy Map containing control sample information,\ne.g. `[ id:'control1']`\n"
+              }
+            },
+            {
+              "bam_c": {
+                "type": "file",
+                "description": "A BAM file for the control condition",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta_ggtf": {
+                "type": "map",
+                "description": "Groovy map containing control sample information\ne.g. `[ id:'control1' ]`\n"
+              }
+            },
+            {
+              "g_gtf": {
+                "type": "file",
+                "description": "A GTF file for alignment to the genome",
+                "pattern": "*.{gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta_tegtf": {
+                "type": "map",
+                "description": "Groovy map containing TE GTF information\ne.g. `[ id:'control1' ]`\n"
+              }
+            },
+            {
+              "te_gtf": {
+                "type": "file",
+                "description": "A curated GTF file for alignment to transposable elements",
+                "pattern": "*.{gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "countTable": [
+            [
+              {
+                "meta_t": {
+                  "type": "map",
+                  "description": "Groovy Map containing treatment sample information.\ne.g. `id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.cntTable": {
+                  "type": "file",
+                  "description": "Counts table of transposable element families",
+                  "pattern": "*.cntTable",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log2fc": [
+            [
+              {
+                "meta_t": {
+                  "type": "map",
+                  "description": "Groovy Map containing treatment sample information.\ne.g. `id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.R": {
+                  "type": "file",
+                  "description": "Differential gene expression analysis file",
+                  "pattern": "*.R",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3999"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "analysis": [
+            [
+              {
+                "meta_t": {
+                  "type": "map",
+                  "description": "Groovy map containing treatment sample information.\ne.g. `id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_analysis.txt": {
+                  "type": "file",
+                  "description": "DESeq2 analysis file",
+                  "pattern": "*_analysis.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sigdiff": [
+            [
+              {
+                "meta_t": {
+                  "type": "map",
+                  "description": "Groovy map containing treatment sample information.\ne.g. `id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_gene_TE.txt": {
+                  "type": "file",
+                  "description": "DESeq2 analysis file",
+                  "pattern": "*_gene_TE.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_tetranscripts": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tetranscripts": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tetranscripts version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tetranscripts": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tetranscripts version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@hanalysis"
+        ],
+        "maintainers": [
+          "@hanalysis"
+        ]
+      }
+    },
+    {
       "name": "thermorawfileparser",
       "path": "modules/nf-core/thermorawfileparser/meta.yml",
       "type": "module",
@@ -266340,6 +266589,130 @@
         ],
         "maintainers": [
           "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "fastq_removeadapters_merge",
+      "path": "subworkflows/nf-core/fastq_removeadapters_merge/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fastq_removeadapters_merge",
+        "description": "Remove adapters and merge reads based on various module choices",
+        "keywords": [
+          "adapters",
+          "removal",
+          "short reads",
+          "merge",
+          "trim"
+        ],
+        "components": [
+          "trimmomatic",
+          "cutadapt",
+          "trimgalore",
+          "bbmap/bbduk",
+          "leehom",
+          "fastp",
+          "adapterremoval",
+          "cat/fastq"
+        ],
+        "input": [
+          {
+            "ch_input_reads": {
+              "type": "file",
+              "description": "List of FastQ files of size 1 and 2 for single-end and paired-end data, respectively.\nStructure: [ val(meta), [ path(reads) ] ]\n"
+            }
+          },
+          {
+            "val_adapter_tool": {
+              "type": "string",
+              "description": "Choose one of the available adapter removal and/or merging tools\n",
+              "enum": [
+                "trimmomatic",
+                "cutadapt",
+                "trimgalore",
+                "bbduk",
+                "leehom",
+                "fastp",
+                "adapterremoval"
+              ]
+            }
+          },
+          {
+            "ch_custom_adapters_file": {
+              "type": "file",
+              "description": "Optional reference files, containing adapter and/or contaminant sequences for removal.\nIn fasta format for bbmap/bbduk and fastp, or in text format for AdapterRemoval (one adapter per line).\n"
+            }
+          },
+          {
+            "val_save_merged": {
+              "type": "boolean",
+              "description": "Specify true to output merged reads instead\nUsed by fastp and adapterremoval\n"
+            }
+          },
+          {
+            "val_fastp_discard_trimmed_pass": {
+              "type": "boolean",
+              "description": "Used only by fastp.\nSpecify true to not write any reads that pass trimming thresholds from the fastp process.\nThis can be used to use fastp for the output report only.\n"
+            }
+          },
+          {
+            "val_fastp_save_trimmed_fail": {
+              "type": "boolean",
+              "description": "Used only by fastp.\nSpecify true to save files that failed to pass fastp trimming thresholds\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "processed_reads": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastq.gz) ]\nThe trimmed/modified single or paired end or merged fastq reads\n",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "discarded_reads": {
+              "type": "file",
+              "description": "Structure: [ val(meta), path(fastq.gz) ]\nThe discarded reads\n",
+              "pattern": "*.fastq.gz"
+            }
+          },
+          {
+            "logfile": {
+              "type": "file",
+              "description": "Execution log file\n(trimmomatic {log}, trimgalore {txt}, fastp {log})\n",
+              "pattern": "*.{log,txt}"
+            }
+          },
+          {
+            "report": {
+              "type": "file",
+              "description": "Execution report\n(trimmomatic {summary}, trimgalore {html,zip}, fastp {html})\n",
+              "pattern": "*.{summary,html,zip}"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          },
+          {
+            "multiqc_files": {
+              "type": "file",
+              "description": "MultiQC-compatible output files from tools used in preprocessing\n(trimmomatic, cutadapt, bbduk, leehom, fastp, adapterremoval)\n"
+            }
+          }
+        ],
+        "authors": [
+          "@kornkv",
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@kornkv",
+          "@vagkaratzas"
         ]
       }
     },
