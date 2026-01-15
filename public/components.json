@@ -66833,14 +66833,22 @@
             ]
           ],
           "report": [
-            {
-              "*.html": {
-                "type": "file",
-                "description": "VEP report file",
-                "pattern": "*.html",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Map with sample information\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "VEP report file",
+                  "pattern": "*.html",
+                  "ontologies": []
+                }
               }
-            }
+            ]
           ],
           "versions_ensemblvep": [
             [
@@ -121836,19 +121844,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -121970,19 +122010,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122004,6 +122076,7 @@
       "path": "modules/nf-core/last/lastdb/meta.yml",
       "type": "module",
       "meta": {
+        "cd# yaml-language-server": "$schema=https://raw.githubusercontent.com/nf-core/modules/master/modules/meta-schema.json",
         "name": "last_lastdb",
         "description": "Prepare sequences for subsequent alignment with lastal.",
         "keywords": [
@@ -122066,19 +122139,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122467,19 +122572,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122561,19 +122698,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122649,19 +122818,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122759,19 +122960,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -122886,19 +123119,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "lastal --version | sed 's/lastal //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -231769,6 +232034,236 @@
         ],
         "maintainers": [
           "@GallVp"
+        ]
+      }
+    },
+    {
+      "name": "t1k_build",
+      "path": "modules/nf-core/t1k/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "t1k_build",
+        "description": "A module to create a reference database and coordinate files for T1K.",
+        "keywords": [
+          "polymorphic",
+          "genes",
+          "HLA",
+          "Kir"
+        ],
+        "tools": [
+          {
+            "t1k": {
+              "description": "T1K is a versatile methods to genotype highly polymorphic genes (e.g. KIR, HLA) with RNA-seq, WGS or WES data.",
+              "homepage": "https://github.com/mourisl/T1K/blob/v1.0.9/README.md",
+              "documentation": "https://github.com/mourisl/T1K/blob/v1.0.9/README.md",
+              "tool_dev_url": "https://github.com/mourisl/T1K",
+              "doi": "10.1101/gr.277585.122",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "ena": {
+                "type": "file",
+                "description": "EMBL-ENA dat file.",
+                "pattern": "*.dat"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "FASTA file containing gene sequences.",
+                "pattern": "*.fa",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "Gene annotation in GTF format.",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2532"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "rna_sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_rna_seq.fa": {
+                  "type": "file",
+                  "description": "RNA gene sequences file output.",
+                  "pattern": "*_rna_seq.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "dna_sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_dna_seq.fa": {
+                  "type": "file",
+                  "description": "DNA gene sequences file output.",
+                  "pattern": "*_dna_seq.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rna_coordinates": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_rna_coord.fa": {
+                  "type": "file",
+                  "description": "A fasta file with the coordinates of the gene alleles in the header as created form the t1k/build",
+                  "pattern": "*_rna_coord.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "dna_coordinates": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_dna_coord.fa": {
+                  "type": "file",
+                  "description": "A fasta file with the coordinates of the gene alleles in the header as created form the t1k/build",
+                  "pattern": "*_dna_coord.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "database": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.dat": {
+                  "type": "file",
+                  "description": "EMBL-ENA dat file.",
+                  "pattern": "*.dat"
+                }
+              }
+            ]
+          ],
+          "versions_t1k": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "t1k": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run-t1k 2>&1 | head -n 1 | cut -d '-' -f 1 | cut -d v -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "t1k": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run-t1k 2>&1 | head -n 1 | cut -d '-' -f 1 | cut -d v -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@georgiakes"
+        ],
+        "maintainers": [
+          "@georgiakes"
         ]
       }
     },
