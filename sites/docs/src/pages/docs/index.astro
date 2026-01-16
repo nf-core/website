@@ -150,21 +150,25 @@ const featuredEntries = featuredPages.map(({ title, href, icon }) => ({
 const mainSections = [
     {
         section: "Users",
+        sectionHref: "/docs/users/",
         icon: "octicon:git-branch-16",
         pages: ["Configuration", "Reference genomes", "Run pipelines offline", "Advanced topics"],
     },
     {
         section: "Developers",
+        sectionHref: "/docs/developers/",
         icon: "octicon:git-commit-16",
         pages: ["Creating pipelines", "Adding modules to pipelines", "Testing", "Assertions"],
     },
     {
         section: "Contributors",
+        sectionHref: "/docs/contributors/",
         icon: "octicon:git-pull-request-16",
         pages: [{ title: "How to contribute to nf-core", href: "/docs/contributors/how-to-contribute-to-nf-core" }],
     },
     {
         section: "Specifications",
+        sectionHref: "/docs/specifications/",
         icon: "octicon:checklist-16",
         pages: [
             { title: "Components", href: "/docs/specifications/components/overview" },
@@ -174,6 +178,7 @@ const mainSections = [
     },
     {
         section: "Community",
+        sectionHref: "/docs/community/",
         icon: "mdi:sprout",
         pages: [
             { title: "Brand", href: "/docs/community/brand/overview" },
@@ -182,13 +187,14 @@ const mainSections = [
     },
     {
         section: "nf-core/tools",
+        sectionHref: "/docs/nf-core-tools/",
         icon: "octicon:tools-16",
         pages: ["Installation", "Pipelines commands", "Components commands", "Schema commands"],
     },
 ];
 
 // Find and attach metadata for main sections
-const sectionCards = mainSections.map(({ section, icon, pages }) => {
+const sectionCards = mainSections.map(({ section, sectionHref, icon, pages }) => {
     const pageEntries = pages
         .map((page) => {
             // Handle custom page objects with title and href
@@ -214,6 +220,7 @@ const sectionCards = mainSections.map(({ section, icon, pages }) => {
 
     return {
         section: section,
+        sectionHref: sectionHref,
         icon: icon,
         pages: pageEntries,
     };
@@ -277,12 +284,12 @@ const trainingCards = [
                             {
                                 sectionCards.map((section) => (
                                     <div class="card h-100 section-card">
-                                        <div class="card-header">
+                                        <a href={section.sectionHref} class="card-header text-decoration-none">
                                             <h3 class="mb-0 d-flex align-items-center">
                                                 {section.icon && <Icon name={section.icon} class="me-2" />}
                                                 {section.section}
                                             </h3>
-                                        </div>
+                                        </a>
                                         <div class="card-body">
                                             <ul class="list-unstyled mb-0">
                                                 {section.pages.map((page) => (
@@ -445,11 +452,23 @@ const trainingCards = [
             background-color: var(--bs-body-secondary-bg);
             border-bottom: 1px solid var(--bs-border-color);
             padding: 0.75rem 1rem;
+            display: block;
+            color: var(--bs-heading-color);
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover {
+                background-color: var(--bs-tertiary-bg);
+
+                h3 {
+                    text-decoration: underline;
+                }
+            }
 
             h3 {
                 font-size: 1rem !important;
                 font-weight: 600;
                 line-height: 1.6;
+                color: var(--bs-heading-color);
             }
 
             :global(svg) {
@@ -461,14 +480,14 @@ const trainingCards = [
         .card-body {
             padding: 1rem;
             font-size: 1rem;
-        }
 
-        a {
-            color: var(--bs-link-color);
-            font-size: 1rem;
+            a {
+                color: var(--bs-link-color);
+                font-size: 1rem;
 
-            &:hover {
-                text-decoration: underline !important;
+                &:hover {
+                    text-decoration: underline !important;
+                }
             }
         }
 
