@@ -105,7 +105,11 @@ process.architecture = 'linux/arm64'
 
 ### Setting up an ARM development environment on AWS
 
-Angel Pizarro has created a [CloudFormation template](https://gist.github.com/angel-pizarro) that sets up an EC2 Graviton instance with VSCode server, Miniconda, Docker, Nextflow, and nf-core pre-installed. This makes it easy to spin up an ARM development environment in about 10-15 minutes.
+Angel Pizarro has created a [CloudFormation template](https://github.com/delagoya/nextflow-devbox) that sets up an EC2 Graviton instance with VSCode server, Miniconda, Docker, Nextflow, and nf-core pre-installed. This makes it easy to spin up an ARM development environment in about 10-15 minutes.
+
+You can either use the web-based VSCode running on the instance, or connect your local editor to the instance using Remote-SSH. Just be aware that if you do use the Remote-SSH extension, you'll need to install the extension you'll need, like the `nf-core-extensionpack`. Full instructions are in the [README file](https://github.com/delagoya/nextflow-devbox/blob/main/README.md).
+
+BTW, you can also use this template to set up an x86_64 instance.
 
 ### Local development on Apple Silicon
 
