@@ -6495,7 +6495,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "annotsv_installannotations",
@@ -6560,7 +6566,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "anota2seq_anota2seqrun",
@@ -16280,7 +16292,7 @@
                 }
               },
               {
-                "*.{vcf,vcf.gz,bcf,bcf.gz}": {
+                "${prefix}.${extension}": {
                   "type": "file",
                   "description": "Compressed annotated VCF file",
                   "pattern": "*{vcf,vcf.gz,bcf,bcf.gz}",
@@ -16298,7 +16310,7 @@
                 }
               },
               {
-                "*.tbi": {
+                "${prefix}.${extension}.tbi": {
                   "type": "file",
                   "description": "Alternative VCF file index",
                   "pattern": "*.tbi",
@@ -16316,7 +16328,7 @@
                 }
               },
               {
-                "*.csi": {
+                "${prefix}.${extension}.csi": {
                   "type": "file",
                   "description": "Default VCF file index",
                   "pattern": "*.csi",
@@ -16325,19 +16337,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bcftools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bcftools --version | sed '1!d; s/^.*bcftools //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bcftools --version | sed '1!d; s/^.*bcftools //'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -16658,6 +16702,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
         {
           "name": "phaseimpute",
           "version": "1.1.0"
@@ -17538,6 +17586,10 @@
           "version": "5.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "pacvar",
           "version": "1.0.1"
         },
@@ -18205,6 +18257,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
         {
           "name": "phaseimpute",
           "version": "1.1.0"
@@ -19342,6 +19398,10 @@
       },
       "pipelines": [
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "phaseimpute",
           "version": "1.1.0"
         },
@@ -19768,6 +19828,10 @@
         {
           "name": "nanoseq",
           "version": "3.1.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
@@ -20274,6 +20338,10 @@
         {
           "name": "mag",
           "version": "5.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "phaseimpute",
@@ -40780,6 +40848,10 @@
         {
           "name": "methylong",
           "version": "2.0.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         }
       ]
     },
@@ -42850,6 +42922,10 @@
           "version": "dev"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "sarek",
           "version": "3.7.1"
         }
@@ -42951,6 +43027,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
         {
           "name": "sarek",
           "version": "3.7.1"
@@ -52278,7 +52358,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "crisprseq",
@@ -54729,7 +54809,13 @@
         "maintainers": [
           "@vaxyzek"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "deeptmhmm",
@@ -55159,6 +55245,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "sammyseq",
@@ -66531,6 +66621,10 @@
       },
       "pipelines": [
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -66989,6 +67083,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "2.6.0"
@@ -67474,7 +67572,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -67595,7 +67693,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -71316,7 +71414,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "atacseq",
@@ -79537,7 +79635,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -79634,7 +79732,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -79822,7 +79920,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -101862,6 +101960,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "pacvar",
           "version": "1.0.1"
         },
@@ -106501,6 +106603,10 @@
       },
       "pipelines": [
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "pacvar",
           "version": "1.0.1"
         }
@@ -108054,7 +108160,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -108154,7 +108260,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -108271,7 +108377,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -108393,7 +108499,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -120886,7 +120992,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "bacass",
@@ -144275,6 +144381,10 @@
       },
       "pipelines": [
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -146439,7 +146549,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "bacass",
@@ -146647,6 +146757,10 @@
         },
         {
           "name": "omicsgenetraitassociation",
+          "version": "dev"
+        },
+        {
+          "name": "pacsomatic",
           "version": "dev"
         },
         {
@@ -162154,7 +162268,13 @@
         "maintainers": [
           "@inemesb"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pbjasmine",
@@ -162528,6 +162648,10 @@
         {
           "name": "methylong",
           "version": "2.0.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
@@ -163176,7 +163300,13 @@
         "maintainers": [
           "@haidyi"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "pcgr_getref",
@@ -168928,7 +169058,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "genomeqc",
@@ -198023,6 +198153,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "pairgenomealign",
           "version": "2.2.1"
         }
@@ -198273,6 +198407,10 @@
         {
           "name": "oncoanalyser",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pairgenomealign",
@@ -199021,6 +199159,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -199313,6 +199455,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
@@ -199727,6 +199873,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
@@ -201195,6 +201345,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "pacvar",
           "version": "1.0.1"
         },
@@ -201623,6 +201777,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
@@ -212355,19 +212513,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212441,19 +212631,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212533,19 +212755,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212629,19 +212883,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212725,19 +213011,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212829,19 +213147,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -212947,19 +213297,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -213039,19 +213421,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqtk 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -214167,7 +214581,13 @@
         "maintainers": [
           "@fellen31"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "sexdeterrmine",
@@ -233183,6 +233603,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -243673,7 +244097,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "atacseq",
@@ -244167,6 +244591,10 @@
       "pipelines": [
         {
           "name": "lsmquant",
+          "version": "dev"
+        },
+        {
+          "name": "pacsomatic",
           "version": "dev"
         },
         {
@@ -251855,7 +252283,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "crisprseq",
@@ -252200,7 +252628,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         }
       ]
     },
@@ -252597,7 +253025,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         }
       ]
     },
@@ -259707,6 +260135,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "pacsomatic",
+          "version": "dev"
+        },
+        {
           "name": "phageannotator",
           "version": "dev"
         },
@@ -259987,6 +260419,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "phageannotator",
@@ -263299,7 +263735,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "phyloplace",
@@ -268779,7 +269215,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "bacass",
@@ -268980,6 +269416,10 @@
         {
           "name": "oncoanalyser",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
@@ -269196,7 +269636,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "bacass",
@@ -269397,6 +269837,10 @@
         {
           "name": "oncoanalyser",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
@@ -269629,7 +270073,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.15.0"
+          "version": "2.16.0"
         },
         {
           "name": "bacass",
@@ -269806,6 +270250,10 @@
         {
           "name": "oncoanalyser",
           "version": "2.3.0"
+        },
+        {
+          "name": "pacsomatic",
+          "version": "dev"
         },
         {
           "name": "pacvar",
