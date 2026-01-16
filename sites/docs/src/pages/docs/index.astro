@@ -249,16 +249,15 @@ const trainingCards = [
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-xl-8 order-2">
-                <div class="index-content">
-                    <!-- Featured Cards -->
-                    <div class="featured-section mb-5">
-                        <h2 class="section-heading mb-2">Get started</h2>
-                        <p class="mb-4">New to nf-core? Start here to learn the basics and run your first pipeline.</p>
-                        <div class="card-grid featured-grid">
-                            {
-                                featuredEntries.map((page) => (
-                                    <a href={page.href} class="text-decoration-none">
-                                        <div class="card h-100 featured-card">
+                <!-- Featured Cards -->
+                <div class="featured-section mb-5">
+                    <h2 class="section-heading mb-2">Get started</h2>
+                    <p class="mb-4">New to nf-core? Start here to learn the basics and run your first pipeline.</p>
+                    <div class="grid gap-3">
+                        {
+                            featuredEntries.map((page) => (
+                                <a href={page.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
+                                    <div class="card h-100 featured-card">
                                             <div class="card-body">
                                                 <div class="featured-icon mb-3">
                                                     <Icon name={page.customIcon} />
@@ -267,69 +266,68 @@ const trainingCards = [
                                                     {page.overrideTitle || page.metadata?.data.title || page.label}
                                                 </h3>
                                             </div>
-                                        </div>
-                                    </a>
-                                ))
-                            }
-                        </div>
+                                    </div>
+                                </a>
+                            ))
+                        }
                     </div>
+                </div>
 
-                    <!-- Main Sections -->
-                    <div class="mb-5">
-                        <h2 class="section-heading mb-2">Popular pages</h2>
-                        <p class="mb-4">
-                            Popular pages covering key concepts, guides, reference documentation, and troubleshooting.
-                        </p>
-                        <div class="card-grid section-grid">
-                            {
-                                sectionCards.map((section) => (
-                                    <div class="card h-100 section-card">
+                <!-- Main Sections -->
+                <div class="mb-5">
+                    <h2 class="section-heading mb-2">Popular pages</h2>
+                    <p class="mb-4">
+                        Popular pages covering key concepts, guides, reference documentation, and troubleshooting.
+                    </p>
+                    <div class="grid gap-3">
+                        {
+                            sectionCards.map((section) => (
+                                <div class="card h-100 section-card g-col-12 g-col-md-6 g-col-lg-4">
                                         <a href={section.sectionHref} class="card-header text-decoration-none">
                                             <h3 class="mb-0 d-flex align-items-center">
                                                 {section.icon && <Icon name={section.icon} class="me-2" />}
                                                 {section.section}
                                             </h3>
                                         </a>
-                                        <div class="card-body">
-                                            <ul class="list-unstyled mb-0">
-                                                {section.pages.map((page) => (
-                                                    <li class="mb-2">
-                                                        <a href={page.href} class="text-decoration-none">
-                                                            {page.metadata?.data.title || page.label}
-                                                        </a>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
+                                    <div class="card-body">
+                                        <ul class="list-unstyled mb-0">
+                                            {section.pages.map((page) => (
+                                                <li class="mb-2">
+                                                    <a href={page.href} class="text-decoration-none">
+                                                        {page.metadata?.data.title || page.label}
+                                                    </a>
+                                                </li>
+                                            ))}
+                                        </ul>
                                     </div>
-                                ))
-                            }
-                        </div>
+                                </div>
+                            ))
+                        }
                     </div>
+                </div>
 
-                    <!-- Other Resources Section -->
-                    <div class="mb-5">
-                        <h2 class="section-heading mb-2">Other resources</h2>
-                        <p class="mb-4">
-                            Learn Nextflow and nf-core through comprehensive documentation and hands-on training
-                            materials.
-                        </p>
-                        <div class="card-grid resources-grid">
-                            {
-                                trainingCards.map((card) => (
-                                    <a href={card.href} class="text-decoration-none">
-                                        <div class="card h-100 featured-card">
+                <!-- Other Resources Section -->
+                <div class="mb-5">
+                    <h2 class="section-heading mb-2">Other resources</h2>
+                    <p class="mb-4">
+                        Learn Nextflow and nf-core through comprehensive documentation and hands-on training
+                        materials.
+                    </p>
+                    <div class="grid gap-3">
+                        {
+                            trainingCards.map((card) => (
+                                <a href={card.href} class="text-decoration-none g-col-12 g-col-md-6">
+                                    <div class="card h-100 featured-card">
                                             <div class="card-body">
                                                 <div class="featured-icon mb-3">
                                                     <Icon name={card.icon} />
                                                 </div>
                                                 <h3 class="h5 card-title mb-0">{card.title}</h3>
                                             </div>
-                                        </div>
-                                    </a>
-                                ))
-                            }
-                        </div>
+                                    </div>
+                                </a>
+                            ))
+                        }
                     </div>
                 </div>
             </div>
@@ -340,14 +338,6 @@ const trainingCards = [
     </div>
 </PageLayout>
 <style>
-    /* Index content wrapper - match markdown content width */
-    .index-content {
-        max-width: 50rem;
-        width: 100%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     /* Intro Text */
     .intro-text {
         .lead {
@@ -369,45 +359,6 @@ const trainingCards = [
         color: var(--bs-secondary-color);
         font-size: 1.25rem;
         line-height: 1.5;
-    }
-
-    /* Card grid layouts */
-    .card-grid {
-        display: grid;
-        gap: 1rem;
-    }
-
-    .featured-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-    }
-
-    .section-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1rem;
-    }
-
-    .resources-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-
-    @media (max-width: 991px) {
-        .featured-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-
-        .section-grid {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
-    @media (max-width: 767px) {
-        .featured-grid,
-        .section-grid,
-        .resources-grid {
-            grid-template-columns: 1fr;
-        }
     }
 
     /* Featured "Get Started" Cards */
