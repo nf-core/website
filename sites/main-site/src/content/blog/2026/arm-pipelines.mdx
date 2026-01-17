@@ -38,7 +38,7 @@ _Brendan Bouffler and David Lecomber's Nextflow Summit 2024 talk on running pipe
 
 ## A community-wide porting effort
 
-In October 2024, we created the [`#arm64` channel](https://nf-co.re/join) on the nf-core Slack to coordinate efforts. [David Lecomber](https://github.com/dslarm), then at Arm, led an intensive package porting effort, working alongside [Pablo Gonzalez de Aledo](https://github.com/pabloaledo) at Seqera and [Angel Pizarro](https://github.com/delagoya) at AWS. Between them, David and Pablo have submitted [_nearly 300_ PRs to Bioconda recipes](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+author%3Apabloaledo+author%3Adslarm) to enable ARM builds.
+In October 2024, we created the [`#arm64` channel](https://nf-co.re/join) on the nf-core Slack to coordinate efforts. [David Lecomber](https://github.com/dslarm), then at Arm, led an intensive package porting effort, working alongside [Pablo Gonzalez de Aledo](https://github.com/pabloaledo) then at Seqera and [Angel Pizarro](https://github.com/delagoya) at AWS. Between them, David and Pablo have submitted [_nearly 300_ PRs to Bioconda recipes](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+author%3Apabloaledo+author%3Adslarm) to enable ARM builds.
 
 The approach was methodical. Phil Ewels built [discovery scripts](https://github.com/ewels/nf-core-arm-discovery) to identify which conda packages were used across all nf-core pipelines, then tested whether each package could build successfully for ARM using Seqera's Wave container service. Packages that failed were prioritized based on how many pipelines they blocked.
 
@@ -109,7 +109,7 @@ Angel Pizarro has created a [CloudFormation template](https://github.com/delagoy
 
 You can either use the web-based VSCode running on the instance, or connect your local editor to the instance using Remote-SSH. Just be aware that if you do use the Remote-SSH extension, you'll need to install the extension you'll need, like the `nf-core-extensionpack`. Full instructions are in the [README file](https://github.com/delagoya/nextflow-devbox/blob/main/README.md).
 
-BTW, you can also use this template to set up an x86_64 instance.
+By the way, you can also use this template to set up an x86_64 instance.
 
 ### Local development on Apple Silicon
 
@@ -192,10 +192,10 @@ This means the manual package porting work happening now is laying the foundatio
 
 This work wouldn't have been possible without the contributions of many people. Special thanks to:
 
-- **David Lecomber (formerly of Arm)** for his tireless work on package porting - submitting hundreds of PRs and creating comprehensive documentation
+- **David Lecomber (formerly Arm)** for his tireless work on package porting - submitting hundreds of PRs and creating comprehensive documentation
 - **Angel Pizarro (AWS)** for benchmarking, advocacy, CloudFormation templates, and testing infrastructure
 - **Brendan Bouffler (AWS)** for his belief in the project and coordinating support and resources
-- **Pablo Gonzalez de Aledo (Seqera)** for tooling, Wave integration, and early package porting work
+- **Pablo Gonzalez de Aledo (formerly Seqera)** for tooling, Wave integration, and early package porting work
 - **Edmund Miller** for implementing ARM CI testing in nf-core/modules and pipelines
 - **Roman Valls Guimera** for getting oncoanalyser running on ARM and extensive debugging
 - **Maxime U Garcia** for pipeline fixes and coordination
