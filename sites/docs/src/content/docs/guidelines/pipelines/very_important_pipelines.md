@@ -7,7 +7,7 @@ subtitle: Guidelines for Very Important Pipelines.
 
 Widely adopted nf-core pipelines play a critical role in the ecosystem. They are widely used by the community and often act as reference for the development of the rest of the pipelines.
 
-This document defines a tier for such pipelines, called **Very Important Pipelines**, with elevated expectations around maintenance, governance, testing, and documentation. The intent is to formalize best practices that many popular pipelines already follow and to provide a clear model for long term, sustainable pipeline development.
+This page defines a tier for such pipelines, called **Very Important Pipelines**, with elevated expectations around maintenance, governance, testing, and documentation. The intent is to formalise best practices that many popular pipelines already follow and to provide a clear model for long-term, sustainable pipeline development.
 
 ## Scope
 
