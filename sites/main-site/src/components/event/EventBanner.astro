@@ -2,7 +2,7 @@
 import EventBannerElement from "@components/event/EventBannerElement.svelte";
 import { getCollection } from "astro:content";
 import type { CollectionEntry } from "astro:content";
-import { markdown } from "@astropub/md";
+import { markdown } from "@mashehu/astropub-md";
 import { Icon } from "astro-icon/components";
 
 let events: CollectionEntry<"events">[] = await getCollection("events");
