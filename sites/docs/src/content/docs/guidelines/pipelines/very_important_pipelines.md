@@ -42,7 +42,7 @@ Recommended practices:
 - Use of milestones to plan and track releases
 - A developer focused Slack channel, separate from user support
 
-### Development and Maintenance
+### Development and maintenance
 
 Very Important Pipelines should maintain a high standard of technical quality and currency.
 
