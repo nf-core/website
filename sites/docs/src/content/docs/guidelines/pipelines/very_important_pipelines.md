@@ -1,4 +1,7 @@
-# Very Important Pipelines
+---
+title: Very Important Pipelines
+subtitle: Guidelines for Very Important Pipelines.
+---
 
 ## Overview
 
