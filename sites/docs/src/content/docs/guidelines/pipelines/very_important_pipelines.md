@@ -29,7 +29,7 @@ Selection is expected to evolve organically as pipelines grow and mature.
 
 ## Recommendations
 
-### Team and Governance
+### Team and governance
 
 Very Important Pipelines should demonstrate shared ownership and active governance.
 
