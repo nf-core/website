@@ -54,7 +54,7 @@ Recommended practices:
 - Clear issue advisories when known problems are identified
 - Participation in an nf-core bytesize talk
 
-### Documentation and User Experience
+### Documentation and user experience
 
 Very Important Pipelines should set the standard for clarity and usability.
 
