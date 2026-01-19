@@ -20,7 +20,7 @@ This tier is additive, not exclusive.
 There are no strict thresholds. Selection is based on an overall assessment by the nf-core core team, considering factors such as:
 
 - Number of pull requests and contributors
-* Repository stars and forks
+- Repository stars and forks
 - Pipeline age and stability
 - Issue volume and responsiveness
 - Website traffic and usage indicators
