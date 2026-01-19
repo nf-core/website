@@ -152,19 +152,31 @@ const mainSections = [
         section: "Users",
         sectionHref: "/docs/users/",
         icon: "octicon:git-branch-16",
-        pages: ["Configuration", "Reference genomes", "Run pipelines offline", "Advanced topics"],
+        pages: [
+            { title: "How to run pipelines", href: "/docs/specifications/components/overview" },
+            { title: "Configuration", href: "/docs/users/configuration/overview" },
+            { title: "Run pipelines offline", href: "/docs/users/run-pipelines-offline" },
+        ],
     },
     {
         section: "Developers",
         sectionHref: "/docs/developers/",
         icon: "octicon:git-commit-16",
-        pages: ["Creating pipelines", "Adding modules to pipelines", "Testing", "Assertions"],
+        pages: [
+            { title: "Create pipelines", href: "/docs/developers/components/create-components" },
+            { title: "Create components", href: "/docs/developers/components/create-components" },
+            { title: "Template syncs", href: "/docs/developers/template-syncs/overview" },
+        ],
     },
     {
         section: "Contributors",
         sectionHref: "/docs/contributors/",
         icon: "octicon:git-pull-request-16",
-        pages: [{ title: "How to contribute to nf-core", href: "/docs/contributors/how-to-contribute-to-nf-core" }],
+        pages: [
+            { title: "How to contribute to nf-core", href: "/docs/contributors/how-to-contribute-to-nf-core" },
+            { title: "Project proposals", href: "/docs/contributors/project-proposals" },
+            { title: "Review checklists", href: "/docs/contributors/" }
+        ],
     },
     {
         section: "Specifications",
@@ -181,15 +193,20 @@ const mainSections = [
         sectionHref: "/docs/community/",
         icon: "mdi:sprout",
         pages: [
-            { title: "Brand", href: "/docs/community/brand/overview" },
             { title: "Advisories", href: "/docs/community/advisories" },
+            { title: "Brand", href: "/docs/community/brand/overview" },
+            { title: "Terminology", href: "/docs/community/terminology" },
         ],
     },
     {
         section: "nf-core/tools",
         sectionHref: "/docs/nf-core-tools/",
         icon: "octicon:tools-16",
-        pages: ["Installation", "Pipelines commands", "Components commands", "Schema commands"],
+        pages: [
+            { title: "API", href: "/docs/nf-core-tools/api_reference" },
+            { title: "Installation", href: "/docs/nf-core-tools/cli/installation" },
+            { title: "TUI", href: "/docs/nf-core-tools/cli/tui" },
+        ],
     },
 ];
 
