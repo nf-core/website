@@ -20,7 +20,6 @@
         "@astrojs/rss": "^4.0.15",
         "@astrojs/sitemap": "^3.7.0",
         "@astrojs/svelte": "^7.2.5",
-        "@astropub/md": "^1.0.0",
         "@date-fns/tz": "^1.4.1",
         "@docsearch/css": "^4.4.0",
         "@docsearch/js": "^4.4.0",
@@ -105,10 +104,5 @@
         "progress": "^2.0.3",
         "sass-embedded": "^1.97.2"
     },
-    "packageManager": "npm@11.7.0",
-    "overrides": {
-        "@astropub/md": {
-            "@astrojs/markdown-remark": "$@astrojs/markdown-remark"
-        }
-    }
+    "packageManager": "npm@11.7.0"
 }
