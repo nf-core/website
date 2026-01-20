@@ -51004,7 +51004,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "genomeannotator",
@@ -66973,6 +66973,18 @@
                 }
               },
               {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "ensemblvep": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
                 "*.html": {
                   "type": "file",
                   "description": "VEP report file",
@@ -67028,6 +67040,36 @@
           ]
         },
         "topics": {
+          "multiqc_files": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Map with sample information\n"
+                }
+              },
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "ensemblvep": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "VEP report file",
+                  "pattern": "*.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions": [
             [
               {
@@ -105564,7 +105606,23 @@
                 "type": "file",
                 "description": "Input MSA file",
                 "pattern": "*.{fa,fasta,fas,a2m,a3m,sto,psi,clu,fa.gz,fasta.gz,fas.gz,a2m.gz,a3m.gz,sto.gz,psi.gz,clu.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1984"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3281"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1961"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -105611,24 +105669,60 @@
                   "type": "file",
                   "description": "Gzipped reformatted output MSA file",
                   "pattern": "*.{fas.gz,a2m.gz,a3m.gz,sto.gz,psi.gz,clu.gz}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_hhsuite": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hhsuite": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hhblits -h 2>&1 | sed -n '1s/^HHblits \\([0-9.]\\+\\):/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hhsuite": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hhblits -h 2>&1 | sed -n '1s/^HHblits \\([0-9.]\\+\\):/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -197277,19 +197371,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -n 1 | sed 's/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version | head -n 1 | sed 's/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -201049,6 +201175,160 @@
           "version": "3.7.1"
         }
       ]
+    },
+    {
+      "name": "samtools_quickcheck",
+      "path": "modules/nf-core/samtools/quickcheck/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samtools_quickcheck",
+        "description": "Quickly check that input files appear to be intact. Checks that beginning of the file contains a valid header (all formats) containing at least one target sequence and then seeks to the end of the file and checks that an end-of-file (EOF) is present and intact (BAM and CRAM only). Alignment records are not checked. The quickcheck module returns a non-zero EXIT_CODE if any input files don't have a valid header or are missing an EOF block. Otherwise EXIT_CODE is zero.",
+        "keywords": [
+          "check",
+          "quickcheck",
+          "sam",
+          "bam",
+          "cram"
+        ],
+        "tools": [
+          {
+            "samtools": {
+              "description": "Tools for dealing with SAM, BAM and CRAM files",
+              "homepage": "https://www.htslib.org/",
+              "documentation": "https://www.htslib.org/doc/samtools-quickcheck.html",
+              "tool_dev_url": "https://github.com/samtools/",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:samtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "sequence_trace file",
+                "pattern": "*.{cram,sam,bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0924"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "bam": {
+                  "type": "file",
+                  "description": "sequence_trace file",
+                  "pattern": "*.{cram,sam,bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_0924"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              },
+              {
+                "EXIT_CODE": {
+                  "type": "string",
+                  "description": "Exit code (0 for success, non-zero otherwise) that is the result of the format check.",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@Krannich479"
+        ],
+        "maintainers": [
+          "@Krannich479"
+        ]
+      }
     },
     {
       "name": "samtools_reheader",
@@ -221166,6 +221446,18 @@
                 }
               },
               {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
                 "*.csv": {
                   "type": "file",
                   "description": "snpEff report csv file",
@@ -221190,6 +221482,18 @@
                 }
               },
               {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
                 "*.html": {
                   "type": "file",
                   "description": "snpEff summary statistics in html file",
@@ -221207,6 +221511,18 @@
                   "description": "annotated vcf\n",
                   "pattern": "*.ann.vcf",
                   "ontologies": []
+                }
+              },
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
                 }
               },
               {
@@ -221243,6 +221559,102 @@
           ]
         },
         "topics": {
+          "multiqc_files": [
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "annotated vcf\n",
+                  "pattern": "*.ann.vcf",
+                  "ontologies": []
+                }
+              },
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "*.csv": {
+                  "type": "file",
+                  "description": "snpEff report csv file",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ],
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "annotated vcf\n",
+                  "pattern": "*.ann.vcf",
+                  "ontologies": []
+                }
+              },
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "snpEff summary statistics in html file",
+                  "pattern": "*.html",
+                  "ontologies": []
+                }
+              }
+            ],
+            [
+              {
+                "meta": {
+                  "type": "file",
+                  "description": "annotated vcf\n",
+                  "pattern": "*.ann.vcf",
+                  "ontologies": []
+                }
+              },
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "snpeff": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "*.genes.txt": {
+                  "type": "file",
+                  "description": "txt (tab separated) file having counts of the number of variants affecting each transcript and gene",
+                  "pattern": "*.genes.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "versions": [
             [
               {
@@ -244961,6 +245373,10 @@
         {
           "name": "createtaxdb",
           "version": "2.0.0"
+        },
+        {
+          "name": "drugresponseeval",
+          "version": "1.2.0"
         },
         {
           "name": "lsmquant",
@@ -269768,7 +270184,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "epitopeprediction",
@@ -270189,7 +270605,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "epitopeprediction",
@@ -270618,7 +271034,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.1.0"
+          "version": "1.2.0"
         },
         {
           "name": "epitopeprediction",
