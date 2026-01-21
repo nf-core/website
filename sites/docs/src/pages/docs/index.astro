@@ -21,7 +21,7 @@ let sections: SidebarEntry[] = [
     {
         type: "group",
         id: "users",
-        label: "Users",
+        label: "Running",
         entries: [],
         collapsed: true,
         icon: "octicon:git-branch-16",
@@ -30,7 +30,7 @@ let sections: SidebarEntry[] = [
     {
         type: "group",
         id: "developers",
-        label: "Developers",
+        label: "Developing",
         entries: [],
         collapsed: true,
         icon: "octicon:git-commit-16",
@@ -39,7 +39,7 @@ let sections: SidebarEntry[] = [
     {
         type: "group",
         id: "contributors",
-        label: "Contributors",
+        label: "Contributing",
         entries: [],
         collapsed: true,
         icon: "octicon:git-pull-request-16",
@@ -137,19 +137,19 @@ const featuredEntries = featuredPages.map(({ title, href, icon, description }) =
 // Define main sections with descriptions
 const mainSections = [
     {
-        section: "Users",
+        section: "Running",
         sectionHref: "/docs/users/",
         icon: "octicon:git-branch-16",
         description: "Learn how to run nf-core pipelines and configure them for your needs",
     },
     {
-        section: "Developers",
+        section: "Developing",
         sectionHref: "/docs/developers/",
         icon: "octicon:git-commit-16",
         description: "Create and maintain nf-core pipelines and modules",
     },
     {
-        section: "Contributors",
+        section: "Contributing",
         sectionHref: "/docs/contributors/",
         icon: "octicon:git-pull-request-16",
         description: "Contribute to the nf-core community and projects",
