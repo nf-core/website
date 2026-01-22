@@ -43,7 +43,17 @@ To run Dev Containers locally in VS Code:
 
 Local VS Code Dev Containers require additional SSH key forwarding setup for remote repository access.
 
-## Configuration
+## Testing your environment
+
+Once your environment is running, verify the setup by opening a terminal in VS Code or Codespaces and running:
+
+```bash
+nf-core --version
+```
+
+And try [running a test pipeline](../get_started/run-your-first-pipeline.md).
+
+## Further Configuration
 
 The `.devcontainer/devcontainer.json` file serves as the main configuration manifest, that describes the container environment to install and how it should be configured.
 
@@ -60,28 +70,6 @@ The Dev Containers uses `nfcore/devcontainer:latest` and includes:
 - Pre-installed VS Code extensions for Python, linting, and nf-core development
 
 See [nf-core extension pack](./vs-code.md#nf-core-extension-pack) for more information about VS Code packages.
-
-### Essential settings
-
-**Base image**: Uses `"nfcore/devcontainer:latest"` which contains core development tools
-
-**Privileges**: The configuration sets `"privileged": true` to enable Apptainer functionality for singularity profiles
-
-**Setup script**: An `onCreateCommand` executes `./.devcontainer/setup.sh` after environment creation
-
-**Features**: Includes the "docker-outside-of-docker" feature for container support
-
-### Customisation options
-
-You can extend your environment by:
-
-- Adding specific VS Code extensions
-- Modifying `setup.sh` to install additional packages
-- Integrating additional Dev Containers features
-- Adjusting resource requirements
-- Mounting host machine paths for local development
-
-For detailed information, see the official [VS Code Dev Containers](https://code.visualstudio.com/docs/devcontainers/containers) documentation.
 
 ## Troubleshooting
 
