@@ -64,7 +64,11 @@ Channel names MUST follow `snake_case` convention and be all lower case.
 ### Input channel name structure
 
 Input channel names SHOULD signify the input object type.
-For example, a single value input channel will be prefixed with `val_`, whereas input channels with multiple elements (e.g. meta map + file) should be prefixed with `ch_`.
+For example, input channels with multiple elements (e.g., meta map + file) should be prefixed with `ch_`. For non-channel inputs, it is recommended to either prefix with `val_`, or any word that would
+best convey the purpose of the parameter. Examples:
+- `skip_`, for boolean flags that allow users to skip specific blocks of code execution
+- `run_`, for boolean flags that allow users to enable specific blocks of code execution
+- `remove_`, for variables that might indicate metadata column names to be removed from a meta value within a channel
 
 ### Output channel name structure
 
