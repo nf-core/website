@@ -38,7 +38,6 @@ To run `nf-core/demo` with test data:
 
    :::tip
    Common configure software dependencies and compute environments include:
-
    - `docker`: Uses Docker containers
    - `singularity`: Uses Singularity containers
    - `conda`: Uses Conda environments
