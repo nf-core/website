@@ -64,7 +64,7 @@ Channel names MUST follow `snake_case` convention and be all lower case.
 ### Input channel name structure
 
 Input channel names SHOULD signify the input object type.
-For example, input channels with multiple elements (e.g., meta map + file) should be prefixed with `ch_`. For non-channel inputs, it is recommended to either prefix with `val_`, or any word that would
+For example, input queue channels with more than one elements should be prefixed with `ch_` (i.e., a tuple [ [ meta ], file ], or a channel with multiple elements [ file_1, file_2, file_n ]). For non-channel inputs, it is recommended to either prefix with `val_`, or any word that would
 best convey the purpose of the parameter. Examples:
 
 - `skip_`, for boolean flags that allow users to skip specific blocks of code execution
