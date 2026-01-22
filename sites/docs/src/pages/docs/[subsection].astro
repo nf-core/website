@@ -7,7 +7,7 @@ import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
 import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
 export async function getStaticPaths() {
-    return ["get-started", "users", "developers", "contributors", "community", "nf-core-tools"].map((subsection) => ({
+    return ["get-started", "users", "developers", "contributors", "specifications", "community", "nf-core-tools"].map((subsection) => ({
         params: {
             subsection: subsection,
         },
@@ -25,39 +25,49 @@ let sections: SidebarEntry[] = [
         label: "Get started",
         href: "/docs/get-started",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/get-started",
-        collapsed: Astro.url.pathname !== "/docs/get-started/",
+        collapsed: true,
         icon: "octicon:play-16",
+        weight: 1,
     },
     {
         type: "group",
         id: "users",
-        label: "Users",
+        label: "Running",
         href: "/docs/users",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/users",
-        collapsed: Astro.url.pathname !== "/docs/users/",
-        icon: "octicon:git-pull-request-16",
+        collapsed: true,
+        icon: "octicon:git-branch-16",
+        weight: 2,
     },
     {
         type: "group",
         id: "developers",
-        label: "Developers",
+        label: "Developing",
         href: "/docs/developers",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/developers",
-        collapsed: Astro.url.pathname !== "/docs/developers/",
-        icon: "octicon:mortar-board-16",
+        collapsed: true,
+        icon: "octicon:git-commit-16",
+        weight: 3,
     },
     {
         type: "group",
         id: "contributors",
-        label: "Contributors",
+        label: "Contributing",
         href: "/docs/contributors",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/contributors",
-        collapsed: Astro.url.pathname !== "/docs/contributors/",
-        icon: "octicon:law-16",
+        collapsed: true,
+        icon: "octicon:git-pull-request-16",
+        weight: 4,
+    },
+    {
+        type: "group",
+        id: "specifications",
+        label: "Specifications",
+        href: "/docs/specifications",
+        entries: [],
+        collapsed: true,
+        icon: "octicon:checklist-16",
+        weight: 5,
     },
     {
         type: "group",
@@ -65,9 +75,9 @@ let sections: SidebarEntry[] = [
         label: "Community",
         href: "/docs/community",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/community",
-        collapsed: Astro.url.pathname !== "/docs/community/",
-        icon: "octicon:tasklist-16",
+        collapsed: true,
+        icon: "mdi:sprout",
+        weight: 6,
     },
     {
         type: "group",
@@ -75,9 +85,9 @@ let sections: SidebarEntry[] = [
         label: "nf-core/tools",
         href: "/docs/nf-core-tools",
         entries: [],
-        isCurrent: Astro.url.pathname.replace(".html", "") === "/docs/nf-core-tools",
-        collapsed: Astro.url.pathname !== "/docs/nf-core-tools/",
+        collapsed: true,
         icon: "octicon:tools-16",
+        weight: 7,
     },
 ];
 // sort docs first depth, then by weight, then by title
@@ -165,9 +175,6 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-xl-8 order-2">
-                <p>
-                    This is the overview of the {subsection} section.
-                </p>
                 <div class="">
                     <h2>{subsection.slice(0, 1).toUpperCase() + subsection.slice(1)}</h2>
                     <div class="grid">

@@ -23,108 +23,104 @@ You will need the following to get started:
 
 1. Check if someone is already working on your idea:
 
-    Check the pipeline repository for:
-
-    - Open [issues](https://github.com/nf-core) to see if your idea has been discussed
-    - Open [pull requests](https://github.com/nf-core) to avoid duplicating work
+   Check the pipeline repository for:
+   - Open [issues](https://github.com/nf-core) to see if your idea has been discussed
+   - Open [pull requests](https://github.com/nf-core) to avoid duplicating work
 
 1. Create an [issue](https://github.com/nf-core) to let others know you're working on it:
-
-    - Use a clear title that describes your contribution
-    - Describe what you plan to add or change
-    - Add yourself to the **Assignees**
+   - Use a clear title that describes your contribution
+   - Describe what you plan to add or change
+   - Add yourself to the **Assignees**
 
 1. Fork the pipeline repository to your GitHub account and clone it locally:
 
-    ```bash
-    git clone https://github.com/<github_username>/<pipeline_name>.git
-    cd <pipeline_name>
-    git remote add upstream https://github.com/nf-core/<pipeline_name>.git
-    git checkout -b <branch_name>
-    ```
+   ```bash
+   git clone https://github.com/<github_username>/<pipeline_name>.git
+   cd <pipeline_name>
+   git remote add upstream https://github.com/nf-core/<pipeline_name>.git
+   git checkout -b <branch_name>
+   ```
 
-    :::note
-    Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values. Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
-    :::
+   :::note
+   Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values. Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
+   :::
 
 1. Make your changes following the [pipeline conventions](#pipeline-contribution-conventions):
-
-    - Make changes on the `dev` branch
-    - Follow the pipeline's existing code style and structure
-    - Add or update tests as needed
-    - Update documentation to reflect your changes
+   - Make changes on the `dev` branch
+   - Follow the pipeline's existing code style and structure
+   - Add or update tests as needed
+   - Update documentation to reflect your changes
 
 1. Add new parameters to the pipeline schema:
 
-    If you added new parameters, update the JSON schema:
+   If you added new parameters, update the JSON schema:
 
-    ```bash
-    nf-core pipelines schema build
-    ```
+   ```bash
+   nf-core pipelines schema build
+   ```
 
-    :::note
-    This command updates `nextflow_schema.json` with your new parameters and provides an interactive interface to add descriptions and validation rules.
-    :::
+   :::note
+   This command updates `nextflow_schema.json` with your new parameters and provides an interactive interface to add descriptions and validation rules.
+   :::
 
 1. Test your changes locally:
 
-    ```bash
-    nextflow run . -profile debug,test,docker --outdir <OUTDIR>
-    ```
+   ```bash
+   nextflow run . -profile debug,test,docker --outdir <OUTDIR>
+   ```
 
-    :::tip
-    The `debug` profile provides warnings about process selectors and other debug information that can help identify issues.
-    :::
+   :::tip
+   The `debug` profile provides warnings about process selectors and other debug information that can help identify issues.
+   :::
 
 1. Run linting checks to ensure code quality:
 
-    ```bash
-    nf-core pipelines lint .
-    ```
+   ```bash
+   nf-core pipelines lint .
+   ```
 
-    :::note
-    Address any failures or warnings. Follow the listed URLs for documentation on how to fix specific issues.
-    :::
+   :::note
+   Address any failures or warnings. Follow the listed URLs for documentation on how to fix specific issues.
+   :::
 
 1. Commit and push your changes with a clear message:
 
-    ```bash
-    git add .
-    git commit -m "Add feature: <description>"
-    git push origin <branch_name>
-    ```
+   ```bash
+   git add .
+   git commit -m "Add feature: <description>"
+   git push origin <branch_name>
+   ```
 
-    :::tip
-    Before creating a pull request, sync your branch with upstream to apply your changes on top of the latest updates:
+   :::tip
+   Before creating a pull request, sync your branch with upstream to apply your changes on top of the latest updates:
 
-    ```bash
-    git pull --rebase upstream dev
-    ```
-    :::
+   ```bash
+   git pull --rebase upstream dev
+   ```
+
+   :::
 
 1. Submit a pull request against the `dev` branch:
 
-    Go to the pipeline repository on GitHub and create a pull request:
-
-    - Use the pull request template provided
-    - Reference the issue you created
-    - Describe what you changed and why
-    - Explain how you tested your changes
-    - Include example commands or screenshots if helpful
+   Go to the pipeline repository on GitHub and create a pull request:
+   - Use the pull request template provided
+   - Reference the issue you created
+   - Describe what you changed and why
+   - Explain how you tested your changes
+   - Include example commands or screenshots if helpful
 
 1. Address review feedback
 
-    :::note
-    The nf-core maintainers and automated tests will review your contribution. Common feedback includes:
+   :::note
+   The nf-core maintainers and automated tests will review your contribution. Common feedback includes:
+   - Code style improvements
+   - Additional or updated tests
+   - Documentation clarifications
+   - Linting fixes
+   - Pipeline-specific conventions
 
-    - Code style improvements
-    - Additional or updated tests
-    - Documentation clarifications
-    - Linting fixes
-    - Pipeline-specific conventions
-
-    Pull requests are typically fully reviewed when automated tests pass.
-    :::
+   Pull requests are typically fully reviewed when automated tests pass.
+   :::
 
 1. When approved, a maintainer will merge your pull request
 
@@ -191,8 +187,8 @@ When adding a new process to a pipeline:
 1. Test locally to verify the new process works correctly
 1. Add test commands to `.github/workflow/ci.yml` if applicable
 1. Update MultiQC configuration in `assets/multiqc_config.yml`:
-    - Add relevant file suffixes and cleanup rules
-    - Ensure module plots appear in the correct order
+   - Add relevant file suffixes and cleanup rules
+   - Ensure module plots appear in the correct order
 1. Document output files in `docs/output.md` with MultiQC screenshots if relevant
 
 ### Parameters
