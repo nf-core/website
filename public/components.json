@@ -124695,7 +124695,7 @@
           }
         ],
         "output": {
-          "gif": [
+          "plot": [
             [
               {
                 "meta": {
@@ -124704,28 +124704,10 @@
                 }
               },
               {
-                "*.gif": {
+                "*.{gif,png}": {
                   "type": "file",
-                  "description": "Pairwise alignment dot plot image, in GIF format.",
-                  "pattern": "*.gif",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "png": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.png": {
-                  "type": "file",
-                  "description": "Pairwise alignment dot plot image, in PNG format.",
-                  "pattern": "*.png",
+                  "description": "Pairwise alignment dot plot image, in GIF or PNG format.",
+                  "pattern": "*.{gif,png}",
                   "ontologies": []
                 }
               }
@@ -125203,7 +125185,7 @@
           ]
         ],
         "output": {
-          "axt_gz": [
+          "alignment": [
             [
               {
                 "meta": {
@@ -125212,249 +125194,11 @@
                 }
               },
               {
-                "*.axt.gz": {
+                "*.{axt.gz,bam,bed.gz,blast.gz,blasttab.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}": {
                   "type": "file",
-                  "description": "Gzipped pairwise alignment in Axt (Blastz) format (optional)",
-                  "pattern": "*.axt.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "bam": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.bam": {
-                  "type": "file",
-                  "description": "Pairwise alignment in BAM format (optional)",
-                  "pattern": "*.bam",
+                  "description": "Pairwise alignment exported to Axt, BAM, BED, BLAST, Chain, CRAM, GFF, HTML PSL, SAM or Tab format.",
+                  "pattern": "*.{axt.gz,bam,bed.gz,blast.gz,blasttab.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}",
                   "ontologies": []
-                }
-              }
-            ]
-          ],
-          "bed_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.bed.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in BED format (optional)",
-                  "pattern": "*.bed.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "blast_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.blast.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in blast format (optional)",
-                  "pattern": "*.blast.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "blasttab_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.blasttab.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in blasttab format (optional)",
-                  "pattern": "*.blasttab.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "chain_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.chain.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in UCSC chain format (optional)",
-                  "pattern": "*.chain.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "cram": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.cram": {
-                  "type": "file",
-                  "description": "Pairwise alignment in CRAM format (optional)",
-                  "pattern": "*.cram",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "gff_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.gff.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in GFF format (optional)",
-                  "pattern": "*.gff.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "html_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.html.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in HTML format (optional)",
-                  "pattern": "*.html.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "psl_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.psl.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in PSL (BLAT) format (optional)",
-                  "pattern": "*.psl.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "sam_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.sam.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in SAM format (optional)",
-                  "pattern": "*.sam.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
-          "tab_gz": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
-                }
-              },
-              {
-                "*.tab.gz": {
-                  "type": "file",
-                  "description": "Gzipped pairwise alignment in TAB format (optional)",
-                  "pattern": "*.tab.gz",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_3989"
-                    }
-                  ]
                 }
               }
             ]
