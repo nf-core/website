@@ -5,15 +5,20 @@ shortTitle: Dev Containers
 weight: 6
 ---
 
-nf-core repositories offer devcontainer configurations that run in GitHub Codespaces in a web browser or in Visual Studio Code locally. These environments package all required software in isolated, containerised spaces.
+nf-core repositories offer [Development Container](https://containers.dev/) (dev containers) configurations.
+Dev containers offer a portable development environment that can be executed in a web browser such as cloud-based [GitHub Codespaces](https://github.com/codespaces) or in Visual Studio Code locally.
+These environments package all required software in isolated, containerised spaces for development.
 
 :::note
-Devcontainers are not required to run or develop nf-core pipelines. However, some may find Dev Containers useful for these purposes.
+Devcontainers are not required to run or develop nf-core pipelines.
+However, some may find dev containers useful for these purposes.
 :::
 
 ## Set up in GitHub Codespaces
 
-GitHub Codespaces provides a browser-based development platform that resembles local VS Code. The free tier allows up to 120 hours monthly for basic instances. Pipeline repositories use 4-core machines with 16GB RAM and 32GB storage.
+[GitHub Codespaces](https://github.com/codespaces) provides a browser-based development platform that resembles local VS Code.
+The free tier allows up to 120 hours monthly for basic compute instances.
+Pipeline repositories use 4-core machines with 16GB RAM and 32GB storage.
 
 To launch a Codespace:
 
@@ -24,7 +29,8 @@ To launch a Codespace:
 
 Select the 4-CPU hardware option for adequate performance.
 
-No additional setup is required beyond a GitHub account. Git comes preinstalled and Codespaces automatically configures authentication via GitHub.
+No additional setup is required beyond a GitHub account.
+Git comes preinstalled in the environment and Codespaces automatically configures authentication via GitHub.
 
 ## Set up in Visual Studio Code
 
@@ -37,39 +43,9 @@ To run Dev Containers locally in VS Code:
 
 Local VS Code Dev Containers require additional SSH key forwarding setup for remote repository access.
 
-## Run pipelines
-
-Once the containerised environment loads, run workflows using the singularity profile:
-
-```bash
-nextflow run . \
-    -profile test,singularity \
-    --outdir my_result
-```
-
-:::warning
-Use `-profile singularity`, not `-profile docker`, when running Nextflow commands in Codespaces. Docker execution is not currently supported in devcontainers, though Docker itself remains available.
-:::
-
-The test data processes through the pipeline using Apptainer, with results saved to the specified output directory. Processing time varies based on pipeline complexity.
-
-The Dev Containers approach prioritises ease of use over processing power, making it suitable for testing but not production datasets.
-
-## Test modules with nf-test
-
-The modules repository branch in Codespaces includes nf-test capabilities for debugging individual modules.
-
-Run module tests with:
-
-```bash
-nf-test test --tag <module_name> --profile singularity
-```
-
-This enables you to validate module functionality before integration.
-
 ## Configuration
 
-The `.devcontainer/devcontainer.json` file serves as the main configuration manifest.
+The `.devcontainer/devcontainer.json` file serves as the main configuration manifest, that describes the container environment to install and how it should be configured.
 
 ### Pre-built image contents
 
