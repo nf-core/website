@@ -4,7 +4,8 @@ subtitle: A guide for adding your institution to the contributor's list
 shortTitle: Contributor's list
 ---
 
-nf-core is by design a collaborative effort and would not exist if its many dedicated contributors. nf-core contributors are welcome to add their institution to the [contributors page](https://nf-co.re/contributors) on the nf-core website.
+nf-core is by design a collaborative effort and would not exist if its many dedicated contributors.
+nf-core contributors are welcome to add their institution to the [contributors page](https://nf-co.re/contributors) on the nf-core website.
 
 ## Add your organisation to the contributors list
 

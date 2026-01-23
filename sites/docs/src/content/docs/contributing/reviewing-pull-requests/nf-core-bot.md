@@ -8,7 +8,8 @@ The nf-core-bot can automate code fixes and other actions in pull requests.
 You trigger these commands by commenting on the PR with specific keywords.
 
 :::danger
-Command availability varies by repository. Check the repository's `.github/workflows/` directory to see which bot commands are configured.
+Command availability varies by repository.
+Check the repository's `.github/workflows/` directory to see which bot commands are configured.
 :::
 
 ## Available commands

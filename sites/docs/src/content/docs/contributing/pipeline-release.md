@@ -5,9 +5,11 @@ shortTitle: Reviewing pipeline releases
 markdownPlugin: checklist
 ---
 
-Pipeline release reviews ensure that pipelines meet nf-core standards before they reach the community. When you review a pipeline release pull request, you examine the submission and provide constructive feedback before maintainers merge the changes into the nf-core repository.
+Pipeline release reviews ensure that pipelines meet nf-core standards before they reach the community.
+When you review a pipeline release pull request, you examine the submission and provide constructive feedback before maintainers merge the changes into the nf-core repository.
 
-Pipeline release PRs vary widely in their contents, making it harder to provide strict universal criteria compared to reviewing [components](/docs/contributors/reviewing-pull-requests/review_checklists/component). Your role as a reviewer is to check for adherence to the central principles of nf-core: reproducibility, excellent reporting, documentation, and template compliance.
+Pipeline release PRs vary widely in their contents, making it harder to provide strict universal criteria compared to reviewing [components](/docs/contributors/reviewing-pull-requests/review_checklists/component).
+Your role as a reviewer is to check for adherence to the central principles of nf-core: reproducibility, excellent reporting, documentation, and template compliance.
 
 :::tip
 Use the [pipeline release review checklist](/docs/contributors/reviewing-pull-requests/review_checklists/pipeline-release) for a quick reference whilst reviewing.
@@ -15,9 +17,11 @@ Use the [pipeline release review checklist](/docs/contributors/reviewing-pull-re
 
 ## Before you start
 
-Pipeline release reviews can feel overwhelming, particularly when doing one for the first time. Remember that you don't need to be an expert in the scientific domain to provide valuable feedback on code quality, documentation, and adherence to nf-core standards.
+Pipeline release reviews can feel overwhelming, particularly when doing one for the first time.
+Remember that you don't need to be an expert in the scientific domain to provide valuable feedback on code quality, documentation, and adherence to nf-core standards.
 
-Focus on the general [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview) rather than the scientific accuracy of the analysis. Your perspective helps catch issues that developers might have missed.
+Focus on the general [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview) rather than the scientific accuracy of the analysis.
+Your perspective helps catch issues that developers might have missed.
 
 ### Review nf-core principles
 
@@ -112,7 +116,8 @@ Assess the code for:
 - [ ] Possible bugs or logic errors
 - [ ] Non-template components that might cause maintenance issues
 
-Avoid requiring major code optimisation unless it affects functionality. Small optimisation suggestions are welcome, but large refactoring should have happened during development PRs rather than at release time.
+Avoid requiring major code optimisation unless it affects functionality.
+Small optimisation suggestions are welcome, but large refactoring should have happened during development PRs rather than at release time.
 
 ### Parameter conventions
 
@@ -140,4 +145,5 @@ To keep reviews focused and efficient, you don't need to:
   You can suggest small code optimisation. However, larger code optimisation shouldn't necessarily be required for release.
   :::
 
-Remember that your review helps maintain quality across the nf-core ecosystem. Thank you for contributing your time to make nf-core pipelines better for everyone.
+Remember that your review helps maintain quality across the nf-core ecosystem.
+Thank you for contributing your time to make nf-core pipelines better for everyone.

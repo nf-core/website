@@ -29,7 +29,8 @@ To manually re-generate different logos, fun the `nf-core pipelines create-logo`
 nf-core pipelines create-logo --theme dark --format svg isawesome
 ```
 
-To quickly generate a PNG logo, visit [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where `pipelinename` is the name of your pipeline.
+To quickly generate a PNG logo, visit [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where
+`pipelinename` is the name of your pipeline.
 
 ### Custom
 

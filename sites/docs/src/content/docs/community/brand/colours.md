@@ -4,7 +4,8 @@ subtitle: nf-core colour reference
 weight: 2
 ---
 
-The nf-core brand uses a consistent colour palette across all materials. Use these colours when creating graphics, presentations, documentation, or other content to maintain visual consistency with the nf-core brand identity.
+The nf-core brand uses a consistent colour palette across all materials.
+Use these colours when creating graphics, presentations, documentation, or other content to maintain visual consistency with the nf-core brand identity.
 
 ## nf-core green
 
