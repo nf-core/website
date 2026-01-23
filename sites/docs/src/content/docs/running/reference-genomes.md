@@ -164,7 +164,8 @@ To use Refgenie:
    refgenie pull t7/bowtie2_index
    ```
 
-   Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`. For example:
+   Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
+For example:
 
    ```groovy title="refgenie_genomes.config"
    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.

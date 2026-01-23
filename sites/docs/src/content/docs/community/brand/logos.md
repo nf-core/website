@@ -23,13 +23,15 @@ Pipeline logos can be created using various tools and formats.
 
 The `nf-core pipelines create` command automatically generates a pipeline logo.
 
-To manually re-generate different logos, fun the `nf-core pipelines create-logo` command. For example:
+To manually re-generate different logos, fun the `nf-core pipelines create-logo` command.
+For example:
 
 ```bash
 nf-core pipelines create-logo --theme dark --format svg isawesome
 ```
 
-To quickly generate a PNG logo, visit [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where `pipelinename` is the name of your pipeline.
+To quickly generate a PNG logo, visit [https://nf-co.re/logo/pipelinename](https://nf-co.re/logo/pipelinename), where
+`pipelinename` is the name of your pipeline.
 
 ### Custom
 

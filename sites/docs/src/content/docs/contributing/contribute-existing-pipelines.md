@@ -4,9 +4,11 @@ subtitle: How to contribute to existing nf-core pipelines
 shortTitle: Existing pipelines
 ---
 
-nf-core pipelines are community-driven bioinformatics workflows that enable reproducible analyses across research groups. Contributing to existing pipelines helps improve functionality, fix bugs, and add new features that benefit the entire community.
+nf-core pipelines are community-driven bioinformatics workflows that enable reproducible analyses across research groups.
+Contributing to existing pipelines helps improve functionality, fix bugs, and add new features that benefit the entire community.
 
-This guide explains how to contribute code to existing nf-core pipelines. Whether you're adding a new feature, fixing a bug, or improving documentation, the nf-core community welcomes your contributions.
+This guide explains how to contribute code to existing nf-core pipelines.
+Whether you're adding a new feature, fixing a bug, or improving documentation, the nf-core community welcomes your contributions.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -42,7 +44,8 @@ You will need the following to get started:
    ```
 
    :::note
-   Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values. Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
+   Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values.
+Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
    :::
 
 1. Make your changes following the [pipeline conventions](#pipeline-contribution-conventions):
@@ -80,7 +83,8 @@ You will need the following to get started:
    ```
 
    :::note
-   Address any failures or warnings. Follow the listed URLs for documentation on how to fix specific issues.
+   Address any failures or warnings.
+Follow the listed URLs for documentation on how to fix specific issues.
    :::
 
 1. Commit and push your changes with a clear message:
@@ -112,7 +116,8 @@ You will need the following to get started:
 1. Address review feedback
 
    :::note
-   The nf-core maintainers and automated tests will review your contribution. Common feedback includes:
+   The nf-core maintainers and automated tests will review your contribution.
+Common feedback includes:
    - Code style improvements
    - Additional or updated tests
    - Documentation clarifications
@@ -126,11 +131,13 @@ You will need the following to get started:
 
 ## Automated testing
 
-When you create a pull request, [GitHub Actions](https://github.com/features/actions) automatically runs tests to ensure code quality and functionality. Pull requests are typically fully reviewed when these tests pass.
+When you create a pull request, [GitHub Actions](https://github.com/features/actions) automatically runs tests to ensure code quality and functionality.
+Pull requests are typically fully reviewed when these tests pass.
 
 ### Lint tests
 
-All nf-core pipelines must adhere to a [set of guidelines](https://nf-co.re/developers/guidelines). The linting tool checks that your code follows these standards:
+All nf-core pipelines must adhere to a [set of guidelines](https://nf-co.re/developers/guidelines).
+The linting tool checks that your code follows these standards:
 
 ```bash
 nf-core pipelines lint <pipeline-directory>
@@ -149,7 +156,8 @@ If any failures or warnings occur, follow the provided URLs for detailed documen
 
 ### Pipeline tests
 
-Each nf-core pipeline includes a minimal test dataset. GitHub Actions runs the pipeline on this data to verify successful execution:
+Each nf-core pipeline includes a minimal test dataset.
+GitHub Actions runs the pipeline on this data to verify successful execution:
 
 - Tests run with the latest version of Nextflow
 - Tests run with the minimum required Nextflow version specified in the pipeline
@@ -220,7 +228,8 @@ withLabel: process_low {
 }
 ```
 
-Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config). Reference resources dynamically in process blocks:
+Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config).
+Reference resources dynamically in process blocks:
 
 ```groovy
 script:
@@ -264,4 +273,5 @@ If you need assistance:
 - Review existing code in the pipeline for examples
 - Check the [nf-core contributing guidelines](https://nf-co.re/docs/contributing/guidelines)
 
-The nf-core community is here to help. Don't hesitate to ask questions.
+The nf-core community is here to help.
+Don't hesitate to ask questions.

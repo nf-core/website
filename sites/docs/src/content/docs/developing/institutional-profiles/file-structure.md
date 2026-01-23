@@ -5,7 +5,8 @@ shortTitle: File structure
 weight: 3
 ---
 
-Institutional profiles require specific files in the [nf-core/configs](https://github.com/nf-core/configs) repository. You will create new files for your cluster configuration and documentation, and modify existing files to register your profile.
+Institutional profiles require specific files in the [nf-core/configs](https://github.com/nf-core/configs) repository.
+You will create new files for your cluster configuration and documentation, and modify existing files to register your profile.
 
 ## Files to create
 
@@ -15,7 +16,8 @@ Create these new files for your institutional profile:
 
 **Path**: `conf/<cluster_name>.config`
 
-This is the main configuration file that defines your cluster's settings. It contains all the Nextflow configuration scopes (parameters, process settings, executor options, container configurations) that apply to your cluster.
+This is the main configuration file that defines your cluster's settings.
+It contains all the Nextflow configuration scopes (parameters, process settings, executor options, container configurations) that apply to your cluster.
 
 Use lowercase with underscores for the filename (for example, `big_university.config`, `research_cluster.config`).
 
@@ -25,7 +27,8 @@ See [Configuration file components](configuration.md) for detailed information a
 
 **Path**: `docs/<cluster_name>.md`
 
-This markdown file documents your profile's purpose, usage instructions, and any special requirements. It helps users at your institution understand how to use the profile and troubleshoot common issues.
+This markdown file documents your profile's purpose, usage instructions, and any special requirements.
+It helps users at your institution understand how to use the profile and troubleshoot common issues.
 
 The filename should match your configuration file name (for example, `big_university.md` for `big_university.config`).
 
@@ -39,7 +42,8 @@ Update these existing files in the nf-core/configs repository to register your p
 
 **Path**: `nfcore_custom.config`
 
-Add a profile entry that references your configuration file. This makes your profile available when users specify `-profile <your_institution>`.
+Add a profile entry that references your configuration file.
+This makes your profile available when users specify `-profile <your_institution>`.
 
 Add your profile within the `profiles` scope in alphabetical order:
 
@@ -59,7 +63,8 @@ The profile name in this file determines how users access your profile with the 
 
 **Path**: `README.md`
 
-Add your institution to the documentation table in the main README. This provides visibility for users browsing the repository.
+Add your institution to the documentation table in the main README.
+This provides visibility for users browsing the repository.
 
 Add a row to the institution table in alphabetical order:
 
@@ -73,7 +78,8 @@ Include the profile name, institution name, and link to your documentation file.
 
 **Path**: `.github/workflows/main.yml`
 
-Add your profile to the automated testing matrix. This ensures your profile passes continuous integration checks when template changes occur.
+Add your profile to the automated testing matrix.
+This ensures your profile passes continuous integration checks when template changes occur.
 
 Locate the `profile` list in the test matrix and add your profile name in alphabetical order:
 
@@ -89,7 +95,8 @@ strategy:
 ```
 
 :::note
-The GitHub Actions workflow file may have a different structure depending on when you create your profile. Follow the existing pattern in the file and add your profile to the appropriate location in the test matrix.
+The GitHub Actions workflow file may have a different structure depending on when you create your profile.
+Follow the existing pattern in the file and add your profile to the appropriate location in the test matrix.
 :::
 
 ## Pipeline-specific profiles

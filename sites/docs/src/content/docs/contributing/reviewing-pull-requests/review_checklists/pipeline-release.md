@@ -8,9 +8,12 @@ weight: 2
 
 <!-- TODO: Add links to other pages and guide where possible -->
 
-When you review a PR, you examine a pipeline release submission. You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository. Your review ensures that the pipeline meets the coding standards of the project, maintains consistency and achieves high quality.
+When you review a PR, you examine a pipeline release submission.
+You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository.
+Your review ensures that the pipeline meets the coding standards of the project, maintains consistency and achieves high quality.
 
-Use this guide to evaluate nf-core pipeline release pull requests. Focus on checking for adherence to nf-core principles rather than applying strict universal criteria, given the diverse nature of pipeline releases.
+Use this guide to evaluate nf-core pipeline release pull requests.
+Focus on checking for adherence to nf-core principles rather than applying strict universal criteria, given the diverse nature of pipeline releases.
 
 ## Do: nf-core principles
 

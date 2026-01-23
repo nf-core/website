@@ -98,7 +98,8 @@ For more information, see the [Nextflow documentation](https://www.nextflow.io/d
 After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c <path>/<to>/<config>.conf`.
 
 :::warning
-Check your syntax carefully. Setting memory to `200` allocates 200 bytes of memory.
+Check your syntax carefully.
+Setting memory to `200` allocates 200 bytes of memory.
 
 Use quotes with a space or no quotes with a dot: `"200 GB"` or `200.GB`.
 

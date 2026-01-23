@@ -5,7 +5,8 @@ shortTitle: bump-versions
 weight: 100
 ---
 
-If you are contributing to the `nf-core/modules` repository and want to bump bioconda and container versions of modules, you can use the `nf-core modules bump-versions` helper tool. This will bump the bioconda version of a single module or all modules to the latest version and also fetch the correct Docker and Singularity container tags.
+If you are contributing to the `nf-core/modules` repository and want to bump bioconda and container versions of modules, you can use the `nf-core modules bump-versions` helper tool.
+This will bump the bioconda version of a single module or all modules to the latest version and also fetch the correct Docker and Singularity container tags.
 
 <!-- RICH-CODEX
 working_dir: tmp/modules
@@ -13,7 +14,8 @@ working_dir: tmp/modules
 
 ![`nf-core modules bump-versions fastqc`](../../../../../assets/images/tools/nf-core-modules-bump-version.svg)
 
-If you don't want to update certain modules or want to update them to specific versions, you can make use of the `.nf-core.yml` configuration file. For example, you can prevent the `star/align` module from being updated by adding the following to the `.nf-core.yml` file:
+If you don't want to update certain modules or want to update them to specific versions, you can make use of the `.nf-core.yml` configuration file.
+For example, you can prevent the `star/align` module from being updated by adding the following to the `.nf-core.yml` file:
 
 ```yaml
 bump-versions:

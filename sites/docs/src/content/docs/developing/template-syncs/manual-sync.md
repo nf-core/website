@@ -5,10 +5,12 @@ shortTitle: Manually syncing your pipeline
 weight: 3
 ---
 
-In rare cases, you need to trigger synchronisation manually. This applies when automated sync did not run during an `nf-core/tools` release on GitHub, when you want to perform a targeted sync, or when you maintain a custom pipeline created with `nf-core pipelines create`.
+In rare cases, you need to trigger synchronisation manually.
+This applies when automated sync did not run during an `nf-core/tools` release on GitHub, when you want to perform a targeted sync, or when you maintain a custom pipeline created with `nf-core pipelines create`.
 
 :::note
-Automated template syncs only apply to official nf-core pipelines. Custom pipelines require manual synchronisation.
+Automated template syncs only apply to official nf-core pipelines.
+Custom pipelines require manual synchronisation.
 :::
 
 ## Sync an official nf-core pipeline

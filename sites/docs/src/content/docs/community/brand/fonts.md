@@ -4,7 +4,8 @@ subtitle: nf-core fonts
 weight: 3
 ---
 
-nf-core uses standard fonts for headings and body. All fonts are under the Open Font License.
+nf-core uses standard fonts for headings and body.
+All fonts are under the Open Font License.
 
 :::tip
 Embed fonts in images or presentations to ensure formatting is retained across devices.

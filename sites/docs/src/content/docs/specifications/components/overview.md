@@ -5,7 +5,9 @@ weight: 1
 parentWeight: 10
 ---
 
-Components are the building blocks of nf-core pipelines. They consist of modules (wrappers around individual tools) and subworkflows (combinations of multiple modules that perform related tasks). These specifications define the standards for developing reusable, interoperable components that can be shared across the nf-core ecosystem.
+Components are the building blocks of nf-core pipelines.
+They consist of modules (wrappers around individual tools) and subworkflows (combinations of multiple modules that perform related tasks).
+These specifications define the standards for developing reusable, interoperable components that can be shared across the nf-core ecosystem.
 
 While these specifications are mandatory for components contributed to the nf-core repository, they represent proven best practices for developing high-quality, maintainable Nextflow components that can benefit any workflow development project.
 

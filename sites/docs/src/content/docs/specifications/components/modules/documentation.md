@@ -14,7 +14,8 @@ The module MUST have a `meta.yaml` in the same directory as the module `main.nf`
 
 ## Number of keywords
 
-Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords. Keywords MUST NOT be solely the (sub)tool name.
+Keywords SHOULD be sufficient to make the module findable through research domain, data types, and tool function keywords.
+Keywords MUST NOT be solely the (sub)tool name.
 
 :::info
 For multi-tool modules, add the keyword `multi-tool` and all the (sub)tools.
@@ -26,7 +27,8 @@ Keywords MUST be all lower case.
 
 ## Documenting of all tools
 
-The tools section MUST list every tool used in the module. For example:
+The tools section MUST list every tool used in the module.
+For example:
 
 ```yml
 tools:
@@ -36,7 +38,8 @@ tools:
 
 ## Documentation of args of each piped or multiple command
 
-The tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for. A single tool module will only have `args_id: "$args"`.
+The tools section MUST have a `args_id:` field for every tool in the module that describes which `$args` (`$args2`, `$args3`) variable is used for.
+A single tool module will only have `args_id: "$args"`.
 
 ```yml
 tools:
@@ -80,7 +83,8 @@ Your input/output entries MUST match a corresponding channel in the module itsel
 
 ## Useful input/output descriptions
 
-Your input/output descriptions SHOULD be descriptive of the contents of file. For example, not only 'A TSV file' but describe what the file contains.
+Your input/output descriptions SHOULD be descriptive of the contents of file.
+For example, not only 'A TSV file' but describe what the file contains.
 
 ## Input/output glob pattern
 

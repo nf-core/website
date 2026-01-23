@@ -6,9 +6,12 @@ weight: 5
 
 Simple workflow schematics help outline the main functionality and steps of a pipeline.
 
-Most workflow schematics are made with vector image editors, such as the open-source tool [Inkscape](https://inkscape.org/) or commercial suite [Adobe Illustrator](https://www.adobe.com/products/illustrator.html). Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) and [LucidChart](https://www.lucidchart.com/pages/).
+Most workflow schematics are made with vector image editors, such as the open-source tool [Inkscape](https://inkscape.org/) or commercial suite [Adobe Illustrator](https://www.adobe.com/products/illustrator.html).
+Useful tools for collaborative prototyping include [Google Drawings](https://docs.google.com/drawings/) and [LucidChart](https://www.lucidchart.com/pages/).
 
-All examples and components provided below can be opened in these editors. Various parts can be borrowed and/or modified. Components are also available on [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg), which have direct import extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/).
+All examples and components provided below can be opened in these editors.
+Various parts can be borrowed and/or modified.
+Components are also available on [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg), which have direct import extensions for [Inkscape](https://inkscape.org/) and [draw.io](https://app.diagrams.net/).
 
 ## Examples
 
@@ -41,7 +44,8 @@ Select the schematic image to see the original.
 ## Use draw.io
 
 The web app [draw.io](https://app.diagrams.net/) helps you create, render and export different diagrams including metro-maps.
-For even more convenience, you can use the asset library [nf-core xml item library](https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml). It contains all of the components from the components above.
+For even more convenience, you can use the asset library [nf-core xml item library](https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml).
+It contains all of the components from the components above.
 To import it to draw.io, select \*_File > Open library from > URL_ and paste:
 
 ```bash

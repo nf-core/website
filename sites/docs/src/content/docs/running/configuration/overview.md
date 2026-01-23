@@ -12,10 +12,10 @@ Nextflow also supports container engines ([Docker](https://www.docker.com/), [Si
 To run nf-core pipelines on your system, install your dependency management software (see [Installation](/docs/usage/getting_started/installation)) and configure Nextflow.
 
 :::note{title="Configuration vs parameters"}
-Infrastructure configuration controls how Nextflow runs (executor, resources, containers).
+Configuration controls how Nextflow runs (executor, resources, containers).
 Parameters control what the pipeline does with your data (`--input`, `--outdir`).
 
-This section covers infrastructure configuration.
+This section covers configuration.
 For pipeline-specific parameters, see the pipeline documentation.
 :::
 
@@ -64,8 +64,11 @@ Enable configuration profiles using the `-profile` command line flag.
 You can specify multiple profiles in a comma-separated list (e.g., `-profile test,docker`).
 
 :::note
-Order matters. Profiles load in sequence. Later (right hand) profiles overwrite options originally specified in earlier (left hand) ones.
+Order matters.
+Profiles load in sequence.
+Later profiles overwrite earlier ones.
 :::
+
 nf-core provides these basic profiles for container engines:
 
 - `docker`: Uses [Docker](http://docker.com/) and pulls software from quay.io

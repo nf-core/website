@@ -25,7 +25,8 @@ To transfer Nextflow to an offline system:
 2. Run your pipeline locally.
 
    :::note
-   Nextflow fetches the required plugins. It does not need to run to completion.
+   Nextflow fetches the required plugins.
+It does not need to run to completion.
    :::
 
 3. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
