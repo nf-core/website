@@ -102,4 +102,4 @@ The plugin is available through package control.
 For more information about installing install VS Code and other useful extensions, see:
 
 - Nextflow [environment setup](https://nextflow.io/docs/latest/developer-env.html)
-- [Set up Dev Containers in VS Code](./dev-containers.md#set-up-in-visual-studio-code)
+- [Set up Dev Containers in VS Code](../dev-containers#set-up-in-visual-studio-code)
