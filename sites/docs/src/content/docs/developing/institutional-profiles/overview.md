@@ -4,11 +4,13 @@ subtitle: How to write and contribute institutional configuration profiles
 weight: 1
 ---
 
-nf-core offers centralized storage for Nextflow configuration profiles at the institutional level. These profiles enable sharing of common pipeline configurations across all users of a particular cluster and can be used in any Nextflow pipeline, not just nf-core pipelines.
+nf-core offers centralized storage for Nextflow configuration profiles at the institutional level.
+These profiles enable sharing of common pipeline configurations across all users of a particular cluster and can be used in any Nextflow pipeline, not just nf-core pipelines.
 
 ## What are institutional profiles?
 
-Institutional profiles are configuration files that define cluster-specific settings for running Nextflow pipelines. They specify details such as:
+Institutional profiles are configuration files that define cluster-specific settings for running Nextflow pipelines.
+They specify details such as:
 
 - Job scheduler settings (SLURM, SGE, PBS, etc.)
 - Resource limits (maximum CPUs, memory, walltime)
@@ -29,7 +31,8 @@ Two types of institutional profiles exist:
 - **Global profiles**: Apply to all nf-core pipelines, defining cluster-level settings that work across all workflows
 - **Pipeline-specific profiles**: Apply to individual nf-core pipelines with customized parameters for specific workflows
 
-Most institutions only need global profiles. Pipeline-specific profiles are useful when certain pipelines require unique settings due to unusual resource requirements or dependencies.
+Most institutions only need global profiles.
+Pipeline-specific profiles are useful when certain pipelines require unique settings due to unusual resource requirements or dependencies.
 
 ## How users access profiles
 
@@ -51,36 +54,42 @@ This section guides you through creating and contributing an institutional profi
 
 ### Gather cluster information
 
-Before writing your profile, collect essential information about your cluster's specifications, scheduler, resource limits, and available tools. Understanding these details ensures your profile works correctly for all users.
+Before writing your profile, collect essential information about your cluster's specifications, scheduler, resource limits, and available tools.
+Understanding these details ensures your profile works correctly for all users.
 
 See [Preparing to write a profile](./preparing-to-write.md) for more information.
 
 ### Understand file structure
 
-Institutional profiles require specific files in the nf-core/configs repository. Learn which files you need to create or modify to add your profile.
+Institutional profiles require specific files in the nf-core/configs repository.
+Learn which files you need to create or modify to add your profile.
 
 See [File structure requirements](./file-structure.md) for more information.
 
 ### Configure profile settings
 
-Configuration files use Nextflow's configuration syntax to define parameters, process settings, executor options, and container configurations. Understanding each configuration scope helps you create effective profiles.
+Configuration files use Nextflow's configuration syntax to define parameters, process settings, executor options, and container configurations.
+Understanding each configuration scope helps you create effective profiles.
 
 See [Configuration file components](./configuration.md) for more information.
 
 ### Document your profile
 
-Each profile requires documentation that explains its purpose, usage, and any special requirements. Clear documentation helps users at your institution get started quickly.
+Each profile requires documentation that explains its purpose, usage, and any special requirements.
+Clear documentation helps users at your institution get started quickly.
 
 See [Documentation requirements](./documentation.md) for more information.
 
 ### Test your profile
 
-Before submitting your profile, test it thoroughly to verify correct settings, container engine detection, and scheduler job submissions. Testing prevents issues for future users.
+Before submitting your profile, test it thoroughly to verify correct settings, container engine detection, and scheduler job submissions.
+Testing prevents issues for future users.
 
 See [Testing profiles](./testing.md) for more information.
 
 ## Using profiles outside nf-core
 
-Institutional profiles can be integrated into custom Nextflow workflows and scripts, not just nf-core pipelines. This enables you to leverage centralized cluster configurations across all your Nextflow projects.
+Institutional profiles can be integrated into custom Nextflow workflows and scripts, not just nf-core pipelines.
+This enables you to leverage centralized cluster configurations across all your Nextflow projects.
 
 See [Using nf-core configs outside nf-core](./outside-nf-core.md) for more information.

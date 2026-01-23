@@ -5,10 +5,13 @@ shortTitle: Google Colab
 parentWeight: 100
 ---
 
-This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments. Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure. You can run pipelines directly in the browser or integrate with VS Code for enhanced development capabilities.
+This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments.
+Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure.
+You can run pipelines directly in the browser or integrate with VS Code for enhanced development capabilities.
 
 :::warning
-Google Colab sessions have limitations including timeouts (typically 12 hours), restricted storage (approximately 100 GB), and no root access. For production workloads, consider dedicated cloud computing resources.
+Google Colab sessions have limitations including timeouts (typically 12 hours), restricted storage (approximately 100 GB), and no root access.
+For production workloads, consider dedicated cloud computing resources.
 :::
 
 :::note{title="Prerequisites"}
@@ -21,7 +24,8 @@ You will need the following to get started:
 
 ## Install Java
 
-Nextflow requires Java 17 or later. Install Java in your Colab environment:
+Nextflow requires Java 17 or later.
+Install Java in your Colab environment:
 
 ```bash
 !apt update
@@ -45,7 +49,8 @@ The final command verifies the installation by displaying the Nextflow version.
 
 ## Configure conda
 
-Docker and Singularity require root access, which is unavailable in Google Colab. Use conda as the software dependency manager instead.
+Docker and Singularity require root access, which is unavailable in Google Colab.
+Use conda as the software dependency manager instead.
 
 Install condacolab:
 
@@ -102,7 +107,8 @@ Connect from VS Code desktop:
 
 ## Manage data and outputs
 
-Google Colab provides temporary storage that persists only for the duration of your session. For data persistence, integrate external storage solutions.
+Google Colab provides temporary storage that persists only for the duration of your session.
+For data persistence, integrate external storage solutions.
 
 ### Mount Google Drive
 
@@ -120,7 +126,8 @@ After mounting, specify output directories within your Drive mount point:
 ```
 
 :::warning
-Google Drive has storage limitations and may not accommodate large genomic datasets. For larger outputs, use institutional storage solutions or cloud storage services.
+Google Drive has storage limitations and may not accommodate large genomic datasets.
+For larger outputs, use institutional storage solutions or cloud storage services.
 :::
 
 ### External storage options
@@ -133,7 +140,8 @@ For larger datasets, consider:
 
 ## Limitations and best practices
 
-Google Colab imposes several constraints that affect pipeline execution. Understanding these limitations helps you work around them effectively.
+Google Colab imposes several constraints that affect pipeline execution.
+Understanding these limitations helps you work around them effectively.
 
 ### Platform constraints
 
@@ -162,7 +170,8 @@ If your session times out mid-execution, you can resume the pipeline:
 !nextflow run nf-core/<pipeline_name> -profile conda,test --outdir <output_directory> -resume
 ```
 
-Nextflow's resume functionality relies on the work directory remaining intact. If the work directory was cleared, you'll need to restart the pipeline.
+Nextflow's resume functionality relies on the work directory remaining intact.
+If the work directory was cleared, you'll need to restart the pipeline.
 
 ### Storage space exhausted
 

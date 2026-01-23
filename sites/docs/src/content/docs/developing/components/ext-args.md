@@ -4,11 +4,13 @@ subtitle: Configure tool-specific options in nf-core components
 shortTitle: ext arguments
 ---
 
-The `ext` directive in Nextflow allows you to configure tool-specific options for nf-core modules and subworkflows. These special process directives let you insert strings directly into module scripts without modifying the code.
+The `ext` directive in Nextflow allows you to configure tool-specific options for nf-core modules and subworkflows.
+These special process directives let you insert strings directly into module scripts without modifying the code.
 
 ## Understanding ext properties
 
-The most common `ext` property is `ext.args`, which enables you to inject command-line arguments into module scripts. For modules that run multiple tools, you can use numbered variants like `ext.args2` and `ext.args3`.
+The most common `ext` property is `ext.args`, which enables you to inject command-line arguments into module scripts.
+For modules that run multiple tools, you can use numbered variants like `ext.args2` and `ext.args3`.
 
 This approach provides flexibility whilst maintaining the integrity of the original module code.
 

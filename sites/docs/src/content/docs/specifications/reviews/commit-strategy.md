@@ -8,10 +8,12 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Merge commit preference
 
-We prefer to use merge commits when merging pull requests. This approach helps avoid merge conflicts when multiple people are working with overlapping feature branches.
+We prefer to use merge commits when merging pull requests.
+This approach helps avoid merge conflicts when multiple people are working with overlapping feature branches.
 
 :::info{title="Rationale" collapse}
-While merge commits create a more verbose git history, they make it much easier to manage parallel development. When multiple contributors are working on related features or pulling from overlapping branches, merge commits preserve the individual branch histories and reduce the likelihood of conflicts.
+While merge commits create a more verbose git history, they make it much easier to manage parallel development.
+When multiple contributors are working on related features or pulling from overlapping branches, merge commits preserve the individual branch histories and reduce the likelihood of conflicts.
 :::
 
 ## Commit history philosophy
@@ -29,8 +31,10 @@ This means:
 
 Feature branches SHOULD be immediately deleted after merge.
 
-The easiest way to ensure this happens is to enable the automatic deletion feature in your GitHub repository settings. This keeps the repository clean and makes it clear which work is complete.
+The easiest way to ensure this happens is to enable the automatic deletion feature in your GitHub repository settings.
+This keeps the repository clean and makes it clear which work is complete.
 
 :::note
-Squashing commits in a PR before merging is acceptable if preferred by the individuals working on that pull request. The key is to choose an approach that works for your team while maintaining a clear history.
+Squashing commits in a PR before merging is acceptable if preferred by the individuals working on that pull request.
+The key is to choose an approach that works for your team while maintaining a clear history.
 :::

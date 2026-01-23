@@ -13,4 +13,5 @@ working_dir: tmp/nf-core-nextbigthing
 
 ![`nf-core modules remove abacas`](../../../../../assets/images/tools/nf-core-modules-remove.svg)
 
-You can pass the module name as an optional argument to `nf-core modules remove` instead of using the CLI prompt, for example `nf-core modules remove fastqc`. To specify the pipeline directory, use `--dir <pipeline_dir>`.
+You can pass the module name as an optional argument to `nf-core modules remove` instead of using the CLI prompt, for example `nf-core modules remove fastqc`.
+To specify the pipeline directory, use `--dir <pipeline_dir>`.

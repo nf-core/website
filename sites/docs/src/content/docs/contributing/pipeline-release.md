@@ -25,7 +25,8 @@ Your perspective helps catch issues that developers might have missed.
 
 ### Review nf-core principles
 
-Start by verifying that the pipeline meets the general nf-core guidelines. Check that the pipeline:
+Start by verifying that the pipeline meets the general nf-core guidelines.
+Check that the pipeline:
 
 - [ ] Follows the nf-core template structure
 - [ ] Uses appropriate nf-core conventions and patterns
@@ -61,7 +62,8 @@ Verify that all local modules in `modules/local/` include:
 
 ## Review documentation
 
-Documentation makes pipelines accessible to the community. Focus your review on these key areas:
+Documentation makes pipelines accessible to the community.
+Focus your review on these key areas:
 
 ### Documentation location
 
@@ -79,7 +81,8 @@ Check that `usage.md`, `output.md`, and `nextflow_schema.json` provide comprehen
 
 ### Changelog and versioning
 
-Ensure the CHANGELOG follows three-point semantic versioning (for example, 2.1.0 rather than 2.1). Check that:
+Ensure the CHANGELOG follows three-point semantic versioning (for example, 2.1.0 rather than 2.1).
+Check that:
 
 - [ ] The version number follows SemVer conventions
 - [ ] The date has been updated to the release date
@@ -142,7 +145,8 @@ To keep reviews focused and efficient, you don't need to:
 - Require major code optimisation at the release stage
 
   :::note
-  You can suggest small code optimisation. However, larger code optimisation shouldn't necessarily be required for release.
+  You can suggest small code optimisation.
+However, larger code optimisation shouldn't necessarily be required for release.
   :::
 
 Remember that your review helps maintain quality across the nf-core ecosystem.

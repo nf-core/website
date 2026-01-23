@@ -15,7 +15,10 @@ before_command:  sed "s/process_medium/process_low/g" modules/nf-core/fastqc/mai
 ![`nf-core modules patch fastqc`](../../../../../assets/images/tools/nf-core-modules-patch.svg)
 
 The generated patches work with `nf-core modules update`: when you install a new version of the module, the command tries to apply
-the patch automatically. The patch application fails if the new version of the module modifies the same lines as the patch. In this case,
+the patch automatically.
+The patch application fails if the new version of the module modifies the same lines as the patch.
+In this case,
 the patch new version is installed but the old patch file is preserved.
 
-When linting a patched module, the linting command will check the validity of the patch. When running other lint tests the patch is applied in reverse, and the original files are linted.
+When linting a patched module, the linting command will check the validity of the patch.
+When running other lint tests the patch is applied in reverse, and the original files are linted.

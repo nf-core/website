@@ -9,9 +9,12 @@ When nf-core releases a new tools version, each pipeline receives an automated p
 
 If the PR has no merge conflicts, review the changes and merge it into the `dev` branch directly.
 
-If the PR contains merge conflicts, you need to resolve them manually. You can either work on the branch created for the template sync through the GitHub web interface, or pull the updates to `TEMPLATE` on your local fork.
+If the PR contains merge conflicts, you need to resolve them manually.
+You can either work on the branch created for the template sync through the GitHub web interface, or pull the updates to `TEMPLATE` on your local fork.
 
-For non-trivial merges, work on your fork locally. Comment on the automated PR to notify others that you are resolving the conflicts. See [Resolve major conflicts](#resolve-major-conflicts) for guidance.
+For non-trivial merges, work on your fork locally.
+Comment on the automated PR to notify others that you are resolving the conflicts.
+See [Resolve major conflicts](#resolve-major-conflicts) for guidance.
 
 ## Resolve minor conflicts
 
@@ -27,7 +30,8 @@ Use this approach for simple conflicts resolvable through the GitHub web interfa
 
 ## Resolve major conflicts
 
-Use this approach for large conflicts that cannot be resolved through the GitHub web interface. Local resolution allows you to test changes on your machine before committing.
+Use this approach for large conflicts that cannot be resolved through the GitHub web interface.
+Local resolution allows you to test changes on your machine before committing.
 
 ### Pull the changes to your fork
 
@@ -120,10 +124,14 @@ Unmerged paths:
     both modified:   nextflow.config
 ```
 
-Go through each file to resolve every merge conflict. Most code editors provide tools to help with this. For example, [VS Code](https://code.visualstudio.com/docs/editor/versioncontrol#_merge-conflicts) has built-in merge conflict support.
+Go through each file to resolve every merge conflict.
+Most code editors provide tools to help with this.
+For example, [VS Code](https://code.visualstudio.com/docs/editor/versioncontrol#_merge-conflicts) has built-in merge conflict support.
 
 :::note
-Use the version from the `TEMPLATE` branch in most cases. However, some template code may need customisation for your pipeline. You may need to manually combine both versions into one code block.
+Use the version from the `TEMPLATE` branch in most cases.
+However, some template code may need customisation for your pipeline.
+You may need to manually combine both versions into one code block.
 :::
 
 If you need assistance, ask for help on the nf-core Slack.
@@ -143,4 +151,5 @@ git push --set-upstream origin merging-template-updates
 
 1. Request reviews and merge as usual.
 
-The commit history on your PR will include a commit by the `@nf-core-bot` user with the same commit hash as the automated `TEMPLATE` PR. Once you merge your fork, the automated PR will show as merged and close automatically.
+The commit history on your PR will include a commit by the `@nf-core-bot` user with the same commit hash as the automated `TEMPLATE` PR.
+Once you merge your fork, the automated PR will show as merged and close automatically.

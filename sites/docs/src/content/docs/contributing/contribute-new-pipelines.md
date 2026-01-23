@@ -227,7 +227,8 @@ To move your pipeline to the nf-core organisation:
 1. Fork the transferred repository back to your account to continue development.
 
 :::tip
-You must be part of the nf-core organisation before transferring. If you are not a member, add a core team member to your repository and ask them to perform the transfer.
+You must be part of the nf-core organisation before transferring.
+If you are not a member, add a core team member to your repository and ask them to perform the transfer.
 :::
 
 :::note

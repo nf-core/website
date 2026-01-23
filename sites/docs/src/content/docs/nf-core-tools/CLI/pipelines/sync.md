@@ -5,9 +5,11 @@ shortTitle: sync
 weight: 100
 ---
 
-The main nf-core pipeline template is updated over time. To keep all nf-core pipelines up to date, we synchronise these updates automatically when new versions of nf-core/tools are released.
+The main nf-core pipeline template is updated over time.
+To keep all nf-core pipelines up to date, we synchronise these updates automatically when new versions of nf-core/tools are released.
 
-This works by maintaining a special `TEMPLATE` branch containing a vanilla copy of the nf-core template with only the variables used when it first ran (name, description, and so on). This branch is updated and a pull request can be made with just the updates from the main template code.
+This works by maintaining a special `TEMPLATE` branch containing a vanilla copy of the nf-core template with only the variables used when it first ran (name, description, and so on).
+This branch is updated and a pull request can be made with just the updates from the main template code.
 
 Pipeline synchronisation happens automatically each time nf-core/tools is released, creating an automated pull request on each pipeline.
 **You do not normally need to run this command yourself.**

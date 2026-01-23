@@ -6,7 +6,8 @@ weight: 10
 parentWeight: 20
 ---
 
-The `nf-core modules list` command provides the subcommands `remote` and `local` for listing modules installed in a remote repository and in the local pipeline respectively. Both subcommands allow you to use a pattern for filtering the modules by keywords, for example `nf-core modules list <subcommand> <keyword>`.
+The `nf-core modules list` command provides the subcommands `remote` and `local` for listing modules installed in a remote repository and in the local pipeline respectively.
+Both subcommands allow you to use a pattern for filtering the modules by keywords, for example `nf-core modules list <subcommand> <keyword>`.
 
 ## List remote modules
 
@@ -22,7 +23,9 @@ head: 25
 
 ## List installed modules
 
-To list modules installed in a local pipeline directory you can use `nf-core modules list local`. This will list the modules installed in the current working directory by default. If you want to specify another directory, use the `--dir <pipeline_dir>` flag.
+To list modules installed in a local pipeline directory you can use `nf-core modules list local`.
+This will list the modules installed in the current working directory by default.
+If you want to specify another directory, use the `--dir <pipeline_dir>` flag.
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing

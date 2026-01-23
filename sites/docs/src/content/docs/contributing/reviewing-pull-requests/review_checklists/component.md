@@ -8,9 +8,12 @@ weight: 1
 
 <!-- TODO: Add links to other pages and guide where possible -->
 
-When you review a PR, you examine a new component submission or proposed changes to a component. You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository. Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
+When you review a PR, you examine a new component submission or proposed changes to a component.
+You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository.
+Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
 
-While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the PR review process for components, these guidelines help you review PRs consistently and effectively as a community member. The following collection of community suggestions can guide your review process.
+While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the PR review process for components, these guidelines help you review PRs consistently and effectively as a community member.
+The following collection of community suggestions can guide your review process.
 
 ## General
 

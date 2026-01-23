@@ -23,7 +23,8 @@ A branch name to limit the search to is always required and if none is specified
 ![`nf-core test-datasets search --branch mag minigut_reads`](../../../../../assets/images/tools/nf-core-test-datasets-search.svg)
 
 :::note
-To improve usability branch names can be entered via a tab-autocompletion. Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
+To improve usability branch names can be entered via a tab-autocompletion.
+Alternatively, to list all branches see the [`list_branches` subcommand](/docs/nf-core-tools/test-datasets/list_branches).
 :::
 
 ## Reusing the test-data files
