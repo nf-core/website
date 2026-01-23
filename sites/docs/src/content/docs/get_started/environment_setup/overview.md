@@ -9,6 +9,8 @@ To work with nf-core pipelines, you will need to set up your computing environme
 
 ## What you'll need
 
+<!-- TODO: Fix astro errors with links (Cannot read properties of undefined (reading 'id')) -->
+
 The core requirements for running nf-core pipelines are:
 
 1. **[Nextflow](./nextflow.md)**: The workflow management system that powers all nf-core pipelines
