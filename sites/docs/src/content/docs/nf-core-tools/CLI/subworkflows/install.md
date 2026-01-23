@@ -27,6 +27,8 @@ There are four additional flags that you can use when installing a subworkflow:
 
 :::note
 You can use the `meta.yml` file to specify different remotes for the components
-in your subworkflow. This is useful when you want to use modules from organisations
-different from the one where the subworkflow is located. For more information, [see our tutorial](/docs/tutorials/external_usage/cross_organisational_subworkflows).
+in your subworkflow.
+This is useful when you want to use modules from organisations
+different from the one where the subworkflow is located.
+For more information, [see our tutorial](/docs/tutorials/external_usage/cross_organisational_subworkflows).
 :::

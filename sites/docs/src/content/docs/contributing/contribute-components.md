@@ -4,9 +4,12 @@ subtitle: How to contribute modules and subworkflows to nf-core
 shortTitle: Components
 ---
 
-nf-core modules and subworkflows are reusable Nextflow components shared across pipelines. Modules are individual tool wrappers that represent single processes, while subworkflows combine multiple modules into cohesive analysis units. Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery.
+nf-core modules and subworkflows are reusable Nextflow components shared across pipelines.
+Modules are individual tool wrappers that represent single processes, while subworkflows combine multiple modules into cohesive analysis units.
+Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery.
 
-Follow these steps to contribute modules and subworkflows to the [nf-core/modules repository](https://github.com/nf-core/modules), making them available to all nf-core pipelines and the Nextflow community. The nf-core community strongly encourages all members to contribute their expertise and welcomes contributions of any scale.
+Follow these steps to contribute modules and subworkflows to the [nf-core/modules repository](https://github.com/nf-core/modules), making them available to all nf-core pipelines and the Nextflow community.
+The nf-core community strongly encourages all members to contribute their expertise and welcomes contributions of any scale.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -74,7 +77,8 @@ To set up your development environment:
    ```
 
 :::note
-The `pre-commit install` command sets up automatic code quality checks that will run when you commit changes. These checks help ensure your code meets nf-core standards.
+The `pre-commit install` command sets up automatic code quality checks that will run when you commit changes.
+These checks help ensure your code meets nf-core standards.
 :::
 
 ## Create your component
@@ -178,7 +182,8 @@ To request review of your component:
 1. Request reviews from `nf-core/modules-team`.
 
 :::note
-Components are tested via GitHub Actions CI using Docker, Singularity, and Conda to ensure they work across different environments. The automated tests must pass before your component can be merged.
+Components are tested via GitHub Actions CI using Docker, Singularity, and Conda to ensure they work across different environments.
+The automated tests must pass before your component can be merged.
 :::
 
 ## Address review feedback
@@ -215,7 +220,8 @@ Once your pull request is approved:
 
 1. All nf-core pipelines and Nextflow users can now use your component.
 
-Congratulations on contributing to nf-core! Your work helps researchers worldwide conduct reproducible analyses.
+Congratulations on contributing to nf-core!
+Your work helps researchers worldwide conduct reproducible analyses.
 
 ## Additional resources
 
@@ -225,4 +231,5 @@ If you need assistance during the contribution process:
 - Check existing components in the [nf-core/modules repository](https://github.com/nf-core/modules) for examples.
 - Review the [Create Components guide](../developers/components/create-components.md) for technical details.
 
-The nf-core community is here to help. Don't hesitate to ask questions.
+The nf-core community is here to help.
+Don't hesitate to ask questions.

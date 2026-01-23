@@ -7,7 +7,9 @@ weight: 110
 
 The `nf-core pipelines create-logo` command creates a logo for your pipeline based on the nf-core template and pipeline name.
 
-Use `--width` to set the logo width in pixels. Use `--format` to choose between `png` or `svg` output. The default format is `png`.
+Use `--width` to set the logo width in pixels.
+Use `--format` to choose between `png` or `svg` output.
+The default format is `png`.
 
 Run `nf-core pipelines create-logo <text>`, for example:
 

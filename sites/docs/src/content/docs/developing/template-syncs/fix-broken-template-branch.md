@@ -5,7 +5,9 @@ shortTitle: Fixing a broken TEMPLATE branch
 weight: 2
 ---
 
-If you resolve merge conflicts through the GitHub web interface, the commit history from your `dev` branch merges into `TEMPLATE`. This causes problems in future template syncs because the updated `TEMPLATE` branch removes pipeline-specific files that were accidentally included. You may see over 100 files with conflicts during the next sync.
+If you resolve merge conflicts through the GitHub web interface, the commit history from your `dev` branch merges into `TEMPLATE`.
+This causes problems in future template syncs because the updated `TEMPLATE` branch removes pipeline-specific files that were accidentally included.
+You may see over 100 files with conflicts during the next sync.
 
 ## Identify a broken TEMPLATE branch
 
@@ -53,7 +55,8 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
    ```
 
    :::warning
-   This irreversibly overwrites git history. Verify you have the correct branch name before running this command.
+   This irreversibly overwrites git history.
+Verify you have the correct branch name before running this command.
    :::
 
 1. Switch back to `dev` and run the sync command to get the latest template version:
@@ -76,6 +79,7 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
    git push --force
    ```
 
-You can now recreate the pull request from `TEMPLATE` into `dev`. If conflicts occur, resolve them locally following the instructions in the sync documentation.
+You can now recreate the pull request from `TEMPLATE` into `dev`.
+If conflicts occur, resolve them locally following the instructions in the sync documentation.
 
 <!-- TODO: Add links to sync documentation -->

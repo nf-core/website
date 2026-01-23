@@ -29,7 +29,8 @@ There are six additional flags that you can use with this command:
 - `--all`: Use this flag to run the command on all subworkflows in the pipeline.
 - `--update-deps`: Use this flag to automatically update all dependencies of a subworkflow.
 
-If you don't want to update certain subworkflows or want to update them to specific versions, you can make use of the `.nf-core.yml` configuration file. For example, you can prevent the `bam_rseqc` subworkflow installed from `nf-core/modules` from being updated by adding the following to the `.nf-core.yml` file:
+If you don't want to update certain subworkflows or want to update them to specific versions, you can make use of the `.nf-core.yml` configuration file.
+For example, you can prevent the `bam_rseqc` subworkflow installed from `nf-core/modules` from being updated by adding the following to the `.nf-core.yml` file:
 
 ```yaml
 update:
@@ -47,7 +48,8 @@ update:
       bam_rseqc: "36a77f7c6decf2d1fb9f639ae982bc148d6828aa"
 ```
 
-This also works at the repository level. For example, if you want to exclude all modules and subworkflows installed from `nf-core/modules` from being updated you could add:
+This also works at the repository level.
+For example, if you want to exclude all modules and subworkflows installed from `nf-core/modules` from being updated you could add:
 
 ```yaml
 update:

@@ -10,7 +10,8 @@ In this case, fetch the pipeline files first, then manually transfer them to you
 
 The download helper tool makes this process easier and ensures accurate retrieval of correctly versioned code and software containers.
 
-The `nf-core pipelines download` command downloads both the pipeline code and the [institutional nf-core/configs](https://github.com/nf-core/configs) files. It can also optionally download any required Singularity image files.
+The `nf-core pipelines download` command downloads both the pipeline code and the [institutional nf-core/configs](https://github.com/nf-core/configs) files.
+It can also optionally download any required Singularity image files.
 
 If you run the command without arguments, it will interactively prompt you for the required information.
 If all option flags are supplied, it will run without user input.
@@ -83,9 +84,15 @@ We highly recommend setting the `$NXF_SINGULARITY_CACHEDIR` environment variable
 If found, the tool will fetch the Singularity images to this directory first before copying to the target output archive / directory.
 Any images previously fetched will be found there and copied directly - this includes images that may be shared with other pipelines or previous pipeline version downloads or download attempts.
 
-If you are running the download on the same system where you will run the pipeline (for example, a shared filesystem where Nextflow will not have internet access later), you can choose to only use the cache via a prompt or CLI option `--container-cache-utilisation amend`. This instructs `nf-core pipelines download` to fetch all Singularity images to the `$NXF_SINGULARITY_CACHEDIR` directory but does not copy them to the workflow archive or directory. The workflow config file is not edited. When you later run the workflow, Nextflow will use the cache folder directly.
+If you are running the download on the same system where you will run the pipeline (for example, a shared filesystem where Nextflow will not have internet access later), you can choose to only use the cache via a prompt or CLI option `--container-cache-utilisation amend`.
+This instructs `nf-core pipelines download` to fetch all Singularity images to the `$NXF_SINGULARITY_CACHEDIR` directory but does not copy them to the workflow archive or directory.
+The workflow config file is not edited.
+When you later run the workflow, Nextflow will use the cache folder directly.
 
-If you are downloading a workflow for a different system, you can provide information about the contents of its image cache to `nf-core pipelines download`. To avoid unnecessary container image downloads, choose `--container-cache-utilisation remote` and provide a list of already available images as a plain text file to `--container-cache-index my_list_of_remotely_available_images.txt`. To generate this list on the remote system, run `find $NXF_SINGULARITY_CACHEDIR -name "*.img" > my_list_of_remotely_available_images.txt`. The tool will then only download and copy images that are missing on the remote system into your output directory.
+If you are downloading a workflow for a different system, you can provide information about the contents of its image cache to `nf-core pipelines download`.
+To avoid unnecessary container image downloads, choose `--container-cache-utilisation remote` and provide a list of already available images as a plain text file to `--container-cache-index my_list_of_remotely_available_images.txt`.
+To generate this list on the remote system, run `find $NXF_SINGULARITY_CACHEDIR -name "*.img" > my_list_of_remotely_available_images.txt`.
+The tool will then only download and copy images that are missing on the remote system into your output directory.
 
 #### How Singularity image downloads work
 
@@ -121,7 +128,9 @@ To allow for easy loading into Docker/Podman on the offline machine the command 
 
 ## Adapting downloads to Seqera Platform
 
-[Seqera Platform](https://seqera.io/platform/) (formerly _"Nextflow Tower"_) provides a graphical user interface to oversee pipeline runs, gather statistics, and configure compute resources. While pipelines added to _Seqera Platform_ are preferably hosted at a Git service, you can also provide them as disconnected, self-reliant repositories for premises with restricted network access. Use the `--platform` flag to download the pipeline in an appropriate form.
+[Seqera Platform](https://seqera.io/platform/) (formerly _"Nextflow Tower"_) provides a graphical user interface to oversee pipeline runs, gather statistics, and configure compute resources.
+While pipelines added to _Seqera Platform_ are preferably hosted at a Git service, you can also provide them as disconnected, self-reliant repositories for premises with restricted network access.
+Use the `--platform` flag to download the pipeline in an appropriate form.
 
 Subsequently, the `*.git` folder can be moved to its final destination and linked with a pipeline in _Seqera Platform_ using the `file:/` prefix.
 

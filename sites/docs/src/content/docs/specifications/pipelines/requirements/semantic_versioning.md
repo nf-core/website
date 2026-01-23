@@ -15,9 +15,11 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Semantic Versioning Criteria
 
-When deciding on the release type, consider the impact on users and whether they need to make changes to their existing workflows or configurations. If in doubt, opt for a higher version increment to clearly communicate the extent of changes to users.
+When deciding on the release type, consider the impact on users and whether they need to make changes to their existing workflows or configurations.
+If in doubt, opt for a higher version increment to clearly communicate the extent of changes to users.
 
-Classify your release according to the highest applicable category in this order: **Major**, **Minor**, then **Patch**. A single match in a higher category overrides all lower categories.
+Classify your release according to the highest applicable category in this order: **Major**, **Minor**, then **Patch**.
+A single match in a higher category overrides all lower categories.
 
 ### Major Release (e.g., 1.4.3 to 2.0.0)
 

@@ -5,7 +5,8 @@ shortTitle: Setting up a pipeline sync retrospectively
 weight: 5
 ---
 
-Use this guide to set up a correct `TEMPLATE` branch for pipelines that were not created with `nf-core pipelines create`. If you created your pipeline with `nf-core pipelines create`, your `TEMPLATE` branch is already configured correctly.
+Use this guide to set up a correct `TEMPLATE` branch for pipelines that were not created with `nf-core pipelines create`.
+If you created your pipeline with `nf-core pipelines create`, your `TEMPLATE` branch is already configured correctly.
 
 :::warning
 Before proceeding, push all local changes to GitHub and consider making a backup clone of your repository.
@@ -14,7 +15,8 @@ Before proceeding, push all local changes to GitHub and consider making a backup
 Alternatively, consider restarting your pipeline project by running `nf-core pipelines create` and copying your modifications into the newly created pipeline.
 
 :::note{title="Prerequisites"}
-This guide assumes you are working directly with the main nf-core repository. You can also work on your own fork.
+This guide assumes you are working directly with the main nf-core repository.
+You can also work on your own fork.
 :::
 
 ## Create the TEMPLATE branch
@@ -63,7 +65,8 @@ This guide assumes you are working directly with the main nf-core repository. Yo
    ```
 
    :::note
-   The version you choose should match the branch you intend to merge with. If you already have a release, use the version number specified in your `dev` branch.
+   The version you choose should match the branch you intend to merge with.
+If you already have a release, use the version number specified in your `dev` branch.
    :::
 
 1. Follow the prompts to enter the pipeline name, description, and authors. Use the exact text from your existing `nextflow.config` file (`manifest.name` etc.).
@@ -133,7 +136,8 @@ This guide assumes you are working directly with the main nf-core repository. Yo
 
 ## Merge TEMPLATE into main branches
 
-Merge the `TEMPLATE` branch into your main pipeline branches. This requires manually resolving all merge conflicts.
+Merge the `TEMPLATE` branch into your main pipeline branches.
+This requires manually resolving all merge conflicts.
 
 1. Check out your development branch and create a new branch for the merge:
 
@@ -165,7 +169,8 @@ Merge the `TEMPLATE` branch into your main pipeline branches. This requires manu
    CONFLICT (add/add): Merge conflict in docs/usage.md
    ```
 
-   Go through each file to resolve the merge conflicts. Use a visual merge tool to avoid mistakes when handling many merge markers.
+   Go through each file to resolve the merge conflicts.
+Use a visual merge tool to avoid mistakes when handling many merge markers.
 
 1. Commit and push the resolved changes:
 

@@ -14,14 +14,17 @@ Tests for modules SHOULD be executable within the nf-core/modules GitHub reposit
 
 Tests for modules MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files and a `versions` file.
 
-Module tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository. For example, they don't need to be executable within a pipeline repository.
+Module tests do not necessarily need to be able to execute 'standalone', i.e., run outside the nf-core/modules repository.
+For example, they don't need to be executable within a pipeline repository.
 
 :::info{title="Rationale" collapse}
 Some modules may require upstream modules to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
 
-If the test were to work 'standalone,' the pipeline would need to include all these upstream modules to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+If the test were to work 'standalone,' the pipeline would need to include all these upstream modules to execute the module test—even if those modules are not used within the pipeline itself.
+This would lead to a lot of file 'pollution' within the pipeline repository.
 
-Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. It is considered unnecessary to duplicate module tests again.
+Modules installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests.
+It is considered unnecessary to duplicate module tests again.
 :::
 
 :::note
@@ -34,7 +37,8 @@ It is OK for a test to produce nonsense output, or find 'nothing', as long as th
 
 ## Snapshots
 
-Use only one snapshot per module test, which SHOULD contain all assertions present in this test. Having multiple snapshots per test will make the snapshot file less readable.
+Use only one snapshot per module test, which SHOULD contain all assertions present in this test.
+Having multiple snapshots per test will make the snapshot file less readable.
 
 The snapshot SHOULD include all output channels for each test, or at a minimum, it MUST contain some verification that the file exists.
 
@@ -44,7 +48,8 @@ By default, the `then` block of a test should contain this:
 assert snapshot(process.out).match()
 ```
 
-When the snapshot is unstable, use another way to test the output files. See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
+When the snapshot is unstable, use another way to test the output files.
+See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
 ## Stub tests
 
@@ -109,7 +114,8 @@ Upload new test data to nf-core/test-datasets only if there is absolutely no oth
 
 ## Configuration of ext.args in tests
 
-Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module. Define them in the `when` block of a test under the `params` scope.
+Module nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a module.
+Define them in the `when` block of a test under the `params` scope.
 
 ```groovy {4-6} title="main.nf.test"
 config './nextflow.config'

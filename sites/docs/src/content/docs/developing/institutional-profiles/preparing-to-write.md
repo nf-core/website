@@ -25,11 +25,13 @@ Choose the right level for your institutional profile:
 - **Multiple clusters**: Create sub-profiles within a parent institution profile when your organization has multiple distinct clusters with different configurations
 - **Umbrella institution**: Consider whether a single profile can serve multiple related systems or if separate profiles provide better clarity
 
-The profile name should clearly identify the institution or cluster. Avoid generic names like `university` or `hpc` that could apply to many institutions.
+The profile name should clearly identify the institution or cluster.
+Avoid generic names like `university` or `hpc` that could apply to many institutions.
 
 ## Confirm public sharing permissions
 
-Institutional profiles are publicly visible in the nf-core/configs repository. Before proceeding:
+Institutional profiles are publicly visible in the nf-core/configs repository.
+Before proceeding:
 
 1. Verify with your system administrators that cluster configuration details can be shared publicly
 1. Confirm that resource limits, queue names, and file paths do not expose sensitive information
@@ -39,7 +41,8 @@ Most cluster configurations contain non-sensitive information, but institutional
 
 ## Gather cluster information
 
-Collect the following information about your cluster. Contact your system administrators if you do not have access to these details.
+Collect the following information about your cluster.
+Contact your system administrators if you do not have access to these details.
 
 ### Scheduler and executor
 
@@ -74,7 +77,8 @@ Document the largest node specifications in your cluster:
 - Maximum CPU cores per node (for example, `128`, `64`)
 - Maximum walltime per job (for example, `720.h`, `168.h`)
 
-These values define the upper limits in your profile's `resourceLimits` configuration. Base these on the largest single node specifications, not aggregate cluster totals.
+These values define the upper limits in your profile's `resourceLimits` configuration.
+Base these on the largest single node specifications, not aggregate cluster totals.
 
 ### Queues and partitions
 

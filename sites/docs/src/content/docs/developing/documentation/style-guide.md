@@ -10,7 +10,9 @@ weight: 3
 This guide covers the essential styling rules for nf-core documentation.
 
 :::tip
-Need help or have questions about documentation? Contact the nf-core docs-team on Slack at team-docs. We're here to help!
+Need help or have questions about documentation?
+Contact the nf-core docs-team on Slack at team-docs.
+We're here to help!
 :::
 
 <!-- TODO: Add links to nf-core Slack -->
@@ -134,7 +136,8 @@ Use alert boxes sparingly for important information:
 - Warning: Potential issues or breaking changes
 - Important: Critical information users must know
 
-Don't stack multiple alerts consecutively. Combine or restructure the content instead.
+Don't stack multiple alerts consecutively.
+Combine or restructure the content instead.
 
 ## Acronyms and abbreviations
 

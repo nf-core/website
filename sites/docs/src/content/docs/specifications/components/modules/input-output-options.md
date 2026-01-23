@@ -52,7 +52,8 @@ When one and only one of multiple argument are required:
 
 ## Output channel emissions
 
-Named file extensions MUST be emitted for ALL output channels. For example, `path "*.txt", emit: txt`.
+Named file extensions MUST be emitted for ALL output channels.
+For example, `path "*.txt", emit: txt`.
 
 ## Optional inputs
 
@@ -78,7 +79,8 @@ tuple val(meta), path('*.tab'), emit: tab,  optional: true
 
 Each output file type SHOULD be emitted in its own channel (and no more than one), along with the `meta` map if provided ( the exception is the versions.yml ).
 
-In some cases the file format can be different between files of the same type or for the same function (e.g., indices: `.bai` and `.crai`). These different file formats SHOULD be part of the same output channel since they are they serve the same purpose and are mutually exclusive.
+In some cases the file format can be different between files of the same type or for the same function (e.g., indices: `.bai` and `.crai`).
+These different file formats SHOULD be part of the same output channel since they are they serve the same purpose and are mutually exclusive.
 
 ```groovy
 tuple val(meta), path("*.{bai,crai}"), emit: index

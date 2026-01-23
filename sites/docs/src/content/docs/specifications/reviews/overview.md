@@ -5,12 +5,15 @@ weight: 1
 parentWeight: 30
 ---
 
-Pull request reviews are essential to maintaining code quality and fostering collaboration in the nf-core community. These guidelines help ensure that reviews are thorough, timely, and constructive while keeping development momentum moving forward.
+Pull request reviews are essential to maintaining code quality and fostering collaboration in the nf-core community.
+These guidelines help ensure that reviews are thorough, timely, and constructive while keeping development momentum moving forward.
 
-The specifications define best practices for requesting reviews, approving and merging pull requests, managing reviewer feedback, and handling commits. While these guidelines apply to all nf-core repositories, they represent proven practices for collaborative software development that can benefit any open-source project.
+The specifications define best practices for requesting reviews, approving and merging pull requests, managing reviewer feedback, and handling commits.
+While these guidelines apply to all nf-core repositories, they represent proven practices for collaborative software development that can benefit any open-source project.
 
 :::tip
-New to reviewing pull requests? Start with our [contribution guide](/docs/tutorials/contributing_to_nf-core/overview) to learn the basics of the review process.
+New to reviewing pull requests?
+Start with our [contribution guide](/docs/tutorials/contributing_to_nf-core/overview) to learn the basics of the review process.
 :::
 
 ## Review guidelines

@@ -4,13 +4,15 @@ subtitle: Description of the elements of an nf-core template
 weight: 1
 ---
 
-When you create a new pipeline from the nf-core template, the tool generates a complete directory structure containing numerous files and folders. Some files serve as boilerplate that requires minimal modification, while others are essential to understand during pipeline development.
+When you create a new pipeline from the nf-core template, the tool generates a complete directory structure containing numerous files and folders.
+Some files serve as boilerplate that requires minimal modification, while others are essential to understand during pipeline development.
 
 This page describes the files and directories that `nf-core pipelines create` generates when running with all template options enabled, and explains the purpose and function of each component.
 
 ## Files
 
-You will find the following files in each nf-core pipeline. They are automatically generated when running `nf-core pipelines create`.
+You will find the following files in each nf-core pipeline.
+They are automatically generated when running `nf-core pipelines create`.
 
 | Filename                 | Description                                                                                                                                                                                                                                                                                                                                                                               |
 | ------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

@@ -5,11 +5,13 @@ shortTitle: Configuration
 weight: 4
 ---
 
-The main configuration file (`conf/<cluster_name>.config`) defines all cluster-specific settings using Nextflow's configuration syntax. This file contains multiple configuration scopes that control different aspects of pipeline execution.
+The main configuration file (`conf/<cluster_name>.config`) defines all cluster-specific settings using Nextflow's configuration syntax.
+This file contains multiple configuration scopes that control different aspects of pipeline execution.
 
 ## params scope
 
-The `params` scope contains nf-core-specific metadata and shared resource paths. These parameters appear in pipeline execution logs and help users identify which profile loaded.
+The `params` scope contains nf-core-specific metadata and shared resource paths.
+These parameters appear in pipeline execution logs and help users identify which profile loaded.
 
 ```groovy
 params {
@@ -37,7 +39,9 @@ Include these parameters when applicable:
 - `max_time`: Maximum walltime for jobs (for example, `720.h`, `168.h`)
 
 :::note
-The `max_memory`, `max_cpus`, and `max_time` parameters are legacy parameters that some older pipelines still reference. Newer pipelines use `resourceLimits` in the `process` scope instead. Include both for maximum compatibility.
+The `max_memory`, `max_cpus`, and `max_time` parameters are legacy parameters that some older pipelines still reference.
+Newer pipelines use `resourceLimits` in the `process` scope instead.
+Include both for maximum compatibility.
 :::
 
 ### Example params scope
@@ -58,7 +62,8 @@ params {
 
 ## process scope
 
-The `process` scope defines resource limits, executor settings, and job submission details. This is where you configure how Nextflow submits jobs to your cluster scheduler.
+The `process` scope defines resource limits, executor settings, and job submission details.
+This is where you configure how Nextflow submits jobs to your cluster scheduler.
 
 ### Resource limits
 
@@ -74,7 +79,8 @@ process {
 }
 ```
 
-These limits prevent pipelines from requesting more resources than your cluster can provide. When a process requests resources beyond these limits, Nextflow automatically caps the request at the maximum value.
+These limits prevent pipelines from requesting more resources than your cluster can provide.
+When a process requests resources beyond these limits, Nextflow automatically caps the request at the maximum value.
 
 ### Executor and queue
 
@@ -105,7 +111,8 @@ process {
 }
 ```
 
-When a job fails due to resource limits, Nextflow automatically resubmits it with more resources. Most profiles set `maxRetries` to 2, allowing jobs to attempt execution with progressively higher resource allocations.
+When a job fails due to resource limits, Nextflow automatically resubmits it with more resources.
+Most profiles set `maxRetries` to 2, allowing jobs to attempt execution with progressively higher resource allocations.
 
 ### Dynamic queue selection
 
@@ -157,7 +164,8 @@ process {
 
 ## executor scope
 
-The `executor` scope controls how Nextflow submits jobs to your cluster scheduler. These settings prevent overwhelming small clusters with too many simultaneous submissions.
+The `executor` scope controls how Nextflow submits jobs to your cluster scheduler.
+These settings prevent overwhelming small clusters with too many simultaneous submissions.
 
 ```groovy
 executor {
@@ -171,7 +179,8 @@ executor {
 - `queueSize`: Maximum number of jobs Nextflow can submit simultaneously
 - `submitRateLimit`: Minimum time between job submissions
 
-Adjust these values based on your cluster size and scheduler policies. Smaller clusters benefit from lower values to prevent scheduler overload.
+Adjust these values based on your cluster size and scheduler policies.
+Smaller clusters benefit from lower values to prevent scheduler overload.
 
 ### Example executor scope
 
@@ -184,7 +193,8 @@ executor {
 
 ## Container scopes
 
-Container scopes configure container engine settings. Choose the scope that matches your cluster's available container engine.
+Container scopes configure container engine settings.
+Choose the scope that matches your cluster's available container engine.
 
 ### Singularity configuration
 
@@ -242,12 +252,14 @@ conda {
 ```
 
 :::tip
-Only enable one container engine per profile. Users can override the container engine with their own profile if needed.
+Only enable one container engine per profile.
+Users can override the container engine with their own profile if needed.
 :::
 
 ## profiles scope
 
-The `profiles` scope defines internal sub-profiles for cluster variants. Use this when your institution has multiple clusters or partitions with different resource limits.
+The `profiles` scope defines internal sub-profiles for cluster variants.
+Use this when your institution has multiple clusters or partitions with different resource limits.
 
 ```groovy
 profiles {
@@ -283,7 +295,8 @@ nextflow run nf-core/rnaseq -profile big_university,bigmem
 ```
 
 :::warning
-Internal sub-profiles do not inherit settings from the main configuration. You must redefine all necessary configuration scopes within each sub-profile.
+Internal sub-profiles do not inherit settings from the main configuration.
+You must redefine all necessary configuration scopes within each sub-profile.
 :::
 
 ## Complete configuration example

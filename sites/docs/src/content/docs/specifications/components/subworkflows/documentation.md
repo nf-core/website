@@ -8,7 +8,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Code comment of channel structure
 
-Each input and output channel SHOULD have a comment that describes the output structure of the channel. For example:
+Each input and output channel SHOULD have a comment that describes the output structure of the channel.
+For example:
 
 ```nextflow
 input:

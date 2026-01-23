@@ -62,7 +62,8 @@ There are four flags that you can use with this command:
 
 ## Display the documentation for a pipeline schema
 
-Display the content of your `nextflow_schema.json` with `nf-core pipelines schema docs <pipeline-schema>`. This prints your schema in Markdown format to standard output.
+Display the content of your `nextflow_schema.json` with `nf-core pipelines schema docs <pipeline-schema>`.
+This prints your schema in Markdown format to standard output.
 
 There are four flags that you can use with this command:
 
@@ -73,15 +74,29 @@ There are four flags that you can use with this command:
 
 ## Add new parameters to the pipeline schema
 
-To add a parameter to the schema, first add the parameter and its default value to the `nextflow.config` file with the `params` scope. Then run `nf-core pipelines schema build` to add the parameters to your schema and open the graphical interface.
+To add a parameter to the schema, first add the parameter and its default value to the `nextflow.config` file with the `params` scope.
+Then run `nf-core pipelines schema build` to add the parameters to your schema and open the graphical interface.
 
-The graphical interface is organised in groups that contain individual parameters. For a better overview, collapse all groups with the **Collapse groups** button. Your new parameters will be the only remaining items at the bottom of the page. Create a new group with the **Add group** button or drag and drop the parameters into an existing group. The group must be expanded first. The group title displays when you run your pipeline with the `--help` flag, and its description appears on the parameter page of your pipeline.
+The graphical interface is organised in groups that contain individual parameters.
+For a better overview, collapse all groups with the **Collapse groups** button.
+Your new parameters will be the only remaining items at the bottom of the page.
+Create a new group with the **Add group** button or drag and drop the parameters into an existing group.
+The group must be expanded first.
+The group title displays when you run your pipeline with the `--help` flag, and its description appears on the parameter page of your pipeline.
 
-Now you can modify the parameter itself. Define the `ID` of a new parameter in lowercase letters without whitespaces. The description is a short explanation about the parameter that appears when you run your pipeline with the `--help` flag. Click the dictionary icon to add a longer explanation for the parameter page of your pipeline. These usually contain a paragraph about parameter settings or data sources like databases or references.
+Now you can modify the parameter itself.
+Define the `ID` of a new parameter in lowercase letters without whitespaces.
+The description is a short explanation about the parameter that appears when you run your pipeline with the `--help` flag.
+Click the dictionary icon to add a longer explanation for the parameter page of your pipeline.
+These usually contain a paragraph about parameter settings or data sources like databases or references.
 
-To specify conditions for your parameter (like file extension), click the nut icon to open the settings. This menu depends on the `type` you assigned to your parameter. For integers you can define minimum and maximum values. For strings you can specify the file extension.
+To specify conditions for your parameter (like file extension), click the nut icon to open the settings.
+This menu depends on the `type` you assigned to your parameter.
+For integers you can define minimum and maximum values.
+For strings you can specify the file extension.
 
-The `type` field is one of the most important points in your pipeline schema, since it defines the datatype of your input and how it will be interpreted. This allows extensive testing prior to starting the pipeline.
+The `type` field is one of the most important points in your pipeline schema, since it defines the datatype of your input and how it will be interpreted.
+This allows extensive testing prior to starting the pipeline.
 
 The basic datatypes for a pipeline schema are:
 
@@ -90,17 +105,28 @@ The basic datatypes for a pipeline schema are:
 - `integer`
 - `boolean`
 
-For the `string` type, you have three options in the settings (nut icon): `enumerated values`, `pattern`, and `format`. The `enumerated values` option allows you to specify a list of specific input values separated by pipes. The `pattern` and `format` settings can depend on each other. The `format` must be either a directory or a file path. Specifying the `pattern` setting can be efficient and time saving, especially for `file paths`.
+For the `string` type, you have three options in the settings (nut icon): `enumerated values`, `pattern`, and `format`.
+The `enumerated values` option allows you to specify a list of specific input values separated by pipes.
+The `pattern` and `format` settings can depend on each other.
+The `format` must be either a directory or a file path.
+Specifying the `pattern` setting can be efficient and time saving, especially for `file paths`.
 
-The `number` and `integer` types share the same settings. Like `string`, there is an `enumerated values` option plus the ability to specify `min` and `max` values.
+The `number` and `integer` types share the same settings.
+Like `string`, there is an `enumerated values` option plus the ability to specify `min` and `max` values.
 
-For `boolean`, there are no further settings and the default value is usually `false`. You can switch the `boolean` value to `true` by adding the flag to the command. This parameter type is often used to skip specific sections of a pipeline.
+For `boolean`, there are no further settings and the default value is usually `false`.
+You can switch the `boolean` value to `true` by adding the flag to the command.
+This parameter type is often used to skip specific sections of a pipeline.
 
-After filling the schema, click the **Finished** button in the top right corner to automatically update your `nextflow_schema.json`. If this does not work, copy the schema from the graphical interface and paste it into your `nextflow_schema.json` file.
+After filling the schema, click the **Finished** button in the top right corner to automatically update your `nextflow_schema.json`.
+If this does not work, copy the schema from the graphical interface and paste it into your `nextflow_schema.json` file.
 
 ## Update existing pipeline schema
 
-Change the default value of a parameter in the `nextflow.config` file first, then in the pipeline schema. The value in the config file overwrites the value in the pipeline schema. To change any other parameter, use `nf-core pipelines schema build --web-only` to open the graphical interface without rebuilding the pipeline schema. The parameters can be changed as mentioned above, but keep in mind that changing the parameter datatype depends on the default value specified in the `nextflow.config` file.
+Change the default value of a parameter in the `nextflow.config` file first, then in the pipeline schema.
+The value in the config file overwrites the value in the pipeline schema.
+To change any other parameter, use `nf-core pipelines schema build --web-only` to open the graphical interface without rebuilding the pipeline schema.
+The parameters can be changed as mentioned above, but keep in mind that changing the parameter datatype depends on the default value specified in the `nextflow.config` file.
 
 ## Linting a pipeline schema
 

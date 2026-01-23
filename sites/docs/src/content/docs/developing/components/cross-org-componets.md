@@ -4,7 +4,8 @@ subtitle: Use modules from multiple organisations in subworkflows
 shortTitle: Cross-organisational components
 ---
 
-You can specify individual remotes for each module within a subworkflow's `meta.yml` file. This allows you to combine components from your own organisation with modules from other sources like nf-core.
+You can specify individual remotes for each module within a subworkflow's `meta.yml` file.
+This allows you to combine components from your own organisation with modules from other sources like nf-core.
 
 This guide explains how to use modules from different organisations within a single subworkflow using `nf-core/tools`.
 
@@ -42,7 +43,8 @@ When you install subworkflows from non-nf-core organisations, include the `--git
 
 ## Schema configuration
 
-For cross-organisational subworkflows, update your JSON schema to allow both object and string types in the components section. This enables the flexible syntax shown above.
+For cross-organisational subworkflows, update your JSON schema to allow both object and string types in the components section.
+This enables the flexible syntax shown above.
 
 ```json title="yaml-schema.json" {5}
 "components": {

@@ -4,9 +4,12 @@ subtitle: Writing modules and subworkflows for nf-core
 shortTitle: Create components
 ---
 
-nf-core modules and subworkflows are reusable Nextflow components shared across pipelines. Modules are individual tool wrappers that represent single processes, while subworkflows combine multiple modules into cohesive analysis units. Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery.
+nf-core modules and subworkflows are reusable Nextflow components shared across pipelines.
+Modules are individual tool wrappers that represent single processes, while subworkflows combine multiple modules into cohesive analysis units.
+Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery.
 
-This guide explains how to write and develop modules and subworkflows for nf-core. Once your component is ready, see [Contributing Components](../../contributors/contribute-components.md) for instructions on contributing it to nf-core.
+This guide explains how to write and develop modules and subworkflows for nf-core.
+Once your component is ready, see [Contributing Components](../../contributors/contribute-components.md) for instructions on contributing it to nf-core.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -85,7 +88,8 @@ To implement your component:
    - For large datasets requiring stub tests, document alternative testing procedures.
 
 :::note
-All components require test workflows. Tests validate that your component works correctly and prevent regressions when changes are made.
+All components require test workflows.
+Tests validate that your component works correctly and prevent regressions when changes are made.
 :::
 
 ## Test your component
@@ -140,4 +144,5 @@ If you need assistance while developing your component:
 - Ask in the `#modules` channel on [nf-core Slack](https://nf-co.re/join).
 - Check existing components in the [nf-core/modules repository](https://github.com/nf-core/modules) for examples.
 
-The nf-core community is here to help. Don't hesitate to ask questions.
+The nf-core community is here to help.
+Don't hesitate to ask questions.
