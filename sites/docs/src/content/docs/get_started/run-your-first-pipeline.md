@@ -116,7 +116,8 @@ To run `nf-core/demo` with a Nextflow parameters file:
 
    :::tip
    Parameter files make it easier to rerun pipelines with the same settings and keep track of your analysis configurations.
-   They can also be used to publish alongside scientific publications for reproducibility purposes - but make sure to exclude hardcoded file paths specific to your system!
+   They can also be used to publish alongside scientific publications to enhance reproducibility.
+   Make sure to exclude hardcoded file paths specific to your system.
    :::
 
 ### Resume interrupted runs
