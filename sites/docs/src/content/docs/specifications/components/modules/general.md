@@ -18,7 +18,7 @@ Non-file mandatory arguments required for the module to run without error SHOULD
 
 ## Optional command arguments
 
-All _non-mandatory_ command-line tool _non-file_ arguments MUST supported in the module via the `$task.ext.args` variable.
+All _non-mandatory_ command-line tool _non-file_ arguments MUST be supported in the module via the `$task.ext.args` variable.
 
 The `$args` variable MUST be placed in the module's tool command to allow optional and/or dynamic variables to be specified by a user or a developer.
 The contents of this variable is specified by a pipeline developer or user in with the `ext.args` process variable in a `modules.config` or other Nextflow config file using a closure.
