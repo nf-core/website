@@ -5,7 +5,8 @@ shortTitle: Reference genomes
 weight: 1
 ---
 
-Many nf-core pipelines use reference genomes for alignment, annotation, and similar tasks. This page describes available approaches for managing reference genomes.
+Many nf-core pipelines use reference genomes for alignment, annotation, and similar tasks.
+This page describes available approaches for managing reference genomes.
 
 ## AWS iGenomes
 
@@ -18,11 +19,16 @@ AWS iGenomes is Illumina's centralized resource that organizes commonly used ref
 See the [AWS iGenomes documentation](https://ewels.github.io/AWS-iGenomes) for more information.
 
 :::warning{title="Outdated annotations"}
-Transcriptome and GTF files in iGenomes are significantly outdated. For example, human annotations are from Ensembl release 75, while current release is 108+. Consider using custom genomes for current annotations.
+Transcriptome and GTF files in iGenomes are significantly outdated.
+For example, human annotations are from Ensembl release 75, while current release is 108+.
+Consider using custom genomes for current annotations.
 :::
 
 :::warning{title="GRCh38 assembly issues"}
-GRCh38 in iGenomes comes from NCBI instead of Ensembl, not the masked Ensembl assembly. This can cause pipeline issues in some cases. See [nf-core/rnaseq issue #460](https://github.com/nf-core/rnaseq/issues/460) for details. For GRCh38 with masked Ensembl assembly, use [Custom genomes](#custom-genomes).
+GRCh38 in iGenomes comes from NCBI instead of Ensembl, not the masked Ensembl assembly.
+This can cause pipeline issues in some cases.
+See [nf-core/rnaseq issue #460](https://github.com/nf-core/rnaseq/issues/460) for details.
+For GRCh38 with masked Ensembl assembly, use [Custom genomes](#custom-genomes).
 :::
 
 ### Use remote AWS iGenomes
@@ -36,7 +42,9 @@ To use remote AWS iGenomes:
 1. Pipeline downloads only what it requires for that specific workflow.
 
 :::tip
-Downloading reference genome files takes time and bandwidth. We recommend using a local copy when possible. See [Use local AWS iGenomes](#use-local-aws-igenomes) for more information.
+Downloading reference genome files takes time and bandwidth.
+We recommend using a local copy when possible.
+See [Use local AWS iGenomes](#use-local-aws-igenomes) for more information.
 :::
 
 ### Use local AWS iGenomes
@@ -117,7 +125,8 @@ Using GRCh38 as an example:
    ```
 
    :::note
-   The pipeline will generate and save reference assets. For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
+   The pipeline will generate and save reference assets.
+For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
    :::
 
 1. Move generated assets to a central, persistent storage location for re-use in future runs.
@@ -162,7 +171,8 @@ To use Refgenie:
    refgenie pull t7/bowtie2_index
    ```
 
-   Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`. For example:
+   Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
+For example:
 
    ```groovy title="refgenie_genomes.config"
    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.

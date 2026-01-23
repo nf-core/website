@@ -11,7 +11,8 @@ They prioritise clarity and practical value, helping users avoid common pitfalls
 
 ## What are advisories?
 
-Advisories address problems substantial enough to consume hours of user troubleshooting. They provide structured information about:
+Advisories address problems substantial enough to consume hours of user troubleshooting.
+They provide structured information about:
 
 - Bugs causing incorrect results in modules or pipelines
 - Known regressions with specific parameter combinations

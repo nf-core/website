@@ -38,7 +38,8 @@ To add your institution to the contributors page:
    - Add a _colour_ SVG with no background to the `/public/images/contributors/colour/` folder.
 
      :::note
-     Both SVG files must have the name that you defined in the `contributors.yaml` under `image_fn:` and must be vectors. Do not add a SVG file with an embedded raster image.
+     Both SVG files must have the name that you defined in the `contributors.yaml` under `image_fn:` and must be vectors.
+Do not add a SVG file with an embedded raster image.
      :::
 
      :::note

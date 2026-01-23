@@ -4,7 +4,8 @@ subtitle: Installation
 weight: 1
 ---
 
-nf-core tools is a Python package that provides command-line utilities for working with nf-core pipelines. While optional, it offers helpful features for downloading, launching, and developing pipelines.
+nf-core tools is a Python package that provides command-line utilities for working with nf-core pipelines.
+While optional, it offers helpful features for downloading, launching, and developing pipelines.
 
 The nf-core tools package provides commands for:
 
@@ -16,7 +17,8 @@ The nf-core tools package provides commands for:
 
 ## Installing nf-core tools
 
-nf-core tools can be installed using Conda, pip, or Docker. Choose the method that best fits your environment.
+nf-core tools can be installed using Conda, pip, or Docker.
+Choose the method that best fits your environment.
 
 ### Install with Conda
 
@@ -74,7 +76,8 @@ To install nf-core tools with pip:
    ```
 
 :::note
-When using pip, ensure you have Python 3.8 or later installed. You may need to use `pip3` instead of `pip` depending on your system configuration.
+When using pip, ensure you have Python 3.8 or later installed.
+You may need to use `pip3` instead of `pip` depending on your system configuration.
 :::
 
 ### Install with Docker
@@ -113,9 +116,13 @@ To use nf-core tools with Docker:
 
 #### Docker version tags
 
-You can use Docker image tags to specify the version you would like to use. For example, `nfcore/tools:dev` for the latest development version of the code, or `nfcore/tools:1.14` for version `1.14` of tools. If you omit this, it will default to `:latest`, which should be the latest stable release.
+You can use Docker image tags to specify the version you would like to use.
+For example, `nfcore/tools:dev` for the latest development version of the code, or `nfcore/tools:1.14` for version `1.14` of tools.
+If you omit this, it will default to `:latest`, which should be the latest stable release.
 
-If you need a specific version of Nextflow inside the container, you can build an image yourself. Clone the repo locally and check out whatever version of nf-core/tools that you need. Then build using the `--build-arg NXF_VER` flag:
+If you need a specific version of Nextflow inside the container, you can build an image yourself.
+Clone the repo locally and check out whatever version of nf-core/tools that you need.
+Then build using the `--build-arg NXF_VER` flag:
 
 ```bash
 docker build -t nfcore/tools:dev . --build-arg NXF_VER=20.04.0
@@ -157,7 +164,8 @@ If you would like to use the latest development version of tools, install direct
 pip install --upgrade --force-reinstall git+https://github.com/nf-core/tools.git@dev
 ```
 
-If you intend to make edits to the code, first make a fork of the repository and then clone it locally. Go to the cloned directory and install with pip (this also installs development requirements):
+If you intend to make edits to the code, first make a fork of the repository and then clone it locally.
+Go to the cloned directory and install with pip (this also installs development requirements):
 
 ```bash
 pip install --upgrade -r requirements-dev.txt -e .
@@ -167,7 +175,9 @@ pip install --upgrade -r requirements-dev.txt -e .
 
 ### Using a specific Python interpreter
 
-You can run nf-core tools with a specific Python interpreter. The command line usage and flags are exactly the same as if you ran with the `nf-core` command. Note that the module is `nf_core` with an underscore, not a hyphen like the console command.
+You can run nf-core tools with a specific Python interpreter.
+The command line usage and flags are exactly the same as if you ran with the `nf-core` command.
+Note that the module is `nf_core` with an underscore, not a hyphen like the console command.
 
 For example:
 
@@ -179,7 +189,8 @@ python3 -m nf_core list
 
 ### Using with your own Python scripts
 
-The nf-core tools functionality can be imported into your own Python scripts. For example, to get a list of all available nf-core pipelines:
+The nf-core tools functionality can be imported into your own Python scripts.
+For example, to get a list of all available nf-core pipelines:
 
 ```python
 import nf_core.list
@@ -193,7 +204,8 @@ For detailed function documentation, see the [nf-core tools API reference](https
 
 ### Automatic version check
 
-nf-core tools automatically checks for new versions when run. If you would prefer to skip this check, set the `NFCORE_NO_VERSION_CHECK` environment variable:
+nf-core tools automatically checks for new versions when run.
+If you would prefer to skip this check, set the `NFCORE_NO_VERSION_CHECK` environment variable:
 
 ```bash
 export NFCORE_NO_VERSION_CHECK=1
@@ -201,7 +213,8 @@ export NFCORE_NO_VERSION_CHECK=1
 
 ### Shell completions
 
-Auto-completion for the `nf-core` command is available for bash, zsh, and fish. To activate it, add the following lines to the respective shell config files:
+Auto-completion for the `nf-core` command is available for bash, zsh, and fish.
+To activate it, add the following lines to the respective shell config files:
 
 | Shell | Config file                               | Command                                            |
 | ----- | ----------------------------------------- | -------------------------------------------------- |
@@ -212,7 +225,8 @@ Auto-completion for the `nf-core` command is available for bash, zsh, and fish. 
 After restarting your shell session, you should have auto-completion for the `nf-core` command and all its sub-commands and options.
 
 :::note
-The added line will run the `nf-core` command on shell startup (which may slow down startup time). You should either have nf-core tools installed globally, or wrap the command in a conditional:
+The added line will run the `nf-core` command on shell startup (which may slow down startup time).
+You should either have nf-core tools installed globally, or wrap the command in a conditional:
 
 - For bash and zsh: `if type nf-core > /dev/null; then eval "$(_NF_CORE_COMPLETE=bash_source nf-core)"; fi`
 - For fish: `if command -v nf-core &> /dev/null eval (env _NF_CORE_COMPLETE=fish_source nf-core) end`

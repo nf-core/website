@@ -4,9 +4,11 @@ subtitle: Guidelines and requirements for nf-core contributions and best practic
 weight: 1
 ---
 
-The nf-core specifications define standards and best practices for developing robust, reproducible, and maintainable Nextflow components and pipelines. While these specifications are written primarily for nf-core contributors and are enforced in nf-core repositories, the principles and patterns documented here represent proven approaches to writing high-quality bioinformatics workflows that can benefit the broader Nextflow community.
+The nf-core specifications define standards and best practices for developing robust, reproducible, and maintainable Nextflow components and pipelines.
+While these specifications are written primarily for nf-core contributors and are enforced in nf-core repositories, the principles and patterns documented here represent proven approaches to writing high-quality bioinformatics workflows that can benefit the broader Nextflow community.
 
-These specifications are the result of collaborative development by the nf-core community. They address common challenges in workflow development, from managing software dependencies and computational resources to ensuring reproducibility and facilitating community contributions.
+These specifications are the result of collaborative development by the nf-core community.
+They address common challenges in workflow development, from managing software dependencies and computational resources to ensuring reproducibility and facilitating community contributions.
 
 ## Specification categories
 
@@ -14,14 +16,16 @@ The nf-core specifications are organized into three main categories:
 
 ### Components
 
-Standards for developing reusable nf-core modules and subworkflows. These specifications ensure consistency across the nf-core component library and facilitate sharing and maintenance of workflow building blocks.
+Standards for developing reusable nf-core modules and subworkflows.
+These specifications ensure consistency across the nf-core component library and facilitate sharing and maintenance of workflow building blocks.
 
 - **[Module specifications](/developers/specifications/components/modules):** Guidelines for developing individual process wrappers
 - **[Subworkflow specifications](/developers/specifications/components/subworkflows):** Standards for combining modules into reusable workflow units
 
 ### Pipelines
 
-Requirements and recommendations for nf-core end-to-end analysis pipelines. These specifications define what it means to be an nf-core pipeline and provide best practice guidance.
+Requirements and recommendations for nf-core end-to-end analysis pipelines.
+These specifications define what it means to be an nf-core pipeline and provide best practice guidance.
 
 - **[Pipeline requirements](/developers/specifications/pipelines/requirements):** Mandatory standards all nf-core pipelines MUST follow
 - **[Pipeline recommendations](/developers/specifications/pipelines/recommendations):** Best practices nf-core pipelines SHOULD adopt where applicable

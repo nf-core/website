@@ -120,7 +120,8 @@ These risks are mitigated through appropriate measures such as comprehensive tes
 
 ### Applicable standards
 
-Regulatory requirements vary by jurisdiction and intended use. Common standards that may apply to bioinformatics pipelines include:
+Regulatory requirements vary by jurisdiction and intended use.
+Common standards that may apply to bioinformatics pipelines include:
 
 #### Software as Medical Device (SaMD)
 

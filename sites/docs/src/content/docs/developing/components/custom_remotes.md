@@ -23,7 +23,8 @@ nf-core subworkflows --git-remote git@gitlab.com:nf-core/modules-test.git --bran
 
 A custom remote must follow a similar directory structure to `nf-core/modules` for the `nf-core modules` and `nf-core subworkflows` commands to work properly.
 
-The directory where modules / subworkflows are installed will be prompted or obtained from `org_path` in the `.nf-core.yml` file if available. If your modules are located at `modules/my-folder/TOOL/SUBTOOL` your `.nf-core.yml` should have:
+The directory where modules / subworkflows are installed will be prompted or obtained from `org_path` in the `.nf-core.yml` file if available.
+If your modules are located at `modules/my-folder/TOOL/SUBTOOL` your `.nf-core.yml` should have:
 
 ```yaml
 org_path: my-folder
@@ -31,8 +32,11 @@ org_path: my-folder
 
 Please avoid installing the same tools from two different remotes, as this can lead to further errors.
 
-The modules commands will try to pull changes from remote repositories during initialisation. If you want to disable this, for example due to performance reasons or to run the commands offline, you can use the `--no-pull` flag. The commands will still need to clone repositories that have not been previously used.
+The modules commands will try to pull changes from remote repositories during initialisation.
+If you want to disable this, for example due to performance reasons or to run the commands offline, you can use the `--no-pull` flag.
+The commands will still need to clone repositories that have not been previously used.
 
 ## Private remote repositories
 
-You can use the modules command with private remote repositories. Make sure that your local `git` is correctly configured with your private remote and then specify the remote the same way you would with a public remote repository.
+You can use the modules command with private remote repositories.
+Make sure that your local `git` is correctly configured with your private remote and then specify the remote the same way you would with a public remote repository.

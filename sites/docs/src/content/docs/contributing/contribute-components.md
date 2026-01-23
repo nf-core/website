@@ -220,7 +220,8 @@ Once your pull request is approved:
 
 1. All nf-core pipelines and Nextflow users can now use your component.
 
-Congratulations on contributing to nf-core! Your work helps researchers worldwide conduct reproducible analyses.
+Congratulations on contributing to nf-core!
+Your work helps researchers worldwide conduct reproducible analyses.
 
 ## Additional resources
 

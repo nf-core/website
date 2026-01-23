@@ -11,7 +11,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 Pipelines MUST have all software bundled using [Docker](https://www.docker.com/) - that is, it MUST be possible to run the pipeline with `-profile docker` and have all software requirements satisfied.
 
 All containers MUST have specific, stable versions pinned.
-Software versions MUST be static and stable. Labels such as `latest`, `dev`, `master` and so on are not reproducible over time and MUST NOT be used.
+Software versions MUST be static and stable.
+Labels such as `latest`, `dev`, `master` and so on are not reproducible over time and MUST NOT be used.
 
 :::note
 Tools SHOULD be packaged with Bioconda / Conda-forge if possible.

@@ -5,7 +5,8 @@ shortTitle: Testing
 weight: 6
 ---
 
-Before submitting your institutional profile to nf-core/configs, test it thoroughly to verify that all settings work correctly. Testing prevents issues for future users and ensures smooth integration with nf-core pipelines.
+Before submitting your institutional profile to nf-core/configs, test it thoroughly to verify that all settings work correctly.
+Testing prevents issues for future users and ensures smooth integration with nf-core pipelines.
 
 ## Fork and clone nf-core/configs
 
@@ -29,7 +30,8 @@ Test your profile using your fork of the nf-core/configs repository:
 
 ## Test with custom config base
 
-Use the `--custom_config_base` parameter to test your profile before it merges into the main repository. This parameter tells Nextflow to load configurations from your fork instead of the official nf-core/configs repository.
+Use the `--custom_config_base` parameter to test your profile before it merges into the main repository.
+This parameter tells Nextflow to load configurations from your fork instead of the official nf-core/configs repository.
 
 ### Test from local files
 
@@ -66,7 +68,8 @@ This approach lets you test without cloning to the cluster, but requires pushing
 
 ## Use test profiles
 
-Always test with a pipeline's built-in test profile to minimize runtime and resource usage. Test profiles use small datasets that complete quickly while exercising all pipeline features.
+Always test with a pipeline's built-in test profile to minimize runtime and resource usage.
+Test profiles use small datasets that complete quickly while exercising all pipeline features.
 
 ```bash
 nextflow run nf-core/rnaseq \
@@ -77,7 +80,8 @@ nextflow run nf-core/rnaseq \
 The `test` profile comes after your institutional profile so test settings override any conflicting parameters.
 
 :::tip
-Start with simple pipelines like `rnaseq` or `fetchngs` for initial testing. These pipelines have well-maintained test profiles and run relatively quickly.
+Start with simple pipelines like `rnaseq` or `fetchngs` for initial testing.
+These pipelines have well-maintained test profiles and run relatively quickly.
 :::
 
 ## What to verify
@@ -96,7 +100,8 @@ Verify your profile loaded correctly by checking the pipeline startup output:
 -[nf-core/rnaseq] Config Profile URL: https://hpc.biguniversity.edu
 ```
 
-If you do not see your `config_profile_*` parameters, your profile did not load correctly. Check for syntax errors in your configuration file.
+If you do not see your `config_profile_*` parameters, your profile did not load correctly.
+Check for syntax errors in your configuration file.
 
 ### Container engine detection
 
@@ -190,7 +195,8 @@ nextflow run nf-core/rnaseq \
 
 ## Test retry behavior
 
-Verify that job retries work correctly by checking the Nextflow log for retry messages. The `maxRetries` setting should allow jobs to resubmit with increased resources when they fail.
+Verify that job retries work correctly by checking the Nextflow log for retry messages.
+The `maxRetries` setting should allow jobs to resubmit with increased resources when they fail.
 
 ## Troubleshooting
 

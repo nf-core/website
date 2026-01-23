@@ -10,11 +10,13 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Use of labels in modules
 
-An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46). For example, `process_single`, `process_low`, `process_medium` or `process_high`.
+An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46).
+For example, `process_single`, `process_low`, `process_medium` or `process_high`.
 
 ## Source of multiple threads or cores value
 
-If the tool supports multi-threading, provide the appropriate parameter using the Nextflow `task` variable. For example, `--threads $task.cpus`.
+If the tool supports multi-threading, provide the appropriate parameter using the Nextflow `task` variable.
+For example, `--threads $task.cpus`.
 
 If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 

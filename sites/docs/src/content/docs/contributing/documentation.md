@@ -65,7 +65,8 @@ Understanding topic types helps you organize information logically and ensures r
 
 ## Finding opportunities to contribute
 
-Not sure where to start? Here are some ways to find documentation that needs improvement:
+Not sure where to start?
+Here are some ways to find documentation that needs improvement:
 
 - **Fix issues**: Check the documentation issues on GitHub for requested improvements.
 - **Update existing pages**: Look for outdated information, broken links, or unclear instructions.

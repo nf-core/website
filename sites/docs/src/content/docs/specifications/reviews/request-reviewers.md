@@ -10,7 +10,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 Pull request authors and reviewers SHOULD proactively request help for review in the nf-core Slack workspace.
 
-For general pull request reviews, use the `#request-review` channel. For pipeline release reviews specifically, please use the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
+For general pull request reviews, use the `#request-review` channel.
+For pipeline release reviews specifically, please use the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
 
 :::tip
 Requesting reviews in the appropriate Slack channel helps ensure your pull request gets timely attention from community members with relevant expertise.
@@ -18,7 +19,8 @@ Requesting reviews in the appropriate Slack channel helps ensure your pull reque
 
 ## Collaborative improvements
 
-We encourage collaboration on pull requests. Other contributors are welcome to:
+We encourage collaboration on pull requests.
+Other contributors are welcome to:
 
 - Fix linting errors identified by automated checks
 - Make improvements to the code if necessary

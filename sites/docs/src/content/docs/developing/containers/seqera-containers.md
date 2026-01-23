@@ -5,10 +5,13 @@ shortTitle: Seqera Containers
 weight: 2
 ---
 
-Seqera Containers simplifies the container creation process for nf-core modules. This guide explains how to obtain Docker and Singularity containers from Seqera Containers for your nf-core modules.
+Seqera Containers simplifies the container creation process for nf-core modules.
+This guide explains how to obtain Docker and Singularity containers from Seqera Containers for your nf-core modules.
 
 :::note
-Currently, nf-core supports Seqera Containers as an alternative to the default biocontainers source. In the future, Seqera Containers will become the default source for all nf-core module containers. For more information, see the [nf-core blog post](https://nf-co.re/blog).
+Currently, nf-core supports Seqera Containers as an alternative to the default biocontainers source.
+In the future, Seqera Containers will become the default source for all nf-core module containers.
+For more information, see the [nf-core blog post](https://nf-co.re/blog).
 :::
 
 :::note{title="Prerequisites"}
@@ -22,7 +25,8 @@ You will need the following to get started:
 
 ## Module package requirements
 
-nf-core modules should include only a single tool and its required dependencies. Avoid bundling multiple unrelated tools in a single container.
+nf-core modules should include only a single tool and its required dependencies.
+Avoid bundling multiple unrelated tools in a single container.
 
 ## Generate containers
 
@@ -33,7 +37,8 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
 1. Add your required packages to the search bar. You can paste package names directly from your `environment.yml` file.
 
    :::tip
-   Test your `environment.yml` file locally using conda before generating containers. This helps verify package compatibility and catch potential issues early.
+   Test your `environment.yml` file locally using conda before generating containers.
+This helps verify package compatibility and catch potential issues early.
    :::
 
 1. Set the **Container** setting to **Docker**
@@ -62,7 +67,8 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
    ```
 
    :::warning
-   Docker URLs should not include the `https://` prefix, while Singularity URLs must include it. The HTTPS checkbox for Singularity only appears after the container builds successfully.
+   Docker URLs should not include the `https://` prefix, while Singularity URLs must include it.
+The HTTPS checkbox for Singularity only appears after the container builds successfully.
    :::
 
 ## Additional resources
