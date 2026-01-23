@@ -51,7 +51,7 @@ Once your environment is running, verify the setup by opening a terminal in VS C
 nf-core --version
 ```
 
-And try [running a test pipeline](../get_started/run-your-first-pipeline.md).
+And try [running a test pipeline](../run-your-first-pipeline).
 
 ## Further Configuration
 
