@@ -11848,23 +11848,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -11982,23 +12015,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -12102,23 +12168,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -12236,23 +12335,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -12339,23 +12471,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -12451,23 +12616,56 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_autocycler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "autocycler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "autocycler --version |  sed 's/^[^ ]* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@dwells-eit"
+          "@dwells-eit",
+          "@eit-maxlcummins"
         ],
         "maintainers": [
           "@dwells-eit"
@@ -161899,19 +162097,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions.",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162020,19 +162250,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162095,7 +162357,7 @@
               }
             },
             {
-              "interval_file": {
+              "intervals": {
                 "type": "file",
                 "description": "file or files containing genomic intervals for use in base quality score recalibration.",
                 "pattern": "*.{bed,interval_list,picard,list,intervals}",
@@ -162175,19 +162437,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions.",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162292,7 +162586,7 @@
               }
             },
             {
-              "interval_file": {
+              "intervals": {
                 "type": "file",
                 "description": "(optional) file(s) containing genomic intervals for use in base quality score recalibration (BQSR)",
                 "pattern": "*.{bed,interval_list,picard,list,intervals}",
@@ -162471,19 +162765,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162663,19 +162989,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162773,19 +163131,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162848,7 +163238,7 @@
               }
             },
             {
-              "interval_file": {
+              "intervals": {
                 "type": "file",
                 "description": "file or files containing genomic intervals.",
                 "pattern": "*.{bed,interval_list,picard,list,intervals}",
@@ -162928,19 +163318,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions.",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -163027,19 +163449,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -163130,7 +163584,7 @@
               }
             },
             {
-              "interval_file": {
+              "intervals": {
                 "type": "file",
                 "description": "(optional) file(s) containing genomic intervals for use in base quality score recalibration (BQSR)",
                 "pattern": "*.{bed,interval_list,picard,list,intervals}",
@@ -163317,19 +163771,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -163416,7 +163902,7 @@
               }
             },
             {
-              "interval_file": {
+              "intervals": {
                 "type": "file",
                 "description": "(Optional) file or files containing genomic intervals for use in base quality score recalibration.",
                 "pattern": "*.{bed,interval_list,picard,list,intervals}",
@@ -163516,19 +164002,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions.",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -163739,19 +164257,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -163856,19 +164406,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_parabricks": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "parabricks": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "pbrun version | grep -m1 '^pbrun:' | sed 's/^pbrun:[[:space:]]*//'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -187612,19 +188194,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_quast": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quast": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quast.py --version 2>&1 | grep \"QUAST\" | sed 's/^.*QUAST v//; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "quast": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "quast.py --version 2>&1 | grep \"QUAST\" | sed 's/^.*QUAST v//; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -210121,19 +210735,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -210563,19 +211209,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -210835,19 +211513,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -211032,19 +211742,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -211957,19 +212699,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -213225,19 +213999,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -213550,19 +214356,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sentieon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sentieon": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sentieon driver --version | sed \"s/.*-//g\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
