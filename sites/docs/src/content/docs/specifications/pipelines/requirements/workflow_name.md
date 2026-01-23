@@ -27,7 +27,8 @@ Names MUST be approved by the nf-core community [(nf-core/proposals)](https://gi
 Pipelines SHOULD be referred to with the `nf-core` prefix in written materials, for example `nf-core/yourpipeline`.
 
 :::note
-In _very_ rare occasions, we may be willing to bend this requirement. This has happened in the past when
+In _very_ rare occasions, we may be willing to bend this requirement.
+This has happened in the past when
 a pipeline predates nf-core or comes with a substantial existing community.
 This has happened for only a small handful of pipelines out of the >100 that we have in the community.
 :::

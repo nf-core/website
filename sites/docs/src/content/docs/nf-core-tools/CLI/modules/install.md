@@ -14,7 +14,8 @@ working_dir: tmp/nf-core-nextbigthing
 
 ![`nf-core modules install abacas`](../../../../../assets/images/tools/nf-core-modules-install.svg)
 
-You can pass the module name as an optional argument to `nf-core modules install` instead of using the CLI prompt, for example `nf-core modules install fastqc`. You can specify a pipeline directory other than the current working directory by using the `--dir <pipeline dir>`.
+You can pass the module name as an optional argument to `nf-core modules install` instead of using the CLI prompt, for example `nf-core modules install fastqc`.
+You can specify a pipeline directory other than the current working directory by using the `--dir <pipeline dir>`.
 
 There are three additional flags that you can use when installing a module:
 

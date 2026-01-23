@@ -10,7 +10,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Name format of module files
 
-Use all lowercase for the directory structure of the module name, without punctuation. For example, [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/).
+Use all lowercase for the directory structure of the module name, without punctuation.
+For example, [`modules/nf-core/bwa/mem/`](https://github.com/nf-core/modules/tree/master/modules/nf-core/bwa/mem/).
 
 Make the name of the software (i.e., `bwa`) and tool (i.e., `mem`) all one word.
 
@@ -18,7 +19,9 @@ The nf-core/tools command will validate the suggested name.
 
 ## Name format of module processes
 
-Make the process name in the module file all uppercase. For example, `process BWA_MEM {`. Make the name of the software (i.e., `BWA`) and tool (i.e., `MEM`) all one word separated by an underscore.
+Make the process name in the module file all uppercase.
+For example, `process BWA_MEM {`.
+Make the name of the software (i.e., `BWA`) and tool (i.e., `MEM`) all one word separated by an underscore.
 
 ## Name format of module parameters
 

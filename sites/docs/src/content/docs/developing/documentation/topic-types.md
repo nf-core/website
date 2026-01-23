@@ -5,19 +5,24 @@ shortTitle: Topic types
 weight: 3
 ---
 
-Documentation topic types provide a framework for organizing content. Using consistent topic types helps readers find information quickly and ensures comprehensive coverage of features.
+Documentation topic types provide a framework for organizing content.
+Using consistent topic types helps readers find information quickly and ensures comprehensive coverage of features.
 
-nf-core documentation follows the CTRT framework: Concept, Task, Reference, and Troubleshooting. Most pages combine multiple topic types—for example, starting with a concept introduction followed by task instructions.
+nf-core documentation follows the CTRT framework: Concept, Task, Reference, and Troubleshooting.
+Most pages combine multiple topic types—for example, starting with a concept introduction followed by task instructions.
 
 :::tip
-Need help or have questions about documentation? Contact the nf-core docs-team on Slack at **#team-docs**. We're here to help!
+Need help or have questions about documentation?
+Contact the nf-core docs-team on Slack at **#team-docs**.
+We're here to help!
 :::
 
 <!-- TODO: Add links to nf-core Slack -->
 
 ## Concept
 
-Concept topics explain ideas, background information, and how things work. They answer "what" something is and "why" you would use it.
+Concept topics explain ideas, background information, and how things work.
+They answer "what" something is and "why" you would use it.
 
 Concept topics answer questions like:
 
@@ -43,7 +48,8 @@ Use concept topics to:
 
 ## Task
 
-Task topics provide step-by-step instructions for completing specific actions. They guide users through procedures with clarity and consistency.
+Task topics provide step-by-step instructions for completing specific actions.
+They guide users through procedures with clarity and consistency.
 
 Task topics answer questions like:
 
@@ -78,7 +84,8 @@ Use task topics to:
 
 ## Reference
 
-Reference topics provide detailed, structured information for quick lookup. They present information in scannable formats like tables or lists, functioning like dictionary or encyclopedia entries.
+Reference topics provide detailed, structured information for quick lookup.
+They present information in scannable formats like tables or lists, functioning like dictionary or encyclopedia entries.
 
 Reference topics answer questions like:
 
@@ -106,7 +113,9 @@ Use reference topics to:
 
 ## Troubleshooting
 
-Troubleshooting topics address specific problems and their solutions. They should appear as the final sections on a page. When five or more troubleshooting topics exist, create a dedicated troubleshooting page instead.
+Troubleshooting topics address specific problems and their solutions.
+They should appear as the final sections on a page.
+When five or more troubleshooting topics exist, create a dedicated troubleshooting page instead.
 
 Troubleshooting topics answer questions like:
 
@@ -144,7 +153,8 @@ Beyond the four primary types, additional specialized topic types serve specific
 
 ### Top-level pages
 
-Top-level pages serve as entry points for major documentation sections. They sit at the highest hierarchy level in navigation and introduce broad workflows.
+Top-level pages serve as entry points for major documentation sections.
+They sit at the highest hierarchy level in navigation and introduce broad workflows.
 
 **Purpose**: Provide navigation hubs that direct users to detailed content at the next level.
 
@@ -160,7 +170,8 @@ Top-level pages serve as entry points for major documentation sections. They sit
 
 ### Get started pages
 
-Get started pages introduce high-level concepts for broad feature areas. They explain how multiple features work together within larger workflows.
+Get started pages introduce high-level concepts for broad feature areas.
+They explain how multiple features work together within larger workflows.
 
 **Purpose**: Provide conceptual understanding of how features interconnect, distinguishing from tutorials by focusing on concepts rather than task completion.
 
@@ -180,7 +191,8 @@ Get started pages introduce high-level concepts for broad feature areas. They ex
 
 ### Tutorials
 
-Tutorials provide end-to-end walkthroughs of complex workflows combining multiple tasks. They guide users through complete processes spanning various features or tools.
+Tutorials provide end-to-end walkthroughs of complex workflows combining multiple tasks.
+They guide users through complete processes spanning various features or tools.
 
 **Purpose**: Help users achieve specific goals through sequential, multi-step procedures. Tutorials combine multiple tasks into comprehensive learning experiences.
 

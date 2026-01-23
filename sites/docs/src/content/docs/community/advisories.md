@@ -4,13 +4,15 @@ subtitle: Learn how to create and publish advisories for nf-core components
 weight: 3
 ---
 
-Advisories serve as structured, long-lived notices for significant technical issues affecting nf-core components. They prioritise clarity and practical value, helping users avoid common pitfalls.
+Advisories serve as structured, long-lived notices for significant technical issues affecting nf-core components.
+They prioritise clarity and practical value, helping users avoid common pitfalls.
 
 <!-- TODO: Add image of advisory somewhere on this page -->
 
 ## What are advisories?
 
-Advisories address problems substantial enough to consume hours of user troubleshooting. They provide structured information about:
+Advisories address problems substantial enough to consume hours of user troubleshooting.
+They provide structured information about:
 
 - Bugs causing incorrect results in modules or pipelines
 - Known regressions with specific parameter combinations
@@ -19,12 +21,14 @@ Advisories address problems substantial enough to consume hours of user troubles
 - Executor-specific problems requiring special handling
 
 :::note
-Advisories differ from regular issues or documentation updates. They focus on significant problems that require structured, searchable, long-term visibility for the community.
+Advisories differ from regular issues or documentation updates.
+They focus on significant problems that require structured, searchable, long-term visibility for the community.
 :::
 
 ## Who can publish advisories?
 
-Anyone can create an advisory. Whilst maintainers typically author advisories, the process welcomes contributions from any community member who identifies a worthy issue.
+Anyone can create an advisory.
+Whilst maintainers typically author advisories, the process welcomes contributions from any community member who identifies a worthy issue.
 
 ## Publishing an advisory
 

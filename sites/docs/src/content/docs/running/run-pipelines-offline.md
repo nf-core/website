@@ -5,7 +5,9 @@ shortTitle: Running pipelines offline
 weight: 1
 ---
 
-nf-core pipelines are designed to automatically fetch everything they need to run, including pipeline code, container images, and reference data. However, many high-performance computing (HPC) environments restrict internet access on compute nodes for security reasons. In such cases, you can still run nf-core pipelines by preparing all required components in advance on a system with internet access, then transferring them to your offline environment.
+nf-core pipelines are designed to automatically fetch everything they need to run, including pipeline code, container images, and reference data.
+However, many high-performance computing (HPC) environments restrict internet access on compute nodes for security reasons.
+In such cases, you can still run nf-core pipelines by preparing all required components in advance on a system with internet access, then transferring them to your offline environment.
 
 ## Offline setup
 
@@ -23,7 +25,8 @@ To transfer Nextflow to an offline system:
 1. Run your pipeline locally.
 
    :::note
-   Nextflow fetches the required plugins. It does not need to run to completion.
+   Nextflow fetches the required plugins.
+It does not need to run to completion.
    :::
 
 1. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
@@ -63,7 +66,8 @@ To transfer pipeline code to an offline system:
      :::
 
    :::tip
-   If you are downloading _directly_ to the offline storage (e.g., a head node with internet access whilst compute nodes are offline), use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable. This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
+   If you are downloading _directly_ to the offline storage (e.g., a head node with internet access whilst compute nodes are offline), use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
+This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
    :::
 
 ### Transfer reference genomes offline

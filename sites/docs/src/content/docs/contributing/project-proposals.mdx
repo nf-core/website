@@ -26,10 +26,14 @@ The nf-core RFC (Request for Comment) process provides visibility and community 
 
 <dl>
   <dt>RFC (Request for Comment):</dt>
-  <dd>A formal proposal submitted for discussion, typically involving significant changes or new features. An RFC outlines the motivation, requirements, and steps necessary for implementation, and invites feedback and collaboration from the community before a final decision is made.</dd>
+  <dd>A formal proposal submitted for discussion, typically involving significant changes or new features.
+An RFC outlines the motivation, requirements, and steps necessary for implementation, and invites feedback and collaboration from the community before a final decision is made.</dd>
 
   <dt>Proposal champion:</dt>
-  <dd>An individual who takes ownership of advancing a proposal through the RFC process. This role is self-nominated and open to anyone, including both project maintainers and other community members. The champion may be the original author of the proposal or someone who joins later. Responsibilities include drafting the detailed RFC, managing and integrating community feedback, and helping to guide the implementation of the proposal.</dd>
+  <dd>An individual who takes ownership of advancing a proposal through the RFC process.
+This role is self-nominated and open to anyone, including both project maintainers and other community members.
+The champion may be the original author of the proposal or someone who joins later.
+Responsibilities include drafting the detailed RFC, managing and integrating community feedback, and helping to guide the implementation of the proposal.</dd>
 </dl>
 
 :::note{title="You are not alone as a champion"}
@@ -38,7 +42,9 @@ If this is your first time writing an RFC or design document, our maintainers te
 
 ## Scope
 
-Not every project in nf-core requires an RFC. The process should only be used for efforts that will affect a significant proportion of community members. For example:
+Not every project in nf-core requires an RFC.
+The process should only be used for efforts that will affect a significant proportion of community members.
+For example:
 
 - Changes to established development or code standardisation
 - Changes to create new nf-core fundamental products or initiatives
@@ -64,27 +70,33 @@ Projects that are smaller in scope should typically be raised as a new issue on 
 
 ### Stage 1: Suggestion (optional)
 
-Provide a space for informal discussions around ideas and potential improvements. Gather early feedback and assess interest from the community, maintainers, and stakeholders.
+Provide a space for informal discussions around ideas and potential improvements.
+Gather early feedback and assess interest from the community, maintainers, and stakeholders.
 
 #### Requirements
 
-None. Proposals should be community-wide (not pipeline-specific) and [large enough to warrant an RFC](#scope).
+None.
+Proposals should be community-wide (not pipeline-specific) and [large enough to warrant an RFC](#scope).
 
 :::tip
-A suggestion is optional. You can skip to Stage 2, but this step helps gauge reactions before developing a full proposal.
+A suggestion is optional.
+You can skip to Stage 2, but this step helps gauge reactions before developing a full proposal.
 :::
 
 #### Location
 
-Post your idea in [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) on Slack. If there is sufficient interest, you'll be invited to submit a formal proposal.
+Post your idea in [`#rfc-suggestions`](https://nfcore.slack.com/archives/C08TXM0GGMT) on Slack.
+If there is sufficient interest, you'll be invited to submit a formal proposal.
 
 ### Stage 2: Proposal
 
-Assess feasibility with nf-core [maintainers](https://nf-co.re/governance#maintainers) and [core team](https://nf-co.re/governance#core-team). Focus on the expected effect, not implementation details.
+Assess feasibility with nf-core [maintainers](https://nf-co.re/governance#maintainers) and [core team](https://nf-co.re/governance#core-team).
+Focus on the expected effect, not implementation details.
 
 #### Requirements
 
-None. However, an existing Slack thread suggestion (Stage 1) may help.
+None.
+However, an existing Slack thread suggestion (Stage 1) may help.
 
 A proposal is more likely to be accepted if it is:
 
@@ -95,15 +107,22 @@ A proposal is more likely to be accepted if it is:
 
 #### Location
 
-Submit your proposal as a GitHub Issue in the [nf-core/proposals](https://github.com/nf-core/proposals) repository using the RFC template. You can browse previous proposals there as well.
+Submit your proposal as a GitHub Issue in the [nf-core/proposals](https://github.com/nf-core/proposals) repository using the RFC template.
+You can browse previous proposals there as well.
 
-The original author has first opportunity to champion the proposal. If they decline, others may volunteer. A proposal remains open until a champion is assigned or after 2 months of inactivity.
+The original author has first opportunity to champion the proposal.
+If they decline, others may volunteer.
+A proposal remains open until a champion is assigned or after 2 months of inactivity.
 
 The core team may reject proposals that are infeasible or conflict with project goals, with explanation provided.
 
 #### Voting
 
-Proposals require 80% core team approval via comments on the issue. The core team meets monthly to discuss open RFCs. Proposal champions may be invited to present. Voting typically follows discussion but may occur independently. Significant changes after voting require re-approval.
+Proposals require 80% core team approval via comments on the issue.
+The core team meets monthly to discuss open RFCs.
+Proposal champions may be invited to present.
+Voting typically follows discussion but may occur independently.
+Significant changes after voting require re-approval.
 
 #### After acceptance
 
@@ -130,17 +149,23 @@ RFCs are submitted as GitHub Pull Requests to the nf-core/proposals repository.
 
 #### What to expect
 
-Create a new RFC using the `stage-3--rfc-template.md` template. Copy the opening sections from the accepted proposal (they match 1:1). Complete remaining sections with technical implementation and organisation planning.
+Create a new RFC using the `stage-3--rfc-template.md` template.
+Copy the opening sections from the accepted proposal (they match 1:1).
+Complete remaining sections with technical implementation and organisation planning.
 
 Once the Stage 3 RFC pull request is opened, the corresponding Stage 2 proposal issue should be closed with a comment linking to the new RFC.
 
 :::note
-You do _not_ need to wait for an RFC approval before beginning development. One of the best ways to validate your RFC is to prototype. Early prototyping and parallel development alongside the RFC are strongly encouraged. The RFC is a living document and evolves based on feedback during implementation.
+You do _not_ need to wait for an RFC approval before beginning development.
+One of the best ways to validate your RFC is to prototype.
+Early prototyping and parallel development alongside the RFC are strongly encouraged.
+The RFC is a living document and evolves based on feedback during implementation.
 :::
 
 The RFC will only be accepted and merged once both the proposal and the accompanying implementation are ready to merge.
 
-Request feedback on RFC updates at any point. Maintainers will provide timely feedback to avoid blocking progress.
+Request feedback on RFC updates at any point.
+Maintainers will provide timely feedback to avoid blocking progress.
 
 Proposal champions are encouraged to present at nf-core `#bytesize` talks for additional visibility and discussion, though this is optional.
 
@@ -162,4 +187,5 @@ Finalised RFCs are managed as pull requests in the `nf-core/proposals` repositor
 
 ## Special thanks
 
-This RFC process is adapted from the [Astro Roadmap](https://github.com/withastro/roadmap), with customisation for nf-core's needs. Astro's process itself draws from [Remix's Open Development](https://remix.run/blog/open-development), their [previous RFC process](https://github.com/withastro/roadmap/blob/78b736c28fe487ad02ec76bb038ad1087c471057/README.md), and RFC processes from Vue, React, Rust, and Ember.
+This RFC process is adapted from the [Astro Roadmap](https://github.com/withastro/roadmap), with customisation for nf-core's needs.
+Astro's process itself draws from [Remix's Open Development](https://remix.run/blog/open-development), their [previous RFC process](https://github.com/withastro/roadmap/blob/78b736c28fe487ad02ec76bb038ad1087c471057/README.md), and RFC processes from Vue, React, Rust, and Ember.

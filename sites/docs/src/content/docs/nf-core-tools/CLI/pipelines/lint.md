@@ -22,7 +22,8 @@ fake_command: nf-core lint
 
 Use the `-k` or `--key` flag to run only named tests for faster debugging, for example: `nf-core pipelines lint -k files_exist -k files_unchanged`.
 
-The command lints the current working directory by default. To specify another directory, use `--dir <directory>`.
+The command lints the current working directory by default.
+To specify another directory, use `--dir <directory>`.
 
 ## Linting documentation
 
@@ -57,11 +58,13 @@ lint:
     - CODE_OF_CONDUCT.md
 ```
 
-List all configurations for the `nf-core pipelines lint` command under the `lint:` field in the `.nf-core.yml` file. This file is also used for configuration of other commands.
+List all configurations for the `nf-core pipelines lint` command under the `lint:` field in the `.nf-core.yml` file.
+This file is also used for configuration of other commands.
 
 ## Automatically fix errors
 
-Some lint tests can automatically fix issues they find. Use the `--fix` flag to enable this.
+Some lint tests can automatically fix issues they find.
+Use the `--fix` flag to enable this.
 The pipeline must be a `git` repository with no uncommitted changes.
 This allows you to review and undo automated changes with `git checkout .` if needed.
 

@@ -8,7 +8,8 @@ The nf-core-bot can automate code fixes and other actions in pull requests.
 You trigger these commands by commenting on the PR with specific keywords.
 
 :::danger
-Command availability varies by repository. Check the repository's `.github/workflows/` directory to see which bot commands are configured.
+Command availability varies by repository.
+Check the repository's `.github/workflows/` directory to see which bot commands are configured.
 :::
 
 ## Available commands
@@ -46,7 +47,8 @@ To update outdated nf-test snapshots for GPU-based tests, comment on the PR:
 @nf-core-bot update gpu snapshot path: $PATH
 ```
 
-Replace `$PATH` with the path to the test file. For example, `modules/nf-core/parabricks/applybqsr/tests/main.nf.test`.
+Replace `$PATH` with the path to the test file.
+For example, `modules/nf-core/parabricks/applybqsr/tests/main.nf.test`.
 
 The workflow will:
 
@@ -75,7 +77,8 @@ Available for [nf-core/tools](https://github.com/nf-core/tools/blob/main/.github
 
 ### `@nf-core-bot update snapshots`
 
-When Textual snapshot tests fail (from `tests/pipelines/test_crate_app.py`), an HTML report is generated and uploaded as an artifact. To automatically update the snapshots, comment:
+When Textual snapshot tests fail (from `tests/pipelines/test_crate_app.py`), an HTML report is generated and uploaded as an artifact.
+To automatically update the snapshots, comment:
 
 ```text
 @nf-core-bot update snapshots

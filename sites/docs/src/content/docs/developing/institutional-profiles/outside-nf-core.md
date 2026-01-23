@@ -5,7 +5,8 @@ shortTitle: nf-core/configs outside nf-core
 weight: 7
 ---
 
-Institutional profiles from the nf-core/configs repository can be integrated into custom scripts and workflows, extending their utility beyond nf-core pipelines. These centralized configurations provide pre-configured cluster settings without duplicating configuration management across multiple projects.
+Institutional profiles from the nf-core/configs repository can be integrated into custom scripts and workflows, extending their utility beyond nf-core pipelines.
+These centralized configurations provide pre-configured cluster settings without duplicating configuration management across multiple projects.
 
 ## Integration steps
 

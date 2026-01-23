@@ -8,7 +8,9 @@ weight: 3
 
 <!-- TODO: Add links to other pages and guide where possible -->
 
-When you review a PR, you examine changes proposed to the `nf-core/tools` repository. You provide constructive feedback on those changes before the maintainers merge them. Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
+When you review a PR, you examine changes proposed to the `nf-core/tools` repository.
+You provide constructive feedback on those changes before the maintainers merge them.
+Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
 
 While the infrastructure team oversees the PR review process for nf-core/tools, these guidelines help you review PRs consistently and effectively as a community member.
 

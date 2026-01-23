@@ -53,7 +53,8 @@ Using `ext.args` provides more flexibility to users.
 As `ext.args` is derived from the configuration (e.g.,, `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module.
 This can increase the capabilities of a pipeline beyond what the original developers intended.
 
-Initially, these were passed via the main workflow script using custom functions (e.g., `addParams`) and other additional nf-core custom methods, but this syntax overhead and other limitations were more difficult for pipeline developers to use and understand. Using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain, and use.
+Initially, these were passed via the main workflow script using custom functions (e.g., `addParams`) and other additional nf-core custom methods, but this syntax overhead and other limitations were more difficult for pipeline developers to use and understand.
+Using the 'native' `ext` functionality provided by Nextflow was easier to understand, maintain, and use.
 
 Sample-specific parameters can still be provided to an instance of a process by storing these in `meta`, and providing these to the `ext.args` definition in `modules.config`.
 A closure is used to make Nextflow evaluate the code in the string:
@@ -87,7 +88,8 @@ org:nf-core args2 samtools collate fastq
 
 Modules intended to batch process files by parallelizing repeated calls to a tool, for example with
 `xargs` or `parallel`, also fall under the category of multi-tool modules.
-Multi-tool modules should chain tools in an explicit order given by the module name. For example, `SAMTOOLS/COLLATEFASTQ`.
+Multi-tool modules should chain tools in an explicit order given by the module name.
+For example, `SAMTOOLS/COLLATEFASTQ`.
 :::
 
 ## Each command must have an $args variable
@@ -203,7 +205,8 @@ tool --version | sed '1!d'
 :::
 
 :::note
-For not yet converted modules, you will see a different approach for collecting versions. Even though the approach is deprecated, it is shown below for reference.
+For not yet converted modules, you will see a different approach for collecting versions.
+Even though the approach is deprecated, it is shown below for reference.
 :::
 
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, for example:
@@ -229,7 +232,8 @@ All reported versions MUST be without a leading `v` or similar (that is, must st
 A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
 The exit status of sub-shells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
 
-If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information. For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
+If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information.
+For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
 
 Include the accompanying comments above the software packing directives and beside the version string.
 
@@ -261,7 +265,8 @@ END_VERSIONS
 }
 ```
 
-If the HEREDOC cannot be used because the script is not bash, write the `versions.yml` directly. For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+If the HEREDOC cannot be used because the script is not bash, write the `versions.yml` directly.
+For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
 
 ## Presence of when statement
 
@@ -281,9 +286,13 @@ process {
 
 ## Capturing STDOUT and STDERR
 
-STDOUT and STDERR may need to be saved to a file for reporting or debugging. The `tee` shell command captures and preserves these streams simultaneously.
+STDOUT and STDERR may need to be saved to a file for reporting or debugging.
+The `tee` shell command captures and preserves these streams simultaneously.
 
-This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error. This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error. The stream output is preserved in the process's `.command.log` and `.command.err` files. If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
+This setup ensures that the job scheduler can capture stream logs while also printing them to the screen if Nextflow encounters an error.
+This is especially useful when using `process.scratch` (which executes the process in a temporary folder), as logs might otherwise be lost on error.
+The stream output is preserved in the process's `.command.log` and `.command.err` files.
+If information is only written to files, it could be lost if the job scheduler reclaims the job allocation.
 
 ```groovy {7-8}
 script:
@@ -299,11 +308,13 @@ tool \\
 
 :::tip{title="Reason for forced stream redirect" collapse}
 
-nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files. Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
+nf-core sets the `-C` (`noclobber`) flag for each shell process, which prevents redirection from overwriting existing files.
+Since some shells also treat this stream redirection as an error, we use the forced redirection `2>|` instead of `2>`.
 
 :::
 
-Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well. For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
+Similarly, if the tool itself captures STDOUT or STDERR to a file, it's best to redirect those to the corresponding streams as well.
+For instance, if a timeout aborts execution, it's often more reliable to have background tasks handle this redirection.
 
 ```groovy {3-4}
 script:
@@ -352,13 +363,15 @@ Where script content in a module becomes particularly extensive, we strongly enc
 
 ### Inline script code
 
-If the script content remains at a readable length, the code MAY be embedded directly in the module without a dedicated template file. However, embedded scripts should still follow the guidance for templates.
+If the script content remains at a readable length, the code MAY be embedded directly in the module without a dedicated template file.
+However, embedded scripts should still follow the guidance for templates.
 
 ### Module template location
 
 Place the template in a directory called `templates/` in the same directory as the module `main.nf`.
 
-Name the template file after the module itself with a language-appropriate file suffix. For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
+Name the template file after the module itself with a language-appropriate file suffix.
+For example, the `deseq2/differential` nf-core module will use the `deseq2_differential.R`.
 
 Refer to the template file within the module using the template function:
 
@@ -399,7 +412,9 @@ See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4
 
 ### Stubs in templated modules
 
-A templated module MUST have a stub block in the same way as any other module. For example, use `touch` to generate empty files and versions. See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
+A templated module MUST have a stub block in the same way as any other module.
+For example, use `touch` to generate empty files and versions.
+See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
 
 An inline command MAY be used to call the version for libraries for the `versions.yml` in this case.
 For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
@@ -408,7 +423,9 @@ For an R example see [deseq2/differential](https://github.com/nf-core/modules/bl
 
 ### Stub block must exist
 
-[A stub block](https://www.nextflow.io/docs/latest/process.html#stub) MUST exist for all modules. This is a block of code that replaces the `script` command when the option `-stub` is set. This enables quick testing of the workflow logic, as a "dry-run".
+[A stub block](https://www.nextflow.io/docs/latest/process.html#stub) MUST exist for all modules.
+This is a block of code that replaces the `script` command when the option `-stub` is set.
+This enables quick testing of the workflow logic, as a "dry-run".
 
 ### Stub block prefix and versions
 

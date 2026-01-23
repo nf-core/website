@@ -5,13 +5,15 @@ shortTitle: ARM64 on Bioconda
 weight: 1
 ---
 
-ARM64 support is increasingly important as cloud providers offer ARM-based instances (like AWS Graviton) that are 20-40% cheaper than x86 alternatives with comparable performance. Enabling ARM64 compatibility allows users to leverage these cost-effective platforms.
+ARM64 support is increasingly important as cloud providers offer ARM-based instances (like AWS Graviton) that are 20-40% cheaper than x86 alternatives with comparable performance.
+Enabling ARM64 compatibility allows users to leverage these cost-effective platforms.
 
 This page explains how to enable existing Bioconda and Conda-forge packages to work on ARM64 architecture (`linux/arm64`).
 
 ## Bioconda and Conda-forge
 
-Bioconda is a conda channel for bioinformatics packages, while conda-forge provides general-purpose recipes. Both systems differ in CI infrastructure and recipe structure, though they share commonalities.
+Bioconda is a conda channel for bioinformatics packages, while conda-forge provides general-purpose recipes.
+Both systems differ in CI infrastructure and recipe structure, though they share commonalities.
 
 This documentation addresses adapting existing bioconda/conda-forge packages to support `linux/arm64` (ARM processors like AWS Graviton) alongside the standard `linux/amd64` (Intel architecture).
 
@@ -54,7 +56,8 @@ For local development on ARM machines:
    ```
 
 :::note
-Local testing is not always reliable. CI builds often succeed when local attempts fail.
+Local testing is not always reliable.
+CI builds often succeed when local attempts fail.
 :::
 
 ## Enable packages
@@ -89,7 +92,8 @@ Build failures typically involve two categories:
 1. "Not found" errors that require package fixes
 2. Missing dependencies that need investigation
 
-Most fixable packages reside in Bioconda. However, conda-forge packages occupy individual GitHub repositories under the [conda-forge organisation](https://github.com/conda-forge/), formatted as `<package-name>-feedstock`.
+Most fixable packages reside in Bioconda.
+However, conda-forge packages occupy individual GitHub repositories under the [conda-forge organisation](https://github.com/conda-forge/), formatted as `<package-name>-feedstock`.
 
 ## Bioconda recipes
 
@@ -106,11 +110,14 @@ build:
   ..
 ```
 
-When generic packages fail, dependencies require fixing. This is often resolved through simple build number increments and pull requests. Since generic packages lock to specific build versions that pre-date bioconda ARM support, they may need rebuilding.
+When generic packages fail, dependencies require fixing.
+This is often resolved through simple build number increments and pull requests.
+Since generic packages lock to specific build versions that pre-date bioconda ARM support, they may need rebuilding.
 
 ### Non-generic recipes
 
-Non-generic packages compile native code or download binaries (typically x86-only). Examine `meta.yaml` and adjacent `build.sh` files.
+Non-generic packages compile native code or download binaries (typically x86-only).
+Examine `meta.yaml` and adjacent `build.sh` files.
 
 Enable ARM builds by adding to `meta.yaml`:
 
@@ -121,7 +128,8 @@ extra:
     - osx-arm64
 ```
 
-Bump the build number by adding 1 to the existing value. Add a package versioning pin if missing:
+Bump the build number by adding 1 to the existing value.
+Add a package versioning pin if missing:
 
 ```yaml
 build:
@@ -133,7 +141,8 @@ build:
 
 ### Test in the CI
 
-Open a pull request and monitor CI results. Common solutions include:
+Open a pull request and monitor CI results.
+Common solutions include:
 
 - **Source file patching**: `meta.yaml` handles patches
 - **Platform-specific logic**: `build.sh` supports conditional bash logic. Use `CFLAGS`, `CC`, and `${PREFIX}` (dependency base directory containing `bin`, `lib`, `include`)
@@ -173,7 +182,8 @@ git fetch bot
 git checkout -b aarch64-fixes bot/bot-pr_arch_<branch-suffix>
 ```
 
-Replace `<branch-suffix>` with the actual migration branch name. Use tab completion after typing `bot/bot-pr_arch_` to find available branches.
+Replace `<branch-suffix>` with the actual migration branch name.
+Use tab completion after typing `bot/bot-pr_arch_` to find available branches.
 
 Fix issues by editing `meta.yaml` or `conda-forge.yml`, then:
 
@@ -182,8 +192,10 @@ git commit --all
 git push --set-upstream origin aarch64-fixes
 ```
 
-Create a new PR from your branch. Request rerendering by commenting: `@conda-forge-admin please rerender`
+Create a new PR from your branch.
+Request rerendering by commenting: `@conda-forge-admin please rerender`
 
 :::note
-Current delays affect builds on `linux-ppc64le` and `linux-aarch64` via emulation or Travis ARM resources. Modify `conda-forge.yml` to remove problematic platforms if necessary.
+Current delays affect builds on `linux-ppc64le` and `linux-aarch64` via emulation or Travis ARM resources.
+Modify `conda-forge.yml` to remove problematic platforms if necessary.
 :::

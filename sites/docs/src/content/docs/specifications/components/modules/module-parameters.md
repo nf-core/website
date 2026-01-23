@@ -20,8 +20,10 @@ Use additional `input` value channels for such scenarios.
 
 ## Specification of multiple-threads or cores
 
-If the tool supports multi-threading, provide the appropriate parameter using the Nextflow `task` variable. For example, `--threads $task.cpus`.
+If the tool supports multi-threading, provide the appropriate parameter using the Nextflow `task` variable.
+For example, `--threads $task.cpus`.
 
 ## Evaluation of parameter within a module
 
-Define within the process any parameters that need to be evaluated in the context of a particular sample. For example, single-end/paired-end data.
+Define within the process any parameters that need to be evaluated in the context of a particular sample.
+For example, single-end/paired-end data.

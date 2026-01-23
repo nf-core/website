@@ -15,4 +15,5 @@ The command takes one argument: either the name of an nf-core pipeline (which wi
 The generated YAML file contains all parameters set to the pipeline default value with their description in comments.
 Use this template by uncommenting and modifying the values of parameters you want to pass to a pipeline run.
 
-Hidden options are not included by default. Include them using the `-x` or `--show-hidden` flag.
+Hidden options are not included by default.
+Include them using the `-x` or `--show-hidden` flag.

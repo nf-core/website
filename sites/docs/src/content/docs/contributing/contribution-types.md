@@ -22,7 +22,8 @@ The following sections describe how nf-core uses these contribution types.
 
 An `author` is someone who designed and wrote the original pipeline (prior to and including version 1.0) and served as the primary maintainer at that time.
 
-Someone may also be an `author` if they previously served as a lead `maintainer` of the pipeline. As a lead `maintainer`, they:
+Someone may also be an `author` if they previously served as a lead `maintainer` of the pipeline.
+As a lead `maintainer`, they:
 
 - Kept the pipeline up to date.
 - Reviewed pull requests.
@@ -34,7 +35,8 @@ A pipeline can have multiple authors.
 
 ### Maintainer
 
-A `maintainer` is currently active as a lead developer of the pipeline and regularly contributes code and manages the project. Maintainers:
+A `maintainer` is currently active as a lead developer of the pipeline and regularly contributes code and manages the project.
+Maintainers:
 
 - Keep the pipeline up to date.
 - Review pull requests.
@@ -52,7 +54,8 @@ You can optionally also add the `contributor` designation (see [Contributor](#co
 
 ### Contributor
 
-A `contributor` occasionally contributes to the pipeline through code, documentation, or other contributions, but doesn't have a management role. Contributors typically don't triage or resolve GitHub issues, but may occasionally contribute features or resolve bugs.
+A `contributor` occasionally contributes to the pipeline through code, documentation, or other contributions, but doesn't have a management role.
+Contributors typically don't triage or resolve GitHub issues, but may occasionally contribute features or resolve bugs.
 
 Contributors can be both current and past.
 
@@ -76,7 +79,8 @@ A person can have one or more contribution designations.
 Evaluate each contributor's role and apply the appropriate types.
 
 :::note{title="Important"}
-Never remove anyone from the contributor list. Acknowledge everyone who has contributed to the pipeline at any point in its history, whether in version 1 or version 10.
+Never remove anyone from the contributor list.
+Acknowledge everyone who has contributed to the pipeline at any point in its history, whether in version 1 or version 10.
 :::
 
 Community and collaboration are core to nf-core.
