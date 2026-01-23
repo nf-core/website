@@ -98,9 +98,9 @@ To run `nf-core/demo` with a Nextflow parameters file:
 1. Create `params.json` with the following contents:
 
    ```json
-   params {
-     input = 'samplesheet.csv' // This requires the samplesheet.csv created above
-     outdir = 'results'
+   {
+     "input": "samplesheet.csv",
+     "outdir": "results"
    }
    ```
 
