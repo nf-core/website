@@ -939,10 +939,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/ampliseq",
             "created_at": "2018-09-26T15:24:54Z",
-            "updated_at": "2026-01-16T09:25:45Z",
-            "pushed_at": "2026-01-22T21:08:46Z",
+            "updated_at": "2026-01-23T09:38:25Z",
+            "pushed_at": "2026-01-23T09:42:08Z",
             "homepage": "https://nf-co.re/ampliseq",
-            "size": 19480,
+            "size": 19499,
             "stargazers_count": 231,
             "watchers_count": 231,
             "language": "Nextflow",
@@ -1050,7 +1050,7 @@
             "contributors": [
                 {
                     "name": "d4straub",
-                    "count": 1798,
+                    "count": 1814,
                     "avatar_url": "https://avatars.githubusercontent.com/u/42973691?v=4"
                 },
                 {
@@ -1060,7 +1060,7 @@
                 },
                 {
                     "name": "erikrikarddaniel",
-                    "count": 166,
+                    "count": 176,
                     "avatar_url": "https://avatars.githubusercontent.com/u/1520576?v=4"
                 },
                 {
@@ -1240,9 +1240,9 @@
                 }
             ],
             "released_after_tools": true,
-            "head_sha": "3d5c7e5bec28de279337f3ffe3c312a45940b782",
+            "head_sha": "7cf7ed2b2a42f6144f607e7c7f511db12e398060",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/ampliseq/compare/3d5c7e5bec28de279337f3ffe3c312a45940b782...3d5c7e5bec28de279337f3ffe3c312a45940b782",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/ampliseq/compare/7cf7ed2b2a42f6144f607e7c7f511db12e398060...7cf7ed2b2a42f6144f607e7c7f511db12e398060",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -1260,6 +1260,51 @@
                 "defaultBranch": "master"
             },
             "releases": [
+                {
+                    "tag_name": "2.16.1",
+                    "published_at": "2026-01-23T09:42:08Z",
+                    "tag_sha": "7cf7ed2b2a42f6144f607e7c7f511db12e398060",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "cutadapt",
+                            "epang_place",
+                            "epang_split",
+                            "fastqc",
+                            "gappa_examineassign",
+                            "gappa_examinegraft",
+                            "gappa_examineheattree",
+                            "hmmer_eslalimask",
+                            "hmmer_eslreformat",
+                            "hmmer_hmmalign",
+                            "hmmer_hmmbuild",
+                            "kraken2_kraken2",
+                            "mafft",
+                            "multiqc",
+                            "pigz_uncompress",
+                            "untar",
+                            "vsearch_cluster",
+                            "vsearch_sintax",
+                            "vsearch_usearchglobal"
+                        ],
+                        "subworkflows": [
+                            "fasta_newick_epang_gappa",
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.04.8",
+                    "nf_core_version": "3.5.1",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "2.16.0",
                     "published_at": "2026-01-16T09:35:40Z",
@@ -2034,8 +2079,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-01-22T21:08:45Z",
-                    "tag_sha": "70693a931c7f7e2c58fa7edd095c4240dd624da9",
+                    "published_at": "2026-01-23T09:35:07Z",
+                    "tag_sha": "bb1f8f71500974df11901a013d63aa1d6c5fd905",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
