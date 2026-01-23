@@ -4,12 +4,16 @@ subtitle: How to add nf-core modules to pipelines
 shortTitle: Adding modules
 ---
 
-nf-core modules are standardized, reusable components that wrap individual bioinformatics tools. Each module includes the tool's process definition, container specifications, and metadata. By using modules from the central nf-core/modules repository, you benefit from community testing, standardized structure, and easier maintenance.
+nf-core modules are standardized, reusable components that wrap individual bioinformatics tools.
+Each module includes the tool's process definition, container specifications, and metadata.
+By using modules from the central nf-core/modules repository, you benefit from community testing, standardized structure, and easier maintenance.
 
-You can use nf-core tools to add these modules directly to your pipeline. Follow these steps to integrate a new nf-core module.
+You can use nf-core tools to add these modules directly to your pipeline.
+Follow these steps to integrate a new nf-core module.
 
 :::note
-Pipeline workflows may vary. This guide covers the most common integration steps.
+Pipeline workflows may vary.
+This guide covers the most common integration steps.
 :::
 
 ## Add an nf-core module

@@ -26,4 +26,5 @@ Sort results by latest release (`-s release`, default), when you last pulled a l
 
 To return results as JSON output for downstream use, use the `--json` flag.
 
-Archived pipelines are not returned by default. To include them, use the `--show_archived` flag.
+Archived pipelines are not returned by default.
+To include them, use the `--show_archived` flag.

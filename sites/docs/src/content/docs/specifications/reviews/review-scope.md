@@ -8,7 +8,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 ## Managing review feedback
 
-The review process should be flexible and pragmatic while ensuring code quality. These guidelines help balance thoroughness with forward progress.
+The review process should be flexible and pragmatic while ensuring code quality.
+These guidelines help balance thoroughness with forward progress.
 
 ## Dismissing outdated reviews
 
@@ -18,7 +19,8 @@ The review process should be flexible and pragmatic while ensuring code quality.
 
 Pull requests that have approving reviews but remaining open questions MAY be merged by the author after addressing the questions to a common-sense level of satisfaction.
 
-Not every question requires a perfect answer before merging. Use reasonable judgment to determine when concerns have been adequately addressed.
+Not every question requires a perfect answer before merging.
+Use reasonable judgment to determine when concerns have been adequately addressed.
 
 ## Handling abandoned reviews
 

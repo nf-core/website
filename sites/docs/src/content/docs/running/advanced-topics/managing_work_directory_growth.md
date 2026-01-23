@@ -5,11 +5,14 @@ shortTitle: Managing work directory growth
 parentWeight: 100
 ---
 
-The management of intermediate files generated during Nextflow pipeline execution is a challenge for some workflows. As pipelines increase in complexity and scale, work directories can rapidly consume available storage, potentially leading to pipeline failures. This guide summarizes strategies for managing work directory growth while maintaining pipeline reproducibility and debugging capabilities.
+The management of intermediate files generated during Nextflow pipeline execution is a challenge for some workflows.
+As pipelines increase in complexity and scale, work directories can rapidly consume available storage, potentially leading to pipeline failures.
+This guide summarizes strategies for managing work directory growth while maintaining pipeline reproducibility and debugging capabilities.
 
 ## Work directory accumulation
 
-The Nextflow work directory serves as an important component of the execution model, providing caching capabilities and resume functionality. During pipeline execution, Nextflow creates unique subdirectories for each task (e.g., `work/3f/70944c7a549b6221e1ccc7b4b21b62`) containing:
+The Nextflow work directory serves as an important component of the execution model, providing caching capabilities and resume functionality.
+During pipeline execution, Nextflow creates unique subdirectories for each task (e.g., `work/3f/70944c7a549b6221e1ccc7b4b21b62`) containing:
 
 - Symbolic links to input files
 - Intermediate output files
@@ -24,7 +27,8 @@ The following sections describe ways to manage the storage of files.
 
 ### Selective post-execution cleanup
 
-Nextflow's built-in `clean` command enables targeted removal of work directories. The following command preserves work directories from the current execution while removing directories from previous executions:
+Nextflow's built-in `clean` command enables targeted removal of work directories.
+The following command preserves work directories from the current execution while removing directories from previous executions:
 
 ```bash
 nextflow clean -f -before $(nextflow log -q | tail -n 1)
@@ -52,7 +56,8 @@ cleanup = true
 ```
 
 :::note
-Enabling automatic cleanup prevents the use of resume functionality for the affected pipeline execution. This configuration suits production pipelines where output reproducibility is assured and resume capability isn't required.
+Enabling automatic cleanup prevents the use of resume functionality for the affected pipeline execution.
+This configuration suits production pipelines where output reproducibility is assured and resume capability isn't required.
 :::
 
 ### Scratch directory implementation
@@ -133,9 +138,12 @@ process OPTIMIZED_ANALYSIS {
 
 ## Recommendations
 
-Effective management of Nextflow work directories requires a tailored approach. The Nextflow `clean` command provides essential functionality for storage recovery and work directory maintenance, though implementation must balance storage optimization with requirements for pipeline resumption and debugging.
+Effective management of Nextflow work directories requires a tailored approach.
+The Nextflow `clean` command provides essential functionality for storage recovery and work directory maintenance, though implementation must balance storage optimization with requirements for pipeline resumption and debugging.
 
-For development environments, combine reduced test datasets with manual cleanup for optimal flexibility. Production deployments benefit from automatic cleanup or dynamic solutions like `nf-boost`. HPC installations should leverage scratch directories to minimize shared storage impact.
+For development environments, combine reduced test datasets with manual cleanup for optimal flexibility.
+Production deployments benefit from automatic cleanup or dynamic solutions like `nf-boost`.
+HPC installations should leverage scratch directories to minimize shared storage impact.
 
 You should establish storage management policies incorporating:
 

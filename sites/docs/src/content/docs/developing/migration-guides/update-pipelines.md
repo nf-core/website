@@ -5,7 +5,8 @@ shortTitle: Migrating to topic channels
 parentWeight: 100
 ---
 
-[Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines. Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
+[Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
+Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
 
 This migration guide provides step-by-step instructions for three different scenarios:
 

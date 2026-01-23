@@ -5,7 +5,8 @@ shortTitle: Documentation
 weight: 5
 ---
 
-Each institutional profile requires a documentation file (`docs/<cluster_name>.md`) that explains how to use the profile and provides cluster-specific information. Clear documentation helps users at your institution get started quickly and troubleshoot common issues.
+Each institutional profile requires a documentation file (`docs/<cluster_name>.md`) that explains how to use the profile and provides cluster-specific information.
+Clear documentation helps users at your institution get started quickly and troubleshoot common issues.
 
 ## Required sections
 

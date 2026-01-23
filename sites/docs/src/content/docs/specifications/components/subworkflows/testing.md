@@ -12,14 +12,17 @@ Tests for subworkflows SHOULD be designed to be executable within the nf-core/mo
 
 Tests for subworkflows MUST, at a minimum, run on the GitHub repository CI with a stub test that replicates the generation of (empty) output files.
 
-Subworkflows tests do not necessarily need to execute 'standalone' (that is, run outside the nf-core/modules repository). For example, they do not need to be executable within a pipeline repository.
+Subworkflows tests do not necessarily need to execute 'standalone' (that is, run outside the nf-core/modules repository).
+For example, they do not need to be executable within a pipeline repository.
 
 :::info{title="Rationale" collapse}
 Some modules may require upstream modules or subworkflows to generate input files for the new module under construction if it is not possible or reasonable to upload those test data files to nf-core/test-datasets.
 
-If the test was to work 'standalone,' the pipeline would need to include all these upstream modules/subworkflows just to execute the module test—even if those modules are not used within the pipeline itself. This would lead to a lot of file 'pollution' within the pipeline repository.
+If the test was to work 'standalone,' the pipeline would need to include all these upstream modules/subworkflows just to execute the module test—even if those modules are not used within the pipeline itself.
+This would lead to a lot of file 'pollution' within the pipeline repository.
 
-Subworkflows installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests. Thus, it is considered unnecessary to duplicate subworkflow tests again.
+Subworkflows installed in the pipeline should already be tested to work correctly within the context of the pipeline with workflow- or pipeline-level tests.
+Thus, it is considered unnecessary to duplicate subworkflow tests again.
 :::
 
 :::note
@@ -63,7 +66,8 @@ For exmaple, make sure there are no md5sums representing empty files.
 
 ## Test names
 
-Test names SHOULD describe the test dataset and configuration. For example:
+Test names SHOULD describe the test dataset and configuration.
+For example:
 
 ```groovy
 test("homo_sapiens - [fastq1, fastq2] - bam")
@@ -93,7 +97,8 @@ New test data SHOULD only be uploaded to nf-core/test-datasets if there is absol
 
 ## Configuration
 
-Subworkflow nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a subworkflow. Define them in the `when` block of a test under the `params` scope.
+Subworkflow nf-tests SHOULD use a single `nextflow.config` to supply `ext.args` to a subworkflow.
+Define them in the `when` block of a test under the `params` scope.
 
 ```groovy {4-7} title="main.nf.test"
 config './nextflow.config'

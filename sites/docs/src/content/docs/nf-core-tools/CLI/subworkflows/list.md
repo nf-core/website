@@ -6,7 +6,8 @@ weight: 10
 parentWeight: 30
 ---
 
-The `nf-core subworkflows list` command provides the subcommands `remote` and `local` for listing subworkflows installed in a remote repository and in the local pipeline respectively. Both subcommands allow to use a pattern for filtering the subworkflows by keywords eg: `nf-core subworkflows list <subworkflow_name> <keyword>`.
+The `nf-core subworkflows list` command provides the subcommands `remote` and `local` for listing subworkflows installed in a remote repository and in the local pipeline respectively.
+Both subcommands allow to use a pattern for filtering the subworkflows by keywords eg: `nf-core subworkflows list <subworkflow_name> <keyword>`.
 
 ## List remote subworkflows
 
@@ -22,7 +23,9 @@ head: 25
 
 ## List installed subworkflows
 
-To list subworkflows installed in a local pipeline directory you can use `nf-core subworkflows list local`. This will list the subworkflows install in the current working directory by default. If you want to specify another directory, use the `--dir <pipeline_dir>` flag.
+To list subworkflows installed in a local pipeline directory you can use `nf-core subworkflows list local`.
+This will list the subworkflows install in the current working directory by default.
+If you want to specify another directory, use the `--dir <pipeline_dir>` flag.
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing

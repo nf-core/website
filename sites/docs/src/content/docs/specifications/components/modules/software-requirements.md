@@ -33,8 +33,10 @@ Do not pin Conda packages to a build because they can vary on different platform
 
 ## Re-use of multi-tool containers
 
-Multi-tool containers are also available on BioContainers. For example, [`bwa` and `samtools`](https://biocontainers.pro/#/tools/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40).
-Install and use the [`galaxy-tool-util`](https://anaconda.org/bioconda/galaxy-tool-util) package to search for both single- and multi-tool containers available in Conda, Docker and Singularity format. For example, to search for Docker (hosted on Quay.io) and Singularity multi-tool containers with both `bowtie` and `samtools` installed, use the following command:
+Multi-tool containers are also available on BioContainers.
+For example, [`bwa` and `samtools`](https://biocontainers.pro/#/tools/mulled-v2-fe8faa35dbf6dc65a0f7f5d4ea12e31a79f73e40).
+Install and use the [`galaxy-tool-util`](https://anaconda.org/bioconda/galaxy-tool-util) package to search for both single- and multi-tool containers available in Conda, Docker and Singularity format.
+For example, to search for Docker (hosted on Quay.io) and Singularity multi-tool containers with both `bowtie` and `samtools` installed, use the following command:
 
 ```console
 mulled-search --destination quay singularity --channel bioconda --search bowtie samtools | grep "mulled"
