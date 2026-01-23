@@ -72,6 +72,8 @@ While VS Code is widely used, several other editors also support Nextflow develo
 
 ### Vim
 
+<!-- TODO: Verify Nextflow GitHub link - may be dead/incorrect -->
+
 Vim has official plugin support through the [Nextflow language extension](https://github.com/nextflow-io/nextflow/tree/master/editors/vim). Additional useful packages include:
 
 - **[octo.nvim](https://github.com/pwntester/octo.nvim)**: Edit and review GitHub issues and pull requests directly within the editor
@@ -86,6 +88,8 @@ An [Emacs mode](https://github.com/Emiller88/nextflow-mode) provides syntax high
 
 ### Sublime Text
 
+<!-- TODO: Verify Sublime Text package link - package may not exist (searches show nf-core package instead) -->
+
 Sublime Text benefits from a [community-built plugin](https://packagecontrol.io/packages/Nextflow) offering:
 
 - Syntax highlighting compliant with DSL2
@@ -96,6 +100,8 @@ Sublime Text benefits from a [community-built plugin](https://packagecontrol.io/
 The plugin is available through package control.
 
 ## Additional resources
+
+<!-- TODO: Fix astro errors with link to dev containers page -->
 
 For more information about installing install VS Code and other useful extensions, see:
 

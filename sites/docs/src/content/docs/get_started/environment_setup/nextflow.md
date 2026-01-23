@@ -56,6 +56,8 @@ To install Nextflow with the self-installing package:
 
 ### Conda installation
 
+<!-- TODO: Verify if specifying bioconda::nextflow in a dedicated environment gets the latest version -->
+
 To install Nextflow with Conda:
 
 1. Create an environment with Nextflow:
@@ -81,6 +83,8 @@ The Conda installation method is not recommended as it may install outdated vers
 :::
 
 ### Standalone distribution
+
+<!-- TODO: Consider adding instructions to move the distribution asset to bin directory (similar to self-installing package) -->
 
 For offline or restricted environments, you can download a pre-built executable from the [Nextflow GitHub releases](https://github.com/nextflow-io/nextflow/releases).
 

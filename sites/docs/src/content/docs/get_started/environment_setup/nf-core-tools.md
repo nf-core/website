@@ -173,6 +173,8 @@ conda create --name nf-core-env python=3.11 nf-core
 
 ### Permission errors with pip
 
+<!-- TODO: Add pipx as an alternative solution for permission errors -->
+
 **Problem:**
 
 Permission denied when installing with pip

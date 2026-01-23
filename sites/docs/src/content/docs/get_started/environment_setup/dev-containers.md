@@ -39,6 +39,8 @@ Local VS Code Dev Containers require additional SSH key forwarding setup for rem
 
 ## Run pipelines
 
+<!-- TODO: Consider if this section is too detailed for getting started - may be jumping ahead before users complete the getting started guide -->
+
 Once the containerised environment loads, run workflows using the singularity profile:
 
 ```bash
@@ -56,6 +58,8 @@ The test data processes through the pipeline using Apptainer, with results saved
 The Dev Containers approach prioritises ease of use over processing power, making it suitable for testing but not production datasets.
 
 ## Test modules with nf-test
+
+<!-- TODO: Consider if this section is too advanced for getting started - may be jumping ahead as it's more relevant for development -->
 
 The modules repository branch in Codespaces includes nf-test capabilities for debugging individual modules.
 
@@ -96,6 +100,8 @@ See [nf-core extension pack](./vs-code.md#nf-core-extension-pack) for more infor
 **Features**: Includes the "docker-outside-of-docker" feature for container support
 
 ### Customisation options
+
+<!-- TODO: Consider if this section is too detailed for getting started - essential settings/customisation options may be too advanced -->
 
 You can extend your environment by:
 
