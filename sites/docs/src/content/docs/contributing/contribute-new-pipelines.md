@@ -4,9 +4,12 @@ subtitle: How to contribute a new nf-core pipeline
 shortTitle: New pipelines
 ---
 
-nf-core pipelines use a standardized template that provides file structure, boilerplate code, and git infrastructure for template synchronization. By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
+nf-core pipelines use a standardized template that provides file structure, boilerplate code, and git infrastructure for template synchronization.
+By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
 
-Follow these steps to create a new nf-core pipeline, from initial proposal through to development. You will start by creating a new pipeline locally and working with it on your own GitHub account. Once you have a working version, you can request to move the repository to the nf-core GitHub organisation for final development, review, and release.
+Follow these steps to create a new nf-core pipeline, from initial proposal through to development.
+You will start by creating a new pipeline locally and working with it on your own GitHub account.
+Once you have a working version, you can request to move the repository to the nf-core GitHub organisation for final development, review, and release.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -63,7 +66,9 @@ To create a new pipeline from the nf-core template:
    - All development should happen on `dev` or on other branches that get merged into `dev`.
 
 :::tip
-If you have an existing Nextflow pipeline, start fresh with the nf-core template and copy your code into the relevant places. This approach is usually easier than converting an existing pipeline. Contact the core team on Slack if you need guidance.
+If you have an existing Nextflow pipeline, start fresh with the nf-core template and copy your code into the relevant places.
+This approach is usually easier than converting an existing pipeline.
+Contact the core team on Slack if you need guidance.
 :::
 
 ## Push to GitHub
@@ -72,7 +77,8 @@ To push your new pipeline to GitHub:
 
 1. Create an empty repository on GitHub under your personal account.
    - Go to GitHub and select **+** then **New Repository**.
-   - Do not initialise the repository with any files (`README`, `LICENSE`, or `.gitignore`). The nf-core template already includes these files.
+   - Do not initialise the repository with any files (`README`, `LICENSE`, or `.gitignore`).
+   The nf-core template already includes these files.
 
 1. Add the GitHub repository as a remote to your local git repository:
 
@@ -125,10 +131,13 @@ To develop your pipeline:
 
 ## Set up test data
 
-Test data is essential for validating your pipeline. nf-core uses the dedicated [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository to store test data separately from pipeline code. This prevents repository bloat and ensures test data remains small and fast to execute.
+Test data is essential for validating your pipeline.
+nf-core uses the dedicated [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository to store test data separately from pipeline code.
+This prevents repository bloat and ensures test data remains small and fast to execute.
 
 :::note
-GitHub Actions automatically run tests whenever someone updates the pipeline code. nf-core uses nf-test to check pipeline results, and regular test runs catch syntax errors and other problems that cause Nextflow to exit with an error.
+GitHub Actions automatically run tests whenever someone updates the pipeline code.
+nf-core uses nf-test to check pipeline results, and regular test runs catch syntax errors and other problems that cause Nextflow to exit with an error.
 :::
 
 ### Add test data to nf-core/test-datasets
@@ -222,7 +231,8 @@ You must be part of the nf-core organisation before transferring. If you are not
 :::
 
 :::note
-Repositories should be transferred instead of forked to nf-core. Forking causes pull requests to default to the original user's fork rather than the nf-core repository, which can only be fixed by requesting manual detachment from GitHub support.
+Repositories should be transferred instead of forked to nf-core.
+Forking causes pull requests to default to the original user's fork rather than the nf-core repository, which can only be fixed by requesting manual detachment from GitHub support.
 :::
 
 ### Configure branches
@@ -246,10 +256,12 @@ Configure the following repository settings on GitHub:
 - Protect the `master` branch to require review and passing tests.
 - Set write permissions for `nf-core/all` and admin permissions for `nf-core/admin`.
 
-Verify these settings using the nf-core [repository health web page](https://nf-co.re/pipeline_health). This page reports the status of various checks and can fix errors automatically via the GitHub API.
+Verify these settings using the nf-core [repository health web page](https://nf-co.re/pipeline_health).
+This page reports the status of various checks and can fix errors automatically via the GitHub API.
 
 :::note
-When working with the nf-core repository, tests for pull requests against the `master` branch will fail because `master` should only contain code from the last release. Use the `dev` branch for new work and make all pull requests against `dev`.
+When working with the nf-core repository, tests for pull requests against the `master` branch will fail because `master` should only contain code from the last release.
+Use the `dev` branch for new work and make all pull requests against `dev`.
 :::
 
 ## Make the first release
@@ -275,7 +287,8 @@ To prepare for release:
    - Release versions must be numeric and follow [Semantic Versioning](https://semver.org/).
 
 :::tip
-The version number exists in many places throughout the codebase. Use `nf-core pipelines bump-version` to update all occurrences consistently rather than editing manually.
+The version number exists in many places throughout the codebase.
+Use `nf-core pipelines bump-version` to update all occurrences consistently rather than editing manually.
 :::
 
 ### Lint the pipeline
@@ -311,7 +324,9 @@ Reviewers will provide feedback on:
 - Pipeline code structure and functionality
 
 :::tip
-While waiting for review, consider reviewing another community member's release pull request. This helps you understand the review process and contributes to the community. See the documentation pinned in [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) for instructions.
+While waiting for review, consider reviewing another community member's release pull request.
+This helps you understand the review process and contributes to the community.
+See the documentation pinned in [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) for instructions.
 :::
 
 ### Complete the release
@@ -359,7 +374,8 @@ After your first release, continue development following these practices:
    - If tests pass, the pull request can be merged and a new release made.
 
 :::note
-The `master` branch should only contain the commit from the latest release. This is important because the commit ID is used to determine whether a pipeline is up to date.
+The `master` branch should only contain the commit from the latest release.
+This is important because the commit ID is used to determine whether a pipeline is up to date.
 :::
 
 ## Additional considerations
@@ -373,7 +389,9 @@ While nf-core encourages open development, private development is possible with 
 - Make the repository public before release, or request reviews in the `#request-review` Slack channel if you cannot make it public until after release.
 
 :::warning
-Private pipelines receive no priority over publicly developed pipelines. If another similar pipeline is released first, your pipeline may not be accepted into nf-core. In this case, you may need to release independently or merge with the existing pipeline.
+Private pipelines receive no priority over publicly developed pipelines.
+If another similar pipeline is released first, your pipeline may not be accepted into nf-core.
+In this case, you may need to release independently or merge with the existing pipeline.
 :::
 
 If you plan to develop a pipeline privately and release through nf-core, contact the core team on Slack to discuss your strategy.
