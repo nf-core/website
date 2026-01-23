@@ -45,7 +45,9 @@ Local VS Code Dev Containers require additional SSH key forwarding setup for rem
 
 ## Testing your environment
 
-Once your environment is running, verify the setup by opening a terminal in VS Code or Codespaces and running:
+<!-- TODO: Consider if this section is too detailed for getting started - may be jumping ahead before users complete the getting started guide -->
+
+Once the containerised environment loads, run workflows using the singularity profile:
 
 ```bash
 nf-core --version
@@ -72,6 +74,8 @@ The Dev Containers uses `nfcore/devcontainer:latest` and includes:
 See [nf-core extension pack](./vs-code.md#nf-core-extension-pack) for more information about VS Code packages.
 
 ## Troubleshooting
+
+<!-- TODO: Consider if this section is too detailed for getting started - essential settings/customisation options may be too advanced -->
 
 ### SKU name errors when creating Codespaces
 

@@ -10,6 +10,8 @@ This section guides you through installing and configuring everything you need t
 
 ## What you'll need
 
+<!-- TODO: Fix astro errors with links (Cannot read properties of undefined (reading 'id')) -->
+
 The core requirements for running nf-core pipelines are:
 
 1. **[Nextflow](../environment_setup/nextflow.md)**: The workflow management system that powers all nf-core pipelines
