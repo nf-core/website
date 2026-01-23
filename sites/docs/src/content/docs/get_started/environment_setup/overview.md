@@ -18,7 +18,7 @@ The core requirements for running nf-core pipelines are:
 These additional tools are recommended for development:
 
 3. **[nf-core tools](./nf-core-tools.md)**: Command-line tools for working with nf-core pipelines (optional, but recommended)
-4. A code editor: With Nextflow extensions such as **[VS Code](./vs-code.md)** (optional, for pipeline development)
+4. **[VS Code](./vs-code.md)**: A code editor with an official Nextflow extension (optional, for pipeline development)
 
 ## Getting started
 
