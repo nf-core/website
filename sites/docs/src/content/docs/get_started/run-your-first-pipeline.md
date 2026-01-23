@@ -5,7 +5,7 @@ shortTitle: Run your first pipeline
 weight: 3
 ---
 
-With Nextflow and your software dependency manager installed, you are ready to run your first nf-core pipeline!
+With Nextflow and your software dependency manager installed, you are ready to run your first nf-core pipeline.
 Running a test pipeline is ideal for verifying your environment is correctly configured, learning how nf-core pipelines work, and testing your installation.
 
 ## nf-core/demo
@@ -121,7 +121,7 @@ To run `nf-core/demo` with a Nextflow parameters file:
 
 ### Resume interrupted runs
 
-To resume an interrupted run (for example due to an error, or manual cancellation), add the `-resume` flag:
+To resume an interrupted run (for example, due to an error, or manual cancellation), add the `-resume` flag:
 
 ```bash
 nextflow run nf-core/demo \
@@ -136,7 +136,7 @@ Replace `<docker>` with your preferred software dependency and compute environme
 Only steps with changed inputs will re-execute, saving time and computational resources.
 
 :::tip
-Try pressing <kbd>Ctrl</kbd>+<kbd>c</kbd> during midway through pipeline run to simulate an interruption.
+Press <kbd>Ctrl</kbd>+<kbd>c</kbd> midway through pipeline run to simulate an interruption.
 Then re-run the same command with `-resume` to see how it picks up from where it left off, due to the presence of 'cached' pipeline steps.
 :::
 
@@ -153,7 +153,7 @@ nextflow run nf-core/demo \
 ```
 
 :::tip
-Version information is automatically recorded in pipeline reports ine `pipeline_info/` results subdirectory.
+Version information is automatically recorded in pipeline reports in the `pipeline_info/` results subdirectory.
 :::
 
 ## Next steps

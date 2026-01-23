@@ -5,8 +5,8 @@ shortTitle: Dev Containers
 weight: 6
 ---
 
-nf-core repositories offer [Development Container](https://containers.dev/) (dev containers) configurations.
-Dev containers offer a portable development environment that can be executed in a web browser such as cloud-based [GitHub Codespaces](https://github.com/codespaces) or in Visual Studio Code locally.
+nf-core repositories offer [Development Container](https://containers.dev/) (dev container) configurations.
+Dev containers offer a portable development environment that can be executed in a web browser, such as cloud-based [GitHub Codespaces](https://github.com/codespaces) or local Visual Studio Code.
 These environments package all required software in isolated, containerised spaces for development.
 
 :::note

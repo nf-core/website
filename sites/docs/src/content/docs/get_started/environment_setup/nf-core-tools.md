@@ -25,7 +25,7 @@ Choose the method that best fits your environment.
 
 Conda is the recommended installation method as it handles all dependencies automatically.
 
-To install nf-core tools in a dedicated environment with both nf-core tools and Nextflow:
+To install nf-core tools in a dedicated environment with nf-core tools and Nextflow:
 
 1. Create a new environment:
 
