@@ -32,7 +32,7 @@ Before you start writing, familiarize yourself with these essential resources:
 
 ### Style guide
 
-The [style guide](../developers/documentation/style_guide) covers all the essential styling rules for nf-core documentation, including:
+The [style guide](../developers/documentation/style_guide.md) covers all the essential styling rules for nf-core documentation, including:
 
 - Voice and tone guidelines for conversational, concise writing
 - Grammar and punctuation rules (British English, active voice, Oxford comma)
