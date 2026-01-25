@@ -2,7 +2,7 @@
 title: Style guide
 subtitle: nf-core style guide rules
 shortTitle: Style guide
-weight: 3
+weight: 4
 ---
 
 <!-- TODO: Add high level section here -->

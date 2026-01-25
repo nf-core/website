@@ -2,7 +2,7 @@
 title: Reference genomes
 subtitle: Learn about nf-core reference genomes
 shortTitle: Reference genomes
-weight: 1
+weight: 2
 ---
 
 Many nf-core pipelines use reference genomes for alignment, annotation, and similar tasks.

@@ -2,6 +2,7 @@
 title: Writing pipeline methods text for MultiQC
 subtitle: Customize automated methods descriptions in MultiQC reports
 shortTitle: Automated methods
+weight: 1
 ---
 
 One of the ways that nf-core pipelines support reproducible analysis and providing proper credit to the wider bioinformatics community is by providing automation for the generation of 'methods texts' that can be used in scientific publications.

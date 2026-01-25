@@ -2,6 +2,7 @@
 title: Adding modules to pipelines
 subtitle: How to add nf-core modules to pipelines
 shortTitle: Adding modules
+weight: 1
 ---
 
 nf-core modules are standardized, reusable components that wrap individual bioinformatics tools.

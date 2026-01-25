@@ -2,7 +2,7 @@
 title: Using nf-core/configs outside nf-core
 subtitle: Integrating institutional profiles into custom workflows
 shortTitle: nf-core/configs outside nf-core
-weight: 7
+weight: 5
 ---
 
 Institutional profiles from the nf-core/configs repository can be integrated into custom scripts and workflows, extending their utility beyond nf-core pipelines.
