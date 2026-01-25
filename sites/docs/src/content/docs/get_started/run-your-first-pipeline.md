@@ -5,13 +5,14 @@ shortTitle: Run your first pipeline
 weight: 3
 ---
 
-With Nextflow and your software dependency manager installed, you are ready to run your first nf-core pipeline. It is ideal for, verifying your environment is correctly configured, learning how nf-core pipelines work, and testing your installation.
+With Nextflow and your software dependency manager installed, you are ready to run your first nf-core pipeline.
+Running a test pipeline is ideal for verifying your environment is correctly configured, learning how nf-core pipelines work, and testing your installation.
 
 ## nf-core/demo
 
-[`nf-core/demo`](https://nf-co.re/demo) is a lightweight demonstration pipeline designed to introduce running nf-core pipelines. It performs basic quality control and processing on sequencing data, showcasing the structure and best practices followed by all nf-core pipelines.
+[`nf-core/demo`](https://nf-co.re/demo) is a lightweight demonstration pipeline designed to introduce running nf-core pipelines. It performs basic quality control and processing on genomic sequencing data, showcasing the structure and best practices followed by all nf-core pipelines.
 
-The [`nf-core/demo`] pipeline runs three processes:
+The `nf-core/demo` pipeline runs three processes:
 
 1. Read QC ([FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
    - Quality control checks on raw sequencing reads
@@ -33,8 +34,10 @@ To run `nf-core/demo` with test data:
 1. Run `nf-core/demo` with the built-in test profile and a profile to manage software dependencies:
 
    ```bash
-   nextflow run nf-core/demo -profile test,docker --outdir results
+   nextflow run nf-core/demo -profile test,<docker> --outdir results
    ```
+
+   Replace `<docker>` with your preferred software dependency and compute environment manager.
 
    :::tip
    Common configure software dependencies and compute environments include:
@@ -42,7 +45,8 @@ To run `nf-core/demo` with test data:
    - `singularity`: Uses Singularity containers
    - `conda`: Uses Conda environments
 
-   Combine profiles with commas: `-profile test,docker`
+   Combine profiles with commas: `-profile test,docker`.
+   For a full list of supported software management tools, see [Software dependencies](./environment_setup/software-dependencies.md).
    :::
 
 1. Once complete, view your `results/` directory:
@@ -60,7 +64,7 @@ To run `nf-core/demo` with test data:
 
 To run `nf-core/demo` with your own sequencing data:
 
-1. Create `samplesheet.csv` with the following contents:
+1. Create a comma-separated table called `samplesheet.csv` with the following columns:
 
    | Column    | Description                                                         |
    | --------- | ------------------------------------------------------------------- |
@@ -96,9 +100,9 @@ To run `nf-core/demo` with a parameters file:
 1. Create `params.json` with the following contents:
 
    ```json
-   params {
-     input = 'samplesheet.csv' // This requires the samplesheet.csv created above
-     outdir = 'results'
+   {
+     "input": "samplesheet.csv",
+     "outdir": "results"
    }
    ```
 
@@ -114,21 +118,30 @@ To run `nf-core/demo` with a parameters file:
 
    :::tip
    Parameter files make it easier to rerun pipelines with the same settings and keep track of your analysis configurations.
+   They can also be used to publish alongside scientific publications to enhance reproducibility.
+   Make sure to exclude hardcoded file paths specific to your system.
    :::
 
 ### Resume interrupted runs
 
-To resume an interrupted run, add the `-resume` flag:
+To resume an interrupted run (for example, due to an error, or manual cancellation), add the `-resume` flag:
 
 ```bash
 nextflow run nf-core/demo \
-  -profile docker \
+  -profile <docker> \
   --input samplesheet.csv \
   --outdir results \
   -resume
 ```
 
+Replace `<docker>` with your preferred software dependency and compute environment manager.
+
 Only steps with changed inputs will re-execute, saving time and computational resources.
+
+:::tip
+Press <kbd>Ctrl</kbd>+<kbd>c</kbd> midway through pipeline run to simulate an interruption.
+Then re-run the same command with `-resume` to see how it picks up from where it left off, due to the presence of 'cached' pipeline steps.
+:::
 
 ### Version control
 
@@ -143,7 +156,7 @@ nextflow run nf-core/demo \
 ```
 
 :::tip
-Version information is automatically recorded in pipeline reports. Check [available releases](https://github.com/nf-core/demo/releases) on GitHub.
+Version information is automatically recorded in pipeline reports in the `pipeline_info/` results subdirectory.
 :::
 
 ## Next steps
@@ -151,5 +164,5 @@ Version information is automatically recorded in pipeline reports. Check [availa
 Now that you've successfully run your first nf-core pipeline:
 
 - Browse the [nf-core pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research area
-- Learn to adjust resource requirements and parameters for your infrastructure
+- Learn to [adjust resource requirements and parameters](../running/configuration/overview.md) for your infrastructure
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community

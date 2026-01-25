@@ -5,7 +5,8 @@ shortTitle: VS Code
 weight: 5
 ---
 
-Visual Studio Code (VS Code) is a popular, free, and open-source code editor that supports Nextflow and nf-core pipeline development.
+Visual Studio Code (VS Code) is a popular, free, and open-source code editor.
+VS Code has a dedicated official extension that is useful for Nextflow and nf-core pipeline development.
 
 ## Installation
 
@@ -23,6 +24,7 @@ To install an extension:
 
 1. Open VS Code
 2. Select the Extensions icon in the left sidebar
+   - Alternatively, open the command palette via <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd> and type `Extensions: Install Extension`
 3. Search for the extension name
 4. Select **Install**
 
@@ -106,4 +108,4 @@ The plugin is available through package control.
 For more information about installing install VS Code and other useful extensions, see:
 
 - Nextflow [environment setup](https://nextflow.io/docs/latest/developer-env.html)
-- [Set up Dev Containers in VS Code](./dev-containers.md#set-up-in-visual-studio-code)
+- [Set up Dev Containers in VS Code](../dev-containers#set-up-in-visual-studio-code)
