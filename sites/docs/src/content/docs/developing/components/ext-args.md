@@ -2,7 +2,6 @@
 title: ext arguments
 subtitle: Configure tool-specific options in nf-core components
 shortTitle: ext arguments
-weight: 5
 ---
 
 The `ext` directive in Nextflow allows you to configure tool-specific options for nf-core modules and subworkflows.

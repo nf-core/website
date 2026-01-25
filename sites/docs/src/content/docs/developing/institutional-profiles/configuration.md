@@ -2,7 +2,6 @@
 title: Configuration file components
 subtitle: Structuring your institutional profile configuration
 shortTitle: Configuration
-weight: 2
 ---
 
 The main configuration file (`conf/<cluster_name>.config`) defines all cluster-specific settings using Nextflow's configuration syntax.

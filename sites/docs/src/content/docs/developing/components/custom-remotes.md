@@ -2,7 +2,6 @@
 title: Setting custom remotes
 subtitle: Set a custom remote for modules and subworkflows
 shortTitle: Setting custom remotes
-weight: 4
 ---
 
 The `modules` and `subworkflows` command groups come with two flags for specifying a custom remote:

@@ -2,7 +2,6 @@
 title: Configuring pipelines for your system
 subtitle: Learn how to configure pipelines for your system
 shortTitle: System requirements
-weight: 2
 ---
 
 nf-core pipelines work on different computational infrastructures, from laptops to HPC clusters and cloud platforms.

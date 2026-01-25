@@ -2,7 +2,6 @@
 title: Run nf-core pipelines on Google Colab
 subtitle: A guide for using cloud resources with Google Colab
 shortTitle: Google Colab
-parentWeight: 1
 ---
 
 This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments.

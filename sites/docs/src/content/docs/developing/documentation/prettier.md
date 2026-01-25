@@ -2,7 +2,6 @@
 title: Code formatting
 subtitle: Using Prettier and Ruff to maintain consistent code style
 shortTitle: Code formatting
-weight: 3
 ---
 
 The nf-core community uses automated code formatting tools to maintain a consistent style across repositories.

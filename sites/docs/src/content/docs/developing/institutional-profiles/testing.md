@@ -2,7 +2,6 @@
 title: Testing profiles
 subtitle: Testing your institutional profile before submission
 shortTitle: Testing
-weight: 7
 ---
 
 Before submitting your institutional profile to nf-core/configs, test it thoroughly to verify that all settings work correctly.

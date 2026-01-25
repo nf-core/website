@@ -1,7 +1,6 @@
 ---
 title: Colours
 subtitle: nf-core colour reference
-weight: 2
 ---
 
 The nf-core brand uses a consistent colour palette across all materials.

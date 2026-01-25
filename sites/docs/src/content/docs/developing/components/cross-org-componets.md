@@ -2,7 +2,6 @@
 title: Cross-organisational components
 subtitle: Use modules from multiple organisations in subworkflows
 shortTitle: Cross-organisational components
-weight: 3
 ---
 
 You can specify individual remotes for each module within a subworkflow's `meta.yml` file.

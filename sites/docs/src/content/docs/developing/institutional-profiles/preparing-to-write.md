@@ -2,7 +2,6 @@
 title: Preparing to write a profile
 subtitle: Information you need before creating an institutional profile
 shortTitle: Preparing to write
-weight: 6
 ---
 
 Before creating an institutional profile, gather critical information about your cluster and confirm that you have permission to share configuration details publicly.

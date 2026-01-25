@@ -2,7 +2,6 @@
 title: ARM64 on Bioconda
 subtitle: Enabling existing Bioconda and Conda-forge packages to work on ARM64 architecture
 shortTitle: ARM64 on Bioconda
-weight: 1
 ---
 
 ARM64 support is increasingly important as cloud providers offer ARM-based instances (like AWS Graviton) that are 20-40% cheaper than x86 alternatives with comparable performance.

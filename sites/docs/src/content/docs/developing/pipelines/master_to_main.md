@@ -2,7 +2,6 @@
 title: Renaming branches
 subtitle: How to switch your pipeline's default branch from `master` to `main`
 shortTitle: Renaming branches
-weight: 3
 ---
 
 Pipeline developers may choose to change the pipeline's default branch from `master` to `main` for consistency with other repositories.

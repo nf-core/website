@@ -2,7 +2,6 @@
 title: Seqera Containers
 subtitle: Using Seqera Containers in nf-core modules
 shortTitle: Seqera Containers
-weight: 2
 ---
 
 Seqera Containers simplifies the container creation process for nf-core modules.
