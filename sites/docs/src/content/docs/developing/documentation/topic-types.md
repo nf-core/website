@@ -2,7 +2,7 @@
 title: Topic types
 subtitle: Documentation topic types
 shortTitle: Topic types
-weight: 3
+weight: 5
 ---
 
 Documentation topic types provide a framework for organizing content.

@@ -2,6 +2,7 @@
 title: Harshil alignment™️
 subtitle: Formatting your Nextflow code to make nf-core core members happy
 shortTitle: Harshil alignment
+weight: 1
 ---
 
 The Harshil Alignment™️ format is the whitespace-happy code style that was introduced by a certain core member to get on everyone's nerves, but then make subsequently develop Stockholm Syndrome so that no-one in nf-core else now can look at Nextflow code without it.

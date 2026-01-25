@@ -2,7 +2,7 @@
 title: Markdown on the nf-core website
 subtitle: Special content elements on nf-co.re
 shortTitle: Markdown
-weight: 4
+weight: 2
 ---
 
 We write all of the nf-core documentation, including pipelines, in [Markdown](https://www.markdownguide.org/).

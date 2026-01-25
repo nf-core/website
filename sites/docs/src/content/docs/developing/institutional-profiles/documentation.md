@@ -2,7 +2,7 @@
 title: Documentation requirements
 subtitle: What to include in your institutional profile documentation
 shortTitle: Documentation
-weight: 5
+weight: 3
 ---
 
 Each institutional profile requires a documentation file (`docs/<cluster_name>.md`) that explains how to use the profile and provides cluster-specific information.
