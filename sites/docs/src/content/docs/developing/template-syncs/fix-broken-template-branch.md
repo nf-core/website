@@ -2,7 +2,6 @@
 title: Fixing a broken TEMPLATE branch
 description: How to fix a broken TEMPLATE branch
 shortTitle: Fixing a broken TEMPLATE branch
-weight: 2
 ---
 
 If you resolve merge conflicts through the GitHub web interface, the commit history from your `dev` branch merges into `TEMPLATE`.

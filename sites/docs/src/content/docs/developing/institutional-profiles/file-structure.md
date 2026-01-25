@@ -2,7 +2,6 @@
 title: File structure requirements
 subtitle: Which files to create or modify for your institutional profile
 shortTitle: File structure
-weight: 4
 ---
 
 Institutional profiles require specific files in the [nf-core/configs](https://github.com/nf-core/configs) repository.

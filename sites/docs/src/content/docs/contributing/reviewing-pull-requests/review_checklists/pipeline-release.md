@@ -3,7 +3,6 @@ title: Review checklist for pipeline releases
 subtitle: A checklist for reviewing pipeline release PRs
 shortTitle: Pipelines
 markdownPlugin: checklist
-weight: 2
 ---
 
 <!-- TODO: Add links to other pages and guide where possible -->

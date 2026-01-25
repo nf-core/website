@@ -1,7 +1,6 @@
 ---
 title: Presentations
 subtitle: Examples on how nf-core can be presented at events
-weight: 4
 ---
 
 The community is welcome to present various aspects of nf-core, e.g., posters or oral presentations about pipelines at conferences.
