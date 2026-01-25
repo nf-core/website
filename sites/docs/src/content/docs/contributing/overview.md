@@ -1,7 +1,7 @@
 ---
 title: Overview
 subtitle: Contributing to nf-core pipelines
-shortTitle: Markdown
+shortTitle: Overview
 weight: 1
 ---
 
