@@ -86,6 +86,7 @@ To implement your component:
    - Create test snapshots to verify outputs match expected results.
    - Add multiple test scenarios if applicable (e.g., single-end and paired-end data).
    - For large datasets requiring stub tests, document alternative testing procedures.
+   - See the [Testing documentation](../testing/overview.md) for comprehensive guides on writing assertions and handling complex testing scenarios.
 
 :::note
 All components require test workflows.
