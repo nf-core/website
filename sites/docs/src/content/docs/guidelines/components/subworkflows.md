@@ -63,8 +63,22 @@ Channel names MUST follow `snake_case` convention and be all lower case.
 
 ### Input channel name structure
 
-Input channel names SHOULD signify the input object type.
-For example, a single value input channel will be prefixed with `val_`, whereas input channels with multiple elements (e.g. meta map + file) should be prefixed with `ch_`.
+Input channel names SHOULD signify the dataflow input object type.
+Nextflow supports dataflow [channels](https://www.nextflow.io/docs/latest/workflow.html#channels) and dataflow [values](https://www.nextflow.io/docs/latest/workflow.html#values).
+Input names for channel inputs MUST be prefixed with `ch_`.
+Input names for value inputs SHOULD be prefixed with `val_`, unless they will be involved in invoking an explicit action.
+
+For example:
+
+- `skip_`, for boolean flags that allow users to skip specific blocks of code execution
+- `run_`, for boolean flags that allow users to enable specific blocks of code execution
+- `remove_`, for variables that might indicate metadata column names to be removed from a meta value within a channel
+
+:::{info title='Rationale'}
+We want to make it easier for developers to quickly understand what will be required as input for using a (sub)workflow within a pipeline.
+Dataflow channels and dataflow values within Nextflow require different handling, thus it is important to distinguish between the two.
+In _some_ cases it might be more intuitive for a developer to understand what each _value_ input does by using a different prefix, because dataflow values can be quite diverse in their contents.
+:::
 
 ### Output channel name structure
 
