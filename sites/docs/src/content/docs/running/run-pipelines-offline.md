@@ -21,21 +21,21 @@ Running pipelines offline requires three main components:
 To transfer Nextflow to an offline system:
 
 1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
-1. Run your pipeline locally.
+2. Run your pipeline locally.
 
    :::note
    Nextflow fetches the required plugins.
 It does not need to run to completion.
    :::
 
-1. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
-1. In your Nextflow configuration file, specify each plugin (both name and version), including default plugins.
+3. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
+4. In your Nextflow configuration file, specify each plugin (both name and version), including default plugins.
 
    :::note
    This prevents Nextflow from trying to download newer versions of plugins.
    :::
 
-1. Add the following environment variable in your `~/.bashrc` file:
+5. Add the following environment variable in your `~/.bashrc` file:
 
    ```bash title=".bashrc"
    export NXF_OFFLINE='true'
@@ -55,18 +55,19 @@ To transfer pipeline code to an offline system:
    Add the argument `--container singularity` to fetch the singularity container(s).
    :::
 
-1. Transfer the `.tar.gz` file to your offline system and unpack it.
+2. Transfer the `.tar.gz` file to your offline system and unpack it.
 
    :::note
    The archive contains directories called:
-   - `workflow`: The pipeline files
-   - `config`: [nf-core/configs](https://github.com/nf-core/configs) files
-   - `singularity`: Singularity images (if you used `--container singularity`)
+   - `workflow/`: The pipeline files
+   - `config/`: [nf-core/configs](https://github.com/nf-core/configs) files
+   - `singularity/`: Singularity images (if you used `--container singularity`)
      :::
 
    :::tip
    If you are downloading _directly_ to the offline storage (e.g., a head node with internet access whilst compute nodes are offline), use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
-This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
+
+   This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
    :::
 
 ### Transfer reference genomes offline

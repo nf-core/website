@@ -9,7 +9,7 @@ This page shows you how to configure pipelines to match your system's capabiliti
 
 ## Workflow resources
 
-The base configuration of nf-core pipelines defines default resource allocations for each workflow step (e.g., in the [`base.config`](https://github.com/nf-core/rnaseq/blob/master/conf/base.config) file).
+The base configuration of nf-core pipelines defines default resource allocations for each workflow step (for example, in the [`base.config`](https://github.com/nf-core/rnaseq/blob/master/conf/base.config) file).
 
 These default values are generous to accommodate diverse workloads across different users.
 Your jobs might receive more resources than needed, which can reduce system efficiency.
@@ -19,7 +19,7 @@ Consider increasing resources if a pipeline step fails with a `Command exit stat
 Pipelines configure tools to use available resources when possible (e.g., with `-p ${task.cpus}`), where `${task.cpus}` is dynamically set from the pipeline configuration.
 Not all tools support dynamic resource configuration.
 
-Most process resources use process labels, as shown in this base configuration example:
+Most nf-core pipelines use process labels to define resource requirements for each module, as shown in this base configuration example:
 
 ```groovy
 process {
@@ -48,7 +48,7 @@ process {
 
 The `resourceLimits` list sets the absolute maximum resources any pipeline job can request (typically matching your machine's maximum available resources).
 The label blocks define the initial default resources each pipeline job requests.
-When a job runs out of memory, most nf-core pipelines retry the job and increase the resource request up to the `resourceLimits` maximum.
+When a job runs out of memory, most nf-core pipelines will attempt to retry the job and increase the resource request up to the `resourceLimits` maximum.
 
 ### Customize process resources
 
@@ -56,7 +56,7 @@ When a job runs out of memory, most nf-core pipelines retry the job and increase
 Copy only the labels you want to change into your custom configuration file, not all labels.
 :::
 
-To set a fixed memory allocation for all large tasks across most nf-core pipelines (without increases during retries), add this to your custom configuration file:
+To set a fixed memory allocation for all large tasks across most nf-core pipelines (without increases during retries), add this to a custom Nextflow configuration file:
 
 ```groovy
 process {
@@ -94,7 +94,7 @@ If you receive a warning about an unrecognised process selector, check that you 
 
 For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors).
 
-After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c`.
+After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c <path>/<to>/<config>.conf`.
 
 :::warning
 Check your syntax carefully.

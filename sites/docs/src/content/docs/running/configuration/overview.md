@@ -1,5 +1,5 @@
 ---
-title: Configuration
+title: Infrastructure configuration
 subtitle: Learn about nf-core pipeline configuration
 shortTitle: Overview
 weight: 1
@@ -21,11 +21,14 @@ For pipeline-specific parameters, see the pipeline documentation.
 
 ## Configuration options
 
-You can configure pipelines using three approaches:
+You can configure pipelines to your infrastructure using three approaches:
 
-1. [Default pipeline configuration profiles](#default-configuration-profiles)
-2. [Shared nf-core/configs configuration profiles](#shared-nf-coreconfigs)
-3. [Custom configuration files](#custom-configuration-files)
+- [Configuration options](#configuration-options)
+- [Choosing your configuration approach](#choosing-your-configuration-approach)
+  - [Default configuration profiles](#default-configuration-profiles)
+  - [Shared nf-core/configs](#shared-nf-coreconfigs)
+  - [Custom configuration files](#custom-configuration-files)
+- [Additional resources](#additional-resources)
 
 :::warning{title="Do not edit the pipeline code to configure nf-core pipelines"}
 Editing pipeline defaults prevents you from updating to newer versions without overwriting your changes.
@@ -48,7 +51,7 @@ Use shared nf-core/configs when:
 
 Use custom configuration files when:
 
-- You need specific resource limits
+- You need pipeline-specific resource limits
 - Running on unique infrastructure
 - You are the only user of the pipeline
 
@@ -65,6 +68,7 @@ Order matters.
 Profiles load in sequence.
 Later profiles overwrite earlier ones.
 :::
+
 nf-core provides these basic profiles for container engines:
 
 - `docker`: Uses [Docker](http://docker.com/) and pulls software from quay.io
@@ -78,7 +82,7 @@ nf-core provides these basic profiles for container engines:
 Use Conda only as a last resort (that is, when you cannot run the pipeline with Docker or Singularity).
 :::
 
-Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `PATH`.
+Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `$PATH`.
 This approach is not recommended.
 
 Each pipeline includes `test` and `test_full` profiles.
@@ -97,7 +101,7 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 
 ### Custom configuration files
 
-If you run the pipeline alone, create a local configuration file.
+If you run the pipeline alone on a local machine, create a local configuration file.
 Nextflow searches for configuration files in three locations:
 
 1. User's home directory: `~/.nextflow/config`
