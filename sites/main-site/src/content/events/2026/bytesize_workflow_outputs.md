@@ -13,8 +13,8 @@ locations:
       - https://youtu.be/DtUHuyS50S0
 ---
 
-This is a recorded bytesize talk by Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) about a new feature that is introduced to Nextflow and nf-core pipelines: workflow outputs. 
-The workflow output definition is a new way to define the top-level outputs of a workflow. It is a replacement for the publishDir directive. 
+This is a recorded bytesize talk by Chris Hakkaart ([@christopher-hakkaart](https://github.com/christopher-hakkaart)) about a new feature that is introduced to Nextflow and nf-core pipelines: workflow outputs.
+The workflow output definition is a new way to define the top-level outputs of a workflow. It is a replacement for the publishDir directive.
 
 DISCLAIMER: there is still some ongoing work on the implementation, so the current use might differ slightly from what is shown in this bytesize.
 
