@@ -109,19 +109,19 @@ const featuredPages = [
         title: "What is nf-core?",
         href: "/docs/get_started/nf-core",
         icon: "octicon:play-16",
-        description: "Introduction to the nf-core project and community"
+        description: "Introduction to the nf-core project and community",
     },
     {
         title: "Environment setup",
         href: "/docs/get_started/environment_setup/overview",
         icon: "octicon:gear-16",
-        description: "Set up your system to run nf-core pipelines"
+        description: "Set up your system to run nf-core pipelines",
     },
     {
         title: "Run your first pipeline",
         href: "/docs/get_started/run-your-first-pipeline",
         icon: "octicon:terminal-16",
-        description: "Step-by-step guide to running an nf-core pipeline"
+        description: "Step-by-step guide to running an nf-core pipeline",
     },
 ];
 
@@ -174,20 +174,19 @@ const mainSections = [
     },
 ];
 
-
 // Define training cards
 const trainingCards = [
     {
         title: "Nextflow documentation",
         href: "https://www.nextflow.io/docs/latest/index.html",
         icon: "octicon:book-16",
-        description: "Official Nextflow language documentation and guides"
+        description: "Official Nextflow language documentation and guides",
     },
     {
         title: "Nextflow and nf-core training",
         href: "https://training.nextflow.io/latest/",
         icon: "octicon:mortar-board-16",
-        description: "Hands-on training materials and workshops"
+        description: "Hands-on training materials and workshops",
     },
 ];
 ---
@@ -209,15 +208,15 @@ const trainingCards = [
                             featuredEntries.map((page) => (
                                 <a href={page.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
                                     <div class="card h-100 featured-card">
-                                            <div class="card-body">
-                                                <div class="featured-icon mb-2">
-                                                    <Icon name={page.customIcon} />
-                                                </div>
-                                                <h3 class="h5 card-title mb-2">
-                                                    {page.metadata?.data.title || page.label}
-                                                </h3>
-                                                <p class="card-description mb-0">{page.description}</p>
+                                        <div class="card-body">
+                                            <div class="featured-icon mb-2">
+                                                <Icon name={page.customIcon} />
                                             </div>
+                                            <h3 class="h5 card-title mb-2">
+                                                {page.metadata?.data.title || page.label}
+                                            </h3>
+                                            <p class="card-description mb-0">{page.description}</p>
+                                        </div>
                                     </div>
                                 </a>
                             ))
@@ -232,7 +231,10 @@ const trainingCards = [
                     <div class="grid gap-3">
                         {
                             mainSections.map((section) => (
-                                <a href={section.sectionHref} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
+                                <a
+                                    href={section.sectionHref}
+                                    class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                >
                                     <div class="card h-100 section-card">
                                         <div class="card-body">
                                             <div class="section-icon mb-2">
@@ -252,21 +254,20 @@ const trainingCards = [
                 <div class="mb-5">
                     <h2 class="section-heading mb-2">Additional resources</h2>
                     <p class="mb-4">
-                        Learn Nextflow and nf-core through comprehensive documentation and hands-on training
-                        materials.
+                        Learn Nextflow and nf-core through comprehensive documentation and hands-on training materials.
                     </p>
                     <div class="grid gap-3">
                         {
                             trainingCards.map((card) => (
                                 <a href={card.href} class="text-decoration-none g-col-12 g-col-md-6">
                                     <div class="card h-100 featured-card">
-                                            <div class="card-body">
-                                                <div class="featured-icon mb-2">
-                                                    <Icon name={card.icon} />
-                                                </div>
-                                                <h3 class="h5 card-title mb-2">{card.title}</h3>
-                                                <p class="card-description mb-0">{card.description}</p>
+                                        <div class="card-body">
+                                            <div class="featured-icon mb-2">
+                                                <Icon name={card.icon} />
                                             </div>
+                                            <h3 class="h5 card-title mb-2">{card.title}</h3>
+                                            <p class="card-description mb-0">{card.description}</p>
+                                        </div>
                                     </div>
                                 </a>
                             ))

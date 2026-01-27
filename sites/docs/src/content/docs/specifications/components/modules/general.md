@@ -18,10 +18,12 @@ Non-file mandatory arguments required for the module to run without error SHOULD
 
 ## Optional command arguments
 
-All _non-mandatory_ command-line tool _non-file_ arguments MUST be provided as a string via the `$task.ext.args` variable.
+All _non-mandatory_ command-line tool _non-file_ arguments MUST be supported in the module via the `$task.ext.args` variable.
 
-Supply `task.ext.args` from the `modules.config` file by assigning a closure that returns a string to `ext.args`.
-The closure allows parameters supplied in a config with `-c` to be updated.
+The `$args` variable MUST be placed in the module's tool command to allow optional and/or dynamic variables to be specified by a user or a developer.
+The contents of this variable is specified by a pipeline developer or user in with the `ext.args` process variable in a `modules.config` or other Nextflow config file using a closure.
+Config file are present in pipelines and subworkflows, not for each individual module, except for configs for tests.
+The `$ext.args` variable can also be used in module tests to increase the test coverage of a tool's functionality through a companion `nextflow.config` alongside the test files themselves.
 
 ```groovy {2} title="<module>.nf"
 script:
