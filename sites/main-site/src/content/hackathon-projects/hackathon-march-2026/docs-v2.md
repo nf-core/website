@@ -7,9 +7,9 @@ location: online
 image: "/assets/images/events/2026/hackathon-march/development-guides.jpg"
 image_alt: Documentation, documentation everywhere
 leaders:
-    christopher-hakkaart:
-        name: Chris Hakkaart
-        slack: https://nfcore.slack.com/team/U024MM1DRKL
+  christopher-hakkaart:
+    name: Chris Hakkaart
+    slack: https://nfcore.slack.com/team/U024MM1DRKL
 ---
 
 Contribute to the final push for releasing v2 of the nf-core documentation with quality control, link fixes, and content refinement.
