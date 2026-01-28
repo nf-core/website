@@ -1,0 +1,66 @@
+---
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import ProjectContent from "@components/event/HackathonProjects/ProjectContent.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("hackathon-projects");
+    return projects.map((project) => ({
+        params: {
+            slug: project.id,
+        },
+        props: {
+            project,
+        },
+    }));
+}
+
+const { project } = Astro.props;
+const { title, category, location, leaders, slack, intro_video, image, image_alt, proj_url, color } = project.data;
+const { Content } = await render(project);
+
+let this_color = color;
+if (!color && category) {
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+    if (category == "special-interest-groups") this_color = "#238636";
+}
+
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/hackathon-projects/" +
+    project.id +
+    ".mdx";
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={category ? `${category} project` + (location ? ` • ${location}` : "") : location || ""}
+    md_github_url={md_github_url}
+    docSearchTags={[
+        { name: "page_type", content: "Hackathon Project" },
+        { name: "category", content: category },
+    ]}
+    viewTransitions={true}
+    headings={[]}
+    leftSidebar={false}
+    rightSidebar={false}
+    sections={[]}
+>
+    <ProjectContent
+        proj_url={proj_url}
+        intro_video={intro_video}
+        image={image}
+        image_alt={image_alt}
+        leaders={leaders}
+        slack={slack}
+        category={category}
+        color={this_color}
+        location={location}
+        layout="page"
+    >
+        <Content />
+    </ProjectContent>
+</MarkdownTocLayout>
