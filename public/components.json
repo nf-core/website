@@ -18449,13 +18449,67 @@
             {
               "vcfs": {
                 "type": "list",
-                "description": "List containing 2 or more vcf/bcf files. These must be compressed and have an associated index.\ne.g. [ 'file1.vcf.gz', 'file2.vcf' ]\n"
+                "description": "List containing 2 or more vcf/bcf files. These must be compressed and have an associated index.\ne.g. [ 'file1.vcf.gz', 'file2.vcf' ]\n",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3570"
+                  }
+                ]
               }
             },
             {
               "tbis": {
                 "type": "list",
-                "description": "List containing the tbi index files corresponding to the vcf/bcf input files\ne.g. [ 'file1.vcf.tbi', 'file2.vcf.tbi' ]\n"
+                "description": "List containing the tbi index files corresponding to the vcf/bcf input files\n",
+                "pattern": "*.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "file_list": {
+                "type": "file",
+                "description": "Optional text file containing the list of VCF/BCF files to be processed by bcftools isec, one per line.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            },
+            {
+              "targets_file": {
+                "type": "file",
+                "description": "Optional file containing target regions to restrict the analysis to.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "regions_file": {
+                "type": "file",
+                "description": "Optional file containing regions to restrict the analysis to.\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             }
           ]
@@ -18470,10 +18524,18 @@
                 }
               },
               {
-                "\"${prefix}\", type: \"dir\"": {
+                "${prefix}": {
                   "type": "directory",
-                  "description": "Folder containing the set operations results perform on the vcf files",
-                  "pattern": "${prefix}"
+                  "description": "Directory containing the output files from bcftools isec",
+                  "pattern": "${prefix}/",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3570"
+                    }
+                  ]
                 }
               }
             ]
@@ -230335,26 +230397,59 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spaceranger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@grst"
         ],
         "maintainers": [
-          "@grst"
+          "@grst",
+          "@fasterius"
         ]
       },
       "pipelines": [
@@ -230415,26 +230510,59 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spaceranger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed  \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed  \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@grst"
         ],
         "maintainers": [
-          "@grst"
+          "@grst",
+          "@fasterius"
         ]
       }
     },
@@ -230499,26 +230627,59 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spaceranger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spaceranger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spaceranger -V | sed \"s/spaceranger spaceranger-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@grst"
         ],
         "maintainers": [
-          "@grst"
+          "@grst",
+          "@fasterius"
         ]
       }
     },
@@ -244327,19 +244488,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_thermorawfileparser": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "thermorawfileparser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ThermoRawFileParser.sh --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "thermorawfileparser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ThermoRawFileParser.sh --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
