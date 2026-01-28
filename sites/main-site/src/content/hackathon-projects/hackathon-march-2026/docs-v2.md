@@ -10,6 +10,9 @@ leaders:
   christopher-hakkaart:
     name: Chris Hakkaart
     slack: https://nfcore.slack.com/team/U024MM1DRKL
+  jfy133:
+    name: James Fellows Yates
+    slack: https://nfcore.slack.com/team/UEM37TBAR
 ---
 
 Contribute to the final push for releasing v2 of the nf-core documentation. Help with quality control, link fixes, and content refinement.
