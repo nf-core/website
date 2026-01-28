@@ -22,15 +22,9 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
 ---
 
 <div class="card mb-2" style={border_col}>
-    <div class="card-body d-grid p-0">
-        <button
-            type="button"
-            class="btn btn-link text-start p-3 pe-0 d-flex align-items-center justify-content-between"
-            data-bs-toggle="modal"
-            data-bs-target={"#" + id}
-            style="text-decoration: none;"
-        >
-            {title}
+    <div class="card-body p-2">
+        <div class="pe-0 d-flex align-items-center justify-content-between">
+            <a href={`/hackathon-projects/${id}`}>{title}</a>
             {
                 leaders && (
                     <div class="d-flex flex-wrap">
@@ -40,6 +34,6 @@ const border_col = this_color ? { "border-left-color": this_color, "border-left-
                     </div>
                 )
             }
-        </button>
+        </div>
     </div>
 </div>
