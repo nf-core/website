@@ -1,0 +1,149 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection, render } from "astro:content";
+import { Icon } from "astro-icon/components";
+import Profile from "@components/GitHubProfilePicture.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import { Image } from "astro:assets";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+
+export async function getStaticPaths() {
+    const projects = await getCollection("hackathon-projects");
+    return projects.map((project) => ({
+        params: {
+            slug: project.id,
+        },
+        props: {
+            project,
+        },
+    }));
+}
+
+const { project } = Astro.props;
+const { title, category, location, leaders, slack, intro_video, image, image_alt, proj_url, color } = project.data;
+const { Content } = await render(project);
+
+let this_color = color;
+if (!color && category) {
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+    if (category == "special-interest-groups") this_color = "#238636";
+}
+
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/hackathon-projects/" +
+    project.id +
+    ".mdx";
+
+const images = import.meta.glob("../../assets/**");
+const showSidebar = intro_video || image || leaders || slack || category || location;
+---
+
+<PageLayout
+    title={title}
+    subtitle={category ? `${category}` + (location ? ` - ${location}` : "") : location || ""}
+    md_github_url={md_github_url}
+    mainpage_container={true}
+    subfooter={true}
+    docSearchTags={[
+        { name: "page_type", content: "Hackathon Project" },
+        { name: "category", content: category },
+    ]}
+    viewTransitions={true}
+>
+    <div class="row">
+        <div class={showSidebar ? "col-lg-8" : "col"}>
+            {
+                proj_url && (
+                    <h3>
+                        <a href={proj_url} target="_blank" class="btn btn-small btn-secondary ms-3">
+                            <Icon name="octicon:table-16" width="12pt" class="me-1" style={{ "margin-top": "-3px" }} />
+                            Project Board
+                            <Icon
+                                name="octicon:link-external-16"
+                                width="12pt"
+                                class="ms-1"
+                                style={{ "margin-top": "-3px" }}
+                            />
+                        </a>
+                    </h3>
+                )
+            }
+
+            <Content />
+        </div>
+        {
+            showSidebar && (
+                <div class="col-lg-4">
+                    {intro_video && (
+                        <SidebarStatsRow content={[{ title: "introduction video" }]}>
+                            <YouTube id={intro_video} poster={`https://i.ytimg.com/vi/${intro_video}/hqdefault.jpg`} />
+                        </SidebarStatsRow>
+                    )}
+                    {image && (
+                        <SidebarStatsRow content={[{ title: "" }]}>
+                            <Image
+                                src={images["../.." + image]()}
+                                width="600"
+                                alt={image_alt ?? ""}
+                                style="object-fit: contain;"
+                            />
+                        </SidebarStatsRow>
+                    )}
+                    {(location || category) && (
+                        <SidebarStatsRow
+                            content={[
+                                ...(location
+                                    ? [
+                                          {
+                                              title: "location",
+                                              value: `<span class="badge bg-secondary text-capitalize">${location}</span>`,
+                                          },
+                                      ]
+                                    : []),
+                                ...(category
+                                    ? [
+                                          {
+                                              title: "category",
+                                              value: `<span class="badge rounded-pill" style="background-color: ${this_color}">${category}</span>`,
+                                          },
+                                      ]
+                                    : []),
+                            ]}
+                        />
+                    )}
+                    {leaders && (
+                        <SidebarStatsRow
+                            content={[{ title: "group leader" + (Object.keys(leaders).length > 1 ? "s" : "") }]}
+                        >
+                            <div class="d-flex flex-column gap-2">
+                                {Object.entries(leaders).map(([github, { name, slack }]) => (
+                                    <div class="d-flex align-items-center border rounded rounded-start-0">
+                                        <Profile name={github} size={50} />
+                                        {slack && (
+                                            <a href={slack} target="_blank" class="me-2 text-decoration-none">
+                                                {name}
+                                                <Icon name="mdi:slack" width="14pt" height="14pt" class="mb-1" />
+                                            </a>
+                                        )}
+                                        {!slack && <span class="mx-2">{name}</span>}
+                                    </div>
+                                ))}
+                            </div>
+                        </SidebarStatsRow>
+                    )}
+                    {slack && (
+                        <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>
+                            <a href={slack} target="_blank" class="btn btn-sm btn-outline-info w-100">
+                                <Icon name="mdi:slack" width="14pt" height="14pt" class="mb-1" /> Ask a question on
+                                Slack
+                            </a>
+                        </SidebarStatsRow>
+                    )}
+                </div>
+            )
+        }
+    </div>
+</PageLayout>
