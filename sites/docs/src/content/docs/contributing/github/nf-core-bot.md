@@ -58,17 +58,34 @@ This will update the changelog entry with the title of the Pull Request or the v
 Available in [nf-core/tools](https://github.com/nf-core/tools/blob/main/.github/workflows/changelog.yml).
 :::
 
-## `@nf-core-bot update snapshots`
+## `@nf-core-bot update textual snapshots`
 
 If the Textual snapshots (run by `tests/pipelines/test_crate_app.py`) fail, an HTML report is generated and uploaded as an artifact.
 You can automatically update the snapshots from the PR by posting a comment with the magic words:
 
 ```bash
-@nf-core-bot update snapshots
+@nf-core-bot update textual snapshots
 ```
 
 :::warning
 Please always check the HTML report to make sure that the changes are expected.
+:::
+
+:::info
+Available in [nf-core/tools](https://github.com/nf-core/tools/blob/main/.github/workflows/update-textual-snapshots.yml).
+:::
+
+## `@nf-core-bot update template snapshots`
+
+The tests in nf-core/tools "Create a pipeline from a template and test it" run by the GitHub Workflow `create-test-lint-wf-template.yml`, are testing pipelines created form the template and skipping each one of the possible template features.
+If these tests fail, you can update the nf-test snapshots from the PR by posting a comment with the magic words:
+
+```bash
+@nf-core-bot update template snapshots
+```
+
+:::warning
+Please always check the CI test output before updating the snapshots to make sure that the changes are expected.
 :::
 
 :::info
