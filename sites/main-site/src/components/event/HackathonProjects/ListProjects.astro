@@ -47,3 +47,33 @@ const projectsByLocation = locations.map((location) => ({
         ))
     }
 </div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Import Bootstrap's Modal functionality
+        const { default: Modal } = await import("bootstrap/js/dist/modal");
+
+        // Open modal from URL hash on page load
+        if (window.location.hash) {
+            const modalId = window.location.hash.substring(1); // Remove the # symbol
+            const modalElement = document.getElementById(modalId);
+            if (modalElement) {
+                const modal = new Modal(modalElement);
+                modal.show();
+            }
+        }
+
+        // Update URL hash when modals are opened
+        document.addEventListener("shown.bs.modal", (event) => {
+            const modalId = event.target.id;
+            if (modalId) {
+                history.pushState(null, "", "#" + modalId);
+            }
+        });
+
+        // Clear hash when modal is closed
+        document.addEventListener("hidden.bs.modal", () => {
+            history.pushState(null, "", window.location.pathname + window.location.search);
+        });
+    });
+</script>
