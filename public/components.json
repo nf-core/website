@@ -10608,7 +10608,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -74005,7 +74005,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         },
         {
           "name": "demultiplex",
@@ -126420,7 +126420,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -126586,7 +126586,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -126715,7 +126715,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -126911,7 +126911,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -127299,7 +127299,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -127459,7 +127459,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -151506,7 +151506,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         },
         {
           "name": "demultiplex",
@@ -151678,7 +151678,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         },
         {
           "name": "pangenome",
@@ -202814,7 +202814,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -204193,7 +204193,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -204453,7 +204453,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         },
         {
           "name": "pangenome",
@@ -219815,7 +219815,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         }
       ]
     },
@@ -220602,7 +220602,7 @@
       "pipelines": [
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         }
       ]
     },
@@ -240984,19 +240984,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tabix": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -241135,19 +241167,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tabix": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_bgzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tabix": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "tabix -h 2>&1 | grep -oP 'Version:\\s*\\K[^\\s]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -277465,7 +277571,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         },
         {
           "name": "demultiplex",
@@ -277629,7 +277735,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         },
         {
           "name": "pangenome",
@@ -277890,7 +277996,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         },
         {
           "name": "demultiplex",
@@ -278054,7 +278160,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         },
         {
           "name": "pangenome",
@@ -278327,7 +278433,7 @@
         },
         {
           "name": "demo",
-          "version": "1.0.2"
+          "version": "1.1.0"
         },
         {
           "name": "demultiplex",
@@ -278471,7 +278577,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.1"
+          "version": "2.2.2"
         },
         {
           "name": "pangenome",
