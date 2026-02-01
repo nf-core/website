@@ -41,4 +41,4 @@ nf-core pipelines follow best practices to ensure maximum portability and reprod
 
 nf-core pipelines are tested on AWS after every major release. You can even browse results live on the website and use outputs for your own benchmarking.
 
-nf-core is published in Nature Biotechnology: Nat Biotechnol 38, 276–278 (2020). Nature Biotechnology. An updated preprint is available at bioRxiv.
+nf-core is published in [Nature Biotechnology: Nat Biotechnol 38, 276–278 (2020). Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x).
