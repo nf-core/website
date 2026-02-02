@@ -1,6 +1,6 @@
 ---
 title: Renaming branches
-subtitle: How to switch your pipeline's default branch from `master` to `main`
+subtitle: Switch your pipeline's default branch from master to main
 shortTitle: Renaming branches
 ---
 

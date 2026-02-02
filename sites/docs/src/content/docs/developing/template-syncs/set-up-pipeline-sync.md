@@ -1,6 +1,6 @@
 ---
 title: Setting up a pipeline sync retrospectively
-subtitle: How to set up a correct TEMPLATE branch in your nf-core pipeline repository
+subtitle: Set up a correct TEMPLATE branch in your pipeline repository
 shortTitle: Setting up a pipeline sync retrospectively
 ---
 

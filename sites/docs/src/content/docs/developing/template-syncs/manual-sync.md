@@ -1,6 +1,6 @@
 ---
 title: Manually syncing your pipeline
-subtitle: How to manually synchronise your nf-core pipeline with the latest nf-core/tools template
+subtitle: Manually synchronise your pipeline with the latest template
 shortTitle: Manually syncing your pipeline
 ---
 
