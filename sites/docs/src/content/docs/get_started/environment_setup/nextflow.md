@@ -1,6 +1,6 @@
 ---
 title: Installing Nextflow
-subtitle: Learn how to install Nextflow
+subtitle: Install Nextflow
 shortTitle: Nextflow
 weight: 2
 ---

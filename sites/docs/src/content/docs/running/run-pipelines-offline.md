@@ -1,6 +1,6 @@
 ---
 title: Running nf-core pipelines offline
-subtitle: Learn how to use nf-core pipelines without an internet connection
+subtitle: Run pipelines without internet access
 shortTitle: Running pipelines offline
 ---
 

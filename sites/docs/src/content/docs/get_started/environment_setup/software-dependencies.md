@@ -1,6 +1,6 @@
 ---
 title: Manage software dependencies
-subtitle: Learn how to manage software dependencies
+subtitle: Manage software dependencies
 shortTitle: Software dependencies
 weight: 3
 ---

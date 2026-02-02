@@ -1,6 +1,6 @@
 ---
 title: Configuration
-subtitle: Learn about nf-core pipeline configuration
+subtitle: Pipeline configuration options
 shortTitle: Overview
 weight: 1
 ---

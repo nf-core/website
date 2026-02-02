@@ -1,6 +1,6 @@
 ---
 title: Install VS Code
-subtitle: Learn how to install VS Code and useful extensions
+subtitle: Install VS Code and extensions
 shortTitle: VS Code
 weight: 5
 ---
