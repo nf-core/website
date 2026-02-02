@@ -1,6 +1,6 @@
 ---
 title: Reference genomes
-subtitle: Learn about nf-core reference genomes
+subtitle: Reference genomes in nf-core
 shortTitle: Reference genomes
 ---
 

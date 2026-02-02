@@ -1,6 +1,6 @@
 ---
 title: What is nf-core?
-subtitle: Learn about nf-core
+subtitle: Introduction to nf-core
 shortTitle: What is nf-core?
 weight: 1
 ---

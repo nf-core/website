@@ -1,6 +1,6 @@
 ---
 title: Advisories
-subtitle: Learn how to create and publish advisories for nf-core components
+subtitle: Create and publish advisories
 ---
 
 Advisories serve as structured, long-lived notices for significant technical issues affecting nf-core components.

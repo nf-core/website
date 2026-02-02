@@ -1,6 +1,6 @@
 ---
 title: Dev Containers
-subtitle: Learn how to use and create Dev Containers
+subtitle: Use and create Dev Containers
 shortTitle: Dev Containers
 weight: 6
 ---

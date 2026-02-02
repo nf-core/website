@@ -1,6 +1,6 @@
 ---
 title: nf-core tools
-subtitle: Learn how to install nf-core/tools
+subtitle: Install nf-core/tools
 shortTitle: nf-core tools
 weight: 4
 ---
