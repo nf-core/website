@@ -16,7 +16,7 @@ locations:
       - https://hitchhikers.fandom.com/wiki/Arthur_Dent
     geoCoordinates: [51.454514, -2.587910]
     country: United Kingdom
-    city: West Country
+    city: Example
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
