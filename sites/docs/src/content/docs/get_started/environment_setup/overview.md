@@ -10,7 +10,7 @@ This section guides you through installing and configuring everything you need t
 
 ## What you'll need
 
-<!-- TODO: Fix astro errors with links (Cannot read properties of undefined (reading 'id')) -->
+<!-- TODO: Fix astro errors with links (Cannot read properties of undefined (reading id)) -->
 
 The core requirements for running nf-core pipelines are:
 
@@ -34,3 +34,9 @@ If you are new to nf-core, we recommend following the guides in order:
 :::note
 System requirements and installation methods vary depending on your operating system and whether you have administrator privileges. If you are uncertain, speak to your system administrator.
 :::
+
+## Need help?
+
+If you encounter issues during setup, check our [troubleshooting guide](./troubleshooting.md) for solutions to common problems with Nextflow, nf-core tools, and development environments.
+
+Still stuck? The nf-core community is here to help! Join us on [Slack](https://nf-co.re/join) where you can ask questions, get support, and connect with other users and developers.
