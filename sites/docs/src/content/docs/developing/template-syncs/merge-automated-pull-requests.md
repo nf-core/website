@@ -1,6 +1,6 @@
 ---
 title: Merging automated PRs
-subtitle: How to merge automated PRs after a new nf-core/tools release
+subtitle: Merge automated PRs after a new tools release
 shortTitle: Merging automated PRs
 ---
 
