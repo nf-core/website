@@ -1,43 +1,53 @@
 ---
-title: Review checklist for nf-core components
-subtitle: A checklist for reviewing PRs in the nf-core/modules repository
-shortTitle: Components
+title: Reviewing nf-core components
+subtitle: Review nf-core component pull requests
+shortTitle: Reviewing components
 markdownPlugin: checklist
 ---
 
 <!-- TODO: Add links to other pages and guide where possible -->
 
-When you review a PR, you examine a new component submission or proposed changes to a component.
-You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository.
-Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
+Component reviews ensure that modules and subworkflows meet nf-core standards before they reach the community.
+When you review a component pull request, you examine a new component submission or proposed changes to an existing component and provide constructive feedback before maintainers merge them into the nf-core repository.
 
-While the team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the PR review process for components, these guidelines help you review PRs consistently and effectively as a community member.
-The following collection of community suggestions can guide your review process.
+The team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the review process for components, but community input helps catch issues and ensures components work well across different use cases.
+Your perspective as a user of the components is valuable, particularly if you've used the tool before or understand common use cases.
 
 ## General
 
-- [ ] All components adhere to the nf-core [module specifications](/docs/guidelines/components/modules) or [subworkflow specifications](/docs/guidelines/components/subworkflows).
-- [ ] Ensure all checks pass, including linting, conda, singularity, and docker.
+Start by verifying that the component meets the general specifications:
 
-Otherwise, you can cover most of the specifications by checking for the following:
+- [ ] All components adhere to the nf-core [module specifications](/docs/guidelines/components/modules) or [subworkflow specifications](/docs/guidelines/components/subworkflows)
+- [ ] All checks pass, including linting, conda, singularity, and docker
 
-- [ ] Check that the component runs offline without assuming automatic database downloads.
-- [ ] Check that Nextflow changes the `--entrypoint` to `/bin/bash` and that environment variables are sourced again when running docker containers.
-- [ ] Check that it adheres to nf-core coding standards (for example, use of meta map).
-- [ ] Check that the code is readable and the formatting is correct (for example, indenting, extra spaces).
+You can cover most of the specifications by checking for the following:
 
-## `modules/nf-core/modulename/main.nf`
+- [ ] Component runs offline without assuming automatic database downloads
+- [ ] Nextflow changes the `--entrypoint` to `/bin/bash` and environment variables are sourced again when running docker containers
+- [ ] Code adheres to nf-core coding standards (for example, use of meta map)
+- [ ] Code is readable and the formatting is correct (for example, indenting, extra spaces)
 
-- [ ] Check that all optional parameters are in the `$args` section.
-- [ ] Check that the software version extraction command is optimised, if required.
-- [ ] Check if the bioconda version of the tool is the latest version.
-- [ ] Ensure the code removes temporary unzipped files to avoid mitigating benefits and worsening problems.
-- [ ] Ensure large outputs use the correct compression tool (follow guidelines for gzip vs bzip2 vs other options).
+## Review the main module file
 
-## `../tests/modules/nf-core/modulename/main.nf` and `meta.yml`
+Check `modules/nf-core/<module_name>/main.nf` for:
 
-- [ ] Check that there are tests for all outputs, including optional ones.
-- [ ] Check that the `meta.yml` file has correct documentation links and patterns of files.
-- [ ] Check that the `meta.yml` file has correct [`bio.tools`](https://bio.tools/) ID for the tool and correct [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091) links of files.
-- [ ] Run the tool help and check that important input (usually optional) has not been missed.
-- [ ] Run nf-test (for example, on Gitpod) to check that it captures all outputs.
+- [ ] All optional parameters are in the `$args` section
+- [ ] Software version extraction command is optimised, if required
+- [ ] Bioconda version of the tool is the latest version
+- [ ] Code removes temporary unzipped files to avoid mitigating benefits and worsening problems
+- [ ] Large outputs use the correct compression tool (follow guidelines for gzip vs bzip2 vs other options)
+
+  :::tip
+  Check the tool's documentation or help text to ensure important optional parameters haven't been missed.
+  Run the tool help command if you're unsure about available options.
+  :::
+
+## Review tests and metadata
+
+Check `../tests/modules/nf-core/<module_name>/main.nf` and `meta.yml` for:
+
+- [ ] Tests exist for all outputs, including optional ones
+- [ ] `meta.yml` file has correct documentation links and patterns of files
+- [ ] `meta.yml` file has correct [`bio.tools`](https://bio.tools/) ID for the tool and correct [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091) links of files
+- [ ] Tool help has been checked to ensure important input (usually optional) has not been missed
+- [ ] nf-test runs successfully (for example, on Gitpod) and captures all outputs
