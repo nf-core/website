@@ -230,9 +230,9 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
                                         groups.push(
                                             <>
                                                 <div class="g-col-12">
-                                                    <h4 class="subsection-heading mb-3">
+                                                    <h3 class="subsection-heading mb-3">
                                                         {sanitizeNfCoreLabels(item.label)}
-                                                    </h4>
+                                                    </h3>
                                                 </div>
                                                 {groupPages.map((page) => (
                                                     <a
@@ -278,7 +278,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 
                             return (
                                 <div class="section-block mb-5">
-                                    <h3 class="section-heading mb-3">{sanitizeNfCoreLabels(section.label)}</h3>
+                                    <h2 class="section-heading mb-3">{sanitizeNfCoreLabels(section.label)}</h2>
                                     <div class="grid gap-3">
                                         {section.type === "link" ? (
                                             <a
@@ -340,7 +340,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
     .subsection-heading {
         color: var(--bs-heading-color);
         font-weight: 600;
-        font-size: 1.35rem;
+        font-size: 1.5rem !important;
         margin-top: 2rem;
     }
 
