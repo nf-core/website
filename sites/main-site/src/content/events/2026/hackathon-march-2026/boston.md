@@ -27,6 +27,10 @@ Contacts:
 * [Sakina Saif](https://nfcore.slack.com/team/U0893B06N3S)
 * [Samantha Klasfeld](https://nfcore.slack.com/team/U07CNE03MBQ)
 
+## What to do
+
+Join our [#region-boston](https://nfcore.slack.com/archives/C08F0JJ1R3M) channel on the nf-core Slack to discuss ideas and plan! This is where we'll be coordinating before and during the hackathon. 
+
 ## Site Specific guidelines
 
 Venue TBD
