@@ -10,11 +10,7 @@ endTime: "17:00-05:00"
 locations:
   - name: Cambridge, Massachusetts
     address: |
-      TBD
-    links:
-      TBD
-    geoCoordinates: TBD
-    country: United States
+    country: USA
     city: Cambridge
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
