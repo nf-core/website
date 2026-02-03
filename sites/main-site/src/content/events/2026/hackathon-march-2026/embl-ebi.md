@@ -8,12 +8,12 @@ startTime: "09:00+01:00"
 endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
-    - name: Wellcome Trust Campus
-      links:
-          - https://www.wellcomegenomecampus.org/ 
-      geoCoordinates: [52.079047, 0.187607]
-      country: United Kingdom
-      city: Hinxton
+  - name: Wellcome Trust Campus
+    links:
+      - https://www.wellcomegenomecampus.org/
+    geoCoordinates: [52.079047, 0.187607]
+    country: United Kingdom
+    city: Hinxton
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
