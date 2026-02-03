@@ -19,6 +19,8 @@ markdownPlugin: checklist
 #     end: 2026-03-10T00:00:00+01:00
 ---
 
+import EventMap from "@components/event/EventMap.astro";
+import EventLocationsTable from "@components/event/EventLocationsTable.astro";
 import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
 import LocalDateTime from "@components/event/LocalDateTime.svelte";
 
@@ -176,7 +178,9 @@ If you have any questions, jump into the [`#hackathon-mar-2026` channel](https:/
 
 ## Registered hubs
 
-_Registered local hubs will be listed here once available._
+<EventMap event={"2026/hackathon-march-2026"} />
+
+<EventLocationsTable eventPath="2026/hackathon-march-2026" showCount={true} />
 
 # Social activities
 
