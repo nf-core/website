@@ -3,24 +3,27 @@ title: Working on nf-core/lsmquant
 category: pipeline
 intro_video: ""
 slack: 
-image: "/assets/images/events/2025/hackathon-march/bioimage_meme.png"
-image_alt: meme comparing traditional bioimage tools with OME tools for large scale processing
+image:
+image_alt:
 leaders:
   CaroAMN:
     name: Carolin Schwitalla
-    slack: https://nfcore.slack.com/team/U050FAELTRS
+    slack: https://nfcore.slack.com/archives/C060Z0S4JQ0
 ---
 
-This project focuses on the pipeline nf-core/lsmquant which is an analysis pipeline for light-sheet microscopy images. 
+This project focuses on the pipeline nf-core/lsmquant  for light-sheet microscopy image processing and analysis.
+
+
 
 ## Open tasks
 - Adding a module that creates a table with x, y, z and channel information for every input image from metadata.
-- Improving CI on Matlab based NuMorph tools 
 - Adding a new segmentation Module 
 - Improving MultiQC output of the Pipeline 
+- First release 
+- Improving documentation
 
-## Goals
-Getting at least one task done :) 
 
+### Where 
+Online and in-person at the local Hub Tuebingen Germany.
 
 _We welcome contributors of all experience levels._
