@@ -49,7 +49,7 @@ jobs:
           cache: npm
 
       # Use npm ci with --ignore-scripts to prevent arbitrary code execution
-      - run: npm ci --ignore-scripts --omit=dev
+      - run: npm ci --ignore-scripts
 
       - name: Run prek
         id: prek
