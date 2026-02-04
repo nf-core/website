@@ -41,6 +41,9 @@ jobs:
         run: |
           cd tools
           uv add sphinx-markdown-builder
+          if [ -f docs/api/requirements.txt ]; then
+            uv add -r docs/api/requirements.txt
+          fi
           bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
 
       - name: remove tools code
