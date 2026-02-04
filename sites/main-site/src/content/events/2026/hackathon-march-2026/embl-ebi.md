@@ -23,6 +23,10 @@ Main contacts:
 Martin Beracochea ([mbc@ebi.ac.uk](mailto:mbc@ebi.ac.uk))
 Evangelos Karatzas ([vangelis@ebi.ac.uk](mailto:vangelis@ebi.ac.uk))
 
+## Venue Details
+
+We need to know the attendees beforehand in order to arrange security passes for the site.
+
 ## Projects
 
 We will work on open issues around nf-core pipelines, including:
