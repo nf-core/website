@@ -37,6 +37,7 @@ Issue [#62](https://github.com/nf-core/proteinfamilies/issues/62)
 
 Update the `trimal` nf-core module and then use it in the `nf-core/proteinfamilies` pipeline.
 There can be two separate tasks that use this module:
+
 1. As a `clipkit` alternative, to trim the gappy ends of multiple sequence alignments, that is also possibly faster (to benchmark).
 2. As an alternative for the strict `mmseqs` clustering, for sequence similarity removal within families (to benchmark).
 
