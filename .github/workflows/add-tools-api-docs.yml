@@ -29,15 +29,18 @@ jobs:
         run: |
           npm install remark unist-util-visit
 
+      - name: setup uv
+        uses: nf-core/setup-uv@v7
+
       - name: install nf-core
         run: |
           cd tools
-          pip install --upgrade -r requirements-dev.txt -e .
+          uv sync --all-extras
 
       - name: run API generation script
         run: |
           cd tools
-          pip install sphinx-markdown-builder
+          uv add sphinx-markdown-builder
           bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
 
       - name: remove tools code
