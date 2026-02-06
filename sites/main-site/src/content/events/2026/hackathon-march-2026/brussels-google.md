@@ -25,8 +25,9 @@ Everyone is welcome to attend this local node of the nf-core hackathon at the Go
 If you are not able to attend the full 3 days, you are welcome to join for a part of the hackathon. Please indicate in your registration form which days you will be attending.
 
 Contact:
-  - Nicolas Vannieuwkerke ([nicolas.vannieuwkerke@ugent.be](mailto:nicolas.vannieuwkerke@ugent.be))
-  - Rayan Hassaine ([r.hassaine@hartwigmedicalfoundation.nl](mailto:r.hassaine@hartwigmedicalfoundation.nl))
+
+- Nicolas Vannieuwkerke ([nicolas.vannieuwkerke@ugent.be](mailto:nicolas.vannieuwkerke@ugent.be))
+- Rayan Hassaine ([r.hassaine@hartwigmedicalfoundation.nl](mailto:r.hassaine@hartwigmedicalfoundation.nl))
 
 ## Venue instructions
 
