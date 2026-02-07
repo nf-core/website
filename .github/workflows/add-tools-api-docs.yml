@@ -30,7 +30,7 @@ jobs:
           npm install remark unist-util-visit
 
       - name: setup uv
-        uses: astral-sh/setup-uv@803947b9bd8e9f986429fa0c5a41c367cd732b41 # v7
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7
 
       - name: install nf-core
         run: |
@@ -49,7 +49,7 @@ jobs:
       - name: remove tools code
         run: rm -rf tools
 
-      - uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1
+      - uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
         with:
           install-only: true
 
