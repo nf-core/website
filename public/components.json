@@ -8643,7 +8643,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfold",
@@ -26242,6 +26242,156 @@
       ]
     },
     {
+      "name": "bigslice",
+      "path": "modules/nf-core/bigslice/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bigslice",
+        "description": "A scalable tool for large-scale analysis of Biosynthetic Gene Clusters (BGCs).\nIt takes genome regions in GenBank format along with an HMM database and produces a SQLite database and FASTA outputs of predicted features.\n",
+        "keywords": [
+          "biosynthetic gene clusters",
+          "genomics",
+          "analysis"
+        ],
+        "tools": [
+          {
+            "bigslice": {
+              "description": "A highly scalable, user-interactive tool for the large scale analysis of Biosynthetic Gene Clusters data",
+              "homepage": "https://github.com/medema-group/bigslice",
+              "documentation": "https://github.com/medema-group/bigslice",
+              "tool_dev_url": "https://github.com/medema-group/bigslice",
+              "doi": "10.1093/gigascience/giaa154",
+              "licence": [
+                "AGPL v3-or-later"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bgc": {
+                "type": "directory",
+                "description": "Path to a folder containing genomic regions in GenBank format, structured for BiG-SLiCE.\nEach genome should have its own subfolder with region `.gbk` files.\nThe folder should also contain a datasets.tsv, and a taxonomy folder, with TSV taxonomy files per dataset.\nSee the tool's wiki for more information: https://github.com/medema-group/bigslice/wiki/Input-folder\n",
+                "pattern": "*"
+              }
+            }
+          ],
+          {
+            "hmmdb": {
+              "type": "directory",
+              "description": "Path to the BiG-SLiCE HMM database folder containing biosynthetic and sub Pfams for annotation, in the required BiG-SLiCE format.\nAn example directory in compressed archive format can be found here: https://github.com/medema-group/bigslice/releases/download/v2.0.0rc/bigslice-models.2022-11-30.tar.gz\n"
+            }
+          }
+        ],
+        "output": {
+          "db": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/dataset information"
+                }
+              },
+              {
+                "${prefix}/result/data.db": {
+                  "type": "file",
+                  "description": "The results SQLite database. Contains various tables relevant to result\nBGCs, CDSs, GCFs, HMMs and HSPs.\n",
+                  "pattern": "data.db",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3621"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/dataset information"
+                }
+              },
+              {
+                "${prefix}/result/tmp/**/*.fa": {
+                  "type": "file",
+                  "description": "Predicted features as FASTA files. One file per hit HMM.\n",
+                  "pattern": "*.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_bigslice": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigslice": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 2.0.2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bigslice": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 2.0.2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "bioawk",
       "path": "modules/nf-core/bioawk/meta.yml",
       "type": "module",
@@ -35360,11 +35510,12 @@
       "type": "module",
       "meta": {
         "name": "cat_fastq",
-        "description": "Concatenates fastq files",
+        "description": "Concatenates fastq files. Supports both compressed (.gz) and uncompressed inputs; uncompressed files are automatically gzip-compressed during concatenation.",
         "keywords": [
           "cat",
           "fastq",
-          "concatenate"
+          "concatenate",
+          "compress"
         ],
         "tools": [
           {
@@ -35389,7 +35540,7 @@
             {
               "reads": {
                 "type": "file",
-                "description": "List of input FastQ files to be concatenated.\n",
+                "description": "List of input FastQ files to be concatenated.\nAccepts both gzip-compressed (.fastq.gz) and uncompressed (.fastq) files.\n",
                 "ontologies": []
               }
             }
@@ -37383,7 +37534,7 @@
               "licence": [
                 "GPL v2"
               ],
-              "identifier": ""
+              "identifier": "biotools:cd-hit"
             }
           }
         ],
@@ -37442,19 +37593,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cdhit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cdhit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cd-hit -h | sed -n '1s/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cdhit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cd-hit -h | sed -n '1s/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -37497,7 +37680,7 @@
               "licence": [
                 "GPL v2"
               ],
-              "identifier": ""
+              "identifier": "biotools:cd-hit"
             }
           }
         ],
@@ -37564,19 +37747,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cdhitest": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cdhit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cd-hit-est -h | sed -n '1s/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cdhit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cd-hit-est -h | sed -n '1s/.*version \\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -69997,7 +70212,7 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "annotated vcf (optional)\n",
                   "pattern": "*.vcf.gz",
@@ -70019,7 +70234,7 @@
                 }
               },
               {
-                "*.vcf.gz.tbi": {
+                "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "annotated vcf index (optional)\n",
                   "pattern": "*.vcf.gz.tbi",
@@ -70037,7 +70252,7 @@
                 }
               },
               {
-                "*.tab.gz": {
+                "${prefix}.tab.gz": {
                   "type": "file",
                   "description": "tab file with annotated variants (optional)\n",
                   "pattern": "*.ann.tab.gz",
@@ -70059,7 +70274,7 @@
                 }
               },
               {
-                "*.json.gz": {
+                "${prefix}.json.gz": {
                   "type": "file",
                   "description": "json file with annotated variants (optional)\n",
                   "pattern": "*.ann.json.gz",
@@ -99882,19 +100097,73 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "json_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "A JSON format report of the genomescope2 model",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
               }
-            }
+            ]
+          ],
+          "versions_genomescope2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomescope2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomescope2 -v | sed \"s/GenomeScope //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomescope2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomescope2 -v | sed \"s/GenomeScope //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -116395,7 +116664,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -121066,7 +121335,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -155440,7 +155709,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -156956,14 +157225,6 @@
                 "pattern": "*.bai",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information.\ne.g. `[ id:'test' ]`\n"
-              }
             },
             {
               "reference": {
@@ -156994,19 +157255,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_muse": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "muse": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "MuSE --version | sed -e 's/MuSE, version //g' | sed -e 's/MuSE v//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "muse": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "MuSE --version | sed -e 's/MuSE, version //g' | sed -e 's/MuSE v//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -157067,14 +157360,6 @@
                 "pattern": "*.MuSE.txt",
                 "ontologies": []
               }
-            }
-          ],
-          [
-            {
-              "meta2": {
-                "type": "map",
-                "description": "Groovy Map containing reference information.\ne.g. `[ id:'test' ]`\n"
-              }
             },
             {
               "ref_vcf": {
@@ -157133,19 +157418,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_muse": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "muse": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "MuSE --version | sed -e 's/MuSE, version //g' | sed -e 's/MuSE v//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_bgzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | sed -n 's/bgzip (htslib) \\([0-9.]*\\)/\\1/p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "muse": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "MuSE --version | sed -e 's/MuSE, version //g' | sed -e 's/MuSE v//g'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bgzip": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bgzip --version | sed -n 's/bgzip (htslib) \\([0-9.]*\\)/\\1/p'": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -196788,19 +197147,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rbt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rbt": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "rbt --version | grep -oE '[0-9]+(\\.[0-9]+)+' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rbt": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "rbt --version | grep -oE '[0-9]+(\\.[0-9]+)+' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -205218,7 +205609,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -223148,7 +223539,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -223532,19 +223923,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_seqkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqkit version | sed \"s/seqkit v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqkit version | sed \"s/seqkit v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -223915,7 +224338,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -224044,7 +224467,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -224275,7 +224698,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -224716,7 +225139,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -259248,7 +259671,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -272892,19 +273315,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_yte": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "yte": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo $VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "yte": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo $VERSION": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -278032,7 +278487,7 @@
       "pipelines": [
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -285492,7 +285947,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -285917,7 +286372,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
@@ -286334,7 +286789,7 @@
         },
         {
           "name": "proteinannotator",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "proteinfamilies",
