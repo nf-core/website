@@ -34,4 +34,4 @@ Enter the building via main entrance, then simply walk across the hall to the ro
 ## Projects
 
 - nf-core/tcrpmhcbinding
-- nf-core/lsmquant
+- [nf-core/lsmquant](https://github.com/nf-core/lsmquant)
