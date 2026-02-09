@@ -37,6 +37,7 @@ Level: _For anyone interested. Beginners welcome!_
 ### Use nf-core/subworkflow
 
 Multiple local subworkflow should be changed to nf-core one.
+Most of them are already on the nf-core/modules repository.
 
 Level: _For people with some experience in Nextflow/nf-core pipelines._
 
