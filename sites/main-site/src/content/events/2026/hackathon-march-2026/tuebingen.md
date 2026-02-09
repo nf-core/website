@@ -24,7 +24,6 @@ Contacts:
 - [Nadja Volkmann](https://nfcore.slack.com/archives/D0AENE1LSJU)
 - [Carolin Schwitalla](https://nfcore.slack.com/archives/D0ADMPMKKHR)
 
-
 ## Location
 
 [Maria-von-Linden-Straße 1, Room A-207, 72076 Tuebingen](https://maps.app.goo.gl/V3sVhDtiSpVJyka8A)
