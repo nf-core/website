@@ -1,19 +1,13 @@
 ---
-title: "Hackathon - March 2026 (RUB, Germany)"
-subtitle: "Local node at Ruhr University Bochum, Germany"
-shortTitle: "Ruhr University Bochum"
-type: "hackathon"
-startDate: "2026-03-24"
-startTime: "09:00+00:00"
-endDate: "2026-03-26"
-endTime: "17:00+00:00"
-locations:
-  - name: online, maybe in-person
+title: Preparing mspepid for first (dev) release
+category: community
+slack: https://nfcore.slack.com/archives/C09NMCR5M4P
+# intro_video: ""
+location: online (on request at Bochum/DE)
 leaders:
   julianu:
     name: Julian Uszkoreit
     slack: https://nfcore.slack.com/team/U09P3DQ7N3U
-layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
 # Goal
