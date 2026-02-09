@@ -19,7 +19,7 @@ Anyone can join !
 
 Contacts:
 
-- [Mark Polster](https://nfcore.slack.com/archives/D05SAA3LL6P) (lei_ma@g.harvard.edu)
+- [Mark Polster](https://nfcore.slack.com/archives/D05SAA3LL6P)
 - [Jonas Scheid](https://nfcore.slack.com/archives/D06HC2SPEQ5)
 - [Nadja Volkmann](https://nfcore.slack.com/archives/D0AENE1LSJU)
 - [Carolin Schwitalla](https://nfcore.slack.com/archives/D0ADMPMKKHR)
