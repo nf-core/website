@@ -1,9 +1,10 @@
 ---
 title: Preparing mspepid for first (dev) release
-category: community
+category: pipelines
 slack: https://nfcore.slack.com/archives/C09NMCR5M4P
-# intro_video: ""
 location: online (on request at Bochum/DE)
+image: ""
+image_alt: ""
 leaders:
   julianu:
     name: Julian Uszkoreit
