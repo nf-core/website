@@ -19,7 +19,7 @@ leaders:
 
 Working towards a 1.1.0 release of the pipeline. Adding more modules, fixing bugs and improving documentation.
 
-Note:::note
+:::note
 At the time of writing v1 has not yet been released, but Maxime has promised it will happen before the hackathon and we put our trust in him.
 :::
 
