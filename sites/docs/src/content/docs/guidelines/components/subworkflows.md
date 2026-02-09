@@ -278,7 +278,7 @@ To maintain code quality and prevent issues, all code MUST be free of Nextflow w
 
 CCommon issues to avoid:
 
-| Old syntax                    | Preffered syntax                           |
+| Old syntax                    | Prefered syntax                            |
 | ----------------------------- | ------------------------------------------ |
 | undeclared variable           | add `def my_variable{:groovy}`             |
 | `input.collect{ it[1].name }` | `input.collect{ meta, file -> file.name }` |
