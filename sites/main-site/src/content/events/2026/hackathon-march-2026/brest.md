@@ -36,7 +36,7 @@ Schedule TBD
 
 We will work on open issues around nf-core, including:
 
-- nf-core/modules: This primary repository is essential for the nf-core community and requires a thorough cleanup. Our aim is to migrate it to the latest Nextflow strict syntax with no errors nor warnings !
+- nf-core/modules: This primary repository is essential for the nf-core community and requires a thorough cleanup. Our aim is to migrate it to the latest Nextflow strict syntax with no errors nor warnings!
 - nf-core/phaseimpute: This pipeline project offers tasks suitable for contributors at all skill levels.
 
 If you and your colleagues are interested in collaborating on a project at the hackathon, feel free to submit a pull request (PR) to include your project! We welcome your suggestions, and more details will be shared soon.
