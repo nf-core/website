@@ -11,7 +11,6 @@ leaders:
     slack: "https://nfcore.slack.com/team/U02GS5HK553"
 ---
 
-
 This project aims to enhance the:
 
 - [nf-core/taxprofiler](https://nf-co.re/taxprofiler/dev) pipeline with a focus on the [1.3.0 - Crazy Corgi](https://github.com/nf-core/taxprofiler/milestone/4) milestone
@@ -30,4 +29,5 @@ Add new features to the pipeline
 4. Improve nf-tests for all profiles
 
 ## Where
+
 TBD
