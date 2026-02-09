@@ -278,7 +278,6 @@ To maintain code quality and prevent issues, all code MUST be free of Nextflow w
 
 Common issues to avoid:
 
-- unused variable declaration `def args = task.ext.args ?: ''`
 - undeclared variable
 - undeclared iterator `input.collect{ it[1].name }` instead of `input.collect{ meta, file -> file.name }`
 - usage of `for` loops instead of `.each` operator
