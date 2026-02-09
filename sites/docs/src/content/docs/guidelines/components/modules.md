@@ -952,3 +952,15 @@ Please keep the file sorted alphabetically.
 ### General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
+
+To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors. Utilize the following command to check your code: `nextflow lint modules/nf-core/module_name`.
+
+Common issues to avoid:
+
+- unused variable declaration `def args = task.ext.args ?: ''`
+- undeclared variable
+- undeclared iterator `input.collect{ it[1].name }` instead of `input.collect{ meta, file -> file.name }`
+- usage of `for` loops instead of `.each` operator
+- ...
+
+By following these guidelines, you will ensure that your code is clean, efficient, and compliant with Nextflow standards.
