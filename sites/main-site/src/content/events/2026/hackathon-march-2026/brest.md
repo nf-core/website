@@ -10,7 +10,7 @@ endTime: "17:00+01:00"
 locations:
   - name: GGB, Brest
     address: |
-        GGB Institute. Room yet to be defined
+      GGB Institute. Room yet to be defined
     country: France
     city: Brest
     geoCoordinates: [48.396233301362834, -4.487184618903027]
