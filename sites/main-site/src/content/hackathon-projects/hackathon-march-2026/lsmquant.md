@@ -1,6 +1,6 @@
 ---
 title: Working on nf-core/lsmquant
-category: pipeline
+category: pipelines
 intro_video: ""
 slack:
 image:
