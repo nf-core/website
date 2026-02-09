@@ -2,9 +2,9 @@
 title: Working on nf-core/lsmquant
 category: pipelines
 intro_video: ""
-slack:
-image:
-image_alt:
+slack: ""
+image: ""
+image_alt: ""
 leaders:
   CaroAMN:
     name: Carolin Schwitalla
