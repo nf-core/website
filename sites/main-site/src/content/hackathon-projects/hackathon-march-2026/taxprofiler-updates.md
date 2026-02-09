@@ -28,3 +28,6 @@ Add new features to the pipeline
 2. Add melon/sylph/metacache/metabuli classifiers to taxpasta
 3. Work on pipeline chaining approach
 4. Improve nf-tests for all profiles
+
+## Where
+TBD
