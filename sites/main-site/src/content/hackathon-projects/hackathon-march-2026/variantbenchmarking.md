@@ -4,8 +4,8 @@ category: pipelines
 slack: https://nfcore.slack.com/archives/C06K0KEAMTN
 intro_video: "https://www.youtube.com/watch?v=nhrm3M1Fsg8"
 location: Heidelberg and online
-image:
-image_alt:
+image: ""
+image_alt: ""
 leaders:
   kubranarci:
     name: Kubra Narci
