@@ -957,7 +957,7 @@ To maintain code quality and prevent issues, all code MUST be free of Nextflow w
 
 Common issues to avoid:
 
-| Old syntax                                               | Preffered syntax                           |
+| Old syntax                                               | Prefered syntax                            |
 | -------------------------------------------------------- | ------------------------------------------ |
 | Unused `def args = task.ext.args ?: ''{:groovy}` in stub | delete it                                  |
 | undeclared variable                                      | add `def my_variable{:groovy}`             |
