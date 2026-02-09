@@ -18,7 +18,6 @@ Contribute to [nf-core/variantbenchmarking](https://github.com/nf-core/variantbe
 
 We aim to standardize the pipeline more and contribute to subworkflows in nf-core.
 
-
 ## Tasks
 
 1. Adding tools to nf-core/modules
@@ -44,7 +43,6 @@ Level: For people with experience in benchmarking
 - Issue [#233](https://github.com/nf-core/variantbenchmarking/issues/233)
 
 Level: For people with some experience in Nextflow or nf-core pipelines.
-
 
 :::note
 Keep an eye on this page for more updates.
