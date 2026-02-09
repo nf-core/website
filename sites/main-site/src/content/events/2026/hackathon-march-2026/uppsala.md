@@ -4,9 +4,9 @@ subtitle: "Local Uppsala node for the nf-core March 2026 Hackathon (Seqinspector
 shortTitle: "Uppsala"
 type: "hackathon"
 startDate: "2026-03-11"
-startTime: "09:00+00:00"
+startTime: "09:00+01:00"
 endDate: "2026-03-13"
-endTime: "17:00+00:00"
+endTime: "17:00+01:00"
 locations:
   - name: BMC, Uppsala University
     address: Husargatan 3, 752 37 Uppsala
