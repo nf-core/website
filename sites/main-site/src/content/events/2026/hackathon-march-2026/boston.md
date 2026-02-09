@@ -12,7 +12,7 @@ locations:
     address: |
     country: USA
     city: Cambridge
-    geoCoordinates: [42.3782776,-71.1533904]
+    geoCoordinates: [42.3782776, -71.1533904]
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
