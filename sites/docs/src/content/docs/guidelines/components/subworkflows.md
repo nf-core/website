@@ -283,4 +283,4 @@ Common issues to avoid:
 - usage of `for` loops instead of `.each` operator
 - ...
 
-By following these guidelines, you will ensure that your code is clean, efficient, and compliant with Nextflow standards.
+By following these guidelines, you will ensure that your code is compliant with Nextflow standards.
