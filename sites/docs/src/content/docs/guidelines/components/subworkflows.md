@@ -276,11 +276,12 @@ All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contribu
 
 To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors. Utilize the following command to check your code: `nextflow lint subworkflows/nf-core/subworkflow_name`.
 
-Common issues to avoid:
+CCommon issues to avoid:
 
-- undeclared variable
-- undeclared iterator `input.collect{ it[1].name }` instead of `input.collect{ meta, file -> file.name }`
-- usage of `for` loops instead of `.each` operator
-- ...
+| Old syntax                    | Preffered syntax                           |
+| ----------------------------- | ------------------------------------------ |
+| undeclared variable           | add `def my_variable{:groovy}`             |
+| `input.collect{ it[1].name }` | `input.collect{ meta, file -> file.name }` |
+| `for` loop                    | `.each{}` operator                         |
 
 By following these guidelines, you will ensure that your code is compliant with Nextflow standards.
