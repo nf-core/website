@@ -8,12 +8,12 @@ startTime: "09:00+01:00"
 endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
-    - name: GGB, Brest
-      address: |
-          GGB Institute. Room yet to be defined
-      country: France
-      city: Brest
-      geoCoordinates: [48.396233301362834, -4.487184618903027]
+  - name: GGB, Brest
+    address: |
+        GGB Institute. Room yet to be defined
+    country: France
+    city: Brest
+    geoCoordinates: [48.396233301362834, -4.487184618903027]
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 

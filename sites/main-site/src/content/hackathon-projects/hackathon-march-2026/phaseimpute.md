@@ -11,7 +11,7 @@ leaders:
     slack: "https://nfcore.slack.com/team/U03UCQH8FN2"
 ---
 
-This project aims to update the [nf-core/phaseimpute](https://nf-co.re/phaseimpute/dev) pipeline, by adding features described in the [issues](https://github.com/nf-core/phaseimpute/issues) page.
+This project aims to update the [nf-core/phaseimpute](https://nf-co.re/phaseimpute/dev) pipeline, by adding features and fixing bugs described in the [issues](https://github.com/nf-core/phaseimpute/issues) page.
 
 ## Goal
 
