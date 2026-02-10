@@ -4,7 +4,7 @@ category: pipelines
 slack: https://nfcore.slack.com/archives/C06PHJM0Y3D
 intro_video: ""
 location: in-person
-image: "/assets/images/events/2026/nfcore-seqinspector-logo-hex-light.png"
+image: "/assets/images/events/2026/hackathon-march/nfcore-seqinspector-logo-hex-light.png"
 image_alt: Seqinspector logo
 leaders:
   FranBonath:
@@ -17,10 +17,10 @@ leaders:
 
 ## Goal
 
-Working towards a 1.1.0 release of the pipeline. Adding more modules, fixing bugs and improving documentation.
+Working towards a 1.1.0 release of the pipeline. Adding more modules, fixing bugs, implementing strict Nextflow syntax and improving documentation.
 
 :::note
-At the time of writing v1 has not yet been released, but Maxime has promised it will happen before the hackathon and we put our trust in him.
+At the time of writing, v1 has not yet been released, but Maxime has promised it will happen before the hackathon and we put our trust in him.
 :::
 
 ## Description
