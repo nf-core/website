@@ -21,6 +21,7 @@ Local hub for the "Seqinspector improvements" project!
 Attendees from outside Uppsala University are very welcome to join.
 
 Contacts:
+
 - [Matilda](https://nfcore.slack.com/team/UN7VCPD35)
 - [Fran](https://nfcore.slack.com/team/UGP9YUCKD)
 
