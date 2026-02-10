@@ -10,7 +10,7 @@ leaders:
   FranBonath:
     name: Franziska Bonath
     slack: https://nfcore.slack.com/team/UGP9YUCKD
-  Matilda-Åslin:
+  matrulda:
     name: Matilda Åslin
     slack: https://nfcore.slack.com/team/UN7VCPD35
 ---
