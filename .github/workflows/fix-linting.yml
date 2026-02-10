@@ -53,7 +53,7 @@ jobs:
 
       - name: Run prek
         id: prek
-        uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1
+        uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
         continue-on-error: true
 
       # indication that the linting has finished
@@ -74,9 +74,10 @@ jobs:
           token: ${{ secrets.nf_core_bot_auth_token }}
 
       # Re-run prek to apply fixes (idempotent operation)
+      - run: npm ci --ignore-scripts
       - name: Re-run prek to apply fixes
         if: steps.prek.outcome == 'failure'
-        uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1
+        uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
         continue-on-error: true
 
       - name: Commit & push changes
