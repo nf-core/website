@@ -1,7 +1,6 @@
 ---
 title: Fonts
 subtitle: nf-core fonts
-weight: 3
 ---
 
 nf-core uses standard fonts for headings and body.

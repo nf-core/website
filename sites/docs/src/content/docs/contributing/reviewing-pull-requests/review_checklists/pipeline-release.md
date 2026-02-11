@@ -1,52 +1,153 @@
 ---
-title: Review checklist for pipeline releases
-subtitle: A checklist for reviewing pipeline release PRs
-shortTitle: Pipelines
+title: Reviewing pipeline releases
+subtitle: Review nf-core pipeline release pull requests
+shortTitle: Reviewing pipeline releases
 markdownPlugin: checklist
-weight: 2
 ---
 
-<!-- TODO: Add links to other pages and guide where possible -->
+Pipeline release reviews ensure that pipelines meet nf-core standards before they reach the community.
+When you review a pipeline release pull request, you examine the submission and provide constructive feedback before maintainers merge the changes into the nf-core repository.
 
-When you review a PR, you examine a pipeline release submission.
-You provide constructive feedback on those changes before the maintainers merge them into the nf-core repository.
-Your review ensures that the pipeline meets the coding standards of the project, maintains consistency and achieves high quality.
+Pipeline release PRs vary widely in their contents, making it harder to provide strict universal criteria compared to reviewing [components](/docs/contributors/reviewing-pull-requests/review_checklists/component).
+Your role as a reviewer is to check for adherence to the central principles of nf-core: reproducibility, excellent reporting, documentation, and template compliance.
 
-Use this guide to evaluate nf-core pipeline release pull requests.
-Focus on checking for adherence to nf-core principles rather than applying strict universal criteria, given the diverse nature of pipeline releases.
+:::tip
+Use the [pipeline release review checklist](/docs/contributors/reviewing-pull-requests/review_checklists/pipeline-release) for a quick reference whilst reviewing.
+:::
 
-## Do: nf-core principles
+## Before you start
 
-- [ ] Verify that the pipeline meets the general nf-core guidelines.
+Pipeline release reviews can feel overwhelming, particularly when doing one for the first time.
+Remember that you don't need to be an expert in the scientific domain to provide valuable feedback on code quality, documentation, and adherence to nf-core standards.
 
-## Do: Local code and modules
+Focus on the general [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview) rather than the scientific accuracy of the analysis.
+Your perspective helps catch issues that developers might have missed.
 
-- [ ] Check that local scripts in `bin/` include author and licence information.
-- [ ] Check that licences are MIT (not GPL) to match pipeline code.
-- [ ] Ensure all local modules have docker/singularity/conda declarations, preferably from bioconda/biocontainers.
-- [ ] Verify the code specifies tool versions (avoiding `latest` or `dev` tags).
-- [ ] Check that complex modules include version reporting.
-- [ ] Evaluate whether local modules belong in nf-core/modules instead.
+### Review nf-core principles
 
-## Do: Documentation
+Start by verifying that the pipeline meets the general nf-core guidelines.
+Check that the pipeline:
 
-- [ ] Verify documentation appears only on the nf-core website.
-- [ ] Check that `usage.md`, `output.md`, and `nextflow_schema.json` are comprehensive.
-- [ ] Check schema for correct types, appropriate use of `default` and `enum` fields.
-- [ ] Proofread documentation for errors.
-- [ ] Ensure CHANGELOG follows three-point semantic versioning (for example, 2.1.0) with updated dates.
-- [ ] Verify consistent citation formatting in `CITATIONS.md`.
-- [ ] Confirm the documentation properly credits all tools and authors.
+- [ ] Follows the nf-core template structure
+- [ ] Uses appropriate nf-core conventions and patterns
+- [ ] Maintains reproducibility across different computing environments
+- [ ] Provides comprehensive reporting and documentation
 
-## Do: Code
+You can find the complete set of pipeline guidelines in the [pipeline overview](/docs/guidelines/pipelines/overview).
 
-- [ ] Assess general readability and potential bugs.
-- [ ] Ensure parameter consistency using `snake_case`.
-- [ ] Verify boolean parameters default to `false` (prefer `skip_step = false` over `run_step = true`).
-- [ ] Check manifest includes DOI when applicable.
+## Review local code and modules
 
-## Don't have to do
+Local modules and scripts require careful attention because they don't benefit from the community review process that nf-core/modules receives.
 
-- [ ] Review code from nf-core/modules.
-- [ ] Comment on scientific accuracy unless qualified.
-- [ ] Demand major code optimisation (minor suggestions acceptable).
+### Local scripts
+
+Check that scripts in the `bin/` directory include:
+
+- [ ] Author information
+- [ ] Licence declarations (prefer MIT over GPL to match pipeline code)
+
+### Local modules
+
+Verify that all local modules in `modules/local/` include:
+
+- [ ] Docker, Singularity, and Conda declarations
+- [ ] Tool versions from bioconda/biocontainers where possible
+- [ ] Specific version tags (not `latest` or `dev`)
+- [ ] Version reporting for complex modules (simple operations like single `grep` commands don't need version reporting)
+- [ ] Consider whether local modules belong in `nf-core/modules` instead
+
+  :::note
+  If a module could be useful across multiple pipelines, suggest moving it to the shared repository for broader community benefit.
+  :::
+
+## Review documentation
+
+Documentation makes pipelines accessible to the community.
+Focus your review on these key areas:
+
+### Documentation location
+
+Verify that all documentation:
+
+- [ ] Appears only on the nf-core website (not external platforms or non-standard locations)
+
+### Core documentation files
+
+Check that `usage.md`, `output.md`, and `nextflow_schema.json` provide comprehensive information:
+
+- [ ] **usage.md**: Clear instructions for running the pipeline with common use cases
+- [ ] **output.md**: Detailed descriptions of all output files and directories
+- [ ] **nextflow_schema.json**: Correct types for all parameters, appropriate use of `default` and `enum` fields
+
+### Changelog and versioning
+
+Ensure the CHANGELOG follows three-point semantic versioning (for example, 2.1.0 rather than 2.1).
+Check that:
+
+- [ ] The version number follows SemVer conventions
+- [ ] The date has been updated to the release date
+- [ ] All significant changes are documented
+
+### Citations
+
+Review `CITATIONS.md` for:
+
+- [ ] Consistent citation formatting
+- [ ] Complete citations for all tools used in the pipeline
+- [ ] Proper credit to pipeline authors and contributors
+- [ ] Pipeline authors list themselves in the manifest and other contributors appear in the README
+
+### Proofreading
+
+Proofread documentation for:
+
+- [ ] Typos
+- [ ] Grammatical errors
+- [ ] Unclear explanations
+
+  :::note
+  Well-written documentation helps users get started quickly and reduces support requests.
+  :::
+
+## Review code quality
+
+### General code review
+
+Assess the code for:
+
+- [ ] General readability and clarity
+- [ ] Possible bugs or logic errors
+- [ ] Non-template components that might cause maintenance issues
+
+Avoid requiring major code optimisation unless it affects functionality.
+Small optimisation suggestions are welcome, but large refactoring should have happened during development PRs rather than at release time.
+
+### Parameter conventions
+
+Check that parameters follow nf-core conventions:
+
+- [ ] Use `snake_case` for all parameter names
+- [ ] Boolean parameters default to `false` (prefer `skip_step = false` over `run_step = true`)
+- [ ] Parameter names are consistent and self-explanatory
+
+### Manifest
+
+Verify that the manifest:
+
+- [ ] Includes all required information, including DOIs where applicable
+
+## What you don't need to review
+
+To keep reviews focused and efficient, you don't need to:
+
+- Review code from nf-core/modules (these modules have their own review process)
+- Comment on scientific accuracy unless you're familiar with the topic
+- Require major code optimisation at the release stage
+
+  :::note
+  You can suggest small code optimisation.
+However, larger code optimisation shouldn't necessarily be required for release.
+  :::
+
+Remember that your review helps maintain quality across the nf-core ecosystem.
+Thank you for contributing your time to make nf-core pipelines better for everyone.

@@ -1,6 +1,6 @@
 ---
 title: Contributing a new pipeline
-subtitle: How to contribute a new nf-core pipeline
+subtitle: Contribute a new nf-core pipeline
 shortTitle: New pipelines
 ---
 

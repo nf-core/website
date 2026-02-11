@@ -1,8 +1,7 @@
 ---
 title: Merging automated PRs
-subtitle: How to merge automated PRs after a new nf-core/tools release
+subtitle: Merge automated PRs after a new tools release
 shortTitle: Merging automated PRs
-weight: 4
 ---
 
 When nf-core releases a new tools version, each pipeline receives an automated pull request to merge template changes into the pipeline.

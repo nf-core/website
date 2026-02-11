@@ -4,7 +4,6 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import type { SidebarEntry } from "@utils/types";
 import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
-import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
 export async function getStaticPaths() {
     return ["get-started", "users", "developers", "contributors", "specifications", "community", "nf-core-tools"].map((subsection) => ({
@@ -15,6 +14,17 @@ export async function getStaticPaths() {
 }
 
 const { subsection } = Astro.params;
+
+// Define subsection descriptions from index page
+const subsectionDescriptions: Record<string, string> = {
+    "get-started": "New to nf-core? Start here to learn the basics and run your first pipeline.",
+    "users": "Run and configure nf-core pipelines",
+    "developers": "Create and maintain nf-core pipelines, components, and configs",
+    "contributors": "Contribute to the nf-core community",
+    "specifications": "Technical specifications for nf-core pipelines, components, and test data",
+    "community": "Community resources and guidelines",
+    "nf-core-tools": "Command-line tools and API for working with nf-core",
+};
 
 let docs = await getCollection("docs");
 import SidebarNav from "@components/sidebar/SidebarNav.astro";
@@ -150,10 +160,11 @@ sections.forEach((section) => {
     }
 });
 const title = subsections.label;
+const subtitle = subsection ? subsectionDescriptions[subsection] : "";
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 ---
 
-<PageLayout title={title} subtitle={"Overview of sections about " + title} mainpage_container={false}>
+<PageLayout title={title} subtitle={subtitle} mainpage_container={false}>
     <div slot="header-top" class="d-none d-md-block">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
@@ -175,49 +186,137 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
     <div class="container-fluid main-content">
         <div class="row">
             <div class="col-12 col-xl-8 order-2">
-                <div class="">
-                    <h2>{subsection.slice(0, 1).toUpperCase() + subsection.slice(1)}</h2>
-                    <div class="grid">
-                        {
-                            subsections &&
-                                subsections.entries.map((section) => (
-                                    <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card position-relative">
-                                        <span class="card-header">
-                                            {section.href && (
-                                                <a
-                                                    href={section.href}
-                                                    class:list={[
-                                                        "text-decoration-none",
-                                                        { "stretched-link": section.type === "link" },
-                                                    ]}
-                                                >
-                                                    {sanitizeNfCoreLabels(section.label)}
-                                                </a>
-                                            )}
-                                            {!section.href && sanitizeNfCoreLabels(section.label)}
-                                        </span>
-                                        {section.type === "link" && (
-                                            <div class="card-body">
-                                                <p>
-                                                    {
-                                                        docs.find(
+                {
+                    subsections &&
+                        subsections.entries.map((section) => {
+                            // Helper function to render entries with subsection headings
+                            const renderEntries = (entries: SidebarEntry[], showSubheadings = false) => {
+                                const groups: JSX.Element[] = [];
+                                const directPages: { label: string; href: string; subtitle?: string }[] = [];
+
+                                // Separate direct pages from nested groups
+                                entries.forEach((item) => {
+                                    if (item.type === "link") {
+                                        const itemDoc = docs.find(
+                                            (doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === item.href,
+                                        );
+                                        directPages.push({
+                                            label: sanitizeNfCoreLabels(item.label),
+                                            href: item.href,
+                                            subtitle: itemDoc?.data.subtitle,
+                                        });
+                                    } else if (item.type === "group" && item.entries) {
+                                        // Recursively collect pages from this group
+                                        const groupPages: { label: string; href: string; subtitle?: string }[] = [];
+                                        const collectGroupPages = (groupEntries: SidebarEntry[]) => {
+                                            groupEntries.forEach((entry) => {
+                                                if (entry.type === "link") {
+                                                    const doc = docs.find(
+                                                        (d) =>
+                                                            "/docs/" + d.id.replace(/\.[^/.]+$/, "") === entry.href,
+                                                    );
+                                                    groupPages.push({
+                                                        label: sanitizeNfCoreLabels(entry.label),
+                                                        href: entry.href,
+                                                        subtitle: doc?.data.subtitle,
+                                                    });
+                                                } else if (entry.type === "group" && entry.entries) {
+                                                    collectGroupPages(entry.entries);
+                                                }
+                                            });
+                                        };
+                                        collectGroupPages(item.entries);
+
+                                        groups.push(
+                                            <>
+                                                <div class="g-col-12">
+                                                    <h3 class="subsection-heading mb-3">
+                                                        {sanitizeNfCoreLabels(item.label)}
+                                                    </h3>
+                                                </div>
+                                                {groupPages.map((page) => (
+                                                    <a
+                                                        href={page.href}
+                                                        class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                                    >
+                                                        <div class="card h-100 page-card">
+                                                            <div class="card-body">
+                                                                <h5 class="h5 card-title mb-2">{page.label}</h5>
+                                                                {page.subtitle && (
+                                                                    <p class="card-description mb-0">{page.subtitle}</p>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                ))}
+                                            </>,
+                                        );
+                                    }
+                                });
+
+                                return (
+                                    <>
+                                        {directPages.map((page) => (
+                                            <a
+                                                href={page.href}
+                                                class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                            >
+                                                <div class="card h-100 page-card">
+                                                    <div class="card-body">
+                                                        <h5 class="h5 card-title mb-2">{page.label}</h5>
+                                                        {page.subtitle && (
+                                                            <p class="card-description mb-0">{page.subtitle}</p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        ))}
+                                        {groups}
+                                    </>
+                                );
+                            };
+
+                            return (
+                                <div class="section-block mb-5">
+                                    <h2 class="section-heading mb-3">{sanitizeNfCoreLabels(section.label)}</h2>
+                                    <div class="grid gap-3">
+                                        {section.type === "link" ? (
+                                            <a
+                                                href={section.href}
+                                                class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                            >
+                                                <div class="card h-100 page-card">
+                                                    <div class="card-body">
+                                                        <h5 class="h5 card-title mb-2">
+                                                            {sanitizeNfCoreLabels(section.label)}
+                                                        </h5>
+                                                        {docs.find(
                                                             (doc) =>
                                                                 "/docs/" + doc.id.replace(/\.[^/.]+$/, "") ===
                                                                 section.href,
-                                                        )?.data.subtitle
-                                                    }
-                                                </p>
-                                            </div>
+                                                        )?.data.subtitle && (
+                                                            <p class="card-description mb-0">
+                                                                {
+                                                                    docs.find(
+                                                                        (doc) =>
+                                                                            "/docs/" +
+                                                                                doc.id.replace(/\.[^/.]+$/, "") ===
+                                                                            section.href,
+                                                                    )?.data.subtitle
+                                                                }
+                                                            </p>
+                                                        )}
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        ) : (
+                                            renderEntries(section.entries, true)
                                         )}
-
-                                        <ul class="card-body mx-3 mb-0" id={section.label?.replace("/", "-")}>
-                                            {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
-                                        </ul>
                                     </div>
-                                ))
-                        }
-                    </div>
-                </div>
+                                </div>
+                            );
+                        })
+                }
             </div>
 
             <div class="col-12 col-xl-3 sticky-top-under d-none d-xl-inline sidebar-left order-1">
@@ -227,14 +326,52 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
     </div>
 </PageLayout>
 <style is:global>
-    .card li {
-        a,
-        summary {
-            border-inline-end: none !important;
-        }
-        a:hover {
-            text-decoration: underline !important;
-            background-color: transparent !important;
-        }
+    .section-block {
+        margin-bottom: 3rem;
+    }
+
+    .section-heading {
+        color: var(--bs-heading-color);
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin-bottom: 1rem;
+    }
+
+    .subsection-heading {
+        color: var(--bs-heading-color);
+        font-weight: 600;
+        font-size: 1.5rem !important;
+        margin-top: 2rem;
+    }
+
+    /* Page Cards - matching index.astro style */
+    .page-card {
+        border: 1px solid var(--bs-border-color);
+        background: var(--bs-body-bg);
+        transition: border-color 0.2s ease-in-out;
+    }
+
+    .page-card:hover {
+        border-color: var(--bs-secondary);
+    }
+
+    .page-card:hover .card-title {
+        text-decoration: underline;
+    }
+
+    .page-card .card-body {
+        padding: 1.5rem;
+    }
+
+    .page-card .card-title {
+        color: var(--bs-heading-color);
+        font-weight: 600;
+        font-size: 1.25rem;
+    }
+
+    .page-card .card-description {
+        color: var(--bs-secondary-color);
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 </style>

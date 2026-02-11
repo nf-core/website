@@ -1,5 +1,5 @@
 ---
-title: PR review guidelines
+title: Review guidelines
 subtitle: Best practices for reviewing contributions
 weight: 1
 parentWeight: 30
@@ -16,7 +16,7 @@ New to reviewing pull requests?
 Start with our [contribution guide](/docs/tutorials/contributing_to_nf-core/overview) to learn the basics of the review process.
 :::
 
-## Review guidelines
+## Guidelines
 
 The following specifications define best practices for the pull request review process:
 

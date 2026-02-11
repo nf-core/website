@@ -1,8 +1,7 @@
 ---
 title: Running nf-core pipelines offline
-subtitle: Learn how to use nf-core pipelines without an internet connection
+subtitle: Run pipelines without internet access
 shortTitle: Running pipelines offline
-weight: 1
 ---
 
 nf-core pipelines are designed to automatically fetch everything they need to run, including pipeline code, container images, and reference data.

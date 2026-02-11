@@ -2,7 +2,6 @@
 title: nf-core documentation
 subtitle: Contributing nf-core documentation
 shortTitle: Documentation
-weight: 2
 ---
 
 Everyone is welcome to contribute to nf-core documentation.

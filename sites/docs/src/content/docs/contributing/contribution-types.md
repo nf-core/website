@@ -1,6 +1,6 @@
 ---
 title: Contribution types
-subtitle: How to distinguish between different types of contributors to nf-core pipelines
+subtitle: Distinguish between different types of contributors
 ---
 
 Each nf-core pipeline includes a `nextflow.config` file with a manifest that lists all pipeline contributors.
