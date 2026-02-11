@@ -156,6 +156,8 @@ To use Refgenie:
    Refgenie creates `~/.nextflow/nf-core/refgenie_genomes.config` and appends an `includeConfig` statement to `~/.nextflow/config` that references this file.
    :::
 
+<!-- TODO: Check this is correct - I can't find any docs on the refgenie website it makes any config -->
+
 3. Pull required genome assets. For example:
 
    ```bash
@@ -164,7 +166,7 @@ To use Refgenie:
    ```
 
    Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
-For example:
+   For example:
 
    ```groovy title="refgenie_genomes.config"
    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.

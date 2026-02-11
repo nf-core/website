@@ -25,7 +25,7 @@ To transfer Nextflow to an offline system:
 
    :::note
    Nextflow fetches the required plugins.
-It does not need to run to completion.
+   It does not need to run to completion.
    :::
 
 3. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
@@ -73,7 +73,9 @@ To transfer pipeline code to an offline system:
 ### Transfer reference genomes offline
 
 To use nf-core reference genomes offline, download and transfer them to your offline cluster.
-See [Reference genomes](./reference_genomes.md) for more information.
+See [Reference genomes](./reference-genomes.md) for more information.
+
+<!-- TODO: reference genomes link is dead -->
 
 ## Additional resources
 
