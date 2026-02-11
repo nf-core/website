@@ -1,7 +1,7 @@
 ---
 title: nf-core/modules topics migration
 category: modules
-slack: https://app.slack.com/client/TE6CZUZPH/C09LJTQQ3EY
+slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
 intro_video: ""
 location: online
 leaders:
