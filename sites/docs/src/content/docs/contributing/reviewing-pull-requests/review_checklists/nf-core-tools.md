@@ -1,41 +1,55 @@
 ---
-title: Review checklist for nf-core/tools
-subtitle: A checklist for reviewing PRs in the nf-core/tools repository
-shortTitle: "nf-core/tools "
+title: Reviewing nf-core/tools
+subtitle: Review nf-core/tools pull requests
+shortTitle: "Reviewing nf-core/tools"
 markdownPlugin: checklist
-weight: 3
 ---
 
-<!-- TODO: Add links to other pages and guide where possible -->
+nf-core/tools reviews ensure that changes to the tooling meet project standards and work reliably across the nf-core ecosystem.
+When you review an nf-core/tools pull request, you examine the proposed changes and provide constructive feedback before maintainers merge them into the repository.
 
-When you review a PR, you examine changes proposed to the `nf-core/tools` repository.
-You provide constructive feedback on those changes before the maintainers merge them.
-Your review ensures that the code meets the coding standards of the project, maintains consistency and achieves high quality.
+The infrastructure team oversees the review process for nf-core/tools, but community input helps catch issues and ensures changes work well in real-world scenarios.
+Your perspective as a user of the tools is valuable, even if you're not familiar with all the internal code.
 
-While the infrastructure team oversees the PR review process for nf-core/tools, these guidelines help you review PRs consistently and effectively as a community member.
+:::tip
+Use this checklist for a quick reference whilst reviewing nf-core/tools PRs.
+:::
 
 ## General checklist items
 
-- [ ] Check that tests cover the added code (either old or newly added tests).
-- [ ] Verify documentation exists or the PR adds it, including checking for corresponding PR updates to nf-core/website if needed.
-- [ ] Ensure the code does not hardcode "nf-core"; check it uses `organisation` variable instead.
-- [ ] Check the code does not hardcode `modules`/`subworkflows`; verify it uses `component_type` instead.
+Check the fundamentals of the PR:
+
+- [ ] Tests cover the added code (either old or newly added tests)
+- [ ] Documentation exists or the PR adds it, including checking for corresponding PR updates to nf-core/website if needed
+- [ ] Code does not hardcode "nf-core"; verify it uses `organisation` variable instead
+- [ ] Code does not hardcode `modules`/`subworkflows`; verify it uses `component_type` instead
 
 ## Python styling checklist
 
-- [ ] Prefer `pathlib` over `os` module when possible for file operations.
-- [ ] Check that the code uses typing.
-- [ ] Verify comments are sufficient and clear for readability.
-- [ ] Update docstrings as they generate API documentation automatically.
-- [ ] If the PR adds a new command, check that the API documentation skeleton includes it.
+Ensure the code follows Python best practices:
+
+- [ ] Prefers `pathlib` over `os` module when possible for file operations
+- [ ] Code uses typing
+- [ ] Comments are sufficient and clear for readability
+- [ ] Docstrings are updated (they generate API documentation automatically)
+- [ ] If the PR adds a new command, verify that the API documentation skeleton includes it
 
 ## Template modifications
 
-- [ ] Avoid unnecessary changes to prevent unnecessary updates across all pipelines.
-- [ ] Verify if the template should skip code/files based on customisations (branding, modules).
+Template changes propagate to all pipelines through `nf-core pipelines sync`, so they require careful consideration:
+
+- [ ] Avoid unnecessary changes to prevent unnecessary updates across all pipelines
+- [ ] Verify if the template should skip code/files based on customisations (branding, modules)
 
 ## Command modifications
 
-- [ ] Update all references to modified commands throughout documentation.
-- [ ] Ensure mentions in nf-core/tools and nf-core/website documentation are current.
-- [ ] Update the [`rich-codex.yml`](https://github.com/nf-core/website/blob/main/.github/rich-codex.yml) file in nf-core/website repository.
+When the PR modifies commands, check that documentation is updated:
+
+- [ ] All references to modified commands are updated throughout documentation
+- [ ] Mentions in nf-core/tools and nf-core/website documentation are current
+- [ ] The [`rich-codex.yml`](https://github.com/nf-core/website/blob/main/.github/rich-codex.yml) file in nf-core/website repository is updated
+
+  :::note
+  Command changes often require updates in multiple places.
+  Missing documentation updates can confuse users who see different information in different locations.
+  :::

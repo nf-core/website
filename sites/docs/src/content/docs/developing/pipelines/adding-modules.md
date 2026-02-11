@@ -1,6 +1,6 @@
 ---
 title: Adding modules to pipelines
-subtitle: How to add nf-core modules to pipelines
+subtitle: Add nf-core modules to pipelines
 shortTitle: Adding modules
 ---
 

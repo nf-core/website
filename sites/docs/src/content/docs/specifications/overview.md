@@ -40,12 +40,7 @@ Guidelines for managing test data used in continuous integration and testing of 
 
 Best practices for reviewing pull requests and managing the collaborative development process within nf-core repositories.
 
-- **[PR review guidelines](/developers/specifications/reviews):** Standards for requesting reviews, merging pull requests, managing feedback, and commit strategies
-
-## Ask the community
-
-The instructions below are subject to interpretation and specific scenarios.
-If in doubt, ask the community for feedback on the [#help slack channel](https://nfcore.slack.com/channels/help).
+- **[Review guidelines](/developers/specifications/reviews):** Standards for requesting reviews, merging pull requests, managing feedback, and commit strategies
 
 ## If the guidelines don't fit
 
@@ -68,3 +63,8 @@ If a pipeline is found to be violating the nf-core guidelines _after_ it has bee
 
 All members of the nf-core community must adhere to the [nf-core code of conduct](https://nf-co.re/code_of_conduct).
 The guidelines and actions within the code of conduct take precedence over the development pipelines described in this page.
+
+## Ask the community
+
+The instructions below are subject to interpretation and specific scenarios.
+If in doubt, ask the community for feedback on the [#help slack channel](https://nfcore.slack.com/channels/help).
