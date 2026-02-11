@@ -4,7 +4,7 @@ category: pipelines
 slack: https://nfcore.slack.com/archives/C05V9FRJYMV
 intro_video: ""
 location: online
-image: "/assets/images/events/2026/hackathon-march/nfcore-sarek-icon.png"
+image: "/assets/images/events/2026/hackathon-march/nfcore-sarek-icon.svg"
 image_alt: "nf-core/sarek logo"
 leaders:
   FriederikeHanssen:
