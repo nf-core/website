@@ -104,6 +104,8 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 If you run the pipeline alone on a local machine, create a local configuration file.
 Nextflow searches for configuration files in three locations:
 
+<!-- TODO this is not just local machine though, also works for HPC... ? -->
+
 1. User's home directory: `~/.nextflow/config`
 2. Analysis working directory: `nextflow.config`
 3. Custom path on the command line: `-c path/to/config` (you can specify multiple files)
@@ -117,10 +119,14 @@ The loading order is:
 4. Each `-c` file in the order you specify
 5. Command line parameters (`--<parameter>`)
 
-:::warning
+<!-- TODO I think this _maybe_ should go before the explanation of how to customise with local configuration files, as this is the default behaviour BEFORe you start customising so the logic will maybe be more familiar. Relatd, maybe we should mention that in nf-core pipelines we have `base.config` as this is where we set our _Resource_ defaults -->
+
+:::warnings
 Parameters in `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
+
+<!-- TODO I'm pretty sure `custom.config` WILL overwrite `nextflow.config`, particularly given my comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).

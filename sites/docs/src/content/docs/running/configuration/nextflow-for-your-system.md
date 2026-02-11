@@ -9,15 +9,17 @@ This page shows you how to configure pipelines to match your system's capabiliti
 
 ## Workflow resources
 
-The base configuration of nf-core pipelines defines default resource allocations for each workflow step (for example, in the [`base.config`](https://github.com/nf-core/rnaseq/blob/master/conf/base.config) file).
+The base configuration of nf-core pipelines defines default resource allocations for each workflow step (for example, in the [`base.config`](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/conf/base.config) file).
 
 These default values are generous to accommodate diverse workloads across different users.
-Your jobs might receive more resources than needed, which can reduce system efficiency.
-You might also want to increase resources for specific tasks to maximise speed.
+However, your jobs might receive more resources than needed, which can reduce system efficiency.
+In contrast, You might also want to increase resources for specific tasks to maximise speed.
 Consider increasing resources if a pipeline step fails with a `Command exit status` of `137`.
 
-Pipelines configure tools to use available resources when possible (e.g., with `-p ${task.cpus}`), where `${task.cpus}` is dynamically set from the pipeline configuration.
+:::note
+Pipelines are coded to configure tools to use available resources when possible (e.g., with `-p ${task.cpus}`), where `${task.cpus}` is dynamically set from the pipeline configuration.
 Not all tools support dynamic resource configuration.
+:::
 
 Most nf-core pipelines use process labels to define resource requirements for each module, as shown in this base configuration example:
 
@@ -66,6 +68,10 @@ process {
 }
 ```
 
+:::tip
+To find the default labels and resources of the pipeline you want to optimise, go to its GitHub repository and look at the file `conf/base.config`.
+:::
+
 You can target a specific process (job) name instead of a label using `withName`.
 Find process names in your console log when the pipeline runs.
 For example:
@@ -88,10 +94,6 @@ process {
 }
 ```
 
-:::info
-If you receive a warning about an unrecognised process selector, check that you specified the process name correctly.
-:::
-
 For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors).
 
 After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c <path>/<to>/<config>.conf`.
@@ -105,11 +107,16 @@ Use quotes with a space or no quotes with a dot: `"200 GB"` or `200.GB`.
 See the Nextflow documentation for [memory](https://www.nextflow.io/docs/latest/process.html#memory), [cpus](https://www.nextflow.io/docs/latest/process.html#cpus), and [time](https://www.nextflow.io/docs/latest/process.html#time).
 :::
 
+:::info
+If you receive a warning when about an unrecognised process selector when running a pipeline, check that you specified the process name correctly.
+:::
+
 If the pipeline defaults need adjustment, contact the pipeline developers on Slack in the pipeline channel or submit a GitHub issue on the pipeline repository.
 
 ## Change your executor
 
-Nextflow pipelines run in local mode by default, executing jobs on the same system where Nextflow runs.
+Nextflow pipelines run in 'local' mode by default, executing jobs on the same system where Nextflow runs and assuming all tools the pipeline need are already on the machine's environment `$PATH`.
+
 Most users need to specify an executor to tell Nextflow how to submit jobs to a job scheduler (e.g., SGE, LSF, Slurm, PBS, or AWS Batch).
 
 You can configure the executor in shared configuration profiles or in custom configuration files.
@@ -135,12 +142,12 @@ process {
 ```
 
 When a job exceeds the default memory request, Nextflow retries the job with increased memory.
-The memory increases with each retry until the job completes or reaches the `256.GB` limit.
+The memory increases with each retry until the job completes or reaches one of the limits, such as `256.GB` for memory.
 
-These parameters cap resource requests to prevent Nextflow from submitting jobs that exceed your system's capabilities.
-
+:::warning
 Specifying resource limits does not increase the resources available to pipeline tasks.
 See [Tuning workflow resources](#tuning-workflow-resources) for more information.
+:::
 
 :::note{collapse title="Note on older nf-core pipelines"}
 
@@ -166,8 +173,10 @@ The `--max_<resource>` parameters represent the maximum for a single pipeline jo
 
 ## Customize Docker registries
 
-Most pipelines use `quay.io` as the default Docker registry for Docker and Podman images.
-When you specify a Docker container without a full URI, Nextflow pulls the image from `quay.io`.
+Most nf-core pipelines use `quay.io` as the default Docker registry for Docker and Podman images.
+In some cases, you may want to customise where a pipeline sources their images.
+
+By default, when you specify a Docker container without a full URI, Nextflow pulls the image from `quay.io`.
 
 For example, this container specification:
 
@@ -177,14 +186,10 @@ Pulls from `quay.io`, resulting in the full URI:
 
 - `quay.io/biocontainers/fastqc:0.11.7--4`
 
-If you specify a different `docker.registry` value, Nextflow uses that registry instead.
+If you specify a different `docker.registry` value in a configuration file, Nextflow uses that registry instead.
 For example, if you set `docker.registry = 'myregistry.com'`, the image pulls from:
 
 - `myregistry.com/biocontainers/fastqc:0.11.7--4`
-
-When you specify a full URI in the container specification, Nextflow ignores the `docker.registry` setting and pulls exactly as specified:
-
-- `docker.io/biocontainers/fastqc:v0.11.9_cv8`
 
 ## Update tool versions
 
@@ -232,13 +237,12 @@ You can override the default container by creating a custom configuration file a
      ```
 
 :::warning
-Pipeline developers provide no warranty when you update containers.
-Major changes in the container tool may break the pipeline.
+Note that when you specify a full URI in the container specification, Nextflow ignores the `docker.registry` setting and pulls exactly as specified.
 :::
 
 :::warning
-Tool developers sometimes change version reporting between updates.
-Container updates may break version reporting within the pipeline and create missing values in MultiQC version tables.
+Pipeline developers provide no warranty when you update containers.
+Major changes in the container tool may break the pipeline or see a degradation of output (e.g. missing versions in MultiQC reports when the tool changes how versions are reported).
 :::
 
 ## Modifying tool arguments
