@@ -39,7 +39,7 @@ This project aims to update [nf-core/viralrecon](https://nf-co.re/viralrecon/dev
 
 📍 In Madrid, the project will take place at:
 
-🇪🇸  ISCIII - Majadahonda Campus
+🇪🇸 ISCIII - Majadahonda Campus
 Building 53, Meeting Rooms 1 and 2 (To be confirmed)
 
 We will have space for around 12 people.
