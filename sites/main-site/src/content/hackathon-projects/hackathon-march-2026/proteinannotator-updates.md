@@ -34,6 +34,14 @@ Use the HMM library from the resource, and search against it with `hmmer/hmmsear
 
 Level: _For anyone interested. Beginners welcome!_
 
+### Add nf-test and meta.yml files for the local functional_annotation subworkflow
+
+Issue [#78](https://github.com/nf-core/proteinannotator/issues/78)
+
+The `domain_annotation` local subworkflow can be used as an example.
+
+Level: _For anyone interested. Beginners welcome!_
+
 ### Incorporate the eggnogmapper software in the functional annotation subworkflow
 
 Issue [#16](https://github.com/nf-core/proteinannotator/issues/16)
