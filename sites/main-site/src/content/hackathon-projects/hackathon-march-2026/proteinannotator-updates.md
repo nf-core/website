@@ -25,6 +25,15 @@ Update the logic and add new features to the pipeline.
 See below a couple of potential new features to add during the hackathon.
 Depending on the participation and level of the attendees, more issues could be made available for the hackathon.
 
+### Incorporate the NMPFamsDB in the domain annotation subworkflow
+
+Issue [#77](https://github.com/nf-core/proteinannotator/issues/77)
+
+[Novel Metagenome Protein Families (`NMPFamsDB`)](https://nmpfamsdb.org/) is a database which hosts novel metagenome protein clusters with no, or weak hits to Pfam or Reference genomes.
+Use the HMM library from the resource, and search against it with `hmmer/hmmsearch` in the `domain_annotation` subworkflow, similarly to the existing `Pfam` and `FunFam` processes.
+
+Level: _For anyone interested. Beginners welcome!_
+
 ### Incorporate the eggnogmapper software in the functional annotation subworkflow
 
 Issue [#16](https://github.com/nf-core/proteinannotator/issues/16)
