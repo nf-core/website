@@ -18,6 +18,7 @@ Topic channels simplify version collection across modules,
 and are becoming the standard approach within nf-core.
 
 Resources:
+
 - [Nextflow documentation](https://nextflow.io/docs/latest/reference/channel.html#topic)
 - [Adoption statistics dashboard](https://nf-core-stats.netlify.app/code/container_conversion/#version-topics-adoption-over-time)
 
