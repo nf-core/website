@@ -1,6 +1,6 @@
 ---
-title: nf-co2footprint plugin: HTML report visualizations & integration
-category: plugins
+title: "nf-co2footprint plugin: HTML report visualizations & integration"
+category: tooling
 slack: https://nfcore.slack.com/channels/nf-co2footprint
 location: Tübingen and online
 image: ""
