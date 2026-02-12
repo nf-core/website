@@ -35,4 +35,4 @@ Please go to the third floor and check yourself in at the reception. The hackath
 
 ## Projects
 
-TBA
+[nf-google](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-google) & [nf-k8s](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-k8s): Solving issues in both of these plugins & potentially expanding functionality (e.g. for k8s, implementing backoff limit)
