@@ -2,7 +2,7 @@
 title: nf-core/proteinannotator updates
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C084HP11VPF"
-intro_video: ""
+location: Wellcome Trust Campus
 image: ""
 image_alt: ""
 leaders:
