@@ -2,7 +2,7 @@
 title: nf-core/proteinannotator updates
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C084HP11VPF"
-location: Wellcome Trust Campus
+location: Wellcome Genome Campus, Cambridge, Hinxton, UK
 image: ""
 image_alt: ""
 leaders:
