@@ -1,6 +1,6 @@
 ---
 title: nf-test development
-category: infrastructure
+category: tooling
 slack: "https://nfcore.slack.com/archives/C09MLN67BQU"
 location: Brussels (Google offices) and online
 intro_video: ""
