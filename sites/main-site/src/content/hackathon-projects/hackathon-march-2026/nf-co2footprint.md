@@ -24,16 +24,16 @@ Make sustainability reporting in nf-core workflows intuitive, reliable, and easy
 
 ## Tasks
 
-- **Add informative (& interactive) visualizations to the HTML output report**  
-  Issue [#341](https://github.com/nextflow-io/nf-co2footprint/issues/341) describes the ideas.  
+- **Add informative (& interactive) visualizations to the HTML output report**
+  Issue [#341](https://github.com/nextflow-io/nf-co2footprint/issues/341) describes the ideas.
   **Level:** Beginner-friendly. Basic knowledge of HTML, JavaScript (and Plotly) is helpful.
 
-- **Add nf-co2footprint to your config files**  
-  This can be as easy as adding the plugin ID to your institution’s config, but accuracy may improve by supplying additional parameters.  
-  Let’s do it together and discuss how this process could be streamlined for other plugin users.  
+- **Add nf-co2footprint to your config files**
+  This can be as easy as adding the plugin ID to your institution’s config, but accuracy may improve by supplying additional parameters.
+  Let’s do it together and discuss how this process could be streamlined for other plugin users.
   **Level:** Open to everyone.
 
-- **nf-core 🤝 nf-co2footprint plugin**  
+- **nf-core 🤝 nf-co2footprint plugin**
   As our long-term goal is to make the plugin an integral part of the **nf-core** framework, we are always open to suggestions, feedback, and ideas that help us move in that direction.
 
 :::note
