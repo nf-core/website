@@ -964,8 +964,8 @@ Common issues to avoid:
 | Old syntax                                               | Prefered syntax                            |
 | -------------------------------------------------------- | ------------------------------------------ |
 | Unused `def args = task.ext.args ?: ''{:groovy}` in stub | delete it                                  |
-| undeclared variable                                      | add `def my_variable{:groovy}`             |
-| `input.collect{ it[1].name }`                            | `input.collect{ meta, file -> file.name }` |
-| `for` loop                                               | `.each{}` operator                         |
+| undeclared variable `my_variable{:groovy}`                                     | add `def my_variable{:groovy}`             |
+| `input.collect{ it[1].name }{:groovy}`                            | `input.collect{ meta, file -> file.name }{:groovy}` |
+| `for{:groovy}` loop                                               | `.each{}{:groovy}` operator                         |
 
 By following these guidelines, you will ensure that your code is compliant with Nextflow standards.
