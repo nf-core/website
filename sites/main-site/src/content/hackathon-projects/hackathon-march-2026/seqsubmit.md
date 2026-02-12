@@ -29,7 +29,7 @@ The first version will support:
 - [raw-reads](https://ena-docs.readthedocs.io/en/latest/submit/reads.html)
   - This also involves getting more documentation for users
 - [metagenomic assemblies](https://ena-docs.readthedocs.io/en/latest/submit/assembly/metagenome.html)
-  - [binned metagenomic assemblies](https://en.wikipedia.org/wiki/Binning_(metagenomics))
+  - [binned metagenomic assemblies](https://en.wikipedia.org/wiki/Binning_%28metagenomics%29)
 - [metagenome-assembled genomes](https://ena-docs.readthedocs.io/en/latest/submit/assembly/metagenome/mag.html)
 
 ## Tasks
