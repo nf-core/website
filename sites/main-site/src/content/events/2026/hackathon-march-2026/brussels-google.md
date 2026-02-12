@@ -4,9 +4,9 @@ subtitle: "Local node of the nf-core hackathon in Brussels, Belgium at the Googl
 shortTitle: "🇧🇪 Google Offices Brussels"
 type: "hackathon"
 startDate: "2026-03-11"
-startTime: "08:00+01:00"
+startTime: "09:00+01:00"
 endDate: "2026-03-13"
-endTime: "16:00+01:00"
+endTime: "17:00+01:00"
 locations:
   - name: Google Brussels Office
     address: |
