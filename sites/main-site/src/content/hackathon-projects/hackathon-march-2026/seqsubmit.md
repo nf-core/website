@@ -26,6 +26,7 @@ The list of [issues](https://github.com/nf-core/seqsubmit/issues) and [PRs](http
 Complete the work done in the [Hackathon Barcelona October 2025](https://github.com/orgs/nf-core/projects/136/views/2?filterQuery=seqsubmit), and make the first release of the pipeline!
 
 The first version will support:
+
 - [raw-reads](https://ena-docs.readthedocs.io/en/latest/submit/reads.html)
   - This also involves getting more documentation for users
 - [metagenomic assemblies](https://ena-docs.readthedocs.io/en/latest/submit/assembly/metagenome.html)
