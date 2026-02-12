@@ -25,5 +25,3 @@ These task are some of the higher priority ones, but feel free to check the [iss
 ### [Add support for topic channels](https://github.com/askimed/nf-test/issues/258)
 
 nf-test does not yet support the new topic channels introduced in Nextflow 25.04.0. This will make testing our modules using the new topic channels easier.
-
-
