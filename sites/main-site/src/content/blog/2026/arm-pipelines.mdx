@@ -1,0 +1,208 @@
+---
+title: Running nf-core pipelines on Arm
+subtitle: How community collaboration is making bioinformatics more efficient
+pubDate: 2026-01-12T12:00:00+01:00
+headerImage: https://images.unsplash.com/photo-1518770660439-4636190af475
+headerImageAlt: Photo of a circuit board with microprocessors
+authors:
+    - ewels
+    - dslarm
+label:
+    - arm
+    - infrastructure
+---
+
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+## Running nf-core pipelines on Arm
+
+The bioinformatics community has long relied on x86 processors, but Arm architecture is rapidly becoming a compelling alternative. Over the past year, a collaborative effort between nf-core, Arm, AWS, Seqera, and the broader Bioconda community has been working to make Arm-native execution a reality for Nextflow pipelines. This post covers what we've learned, where we've got to, and how you can start running on Arm today.
+
+## Why Arm matters for bioinformatics
+
+Arm-based processors like AWS Graviton offer significant advantages over traditional x86 chips. Our benchmarking with nf-core/rnaseq comparing `c7a.48xlarge` (x86) against `c8g.48xlarge` (Graviton) showed comparable runtimes with **20-25% cost savings**. The Arm instances delivered equivalent performance at a lower price point.
+
+Beyond the financial benefits, Arm processors consume less power, making them a greener choice for compute-intensive workflows.
+
+For developers, there's another compelling reason: Apple Silicon. With Arm support in Bioconda, you can now run your pipelines natively on Mac M1-M5 machines without emulation overhead. As we discovered during this project, Docker on Mac runs linux/arm64 containers natively (since Docker runs in a Linux VM), so Arm containers are actually faster than emulated x86 ones on Apple Silicon. Oxford Nanopore's benchmarking showed [4-5x speedups when running native Arm containers on Mac](https://epi2me.nanoporetech.com/inkling/) compared to emulated x86.
+
+## The challenge: software availability
+
+The main barrier to running bioinformatics workflows on Arm has been software availability. Most bioinformatics tools are distributed through Bioconda, which historically only built packages for x86 architectures. While Bioconda announced official support for `linux-aarch64` and `osx-arm64` in July 2024, the actual availability of Arm packages varied significantly across tools.
+
+nf-core pipelines use hundreds of different software packages, and each one needs Arm-compatible builds before a pipeline can run on Graviton instances. This is where the collaboration began.
+
+<YouTube id="abUIFdGlv9k" poster="https://i.ytimg.com/vi/abUIFdGlv9k/hqdefault.jpg" />
+
+_Brendan Bouffler and David Lecomber's Nextflow Summit 2024 talk on running pipelines on Arm architecture_
+
+## A community-wide porting effort
+
+In October 2024, we created the [`#arm64` channel](https://nf-co.re/join) on the nf-core Slack to coordinate efforts. [David Lecomber](https://github.com/dslarm), then at Arm, led an intensive package porting effort, working alongside [Pablo Gonzalez de Aledo](https://github.com/pabloaledo) then at Seqera and [Angel Pizarro](https://github.com/delagoya) at AWS. Between them, David and Pablo have submitted [_nearly 300_ PRs to Bioconda recipes](https://github.com/bioconda/bioconda-recipes/pulls?q=is%3Apr+author%3Apabloaledo+author%3Adslarm) to enable Arm builds.
+
+The approach was methodical. Phil Ewels built [discovery scripts](https://github.com/ewels/nf-core-arm-discovery) to identify which conda packages were used across all nf-core pipelines, then tested whether each package could build successfully for Arm using Seqera's Wave container service. Packages that failed were prioritized based on how many pipelines they blocked.
+
+The work involved updating `meta.yaml` files to enable Arm builds:
+
+```yaml
+extra:
+    additional-platforms:
+        - linux-aarch64
+        - osx-arm64
+```
+
+Many packages built without issues once this flag was added. Others required more detective work. David encountered some memorable challenges along the way, including a package that failed because the `which` command had a buffer overflow bug from 1999 (it assumed paths would never exceed 256 characters - Bioconda's build directories are typically 250 characters), and another package whose official website had been compromised and replaced with content about a Colombian adult film actress.
+
+<YouTube id="4eAAzBAle8Q" poster="https://i.ytimg.com/vi/4eAAzBAle8Q/hqdefault.jpg" />
+
+_Angel Pizarro's Nextflow Summit 2025 talk, all about the technical journey of porting packages to Arm_
+
+## Current status: most pipelines are Arm-ready
+
+The results have been remarkable. The community has systematically worked through the top nf-core pipelines, and progress has been rapid. As David Lecomber noted in the Slack channel: "Pipelines are falling like dominos!"
+
+As of late 2025, **61 of the top 101 nf-core pipelines** have full Arm support, with 590 packages successfully building on Arm. Here's a snapshot of some key pipelines:
+
+| Pipeline              | Arm Build Success        |
+| --------------------- | ------------------------ |
+| rnaseq                | 100%                     |
+| sarek                 | 100% (excluding dragmap) |
+| chipseq               | 100%                     |
+| atacseq               | 100%                     |
+| fetchngs              | 100%                     |
+| methylseq             | 100%                     |
+| taxprofiler           | 100%                     |
+| scrnaseq              | 100%                     |
+| nanoseq               | 100%                     |
+| ampliseq              | 100%                     |
+| oncoanalyser          | 100%                     |
+| differentialabundance | 100%                     |
+
+The full status across all nf-core pipelines is tracked in the [nf-core-arm-discovery repository](https://github.com/ewels/nf-core-arm-discovery), with package-level details tracked on our [GitHub project board](https://github.com/orgs/nf-core/projects/89/views/1).
+
+## How to run your pipelines on Arm
+
+If you're ready to try Arm, here's how to get started:
+
+### Using Seqera Platform with AWS Graviton
+
+1. Create a compute environment using Graviton instance types (e.g., `r8g`, `m7g`, `c7g`, `c8g`)
+2. Enable Wave containers with Arm architecture support
+3. Launch your pipeline as normal
+
+The platform will automatically build Arm-native containers for your workflow.
+
+### Using Nextflow directly
+
+You can use Wave's multi-architecture container support with the following configuration:
+
+```groovy
+docker.enabled = true
+wave.enabled = true
+wave.strategy = ['conda']
+process.architecture = 'linux/arm64'
+```
+
+### Setting up an Arm development environment on AWS
+
+Angel Pizarro has created a [CloudFormation template](https://github.com/delagoya/nextflow-devbox) that sets up an EC2 Graviton instance with VSCode server, Miniconda, Docker, Nextflow, and nf-core pre-installed. This makes it easy to spin up an Arm development environment in about 10-15 minutes.
+
+You can either use the web-based VSCode running on the instance, or connect your local editor to the instance using Remote-SSH. Just be aware that if you do use the Remote-SSH extension, you'll need to install the extension you'll need, like the `nf-core-extensionpack`. Full instructions are in the [README file](https://github.com/delagoya/nextflow-devbox/blob/main/README.md).
+
+By the way, you can also use this template to set up an x86_64 instance.
+
+### Local development on Apple Silicon
+
+If you're developing on a Mac with Apple Silicon, Bioconda packages now install natively. Just ensure your conda/mamba is configured correctly:
+
+```bash
+conda config --add channels bioconda
+conda config --add channels conda-forge
+conda config --set channel_priority strict
+```
+
+**Important**: Make sure you're specifying packages from the correct channel. A common issue we encountered was pipelines referencing packages as `bioconda::packagename` when they had migrated to `conda-forge`. This works on x86 (using old cached binaries) but fails on Arm where only the conda-forge version exists.
+
+## Contributing to the effort
+
+Some packages still need work, and you can help! David Lecomber created the [bioconda-contrib-notes repository](https://github.com/dslarm/bioconda-contrib-notes) with detailed documentation on how to port packages, which has now been [integrated into the nf-core website](https://nf-co.re/docs/contributing/software_packaging/arm64_builds).
+
+Key resources:
+
+- [nf-core Arm64 builds documentation](https://nf-co.re/docs/contributing/software_packaging/arm64_builds)
+- [GitHub project board tracking progress](https://github.com/orgs/nf-core/projects/89)
+- [Bioconda aarch64 documentation](https://bioconda.github.io/developer/aarch64.html)
+- [nf-core Slack #arm64 channel](https://nf-co.re/join)
+- [Package status tracking](https://github.com/dslarm/bioconda-contrib-notes/blob/main/wave_missing.txt)
+
+If you encounter a package that doesn't build for Arm, the basic process is:
+
+1. Fork the bioconda-recipes repository
+2. Add the `additional-platforms` section to the package's `meta.yaml`
+3. Bump the build number
+4. Open a pull request
+
+The Bioconda community is welcoming and will help guide your contribution through review. During this project, we found that many packages just needed the platform flag added, while others required fixes for architecture-specific assumptions in the code.
+
+## What's next
+
+With software availability largely solved, the focus is now shifting to:
+
+1. **Automated CI testing**: Edmund Miller has [merged Arm CI testing](https://github.com/nf-core/modules/pull/7747) into nf-core/modules, allowing us to routinely test modules on Arm runners. We're expanding this to more pipelines, starting with [rnaseq](https://github.com/nf-core/rnaseq/pull/1641).
+
+2. **Tooling improvements**: The [nf-core/tools 3.4.0 release](/blog/2025/tools-3_4_0) added improved Arm64 architecture handling with dedicated `arm64` and `emulate_amd64` profiles.
+
+3. **Performance optimization**: Some tools like bwa-mem2 have Arm-specific optimizations using SVE (Scalable Vector Extension) instructions that can provide [significant speedups on Graviton3 and above](https://github.com/bwa-mem2/bwa-mem2/pull/248).
+
+4. **Commercial software support**: Tools like Sentieon are now [available on Arm](https://developer.arm.com/community/arm-community-blogs/b/servers-and-cloud-computing-blog/posts/gencove-adopts-sentieon-and-aws-graviton), expanding options for production pipelines.
+
+5. **Bioconda ecosystem health**: David has been tracking download statistics and found that of the top 100 most-downloaded Bioconda packages, 99 now work on linux-aarch64 and 93 on osx-arm64.
+
+## The future: automatic Arm support with Seqera Containers
+
+The package porting work described above is just the first phase. The real game-changer will be nf-core's ongoing migration from BioContainers to Seqera Containers.
+
+You can read the full details in the two-part blog series:
+
+- [Migration from BioContainers to Seqera Containers: Part 1](/blog/2024/seqera-containers-part-1) - Why we're making this change
+- [Migration from BioContainers to Seqera Containers: Part 2](/blog/2024/seqera-containers-part-2) - How it all works
+
+Today, running on Arm requires manual work: checking if packages are available, building containers, configuring pipelines. The package porting effort has been about getting the raw materials in place.
+
+Once the Seqera Containers migration is complete, Arm support will be automatic. When a developer edits an `environment.yml` file in a module, GitHub Actions will automatically build containers for both `linux/amd64` and `linux/arm64`. The pipeline will ship with pre-built Arm containers ready to use.
+
+New profiles will make running on Arm as simple as adding a flag:
+
+```bash
+# Run on Arm with Docker
+nextflow run nf-core/rnaseq -profile docker_arm
+
+# Run on Arm with Singularity
+nextflow run nf-core/rnaseq -profile singularity_arm
+
+# Run on Arm with Conda
+nextflow run nf-core/rnaseq -profile conda_arm
+```
+
+The containers will be hosted on Seqera Containers infrastructure, built on-demand using Wave, with full build logs, security scans, and conda lock files for reproducibility.
+
+This means the manual package porting work happening now is laying the foundation. Once a tool has Arm support in Bioconda, it will automatically flow through to every nf-core pipeline that uses it - no additional work required.
+
+## Acknowledgments
+
+This work wouldn't have been possible without the contributions of many people. Special thanks to:
+
+- **David Lecomber (formerly Arm)** for his tireless work on package porting - submitting hundreds of PRs and creating comprehensive documentation
+- **Angel Pizarro (AWS)** for benchmarking, advocacy, CloudFormation templates, and testing infrastructure
+- **Brendan Bouffler (AWS)** for his belief in the project and coordinating support and resources
+- **Pablo Gonzalez de Aledo (formerly Seqera)** for tooling, Wave integration, and early package porting work
+- **Edmund Miller** for implementing Arm CI testing in nf-core/modules and pipelines
+- **Roman Valls Guimera** for getting oncoanalyser running on Arm and extensive debugging
+- **Maxime U Garcia** for pipeline fixes and coordination
+- **Arm** for enabling David's time to work on this project
+
+The entire **Bioconda maintainer team** for their support and rapid reviews
+
+The collaboration demonstrates what's possible when the open-source community works together toward a shared goal. What started as a hackathon project in October 2024 has grown into a sustained effort that's making Arm a standard part of the bioinformatics computing landscape.
+
+> Want to get involved? Join the [#arm64 channel](https://nf-co.re/join) on the nf-core Slack, check out the [project board](https://github.com/orgs/nf-core/projects/89), or dive into the [Arm64 documentation](https://nf-co.re/docs/contributing/software_packaging/arm64_builds). And to understand the bigger picture of where this is all heading, read our blog posts on the [Seqera Containers migration](/blog/2024/seqera-containers-part-1).

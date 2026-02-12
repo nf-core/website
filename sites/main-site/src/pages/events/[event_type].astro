@@ -1,14 +1,22 @@
 ---
-import EventLayout from '@layouts/EventLayout.astro';
-import { getCollection } from 'astro:content';
+import EventLayout from "@layouts/EventLayout.astro";
+import { getCollection } from "astro:content";
+import { markdown } from "@mashehu/astropub-md";
 
 export async function getStaticPaths() {
-    let events = await getCollection('events');
+    let events = await getCollection("events");
     events = events.filter((event) => {
-        return event.slug.split('/').length === 2;
+        return event.id.replace(/\.[^/.]+$/, "").split("/").length === 2;
     });
+
+    events = await Promise.all(
+        events.map(async (event) => {
+            event.data.subtitle = String(await markdown(event.data.subtitle));
+            return event;
+        }),
+    );
     // reduce events to unique event types
-    const event_types = [...new Set(events.map((event) => event.data.type)), 'bytesize'];
+    const event_types = [...new Set(events.map((event) => event.data.type)), "bytesize"];
 
     return event_types.map((event_type) => {
         return {
@@ -24,8 +32,8 @@ export async function getStaticPaths() {
 const { events } = Astro.props;
 const { event_type } = Astro.params;
 
-const title = event_type.charAt(0).toUpperCase() + event_type.slice(1) + 's';
-const subtitle = 'Details of past and future ' + event_type + 's around nf-core.';
+const title = event_type.charAt(0).toUpperCase() + event_type.slice(1) + "s";
+const subtitle = "Details of past and future " + event_type + "s around nf-core.";
 ---
 
 <EventLayout {events} {title} {subtitle} currentFilters={[{ name: event_type }]} />

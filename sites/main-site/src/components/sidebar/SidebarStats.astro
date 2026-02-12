@@ -1,6 +1,7 @@
 ---
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import GitHubUser from '@components/GitHubProfilePicture.svelte';
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import GitHubUser from "@components/GitHubProfilePicture.astro";
+import TagSection from "@components/TagSection.svelte";
 const { component_type, contributors, included_pipelines, included_components, included_subworkflows } = Astro.props;
 
 export interface Props {
@@ -13,6 +14,9 @@ export interface Props {
     included_components?: string[];
     included_subworkflows?: string[];
 }
+// split included_components into modules and subworkflows (subworkflows should have at least two "_" in the name and no slashes)
+const subworkflows = included_components?.filter((x) => (x.match(/_/g) || []).length >= 2 && !x.includes("/"));
+const modules = included_components?.filter((x) => !subworkflows?.includes(x));
 ---
 
 <div class="sidebar overflow-y-auto">
@@ -21,23 +25,11 @@ export interface Props {
             <SidebarStatsRow
                 content={[
                     {
-                        title: 'included in',
+                        title: "included in",
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_pipelines.map((pipeline) => (
-                        <a
-                            href={'/' + pipeline.name + '/' + pipeline.version + '/'}
-                            class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-2 text-decoration-none"
-                            data-bs-toggle="tooltip"
-                            data-bs-placement="top"
-                            title={'most recent pipeline version with this module:\n' + pipeline.version}
-                        >
-                            {pipeline.name}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={included_pipelines.map((x) => x.name)} type="pipelines" client:load />
             </SidebarStatsRow>
         )
     }
@@ -46,20 +38,11 @@ export interface Props {
             <SidebarStatsRow
                 content={[
                     {
-                        title: 'part of',
+                        title: "part of",
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_subworkflows.map((module) => (
-                        <a
-                            href={'/subworkflows/' + module.replace('/', '_')}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {module}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={included_subworkflows} type="subworkflows" client:load />
             </SidebarStatsRow>
         )
     }
@@ -68,33 +51,25 @@ export interface Props {
             <SidebarStatsRow
                 content={[
                     {
-                        title: 'included modules and subworkflows',
+                        title: "included modules and subworkflows",
                     },
                 ]}
             >
-                <div class="mb-2">
-                    {included_components.map((module) => (
-                        <a
-                            href={'/modules/' + module.replace('/', '_') + '/'}
-                            class="badge fw-normal border border-info-subtle bg-info-subtle text-body me-2 text-decoration-none"
-                        >
-                            {module}
-                        </a>
-                    ))}
-                </div>
+                <TagSection tags={modules} type="modules" maxShown={3} client:load />
+                <TagSection tags={subworkflows} type="subworkflows" maxShown={3} client:load />
             </SidebarStatsRow>
         )
     }
-    <SidebarStatsRow content={[{ title: 'maintainer' + (contributors.length > 1 ? 's' : '') }]}>
+    <SidebarStatsRow content={[{ title: "maintainer" + (contributors.length > 1 ? "s" : "") }]}>
         <div class="contrib-avatars d-flex flex-wrap">
             {
                 contributors &&
                     contributors.map(
                         (contributor) => (
-                            (contributor = contributor.replace('@', '')),
+                            (contributor = contributor.replace("@", "")),
                             (
                                 <a
-                                    href={'https://github.com/' + contributor}
+                                    href={"https://github.com/" + contributor}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="me-2 mb-2"
@@ -111,16 +86,16 @@ export interface Props {
             }
         </div>
     </SidebarStatsRow>
-    <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
+    <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>
         <div class="d-flex flex-column">
-            <a class="btn btn-sm btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/' + component_type}
+            <a class="btn btn-sm btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + component_type}
                 ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
             >
             <a
                 class="btn btn-sm btn-outline-secondary"
-                href={'https://github.com/nf-core/' +
-                    (component_type === 'subworkflows' ? 'modules' : component_type) +
-                    '/issues'}><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+                href={"https://github.com/nf-core/" +
+                    (component_type === "subworkflows" ? "modules" : component_type) +
+                    "/issues"}><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
             >
         </div>
     </SidebarStatsRow>

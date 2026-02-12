@@ -5,7 +5,8 @@ minHeadingDepth: 2
 maxHeadingDepth: 2
 ---
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import ProfileListing from "@components/ProfileListing.astro";
 
 # Governance
 
@@ -22,6 +23,7 @@ flowchart BT
     outreach --> core
     maintainers --> core
     safety --> steering
+    documentation --> core
 ```
 
 This page describes the structure of the nf-core community, including how governance teams are elected, their responsibilities, and how decisions are made.
@@ -37,21 +39,23 @@ The steering committee will meet regularly to discuss the project, funding and p
 
 ##### Responsibilities
 
--   Guiding project initiatives
--   Making decisions about the project, funds, and personnel
+- Guiding project initiatives
+- Making decisions about the project, funds, and personnel
 
 ##### Members
 
-<Profile username="apeltzer">Alexander Peltzer</Profile>
-<a class="btn btn-light rounded-pill mb-2 px-3 align-middle" style="height:50px;line-height:35px;">
-    <span>Ellen Sherwood</span>
-</a>
-<Profile username="evanfloden">Evan Floden</Profile>
-<Profile username="ggabernet">Gisela Gabernet</Profile>
-<Profile username="drpatelh">Harshil Patel</Profile>
-<Profile username="ewels">Phil Ewels</Profile>
-<Profile username="svennahnsen">Sven Nahnsen</Profile>
-
+<div class="d-flex flex-wrap">
+    <Profile username="apeltzer">Alexander Peltzer</Profile>
+    <Profile username="cnotred">Cedric Notredame</Profile>
+    <a class="btn btn-light rounded-pill mb-2 px-3 align-middle" style="height:50px;line-height:35px;">
+        <span>Ellen Sherwood</span>
+    </a>
+    <Profile username="evanfloden">Evan Floden</Profile>
+    <Profile username="ggabernet">Gisela Gabernet</Profile>
+    <Profile username="drpatelh">Harshil Patel</Profile>
+    <Profile username="ewels">Phil Ewels</Profile>
+    <Profile username="svennahnsen">Sven Nahnsen</Profile>
+</div>
 ## Core team
 
 The core team ensures the day-to-day running of the nf-core project and oversees the activities of governance teams.
@@ -64,49 +68,55 @@ Core team members will appear as organization members on the GitHub organization
 
 ##### Responsibilities
 
--   Day-to-day community decisions and coordination
--   Day-to-day tasks requiring elevated permissions
-    -   Adding new community members to the GitHub organisation
-    -   Leading pipeline proposal evaluations and tracking
-    -   Facilitating pipeline repository transfers into nf-core organisation
-    -   Pipeline GitHub repository setting configuration
-    -   Uploading larger test-data to AWS bucket
-    -   Uploading pipeline megatest data to AWS bucket
-    -   Adding community members to the nf-core Seqera Platform workspace
-    -   First pipeline release reviews
-    -   Activating pipeline Zenodo archiving
--   Attendance at the core team annual meeting
--   Regular attendance at monthly core team meetings
--   Sub-roles within the nf-core governance teams
--   A strong community presence
+- Day-to-day community decisions and coordination
+- Day-to-day tasks requiring elevated permissions
+    - Adding new community members to the GitHub organisation
+    - Leading pipeline proposal evaluations and tracking
+    - Facilitating pipeline repository transfers into nf-core organisation
+    - Pipeline GitHub repository setting configuration
+    - Uploading larger test-data to AWS bucket
+    - Uploading pipeline megatest data to AWS bucket
+    - Adding community members to the nf-core Seqera Platform workspace
+    - First pipeline release reviews
+    - Activating pipeline Zenodo archiving
+- Attendance at the core team annual meeting
+- Regular attendance at monthly core team meetings
+- Sub-roles within the nf-core governance teams
+- A strong community presence
 
 ##### Members
 
-<Profile username="christopher-hakkaart">Chris Hakkaart</Profile>
-<Profile username="drpatelh">Harshil Patel</Profile>
-<Profile username="edmundmiller">Edmund Miller</Profile>
-<Profile username="ewels">Phil Ewels</Profile>
-<Profile username="FranBonath">Franziska Bonath</Profile>
-<Profile username="FriederikeHanssen">Friederike Hanssen</Profile>
-<Profile username="jfy133">James A. Fellows Yates</Profile>
-<Profile username="JoseEspinosa">Jose Espinosa-Carrasco</Profile>
-<Profile username="mashehu">Matthias Hörtenhuber</Profile>
-<Profile username="MaxUlysse">Maxime Garcia</Profile>
-<Profile username="mirpedrol">Júlia Mir Pedrol</Profile>
-<Profile username="mribeirodantas">Marcel Ribeiro-Dantas</Profile>
-<Profile username="vdauwera">Geraldine Van der Auwera</Profile>
-<Profile username="nvnieuwk">Nicolas Vannieuwkerke</Profile>
-<Profile username="sateeshperi">Sateesh Peri</Profile>
-
+<ProfileListing
+    profiles={[
+        { name: "Chris Hakkaart", username: "christopher-hakkaart" },
+        { name: "Edmund Miller", username: "edmundmiller" },
+        { name: "Franziska Bonath", username: "FranBonath" },
+        { name: "Friederike Hanssen", username: "FriederikeHanssen" },
+        { name: "James A. Fellows Yates", username: "jfy133" },
+        { name: "Jose Espinosa-Carrasco", username: "JoseEspinosa" },
+        { name: "Júlia Mir Pedrol", username: "mirpedrol" },
+        { name: "Ken Brewer", username: "kenibrewer" },
+        { name: "Matthias Hörtenhuber", username: "mashehu" },
+        { name: "Maxime U. Garcia", username: "maxulysse" },
+        { name: "Marcel Ribeiro-Dantas", username: "mribeirodantas" },
+        { name: "Nicolas Vannieuwkerke", username: "nvnieuwk" },
+        { name: "Phil Ewels", username: "ewels" },
+        { name: "Sateesh Peri", username: "sateeshperi" },
+    ]}
+/>
 ##### Alumni
-
-<Profile username="ggabernet">Gisela Gabernet</Profile>
-<Profile username="apeltzer">Alexander Peltzer</Profile>
-<Profile username="alneberg">Johannes Alneberg</Profile>
-<Profile username="KevinMenden">Kevin Menden</Profile>
-<Profile username="olgabot">Olga Botvinnik</Profile>
-<Profile username="renbot-bio">Renuka Kudva</Profile>
-<Profile username="sven1103">Sven F.</Profile>
+<ProfileListing
+    profiles={[
+        { name: "Alexander Peltzer", username: "apeltzer" },
+        { name: "Geraldine Van der Auwera", username: "vdauwera" },
+        { name: "Gisela Gabernet", username: "ggabernet" },
+        { name: "Harshil Patel", username: "drpatelh" },
+        { name: "Johannes Alneberg", username: "alneberg" },
+        { name: "Kevin Menden", username: "KevinMenden" },
+        { name: "Olga Botvinnik", username: "olgabot" },
+        { name: "Sven F.", username: "sven1103" },
+    ]}
+/>
 
 ## Safety
 
@@ -119,15 +129,19 @@ The safety team is not a part of the core team and can report directly to the st
 
 ##### Responsibilities
 
--   Be responsible for the nf-core code of conduct
--   Be available for nf-core events (online or in person)
--   Promptly respond to reports of misconduct and escalate to the core team or steering committee as necessary
+- Be responsible for the nf-core code of conduct
+- Be available for nf-core events (online or in person)
+- Promptly respond to reports of misconduct and escalate to the core team or steering committee as necessary
 
 ##### Members
 
-<Profile username="ctuni">Cris Tuñí</Profile>
-<Profile username="heuermh">Michael Heuer</Profile>
-<Profile username="snafees">Saba Nafees</Profile>
+<ProfileListing
+    profiles={[
+        { name: "Cris Tuñí", username: "ctuni" },
+        { name: "Michael Heuer", username: "heuermh" },
+        { name: "Saba Nafees", username: "snafees" },
+    ]}
+/>
 
 ## Infrastructure
 
@@ -140,8 +154,9 @@ The infrastructure team will have administrator access to repositories.
 
 ##### Responsibilities
 
--   Development and maintenance of nf-core tools, website, and mega tests
--   Regular attendance at maintenance team meetings
+- Development and maintenance of nf-core tools, website, and mega tests
+- Maintenance of CI testing and GitHub Action runners
+- Regular attendance at maintenance team meetings
 
 ##### Leads
 
@@ -149,8 +164,15 @@ The infrastructure team will have administrator access to repositories.
 
 ##### Members
 
-<Profile username="mirpedrol">Júlia Mir Pedrol</Profile>
-<Profile username="mashehu">Matthias Hörtenhuber</Profile>
+<ProfileListing
+    profiles={[
+        { username: "edmundmiller", name: "Edmund Miller" },
+        { username: "mirpedrol", name: "Júlia Mir Pedrol" },
+        { username: "julianflesch", name: "Julian Flesch" },
+        { username: "mashehu", name: "Matthias Hörtenhuber" },
+        { username: "ningyuxin1999", name: "Yuxin Ning" },
+    ]}
+/>
 
 ## Outreach
 
@@ -164,180 +186,244 @@ The outreach leads will have access to community social media and YouTube accoun
 
 ##### Responsibilities
 
--   Organizing and running the `#bytesize` seminar series
--   Leading the organization of hackathons, training sessions, mentorship program, and other outreach events
--   Creating and sharing community content
--   Regular attendance at outreach team meetings
+- Organizing and running the `#bytesize` seminar series
+- Co-organisation of the hackathons and other outreach events
+- Contact for creating and sharing community content
+- Co-organizing of the help-desk together with the maintainers
+- Regular attendance at outreach team meetings
 
 ##### Leads
 
-<Profile username="christopher-hakkaart">Chris Hakkaart</Profile>
-<Profile username="FranBonath">Franziska Bonath</Profile>
-<Profile username="mribeirodantas">Marcel Ribeiro-Dantas</Profile>
-
+<ProfileListing
+    profiles={[
+        { username: "FranBonath", name: "Franziska Bonath" },
+        { username: "mribeirodantas", name: "Marcel Ribeiro-Dantas" },
+        { username: "maxulysse", name: "Maxime U. Garcia" },
+    ]}
+/>
 ##### Members
-
-<Profile username="abhi18av">Abhinav Sharma</Profile>
-<Profile username="edmundmiller">Edmund Miller</Profile>
-<Profile username="yuukiiwa">Yuk Kei</Profile>
-<Profile username="vdauwera">Geraldine Van der Auwera</Profile>
-<Profile username="chriswyatt1">Chris Wyatt</Profile>
-
+<ProfileListing
+    profiles={[
+        { username: "abhi18av", name: "Abhinav Sharma" },
+        { username: "christopher-hakkaart", name: "Chris Hakkaart" },
+        { username: "chriswyatt1", name: "Chris Wyatt" },
+        { username: "flowuenne", name: "Florian Wuennemann" },
+        { username: "vdauwera", name: "Geraldine Van der Auwera" },
+        { username: "kenibrewer", name: "Ken Brewer" },
+        { username: "KurayiChawatama", name: "Kurayi Chawatama" },
+        { username: "yuukiiwa", name: "Yuk Kei" },
+    ]}
+/>
 ##### Alumni
-
-<Profile username="pcantalupo">Paul Cantalupo</Profile>
-<Profile username="Xesus-Abalo">Xesús M. Abalo</Profile>
-<Profile username="MaxUlysse">Maxime Garcia</Profile>
-
+<ProfileListing
+    profiles={[
+        { username: "edmundmiller", name: "Edmund Miller" },
+        { username: "pcantalupo", name: "Paul Cantalupo" },
+        { username: "Xesus-Abalo", name: "Xesús M. Abalo" },
+        { username: "renbot-bio", name: "Renuka Kudva" },
+    ]}
+/>
 ## Maintainers
 
 nf-core test data, modules, and pipeline repositories require regular upkeep and maintenance.
-The maintainer's team takes an active role in managing nf-core repositories in collaboration with the wider nf-core community.
+The maintainers team takes an active role in managing nf-core repositories in collaboration with the wider nf-core community.
 
-The maintainer's team will have one or more leads who are responsible for overseeing maintenance efforts.
-New members are invited to be a part maintainers team by current maintainers based on experience and activity in the community.
-The maintainer's team is not a fixed size and will scale as the community grows.
+The maintainers team will have one or more leads who are responsible for overseeing maintenance efforts.
+New members are invited to join the maintainers team by current maintainers based on experience and activity in the community.
+The maintainers team is not a fixed size and will scale as the community grows.
 nf-core maintainers will have write access to repositories.
 
 ##### Responsibilities
 
--   Respond to `#github-invitations`
--   Assist in evaluating new pipeline proposals
--   Review regularly 'common' repositories: module, subworkflow, and pipeline release pull requests
--   Manage repository access for community developers
--   Manage test data
--   Enable and promote nf-core community values
+- Respond to `#github-invitations`
+- Assist in evaluating new pipeline proposals
+- Review regularly 'common' repositories: module, subworkflow, and pipeline release pull requests
+- Manage repository access for community developers
+- Manage test data
+- Enable and promote nf-core community values
 
 ##### Leads
 
-<Profile username="FriederikeHanssen" affiliation="Seqera">
-    Friederike Hanssen
-</Profile>
-<Profile
-    username="jfy133"
-    affiliation="Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology"
->
-    James A. Fellows Yates
-</Profile>
-<Profile username="maxulysse" affiliation="Seqera">
-    Maxime U. Garcia
-</Profile>
+<ProfileListing
+    profiles={[
+        { username: "FriederikeHanssen", affiliation: "Seqera", name: "Friederike Hanssen" },
+        {
+            username: "SPPearce",
+            affiliation: "NeoGenomics Laboratories",
+            name: "Simon Pearce",
+        },
+        { username: "maxulysse", affiliation: "Seqera", name: "Maxime U. Garcia" },
+    ]}
+/>
 
 ##### Members
 
-<Profile username="adamrtalbot" affiliation="Seqera">
-    Adam Talbot
-</Profile>
-<Profile username="asp8200" affiliation="Danish National Genome Center">
-    Anders Sune Pedersen
-</Profile>
-<Profile username="jemten" affiliation="Science for Life Laboratory">
-    Anders Jemt
-</Profile>
-<Profile username="CarsonJM" affiliation="University of Washington">
-    Carson Miller
-</Profile>
-<Profile username="christopher-mohr" affiliation="Boehringer Ingelheim">
-    Christopher Mohr
-</Profile>
-<Profile username="edmundmiller" affiliation="University of Texas at Dallas">
-    Edmund Miller
-</Profile>
-<Profile username="FloWuenne" affiliation="Seqera">
-    Florian Wuennemann
-</Profile>
-<Profile username="itrujnara" affiliation="Centre for Genomic Regulation">
-    Igor Trujnara
-</Profile>
-<Profile username="mirpedrol" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
-    Júlia Mir Pedrol
-</Profile>
-<Profile username="ggabernet" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
-    Gisela Gabernet
-</Profile>
-<Profile username="drpatelh" affiliation="Seqera">
-    Harshil Patel
-</Profile>
-<Profile
-    username="jasmezz"
-    affiliation="Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute"
->
-    Jasmin Frangenberg
-</Profile>
-<Profile username="pinin4fjords" affiliation="Seqera">
-    Jon Manning
-</Profile>
-<Profile
-    username="jonasscheid"
-    affiliation="Quantitative Biology Center, QBiC, University of Tübingen & Department of Peptide-based Immunotherapy, Institute of Immunology, University and University Hospital Tübingen"
->
-    Jonas Scheid
-</Profile>
-<Profile username="Joon-Klaps" affiliation="KU Leuven">
-    Joon Klaps
-</Profile>
-<Profile username="JoseEspinosa" affiliation="Centre for Genomic Regulation">
-    Jose Espinosa-Carrasco
-</Profile>
-<Profile username="LilyAnderssonLee" affiliation="Karolinska Institute & Karolinska University Hospital">
-    Lili Andersson-Li
-</Profile>
-<Profile username="lpantano" affiliation="Harvard Chan School of Public Health">
-    Lorena Pantano
-</Profile>
-<Profile username="luisas" affiliation="Centre for Genomic Regulation">
-    Luisa Santus
-</Profile>
-<Profile username="mahesh-panchal" affiliation="National Bioinformatics Infrastructure Sweden">
-    Mahesh Binzer-Panchal
-</Profile>
-<Profile username="matthdsm" affiliation="Center For Medical Genetics Ghent">
-    Matthias De Smet
-</Profile>
-<Profile username="mashehu" affiliation="Science for Life Laboratory">
-    Matthias Hörtenhuber
-</Profile>
-<Profile username="Midnighter" affiliation="Unseen Bio ApS">
-    Moritz E. Beber
-</Profile>
-<Profile username="nictru" affiliation="Technical University of Munich">
-    Nico Trummer
-</Profile>
-<Profile username="nvnieuwk" affiliation="Center For Medical Genetics Ghent">
-    Nicolas Vannieuwkerke
-</Profile>
-<Profile username="ramprasadn" affiliation="Science for Life Laboratory">
-    Ramprasad Neethiraj
-</Profile>
-<Profile username="robsyme" affiliation="Seqera">
-    Rob Syme
-</Profile>
-<Profile username="sppearce" affiliation="NeoGenomics Laboratories">
-    Simon Pearce
-</Profile>
-<Profile username="sofstam" affiliation="Karolinska Institute & Karolinska University Hospital">
-    Sofia Stamouli
-</Profile>
-<Profile username="gallvp" affiliation="The New Zealand Institute for Plant and Food Research Limited">
-    Usman Rashid
-</Profile>
-<Profile username="sateeshperi" affiliation="PeriMatrix IT Consultancy">
-    Sateesh Peri
-</Profile>
+<ProfileListing
+    profiles={[
+        { username: "adamrtalbot", affiliation: "Seqera", name: "Adam Talbot" },
+        { username: "aratz", affiliation: "Pixelgen Technologies", name: "Adrien Coulier" },
+        { username: "atrigila", affiliation: "ZS", name: "Anabella Trigila" },
+        { username: "edmundmiller", affiliation: "University of Texas at Dallas", name: "Edmund Miller" },
+        { username: "vagkaratzas", affiliation: "EMBL-EBI", name: "Evangelos Karatzas" },
+        {
+            username: "famosab",
+            affiliation:
+                "Quantitative Biology Center, QBiC, University of Tübingen & Translational Bioinformatics, University Hospital Tübingen",
+            name: "Famke Bäuerle",
+        },
+        { username: "felix-kummer", affiliation: "Humboldt-Universität zu Berlin", name: "Felix Kummer" },
+        { username: "FloWuenne", affiliation: "Seqera", name: "Florian Wuennemann" },
+        { username: "itrujnara", affiliation: "Centre for Genomic Regulation (CRG)", name: "Igor Trujnara" },
+        {
+            username: "jfy133",
+            affiliation:
+                "Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology",
+            name: "James A. Fellows Yates",
+        },
+        {
+            username: "jasmezz",
+            affiliation: "Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute",
+            name: "Jasmin Frangenberg",
+        },
+        { username: "prototaxites", affiliation: "Wellcome Sanger Institute", name: "Jim Downie" },
+        { username: "mirpedrol", affiliation: "Centre for Genomic Regulation (CRG)", name: "Júlia Mir Pedrol" },
+        { username: "pinin4fjords", affiliation: "Seqera", name: "Jon Manning" },
+        {
+            username: "jonasscheid",
+            affiliation:
+                "Quantitative Biology Center, QBiC, University of Tübingen & Department of Peptide-based Immunotherapy, Institute of Immunology, University and University Hospital Tübingen",
+            name: "Jonas Scheid",
+        },
+        { username: "Joon-Klaps", affiliation: "KU Leuven", name: "Joon Klaps" },
+        {
+            username: "JoseEspinosa",
+            affiliation: "Centre for Genomic Regulation (CRG)",
+            name: "Jose Espinosa-Carrasco",
+        },
+        { username: "lpantano", affiliation: "Harvard Chan School of Public Health", name: "Lorena Pantano" },
+        {
+            username: "LouisLeNezet",
+            affiliation: "Institute Genetics & Development of Rennes",
+            name: "Louis Le Nézet",
+        },
+        { username: "luisas", affiliation: "Centre for Genomic Regulation (CRG)", name: "Luisa Santus" },
+        {
+            username: "mahesh-panchal",
+            affiliation: "National Bioinformatics Infrastructure Sweden",
+            name: "Mahesh Binzer-Panchal",
+        },
+        { username: "matthdsm", affiliation: "Center For Medical Genetics Ghent", name: "Matthias De Smet" },
+        { username: "mashehu", affiliation: "Science for Life Laboratory", name: "Matthias Hörtenhuber" },
+        { username: "nictru", affiliation: "Technical University of Munich", name: "Nico Trummer" },
+        {
+            username: "nvnieuwk",
+            affiliation: "Center For Medical Genetics Ghent",
+            name: "Nicolas Vannieuwkerke",
+        },
+        {
+            username: "pontus",
+            affiliation: "National Bioinformatics Infrastructure Sweden",
+            name: "Pontus Freyhult",
+        },
+        { username: "ramprasadn", affiliation: "Science for Life Laboratory", name: "Ramprasad Neethiraj" },
+        { username: "sateeshperi", affiliation: "PeriMatrix IT Consultancy", name: "Sateesh Peri" },
+        {
+            username: "gallvp",
+            affiliation: "The New Zealand Institute for Plant and Food Research Limited",
+            name: "Usman Rashid",
+        },
+    ]}
+/>
 
 ##### Alumni
 
-<Profile username="apeltzer" affiliation="Boehringer Ingelheim">
-    Alex Peltzer
-</Profile>
-<Profile username="erikrikarddaniel" affiliation="Linnaeus University">
-    Daniel Lundin
-</Profile>
-<Profile username="louperelo" affiliation="Quantitative Biology Center, QBiC, University of Tübingen">
-    Louisa Perelo
-</Profile>
-<Profile username="muffato" affiliation="Wellcome Sanger Institute">
-    Matthieu Muffato
-</Profile>
+<ProfileListing
+    profiles={[
+        { username: "apeltzer", affiliation: "Boehringer Ingelheim", name: "Alex Peltzer" },
+        { username: "jemten", affiliation: "Science for Life Laboratory", name: "Anders Jemt" },
+        { username: "asp8200", affiliation: "Danish National Genome Center", name: "Anders Sune Pedersen" },
+        { username: "CarsonJM", affiliation: "University of Washington", name: "Carson Miller" },
+        { username: "christopher-mohr", affiliation: "Boehringer Ingelheim", name: "Christopher Mohr" },
+        { username: "erikrikarddaniel", affiliation: "Linnaeus University", name: "Daniel Lundin" },
+        {
+            username: "ggabernet",
+            affiliation: "Quantitative Biology Center, QBiC, University of Tübingen",
+            name: "Gisela Gabernet",
+        },
+        { username: "drpatelh", affiliation: "Seqera", name: "Harshil Patel" },
+        {
+            username: "LilyAnderssonLee",
+            affiliation: "Karolinska Institute & Karolinska University Hospital",
+            name: "Lili Andersson-Li",
+        },
+        {
+            username: "louperelo",
+            affiliation: "Quantitative Biology Center, QBiC, University of Tübingen",
+            name: "Louisa Perelo",
+        },
+        { username: "muffato", affiliation: "Wellcome Sanger Institute", name: "Matthieu Muffato" },
+        { username: "Midnighter", affiliation: "Unseen Bio ApS", name: "Moritz E. Beber" },
+        {
+            username: "sofstam",
+            affiliation: "Karolinska Institute & Karolinska University Hospital",
+            name: "Sofia Stamouli",
+        },
+        { username: "robsyme", affiliation: "Seqera", name: "Rob Syme" },
+    ]}
+/>
+
+## Documentation
+
+Clear, consistent, and accessible documentation is essential for the nf-core community to effectively use and contribute to the project.
+The documentation team is responsible for maintaining quality and consistency across all nf-core resources.
+
+The documentation team will have one or more leads who are responsible for overseeing documentation efforts.
+New members will be invited to join the team based on writing experience, technical communication skills, and engagement with community documentation needs.
+The team is not fixed in size and will scale as the community grows.
+Documentation team members will have write access to documentation repositories and style guide resources.
+
+##### Responsibilities
+
+- Develop and maintain the nf-core documentation style guide
+- Review new and existing documentation for consistency, clarity, and adherence to style standards
+- Collaborate with contributors to develop new documentation content
+- Design and maintain information architecture across nf-core documentation resources
+- Conduct periodic documentation audits to identify gaps and improvement opportunities
+- Provide guidance and support to community members creating documentation
+- Regular attendance at documentation team meetings
+- Collaborate with infrastructure teams to develop and maintain documentation automation
+
+##### Leads
+
+<ProfileListing
+    profiles={[
+        { username: "christopher-hakkaart", affiliation: "Seqera", name: "Chris Hakkaart" },
+        {
+            username: "jfy133",
+            affiliation:
+                "Leibniz Institute for Natural Product Research and Infection Biology Hans Knöll Institute & Max Planck Institute - for Evolutionary Anthropology",
+            name: "James A. Fellows Yates",
+        },
+    ]}
+/>
+
+##### Members
+
+<ProfileListing
+    profiles={[
+        { username: "chriswyatt1", affiliation: "University College London", name: "Chris Wyatt" },
+        { username: "mirpedrol", affiliation: "Centre for Genomic Regulation (CRG)", name: "Júlia Mir Pedrol" },
+        {
+            username: "mahesh-panchal",
+            affiliation: "National Bioinformatics Infrastructure Sweden",
+            name: "Mahesh Binzer-Panchal",
+        },
+        { username: "FriederikeHanssen", affiliation: "Seqera", name: "Friederike Hanssen" },
+    ]}
+/>
+
+_We are recruiting! Join the [#team-docs](https://nfcore.slack.com/archives/C09H9L3R614) channel to see what we're up to, and reach out to [Chris](https://nfcore.slack.com/team/U024MM1DRKL) or [James](https://nfcore.slack.com/team/D040CUQM72B) on Slack to find out more._
+
+## Support
 
 We thank all the institutions and companies of the maintainers team for their support of nf-core.

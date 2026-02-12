@@ -1,15 +1,17 @@
 ---
-title: 'nf-core/tools - 2.14.0'
-subtitle: 'Spring cleaning :broom:'
+title: "nf-core/tools - 2.14.0"
+headerImage: "https://images.unsplash.com/photo-1487700160041-babef9c3cb55"
+headerImageAlt: "Green lead plant"
+subtitle: "Spring cleaning :broom:"
 pubDate: 2024-05-08T12:00:00+01:00
 authors:
-    - 'mirpedrol'
-    - 'mashehu'
+    - "mirpedrol"
+    - "mashehu"
 label:
-    - 'tools'
+    - "tools"
 ---
 
-import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
 
 This release contains some template changes and nf-core/tools updates. For a more detailed list of changes, you can read the [changelog](https://github.com/nf-core/tools/releases/tag/2.14.0).
 
@@ -35,110 +37,109 @@ The hackathon in March brought us some new contributors to the tools repository.
 
 ## nf-core/tools functionalities
 
--   We included a new linting test to assure that nf-test snapshots contain the `versions.yml` file.
--   Components (modules and subworkflows) can now handle more possible git URLs (`ssh://` and `ftp://`).
--   The `nf-core download` command has a new argument `--tag`, which allows adding additional tags to select particular revisions in the Seqera Platform interface. For example, `--tag "3.10=validated"{:bash}` would allow you to quickly select the validated version of the pipeline.
+- We included a new linting test to assure that nf-test snapshots contain the `versions.yml` file.
+- Components (modules and subworkflows) can now handle more possible git URLs (`ssh://` and `ftp://`).
+- The `nf-core download` command has a new argument `--tag`, which allows adding additional tags to select particular revisions in the Seqera Platform interface. For example, `--tag "3.10=validated"{:bash}` would allow you to quickly select the validated version of the pipeline.
 
 ## Pipeline template
 
--   We updated the GitHub Action which tests that the pipeline can be downloaded correctly (`download_pipeline.yml`):
+- We updated the GitHub Action which tests that the pipeline can be downloaded correctly (`download_pipeline.yml`):
 
     If you had errors with this GitHub test, they are fixed!
 
     First, the test will try to run a stub run of the downloaded pipeline. If this fails, because some modules don't have a stub test yet, it run the pipeline without the `-stub` option.
 
--   We removed `pyproject.toml` from the template.
+- We removed `pyproject.toml` from the template.
 
     This was used to lint Python code.
     The nf-core/pipeline template doesn't contain Python code anymore, thanks to the new utils subworkflows and the nf-validation (now nf-schema) plugin,
     which replace the Python script which was validating the input sample sheet.
     If you have other Python scripts in your pipeline and you would like to keep this linting, feel free to add this file back to your pipeline.
 
--   Pipeline-specific institutional configs support is now activated for all pipelines by default.
+- Pipeline-specific institutional configs support is now activated for all pipelines by default.
 
--   The `.nf-core.yml` file contains now the version of the pipeline template,
-    corresponding to the version of nf-core/tools used for the last template update.
+- The `.nf-core.yml` file contains now the version of the pipeline template,
+  corresponding to the version of nf-core/tools used for the last template update.
 
 # How to merge the pipeline template updates
 
--   `editorconfig`:
+- `editorconfig`:
 
     We removed redundant configurations from the `.editorconfig` file. Accept the changes made to this file.
 
--   Files inside the `.github/` folder:
+- Files inside the `.github/` folder:
 
     These files are responsible for the Continuous Integration tests. In general, accept all changes made on these files.
-
-    -   `.github/workflows/ci.yml`: If you added your own tests to this file, for example, you added nf-test tests to your pipeline,
-        keep your changes, but accept the template updates related to action versions, e.g.
+    - `.github/workflows/ci.yml`: If you added your own tests to this file, for example, you added nf-test tests to your pipeline,
+      keep your changes, but accept the template updates related to action versions, e.g.
 
         ```diff "v1" "v2"
         - uses: nf-core/setup-nextflow@v1
         + uses: nf-core/setup-nextflow@v2
         ```
 
-    -   `.github/workflows/download_pipeline.yml`: This file is responsible for testing if the pipeline can be downloaded correctly. Accept the changes made to this file.
+    - `.github/workflows/download_pipeline.yml`: This file is responsible for testing if the pipeline can be downloaded correctly. Accept the changes made to this file.
 
-    -   `.github/PULL_REQUEST_TEMPLATE.md`: We were a bit too fast with adding nf-test commands to the PR template. Accept the changes made to this file, if your pipeline doesn't use nf-test yet.
+    - `.github/PULL_REQUEST_TEMPLATE.md`: We were a bit too fast with adding nf-test commands to the PR template. Accept the changes made to this file, if your pipeline doesn't use nf-test yet.
 
--   `pre-commit-config.yaml`:
+- `pre-commit-config.yaml`:
 
-          We set the version of prettier to 3.2.5. Accept this change.
+    We set the version of prettier to 3.2.5. Accept this change.
 
--   `conf/base.config` and `conf/modules.config` directory:
+- `conf/base.config` and `conf/modules.config` directory:
 
     We removed some remnants of the old custom_dumpsoftwareversions module. Accept the changes made to the files in this directory.
 
--   `.nf-core-yml`:
+- `.nf-core-yml`:
 
     The version of nf-core used for the template update is added to the `.nf-core.yml` file.
     Accept the change of version.
     Do NOT accept changes removing any other configurations that you added to this file.
 
--   `README.md`
+- `README.md`
 
     We updated the link to Seqera Platform badge, accept this change.
 
--   `assets/multiqc_config.yml`:
+- `assets/multiqc_config.yml`:
 
     Always accept changes made to this file before the line: `disable_version_detection: true`.
     Custom changes should be made after this line.
 
--   `docs/usage.md`:
+- `docs/usage.md`:
 
     We added a new profile `wave`. Accept this change.
 
--   `nextflow.config`:
+- `nextflow.config`:
 
     We fixed a bug with `conda.channels`. Accept the changes made to this file.
     Don't accept changes removing any of your pipeline custom parameters.
 
--   `nextflow_schema.json`:
+- `nextflow_schema.json`:
 
     We added a new parameter `pipelines_testdata_base_path`, accept this change.
     Do not accept changes which remove any of your pipeline paramters.
 
--   `pyproject.toml`:
+- `pyproject.toml`:
 
     Python linting is now optional. If you have Python code on your pipeline and want to keep linting it, DON'T accept this change.
     Otherwise, it is safe to remove this file.
 
--   `conf/test_full.config` and `conf/test.config`:
+- `conf/test_full.config` and `conf/test.config`:
 
     We are using the parameter `params.pipelines_testdata_base_path` to specify the base path of the repo containing test data.
     You will have to resolve this manually. Accept the change using this parameter on the `input`path, the new parameter will replace `https://raw.githubusercontent.com/nf-core/test-datasets/`.
     But don't accept the change changing the last part of this path, which is specific of your pipeline.
     Don't accept changes removing other custom configurations you added to your tests.
 
--   Changes on `docs/`:
+- Changes on `docs/`:
 
     Do NOT accept any change that removes custom docs that you added to your pipeline.
 
--   Changes on `CHANGELOG.md`:
+- Changes on `CHANGELOG.md`:
 
     Do NOT accept any change which modified custom points of your `CHANGELOG.md`.
 
--   `modules.json` and template modules and subworkflows:
+- `modules.json` and template modules and subworkflows:
 
     Do NOT accept any changes deleting your pipeline modules from `modules.json`.
     Template modules and subworkflows are updated on every template release. You can accept those changes and the changes on `modules.json` related to these.
@@ -147,10 +148,10 @@ The hackathon in March brought us some new contributors to the tools repository.
     Then run `nf-core modules update{:bash}` and `nf-core subworkflows update{:bash}`.
     These commands will update all your modules and subworkflows and the `modules.json` file accordingly.
 
--   `subworkflows/local/utils_nfcore_$PIPEPLINE_pipeline/main.nf`:
+- `subworkflows/local/utils_nfcore_$PIPEPLINE_pipeline/main.nf`:
 
     We added a way to handle multiple DOIs in the manifest. Accept this change.
 
--   `workflows/$PIPELINE.nf`:
+- `workflows/$PIPELINE.nf`:
 
     We shortened very long lines in the main pipeline script to allow easier comparison during code reviews. Accept these changes.

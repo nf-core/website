@@ -1,6 +1,6 @@
 ---
-import EventHeader from '@components/event/EventHeader.astro';
-import { Markdown } from '@astropub/md';
+import EventHeader from "@components/event/EventHeader.astro";
+import { Markdown } from "@mashehu/astropub-md";
 
 let { title, subtitle, header_html, md_github_url, header_btn_url, header_btn_text, event_header, topics } =
     Astro.props;
@@ -15,10 +15,10 @@ export interface Props {
     event_header?: any;
     topics?: string[];
 }
-title = title.replace('nf-core/', 'nf-core/<wbr>');
+title = title.replace("nf-core/", "nf-core/<wbr>");
 ---
 
-<div class="mainpage-heading pb-1 text-bg-success" transition:animate="fade">
+<div class="mainpage-heading pb-1 text-bg-success position-relative z-index" transition:animate="fade">
     <div class="container">
         <slot name="header-top" />
         <h1 class="display-2 d-flex justify-content-between mb-2">
@@ -64,23 +64,37 @@ title = title.replace('nf-core/', 'nf-core/<wbr>');
 <div class="triangle-down bg-success"></div>
 <slot />
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
+
     .mainpage-heading {
         padding-top: 1rem;
         overflow: visible;
+        z-index: 1;
         cursor: default;
-        & h1,
-        & p {
+        color: $white;
+
+        h1,
+        p,
+        code {
             color: $white !important;
         }
-        h1,
+        code:not(pre code) {
+            background-color: rgba($white, 0.1) !important;
+        }
         h1 {
             text-decoration: none;
+            text-wrap: balance;
         }
-        code {
-            color: $white;
+        .topic,
+        .pipeline-topic,
+        .module-topic,
+        .subworkflow-topic {
+            background-color: rgba($white, 0.1);
+            color: rgba($white, 0.9);
+            font-weight: 400;
         }
     }
+
     @include media-breakpoint-down(md) {
         .mainpage-heading {
             padding-top: 0.2rem;

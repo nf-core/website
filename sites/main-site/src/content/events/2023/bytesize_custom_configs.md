@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Using nf-core configs in custom pipelines'
+title: "Bytesize: Using nf-core configs in custom pipelines"
 subtitle: Judith Ballesteros, Max Planck Institute for evolutionary anthropology
 type: talk
-startDate: '2023-10-10'
-startTime: '13:00+02:00'
-endDate: '2023-10-10'
-endTime: '13:30+02:00'
+startDate: "2023-10-10"
+startTime: "13:00+02:00"
+endDate: "2023-10-10"
+endTime: "13:30+02:00"
 locations:
   - name: Online
     links:

@@ -1,0 +1,54 @@
+---
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { Markdown } from "@mashehu/astropub-md";
+
+const title = "nft-utils";
+const subtitle = "A collection of utilities for working with nf-test";
+
+let index_md_content = await fetch("https://raw.githubusercontent.com/nf-core/nft-utils/refs/heads/main/docs/index.md")
+    .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
+    .catch(() => "# Error loading content\n\nUnable to load Readme from GitHub.");
+
+let usage_md_content = await fetch("https://raw.githubusercontent.com/nf-core/nft-utils/refs/heads/main/docs/usage.md")
+    .then((res) => (res.ok ? res.text() : Promise.reject(`Failed to fetch: ${res.status}`)))
+    .catch(() => "# Error loading content\n\nUnable to load Readme from GitHub.");
+let md_content = index_md_content + "\n" + usage_md_content;
+
+// prefix images with a github url
+md_content = md_content.replace(/!\[.*\]\((.*)\)/g, (match, p1) => {
+    return `![${p1}](https://raw.githubusercontent.com/nf-core/nft-utils/refs/heads/main/docs/${p1})`;
+});
+
+const headings =
+    md_content.match(/^#+\s+(.*)$/gm)?.map((heading) => {
+        const text = heading.replace(/^#+\s+/, "").trim();
+        return {
+            text: text.replace(/`([^`]+)`/g, "<code>$1</code>"),
+            slug: text
+                .toLowerCase()
+                .replace(/ /g, "-")
+                .replace(/[^a-z0-9-]/g, ""),
+            depth: heading.split("#").length - 1,
+        };
+    }) || [];
+
+// replace /usage.md with slug to first heading in usage.md
+const first_heading = usage_md_content
+    .match(/^#+\s+(.*)$/gm)?.[0]
+    .replace(/^#+\s+/, "")
+    .trim()
+    .toLowerCase()
+    .replace(/ /g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+md_content = md_content.replace(/\.\/usage\.md/g, `#${first_heading}`);
+---
+
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    headings={headings}
+    md_github_url="https://github.com/nf-core/nft-utils/edit/main/docs/usage.md"
+    leftSidebar={false}
+>
+    <Markdown of={md_content} />
+</MarkdownTocLayout>

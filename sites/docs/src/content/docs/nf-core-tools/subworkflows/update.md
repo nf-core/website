@@ -14,7 +14,7 @@ before_command: >
 timeout: 30
 -->
 
-![`nf-core subworkflows update --all --no-preview`](/images/tools/nf-core-subworkflows-update.svg)
+![`nf-core subworkflows update --all --no-preview`](../../../../assets/images/tools/nf-core-subworkflows-update.svg)
 
 You can pass the subworkflow name as an optional argument to `nf-core subworkflows update` like above or select it from the list of available subworkflows by only running `nf-core subworkflows update`.
 
@@ -44,7 +44,7 @@ If you want this subworkflow to be updated only to a specific version (or downgr
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
-      bam_rseqc: '36a77f7c6decf2d1fb9f639ae982bc148d6828aa'
+      bam_rseqc: "36a77f7c6decf2d1fb9f639ae982bc148d6828aa"
 ```
 
 This also works at the repository level. For example, if you want to exclude all modules and subworkflows installed from `nf-core/modules` from being updated you could add:
@@ -60,7 +60,7 @@ or if you want all subworkflows in `nf-core/modules` at a specific version:
 ```yaml
 update:
   https://github.com/nf-core/modules.git:
-    nf-core: 'e937c7950af70930d1f34bb961403d9d2aa81c7'
+    nf-core: "e937c7950af70930d1f34bb961403d9d2aa81c7"
 ```
 
 Note that the subworkflow versions specified in the `.nf-core.yml` file has higher precedence than versions specified with the command line flags, thus aiding you in writing reproducible pipelines.

@@ -1,0 +1,49 @@
+---
+import Project from "@components/event/HackathonProjects/Project.astro";
+import { getCollection } from "astro:content";
+
+const { eventPath } = Astro.props;
+
+export interface Props {
+    eventPath?: string;
+}
+
+let projects = await getCollection("hackathon-projects");
+
+if (eventPath) {
+    projects = projects.filter((project) => project.id.startsWith(eventPath));
+}
+// sort projects by data.location and then data.category
+projects.sort((a, b) => {
+    return (
+        (a.data.location ?? "").localeCompare(b.data.location ?? "") || a.data.category.localeCompare(b.data.category)
+    );
+});
+
+const locations = [...new Set(projects.map((project) => project.data.location))];
+// sort "online" to the top
+locations?.sort((a, b) => {
+    if (a === "online") return -1;
+    if (b === "online") return 1;
+    return a?.localeCompare(b ?? "") ?? 0;
+});
+
+// Group projects by location
+const projectsByLocation = locations.map((location) => ({
+    location,
+    projects: projects.filter((project) => project.data.location === location),
+}));
+---
+
+<div>
+    {
+        projectsByLocation.map(({ location, projects }) => (
+            <>
+                {location && projectsByLocation.length > 0 && <h3 class="text-capitalize mb-3 mt-4">{location}</h3>}
+                {projects.map((project) => (
+                    <Project id={project.id} {...project.data} />
+                ))}
+            </>
+        ))
+    }
+</div>

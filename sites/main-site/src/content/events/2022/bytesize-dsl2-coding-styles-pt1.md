@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: DSL2 Coding style recommendations (Part 1)'
+title: "Bytesize: DSL2 Coding style recommendations (Part 1)"
 subtitle: Maxime Garcia - Barncancerfonden, Stockholm, Sweden
 type: talk
-startDate: '2022-07-05'
-startTime: '13:00+02:00'
-endDate: '2022-07-05'
-endTime: '13:30+02:00'
+startDate: "2022-07-05"
+startTime: "13:00+02:00"
+endDate: "2022-07-05"
+endTime: "13:30+02:00"
 youtubeEmbed: https://www.youtube.com/watch?v=KnYPzZ0Dd-Y
 locations:
   - name: Online

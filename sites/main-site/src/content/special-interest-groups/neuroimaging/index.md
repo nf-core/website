@@ -1,6 +1,6 @@
 ---
 title: Introduction
-subtitle: 'Community of researchers using Nextflow and nf-core for Neuroimaging'
+subtitle: "Community of researchers using Nextflow and nf-core for Neuroimaging"
 groupName: Neuroimaging
 leads:
   - AlexVCaron: Alex Valcourt Caron

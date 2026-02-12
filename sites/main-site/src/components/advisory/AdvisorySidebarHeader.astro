@@ -1,0 +1,303 @@
+---
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
+import nextflowIcon from "../../icons/logos/nextflow.svg?raw";
+import {
+    formatAdvisoryType,
+    formatAdvisoryCategory,
+    advisoryClasses,
+    advisoryIcons,
+    getAdvisoryMetadataItems,
+} from "./advisoryUtils";
+import semver from "semver";
+import pipelines_json from "@public/pipelines.json";
+
+interface Props {
+    frontmatter: {
+        publishedDate: Date;
+        severity: string;
+        type: string[];
+        category: string[];
+        reporter: Array<string | Record<string, string>> | null;
+        reviewer?: Array<string | Record<string, string>>;
+        nextflowVersions?: string[] | null;
+        nextflowExecutors?: string[] | null;
+        softwareDependencies?: Array<string | { name: string; versions?: string[] }> | string | null;
+        pipelines?: Array<string | { name: string; versions: string[] }>;
+        subworkflows?: string[];
+        modules?: string[];
+        configuration?: string[];
+    };
+}
+
+const { frontmatter } = Astro.props;
+const metadataItems = getAdvisoryMetadataItems(frontmatter);
+
+function getPersonInfo(person: string | Record<string, string>) {
+    if (typeof person === "string") {
+        return { username: person, affiliation: "" };
+    }
+    return { username: Object.keys(person)[0], affiliation: Object.values(person)[0] };
+}
+
+const sameReporterAndReviewer =
+    frontmatter.reporter &&
+    frontmatter.reviewer &&
+    JSON.stringify([...frontmatter.reporter].sort()) === JSON.stringify([...frontmatter.reviewer].sort());
+
+function resolveVersionRange(pipelineName: string, versionRange: string): string {
+    const pipeline = pipelines_json.remote_workflows.find((p) => p.name === pipelineName);
+    if (!pipeline) return versionRange;
+
+    // Get all valid versions (excluding 'dev')
+    const availableVersions = pipeline.releases
+        .filter((r) => r.tag_name !== "dev")
+        .map((r) => r.tag_name)
+        .filter((v) => semver.valid(v))
+        .sort(semver.rcompare); // Sort in descending order (latest first)
+
+    // If it's already a specific version, return it
+    if (availableVersions.includes(versionRange)) {
+        return versionRange;
+    }
+
+    // Try to find the latest version that satisfies the range
+    const satisfyingVersion = semver.maxSatisfying(availableVersions, versionRange);
+    return satisfyingVersion || versionRange;
+}
+
+function formatImpactItems(
+    items: Array<string | { name: string; versions: string[] }> | string[],
+    urlPrefix: string,
+    type: string,
+) {
+    const typeSpecificClasses =
+        type === "pipelines"
+            ? "border text-body border-warning-subtle bg-warning-subtle rounded-end-0"
+            : type === "subworkflows"
+              ? "border text-body border-success-subtle bg-success-subtle"
+              : "border text-body border-info-subtle bg-info-subtle"; // modules and configuration
+
+    let html = items
+        .map((item) => {
+            const name = typeof item === "object" ? item.name : item;
+            const versions = typeof item === "object" ? item.versions : null;
+            const itemType = type === "pipelines" ? "span" : "a";
+            const itemLink = type === "pipelines" ? "" : `href="${urlPrefix}/${name}"`;
+            let itemHtml = `<${itemType} ${itemLink} class="badge fw-normal ${typeSpecificClasses}" title="${name}">
+            ${name}
+        </${itemType}>`;
+
+            if (versions?.length) {
+                const versionTags = versions
+                    .map((version) => {
+                        if (type === "pipelines") {
+                            const resolvedVersion = resolveVersionRange(name, version);
+                            return `<a href="/${name}/${resolvedVersion}" class="pipeline-version badge text-bg-tertiary fw-normal px-2 py-1 my-1 border border-start-0 rounded-start-0" title="View ${name} version ${resolvedVersion}">${version}</a>`;
+                        }
+                        return `<span class="badge text-bg-secondary px-2 py-1 me-1 mb-1">${version}</span>`;
+                    })
+                    .join("");
+                const marginClass = type === "pipelines" ? "" : "ms-2 mt-1";
+                itemHtml += `<div class="${marginClass}">${versionTags}</div>`;
+            }
+
+            return `<div class="d-flex align-items-center flex-wrap me-1 mb-1">${itemHtml}</div>`;
+        })
+        .join("");
+    return `<div class="d-flex align-items-center flex-wrap">${html}</div>`;
+}
+
+const impactSections = [
+    {
+        items: frontmatter.pipelines,
+        title: "Affected Pipelines",
+        icon: "fa-solid fa-project-diagram",
+        urlPrefix: "",
+        type: "pipelines",
+    },
+    {
+        items: frontmatter.subworkflows,
+        title: "Affected Subworkflows",
+        icon: "fa-solid fa-sitemap",
+        urlPrefix: "/subworkflows",
+        type: "subworkflows",
+    },
+    {
+        items: frontmatter.modules,
+        title: "Affected Modules",
+        icon: "fa-solid fa-cube",
+        urlPrefix: "/modules",
+        type: "modules",
+    },
+    {
+        items: frontmatter.configuration,
+        title: "Affected Configuration",
+        icon: "fa-solid fa-cogs",
+        urlPrefix: "/configs",
+        type: "configuration",
+    },
+].filter((section) => section.items?.length);
+---
+
+<div class="d-flex flex-column align-items-start text-smaller">
+    <SidebarStatsRow
+        content={[
+            {
+                title: "Severity",
+                value: `<span class="badge text-bg-${advisoryClasses[frontmatter.severity]}">
+                    <i class="${advisoryIcons[frontmatter.severity]} me-1"></i>
+                    ${formatAdvisoryCategory(frontmatter.severity)}
+                </span>`,
+            },
+            {
+                title: "Published on",
+                value: frontmatter.publishedDate.toLocaleDateString("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                }),
+            },
+        ]}
+    />
+
+    <SidebarStatsRow
+        content={[
+            {
+                title: "Type",
+                value: `<div class="d-flex flex-column align-items-start">
+                    ${frontmatter.type
+                        .map(
+                            (type) =>
+                                `<span class="me-1 mb-1">
+                            <i class="${advisoryIcons[type]} me-1"></i>
+                            ${formatAdvisoryType(type)}
+                        </span>`,
+                        )
+                        .join("")}
+                </div>`,
+            },
+            {
+                title: "Category",
+                value: frontmatter.category
+                    .map(
+                        (cat) =>
+                            `<div class="category-item mb-1 fs-6">
+                        <i class="${advisoryIcons[cat]} me-1"></i>
+                        ${formatAdvisoryCategory(cat)}
+                    </div>`,
+                    )
+                    .join(""),
+            },
+        ]}
+    />
+
+    {
+        metadataItems.length > 0 && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: "Technical Details",
+                        value: `<div class="">
+                        ${metadataItems
+                            .map(
+                                (item) => `
+                            <div class="d-flex align-items-start flex-wrap ">
+                            <span class="">
+                                ${
+                                    item.label === "Nextflow"
+                                        ? `<div class="d-inline-block me-1">${nextflowIcon}</div>`
+                                        : `<i class="fa-solid ${item.icon} me-1"></i>`
+                                }
+                                ${item.label}:
+                            </span>
+                            ${item.value
+                                .split(",")
+                                .map((value) => `<code class="mb-1 me-1">${value}</code>`)
+                                .join("")}
+                        </div>`,
+                            )
+                            .join("")}
+                    </div>`,
+                    },
+                ]}
+            />
+        )
+    }
+
+    {
+        impactSections.map((section) => (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: section.title,
+                        icon: section.icon,
+                        value: formatImpactItems(section.items!, section.urlPrefix, section.type),
+                    },
+                ]}
+            />
+        ))
+    }
+
+    {
+        frontmatter.reporter && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: sameReporterAndReviewer ? "Reported by and reviewed by" : "Reported by",
+                    },
+                ]}
+                lastChild={sameReporterAndReviewer ?? false}
+            >
+                {frontmatter.reporter.map((reporter) => {
+                    const info = getPersonInfo(reporter);
+                    return (
+                        <GitHubProfilePictureExtended
+                            username={info.username}
+                            affiliation={info.affiliation}
+                            size={40}
+                            wrapperClasses="mt-1"
+                        />
+                    );
+                })}
+            </SidebarStatsRow>
+        )
+    }
+
+    {
+        frontmatter.reviewer && !sameReporterAndReviewer && (
+            <SidebarStatsRow content={[{ title: "Reviewed by" }]}>
+                {frontmatter.reviewer.map((reviewer) => {
+                    const info = getPersonInfo(reviewer);
+                    return (
+                        <GitHubProfilePictureExtended
+                            username={info.username}
+                            affiliation={info.affiliation}
+                            size={40}
+                            wrapperClasses="mt-1"
+                        />
+                    );
+                })}
+            </SidebarStatsRow>
+        )
+    }
+</div>
+
+<style lang="scss">
+    :global(a.badge:hover) {
+        color: var(--bs-emphasis-color) !important;
+        background-color: var(--bs-tertiary-bg);
+    }
+    :global(a.badge:not(:last-child)) {
+        border-bottom-right-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    :global(.text-bg-tertiary) {
+        background-color: var(--bs-tertiary-bg);
+        color: var(--bs-gray-700);
+        :global([data-bs-theme="dark"]) & {
+            color: var(--bs-gray-300) !important;
+        }
+    }
+</style>

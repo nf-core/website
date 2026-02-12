@@ -1,0 +1,45 @@
+---
+import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
+import { getCollection } from "astro:content";
+import { markdown } from "@mashehu/astropub-md";
+
+export async function getStaticPaths() {
+    let advisories = await getCollection("advisories");
+
+    advisories = await Promise.all(
+        advisories.map(async (advisory) => {
+            advisory.data.subtitle = String(await markdown(advisory.data.subtitle));
+            return advisory;
+        }),
+    );
+    // Get all unique advisory types from all advisories
+    const advisory_types = [...new Set(advisories.flatMap((advisory) => advisory.data.type))];
+
+    return advisory_types.map((advisory_type) => {
+        // Filter advisories that include this type
+        const filteredAdvisories = advisories.filter((advisory) => advisory.data.type.includes(advisory_type));
+
+        return {
+            params: {
+                advisory_type: advisory_type,
+            },
+            props: {
+                advisories: filteredAdvisories,
+            },
+        };
+    });
+}
+const { advisories } = Astro.props;
+const { advisory_type } = Astro.params;
+
+const title = advisory_type.charAt(0).toUpperCase() + advisory_type.slice(1);
+const subtitle = `${advisory_type}-related advisories pertaining to nf-core software.`;
+---
+
+<AdvisoryLayout
+    {advisories}
+    {title}
+    {subtitle}
+    currentFilters={[{ name: advisory_type }]}
+    sidebarTitle={title + " Advisory"}
+/>

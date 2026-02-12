@@ -1,8 +1,7 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import { spreadshopLocales } from '../../config';
-import HomepageCard from '@components/homepage/HomepageCard.astro';
-import { Icon } from 'astro-icon/components';
+import PageLayout from "@layouts/PageLayout.astro";
+import { spreadshopLocales } from "../../config";
+import HomepageCard from "@components/homepage/HomepageCard.astro";
 ---
 
 <PageLayout title="nf-core/shop" subtitle="Share your love for the nf-core community!">
@@ -47,7 +46,7 @@ import { Icon } from 'astro-icon/components';
                 {
                     spreadshopLocales.map((data) => (
                         <li>
-                            <a class="dropdown-item" href={'/shop/' + data[1].toLowerCase()}>
+                            <a class="dropdown-item" href={"/shop/" + data[1].toLowerCase()}>
                                 {data[0]}
                             </a>
                         </li>

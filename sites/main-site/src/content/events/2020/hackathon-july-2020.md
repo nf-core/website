@@ -2,13 +2,13 @@
 title: Hackathon July 2020
 subtitle: The first online-only nf-core hackathon
 type: hackathon
-startDate: '2020-07-13'
-startTime: '13:00+02:00'
-endDate: '2020-07-17'
-endTime: '17:00+02:00'
+startDate: "2020-07-13"
+startTime: "13:00+02:00"
+endDate: "2020-07-17"
+endTime: "17:00+02:00"
 locations:
   - name: Zoom, Slack & YouTube.
-    links: '#how-it-works'
+    links: "#how-it-works"
 ---
 
 ## Introduction

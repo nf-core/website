@@ -2,7 +2,7 @@
 title: Move to nf-core
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 30
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ## Adding your pipeline to the nf-core organisation
@@ -10,7 +10,9 @@ type: 'tutorial'
 Ok, so you're essentially finished. Your pipeline is written, the tests pass and
 you're ready to add your workflow to nf-core.
 
-First, go to the settings of your repository. Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
+First, go to Slack and announce on [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) that you will need a core team member to move your repository to the nf-core organisation.
+
+Then go to the settings of your repository.Under the General page, in the 'Danger Zone' you should have an option to Transfer Ownership. Transfer this to the nf-core organisation.
 
 :::tip
 You must make sure you are already a part of the nf-core organisation to allow transferring to nf-core. Alternatively you can add a core-team member to your repository, and ask them to do the transfer you.

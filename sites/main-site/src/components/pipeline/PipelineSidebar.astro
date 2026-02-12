@@ -1,10 +1,11 @@
 ---
-import InstallCmd from '@components/InstallCmd.svelte';
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import { formatDistance } from 'date-fns';
-import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
-import { getCollection } from 'astro:content';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import InstallCmd from "@components/InstallCmd.svelte";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import { formatDistance } from "date-fns";
+import GitHubProfilePicture from "@components/GitHubProfilePicture.astro";
+import TagSection from "@components/TagSection.svelte";
+import { getCollection } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 const { meta, pipeline, version } = Astro.props;
 export interface Props {
@@ -12,11 +13,21 @@ export interface Props {
         contributors: {
             name: string;
             count: number;
+            avatar_url?: string;
         }[];
         open_issues_count: number;
         open_pr_count: number;
         releases: {
+            tag_name: string;
             published_at: string;
+            components?: {
+                modules?: string[];
+                subworkflows?: string[];
+            };
+            co2footprint_files: {
+                co2e_emissions: number;
+                energy_consumption: number;
+            };
         }[];
         stargazers_count: number;
         subscribers_count: number;
@@ -25,17 +36,34 @@ export interface Props {
     pipeline: string;
     version: string;
 }
-const events = await getCollection('events');
-let video = events && events.find((event) => event.data.embedAt === pipeline)?.data.locationURL;
-if (typeof video === 'string') {
-    video = [video];
+const events = await getCollection("events", ({ data }) => data.embedAt === pipeline);
+const event = events[0];
+
+// Get YouTube video URL from event data
+let videoUrl: string | undefined = undefined;
+if (event) {
+    // Check if the event has a youtubeEmbed property
+    if (event.data.youtubeEmbed) {
+        videoUrl = Array.isArray(event.data.youtubeEmbed) ? event.data.youtubeEmbed[0] : event.data.youtubeEmbed;
+    }
 }
-video = video?.filter((v) => v.includes('youtube.com') || v.includes('youtu.be'))[0];
-const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https://youtu.be/', '');
+
+// Extract YouTube video ID
+const videoId = videoUrl
+    ? videoUrl
+          .replace("https://www.youtube.com/watch?v=", "")
+          .replace("https://youtu.be/", "")
+          .replace("https://youtube.com/watch?v=", "")
+    : "";
+const version_name = version === "latest" ? meta.releases[0].tag_name : version;
+const release = meta.releases.filter((release) => release.tag_name === version_name)[0];
+
+const modules: string[] = release?.components?.modules || [];
+const subworkflows: string[] = release?.components?.subworkflows || [];
 ---
 
 <div class="sidebar mt-3 sticky-top-under">
-    <SidebarStatsRow content={[{ title: 'run with', icon: 'fa-regular fa-terminal' }]}>
+    <SidebarStatsRow content={[{ title: "run with", icon: "fa-regular fa-terminal" }]}>
         <div class="border rounded-1 mb-1">
             <div class="tab-content flex-column">
                 <div
@@ -122,52 +150,72 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
         </div>
     </SidebarStatsRow>
     {
-        id && (
-            <SidebarStatsRow content={[{ title: 'video introduction', icon: 'fa-brands fa-youtube' }]}>
-                <YouTube id={id} poster={`https://i.ytimg.com/vi/${id}/hqdefault.jpg`} />
+        videoId && (
+            <SidebarStatsRow content={[{ title: "video introduction", icon: "fa-brands fa-youtube" }]}>
+                <YouTube id={videoId} poster={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`} />
             </SidebarStatsRow>
         )
     }
     <SidebarStatsRow
         content={[
-            { title: 'subscribers', value: meta.subscribers_count },
-            { title: 'stars', value: meta.stargazers_count },
+            { title: "subscribers", value: meta.subscribers_count },
+            { title: "stars", value: meta.stargazers_count },
         ]}
     />
     <SidebarStatsRow
         content={[
-            { title: 'open issues', value: meta.open_issues_count },
-            { title: 'open PRs', value: meta.open_pr_count },
+            { title: "open issues", value: meta.open_issues_count },
+            { title: "open PRs", value: meta.open_pr_count },
         ]}
     />
     <SidebarStatsRow
         content={[
             {
-                title: 'last release',
+                title: "last release",
                 value:
                     meta.releases.length > 1
                         ? formatDistance(new Date(meta.releases[0].published_at), new Date(), {
                               addSuffix: true,
                           })
-                        : 'not yet released',
+                        : "not yet released",
             },
             {
-                title: 'last update',
+                title: "last update",
                 value: formatDistance(new Date(meta.releases[0].published_at), new Date(), { addSuffix: true }),
             },
         ]}
     />
-    <SidebarStatsRow content={[{ title: 'get help' }]}>
-        <div class="d-flex flex-column">
-            <a class="btn btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/' + pipeline}
-                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-            >
-            <a class="btn btn-outline-secondary" href={'https://github.com/nf-core/' + pipeline + '/issues'}
-                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
-            >
-        </div>
-    </SidebarStatsRow>
-    <SidebarStatsRow content={[{ title: 'contributors' }]} lastChild={true}>
+    {
+        release && release.co2footprint_files && (
+            <SidebarStatsRow
+                content={[
+                    {
+                        title: "CO<sub>2</sub>e emissions <i class='fas fa-info-circle' title='calculated using the nf-co2footprint plugin and `-profile test_full`.' data-bs-toggle='tooltip'></i>",
+                        value: release.co2footprint_files.co2e_emissions + " g",
+                    },
+                    {
+                        title: "energy consumption<i class='fas fa-info-circle' title='calculated using the nf-co2footprint plugin and `-profile test_full`.' data-bs-toggle='tooltip'></i>",
+                        value: release.co2footprint_files.energy_consumption + " Wh",
+                    },
+                ]}
+            />
+        )
+    }
+    {
+        modules.length > 0 && (
+            <SidebarStatsRow content={[{ title: "included modules" }]}>
+                <TagSection tags={modules} type="modules" maxShown={5} client:load />
+            </SidebarStatsRow>
+        )
+    }
+    {
+        subworkflows.length > 0 && (
+            <SidebarStatsRow content={[{ title: "included subworkflows" }]}>
+                <TagSection tags={subworkflows} type="subworkflows" maxShown={5} client:load />
+            </SidebarStatsRow>
+        )
+    }
+    <SidebarStatsRow content={[{ title: "contributors" }]} lastChild={true}>
         {
             (
                 <div class="d-flex flex-wrap justify">
@@ -186,8 +234,18 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             )
         }
     </SidebarStatsRow>
+    <SidebarStatsRow content={[{ title: "get help" }]}>
+        <div class="d-flex flex-column">
+            <a class="btn btn-outline-info mb-2" href={"https://nfcore.slack.com/channels/" + pipeline}
+                ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
+            >
+            <a class="btn btn-outline-secondary" href={"https://github.com/nf-core/" + pipeline + "/issues"}
+                ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
+            >
+        </div>
+    </SidebarStatsRow>
     <style lang="scss">
-        @import '@styles/_variables.scss';
+        @import "@styles/_variables.scss";
         .sidebar {
             max-height: calc(100vh - 5rem);
             overflow-y: auto;
@@ -203,7 +261,7 @@ const id = video?.replace('https://www.youtube.com/watch?v=', '').replace('https
             }
         }
 
-        :global([data-bs-theme='dark']) {
+        :global([data-bs-theme="dark"]) {
             .border-secondary {
                 border-color: $gray-700 !important;
             }

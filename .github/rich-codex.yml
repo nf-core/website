@@ -2,86 +2,90 @@ timeout: 300
 outputs:
   - command: nf-core --help
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nfcore_help.svg
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_help.svg
   - command: nf-core pipelines list
     head: 19
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nfcore_list.svg
-  - command: nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil" --plain
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_list.svg
+  - command: |
+      mkdir tmp && cd tmp && \
+      nf-core pipelines create --name demo --description "Pipeline for training" --author "Phil"
     fake_command: nf-core pipelines create
+    head: 12
+    tail: 14
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nfcore_create.svg
-  - command: cd nf-core-demo && git status
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_create.svg
+  - command: cd tmp/nf-core-demo && git status
     fake_command: git status
     img_paths:
-      - public/images/contributing/creating_with_nf_core/git_status.svg
-  - command: cd nf-core-demo && git branch
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/git_status.svg
+  - command: cd tmp/nf-core-demo && git branch
     fake_command: git branch
     img_paths:
-      - public/images/contributing/creating_with_nf_core/git_branch.svg
-  - command: cd nf-core-demo && git log --oneline
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/git_branch.svg
+  - command: cd tmp/nf-core-demo && git log --oneline
     fake_command: git log --oneline
     img_paths:
-      - public/images/contributing/creating_with_nf_core/git_log.svg
-  - command: nextflow run nf-core-demo/ -profile test,docker --outdir test_results
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/git_log.svg
+  - command: nextflow run tmp/nf-core-demo -profile test,docker --outdir test_results
     title: nextflow run
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nextflow_run_1.svg
-  - command: cd nf-core-demo && nf-core pipelines lint && grep -rl TODO .
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nextflow_run_1.svg
+  - command: cd tmp/nf-core-demo && nf-core pipelines lint && grep -rl TODO .
     fake_command: nf-core pipelines lint
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nfcore_lint_warnings.svg
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_lint_warnings.svg
   - command: |
-      cd nf-core-demo && \
+      cd tmp/nf-core-demo && \
       grep -rl TODO . | xargs sed -i 's/TODO//g' && \
       echo "ADDED" >> CODE_OF_CONDUCT.md && \
       nf-core pipelines lint
     fake_command: nf-core pipelines lint
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nfcore_lint_failure.svg
-  - command: nextflow run nf-core-demo/ --help
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nfcore_lint_failure.svg
+  - command: nextflow run tmp/nf-core-demo --help
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nextflow_run_help.svg
-  - command: nextflow run nf-core-demo/ -profile test,docker
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nextflow_run_help.svg
+  - command: nextflow run tmp/nf-core-demo -profile test,docker
     title: nextflow run
     img_paths:
-      - public/images/contributing/creating_with_nf_core/nextflow_run_no_outdir.svg
+      - sites/docs/src/assets/images/contributing/creating_with_nf_core/nextflow_run_no_outdir.svg
   - command: git clone https://github.com/nf-core/modules.git --depth 1 && cd modules && nf-core modules create fastqc --author @janedoe --label process_low --meta --force
     fake_command: nf-core modules create fastqc --author @janedoe --label process_low --meta
     img_paths:
-      - public/images/contributing/modules/nf-core-modules-create.svg
+      - sites/docs/src/assets/images/contributing/modules/nf-core-modules-create.svg
   - command: nf-core pipelines list
     head: 19
     img_paths:
-      - public/images/tools/nf-core-list.svg
+      - sites/docs/src/assets/images/tools/nf-core-list.svg
   - command: nf-core pipelines list rna rna-seq
     img_paths:
-      - public/images/tools/nf-core-list-rna.svg
+      - sites/docs/src/assets/images/tools/nf-core-list-rna.svg
   - command: nf-core pipelines list -s stars
     head: 18
     img_paths:
-      - public/images/tools/nf-core-list-stars.svg
+      - sites/docs/src/assets/images/tools/nf-core-list-stars.svg
   - command: nf-core pipelines launch rnaseq -r 3.8.1
-    trim_after: 'Command line'
+    trim_after: "Command line"
     img_paths:
-      - public/images/tools/nf-core-launch-rnaseq.svg
-  - command: mkdir tmp && cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none -d
+      - sites/docs/src/assets/images/tools/nf-core-launch-rnaseq.svg
+  - command: cd tmp && nf-core pipelines download rnaseq -r 3.8 --outdir nf-core-rnaseq -x none -s none
     img_paths:
-      - public/images/tools/nf-core-download.svg
+      - sites/docs/src/assets/images/tools/nf-core-download.svg
   - command: cd tmp && tree -L 2 nf-core-rnaseq/
     img_paths:
-      - public/images/tools/nf-core-download-tree.svg
-  - command: cd tmp && nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
-    fake_command: nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain
+      - sites/docs/src/assets/images/tools/nf-core-download-tree.svg
+  - command: cd tmp && nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve"
+    fake_command: nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve"
     img_paths:
-      - public/images/tools/nf-core-create.svg
+      - sites/docs/src/assets/images/tools/nf-core-create.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "lint: { pipeline_todos: false }" >> .nf-core.yml && \
+      sed -i 's/lint: {}/lint: { pipeline_todos: false }/g' .nf-core.yml && \
       nf-core pipelines lint
     fake_command: nf-core pipelines lint
     img_paths:
-      - public/images/tools/nf-core-lint.svg
+      - sites/docs/src/assets/images/tools/nf-core-lint.svg
   - command: |
       cd tmp && \
       echo "{input: myfiles.csv, outdir: results}" > nf-params.json
@@ -90,7 +94,7 @@ outputs:
     fake_command: nf-core pipelines schema validate nf-core-rnaseq/3_8 nf-params.json
     after_command: rm nf-params.json
     img_paths:
-      - public/images/tools/nf-core-schema-validate.svg
+      - sites/docs/src/assets/images/tools/nf-core-schema-validate.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
       sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && \
@@ -99,11 +103,11 @@ outputs:
     timeout: 10
     fake_command: nf-core pipelines schema build --no-prompts
     img_paths:
-      - public/images/tools/nf-core-schema-build.svg
+      - sites/docs/src/assets/images/tools/nf-core-schema-build.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core pipelines schema lint
     fake_command: nf-core pipelines schema lint
     img_paths:
-      - public/images/tools/nf-core-schema-lint.svg
+      - sites/docs/src/assets/images/tools/nf-core-schema-lint.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
       git config --global user.email "nf-core_bot@example.com" && \
@@ -112,41 +116,41 @@ outputs:
       nf-core pipelines sync
     fake_command: nf-core pipelines sync
     img_paths:
-      - public/images/tools/nf-core-sync.svg
+      - sites/docs/src/assets/images/tools/nf-core-sync.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core pipelines bump-version 1.1
     fake_command: nf-core pipelines bump-version 1.1
     img_paths:
-      - public/images/tools/nf-core-bump-version.svg
+      - sites/docs/src/assets/images/tools/nf-core-bump-version.svg
   - command: cd tmp && nf-core pipelines create-logo nextbigthing
     fake_command: nf-core pipelines create-logo nextbigthing
     img_paths:
-      - public/images/tools/nf-core-create-logo.svg
+      - sites/docs/src/assets/images/tools/nf-core-create-logo.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules list remote
     head: 25
     fake_command: nf-core modules list remote
     img_paths:
-      - public/images/tools/nf-core-modules-list-remote.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-list-remote.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules list local
     head: 25
     fake_command: nf-core modules list local
     img_paths:
-      - public/images/tools/nf-core-modules-list-local.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-list-local.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules info abacas
     fake_command: nf-core modules info abacas
     img_paths:
-      - public/images/tools/nf-core-modules-info.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-info.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules install abacas
     fake_command: nf-core modules install abacas
     img_paths:
-      - public/images/tools/nf-core-modules-install.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-install.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules update --all --no-preview
     fake_command: nf-core modules update --all --no-preview
     img_paths:
-      - public/images/tools/nf-core-modules-update.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-update.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core modules remove abacas
     fake_command: nf-core modules remove abacas
     img_paths:
-      - public/images/tools/nf-core-modules-remove.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-remove.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
       sed "s/process_medium/process_low/g" modules/nf-core/fastqc/main.nf > modules/nf-core/fastqc/main.nf.patch && \
@@ -154,92 +158,105 @@ outputs:
       nf-core modules patch fastqc
     fake_command: nf-core modules patch fastqc
     img_paths:
-      - public/images/tools/nf-core-modules-patch.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-patch.svg
   - command: |
       cd tmp && \
       git clone https://github.com/nf-core/modules.git && cd modules && \
       nf-core modules create fastqc --author @nf-core-bot  --label process_low --meta --force
-    timeout: 10
+    timeout: 30
     fake_command: nf-core modules create fastqc --author @nf-core-bot  --label process_low --meta --force
     img_paths:
-      - public/images/tools/nf-core-modules-create.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-create.svg
   - command: |
       cd tmp/modules && \
-      sed -i 's/1.13a/1.10/g' modules/multiqc/main.nf && \
       nf-core modules lint multiqc
     fake_command: nf-core modules lint multiqc
     img_paths:
-      - public/images/tools/nf-core-modules-lint.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-lint.svg
   - command: cd tmp/modules && nf-core modules test fastqc --no-prompts
     timeout: 30
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core modules test fastqc --no-prompts
     img_paths:
-      - public/images/tools/nf-core-modules-test.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-test.svg
   - command: cd tmp/modules && nf-core modules bump-versions fastqc
     fake_command: nf-core modules bump-versions fastqc
     img_paths:
-      - public/images/tools/nf-core-modules-bump-version.svg
+      - sites/docs/src/assets/images/tools/nf-core-modules-bump-version.svg
   - command: cd tmp/nf-core-nextbigthing && nf-core subworkflows list remote
     head: 25
     fake_command: nf-core subworkflows list remote
     img_paths:
-      - public/images/tools/nf-core-subworkflows-list-remote.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-list-remote.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows list local
     head: 25
     fake_command: nf-core subworkflows list local
     img_paths:
-      - public/images/tools/nf-core-subworkflows-list-local.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-list-local.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows info bam_rseqc
     head: 15
     tail: 10
     fake_command: nf-core subworkflows info bam_rseqc
     img_paths:
-      - public/images/tools/nf-core-subworkflows-info.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-info.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows install bam_rseqc
     fake_command: nf-core subworkflows install bam_rseqc
     img_paths:
-      - public/images/tools/nf-core-subworkflows-install.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-install.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows update --all --no-preview
     timeout: 30
     fake_command: nf-core subworkflows update --all --no-preview
     img_paths:
-      - public/images/tools/nf-core-subworkflows-update.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-update.svg
   - command: |
       cd tmp/nf-core-nextbigthing && \
-      echo "repository_type: pipeline" >> .nf-core.yml && \
       nf-core subworkflows remove bam_rseqc
     fake_command: nf-core subworkflows remove bam_rseqc
     img_paths:
-      - public/images/tools/nf-core-subworkflows-remove.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-remove.svg
   - command: |
       cd tmp/modules && \
       nf-core subworkflows create bam_stats_samtools --author @nf-core-bot --force
     img_paths:
-      - public/images/tools/nf-core-subworkflows-create.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-create.svg
   - command: cd tmp/modules && nf-core subworkflows test bam_rseqc --no-prompts
     timeout: 30
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core subworkflows test bam_rseqc --no-prompts
     img_paths:
-      - public/images/tools/nf-core-subworkflows-test.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-test.svg
   - command: cd tmp/modules && nf-core subworkflows lint bam_stats_samtools
     extra_env:
-      PROFILE: 'conda'
+      PROFILE: "conda"
     fake_command: nf-core subworkflows lint bam_stats_samtools
     img_paths:
-      - public/images/tools/nf-core-subworkflows-lint.svg
+      - sites/docs/src/assets/images/tools/nf-core-subworkflows-lint.svg
+  - command: nf-core test-datasets list-branches
+    head: 25
+    img_paths:
+      - sites/docs/src/assets/images/tools/nf-core-test-datasets-list-branches.svg
+  - command: nf-core test-datasets list --branch mag
+    head: 25
+    img_paths:
+      - sites/docs/src/assets/images/tools/nf-core-test-datasets-list-mag.svg
+  - command: nf-core test-datasets list --branch mag --generate-dl-url
+    head: 25
+    img_paths:
+      - sites/docs/src/assets/images/tools/nf-core-test-datasets-list-url-out.svg
+  - command: nf-core test-datasets list --branch mag --generate-nf-path
+    head: 25
+    img_paths:
+      - sites/docs/src/assets/images/tools/nf-core-test-datasets-list-path-out.svg
+  - command: nf-core test-datasets search --branch mag minigut_reads
+    img_paths:
+      - sites/docs/src/assets/images/tools/nf-core-test-datasets-search.svg

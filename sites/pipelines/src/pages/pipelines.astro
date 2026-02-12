@@ -1,7 +1,7 @@
 ---
-import pipelines_json from '@public/pipelines.json';
-import ListingLayout from '@layouts/ListingLayout.astro';
-import PipelinesListing from '@components/pipeline/PipelinesListing.svelte';
+import pipelines_json from "@public/pipelines.json";
+import ListingLayout from "@layouts/ListingLayout.astro";
+import PipelinesListing from "@components/pipeline/PipelinesListing.svelte";
 
 const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
     if (a.releases.length == 1 && b.releases.length > 1) return 1;
@@ -13,16 +13,16 @@ const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
     if (a_date < b_date) return 1;
     return 0;
 });
-const title = 'Pipelines';
+const title = "Pipelines";
 const description = `Browse the  ${pipelines.length} pipelines that are currently available as part of nf-core.`;
 
 const num_released = pipelines.filter((p) => p.releases.length > 1 && !p.archived).length;
 const num_dev = pipelines.filter((p) => p.releases.length == 1 && !p.archived).length;
 const num_archived = pipelines.filter((p) => p.archived).length;
 const filter = [
-    { name: 'Released', count: num_released },
-    { name: 'Under development', count: num_dev },
-    { name: 'Archived', count: num_archived },
+    { name: "Released", count: num_released },
+    { name: "Under development", count: num_dev },
+    { name: "Archived", count: num_archived },
 ];
 ---
 
@@ -30,10 +30,10 @@ const filter = [
     title={title}
     description={description}
     filter={filter}
-    sortBy={['Last release', 'Name', 'Stars']}
+    sortBy={["Last release", "Name", "Stars"]}
     displayStyle={[
-        { name: 'grid', icon: 'fa-regular fa-grid-2' },
-        { name: 'table', icon: 'fa-regular fa-bars' },
+        { name: "grid", icon: "fa-regular fa-grid-2" },
+        { name: "table", icon: "fa-regular fa-bars" },
     ]}
     viewTransitions={false}
 >

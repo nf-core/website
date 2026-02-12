@@ -1,10 +1,14 @@
 <script lang="ts">
-    import fuzzysort from 'fuzzysort';
+    import fuzzysort from "fuzzysort";
 
-    export let possibleResults: { href: string; name: string }[] = [];
-    export let placeholder: string = 'Search';
+    interface Props {
+        possibleResults?: { href: string; name: string }[];
+        placeholder?: string;
+    }
 
-    let results = [];
+    let { possibleResults = [], placeholder = "Search" }: Props = $props();
+
+    let results = $state([]);
 
     function search(event: KeyboardEvent) {
         const input = event.target as HTMLInputElement;
@@ -12,7 +16,7 @@
         if (value) {
             // search for the value
             results = fuzzysort.go(value, possibleResults, {
-                key: 'name',
+                key: "name",
             });
         } else {
             results = [];
@@ -21,21 +25,14 @@
 </script>
 
 <div class="search-container dropdown">
-    <input
-        id="fuzzy-search"
-        class="form-control"
-        type="text"
-        {placeholder}
-        aria-label={placeholder}
-        on:keyup={search}
-    />
+    <input id="fuzzy-search" class="form-control" type="text" {placeholder} aria-label={placeholder} onkeyup={search} />
 
     <ul class="search-results dropdown-menu" class:show={results.length > 0}>
         {#if results}
             {#each results as result (result)}
                 <li>
                     <a href={result.obj.href} id={result.obj.name} class="text-decoration-none text-body dropdown-item">
-                        {@html fuzzysort.highlight(result, '<span class="text-success">', '</span>')}
+                        {@html fuzzysort.highlight(result, '<span class="text-success">', "</span>")}
                     </a>
                 </li>
             {/each}

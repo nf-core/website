@@ -1,5 +1,5 @@
 ---
-title: 'nf-core/tools: Installation'
+title: "nf-core/tools: Installation"
 subtitle: Installing nf-core/tools
 weight: 10
 ---

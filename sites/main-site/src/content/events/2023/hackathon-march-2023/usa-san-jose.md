@@ -2,10 +2,10 @@
 title: Hackathon - March 2023 (San Jose)
 subtitle: Local node of the nf-core hackathon at a Quilt Data co-working location.
 type: hackathon
-startDate: '2023-03-27'
-startTime: '08:00-07:00'
-endDate: '2023-03-29'
-endTime: '15:00-07:00'
+startDate: "2023-03-27"
+startTime: "08:00-07:00"
+endDate: "2023-03-29"
+endTime: "15:00-07:00"
 locations:
   - name: San Jose, California
 # address:

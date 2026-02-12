@@ -2,7 +2,7 @@
 title: Next steps
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 weight: 50
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ### Adding new pipeline features to existing pipelines

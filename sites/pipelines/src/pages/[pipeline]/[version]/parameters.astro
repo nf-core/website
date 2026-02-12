@@ -1,10 +1,10 @@
 ---
-import SchemaListing from '@components/schema/SchemaListing.svelte';
-import SidebarToc from '@components/sidebar/SidebarToc.svelte';
-import { promises, existsSync } from 'fs';
-import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
-import PipelinePageLayout from '@layouts/PipelinePageLayout.astro';
-import pipelines_json from '@public/pipelines.json';
+import SchemaListing from "@components/schema/SchemaListing.svelte";
+import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
+import PipelinePageLayout from "@layouts/PipelinePageLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import { getEntry } from "astro:content";
 
 export function getStaticPaths() {
     var paths: {
@@ -13,10 +13,16 @@ export function getStaticPaths() {
     }[] = [];
     pipelines_json.remote_workflows.forEach((pipeline) => {
         const releases = pipeline.releases;
-        const extended_releases = [...releases, { tag_name: 'latest', doc_files: releases[0].doc_files }];
+        const extended_releases = [
+            ...releases,
+            { tag_name: "latest", doc_files: releases[0].doc_files, has_schema: releases[0].has_schema },
+        ];
         extended_releases.forEach((release) => {
+            if (!release.has_schema) {
+                return;
+            }
             const md_files = release.doc_files.map((file) =>
-                file.replace('docs/', '').replace('.mdx', '').replace('.md', ''),
+                file.replace("docs/", "").replace(".mdx", "").replace(".md", ""),
             );
             paths.push({
                 params: {
@@ -34,57 +40,27 @@ export function getStaticPaths() {
     return paths;
 }
 const { pipeline, version } = Astro.params;
-let headings: {
+
+let { versions, md_files, description } = Astro.props;
+
+const version_tag_name = version === "latest" ? versions[0] : version;
+
+// Simply await the getEntry result directly
+const schemaEntry = await getEntry("pipelines", `${pipeline}/${version_tag_name}/nextflow_schema`);
+const schema = JSON.parse(schemaEntry?.rendered?.html ?? "{}");
+const headings = (schemaEntry?.rendered?.metadata?.headings ?? []) as {
     slug: string;
     text: string;
     depth: number;
     fa_icon: string;
     hidden: boolean;
-}[] = [];
-
-let { versions, md_files, description } = Astro.props;
-
-let schema: {
-    definitions: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[];
-    properties: [];
-    $defs: { title: string; fa_icon: string; properties: [{ hidden: boolean }] }[];
-} = {
-    definitions: [],
-    properties: [],
-    $defs: [],
-};
-const version_tag_name = version === 'latest' ? versions[0] : version;
-
-const cache_key = `.cache/${pipeline}/${version_tag_name}/nextflow_schema.json`;
-//check if the schema is cached
-
-if (existsSync(cache_key)) {
-    let schema_buffer = await promises.readFile(cache_key, 'utf-8');
-    schema = JSON.parse(schema_buffer);
-}
-let schemaDefs =
-    schema.definitions && Object.keys(schema.definitions).length > 0
-        ? schema.definitions
-        : schema.$defs && Object.keys(schema.$defs).length > 0
-          ? schema.$defs
-          : schema.properties;
-if (schemaDefs && Object.keys(schemaDefs).length > 0) {
-    headings = Object.entries(schemaDefs).map(([key, value]) => {
-        return {
-            slug: key.replaceAll('_', '-'),
-            text: value.title,
-            depth: 1,
-            fa_icon: value.fa_icon,
-            hidden: value.properties && Object.values(value.properties).every((prop) => prop.hidden),
-        };
-    });
-}
+}[];
 ---
 
 <PipelinePageLayout
     pipeline={pipeline}
-    meta_title={pipeline + ': Parameters'}
-    subtitle={description}
+    meta_title={pipeline + ": Parameters"}
+    subtitle={String(description || "")}
     headings={headings}
     version={version}
     versions={versions}
@@ -97,7 +73,7 @@ if (schemaDefs && Object.keys(schemaDefs).length > 0) {
         </div>
         <div class="col-12 col-md-2 toc order-first order-md-last pe-0">
             <SidebarToc {headings} client:idle>
-                <SchemaListingTocButtons client:visible />
+                <SchemaListingTocButtons client:visible slot="defaultContent" />
             </SidebarToc>
         </div>
     </div>

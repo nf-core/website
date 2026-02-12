@@ -1,6 +1,11 @@
 <script lang="ts">
-    import { CurrentTab } from '@components/store';
-    export let name: string;
+    import { CurrentTab } from "@components/store";
+    interface Props {
+        name: string;
+        children?: import("svelte").Snippet;
+    }
+
+    let { name, children }: Props = $props();
 </script>
 
 <div
@@ -13,7 +18,7 @@
     aria-labelledby={`${name}-tab`}
     tabindex="0"
 >
-    <slot />
+    {@render children?.()}
 </div>
 
 <style lang="scss">

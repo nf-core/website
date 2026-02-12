@@ -1,22 +1,19 @@
 ---
-import EventIndicator from '@components/navbar/EventIndicator.svelte';
-import NavbarToc from '@components/navbar/NavbarToc.svelte';
-import NavbarDocsNav from '@components/navbar/NavbarDocsNav.svelte';
-import NavbarDocsNavTitle from '@components/navbar/NavbarDocsNavTitle.astro';
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
-import IconSocial from '@components/IconSocial.astro';
-import ThemeSwitch from '@components/ThemeSwitch.svelte';
-import { Icon } from 'astro-icon/components';
-import Search from '@components/navbar/Search.svelte';
-import { findCurrentGroup } from '@utils/functions';
-import BlogPostLabel from '@components/navbar/BlogPostLabel.svelte';
-import type { SidebarEntry } from '@utils/types';
-import { getCollection, type CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-
-import { findCurrentGroup } from '@utils/functions';
+import EventIndicator from "@components/navbar/EventIndicator.svelte";
+import NavbarToc from "@components/navbar/NavbarToc.svelte";
+import NavbarDocsNav from "@components/navbar/NavbarDocsNav.svelte";
+import NavbarDocsNavTitle from "@components/navbar/NavbarDocsNavTitle.astro";
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import NfCoreLogoDarkbg from "../../assets/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "../../assets/images/logo/nf-core-logo.svg";
+import IconSocial from "@components/IconSocial.astro";
+import ThemeSwitch from "@components/ThemeSwitch.svelte";
+import { Icon } from "astro-icon/components";
+import Search from "@components/navbar/Search.astro";
+import { findCurrentGroup } from "@utils/functions";
+import BlogPostLabel from "@components/navbar/BlogPostLabel.astro";
+import type { SidebarEntry } from "@utils/types";
+import { getCollection } from "astro:content";
 
 export interface Props {
     navTocHeadings?: object[];
@@ -29,13 +26,13 @@ let navbarTitle: [string, string] | undefined;
 if (sections) {
     const currentEntry = findCurrentGroup(sections).find((entry) => entry.isCurrent);
     if (currentEntry && currentEntry.href) {
-        navbarTitle = [currentEntry.href.split('/')[1], currentEntry.label];
+        navbarTitle = [currentEntry.href.split("/")[1], currentEntry.label];
     }
 }
 
 // get most recent blogpost and most ongoing events
 const now = new Date().getTime();
-let mostRecentBlogPost = await getCollection('blog', ({ data }) => {
+let mostRecentBlogPost = await getCollection("blog", ({ data }) => {
     return data.pubDate.getTime() < now && data.pubDate.getTime() > now - 1000 * 60 * 60 * 24 * 1;
 });
 // sort by pubdate
@@ -51,7 +48,7 @@ if (mostRecentBlogPost?.length > 0) {
     ];
 }
 
-let onGoingEvents = await getCollection('events', ({ data }) => {
+let onGoingEvents = await getCollection("events", ({ data }) => {
     return data.start.getTime() - 1000 * 60 * 60 * 24 * 1 < now && data.end.getTime() > now - 1000 * 60 * 60 * 24 * 1;
 });
 
@@ -81,10 +78,10 @@ if (onGoingEvents?.length > 0) {
     <div class="container-fluid">
         <a class="navbar-brand d-xl-none" href="/">
             <div class="hide-dark">
-                <Fragment set:html={NfCoreLogo} />
+                <NfCoreLogo />
             </div>
             <div class="hide-light">
-                <Fragment set:html={NfCoreLogoDarkbg} />
+                <NfCoreLogoDarkbg />
             </div>
         </a>
         {
@@ -92,8 +89,8 @@ if (onGoingEvents?.length > 0) {
                 <NavbarToc headings={navTocHeadings} showHiddenBtn={showHiddenBtn} client:visible />
             )
         }
-        <div class:list={['align-self-center d-xl-none', { 'me-5': navTocHeadings.length === 0 }]}>
-            <Search id="docsearch-mobile" client:visible />
+        <div class:list={["align-self-center d-xl-none", { "me-5": navTocHeadings.length === 0 }]}>
+            <Search id="docsearch-mobile" />
         </div>
         <button
             class="navbar-toggler border-0"
@@ -123,17 +120,35 @@ if (onGoingEvents?.length > 0) {
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Configs</span></li>
                         <li><a class="dropdown-item" href="/configs/">Shared configs</a></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li><span class="dropdown-header">Plugins & Actions</span></li>
+                        <li><a class="dropdown-item" href="/nft-utils/">nft-utils</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/nf-core/setup-nextflow/">
+                                <Icon name="fa-brands:github" /> setup-nextflow
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/nf-core/setup-nf-test/">
+                                <Icon name="fa-brands:github" /> setup-nf-test
+                            </a>
+                        </li>
                     </ul>
                 </li>
-                <li class="nav-item p-1 px-3 px-xl-1">
+                <li
+                    class="nav-item
+                                p-1
+                                px-3
+                                px-xl-1"
+                >
                     <a class="nav-link" href="/docs/">Docs</a>
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
                     <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">
-                        <EventIndicator type={'blog'} timeSpan={blogPostTimeSpan} client:idle>
+                        <EventIndicator type={"blog"} timeSpan={blogPostTimeSpan} client:idle>
                             <Icon name="circle" />
                         </EventIndicator>
-                        <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle>
+                        <EventIndicator type={"event"} timeSpan={eventTimeSpan} client:idle>
                             <Icon name="circle" />
                         </EventIndicator>
                         Community
@@ -141,15 +156,21 @@ if (onGoingEvents?.length > 0) {
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><span class="dropdown-header">What's happening</span></li>
                         <li class="">
+                            <a
+                                class="dropdown-item d-flex align-items-center justify-content-between"
+                                href="/advisories/">Advisories</a
+                            >
+                        </li>
+                        <li class="">
                             <a class="dropdown-item d-flex align-items-center justify-content-between" href="/blog/"
                                 >Blog
-                                <BlogPostLabel client:idle timeSpan={blogPostTimeSpan} /></a
+                                <BlogPostLabel timeSpan={blogPostTimeSpan} /></a
                             >
                         </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li>
                             <span class="dropdown-header">
-                                <EventIndicator type={'event'} timeSpan={eventTimeSpan} client:idle>
+                                <EventIndicator type={"event"} timeSpan={eventTimeSpan} client:idle>
                                     <Icon name="circle" />
                                 </EventIndicator>
                                 Events
@@ -179,9 +200,20 @@ if (onGoingEvents?.length > 0) {
                                 Talks
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item" href="/weekly_helpdesk">
+                                <i class="fa-regular fa-fw fa-message-question me-1 fa-sm"></i>
+                                Weekly Helpdesks
+                            </a>
+                        </li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><span class="dropdown-header">Programs and groups</span></li>
                         <li><a class="dropdown-item" href="/special-interest-groups/">Special interest groups</a></li>
+                        <li>
+                            <a class="dropdown-item" href="https://github.com/nf-core/proposals/pulls" target="_blank">
+                                In-progress RFCs
+                            </a>
+                        </li>
                         <li><a class="dropdown-item" href="/mentorships/">Mentorships</a></li>
                         <li><a class="dropdown-item" href="/contributors/">Contributors</a></li>
                         <li>
@@ -199,13 +231,13 @@ if (onGoingEvents?.length > 0) {
                     </ul>
                 </li>
                 <li class="nav-item p-1 px-3 px-xl-1 dropdown">
-                    <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
                     <ul class="dropdown-menu bg-body-secondary text-body-secondary shadow-xl-sm">
                         <li><a class="dropdown-item" href="/about/">About nf-core</a></li>
+                        <li><a class="dropdown-item" href="/stickers/">Stickers</a></li>
                         <li><a class="dropdown-item" href="/governance/">Governance</a></li>
                         <li><a class="dropdown-item" href="/marketing/">Marketing</a></li>
                         <li><a class="dropdown-item" href="/code_of_conduct/">Code of conduct</a></li>
-                        <li><a class="dropdown-item" href="/shop/">Shop</a></li>
                         <li><hr class="dropdown-divider" /></li>
                         <li><a class="dropdown-item" href="/publications/">Publications</a></li>
                         <li><a class="dropdown-item" href="/stats/">Statistics</a></li>
@@ -214,7 +246,7 @@ if (onGoingEvents?.length > 0) {
                     </ul>
                 </li>
                 <div class="align-self-center d-none d-xl-block ms-auto me-2">
-                    <Search id="docsearch-desktop" client:only="svelte" />
+                    <Search id="docsearch-desktop" />
                 </div>
                 <div class="d-none d-xl-block vr mx-1 mx-xxl-2"></div>
 
@@ -231,15 +263,15 @@ if (onGoingEvents?.length > 0) {
                     <div class="vr ms-2 me-1 d-xl-none"></div>
                     <div class="d-xl-none ms-auto px-2 py-1">
                         <ThemeSwitch client:load>
-                            <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                            <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                            <i class="icon" slot="light"><Icon name="sun" width={"14pt"} /></i>
+                            <i class="icon" slot="dark"><Icon name="moon" width={"14pt"} /></i>
                         </ThemeSwitch>
                     </div>
                 </div>
                 <div class="d-none d-xl-block align-self-center my-1">
                     <ThemeSwitch client:load>
-                        <i class="icon" slot="light"><Icon name="sun" width={'14pt'} /></i>
-                        <i class="icon" slot="dark"><Icon name="moon" width={'14pt'} /></i>
+                        <i class="icon" slot="light"><Icon name="sun" width={"14pt"} /></i>
+                        <i class="icon" slot="dark"><Icon name="moon" width={"14pt"} /></i>
                     </ThemeSwitch>
                 </div>
                 <div class="d-none d-xl-block vr mx-1 me-xxl-3"></div>
@@ -264,7 +296,7 @@ if (onGoingEvents?.length > 0) {
 </nav>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
 
     .navbar.fixed-top {
         .navbar-brand {

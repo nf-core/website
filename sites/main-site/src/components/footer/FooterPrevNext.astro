@@ -1,5 +1,5 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 export interface Props {
     prev_page: { title: string; slug: string } | null;
     next_page: { title: string; slug: string } | null;
@@ -43,7 +43,7 @@ const { prev_page, next_page } = Astro.props;
     }
 </footer>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     svg {
         fill: currentColor;
         width: 2rem;

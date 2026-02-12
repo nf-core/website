@@ -15,7 +15,6 @@ To add your institution to the contributors page:
    :::
 
 2. Add your details and your institutional details to [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) on your fork:
-
    - `full_name:` Full name of your institution
    - `short_name:` Short name of your institution (e.g., an acronym)
    - `description:` Short description of the main activities of your institution (see [`contributors.yaml`](https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml) for examples)
@@ -28,10 +27,10 @@ To add your institution to the contributors page:
    - `contact_email:` Your e-mail
    - `contact_github:` Your GitHub username
    - `location:` Institute location in [geocoordinates format](https://support.google.com/maps/answer/18539?hl=en&co=GENIE.Platform%3DDesktop) (`[<longitude>, <latitude>]`)
-   - `twitter:` Institution X (formerly twitter) handle (if available)
+   - `mastodon:` Mastodon handle (if available)
+   - `bluesky:` Bluesky handle (if available)
 
 3. Add a colour and a white SVG of your institutional logo to your fork:
-
    - Add a _white_ SVG with no background to the `/public/images/contributors/white/` folder.
    - Add a _colour_ SVG with no background to the `/public/images/contributors/colour/` folder.
 

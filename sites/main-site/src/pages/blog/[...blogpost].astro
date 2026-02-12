@@ -1,17 +1,17 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
-import { Image } from 'astro:assets';
-import type { SidebarEntry } from '@utils/types';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
+import { Image } from "astro:assets";
+import type { SidebarEntry } from "@utils/types";
 
-const images = import.meta.glob('../../assets/**');
+const images = import.meta.glob("../../assets/**");
 
 export async function getStaticPaths() {
-    const blogPosts = await getCollection('blog');
+    const blogPosts = await getCollection("blog");
     return blogPosts.map((post) => ({
-        params: { blogpost: post.slug },
+        params: { blogpost: post.id.replace(/\.[^/.]+$/, "") },
         props: { post, blogPosts },
     }));
 }
@@ -21,7 +21,7 @@ let { post, blogPosts } = Astro.props;
 blogPosts = blogPosts
     .filter((post) => {
         const pubDate = new Date(post.data.pubDate);
-        if (process.env.CONTEXT === 'production') {
+        if (process.env.CONTEXT === "production") {
             return pubDate < new Date();
         } else {
             return true;
@@ -34,26 +34,26 @@ const years = [...new Set(blogPosts.map((post) => new Date(post.data.pubDate).ge
 
 const sections: SidebarEntry[] = years.map((year) => {
     return {
-        type: 'group',
+        type: "group",
         label: year.toString(),
-        href: '/blog/#year-' + year,
-        collapsed: Astro.url.pathname.includes('/blog/' + year) ? false : true,
+        href: "/blog/#year-" + year,
+        collapsed: Astro.url.pathname.includes("/blog/" + year) ? false : true,
         entries: blogPosts
             .filter((post) => new Date(post.data.pubDate).getFullYear() === year)
             .map((post) => {
                 return {
-                    type: 'link',
+                    type: "link",
                     label: post.data.title,
-                    href: '/blog/' + post.slug,
-                    isCurrent: Astro.url.pathname.replace('.html', '') === '/blog/' + post.slug,
+                    href: "/blog/" + post.id.replace(/\.[^/.]+$/, ""),
+                    isCurrent: Astro.url.pathname.replace(".html", "") === "/blog/" + post.id.replace(/\.[^/.]+$/, ""),
                 };
             }),
     };
 });
-const { headings, Content } = await post.render();
+const { headings, Content } = await render(post);
 const title = post.data.title;
 const subtitle = post.data.subtitle;
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/blog/' + post.id;
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/blog/" + post.id;
 ---
 
 <MarkdownTocLayout
@@ -63,7 +63,7 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-s
     headings={headings}
     image={`/og.png?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
         subtitle,
-    )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(','))}`}
+    )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(","))}`}
     viewTransitions={true}
     leftSidebar={true}
     rightSidebar={true}
@@ -78,21 +78,20 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-s
             <div class="image-container d-flex align-items-center">
                 <Image
                     src={
-                        post.data.headerImage.startsWith('/assets/')
-                            ? images['../..' + post.data.headerImage]()
+                        post.data.headerImage.startsWith("/assets/")
+                            ? images["../.." + post.data.headerImage]()
                             : post.data.headerImage
                     }
-                    alt={post.data.headerImageAlt || ''}
+                    alt={post.data.headerImageAlt || ""}
                     class="object-fit-contain mb-3 d-flex m-auto py-2"
                     width={
-                        !post.data.headerImage.startsWith('/assets/')
+                        !post.data.headerImage.startsWith("/assets/")
                             ? 1200
                             : post.data.headerImageDim
                               ? post.data.headerImageDim[0]
                               : undefined
                     }
                     height={post.data.headerImageDim ? post.data.headerImageDim[1] : 500}
-                    transition:name="cover-image"
                     densities={[1.5, 2]}
                 />
             </div>
@@ -101,16 +100,16 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-s
     <Content />
     <hr class="d-md-none mt-3" />
     <div class="author-list d-md-none d-flex flex-wrap justify-content-around">
-        <SidebarStatsRow lastChild={true} content={[{ title: 'Published on' }]}>
+        <SidebarStatsRow lastChild={true} content={[{ title: "Published on" }]}>
             {
-                post.data.pubDate.toLocaleDateString('en-GB', {
-                    year: 'numeric',
-                    month: 'long',
-                    day: 'numeric',
+                post.data.pubDate.toLocaleDateString("en-GB", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
                 })
             }
         </SidebarStatsRow>
-        <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
+        <SidebarStatsRow lastChild={true} content={[{ title: "Written by" }]}>
             {
                 post.data.authors.map((author) => {
                     return <GitHubProfilePictureExtended username={author} size={40} imgClasses="mb-0" />;
@@ -119,7 +118,7 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-s
         </SidebarStatsRow>
     </div>
     <div slot="right-sidebar-bottom" class="d-flex flex-column align-items-start">
-        <SidebarStatsRow lastChild={true} content={[{ title: 'Written by' }]}>
+        <SidebarStatsRow lastChild={true} content={[{ title: "Written by" }]}>
             {
                 post.data.authors.map((author) => {
                     return (
@@ -132,11 +131,11 @@ const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-s
             lastChild={true}
             content={[
                 {
-                    title: 'Published on',
-                    value: post.data.pubDate.toLocaleDateString('en-GB', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
+                    title: "Published on",
+                    value: post.data.pubDate.toLocaleDateString("en-GB", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                     }),
                 },
             ]}

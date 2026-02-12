@@ -1,22 +1,25 @@
 ---
-import EventBannerElement from '@components/event/EventBannerElement.svelte';
-import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import EventBannerElement from "@components/event/EventBannerElement.svelte";
+import { getCollection } from "astro:content";
+import type { CollectionEntry } from "astro:content";
+import { markdown } from "@mashehu/astropub-md";
+import { Icon } from "astro-icon/components";
 
-let events: CollectionEntry<'events'>[] = await getCollection('events');
-let now = new Date().getTime();
-events = events
-    .map((event) => {
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
+let events: CollectionEntry<"events">[] = await getCollection("events");
+events = await Promise.all(
+    events.map(async (event) => {
+        event.data.subtitle = `${await markdown(event.data.subtitle)}`;
         return event;
-    })
-    .sort((a, b) => {
-        return a.data.start - b.data.start;
-    });
+    }),
+);
+let now = new Date().getTime();
+events = events.sort((a, b) => {
+    if (!a.data.start || !b.data.start) return 0;
+    return a.data.start.getTime() - b.data.start.getTime();
+});
 
 events = events.filter((event) => {
-    return event.slug.split('/').length === 2;
+    return event.id.split("/").length === 2;
 });
 const currentEvents = events.filter((event) => {
     let time_window = 2 * 24 * 60 * 60 * 1000; // 1 day longer as the time_window in UpcomingEvents.svelte to be sure to have all events created during the daily static build
@@ -36,20 +39,20 @@ const currentEvents = events.filter((event) => {
 });
 
 const event_type_classes = {
-    bytesize: 'success',
-    hackathon: 'primary',
-    poster: 'danger',
-    talk: 'success',
-    tutorial: 'info',
-    training: 'warning',
+    bytesize: "success",
+    hackathon: "primary",
+    poster: "danger",
+    talk: "success",
+    tutorial: "info",
+    training: "warning",
 };
 const event_type_icons = {
-    bytesize: 'fa-solid fa-apple-core',
-    hackathon: 'fa-solid fa-laptop-code',
-    poster: 'fa-regular fa-image',
-    talk: 'fa-solid fa-presentation',
-    tutorial: 'fa-solid fa-graduation-cap',
-    training: 'fa-solid fa-chalkboard-teacher',
+    bytesize: "fa-solid fa-apple-core",
+    hackathon: "fa-solid fa-laptop-code",
+    poster: "fa-regular fa-image",
+    talk: "fa-solid fa-presentation",
+    tutorial: "fa-solid fa-graduation-cap",
+    training: "fa-solid fa-chalkboard-teacher",
 };
 ---
 
@@ -58,30 +61,48 @@ const event_type_icons = {
         <div>
             <div class="current-event-container bg-body-secondary">
                 <EventBannerElement
-                    event_time_category={'ongoing'}
+                    event_time_category={"ongoing"}
                     events={currentEvents}
                     {event_type_classes}
                     {event_type_icons}
                     client:load
-                />
+                >
+                    <Icon
+                        name="fa7-solid:broadcast-tower"
+                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                        aria-hidden="true"
+                        slot="backgroundIcon"
+                    />
+                </EventBannerElement>
                 <EventBannerElement
-                    event_time_category={'upcoming'}
+                    event_time_category={"upcoming"}
                     events={currentEvents}
                     {event_type_classes}
                     {event_type_icons}
                     client:load
-                />
+                >
+                    <Icon
+                        name="fa7-solid:alarm-clock"
+                        class="homepage-header-fa-background position-absolute mt-5 ms-1 ms-xl-5"
+                        aria-hidden="true"
+                        slot="backgroundIcon"
+                    />
+                </EventBannerElement>
             </div>
             <div class="triangle-down bg-body-secondary d-none " />
         </div>
     )
 }
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .current-event-container:has(.ongoing-event, .upcoming-event) ~ .triangle-down {
         display: block !important;
     }
 
+    .homepage-header-fa-background {
+        font-size: 14em;
+        opacity: 0.2;
+    }
     @include media-breakpoint-down(md) {
         .mainpage-subheader-heading {
             padding-top: 2rem;

@@ -1,28 +1,28 @@
 ---
-title: 'Migration from Biocontainers to Seqera Containers: Part 1'
+title: "Migration from Biocontainers to Seqera Containers: Part 1"
 subtitle: What Seqera Containers is and why we want to move to it.
 pubDate: 2024-09-17T09:20:00+01:00
 headerImage: https://images.unsplash.com/photo-1517061391662-b09454c10462
 headerImageAlt: Photo by Barth Bailey on Unsplash
 authors:
-    - 'ewels'
-    - 'edmundmiller'
+    - "ewels"
+    - "edmundmiller"
 label:
-    - 'modules'
-    - 'wave'
-    - 'seqera containers'
+    - "modules"
+    - "wave"
+    - "seqera containers"
 embedHeaderImage: false
 ---
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import butwhy from '@assets/images/blog/seqera-containers-part-1/simone-secci-49uySSA678U-unsplash.jpg';
-import mulled from '@assets/images/blog/seqera-containers-part-1/hannah-pemberton-bXi4eg4jyuU-unsplash.jpg';
-import disks from '@assets/images/blog/seqera-containers-part-1/behnam-norouzi-8FsybY-URs0-unsplash.jpg';
-import wave_logs from '@assets/images/blog/seqera-containers-part-1/logs_screenshot.png';
-import leaves from '@assets/images/blog/seqera-containers-part-1/providence-doucet-mE5MBZX5sko-unsplash.jpg';
+import butwhy from "@assets/images/blog/seqera-containers-part-1/simone-secci-49uySSA678U-unsplash.jpg";
+import mulled from "@assets/images/blog/seqera-containers-part-1/hannah-pemberton-bXi4eg4jyuU-unsplash.jpg";
+import disks from "@assets/images/blog/seqera-containers-part-1/behnam-norouzi-8FsybY-URs0-unsplash.jpg";
+import wave_logs from "@assets/images/blog/seqera-containers-part-1/logs_screenshot.png";
+import leaves from "@assets/images/blog/seqera-containers-part-1/providence-doucet-mE5MBZX5sko-unsplash.jpg";
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 ## Introduction
 
@@ -48,15 +48,15 @@ However, we are now looking to migrate to a new system: Seqera Containers.
 
 The motivation comes down to a few key reasons:
 
--   Difficulties with BioContainers
-    -   [Mulled (multi-package) images](#mulled-multi-package-images)
-    -   [Slow Singularity image availability](#time-to-singularity-image)
-    -   [BioContainers API](#biocontainers-api)
-    -   [Reliability of hosting](#reliability-of-hosting)
--   New features we'd like
-    -   [Conda lock files](#exceptionally-reproducible)
-    -   Simplified developer workflow
-    -   [Better transparency](#trust-and-transparency)
+- Difficulties with BioContainers
+    - [Mulled (multi-package) images](#mulled-multi-package-images)
+    - [Slow Singularity image availability](#time-to-singularity-image)
+    - [BioContainers API](#biocontainers-api)
+    - [Reliability of hosting](#reliability-of-hosting)
+- New features we'd like
+    - [Conda lock files](#exceptionally-reproducible)
+    - Simplified developer workflow
+    - [Better transparency](#trust-and-transparency)
 
 With the new Seqera Containers setup we should be able to address these problems, as well as provide the additional features.
 
@@ -64,13 +64,13 @@ With the new Seqera Containers setup we should be able to address these problems
 A detailed description of the proposed mechanism will come in part 2 of this blog post.
 Here are the key points:
 
--   Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
--   Container images will be built by Wave and stored in Seqera Containers
--   Build logs and source files will be shown on the nf-core website module pages
--   Conda lock-files will be used for Conda users and CI tests
--   Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
--   There should be almost no change in how end-users run nf-core pipelines
-    :::
+- Developers will _only_ need to edit the conda `environment.yml` (no process `container`)
+- Container images will be built by Wave and stored in Seqera Containers
+- Build logs and source files will be shown on the nf-core website module pages
+- Conda lock-files will be used for Conda users and CI tests
+- Software releases will be automatically bumped in modules, using [Renovate](https://renovatebot.com/)
+- There should be almost no change in how end-users run nf-core pipelines
+  :::
 
 :::info{.fa-calendar-lines-pen title="Timeline" collapse}
 
@@ -85,10 +85,10 @@ At each step, the discussion informed the planned infrastructure and setup for t
 
 Several steps are still needed to complete this migration:
 
--   nf-core/modules automation for fetching images and pinning conda-lock files and `meta.yml` references
--   nf-core/tools tooling for pipeline config file generation, with pipeline template update
--   Bulk update of nf-core/modules to use Seqera Containers
--   Update of nf-core pipelines to use the new modules
+- nf-core/modules automation for fetching images and pinning conda-lock files and `meta.yml` references
+- nf-core/tools tooling for pipeline config file generation, with pipeline template update
+- Bulk update of nf-core/modules to use Seqera Containers
+- Update of nf-core pipelines to use the new modules
 
 If all goes to plan, we hope to have all modules updated by the end of 2024.
 This work will be tracked in GitHub issues as usual,
@@ -381,11 +381,11 @@ It is also more locked-down than regular Wave, only allowing Conda builds and no
 Second, the image URI includes a tag that has a hash of the input files used to request the image.
 We can use this to retrieve build details, which we will add to the nf-core website module page:
 
--   Build time, architecture and platform (Docker / Singularity)
--   `Dockerfile` / Singularity recipe and Conda `environment.yml`
--   Full build logs
--   Conda lock files with full package URLs and md5sums for entire dependency resolution
--   For Docker images: Trivy security scan and software bill of materials (SBOM)
+- Build time, architecture and platform (Docker / Singularity)
+- `Dockerfile` / Singularity recipe and Conda `environment.yml`
+- Full build logs
+- Conda lock files with full package URLs and md5sums for entire dependency resolution
+- For Docker images: Trivy security scan and software bill of materials (SBOM)
 
 :::info{title="Example Wave build details page" collapse}
 

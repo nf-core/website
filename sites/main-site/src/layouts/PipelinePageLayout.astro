@@ -1,9 +1,12 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import SubHeader from '@components/header/SubHeader.astro';
-import TabBar from '@components/TabBar.astro';
-import pipelines_json from '@public/pipelines.json';
-import type { SidebarEntry } from '@utils/types';
+import PageLayout from "@layouts/PageLayout.astro";
+import SubHeader from "@components/header/SubHeader.astro";
+import TabBar from "@components/TabBar.astro";
+import pipelines_json from "@public/pipelines.json";
+import type { SidebarEntry } from "@utils/types";
+import { getCollection } from "astro:content";
+import semver from "semver";
+import { formatAdvisoryType } from "../components/advisory/advisoryUtils.ts";
 
 export interface Props {
     pipeline: string | undefined;
@@ -30,7 +33,7 @@ let {
     versions = [],
     is_archived = false,
     tabItems = [],
-    md_github_url = '',
+    md_github_url = "",
     showHiddenBtn = false,
     sections = [],
     docSearchTags = [],
@@ -39,38 +42,42 @@ let {
 
 let tag_name = version;
 
-if (version === 'latest') {
+if (version === "latest") {
     tag_name = versions[0];
 }
 
 const url = Astro.url.pathname;
-const baseUrl = '/' + pipeline + '/' + tag_name;
+const baseUrl = "/" + pipeline + "/" + tag_name;
 
+const advisories = await getCollection("advisories", ({ data }) => {
+    return data.pipelines.some((p) => p.name == pipeline && p.versions.includes(semver.valid(semver.coerce(tag_name))));
+});
 let allTabItems: { label: string; href: string; active: boolean; icon?: string }[] = [];
 
 allTabItems = tabItems
-    .filter((file) => file.split('/').length === 1)
+    .filter((file) => file.split("/").length === 1)
+    .filter((file) => file.toLowerCase() !== "readme")
     .map((file) => {
         return {
-            label: file.replace(/-|_/g, ' ').replace(/\w\S*/g, (txt: string) => {
+            label: file.replace(/-|_/g, " ").replace(/\w\S*/g, (txt: string) => {
                 return txt.charAt(0).toUpperCase() + txt.substring(1).toLowerCase();
             }),
-            href: baseUrl + '/docs/' + file + '/',
+            href: baseUrl + "/docs/" + file + "/",
             active:
                 // urls might be pipeline/version/docs/usage|output or pipeline/version/usage|output or pipeline/usage|output
                 (url.includes(`/${pipeline}/${version}/docs/${file}`) ||
                     url.includes(`/${pipeline}/${version}/${file}`) ||
                     url.includes(`/${pipeline}/${file}`)) &&
-                (file.includes('usage') || file.includes('output')),
-            icon: tabItems.some((f) => f.startsWith(file + '/')) ? 'fa-regular fa-books' : '',
+                (file.includes("usage") || file.includes("output")),
+            icon: tabItems.some((f) => f.startsWith(file + "/")) ? "fa-regular fa-books" : "",
         };
     });
 
 allTabItems.unshift({
-    label: 'Introduction',
+    label: "Introduction",
     href: `/${pipeline}/${version}/`,
     active: url === `/${pipeline}/${version}/` || url === `/${pipeline}/`,
-    icon: 'fa-solid fa-sign-in',
+    icon: "fa-solid fa-sign-in",
 });
 
 const latestVersion = versions[0];
@@ -80,56 +87,56 @@ const hasSchema = pipelines_json.remote_workflows
 if (hasSchema) {
     // Add the parameters tab if there is a schema
     allTabItems.push({
-        label: 'Parameters',
+        label: "Parameters",
         href: `/${pipeline}/${version}/parameters/`,
-        active: url.includes('/parameters'),
-        icon: 'fa-regular fa-list',
+        active: url.includes("/parameters"),
+        icon: "fa-regular fa-list",
     });
 }
-if (version !== 'dev') {
+if (version !== "dev") {
     const releaseSHA = pipelines_json.remote_workflows
         .find((wf) => wf.name === pipeline)
         ?.releases.find((r) => r.tag_name === version)?.tag_sha;
     allTabItems.splice(1, 0, {
-        label: 'Results',
+        label: "Results",
         href: `/${pipeline}/${version}/results/${pipeline}/results-${releaseSHA}/`,
         active: url.includes(`/${pipeline}/`) && url.includes(`/results/`),
-        icon: 'fa-brands fa-aws',
+        icon: "fa-brands fa-aws",
     });
 }
-if (versions.filter((v) => v !== 'dev').length > 0) {
+if (versions.filter((v) => v !== "dev").length > 0) {
     allTabItems.push({
-        label: 'Releases',
+        label: "Releases",
         href: `/${pipeline}/releases_stats/`,
         active: url.includes(`/${pipeline}/releases_stats`),
-        icon: 'fa-regular fa-chart-line',
+        icon: "fa-regular fa-chart-line",
     });
 }
-const sortOrder = ['Introduction', 'Usage', 'Parameters', 'Output', 'Results', 'Releases'];
+const sortOrder = ["Introduction", "Usage", "Parameters", "Output", "Results", "Releases"];
 allTabItems.sort((a, b) => sortOrder.indexOf(a.label) - sortOrder.indexOf(b.label));
 
-const gh_url = 'https://github.com/nf-core/' + pipeline;
+const gh_url = "https://github.com/nf-core/" + pipeline;
 const pipelineData = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 const topics = pipelineData?.topics ?? [];
 const isDsl2 = pipelineData?.is_DSL2;
 ---
 
 <PageLayout
-    title={'nf-core/' + pipeline}
+    title={"nf-core/" + pipeline}
     meta_title={meta_title}
     subtitle={subtitle}
     mainpage_container={true}
     navTocHeadings={headings}
     md_github_url={md_github_url}
-    subfooter={md_github_url !== ''}
+    subfooter={md_github_url !== ""}
     topics={topics}
     sections={sections}
     {showHiddenBtn}
     viewTransitions={viewTransitions}
     docSearchTags={[
         ...docSearchTags,
-        { name: 'version', content: latestVersion === version ? [version, 'latest'] : version },
-        { name: 'page_type', content: 'Pipeline' },
+        { name: "version", content: latestVersion === version ? [version, "latest"] : version },
+        { name: "page_type", content: "Pipeline" },
     ]}
 >
     <SubHeader
@@ -140,11 +147,24 @@ const isDsl2 = pipelineData?.is_DSL2;
         isDsl2={isDsl2}
         is_archived={is_archived}
         slot="sub-header"
-    />
+    >
+        {
+            advisories.map((advisory) => (
+                <div class="alert alert-danger p-1 p-md-3" role="alert">
+                    <span>
+                        A{["a", "e", "i", "o", "u", "y"].includes(advisory.data.type.charAt(0)) ? "n" : ""}{" "}
+                        {advisory.data.type.replace("_", " ")} advisory with severity {advisory.data.severity} has been
+                        issued for this version of the pipeline. <br />
+                        See the <a href={`/advisories/${advisory.id}`}>advisory entry</a> for more information.
+                    </span>
+                </div>
+            ))
+        }
+    </SubHeader>
     {
         tabItems.length > 0 && (
             <TabBar items={allTabItems}>
-                {!Astro.url.pathname.endsWith('/releases_stats/') && (
+                {!Astro.url.pathname.endsWith("/releases_stats/") && (
                     <div class="input-group input-group-sm justify-content-end justify-content-lg-center">
                         <label class="input-group-text" for="version_select">
                             <i class="fas fa-tags" />
@@ -166,13 +186,13 @@ const isDsl2 = pipelineData?.is_DSL2;
                                             `${pipeline}/${version}`,
                                             `${pipeline}/${v}`,
                                         );
-                                        if (url.includes('/results/')) {
+                                        if (url.includes("/results/")) {
                                             url = `/${pipeline}/${v}/results/`;
                                         }
                                         return (
                                             <li>
                                                 <a
-                                                    class={'dropdown-item ' + (v === version ? 'active' : '')}
+                                                    class={"dropdown-item " + (v === version ? "active" : "")}
                                                     href={url}
                                                 >
                                                     {v}

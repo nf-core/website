@@ -1,9 +1,9 @@
 ---
-import { Icon } from 'astro-icon/components';
-import { Markdown } from '@astropub/md';
+import { Icon } from "astro-icon/components";
+import { Markdown } from "@mashehu/astropub-md";
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 const { title, color, category, proj_url, leaders, goal, slack, intro_video } = Astro.props;
 
@@ -17,21 +17,22 @@ export interface Props {
     slack?: string;
     intro_video?: string;
 }
-const slack_clean = slack ? slack.replace('#', '') : '';
+const slack_clean = slack ? slack.replace("#", "") : "";
 let this_color = color;
 if (!color && category) {
-    if (category == 'pipelines') this_color = '#377CF6';
-    if (category == 'components') this_color = '#D04791';
-    if (category == 'tooling') this_color = '#BE831A';
-    if (category == 'community') this_color = '#238636';
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+    if (category == "special-interest-groups") this_color = "#42006A";
 }
-const border_col = this_color ? { 'border-left-color': this_color, 'border-left-width': '5px' } : {};
+const border_col = this_color ? { "border-left-color": this_color, "border-left-width": "5px" } : {};
 ---
 
 <div class="card mb-5" style={border_col}>
     <div class="card-body">
         <div class="row">
-            <div class={intro_video ? 'col-md-6' : 'col'}>
+            <div class={intro_video ? "col-md-6" : "col"}>
                 <div class="d-flex justify-content-between">
                     <h3>
                         {title}
@@ -42,14 +43,14 @@ const border_col = this_color ? { 'border-left-color': this_color, 'border-left-
                                         name="octicon:table-16"
                                         width="12pt"
                                         class="me-1"
-                                        style={{ 'margin-top': '-3px' }}
+                                        style={{ "margin-top": "-3px" }}
                                     />
                                     Project Board
                                     <Icon
                                         name="octicon:link-external-16"
                                         width="12pt"
                                         class="ms-1"
-                                        style={{ 'margin-top': '-3px' }}
+                                        style={{ "margin-top": "-3px" }}
                                     />
                                 </a>
                             )

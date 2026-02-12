@@ -1,0 +1,100 @@
+---
+title: "Why are my pipeline download tests failing?"
+subtitle: "Refurbishing the pipeline downloads command"
+headerImage: "https://images.unsplash.com/photo-1690176287055-6673ef2c20cc"
+headerImageAlt: "Short range photograph of a truck transporting large green pipes."
+pubDate: 2025-08-28T12:00:00+01:00
+authors:
+    - "ErikDanielsson"
+    - "mirpedrol"
+    - "MatthiasZepper"
+label:
+    - "tools"
+maxHeadingDepth: 3
+---
+
+import { Image } from "astro:assets";
+
+import old_nf_version from "@assets/images/blog/pipeline-download-refactor/nf-old-demo.gif";
+import docker_download_in_action from "@assets/images/blog/pipeline-download-refactor/bamtofastq-in-action.gif";
+
+The `nf-core pipelines download` command, used when you want to run an `nf-core` pipeline in an offline compute environment, has recently undergone a [substantial refactor](https://github.com/nf-core/tools/pull/3634) that has recently been merged into the development version of `nf-core/tools`.
+The following blog post outlines the updates to the command, and explains why your pipeline downloads tests might be failing
+
+### Troubles with container detection and how `nextflow inspect` solves them
+
+The major problem of the downloads command is to find all containers a pipeline depends on;
+it must do this to be able to bundle the software as a standalone package that can be transferred to the offline machine.
+Nextflow allows a user to define container both in modules directly or in config files – as long as the container string is resolved at runtime, Nextflow does not care where it came from.
+While this dynamicism makes it possible for Nextflow users to write flexible code, it makes it difficult to determine from the source code which containers the pipeline is using.
+
+Until now, the download command has solved this problem by building up a codebase of complex regex patterns used to search through pipeline files for strings resembling container directives.
+While this strategy has worked for many years in the absence of a better solution, it has been prone to breaking when new edge cases were discovered or when changes were made to the pipeline template.
+For examples of the struggles of writing a container string catch-all regex, see for example the [Bowtie quote issue](https://github.com/nf-core/tools/issues/2392) or the [issue of race conditions when processing Seqera containers](https://github.com/nf-core/tools/issues/3285).
+
+However, as of [Nextflow 25.04](https://www.nextflow.io/docs/latest/migrations/25-04.html) the `nextflow inspect` command has been substantially extended to capture all containers used in a pipeline.
+With the downloads refactor, the `nextflow inspect` command has now also been integrated into the `nf-core/tools` codebase to replace the complex regex logic used previously.
+This makes the command both simpler and more reliable at the same time.
+
+:::warning{title="Why are the pipeline download tests failing?!"}
+
+<Image
+    src={old_nf_version}
+    class="d-block m-auto"
+    width={800}
+    density={[1.5, 2]}
+    alt="Using an old Nextflow version"
+    height="300"
+/>
+
+Each `nf-core` pipeline repository has a GitHub workflow that runs the `nf-core pipelines download` command on the pipeline (see for example the [`nf-core/rnaseq` workflow](https://github.com/nf-core/rnaseq/actions/workflows/download_pipeline.yml)).
+This workflow checks that the pipeline does not produce any errors when downloaded, to ensure that the pipeline can be used in an offline enviroment.
+The workflow is typically only triggered when a PR is made to the pipeline's main branch, i.e. only on release of the pipeline.
+
+The GitHub workflow currently uses the **`dev`** branch of `nf-core/tools`; originally to allow maintainers of `nf-core/tools` to quickly push patches when the regex logic broke.
+However, this means that _any_ changes made to the development version of `nf-core/tools` will directly take effect in the GitHub workflow.
+Since the refactor of the downloads code requires that the pipeline uses the **25.04** version of Nextflow, pipelines that do not comply with this will fail the download test.
+
+In time, there will be a pipeline template update that will require pipelines to use Nextflow `>=` 25.04, and to thus be compatible with the new command.
+The test itself will also be updated to use the `main` branch of `nf-core/tools` to avoid similar issues in the future.
+Until then, you can either voluntarily update the Nextflow version of your pipelines or ignore the failing test.
+
+:::
+
+### Added support for downloading Docker containers
+
+<Image
+    src={docker_download_in_action}
+    class="d-block m-auto"
+    width={800}
+    density={[1.5, 2]}
+    alt="Docker container download for `bamtofastq` 2.2.0"
+/>
+
+The download command has also been extended to support Docker containers,
+in addition to Singularity containers which was the only container system previously supported.
+The container system to use can be selected via the `--container-system` flag of the command, which now accepts the options `singularity`, `docker` and `none`.
+Alternatively, the container system can be selected via the interactive CLI prompts.
+
+The change means that `nf-core` pipelines now can be run on offline HPCs which support only Docker or Podman containers, making it easy to run `nf-core` pipelines in even more compute environments!
+
+:::tip{title="How are Docker images saved?"}
+
+Compared to Singularity containers which are files kept on your file system, Docker images are generally handled by the Docker daemon.
+However, via the [`docker image save`](https://docs.docker.com/reference/cli/docker/image/save/) command, Docker allows packaging images as `tar` archives.
+The `tar` archives can subsequently be loaded into another Docker daemon with [`docker image load`](https://docs.docker.com/reference/cli/docker/image/load/), or if you are running Podman with [`podman load`](https://docs.podman.io/en/v5.0.2/markdown/podman-load.1.html).
+
+The `nf-core pipelines downloads` command creates `tar` archives for each Docker image within the downloaded pipeline.
+The saved archives are placed within the `docker-images` directory of the download folder packaged along with scripts for loading them into Docker or Podman on the offline machine.
+
+:::
+
+### Further details
+
+More details on the changes can be found in the corresponding PRs on `nf-core/tools`(
+[#3634](https://github.com/nf-core/tools/pull/3634),
+[#3706](https://github.com/nf-core/tools/pull/3706),
+[#3696](https://github.com/nf-core/tools/pull/3696)
+)
+
+If you find any bugs to the download command after the recent major changes, please tell us on the [#tools](https://nfcore.slack.com/archives/CE5LG7WMB) Slack channel or create an issue on [nf-core/tools](https://github.com/nf-core/tools/) detailing the problem.

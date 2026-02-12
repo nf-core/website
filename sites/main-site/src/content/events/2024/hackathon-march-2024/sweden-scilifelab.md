@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Stockholm)
 subtitle: Local node of the nf-core hackathon at SciLifeLab, Stockholm.
 shortTitle: Stockholm, Sweden
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: SciLifeLab
     address: Tomtebodavägen 23A, 17165 Solna, Sweden

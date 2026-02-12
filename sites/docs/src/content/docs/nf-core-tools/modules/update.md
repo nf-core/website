@@ -11,7 +11,7 @@ You can update modules installed from a remote repository in your pipeline using
 working_dir: tmp/nf-core-nextbigthing
 -->
 
-![`nf-core modules update --all --no-preview`](/images/tools/nf-core-modules-update.svg)
+![`nf-core modules update --all --no-preview`](../../../../assets/images/tools/nf-core-modules-update.svg)
 
 You can pass the module name as an optional argument to `nf-core modules update` instead of using the cli prompt, eg: `nf-core modules update fastqc`. You can specify a pipeline directory other than the current working directory by using the `--dir <pipeline dir>`.
 
@@ -39,7 +39,7 @@ If you want this module to be updated only to a specific version (or downgraded)
 update:
   https://github.com/nf-core/modules.git:
     nf-core:
-      star/align: 'e937c7950af70930d1f34bb961403d9d2aa81c7'
+      star/align: "e937c7950af70930d1f34bb961403d9d2aa81c7"
 ```
 
 This also works at the repository level. For example, if you want to exclude all modules installed from `nf-core/modules` from being updated you could add:
@@ -55,7 +55,7 @@ or if you want all modules in `nf-core/modules` at a specific version:
 ```yaml
 update:
   https://github.com/nf-core/modules.git:
-    nf-core: 'e937c7950af70930d1f34bb961403d9d2aa81c7'
+    nf-core: "e937c7950af70930d1f34bb961403d9d2aa81c7"
 ```
 
 Note that the module versions specified in the `.nf-core.yml` file has higher precedence than versions specified with the command line flags, thus aiding you in writing reproducible pipelines.

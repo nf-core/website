@@ -1,16 +1,23 @@
 ---
-import EventLayout from '@layouts/EventLayout.astro';
-import { getCollection } from 'astro:content';
-
-let events = await getCollection('events');
+import EventLayout from "@layouts/EventLayout.astro";
+import { getCollection } from "astro:content";
+import { markdown } from "@mashehu/astropub-md";
+let events = await getCollection("events");
 
 events = events.filter((event) => {
-    return event.slug.split('/').length === 2;
+    return event.id.split("/").length === 2;
 });
 
-const title = 'Events';
-const subtitle = 'Details of past and future events around nf-core.';
-const event_types = ['bytesize', 'talk', 'training', 'hackathon'];
+events = await Promise.all(
+    events.map(async (event) => {
+        event.data.subtitle = String(await markdown(event.data.subtitle));
+        return event;
+    }),
+);
+
+const title = "Events";
+const subtitle = "Details of past and future events around nf-core.";
+const event_types = ["bytesize", "talk", "training", "hackathon"];
 const filters = event_types.map((type) => {
     return {
         name: type,

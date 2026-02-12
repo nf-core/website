@@ -1,44 +1,51 @@
 ---
-import { getCollection } from 'astro:content';
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import GitHubProfilePictureExtended from '@components/GitHubProfilePictureExtended.svelte';
+import { getCollection, render } from "astro:content";
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import GitHubProfilePictureExtended from "@components/GitHubProfilePictureExtended.astro";
 
-import type { SidebarEntry } from '@utils/types';
+import type { SidebarEntry } from "@utils/types";
 
-const groupEntries = await getCollection('special-interest-groups');
+const groupEntries = await getCollection("special-interest-groups");
 export async function getStaticPaths() {
-    const groupEntries = await getCollection('special-interest-groups');
+    const groupEntries = await getCollection("special-interest-groups");
     return groupEntries.map((entry) => ({
-        params: { slug: entry.slug },
-        props: { entry: entry, section: entry.slug.split('/')[0] },
+        params: { slug: entry.id.replace(/\.[^/.]+$/, "") },
+        props: { entry: entry, section: entry.id.replace(/\.[^/.]+$/, "").split("/")[0] },
     }));
 }
 const { entry, section } = Astro.props;
-const { headings, Content } = await entry.render();
+const { headings, Content } = await render(entry);
 const md_github_url =
-    'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/special-interest-groups/' + entry.id;
-const current_section = groupEntries.filter((group) => group.slug.split('/')[0] === section);
-const indexPage = '/special-interest-groups/' + current_section.find((group) => group.id.includes('index.md'))?.slug;
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/special-interest-groups/" + entry.id;
+const current_section = groupEntries.filter((group) => group.id.replace(/\.[^/.]+$/, "").split("/")[0] === section);
+const indexPage =
+    "/special-interest-groups/" +
+    current_section.find((group) => group.filePath?.includes("index.md"))?.filePath?.replace(/\.[^/.]+$/, "");
 
 const sections: SidebarEntry[] = [
     {
-        type: 'group',
-        id: current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
+        type: "group",
+        id:
+            current_section.find((group) => group.filePath?.includes("index.md"))?.data.title ??
+            current_section[0].data.title,
         label:
-            current_section.find((group) => group.id.includes('index.md'))?.data.title ?? current_section[0].data.title,
+            current_section.find((group) => group.filePath?.includes("index.md"))?.data.title ??
+            current_section[0].data.title,
         href: indexPage,
-        isCurrent: Astro.url.pathname.replace('.html', '') === indexPage,
+        isCurrent: Astro.url.pathname.replace(".html", "") === indexPage,
         collapsed: false,
         entries: current_section
-            .filter((group) => !group.id.includes('index.md'))
+            .filter((group) => !group.filePath?.includes("index.md"))
             .map((group) => {
                 return {
-                    type: 'link',
+                    type: "link",
                     id: group.data.title,
                     label: group.data.title,
-                    href: '/special-interest-groups/' + group.slug,
-                    isCurrent: Astro.url.pathname.replace('.html', '') === '/special-interest-groups/' + group.slug,
+                    href: "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
+                    isCurrent:
+                        Astro.url.pathname.replace(".html", "") ===
+                        "/special-interest-groups/" + group.id?.replace(/\.[^/.]+$/, ""),
                 };
             }),
     },
@@ -48,7 +55,7 @@ const group_name = entry.data.groupName;
 
 <MarkdownTocLayout
     title={group_name}
-    meta_title={group_name + ': ' + entry.data.title}
+    meta_title={group_name + ": " + entry.data.title}
     subtitle={entry.data.subtitle}
     {headings}
     leftSidebar={true}
@@ -58,20 +65,20 @@ const group_name = entry.data.groupName;
     viewTransitions={true}
 >
     {
-        entry.id.includes('index.md') && (
+        entry.id.includes("index.md") && (
             <div slot="right-sidebar-top">
                 {(entry.data.pipelines?.length ?? 0) > 0 && (
                     <SidebarStatsRow
                         content={[
                             {
-                                title: 'Pipelines in use',
+                                title: "Pipelines in use",
                             },
                         ]}
                     >
                         <div class="mb-2">
                             {entry.data.pipelines?.map((pipeline) => (
                                 <a
-                                    href={'/' + pipeline}
+                                    href={"/" + pipeline}
                                     class="badge fw-normal border border-warning-subtle bg-warning-subtle text-body me-1 text-decoration-none"
                                 >
                                     {pipeline}
@@ -82,10 +89,10 @@ const group_name = entry.data.groupName;
                 )}
                 <SidebarStatsRow
                     lastChild={true}
-                    content={[{ title: 'Group lead' + (entry.data.leads?.length > 1 ? 's' : '') }]}
+                    content={[{ title: "Group lead" + (entry.data.leads?.length > 1 ? "s" : "") }]}
                 >
                     {entry.data.leads?.map((lead) => {
-                        if (typeof lead === 'string') {
+                        if (typeof lead === "string") {
                             return <GitHubProfilePictureExtended username={lead} size={40} />;
                         } else {
                             return (

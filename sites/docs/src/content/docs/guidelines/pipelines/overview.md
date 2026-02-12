@@ -28,7 +28,7 @@ See recommendation: [Build with the community](/docs/guidelines/pipelines/recomm
 ### Ask the community
 
 The instructions below are subject to interpretation and specific scenarios.
-If in doubt, please ask the community for feedback on the [`#new-pipelines` Slack channel](https://nfcore.slack.com/channels/new-pipelines).
+If in doubt, please ask the community for feedback on the [#help slack channel](https://nfcore.slack.com/channels/help).
 You can join the nf-core Slack [here](https://nf-co.re/join).
 
 ## Requirements

@@ -1,12 +1,12 @@
 ---
-title: 'Bytesize 31: nf-core/dualrnaseq'
+title: "Bytesize 31: nf-core/dualrnaseq"
 subtitle: Regan Hayward - Helmholtz Institute for RNA-based Infection Research , Germany
 type: talk
-startDate: '2022-02-01'
-startTime: '13:00+01:00'
-endDate: '2022-02-01'
-endTime: '13:30+01:00'
-embedAt: 'dualrnaseq'
+startDate: "2022-02-01"
+startTime: "13:00+01:00"
+endDate: "2022-02-01"
+endTime: "13:30+01:00"
+embedAt: "dualrnaseq"
 youtubeEmbed: https://www.youtube.com/watch?v=-J3Cbetk8Pk
 locations:
   - name: Online

@@ -1,0 +1,152 @@
+---
+title: "Maintainers Minutes: November 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
+pubDate: 2024-11-29T12:00:00+01:00
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
+embedHeaderImage: true
+authors:
+    - "jfy133"
+    - "sateeshperi"
+label:
+    - "maintainers"
+---
+
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import { Image } from "astro:assets";
+
+The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
+by providing brief summaries of the monthly team meetings.
+
+## Overview
+
+In the November meeting we discussed (amongst others) the following topics:
+
+- [Stricter SemVer versioning](#stricter-semver-versioning)
+- [Push for BAM to CRAM?](#push-for-bam-to-cram)
+- [Removal of `workflowCitation()`](#removal-of-workflowcitation)
+- [Recent CI approach changes](#recent-ci-approach-changes)
+- [Modules piling up](#modules-piling-up)
+
+## Stricter SemVer versioning
+
+We immediately dove into what was expected to be a prickly topic: Jon Manning raised concerns about the 'loose' use of [Semantic Versioning (SemVer)](https://semver.org/), within nf-core pipeline release versioning.
+
+Jon pointed out that different pipelines take different approaches, with few adhering strictly to ‘true’ SemVer rules.
+The primary issue revolved around ‘major releases’.
+According to SemVer, transitioning from version 1.0.0 to 2.0.0 signifies a breaking change—a change that alters the software’s functionality such that existing usage patterns no longer work.
+
+However, many nf-core pipelines have used major version bumps to indicate substantial new functionalities or extensive back-end codebase refactoring, even when these changes do not disrupt user interactions.
+
+This sparked a discussion about the pros and cons of alternative versioning systems.
+
+James Fellows Yates and Jose Espinosa suggested that the ‘misuse’ of SemVer within nf-core stems partly from the technical nature of the SemVer specification, which can be challenging to apply to pipelines.
+
+This complexity often leads to misinterpretation, particularly when comparing the formal SemVer definition of ‘major’ releases to how they are currently used in pipelines.
+
+Florian Wuennemann, showcasing his enthusiasm for AI ([Nextflow advent calendar](https://flowuenne.github.io/nextflow_advent_calender/) anyone?), proposed using a large language model (LLM) to scan the codebase on dev branches and determine the appropriate versioning automatically.
+While this idea was met with skepticism from some AI critics in the group, it sparked a productive conversation about whether tooling and automation could assist developers in evaluating the appropriate version bump for a release.
+
+The group agreed that Jon would prepare a [PR](https://github.com/nf-core/website/pull/2842) where the community could collectively define ‘rules’ for different release types, adhering to SemVer principles as much as possible.
+(Note: The PR has since been merged, but it remains open for updates from the community.)
+
+Following this, Júlia Mir Pedrol and the infrastructure team committed to exploring tooling that could suggest the most appropriate version bump during the linting process before a new release.
+
+## Push for BAM to CRAM?
+
+Maxime Garcia spoke on behalf of Friederike Hanssen (Rike) who raised the question of whether nf-core should initiate a widespread push to replace BAM files with CRAM files across all modules.
+
+[CRAM](<https://en.wikipedia.org/wiki/CRAM_(file_format)>) files are a highly compressed version of SAM and BAM files, offering significant reductions in hard drive usage for reference genome-aligned DNA/RNA sequencing data.
+
+Although CRAM files are natively supported by modern versions of the HTSlib SAMTools suite, many maintainers hesitated to enforce or advocate for their adoption despite the potential benefits.
+Concerns centered around the substantial effort that such a shift would entail.
+Adam Talbot and James exchanged knowing, bitter laughs over their experiences with ‘C’ programming and ancient DNA tools.
+
+The primary challenge lies in tool compatibility.
+Many bioinformatics tools used in nf-core pipelines either lack support for recent versions of HTSlib or have hardcoded BAM as the required input format.
+Transitioning to CRAM would not only involve updating nf-core modules but could also necessitate patching the codebases of numerous tools—often written in diverse programming languages, and many of which are no longer actively maintained.
+
+The group agreed to avoid a broad mandate for now.
+Instead, Rike was encouraged to propose ways to raise awareness of CRAM’s benefits during the review process.
+Additionally, there was consensus on emphasizing CRAM adoption in the module specifications to encourage its use where feasible.
+
+## Removal of `workflowCitation()`
+
+Júlia presented her [proposal](https://github.com/nf-core/modules/pull/7094) to remove the `workflowCitation()` function from the nf-core pipeline template.
+
+This function was originally used to display citation information at the start of a pipeline run, encouraging users to cite the pipeline’s publication, the nf-core project, and relevant dependencies.
+However, it had not been actively used elsewhere in the pipeline template for some time.
+Although Júlia had previously inquired about its usage on Slack, she wanted to confirm with the maintainers whether anyone was still relying on it before removing it entirely.
+The response was a unanimous '[PURGE](https://github.com/nf-core/modules/pull/7094#pullrequestreview-2470115528) IT'.
+
+If you’ve been using this function for your own purposes, take note: it will no longer be part of the nf-core template starting with the next release of nf-core/tools!
+
+## Recent CI approach changes
+
+Sateesh Peri provided an overview of significant changes to the nf-core/modules CI testing approach, implemented over a few weeks in November by a small team that included himself, Edmund Miller, Matthias Hörtenhuber, and a recent addition to maintainers team, Usman Rashid among others.
+
+### Key updates to CI testing
+
+1. Introduction of nf-test ‘Shards’
+    - The use of nf-test shards enables tests defined in the nf-test script to run in parallel instead of sequentially.
+    - This significantly speeds up module development cycles by providing faster feedback, especially for failures, enabling quicker iteration and resolution.
+2. `--changed-since` Feature for Smarter Testing
+    - The `--changed-since` flag allows tests to focus on code changes made since a specified commit hash or branch name.
+    - By default, this parameter uses HEAD, but developers can specify other targets for more targeted validation.
+    - This feature improves CI efficiency by avoiding redundant tests and reduces the environmental impact of running tests.
+3. Support for GPU-Dependent Module Testing
+    - Modules requiring GPU-enabled tools can now be tested effectively.
+    - A new gpu tag triggers these tests to run on ‘self-hosted’ runners outside GitHub Actions, utilizing nf-core credits generously donated by AWS.
+
+> The nf-core/modules CI can be seen in the modules repo `.github` folder [here](https://github.com/nf-core/modules/tree/master/.github/workflows)
+
+### Pipeline CI workflow updates
+
+Pipelines using GPU-dependent modules must update their CI workflows to support GPU testing.
+Currently, nf-core/methylseq serves as a test case for these CI updates.
+
+The updated CI workflow involves two main github actions:
+
+- nf-test-shard:
+    - Performs a dry run of nf-test with the `--changed-since` flag, filtering by tags.
+    - It outputs the test shard and total number of shards.
+- nf-test:
+    - Accepts inputs such as the profile, shard, and total shard count.
+    - It filters by tags and runs the tests accordingly.
+
+There are now two YAML workflows in the repository:
+
+- `nf-test.yml`:
+    - For non-GPU pipelines, running the nf-test-shard and nf-test actions.
+- `nf-test-gpu.yml`:
+    - For GPU-dependent pipelines, combining the same shard and test actions but tailored for GPU testing.
+
+> The nf-core/methylseq CI updates are under review and will be included in the upcoming `v2.8.0` release.
+> In the meantime, the implementation PR can be viewed [here](https://github.com/nf-core/methylseq/pull/478)
+
+### Current Challenges
+
+While these improvements mark significant progress, they aren’t without challenges.
+Some maintainers noted that the test names have become less informative, making it harder to quickly identify failing tests without navigating through several layers of the GitHub Actions interface.
+However, the team is already working on further enhancements to address these usability issues.
+
+### Work in Progress
+
+The team emphasized that these changes are just the beginning, with additional refinements and optimizations still in the pipeline especially with more nf-test CI features like `--excludeTags` feature for easier handling of tests.
+
+## Modules piling up
+
+To close out the discussion, our friendly neighbourhood module maestro Simon Pearce raised a concern about the growing number of open pull requests (PRs) in the module repository.
+
+Simon encouraged community members to spare some time to help review and merge
+as many PRs as possible before the new year. Even 10 minutes of effort could make a significant difference in reducing the
+backlog!
+
+Sateesh highlighted another issue: many PRs lack proper labels—such as the `Ready for Review` label—which could help developers filter and prioritize PRs that are ready for review.
+Sateesh suggested making an announcement to encourage contributors to add appropriate labels based on the status of their PRs, streamlining the review process.
+
+## The end
+
+As always, if you want to get involved and give your input, join the discussion on relevant PRs and slack threads!
+
+\- :heart: from your #maintainers team!

@@ -56,20 +56,44 @@
                     "mastodon": {
                         "type": "string"
                     }
+                    "bluesky": {
+                        "type": "string"
+                    }
                 },
-                "required": ["full_name", "short_name", "description", "address", "url", "contact", "location"],
+                "required": [
+                    "full_name",
+                    "short_name",
+                    "description",
+                    "address",
+                    "url",
+                    "contact",
+                    "location"
+                ],
                 "anyOf": [
                     {
-                        "required": ["twitter"]
+                        "required": [
+                            "twitter"
+                        ]
                     },
                     {
-                        "required": ["mastodon"]
+                        "required": [
+                            "mastodon"
+                        ]
                     },
                     {
-                        "required": ["email"]
+                        "required": [
+                            "bluesky"
+                        ]
                     },
                     {
-                        "required": ["contact_github"]
+                        "required": [
+                            "email"
+                        ]
+                    },
+                    {
+                        "required": [
+                            "contact_github"
+                        ]
                     }
                 ]
             }

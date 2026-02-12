@@ -1,13 +1,18 @@
 <script lang="ts">
-    export let type: 'event' | 'blog';
-    export let timeSpan: [number, number] = [0, 0];
+    interface Props {
+        type: "event" | "blog";
+        timeSpan?: [number, number];
+        children?: import("svelte").Snippet;
+    }
+
+    let { type, timeSpan = [0, 0], children }: Props = $props();
 
     const now = new Date().getTime();
-    const show = timeSpan[0] < now && timeSpan[1] > now;
+    const show = $derived(timeSpan[0] < now && timeSpan[1] > now);
 </script>
 
 <div class={`event-indicator align-center d-inline-block ${type}`} class:d-none={!show}>
-    <slot />
+    {@render children?.()}
 </div>
 
 <style lang="scss">

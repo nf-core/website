@@ -1,0 +1,210 @@
+---
+title: Core Checklists
+subtitle: Step-by-step guides for core team tasks
+markdownPlugin: checklist
+parentWeight: 100
+---
+
+## New pipeline proposals and onboarding
+
+Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approval:
+
+1. [ ] Core: Before leaving your feedback(!), update the _project status_ on the issue to 'Proposed'.
+2. [ ] Community: Discuss benefits/drawbacks of the proposal.
+    - Emphasise collaboration (prefer to have more developers on one pipeline rather than one developer).
+    - Ensure proposal follows [nf-core pipeline guidelines](/docs/guidelines/pipelines/overview).
+    - In some cases, promote 'partial acceptance', i.e., if upstream steps already covered in another pipeline, propose new pipeline of just non-overlapping steps
+3. [ ] Core: Make final decision
+    - If accepted: update the Project status on the issue 'Accepted' section
+    - If not accepted: update the project status to 'turned down'
+4. [ ] Core: Check proposal has received approval in [nf-core/proposals](https://github.com/nf-core/proposals) from either:
+    - Two members of the core team.
+    - One member of the core team and one member of the maintainers team.
+5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
+6. [ ] Core: Create a slack channel with approved pipeline name.
+    - [ ] Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
+7. [ ] Core: Add the main developers to
+    - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
+    - [ ] [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) channel.
+8. [ ] Core: Create a branch with the pipeline name in the [nf-core/test-datasets](https://github.com/nf-core/test-datasets) repository.
+9. [ ] Core/Dev: Set up the pipeline repository:
+    - If development started in a custom (non-nf-core) repo: [Transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core.
+    - If starting fresh: Create a new GitHub repository with the name of the pipeline.
+10. Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list (until the pipeline is in advanced development or there is a need to surface it already).
+11. [ ] Core/Dev: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is there.
+12. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
+    - Website repo > Actions > Build json files and md-cache > Run workflow > From main.
+
+## Uploading test data to s3 bucket
+
+Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
+
+1.  [ ] Check if the test data is valid so that it can be uploaded:
+        :::note
+        Small input data that may be unreliable when downloaded from other repositories (e.g., limit total file size to a maximum of 10 GB across all files).
+        :::
+2.  [ ] Check that large files cannot be reduced or subsetted.
+3.  [ ] Select **Amazon S3-managed keys (SSE-S3)** and create the pipeline directory in the S3 bucket.
+
+## Repository transfer to nf-core organisation
+
+1. [ ] Request repository ownership transfer from the developer.
+    1. If the repository is under an organisation account, ask the developer to add a core team member as a co-owner.
+    2. If the repository is under a personal user account, ask the developer to transfer ownership directly to a core team member’s personal account.
+2. [ ] Transfer the repository to the nf-core organisation.
+    1. In the repository, go to **Settings**.
+    2. Scroll to the bottom of the **General** page.
+    3. Select **Transfer**, next to **Transfer ownership**.
+    4. Confirm or update the repository name if needed.
+3. [ ] Configure repository settings in the nf-core organisation.
+    1. Ask Matthias for the repository ruleset JSON files (these are still under development, but pinned in the core channel).
+    2. In the repository, go to **Settings**.
+    3. In the left sidebar, select Rules (under Code and automation).
+    4. Select New ruleset.
+    5. Select **Import a ruleset**, then select one of the JSON files.
+    6. Select **Create** at the bottom of the page. Do not modify any fields.
+    7. Repeat the import (step 5) and create (step 6) steps for each JSON file provided.
+
+## Making custom docker containers for modules
+
+Instructions for adding custom docker containers to the nf-core [https://quay.io](https://quay.io/organization/nf-core) organisation.
+
+:::note
+These instructions require the person building and pushing the container to have push rights to the organization.
+**Only core members may have this access**, and new core members should request access from existing members.
+:::
+
+1. Check with the module author to ensure there is no available solution via Conda, Bioconda, or BioContainers.
+2. Ask the module author to:
+    - Place a `Dockerfile` alongside the module (sub)directories
+    - Add a `README.md` describing why the container is needed, and provide instructions for building the container
+    - (Optional) add a `.gitgnore` file to ensure build artefacts are not pushed with the `Dockerfile` and `README.md`
+3. Ensure Docker is correctly authenticated for pushing to `quay.io`.
+
+    ```bash
+    docker login --username <QUAY_USER_NAME> quay.io
+    ```
+
+4. Build the Docker image locally and tag it appropriately:
+
+    ```bash
+    docker build . -t quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+5. Push the built container image:
+
+    ```bash
+    docker push quay.io/nf-core/<TOOL>:<VERSION>
+    ```
+
+6. Share the container reference with the module author so they can update the module:
+
+    ```groovy
+    container "nf-core/<TOOL>:<VERSION>"
+    ```
+
+    :::note
+    This replaces the entire Docker/Singularity condition in the module.
+    :::
+
+## Activating Zenodo archiving of a new pipeline
+
+Instructions for setting up Zenodo DOIs.
+
+:::note
+It's recommended that a core team member transfers the DOI to the nf-core Zenodo community.
+:::
+
+Before release:
+
+1.  [ ] Sign up and log in to [Zenodo](https://zenodo.org/).
+2.  [ ] Select **GitHub -> Connect Account** in the dropdown menu of your account and connect your GitHub account.
+3.  [ ] Select **GitHub** in the dropdown menu of your account once connected.
+4.  [ ] Toggle the **On** switch of the pipeline to enable Zenodo archiving.
+        :::note
+        It's a good idea to enable this for all active pipelines, as DOIs will only be assigned upon release.
+        :::
+
+        :::note
+        Some repositories (e.g., nf-core/exoseq) may not be activated as they are archived.
+        :::
+
+5.  [ ] Inform the pipeline developers to make a release.
+
+Post release:
+
+1.  [ ] Select **Github** in the dropdown menu of your account in Zenodo and find the relevant repository.
+2.  [ ] Click the Zenodo **Record** page for the release.
+3.  [ ] Find the **Communities** box on the record page and submit the record to the nf-core community. (Google Chrome contains a graphical bug causing the **Communities** box not to show up, please use another browser if this happens to you)
+4.  [ ] Copy the DOI for **Cite all versions?** in the **Versions** tab.
+5.  [ ] Update files on the pipeline master branch:
+    - `README.md`: Add the Zenodo Badge and update the **If you use this pipeline cite** section.
+    - `Nextflow.config`: Update the manifest block to include the DOI.
+    - Commit these changes with the message "Add Zenodo ID after first release".
+
+## Adding new community member to the GitHub organisation
+
+Anyone can request to join the nf-core GitHub organisation via the #github-invitations channel.
+
+1.  [ ] Verify the request is reasonable (i.e., clearly not spam).
+2.  [ ] Send an invitation via [nf-core github teams](https://github.com/orgs/nf-core/teams)
+3.  [ ] Add new member to the [nf-core contributors team](https://github.com/orgs/nf-core/teams/contributors)
+4.  [ ] Respond to the #github-invitations channel request by reacting with the ✅ emoji.
+
+## Updating online bingo cards
+
+Before each hackathon, we need to update the [bingo cards](https://nfcore-bingo.web.app/) to ensure they remain current.
+
+To update the bingo cards:
+
+1.  [ ] Ask for the outreach google account credentials from `@core-team`
+2.  [ ] Log into the Firebase Dashboard: https://console.firebase.google.com/
+3.  [ ] Select **nfcore-bingo**.
+4.  [ ] Select **Realtime Database**.
+5.  [ ] Select **games** and navigate down the tree until you reach **lexicon**.
+6.  [ ] Hover over **lexicon** and select **+** to add entries:
+    - Key: Number
+    - Value: New board entry
+7.  [ ] Select the trash bin next to the given entry to remove it.
+
+## Backups
+
+The following items should be regularly backed up by a member of core team with admin access to the relevant service:
+
+- [ ] HackMD: backup to Google Drive (Outreach)
+- [ ] Bingo cards rules JSON (realtime database): backup to Google Drive (Outreach)
+
+## New core team member onboarding
+
+This documents the steps that need to be performed when adding a new core team member:
+
+1. [ ] Add to core team Slack channel
+2. [ ] Add to GitHub core team
+3. [ ] Add as owners on the GitHub org
+4. [ ] Add to `@core-team` `@outreach-team` slack teams
+5. [ ] Add as admin on slack
+6. [ ] Add to hackMD team as Admin
+7. [ ] Add to `quay.io` in team owners
+8. [ ] Add to Tower organisation as owner
+9. [ ] Add to nf-core google calendar(s)
+10. [ ] Add to `core@nf-co.re` forwarder
+11. [ ] Add to [Zenodo community](https://zenodo.org/communities/nf-core/records?q=&l=list&p=1&s=10) as admin
+12. [ ] Update Website / About (get new member to check)
+13. [ ] Ask new member to add nf-core apple core emoji as Status
+14. [ ] Make Slack announcement
+15. [ ] Make Social media announcement
+
+## On-call duties
+
+The core team has a weekly rotation 'on-call' system for community management of certain core tasks.
+
+Duties includes:
+
+- Distributing first release reviews => [Slack](https://nfcore.slack.com/archives/C08K66XCZSL)
+- Facilitating discussions and handling acceptance/rejection procedures on nf-core/proposals (pipelines, RFCs, SIGs, etc.) => [Github](http://github.com/nf-core/proposals) and [Slack](https://nfcore.slack.com/archives/CE6SDEDAA)
+- Adding new community members to the GitHub organisation => [Github](http://github.com/orgs/nf-core/people) and [Slack](https://nfcore.slack.com/archives/CEB982K2T)
+- Monitor [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel for:
+    - Uploading test data to AWS S3 nf-core-awsmegatest buckets for new pipelines
+    - Uploading containers to [quay.io](https://quay.io/)
+    - Activating Zenodo via the [Zenodo Github settings](https://zenodo.org/account/settings/github/)
+    - Pipeline repository transfers

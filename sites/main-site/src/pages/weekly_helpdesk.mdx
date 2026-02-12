@@ -1,0 +1,47 @@
+---
+layout: "@layouts/MarkdownTocLayout.astro"
+title: Weekly Helpdesks
+subtitle: Join us to get help with your nf-core pipelines
+md_github_url: https://github.com/nf-core/website/blob/main/sites/main-site/src/pages/weekly_helpdesk.mdx
+---
+
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
+import { nextTuesday, nextWednesday, nextThursday } from "date-fns";
+import { TZDate } from "@date-fns/tz";
+
+# Regular time slots
+
+We run 3 weekly helpdesk slots for different regions / time zones:
+
+- AMER: Tuesdays 2pm ET _(<LocalDateTime date={(() => { const d = nextTuesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 14, 0, 'America/New_York'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)_
+- APAC: Wednesdays 3pm NZDT _(<LocalDateTime date={(() => { const d = nextWednesday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 15, 0, 'Pacific/Auckland'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)_
+- EMEA: Thursdays 10am CET _(<LocalDateTime date={(() => { const d = nextThursday(new Date()); return new TZDate(d.getFullYear(), d.getMonth(), d.getDate(), 10, 0, 'Europe/Paris'); })()} date_options={{ hour: "2-digit", minute: "2-digit" }} showTimezone={true} client:load />)_
+
+:::tip
+Weekly helpdesk sessions are run on a best-effort basis, depending on volunteer availability.
+Check the [`#weekly-helpdesk` Slack channel](https://nfcore.slack.com/archives/C06KSS9L8M7) for the latest info.
+:::
+
+In these sessions, some of the nf-core maintainer team and other seasoned community members
+will be available to engage in discussions about your code, running pipelines,
+writing configs, or anything else related to nf-core and Nextflow.
+They will hang out in Gather during designated hours every week,
+ready to provide guidance and insights or just chat about your favourite pipeline.
+
+Helpdesk sessions won't be structured.
+
+Things that might be discussed include:
+
+- A specific concept doesn't make sense and you'd like to talk it over
+- You're working on a component or pipeline, you're stuck, and you'd like to get unstuck
+- You'd like to swap code reviews with someone to get your PR merged
+- You'd like to write an institution config and like some insights
+- You can't figure out how to run a pipeline
+- You want to hang out with other Nextflow enthusiasts and get to know the faces behind the slack handles
+
+The Helpdesk hours will take place in [WorkAdventu.re](https://workadventu.re/),
+an online collaborate platform, kind of like Pokemon-meets-Zoom.
+You can join by following the Gather Town link [here](https://nf-co.re/join#gather-town).
+For more information, see the [Gather Town bytesize talk](/events/2022/bytesize-37-gathertown).
+
+Please join the [#weekly-helpdesk](https://nfcore.slack.com/channels/weekly-helpdesk) channel on the nf-core Slack to get reminders when sessions are about to start.

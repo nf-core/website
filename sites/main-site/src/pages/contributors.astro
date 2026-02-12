@@ -1,16 +1,18 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import pipelines_json from '@public/pipelines.json';
-import contributors_yml from '../config/contributors.yaml';
-import Leaflet from '@components/Leaflet.svelte';
-import GitHubProfilePicture from '@components/GitHubProfilePicture.svelte';
-import Admonition from '@components/Admonition.astro';
-import Heading from '@components/Heading.astro';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import pipelines_json from "@public/pipelines.json";
+import contributors_yml from "../config/contributors.yaml";
+import Leaflet from "@components/Leaflet.svelte";
+import GitHubProfilePicture from "@components/GitHubProfilePicture.astro";
+import Admonition from "@components/Admonition.astro";
+import Heading from "@components/Heading.astro";
+import { Icon } from "astro-icon/components";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 const contributors_flat = pipelines_json.remote_workflows.map((pipeline) => pipeline.contributors).flat();
 
 let contributors = contributors_flat.map((contributor) => {
-    return { name: contributor.name.replace('@', ''), avatar_url: contributor.avatar_url };
+    return { name: contributor.name.replace("@", ""), avatar_url: contributor.avatar_url };
 });
 
 // remove duplicates
@@ -34,34 +36,40 @@ const contributors_map: {
     }
     return null;
 });
-const title = 'Contributors';
-const subtitle = 'Find out who is involved in the nf-core project';
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml';
+const title = "Contributors";
+const subtitle = "Find out who is involved in the nf-core project";
+const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml";
 const headings = [
     {
-        text: 'Introduction',
-        slug: 'introduction',
+        text: "Introduction",
+        slug: "introduction",
         depth: 1,
     },
     {
-        text: 'Contributors',
-        slug: 'contributors',
+        text: "Contributors",
+        slug: "contributors",
         depth: 1,
     },
     {
-        text: 'Organisations',
-        slug: 'organisations',
+        text: "Organisations",
+        slug: "organisations",
         depth: 1,
     },
     {
-        text: 'Projects we are involved with',
-        slug: 'initiatives',
+        text: "Projects we are involved with",
+        slug: "initiatives",
         depth: 1,
     },
 ];
 ---
 
-<MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url={md_github_url}>
+<MarkdownTocLayout
+    title={title}
+    subtitle={subtitle}
+    headings={headings}
+    md_github_url={md_github_url}
+    leftSidebar={false}
+>
     <Heading level={1} id="introduction">Introduction</Heading>
     <p>
         nf-core is by design a collaborative effort, and would not exist if it were not for the efforts of many
@@ -102,7 +110,7 @@ const headings = [
         Some of the organisations running nf-core pipelines are listed below, along with a key person who you can
         contact for advice.
     </p>
-    <Admonition title={'note'}>
+    <Admonition title={"note"}>
         Is your group missing? Please submit a pull request to add yourself! It's just a few lines in a <a
             href="https://github.com/nf-core/website/blob/main/sites/main-site/src/config/contributors.yaml"
             >simple YAML file.</a
@@ -111,13 +119,13 @@ const headings = [
     <div>
         <Leaflet locations={contributors_map} client:only="svelte" />
     </div>
-    <div class="contributor-cards row row-cols-1 row-cols-md-2">
+    <div class="contributor-cards row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxxxl-4 w-100 ms-0">
         {
             contributors_yml.contributors &&
                 contributors_yml.contributors.map((institution) => (
                     <div
                         class="col align-items-stretch d-flex"
-                        id={institution.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}
+                        id={institution.full_name.toLowerCase().replace(/[^a-z]+/i, "-")}
                     >
                         <div class="card my-2 align-items-stretch">
                             <div class="card-body">
@@ -130,9 +138,12 @@ const headings = [
                                     >
                                         <h3 class="me-1">{institution.full_name}</h3>
                                         {institution.image_fn && (
-                                            <img
+                                            <DarkModeImage
                                                 src={`/images/contributors/colour/${institution.image_fn}`}
-                                                class="institution-logo darkmode-image"
+                                                alt={`${institution.full_name} logo`}
+                                                additionalClass="institution-logo"
+                                                height={350}
+                                                width={350}
                                             />
                                         )}
                                     </a>
@@ -142,34 +153,59 @@ const headings = [
                             <div class="card-footer d-flex overflow-x-auto w-100 text-smaller">
                                 {institution.contact_email && (
                                     <a
-                                        href={'mailto:' + institution.contact_email}
+                                        href={"mailto:" + institution.contact_email}
                                         class="me-3 text-nowrap  text-decoration-none"
                                     >
-                                        <i class="fa-solid fa-envelope" />{' '}
+                                        <i class="fa-solid fa-envelope" />{" "}
                                         {institution.contact ? institution.contact : institution.contact_email}
                                     </a>
                                 )}
                                 {institution.contact_github && (
                                     <a
-                                        href={'https://github.com/' + institution.contact_github}
+                                        href={"https://github.com/" + institution.contact_github}
                                         class="me-3 text-nowrap text-decoration-none"
                                     >
-                                        <i class="fab fa-github" />{' '}
-                                        {institution.contact_github.replace('https://github.com/', '')}
+                                        <i class="fab fa-github" />{" "}
+                                        {institution.contact_github.replace("https://github.com/", "")}
+                                    </a>
+                                )}
+
+                                {institution.mastodon && (
+                                    <a href={institution.mastodon} class="">
+                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                    </a>
+                                )}
+                                {institution.bluesky && (
+                                    <a
+                                        href={institution.bluesky}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="logos:bluesky" color="#1185fe" size="15px" />{" "}
+                                        {institution.bluesky
+                                            .replace("https://bsky.app/profile/", "")
+                                            .replace(".bsky.social", "")}
+                                    </a>
+                                )}
+                                {institution.linkedin && (
+                                    <a
+                                        href={institution.linkedin}
+                                        class="me-3 text-nowrap text-decoration-none text-body"
+                                    >
+                                        <Icon name="mdi:linkedin" color="#0077b5" size="15px" />{" "}
+                                        {institution.linkedin
+                                            .replace("https://www.linkedin.com/", "")
+                                            .replace("in/", "")
+                                            .replace("company/", "")
+                                            .replace("/$", "")}
                                     </a>
                                 )}
                                 {institution.twitter && (
                                     <a
-                                        href={'https://twitter.com/' + institution.twitter}
+                                        href={"https://twitter.com/" + institution.twitter}
                                         class="me-3 text-nowrap text-decoration-none"
                                     >
-                                        <i class="fab fa-twitter" />{' '}
-                                        {institution.twitter.replace('https://twitter.com/', '')}
-                                    </a>
-                                )}
-                                {institution.mastodon && (
-                                    <a href={institution.mastodon} class="">
-                                        <i class="fab fa-mastodon" /> {institution.mastodon}
+                                        <i class="fab fa-twitter" />{" "}
+                                        {institution.twitter.replace("https://twitter.com/", "")}
                                     </a>
                                 )}
                             </div>
@@ -185,7 +221,13 @@ const headings = [
     </p>
 
     <h3 id="dfg_testimonial">
-        <img width="350px" src="/images/contributors/colour/dfg_logo.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/dfg_logo.svg"
+            alt="DFG logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
 
         German National Sequencing Initiative
         <a href="#dfg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
@@ -197,13 +239,19 @@ const headings = [
         has approved funding to establish 4 national high-throughput sequencing centers in Germany. The project will rely
         on
         <em>nf-core</em> pipelines for analyzing large-scale genomics data. Contributors from the Kiel, Tübingen and Dresden
-        sites are already actively contributing to nf-core, and the other sequencing center in Cologne/Bonn (West German
-        Genome Center) has committed to joining and contributing its expertise.
+        sites are already actively contributing to nf-core, and the other sequencing center in Cologne/Bonn (West German Genome
+        Center) has committed to joining and contributing its expertise.
     </p>
     <div class="clearfix"></div>
 
     <h3 id="easi_genomics_testimonial">
-        <img width="350px" src="/images/contributors/colour/EASI-Genomics.svg" class="float-end ps-4 darkmode-image" />
+        <DarkModeImage
+            src="/images/contributors/colour/EASI-Genomics.svg"
+            alt="EASI-Genomics logo"
+            width={350}
+            height={350}
+            class="float-end ps-4"
+        />
         EASI-Genomics
         <a href="#easi_genomics_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a
         >
@@ -224,15 +272,15 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="bovreg_testimonial">
-        <img width="350px" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
+        <img width="350" src="/images/contributors/colour/bovreg.svg" class="float-end ps-4 bg-light" />
         BovReg
         <a href="#bovreg_testimonial" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
     <p>
         <a href="https://www.bovreg.eu/" target="_blank">BovReg</a> is a
         <a href="https://cordis.europa.eu/project/id/815668" target="_blank">H2020 project</a>
-        to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and
-        how their (epi)genetic variation in beef and dairy breeds translates into phenotypes.
+        to form a consortium that will provide a comprehensive map of functionally active genomic features in cattle and how
+        their (epi)genetic variation in beef and dairy breeds translates into phenotypes.
     </p>
     <p>
         BovReg reference bioinformatics pipelines will adhere to <em>nf-core</em> guidelines in order to deliver reproducible
@@ -240,7 +288,13 @@ const headings = [
     </p>
     <div class="clearfix"></div>
     <h3 id="dockstore">
-        <img width="350px" src="/images/contributors/colour/dockstore.svg" class="float-end ps-0" />
+        <DarkModeImage
+            src="/images/contributors/colour/dockstore.svg"
+            alt="Dockstore logo"
+            width={350}
+            height={350}
+            class="float-end ps-0"
+        />
         Dockstore
         <a href="#dockstore" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -257,7 +311,13 @@ const headings = [
     <div class="clearfix"></div>
 
     <h3 id="workflowhub">
-        <img width="250px" src="/images/contributors/colour/workflowhub.svg" class="float-end px-4" />
+        <DarkModeImage
+            src="/images/contributors/colour/workflowhub.svg"
+            alt="Workflow Hub logo"
+            width={250}
+            height={250}
+            class="float-end px-4"
+        />
         Workflow Hub
         <a href="#workflowhub" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h3>
@@ -276,7 +336,17 @@ const headings = [
 </MarkdownTocLayout>
 <style lang="scss">
     .institution-logo {
-        max-width: 40%;
+        max-width: 30%;
         max-height: 5rem;
+    }
+    :global([data-icon="logos:bluesky"] path),
+    :global([data-icon="mdi:linkedin"] path) {
+        fill: var(--bs-body-color);
+    }
+    :global(.markdown-content) {
+        max-width: 90% !important;
+        p {
+            max-width: 50rem !important;
+        }
     }
 </style>

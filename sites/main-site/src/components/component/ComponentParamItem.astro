@@ -1,37 +1,49 @@
 ---
-import { Markdown } from '@astropub/md';
-import ComponentParamList from './ComponentParamList.astro';
+import { Markdown } from "@mashehu/astropub-md";
+import ComponentParamList from "./ComponentParamList.astro";
 
 const { name, value, depth = 0, lastItem = false } = Astro.props;
 const { type, description, pattern } = value;
-const hasNestedParams = Array.isArray(value) || (typeof value === 'object' && !type);
+
+// More efficient nested params check
+const hasNestedParams = Array.isArray(value) || (typeof value === "object" && !type);
+
+// Pre-compute commonly used values
+const shouldRender = !name.startsWith("input[") && name !== "0";
+const anchorId = `${name}_${depth}`;
+const marginClass = depth > 0 ? `ms-md-${depth * 2}` : "";
+const hasPattern = Boolean(pattern);
+const descriptionColSize = hasPattern ? 5 : 7;
+const patternColSize = hasPattern ? 3 : 1;
+
+// Fix description processing (only if description exists)
+const processedDescription = description ? description.replace(/\n/g, " \n").replace(/\\\*\./g, "\\\\*.") : "";
 ---
 
 {
-    name.slice(0, 6) !== 'input[' && (
-        <div
-            class:list={[
-                `row align-items-center ${depth > 0 ? 'ms-md-' + depth * 2 : ''}`,
-                { 'border-bottom': !lastItem },
-            ]}
-        >
+    shouldRender && (
+        <div class:list={[`row align-items-center ${marginClass}`, { "border-bottom": !lastItem }]}>
             <div class="col-12 col-md-4 col-xxl-3 small-h">
-                <h4 id={name + '_' + depth} class="module-row-name-id d-flex align-items-center mb-0 text-start">
-                    <code>
-                        {name}
-                        {type && <span class="opacity-75 ms-0 small">:{type}</span>}
-                    </code>
-                    <a href={'#' + name + '_' + depth} class="header-link scroll_to_link me-2 mb-2">
+                <h4 id={anchorId} class="module-row-name-id d-flex align-items-baseline mb-0 text-start">
+                    <Markdown of={`\`${name}{:bash}\``} />
+                    {type && (
+                        <span>
+                            <code class="type rounded-start-0 text-muted ps-0 small">:{type}</code>
+                        </span>
+                    )}
+                    <a href={`#${anchorId}`} class="header-link scroll_to_link me-2 mb-2">
                         <span class="fas fa-link" aria-hidden="true" />
                     </a>
                 </h4>
             </div>
-            <div class={`col-12 description py-1 small col-md-${pattern ? '5' : '7'}`}>
-                {description && <Markdown of={description.replace(/(\n)/g, ' \n').replace(/\*./g, '\\*.')} />}
+            <div class={`col-12 description py-1 small col-md-${descriptionColSize}`}>
+                {processedDescription && <Markdown of={processedDescription} />}
             </div>
-            <div class={`col-12 col-md-${pattern ? '4' : '1'} ms-auto`}>
-                {pattern && <code class="float-end pattern">{pattern}</code>}
-            </div>
+            {hasPattern && (
+                <div class={`col-12 col-md-${patternColSize} ms-auto mt-2`}>
+                    <code class="float-end pattern">{pattern}</code>
+                </div>
+            )}
         </div>
     )
 }
@@ -43,7 +55,17 @@ const hasNestedParams = Array.isArray(value) || (typeof value === 'object' && !t
     )
 }
 <style>
-    .description :global(p) {
-        margin-bottom: 0;
+    .description,
+    .module-row-name-id {
+        & :global(p) {
+            margin-bottom: 0;
+        }
+    }
+    .module-row-name-id {
+        &:has(.type) :global(code[data-language="bash"]) {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            padding-right: 0;
+        }
     }
 </style>

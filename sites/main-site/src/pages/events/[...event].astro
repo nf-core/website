@@ -1,18 +1,18 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { getCollection } from 'astro:content';
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import VideoTranscript from '@components/VideoTranscript.svelte';
-import Admonition from '@components/Admonition.astro';
-import type { CollectionEntry } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-import { createLinkOrGroup } from '@utils/functions';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { getCollection, render } from "astro:content";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import VideoTranscript from "@components/VideoTranscript.svelte";
+import Admonition from "@components/Admonition.astro";
+import type { CollectionEntry } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { createLinkOrGroup } from "@utils/functions";
 
 export async function getStaticPaths() {
-    const events = await getCollection('events');
+    const events = await getCollection("events");
     return events.map((event) => ({
         params: {
-            event: event.slug,
+            event: event.id.replace(/\.[^/.]+$/, ""),
         },
         props: {
             event: event,
@@ -24,22 +24,23 @@ const { event, events } = Astro.props;
 const title = event.data.title;
 const subtitle = event.data.subtitle;
 let frontmatter = event.data;
-const { headings, Content } = await event.render();
+const { headings, Content } = await render(event);
 
-const md_github_url = 'https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/' + event.id;
+const md_github_url =
+    "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/" + event.id + ".md";
 
 let video = event.data.youtubeEmbed;
 // convert video to array if it is string
-if (typeof video === 'string') {
+if (typeof video === "string") {
     video = [video];
 }
 const ids = video?.map(
     (v) =>
         v
-            .replace('https://www.youtube.com/watch?v=', '')
-            .replace('https://youtu.be/', '')
-            .replace('https://www.youtube.com/embed/', '')
-            .split('&list')[0],
+            .replace("https://www.youtube.com/watch?v=", "")
+            .replace("https://youtu.be/", "")
+            .replace("https://www.youtube.com/embed/", "")
+            .split("&list")[0],
 );
 // Check if maxres thumbnail is available
 let posters = await Promise.all(
@@ -55,52 +56,50 @@ let posters = await Promise.all(
 
 events
     .map((event) => {
-        if (event.data.title.toLowerCase().match('bytesize')) {
-            event.data.type = 'bytesize';
+        if (event.data.title.toLowerCase().match("bytesize")) {
+            event.data.type = "bytesize";
         }
-        event.data.start = new Date(event.data.startDate + 'T' + event.data.startTime);
-        event.data.end = new Date(event.data.endDate + 'T' + event.data.endTime);
         return event;
     })
     .filter((event) => event.data.type === frontmatter.type)
     .sort((a, b) => {
-        return new Date(b.data.startDate) - new Date(a.data.startDate);
+        return new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime();
     });
 
-const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
+const addEntriesToSection = (sections, events: CollectionEntry<"events">[]) => {
     events.forEach((event) => {
-        const parts = event.slug.split('/');
+        const parts = event.id.replace(/\.[^/.]+$/, "").split("/");
         let currentLevel = sections;
 
         parts.forEach((part, i) => {
-            part = part.replaceAll('_', ' ').replace(/(^)\S/g, (match) => match.toUpperCase());
+            part = part.replaceAll("_", " ").replace(/(^)\S/g, (match) => match.toUpperCase());
             const existingEntry = currentLevel.find(
                 (entry) => entry.label === part || entry.label === event.data.title,
             );
 
             if (existingEntry) {
-                if (existingEntry.type === 'group') {
+                if (existingEntry.type === "group") {
                     // workaround for index files in nested events, where another element could already have created the group
                     if (/index\.(md|mdx)$/.test(event.id) && i === parts.length - 1) {
-                        existingEntry.href = '/events/' + event.slug;
-                        existingEntry.isCurrent = Astro.url.pathname === '/events/' + event.slug;
-                        existingEntry.collapsed = Astro.url.pathname === '/events/' + event.slug;
+                        existingEntry.href = "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.isCurrent = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
+                        existingEntry.collapsed = Astro.url.pathname === "/events/" + event.id.replace(/\.[^/.]+$/, "");
                     }
                     currentLevel = existingEntry.entries;
                 }
             } else {
                 const lastPart = i === parts.length - 1;
-                let title = lastPart ? event.data.shortTitle ?? event.data.title : part;
+                let title = lastPart ? (event.data.shortTitle ?? event.data.title) : part;
                 const newEntry = createLinkOrGroup(
-                    parts.slice(0, i + 1).join('_'),
+                    parts.slice(0, i + 1).join("_"),
                     title,
-                    '/events/' + event.slug,
+                    "/events/" + event.id.replace(/\.[^/.]+$/, ""),
                     lastPart,
                     Astro.url.pathname,
                 );
                 currentLevel.push(newEntry);
 
-                if (newEntry.type === 'group' && newEntry.entries) {
+                if (newEntry.type === "group" && newEntry.entries) {
                     currentLevel = newEntry.entries;
                 }
             }
@@ -110,24 +109,30 @@ const addEntriesToSection = (sections, events: CollectionEntry<'events'>[]) => {
 const years = [...new Set(events.map((event) => event.data.start.getFullYear()))].sort((a, b) => b - a);
 let sections: SidebarEntry[] = years.map((year) => {
     return {
+        id: year.toString(),
         label: year.toString(),
         entries: [],
-        type: 'group',
+        type: "group",
         collapsed: true,
     };
 });
 addEntriesToSection(sections, events);
+
 // sort .entries by date
 sections.forEach((year) => {
-    year.entries.sort((a, b) => {
-        const eventA = events.find((event) => '/events/' + event.slug === a.href);
-        const eventB = events.find((event) => '/events/' + event.slug === b.href);
-        return eventB.data.startDate - eventA.data.startDate;
-    });
+    year.type === "group" &&
+        year.entries?.sort((a, b) => {
+            const eventA = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === a.href);
+            const eventB = events.find((event) => "/events/" + event.id.replace(/\.[^/.]+$/, "") === b.href);
+            if (eventA?.data.start && eventB?.data.start) {
+                return eventB.data.start.getTime() - eventA.data.start.getTime();
+            }
+            return 0;
+        });
 });
 ---
 
-{frontmatter.importTypeform && <script async src="https://embed.typeform.com/next/embed.js" />}
+{frontmatter.importTypeform && <script type="text/javascript" src="https://embed.typeform.com/next/embed.js" async />}
 <MarkdownTocLayout
     title={title}
     subtitle={subtitle}
@@ -137,13 +142,13 @@ sections.forEach((year) => {
     sections={sections}
     leftSidebar={true}
     docSearchTags={[
-        { name: 'page_type', content: 'Event' },
-        { name: 'page_subtype', content: frontmatter.type },
+        { name: "page_type", content: "Event" },
+        { name: "page_subtype", content: frontmatter.type },
     ]}
     viewTransitions={true}
 >
     {
-        title.trim().toLowerCase().startsWith('bytesize') && (
+        title.trim().toLowerCase().startsWith("bytesize") && (
             <Admonition
                 title="tip"
                 titleText="Join us for our <strong>weekly series</strong> of short talks: <strong>nf-core/bytesize</strong>."
@@ -152,10 +157,10 @@ sections.forEach((year) => {
                 <p class="small text-body-secondary">
                     Just <strong>15 minutes</strong> + questions, we focus on topics about using and developing nf-core
                     pipelines. These are recorded and made available at <a href="https://nf-co.re/">https://nf-co.re</a>
-                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{' '}
+                    , helping to build an archive of training material. Got an idea for a talk? Let us know on the{" "}
                     <a href="https://nfcore.slack.com/channels/bytesize">
                         <code>#bytesize</code>
-                    </a>{' '}
+                    </a>{" "}
                     Slack channel!
                 </p>
             </Admonition>

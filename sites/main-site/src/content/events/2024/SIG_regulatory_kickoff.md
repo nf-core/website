@@ -1,11 +1,11 @@
 ---
-title: '#regulatory: Kick Off Meeting'
+title: "#regulatory: Kick Off Meeting"
 subtitle: Round table led by Alex Peltzer (Boehringer Ingelheim Pharma GmbH)
 type: talk
-startDate: '2024-07-01'
-startTime: '16:00+02:00'
-endDate: '2024-07-01'
-endTime: '17:30+02:00'
+startDate: "2024-07-01"
+startTime: "16:00+02:00"
+endDate: "2024-07-01"
+endTime: "17:30+02:00"
 youtubeEmbed: https://youtu.be/_hYPuzkd2H0
 locations:
   - name: YouTube

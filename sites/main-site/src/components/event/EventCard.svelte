@@ -1,111 +1,86 @@
 <script lang="ts">
-    import VideoButton from '@components/VideoButton.svelte';
-    import ExportEventButton from '@components/event/ExportEventButton.svelte';
-    import { onMount } from 'svelte';
+    import VideoButton from "@components/VideoButton.svelte";
+    import ExportEventButton from "@components/event/ExportEventButton.svelte";
+    import LocalDateTime from "@components/event/LocalDateTime.svelte";
+    import type { CollectionEntry } from "astro:content";
+    import ListingCard from "../ListingCard.svelte";
 
-    export let frontmatter = {
-        title: '',
-        subtitle: '',
-        start: new Date(),
-        startDate: new Date(),
-        end: new Date(),
-        endDate: new Date(),
-        type: '',
-        locationURL: [''],
-    };
-    export let slug: string = '';
-    export let type: string = '';
-    export let time_category: string = '';
+    export let frontmatter: CollectionEntry<"events">["data"];
+    export let slug: string = "";
+    export let type: string = "";
+    export let time_category: string = "";
     export let showDescription: boolean = true;
     export let narrow: boolean = false;
 
-    const event_duration = (event: { start: Date; end: Date; startDate: Date; endDate: Date }) => {
-        let duration: string;
-        if (event.startDate === event.endDate) {
-            duration =
-                new Date(event.start).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '-' +
-                new Date(event.end).toLocaleString('en-US', {
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        } else {
-            duration =
-                new Date(event.start).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                }) +
-                '<wbr> - <wbr>' +
-                new Date(event.end).toLocaleString('en-US', {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                    hour: 'numeric',
-                    minute: 'numeric',
-                    hour12: false,
-                });
-        }
-        return duration;
-    };
     const event_type_classes = {
-        bytesize: 'success',
-        hackathon: 'primary',
-        talk: 'info',
-        training: 'warning',
+        bytesize: "success",
+        hackathon: "primary",
+        talk: "info",
+        training: "warning",
     };
 
-    let event_date: string = '';
-
-    const type_class = event_type_classes[type];
-    onMount(() => {
-        event_date = event_duration(frontmatter);
-    });
+    const isSameDay = frontmatter.startDate === frontmatter.endDate;
 </script>
 
-<div class={'card mb-3 rounded-0 rounded-end ' + type} style="border-left-color:var(--bs-{type_class});">
-    <div class="card-body">
-        <div class="card-title">
-            <h4 id={'event-' + slug.split('/')[1]} class:h5={narrow}>
-                <a class="text-center" class:text-decoration-none={narrow} href={/events/ + slug + '/'}>
-                    {frontmatter.title}
-                </a>
-                {#if time_category === 'current' && frontmatter.locationURL}
-                    <div class="float-end d-none d-md-inline">
-                        <VideoButton urls={frontmatter.locationURL} btnClass="btn-danger" />
-                    </div>
-                {/if}
-            </h4>
-        </div>
-        <div class="card-text">
-            {#if showDescription}
-                <p class="mb-0">{frontmatter.subtitle}</p>
+<ListingCard
+    footer={true}
+    cardClass={`mb-3 rounded-start-0 type`}
+    cardStyle={`border-left-color:var(--bs-${event_type_classes[type]})`}
+>
+    {#snippet cardHeader()}
+        <span id={"event-" + slug.split("/")[1]} class={narrow ? "h5" : "h3"}>
+            <a class="text-center" class:text-decoration-none={narrow} href={"/events/" + slug + "/"}>
+                {frontmatter.title}
+            </a>
+            {#if time_category === "current" && frontmatter.locations}
+                <div class="float-end d-none d-md-inline">
+                    <VideoButton urls={frontmatter.locations} btnClass="btn-danger" />
+                </div>
             {/if}
-            <div
-                class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
-                class:justify-content-md-end={!narrow}
-            >
-                <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
-                    <i class="fa-regular fa-calendar me-2" />{@html event_date}
-                </p>
-            </div>
+        </span>
+    {/snippet}
+    {#snippet cardBody()}
+        {#if showDescription}
+            <p class="mb-0">{@html frontmatter.subtitle}</p>
+        {/if}
+        <div
+            class="d-flex align-items-center mt-2 flex-wrap justify-content-start"
+            class:justify-content-md-end={!narrow}
+        >
+            <p class="text-nowrap text-center text-md-start pe-3 mt-2 ms-1" class:d-md-none={!narrow}>
+                <i class="fa-regular fa-calendar me-2" aria-hidden="true"></i>
+                <LocalDateTime date={frontmatter.start} />
+                <span>&nbsp;-&nbsp;</span>
+                {#if isSameDay}
+                    <span
+                        >{new Date(frontmatter.end).toLocaleString("en-US", {
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: false,
+                        })}</span
+                    >
+                {:else}
+                    <LocalDateTime date={frontmatter.end} />
+                {/if}
+            </p>
         </div>
-    </div>
-    <div class="card-footer p-0" class:p-md-2={!narrow} class:d-none={narrow}>
+    {/snippet}
+    {#snippet cardFooter()}
         <div class="d-flex align-items-center justify-content-between">
-            <p class="d-none text-wrap mb-0 ms-2 align-middle" class:d-md-inline-block={!narrow}>
-                {@html event_date}
+            <p class="d-none text-wrap mb-0" class:d-md-inline-block={!narrow}>
+                <LocalDateTime date={frontmatter.start} />
+                <span>&nbsp;-&nbsp;</span>
+                {#if isSameDay}
+                    <span
+                        >{new Date(frontmatter.end).toLocaleString("en-US", {
+                            hour: "numeric",
+                            minute: "numeric",
+                            hour12: false,
+                        })}</span
+                    >
+                {:else}
+                    <LocalDateTime date={frontmatter.end} />
+                {/if}
             </p>
             <div
                 class="btn-group float-end"
@@ -115,52 +90,22 @@
                 aria-label="See details or export calendar event"
             >
                 <a
-                    href={'/events/' + slug + '/'}
+                    href={"/events/" + slug + "/"}
                     class="btn btn-outline-success text-nowrap rounded-start-0"
-                    class:rounded-0={['current', 'future'].includes(time_category)}>See details</a
+                    class:rounded-0={["future"].includes(time_category)}>See details</a
                 >
-                {#if time_category === 'future'}
-                    <ExportEventButton {frontmatter} add_class={'btn-outline-success ' + ' rounded-top-0'} />
+                {#if time_category === "future"}
+                    <ExportEventButton {frontmatter} add_class={"btn-outline-success " + " rounded-top-0"} />
                 {/if}
             </div>
         </div>
-        {#if time_category === 'current' && frontmatter.locationURL}
-            <VideoButton
-                urls={frontmatter.locationURL}
-                btnClass=" d-md-none btn-danger w-100 rounded-top-0 rounded-start-0"
-            />
-        {/if}
-    </div>
-</div>
+    {/snippet}
+</ListingCard>
 
 <style lang="scss">
-    @import 'bootstrap/scss/functions';
-    @import 'bootstrap/scss/mixins';
-    @import 'bootstrap/scss/variables';
-    .card.rounded-0 {
-        border-left: 5px solid;
-    }
-    .narrow .btn:first-child {
-        border-left: 0;
-    }
-    @include media-breakpoint-up(md) {
-        .btn-group.float-end:not(.narrow) {
-            .btn:first-child {
-                border-top-left-radius: $border-radius !important;
-                border-bottom-left-radius: $border-radius !important;
-            }
-            :global(.btn.dropdown-toggle) {
-                border-top-right-radius: $border-radius !important;
-                border-bottom-right-radius: $border-radius !important;
-            }
-        }
-    }
-    @include media-breakpoint-down(md) {
-        .btn-group.float-end {
-            width: 100%;
-            .btn:first-child {
-                border-left: 0;
-            }
+    @media (max-width: 768px) {
+        .text-nowrap {
+            white-space: normal !important;
         }
     }
 </style>

@@ -1,32 +1,32 @@
 ---
-title: 'nf-core/fastquorum - first release!'
-subtitle: 'The nf-core fgbio Best Practices FASTQ to Consensus Pipeline'
-headerImage: '/assets/images/blog/fastquorum/fastquorum_diagram.png'
-headerImageAlt: 'Subway diagram of the fastquorum pipeline'
+title: "nf-core/fastquorum - first release!"
+subtitle: "The nf-core fgbio Best Practices FASTQ to Consensus Pipeline"
+headerImage: "/assets/images/blog/fastquorum/fastquorum_diagram.png"
+headerImageAlt: "Subway diagram of the fastquorum pipeline"
 pubDate: 2024-06-23T00:19:00+01:00
 authors:
-    - 'nh13'
+    - "nh13"
 label:
-    - 'pipeline'
-    - 'bioinformatics'
-    - 'genomics'
-    - 'fgbio'
-    - 'fastquorum'
+    - "pipeline"
+    - "bioinformatics"
+    - "genomics"
+    - "fgbio"
+    - "fastquorum"
 ---
 
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
-import but_why from '@assets/images/blog/fastquorum/but_why.gif';
-import i_want_the_truth from '@assets/images/blog/fastquorum/i_want_the_truth.gif';
-import darwin from '@assets/images/blog/fastquorum/darwin.png';
-import duplex_sequencing_schema from '@assets/images/blog/fastquorum/duplex_sequencing_schema.png';
-import explaining_umis from '@assets/images/blog/fastquorum/explaining_umis.png';
-import bioconda_download from '@assets/images/blog/fastquorum/bioconda_download.png';
-import big_deal from '@assets/images/blog/fastquorum/big_deal.jpg';
-import fastquorum_diagram from '@assets/images/blog/fastquorum/fastquorum_diagram.png';
-import fulcrumgenomics_logo from '@assets/images/blog/fastquorum/fulcrumgenomics.svg';
+import but_why from "@assets/images/blog/fastquorum/but_why.gif";
+import i_want_the_truth from "@assets/images/blog/fastquorum/i_want_the_truth.gif";
+import darwin from "@assets/images/blog/fastquorum/darwin.png";
+import duplex_sequencing_schema from "@assets/images/blog/fastquorum/duplex_sequencing_schema.png";
+import explaining_umis from "@assets/images/blog/fastquorum/explaining_umis.png";
+import bioconda_download from "@assets/images/blog/fastquorum/bioconda_download.png";
+import big_deal from "@assets/images/blog/fastquorum/big_deal.jpg";
+import fastquorum_diagram from "@assets/images/blog/fastquorum/fastquorum_diagram.png";
+import fulcrumgenomics_logo from "@assets/images/blog/fastquorum/fulcrumgenomics.svg";
 
-import { Image } from 'astro:assets';
+import { Image } from "astro:assets";
 
 We are thrilled to announce the first release of the [`nf-core/fastquorum`][nf-core-fastquorum-link] pipeline, which implements the [fgbio Best Practices FASTQ to Consensus Pipeline][fgbio-best-practices-link] to produce consensus reads using unique molecular indexes/barcodes (UMIs).
 Developed by [Nils Homer][nilshomer-linkedin-link] at [Fulcrum Genomics][fulcrum-genomics-link], the pipeline utilizes the [`fgbio` Bioinformatics toolkit][fgbio-link] to enable producing ultra-accurate reads for low frequency variant detection in Genomics/DNA Sequencing.
@@ -78,23 +78,23 @@ A few examples:
 
 1. A simple 2x150bp paired end run with no sample or molecular indices:
 
--   `150T150T`
--   `[+T, +T]`
+- `150T150T`
+- `[+T, +T]`
 
 2. A 2x75bp paired end run with an 8bp I1 index read:
 
--   `75T8B75T`
--   `[+T, 8B, +T]`
+- `75T8B75T`
+- `[+T, 8B, +T]`
 
 3. A 2x150bp paired end run with an 8bp I1 index read and an inline 6bp UMI in read 1:
 
--   `8M142T8B150T`
--   `[8M+T, 8B, +T]`
+- `8M142T8B150T`
+- `[8M+T, 8B, +T]`
 
 4. A 2x150bp duplex sequencing run with dual sample-barcoding (I1 and I2) and both a 10bp UMI and 5bp monotemplate at the start of both R1 and R2:
 
--   `10M5S135T8B8B10M5S135T`
--   `[10M5S+T, 8B, 8B, 10M5S+T]`
+- `10M5S135T8B8B10M5S135T`
+- `[10M5S+T, 8B, 8B, 10M5S+T]`
 
 By utilizing the [fgbio toolkit][fgbio-homepage-link] and the [Read Structure][read-structure-link] description, [nf-core/fastquorum][nf-core-fastquorum-link] is able to support the diversity of molecular barcoding schemes.
 A few that are commercially available are described below:

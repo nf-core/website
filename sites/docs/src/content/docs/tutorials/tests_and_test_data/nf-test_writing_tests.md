@@ -1,5 +1,5 @@
 ---
-title: 'nf-test: Writing tests'
+title: "nf-test: Writing tests"
 subtitle: Guidelines for writing nf-test tests
 shortTitle: Writing nf-test tests
 weight: 10
@@ -12,19 +12,49 @@ weight: 10
 
 ## nf-test guidelines for a simple un-chained module
 
-- Some modules MAY require additional parameters added to the test command to successfully run. These can be specified with an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
+- Some modules MAY require additional parameters added to the test command to successfully run. These can be specified using a params input and an `ext.args` variable within the process scope of the `nextflow.config` file that exists alongside the test files themselves (and is automatically loaded when the test workflow `main.nf` is executed).
 
-If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the additional parameters there.
+If your module requires a `nextflow.config` file to run, create the file to the module's `tests/` directory and add the following code to use parameters defined in the `when` scope of the test.
 
 ```bash
 touch modules/nf-core/<tool>/<subtool>/tests/nextflow.config
 ```
 
-Then add the path to the `main.nf.test` file.
+```groovy title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+  }
+}
+```
+
+You do not need to modify the contents of this file any further.
+
+Then add the config to the `main.nf.test` file.
 
 ```groovy title="main.nf.test"
 process "MODULE"
 config "./nextflow.config"
+```
+
+Lastly supply the params in the when section of the test.
+
+```groovy title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--extra_opt1 --extra_opt2'
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
 ```
 
 - When your test data is too big, the tests take too long or require too much resources, you can opt to run your tests in stub mode by adding the following option:

@@ -1,11 +1,11 @@
 ---
-title: 'EuroFAANG Training Workshop'
-subtitle: 'Best practice for preparing pipelines in nf-core and recording pipeline usage in FAANG submissions'
+title: "EuroFAANG Training Workshop"
+subtitle: "Best practice for preparing pipelines in nf-core and recording pipeline usage in FAANG submissions"
 type: talk
-startDate: '2022-04-07'
-startTime: '14:50+02:00'
-endDate: '2022-04-07'
-endTime: '15:50+02:00'
+startDate: "2022-04-07"
+startTime: "14:50+02:00"
+endDate: "2022-04-07"
+endTime: "15:50+02:00"
 locations:
   - name: Registration
     links:

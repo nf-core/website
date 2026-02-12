@@ -1,7 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
+import { Icon } from "astro-icon/components";
 
-const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, btn_txt, btn_href } = Astro.props;
+const { title, icon, icon_color, icon_class = "", icon_dark = "", fontawesome, btn_txt, btn_href } = Astro.props;
 ---
 
 <div class="card h-100 shadow-sm">
@@ -31,7 +31,7 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
                     <Icon
                         name={icon}
                         color={icon_color}
-                        class={(icon_dark && 'hide-dark ') + icon_class}
+                        class={(icon_dark && "hide-dark ") + icon_class}
                         height="6rem"
                         width="7rem"
                     />
@@ -42,19 +42,19 @@ const { title, icon, icon_color, icon_class = '', icon_dark = '', fontawesome, b
                     <Icon
                         name={icon_dark}
                         color="white"
-                        class={'hide-light ' + icon_class}
+                        class={"hide-light " + icon_class}
                         height="6rem"
                         width="7rem"
                     />
                 )
             }
-            <i class={fontawesome + ' fa-5x'}></i>
+            <i class={fontawesome + " fa-5x"}></i>
         </div>
     </div>
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     p {
         font-size: 0.9rem;
     }

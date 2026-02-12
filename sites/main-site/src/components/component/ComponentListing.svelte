@@ -1,10 +1,11 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PaginationNav from '@components/PaginationNav.svelte';
-    import ComponentCard from '@components/component/ComponentCard.svelte';
-    import { SortBy, DisplayStyle, SearchQuery, currentPage } from '@components/store';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PaginationNav from "@components/PaginationNav.svelte";
+    import TagSection from "@components/TagSection.svelte";
+    import ComponentCard from "@components/component/ComponentCard.svelte";
+    import { SortBy, DisplayStyle, SearchQuery, currentPage } from "@components/store";
 
-    export let components: {
+    interface Component {
         name: string;
         path: string;
         type: string;
@@ -20,83 +21,98 @@
             name: string;
             version: string;
         }[];
-    }[] = [];
+    }
 
-    const searchComponents = (component) => {
-        if ($SearchQuery === '') {
+    let { components = [] } = $props();
+
+    let displayStyle = $derived($DisplayStyle);
+    let searchQuery = $derived($SearchQuery);
+    let sortBy = $derived($SortBy);
+    let sortInverse = $derived(sortBy.endsWith(";inverse"));
+    let currentPageValue = $derived($currentPage);
+
+    const searchComponents = (component: Component) => {
+        if (searchQuery === "") {
             return true;
         }
-        if (component.meta.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (component.meta.name && component.meta.name.toLowerCase().includes(searchQuery.toLowerCase())) {
             return true;
         }
         if (
             component.meta.description &&
-            component.meta.description.toLowerCase().includes($SearchQuery.toLowerCase())
+            component.meta.description.toLowerCase().includes(searchQuery.toLowerCase())
         ) {
             return true;
         }
         if (
             component.meta.keywords &&
-            component.meta.keywords.some((keyword) => keyword.toLowerCase().includes($SearchQuery.toLowerCase()))
+            component.meta.keywords.some((keyword) => keyword.toLowerCase().includes(searchQuery.toLowerCase()))
         ) {
             return true;
         }
         return false;
     };
-    let invertSort = false;
-    const sortComponents = (a, b) => {
-        invertSort = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Name')) {
-            return a.name.localeCompare(b.name) * (invertSort ? -1 : 1);
-        } else if ($SortBy.startsWith('# Pipeline integrations')) {
-            if (a.pipelines && b.pipelines) {
-                return (b.pipelines.length - a.pipelines.length) * (invertSort ? -1 : 1);
-            } else if (a.pipelines) {
-                return -1;
-            } else if (b.pipelines) {
-                return 1;
+
+    const sortComponents = (a: Component, b: Component) => {
+        if (sortBy.startsWith("Name")) {
+            if (sortInverse) {
+                return b.name.localeCompare(a.name);
             } else {
-                return 0;
+                return a.name.localeCompare(b.name);
+            }
+        } else if (sortBy.startsWith("# Pipeline integrations")) {
+            const aCount = a.pipelines?.length || 0;
+            const bCount = b.pipelines?.length || 0;
+
+            if (sortInverse) {
+                return aCount - bCount;
+            } else {
+                return bCount - aCount;
             }
         }
+        return 0;
     };
-    function searchFilterSortComponents(components) {
-        return components.sort(sortComponents).filter(searchComponents);
-    }
 
-    $: filteredComponents = searchFilterSortComponents(components) || components;
+    let filteredComponents = $derived(components.filter(searchComponents).sort(sortComponents));
 
-    let pageSize: number = 12;
-    let lastPage = Math.ceil(components.length / pageSize);
-    const updatePageSize = () => {
-        pageSize = $DisplayStyle === 'grid' ? 12 : 25;
-        let currentComponents = filteredComponents || components;
-        lastPage = Math.ceil(currentComponents.length / pageSize);
-    };
-    updatePageSize();
+    let pageSize = $derived(displayStyle === "grid" ? 12 : 25);
+    let lastPage = $derived(Math.ceil(filteredComponents.length / pageSize));
+    let paginatedItems = $derived(
+        filteredComponents.slice((currentPageValue - 1) * pageSize, currentPageValue * pageSize),
+    );
 
-    $: paginatedItems = filteredComponents.slice(($currentPage - 1) * pageSize, $currentPage * pageSize);
-
-    SortBy.subscribe(() => {
-        filteredComponents = searchFilterSortComponents(components);
-    });
     SearchQuery.subscribe(() => {
-        filteredComponents = searchFilterSortComponents(components);
-        updatePageSize();
-    });
-    DisplayStyle.subscribe(() => {
-        updatePageSize();
+        $currentPage = 1;
     });
 </script>
 
-<div class={`listing px-0 px-lg-2 py-4 ${components[0].type}`}>
-    {#if $DisplayStyle === 'grid'}
+<div class={`listing px-0 px-lg-2 py-4 ${components.length > 0 ? components[0].type : ""}`}>
+    {#if displayStyle === "grid"}
         <div class="grid">
-            {#each paginatedItems as component (component.name)}
-                <div class="g-col-12 g-col-md-6 g-col-xl-6 g-col-xxl-4 g-col-xxxl-3 g-col-xxxxl-2">
-                    <ComponentCard {component} />
+            {#if filteredComponents.length === 0 && searchQuery !== ""}
+                <div class="g-col-12 g-col-md-8 g-start-md-3">
+                    <div class="alert alert-secondary text-center" role="alert">
+                        No components found. Try changing your search query or filters.
+                    </div>
                 </div>
-            {/each}
+            {:else}
+                {#each paginatedItems as component (component.name)}
+                    <div
+                        class={[
+                            "g-col-12",
+                            "g-col-md-6",
+                            "g-col-xl-6",
+                            "g-col-xxl-4",
+                            components[0].type === "module" && "g-col-xxxl-3",
+                            components[0].type === "subworkflow" && "g-col-xxxl-4",
+                            components[0].type === "module" && "g-col-xxxxl-2",
+                            components[0].type === "subworkflow" && "g-col-xxxxl-3",
+                        ]}
+                    >
+                        <ComponentCard {component} />
+                    </div>
+                {/each}
+            {/if}
         </div>
     {:else}
         <table class="table table-responsive">
@@ -105,50 +121,52 @@
                     <ListingTableHeader name="Name" />
                     <th scope="col">Description</th>
                     <th class="keywords" scope="col">Keywords</th>
-                    {#if components[0].type !== 'module'}
-                        <th class="components" scope="col"> Components</th>
+                    {#if components.length > 0 && components[0].type !== "module"}
+                        <th class="components" scope="col">Components</th>
                     {/if}
                     <ListingTableHeader
                         name="# Pipeline integrations"
-                        title={'Sort by number of pipelines with ' + components[0].type}
+                        title={"Sort by number of pipelines with " + (components.length > 0 ? components[0].type : "")}
                         textEnd={true}
                     />
                 </tr>
             </thead>
             <tbody>
-                {#each paginatedItems as component (component.name)}
+                {#if filteredComponents.length === 0 && searchQuery !== ""}
                     <tr>
-                        <td class=" name p-0">
-                            <div class="position-relative p-3">
-                                <a class="stretched-link" href={'/' + component.type + 's/' + component.name + '/'}
-                                    >{@html component.name.replace('_', '_<wbr>')}</a
-                                >
+                        <td colspan="5" class="text-center">
+                            <div class="alert alert-secondary" role="alert">
+                                No components found. Try changing your search query or filters.
                             </div>
                         </td>
-                        <td class="text-small">
-                            {component.meta.description}
-                        </td>
-                        <td class="topics">
-                            <!-- {#if component.meta.keywords} -->
-                            {#each component.meta.keywords as keyword}
-                                <span class={`badge me-2 ${component.type}-topic`}>{keyword}</span>
-                            {/each}
-                            <!-- {/if} -->
-                        </td>
-                        {#if component.type !== 'module'}
-                            <td class="components">
-                                {#each component.meta.components as sub_component}
-                                    <span class={`badge me-2 ${component.type}-topic`}>{sub_component}</span>
-                                {/each}
-                            </td>
-                        {/if}
-                        <td class="text-end">
-                            {#if component.pipelines}
-                                {component.pipelines.length}
-                            {/if}
-                        </td>
                     </tr>
-                {/each}
+                {:else}
+                    {#each paginatedItems as component (component.name)}
+                        <tr>
+                            <td class="name p-0">
+                                <div class="position-relative p-3">
+                                    <a class="stretched-link" href={"/" + component.type + "s/" + component.name + "/"}
+                                        >{@html component.name.replace("_", "_<wbr>")}</a
+                                    >
+                                </div>
+                            </td>
+                            <td class="text-small">
+                                {component.meta.description}
+                            </td>
+                            <td class="topics">
+                                <TagSection tags={component.meta.keywords} type="keywords" />
+                            </td>
+                            {#if component.type !== "module"}
+                                <td class="components">
+                                    <TagSection tags={component.meta.components} type="modules" />
+                                </td>
+                            {/if}
+                            <td class="text-end">
+                                {component.pipelines ? component.pipelines.length : 0}
+                            </td>
+                        </tr>
+                    {/each}
+                {/if}
             </tbody>
         </table>
     {/if}

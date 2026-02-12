@@ -1,9 +1,9 @@
 ---
-import { Markdown } from '@astropub/md';
-import ComponentParamTable from '@components/component/ComponentParamTable.astro';
-import SidebarStats from '@components/sidebar/SidebarStats.astro';
-import ComponentPageLayout from '@layouts/ComponentPageLayout.astro';
-import components_json from '@public/components.json';
+import { Markdown } from "@mashehu/astropub-md";
+import ComponentParamTable from "@components/component/ComponentParamTable.astro";
+import SidebarStats from "@components/sidebar/SidebarStats.astro";
+import ComponentPageLayout from "@layouts/ComponentPageLayout.astro";
+import components_json from "@public/components.json";
 
 export function getStaticPaths() {
     return components_json.modules.flatMap((module) => {
@@ -25,15 +25,15 @@ const tools = module.meta.tools;
 
 function truncatURLs(url: string) {
     url = url
-        .replace(/^http(s):\/\//, '')
-        .replace(/^www./, '')
-        .replace(/\/Home$/, '')
-        .replace(/\/$/, '')
-        .replace(/.html$/, '')
-        .replace(/.shtml$/, '')
-        .replace(/\/index$/, '')
-        .replace(/\/src\/master$/, '')
-        .replace('/tree/master/', '[...]');
+        .replace(/^http(s):\/\//, "")
+        .replace(/^www./, "")
+        .replace(/\/Home$/, "")
+        .replace(/\/$/, "")
+        .replace(/.html$/, "")
+        .replace(/.shtml$/, "")
+        .replace(/\/index$/, "")
+        .replace(/\/src\/master$/, "")
+        .replace("/tree/master/", "[...]");
     return url;
 }
 ---
@@ -61,17 +61,24 @@ function truncatURLs(url: string) {
                 {
                     module.meta.input ? (
                         <div class="module input mb-5">
-                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} params={module.meta.input} />
+                            <ComponentParamTable name={"Input"} icon={"fa-sign-in"} params={module.meta.input} />
                         </div>
                     ) : (
                         <div class="module input mb-5">
-                            <ComponentParamTable name={'Input'} icon={'fa-sign-in'} />
+                            <ComponentParamTable name={"Input"} icon={"fa-sign-in"} />
                         </div>
                     )
                 }
                 <div class="module output mb-5">
-                    <ComponentParamTable name={'Output'} icon={'fa-sign-out'} params={module.meta.output} />
+                    <ComponentParamTable name={"Output"} icon={"fa-sign-out"} params={module.meta.output} />
                 </div>
+                {
+                    module.meta.topics && (
+                        <div class="module topics mb-5">
+                            <ComponentParamTable name={"Topics"} icon={"fa-tag"} params={module.meta.topics} />
+                        </div>
+                    )
+                }
             </div>
             <div class="module-tools col-12">
                 <h2>
@@ -105,7 +112,7 @@ function truncatURLs(url: string) {
                                                         {toolName}
                                                         <div class="text-small ms-2">
                                                             {tool[toolName].licence &&
-                                                                (typeof tool[toolName].licence === 'string' ? (
+                                                                (typeof tool[toolName].licence === "string" ? (
                                                                     <span
                                                                         title="Software License"
                                                                         data-bs-toggle="tooltip"
@@ -114,7 +121,7 @@ function truncatURLs(url: string) {
                                                                     >
                                                                         {tool[toolName].licence.replace(
                                                                             /^\['|'\]$/g,
-                                                                            '',
+                                                                            "",
                                                                         )}
                                                                     </span>
                                                                 ) : (
@@ -170,7 +177,7 @@ function truncatURLs(url: string) {
                                                                 data-bs-delay="300"
                                                                 class="btn btn-outline-secondary d-flex align-items-center overflow-auto"
                                                             >
-                                                                <i class="fa-duotone fa-book fa-fw me-2" />{' '}
+                                                                <i class="fa-duotone fa-book fa-fw me-2" />{" "}
                                                                 {truncatURLs(tool[toolName].documentation)}
                                                             </a>
                                                         )}
@@ -183,24 +190,24 @@ function truncatURLs(url: string) {
                                                                     title="Development Docs"
                                                                     class="btn btn-outline-secondary d-flex align-items-center overflow-auto"
                                                                 >
-                                                                    <i class="fa-duotone fa-wrench fa-fw me-2" />{' '}
+                                                                    <i class="fa-duotone fa-wrench fa-fw me-2" />{" "}
                                                                     {tool[toolName].tool_dev_url}
                                                                 </a>
                                                             )}
-                                                        {tool[toolName].doi && tool[toolName].doi.startsWith('10.') && (
+                                                        {tool[toolName].doi && tool[toolName].doi.startsWith("10.") && (
                                                             <a
-                                                                href={'https://doi.org/' + tool[toolName].doi}
+                                                                href={"https://doi.org/" + tool[toolName].doi}
                                                                 title="DOI"
                                                                 data-bs-toggle="tooltip"
                                                                 data-bs-delay="300"
                                                                 class="btn btn-outline-secondary d-flex align-items-center overflow-auto"
                                                             >
-                                                                <i class="fa-regular fa-newspaper fa-fw me-2" />{' '}
+                                                                <i class="fa-regular fa-newspaper fa-fw me-2" />{" "}
                                                                 {tool[toolName].doi}
                                                             </a>
                                                         )}
                                                         {tool[toolName].doi &&
-                                                            tool[toolName].doi === 'no DOI available' && (
+                                                            tool[toolName].doi === "no DOI available" && (
                                                                 <span class="btn btn-outline-secondary disabled">
                                                                     no DOI available
                                                                 </span>
@@ -220,7 +227,7 @@ function truncatURLs(url: string) {
         <hr class="d-md-none mt-2" />
         <div class="col-none col-md-3">
             <SidebarStats
-                component_type={'modules'}
+                component_type={"modules"}
                 contributors={module.meta.maintainers || module.meta.authors}
                 included_pipelines={module.pipelines}
                 included_subworkflows={module.subworkflows}

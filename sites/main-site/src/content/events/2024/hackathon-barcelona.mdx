@@ -4,21 +4,22 @@ subtitle: An in-person hackathon held in Barcelona
 type: hackathon
 announcement:
     start: 2024-08-28T09:00:00+02:00
-startDate: '2024-10-28'
-startTime: '10:00+02:00'
-endDate: '2024-10-30'
-endTime: '14:00+02:00'
+startDate: "2024-10-28"
+startTime: "10:00+02:00"
+endDate: "2024-10-30"
+endTime: "14:00+02:00"
 locations:
     - name: World Trade Center Barcelona, Barcelona, Spain
       geoCoordinates: [41.371298, 2.181658]
 ---
 
-import { Image } from 'astro:assets';
-import summitCard from '@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png';
-import ontLogo from '@assets/images/events/2024/hackathon-barcelona/ont-logo.svg';
-import ontLogoDarkbg from '@assets/images/events/2024/hackathon-barcelona/ont-logo-darkbg.svg';
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
-import HackathonGroup from '@components/event/HackathonGroup.astro';
+import { Image } from "astro:assets";
+import summitCard from "@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png";
+import ontLogo from "@assets/images/events/2024/hackathon-barcelona/ont-logo.svg";
+import ontLogoDarkbg from "@assets/images/events/2024/hackathon-barcelona/ont-logo-darkbg.svg";
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import HackathonGroup from "@components/event/HackathonGroup.astro";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 # Welcome
 
@@ -26,12 +27,12 @@ Join us in person for the October 2024 nf-core hackathon!
 
 This hackathon will be held in advance of the **Nextflow Summit 2024** in Barcelona, Spain and is organised jointly.
 
--   **Summit website**: https://summit.nextflow.io/2024/barcelona/
--   **Dates**: 28th - 30th October 2024
--   **Registration**: Visit the [summit registration page](https://summit.nextflow.io/2024/barcelona/register/)
--   **Schedule**: Visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
--   **Location**: [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6)
--   **Slack channel**: [`#hackathon-oct-2024`](https://nfcore.slack.com/archives/C07HZCK6YE4)
+- **Summit website**: https://summit.nextflow.io/2024/barcelona/
+- **Dates**: 28th - 30th October 2024
+- **Registration**: Visit the [summit registration page](https://summit.nextflow.io/2024/barcelona/register/)
+- **Schedule**: Visit the [summit agenda page](https://summit.nextflow.io/2024/barcelona/agenda/)
+- **Location**: [World Trade Center Barcelona](https://maps.app.goo.gl/Fyezb8CiS11wEGAU6)
+- **Slack channel**: [`#hackathon-oct-2024`](https://nfcore.slack.com/archives/C07HZCK6YE4)
 
 <Image class="mb-5" src={summitCard} alt="Nextflow Summit 2024 - Barcelona" />
 
@@ -40,14 +41,8 @@ This nf-core hackathon is sponsored by [Seqera](https://seqera.io/) and
 Many thanks to both companies for making this event possible!
 
 <div class="d-flex justify-content-evenly my-5">
-    <Image src={ontLogo} alt="Oxford Nanopore" class="hide-dark" style="height: 50px; width:auto;" />
-    <Image src={ontLogoDarkbg} alt="Oxford Nanopore" class="hide-light" style="height: 50px; width:auto;" />
-    <img
-        src="/images/contributors/colour/seqera.svg"
-        alt="Seqera"
-        class="darkmode-image"
-        style="height: 40px; width:auto;"
-    />
+    <DarkModeImage lightSrc={ontLogo} darkSrc={ontLogoDarkbg} alt="Oxford Nanopore" width={200} height={60} />
+    <DarkModeImage src="/images/contributors/colour/seqera.svg" alt="Seqera" width={200} height={40} />
 </div>
 
 # How the hackathon works
@@ -66,10 +61,10 @@ In addition to small social games and contests during the event, we also have a 
 
 Before you arrive at the hackathon, please make sure that you have:
 
--   [Registered](https://summit.nextflow.io/2024/barcelona/register/) to come!
--   [Joined the nf-core Slack](https://nf-co.re/join#slack)
--   [Joined the nf-core GitHub organisation](https://nf-co.re/join#github)
--   Added yourself to the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4)
+- [Registered](https://summit.nextflow.io/2024/barcelona/register/) to come!
+- [Joined the nf-core Slack](https://nf-co.re/join#slack)
+- [Joined the nf-core GitHub organisation](https://nf-co.re/join#github)
+- Added yourself to the [`#hackathon-oct-2024` slack channel](https://nfcore.slack.com/archives/C07HZCK6YE4)
 
 ## Where to find tasks
 
@@ -109,13 +104,13 @@ This hackathon we will use projects, as opposed to the broader groups of previou
 At the end of each day, we will group the projects into categories and sum up their progress.
 Projects can be anything from:
 
--   Adding new features to existing pipelines
--   Adding and improving components (modules / subworkflows)
--   Improving the website and nf-core tooling
--   Creating entirely new pipelines
--   Discussion and planning community initiatives
--   Working on special interest group topics
--   _...anything else_
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
 
 You can bring your own favourite topic or choose from a list of open issues in the community.
 Each project has a lead who can point you in the right direction.
@@ -509,20 +504,20 @@ In particular, the talk about [using git and GitHub](https://www.youtube.com/wat
 
 **Help with coding and nf-core tools**
 
--   Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
--   [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
--   Overview of all nf-core/tools commands for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
+- Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
+- [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
+- Overview of all nf-core/tools commands for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
 
 **Adding to pipelines**
 
--   [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
--   How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
+- [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
+- How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
 
 **Creating a new pipeline**
 
--   [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
--   [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
--   [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
+- [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
+- [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
+- [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
 
 # Code of conduct
 

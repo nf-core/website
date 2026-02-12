@@ -1,12 +1,13 @@
 ---
-title: 'Bytesize: nf-core/pangenome'
+title: "Bytesize: nf-core/pangenome"
 subtitle: Simon Heumos, QBiC, University of Tübingen
 type: talk
-startDate: '2023-11-07'
-startTime: '13:00+01:00'
+startDate: "2023-11-07"
+startTime: "13:00+01:00"
+embedAt: "pangenome"
 youtubeEmbed: https://www.youtube.com/watch?v=cTfPWKzTqms
-endDate: '2023-11-07'
-endTime: '13:30+01:00'
+endDate: "2023-11-07"
+endTime: "13:30+01:00"
 locations:
   - name: Online
     links:

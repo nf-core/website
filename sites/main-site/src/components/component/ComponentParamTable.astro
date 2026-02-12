@@ -1,24 +1,47 @@
 ---
 let { name, icon, params = [] } = Astro.props;
-import ComponentParamList from './ComponentParamList.astro';
+import ComponentParamList from "./ComponentParamList.astro";
+interface ParameterDetail {
+    type: string;
+    description: string;
+    pattern?: string; // Optional property based on examples
+    ontologies?: any[]; // Optional property, using 'any[]' as structure isn't fully defined
+    // Add other potential properties if they exist
+}
+
+// Represents an entry within the parameter arrays, typically an object
+// with a single dynamic key (parameter name or pattern) mapping to its details
+// or sometimes just a generic object.
+type ParameterEntry = Record<string, ParameterDetail | object>;
+
+// Defines the possible structures for the 'params' variable based on the logs
+type Params =
+    | ParameterEntry[] // e.g., [ { meta: {...} }, { reads: {...} } ]
+    | Record<string, ParameterEntry[]> // e.g., { data: [ { "*.fastq": {...} } ], versions: [...] }
+    | Array<ParameterEntry[]>; // e.g., [ [ { meta: {...} }, { data: {...} } ] ]
 
 export interface Props {
     name: string;
     icon: string;
-    params?: any[];
+    params?: Params;
 }
-if (name == 'Input') {
-    params = params.map((param, i) => {
-        param = Array.isArray(param) ? param : [param];
-        return { [`input[${i}]`]: param };
+if (name === "Input" || name === "Output" || name === "Topics") {
+    // console.log('is Array', Array.isArray(params));
+    const paramsArray = Array.isArray(params) ? params : [params];
+    params = paramsArray.map((param, i) => {
+        const paramArray = Array.isArray(param) ? param : [param];
+        return (name === "Output" || name === "Topics") && paramArray.length === 1
+            ? paramArray[0]
+            : { [`${name.toLowerCase()}[${i}]`]: paramArray };
     });
 }
+// console.log(params);
 ---
 
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
     <i class={`fad ${icon} fa-fw`}></i>
     {name}
-    <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link">
+    <a href={"#" + name.toLowerCase()} class="header-link scroll_to_link">
         <span class="fas fa-link" aria-hidden="true"></span>
     </a>
 </h2>
@@ -35,7 +58,7 @@ if (name == 'Input') {
                 <span class="text-body-secondary text-start ps-3">description</span>
             </div>
             <div class="col-12 col-md">
-                <span class="text-body-secondary float-end">pattern</span>
+                <span class="text-body-secondary">pattern</span>
             </div>
         </div>
     )

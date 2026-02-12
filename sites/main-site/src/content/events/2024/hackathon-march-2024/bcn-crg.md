@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Barcelona)
 subtitle: Local node of the nf-core hackathon at CRG, Barcelona.
 shortTitle: CRG, Barcelona, Spain
 type: hackathon
-startDate: '2024-03-18'
-startTime: '10:00+02:00'
-endDate: '2024-03-20'
-endTime: '18:00+02:00'
+startDate: "2024-03-18"
+startTime: "10:00+02:00"
+endDate: "2024-03-20"
+endTime: "18:00+02:00"
 locations:
   - name: CRG
     address: C/ del Dr. Aiguader, 88, 08003 Barcelona, Spain

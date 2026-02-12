@@ -1,12 +1,12 @@
 ---
-title: '#animal-genomics: October Meeting'
+title: "#animal-genomics: October Meeting"
 subtitle: Roderic Guigó (CRG, Spain)
 
 type: talk
-startDate: '2024-10-16'
-startTime: '16:00+02:00'
-endDate: '2024-10-16'
-endTime: '17:00+02:00'
+startDate: "2024-10-16"
+startTime: "16:00+02:00"
+endDate: "2024-10-16"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/LOqk-fNEPvQ
 locations:
   - name: Online

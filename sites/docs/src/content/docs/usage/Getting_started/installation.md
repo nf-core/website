@@ -13,7 +13,7 @@ We recommend using a personal installation of Nextflow where possible, instead o
 This makes it easier to update and control versions.
 
 We generally recommend following the official installation instructions from the Nextflow documentation.
-However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-instllation), and on [Windows operating systems](#installation-on-windows).
+However on this page we provide '[quick start](#quick-start-installation)' version of these instructions, as well as instructions for [installing via Conda](#bioconda-installation), and on [Windows operating systems](#installation-on-windows).
 
 If in doubt, see the [official Nextflow installation documentation](https://www.nextflow.io/docs/latest/getstarted.html#installation).
 Any instructions on this page are provided for convinence, and may not be up-to-date.
@@ -141,7 +141,6 @@ For example, `-profile docker` or `-profile conda`.
   - Also runs _containers_, and can optionally create these from Docker images
   - Does not need root access or any daemon processes
 - [Apptainer](https://apptainer.org/)
-
   - Open source version of Singularity (split from Singularity in 2021)
   - :::warning
     Currently, nf-core pipelines run with `-profile apptainer` will build using
@@ -168,7 +167,7 @@ For example, `-profile docker` or `-profile conda`.
 
 The pipeline needs no installation - Nextflow will automatically fetch it from GitHub if `nf-core/<pipeline-name>` is specified as the pipeline name.
 
-This method requires an internet connection. If you're running on a system that has no internet connection, please see [Running Offline](offline.md).
+This method requires an internet connection. If you're running on a system that has no internet connection, please see [Running Offline](/docs/usage/getting_started/offline).
 
 ### Development
 

@@ -1,10 +1,10 @@
 <script lang="ts">
-    import ListingTableHeader from '@components/ListingTableHeader.svelte';
-    import PipelineCard from '@components/pipeline/PipelineCard.svelte';
-    import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from '@components/store';
-    import { onMount } from 'svelte';
+    import ListingTableHeader from "@components/ListingTableHeader.svelte";
+    import PipelineCard from "@components/pipeline/PipelineCard.svelte";
+    import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { onMount } from "svelte";
 
-    export let pipelines: {
+    interface Pipeline {
         name: string;
         description: string;
         stargazers_count: number;
@@ -14,66 +14,76 @@
             tag_name: string;
         }[];
         archived: boolean;
-    }[] = [];
+    }
 
-    export let filters: { name: string }[] = [{ name: '' }];
+    let { pipelines, filters } = $props();
 
-    let sortInverse = false;
+    onMount(() => {
+        CurrentFilter.set(filters);
+    });
 
-    const searchPipelines = (pipeline) => {
-        if ($SearchQuery === '') {
+    let currentFilter = $derived($CurrentFilter || filters);
+    let displayStyle = $derived($DisplayStyle || "grid");
+    let searchQuery = $derived($SearchQuery || "");
+    let sortBy = $derived($SortBy || "Last release");
+    let sortInverse = $derived(sortBy.endsWith(";inverse"));
+
+    const searchPipelines = (pipeline: Pipeline) => {
+        if (searchQuery === "") {
             return true;
         }
-        if (pipeline.name.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (pipeline.name.toLowerCase().includes(searchQuery.toLowerCase())) {
             return true;
         }
-        if (pipeline.description && pipeline.description.toLowerCase().includes($SearchQuery.toLowerCase())) {
+        if (pipeline.description && pipeline.description.toLowerCase().includes(searchQuery.toLowerCase())) {
             return true;
         }
-        if (pipeline.topics.some((topic) => topic.toLowerCase().includes($SearchQuery.toLowerCase()))) {
+        if (pipeline.topics.some((topic) => topic.toLowerCase().includes(searchQuery.toLowerCase()))) {
             return true;
         }
         return false;
     };
 
-    const filterPipelines = (pipeline) => {
-        if ($CurrentFilter.find((f) => f.name === 'Released') && pipeline.releases.length > 1 && !pipeline.archived) {
+    const filterPipelines = (pipeline: Pipeline) => {
+        if (currentFilter.find((f) => f.name === "Released") && pipeline.releases.length > 1 && !pipeline.archived) {
             return true;
         }
         if (
-            $CurrentFilter.find((f) => f.name === 'Under development') &&
+            currentFilter.find((f) => f.name === "Under development") &&
             pipeline.releases.length === 1 &&
             !pipeline.archived
         ) {
             return true;
         }
-        if ($CurrentFilter.find((f) => f.name === 'Archived') && pipeline.archived === true) {
+        if (currentFilter.find((f) => f.name === "Archived") && pipeline.archived === true) {
             return true;
         }
         return false;
     };
 
-    const sortPipelines = (a, b) => {
-        sortInverse = $SortBy.endsWith(';inverse');
-        if ($SortBy.startsWith('Name')) {
+    const sortPipelines = (a: Pipeline, b: Pipeline) => {
+        if (sortBy.startsWith("Name")) {
             if (sortInverse) {
                 return b.name.localeCompare(a.name);
             } else {
                 return a.name.localeCompare(b.name);
             }
-        } else if ($SortBy.startsWith('Stars')) {
+        } else if (sortBy.startsWith("Stars")) {
             if (sortInverse) {
                 return a.stargazers_count - b.stargazers_count;
             } else {
                 return b.stargazers_count - a.stargazers_count;
             }
-        } else if ($SortBy.startsWith('Last release')) {
-            // handle case where a pipeline has no releases
+        } else if (sortBy.startsWith("Last release")) {
             if (a.releases.length === 1 && b.releases.length === 1) {
                 if (sortInverse) {
-                    return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+                    return (
+                        new Date(a.releases[0].published_at).getTime() - new Date(b.releases[0].published_at).getTime()
+                    );
                 } else {
-                    return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+                    return (
+                        new Date(b.releases[0].published_at).getTime() - new Date(a.releases[0].published_at).getTime()
+                    );
                 }
             }
             if (a.releases.length === 1) {
@@ -84,56 +94,20 @@
             }
 
             if (sortInverse) {
-                return new Date(a.releases[0].published_at) - new Date(b.releases[0].published_at);
+                return new Date(a.releases[0].published_at).getTime() - new Date(b.releases[0].published_at).getTime();
             } else {
-                return new Date(b.releases[0].published_at) - new Date(a.releases[0].published_at);
+                return new Date(b.releases[0].published_at).getTime() - new Date(a.releases[0].published_at).getTime();
             }
         }
+        return 0;
     };
-    function searchFilterSortPipelines(pipelines) {
-        pipelines = pipelines.filter(filterPipelines).sort(sortPipelines).filter(searchPipelines);
-        Filters.set(
-            $Filters.map((filter) => {
-                if (filter.name === 'Released') {
-                    return {
-                        name: filter.name,
-                        count: pipelines.filter((p) => p.releases.length > 1 && !p.archived).length,
-                    };
-                }
-                if (filter.name === 'Under development') {
-                    return {
-                        name: filter.name,
-                        count: pipelines.filter((p) => p.releases.length === 1 && !p.archived).length,
-                    };
-                }
-                if (filter.name === 'Archived') {
-                    return { name: filter.name, count: pipelines.filter((p) => p.archived).length };
-                }
-                return filter;
-            }),
-        );
-        return pipelines;
-    }
-    $: filteredPipelines = searchFilterSortPipelines(pipelines);
-
-    onMount(() => {
-        CurrentFilter.set(filters);
-        SortBy.subscribe(() => {
-            filteredPipelines = searchFilterSortPipelines(pipelines);
-        });
-        CurrentFilter.subscribe(() => {
-            filteredPipelines = searchFilterSortPipelines(pipelines);
-        });
-        SearchQuery.subscribe(() => {
-            filteredPipelines = searchFilterSortPipelines(pipelines);
-        });
-    });
+    let filteredPipelines = $derived(pipelines.filter(filterPipelines).filter(searchPipelines).sort(sortPipelines));
 </script>
 
 <div class="listing px-2 py-4">
-    {#if $DisplayStyle === 'grid'}
+    {#if displayStyle === "grid"}
         <div class="grid">
-            {#if filteredPipelines.length === 0 && $SearchQuery !== ''}
+            {#if filteredPipelines.length === 0 && searchQuery !== ""}
                 <div class="g-col-12 g-col-md-8 g-start-md-3">
                     <div class="alert alert-secondary text-center" role="alert">
                         No pipelines found. Try changing your search query or filters.
@@ -148,7 +122,7 @@
             {/if}
         </div>
     {:else}
-        <table class="table table-hove table-responsive">
+        <table class="table table-hover table-responsive">
             <thead>
                 <tr>
                     <ListingTableHeader name="Name" />
@@ -161,11 +135,11 @@
             <tbody>
                 {#each filteredPipelines as pipeline}
                     <tr>
-                        <td class=" name p-0">
+                        <td class="name p-0">
                             <div class="position-relative p-3">
                                 <a
                                     class="stretched-link"
-                                    href={'/' + pipeline.name + '/' + pipeline.releases[0].tag_name + '/'}
+                                    href={"/" + pipeline.name + "/" + pipeline.releases[0].tag_name + "/"}
                                     >{pipeline.name}</a
                                 >
                             </div>
@@ -175,15 +149,15 @@
                         </td>
                         <td class="text-center">
                             {#if pipeline.archived}
-                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip" />
+                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
                             {:else if pipeline.releases.length === 1}
                                 <i
                                     class="fa-solid fa-xs fa-wrench text-warning"
                                     title="under development"
                                     data-bs-toggle="tooltip"
-                                />
+                                ></i>
                             {:else if pipeline.releases.length > 1}
-                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip" />
+                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"></i>
                             {/if}
                         </td>
                         <td class="text-end">
@@ -191,7 +165,7 @@
                         </td>
                         <td class="text-end">
                             <span>
-                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : '-'}
+                                {pipeline.releases.length > 1 ? pipeline.releases[0].tag_name : "-"}
                             </span>
                         </td>
                     </tr>

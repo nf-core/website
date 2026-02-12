@@ -30,3 +30,18 @@ process OLD_MODULE {
 
 The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
 an automatic update of the module/subworkflow is performed.
+
+### Updating the nf-tests
+
+The addition of `assert false` will mean the nf-test will always fail. The `then` part of the nf-test should be updated with the following code:
+
+```groovy title="main.nf.test"
+...
+  then {
+    assertAll(
+      { assert process.failed },
+      { assert process.errorReport.contains("WARNING: This module has been deprecated.")}
+    )
+  }
+...
+```

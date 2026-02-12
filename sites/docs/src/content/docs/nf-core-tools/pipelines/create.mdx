@@ -5,7 +5,7 @@ subtitle: Scaffolding a new pipeline using the nf-core template
 weight: 10
 ---
 
-import Features from '@components/Features.astro';
+import Features from "@components/Features.astro";
 
 The `create` subcommand makes a new pipeline using the nf-core base template.
 With a given pipeline name, description and author, it makes a starter pipeline which follows nf-core best practices.
@@ -13,7 +13,7 @@ With a given pipeline name, description and author, it makes a starter pipeline 
 After creating the files, the command initialises the folder as a git repository and makes an initial commit.
 This first "vanilla" commit which is identical to the output from the templating tool is important, as it allows us to keep your pipeline in sync with the base template in the future. A full description of the file structure and all files created in the initial pipeline setup can be found [here](https://nf-co.re/docs/contributing/pipelines/pipeline_file_structure). See the [nf-core syncing docs](https://nf-co.re/docs/tutorials/sync/overview) for more information on how the syncing works.
 
-![` nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain`](/images/tools/nf-core-create.svg)
+![` nf-core pipelines create -n nextbigthing -d "This pipeline analyses data from the next big omics technique" -a "Big Steve" --plain`](../../../../assets/images/tools/nf-core-create.svg)
 
 Once you have run the command, create a new empty repository on GitHub under your username (not the `nf-core` organisation, yet) and push the commits from your computer using the example commands in the above log.
 You can then continue to edit, commit and push normally as you build your pipeline.
@@ -38,43 +38,20 @@ The interface will guide you through the pipeline creation process. Both nf-core
 name: coolpipe
 description: A cool pipeline
 author: me
-prefix: myorg
-skip:
-    - github
-    - ci
-    - github_badges
+org: myorg
+force: false
+outdir: .
+version: 1.0.0dev
+skip_features:
     - igenomes
     - nf_core_configs
-template:
-    author: me
-    description: A cool pipeline
-    force: false
-    is_nfcore: false
-    name: coolpipe
-    org: myorg
-    outdir: .
-    skip_features:
-        - github
-        - ci
-        - igenomes
-        - nf_core_configs
-        - code_linters
-        - citations
-        - gitpod
-        - codespaces
-        - multiqc
-        - fastqc
-        - modules
-        - changelog
-        - nf_schema
-        - license
-        - email
-        - adaptivecard
-        - slackreport
-        - documentation
-        - test_config
-        - seqera_platform
-    version: 1.0.0dev
+    - code_linters
+    - citations
+    - multiqc
+    - fastqc
+    - modules
+    - changelog
+    - slackreport
 ```
 
 This will create a pipeline called `coolpipe` in the directory `myorg-coolpipe` (`<prefix>-<name>`) with `me` as the author. It will exclude all possible parts of the template.

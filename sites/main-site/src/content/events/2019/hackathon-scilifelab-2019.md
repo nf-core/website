@@ -2,10 +2,10 @@
 title: Hackathon @ SciLifeLab
 subtitle: The 2019 nf-core hackathon held at SciLifeLab, Stockholm
 type: hackathon
-startDate: '2019-12-04'
-startTime: '09:00+02:00'
-endDate: '2019-12-06'
-endTime: '17:00+02:00'
+startDate: "2019-12-04"
+startTime: "09:00+02:00"
+endDate: "2019-12-06"
+endTime: "17:00+02:00"
 locations:
   - name: SciLifeLab
     links:

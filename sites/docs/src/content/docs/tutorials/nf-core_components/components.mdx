@@ -5,8 +5,8 @@ shortTitle: Writing nf-core components
 weight: 10
 ---
 
-import Tabs from '@components/Tabs.svelte';
-import TabItem from '@components/TabItem.svelte';
+import Tabs from "@components/Tabs.svelte";
+import TabItem from "@components/TabItem.svelte";
 
 If you decide to upload a module to `nf-core/modules` then this will ensure that it will become available to all nf-core pipelines, and to everyone within the Nextflow community! See [`modules/`](https://github.com/nf-core/modules/tree/master/modules) for examples.
 
@@ -16,15 +16,15 @@ If you decide to upload a module to `nf-core/modules` then this will ensure that
 
 Please check that the module you wish to add isn't already on [`nf-core/modules`](https://github.com/nf-core/modules/tree/master/modules):
 
--   Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
--   Check [open pull requests](https://github.com/nf-core/modules/pulls)
--   Search [open issues](https://github.com/nf-core/modules/issues)
+- Use the [`nf-core modules list`](https://github.com/nf-core/tools#list-modules) command
+- Check [open pull requests](https://github.com/nf-core/modules/pulls)
+- Search [open issues](https://github.com/nf-core/modules/issues)
 
 If the module doesn't exist on `nf-core/modules`:
 
--   Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
--   Set an appropriate subject for the issue e.g. `new module: fastqc`
--   Add yourself to the `Assignees` so we can track who is working on the module
+- Please create a [new issue](https://github.com/nf-core/modules/issues/new?assignees=&labels=new%20module&template=new_nodule.md&title=new%20module:) before adding it
+- Set an appropriate subject for the issue e.g. `new module: fastqc`
+- Add yourself to the `Assignees` so we can track who is working on the module
 
 ### New module workflow
 
@@ -69,17 +69,16 @@ and proceed with Step 5.
 
 8. Create a module using the [nf-core DSL2 module template](https://github.com/nf-core/tools/blob/master/nf_core/module-template/main.nf):
 
-    ![nf-core modules create](/images/contributing/modules/nf-core-modules-create.svg)
+    ![nf-core modules create](../../../../assets/images/contributing/modules/nf-core-modules-create.svg)
 
     All of the files required to add the module to `nf-core/modules` will be created/edited in the appropriate places. There are at most 3 files to modify:
-
     1. [`./modules/nf-core/fastqc/main.nf`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/main.nf)
 
         This is the main script containing the `process` definition for the module. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
 
     2. [`./modules/nf-core/fastqc/meta.yml`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/meta.yml)
 
-        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check it's formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) during linting (and in the pre-commit hook).
+        This file will be used to store general information about the module and author details - the majority of which will already be auto-filled. However, you will need to add a brief description of the files defined in the `input` and `output` section of the main script since these will be unique to each module. We check its formatting and validity based on a [JSON schema](https://github.com/nf-core/modules/blob/master/modules/meta-schema.json) during linting (and in the pre-commit hook).
 
     3. [`./modules/nf-core/fastqc/tests/main.nf.test`](https://github.com/nf-core/modules/blob/master/modules/nf-core/fastqc/tests/main.nf.test)
 
@@ -89,20 +88,24 @@ and proceed with Step 5.
 
         Refer to the section [writing nf-test tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) for more information on how to write nf-tests
 
-9. Create a snapshot of the tests
-   ![nf-core modules test](/images/contributing/modules/nf-core-modules-test.svg)
+9. Populate the versions topic channel
+
+    Use the eval output qualifier to obtain the version of the tool(s) used in this module and emit the version and populate the versions topic channel. Check the fastqc module for an example [here](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16).
+
+10. Create a snapshot of the tests
+    ![nf-core modules test](../../../../assets/images/contributing/modules/nf-core-modules-test.svg)
 
     :::note
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
     :::
 
-10. Check that the new module you've added follows the [module specifications](/docs/guidelines/components/modules)
+11. Check that the new module you've added follows the [module specifications](/docs/guidelines/components/modules)
 
-11. Lint the module locally to check that it adheres to nf-core guidelines before submission
+12. Lint the module locally to check that it adheres to nf-core guidelines before submission
 
-    ![nf-core modules lint](/images/contributing/modules/nf-core-modules-lint.svg)
+    ![nf-core modules lint](../../../../assets/images/contributing/modules/nf-core-modules-lint.svg)
 
-12. Once ready, the code can be pushed and a pull request (PR) created
+13. Once ready, the code can be pushed and a pull request (PR) created
 
     On a regular basis you can pull upstream changes into this branch and it is recommended to do so before pushing and creating a pull request. Rather than merging changes directly from upstream the rebase strategy is recommended so that your changes are applied on top of the latest master branch from the nf-core repo. This can be performed as follows
 
@@ -139,10 +142,9 @@ git branch -d fastqc
 
 8. Create a subworkflow using the [nf-core DSL2 subworkflow template](https://github.com/nf-core/tools/blob/master/nf_core/subworkflow-template/main.nf) in the root of the clone of the nf-core/modules repository:
 
-    ![nf-core subworkflows create](/images/contributing/modules/nf-core-subworkflows-create.svg)
+    ![nf-core subworkflows create](../../../../assets/images/contributing/modules/nf-core-subworkflows-create.svg)
 
     All of the files required to add the subworkflow to `nf-core/modules` will be created/edited in the appropriate places. There are at most 3 files to modify:
-
     1. [`./subworkflows/nf-core/bam_sort_stats_samtools/main.nf`](https://github.com/nf-core/modules/blob/master/subworkflows/nf-core/bam_sort_stats_samtools/main.nf)
 
         This is the main script containing the `workflow` definition for the subworkflow. You will see an extensive number of `TODO` statements to help guide you to fill in the appropriate sections and to ensure that you adhere to the guidelines we have set for module submissions.
@@ -161,7 +163,7 @@ git branch -d fastqc
 
 9. Create a snapshot of the tests
 
-    ![nf-core subworkflows test](/images/contributing/modules/nf-core-subworkflows-test.svg)
+    ![nf-core subworkflows test](../../../../assets/images/contributing/modules/nf-core-subworkflows-test.svg)
 
     :::note
     See the [nf-test docs](https://code.askimed.com/nf-test/) if you would like to run the tests manually.
@@ -171,7 +173,7 @@ git branch -d fastqc
 
 11. Lint the subworkflow locally to check that it adheres to nf-core guidelines before submission
 
-![nf-core subworkflows lint](/images/contributing/modules/nf-core-subworkflows-lint.svg)
+![nf-core subworkflows lint](../../../../assets/images/contributing/modules/nf-core-subworkflows-lint.svg)
 
 12. Once ready, the code can be pushed and a pull request (PR) created
 
@@ -211,7 +213,7 @@ For example: the [nf-core/test-datasets](https://github.com/nf-core/test-dataset
 <TabItem name={"modules"} client:idle>
 #### Using a stub test when required test data is too big
 
-If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+If the module absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the module using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy instances of all expected output files.
 
 In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([see for example](https://github.com/nf-core/modules/blob/master/tests/modules/nf-core/ascat/test.yml)):
 
@@ -223,7 +225,7 @@ nextflow run tests/modules/<nameofmodule> -entry test_<nameofmodule> -c tests/co
 <TabItem name={"subworkflows"} client:idle>
 #### Using a stub test when required test data is too big
 
-If the subworkflow absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy versions of all expected output files as well as the `versions.yml`. An example is found in the [bam_sort_stats_samtools subworkflow](
+If the subworkflow absolute cannot run using tiny test data, there is a possibility to add [stub-run](https://www.nextflow.io/docs/edge/process.html#stub) to the test.yml. In this case it is required to test the subworkflow using larger scale data and document how this is done. In addition, an extra script-block labeled `stub:` must be added, and this block must create dummy instances of all expected output files.
 
 In the `test.yml` the `-stub-run` argument is written as well as the md5sums for each of the files that are added in the stub-block. This causes the stub-code block to be activated when the unit test is run ([see for example](https://github.com/nf-core/modules/blob/71b1180a5a3de6398eb0eb4d55424cbda36f52d8/subworkflows/nf-core/fasta_explore_search_plot_tidk/tests/main.nf.test#L55-L80))
 

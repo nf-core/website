@@ -1,12 +1,12 @@
 ---
-title: '#animal-genomics: July Meeting'
+title: "#animal-genomics: July Meeting"
 subtitle: Cristina Casto Rebollo, Institute for Animal Science and Technology (ICTA), Universitat Politècnica de València, Spain
 
 type: talk
-startDate: '2024-07-17'
-startTime: '16:00+02:00'
-endDate: '2024-07-17'
-endTime: '17:00+02:00'
+startDate: "2024-07-17"
+startTime: "16:00+02:00"
+endDate: "2024-07-17"
+endTime: "17:00+02:00"
 youtubeEmbed: https://youtu.be/p9h8l7c9we0
 locations:
   - name: Online

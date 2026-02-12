@@ -2,10 +2,10 @@
 external_node_modules = ["vscode-oniguruma","shiki"]
 node_bundler = "esbuild"
 [build]
-environment = { NODE_VERSION = "20.4.0" }
+environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/main-site"
 [images]
-remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*"]
+remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
 [[headers]]
 for = "/_astro/*"
 [headers.values]

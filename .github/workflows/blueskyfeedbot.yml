@@ -1,0 +1,40 @@
+name: Bluesky FeedBot
+on:
+  schedule:
+    # This will run every hour
+    - cron: "0 * * * *"
+  workflow_dispatch:
+jobs:
+  rss-to-bluesky:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate cache key
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
+        id: generate-key
+        with:
+          script: |
+            core.setOutput('cache-key', new Date().valueOf())
+      - name: Retrieve cache
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        with:
+          path: ${{ github.workspace }}/blueskyfeedbot
+          key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
+          restore-keys: feed-cache-
+      - name: GitHub
+        uses: "joschi/blueskyfeedbot@9bf0141c9510807ec8e7085a5123c626251dd6af" # v0.0.4
+        with:
+          # This is the RSS feed you want to publish
+          rss-feed: https://nf-co.re/blog/rss.xml
+          # Template of status posted to Bluesky (Handlebars)
+          template: |
+            New blog post! {{item.title}}
+            {{item.link}}
+          # This is your service URL (optional)
+          service-url: https://bsky.social
+          # This is the Bluesky username (example: username.bsky.social)
+          username: "nf-co.re"
+          # This is the app password you created earlier
+          password: ${{ secrets.FEED_TO_BLUESKY }}
+          # This is a path to the cache file, using the above cache path
+          cache-file: ${{ github.workspace }}/blueskyfeedbot/cache.json
+          initial-post-limit: 0

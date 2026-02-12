@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 1: Introduction to nf-core'
-subtitle: 'nf-core/bytesize: Bite-sized talks, (giga)byte-sized science!'
+title: "Bytesize 1: Introduction to nf-core"
+subtitle: "nf-core/bytesize: Bite-sized talks, (giga)byte-sized science!"
 type: talk
-startDate: '2021-02-02'
-startTime: '13:00+01:00'
-endDate: '2021-02-02'
-endTime: '13:30+01:00'
+startDate: "2021-02-02"
+startTime: "13:00+01:00"
+endDate: "2021-02-02"
+endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/ZfxOFYXmiNw
 locations:
   - name: Online

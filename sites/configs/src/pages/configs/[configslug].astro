@@ -1,218 +1,264 @@
 ---
-import { Markdown } from '@astropub/md';
-import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
-import octokit from '@components/octokit';
-import SidebarStatsRow from '@components/sidebar/SidebarStatsRow.astro';
-import PageLayout from '@layouts/PageLayout.astro';
+import { Markdown } from "@mashehu/astropub-md";
+import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+import SidebarStatsRow from "@components/sidebar/SidebarStatsRow.astro";
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import { Image } from "astro:assets";
 
 export async function getStaticPaths() {
-    //get contents of markdown files in docs dir in https://github.com/nf-core/configs/tree/master/docs using request
-    const files = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
-        owner: 'nf-core',
-        repo: 'configs',
-        path: 'docs',
-    });
-
-    function parseConfig(fileContent) {
-        let config = {
-            config_profile_description: '',
-            config_profile_contact: '',
-            config_profile_url: '',
-            executor: '',
+    let files = await getCollection("configs");
+    files = files.map((file) => {
+        return {
+            ...file,
+            id: file.id.replace("configs/master/", ""),
         };
+    });
+    return files
+        .filter((config) =>
+            // remove configs that don't have a matching md file
+            files.find((file) => file.id.includes(config.id.replace("conf/", "")) && file.data.extension === "md"),
+        )
+        .filter((file) => file.data.extension === "config")
+        .filter((file) => !file.id.includes("pipeline/"))
+        .map((file) => {
+            const name = file.id.replace("conf/", "");
 
-        // find values executor in params files
-        config.config_profile_description = fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)
-            ? fileContent.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/)[2]
-            : '';
-        config.config_profile_contact = fileContent.match(/config_profile_contact\s*=\s*(.*)/)
-            ? fileContent.match(/config_profile_contact\s*=\s*(.*)/)[1]
-            : '';
-        config.config_profile_url = fileContent.match(/config_profile_url\s*=\s*(.*)/)
-            ? fileContent.match(/config_profile_url\s*=\s*(.*)/)[1]
-            : '';
-        config.executor = fileContent.match(/executor\s*=\s*(.*)/) ? fileContent.match(/executor\s*=\s*(.*)/)[1] : '';
-        if (config.executor === '') {
-            //maybe it is executor{\n name=...} instead?
-            config.executor = fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*}/)
-                ? fileContent.match(/executor\s*{\s*name\s*=\s*(.*)\s*}/)[1]
-                : '';
-        }
-        // handle ternary operators in config.executor
-        if (config.executor.includes('?') && config.executor.includes(':')) {
-            config.executor = config.executor
-                .match(/{.*\?(.*):(.*)}/)
-                ?.slice(1, 3)
-                .map((item) => item.trim().replace(/'/g, ''))
-                .join(', ');
-        }
-        //remove double and quotes
-        Object.keys(config).forEach((key) => {
-            config[key] = config[key]?.replaceAll(/'|"/g, '');
-        });
-        return config;
-    }
-
-    //filter out directories
-    let markdowns = files.data.filter((file) => file.type === 'file');
-    // exclude template file
-    markdowns = markdowns.filter((file) => file.name !== 'template.md');
-
-    //get the markdown file contents
-    const configs = await Promise.all(
-        markdowns.map(async (markdown) => {
-            const content = await octokit.request('GET /repos/{owner}/{repo}/contents/{path}', {
-                owner: 'nf-core',
-                repo: 'configs',
-                path: markdown.path,
-            });
-            const config = await octokit
-                .request('GET /repos/{owner}/{repo}/contents/{path}', {
-                    owner: 'nf-core',
-                    repo: 'configs',
-                    path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
-                })
-                .catch((error) => {
-                    console.log(error);
-                    return {
-                        data: {
-                            content: Buffer.from('No config file found').toString('base64'),
-                        },
-                    };
-                });
             return {
-                name: markdown.name,
-                content: Buffer.from(content.data.content, 'base64').toString(),
-                config: parseConfig(Buffer.from(config.data.content, 'base64').toString()),
-                raw_config: Buffer.from(config.data.content, 'base64').toString(),
-                path: markdown.path.replace('docs/', 'conf/').replace('.md', '.config'),
-            };
-        }),
-    );
-    return await configs.flatMap((config) => {
-        return [
-            {
                 params: {
-                    configslug: config.name.replace('.mdx', '').replace('.md', ''),
+                    configslug: name,
                 },
                 props: {
-                    content: config.content,
-                    config: config.config,
-                    raw_config: config.raw_config,
-                    path: config.path,
+                    md: files.find((file) => file.data.extension === "md" && file.id == "docs/" + name),
+                    config: file,
+                    pipelineConfigs: files.filter(
+                        (file) =>
+                            file.data.extension === "config" &&
+                            file.id.includes("pipeline/") &&
+                            file.id.endsWith("/" + name) &&
+                            file.id.split("/").slice(-2, -1).join("/") !== "pipeline",
+                    ),
                 },
-            },
-        ];
+            };
+        });
+}
+interface Props {
+    md: CollectionEntry<"configs">;
+    config: CollectionEntry<"configs">;
+    pipelineConfigs: CollectionEntry<"configs">[];
+}
+
+const { configslug } = Astro.params;
+let { md, config, pipelineConfigs } = Astro.props;
+
+// check if config is undefined
+if (!config || !config.rendered || !config.rendered.metadata) {
+    throw new Error(`Config not found for ${configslug}`);
+}
+
+const metadata = config.rendered.metadata;
+// Format the raw config for display
+const raw_config = '```groovy title="' + config.id + '"\n' + config.body + "\n```";
+
+// Extract GitHub username from contact but only if it not an email
+const contact = metadata.config_profile_contact?.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)
+    ? metadata.config_profile_contact.match(/[\s,\(,\',\"]@([A-Za-z0-9_-]+)/)[1]
+    : "";
+
+const gh_url = `https://github.com/nf-core/configs/blob/master/docs/${configslug}.md`;
+
+// add config files to headings
+md.rendered?.metadata?.headings?.push({
+    depth: 2,
+    slug: "config-file",
+    text: "Config file",
+});
+// add pipeline configs to headings
+if (pipelineConfigs.length > 0) {
+    md.rendered?.metadata?.headings?.push({
+        depth: 2,
+        slug: "pipeline-configs",
+        text: "Pipeline configs",
+    });
+    pipelineConfigs.forEach((pipelineConfig) => {
+        md.rendered?.metadata?.headings?.push({
+            depth: 3,
+            slug: pipelineConfig.id.split("/").slice(-2, -1).join("/"),
+            text: pipelineConfig.id.split("/").slice(-2, -1).join("/"),
+        });
     });
 }
-const { configslug } = Astro.params;
-let { content, config, raw_config, path } = Astro.props;
-// remove nf-core/configs (with or without :) from markdown heading
-
-content = content?.replace(/nf-core\/configs(:)?\s*/g, '');
-
-//wrap raw_config as markdown code-block
-raw_config = '```groovy title="' + path.split('/').pop() + '"\n' + raw_config + '\n```';
-const contact = config.config_profile_contact.match(/@([A-Za-z0-9-]+)/)
-    ? config.config_profile_contact.match(/@([A-Za-z0-9-]+)/)[1]
-    : '';
-
-const gh_url = 'https://github.com/nf-core/configs/blob/master/docs/' + configslug + '.md';
 ---
 
 <PageLayout
-    title={'nf-core/configs: ' + configslug}
-    subtitle={config.config_profile_description}
+    title={"nf-core/configs: " + configslug}
+    subtitle={metadata.config_profile_description?.toString().trim()}
     mainpage_container={true}
     md_github_url={gh_url}
     subfooter={true}
-    docSearchTags={[{ name: 'page_type', content: 'Config' }]}
+    docSearchTags={[{ name: "page_type", content: "Config" }]}
 >
     <div class="row">
         <div class="col-12 col-md-9">
             <div class="markdown-content">
-                <MarkdownWrapper headings={[]} client:idle>
-                    <Markdown of={content} />
+                <MarkdownWrapper headings={md.rendered?.metadata?.headings} client:idle>
+                    <div set:html={md.rendered?.html} />
                 </MarkdownWrapper>
             </div>
-            <h1>Config file</h1>
+            <h1 id="config-file">Config file</h1>
             <p class="my-3">
-                <a href={'https://github.com/nf-core/configs/tree/master/' + path} target="_blank">
+                <a href={`https://github.com/nf-core/configs/tree/master/${config.id}.config`} target="_blank">
                     <i class="fab fa-github me-2"></i>See config file on GitHub
                 </a>
             </p>
             <div class="config-code">
                 <Markdown of={raw_config} />
             </div>
+
+            {
+                pipelineConfigs.length > 0 && (
+                    <div>
+                        <h1>Pipeline configs</h1>
+                        {pipelineConfigs.map((pipelineConfig) => (
+                            <div>
+                                <p class="my-3 scroll-target" id={pipelineConfig.id.split("/").slice(-2, -1).join("/")}>
+                                    <a
+                                        href={`https://github.com/nf-core/configs/tree/master/${pipelineConfig.id}.config`}
+                                        target="_blank"
+                                    >
+                                        <i class="fab fa-github me-2" />
+                                        See config file on GitHub
+                                    </a>
+                                </p>
+                                <div class="config-code ">
+                                    <Markdown
+                                        of={
+                                            '```groovy title="' +
+                                            pipelineConfig.id +
+                                            '"\n' +
+                                            pipelineConfig.body +
+                                            "\n```"
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )
+            }
         </div>
         <div class="col-none col-md-3 sidebar">
-            {
-                config.executor && (
-                    <SidebarStatsRow
-                        content={[
-                            { title: 'executor', value: config.executor },
-                            {
-                                title: 'contact',
-                                value: `<a
-                                    href=${'https://github.com/' + contact}
+            <SidebarToc
+                headings={md.rendered?.metadata?.headings}
+                minNumHeadings={2}
+                minHeadingDepth={2}
+                maxHeadingDepth={4}
+                client:idle
+            >
+                <div slot="rightSidebarTop">
+                    {
+                        metadata.executor && (
+                            <SidebarStatsRow
+                                content={[
+                                    { title: "executor", value: metadata.executor?.toString() },
+                                    {
+                                        title: contact ? "contact" : "",
+                                        value: contact
+                                            ? `<a
+                                    href="https://github.com/${contact}"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     slot="contact"
                                 >
-                                    <img class="me-2 pb-2" src=${
-                                        'https://github.com/' + contact + '.png?size=50'
-                                    } alt=${contact} />
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" height="50" alt="${contact}" />
+                                </a>`
+                                            : "",
+                                    },
+                                    {
+                                        title: "Last modified",
+                                        value: new Date(config.data.lastCommit?.toString()).toISOString().split("T")[0],
+                                    },
+                                ]}
+                            />
+                        )
+                    }
+                    {
+                        metadata.config_profile_url && (
+                            <SidebarStatsRow
+                                content={[
+                                    {
+                                        title: "homepage",
+                                    },
+                                ]}
+                            >
+                                <a
+                                    class="text-truncate text-nowrap overflow-x-auto"
+                                    href={metadata.config_profile_url?.toString()}
+                                >
+                                    {metadata.config_profile_url?.toString()}
+                                </a>
+                            </SidebarStatsRow>
+                        )
+                    }
+                    {
+                        !metadata.executor && contact && (
+                            <SidebarStatsRow
+                                content={[
+                                    ...(contact
+                                        ? [
+                                              {
+                                                  title: "contact",
+                                                  value: `<a
+                                    href="https://github.com/${contact}"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    slot="contact"
+                                >
+                                    <Image class="me-2 pb-2" src="https://github.com/${contact}.png?size=50" alt="${contact}" />
                                 </a>`,
-                            },
-                        ]}
-                    />
-                )
-            }{
-                config.config_profile_url && (
-                    <SidebarStatsRow
-                        content={[
-                            {
-                                title: 'homepage',
-                            },
-                        ]}
-                    >
-                        <a class="text-truncate text-nowrap overflow-x-auto" href={config.config_profile_url}>
-                            {config.config_profile_url}
-                        </a>
+                                              },
+                                          ]
+                                        : []),
+                                ]}
+                            />
+                        )
+                    }
+                    {
+                        pipelineConfigs.length > 0 && (
+                            <SidebarStatsRow content={[{ title: "pipeline configs" }]}>
+                                {pipelineConfigs.map((pipelineConfig) => (
+                                    <a
+                                        class="badge bg-secondary me-2 fw-normal"
+                                        href={`#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
+                                    >
+                                        {pipelineConfig.id.split("/").slice(-2, -1).join("/")}
+                                    </a>
+                                ))}
+                            </SidebarStatsRow>
+                        )
+                    }
+                    <SidebarStatsRow content={[{ title: "get in touch" }]} lastChild={true}>
+                        <div class="d-flex flex-column">
+                            <a
+                                class="btn btn-sm btn-outline-info mb-2"
+                                href="https://nfcore.slack.com/channels/configs"
+                            >
+                                <i class="fab fa-slack me-1"></i> Ask a question on Slack
+                            </a>
+                            <a
+                                class="btn btn-sm btn-outline-secondary"
+                                href="https://github.com/nf-core/configs/issues"
+                            >
+                                <i class="fab fa-github me-1"></i> Open an issue on GitHub
+                            </a>
+                        </div>
                     </SidebarStatsRow>
-                )
-            }
-            {
-                !config.executor && contact && (
-                    <SidebarStatsRow
-                        content={[
-                            {
-                                title: 'contact',
-                                value: `<a
-                                    href=${'https://github.com/' + contact}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    slot="contact"
-                                >
-                                    <img class="me-2 pb-2" src=${
-                                        'https://github.com/' + contact + '.png?size=50'
-                                    } alt=${contact} />
-                                </a>`,
-                            },
-                        ]}
-                    />
-                )
-            }
-            <SidebarStatsRow content={[{ title: 'get in touch' }]} lastChild={true}>
-                <div class="d-flex flex-column">
-                    <a class="btn btn-sm btn-outline-info mb-2" href={'https://nfcore.slack.com/channels/configs'}
-                        ><i class="fab fa-slack me-1"></i> Ask a question on Slack</a
-                    >
-                    <a class="btn btn-sm btn-outline-secondary" href={'https://github.com/nf-core/configs/issues'}
-                        ><i class="fab fa-github me-1"></i> Open an issue on GitHub</a
-                    >
                 </div>
-            </SidebarStatsRow>
+                <a class="text-small text-body-secondary" href={gh_url} slot="rightSidebarLinkBar">
+                    <i class="fas fa-pencil-alt"></i> Edit this page
+                </a>
+            </SidebarToc>
         </div>
     </div>
 </PageLayout>

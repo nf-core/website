@@ -1,0 +1,38 @@
+name: Prebuild Dev Container
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - ".devcontainer/**"
+      - "package.json"
+      - "package-lock.json"
+      - "sites/*/package.json"
+  workflow_dispatch:
+
+jobs:
+  prebuild:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Pre-build dev container image
+        uses: devcontainers/ci@8bf61b26e9c3a98f69cb6ce2f88d24ff59b785c6 # v0.3
+        with:
+          imageName: ghcr.io/${{ github.repository }}/devcontainer
+          cacheFrom: ghcr.io/${{ github.repository }}/devcontainer
+          push: always
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

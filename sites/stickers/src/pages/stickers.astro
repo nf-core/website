@@ -1,0 +1,36 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import HexStickerGallery from "@components/HexStickerGallery.astro";
+import { getCollection } from "astro:content";
+
+// Get stickers from the content collection and map to the expected format
+let stickersCollection = await getCollection("stickers");
+// make stickers unique based on id without light or dark theme suffixes
+stickersCollection = stickersCollection.filter(
+    (sticker, index, self) =>
+        index ===
+        self.findIndex(
+            (t) =>
+                t.id.replace("-light", "").replace("-dark", "") ===
+                sticker.id.replace("-light", "").replace("-dark", ""),
+        ),
+);
+
+const CATEGORIES = ["pipelines", "hero", "hackathons", "champions", "mentorships", "teams", "miscellaneous"];
+// sort stickersCollection by category
+stickersCollection.sort((a, b) => {
+    const aIndex = CATEGORIES.indexOf(a.rendered?.metadata?.category as string);
+    const bIndex = CATEGORIES.indexOf(b.rendered?.metadata?.category as string);
+    return aIndex - bIndex;
+});
+---
+
+<PageLayout title="nf-core Stickers" subtitle="Browse our collection of hex stickers organized by category.">
+    <main class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <HexStickerGallery stickers={stickersCollection} />
+            </div>
+        </div>
+    </main>
+</PageLayout>

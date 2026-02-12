@@ -26,7 +26,7 @@ This lint test checks this GitHub Actions workflow file for the following:
   strategy:
     matrix:
       # Nextflow versions: check pipeline minimum and current latest
-      NXF_VER: ['19.10.0', '']
+      NXF_VER: ["19.10.0", ""]
   ```
 
   :::note

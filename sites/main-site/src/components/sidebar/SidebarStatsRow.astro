@@ -11,19 +11,40 @@ export interface Props {
 }
 ---
 
-<div class:list={['row g-0 w-100', { 'border-bottom': !lastChild }]}>
+<div class:list={["row g-0 w-100", { "border-bottom": !lastChild }]}>
     {
-        content.map((entry) => (
-            <div class="col mb-1">
-                <h6 class="text-body-secondary my-1">
-                    {entry.icon && <i class={entry.icon + ' fa-fw me-1'} />}
-                    {entry.title}
-                </h6>
-                <div class="overflow-x-auto" set:html={entry.value}>
-                    <slot />
-                </div>
-            </div>
-        ))
+        content.map((entry) => {
+            if (entry.title && entry.value) {
+                return (
+                    <div class="col mb-1">
+                        <h6 class="text-body-secondary my-1" set:html={entry.title}>
+                            {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
+                        </h6>
+                        <div class="overflow-x-auto" set:html={entry.value}>
+                            <slot />
+                        </div>
+                    </div>
+                );
+            } else if (entry.title && entry.value === undefined) {
+                return (
+                    <div class="col mb-1">
+                        <h6 class="text-body-secondary my-1">
+                            {entry.icon && <i class={entry.icon + " fa-fw me-1"} />}
+                            {entry.title}
+                        </h6>
+                        <div class="overflow-x-auto">
+                            <slot />
+                        </div>
+                    </div>
+                );
+            } else {
+                return (
+                    <div class="col mb-1">
+                        <slot />
+                    </div>
+                );
+            }
+        })
     }
 </div>
 

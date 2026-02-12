@@ -3,60 +3,59 @@ on:
   workflow_dispatch:
     inputs:
       ref_name:
-        description: 'The name of the release branch'
+        description: "The name of the release branch"
         required: true
-        default: 'dev'
+        default: "dev"
 
 jobs:
   api-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Checkout tools code
-        uses: actions/checkout@v4
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
-          repository: 'nf-core/tools'
+          repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
-          path: 'tools'
+          path: "tools"
 
       - name: setup node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
-          node-version: '20'
+          node-version: "24"
 
       - name: Install dependencies
         run: |
           npm install remark unist-util-visit
 
-      # Install pre-commit
-      - uses: actions/setup-python@0b93645e9fea7318ecaed2b359559ac225c90a2b # v5
-        with:
-          python-version: 3.11
-
-      # install prettier plugins
-      - run: npm install --only=dev
-
-      - name: Install pre-commit
-        run: pip install pre-commit
+      - name: setup uv
+        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7
 
       - name: install nf-core
         run: |
           cd tools
-          pip install --upgrade -r requirements-dev.txt -e .
+          uv sync --all-extras
 
       - name: run API generation script
         run: |
           cd tools
-          pip install sphinx-markdown-builder
-          bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
+          uv add sphinx-markdown-builder
+          if [ -f docs/api/requirements.txt ]; then
+            uv add -r docs/api/requirements.txt
+          fi
+          uv run bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
 
       - name: remove tools code
         run: rm -rf tools
 
-      - name: Run pre-commit
+      - uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
+        with:
+          install-only: true
+
+      - name: Run prek
         id: pre-commit
-        run: git add . && pre-commit run --all-files
+        run: git add . && prek run --all-files
         continue-on-error: true
 
       - name: Commit & push changes
@@ -72,7 +71,7 @@ jobs:
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}
@@ -80,7 +79,7 @@ jobs:
           body: |
             This PR updates the nf-core/tools API docs for ${{inputs.ref_name}}.
             Please review the changes and merge if they look good.
-          branch: 'update-api-docs-${{inputs.ref_name}}'
+          branch: "update-api-docs-${{inputs.ref_name}}"
           delete-branch: true
-          base: 'main'
+          base: "main"
           draft: false

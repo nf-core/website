@@ -2,22 +2,22 @@
 title: Hackathon - March 2024 (Online)
 subtitle: A virtual hackathon with local sites to develop nf-core together
 type: hackathon
-startDate: '2024-03-18'
-startTime: '11:00+02:00'
-endDate: '2024-03-20'
-endTime: '17:00+02:00'
+startDate: "2024-03-18"
+startTime: "11:00+02:00"
+endDate: "2024-03-20"
+endTime: "17:00+02:00"
 locations:
     - name: Gather town, Slack, and local sites.
 importTypeform: true
 announcement:
-    text: 'Registration for the online / distributed March hackathon is now open!'
+    text: "Registration for the online / distributed March hackathon is now open!"
     start: 2024-01-22T00:00:00+01:00
     end: 2024-03-14T00:00:00+01:00
 ---
 
-import HackathonGroup from '@components/event/HackathonGroup.astro';
-import EventMap from '@components/event/EventMap.astro';
-import { YouTube } from '@astro-community/astro-embed-youtube';
+import HackathonGroup from "@components/event/HackathonGroup.astro";
+import EventMap from "@components/event/EventMap.astro";
+import { YouTube } from "@astro-community/astro-embed-youtube";
 
 # Welcome
 
@@ -41,9 +41,9 @@ Please watch the introduction video below to get started:
 
 :::info{title="Key links"}
 
--   [Gather Town](https://app.gather.town/app/br78S294XBCL487A/nf-core-hackathon) _(Use the email you signed up with)_
--   [GitHub Hackathon Project Board](https://github.com/orgs/nf-core/projects/65)
--   [Wrap up slides](https://docs.google.com/presentation/d/10B2tb1si8WsRe1T2IfxgqvltuEaGZ_ItGQVXxiPh3IA/edit?usp=sharing)
+- [Gather Town](https://app.gather.town/app/br78S294XBCL487A/nf-core-hackathon) _(Use the email you signed up with)_
+- [GitHub Hackathon Project Board](https://github.com/orgs/nf-core/projects/65)
+- [Wrap up slides](https://docs.google.com/presentation/d/10B2tb1si8WsRe1T2IfxgqvltuEaGZ_ItGQVXxiPh3IA/edit?usp=sharing)
 
 :::
 
@@ -82,7 +82,7 @@ For the most recent information about your site as well as the contact details o
 Even if you are attending a local site you will still join everyone online in Gather.
 :::
 
-<EventMap event={'2024/hackathon-march-2024'} />
+<EventMap event={"2024/hackathon-march-2024"} />
 
 <div class="table-responsive" markdown="1">
 
@@ -289,30 +289,33 @@ However, if you can't make it, these will be recorded and can be viewed afterwar
 
 Ensure you have read/signed up/joined/installed the following resources before the hackathon.
 
--   Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
--   If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
--   Join the nf-core slack and the [#hackathon-mar-2024 channel](https://nfcore.slack.com/archives/C06GNCNARS5)
--   Create a Gather account using the email you used to register (see above)
--   Have [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
--   Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
+- Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- If you haven't already, set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- Join the nf-core slack and the [#hackathon-mar-2024 channel](https://nfcore.slack.com/archives/C06GNCNARS5)
+- Create a Gather account using the email you used to register (see above)
+- Have [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) installed on your computer
+- Familiarize yourself with the [documentation on the nf-core website](https://nf-co.re/docs)
 
 # How to hack!
 
 We will be a lot of people working in parallel during this hackathon, so to stay organized we have a recommended workflow:
 
 1. :speech_balloon: Chat with your group (on slack or gather town) to get an overview of what is going on.
-2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project members.
+2. <i class="fab fa-slack"></i> Join the relevant Slack channel(s) to stay up to date and discuss with your project
+   members.
+   <ul>
+       <li>[Beginners channel](https://nfcore.slack.com/archives/C06NEGANQ2J)</li>
+       <li>[Infrastructure channel](https://nfcore.slack.com/archives/C06P9UX9T5W)</li>
+       <li>[Modules & subworkflows channel](https://nfcore.slack.com/archives/C06P9UP3K4G)</li>
+       <li>[nf-test channel](https://nfcore.slack.com/archives/C06NPK4J2GL)</li>
+       <li>[Pipelines channel](https://nfcore.slack.com/archives/C06NM5GDP5Y)</li>
+       <li>[Training materials channel](https://nfcore.slack.com/archives/C06NM2HM6MR)</li>
+       <li>[Scavenger hunt channel](https://nfcore.slack.com/archives/C06P39LTE4W)</li>
+   </ul>
 
-    - [Beginners channel](https://nfcore.slack.com/archives/C06NEGANQ2J)
-    - [Infrastructure channel](https://nfcore.slack.com/archives/C06P9UX9T5W)
-    - [Modules & subworkflows channel](https://nfcore.slack.com/archives/C06P9UP3K4G)
-    - [nf-test channel](https://nfcore.slack.com/archives/C06NPK4J2GL)
-    - [Pipelines channel](https://nfcore.slack.com/archives/C06NM5GDP5Y)
-    - [Training materials channel](https://nfcore.slack.com/archives/C06NM2HM6MR)
-    - [Scavenger hunt channel](https://nfcore.slack.com/archives/C06P39LTE4W)
-
-3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project Board](https://github.com/orgs/nf-core/projects/65/views/1).
-   - If you have something you want to do that's not there, please make an issue and add it to the board.
+3. <i class="fab fa-github"></i> Find a task to work on using the [GitHub Project
+   Board](https://github.com/orgs/nf-core/projects/65/views/1). - If you have something you want to do that's not there,
+   please make an issue and add it to the board.
 4. :raising_hand: Assign yourself to the issue that you're currently working on (preferably one issue at a time).
     - This is so that multiple people don't accidentally work on the same task.
 5. :fast_forward: When you're done, make a pull request with your changes.
@@ -422,7 +425,7 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 <HackathonGroup
     title="Online"
     leaders={{
-        yuukiiwa: 'Yuk Kei',
+        yuukiiwa: "Yuk Kei",
     }}
 >
     If you're feeling lost in Gather.town, or just want to hang out with other online attendees, look out for Yuk Kei.
@@ -434,23 +437,23 @@ The hackathon is a great opportunity to work on any nf-core related work that yo
 During the hackathon, we will have light-hearted fun and games!
 Special prizes are up for grabs for the winners!
 
--   Online quiz
-    -   Meet in the Gather lecture theater at 3 pm (CEST) on Tuesday, March 19.
-    -   Local sites have access to the quiz and are free to host it at a time that fits them or join the online one.
-    -   Winners will receive a prize!
--   Scavenger Hunt
-    -   Join the [#hackathon-march-2024-scavengerhunt](https://nfcore.slack.com/archives/C06P39LTE4W) Slack channel.
-    -   Take photos of you completing as many challenges as you can and share them on the channel!
-    -   Winners will receive a prize!
--   Hidden socks in Gather
-    -   Take screenshots of as many as you can find!
-    -   There are **5** socks that will be hidden in Gather during the hackathon.
-    -   When you screenshot of all 5 socks send them to [Chris Hakkaart](https://nfcore.slack.com/team/U024MM1DRKL) on Slack
-    -   The first 3 winners will win a prize!
--   Hackathon bingo
-    -   Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and record your typical hackathon situations.
--   Pizza! (local sites only)
-    -   Many thanks to [Seqera](https://seqera.io/) for sponsoring gift cards for pizzas during the event.
+- Online quiz
+    - Meet in the Gather lecture theater at 3 pm (CEST) on Tuesday, March 19.
+    - Local sites have access to the quiz and are free to host it at a time that fits them or join the online one.
+    - Winners will receive a prize!
+- Scavenger Hunt
+    - Join the [#hackathon-march-2024-scavengerhunt](https://nfcore.slack.com/archives/C06P39LTE4W) Slack channel.
+    - Take photos of you completing as many challenges as you can and share them on the channel!
+    - Winners will receive a prize!
+- Hidden socks in Gather
+    - Take screenshots of as many as you can find!
+    - There are **5** socks that will be hidden in Gather during the hackathon.
+    - When you screenshot of all 5 socks send them to [Chris Hakkaart](https://nfcore.slack.com/team/U024MM1DRKL) on Slack
+    - The first 3 winners will win a prize!
+- Hackathon bingo
+    - Grab your [bingo card](https://nfcore-bingo.web.app/?game=nf-core-hackathon) and record your typical hackathon situations.
+- Pizza! (local sites only)
+    - Many thanks to [Seqera](https://seqera.io/) for sponsoring gift cards for pizzas during the event.
 
 All social activities are of course optional, but we hope to see as many people joining in as possible.
 

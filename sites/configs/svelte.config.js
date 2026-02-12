@@ -1,0 +1,1 @@
+../main-site/svelte.config.js

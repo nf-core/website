@@ -64,7 +64,7 @@ If you use a shared system with other people (such as a HPC or institutional ser
 These are shared config profiles loaded by all nf-core pipelines at run time.
 
 You may find that your system already has a shared profile available here (see [https://github.com/nf-core/configs](https://github.com/nf-core/configs)).
-If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/usage/tutorials/step_by_step_institutional_profile) to add your cluster.
+If not, please follow the instructions in the repository README and/or the [tutorial](https://nf-co.re/docs/tutorials/use_nf-core_pipelines/writing_institutional_profiles) to add your cluster.
 
 ## Custom configuration files
 
@@ -277,7 +277,7 @@ If you think that the defaults in the pipeline are way off, please the pipeline 
 
 ## Docker registries
 
-By default, the pipelines use `quay.io` as the default docker registry for Docker and Podman images. When specifying a docker container, it will pull the image from quay.io unless you specify a full URI. For example, if the process container is:
+By default, most pipelines use `quay.io` as the default docker registry for Docker and Podman images. When specifying a docker container, it will pull the image from quay.io unless you specify a full URI. For example, if the process container is:
 
 - `biocontainers/fastqc:0.11.7--4`
 
@@ -285,9 +285,9 @@ By default, the image will be pulled from quay.io, resulting in a full URI of:
 
 - `quay.io/biocontainers/fastqc:0.11.7--4`
 
-If the `docker.registry` is specified, this will be used first. E.g. if the config value `docker.registry = 'public.ecr.aws'` is added the image will be pulled from:
+If the `docker.registry` is specified as something else, this will be used first. E.g. if the config value `docker.registry = 'myregistry.com'` is added the image will be pulled from:
 
-- `public.ecr.aws/biocontainers/fastqc:0.11.7--4`
+- `myregistry.com/biocontainers/fastqc:0.11.7--4`
 
 Alternatively, if you specify a full URI in the container specification, you can ignore the `docker.registry` setting altogether. For example, this image will be pulled exactly as specified:
 
@@ -307,7 +307,6 @@ In this case, a user can override the default container used by the pipeline by 
 2. Find the latest version of the Biocontainer available on [Quay.io](https://quay.io/repository/biocontainers/pangolin?tag=latest&tab=tags) for Docker or [Galaxy Project](https://depot.galaxyproject.org/singularity/) for Singularity
    - Note the container version tag is identical for both container systems, but must include the 'build' ID (e.g.`--pyhdfd78af_1`)
 3. Create the custom config accordingly:
-
    - For Docker:
 
      ```groovy
@@ -350,7 +349,7 @@ Sometimes tool developers change how tool versions are reported between updates.
 
 In some cases you may wish to understand which tool arguments or options a pipeline uses, or even update or change these for your own analyses.
 
-You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/1.0.1/parameters#annotation_bakta_mincontig) in [nf-core/funcscan](https://nf-co.re/funcscan).
+You can sometimes find out what parameters are used in a tool in by checking the longer 'help' description of different pipeline parameters, e.g. by pressing the 'help' button next to [this parameter](https://nf-co.re/funcscan/2.0.0/parameters#annotation_bakta_mincontiglen) in [nf-core/funcscan](https://nf-co.re/funcscan).
 
 ### Finding already used arguments
 

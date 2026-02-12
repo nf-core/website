@@ -1,62 +1,63 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import { getCollection } from 'astro:content';
-import type { SidebarEntry } from '@utils/types';
-import { addEntriesToSection, sanitizeNfCoreLabels } from '@utils/functions';
-import { Icon } from 'astro-icon/components';
-import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import type { SidebarEntry } from "@utils/types";
+import { addEntriesToSection, sanitizeNfCoreLabels } from "@utils/functions";
+import { Icon } from "astro-icon/components";
+import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
-let docs = await getCollection('docs');
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
+let docs = await getCollection("docs");
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
 
 let sections: SidebarEntry[] = [
-    { type: 'group', id: 'usage', label: 'Usage', entries: [], collapsed: true, icon: 'octicon:play-16', weight: 1 },
+    { type: "group", id: "usage", label: "Usage", entries: [], collapsed: true, icon: "octicon:play-16", weight: 1 },
     {
-        type: 'group',
-        id: 'contributing',
-        label: 'Contributing',
+        type: "group",
+        id: "contributing",
+        label: "Contributing",
         entries: [],
         collapsed: true,
-        icon: 'octicon:git-pull-request-16',
+        icon: "octicon:git-pull-request-16",
         weight: 2,
     },
     {
-        type: 'group',
-        id: 'tutorials',
-        label: 'Tutorials',
+        type: "group",
+        id: "tutorials",
+        label: "Tutorials",
         entries: [],
         collapsed: true,
-        icon: 'octicon:mortar-board-16',
+        icon: "octicon:mortar-board-16",
         weight: 3,
     },
     {
-        type: 'group',
-        id: 'guidelines',
-        label: 'Guidelines',
+        type: "group",
+        id: "guidelines",
+        label: "Guidelines",
         entries: [],
         collapsed: true,
-        icon: 'octicon:law-16',
+        icon: "octicon:law-16",
         weight: 4,
     },
     {
-        type: 'group',
-        id: 'checklists',
-        label: 'Checklists',
+        type: "group",
+        id: "checklists",
+        label: "Checklists",
         entries: [],
         collapsed: true,
-        icon: 'octicon:tasklist-16',
+        icon: "octicon:tasklist-16",
         weight: 5,
     },
     {
-        type: 'group',
-        id: 'nf-core-tools',
-        label: 'nf-core/tools',
+        type: "group",
+        id: "nf-core-tools",
+        label: "nf-core/tools",
         entries: [],
         collapsed: true,
-        icon: 'octicon:tools-16',
+        icon: "octicon:tools-16",
         weight: 6,
     },
 ];
+
 addEntriesToSection(sections, docs, Astro.url.pathname);
 // sort all entries by weight if available recursively
 const sortEntries = (entries: SidebarEntry[]) => {
@@ -76,7 +77,7 @@ const sortEntries = (entries: SidebarEntry[]) => {
         }
     });
     entries.forEach((entry) => {
-        if (entry.type === 'group' && entry.entries) {
+        if (entry.type === "group" && entry.entries) {
             sortEntries(entry.entries);
         }
     });
@@ -90,29 +91,31 @@ const findEntriesWithLabel = (sections: SidebarEntry[], label: string, parentLab
     let entries = [];
     sections.forEach((section) => {
         if (!parentLabel && section.label === label) {
-            section.metadata = docs.find((doc) => '/docs/' + doc.slug === section.href);
+            section.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === section.href);
             entries.push(section);
         }
         if (parentLabel && section.label === parentLabel) {
             section.entries.forEach((entry) => {
                 if (entry.label === label) {
-                    entry.metadata = docs.find((doc) => '/docs/' + doc.slug === entry.href);
+                    entry.metadata = docs.find((doc) => "/docs/" + doc.id.replace(/\.[^/.]+$/, "") === entry.href);
                     entries.push(entry);
                 }
             });
         }
         if (section.entries) {
             entries.push(...findEntriesWithLabel(section.entries, label, parentLabel));
+        } else {
+            // console.log('section.label', section);
         }
     });
     return entries;
 };
 
 let highlightSections = [];
-['Introduction', 'Adding modules to pipelines', 'Assertions', 'nf-core-tools/Installation'].forEach((label) => {
-    let parentLabel = label.includes('/') ? label.split('/')[0] : undefined;
-    label = parentLabel ? label.split('/')[1] : label;
-    let entries = findEntriesWithLabel(sections, label, parentLabel?.replace('nf-core-tools', 'nf-core/tools'));
+["Introduction", "Adding modules to pipelines", "Assertions", "nf-core-tools/Installation"].forEach((label) => {
+    let parentLabel = label.includes("/") ? label.split("/")[0] : undefined;
+    label = parentLabel ? label.split("/")[1] : label;
+    let entries = findEntriesWithLabel(sections, label, parentLabel?.replace("nf-core-tools", "nf-core/tools"));
     if (entries.length === 0) {
         console.error(`No entry found for label: ${label}`);
     }
@@ -153,14 +156,14 @@ highlightSections = highlightSections.flat();
                                 <div class="g-col-12 g-col-md-6 g-col-lg-4 g-col-xxxxl-2 card">
                                     <span class="card-header">
                                         <a
-                                            href={`/docs/${section.label?.replace('/', '-').toLowerCase()}/`}
+                                            href={`/docs/${section.label?.replace("/", "-").toLowerCase()}/`}
                                             class="text-decoration-none d-flex align-items-center text-reset"
                                         >
-                                            {section.icon && <Icon name={section.icon} class={'me-2'} />}
+                                            {section.icon && <Icon name={section.icon} class={"me-2"} />}
                                             {sanitizeNfCoreLabels(section.label)}
                                         </a>
                                     </span>
-                                    <ul class="card-body mb-0 list-unstyled" id={section.label?.replace('/', '-')}>
+                                    <ul class="card-body mb-0 list-unstyled" id={section.label?.replace("/", "-")}>
                                         {section.entries && <SidebarSubNav items={section.entries} nested={true} />}
                                     </ul>
                                 </div>

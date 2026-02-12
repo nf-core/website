@@ -1,27 +1,27 @@
 ---
-import { YouTube } from '@astro-community/astro-embed-youtube';
-import FuzzySearch from '@components/FuzzySearch.svelte';
-import { getCollection } from 'astro:content';
-import EventCard from '@components/event/EventCard.svelte';
+import { YouTube } from "@astro-community/astro-embed-youtube";
+import FuzzySearch from "@components/FuzzySearch.svelte";
+import { getCollection } from "astro:content";
+import EventCard from "@components/event/EventCard.svelte";
 
-const events = await getCollection('events');
-const bytesizes = events.filter((event) => event.data.title.toLowerCase().match('bytesize'));
+const events = await getCollection("events");
+const bytesizes = events.filter((event) => event.data.title.toLowerCase().match("bytesize"));
 
 const latestBytesize = bytesizes
     .sort((a, b) => new Date(b.data.start).getTime() - new Date(a.data.start).getTime())
     .find((bs) =>
-        bs.data.locations?.some((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes('youtu'))),
+        bs.data.locations?.some((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes("youtu"))),
     )
-    ?.data.locations?.find((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes('youtu')))
-    ?.links?.find((link) => link.includes('youtu'))
-    .split('youtu.be/')[1];
+    ?.data.locations?.find((loc) => Array.isArray(loc.links) && loc.links?.some((link) => link.includes("youtu")))
+    ?.links?.find((link) => link.includes("youtu"))
+    .split("youtu.be/")[1];
 // get the most recent bytesize with a youtube link in locations.links
 
 const bytesizeSearch = bytesizes.map((bs) => {
-    return { href: '/events/' + bs.slug + '/', name: bs.data.title };
+    return { href: "/events/" + bs.slug + "/", name: bs.data.title };
 });
 const eventPreview = events
-    .filter((event) => event.slug.split('/').length < 3)
+    .filter((event) => event.id.split("/").length < 3)
     .sort((a, b) => {
         return new Date(b.data.start) - new Date(a.data.start);
     });
@@ -66,7 +66,7 @@ let eventPreviewPast = eventPreview
                 eventPreviewCurrent.map((event) => (
                     <EventCard
                         frontmatter={event.data}
-                        slug={event.slug}
+                        slug={event.id.replace(/\.[^/.]+$/, "")}
                         type={event.data.type}
                         time_category="current"
                         showDescription={false}
@@ -82,7 +82,7 @@ let eventPreviewPast = eventPreview
                     .map((event) => (
                         <EventCard
                             frontmatter={event.data}
-                            slug={event.slug}
+                            slug={event.id.replace(/\.[^/.]+$/, "")}
                             type={event.data.type}
                             time_category="future"
                             showDescription={false}
@@ -102,7 +102,7 @@ let eventPreviewPast = eventPreview
                     .map((event) => (
                         <EventCard
                             frontmatter={event.data}
-                            slug={event.slug}
+                            slug={event.id.replace(/\.[^/.]+$/, "")}
                             type={event.data.type}
                             time_category="past"
                             showDescription={false}

@@ -2,10 +2,10 @@
 title: Hands-on Nextflow Training - September 2023
 subtitle: A fast way to get up and running with Nextflow - hands on and light on theory. One 2 hour session.
 type: training
-startDate: '2023-09-20'
-startTime: '15:00+02:00'
-endDate: '2023-09-20'
-endTime: '18:00+02:00'
+startDate: "2023-09-20"
+startTime: "15:00+02:00"
+endDate: "2023-09-20"
+endTime: "18:00+02:00"
 locationName: YouTube
 importTypeform: true
 locations:

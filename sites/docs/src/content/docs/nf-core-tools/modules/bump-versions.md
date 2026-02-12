@@ -11,7 +11,7 @@ If you are contributing to the `nf-core/modules` repository and want to bump bio
 working_dir: tmp/modules
 -->
 
-![`nf-core modules bump-versions fastqc`](/images/tools/nf-core-modules-bump-version.svg)
+![`nf-core modules bump-versions fastqc`](../../../../assets/images/tools/nf-core-modules-bump-version.svg)
 
 If you don't want to update certain modules or want to update them to specific versions, you can make use of the `.nf-core.yml` configuration file. For example, you can prevent the `star/align` module from being updated by adding the following to the `.nf-core.yml` file:
 
@@ -24,5 +24,5 @@ If you want this module to be updated only to a specific version (or downgraded)
 
 ```yaml
 bump-versions:
-  star/align: '2.6.1d'
+  star/align: "2.6.1d"
 ```

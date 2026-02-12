@@ -1,0 +1,25 @@
+---
+import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
+import { getCollection } from "astro:content";
+import { markdown } from "@mashehu/astropub-md";
+let advisories = await getCollection("advisories");
+
+advisories = await Promise.all(
+    advisories.map(async (advisory) => {
+        advisory.data.subtitle = String(await markdown(advisory.data.subtitle));
+        return advisory;
+    }),
+);
+
+const title = "Advisories";
+const subtitle = "Regressions, incompatibilities and security announcements";
+// Get all unique advisory types from all advisories
+const advisory_types = [...new Set(advisories.flatMap((advisory) => advisory.data.type))];
+const filters = advisory_types.map((type) => {
+    return {
+        name: type,
+    };
+});
+---
+
+<AdvisoryLayout {advisories} {title} {subtitle} currentFilters={filters} />

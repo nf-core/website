@@ -1,0 +1,109 @@
+---
+title: "Hackathon - March 2025 (Stellenbosch University)"
+subtitle: "Local node of the nf-core hackathon at Stellenbosch University, South Africa"
+shortTitle: "🇿🇦 Stellenbosch University"
+type: "hackathon"
+startDate: "2025-03-24"
+startTime: "09:00+02:00"
+endDate: "2025-03-26"
+endTime: "15:00+02:00"
+locations:
+    - name: South Africa University
+      address: |
+          BMRI building, Francie Van Zijl Dr, Tygerberg, Cape Town, 7505
+      links:
+          - https://www.sun.ac.za/english/faculty/healthsciences/
+      geoCoordinates: [-33.90808872523492, 18.61369371414185]
+      country: South Africa
+      city: Cape Town
+layout: "@layouts/events/HackathonMarch2025.astro"
+---
+
+Attendees from outside Stellenbosch University are **absolutely welcome** to attend. Please don't hesitate to send us an email in case there are any doubts.
+
+Organizers:
+
+- [<i class="fab fa-slack"></i> Kimberly Coetzer](https://nfcore.slack.com/team/U04M7EYDR97) ([kcoetzer@sun.ac.za](mailto:kcoetzer@sun.ac.za))
+- [<i class="fab fa-slack"></i> Abhinav Sharma](https://nfcore.slack.com/team/U01E6QW86R1) ([abhinavsharma@sun.ac.za](mailto:abhinavsharma@sun.ac.za))
+
+## Venue
+
+BMRI building meeting room **1016**, close to the stairs on the first floor.
+
+## Site-specific Instructions
+
+### Event overview
+
+1. Primary Goal
+    - Introduce participants to intermediate topics in Nextflow, nf-core, and bioinformatics, with an emphasis on open and reproducible research.
+
+2. Focus Areas
+    - Setting up and running pipelines
+    - Reproducibility: version control, containerization, interoperability
+    - Pipeline optimization and debugging
+    - AI and collaboration in open science
+    - Infrastructure and cloud computing
+
+3. Expected Outcomes
+    - Gain skills in running and optimizing nf-core pipelines for their research needs
+    - Receive an introduction to Seqera AI, Seqera Cloud, Seqera Data Studios, and Seqera Containers
+    - Learn how to apply for Google Cloud credits
+
+### Hackathon Participant Guidelines
+
+1. 💻 Laptop (Mac, Linux, or Windows with Linux subsystem/dual-boot), charger & adapter if needed.
+2. Eduroam Wi-Fi access (visiting students will be accommodated).
+3. Basic bash scripting and command-line experience.
+4. Some knowledge of Nextflow and/or nf-core (experience running pipelines not required).
+5. Access to a server, cloud, or cluster (CHPC, Hemera, Khaos, Ilifu, etc.) OR a laptop with at least 8GB RAM.
+6. Familiarity with GitHub and version control (must have a GitHub account).
+7. Basic understanding of containerization.
+8. Bringing your own study data is optional but useful for focused discussions.
+
+### Schedule
+
+| TIME       | 24-Mar-25                                 | 25-Mar-25                                           | 26-Mar-25                                                 |     |
+| ---------- | ----------------------------------------- | --------------------------------------------------- | --------------------------------------------------------- | --- |
+| 0900 -1000 | Arrival, Setup and Introductions          | Recap and Overview                                  | Recap and Overview                                        |     |
+| 1000 -1030 | Brief Intro to Nextflow and nf-core       | Interest groups and relevant pipelines              | The Seqera Platform: AI, cloud, containers, data studio   |     |
+| 1030 -1100 | Possibilities of integration in projects  |                                                     |                                                           |     |
+| 1100 -1200 | LUNCH                                     | LUNCH                                               | LUNCH                                                     |     |
+| 1200 -1300 | Setting up Nextflow and nf-core pipelines | Introduction to nf-core pipeline specific resources | Cloud computing and How to apply for Google cloud credits |     |
+| 1300 -1400 | Q&A \| Running generic pipelines          | Q&A \| Running specific pipelines                   | Q&A \| Pipeline troubleshooting, closing of hackathon     |     |
+| 1400 -1530 | Running generic pipelines                 | Running specific pipelines                          | Q&A \| Closing of hackathon                               |     |
+
+### Preparation (optional but recommended)
+
+- Nextflow Training: https://training.nextflow.io
+- nf-core Tutorial: https://nf-co.re/docs/tutorials/
+- Intro to Nextflow & nf-core: https://carpentries-incubator.github.io/workflows-nextflow/
+- Reproducibility & Version Control: https://carpentries-incubator.github.io/fairbio-practice/
+- Git & GitHub Guide: https://doi.org/10.1371/journal.pcbi.1004668
+
+### Interest Groups
+
+💡 Why are the generic pipelines recommended for all participants?
+The generic pipelines provide foundational knowledge of nf-core infrastructure and are especially useful for participants who do not yet have access to their own data.
+
+All participants will first run three generic nf-core pipelines (on Day 1) before choosing an interest group:
+
+0. Generic pipelines
+1. Transcriptomics pipelines
+2. Metagenomics pipelines
+3. Human Genomics pipelines
+
+| Interest Group  |       Pipeline        |                                            Usage                                             |                                                   Input                                                    |                                                  Function                                                   |
+| :-------------: | :-------------------: | :------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------: |
+|     Generic     |     nf-core/demo      |                 For testing Nextflow installation and nf-core configuration.                 |                            None (uses synthetic data bundled in the pipeline).                             | Validates the environment, Nextflow installation, and nf-core compatibility using small synthetic datasets. |
+|     Generic     |   nf-core/fetchngs    |           Downloads raw sequencing data from public repositories like ENA or SRA.            |                             Accession IDs (e.g., SRR/ERR/DRR or project IDs).                              |               Automates the retrieval of public sequencing datasets for downstream analysis.                |
+|     Generic     | nf-core/readsimulator |                      Simulates sequencing reads from reference genomes.                      | Reference genome sequences (.fasta) and optional parameters for sequencing simulation (e.g., error rates). |        Generates synthetic sequencing datasets for testing or benchmarking bioinformatics workflows.        |
+| Transcriptomics |    nf-core/rnaseq     |                Processes RNA-Seq data for gene and transcript quantification.                |            Raw RNA-Seq reads (.fastq.gz) and a reference genome or transcriptome (.fasta/.gtf).            |               Performs RNA-Seq alignment, quantification, and QC for transcriptomics studies.               |
+|  Metagenomics   |  nf-core/taxprofiler  |                    Performs taxonomic profiling of metagenomic datasets.                     |               Metagenomic sequencing reads (.fastq.gz) and optionally a reference database.                |                 Analyzes microbial community composition from metagenomic sequencing data.                  |
+| Human Genomics  |     nf-core/sarek     | Processes whole-genome or targeted sequencing data for germline or somatic variant analysis. |     Raw sequencing reads (.fastq.gz), reference genome (.fasta), and optional panel of normals (PoN).      |           Supports cancer research and precision medicine through variant calling and annotation.           |
+
+### Certificate Requirements
+
+To receive a participation certificate, participants must:
+
+- Attend at least one full day of the hackathon
+- Actively engage in hackathon activities and provide a progress report

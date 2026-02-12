@@ -1,0 +1,59 @@
+name: build json files
+
+on:
+  schedule: # every day at 2am and 2pm
+    - cron: "0 2,14 * * *"
+  workflow_dispatch:
+    inputs:
+      pipeline_name:
+        description: "Pipeline name to update (leave empty for all pipelines)"
+        required: false
+        type: string
+  repository_dispatch:
+    types: [update-website, update-pipeline]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || 'all' }}
+  cancel-in-progress: true
+
+jobs:
+  build-component-json:
+    runs-on: ubuntu-latest
+    environment: static-file-build
+    if: (github.event_name == 'schedule' && github.repository == 'nf-core/website') || (github.event_name != 'schedule')
+
+    steps:
+      # Set up the main website repo
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0 # Don't do a shallow clone
+          token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
+
+      # install npm dependencies
+      - name: Set up node.js
+        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        with:
+          node-version: 24
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: create pipeline.json
+        run: npm run build-pipeline-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+
+      - name: create component.json
+        run: npm run build-component-json -- ${{ github.event.inputs.pipeline_name || github.event.client_payload.pipeline_name || '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.PIPLINE_JSON_BUILD_TOKEN }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git config push.default upstream
+          git status
+          git pull
+          git diff --quiet || (git commit -am "[automated] Update json files" && git push)

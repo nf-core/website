@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Resolving merge conflicts after a tools release'
+title: "Bytesize: Resolving merge conflicts after a tools release"
 subtitle: Kübra Narci, GHGA/DKFZ
 type: talk
-startDate: '2024-05-14'
-startTime: '13:00+02:00'
-endDate: '2024-05-14'
-endTime: '13:30+02:00'
+startDate: "2024-05-14"
+startTime: "13:00+02:00"
+endDate: "2024-05-14"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/Ptyre8mj7BA
 locations:
   - name: Online

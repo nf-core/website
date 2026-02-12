@@ -1,7 +1,12 @@
 <script lang="ts">
-    import { currentHeading, showHidden, Checkboxes } from '@components/store';
-    import { onMount } from 'svelte';
-    import ProgressIndicator from '@components/sidebar/ProgressIndicator.svelte';
+    import { currentHeading, showHidden, Checkboxes } from "@components/store";
+    import { onMount } from "svelte";
+    import ProgressIndicator from "@components/sidebar/ProgressIndicator.svelte";
+
+    // Add snippet props to replace slots
+    export let rightSidebarTop: () => any = () => null;
+    export let rightSidebarLinkBar: () => any = () => null;
+    export let defaultContent: () => any = () => null;
 
     export let headings: {
         text: string;
@@ -58,9 +63,9 @@
             activeHeading = heading?.slug || $currentHeading;
             // wait 1 second for sidebar selection animation to finish
 
-            const active = document.querySelector('.toc nav-item.active');
+            const active = document.querySelector(".toc nav-item.active");
             if (active) {
-                active.scrollIntoView({ block: 'nearest' });
+                active.scrollIntoView({ block: "nearest" });
             }
         });
         if (hCheckboxes) {
@@ -76,42 +81,42 @@
 
 <div class="nav flex-column sticky-top-under align-items-end pt-1">
     <div class="d-none d-xl-block w-100">
-        <slot name="right-sidebar-top" />
+        {@render rightSidebarTop()}
         {#if showToc}
-            <strong class="h6 my-2 text-body">On this page</strong>
+            <strong class="h5 my-2 text-body">On this page</strong>
         {/if}
         <nav id="TableOfContents" class="d-flex flex-column">
             {#if showToc}
                 <ul class="mb-0 mt-1">
                     {#each headings as heading (heading)}
                         <li
-                            class={'nav-item heading-padding-' + (heading.depth - minHeadingDepth)}
+                            class={"nav-item ms-1 heading-padding-" + (heading.depth - minHeadingDepth)}
                             class:active={heading.slug === activeHeading}
                             class:collapse={heading.hidden && !$showHidden}
                         >
                             <a
                                 class="nav-link py-1 ps-3 text-body-secondary small d-inline-flex align-items-center"
-                                href={'#' + heading.slug}
+                                href={"#" + heading.slug}
                             >
                                 {#if heading.fa_icon}
-                                    <i class={heading.fa_icon + ' fa-fw me-2'} aria-hidden="true" />
+                                    <i class={heading.fa_icon + " fa-fw me-2"} aria-hidden="true"></i>
                                 {/if}
                                 {@html heading.text}
-                                {#if hCheckboxes.find((hc) => hc?.id.startsWith('checkbox-' + heading.slug))}
+                                {#if hCheckboxes.find((hc) => hc?.id.startsWith("checkbox-" + heading.slug))}
                                     <span class="ms-2">
                                         <ProgressIndicator
                                             progress={(hCheckboxes.filter(
                                                 (check) =>
-                                                    check?.id.startsWith('checkbox-' + heading.slug) && check?.checked,
+                                                    check?.id.startsWith("checkbox-" + heading.slug) && check?.checked,
                                             ).length /
                                                 hCheckboxes.filter((check) =>
-                                                    check?.id.startsWith('checkbox-' + heading.slug),
+                                                    check?.id.startsWith("checkbox-" + heading.slug),
                                                 ).length) *
                                                 100}
                                             size={25}
-                                            strokeWidth={7}
+                                            strokeWidth={4}
                                             isCurrent={true}
-                                            confetti={hCheckboxes.every((check) => check.checked)}
+                                            confetti={true}
                                         />
                                     </span>
                                 {/if}
@@ -132,12 +137,12 @@
                         class="back-to-top text-body-secondary text-small mb-2"
                         on:click={() => window.scrollTo(0, 0)}
                     >
-                        <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true" /> Back to top
+                        <i class="fa-solid fa-arrow-up-to-line" aria-hidden="true"></i> Back to top
                     </a>
-                    <slot name="right-sidebar-link-bar" />
+                    {@render rightSidebarLinkBar()}
                 </div>
             {/if}
-            <slot />
+            {@render defaultContent()}
         </nav>
     </div>
 </div>
@@ -173,7 +178,7 @@
         }
     }
 
-    :global([data-bs-theme='dark']) {
+    :global([data-bs-theme="dark"]) {
         li {
             &:hover {
                 & a {

@@ -3,7 +3,7 @@ title: Test data
 subtitle: Follow this walkthrough to add a new pipeline to nf-core.
 short_title: Test data setup
 weight: 20
-type: 'tutorial'
+type: "tutorial"
 ---
 
 ## Running with test data
@@ -87,3 +87,11 @@ in the `.github/workflows/` YAML files too.
 - The test should be as comprehensive as possible
 - The test should run as much of the pipeline as possible
 - The test dataset should be as small as possible, but big enough to test the pipeline
+
+You can see the full specifications under the [specifications page](/docs/guidelines/components/test_data.md).
+
+### Full test data
+
+You will also need a full-size test dataset for the `test_full` profile that gets executed on each release to produce 'realistic' output.
+
+For this you will need to request on [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel on the nf-core Slack for a core team member to upload the data to the nf-core AWS S3 test buckets for you.

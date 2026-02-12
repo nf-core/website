@@ -1,5 +1,5 @@
 ---
-import { Markdown } from '@astropub/md';
+import { Markdown } from "@mashehu/astropub-md";
 let { name, icon, params = [] } = Astro.props;
 
 export interface Props {
@@ -12,7 +12,7 @@ export interface Props {
 <h2 id={name.toLowerCase()} class="text-success ms-n3">
     <i class={`fad ${icon} fa-fw`}></i>
     {name}
-    <a href={'#' + name.toLowerCase()} class="header-link scroll_to_link"
+    <a href={"#" + name.toLowerCase()} class="header-link scroll_to_link"
         ><span class="fas fa-link" aria-hidden="true"></span>
     </a>
 </h2>
@@ -21,9 +21,7 @@ export interface Props {
     params ? (
         <div class="row border-bottom border-3">
             <div class="col-12 col-md-3 col-xxl-2">
-                <span class="text-body-secondary">
-                    name<span class="ps-0 font-monospace opacity-75 small">:type</span>
-                </span>
+                <span class="text-body-secondary">name</span>
             </div>
             <div class="col-12 col-md-6">
                 <span class="text-body-secondary text-start">description</span>
@@ -33,32 +31,29 @@ export interface Props {
             </div>
         </div>
     ) : (
-        ''
+        ""
     )
 }
 {
     params ? (
         params.map((param) => {
             const name = Object.keys(param)[0];
-            const { type, description, pattern } = param[name];
+            const { description, pattern } = param[name];
             return (
                 <div class="row border-bottom align-items-center">
                     <div class="col-12 col-md-3 col-xxl-2 small-h">
                         <h4 id={name} class="module-row-name-id d-flex align-items-center mb-0">
-                            <code>
-                                {name}
-                                {type && <span class="opacity-75 small">:{type}</span>}
-                            </code>
-                            <a href={'#' + name} class="header-link scroll_to_link me-2 mb-2">
+                            <code>{name}</code>
+                            <a href={"#" + name} class="header-link scroll_to_link me-2 mb-2">
                                 <span class="fas fa-link" aria-hidden="true" />
                             </a>
                         </h4>
                     </div>
 
-                    <div class={'col-12 description py-1 small col-md-' + (pattern ? '5' : '7')}>
-                        <Markdown of={description?.replace(/(\n)/g, '  \n').replace(/\*./g, '\\*.')} />
+                    <div class={"col-12 description py-1 small col-md-" + (pattern ? "5" : "7")}>
+                        <Markdown of={description?.replace(/(\n)/g, "  \n").replace(/\*./g, "\\*.")} />
                     </div>
-                    <div class={'col-12 col-md-' + (pattern ? '4' : '1') + ' ms-auto'}>
+                    <div class={"col-12 col-md-" + (pattern ? "4" : "1") + " ms-auto"}>
                         {pattern && <code class="float-end pattern">{pattern}</code>}
                     </div>
                 </div>

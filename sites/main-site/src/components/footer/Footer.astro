@@ -1,7 +1,7 @@
 ---
-import NfCoreLogoDarkbg from '/images/logo/nf-core-logo-darkbg.svg?raw';
-import NfCoreLogo from '/images/logo/nf-core-logo.svg?raw';
-import IconSocial from '@components/IconSocial.astro';
+import NfCoreLogoDarkbg from "../../assets/images/logo/nf-core-logo-darkbg.svg";
+import NfCoreLogo from "../../assets/images/logo/nf-core-logo.svg";
+import IconSocial from "@components/IconSocial.astro";
 ---
 
 <footer class="footer bg-body-secondary text-body-secondary py-4 py-lg-5">
@@ -11,10 +11,10 @@ import IconSocial from '@components/IconSocial.astro';
                 <div class="">
                     <a href="/" class="text-decoration-none d-inline-block">
                         <div class="hide-dark align-middle">
-                            <Fragment set:html={NfCoreLogo} />
+                            <NfCoreLogo />
                         </div>
                         <div class="hide-light">
-                            <Fragment set:html={NfCoreLogoDarkbg} />
+                            <NfCoreLogoDarkbg />
                         </div>
                     </a>
                     <div class="small d-block">Making awesome workflows since 2018.</div>
@@ -53,7 +53,7 @@ import IconSocial from '@components/IconSocial.astro';
     </div>
 
     <style lang="scss">
-        @import '@styles/_variables.scss';
+        @import "@styles/_variables.scss";
         .hide-dark {
             height: 3rem;
             width: 7.5rem;
@@ -63,7 +63,7 @@ import IconSocial from '@components/IconSocial.astro';
             width: 0rem;
         }
 
-        :global([data-bs-theme='dark']) {
+        :global([data-bs-theme="dark"]) {
             .hide-dark {
                 height: 0;
                 width: 0;

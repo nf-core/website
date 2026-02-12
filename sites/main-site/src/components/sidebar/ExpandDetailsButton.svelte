@@ -1,28 +1,29 @@
 <script lang="ts">
-    let expanded = false;
+    let expanded = $state(false);
 
-    function ToggleDetails() {
+    const toggleDetails = () => {
         expanded = !expanded;
+
         if (expanded) {
-            document.querySelectorAll('details:not([open])').forEach((details) => {
-                details.setAttribute('open', '');
+            document.querySelectorAll("details:not([open])").forEach((details) => {
+                details.setAttribute("open", "");
             });
         } else {
-            document.querySelectorAll('details[open]').forEach((details) => {
-                details.removeAttribute('open');
+            document.querySelectorAll("details[open]").forEach((details) => {
+                details.removeAttribute("open");
             });
         }
-    }
+    };
 </script>
 
-<button class="btn btn-sm btn-outline-secondary expand-details w-100" on:click={ToggleDetails}>
-    <span class="">
+<button class="btn btn-sm btn-outline-secondary expand-details w-100" onclick={toggleDetails}>
+    <span>
         {#if expanded}
-            <i class="fa-solid fa-arrows-to-line" />
+            <i class="fa-solid fa-arrows-to-line"></i>
             Hide details
         {:else}
-            <i class="fa-solid fa-arrows-from-line" />
+            <i class="fa-solid fa-arrows-from-line"></i>
             Show details
         {/if}
-    </span></button
->
+    </span>
+</button>

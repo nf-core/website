@@ -1,22 +1,23 @@
 ---
-import type { SidebarEntry } from '@utils/types';
-import SidebarSubNav from '@components/sidebar/SidebarSubNav.astro';
+import type { SidebarEntry } from "@utils/types";
+import SidebarSubNav from "@components/sidebar/SidebarSubNav.astro";
 
 export interface Props {
     items: SidebarEntry[];
 }
 
 let { items } = Astro.props;
-let url = Astro.url.pathname.endsWith('/') ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
-url = url.replace(/\.html$/, '');
+let url = Astro.url.pathname.endsWith("/") ? Astro.url.pathname.slice(0, -1) : Astro.url.pathname;
+url = url.replace(/\.html$/, "");
 ---
 
-<div class="nav sticky-top-under pt-1">
+<div class="nav sticky-top-under pt-1 ms-auto">
     <SidebarSubNav items={items} />
+    <slot name="post-nav" slot="post-nav" />
 </div>
 
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     div.sticky-top-under {
         max-width: 20rem;
     }

@@ -1,23 +1,53 @@
 ---
-import ParameterItem from './ComponentParamItem.astro';
+import ParameterItem from "./ComponentParamItem.astro";
 
 const { params, depth = 0 } = Astro.props;
+
+interface Props {
+    params: any[];
+    depth?: number;
+}
+
+// Simplified function to flatten params into array of key-value objects
+function flattenParams(data: any): Array<{ [key: string]: any }> {
+    const result: Array<{ [key: string]: any }> = [];
+
+    function processItem(item: any) {
+        if (Array.isArray(item)) {
+            // If it's an array, process each element
+            item.forEach(processItem);
+        } else if (item && typeof item === "object") {
+            // If it's an object, add each key-value pair as separate objects
+            Object.entries(item).forEach(([key, value]) => {
+                result.push({ [key]: value });
+            });
+        }
+    }
+
+    processItem(data);
+    return result;
+}
+
+const normalizedParams = flattenParams(params);
 ---
 
 {
-    params.map((param, i) => {
-        const [name, value] = Object.entries(param)[0];
-        return (
-            <div class:list={[{ 'card card-body mt-3 py-1': depth === 0 }]}>
+    normalizedParams.map((param, i) =>
+        Object.entries(param).map(([name, value], entryIndex) => (
+            <div class:list={[{ "card card-body mt-3 py-1": depth === 0 }]}>
                 <ParameterItem
                     name={name}
                     value={value}
                     depth={depth}
-                    lastItem={i === params.length - 1 && depth > 0}
+                    lastItem={
+                        i === normalizedParams.length - 1 &&
+                        entryIndex === Object.entries(param).length - 1 &&
+                        depth > 0
+                    }
                 />
             </div>
-        );
-    })
+        )),
+    )
 }
 
 <style></style>

@@ -1,13 +1,17 @@
 <script lang="ts">
-    import { currentHeading } from '@components/store';
-    import SchemaListingTocButtons from '@components/schema/SchemaListingTocButtons.svelte';
-    export let headings: {
-        text: string;
-        slug: string;
-        depth: number;
-        fa_icon?: string;
-    }[];
-    export let showHiddenBtn: boolean;
+    import { currentHeading } from "@components/store";
+    import SchemaListingTocButtons from "@components/schema/SchemaListingTocButtons.svelte";
+    interface Props {
+        headings: {
+            text: string;
+            slug: string;
+            depth: number;
+            fa_icon?: string;
+        }[];
+        showHiddenBtn: boolean;
+    }
+
+    let { headings, showHiddenBtn }: Props = $props();
 </script>
 
 <div class="d-md-none toc-md">
@@ -19,14 +23,14 @@
             data-bs-toggle="dropdown"
             aria-expanded="false"
         >
-            <i class="fa-solid fa-list" aria-hidden="true" /> On this page
+            <i class="fa-solid fa-list" aria-hidden="true"></i> On this page
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {#each headings as heading (heading)}
                 <li class:active={heading.slug === $currentHeading}>
-                    <a class="dropdown-item" href={'#' + heading.slug}>
+                    <a class="dropdown-item" href={"#" + heading.slug}>
                         {#if heading.fa_icon}
-                            <i class={heading.fa_icon} aria-hidden="true" />
+                            <i class={heading.fa_icon} aria-hidden="true"></i>
                         {/if}
                         {@html heading.text}
                     </a>
@@ -53,7 +57,7 @@
         background-color: rgba(var(--bs-success), 0.75);
     }
 
-    :global([data-bs-theme='dark']) {
+    :global([data-bs-theme="dark"]) {
         li.active {
             background-color: rgba(var(--bs-success), 0.75);
         }

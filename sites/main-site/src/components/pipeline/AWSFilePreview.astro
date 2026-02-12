@@ -1,39 +1,39 @@
 ---
-import * as icons from 'file-icons-js';
-import 'file-icons-js/css/style.css';
+import * as icons from "file-icons-js";
+import "file-icons-js/css/style.css";
 // import { Code } from 'astro/components';
-import { Markdown } from '@astropub/md';
-import Admonition from '@components/Admonition.astro';
-import AWSExportButtons from '@components/pipeline/AWSExportButtons.astro';
+import { Markdown } from "@mashehu/astropub-md";
+import Admonition from "@components/Admonition.astro";
+import AWSExportButtons from "@components/pipeline/AWSExportButtons.astro";
 
-const hrefPrefix = 'https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/';
+const hrefPrefix = "https://nf-core-awsmegatests.s3-eu-west-1.amazonaws.com/";
 
 const { file } = Astro.props;
 
-let content = '';
-const extension: string = file.name.split('.').pop();
+let content = "";
+const extension: string = file.name.split(".").pop();
 const fileIcon = icons.getClass(file.name);
 const hasPreview = [
-    'json',
-    'yaml',
-    'yml',
-    'csv',
-    'tsv',
-    'log',
-    'txt',
-    'html',
-    'pdf',
-    'png',
-    'jpg',
-    'jpeg',
-    'gif',
-    'svg',
-    'config',
-    'nf',
-    'bed',
+    "json",
+    "yaml",
+    "yml",
+    "csv",
+    "tsv",
+    "log",
+    "txt",
+    "html",
+    "pdf",
+    "png",
+    "jpg",
+    "jpeg",
+    "gif",
+    "svg",
+    "config",
+    "nf",
+    "bed",
 ].includes(extension);
 let tooBig = file.size > 5500000;
-if (['csv', 'tsv', 'log', 'txt'].includes(extension)) {
+if (["csv", "tsv", "log", "txt"].includes(extension)) {
     tooBig = file.size > 1000;
 }
 if (!tooBig && hasPreview) {
@@ -43,8 +43,8 @@ if (!tooBig && hasPreview) {
 
 <script>
     //scroll to file-preview
-    window.addEventListener('load', () => {
-        const filePreview = document.getElementById('file-preview');
+    window.addEventListener("load", () => {
+        const filePreview = document.getElementById("file-preview");
         if (filePreview) {
             filePreview.scrollIntoView();
         }
@@ -53,23 +53,23 @@ if (!tooBig && hasPreview) {
 <div id="file-preview" class="card mt-3">
     <div class="card-header d-flex flex-column flex-lg-row align-items-center">
         <span class="fs-bold d-flex align-items-center">
-            {fileIcon ? <span class={fileIcon + ' file-icon me-2'} /> : <i class="fa-solid fa-file me-2" />}
+            {fileIcon ? <span class={fileIcon + " file-icon me-2"} /> : <i class="fa-solid fa-file me-2" />}
             {file.name}
         </span>
         <div class="ms-auto">
             <AWSExportButtons href={hrefPrefix + file.path} />
         </div>
     </div>
-    <div class:list={['card-body  p-0', { 'd-none': !hasPreview || tooBig }]}>
+    <div class:list={["card-body  p-0", { "d-none": !hasPreview || tooBig }]}>
         {
-            ['bam', 'bai', 'gz', 'zip'].includes(extension) && (
+            ["bam", "bai", "gz", "zip"].includes(extension) && (
                 <Admonition title="warning">
                     <p>This file is compressed and cannot be previewed. You can download it and view it locally.</p>
                 </Admonition>
             )
         }
         {
-            extension === 'html' && (
+            extension === "html" && (
                 <div class="iframe-container w-100 d-flex align-items-start">
                     <i class="mt-5 m-auto text-success fa-regular fa-spinner-third fa-spin fa-3x" />
                     <iframe
@@ -85,26 +85,26 @@ if (!tooBig && hasPreview) {
             )
         }
         {
-            ['png', 'jpg', 'jpeg', 'gif', 'svg'].includes(extension) && (
+            ["png", "jpg", "jpeg", "gif", "svg"].includes(extension) && (
                 <div class="img-wrapper w-100">
                     <img src={hrefPrefix + file.path} class="img-fluid" />
                 </div>
             )
         }
         {
-            ['json', 'yaml', 'yml'].includes(extension) && (
+            ["json", "yaml", "yml"].includes(extension) && (
                 // <Code lang={extension} code={content} />
-                <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
+                <Markdown of={"``` " + extension + "\n" + content + "\n" + "```"} />
             )
         }
         {
-            ['log', 'txt', 'csv', 'tsv', 'bed'].includes(extension) && (
-                <Markdown of={'``` ' + extension + '\n' + content + '\n' + '```'} />
+            ["log", "txt", "csv", "tsv", "bed"].includes(extension) && (
+                <Markdown of={"``` " + extension + "\n" + content + "\n" + "```"} />
             )
         }
-        {['config', 'nf'].includes(extension) && <Markdown of={'``` groovy' + '\n' + content + '\n' + '```'} />}
+        {["config", "nf"].includes(extension) && <Markdown of={"``` groovy" + "\n" + content + "\n" + "```"} />}
         {
-            extension === 'pdf' && (
+            extension === "pdf" && (
                 <object data={hrefPrefix + file.path} type="application/pdf" width="100%" height="1000px">
                     <p>
                         You don't have a PDF plugin, but you can
@@ -114,19 +114,19 @@ if (!tooBig && hasPreview) {
             )
         }
     </div>
-    <div class:list={['p-3 mt-4', { 'd-none': hasPreview }]}>
+    <div class:list={["p-3 mt-4", { "d-none": hasPreview }]}>
         <Admonition title="note">
             <p>No preview available for this file type. You can download it and view it locally.</p>
         </Admonition>
     </div>
-    <div class:list={['p-3 ', { 'd-none': !tooBig || !hasPreview }]}>
+    <div class:list={["p-3 ", { "d-none": !tooBig || !hasPreview }]}>
         <Admonition title="info">
             <p>The file is too big to preview, please download it to inspect its contents.</p>
         </Admonition>
     </div>
 </div>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
 
     .file-icon {
         vertical-align: middle;

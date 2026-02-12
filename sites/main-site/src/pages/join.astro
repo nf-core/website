@@ -1,57 +1,51 @@
 ---
-import MarkdownTocLayout from '@layouts/MarkdownTocLayout.astro';
-import { Icon } from 'astro-icon/components';
+import MarkdownTocLayout from "@layouts/MarkdownTocLayout.astro";
+import { Icon } from "astro-icon/components";
 
-const title = 'Join nf-core';
-const subtitle = 'Read about the different ways you can get involved with nf-core';
+const title = "Join nf-core";
+const subtitle = "Read about the different ways you can get involved with nf-core";
 const headings = [
     {
-        text: 'Slack',
-        slug: 'slack',
+        text: "Slack",
+        slug: "slack",
         depth: 1,
-        fa_icon: 'fa-brands fa-slack',
+        fa_icon: "fa-brands fa-slack",
     },
     {
-        text: 'GitHub organisation',
-        slug: 'github',
+        text: "GitHub organisation",
+        slug: "github",
         depth: 1,
-        fa_icon: 'fa-brands fa-github',
+        fa_icon: "fa-brands fa-github",
     },
     {
-        text: 'Twitter',
-        slug: 'twitter',
+        text: "Mastodon",
+        slug: "mastodon",
         depth: 1,
-        fa_icon: 'fa-brands fa-twitter',
+        fa_icon: "fa-brands fa-mastodon",
     },
     {
-        text: 'Mastodon',
-        slug: 'mastodon',
+        text: "Bluesky",
+        slug: "bluesky",
         depth: 1,
-        fa_icon: 'fa-brands fa-mastodon',
+        fa_icon: "fa-regular fa-cloud",
     },
     {
-        text: 'YouTube',
-        slug: 'youtube',
+        text: "LinkedIn",
+        slug: "linkedin",
         depth: 1,
-        fa_icon: 'fa-brands fa-youtube',
+        fa_icon: "fa-brands fa-linkedin",
     },
     {
-        text: 'Gather Town',
-        slug: 'gather-town',
+        text: "YouTube",
+        slug: "youtube",
         depth: 1,
-        fa_icon: 'fa-regular fa-grapes fa-rotate-270',
+        fa_icon: "fa-brands fa-youtube",
     },
     {
-        text: 'LinkedIn',
-        slug: 'linkedin',
+        text: "WorkAdventure",
+        slug: "workadventure",
         depth: 1,
-        fa_icon: 'fa-brands fa-linkedin',
-    },
-    {
-        text: 'Bluesky',
-        slug: 'bluesky',
-        depth: 1,
-        fa_icon: 'fa-regular fa-cloud',
+        fa_icon: "fa-regular fa-mug-hot",
     },
 ];
 ---
@@ -59,16 +53,11 @@ const headings = [
 <MarkdownTocLayout title={title} subtitle={subtitle} headings={headings} md_github_url="">
     <p>We use a few different tools to organise the nf-core community - you are welcome to join us at any or all!</p>
     <p class="text-center">
+        <a href="/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #611f69;">
+            <i class="fab fa-slack"></i> Slack
+        </a>
         <a href="https://github.com/nf-core" class="mb-2 me-3 btn btn-lg btn-dark border-white">
             <i class="fab fa-github"></i> GitHub
-        </a>
-        <a
-            href="https://twitter.com/nf_core"
-            class="mb-2 me-3 btn btn-lg btn-dark border-0 bg-twitter"
-            bs-toggle="tooltip"
-            title="Nope, not calling it X"
-        >
-            <i class="fab fa-twitter"></i> twitter
         </a>
         <a
             href="https://mstdn.science/@nf_core"
@@ -78,14 +67,12 @@ const headings = [
             <i class="fab fa-mastodon"></i> mastodon
         </a>
         <a
-            href="https://www.youtube.com/@nf-core"
-            class="mb-2 me-3 btn btn-lg btn-danger"
-            style="background-color: #EA3C1E;"
+            href="https://bsky.app/profile/nf-co.re"
+            class="mb-2 me-3 btn btn-lg btn-dark"
+            style="background-color: #1185fe;"
         >
-            <i class="fab fa-youtube"></i> YouTube
-        </a>
-        <a href="/join/slack" class="mb-2 me-3 btn btn-lg btn-dark" style="background-color: #611f69;">
-            <i class="fab fa-slack"></i> Slack
+            <Icon name="simple-icons:bluesky" />
+            Bluesky
         </a>
         <a
             href="https://www.linkedin.com/company/nf-core"
@@ -95,12 +82,11 @@ const headings = [
             <i class="fab fa-linkedin"></i> LinkedIn
         </a>
         <a
-            href="https://bsky.app/profile/nf-co.re"
-            class="mb-2 me-3 btn btn-lg btn-dark"
-            style="background-color: #1185fe;"
+            href="https://www.youtube.com/@nf-core"
+            class="mb-2 me-3 btn btn-lg btn-danger"
+            style="background-color: #EA3C1E;"
         >
-            <Icon name="simple-icons:bluesky" />
-            Bluesky
+            <i class="fab fa-youtube"></i> YouTube
         </a>
     </p>
 
@@ -113,12 +99,10 @@ const headings = [
     </p>
     <div class="alert alert-info text-center">
         <Icon name="logos/nextflow_icon_color" size={30} class="text-success me-3" />
-        If your question is about Nextflow and not directly related to nf-core, please use the <a
-            class="link-underline"
-            href="https://nextflow.io/slack-invite.html">Slack community chat</a
-        > or the <a class="link-underline" href="https://github.com/nextflow-io/nextflow/discussions"
-            >discussion forum</a
-        > on GitHub.
+        If your question is about Nextflow and not directly related to nf-core, please post on the <a
+            href="https://community.seqera.io/"
+            target="_blank">Nextflow Community Forum</a
+        > instead.
     </div>
 
     <h1 id="slack" class="mt-5">
@@ -151,7 +135,7 @@ const headings = [
     </div>
 
     <h1 id="github" class="mt-5">
-        <span class="join-pull-img bg-body"><Icon name="fa:github" class="text-body" size="120px" /></span>
+        <span class="join-pull-img bg-body"><Icon name="fa-brands:github" class="text-body" size="120px" /></span>
         GitHub organisation
         <a href="#github" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
     </h1>
@@ -161,8 +145,8 @@ const headings = [
     </p>
     <p>
         We use GitHub to manage all of the code written for nf-core. It's a fantastic platform and provides a huge
-        number of tools. We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which we
-        use to give access to collaborators for editing and reviewing code.
+        number of tools. We have a GitHub organisation called <a href="https://github.com/nf-core/">nf-core</a> which we use
+        to give access to collaborators for editing and reviewing code.
     </p>
     <p>
         To join the GitHub organisation, please introduce yourself and what you want to work on in nf-core on the <a
@@ -177,19 +161,6 @@ const headings = [
         </a>
     </p>
 
-    <h1 id="twitter" class="mt-5">
-        <span class="join-pull-img bg-body"><Icon name="logos:twitter" size="120px" /></span>
-        Twitter
-        <a href="#twitter" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    </h1>
-    <p>
-        The <a href="https://twitter.com/nf_core">@nf_core</a> twitter account sends automated tweets whenever a new pipeline
-        release is tagged. Relevant news and events are also tweeted.
-    </p>
-    <a href="https://twitter.com/nf_core?ref_src=twsrc%5Etfw" class="btn btn-dark bg-twitter border-0">
-        <i class="fab fa-twitter me-1"></i>Follow @nf_core</a
-    >
-
     <h1 id="mastodon" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="logos:mastodon-icon" size="120px" /></span>
         Mastodon
@@ -200,48 +171,6 @@ const headings = [
         releases and engages with the Mastodon Nextflow / open-science community.
     </p>
     <p>Feel free to follow if you use Mastodon, whatever server you're using!</p>
-
-    <h1 id="youtube" class="mt-5">
-        <span class="join-pull-img bg-body"><Icon name="logos:youtube-icon" class="text-body" size="120px" /></span>
-        YouTube
-        <a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    </h1>
-    <p>
-        The <a href="https://www.youtube.com/@nf-core">nf-core</a> YouTube channel is used for tutorial videos and has a
-        playlist to collect recordings of presentations about nf-core from across the web. See <a
-            href="https://www.youtube.com/@nf-core">https://www.youtube.com/@nf-core</a
-        >
-    </p>
-    <script src="https://apis.google.com/js/platform.js"></script>
-    <div class="g-ytsubscribe" data-channelid="UCfdY8g6eA6IuYZ8oyyNsabQ" data-layout="full" data-count="default"></div>
-
-    <h1 id="gather-town" class="mt-5">
-        <span class="join-pull-img bg-body">
-            <Icon name="gather-town" alt="Gather.town logo" height="120px" width="120px" />
-        </span>
-        Gather Town
-        <a href="#gather-town" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    </h1>
-    <p>
-        nf-core has a virtual meeting workspace on <a href="https://gather.town/app/b2RCFGS2cIGusuNi/nf-core-office"
-            >gather.town</a
-        > for collaboration. The space is always open, but usage requires adherence to the <a
-            href="https://nf-co.re/code_of_conduct">nf-core code of conduct</a
-        >
-    </p>
-
-    <h1 id="linkedin" class="mt-5">
-        <span class="join-pull-img bg-body"><Icon name="logos:linkedin" size="120px" /></span>
-        LinkedIn
-        <a href="#linkedin" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
-    </h1>
-    <p>
-        Follow <a href="https://www.linkedin.com/company/nf-core">nf-core</a> on LinkedIn to keep up to date with what's
-        new in the community.
-    </p>
-    <a href="https://www.linkedin.com/company/nf-core" class="btn btn-dark border-0" style="background-color: #0077B5;">
-        <i class="fab fa-linkedin me-1"></i>Follow nf-core</a
-    >
 
     <h1 id="bluesky" class="mt-5">
         <span class="join-pull-img bg-body"><Icon name="simple-icons:bluesky" color="#1185fe" size="120px" /></span>
@@ -255,9 +184,54 @@ const headings = [
     <a href="https://bsky.app/profile/nf-co.re" class="btn btn-dark border-0" style="background-color: #1185fe;">
         <Icon name="simple-icons:bluesky" /> Follow @nf-co.re</a
     >
+
+    <h1 id="linkedin" class="mt-5">
+        <span class="join-pull-img bg-body"><Icon name="logos:linkedin" size="120px" /></span>
+        LinkedIn
+        <a href="#linkedin" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h1>
+    <p>
+        Follow <a href="https://www.linkedin.com/company/nf-core">nf-core</a> on LinkedIn to keep up to date with what's new
+        in the community.
+    </p>
+    <a href="https://www.linkedin.com/company/nf-core" class="btn btn-dark border-0" style="background-color: #0077B5;">
+        <i class="fab fa-linkedin me-1"></i>Follow nf-core</a
+    >
+
+    <h1 id="youtube" class="mt-5">
+        <span class="join-pull-img bg-body"><Icon name="logos:youtube-icon" class="text-body" size="120px" /></span>
+        YouTube
+        <a href="#youtube" class="header-link"><span class="fas fa-link" aria-hidden="true"></span></a>
+    </h1>
+    <p>
+        The <a href="https://www.youtube.com/@nf-core">nf-core</a> YouTube channel is used for tutorial videos and has a playlist
+        to collect recordings of presentations about nf-core from across the web. See <a
+            href="https://www.youtube.com/@nf-core">https://www.youtube.com/@nf-core</a
+        >
+    </p>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <div class="g-ytsubscribe" data-channelid="UCfdY8g6eA6IuYZ8oyyNsabQ" data-layout="full" data-count="default"></div>
+
+    <h1 id="workadventure" class="mt-5">
+        <span class="join-pull-img bg-body">
+            <Icon name="workadventure" alt="WorkAdventu.re logo" height="120px" width="120px" />
+        </span>
+        WorkAdventure
+        <a href="
+                #workadventure" class="header-link"
+            ><span class="fas fa-link" aria-hidden="true"></span></a
+        >
+    </h1>
+    <p>
+        nf-core has a virtual meeting workspace on <a href="https://play.workadventu.re/@/nf-core/nf-core/office"
+            >WorkAdventure</a
+        > for collaboration. The space is always open, but usage requires adherence to the <a
+            href="https://nf-co.re/code_of_conduct">nf-core code of conduct</a
+        >
+    </p>
 </MarkdownTocLayout>
 <style lang="scss">
-    @import '@styles/_variables.scss';
+    @import "@styles/_variables.scss";
     .icon-sm {
         max-width: 1.5rem;
     }
@@ -265,7 +239,10 @@ const headings = [
         float: right;
         padding-left: 1.5rem;
     }
-    .bg-twitter {
-        background-color: #4aa1eb !important;
+    :global([data-icon="workadventure"]) {
+        color: #1b2a41;
+    }
+    :global([data-bs-theme="dark"]) :global([data-icon="workadventure"]) {
+        color: var(--bs-body-color);
     }
 </style>

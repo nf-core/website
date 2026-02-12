@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize 17: Pytest workflow'
+title: "Bytesize 17: Pytest workflow"
 subtitle: Edmund Miller - University of Texas at Dallas
 type: talk
-startDate: '2021-06-15'
-startTime: '13:00+02:00'
-endDate: '2021-06-15'
-endTime: '13:30+02:00'
+startDate: "2021-06-15"
+startTime: "13:00+02:00"
+endDate: "2021-06-15"
+endTime: "13:30+02:00"
 youtubeEmbed: https://youtu.be/pjhscKyWH74
 locations:
   - name: Online

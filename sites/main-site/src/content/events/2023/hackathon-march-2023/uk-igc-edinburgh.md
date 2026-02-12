@@ -2,10 +2,10 @@
 title: Hackathon - March 2023 (Edinburgh)
 subtitle: Local node of the nf-core hackathon at the Institute of Genetics and Cancer, University of Edinburgh, Edinburgh
 type: hackathon
-startDate: '2023-03-27'
-startTime: '09:30+01:00'
-endDate: '2023-03-29'
-endTime: '16:30+01:00'
+startDate: "2023-03-27"
+startTime: "09:30+01:00"
+endDate: "2023-03-29"
+endTime: "16:30+01:00"
 locations:
   - name: MRC Insitute of Genetics and Cancer
 # address: Medical Education Centre Computing Lab 1, Outpatients Department, Western General Hospital, Crewe Road, Edinburgh, EH4 2XU

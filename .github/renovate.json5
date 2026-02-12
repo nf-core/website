@@ -1,15 +1,41 @@
 {
-    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-    "extends": ["github>nf-core/ops//.github/renovate/default.json5", "config:recommended", "schedule:monthly"],
-    "npm": {
-        "enabled": false,
+    $schema: "https://docs.renovatebot.com/renovate-schema.json",
+    extends: [
+        "github>nf-core/ops//.github/renovate/default.json5",
+        "config:recommended",
+        "schedule:monthly",
+    ],
+    npm: {
+        enabled: false,
     },
-    "customManagers": [
+    // Override :automergeBranch from default.json5 to use PR-based auto-merge
+    // This respects branch protection rules that require PRs
+    platformAutomerge: true,
+    automergeType: "pr",
+    automergeStrategy: "rebase",
+    packageRules: [
         {
-            "customType": "regex",
-            "fileMatch": ["^linting\\.yml$"],
-            "matchStrings": ["https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz"],
-            "datasourceTemplate": "github-release-attachments"
-        }
+            matchManagers: ["custom.regex"],
+            matchFileNames: [".pre-commit-config.yaml"],
+            groupName: "pre-commit npm dependencies",
+            groupSlug: "pre-commit-npm",
+        },
+    ],
+    customManagers: [
+        {
+            customType: "regex",
+            managerFilePatterns: ["/^linting\\.yml$/"],
+            matchStrings: [
+                "https://github.com/(?<depName>.*)/releases/download/(?<currentValue>.*)/.*.tar.gz",
+            ],
+            datasourceTemplate: "github-release-attachments",
+        },
+        {
+            customType: "regex",
+            managerFilePatterns: ["/.pre-commit-config.yaml$/"],
+            matchStrings: ["- (?<depName>[^@\\s]+)@(?<currentValue>[^\\s#]+)"],
+            datasourceTemplate: "npm",
+            versioningTemplate: "npm",
+        },
     ],
 }

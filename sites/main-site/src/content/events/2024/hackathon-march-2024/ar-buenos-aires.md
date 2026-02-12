@@ -3,10 +3,10 @@ title: Hackathon - March 2024 (Argentina)
 subtitle: Local node of the nf-core hackathon
 shortTitle: Buenos Aires, Argentina
 type: hackathon
-startDate: '2024-03-18'
-startTime: '13:00+02:00'
-endDate: '2024-03-20'
-endTime: '21:00+02:00'
+startDate: "2024-03-18"
+startTime: "13:00+02:00"
+endDate: "2024-03-20"
+endTime: "21:00+02:00"
 locations:
   - name: ZS Associates
     address: Av. del Libertador 7208, C1429 CABA

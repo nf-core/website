@@ -1,6 +1,6 @@
 # files_unchanged
 
-#### `PipelineLint.files_unchanged() → Dict[str, List[str] | bool]{:python}`
+#### `PipelineLint.files_unchanged() → dict[str, list[str] | bool]{:python}`
 
 Checks that certain pipeline files are not modified from template output.
 
@@ -14,7 +14,6 @@ Files that must be unchanged:
 .gitattributes
 .prettierrc.yml
 .github/.dockstore.yml
-.github/CONTRIBUTING.md
 .github/ISSUE_TEMPLATE/bug_report.yml
 .github/ISSUE_TEMPLATE/config.yml
 .github/ISSUE_TEMPLATE/feature_request.yml

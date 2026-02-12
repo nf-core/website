@@ -2,10 +2,10 @@
 title: Hackathon - October 2021
 subtitle: A virtual online hackathon to develop nf-core together
 type: hackathon
-startDate: '2021-10-27'
-startTime: '10:00+02:00'
-endDate: '2021-10-29'
-endTime: '18:00+02:00'
+startDate: "2021-10-27"
+startTime: "10:00+02:00"
+endDate: "2021-10-29"
+endTime: "18:00+02:00"
 locations:
   - name: Gather town and Slack.
 ---
@@ -32,7 +32,6 @@ Prior the hackathon, make sure you're signed up/joined/have installed the follow
   - [nf-core/tools](https://nf-co.re/tools)
   - Docker/Singularity/Conda: [Google is your friend]
 - Familiarise yourself with the documentation on the nf-core website for nf-core modules:
-
   - [https://nf-co.re/docs/contributing/modules](https://nf-co.re/docs/contributing/modules)
 
   - [https://www.nextflow.io/docs/latest/dsl2.html#modules](https://www.nextflow.io/docs/latest/dsl2.html#modules)

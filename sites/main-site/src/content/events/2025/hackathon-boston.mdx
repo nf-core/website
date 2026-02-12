@@ -1,0 +1,88 @@
+---
+title: Hackathon - May 2025 (Boston)
+subtitle: An in-person hackathon held in Boston
+type: hackathon
+announcement:
+    start: 2025-04-12T09:00:00+02:00
+startDate: "2025-05-13"
+startTime: "10:00-04:00"
+endDate: "2025-05-14"
+endTime: "17:00-04:00"
+locations:
+    - name: Aloft Boston Seaport District, Boston, America
+      geoCoordinates: [42.34347, -71.04489]
+hackathonProjectListModals: hackathon-boston-2025
+---
+
+import { Image } from "astro:assets";
+import summitCard from "@assets/images/events/2025/hackathon-boston/summit-2025-boston.jpg";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+
+# Welcome
+
+Join us in person for the May 2025 nf-core hackathon in Boston!
+
+This hackathon will be held as part of the **Nextflow Summit 2025** in Boston, USA and is organised jointly.
+
+- **Summit website**: https://summit.nextflow.io/2025/boston/
+- **Dates**: 13th - 14th May 2025
+- **Registration**: Visit the [summit registration page](https://summit.nextflow.io/2025/boston/register/)
+- **Location**: [Aloft Boston](https://www.marriott.com/en-us/hotels/bosal-aloft-boston-seaport-district/overview/)
+
+<Image class="mb-5" src={summitCard} alt="Nextflow Summit 2025 - Boston" />
+
+# Projects
+
+We'll work in projects during the hackathon. Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-boston-2025` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-boston-2025).
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+The front-matter YAML at the top of the file should be filled in as follows:
+
+- `title`: Short and self-descriptive name for the project
+- `category`: One of `pipelines`, `components`, `tooling`
+- `slack`: If your project already has an obvious Slack channel (eg. a pipeline) then right click
+  it and _Copy link_ and fill in here. Otherwise, create a hackathon-specific
+  channel for your project with the pattern `#hack-may-2025-<project-name>`.
+- `image`: A meme, silly picture or any other image to make your project more memorable.
+  Add to the [`sites/main-site/src/assets/images/events/2025/hackathon-may` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/assets/images/events/2025/hackathon-may)
+  as part of your PR.
+- `image_alt`: Text description of your image.
+- `leaders`: One or more contact people for your project (array)
+    - Each key under `leaders`: Your GitHub username
+        - `name`: Your name
+        - `slack`: Link to your Slack user. Find this by right clicking your name in Slack and selecting _Copy link_
+
+The body text can provide any context and background.
+Projects should have at least one goal mentioned in the body text under a `## Goal` heading that you want to
+try to achieve by the end of the hackathon.
+
+## Join a project
+
+Joining a project is as simple as turning up and sitting down at the table of the project you're interested in.
+
+You can move freely between projects throughout the event.
+
+## List of projects
+
+<HackathonModalProjectList eventPath="hackathon-boston-2025" />

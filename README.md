@@ -1,5 +1,8 @@
-<img src="public/images/logo/nf-core-logo.svg#gh-light-mode-only" width="400">
-<img src="public/images/logo/nf-core-logo-darkbg.svg#gh-dark-mode-only" width="400">
+<picture>
+  <source srcset="sites/main-site/src/assets/images/logo/nf-core-logo-darkbg.svg" media="(prefers-color-scheme: dark)">
+  <source srcset="sites/main-site/src/assets/images/logo/nf-core-logo.svg" media="(prefers-color-scheme: light)">
+  <img src="sites/main-site/src/assets/images/logo/nf-core-logo.svg" alt="nf-core logo" width="400">
+</picture>
 
 # [nf-co.re](https://github.com/nf-core/website)
 
@@ -31,10 +34,10 @@ cd nf-core_website/
 ### Installing dependencies
 
 The website is built using [Astro](https://astro.build/), a static site generator.
-To install the dependencies, run:
+To install the dependencies for all sub-sites, run:
 
 ```bash
-npm install
+npm install --workspaces
 ```
 
 ### Running a local server
@@ -51,7 +54,29 @@ or
 npm run dev --workspace sites/docs
 ```
 
+For sub-sites (`sites/pipelines`, `sites/pipeline-results`, `sites/configs`, `sites/modules-subworkflows`, `sites/stickers`)) that are pulling data from GitHub API, you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
+
+Add the `.env` file to the root of the repository with the following content:
+
+```bash
+GITHUB_TOKEN=your_github_token
+```
+
+and then symlink the `.env` file to the sub-site you are working on, e.g.:
+
+```bash
+ln -s .env sites/pipelines/.env
+```
+
 You should then be able to access the website in your browser at [http://localhost:4321/](http://localhost:4321/). Some pages will not work when rendered using a specific dev server because the sub-sites are disjunct from each other, e.g., when starting the local server for `sites/docs`, [http://localhost:4321/](http://localhost:4321/) the [http://localhost:4321/pipelines](http://localhost:4321/pipelines) pages will throw 404 errors.
+
+In case you want to update `pipelines.json` or `components.json` you need to have a GitHub token with the `admin:read`, `workflows:read`, `PRs:read`, `issues:read` permissions.
+You can then run the following command to update the JSON files:
+
+```bash
+npm run build-pipeline-json
+npm run build-component-json
+```
 
 ### File structure
 
@@ -64,6 +89,7 @@ The main sub-sites are:
 - `sites/modules-subworkflows` - modules and subworkflows pages
 - `sites/pipelines` - pipeline pages
 - `sites/pipeline-results` - AWS megatest result pages for each pipeline (split up from the rest to allow static generation of the main pipeline pages)
+- `sites/stickers` - nf-core sticker gallery automatically generated based on the entries in [nf-core/logos](https://github.com/nf-core/logos/)
 
 Each site has its own `src` directory with the following structure, typical for an [Astro project](https://docs.astro.build/guides/project-structure):
 
@@ -118,27 +144,106 @@ announcement:
   end: "YYYY-MM-DDTHH:MM:SS+HH:MM" # (required if announcement.text is used)
 ```
 
+### Adding an advisory
+
+To add an advisory to the website, create a new markdown (or mdx) file in `sites/main-site/src/content/advisory` with the following frontmatter:
+
+```yaml
+---
+# Required fields
+title: "Advisory Title"
+subtitle: "Brief description of the issue"
+category:
+  "pipelines" # Which part of the nf-core ecosystem this advisory affects
+  # Options: ["pipelines", "modules", "subworkflows", "configuration"]
+  # Can be single value or array for multi-category issues
+type:
+  "known_regression" # What kind of issue this is - helps users understand impact
+  # Options: ["known_regression", "incompatibility", "security",
+  #          "performance", "data_corruption", "other"]
+  # Can be single value or array for issues with multiple aspects
+severity:
+  "high" # How serious this issue is for users
+  # Options: ["low", "medium", "high", "critical"]
+  # Note: "critical" is only allowed for security issues
+publishedDate: "2024-01-15" # When this advisory was published (YYYY-MM-DD format)
+
+# Optional reporter information - who discovered and reported this issue
+reporter: # Can be null, array of usernames, or array of objects with details
+  - "username" # Simple GitHub username
+  - name: "Full Name" # Object with full name and GitHub username
+    github: "username"
+
+# Optional reviewer information - who reviewed and validated this advisory
+reviewer: # Array of usernames or objects with reviewer details
+  - "reviewer-username"
+
+# Category-specific fields - REQUIRED if the corresponding category is specified above
+pipelines: # List of affected pipelines (required if category includes "pipelines")
+  - "pipeline-name" # Simple list of pipeline names
+  # OR specify affected versions:
+  - name: "pipeline-name" # Pipeline name with specific version information
+    versions: ["1.0.0", "1.1.0"] # Semantic version numbers of affected releases
+
+modules: # List of affected modules (required if category includes "modules")
+  - "module_name"
+  - "another/module"
+
+subworkflows: # List of affected subworkflows (required if category includes "subworkflows")
+  - "subworkflow/name"
+
+configuration: # Configuration aspects affected (required if category includes "configuration")
+  - "config-item"
+
+# Optional details
+nextflowVersions: # Specific Nextflow versions that exhibit this issue
+  - "23.04.0" # Use semantic versioning format
+  - "23.10.1"
+
+nextflowExecutors: # Workflow execution environments where this issue occurs
+  - "SLURM" # Specific executor names
+  - "AWS Batch"
+  - "Local"
+
+softwareDependencies: # Container systems or package managers affected by this issue
+  - "Docker" # Simple list of affected systems
+  # OR specify affected versions:
+  - name: "Singularity" # System name with version details
+    versions: ["3.8.0", "3.9.0"] # Specific versions that have the issue
+  # Available: ["Apptainer", "Charliecloud", "Docker", "Podman", "Sarus",
+  #            "Shifter", "Singularity", "Conda", "Spack", "Wave"]
+
+# Optional references - links to related information, bug reports, documentation
+references:
+  - title: "GitHub Issue" # Short title describing what this link is
+    description: "Original bug report" # Longer explanation of what you'll find at this link
+    url: "https://github.com/nf-core/pipeline/issues/123" # The actual URL
+  - title: "Slack discussion"
+    description: "Original reporting on the nf-core slack"
+    url: "https://nfcore.slack.com/archives/C03EZ806PFT/p1730391850337429"
+---
+```
+
 ### Adding an announcement banner
 
 You can show a short announcement banner on the website by adding additional information to the frontmatter of either a file inside `sites/main-site/src/content/blog` or `sites/main-site/src/content/events`. The following fields are available:
 
 ```yaml
 announcement:
-  text: 'Your announcement text'
+  text: "Your announcement text"
   start: YYYY-MM-DDTHH:MM:SS+HH:MM # Start date and time of the announcement (without quotes!)
   end: YYYY-MM-DDTHH:MM:SS+HH:MM # End date and time of the announcement. (without quotes!) This is an optional field for events, where the start date of the event is the end date of the announcement by default.
 ```
 
-### Updating the JSON files and cached markdown
+### Updating the JSON files
 
-Much of the site is powered by the JSON files in `/public` and the cached markdown files (from the pipeline docs) in `/.cache`.
+Much of the site is powered by the JSON files in `/public`.
 
 They come pre-built with the repository, but if you want to rebuild them then you'll need to run the following commands. Note that you need to add a GITHUB_TOKEN inside a `.env` file to avoid hitting API limits (too early). See [instructions on how to get a GitHub OAuth token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line) (the token only needs the `public_repo` permission).
 
 ```bash
 npm run build-pipeline-json
 npm run build-component-json
-npm run build-cache-force
 ```
 
 ### Adding a new sub-site to the mono-repo
@@ -147,7 +252,6 @@ The following steps are necessary to add a new sub-site to the mono-repo:
 
 - [ ] Copy the `sites/pipelines` directory to a new directory with the name of the new sub-site, e.g. newsite.
 - [ ] Update the following files in the new directory:
-
   - [ ] `astro.config.mjs`
     - [ ] Update the `assetsPrefix` field to point to the new site's netlify URL, e.g. `assetsPrefix: 'https://nf-core-website-newsite.netlify.app/'`.
   - [ ] `package.json` - Update the `name` field to the new site name, e.g. `"name": "newsite"`.

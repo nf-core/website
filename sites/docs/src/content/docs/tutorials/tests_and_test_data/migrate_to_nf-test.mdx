@@ -5,8 +5,8 @@ subtitle: Steps to migrate modules and subworkflows from pytest to nf-test
 weight: 30
 ---
 
-import Tabs from '@components/Tabs.svelte';
-import TabItem from '@components/TabItem.svelte';
+import Tabs from "@components/Tabs.svelte";
+import TabItem from "@components/TabItem.svelte";
 
 Checkout a new branch for your module/subworkflow tests.
 
@@ -18,46 +18,45 @@ To create the necessary files for nf-test and ensure a smooth transition, we wil
 
 Here are the steps to follow:
 
--   Use nf-core/tools to migrate the module/subworkflow with `--migrate-pytest`.
+- Use nf-core/tools to migrate the module/subworkflow with `--migrate-pytest`.
 
-    <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork fa-rotate-90 me-2"></i>']} client:idle>
+<Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork fa-rotate-90 me-2"></i>']} client:idle>
+    <TabItem name={"modules"} client:idle>
+        ```bash
+        nf-core modules create <tool>/<subtool> --migrate-pytest
+        ```
+        :::info{title="Technical details" collapse}
+        This command will:
 
-        <TabItem name={"modules"} client:idle>
-            ```bash
-            nf-core modules create <tool>/<subtool> --migrate-pytest
-            ```
-            :::info{title="Technical details" collapse}
+        - rename the current module directory to `<module>_old` to avoid conflicts with the new module,
+        - create a new module named `<module>`, based on the nf-test template.
+        - copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
+        - (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
+
+                    ```groovy title="main.nf.test"
+                    process "MODULE"
+                    config "./nextflow.config"
+                    ```
+        :::
+    </TabItem>
+    <TabItem name={"subworkflows"} client:idle>
+        ```bash
+        nf-core subworkflows create <subworkflow> --migrate-pytest
+        ```
+        :::info{title="Technical details" collapse}
             This command will:
 
-            - rename the current module directory to `<module>_old` to avoid conflicts with the new module,
-            - create a new module named `<module>`, based on the nf-test template.
-            - copy the `main.nf`, `meta.yml` and `environment.yml` files over to preserve the original module code.
-            - (optional) If your module has a `nextflow.config` file to run (e.g. for `ext.args` specification), the command will also copy it to the module's `tests/` directory and the path will be added to the `main.nf.test` file.
+            -   rename the current subworkflow directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow,
+            -   create a new subworkflow named `<subworkflow>` based on the nf-test template.
+            -   copy the `main.nf` and `meta.yml` files over to preserve the original subworkflow code.
+        :::
+    </TabItem>
 
-                        ```groovy title="main.nf.test"
-                        process "MODULE"
-                        config "./nextflow.config"
-                        ```
-            :::
-        </TabItem>
-        <TabItem name={"subworkflows"} client:idle>
-            ```bash
-            nf-core subworkflows create <subworkflow> --migrate-pytest
-            ```
-            :::info{title="Technical details" collapse}
-                This command will:
+</Tabs>
 
-                -   rename the current subworkflow directory to `<subworkflow>_old` to avoid conflicts with the new subworkflow,
-                -   create a new subworkflow named `<subworkflow>` based on the nf-test template.
-                -   copy the `main.nf` and `meta.yml` files over to preserve the original subworkflow code.
-            :::
-        </TabItem>
+- You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you can copy the information to the new nf-test files.
 
-    </Tabs>
-
--   You will then be asked if you want to delete the old files or keep them. No worries, we will print the content of the old pytests in the terminal so you can copy the information to the new nf-test files.
-
--   Copy the inputs from the pytests and provide them as positional inputs `input[0]` in the `main.nf.test` file
+- Copy the inputs from the pytests and provide them as positional inputs `input[0]` in the `main.nf.test` file
 
     ```groovy title="main.nf.test"
     input[0] = [
@@ -66,72 +65,66 @@ Here are the steps to follow:
             ]
     ```
 
--   Follow the steps in the tutorial for [writing nf-tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) to update the contents of the `main.nf.test` file with the information from the pytest tests.
+- Follow the steps in the tutorial for [writing nf-tests](/docs/tutorials/tests_and_test_data/nf-test_writing_tests) to update the contents of the `main.nf.test` file with the information from the pytest tests.
 
--   Create the snapshot of your test with the following command.
+- Create the snapshot of your test with the following command.
 
-    <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
+<Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
+    <TabItem name={"modules"} client:idle>
+    ```bash
+    nf-core modules test <tool>/<subtool>
+    ```
+    </TabItem>
+    <TabItem name={"subworkflows"} client:idle>
+    ```bash
+    nf-core subworkflows test <tool>/<subtool>
+    ```
+    </TabItem>
+</Tabs>
 
-        <TabItem name={"modules"} client:idle>
+- If you chose to not remove the old module directory with nf-core/tools:
+    - Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module/subworkflow will be skipped during GitHub CI.
+
+<Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
+    <TabItem name={"modules"} client:idle>
+        -   Remove the corresponding pytest files in `tests/modules/nf-core`
+
         ```bash
-        nf-core modules test <tool>/<subtool>
+        rm -r tests/modules/nf-core/<tool>/<subtool>
         ```
-        </TabItem>
-        <TabItem name={"subworkflows"} client:idle>
+
+        -   Remove the old module
+
         ```bash
-        nf-core subworkflows test <tool>/<subtool>
+        rm -r modules/nf-core/<tool>/<subtool>_old
         ```
-        </TabItem>
 
-    </Tabs>
+        -   Check if everything is according to the nf-core guidelines with:
 
--   If you chose to not remove the old module directory with nf-core/tools:
+        ```bash
+        nf-core modules lint <tool>/<subtool>
+        ```
+    </TabItem>
+    <TabItem name={"subworkflows"} client:idle>
+        -   Remove the corresponding pytest files in `tests/subworkflows/nf-core`
 
-    -   Remove the corresponding tags from `tests/config/pytest_modules.yml` so that py-tests for the module/subworkflow will be skipped during GitHub CI.
+        ```bash
+        rm -r tests/subworkflows/nf-core/<subworkflow>
+        ```
 
-    <Tabs names={["modules","subworkflows"]} icons={['<i class="far fa-xs fa-code-commit me-2"></i>','<i class="far fa-code-fork  fa-rotate-90 me-2"></i>']} client:idle>
+        -   Remove the old subworkflow
 
-        <TabItem name={"modules"} client:idle>
-            -   Remove the corresponding pytest files in `tests/modules/nf-core`
+        ```bash
+        rm -r subworkflows/nf-core/<subworkflow>_old
+        ```
 
-            ```bash
-            rm -r tests/modules/nf-core/<tool>/<subtool>
-            ```
+        -   Check if everything is according to the nf-core guidelines with:
 
-            -   Remove the old module
+        ```bash
+        nf-core subworkflows lint <subworkflow>
+        ```
+    </TabItem>
 
-            ```bash
-            rm -r modules/nf-core/<tool>/<subtool>_old
-            ```
+</Tabs>
 
-            -   Check if everything is according to the nf-core guidelines with:
-
-            ```bash
-            nf-core modules lint <tool>/<subtool>
-            ```
-
-        </TabItem>
-
-        <TabItem name={"subworkflows"} client:idle>
-            -   Remove the corresponding pytest files in `tests/subworkflows/nf-core`
-
-            ```bash
-            rm -r tests/subworkflows/nf-core/<subworkflow>
-            ```
-
-            -   Remove the old subworkflow
-
-            ```bash
-            rm -r subworkflows/nf-core/<subworkflow>_old
-            ```
-
-            -   Check if everything is according to the nf-core guidelines with:
-
-            ```bash
-            nf-core subworkflows lint <subworkflow>
-            ```
-        </TabItem>
-
-    </Tabs>
-
--   create a PR on the [nf-core/modules repo](https://github.com/nf-core/modules/) and add the `nf-test` label to it.
+- create a PR on the [nf-core/modules repo](https://github.com/nf-core/modules/) and add the `nf-test` label to it.

@@ -1,0 +1,162 @@
+---
+title: Hackathon - October 2025 (Barcelona)
+subtitle: An in-person hackathon held in Barcelona
+type: hackathon
+announcement:
+    start: 2025-08-28T09:00:00+02:00
+startDate: "2025-10-28"
+startTime: "09:00+01:00"
+endDate: "2025-10-29"
+endTime: "17:00+01:00"
+locations:
+    - name: SB Glow, Barcelona
+      geoCoordinates: [41.402176, 2.191152]
+hackathonProjectListModals: hackathon-october-2025
+---
+
+import { Image } from "astro:assets";
+import summitCard from "@assets/images/events/2025/hackathon-barcelona/summit-2025-barcelona.jpg";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+
+# Welcome
+
+Join us in person for the October 2025 nf-core hackathon!
+
+This hackathon will be held as part of the **Nextflow Summit 2025** in Barcelona, Spain and is organised together.
+
+- **Summit website**: https://summit.nextflow.io/2025/barcelona/
+- **Dates**: 28th - 29th October 2025
+- **Registration**: [Registrations are closed](https://summit.nextflow.io/2025/barcelona/register/#register)
+- **Location**: Barcelona - [SB Glow, Barcelona](https://www.sb-hotels.com/en/hotels/barcelona/glow/) at Carrer de Badajoz, 148, 154, Sant Martí, 08018, Barcelona.
+
+<Image class="mb-5" src={summitCard} alt="Nextflow Summit 2025 - Barcelona" />
+
+# How the hackathon works
+
+## What to expect
+
+The nf-core hackathons are collaborative, community-driven events where participants work together on projects.
+
+Everyone is welcome, no prior experience or nf-core contributions is needed. However, we do expect that you have some experience with writing Nextflow code.
+Note that there is a separate [training event](https://summit.nextflow.io/2025/barcelona/training/) for learning Nextflow and nf-core from scratch, running in parallel to the hackathon.
+
+nf-core hackathons are not just about coding! We also have a lot of fun. We typically run things like a quiz, a scavanger hunt and sock search.
+
+## Prerequisites
+
+Before you arrive at the hackathon, please make sure that you have:
+
+- [Registered](https://summit.nextflow.io/2025/barcelona/register/) to come!
+- [Joined the nf-core Slack](https://nf-co.re/join#slack)
+- [Joined the nf-core GitHub organisation](https://nf-co.re/join#github)
+- joined or been added to [`#hackathon-oct-2025` slack channel](https://nfcore.slack.com/archives/C09ADKQ2CHZ).
+
+## Where to find tasks
+
+We collect all tasks in the ["Hackathon Barcelona October 2025" GitHub project board](https://github.com/orgs/nf-core/projects/136).
+
+If you are not too familiar yet with the code base, a great starting point is to filter for issues labelled as `good first issue`.
+
+Once you found something, get in touch with the project group (i.e. ping them on slack, find them in the room), assign yourself to the issue, and get started.
+
+## How to contribute code
+
+We use GitHub to collaborate on code:
+
+1. Find a hackathon project
+2. Discuss with the group and assign yourself to an issue. (Create one if it is not there)
+3. Fork the repository
+4. Work on a branch in your Fork
+5. Once ready, open a PR to the parent repository
+
+:::note
+Only assign yourself to an issue if you are ready to work on it, typically one issue at a time.
+:::
+
+See [Helpful resources](#helpful-resources) below for more information.
+
+# Schedule
+
+The hackathon will run from **Tuesday 28th October** 9AM to **Wednesday 29th October** 5PM.
+The Hackathon social event will take place on Tuesday at the rooftop of the hackathon venue from 5:30PM to 8PM. At 10AM on Wednesday there will be the nf-core Quiz.
+More information, like a more detailed schedule can be viewed [here](https://summit.nextflow.io/2025/barcelona/agenda/).
+
+# Projects
+
+This hackathon we will use projects, as opposed to the broader groups of previous events.
+At the end of each day, we will group the projects into categories and sum up their progress.
+Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead who can point you in the right direction.
+
+You don't need to commit to a single project and are free to move around groups and projects throughout the event.
+
+## Submit a new project
+
+New projects can be proposed in the [`#hackathon-oct-2025` slack channel](https://nfcore.slack.com/archives/C09ADKQ2CHZ).
+Use the [project proposal form](https://slack.com/shortcuts/Ft07HAJVNF8A/295721bac20c398d998d0fed127fe3b5) to submit an idea.
+After some community discussion, you can add your project to the list below and others can find it.
+
+:::tip
+If you are planning to start a new pipeline, please propose it by submitting an issue in the [nf-core/proposals repo](https://github.com/nf-core/proposals) **ahead** of the hackathon start to avoid delays during the event.
+:::
+
+Once a project is approved, the project leaders should add it to this webpage and
+add issues to the [GitHub project board](https://github.com/orgs/nf-core/projects/136) ahead of the hackathon.
+If appropriate, label them as `good first issue`.
+
+## Join a project
+
+Joining a project is as simple as turning up and getting in touch with the group.
+If you don't know where to find them in the room, ping the project lead on slack.
+
+You can move freely between projects throughout the event.
+
+# List of projects
+
+<HackathonModalProjectList eventPath="hackathon-october-2025" />
+
+# Helpful resources
+
+## Bytesize talks
+
+There are many talks about Nextflow and nf-core on the [nf-core Bytesize playlist](https://www.youtube.com/watch?v=2hEYtrGXrKo&list=PL3xpfTVZLcNiF4hgkW0yXeNzr0d35qlIB&ab_channel=nf-core).
+In particular, the talk about [using git and GitHub](https://www.youtube.com/watch?v=gTEXDXWf4hE&list=PL3xpfTVZLcNiJTzhWPUY4HmP-YpiAcdNo&ab_channel=nf-core) in an nf-core environment may be useful.
+
+## Tutorials and docs on the nf-core website
+
+**Help with coding and nf-core tools**
+
+- Learn how to use the [Gitpod environment](https://nf-co.re/docs/tutorials/gitpod/overview)
+- [Install nf-core/tools ](https://nf-co.re/docs/nf-core-tools/installation)
+- Overview of all nf-core/tools commands for [pipelines](https://nf-co.re/docs/nf-core-tools/pipelines/list), [modules](https://nf-co.re/docs/nf-core-tools/modules/list) and [subworkflows](https://nf-co.re/docs/nf-core-tools/subworkflows/list)
+
+**Adding to pipelines**
+
+- [Adding new modules to a pipeline](https://nf-co.re/docs/tutorials/nf-core_components/adding_modules_to_pipelines) to an existing pipeline.
+- How to write [new modules / subworkflows](https://nf-co.re/docs/tutorials/nf-core_components/components).
+
+**Creating a new pipeline**
+
+- [How to create a new pipeline that won't be added to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline)
+- [Guidelines for developing a pipeline for external use](https://nf-co.re/docs/guidelines/external_use)
+- [Guide for adding a new pipeline to nf-core](https://nf-co.re/docs/tutorials/adding_a_pipeline/overview)
+
+# Code of conduct
+
+Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies to the Hackathon, and all participants need to abide by our guidelines to participate.
+We should all feel responsible for making nf-core events safe and fun for everyone.
+
+You can also report any CoC violations directly to [safety@nf-co.re](mailto:safety@nf-co.re).
+Our safety officers will contact you to follow up on your report.
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of staff or organizers on site.

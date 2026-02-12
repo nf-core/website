@@ -1,10 +1,10 @@
 ---
-import PageLayout from '@layouts/PageLayout.astro';
-import MarkdownWrapper from '@components/markdown/MarkdownWrapper.svelte';
-import SidebarNav from '@components/sidebar/SidebarNav.astro';
-import SidebarToc from '@components/sidebar/SidebarToc.svelte';
-import 'katex/dist/katex.min.css';
-import type { SidebarEntry } from '@utils/types';
+import PageLayout from "@layouts/PageLayout.astro";
+import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+import SidebarNav from "@components/sidebar/SidebarNav.astro";
+import SidebarToc from "@components/sidebar/SidebarToc.svelte";
+import "katex/dist/katex.min.css";
+import type { SidebarEntry } from "@utils/types";
 
 export interface Props {
     title: string;
@@ -34,9 +34,14 @@ export interface Props {
     image?: string;
     doubleNavbar?: boolean;
     sidebarTitle?: string;
+    frontmatter?: {
+        title?: string;
+        subtitle?: string;
+        md_github_url?: string;
+    };
 }
 
-const {
+let {
     title,
     subtitle,
     md_github_url,
@@ -46,16 +51,27 @@ const {
     rightSidebar = true,
     sections = [],
     viewTransitions = false,
-    meta_title = '',
+    meta_title = "",
     docSearchTags = [],
     minHeadingDepth = 1,
     maxHeadingDepth = 4,
     image,
     doubleNavbar = true,
-    sidebarTitle = '',
+    sidebarTitle = "",
+    frontmatter,
 } = Astro.props;
 
-const minNumHeadings = 3;
+if (frontmatter?.title) {
+    title = frontmatter.title;
+}
+if (frontmatter?.subtitle) {
+    subtitle = frontmatter.subtitle;
+}
+if (frontmatter?.md_github_url) {
+    md_github_url = frontmatter.md_github_url;
+}
+
+const minNumHeadings = 2;
 const leftSidebarWidth = 3;
 const rightSidebarWidth = 3;
 const showRightSidebar = headings.length > minNumHeadings || rightSidebar;
@@ -69,35 +85,13 @@ if (showRightSidebar) {
 }
 ---
 
-<script>
-    // Switch any images with .darkmode-image class to the correct version for the theme
-    function switchDarkModeImages() {
-        const theme = document.documentElement.getAttribute('data-bs-theme');
-        const images = document.querySelectorAll('img.darkmode-image');
-        for (const img of images) {
-            if (theme === 'light') {
-                img.src = img.src.replace('/white/', '/colour/');
-            } else if (theme === 'dark') {
-                img.src = img.src.replace('/colour/', '/white/');
-            }
-        }
-    }
-    // change images on page load, based on current theme
-    window.addEventListener('load', () => {
-        switchDarkModeImages();
-    });
-    // listen for even dispatched from ThemeSwitch.svelte
-    window.addEventListener('theme-changed', (e) => {
-        switchDarkModeImages();
-    });
-</script>
 <PageLayout
     title={title}
     meta_title={meta_title || title}
     subtitle={subtitle}
     md_github_url={md_github_url}
     event_header={event_header}
-    subfooter={md_github_url && !Astro.url.pathname.startsWith('/docs/') ? true : false}
+    subfooter={md_github_url && !Astro.url.pathname.startsWith("/docs/") ? true : false}
     mainpage_container={false}
     navTocHeadings={headings}
     sections={sections}
@@ -127,13 +121,9 @@ if (showRightSidebar) {
                             maxHeadingDepth={maxHeadingDepth}
                             client:idle
                         >
-                            <slot slot="right-sidebar-top" name="right-sidebar-top" />
-                            <slot name="right-sidebar-bottom" />
-                            <a
-                                class="text-small text-body-secondary"
-                                href={md_github_url}
-                                slot="right-sidebar-link-bar"
-                            >
+                            <slot slot="rightSidebarTop" name="right-sidebar-top" />
+                            <slot slot="defaultContent" name="right-sidebar-bottom" />
+                            <a class="text-small text-body-secondary" href={md_github_url} slot="rightSidebarLinkBar">
                                 <i class="fas fa-pencil-alt" /> Edit this page
                             </a>
                         </SidebarToc>
@@ -147,7 +137,7 @@ if (showRightSidebar) {
                     >
                         {sidebarTitle && (
                             <a
-                                href={sections[0].href?.split('/').slice(0, 2).join('/').split('#')[0]}
+                                href={sections[0].href?.split("/").slice(0, 2).join("/").split("#")[0]}
                                 class="sidebar-title text-decoration-none"
                             >
                                 <strong class="h6 p-2 text-body">{sidebarTitle}</strong>
@@ -160,10 +150,11 @@ if (showRightSidebar) {
         </div>
     </div>
     <slot name="pre-footer" slot="pre-footer" />
+    <slot name="post-footer" slot="post-footer" />
 </PageLayout>
 <style lang="scss">
-    @import '@styles/_variables.scss';
-    .markdown-content :global(img[loading='lazy']) {
+    @import "@styles/_variables.scss";
+    .markdown-content :global(img[loading="lazy"]) {
         aspect-ratio: attr(width) / attr(height);
         height: auto;
     }

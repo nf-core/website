@@ -1,11 +1,11 @@
 ---
-title: 'Bytesize: Working with GitHub using VSCode and Github CLI'
+title: "Bytesize: Working with GitHub using VSCode and Github CLI"
 subtitle: Phil Ewels, Seqera labs
 type: talk
-startDate: '2022-11-29'
-startTime: '13:00+01:00'
-endDate: '2022-11-29'
-endTime: '13:30+01:00'
+startDate: "2022-11-29"
+startTime: "13:00+01:00"
+endDate: "2022-11-29"
+endTime: "13:30+01:00"
 youtubeEmbed: https://www.youtube.com/watch?v=QLxXtCe1vIo
 locations:
   - name: Online

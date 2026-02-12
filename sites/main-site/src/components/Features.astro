@@ -1,16 +1,23 @@
 ---
-import { Markdown } from '@astropub/md';
-import yaml from 'yaml';
+import { Markdown } from "@mashehu/astropub-md";
+import yaml from "yaml";
 
 const data = await fetch(
-    'https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml',
+    "https://raw.githubusercontent.com/nf-core/tools/refs/heads/dev/nf_core/pipelines/create/template_features.yml",
 )
     .then((res) => res.text())
     .then((text) => yaml.parse(text));
 
+// convert yaml to markdown
 const markdownContent = Object.entries(data)
-    .map(([key, value]) => `### \`${key}\`\n\n${value.help_text || 'No help text available'}`)
-    .join('\n\n');
+    .map(([key, value]) => {
+        return `### ${value.name}\n\n${Object.entries(value.features)
+            .map(([feature, value]) => {
+                return "#### `" + feature + "`\n _default: " + value.default + "_\n\n" + value.help_text + "\n\n";
+            })
+            .join("\n")}`;
+    })
+    .join("\n");
 ---
 
 <Markdown of={markdownContent} />

@@ -1,0 +1,39 @@
+---
+import Profile from "@components/GitHubProfilePicture.astro";
+
+const { id, title, color, category, leaders } = Astro.props;
+
+export interface Props {
+    id: string;
+    title: string;
+    color?: string;
+    category?: string;
+    leaders: Object;
+}
+let this_color = color;
+if (!color && category) {
+    if (category == "pipelines") this_color = "#377CF6";
+    if (category == "components") this_color = "#D04791";
+    if (category == "tooling") this_color = "#BE831A";
+    if (category == "community") this_color = "#238636";
+    if (category == "special-interest-groups") this_color = "#238636";
+}
+const border_col = this_color ? { "border-left-color": this_color, "border-left-width": "5px" } : {};
+---
+
+<div class="card mb-2" style={border_col}>
+    <div class="card-body p-2">
+        <div class="pe-0 d-flex align-items-center justify-content-between">
+            <a href={`/hackathon-projects/${id}`}>{title}</a>
+            {
+                leaders && (
+                    <div class="d-flex flex-wrap">
+                        {Object.entries(leaders).map(([github, { name, slack }]) => (
+                            <Profile name={github} size={50} />
+                        ))}
+                    </div>
+                )
+            }
+        </div>
+    </div>
+</div>

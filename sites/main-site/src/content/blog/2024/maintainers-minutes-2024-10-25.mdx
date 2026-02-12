@@ -1,21 +1,20 @@
 ---
-title: 'Maintainers Minutes: September/October 2024'
-subtitle: 'Keeping you informed of the latest maintainers discussions'
+title: "Maintainers Minutes: September/October 2024"
+subtitle: "Keeping you informed of the latest maintainers discussions"
 pubDate: 2024-10-28T12:00:00+01:00
-headerImage: '/assets/images/blog/maintainers-minutes-2024-07-26/maintainers_duck.png'
-headerImageAlt: 'Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo.'
-headerImageDim: [250, 250]
+headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
+headerImageAlt: "Cartoon yellow rubber duck with nf-core logo badge on its body with the nf-core logo."
 embedHeaderImage: true
 authors:
-    - 'jfy133'
-    - 'maxulysse'
-    - 'sateeshperi'
+    - "jfy133"
+    - "maxulysse"
+    - "sateeshperi"
 label:
-    - 'maintainers'
+    - "maintainers"
 ---
 
-import Profile from '@components/GitHubProfilePictureExtended.svelte';
-import { Image } from 'astro:assets';
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import { Image } from "astro:assets";
 
 The 'Maintainers Minutes' aims to give further insight into the workings of the [nf-core maintainers team](/governance#maintainers)
 by providing brief summaries of the monthly team meetings.
@@ -24,19 +23,19 @@ by providing brief summaries of the monthly team meetings.
 
 In this double post, we discussed the following topics from the September and October maintainers meetings:
 
--   [Massive modules update](#massive-modules-update)
--   [Pipeline level test with nf-test](#Pipeline-level-test-with-nf-test)
--   [helpdesk is the new coffee-n-code](#helpdesk-is-the-new-coffee-n-code)
--   [New way of passing parameters to modules within nf-test scripts](#new-way-of-passing-parameters-to-modules-within-nf-test-scripts)
--   [Stalled PRs due to waiting for review](#stalled-prs-due-to-waiting-for-review)
--   [Replacing monolithic `conf/modules.conf` into per module-configs](#replacing-monolithic-confmodulesconf-into-per-module-configs)
--   [Modification of modules specifications regarding channels](#modifications-of-modules-specifications-regarding-channels)
+- [Massive modules update](#massive-modules-update)
+- [Pipeline level test with nf-test](#Pipeline-level-test-with-nf-test)
+- [helpdesk is the new coffee-n-code](#helpdesk-is-the-new-coffee-n-code)
+- [New way of passing parameters to modules within nf-test scripts](#new-way-of-passing-parameters-to-modules-within-nf-test-scripts)
+- [Stalled PRs due to waiting for review](#stalled-prs-due-to-waiting-for-review)
+- [Replacing monolithic `conf/modules.conf` into per module-configs](#replacing-monolithic-confmodulesconf-into-per-module-configs)
+- [Modification of modules specifications regarding channels](#modifications-of-modules-specifications-regarding-channels)
 
 ### Massive modules update
 
 The nf-core/modules update taskforce have been hard at work, and has :drum: surprise :drum: massively updated the modules:
 
--   https://github.com/nf-core/modules/issues/5828
+- https://github.com/nf-core/modules/issues/5828
 
 The list is still pretty long, but we will get there.
 
@@ -57,8 +56,8 @@ Fortunately <Profile username="mahesh-panchal">Mahesh Binzer-Panchal</Profile> h
 
 An implementation can be seen in the `bismark/align` module used in methylseq pipeline:
 
--   [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
--   [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
+- [param declaration in `when` block](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/main.nf.test#L28-L33)
+- [test `nextflow.config`](https://github.com/nf-core/methylseq/blob/master/modules/nf-core/bismark/align/tests/nextflow.config)
 
 By moving parameters into `when` blocks within the main nf-test script file, we can have a single `nextflow.config` file with the `ext.args` for the process set to the parameter defined in the `when` block.
 
