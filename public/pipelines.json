@@ -17979,6 +17979,221 @@
             ]
         },
         {
+            "id": 628989424,
+            "node_id": "R_kgDOJX2d8A",
+            "name": "hadge",
+            "full_name": "nf-core/hadge",
+            "private": false,
+            "description": "Comprehensive pipeline for donor demultiplexing in single cell",
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/hadge",
+            "created_at": "2023-04-17T11:53:42Z",
+            "updated_at": "2026-02-12T12:25:38Z",
+            "pushed_at": "2026-02-11T06:23:52Z",
+            "homepage": "https://hadge.readthedocs.io/en/latest/",
+            "size": 9711,
+            "stargazers_count": 25,
+            "watchers_count": 25,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": true,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 7,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 14,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "topics": [
+                "deconvolution",
+                "demultiplexing",
+                "single-cell"
+            ],
+            "visibility": "public",
+            "forks": 7,
+            "open_issues": 14,
+            "watchers": 25,
+            "default_branch": "dev",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": false,
+            "allow_rebase_merge": false,
+            "allow_auto_merge": false,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": true,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "enabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "enabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_non_provider_patterns": {
+                    "status": "disabled"
+                },
+                "secret_scanning_ai_detection": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "disabled"
+                },
+                "secret_scanning_delegated_alert_dismissal": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 7,
+            "subscribers_count": 2,
+            "team_contributors_permission_push": false,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": false,
+            "team_core_permission_admin": false,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": -1,
+            "master_branch_protection_required_reviews": -1,
+            "master_branch_protection_require_codeowner_review": -1,
+            "master_branch_protection_require_non_stale_review": -1,
+            "master_branch_protection_enforce_admins": -1,
+            "main_branch_exists": true,
+            "main_branch_protection_up_to_date": -1,
+            "main_branch_protection_status_checks": -1,
+            "main_branch_protection_required_reviews": -1,
+            "main_branch_protection_require_codeowner_review": -1,
+            "main_branch_protection_require_non_stale_review": -1,
+            "main_branch_protection_enforce_admins": -1,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": -1,
+            "dev_branch_protection_required_reviews": -1,
+            "dev_branch_protection_require_codeowner_review": -1,
+            "dev_branch_protection_require_non_stale_review": -1,
+            "dev_branch_protection_enforce_admins": -1,
+            "TEMPLATE_branch_exists": true,
+            "has_required_topics": false,
+            "missing_topics": [
+                "nf-core",
+                "nextflow",
+                "workflow",
+                "pipeline"
+            ],
+            "open_pr_count": 0,
+            "repository_url": "https://github.com/nf-core/hadge",
+            "contributors": [
+                {
+                    "name": "nictru",
+                    "count": 40,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/52698566?v=4"
+                },
+                {
+                    "name": "LuisHeinzlmeier",
+                    "count": 3,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/182783669?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "5c19f6ac183c610247715d2adf4a585e0eff541e",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/hadge/compare/5c19f6ac183c610247715d2adf4a585e0eff541e...6441e66e4ee5ae70490a630da6a64fa2d4d8eea9",
+            "commits_to_dev": 30,
+            "is_DSL2": true,
+            "has_nf_test": false,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [
+                "nf-schema@2.4.2"
+            ],
+            "master_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
+            "main_nextflow_config_plugins": [],
+            "main_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "main"
+            },
+            "releases": [
+                {
+                    "tag_name": "0.2.0",
+                    "published_at": "2024-03-28T14:33:46Z",
+                    "tag_sha": "6441e66e4ee5ae70490a630da6a64fa2d4d8eea9",
+                    "has_schema": false,
+                    "doc_files": [],
+                    "nextflow_version": null,
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
+                },
+                {
+                    "tag_name": "0.1.0",
+                    "published_at": "2024-02-08T11:25:56Z",
+                    "tag_sha": "a9286cba2bd0bf65d52f3dede8e4a723c53a03f1",
+                    "has_schema": false,
+                    "doc_files": [],
+                    "nextflow_version": null,
+                    "nf_core_version": null,
+                    "plugins": [],
+                    "co2footprint_files": null
+                },
+                {
+                    "tag_name": "dev",
+                    "published_at": "2026-02-11T06:23:52Z",
+                    "tag_sha": "5c19f6ac183c610247715d2adf4a585e0eff541e",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "bff",
+                            "cellsnp_modea",
+                            "csvtk_join",
+                            "demuxem",
+                            "gmmdemux",
+                            "hasheddrops",
+                            "htodemux",
+                            "multiqc",
+                            "multiseqdemux",
+                            "popscle_demuxlet",
+                            "popscle_dscpileup",
+                            "popscle_freemuxlet",
+                            "samtools_index",
+                            "samtools_sort",
+                            "samtools_view",
+                            "scanpy_hashsolo",
+                            "souporcell",
+                            "umitools_dedup",
+                            "untar",
+                            "vireo"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.04.0",
+                    "nf_core_version": "3.4.1",
+                    "plugins": [],
+                    "co2footprint_files": null
+                }
+            ]
+        },
+        {
             "id": 480836516,
             "node_id": "R_kgDOHKj7pA",
             "name": "hgtseq",
