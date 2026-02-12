@@ -19,8 +19,9 @@ and are becoming the standard approach within nf-core.
 
 Resources:
 
-- [Nextflow documentation](https://nextflow.io/docs/latest/reference/channel.html#topic)
-- [Adoption statistics dashboard](https://nf-core-stats.netlify.app/code/container_conversion/#version-topics-adoption-over-time)
+- [nf-core migration to topics tutorial](https://nf-co.re/docs/tutorials/migrate_to_topics/update_modules)
+- [Topic channels in Nextflow documentation](https://nextflow.io/docs/latest/reference/channel.html#topic)
+- [Topic channnels in nf-core adoption statistics dashboard](https://nf-core-stats.netlify.app/code/container_conversion/#version-topics-adoption-over-time)
 
 ---
 
