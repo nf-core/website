@@ -35,4 +35,4 @@ Please go to the third floor and check yourself in at the reception. The hackath
 
 ## Projects
 
-TBA
+- nf-test development: work on resolving nf-test issues and add new features to the codebase.
