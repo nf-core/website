@@ -275,13 +275,18 @@ Please keep the file sorted alphabetically.
 All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
 
 To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors. Utilize the following command to check your code: `nextflow lint subworkflows/nf-core/subworkflow_name`.
+Utilize the following command to check your code: 
+
+```bash
+nextflow lint subworkflows/nf-core/subworkflow_name
+```
 
 CCommon issues to avoid:
 
-| Old syntax                    | Prefered syntax                            |
-| ----------------------------- | ------------------------------------------ |
-| undeclared variable           | add `def my_variable{:groovy}`             |
-| `input.collect{ it[1].name }` | `input.collect{ meta, file -> file.name }` |
-| `for` loop                    | `.each{}` operator                         |
+| Old syntax                                 | Prefered syntax                                     |
+| ------------------------------------------ | --------------------------------------------------- |
+| undeclared variable `my_variable{:groovy}` | add `def my_variable{:groovy}`                      |
+| `input.collect{ it[1].name }{:groovy}`     | `input.collect{ meta, file -> file.name }{:groovy}` |
+| `for{:groovy}` loop                        | `.each{}{:groovy}` operator                         |
 
 By following these guidelines, you will ensure that your code is compliant with Nextflow standards.
