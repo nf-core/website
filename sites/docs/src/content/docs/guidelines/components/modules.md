@@ -953,7 +953,11 @@ Please keep the file sorted alphabetically.
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
 
-To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors. Utilize the following command to check your code: `nextflow lint modules/nf-core/module_name`.
+To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors. 
+Utilize the following command to check your code: 
+
+```bash
+nextflow lint modules/nf-core/module_name
 
 Common issues to avoid:
 
