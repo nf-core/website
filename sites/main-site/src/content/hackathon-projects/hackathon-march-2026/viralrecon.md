@@ -35,7 +35,7 @@ This project aims to update [nf-core/viralrecon](https://nf-co.re/viralrecon/dev
 
 ## Where
 
-🌍 This project will be hybrid, online and in person, since contributors from outside Madrid are wellcome.
+🌍 This project will be hybrid, online and in person, since contributors from outside Madrid are welcome.
 
 📍 In Madrid, the project will take place at:
 
