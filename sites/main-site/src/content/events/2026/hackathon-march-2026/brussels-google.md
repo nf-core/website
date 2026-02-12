@@ -4,9 +4,9 @@ subtitle: "Local node of the nf-core hackathon in Brussels, Belgium at the Googl
 shortTitle: "🇧🇪 Google Offices Brussels"
 type: "hackathon"
 startDate: "2026-03-11"
-startTime: "08:00+01:00"
+startTime: "09:00+01:00"
 endDate: "2026-03-13"
-endTime: "16:00+01:00"
+endTime: "17:00+01:00"
 locations:
   - name: Google Brussels Office
     address: |
@@ -35,4 +35,5 @@ Please go to the third floor and check yourself in at the reception. The hackath
 
 ## Projects
 
-[nf-google](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-google) & [nf-k8s](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-k8s): Solving issues in both of these plugins & potentially expanding functionality (e.g. for k8s, implementing backoff limit)
+- [nf-google](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-google) & [nf-k8s](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-k8s): Solving issues in both of these plugins & potentially expanding functionality (e.g. for k8s, implementing backoff limit)
+- nf-test development: work on resolving nf-test issues and add new features to the codebase.
