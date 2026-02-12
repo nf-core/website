@@ -10432,19 +10432,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ashlar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ashlar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ashlar --version | sed 's/^.*ashlar //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ashlar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ashlar --version | sed 's/^.*ashlar //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -29493,19 +29525,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_blastdbcmd": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastdbcmd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastdbcmd -version 2>&1 | head -n1 | sed 's/^.*blastdbcmd: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastdbcmd": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastdbcmd -version 2>&1 | head -n1 | sed 's/^.*blastdbcmd: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -29580,7 +29644,8 @@
             "taxidlist": {
               "type": "file",
               "description": "File containing NCBI taxon ids, one per line, for filtering the database.",
-              "pattern": "*.{txt}"
+              "pattern": "*.{txt}",
+              "ontologies": []
             }
           },
           {
@@ -29617,19 +29682,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_blastn": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastn": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastn -version 2>&1 | sed 's/^.*blastn: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastn": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastn -version 2>&1 | sed 's/^.*blastn: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -29795,19 +29892,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_blastp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastp -version 2>&1 | sed 's/^.*blastp: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blastp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blastp -version 2>&1 | sed 's/^.*blastp: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -29880,19 +30009,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_makeblastdb": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "makeblastdb": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "makeblastdb -version 2>&1 | sed 's/^.*makeblastdb: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "makeblastdb": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "makeblastdb -version 2>&1 | sed 's/^.*makeblastdb: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -30004,19 +30165,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tblastn": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tblastn": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tblastn -version 2>&1 | sed 's/^.*tblastn: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tblastn": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "tblastn -version 2>&1 | sed 's/^.*tblastn: //; s/ .*\\$//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -30091,19 +30284,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_updateblastdb": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "updateblastdb": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "update_blastdb.pl -version 2>&1 | tail -n1 | rev | cut -f1 -d ' ' | rev": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "updateblastdb": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "update_blastdb.pl -version 2>&1 | tail -n1 | rev | cut -f1 -d ' ' | rev": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -55615,6 +55840,7 @@
           "gene",
           "gtf",
           "pseudoalignment",
+          "rsem",
           "transcript"
         ],
         "tools": [
@@ -55663,7 +55889,7 @@
           {
             "quant_type": {
               "type": "string",
-              "description": "Quantification type, 'kallisto' or 'salmon'"
+              "description": "Quantification type, 'kallisto', 'salmon', or 'rsem'"
             }
           },
           {
@@ -254754,6 +254980,319 @@
       ]
     },
     {
+      "name": "traitar_pfamget",
+      "path": "modules/nf-core/traitar/pfamget/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "traitar_pfamget",
+        "description": "Download PFAM database for traitar phenotype prediction",
+        "keywords": [
+          "pfam",
+          "database",
+          "phenotype",
+          "traitar"
+        ],
+        "tools": [
+          {
+            "traitar": {
+              "description": "Microbial trait prediction from genome sequences",
+              "homepage": "https://github.com/hzi-bifo/traitar3",
+              "documentation": "https://github.com/hzi-bifo/traitar3",
+              "tool_dev_url": "https://github.com/hzi-bifo/traitar3",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:traitar"
+            }
+          }
+        ],
+        "output": {
+          "pfam_db": [
+            {
+              "pfam_data": {
+                "type": "directory",
+                "description": "PFAM database directory containing HMM profiles",
+                "pattern": "pfam_data"
+              }
+            }
+          ],
+          "versions_traitar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "traitar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "traitar --version 2>&1 | tail -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "traitar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "traitar --version 2>&1 | tail -1": {
+                  "type": "eval",
+                  "description": "Version extraction command"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
+      }
+    },
+    {
+      "name": "traitar_run",
+      "path": "modules/nf-core/traitar/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "traitar",
+        "description": "Traitar3 - predict microbial phenotypes from genomic sequences using protein families",
+        "keywords": [
+          "phenotype",
+          "prediction",
+          "microbial",
+          "traits",
+          "genomics",
+          "protein families"
+        ],
+        "tools": [
+          {
+            "traitar": {
+              "description": "Traitar3 - the microbial trait analyzer (for Python3)",
+              "homepage": "https://github.com/nick-youngblut/traitar3",
+              "documentation": "https://github.com/nick-youngblut/traitar3",
+              "tool_dev_url": "https://github.com/nick-youngblut/traitar3",
+              "doi": "10.1128/mSystems.00101-16",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": "biotools:traitar"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input sequences in FASTA format (nucleotides, genes, or annotation summary), can be gzipped",
+                "pattern": "*.{fa,fasta,faa,fna,fa.gz,fasta.gz,faa.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "input_type": {
+              "type": "string",
+              "description": "Input type specifying the format of input sequences (from_nucleotides, from_genes, or from_annotation_summary)"
+            }
+          },
+          {
+            "pfam_db": {
+              "type": "directory",
+              "description": "PFAM database directory created by traitar/pfamget module or downloaded from https://ftp.ebi.ac.uk/pub/databases/Pfam/\n",
+              "pattern": "pfam_data"
+            }
+          }
+        ],
+        "output": {
+          "predictions_combined": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/phenotype_prediction/predictions_majority-vote_combined.txt": {
+                  "type": "file",
+                  "description": "Combined phenotype predictions using majority voting",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "predictions_single_votes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/phenotype_prediction/predictions_single-votes_combined.txt": {
+                  "type": "file",
+                  "description": "Single vote phenotype predictions",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "predictions_flat": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/phenotype_prediction/predictions_flat_*.txt": {
+                  "type": "file",
+                  "description": "Flattened phenotype predictions",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "predictions_raw": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/predictions_*.txt": {
+                  "type": "file",
+                  "description": "Raw phenotype predictions",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pfam_annotation": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/annotation/pfam/": {
+                  "type": "directory",
+                  "description": "Pfam annotation directory"
+                }
+              }
+            ]
+          ],
+          "gene_prediction": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*/gene_prediction/": {
+                  "type": "directory",
+                  "description": "Gene prediction directory"
+                }
+              }
+            ]
+          ],
+          "versions_traitar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "traitar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "traitar --version 2>&1 | tail -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "traitar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "traitar --version 2>&1 | tail -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
+      }
+    },
+    {
       "name": "transdecoder_longorf",
       "path": "modules/nf-core/transdecoder/longorf/meta.yml",
       "type": "module",
@@ -257820,6 +258359,7 @@
           "gene",
           "kallisto",
           "pseudoalignment",
+          "rsem",
           "salmon",
           "transcript"
         ],
@@ -257879,7 +258419,7 @@
           {
             "quant_type": {
               "type": "string",
-              "description": "Quantification type, `kallisto` or `salmon`"
+              "description": "Quantification type, `kallisto`, `salmon`, or `rsem`"
             }
           }
         ],
