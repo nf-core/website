@@ -61982,12 +61982,6 @@
             }
           ],
           {
-            "output_name": {
-              "type": "string",
-              "description": "Output name. All outputs will use it as the prefix.\n"
-            }
-          },
-          {
             "generate_gender_plot": {
               "type": "string",
               "description": "Generate violin plots using gender-specific genes (e.g. Xist). It is a comma-separated list of gene names.\n"
@@ -62051,19 +62045,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_demuxem": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "demuxEM": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "demuxEM --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "demuxEM": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "demuxEM --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206009,19 +206035,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206057,7 +206115,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#format",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -206126,19 +206184,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | head -n 1 | sed 's/Product: RTG Tools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | head -n 1 | sed 's/Product: RTG Tools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206177,7 +206267,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#pedfilter",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -206223,19 +206313,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206264,7 +206386,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#rocplot",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -206332,19 +206454,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206464,19 +206618,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -206510,7 +206696,7 @@
             "rtgtools": {
               "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation",
               "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
-              "documentation": "https://realtimegenomics.github.io/rtg-tools/rtg_command_reference.html#vcfeval",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
               "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
               "licence": [
                 "BSD"
@@ -206855,19 +207041,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
