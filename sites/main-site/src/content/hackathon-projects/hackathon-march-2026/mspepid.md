@@ -2,7 +2,8 @@
 title: Preparing mspepid for first (dev) release
 category: pipelines
 slack: https://nfcore.slack.com/archives/C09NMCR5M4P
-location: online (on request at Bochum/DE)
+intro_video: ""
+location: online
 image: ""
 image_alt: ""
 leaders:
