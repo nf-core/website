@@ -55657,6 +55657,245 @@
       ]
     },
     {
+      "name": "custom_rsemmergecounts",
+      "path": "modules/nf-core/custom/rsemmergecounts/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_rsemmergecounts",
+        "description": "Merge per-sample RSEM results into wide and long format TSV matrices",
+        "keywords": [
+          "rsem",
+          "merge",
+          "counts",
+          "gene expression"
+        ],
+        "tools": [
+          {
+            "custom": {
+              "description": "Custom module to merge RSEM gene and isoform count results across\nsamples into count/TPM matrices and long-format tables.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/rsemmergecounts/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+              }
+            },
+            {
+              "genes/*": {
+                "type": "file",
+                "description": "Collected RSEM gene-level results files across all samples.\n",
+                "pattern": "*.genes.results",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "isoforms/*": {
+              "type": "file",
+              "description": "Collected RSEM isoform-level results files across all samples.\n",
+              "pattern": "*.isoforms.results",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "counts_gene": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.gene_counts.tsv": {
+                  "type": "file",
+                  "description": "Wide-format gene-level count matrix (expected_count column from\nRSEM) with samples as columns.\n",
+                  "pattern": "*.gene_counts.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tpm_gene": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.gene_tpm.tsv": {
+                  "type": "file",
+                  "description": "Wide-format gene-level TPM matrix with samples as columns.\n",
+                  "pattern": "*.gene_tpm.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "counts_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.transcript_counts.tsv": {
+                  "type": "file",
+                  "description": "Wide-format transcript-level count matrix (expected_count column\nfrom RSEM) with samples as columns.\n",
+                  "pattern": "*.transcript_counts.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tpm_transcript": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.transcript_tpm.tsv": {
+                  "type": "file",
+                  "description": "Wide-format transcript-level TPM matrix with samples as columns.\n",
+                  "pattern": "*.transcript_tpm.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "genes_long": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.genes_long.tsv": {
+                  "type": "file",
+                  "description": "Long-format gene-level results with all RSEM fields and a\nsample_name column.\n",
+                  "pattern": "*.genes_long.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "isoforms_long": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. [ id:'all_samples' ].\n"
+                }
+              },
+              {
+                "${prefix}.isoforms_long.tsv": {
+                  "type": "file",
+                  "description": "Long-format isoform-level results with all RSEM fields and a\nsample_name column.\n",
+                  "pattern": "*.isoforms_long.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_sed": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sed": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sed --version 2>&1 | sed '1!d;s/^.*) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sed": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sed --version 2>&1 | sed '1!d;s/^.*) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "custom_sratoolsncbisettings",
       "path": "modules/nf-core/custom/sratoolsncbisettings/meta.yml",
       "type": "module",
@@ -57387,19 +57626,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -57491,19 +57762,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -241338,6 +241641,422 @@
       }
     },
     {
+      "name": "stainwarpy_register",
+      "path": "modules/nf-core/stainwarpy/register/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "stainwarpy_register",
+        "description": "Register H&E stained and Multiplexed tissue images using feature-based image registration",
+        "keywords": [
+          "image registration",
+          "histology",
+          "hne",
+          "multiplexed"
+        ],
+        "tools": [
+          {
+            "stainwarpy": {
+              "description": "Register H&E stained and Multiplexed tissue images using feature-based image registration",
+              "homepage": "https://github.com/tckumarasekara/stainwarpy",
+              "documentation": "https://github.com/tckumarasekara/stainwarpy",
+              "tool_dev_url": "https://github.com/tckumarasekara/stainwarpy",
+              "licence": [
+                "MIT License",
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hne_img": {
+                "type": "file",
+                "description": "H&E stained image file",
+                "pattern": "*.{ome.tif,ome.tiff,tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "multiplx_img": {
+                "type": "file",
+                "description": "Multiplexed image file",
+                "pattern": "*.{ome.tif,ome.tiff,tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "fixed_img": {
+              "type": "string",
+              "description": "Which image to use as fixed image for registration. Options - 'hne' or 'multiplexed'",
+              "ontologies": []
+            }
+          },
+          {
+            "final_sz": {
+              "type": "string",
+              "description": "In which pixel size to output the registered image and segmentation mask. Options - 'hne' or 'multiplexed'",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "reg_image": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_transformed_image.ome.tif": {
+                  "type": "file",
+                  "description": "Registered final channel image in OME-TIFF format",
+                  "pattern": "*_transformed_image.ome.tif",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3727"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "reg_metrics_tform": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_registration_metrics_tform_map.json": {
+                  "type": "file",
+                  "description": "Registration metrics and transformation map in JSON format",
+                  "pattern": "*_registration_metrics_tform_map.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tform_map": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_feature_based_transformation_map.npy": {
+                  "type": "file",
+                  "description": "Feature-based transformation map in NPY format",
+                  "pattern": "*_feature_based_transformation_map.npy",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_stainwarpy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stainwarpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stainwarpy --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stainwarpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stainwarpy --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@tckumarasekara"
+        ],
+        "maintainers": [
+          "@tckumarasekara"
+        ]
+      }
+    },
+    {
+      "name": "stainwarpy_transformsegmask",
+      "path": "modules/nf-core/stainwarpy/transformsegmask/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "stainwarpy_transformsegmask",
+        "description": "Transform segmentation mask of multiplexed or H&E stained tissue images using stainwarpy",
+        "keywords": [
+          "image registration",
+          "histology",
+          "hne",
+          "multiplexed",
+          "segmentation mask"
+        ],
+        "tools": [
+          {
+            "stainwarpy": {
+              "description": "Register H&E stained and Multiplexed tissue images using feature-based image registration",
+              "homepage": "https://github.com/tckumarasekara/stainwarpy",
+              "documentation": "https://github.com/tckumarasekara/stainwarpy",
+              "tool_dev_url": "https://github.com/tckumarasekara/stainwarpy",
+              "licence": [
+                "MIT License",
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hne_img": {
+                "type": "file",
+                "description": "H&E stained image file",
+                "pattern": "*.{ome.tif,ome.tiff,tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "multiplx_img": {
+                "type": "file",
+                "description": "Multiplexed image file",
+                "pattern": "*.{ome.tif,ome.tiff,tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "seg_mask": {
+                "type": "file",
+                "description": "Segmentation mask file",
+                "pattern": "*.{ome.tif,ome.tiff,tif,tiff,npy}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tform_map": {
+                "type": "file",
+                "description": "Transformation map file",
+                "pattern": "*.npy",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "fixed_img": {
+              "type": "string",
+              "description": "Which image to use as fixed image for registration. Options - 'hne' or 'multiplexed'",
+              "ontologies": []
+            }
+          },
+          {
+            "final_sz": {
+              "type": "string",
+              "description": "In which pixel size to output the registered image and segmentation mask. Options - 'hne' or 'multiplexed'",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "transformed_seg_mask": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_transformed_segmentation_mask.ome.tif": {
+                  "type": "file",
+                  "description": "Transformed segmentation mask in OME-TIFF format",
+                  "pattern": "*_transformed_segmentation_mask.ome.tif",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3727"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_stainwarpy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stainwarpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stainwarpy --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stainwarpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stainwarpy --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@tckumarasekara"
+        ],
+        "maintainers": [
+          "@tckumarasekara"
+        ]
+      }
+    },
+    {
       "name": "staphopiasccmec",
       "path": "modules/nf-core/staphopiasccmec/meta.yml",
       "type": "module",
@@ -246092,19 +246811,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_survivor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -246210,19 +246961,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_survivor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -246339,19 +247122,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_survivor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -246549,19 +247364,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_survivor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -246655,19 +247502,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_survivor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "survivor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SURVIVOR 2>&1 | grep 'Version' | sed 's/Version: //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -247263,7 +248142,9 @@
               "homepage": "https://svanalyzer.readthedocs.io/en/latest/index.html",
               "documentation": "https://svanalyzer.readthedocs.io/en/latest/index.html",
               "tool_dev_url": "https://github.com/nhansen/SVanalyzer",
-              "license": "['CC0']",
+              "licence": [
+                "CC0"
+              ],
               "identifier": ""
             }
           }
@@ -247441,19 +248322,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_svanalyzer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "svanalyzer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.36": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "svanalyzer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.36": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -285102,13 +286015,6 @@
               "description": "JSON file containing summary of results.\nStructure: [ val(meta), path(${prefix}.json) ]\n",
               "pattern": "*.json"
             }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
-            }
           }
         ],
         "authors": [
@@ -286013,13 +286919,6 @@
               "type": "file",
               "description": "JSON file containing summary of results.\nStructure: [ val(meta), path(${prefix}.json) ]\n",
               "pattern": "*.json"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
             }
           }
         ],
@@ -288825,6 +289724,246 @@
           "version": "3.22.2"
         }
       ]
+    },
+    {
+      "name": "quantify_rsem",
+      "path": "subworkflows/nf-core/quantify_rsem/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "quantify_rsem",
+        "description": "Perform quantification with RSEM to produce count tables, legacy merge matrices, and SummarizedExperiment objects",
+        "keywords": [
+          "rnaseq",
+          "quantification",
+          "rsem",
+          "tximport"
+        ],
+        "components": [
+          "rsem/calculateexpression",
+          "sentieon/rsemcalculateexpression",
+          "custom/rsemmergecounts",
+          "quant_tximport_summarizedexperiment"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing study-level sample sheet information. e.g. [\n  id:'SRP1234' ].\n"
+            }
+          },
+          {
+            "samplesheet": {
+              "type": "file",
+              "description": "Sample sheet, to be baked into the `colData` of summarizedexperiment\nobjects.\n",
+              "pattern": "*.{csv,tsv}"
+            }
+          },
+          {
+            "reads": {
+              "type": "file",
+              "description": "Channel with input FastQ files of size 1 and 2 for single-end and\npaired-end data, respectively. OR a transcriptome-level BAM file if\nrunning RSEM in alignment mode.\n"
+            }
+          },
+          {
+            "index": {
+              "type": "path",
+              "description": "Path to RSEM index directory.\n"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "Channel with features in GTF format. Used to generate transcript/gene\nmappings.\n"
+            }
+          },
+          {
+            "gtf_id_attribute": {
+              "type": "string",
+              "description": "Attribute in GTF file corresponding to the gene identifier.\n"
+            }
+          },
+          {
+            "gtf_extra_attribute": {
+              "type": "string",
+              "description": "GTF alternative gene attribute (e.g. gene_name)"
+            }
+          },
+          {
+            "use_sentieon_star": {
+              "type": "boolean",
+              "description": "Use Sentieon-accelerated STAR for alignment within RSEM. Only\nmeaningful in FASTQ input mode; set to `false` for BAM-mode consumers.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information. e.g. [ id:'test' ].\n"
+            }
+          },
+          {
+            "raw_counts_gene": {
+              "type": "file",
+              "description": "Per-sample RSEM gene-level results files.\n",
+              "pattern": "*.genes.results"
+            }
+          },
+          {
+            "raw_counts_transcript": {
+              "type": "file",
+              "description": "Per-sample RSEM transcript-level results files.\n",
+              "pattern": "*.isoforms.results"
+            }
+          },
+          {
+            "stat": {
+              "type": "file",
+              "description": "Per-sample RSEM statistics files.\n",
+              "pattern": "*.stat"
+            }
+          },
+          {
+            "logs": {
+              "type": "file",
+              "description": "Per-sample RSEM log files (optional, FASTQ mode only).\n",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "merged_counts_gene": {
+              "type": "file",
+              "description": "Wide-format gene-level count matrix from RSEM merge.\n",
+              "pattern": "*.gene_counts.tsv"
+            }
+          },
+          {
+            "merged_tpm_gene": {
+              "type": "file",
+              "description": "Wide-format gene-level TPM matrix from RSEM merge.\n",
+              "pattern": "*.gene_tpm.tsv"
+            }
+          },
+          {
+            "merged_counts_transcript": {
+              "type": "file",
+              "description": "Wide-format transcript-level count matrix from RSEM merge.\n",
+              "pattern": "*.transcript_counts.tsv"
+            }
+          },
+          {
+            "merged_tpm_transcript": {
+              "type": "file",
+              "description": "Wide-format transcript-level TPM matrix from RSEM merge.\n",
+              "pattern": "*.transcript_tpm.tsv"
+            }
+          },
+          {
+            "merged_genes_long": {
+              "type": "file",
+              "description": "Long-format gene-level results from RSEM merge.\n",
+              "pattern": "*.genes_long.tsv"
+            }
+          },
+          {
+            "merged_isoforms_long": {
+              "type": "file",
+              "description": "Long-format isoform-level results from RSEM merge.\n",
+              "pattern": "*.isoforms_long.tsv"
+            }
+          },
+          {
+            "tpm_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of abundance values in TPM from tximport.\n",
+              "pattern": "*.gene_tpm.tsv"
+            }
+          },
+          {
+            "counts_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of unadjusted estimated counts from tximport\n(`countsFromAbundance = 'no'`).\n",
+              "pattern": "*.gene_counts.tsv"
+            }
+          },
+          {
+            "counts_gene_length_scaled": {
+              "type": "file",
+              "description": "Gene-level matrix of estimated counts from tximport using\n`countsFromAbundance = 'lengthScaledTPM'`.\n",
+              "pattern": "*.gene_counts_length_scaled.tsv"
+            }
+          },
+          {
+            "counts_gene_scaled": {
+              "type": "file",
+              "description": "Gene-level matrix of estimated counts from tximport using\n`countsFromAbundance = 'scaledTPM'`.\n",
+              "pattern": "*.gene_counts_scaled.tsv"
+            }
+          },
+          {
+            "lengths_gene": {
+              "type": "file",
+              "description": "Gene-level matrix of length values from tximport.\n",
+              "pattern": "*.gene_lengths.tsv"
+            }
+          },
+          {
+            "tpm_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of abundance values in TPM from tximport.\n",
+              "pattern": "*.transcript_tpm.tsv"
+            }
+          },
+          {
+            "counts_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of unadjusted estimated counts from tximport\n(`countsFromAbundance = 'no'`).\n",
+              "pattern": "*.transcript_counts.tsv"
+            }
+          },
+          {
+            "lengths_transcript": {
+              "type": "file",
+              "description": "Transcript-level matrix of length values from tximport.\n",
+              "pattern": "*.transcript_lengths.tsv"
+            }
+          },
+          {
+            "merged_gene_rds_unified": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing gene level\nabundance, count, and length matrices generated from tximport.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "merged_transcript_rds_unified": {
+              "type": "file",
+              "description": "Serialised SummarizedExperiment object containing transcript level\nabundance, count, and length matrices generated from tximport.\n",
+              "pattern": "*.rds"
+            }
+          },
+          {
+            "tx2gene": {
+              "type": "file",
+              "description": "Transcript to gene mapping table.\n",
+              "pattern": "*.tx2gene.tsv"
+            }
+          },
+          {
+            "versions": {
+              "type": "file",
+              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
+              "pattern": "versions.yml"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "tiff_segmentation_vpt",
