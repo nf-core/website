@@ -2,7 +2,7 @@
 title: nf-core/seqsubmit
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C09F9HR0A9E"
-intro_video: ""
+location: Wellcome Genome Campus, Cambridge, Hinxton, UK
 image: ""
 image_alt: ""
 leaders:
