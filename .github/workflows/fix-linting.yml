@@ -12,10 +12,28 @@ jobs:
       github.repository == 'nf-core/website'
     runs-on: ubuntu-latest
     steps:
-      # Use the @nf-core-bot token to check out so we can push later
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+      # Get PR details first
+      - name: Get PR details
+        id: pr
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
         with:
-          token: ${{ secrets.nf_core_bot_auth_token }}
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+            return {
+              head_ref: pr.data.head.ref,
+              head_repo: pr.data.head.repo.full_name
+            };
+
+      # Checkout using default GITHUB_TOKEN (read-only for untrusted code)
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: ${{ fromJSON(steps.pr.outputs.result).head_repo }}
+          ref: ${{ fromJSON(steps.pr.outputs.result).head_ref }}
+          # Don't use bot token here - only default GITHUB_TOKEN
 
       # indication that the linting is being fixed
       - name: React on comment
@@ -24,34 +42,43 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           reactions: eyes
 
-      # Action runs on the issue comment, so we don't get the PR by default
-      # Use the gh cli to check out the PR
-      - name: Checkout Pull Request
-        run: gh pr checkout ${{ github.event.issue.number }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.nf_core_bot_auth_token }}
-
       # Install and run prek
-      # install prettier plugins
       - uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
         with:
           node-version: 24
           cache: npm
 
-      - run: npm install --omit=prod
+      # Use npm ci with --ignore-scripts to prevent arbitrary code execution
+      - run: npm ci --ignore-scripts
 
       - name: Run prek
         id: prek
-        uses: j178/prek-action@564dda4cfa5e96aafdc4a5696c4bf7b46baae5ac # v1
+        uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
         continue-on-error: true
 
       # indication that the linting has finished
-      - name: react if linting finished succesfully
+      - name: react if linting finished successfully
         if: steps.prek.outcome == 'success'
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
           comment-id: ${{ github.event.comment.id }}
           reactions: "+1"
+
+      # Re-checkout with bot token to push changes
+      - name: Checkout with bot token
+        if: steps.prek.outcome == 'failure'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          repository: ${{ fromJSON(steps.pr.outputs.result).head_repo }}
+          ref: ${{ fromJSON(steps.pr.outputs.result).head_ref }}
+          token: ${{ secrets.nf_core_bot_auth_token }}
+
+      # Re-run prek to apply fixes (idempotent operation)
+      - run: npm ci --ignore-scripts
+      - name: Re-run prek to apply fixes
+        if: steps.prek.outcome == 'failure'
+        uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
+        continue-on-error: true
 
       - name: Commit & push changes
         id: commit-and-push
@@ -59,10 +86,9 @@ jobs:
         run: |
           git config user.email "core@nf-co.re"
           git config user.name "nf-core-bot"
-          git config push.default upstream
           git add .
           git status
-          git commit -m "[automated] Fix code linting"
+          git diff --cached --exit-code || git commit -m "[automated] Fix code linting"
           git push
 
       - name: react if linting errors were fixed
@@ -80,8 +106,8 @@ jobs:
           comment-id: ${{ github.event.comment.id }}
           reactions: confused
 
-      - name: react if linting errors were not fixed
-        if: steps.commit-and-push.outcome  == 'failure'
+      - name: Comment if push failed
+        if: steps.commit-and-push.outcome == 'failure'
         uses: peter-evans/create-or-update-comment@e8674b075228eee787fea43ef493e45ece1004c9 # v5
         with:
           issue-number: ${{ github.event.issue.number }}
