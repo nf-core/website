@@ -13327,7 +13327,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -13406,7 +13406,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -15069,10 +15069,10 @@
                 }
               },
               {
-                "output/Samples/**/*_R*.fastq.gz": {
+                "${prefix}/Samples/**/*_R*.fastq.gz": {
                   "type": "file",
                   "description": "Demultiplexed sample FASTQ files",
-                  "pattern": "output/Samples/*/*_R*.fastq.gz",
+                  "pattern": "${prefix}/Samples/*/*_R*.fastq.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -15091,10 +15091,10 @@
                 }
               },
               {
-                "output/Samples/**/*_stats.json": {
+                "${prefix}/Samples/**/*_stats.json": {
                   "type": "file",
                   "description": "Demultiplexed sample stats",
-                  "pattern": "output/Samples/*/*.json",
+                  "pattern": "${prefix}/Samples/*/*.json",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3464"
@@ -15113,10 +15113,10 @@
                 }
               },
               {
-                "output/*_QC.html": {
+                "${prefix}/*_QC.html": {
                   "type": "file",
                   "description": "QC HTML report",
-                  "pattern": "output//*_QC.html",
+                  "pattern": "${prefix}//*_QC.html",
                   "ontologies": []
                 }
               }
@@ -15131,10 +15131,10 @@
                 }
               },
               {
-                "output/multiqc_report.html": {
+                "${prefix}/multiqc_report.html": {
                   "type": "file",
                   "description": "Multiqc HTML report",
-                  "pattern": "output/multiqc_report.html",
+                  "pattern": "${prefix}/multiqc_report.html",
                   "ontologies": []
                 }
               }
@@ -15149,10 +15149,10 @@
                 }
               },
               {
-                "output/RunStats.json": {
+                "${prefix}/RunStats.json": {
                   "type": "file",
                   "description": "QC HTML report",
-                  "pattern": "output/*.html",
+                  "pattern": "${prefix}/*.html",
                   "ontologies": []
                 }
               }
@@ -15167,10 +15167,10 @@
                 }
               },
               {
-                "output/RunManifest.json": {
+                "${prefix}/RunManifest.json": {
                   "type": "file",
                   "description": "Updated Run Manifest JSON from the run_manifest csv",
-                  "pattern": "output/RunManifest.json",
+                  "pattern": "${prefix}/RunManifest.json",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3464"
@@ -15189,10 +15189,10 @@
                 }
               },
               {
-                "output/Metrics.csv": {
+                "${prefix}/Metrics.csv": {
                   "type": "file",
                   "description": "Sample metrics",
-                  "pattern": "output/Metrics.csv",
+                  "pattern": "${prefix}/Metrics.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -15211,10 +15211,10 @@
                 }
               },
               {
-                "output/UnassignedSequences.csv": {
+                "${prefix}/UnassignedSequences.csv": {
                   "type": "file",
                   "description": "Unassigned Sequences",
-                  "pattern": "output/UnassignedSequences.csv",
+                  "pattern": "${prefix}/UnassignedSequences.csv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -15224,19 +15224,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bases2fastq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bases2fastq": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bases2fastq --version | sed \"s/.*version //;s/,.*//\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "bases2fastq": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "bases2fastq --version | sed \"s/.*version //;s/,.*//\"": {
+                  "type": "string",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -16783,7 +16815,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -32626,7 +32658,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -32734,7 +32766,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -33323,7 +33355,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -33610,7 +33642,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -34643,19 +34675,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bwameme": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameme": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameme": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -34864,19 +34928,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bwameme": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameme": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameme": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -75748,7 +75886,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "radseq",
@@ -76396,7 +76534,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -80633,7 +80771,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -96961,7 +97099,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -102713,19 +102851,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gfatools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gfatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gfatools version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gfatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gfatools version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -102807,19 +102977,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gfatools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gfatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gfatools version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gfatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gfatools version | sed '1!d; s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -107005,7 +107207,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -107117,7 +107319,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -109816,9 +110018,6 @@
       "meta": {
         "name": "gubbins",
         "description": "Gubbins (Genealogies Unbiased By recomBinations In Nucleotide Sequences) is an algorithm that iteratively identifies loci containing elevated densities of base substitutions while concurrently constructing a phylogeny based on the putative point mutations outside of these regions.",
-        "licence": [
-          "GPL-2.0-only"
-        ],
         "keywords": [
           "recombination",
           "alignment",
@@ -109939,19 +110138,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gubbins": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gubbins": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_gubbins.py --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gubbins": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_gubbins.py --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -109959,6 +110190,9 @@
         ],
         "maintainers": [
           "@avantonder"
+        ],
+        "licence": [
+          "GPL-2.0-only"
         ]
       }
     },
@@ -123557,7 +123791,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -137965,7 +138199,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phyloplace",
@@ -157666,7 +157900,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -161400,7 +161634,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "scnanoseq",
@@ -177738,7 +177972,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -179169,7 +179403,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "seqinspector",
@@ -180178,7 +180412,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "raredisease",
@@ -181016,7 +181250,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "ssds",
@@ -182499,7 +182733,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -196235,19 +196469,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_qualimap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qualimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qualimap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qualimap -h | sed -n 's/^QualiMap v.//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -197495,7 +197761,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -212591,7 +212857,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -214313,7 +214579,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -226902,7 +227168,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -227612,7 +227878,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -227947,7 +228213,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "proteinannotator",
@@ -228904,7 +229170,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "seqinspector",
@@ -238970,7 +239236,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -239389,7 +239655,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -240177,7 +240443,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "viralmetagenome",
@@ -241009,7 +241275,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -251519,7 +251785,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -251896,7 +252162,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -263591,7 +263857,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phageannotator",
@@ -266950,7 +267216,7 @@
       "pipelines": [
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "sarek",
@@ -290344,7 +290610,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -290769,7 +291035,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
@@ -291186,7 +291452,7 @@
         },
         {
           "name": "pathogensurveillance",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "phaseimpute",
