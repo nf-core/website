@@ -1,6 +1,6 @@
 ---
 title: List pipelines
-subtitle: Listing nf-core pipelines, local and remote
+subtitle: List pipelines
 shortTitle: list
 weight: 10
 parentWeight: 10

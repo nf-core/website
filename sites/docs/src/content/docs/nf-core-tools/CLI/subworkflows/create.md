@@ -1,6 +1,6 @@
 ---
 title: Create a subworkflow
-subtitle: Create a new subworkflow
+subtitle: Create subworkflows
 shortTitle: create
 weight: 60
 ---

@@ -1,6 +1,6 @@
 ---
 title: File structure requirements
-subtitle: Which files to create or modify for your institutional profile
+subtitle: Create institutional profile files
 shortTitle: File structure
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Input/output options
-subtitle: Input and output specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Define subworkflow inputs and outputs
 weight: 3
 ---
 

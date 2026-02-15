@@ -1,6 +1,6 @@
 ---
 title: Institutional profiles
-subtitle: Write and contribute institutional configuration profiles
+subtitle: Write institutional profiles
 weight: 1
 ---
 

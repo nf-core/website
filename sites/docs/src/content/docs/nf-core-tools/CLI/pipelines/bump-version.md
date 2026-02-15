@@ -1,6 +1,6 @@
 ---
 title: Bump version number
-subtitle: Bump a pipeline version number
+subtitle: Bump pipeline versions
 shortTitle: bump-version
 weight: 90
 ---

@@ -1,6 +1,6 @@
 ---
 title: Create components
-subtitle: Writing modules and subworkflows for nf-core
+subtitle: Write modules and subworkflows
 shortTitle: Create components
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Input/output options
-subtitle: Guidelines for defining module inputs and outputs
+subtitle: Define module inputs and outputs
 markdownPlugin: addNumbersToHeadings
 shortTitle: Input/output Options
 weight: 3

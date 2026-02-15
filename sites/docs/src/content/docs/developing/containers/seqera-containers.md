@@ -1,6 +1,6 @@
 ---
 title: Seqera Containers
-subtitle: Using Seqera Containers in nf-core modules
+subtitle: Use Seqera Containers
 shortTitle: Seqera Containers
 ---
 

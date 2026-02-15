@@ -1,6 +1,6 @@
 ---
 title: Configuration
-subtitle: Pipeline configuration options
+subtitle: Configure pipelines
 shortTitle: Overview
 weight: 1
 ---

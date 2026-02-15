@@ -1,6 +1,6 @@
 ---
 title: API
-subtitle: nf-core/tools API reference
+subtitle: Browse API reference
 shortTitle: API
 weight: 1
 ---

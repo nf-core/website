@@ -1,6 +1,6 @@
 ---
 title: Cross-organisational components
-subtitle: Use modules from multiple organisations in subworkflows
+subtitle: Use multi-organization modules
 shortTitle: Cross-organisational components
 ---
 

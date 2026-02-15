@@ -1,6 +1,6 @@
 ---
 title: Testing profiles
-subtitle: Testing your institutional profile before submission
+subtitle: Test institutional profiles
 shortTitle: Testing
 ---
 

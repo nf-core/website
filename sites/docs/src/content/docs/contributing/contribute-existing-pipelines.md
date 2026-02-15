@@ -1,6 +1,6 @@
 ---
 title: Contributing to existing pipelines
-subtitle: Contribute to existing nf-core pipelines
+subtitle: Contribute to existing pipelines
 shortTitle: Existing pipelines
 ---
 
