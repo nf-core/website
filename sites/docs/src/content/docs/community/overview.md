@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Community overview
+subtitle: Explore the nf-core community
 shortTitle: Overview
 weight: 1
 ---

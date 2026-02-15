@@ -1,6 +1,6 @@
 ---
 title: List subworkflows
-subtitle: List subworkflows, locally installed and remove
+subtitle: List subworkflows
 shortTitle: list
 weight: 10
 parentWeight: 30

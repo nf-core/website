@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Developing nf-core pipelines
+subtitle: Develop nf-core pipelines
 shortTitle: Overview
 weight: 1
 ---

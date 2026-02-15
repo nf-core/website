@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Contributing to nf-core pipelines
+subtitle: Contribute to pipelines
 shortTitle: Overview
 weight: 1
 ---

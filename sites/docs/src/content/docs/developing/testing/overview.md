@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Testing nf-core components with nf-test
+subtitle: Test components with nf-test
 shortTitle: Overview
 weight: 1
 ---

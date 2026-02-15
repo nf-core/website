@@ -1,6 +1,6 @@
 ---
 title: Writing pipeline methods text for MultiQC
-subtitle: Customize automated methods descriptions in MultiQC reports
+subtitle: Customize MultiQC methods descriptions
 shortTitle: Automated methods
 ---
 

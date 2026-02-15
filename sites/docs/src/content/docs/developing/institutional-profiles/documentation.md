@@ -1,6 +1,6 @@
 ---
 title: Documentation requirements
-subtitle: What to include in your institutional profile documentation
+subtitle: Document institutional profiles
 shortTitle: Documentation
 ---
 

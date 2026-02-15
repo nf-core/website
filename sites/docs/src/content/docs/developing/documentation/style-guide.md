@@ -1,6 +1,6 @@
 ---
 title: Style guide
-subtitle: nf-core style guide rules
+subtitle: Follow nf-core style rules
 shortTitle: Style guide
 ---
 

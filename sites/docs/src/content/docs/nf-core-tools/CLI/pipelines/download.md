@@ -1,6 +1,6 @@
 ---
 title: Downloading pipelines for offline use
-subtitle: Download a pipeline and its software dependencies.
+subtitle: Download pipelines and dependencies
 shortTitle: download
 weight: 40
 ---

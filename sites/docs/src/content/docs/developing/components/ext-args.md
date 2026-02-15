@@ -1,6 +1,6 @@
 ---
 title: ext arguments
-subtitle: Configure tool-specific options in nf-core components
+subtitle: Configure tool-specific options
 shortTitle: ext arguments
 ---
 

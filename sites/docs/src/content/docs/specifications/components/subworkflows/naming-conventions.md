@@ -1,6 +1,6 @@
 ---
 title: Naming conventions
-subtitle: Naming conventions for nf-core Nextflow DSL2 subworkflows
+subtitle: Follow naming conventions
 weight: 2
 ---
 

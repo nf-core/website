@@ -1,6 +1,6 @@
 ---
 title: General
-subtitle: General specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Follow general subworkflow specifications
 weight: 1
 ---
 
