@@ -10,7 +10,7 @@ leaders:
     slack: https://nfcore.slack.com/team/U08V65MQSV9
 ---
 
-We aim to release v0.1 of the read-based metagenome functional profiling `funcprofiler` pipeline.
+We aim to release v1.0.0 of the read-based metagenome functional profiling `funcprofiler` pipeline.
 
 ## Goal
 
