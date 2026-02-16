@@ -20,10 +20,12 @@ const { frontmatter } = Astro.props;
     frontmatter.locations?.[0] && (
         <Admonition title="info" titleText="Location">
             <h5 class="mt-0">{frontmatter.locations[0].name}</h5>
-            <p>{frontmatter.locations[0].address}</p>
-            <p>
-                <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
-            </p>
+            {frontmatter.locations[0].address && <p>{frontmatter.locations[0].address}</p>}
+            {frontmatter.locations[0].links && (
+                <p>
+                    <a href={frontmatter.locations[0].links[0]}>{frontmatter.locations[0].links[0]}</a>
+                </p>
+            )}
         </Admonition>
     )
 }

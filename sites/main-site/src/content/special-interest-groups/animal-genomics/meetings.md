@@ -11,7 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-|             Feb 18, 2025 | Theodore Kalbfleisch (Gluck Equine Research Center, University of Kentucky, USA)                                             |
+|             Feb 18, 2025 | Theodore Kalbfleisch (Gluck Equine Research Center, University of Kentucky, USA)                                             | [February Meeting](/events/2026/SIG_animalgenomics_feb)      |
 |             Nov 19, 2025 | Ekaterina Osipova (Harvard University, USA)                                                                                  | [November Meeting](/events/2025/SIG_animalgenomics_Nov)      |
 |             Oct 15, 2025 | Daniela Lourenco (University of Georgia, USA)                                                                                | [October Meeting](/events/2025/SIG_animalgenomics_Oct)       |
 |             Sep 17, 2025 | Brenda Murdoch & Temitayo Olangunju (University of Idaho, USA)                                                               | [September Meeting](/events/2025/SIG_animalgenomics_Sep)     |

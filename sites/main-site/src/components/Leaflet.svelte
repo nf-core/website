@@ -25,7 +25,7 @@
         m = map(container, {
             minZoom: 1.4,
             fullscreenControl: true,
-        }).setView([20, 22.09], 1.5); // Adjusted center point and zoom
+        }).setView([20, 12.09], 1.5); // Adjusted center point and zoom
 
         let greenIcon = new Icon({
             iconUrl: "/images/marker-icon-2x-green.png",
@@ -82,7 +82,7 @@
 <style lang="scss">
     .map {
         height: 500px;
-        width: 80%;
+        width: 100%;
     }
     @media (max-width: 767.98px) {
         // md-breakpoint
@@ -92,7 +92,7 @@
         }
     }
     :global(.contributor_map_logo) {
-        max-height: 5rem;
+        max-height: 5.2rem;
         margin-top: 0.25rem;
     }
     :global(.leaflet-popup-content-wrapper) {
