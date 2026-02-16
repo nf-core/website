@@ -35,6 +35,11 @@ If you are new to nf-core, we recommend following the guides in order:
 System requirements and installation methods vary depending on your operating system and whether you have administrator privileges. If you are uncertain, speak to your system administrator.
 :::
 
+:::tip
+nf-core repositories include Development Container configurations that provide ready-to-use environments with all required software, accessible via GitHub Codespaces or VS Code.
+See [Dev Containers](./dev-containers.md) for more information.
+:::
+
 ## Need help?
 
 If you encounter issues during setup, check our [troubleshooting guide](./troubleshooting.md) for solutions to common problems with Nextflow, nf-core tools, and development environments.
