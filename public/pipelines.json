@@ -54731,10 +54731,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/taxprofiler",
             "created_at": "2022-02-18T06:56:10Z",
-            "updated_at": "2026-01-31T19:13:09Z",
-            "pushed_at": "2026-02-16T14:12:29Z",
+            "updated_at": "2026-02-16T14:49:47Z",
+            "pushed_at": "2026-02-16T15:27:04Z",
             "homepage": "https://nf-co.re/taxprofiler",
-            "size": 17216,
+            "size": 17223,
             "stargazers_count": 177,
             "watchers_count": 177,
             "language": "Nextflow",
@@ -54843,17 +54843,17 @@
             "contributors": [
                 {
                     "name": "jfy133",
-                    "count": 1145,
+                    "count": 1183,
                     "avatar_url": "https://avatars.githubusercontent.com/u/17950287?v=4"
                 },
                 {
                     "name": "sofstam",
-                    "count": 491,
+                    "count": 526,
                     "avatar_url": "https://avatars.githubusercontent.com/u/91951607?v=4"
                 },
                 {
                     "name": "LilyAnderssonLee",
-                    "count": 420,
+                    "count": 451,
                     "avatar_url": "https://avatars.githubusercontent.com/u/64467552?v=4"
                 },
                 {
@@ -54957,10 +54957,10 @@
                     "avatar_url": "https://avatars.githubusercontent.com/u/47026226?v=4"
                 }
             ],
-            "released_after_tools": false,
-            "head_sha": "4d503697865301999365506c46d0994580a0fd04",
+            "released_after_tools": true,
+            "head_sha": "3c3fb68033473d723b4e9c6b090ce0f4a6ea185a",
             "last_release_is_head": true,
-            "last_release_vs_default_compare_url": "https://github.com/nf-core/taxprofiler/compare/4d503697865301999365506c46d0994580a0fd04...4d503697865301999365506c46d0994580a0fd04",
+            "last_release_vs_default_compare_url": "https://github.com/nf-core/taxprofiler/compare/3c3fb68033473d723b4e9c6b090ce0f4a6ea185a...3c3fb68033473d723b4e9c6b090ce0f4a6ea185a",
             "commits_to_dev": 30,
             "is_DSL2": true,
             "has_nf_test": true,
@@ -54978,6 +54978,86 @@
                 "defaultBranch": "master"
             },
             "releases": [
+                {
+                    "tag_name": "1.2.6",
+                    "published_at": "2026-02-16T14:52:23Z",
+                    "tag_sha": "3c3fb68033473d723b4e9c6b090ce0f4a6ea185a",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md",
+                        "docs/usage/faq-troubleshooting.md",
+                        "docs/usage/tutorials.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "adapterremoval",
+                            "bbmap_bbduk",
+                            "bowtie2_align",
+                            "bowtie2_build",
+                            "bracken_bracken",
+                            "bracken_combinebrackenoutputs",
+                            "cat_fastq",
+                            "centrifuge_centrifuge",
+                            "centrifuge_kreport",
+                            "diamond_blastx",
+                            "falco",
+                            "fastp",
+                            "fastqc",
+                            "filtlong",
+                            "ganon_classify",
+                            "ganon_report",
+                            "ganon_table",
+                            "gunzip",
+                            "kaiju_kaiju",
+                            "kaiju_kaiju2krona",
+                            "kaiju_kaiju2table",
+                            "kmcp_profile",
+                            "kmcp_search",
+                            "kraken2_kraken2",
+                            "krakentools_combinekreports",
+                            "krakentools_kreport2krona",
+                            "krakenuniq_preloadedkrakenuniq",
+                            "krona_ktimporttaxonomy",
+                            "krona_ktimporttext",
+                            "malt_run",
+                            "megan_rma2info",
+                            "metaphlan_mergemetaphlantables",
+                            "metaphlan_metaphlan",
+                            "minimap2_align",
+                            "minimap2_index",
+                            "motus_merge",
+                            "motus_profile",
+                            "multiqc",
+                            "nanoq",
+                            "nonpareil_curve",
+                            "nonpareil_nonpareil",
+                            "nonpareil_nonpareilcurvesr",
+                            "nonpareil_set",
+                            "porechop_abi",
+                            "porechop_porechop",
+                            "prinseqplusplus",
+                            "samtools_fastq",
+                            "samtools_index",
+                            "samtools_stats",
+                            "samtools_view",
+                            "taxpasta_merge",
+                            "taxpasta_standardise",
+                            "untar"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.04.2",
+                    "nf_core_version": "3.5.2",
+                    "plugins": [
+                        "nf-schema@2.5.1"
+                    ],
+                    "co2footprint_files": null
+                },
                 {
                     "tag_name": "1.2.5",
                     "published_at": "2025-11-21T15:07:54Z",
