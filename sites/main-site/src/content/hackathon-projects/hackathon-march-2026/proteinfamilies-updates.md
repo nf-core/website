@@ -2,7 +2,7 @@
 title: nf-core/proteinfamilies updates
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C07URFZF074"
-intro_video: ""
+location: Wellcome Genome Campus, Cambridge, Hinxton, UK
 image: ""
 image_alt: ""
 leaders:

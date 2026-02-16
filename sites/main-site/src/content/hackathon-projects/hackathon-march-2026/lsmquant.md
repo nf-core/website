@@ -3,6 +3,7 @@ title: Working on nf-core/lsmquant
 category: pipelines
 intro_video: ""
 slack: https://nfcore.slack.com/archives/C060Z0S4JQ0
+location: Tübingen and online
 image: ""
 image_alt: ""
 leaders:

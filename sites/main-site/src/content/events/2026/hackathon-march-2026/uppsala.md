@@ -10,7 +10,7 @@ endTime: "17:00+01:00"
 locations:
   - name: BMC, Uppsala University
     address: Husargatan 3, 752 37 Uppsala
-    country: SWEDEN
+    country: Sweden
     city: Uppsala
     geoCoordinates: [59.841912895622116, 17.637057324015434]
 layout: "@layouts/events/HackathonMarch2026.astro"
