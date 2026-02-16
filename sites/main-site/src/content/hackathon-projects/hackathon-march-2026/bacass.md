@@ -7,7 +7,7 @@ location: Madrid (ISCIII) And Online
 image: ""
 image_alt: ""
 leaders:
-  dvm:
+  Daniel-VM:
     name: Daniel Valle
     slack: https://nfcore.slack.com/team/U0293V7GCCV
 ---
