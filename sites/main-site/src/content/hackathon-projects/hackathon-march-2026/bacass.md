@@ -40,7 +40,6 @@ Building 53, Meeting Rooms 1 and 2 (To be confirmed)
 
 - See the [Madrid Hackathon hub space](https://nf-co.re/events/2026/hackathon-march-2026/madrid)
 
-
 We will have space for around 12 people.
 
 :::note
