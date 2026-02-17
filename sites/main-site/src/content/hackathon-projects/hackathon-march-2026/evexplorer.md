@@ -2,7 +2,7 @@
 title: Working on nf-core/evexplorer
 category: pipelines
 intro_video: ""
-slack: https://nf-co.re/evexplorer/dev/
+slack: https://nfcore.slack.com/archives/C0775L31Q2G
 location: TBC
 image: ""
 image_alt: ""
