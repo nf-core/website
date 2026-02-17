@@ -4,9 +4,9 @@ subtitle: "Local node of the nf-core hackathon at RKI, Berlin."
 shortTitle: "🇩🇪 Robert Koch Institute"
 type: "hackathon"
 startDate: "2026-03-24"
-startTime: "09:00+00:00"
+startTime: "09:00+01:00"
 endDate: "2026-03-26"
-endTime: "17:00+00:00"
+endTime: "17:00+01:00"
 locations:
   - name: Robert Koch Institute
     address: |
