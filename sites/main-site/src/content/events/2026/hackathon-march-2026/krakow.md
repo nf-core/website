@@ -20,7 +20,7 @@ layout: "@layouts/events/HackathonMarch2026.astro"
 
 # Contacts
 
-Main contact: 
+Main contact:
 Mauro Saporita ([mauro.saporita@ardigen.com](mailto:mauro.saporita@ardigen.com))
 
 # Participation
