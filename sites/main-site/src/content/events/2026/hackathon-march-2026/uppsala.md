@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Uppsala)"
 subtitle: "Local Uppsala node for the nf-core March 2026 Hackathon (Seqinspector project)"
-shortTitle: "Uppsala"
+shortTitle: "🇸🇪 Uppsala"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+01:00"
