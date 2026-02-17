@@ -9,7 +9,7 @@ endDate: "2025-03-13"
 endTime: "17:00+01:00"
 locations:
   - name: Ardigen
-  - address: Sternbacha 1, 30-394, Kraków (Poland)
+    address: Sternbacha 1, 30-394, Kraków (Poland)
     links:
       - https://ardigen.com/
     geoCoordinates: [50.02169897114842, 19.888670603662863]
