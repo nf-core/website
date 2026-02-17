@@ -9,7 +9,7 @@ endDate: "2026-03-13"
 endTime: "17:00-05:00"
 locations:
   - name: Cambridge, Massachusetts
-    address: |
+    address: 100 Cambridgeside Pl, Cambridge, Massachusetts
     country: USA
     city: Cambridge
     geoCoordinates: [42.3782776, -71.1533904]
