@@ -8,21 +8,20 @@ startTime: "09:00+01:00"
 endDate: "2025-03-13"
 endTime: "17:00+01:00"
 locations:
-    - name: Ardigen
-      address: |
-          Sternbacha 1, 30-394, Kraków (Poland)
-      links:
-          - https://ardigen.com/
-      geoCoordinates: [50.02169897114842, 19.888670603662863]
-      country: Poland
-      city: Kraków
+  - name: Ardigen
+  - address:
+        Sternbacha 1, 30-394, Kraków (Poland)
+    links:
+      - https://ardigen.com/
+    geoCoordinates: [50.02169897114842, 19.888670603662863]
+    country: Poland
+    city: Kraków
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
 # Contacts
 
 Main contact: 
-
 Mauro Saporita ([mauro.saporita@ardigen.com](mailto:mauro.saporita@ardigen.com))
 
 # Participation
