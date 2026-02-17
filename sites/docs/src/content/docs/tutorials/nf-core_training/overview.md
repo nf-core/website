@@ -16,4 +16,4 @@ The training tutorials currently available are:
 Always check the the 'last updates' information at the top of each page to ensure your tutorial is up to date to the latest standards and procedure.
 
 > The first draft of this training was developed with support from the supported by the NFDI4Microbiota, funded by the Deutsche Forschungsgemeinschaft (DFG, German Research
-Foundation) – project number 460129525 (NFDI4Microbiota FlexFund grant 'EnterArchaeo').
+> Foundation) – project number 460129525 (NFDI4Microbiota FlexFund grant 'EnterArchaeo').
