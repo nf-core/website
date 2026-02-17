@@ -9,7 +9,7 @@ image_alt: ""
 leaders:
   ammarsabir15:
     name: Ammar Sabir Cheema
-    slack: "https://nfcore.slack.com/team/U037K4DR2KV"    
+    slack: "https://nfcore.slack.com/team/U037K4DR2KV"
 ---
 
 This project focuses on the pipeline nf-core/evexplorer for analyzing small-rna and long RNA seq data for extracellular vesicles.
