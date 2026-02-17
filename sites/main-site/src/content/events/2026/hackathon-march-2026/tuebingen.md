@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Tuebingen)"
 subtitle: "Local node for the nf-core hackathon in Tuebingen, Germany"
-shortTitle: "Tuebingen, Germany"
+shortTitle: "🇩🇪 Tuebingen, Germany"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+01:00"
