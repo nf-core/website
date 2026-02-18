@@ -4,7 +4,7 @@ node_bundler = "esbuild"
 [build]
 environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/configs"
-ignore = "[ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] || git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/configs public/pipelines.json" # don't build if there are no changes
+ignore = "[ \"$CACHED_COMMIT_REF\" != \"$COMMIT_REF\" ] && git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF sites/main-site/src/components sites/main-site/src/layouts sites/configs public/pipelines.json" # don't build if there are no changes
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
 [[headers]]
