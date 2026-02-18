@@ -14,7 +14,7 @@ leaders:
     slack: https://nfcore.slack.com/team/U03CKGEU3LZ
 ---
 
-This project focuses on improving the google and k8s plugins in Nextflow 
+This project focuses on improving the google and k8s plugins in Nextflow
 
 ### Where
 
