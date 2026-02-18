@@ -1,6 +1,6 @@
 ---
 title: Running pipelines
-subtitle: Run an nf-core pipeline
+subtitle: Run nf-core pipelines
 shortTitle: Running pipelines
 ---
 

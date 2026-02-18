@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Running nf-core pipelines
+subtitle: Running and configuring nf-core pipelines
 shortTitle: Overview
 weight: 1
 ---
