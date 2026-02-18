@@ -1,7 +1,7 @@
 ---
-title: Create components
+title: Creating components
 subtitle: Write modules and subworkflows
-shortTitle: Create components
+shortTitle: Creating components
 ---
 
 nf-core modules and subworkflows are reusable Nextflow components shared across pipelines.
