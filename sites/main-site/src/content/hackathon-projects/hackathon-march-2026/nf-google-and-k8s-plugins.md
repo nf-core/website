@@ -3,13 +3,14 @@ title: Working on nextflow/plugins/nf-google & nf-k8s
 category: tooling
 location: Brussels (Google offices) and online
 intro_video: ""
+slack: "https://nfcore.slack.com/archives/C02T98BKE2K"
 image: ""
 image_alt: ""
 leaders:
-  Rayan Hassaïne:
+  rhassaine:
     name: Rayan Hassaïne
     slack: https://nfcore.slack.com/team/U06MQLLLC2C
-  Nicolas Vannieuwkerke:
+  nvnieuwk:
     name: Nicolas Vannieuwkerke
     slack: https://nfcore.slack.com/team/U03CKGEU3LZ
 ---
