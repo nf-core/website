@@ -3,9 +3,9 @@ title: "Hackathon - March 2026 (Robert Koch Institute)"
 subtitle: "Local node of the nf-core hackathon at RKI, Berlin."
 shortTitle: "🇩🇪 Robert Koch Institute"
 type: "hackathon"
-startDate: "2026-03-24"
+startDate: "2026-03-11"
 startTime: "09:00+01:00"
-endDate: "2026-03-26"
+endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
   - name: Robert Koch Institute
