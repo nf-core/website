@@ -1,6 +1,6 @@
 ---
 title: Working on nextflow/plugins/nf-google & nf-k8s
-category: Nextflow
+category: tooling
 location: Brussels (Google offices) and online
 intro_video: ""
 image: ""
