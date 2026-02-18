@@ -5,6 +5,8 @@ shortTitle: Overview
 weight: 1
 ---
 
+<!-- TODO: Review page content and check links -->
+
 nf-core is a community-driven project built on the contributions.
 Whether you're fixing a bug, developing a new pipeline, writing documentation, or reviewing pull requests, every contribution helps advance reproducible bioinformatics for the entire community.
 
