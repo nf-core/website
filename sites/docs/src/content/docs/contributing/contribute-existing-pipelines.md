@@ -69,7 +69,7 @@ Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
 1. Test your changes locally:
 
    ```bash
-   nextflow run . -profile debug,test,docker --outdir <OUTDIR>
+   nextflow run . -profile debug,test,docker --outdir <outdir>
    ```
 
    :::tip

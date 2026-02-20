@@ -21,9 +21,9 @@ To request the mirroring, please request via the [#request-core](https://nfcore.
 A core-team member will run the following commands:
 
 ```bash
-docker pull <ORGANISATION>/<TOOL>:<TAG>
-docker tag <ORGANISATION>/<TOOL>:<TAG> quay.io/nf-core/TOOL:<TAG>
-docker push quay.io/nf-core/TOOL:<TAG>
+docker pull <organisation>/<tool>:<tag>
+docker tag <organisation>/<tool>:<tag> quay.io/nf-core/tool:<tag>
+docker push quay.io/nf-core/tool:<tag>
 ```
 
 Once this is done, please go on to the quay.io website, and check the newly updated repository's settings (that's the quay.io name for the container) and make sure that its visibility is public.

@@ -39,13 +39,13 @@ Pipeline-specific profiles are useful when certain pipelines require unique sett
 Once your profile is merged into the nf-core/configs repository, users can access it by specifying the profile name with the `-profile` flag:
 
 ```bash
-nextflow run nf-core/rnaseq -profile <your_institution>
+nextflow run nf-core/rnaseq -profile <institution>
 ```
 
 Users can combine institutional profiles with other profiles using comma-separated values:
 
 ```bash
-nextflow run nf-core/rnaseq -profile <your_institution>,docker
+nextflow run nf-core/rnaseq -profile <institution>,docker
 ```
 
 ## Writing an institutional profile
