@@ -218,3 +218,5 @@ nextflow run nf-core/<PIPELINE> \
 - [Configure pipelines](../running/configuration/overview.md) to adjust resource requirements and execution settings
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
+
+<!-- TODO: Add links, if any -->

@@ -23,7 +23,7 @@ Start here to learn the essential commands for running any nf-core pipeline with
 
 nf-core pipelines can be configured to work with different execution environments, resource requirements, and infrastructure constraints.
 
-- **[Configuration](/running/configuration/overview):** Detailed guidance on configuring pipelines for specific computing environments, adjusting resource limits, and customising execution parameters
+- **[Configuration options](/running/configuration/configuration-options):** Detailed guidance on configuring options
 - **[System requirements](/running/configuration/nextflow-for-your-system):** Configure pipelines to match your system's capabilities, including resource allocation, executors, and tool arguments
 
 ## Reference data
