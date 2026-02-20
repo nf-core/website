@@ -15,32 +15,45 @@ All nf-core code is community owned.
 
 Everyone is welcome to use, contribute to, and help maintain nf-core.
 
-## Key Features of nf-core pipelines
+## Running pipelines
 
-### Documentation
+nf-core pipelines are designed to run consistently across laptops, HPC clusters, and cloud environments.
+All pipelines share a common command structure and support extensive configuration options to match your compute infrastructure, resource requirements, and reference data needs.
 
-nf-core pipelines have extensive documentation covering installation, usage, and description of output files to ensure that you won't be left in the dark.
+[Learn how to run nf-core pipelines](/running/overview)
 
-### CI testing
+## Developing pipelines and components
 
-Every time a change is made to the pipeline code, nf-core pipelines use continuous-integration testing to ensure that nothing has broken.
+nf-core provides a template, tooling, and guidelines for building standardized Nextflow pipelines and reusable components (modules and subworkflows).
+The nf-core template enforces consistent structure and best practices, while shared modules reduce duplicated effort across the community.
 
-### Stable releases
+[Learn how to develop with nf-core](/developing/overview)
 
-nf-core pipelines use GitHub releases to tag stable versions of the code and software, making pipeline runs totally reproducible.
+## Contributing to nf-core
 
-### Packaged software
+nf-core welcomes contributions of all kinds: new pipelines, bug fixes, documentation improvements, and code reviews.
+All contributions go through a community-driven peer review process to maintain quality and consistency across the project.
 
-Pipeline dependencies are automatically downloaded and handled using Docker, Singularity, Conda, or other software management tools. There is no need for any software installations.
+[Learn how to contribute to nf-core](/contributing/overview)
 
-### Portable and reproducible
+## Specifications
 
-nf-core pipelines follow best practices to ensure maximum portability and reproducibility. The large community makes the pipelines exceptionally well-tested and easy to execute.
+The nf-core specifications define the requirements and recommendations that all nf-core pipelines and components must follow.
+These standards cover everything from software packaging and testing to documentation and versioning, and represent proven best practices for writing high-quality bioinformatics workflows.
 
-### Cloud-ready
+[Browse the nf-core specifications](/specifications/overview)
 
-nf-core pipelines are tested on AWS after every major release. You can even browse results live on the website and use outputs for your own benchmarking.
+## Community
 
-nf-core is published in [Nature Biotechnology: Nat Biotechnol 38, 276–278 (2020). Nature Biotechnology](https://www.nature.com/articles/s41587-020-0439-x).
+nf-core is built and maintained by a global community.
 
-<!-- TODO: Add short sections for each of the main subsections (running, developing, contributing, specifications, community, tools) -->
+The community communicates primarily through [Slack](https://nf-co.re/join/slack), organises regular events and hackathons, and maintains shared guidelines for collaboration and governance.
+
+[Learn about the nf-core community](/community/overview)
+
+## nf-core tools
+
+The `nf-core` Python package provides a command-line interface (CLI) and helper utilities for working with nf-core pipelines and components.
+It supports creating pipelines from the template, linting code against nf-core specifications, managing modules and subworkflows, and more.
+
+[Explore nf-core tools](/nf-core-tools/CLI/installation)
