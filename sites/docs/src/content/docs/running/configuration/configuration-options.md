@@ -1,25 +1,9 @@
 ---
-title: Configuration
+title: Configuration options
 subtitle: Configure pipelines
-shortTitle: Overview
-weight: 1
+shortTitle: Configuration options
+
 ---
-
-Nextflow runs on HPC execution schedulers ([Slurm](https://slurm.schedmd.com/quickstart.html), [SGE](https://docs.oracle.com/cd/E19680-01/html/821-1541/ciagcgha.html#scrolltoc), and [others](https://www.nextflow.io/docs/latest/executor.html)) and cloud platforms ([AWS Batch](https://aws.amazon.com/batch/), [Google Cloud](https://cloud.google.com/), and [others](https://www.nextflow.io/docs/latest/executor.html)).
-
-Nextflow also supports container engines ([Docker](https://www.docker.com/), [Singularity](https://sylabs.io/), and [others](https://www.nextflow.io/docs/latest/container.html)) and dependency managers ([Conda](https://docs.conda.io/en/latest/) and [Spack](https://spack.readthedocs.io/en/latest/)) for software deployment.
-
-To run nf-core pipelines on your system, install your dependency management software (see [Installation](/docs/usage/getting_started/installation)) and configure Nextflow.
-
-:::note{title="Configuration vs parameters"}
-Configuration controls how Nextflow runs (executor, resources, containers).
-Parameters control what the pipeline does with your data (`--input`, `--outdir`).
-
-This section covers configuration.
-For pipeline-specific parameters, see the pipeline documentation.
-:::
-
-## Configuration options
 
 You can configure pipelines using three approaches:
 
