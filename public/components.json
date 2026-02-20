@@ -84472,7 +84472,7 @@
               "licence": [
                 "BSD-2-Clause"
               ],
-              "identifier": ""
+              "identifier": "biotools:freyja"
             }
           }
         ],
@@ -84481,7 +84481,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -84530,11 +84530,23 @@
           {
             "lineages_meta": {
               "type": "file",
-              "description": "File containing lineage metadata that correspond to barcodes",
+              "description": "Optional file containing lineage metadata that correspond to barcodes",
               "pattern": "*lineages.json",
               "ontologies": [
                 {
                   "edam": "http://edamontology.org/format_3464"
+                }
+              ]
+            }
+          },
+          {
+            "lineages_topology": {
+              "type": "file",
+              "description": "Optional file containing lineage topology information that correspond to barcodes",
+              "pattern": "*lineages.yml",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
                 }
               ]
             }
@@ -84546,7 +84558,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -84568,7 +84580,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -84585,19 +84597,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_freyja": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -84638,7 +84682,7 @@
               "licence": [
                 "BSD-2-Clause"
               ],
-              "identifier": ""
+              "identifier": "biotools:freyja"
             }
           }
         ],
@@ -84647,7 +84691,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -84690,11 +84734,23 @@
           {
             "lineages_meta": {
               "type": "file",
-              "description": "File containing lineage metadata that correspond to barcodes",
+              "description": "Optional file containing lineage metadata that correspond to barcodes",
               "pattern": "*lineages.json",
               "ontologies": [
                 {
                   "edam": "http://edamontology.org/format_3464"
+                }
+              ]
+            }
+          },
+          {
+            "lineages_topology": {
+              "type": "file",
+              "description": "Optional file containing lineage topology information that correspond to barcodes",
+              "pattern": "*lineages.yml",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3750"
                 }
               ]
             }
@@ -84706,7 +84762,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -84723,19 +84779,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_freyja": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -84775,7 +84863,7 @@
               "licence": [
                 "BSD-2-Clause"
               ],
-              "identifier": ""
+              "identifier": "biotools:freyja"
             }
           }
         ],
@@ -84790,19 +84878,23 @@
         "output": {
           "barcodes": [
             {
-              "${db_name}/usher_barcodes.feather": {
+              "${db_name}/*barcodes.*": {
                 "type": "file",
                 "description": "File containing lineage defining barcodes",
-                "pattern": "*barcodes.feather",
-                "ontologies": []
+                "pattern": "*barcodes.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             }
           ],
           "lineages_topology": [
             {
-              "${db_name}/lineages.yml": {
+              "${db_name}/*lineages.yml": {
                 "type": "file",
-                "description": "File containing the lineage topology",
+                "description": "File containing lineage topology information that correspond to barcodes",
                 "pattern": "*lineages.yml",
                 "ontologies": [
                   {
@@ -84814,10 +84906,10 @@
           ],
           "lineages_meta": [
             {
-              "${db_name}/curated_lineages.json": {
+              "${db_name}/*curated_lineages.json": {
                 "type": "file",
                 "description": "File containing lineage metadata that correspond to barcodes",
-                "pattern": "*lineages.json",
+                "pattern": "*curated_lineages.json",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3464"
@@ -84826,12 +84918,12 @@
               }
             }
           ],
-          "versions": [
+          "config": [
             {
-              "versions.yml": {
+              "${db_name}/*pathogen_config.yml": {
                 "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
+                "description": "File containing pathogen configuration information for Freyja",
+                "pattern": "*pathogen_config.yml",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3750"
@@ -84839,6 +84931,52 @@
                 ]
               }
             }
+          ],
+          "versions_freyja": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -84878,7 +85016,7 @@
               "licence": [
                 "BSD-2-Clause"
               ],
-              "identifier": ""
+              "identifier": "biotools:freyja"
             }
           }
         ],
@@ -84887,7 +85025,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -84914,7 +85052,7 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
@@ -84932,8 +85070,8 @@
               {
                 "*.depth.tsv": {
                   "type": "file",
-                  "description": "File containing identified variants in a gff-like format",
-                  "pattern": "*.variants.tsv",
+                  "description": "File containing depth of the variants",
+                  "pattern": "*.depth.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -84943,19 +85081,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_freyja": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "freyja": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "freyja --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -101650,6 +101820,135 @@
         },
         "authors": [
           "@miqalvarez"
+        ]
+      }
+    },
+    {
+      "name": "gemmi_cif2json",
+      "path": "modules/nf-core/gemmi/cif2json/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gemmi_cif2json",
+        "description": "Convert macromolecular structure files from mmCIF format to JSON format using gemmi.",
+        "keywords": [
+          "structure",
+          "mmcif",
+          "cif",
+          "json",
+          "structural-biology"
+        ],
+        "tools": [
+          {
+            "gemmi": {
+              "description": "Gemmi is a library and command-line tool for parsing, manipulating,\nand converting macromolecular structural biology data formats such as\nmmCIF, PDB, and MTZ.\n",
+              "homepage": "https://gemmi.readthedocs.io/",
+              "documentation": "https://gemmi.readthedocs.io/en/latest/program.html",
+              "tool_dev_url": "https://github.com/project-gemmi/gemmi",
+              "doi": "10.5281/zenodo.3697983",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "cif": {
+                "type": "file",
+                "description": "macromolecular structure file in mmCIF (.cif) format",
+                "pattern": "*.cif",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1477"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "Structure file converted to JSON format",
+                  "pattern": "*.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gemmi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gemmi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gemmi --version | sed -E 's/^gemmi ([^ ]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gemmi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gemmi --version | sed -E 's/^gemmi ([^ ]+).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -179712,6 +180011,166 @@
           "version": "2.1.0"
         }
       ]
+    },
+    {
+      "name": "pharmcat_matcher",
+      "path": "modules/nf-core/pharmcat/matcher/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pharmcat_matcher",
+        "description": "The Named Allele Matcher is responsible for calling diplotypes from variant call data.\nWhile it is designed to be used in the PharmCAT pipeline, it can also be run independently.\nThe Named Allele Matcher does not currently support structural variants, including gene copy\nnumber. If structural variants are detected in the VCF data, it will be ignored and a warning\nwill be issued.\nIf it detects more than the expected number of alleles in the GT column of the VCF, only the\nfirst two alleles will be used and a warning will be issued. On haploid chromosomes, only\nthe first allele will be used.\n",
+        "keywords": [
+          "vcf",
+          "pharmcat",
+          "matcher",
+          "PGx"
+        ],
+        "tools": [
+          {
+            "pharmcat": {
+              "description": "\"PharmCAT (Pharmacogenomics Clinical Annotation Tool) is a bioinformatics\ntool that analyzes genetic variants to predict drug response and tailor medical\ntreatment to an individual patient’s genetic profile.\"\n",
+              "homepage": "https://pharmcat.clinpgx.org/",
+              "documentation": "https://pharmcat.clinpgx.org/",
+              "tool_dev_url": "https://github.com/PharmGKB/PharmCAT",
+              "doi": "10.1002/cpt.928",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "The vcf file to be inspected",
+                "pattern": "*.vcf.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "The tbi/csi file to be inspected",
+                "pattern": "*.{tbi,csi}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "genes": {
+              "type": "list",
+              "description": "List of genes to be processed"
+            }
+          }
+        ],
+        "output": {
+          "matcher_json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.match.json": {
+                  "type": "file",
+                  "description": "Json output from the matcher module of PharmCAT",
+                  "pattern": "*.match.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "matcher_html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.match.html": {
+                  "type": "file",
+                  "description": "HTML output from the matcher module of PharmCAT",
+                  "pattern": "*.match.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_pharmcat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ramsainanduri"
+        ],
+        "maintainers": [
+          "@ramsainanduri"
+        ]
+      }
     },
     {
       "name": "pharmcat_vcfpreprocessor",
@@ -286217,6 +286676,12 @@
               "type": "file",
               "description": "Structure: path(lineages_meta)\nFile containing lineage metadata that correspond to barcodes\n"
             }
+          },
+          {
+            "ch_lineages_topology": {
+              "type": "file",
+              "description": "Structure: path(lineages_topology)\nFile containing lineage topology information that correspond to barcodes\n"
+            }
           }
         ],
         "output": [
@@ -286259,20 +286724,19 @@
           {
             "barcodes": {
               "type": "file",
-              "description": "path(barcodes) a csv file that includes the lineages present but summarized by constellation and their corresponding abundances"
+              "description": "File containing lineage defining barcodes"
             }
           },
           {
             "lineages_meta": {
               "type": "file",
-              "description": "path(lineages_meta) a csv file that includes the lineages present but summarized by constellation and their corresponding abundances"
+              "description": "File containing lineage topology information that correspond to barcodes"
             }
           },
           {
-            "versions": {
+            "lineages_topology": {
               "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
+              "description": "File containing lineage metadata that correspond to barcodes"
             }
           }
         ],
