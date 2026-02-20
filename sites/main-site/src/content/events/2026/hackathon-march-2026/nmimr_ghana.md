@@ -23,8 +23,8 @@ Any bioinformatics enthusiasts in Ghana and West Africa are welcome to attend th
 
 Contact:
 
-- NMIMR Bioinformatics Team (joamfa@noguchi.ug.edu.gh)  / NMIMR Ambassador
-- Tel: +233 594 920027  
+- NMIMR Bioinformatics Team (joamfa@noguchi.ug.edu.gh) / NMIMR Ambassador
+- Tel: +233 594 920027
 
 ## Site Specific guidelines
 
@@ -50,22 +50,22 @@ If you and your colleagues are interested in collaborating on a project at the h
 
 ## About NMIMR
 
-The Noguchi Memorial Institute for Medical Research (NMIMR), established in 1979 as a semi-autonomous institute of the University of Ghana, is the leading biomedical research facility in Ghana.  
+The Noguchi Memorial Institute for Medical Research (NMIMR), established in 1979 as a semi-autonomous institute of the University of Ghana, is the leading biomedical research facility in Ghana.
 
 ### Core Mandate
 
-- Conduct innovative research into communicable and non-communicable diseases  
-- Provide high-end laboratory diagnostics, monitoring, and surveillance services in support of global health  
-- Provide capacity building in health services  
+- Conduct innovative research into communicable and non-communicable diseases
+- Provide high-end laboratory diagnostics, monitoring, and surveillance services in support of global health
+- Provide capacity building in health services
 
 ### Main Research Areas
 
-- Malaria  
-- Bacterial infections  
-- Neglected tropical diseases (NTDs)  
-- Antimicrobial resistance  
-- Viral infections (including COVID-19 and HIV)  
-- Nutrition  
+- Malaria
+- Bacterial infections
+- Neglected tropical diseases (NTDs)
+- Antimicrobial resistance
+- Viral infections (including COVID-19 and HIV)
+- Nutrition
 
 ---
 
@@ -74,17 +74,17 @@ The Noguchi Memorial Institute for Medical Research (NMIMR), established in 1979
 **GBCF Laboratory**  
 Noguchi Memorial Institute for Medical Research  
 University of Ghana, Legon  
-Accra, Ghana  
+Accra, Ghana
 
 ---
 
 ## Contact & Information
 
-Justice Ohene Amofa - Nf Core Ambassador 
+Justice Ohene Amofa - Nf Core Ambassador
 Noguchi Memorial Institute for Medical Research  
 University of Ghana, Legon, Accra  
 GA-337-3045  
 Tel: +233 594 920027  
-Email: joamofa@noguchi.ug.edu.gh  
+Email: joamofa@noguchi.ug.edu.gh
 
 © 2026 Noguchi Memorial Institute for Medical Research. All rights reserved.
