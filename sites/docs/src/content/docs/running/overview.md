@@ -1,6 +1,6 @@
 ---
 title: Overview
-subtitle: Running and configuring nf-core pipelines
+subtitle: Learn how to run and configure nf-core pipelines
 shortTitle: Overview
 weight: 1
 ---
@@ -24,7 +24,7 @@ Start here to learn the essential commands for running any nf-core pipeline with
 nf-core pipelines can be configured to work with different execution environments, resource requirements, and infrastructure constraints.
 
 - **[Configuration options](/running/configuration/configuration-options):** Detailed guidance on configuring options
-- **[System requirements](/running/configuration/nextflow-for-your-system):** Configure pipelines to match your system's capabilities, including resource allocation, executors, and tool arguments
+- **[System requirements](/running/configuration/nextflow-for-your-system):** Guidance on configuring pipelines to match your system's capabilities, including resource allocation, executors, and tool arguments
 
 ## Reference data
 
@@ -37,11 +37,11 @@ Learn how to access and manage reference data efficiently.
 
 For systems without internet access, nf-core provides solutions for preparing and transferring all required components.
 
-- **[Running pipelines offline](/running/run-pipelines-offline):** Prepare and run nf-core pipelines on systems without internet access, including transferring pipeline code, containers, and reference data
+- **[Running pipelines offline](/running/run-pipelines-offline):** Guidance on preparing and running nf-core pipelines on systems without internet access, including transferring pipeline code, containers, and reference data
 
 ## Advanced topics
 
 For specialised computing environments or resource management requirements, these guides address specific challenges in pipeline execution.
 
-- **[Google Colab](/running/advanced-topics/google-colab):** Run nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments
+- **[Google Colab](/running/advanced-topics/google-colab):** Guidance on running nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments
 - **[Managing work directory growth](/running/advanced-topics/managing_work_directory_growth):** Strategies for managing intermediate files and work directory storage during pipeline execution
