@@ -43,7 +43,7 @@ If you downloaded Singularity container images, you will need to use `-profile s
 ## Downloaded nf-core configs
 
 The pipeline files are automatically updated (`params.custom_config_base` is set to `../configs`) to make the local copy of institutional configs available when running the pipeline.
-Using `-profile <NAME>` should work if available within [nf-core/configs](https://github.com/nf-core/configs).
+Using `-profile <name>` should work if available within [nf-core/configs](https://github.com/nf-core/configs).
 
 :::warning
 This option is not available when downloading a pipeline for use with [Seqera Platform](#adapting-downloads-to-seqera-platform) because the application manages all configurations separately.

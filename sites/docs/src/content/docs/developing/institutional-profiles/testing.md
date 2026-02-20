@@ -15,7 +15,7 @@ Test your profile using your fork of the nf-core/configs repository:
 1. Clone your fork to your local system or cluster:
 
    ```bash
-   git clone https://github.com/<your_username>/configs.git
+   git clone https://github.com/<username>/configs.git
    cd configs
    ```
 
@@ -38,14 +38,14 @@ If you cloned your fork to the cluster where you will run tests:
 
 ```bash
 nextflow run nf-core/<pipeline_name> \
-  -profile <your_profile>,test \
+  -profile <profile>,test \
   --custom_config_base /path/to/your/configs
 ```
 
 Replace:
 
 - `<pipeline_name>`: The pipeline to test (for example, `rnaseq`, `sarek`, `atacseq`)
-- `<your_profile>`: Your profile name (for example, `big_university`)
+- `<profile>`: The profile name (for example, `big_university`)
 - `/path/to/your/configs`: The absolute path to your cloned configs directory
 
 ### Test from GitHub
@@ -54,13 +54,13 @@ If your changes are pushed to GitHub, test directly from your fork:
 
 ```bash
 nextflow run nf-core/<pipeline_name> \
-  -profile <your_profile>,test \
-  --custom_config_base 'https://raw.githubusercontent.com/<your_username>/configs/<branch>'
+  -profile <profile>,test \
+  --custom_config_base 'https://raw.githubusercontent.com/<username>/configs/<branch>'
 ```
 
 Replace:
 
-- `<your_username>`: Your GitHub username
+- `<username>`: GitHub username
 - `<branch>`: Your branch name (for example, `add-big-university-profile`)
 
 This approach lets you test without cloning to the cluster, but requires pushing changes to GitHub first.

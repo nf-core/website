@@ -83,7 +83,7 @@ To push your new pipeline to GitHub:
 1. Add the GitHub repository as a remote to your local git repository:
 
    ```bash
-   git remote add origin https://github.com/<YOUR_USERNAME>/<YOUR_REPOSITORY>.git
+   git remote add origin https://github.com/<username>/<repository>.git
    ```
 
 1. Push all branches to the remote GitHub repository:
@@ -149,7 +149,7 @@ To add your test data to the nf-core/test-datasets repository:
 1. Clone the repository and create a new branch for your pipeline:
 
    ```bash
-   git clone https://github.com/<YOUR_USERNAME>/test-datasets.git
+   git clone https://github.com/<username>/test-datasets.git
    cd test-datasets
    git checkout -b <pipeline_name>
    ```
@@ -188,7 +188,7 @@ To configure the test profile in your pipeline:
 1. Run the pipeline with the test profile to verify it works:
 
    ```bash
-   nextflow run <pipeline_name> -profile test,docker --outdir <OUTDIR>
+   nextflow run <pipeline_name> -profile test,docker --outdir <outdir>
    ```
 
 1. Update the `.github/workflows/` YAML files if you modify the test command.

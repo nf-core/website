@@ -16,11 +16,11 @@ For a hands-on introduction, see the [Run your first pipeline](../get_started/ru
 All nf-core pipelines follow a consistent command structure:
 
 ```bash
-nextflow run nf-core/<PIPELINE> -profile <CONFIG> [OPTIONS]
+nextflow run nf-core/<pipeline> -profile <config> [OPTIONS]
 ```
 
-- `nf-core/<PIPELINE>`: The pipeline name (e.g., `nf-core/rnaseq`, `nf-core/sarek`)
-- `-profile <CONFIG>`: Configuration profile(s) for software dependencies and execution environment
+- `nf-core/<pipeline>`: The pipeline name (e.g., `nf-core/rnaseq`, `nf-core/sarek`)
+- `-profile <config>`: Configuration profile(s) for software dependencies and execution environment
 - `[OPTIONS]`: Pipeline-specific parameters and Nextflow options
 
 ## Common operations
@@ -32,11 +32,11 @@ The following sections cover common operations for running nf-core pipelines.
 All nf-core pipelines include a `test` profile with small datasets for verifying your setup:
 
 ```bash
-nextflow run nf-core/<PIPELINE> -profile test,<CONFIG> --outdir results
+nextflow run nf-core/<pipeline> -profile test,<config> --outdir results
 ```
 
-- Replace `<PIPELINE>` with the pipeline name
-- Replace `<CONFIG>` with your software dependency manager
+- Replace `<pipeline>` with the pipeline name
+- Replace `<config>` with your software dependency manager
 
 :::tip
 Common software dependency and compute environment profiles include:
@@ -68,8 +68,8 @@ Most nf-core pipelines use a samplesheet to specify input files:
 2. Run the pipeline with your samplesheet:
 
    ```bash
-   nextflow run nf-core/<PIPELINE> \
-     -profile <CONFIG> \
+   nextflow run nf-core/<pipeline> \
+     -profile <config> \
      --input samplesheet.csv \
      --outdir results
    ```
@@ -102,8 +102,8 @@ Parameter files let you specify pipeline options in a structured format rather t
 2. Run the pipeline with your parameter file:
 
    ```bash
-   nextflow run nf-core/<PIPELINE> \
-     -profile <CONFIG> \
+   nextflow run nf-core/<pipeline> \
+     -profile <config> \
      -params-file params.json
    ```
 
@@ -135,8 +135,8 @@ Create a custom configuration file to specify execution settings:
 2. Apply your configuration with the `-c` flag:
 
    ```bash
-   nextflow run nf-core/<PIPELINE> \
-     -profile <CONFIG> \
+   nextflow run nf-core/<pipeline> \
+     -profile <config> \
      -c custom.config \
      --input samplesheet.csv \
      --outdir results
@@ -188,8 +188,8 @@ For detailed configuration options, see the [Configuration guide](../running/con
 Add `-resume` to continue from where a pipeline stopped (due to errors or cancellation):
 
 ```bash
-nextflow run nf-core/<PIPELINE> \
-  -profile <CONFIG> \
+nextflow run nf-core/<pipeline> \
+  -profile <config> \
   --input samplesheet.csv \
   --outdir results \
   -resume
@@ -206,9 +206,9 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 Use `-r` to specify a pipeline version, tag, or commit:
 
 ```bash
-nextflow run nf-core/<PIPELINE> \
+nextflow run nf-core/<pipeline> \
   -r 1.0.2 \
-  -profile <CONFIG> \
+  -profile <config> \
   --input samplesheet.csv \
   --outdir results
 ```
