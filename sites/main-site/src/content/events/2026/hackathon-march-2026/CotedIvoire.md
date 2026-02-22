@@ -9,7 +9,7 @@ endDate: "2026-03-13"
 endTime: "15:00+00:00"
 locations:
   - name: University NANGUI Abrogoua - Core Facility eDNA lab
-    address: 02 BP 801 Abidjan 02 Côte d'Ivoire 
+    address: 02 BP 801 Abidjan 02 Côte d'Ivoire
     links:
       - https://www.univ-na.ci/structures/ufr-sciences-et-gestion-de-l-environnement.html
     geoCoordinates: [9XQJ+P9 Abidjan]
@@ -32,8 +32,11 @@ Contact
 We have a reserved space for up to 7 participants at our facility.
 
 **Parking:** There are parking spaces available next to the building.
+
 ## Time zone
+
 GMT+0, West African
+
 ## Project
 
 Our work will focus on building a pipeline for microplastic degraders.
