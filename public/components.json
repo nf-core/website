@@ -19562,6 +19562,147 @@
       ]
     },
     {
+      "name": "bcftools_plotvcfstats",
+      "path": "modules/nf-core/bcftools/plotvcfstats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bcftools_plotvcfstats",
+        "description": "Plots the output of bcftools stats",
+        "keywords": [
+          "visualization",
+          "stats",
+          "VCF"
+        ],
+        "tools": [
+          {
+            "plot": {
+              "description": "Script for processing output of bcftools stats, plots graphs and creates a PDF presentation.\n",
+              "homepage": "http://samtools.github.io/bcftools/bcftools.html",
+              "documentation": "http://www.htslib.org/doc/bcftools.html",
+              "doi": "10.1093/bioinformatics/btp352",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:bcftools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "stats": {
+                "type": "file",
+                "description": "Text file from BCFtools stats output",
+                "pattern": "*_stats.txt",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "plot_dir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*plots*": {
+                  "type": "directory",
+                  "description": "Output directory containing plots, raw data, and log files",
+                  "pattern": "*plots*",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "plot_pdf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.pdf": {
+                  "type": "file",
+                  "description": "(Link to the original) summary output in PDF",
+                  "pattern": "*.pdf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_bcftools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bcftools --version | sed '1!d; s/^.*bcftools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bcftools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bcftools --version | sed '1!d; s/^.*bcftools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@yz533cb"
+        ]
+      }
+    },
+    {
       "name": "bcftools_pluginfilltags",
       "path": "modules/nf-core/bcftools/pluginfilltags/meta.yml",
       "type": "module",
@@ -63623,19 +63764,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_delly": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "delly": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "delly --version |& sed -n '1s/Delly version: *v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "delly": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "delly --version |& sed -n '1s/Delly version: *v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -180195,6 +180368,309 @@
       }
     },
     {
+      "name": "pharmcat_phenotyper",
+      "path": "modules/nf-core/pharmcat/phenotyper/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pharmcat_phenotyper",
+        "description": "The PharmCAT Phenotyper is a core module of the Pharmacogenomics Clinical Annotation Tool\nthat translates patient diplotypes into specific, actionable metabolizer phenotypes\n(e.g., Poor Metabolizer). It operates by analyzing the JSON output from the Named\nAllele Matcher, mapping these results to established clinical guidelines (such as\nCPIC) to predict drug response.\n",
+        "keywords": [
+          "vcf",
+          "pharmcat",
+          "phenotyper",
+          "PGx"
+        ],
+        "tools": [
+          {
+            "pharmcat": {
+              "description": "\"PharmCAT (Pharmacogenomics Clinical Annotation Tool) is a bioinformatics\ntool that analyzes genetic variants to predict drug response and tailor medical\ntreatment to an individual patient’s genetic profile.\"\n",
+              "homepage": "https://pharmcat.clinpgx.org/",
+              "documentation": "https://pharmcat.clinpgx.org/",
+              "tool_dev_url": "https://github.com/PharmGKB/PharmCAT",
+              "doi": "10.1002/cpt.928",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+              }
+            },
+            {
+              "match_json": {
+                "type": "file",
+                "description": "The Json output from the matcher module of pharmcat",
+                "pattern": "*.json",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            },
+            {
+              "outside_match_tsv": {
+                "type": "file",
+                "description": "Tab seperated file containing diplotypes calls from other callers",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "phenotyper_json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.phenotype.json": {
+                  "type": "file",
+                  "description": "Json output from the phenotyper module of PharmCAT",
+                  "pattern": "*.phenotype.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_pharmcat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ramsainanduri"
+        ],
+        "maintainers": [
+          "@ramsainanduri"
+        ]
+      }
+    },
+    {
+      "name": "pharmcat_reporter",
+      "path": "modules/nf-core/pharmcat/reporter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pharmcat_reporter",
+        "description": "The Reporter module is responsible for generating a report with genotype-specific\nexpert-reviewed drug prescribing recommendations for clinical decision support.\n",
+        "keywords": [
+          "pharmcat",
+          "report",
+          "PGx"
+        ],
+        "tools": [
+          {
+            "pharmcat": {
+              "description": "\"PharmCAT (Pharmacogenomics Clinical Annotation Tool) is a bioinformatics\ntool that analyzes genetic variants to predict drug response and tailor medical\ntreatment to an individual patient’s genetic profile.\"\n",
+              "homepage": "https://pharmcat.clinpgx.org/",
+              "documentation": "https://pharmcat.clinpgx.org/",
+              "tool_dev_url": "https://github.com/PharmGKB/PharmCAT",
+              "doi": "10.1002/cpt.928",
+              "licence": [
+                "MPL-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+              }
+            },
+            {
+              "phenotypes": {
+                "type": "file",
+                "description": "The vcf file to be inspected",
+                "pattern": "*.json",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3464"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "report_json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.report.json": {
+                  "type": "file",
+                  "description": "Json output from the reporter module of PharmCAT",
+                  "pattern": "*.report.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "report_html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.report.html": {
+                  "type": "file",
+                  "description": "HTML output from the reporter module of PharmCAT",
+                  "pattern": "*.report.html",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "report_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', name:'test_sample' ]`\n"
+                }
+              },
+              {
+                "*.report.tsv": {
+                  "type": "file",
+                  "description": "Tab separated output from the reporter module of PharmCAT",
+                  "pattern": "*.report.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_pharmcat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pharmcat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pharmcat --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ramsainanduri"
+        ],
+        "maintainers": [
+          "@ramsainanduri"
+        ]
+      }
+    },
+    {
       "name": "pharmcat_vcfpreprocessor",
       "path": "modules/nf-core/pharmcat/vcfpreprocessor/meta.yml",
       "type": "module",
@@ -239990,19 +240466,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_smoove": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "smoove": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smoove -v |& sed -n 's/smoove version: *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "smoove": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smoove -v |& sed -n 's/smoove version: *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -251484,14 +251992,16 @@
               "sv_file": {
                 "type": "file",
                 "description": "Structural variants file in VCF or BED format",
-                "pattern": "*.{vcf,bed}"
+                "pattern": "*.{vcf,bed}",
+                "ontologies": []
               }
             },
             {
               "sv_file_index": {
                 "type": "file",
                 "description": "Index file for the structural variants file VCF file",
-                "pattern": "*.tbi"
+                "pattern": "*.tbi",
+                "ontologies": []
               }
             },
             {
@@ -251516,7 +252026,8 @@
               "phylop": {
                 "type": "file",
                 "description": "PhyloP bigWig file (fetched from https://hgdownload.cse.ucsc.edu/goldenpath/hg38/phyloP100way/)",
-                "pattern": "*.bw"
+                "pattern": "*.bw",
+                "ontologies": []
               }
             }
           ],
@@ -251548,7 +252059,8 @@
                 "*.vcf": {
                   "type": "file",
                   "description": "Structural variants file in VCF format",
-                  "pattern": "*.vcf"
+                  "pattern": "*.vcf",
+                  "ontologies": []
                 }
               }
             ]
@@ -251565,24 +252077,57 @@
                 "*.bed": {
                   "type": "file",
                   "description": "Structural variants file in BED format",
-                  "pattern": "*.bed"
+                  "pattern": "*.bed",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_strvctvre": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "strvctvre": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "StrVCTVRE.py --help |& sed -n 's/StrVCTVRE: version *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "strvctvre": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "StrVCTVRE.py --help |& sed -n 's/StrVCTVRE: version *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -254858,19 +255403,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_svtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "svtools --version |& sed 's/svtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "svtools --version |& sed 's/svtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -255305,19 +255882,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_svync": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svync": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "svync --version | sed 's/svync version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svync": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "svync --version | sed 's/svync version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -281489,19 +282098,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wisecondorx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -281582,19 +282223,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wisecondorx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -281669,19 +282342,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wisecondorx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -281879,19 +282584,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wisecondorx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wisecondorx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip list |& sed -n 's/wisecondorx *//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -287900,8 +288637,7 @@
         ],
         "components": [
           "bcl2fastq",
-          "bclconvert",
-          "generatereadgroup"
+          "bclconvert"
         ],
         "input": [
           {
