@@ -12,4 +12,4 @@ locations:
       - https://kth-se.zoom.us/j/68390542812
 ---
 
-This week, Franziska ([@franziskabonath](https://github.com/franziskabonath)) will present the recently released [seqinspector](https://github.com/nf-core/seqinspector) pipeline.
+This week, Franziska ([@FranBonath](https://github.com/FranBonath)) will present the recently released [seqinspector](https://github.com/nf-core/seqinspector) pipeline.
