@@ -9,7 +9,7 @@ endTime: "13:30+01:00"
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://stockholmuniversity.zoom.us/j/66855293599
 ---
 
 This week, Franziska ([@FranBonath](https://github.com/FranBonath)) will present the recently released [seqinspector](https://github.com/nf-core/seqinspector) pipeline.

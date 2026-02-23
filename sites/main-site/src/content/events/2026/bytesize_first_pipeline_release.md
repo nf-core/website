@@ -9,7 +9,7 @@ endTime: "13:30+01:00"
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
+      - https://stockholmuniversity.zoom.us/j/66855293599
 ---
 
 This week, Maxime ([@maxulysse](https://github.com/maxulysse)) describes what to do when making a first release of a pipeline, using [seqinspector](https://github.com/nf-core/seqinspector) as an example.
