@@ -23,7 +23,6 @@ Preferably in person at the local Brussels, Belgium site - but anybody's welcome
 
 _We welcome contributors of all experience levels._
 
-
 ## Tasks
 
 Participating in this team could include the following tasks:
