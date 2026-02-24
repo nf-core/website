@@ -6,10 +6,11 @@ startDate: "2026-02-24"
 startTime: "13:00+01:00"
 endDate: "2026-02-24"
 endTime: "13:30+01:00"
+youtubeEmbed: https://youtu.be/lv4fmq3UDMI
 locations:
   - name: Online
     links:
-      - https://stockholmuniversity.zoom.us/j/66855293599
+      - https://youtu.be/lv4fmq3UDMI
 ---
 
 This week, Maxime ([@maxulysse](https://github.com/maxulysse)) describes what to do when making a first release of a pipeline, using [seqinspector](https://github.com/nf-core/seqinspector) as an example.
