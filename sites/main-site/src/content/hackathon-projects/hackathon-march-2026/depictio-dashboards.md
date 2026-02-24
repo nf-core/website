@@ -50,6 +50,6 @@ This project is suitable for newcomers to nf-core and open source contributions.
 - Familiarity with an nf-core pipeline and its output structure (which files are produced, their formats) is the main prerequisite
 - Optionally bring results from a pipeline run (or plan to use test/megatest datasets)
 - Skim the [Depictio documentation](https://depictio.github.io/depictio-docs/)
-- No frontend or web development experience needed. Familiarity with YAML is recommended. 
+- No frontend or web development experience needed. Familiarity with YAML is recommended.
 
 _We welcome contributors of all experience levels._
