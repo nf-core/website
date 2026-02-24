@@ -957,7 +957,7 @@ To maintain code quality and prevent issues, all code MUST be free of Nextflow w
 Utilize the following command to check your code:
 
 ```bash
-nextflow lint modules/nf-core/module_name
+NXF_SYNTAX_PARSER=v2 nextflow lint modules/nf-core/module_name
 ```
 
 Common issues to avoid:
