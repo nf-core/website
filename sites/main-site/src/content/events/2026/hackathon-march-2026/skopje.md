@@ -20,8 +20,6 @@ layout: "@layouts/events/HackathonMarch2026.astro"
 
 Everyone is welcome to attend this local node of the nf-core hackathon in Skopje, North Macedonia. Please note that the number of seats will be limited, so we encourage early registration once it opens.
 
-
-
 Contact:
 
 - Jelena Pejovic ([jelena@loka.com](mailto:jelena@loka.com))
