@@ -13,6 +13,16 @@ let projects = await getCollection("hackathon-projects");
 if (eventPath) {
     projects = projects.filter((project) => project.id.startsWith(eventPath));
 }
+
+// Update projects to set location to "Online" if not provided
+projects = projects.map((project) => ({
+    ...project,
+    data: {
+        ...project.data,
+        location: project.data.location || "online",
+    },
+}));
+
 // sort projects by data.location and then data.category
 projects.sort((a, b) => {
     return (

@@ -5,6 +5,7 @@ slack: "https://nfcore.slack.com/archives/C05G7UE94CT"
 intro_video: ""
 image: ""
 image_alt: ""
+location: "Brest (GGB) and Online"
 leaders:
   louislenezet:
     name: Louis Le Nézet
