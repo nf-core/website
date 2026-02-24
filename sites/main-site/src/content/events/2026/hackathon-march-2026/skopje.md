@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Skopje)"
 subtitle: "Local node of the nf-core hackathon in Skopje, North Macedonia"
-shortTitle: "Skopje, North Macedonia"
+shortTitle: "🇲🇰 Skopje, North Macedonia"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+01:00"
