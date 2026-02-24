@@ -1,16 +1,16 @@
 ---
 title: Improving and fixing issues in nf-core/hic
 category: pipelines
+location: [ZS Copenhagen](https://nf-co.re/events/2026/hackathon-march-2026/zs-dk) (in-person)
 slack: "https://nfcore.slack.com/archives/CJ3UVAZFT"
-image: "/assets/images/events/2026/hackathon-march/hic-improvements.png"
-image_alt: "nf-core/hic pipeline improvements"
 leaders:
   samuelruizperez:
     name: Samuel Ruiz-Pérez
     slack: "https://nfcore.slack.com/team/U05H41A4BDJ"
+    github: "https://github.com/samuelruizperez"
 ---
 
-This project aims to address open issues and improve the [nf-core/hic](https://nf-co.re/hic/) pipeline for Hi-C data analysis. We will also address the milestones for the [release of pipeline version 2.2.0](https://github.com/nf-core/hic/milestone/1).
+This project aims to address open issues and improve the [nf-core/hic](https://nf-co.re/hic/) pipeline for Hi-C data analysis. We will address the milestones for the [release of pipeline version 2.2.0](https://github.com/nf-core/hic/milestone/1).
 
 The nf-core/hic pipeline processes Hi-C data to analyze chromatin 3D organization. With 42+ open issues covering bugs, enhancements, and feature requests, this hackathon project provides opportunities to contribute at all levels.
 
