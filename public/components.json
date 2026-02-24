@@ -8491,6 +8491,179 @@
       }
     },
     {
+      "name": "apbs",
+      "path": "modules/nf-core/apbs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "apbs",
+        "description": "Compute biomolecular electrostatics by solving the Poisson-Boltzmann equation\nusing APBS (Adaptive Poisson-Boltzmann Solver). Produces electrostatic potential\nmaps and solvation energy values for large biomolecular assemblages.\n",
+        "keywords": [
+          "electrostatics",
+          "poisson-boltzmann",
+          "solvation",
+          "structural-biology",
+          "biophysics",
+          "computational-chemistry"
+        ],
+        "tools": [
+          {
+            "apbs": {
+              "description": "APBS (Adaptive Poisson-Boltzmann Solver) is a software package for modelling\nbiomolecular solvation through solution of the Poisson-Boltzmann equation.\nIt computes electrostatic solvation energies and potentials for large\nbiomolecular assemblages and is widely used in structural biology and\ncomputational biophysics.\n",
+              "homepage": "https://www.poissonboltzmann.org/",
+              "documentation": "https://apbs.readthedocs.io/en/latest/",
+              "tool_dev_url": "https://github.com/Electrostatics/apbs",
+              "licence": [
+                "Custom"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "apbs_input": {
+                "type": "file",
+                "description": "APBS input configuration file specifying the electrostatics calculation,\nincluding paths to molecular structure files (PQR/PDB) and calculation\nparameters. The file extension is typically `.in` but `.inp` is also\naccepted for legacy purposes.\n",
+                "pattern": "*.{in,inp}",
+                "ontologies": []
+              }
+            },
+            {
+              "pqr": {
+                "type": "file",
+                "description": "One or more PQR molecular structure files referenced by the input\nconfiguration file. PQR files contain atomic coordinates, charges, and\nradii used by APBS for electrostatics calculations.\n",
+                "pattern": "*.pqr",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_4035"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "dx": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.dx": {
+                  "type": "file",
+                  "description": "OpenDX format volumetric electrostatic potential map file output by APBS.\nOptional: this output is only produced when the input configuration file\ncontains a `write pot dx <dx_filename>` directive.\n",
+                  "pattern": "*.dx",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "mc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "io.mc": {
+                  "type": "file",
+                  "description": "APBS multigrid calculation output file containing energy and force\ninformation from the finite difference solver.\n",
+                  "pattern": "io.mc",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.log": {
+                  "type": "file",
+                  "description": "APBS standard output log file containing calculation results, including\nelectrostatic solvation energies and run diagnostics.\n",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_apbs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "apbs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "apbs --version 2>&1 | sed '6!d;s|^.*Version APBS ||; s| .*\\$||'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "apbs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "apbs --version 2>&1 | sed '6!d;s|^.*Version APBS ||; s| .*\\$||'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "arcashla_extract",
       "path": "modules/nf-core/arcashla/extract/meta.yml",
       "type": "module",
