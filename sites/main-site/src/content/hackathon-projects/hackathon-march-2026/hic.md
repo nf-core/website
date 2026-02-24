@@ -1,7 +1,7 @@
 ---
 title: Improving and fixing issues in nf-core/hic
 category: pipelines
-location: "[ZS Copenhagen](https://nf-co.re/events/2026/hackathon-march-2026/zs-dk) (in-person)"
+location: "ZS Copenhagen"
 slack: "https://nfcore.slack.com/archives/CJ3UVAZFT"
 leaders:
   samuelruizperez:
