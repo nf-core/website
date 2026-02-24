@@ -1,7 +1,7 @@
 ---
 title: Build your nf-core pipeline dashboard with Depictio
 category: community
-slack: https://nfcore.slack.com/archives/C0ACF0TPF5E
+slack: https://nfcore.slack.com/archives/C0AFS06G9HR
 location: Heidelberg and online
 image: "/assets/images/events/2026/hackathon-march/depictio_logo.png"
 image_alt: "Depictio logo"
@@ -45,11 +45,11 @@ This project is suitable for newcomers to nf-core and open source contributions.
 3. Design a dashboard combining relevant plots, tables, and metrics using the drag-and-drop editor
 4. Share your dashboard template and configuration with the community
 
-## Recommended preparation
+## Prerequisites
 
-- Familiarity with an nf-core pipeline and its output structure
+- Familiarity with an nf-core pipeline and its output structure (which files are produced, their formats) is the main prerequisite
 - Optionally bring results from a pipeline run (or plan to use test/megatest datasets)
 - Skim the [Depictio documentation](https://depictio.github.io/depictio-docs/)
-- No frontend or web development experience needed
+- No frontend or web development experience needed. Familiarity with YAML is recommended. 
 
 _We welcome contributors of all experience levels._
