@@ -3,8 +3,8 @@ title: Build your nf-core pipeline dashboard with Depictio
 category: community
 slack: https://nfcore.slack.com/archives/C0ACF0TPF5E
 location: Heidelberg and online
-image: ""
-image_alt: ""
+image: "https://raw.githubusercontent.com/depictio/depictio/main/docs/images/logo_hd.png"
+image_alt: "Depictio logo"
 leaders:
   weber8thomas:
     name: Thomas Weber
@@ -21,7 +21,10 @@ Create ready-to-use dashboards that combine MultiQC reports, Plotly figures, met
 
 [Depictio](https://depictio.github.io/depictio-docs/) is an open-source platform for building interactive data dashboards from pipeline results. It features drag-and-drop layout, light/dark modes, and export capabilities — designed for bioinformaticians who want to visualize and share results without writing frontend code.
 
-- **Demo** (ampliseq dashboard): [demo.depictio.embl.org](https://demo.depictio.embl.org/)
+:::note{title="See it in action"}
+Check out the [ampliseq dashboard demo](https://demo.depictio.embl.org/).
+:::
+
 - **Docs**: [depictio.github.io/depictio-docs](https://depictio.github.io/depictio-docs/)
 - **Install locally** or use the hosted instance at [SciLifeLab Serve](https://serve.scilifelab.se/) (available to Swedish researchers and SciLifeLab collaborators)
 
@@ -31,9 +34,13 @@ Create ready-to-use dashboards that combine MultiQC reports, Plotly figures, met
 - **Create shareable apps** for publications and collaborators
 - **Replace one-off scripts** with reusable, interactive visualizations
 
-## What participants will do
+## Tasks
 
-1. Choose an nf-core pipeline you work with (or use nf-core test/megatest datasets)
+:::info{title="No coding required"}
+This project is suitable for newcomers to nf-core and open source contributions. No frontend or web development experience needed.
+:::
+
+1. Choose an nf-core pipeline you love or/and you work with
 2. Write the YAML configuration that tells Depictio which pipeline outputs to register (file paths, formats, data types)
 3. Design a dashboard combining relevant plots, tables, and metrics using the drag-and-drop editor
 4. Share your dashboard template and configuration with the community
