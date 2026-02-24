@@ -278,7 +278,7 @@ To maintain code quality and prevent issues, all code MUST be free of Nextflow w
 Utilize the following command to check your code:
 
 ```bash
-nextflow lint subworkflows/nf-core/subworkflow_name
+NXF_SYNTAX_PARSER=v2 nextflow lint subworkflows/nf-core/subworkflow_name
 ```
 
 CCommon issues to avoid:
