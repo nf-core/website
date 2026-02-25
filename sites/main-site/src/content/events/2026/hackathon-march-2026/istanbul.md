@@ -10,10 +10,10 @@ endTime: "17:00+03:00"
 locations:
   - name: Istanbul Kent University
     address: |
-        Kağıthane Campus, Merkez, Cendere Caddesi, Kağıthane, Istanbul,  Student Clubs Common Room 112
+      Kağıthane Campus, Merkez, Cendere Caddesi, Kağıthane, Istanbul,  Student Clubs Common Room 112
     links:
-        - https://rsgturkey.com/
-        - https://www.kent.edu.tr/
+      - https://rsgturkey.com/
+      - https://www.kent.edu.tr/
     geoCoordinates: [41.08562666498707, 28.980463168822656]
     country: Turkey
     city: Istanbul
@@ -33,7 +33,7 @@ Attendees from outside the RSG Türkiye organization **are welcome** to attend.
 
 ## Venue Details
 
-We have a reserved space for up to 20 participants at our facility. Attendees from outside Istanbul are welcome to participate online. 
+We have a reserved space for up to 20 participants at our facility. Attendees from outside Istanbul are welcome to participate online.
 
 ## Schedule
 
