@@ -17,10 +17,10 @@ Nextflow is a highly configurable workflow language, enabling it to be run on a 
 
 ## Goals
 
-- Develop code for reliably writing Nextflow configuration files using user-supplied information. 
-- Write Pydantic validation code to check user input and prevent invalid configurations. 
+- Develop code for reliably writing Nextflow configuration files using user-supplied information.
+- Write Pydantic validation code to check user input and prevent invalid configurations.
 - Create automations for identifying Nextflow processes and labels available for configuration.
 - Testing and improving code for automatic HPC environment detection, including schedulers, container software, and module systems.
 - Improving and refactoring code for better performance.
 
-This is an opportunity to contribute to the open-source nf-core tools utility and improve the accessibility and ease-of-use of Nextflow. We welcome contributors of all experience levels. 
+This is an opportunity to contribute to the open-source nf-core tools utility and improve the accessibility and ease-of-use of Nextflow. We welcome contributors of all experience levels.
