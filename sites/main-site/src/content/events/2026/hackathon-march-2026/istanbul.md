@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Istanbul Kent University)"
 subtitle: "Local node for the nf-core hackathon in Istanbul, Turkey"
-shortTitle: "Istanbul, Turkey"
+shortTitle: "🇹🇷 Istanbul, Turkey"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+03:00"
