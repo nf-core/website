@@ -20,18 +20,20 @@ locations:
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
-## Hackathon at Helmholtz Munich - Core Facility Bioinformatics and Statistics
+## Hackathon at Istanbul Kent University
 
-We are hosting a hackathon hub at Helmholtz Munich - Core Facility Bioinformatics and Statistics. If you are interested in working together on our project and want to join us in person, please get in touch with the main contact below.
+[ISCB-RSG Türkiye](https://rsgturkey.com/) is hosting a hackathon hub at Istanbul Kent University. If you are interested in working on our project and would like to join us in person, please contact the main contact listed below.
 
 Contact
 
 - Kurayi Chawatama: kurichawaz@gmail.com
 - ISCB-RSG Turkey: rsg-turkey@iscbsc.org
 
+Attendees from outside the RSG Turkiye organization **are welcome** to attend.
+
 ## Venue Details
 
-We have a reserved space for up to 20 participants at our facility.
+We have a reserved space for up to 20 participants at our facility. Attendees from outside Istanbul are welcome to participate online. 
 
 ## Schedule
 
@@ -39,4 +41,4 @@ tba
 
 ## Project
 
-tba
+Plans for 3 projects for beginners, intermediate and advanced Nextflow programmers are currently in the works and will be uploaded by Monday 1st March at the latest.
