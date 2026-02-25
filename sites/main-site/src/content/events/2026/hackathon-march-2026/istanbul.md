@@ -29,7 +29,7 @@ Contact
 - Kurayi Chawatama: kurichawaz@gmail.com
 - ISCB-RSG Turkey: rsg-turkey@iscbsc.org
 
-Attendees from outside the RSG Turkiye organization **are welcome** to attend.
+Attendees from outside the RSG Türkiye organization **are welcome** to attend.
 
 ## Venue Details
 
