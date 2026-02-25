@@ -1,17 +1,28 @@
 ---
 title: Create and publish new nf-core modules
 category: components
-slack: https://nfcore.slack.com/archives/C049DHTV6G8
-location: online
+slack: https://nfcore.slack.com/team/U08FS0W6SHZ
+location: Medellin and online
 leaders:
-  TBD:
-    name: TBD
-    slack: TBD
+  florian:
+    name: Andres Florian
+    slack: https://nfcore.slack.com/team/U08FS0W6SHZ
 ---
 
 This project focuses on creating and publishing new modules to the
 [nf-core/modules](https://github.com/nf-core/modules) repository,
 expanding the community collection of reusable Nextflow components.
+
+The main modules to implement in the nf-core are:
+
+- [Stacks refmap](https://github.com/TheGreatJack/modules/tree/stacks/modules/nf-core/stacks/refmap)
+- [Metacerberus database download](https://github.com/daasabogalro/PopMAG/blob/main/modules/local/metacerberus_database.nf)
+- [Metacerberus annotation](https://github.com/daasabogalro/PopMAG/blob/main/modules/local/metacerberus_annotation.nf)
+- [SingleM metapackage download](https://github.com/daasabogalro/PopMAG/blob/main/modules/local/singleM_metapackage.nf)
+- [SingleM pipe](https://github.com/daasabogalro/PopMAG/blob/main/modules/local/singleM.nf)
+
+We may add new ideas or other modules to work on
+
 
 ---
 
