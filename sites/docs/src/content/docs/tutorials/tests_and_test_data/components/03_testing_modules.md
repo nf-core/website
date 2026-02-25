@@ -211,7 +211,7 @@ assertAll(
 ```
 
 :::note
-For more nf-test assertion patterns, see the [nf-test assertions examples documentation](./07_assertions.md).
+For more nf-test assertion patterns, see the [nf-test assertions examples documentation](/docs/contributing/nf-test/assertions).
 :::
 
 ## Creating a new module with tests
