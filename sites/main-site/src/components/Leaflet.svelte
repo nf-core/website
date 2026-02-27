@@ -89,6 +89,7 @@
     .map {
         width: 100%;
         height: 460px;
+        max-width: 800px;
     }
     @media (max-width: 767.98px) {
         // md-breakpoint
