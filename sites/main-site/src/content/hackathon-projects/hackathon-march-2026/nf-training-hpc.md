@@ -1,7 +1,7 @@
 ---
 title: Nextflow for HPC Training Materials
 category: training
-slack: ""
+slack: "https://nfcore.slack.com/archives/C01G2VA2ZSP"
 location: Sydney (University of Sydney)
 image: "/assets/images/events/2025/hackathon-march/Australian-Biocommons-Logo.png"
 image_alt: "Australian BioCommons logo"
