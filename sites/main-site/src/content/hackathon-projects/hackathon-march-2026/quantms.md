@@ -12,12 +12,12 @@ leaders:
 
 # QuantMS pipeline
 
-The goal is to make a state of affairs. Compatibility with nf-core, preparing 
+The goal is to make a state of affairs. Compatibility with nf-core, preparing
 local for nf-core/modules (which can still be patched to be locally updated). We
-as the organizing team are interested in running DIA-NN through the workflow, which 
+as the organizing team are interested in running DIA-NN through the workflow, which
 can be done either via QuantMS or the nf-core/dia_proteomics_analysis` subworkflow.
 
-Additionally exploring the new tools `nf-docs` and `nf-metro` for documentation 
+Additionally exploring the new tools `nf-docs` and `nf-metro` for documentation
 and deployment instructions can be done during the hackathon.
 
 Last, if people want to rather explore datasets, benchmarking of microbial datasets
