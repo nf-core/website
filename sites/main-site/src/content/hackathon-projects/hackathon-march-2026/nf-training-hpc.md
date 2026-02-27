@@ -26,5 +26,5 @@ This project will develop a reusable Nextflow for HPC Training resources bundle 
 - Develop infrastructure-agnostic training content that can be adapted to different schedulers
 - Create templated configuration examples demonstrating best practices for running Nextflow pipelines on HPC
 - Develop hands-on exercises covering resource tuning, profiling, debugging, and scaling workflows
-- Produce instructor notes and delivery guides to enable other to run the workshop independently
+- Produce instructor notes and delivery guides to enable others to run the workshop independently
 - Improve documentation structure for long-term maintenance and community contributions
