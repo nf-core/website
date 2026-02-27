@@ -6,9 +6,9 @@ location: Sydney (University of Sydney)
 image: "/assets/images/events/2025/hackathon-march/Australian-Biocommons-Logo.png"
 image_alt: "Australian BioCommons logo"
 leaders:
- georgiesamaha:
-   name: Georgie Samaha
-   slack: "https://nfcore.slack.com/team/U02PM7WF5K3"
+  georgiesamaha:
+    name: Georgie Samaha
+    slack: "https://nfcore.slack.com/team/U02PM7WF5K3"
 ---
 
 
