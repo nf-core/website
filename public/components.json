@@ -22444,6 +22444,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -22466,6 +22469,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -22488,6 +22494,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -22510,6 +22519,9 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -22582,6 +22594,28 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2333"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "**/*.xml": {
+                  "type": "file",
+                  "description": "Output XML files, for example RunInfo.xml",
+                  "pattern": "**/*.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
                     }
                   ]
                 }
@@ -160920,99 +160954,131 @@
           }
         ],
         "input": [
-          {
-            "multiqc_files": {
-              "type": "file",
-              "description": "List of reports / files recognised by MultiQC, for example the html and zip output of FastQC\n",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+              }
+            },
+            {
+              "multiqc_files": {
+                "type": "file",
+                "description": "List of reports / files recognised by MultiQC, for example the html and zip output of FastQC\n",
+                "ontologies": []
+              }
+            },
+            {
+              "multiqc_config": {
+                "type": "file",
+                "description": "Optional config yml for MultiQC",
+                "pattern": "*.{yml,yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "extra_multiqc_config": {
+                "type": "file",
+                "description": "Second optional config yml for MultiQC. Will override common sections in multiqc_config.",
+                "pattern": "*.{yml,yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "multiqc_logo": {
+                "type": "file",
+                "description": "Optional logo file for MultiQC",
+                "pattern": "*.{png}",
+                "ontologies": []
+              }
+            },
+            {
+              "replace_names": {
+                "type": "file",
+                "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
+                "pattern": "*.{tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "sample_names": {
+                "type": "file",
+                "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
+                "pattern": "*.{tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
-          },
-          {
-            "multiqc_config": {
-              "type": "file",
-              "description": "Optional config yml for MultiQC",
-              "pattern": "*.{yml,yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "extra_multiqc_config": {
-              "type": "file",
-              "description": "Second optional config yml for MultiQC. Will override common sections in multiqc_config.",
-              "pattern": "*.{yml,yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "multiqc_logo": {
-              "type": "file",
-              "description": "Optional logo file for MultiQC",
-              "pattern": "*.{png}",
-              "ontologies": []
-            }
-          },
-          {
-            "replace_names": {
-              "type": "file",
-              "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
-              "pattern": "*.{tsv}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
-            }
-          },
-          {
-            "sample_names": {
-              "type": "file",
-              "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
-              "pattern": "*.{tsv}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
-            }
-          }
+          ]
         ],
         "output": {
           "report": [
-            {
-              "*.html": {
-                "type": "file",
-                "description": "MultiQC report file",
-                "pattern": ".html",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*.html": {
+                  "type": "file",
+                  "description": "MultiQC report file",
+                  "pattern": ".html",
+                  "ontologies": []
+                }
               }
-            }
+            ]
           ],
           "data": [
-            {
-              "*_data": {
-                "type": "directory",
-                "description": "MultiQC data dir",
-                "pattern": "multiqc_data"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*_data": {
+                  "type": "directory",
+                  "description": "MultiQC data dir",
+                  "pattern": "multiqc_data"
+                }
               }
-            }
+            ]
           ],
           "plots": [
-            {
-              "*_plots": {
-                "type": "file",
-                "description": "Plots created by MultiQC",
-                "pattern": "*_plots",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "*_plots": {
+                  "type": "file",
+                  "description": "Plots created by MultiQC",
+                  "pattern": "*_plots",
+                  "ontologies": []
+                }
               }
-            }
+            ]
           ],
           "versions": [
             [
@@ -161562,71 +161628,71 @@
                   }
                 ]
               }
+            },
+            {
+              "extra_multiqc_files": {
+                "type": "file",
+                "description": "List of reports / files rec ognised by MultiQC, for example the html and zip output of FastQC\n",
+                "ontologies": []
+              }
+            },
+            {
+              "multiqc_config": {
+                "type": "file",
+                "description": "Optional config yml for MultiQC",
+                "pattern": "*.{yml,yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "extra_multiqc_config": {
+                "type": "file",
+                "description": "Second optional config yml for MultiQC. Will override common sections in multiqc_config.",
+                "pattern": "*.{yml,yaml}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            },
+            {
+              "multiqc_logo": {
+                "type": "file",
+                "description": "Optional logo file for MultiQC",
+                "pattern": "*.{png}",
+                "ontologies": []
+              }
+            },
+            {
+              "replace_names": {
+                "type": "file",
+                "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
+                "pattern": "*.{tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "sample_names": {
+                "type": "file",
+                "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
+                "pattern": "*.{tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
             }
-          ],
-          {
-            "extra_multiqc_files": {
-              "type": "file",
-              "description": "List of reports / files rec ognised by MultiQC, for example the html and zip output of FastQC\n",
-              "ontologies": []
-            }
-          },
-          {
-            "multiqc_config": {
-              "type": "file",
-              "description": "Optional config yml for MultiQC",
-              "pattern": "*.{yml,yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "extra_multiqc_config": {
-              "type": "file",
-              "description": "Second optional config yml for MultiQC. Will override common sections in multiqc_config.",
-              "pattern": "*.{yml,yaml}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3750"
-                }
-              ]
-            }
-          },
-          {
-            "multiqc_logo": {
-              "type": "file",
-              "description": "Optional logo file for MultiQC",
-              "pattern": "*.{png}",
-              "ontologies": []
-            }
-          },
-          {
-            "replace_names": {
-              "type": "file",
-              "description": "Optional two-column sample renaming file. First column a set of\npatterns, second column a set of corresponding replacements. Passed via\nMultiQC's `--replace-names` option.\n",
-              "pattern": "*.{tsv}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
-            }
-          },
-          {
-            "sample_names": {
-              "type": "file",
-              "description": "Optional TSV file with headers, passed to the MultiQC --sample_names\nargument.\n",
-              "pattern": "*.{tsv}",
-              "ontologies": [
-                {
-                  "edam": "http://edamontology.org/format_3475"
-                }
-              ]
-            }
-          }
+          ]
         ],
         "output": {
           "report": [
@@ -236972,19 +237038,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shapeit5": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_ligate | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_ligate | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -237128,19 +237226,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shapeit5": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_phase_common | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_phase_common | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -237185,7 +237315,6 @@
             }
           }
         ],
-        "requirement": "AVX2",
         "input": [
           [
             {
@@ -237277,19 +237406,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shapeit5": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_phase_rare | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_phase_rare | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -237297,7 +237458,8 @@
         ],
         "maintainers": [
           "@LouisLeNezet"
-        ]
+        ],
+        "requirement": "AVX2"
       }
     },
     {
@@ -237424,19 +237586,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shapeit5": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_switch | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shapeit5": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SHAPEIT5_switch | sed \"5!d;s/^.*Version *: //; s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
