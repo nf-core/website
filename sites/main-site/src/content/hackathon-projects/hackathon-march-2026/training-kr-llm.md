@@ -15,7 +15,7 @@ We are focusing on improving the [Nextflow training materials](https://training.
 Our goal is to validate the translation, find errors and optimize the LLM prompts and glossaries.   
    
 Nextflow 공식 튜토리얼 홈페이지의 AI 번역을 검수하고, 오역을 고치기 위해서 LLM 프롬프트와 용어집을 수정하는 프로젝트입니다.   
-해커톤 기간(03월 11일~13일) 동안 프롬프트를 개선하고 PR을 날립니다.
+해커톤 기간(03월 11일~13일) 동안 프롬프트를 개선하고 PR을 날립니다.    
 온라인/오프라인으로 모두 기여 가능하며, 오프라인으로 참여하고싶으신 경우 [서울로컬허브 소개 페이지](https://nextflow2026seoul.notion.site)를 방문해주세요
 
 ## Goal
