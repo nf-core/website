@@ -1,5 +1,5 @@
 ---
-title: nextflow training korean LLM improvement
+title: Improving Nextflow Training LLM translation prompts for Korean
 category: community
 slack:
 location: Seoul and Online
