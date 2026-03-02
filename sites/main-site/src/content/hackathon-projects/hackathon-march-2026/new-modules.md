@@ -23,7 +23,6 @@ The main modules to implement in the nf-core are:
 
 We may add new ideas or other modules to work on
 
-
 ---
 
 ## Goal
