@@ -8,17 +8,19 @@ startTime: "09:00+01:00"
 endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
-  - name: Venue TBA
+  - name: Loka Office
     address: |
-      Venue to be announced
+      Dame Gruev 100
       Skopje, North Macedonia
+    links:
+      - https://maps.app.goo.gl/G9R1tjkKbysSTyoZ8
     geoCoordinates: [41.9973, 21.4280]
     country: North Macedonia
     city: Skopje
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
-Everyone is welcome to attend this local node of the nf-core hackathon in Skopje, North Macedonia. Please note that the number of seats will be limited, so we encourage early registration once it opens.
+Please note that the number of seats will be limited, so we encourage early registration once it opens.
 
 Contact:
 
@@ -26,7 +28,7 @@ Contact:
 
 ## Venue instructions
 
-Venue details and access instructions will be shared with registered participants closer to the event date.
+The hackathon will take place at the **Loka Office**. Access instructions will be shared with registered participants closer to the event date.
 
 ## Projects
 
