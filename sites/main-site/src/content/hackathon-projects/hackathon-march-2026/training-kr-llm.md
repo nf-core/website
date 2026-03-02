@@ -1,7 +1,7 @@
 ---
 title: Optimizing Korean LLM Prompts for training.nextflow.io
 category: community
-slack:
+slack: https://nfcore.slack.com/archives/C0ACF0TPF5E
 location: Seoul and Online
 image: ""
 image_alt: ""
