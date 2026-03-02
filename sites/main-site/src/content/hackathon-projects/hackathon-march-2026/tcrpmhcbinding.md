@@ -11,10 +11,9 @@ leaders:
     slack: https://nfcore.slack.com/archives/D05SAA3LL6P
 ---
 
-We want to get the nf-core/tcrpmhcbinding pipeline on track towards a first release. 
+We want to get the nf-core/tcrpmhcbinding pipeline on track towards a first release.
 
 ## Tasks
-
 
 - write tests
 - port local modules to nf-core modules
