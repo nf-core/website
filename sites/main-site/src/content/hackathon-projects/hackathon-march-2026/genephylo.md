@@ -2,6 +2,7 @@
 title: nf-core/genephylo
 category: pipelines
 slack: "https://nfcore.slack.com/archives/C09T9QZPAAZ"
+location: Okinawa and online
 leaders:
   leapicard:
     name: Lea Picard
