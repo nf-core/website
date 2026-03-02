@@ -12,6 +12,7 @@ locations:
     address: Maria-von-Linden-Straße 1, Room A-207, 72076 Tuebingen
     country: Germany
     city: Tuebingen
+    geoCoordinates: [48.539265, 9.055695]
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
