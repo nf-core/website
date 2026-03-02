@@ -16,7 +16,6 @@ leaders:
 
 Nextflow is widely adopted across the life sciences because it can run across various research computing platforms including local machines, high performance computing (HPC) and cloud platforms. Teaching researchers how to configure and run workflows effectively on HPC remains a challenge due to differences in schedulers, storage systems, container runtimes, and institutional policies. As such, training materials often become site-specific and difficult to use.
 
-
 This project will develop a reusable Nextflow for HPC Training resources bundle that builds on [existing workshop materials](https://sydney-informatics-hub.github.io/nextflow-hpc-workshop/). The bundle will support delivery across multiple HPC environments and institutional contexts. Materials will include instructor guides, learner exercises, infrastructure configuration examples, and troubleshooting scenarios.
 
 
