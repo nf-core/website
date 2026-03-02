@@ -1,6 +1,6 @@
 ---
 title: Reference genomes
-subtitle: Reference genomes in nf-core
+subtitle: Use reference genomes
 shortTitle: Reference genomes
 ---
 

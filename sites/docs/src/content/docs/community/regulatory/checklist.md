@@ -1,6 +1,6 @@
 ---
 title: Pipeline validation checklist
-subtitle: A practical checklist for validating nf-core pipelines in your institution
+subtitle: Validate pipelines in your institution
 markdownPlugin: checklist
 ---
 

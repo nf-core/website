@@ -1,6 +1,6 @@
 ---
 title: Misc
-subtitle: Miscellaneous module specifications
+subtitle: Follow miscellaneous specifications
 markdownPlugin: addNumbersToHeadings
 shortTitle: Misc
 weight: 9

@@ -1,6 +1,6 @@
 ---
 title: Logos
-subtitle: nf-core logos and pipeline logo variations
+subtitle: Browse nf-core logos and variations
 ---
 
 All nf-core logo files are available in the [nf-core/logos GitHub repository](https://github.com/nf-core/logos) under the MIT license.

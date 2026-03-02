@@ -1,6 +1,6 @@
 ---
 title: Setting custom remotes
-subtitle: Set a custom remote for modules and subworkflows
+subtitle: Configure custom remotes
 shortTitle: Setting custom remotes
 ---
 

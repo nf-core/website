@@ -1,6 +1,6 @@
 ---
 title: Managing work directory growth
-subtitle: A guide for efficient storage utilization
+subtitle: Manage storage efficiently
 shortTitle: Managing work directory growth
 ---
 

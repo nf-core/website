@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting
-subtitle: Common issues and solutions for getting started with nf-core
+subtitle: Troubleshoot common issues
 shortTitle: Troubleshooting
 weight: 10
 ---

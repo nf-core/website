@@ -1,6 +1,6 @@
 ---
 title: List test-dataset module/pipeline branches
-subtitle: List branches on the nf-core/test-datasets repository for modules/pipeline test data
+subtitle: List test dataset branches
 shortTitle: list-branches
 weight: 10
 parentWeight: 30

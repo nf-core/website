@@ -1,6 +1,6 @@
 ---
 title: nf-core guidelines for assertions
-subtitle: nf-core guidelines and common patterns
+subtitle: Write test assertions
 shortTitle: Assertions
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Testing
-subtitle: Testing specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Test subworkflows
 weight: 6
 ---
 

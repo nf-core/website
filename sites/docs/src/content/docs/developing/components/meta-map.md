@@ -1,6 +1,6 @@
 ---
 title: Storing sample metadata
-subtitle: Storing sample metadata in nf-core components
+subtitle: Store sample metadata
 shortTitle: Meta maps
 ---
 

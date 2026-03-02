@@ -1,6 +1,6 @@
 ---
 title: Topic types
-subtitle: Documentation topic types
+subtitle: Understand documentation topic types
 shortTitle: Topic types
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Create logo
-subtitle: Create an nf-core pipeline logo
+subtitle: Create pipeline logos
 shortTitle: create-logo
 weight: 110
 ---

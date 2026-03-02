@@ -1,6 +1,6 @@
 ---
 title: Documentation
-subtitle: Documentation specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Document subworkflows
 weight: 5
 ---
 

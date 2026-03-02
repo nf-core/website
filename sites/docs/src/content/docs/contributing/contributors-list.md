@@ -1,6 +1,6 @@
 ---
 title: nf-core contributor's list
-subtitle: A guide for adding your institution to the contributor's list
+subtitle: Add your institution to the contributors list
 shortTitle: Contributor's list
 ---
 

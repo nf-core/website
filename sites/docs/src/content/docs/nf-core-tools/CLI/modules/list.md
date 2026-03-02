@@ -1,6 +1,6 @@
 ---
 title: List modules
-subtitle: Listing nf-core modules, local and remote
+subtitle: List modules
 shortTitle: list
 weight: 10
 parentWeight: 20

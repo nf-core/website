@@ -1,6 +1,6 @@
 ---
 title: nf-core documentation
-subtitle: Contributing nf-core documentation
+subtitle: Contribute documentation
 shortTitle: Documentation
 ---
 

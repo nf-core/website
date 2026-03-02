@@ -1,6 +1,6 @@
 ---
 title: Software requirements
-subtitle: Guidelines for specifying software dependencies in modules
+subtitle: Specify software dependencies
 markdownPlugin: addNumbersToHeadings
 shortTitle: Software
 weight: 7

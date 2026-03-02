@@ -1,6 +1,6 @@
 ---
 title: Update subworkflows
-subtitle: Update subworkflows in a pipeline
+subtitle: Update subworkflows
 shortTitle: update
 weight: 40
 ---

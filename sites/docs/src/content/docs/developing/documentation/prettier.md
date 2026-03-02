@@ -1,6 +1,6 @@
 ---
 title: Code formatting
-subtitle: Using Prettier and Ruff to maintain consistent code style
+subtitle: Maintain consistent code style
 shortTitle: Code formatting
 ---
 
@@ -56,7 +56,7 @@ Most nf-core repositories already include a `.pre-commit-config.yaml` file:
 
 ```yaml
 - repo: https://github.com/pre-commit/mirrors-prettier
-  rev: <SHA_OR_TAG> # Use the sha or tag you want to point at
+  rev: <sha_or_tag> # Use the sha or tag you want to point at
   hooks:
     - id: prettier
 ```
