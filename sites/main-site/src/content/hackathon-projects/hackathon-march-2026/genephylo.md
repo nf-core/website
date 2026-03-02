@@ -1,7 +1,7 @@
 ---
 title: nf-core/genephylo
 category: pipelines
-slack: "https://app.slack.com/client/TE6CZUZPH/C09T9QZPAAZ"
+slack: "https://nfcore.slack.com/archives/C09T9QZPAAZ"
 leaders:
   leapicard:
     name: Lea Picard
