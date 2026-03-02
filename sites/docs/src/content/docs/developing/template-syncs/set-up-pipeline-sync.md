@@ -65,7 +65,7 @@ You can also work on your own fork.
 
    :::note
    The version you choose should match the branch you intend to merge with.
-If you already have a release, use the version number specified in your `dev` branch.
+   If you already have a release, use the version number specified in your `dev` branch.
    :::
 
 1. Follow the prompts to enter the pipeline name, description, and authors. Use the exact text from your existing `nextflow.config` file (`manifest.name` etc.).
@@ -169,7 +169,7 @@ This requires manually resolving all merge conflicts.
    ```
 
    Go through each file to resolve the merge conflicts.
-Use a visual merge tool to avoid mistakes when handling many merge markers.
+   Use a visual merge tool to avoid mistakes when handling many merge markers.
 
 1. Commit and push the resolved changes:
 
