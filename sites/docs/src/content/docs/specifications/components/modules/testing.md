@@ -1,6 +1,6 @@
 ---
 title: Testing
-subtitle: Testing requirements and guidelines for nf-core modules
+subtitle: Test modules
 markdownPlugin: addNumbersToHeadings
 shortTitle: Testing
 weight: 8

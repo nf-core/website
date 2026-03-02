@@ -1,6 +1,6 @@
 ---
 title: Running nf-core pipelines offline
-subtitle: Run pipelines without internet access
+subtitle: Run pipelines offline
 shortTitle: Running pipelines offline
 ---
 

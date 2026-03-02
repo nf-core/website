@@ -1,6 +1,6 @@
 ---
 title: Contributing components
-subtitle: Contribute modules and subworkflows to nf-core
+subtitle: Contribute modules and subworkflows
 shortTitle: Components
 ---
 

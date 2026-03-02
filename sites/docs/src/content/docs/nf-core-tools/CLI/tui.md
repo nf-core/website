@@ -1,6 +1,6 @@
 ---
 title: Terminal user interface
-subtitle: Explore the nf-core command line graphically
+subtitle: Explore commands graphically
 shortTitle: TUI
 weight: 40
 ---

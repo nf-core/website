@@ -1,6 +1,6 @@
 ---
 title: Pipeline schema
-subtitle: Building Nextflow schema files using a GUI
+subtitle: Build schema files
 shortTitle: schema
 weight: 80
 ---

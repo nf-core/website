@@ -1,6 +1,6 @@
 ---
 title: Harshil alignment™️
-subtitle: Formatting your Nextflow code to make nf-core core members happy
+subtitle: Format Nextflow code for nf-core
 shortTitle: Harshil alignment
 ---
 

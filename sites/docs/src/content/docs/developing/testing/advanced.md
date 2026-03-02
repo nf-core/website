@@ -1,6 +1,6 @@
 ---
 title: Advanced techniques
-subtitle: Complex assertion patterns and troubleshooting
+subtitle: Write complex assertions
 shortTitle: Advanced
 ---
 

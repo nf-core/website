@@ -1,6 +1,6 @@
 ---
 title: Reviewing nf-core/tools
-subtitle: Review nf-core/tools pull requests
+subtitle: Review tools pull requests
 shortTitle: "Reviewing nf-core/tools"
 markdownPlugin: checklist
 ---

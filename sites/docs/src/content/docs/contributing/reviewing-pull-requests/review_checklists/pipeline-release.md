@@ -1,6 +1,6 @@
 ---
 title: Reviewing pipeline releases
-subtitle: Review nf-core pipeline release pull requests
+subtitle: Review pipeline release pull requests
 shortTitle: Reviewing pipeline releases
 markdownPlugin: checklist
 ---

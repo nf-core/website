@@ -1,6 +1,6 @@
 ---
 title: Naming conventions
-subtitle: Naming standards for nf-core module files, processes, and channels
+subtitle: Follow naming conventions
 markdownPlugin: addNumbersToHeadings
 shortTitle: Naming conventions
 weight: 2

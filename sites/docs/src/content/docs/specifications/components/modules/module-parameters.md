@@ -1,6 +1,6 @@
 ---
 title: Module parameters
-subtitle: Guidelines for using parameters in nf-core modules
+subtitle: Use module parameters
 markdownPlugin: addNumbersToHeadings
 shortTitle: Parameters
 weight: 5

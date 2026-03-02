@@ -1,6 +1,6 @@
 ---
 title: Documentation
-subtitle: Requirements for documenting nf-core modules
+subtitle: Document modules
 markdownPlugin: addNumbersToHeadings
 shortTitle: Documentation
 weight: 4

@@ -1,6 +1,6 @@
 ---
 title: Linting a workflow
-subtitle: Checking a pipeline against nf-core guidelines
+subtitle: Lint pipelines
 shortTitle: lint
 weight: 70
 ---

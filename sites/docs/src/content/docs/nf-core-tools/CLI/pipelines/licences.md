@@ -1,6 +1,6 @@
 ---
 title: Software licences
-subtitle: Automatically print software licences for DSL1 pipelines.
+subtitle: Print software licenses
 shortTitle: licences
 weight: 50
 ---

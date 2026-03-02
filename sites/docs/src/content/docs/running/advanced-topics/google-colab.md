@@ -1,6 +1,6 @@
 ---
 title: Run nf-core pipelines on Google Colab
-subtitle: A guide for using cloud resources with Google Colab
+subtitle: Use cloud resources with Google Colab
 shortTitle: Google Colab
 ---
 
