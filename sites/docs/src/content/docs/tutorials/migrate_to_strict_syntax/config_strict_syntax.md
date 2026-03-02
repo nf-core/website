@@ -8,7 +8,7 @@ subtitle: Announcement and recommendations for updating nf-core/configs Nextflow
 Nextflow will very soon be making it's new '[Strict Syntax](https://www.nextflow.io/docs/latest/strict-syntax.html#preparing-for-strict-syntax)' mode default (from 26.04).
 This more restrictive way of writing Nextflow code is being implemented by the Nextflow team to improve error messages and more consistent code.
 
-This page is aimed assisting maintainers of [nf-core/configs](https://github.com/nf-core/configs/) to make their config syntax compliant.
+This page is aimed at assisting maintainers of [nf-core/configs](https://github.com/nf-core/configs/) to make their config syntax compliant.
 
 ## How to check for strict syntax compliance?
 
