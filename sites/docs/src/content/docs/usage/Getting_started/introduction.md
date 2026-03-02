@@ -80,7 +80,7 @@ To run a pipeline:
 
 - Hyphens matter! Core Nextflow command-line options use one (`-`), whereas pipeline-specific parameters use two (`--`).
 - Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://www.nextflow.io/docs/latest/mail.html#mail-configuration)).
-- Specify `--hook_url YOUR-HOOK-URL` or set the `params.hook_url` in `nextflow.config` to receive notifications from your pipeline in Microsoft Teams or Slack. Learn how to set up an incoming webhook in [MS Teams](https://learn.microsoft.com/en-us/microsoftteams/platform/webhooks-and-connectors/how-to/add-incoming-webhook?tabs=dotnet) and in [Slack](https://api.slack.com/messaging/webhooks).
+- To receive notifications from your pipeline (e.g. on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
 - Include `-r <version-number>` to specify a release version explicitly. This guarantees the same run command will give the same results in future runs.
 - Use `-resume` to restart pipelines that did not complete. This uses cached results for successful tasks from the previous run, instead of executing all tasks from scratch.
 - Use `nextflow log` to find the names of all previous runs in your directory, then use `nextflow run <pipeline> -resume <run-name>` to restart a specific run.
