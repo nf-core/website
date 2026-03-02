@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Okinawa)"
 subtitle: "Local node of the nf-core hackathon at OIST, Okinawa"
-shortTitle: "Okinawa"
+shortTitle: "🇯🇵 Okinawa, Japan"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+09:00"
