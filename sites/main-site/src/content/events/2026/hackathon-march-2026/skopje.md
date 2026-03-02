@@ -20,7 +20,7 @@ locations:
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
-Please note that the number of seats will be limited, so we encourage early registration once it opens.
+Please note that the number of seats will be limited.
 
 Contact:
 
