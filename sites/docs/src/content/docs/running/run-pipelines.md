@@ -16,12 +16,13 @@ For a hands-on introduction, see the [Run your first pipeline](../get_started/ru
 All nf-core pipelines follow a consistent command structure:
 
 ```bash
-nextflow run nf-core/<pipeline> -profile <config> [options]
+nextflow run nf-core/<pipeline> -r <version> -profile <config name> <pipeline parameters...>
 ```
 
-- `nf-core/<pipeline>`: The pipeline name (e.g., `nf-core/rnaseq`, `nf-core/sarek`)
-- `-profile <config>`: Configuration profile(s) for software dependencies and execution environment
-- `[options]`: Pipeline-specific parameters and Nextflow options
+- `nf-core/<pipeline>`: The pipeline name (for example `nf-core/rnaseq` or `nf-core/sarek`)
+- `-r <version`>: the version, tag, or commit of the pipeline to execute (for example `1.2.0`, `b52fa53`). Optional but recommended
+- `-profile <config name>`: Configuration profile(s) for software dependencies and execution environment
+- `<pipeline parameters...>`: Pipeline-specific parameters and Nextflow options
 
 ## Common operations
 
@@ -47,6 +48,13 @@ Common software dependency and compute environment profiles include:
 
 Combine profiles with commas: `-profile test,docker`.
 For a full list of supported options, see [Software dependencies](./environment_setup/software-dependencies.md).
+
+<!-- TODO software-dependencies is a dead link -->
+
+:::
+
+:::warning
+nf-core test profiles require an internet connection.
 :::
 
 Results are written to the `results/` directory, organized by analysis step. All pipelines include a `pipeline_info/` subdirectory with execution logs and metadata.
@@ -81,7 +89,7 @@ Each pipeline's documentation includes:
 - Example samplesheets
 - Details about required and optional parameters
 
-Consult the pipeline's usage documentation before preparing your data.
+Consult the pipeline's usage and parameter documentation before preparing your data.
 :::
 
 ### Using parameter files
@@ -109,16 +117,16 @@ Parameter files let you specify pipeline options in a structured format rather t
 
 ### Configuring pipelines
 
-For complex execution environments or custom resource requirements, use configuration files to override default settings.
+For complex execution environments or custom compute resource requirements (for example, memory or CPU adjustments), use configuration files to override default settings.
 
 #### Using configuration files
 
 Create a custom configuration file to specify execution settings:
 
-1. Create a file (e.g., `custom.config`) with your configuration:
+1. Create a file (for example, `custom.config`) with your configuration:
 
    ```groovy
-   // Resource limits
+   // Resource requests for all processes
    process {
      cpus   = 8
      memory = 32.GB
@@ -146,7 +154,7 @@ Create a custom configuration file to specify execution settings:
 
 Common configuration scenarios include:
 
-- **Adjust resource limits**
+- Adjust resource requests
 
   ```groovy
   process {
@@ -157,7 +165,19 @@ Common configuration scenarios include:
   }
   ```
 
-- **Configure cluster execution**
+- Limit maximum resource requests
+
+  ```groovy
+  process {
+    resourceLimits = [
+        memory: 1000.GB,
+        cpus: 144,
+        time: 30.d,
+    ]
+  }
+  ```
+
+- Configure cluster execution
 
   ```groovy
   process {
@@ -167,13 +187,11 @@ Common configuration scenarios include:
   }
   ```
 
-- **Set custom paths**
+- Set custom paths
 
   ```groovy
   params {
     custom_config_base = '/path/to/configs'
-    max_memory = '128.GB'
-    max_cpus = 32
   }
   ```
 
@@ -182,6 +200,8 @@ Configuration files are applied in order and later files override earlier settin
 :::
 
 For detailed configuration options, see the [Configuration guide](../running/configuration/overview.md).
+
+<!-- TODO configuration guide is a dead link -->
 
 ### Resuming runs
 
@@ -201,21 +221,9 @@ Nextflow caches completed steps and only re-runs processes with changed inputs, 
 Always use `-resume` when re-running a pipeline after fixing errors or updating parameters. Nextflow automatically determines which steps need to re-execute.
 :::
 
-### Specifying pipeline versions
-
-Use `-r` to specify a pipeline version, tag, or commit:
-
-```bash
-nextflow run nf-core/<pipeline> \
-  -r 1.0.2 \
-  -profile <config> \
-  --input samplesheet.csv \
-  --outdir results
-```
-
 ## Next steps
 
-- [Configure pipelines](../running/configuration/overview.md) to adjust resource requirements and execution settings
+- [Configure pipelines](../running/configuration/overview.md) to adjust resource requirements and execution settings <!-- TODO deadlink -->
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
 
