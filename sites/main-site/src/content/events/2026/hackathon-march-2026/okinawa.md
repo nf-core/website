@@ -8,12 +8,12 @@ startTime: "09:00+09:00"
 endDate: "2026-03-13"
 endTime: "17:00+09:00"
 locations:
-    - name: Okinawa
-      links:
-          - https://www.oist.jp/
-      geoCoordinates: [26.46, 127.83]
-      country: Japan
-      city: Onnason, Okinawa
+  - name: Okinawa
+    links:
+      - https://www.oist.jp/
+    geoCoordinates: [26.46, 127.83]
+    country: Japan
+    city: Onnason, Okinawa
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
