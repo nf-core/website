@@ -68,10 +68,15 @@ Compare and take inspiration by Jonathan Mannings way to write modules and subwo
 
 ## Updates to nf-core
 
-- `subworkflows/local` could be move to `nf-core/modules`
-- `nf-core/modules/diann` Subworkflow in
+To get familiar with nf-core templates and requirements, one could try to move
+some tools for the use of others to `nf-core/modules` repo. Any in
 
-One could use
+- `subworkflows/local`
+- `modules/local`
+- `modules/bigbio`
+
+One could use and update modules which have a local version, but are maintained by others
+in `nf-core/modules` repo. For example:
 
 - Update ThermoRawFileParser (C#) to use `nf-core/modules/thermorawfileparser` version
   instead of `modules/bigbio/thermorawfileparser`
@@ -96,6 +101,13 @@ List of candidates (tbc)
 ## nf-core lint
 
 `.nf-core.yaml` file deactivates some things for linting. check what and how.
+
+Run
+
+```bash
+# in quantms repo
+nf-core pipelines lint -d .
+```
 
 ## nf-docs
 
@@ -131,3 +143,13 @@ Mentioned as an example for
 
 - [article](https://www.sciencedirect.com/science/article/pii/S2352340922000415)
 - [data](https://massive.ucsd.edu/ProteoSAFe/dataset_files.jsp?task=69c2b1bd22cd4933887b4b4846da1bd7)
+
+## Performance benchmarking
+
+- running quantms on a single machine, single VM, on Azure batch, on HPCs with apptainers:
+  - runtime, costs, etc.
+
+## DIANN docker files
+
+- update docker container to latest version of DIA-NN, test with apptainer:
+  [bigbio/quantms-containers](https://github.com/bigbio/quantms-containers)
