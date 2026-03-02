@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Helmholtz Munich)"
 subtitle: "Local node for the nf-core hackathon in Munich, Germany"
-shortTitle: "Munich, Germany"
+shortTitle: "🇩🇪 Munich, Germany"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+01:00"
