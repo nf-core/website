@@ -2,14 +2,15 @@
 title: Configuration options
 subtitle: Configure pipelines
 shortTitle: Configuration options
-
 ---
 
 You can configure pipelines using three approaches:
 
-1. [Default pipeline configuration profiles](#default-configuration-profiles)
-2. [Shared nf-core/configs configuration profiles](#shared-nf-coreconfigs)
-3. [Custom configuration files](#custom-configuration-files)
+- [Choosing your configuration approach](#choosing-your-configuration-approach)
+  - [Default configuration profiles](#default-configuration-profiles)
+  - [Shared nf-core/configs](#shared-nf-coreconfigs)
+  - [Custom configuration files](#custom-configuration-files)
+- [Additional resources](#additional-resources)
 
 :::warning{title="Do not edit the pipeline code to configure nf-core pipelines"}
 Editing pipeline defaults prevents you from updating to newer versions without overwriting your changes.
@@ -32,7 +33,7 @@ Use shared nf-core/configs when:
 
 Use custom configuration files when:
 
-- You need specific resource limits
+- You need pipeline-specific resource limits
 - Running on unique infrastructure
 - You are the only user of the pipeline
 
@@ -49,6 +50,7 @@ Order matters.
 Profiles load in sequence.
 Later profiles overwrite earlier ones.
 :::
+
 nf-core provides these basic profiles for container engines:
 
 - `docker`: Uses [Docker](http://docker.com/) and pulls software from quay.io
@@ -62,7 +64,7 @@ nf-core provides these basic profiles for container engines:
 Use Conda only as a last resort (that is, when you cannot run the pipeline with Docker or Singularity).
 :::
 
-Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `PATH`.
+Without a specified profile, the pipeline runs locally and expects all software to be installed and available on the `$PATH`.
 This approach is not recommended.
 
 Each pipeline includes `test` and `test_full` profiles.
@@ -81,8 +83,10 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 
 ### Custom configuration files
 
-If you run the pipeline alone, create a local configuration file.
+If you run the pipeline alone on a local machine, create a local configuration file.
 Nextflow searches for configuration files in three locations:
+
+<!-- TODO this is not just local machine though, also works for HPC... ? -->
 
 1. User's home directory: `~/.nextflow/config`
 2. Analysis working directory: `nextflow.config`
@@ -97,10 +101,14 @@ The loading order is:
 4. Each `-c` file in the order you specify
 5. Command line parameters (`--<parameter>`)
 
-:::warning
+<!-- TODO I think this _maybe_ should go before the explanation of how to customise with local configuration files, as this is the default behaviour BEFORe you start customising so the logic will maybe be more familiar. Relatd, maybe we should mention that in nf-core pipelines we have `base.config` as this is where we set our _Resource_ defaults -->
+
+:::warnings
 Parameters in `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
+
+<!-- TODO I'm pretty sure `custom.config` WILL overwrite `nextflow.config`, particularly given my comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).

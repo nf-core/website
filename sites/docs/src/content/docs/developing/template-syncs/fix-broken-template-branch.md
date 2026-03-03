@@ -56,7 +56,7 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
 
    :::warning
    This irreversibly overwrites git history.
-Verify you have the correct branch name before running this command.
+   Verify you have the correct branch name before running this command.
    :::
 
 1. Switch back to `dev` and run the sync command to get the latest template version:
