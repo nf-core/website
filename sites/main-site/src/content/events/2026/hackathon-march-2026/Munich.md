@@ -29,7 +29,7 @@ Contacts:
 
 ## Venue Details
 
-Attendees outside Helmholtz Munich are welcome to join. We need to know the attendees beforehand - all external participants are required to bring a valid identity card or passport.
+We welcome attendees from outside Helmholtz Munich to join us. A valid ID card or passport is required to access the campus.
 
 ### Parking
 
