@@ -45,7 +45,7 @@ We have a reserved space for up to 20 participants at our facility. Attendees fr
 
 - Review AI-generated Turkish translations of Nextflow training websites
 - Improve Turkish translations of Sarek (Docs v2) [(Project link)](https://nf-co.re/hackathon-projects/hackathon-march-2026/sarek)
-- Help to review new Nextflow documentation. [(Project link)](https://nf-co.re/hackathon-projects/hackathon-march-2026/docs-v2)
+- Help review new Nextflow documentation [(Project link)](https://nf-co.re/hackathon-projects/hackathon-march-2026/docs-v2)
 
 ### 🔵 Intermediate & Advanced – scdownstream Development
 
