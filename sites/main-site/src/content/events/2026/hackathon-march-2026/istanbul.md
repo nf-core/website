@@ -55,6 +55,6 @@ Focus on resolving the following nf-core/scdownstream issues:
 - scDblFinder module implementation [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)
 - Sample sex prediction [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)
 - Migration of legacy steps to `AnndataR` [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)
-- Update MAD based dynamic filtering option open pull request to comply with the latest nf-core template [(PR #204)](https://github.com/nf-core/scdownstream/pull/204)
+- Update MAD-based dynamic filtering option open pull request to comply with the latest nf-core template [(PR #204)](https://github.com/nf-core/scdownstream/pull/204)
 
 Beginners and intermediates will be supported by experienced members throughout the process.
