@@ -44,21 +44,24 @@ tba
 ## Project
 
 ### 🟢 Beginner – Documentation & Translation
-- Review AI-generated Turkish translations of Nextflow training websites  
-- Improve Turkish translations of Sarek (Docs v2)  
-- Review new Nextflow documentation translations  
+
+- Review AI-generated Turkish translations of Nextflow training websites
+- Improve Turkish translations of Sarek (Docs v2)
+- Review new Nextflow documentation translations
 
 ### 🟡 Intermediate – Conda Testing & Dependency Fixes
-- Run as many nf-core pipelines as possible using `-profile test,conda`  
-- Identify crashes related to Conda (often overlooked due to Docker/Singularity usage)  
-- Apply quick fixes to dependency issues in `environment.yml` / `.env` files  
+
+- Run as many nf-core pipelines as possible using `-profile test,conda`
+- Identify crashes related to Conda (often overlooked due to Docker/Singularity usage)
+- Apply quick fixes to dependency issues in `environment.yml` / `.env` files
 
 ### 🔵 Advanced – scdownstream Development
+
 Focus on resolving the following nf-core/scdownstream issues:
 
 - Cell cycle analysis implementation [(issue #170)](https://github.com/nf-core/scdownstream/issues/170)
 - scDblFinder module implementation [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)
-- Sample sex prediction [(issue #171)](https://github.com/nf-core/scdownstream/issues/171) 
+- Sample sex prediction [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)
 - Migration of legacy steps to `AnndataR` [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)
 
 Beginners and intermediates will be supported by experienced members throughout the process.
