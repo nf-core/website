@@ -49,13 +49,7 @@ tba
 - Improve Turkish translations of Sarek (Docs v2)
 - Review new Nextflow documentation translations
 
-### 🟡 Intermediate – Conda Testing & Dependency Fixes
-
-- Run as many nf-core pipelines as possible using `-profile test,conda`
-- Identify crashes related to Conda (often overlooked due to Docker/Singularity usage)
-- Apply quick fixes to dependency issues in `environment.yml` / `.env` files
-
-### 🔵 Advanced – scdownstream Development
+### 🔵 Intermediate & Advanced – scdownstream Development
 
 Focus on resolving the following nf-core/scdownstream issues:
 
