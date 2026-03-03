@@ -36,10 +36,7 @@ Attendees from outside the RSG Türkiye organization **are welcome** to attend.
 We have a reserved space for up to 20 participants at our facility. Attendees from outside Istanbul are welcome to participate online.
 
 ## Schedule
-
-tba
-
-## Project
+9:00-17:00 (GMT+3), maybe even into the night if we're feeling up to it :)
 
 ## Project
 
