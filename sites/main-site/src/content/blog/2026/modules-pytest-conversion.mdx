@@ -51,6 +51,7 @@ But the work continued, steadying migrating each module one at a time. Several n
 
 ## Automation
 
+
 @GallVp created an excellent [`pytest2nf-test` tool](https://github.com/GallVp/pytest2nf-test) which automated a lot of the heavy lifting. For modules which didn't use another module in their test setup, this was able to automate the entire process. @GallVp therefore managed over 250 modules within a couple of weeks, with the main limit being as much on the review process as the PRs kept rolling in.
 
 However, there were still another bunch of modules which were using another module in their setup block. These needed some manual work, although @LouisLeNezet did later modify the pytest2nf-test tool to be able to handle single tool setups.
@@ -72,6 +73,7 @@ The focus now shifts to:
 - Ensuring all modules have a `stub`
 - Fixing all nextflow linting
 - Improving the support for different file formats (e.g. bam, vcf, ...)
+  - Establishing record types
 - Expanding the features and ensuring the longevity of `nf-test`
 - Adding nf-tests to pipelines
 
