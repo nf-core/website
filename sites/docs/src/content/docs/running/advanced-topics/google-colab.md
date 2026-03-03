@@ -23,7 +23,7 @@ You will need the following to get started:
 - Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity installation require root access unavailable in Colab) <!-- TODO broken link -->
   :::
 
-## Start
+## Start new session
 
 Create a new Google Colab session as required by the [Colab interface](https://colab.research.google.com/).
 
