@@ -6,7 +6,7 @@ location: Sydney (University of Sydney)
 image: "/assets/images/events/2025/hackathon-march/Australian-Biocommons-Logo.png"
 image_alt: "Australian BioCommons logo"
 leaders:
-  michael-geaghan:
+  mgeaghan:
     name: Michael Geaghan
     slack: "https://nfcore.slack.com/team/U08NCPR1T9N"
 ---
