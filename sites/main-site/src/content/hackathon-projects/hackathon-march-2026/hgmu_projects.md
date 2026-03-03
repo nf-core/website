@@ -6,10 +6,10 @@ location: Helmholtz Munich and Online
 image: ""
 image_alt: ""
 leaders:
-  Simone:
+  simroka:
     name: Simone Röh
     slack: https://nfcore.slack.com/team/U07LWDWHU01
-  Alena:
+  alenaboos:
     name: Alena Boos
     slack: https://nfcore.slack.com/team/U07U6BW9W5U
 ---
