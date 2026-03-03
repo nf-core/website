@@ -29,9 +29,7 @@ Contacts:
 
 ## Venue Details
 
-Attendees from outside Helmholtz Munich **can** attend, except for individuals whose nationality appears on the [restricted states list](https://www.bmi.bund.de/SharedDocs/downloads/DE/veroeffentlichungen/themen/sicherheit/staatenliste-para-13-anleitung-sicherheitserklaerung.html) ([PDF](https://www.bmi.bund.de/SharedDocs/downloads/DE/veroeffentlichungen/themen/sicherheit/staatenliste-para-13-anleitung-sicherheitserklaerung.pdf?__blob=publicationFile&v=18)).
-
-We need to know the attendees beforehand - all external participants are required to bring a valid identity card or passport, where identity and nationality can be proven.
+Attendees outside Helmholtz Munich are welcome to join. We need to know the attendees beforehand - all external participants are required to bring a valid identity card or passport.
 
 ### Parking
 
@@ -40,7 +38,6 @@ There are parking spaces available next to the building.
 ### Food
 
 We have a cafeteria for lunch, snacks, and coffee that accepts cards.
-
 
 ## Project
 
