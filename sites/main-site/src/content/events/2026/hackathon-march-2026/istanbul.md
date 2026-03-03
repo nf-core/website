@@ -37,7 +37,7 @@ We have a reserved space for up to 20 participants at our facility. Attendees fr
 
 ## Schedule
 
-9:00-17:00 (GMT+3), maybe even into the night if we're feeling up to it :)
+9:00-17:00 (GMT+3)
 
 ## Project
 
