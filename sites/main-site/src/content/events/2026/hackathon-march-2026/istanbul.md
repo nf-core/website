@@ -41,4 +41,21 @@ tba
 
 ## Project
 
-Plans for 3 projects for beginners, intermediate and advanced Nextflow programmers are currently in the works and will be uploaded by Monday 1st March at the latest.
+## Project
+
+### 🟢 Beginner – Documentation & Translation
+
+- Review AI-generated Turkish translations of Nextflow training websites
+- Improve Turkish translations of Sarek (Docs v2)
+- Review new Nextflow documentation translations
+
+### 🔵 Intermediate & Advanced – scdownstream Development
+
+Focus on resolving the following nf-core/scdownstream issues:
+
+- Cell cycle analysis implementation [(issue #170)](https://github.com/nf-core/scdownstream/issues/170)
+- scDblFinder module implementation [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)
+- Sample sex prediction [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)
+- Migration of legacy steps to `AnndataR` [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)
+
+Beginners and intermediates will be supported by experienced members throughout the process.
