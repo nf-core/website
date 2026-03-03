@@ -24,22 +24,22 @@ _Contributors of intermediate and advanced experience levels are especially enco
 
 ## Tasks
 
-- **Implement cell cycle analysis** [(issue #170)](https://github.com/nf-core/scdownstream/issues/170)  
-  - Integrate standardized cell cycle scoring into the pipeline  
-  - Ensure compatibility with existing downstream modules  
+- **Implement cell cycle analysis** [(issue #170)](https://github.com/nf-core/scdownstream/issues/170)
+  - Integrate standardized cell cycle scoring into the pipeline
+  - Ensure compatibility with existing downstream modules
 
-- **Implement `scDblFinder` as a module** [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)  
-  - Add `scDblFinder` as an nf-core compliant module  
-  - Ensure proper container/Conda environment support  
+- **Implement `scDblFinder` as a module** [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)
+  - Add `scDblFinder` as an nf-core compliant module
+  - Ensure proper container/Conda environment support
 
-- **Add sample sex prediction functionality** [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)  
-  - Implement automated sex prediction based on expression markers  
-  - Integrate outputs into summary reports  
+- **Add sample sex prediction functionality** [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)
+  - Implement automated sex prediction based on expression markers
+  - Integrate outputs into summary reports
 
-- **Migrate legacy steps to use `AnndataR`** [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)  
-  - Replace older data handling steps with `AnndataR`-based workflows  
-  - Improve maintainability and future compatibility of the pipeline  
+- **Migrate legacy steps to use `AnndataR`** [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)
+  - Replace older data handling steps with `AnndataR`-based workflows
+  - Improve maintainability and future compatibility of the pipeline
 
-- **Update MAD-based dynamic filtering option PR to comply with latest nf-core template** [(PR #204)](https://github.com/nf-core/scdownstream/pull/204)  
-  - Refactor open pull request to align with current nf-core pipeline standards  
-  - Ensure template compliance and successful CI checks  
+- **Update MAD-based dynamic filtering option PR to comply with latest nf-core template** [(PR #204)](https://github.com/nf-core/scdownstream/pull/204)
+  - Refactor open pull request to align with current nf-core pipeline standards
+  - Ensure template compliance and successful CI checks

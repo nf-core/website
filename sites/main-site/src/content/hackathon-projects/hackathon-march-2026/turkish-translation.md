@@ -25,25 +25,24 @@ This track is ideal for newcomers who want to learn while contributing to open s
 ## Tasks
 
 - **Review Turkish translations of Hello nf-core**
-  - Check technical terminology consistency  
-  - Improve clarity and readability  
-  - Ensure commands and code explanations remain accurate  
+  - Check technical terminology consistency
+  - Improve clarity and readability
+  - Ensure commands and code explanations remain accurate
 
 - **Review Turkish translations of Hello Nextflow**
-  - Validate correctness of workflow-related terminology  
-  - Adjust awkward or literal AI translations  
-  - Confirm that examples and explanations make sense contextually  
+  - Validate correctness of workflow-related terminology
+  - Adjust awkward or literal AI translations
+  - Confirm that examples and explanations make sense contextually
 
 - **Review Sarek Docs v2 Turkish documentation**
-  - Improve clarity of pipeline documentation  
-  - Ensure correct usage of bioinformatics terminology  
+  - Improve clarity of pipeline documentation
+  - Ensure correct usage of bioinformatics terminology
 
 ### What You Will Learn
 
-- Basics of Nextflow workflow structure  
-- How nf-core pipelines are documented  
-- Practical GitHub contribution workflow (forks, branches, pull requests)  
-- How open-source collaboration works  
+- Basics of Nextflow workflow structure
+- How nf-core pipelines are documented
+- Practical GitHub contribution workflow (forks, branches, pull requests)
+- How open-source collaboration works
 
 _No prior programming experience required — super beginner friendly!_
-
