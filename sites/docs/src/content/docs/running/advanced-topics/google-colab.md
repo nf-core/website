@@ -19,8 +19,8 @@ For production workloads, consider dedicated cloud computing resources.
 You will need the following to get started:
 
 - A Google account to access [Google Colab](https://colab.research.google.com/)
-- Basic familiarity with [Nextflow](/get_started/environment_setup/nextflow/) and nf-core pipelines
-- Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity require root access unavailable in Colab)
+- Basic familiarity with [Nextflow](/get_started/environment_setup/nextflow/) and nf-core pipelines <!-- TODO broken link -->
+- Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity installation require root access unavailable in Colab) <!-- TODO broken link -->
   :::
 
 ## Start
