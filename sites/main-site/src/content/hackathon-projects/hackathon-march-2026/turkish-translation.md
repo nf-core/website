@@ -4,6 +4,7 @@ category: community
 slack: https://nfcore.slack.com/archives/C077PUX8DBP
 image: "/assets/images/events/2026/hackathon-march/2-3-years-dagestan-meme.jpg"
 image_alt: "UFC Fighter Islam Makhachev saying going to Dagestan is the best way to improve your Nextflow skills"
+location: "Istanbul"
 leaders:
   KurayiChawatama:
     name: Kurayi Chawatama
