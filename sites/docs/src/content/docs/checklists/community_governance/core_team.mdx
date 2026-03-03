@@ -22,6 +22,9 @@ Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approv
     - One member of the core team and one member of the maintainers team.
 5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
 6. [ ] Core: Create a slack channel with approved pipeline name.
+    - [ ] Invite the Slack bot to the channel (`/invite @Full test notifications`).
+          This is required for CI/CD Slack notifications via the [nf-slack plugin](https://github.com/seqeralabs/nf-slack).
+          The bot **will silently fail** if not invited.
     - [ ] Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
 7. [ ] Core: Add the main developers to
     - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
