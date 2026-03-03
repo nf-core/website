@@ -146,7 +146,7 @@ To keep reviews focused and efficient, you don't need to:
 
   :::note
   You can suggest small code optimisation.
-However, larger code optimisation shouldn't necessarily be required for release.
+  However, larger code optimisation shouldn't necessarily be required for release.
   :::
 
 Remember that your review helps maintain quality across the nf-core ecosystem.
