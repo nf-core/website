@@ -2,9 +2,8 @@
 title: Reviewing the Turkish translations of the training websites
 category: pipelines
 slack: https://nfcore.slack.com/archives/C077PUX8DBP
-intro_video: ""
 image: "/assets/images/events/2026/hackathon-march/2-3-years-dagestan-meme.jpg"
-image_alt: "Biologist running out of ideas to fix a leaking water tank smacks duct tape(scRNAseq) over the leak"
+image_alt: "UFC Fighter Islam Makachev saying going to Dagestan is the best way to improve your Nextflow skills"
 leaders:
   KurayiChawatama:
     name: Kurayi Chawatama
