@@ -20927,40 +20927,40 @@
                 "pattern": "*.tbi",
                 "ontologies": []
               }
+            },
+            {
+              "samples": {
+                "type": "file",
+                "description": "A tab-separated file determining which samples should be in which output file\ncolumn 1: The sample name(s) in the input file\ncolumn 2: The sample name(s) to use in the output file (use `-` to keep the original name)\ncolumn 3: The name of the output file\nEither this or a groups file should be given\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "groups": {
+                "type": "file",
+                "description": "A tab-separated file determining which samples should be in which output file(s)\ncolumn 1: The sample name(s) in the input file\ncolumn 2: The sample name(s) to use in the output file (use `-` to keep the original name)\ncolumn 3: The name of the output file(s)\nEither this or a samples file should be given\n",
+                "pattern": "*",
+                "ontologies": []
+              }
+            },
+            {
+              "regions": {
+                "type": "file",
+                "description": "A BED file containing regions to use",
+                "pattern": "*.bed",
+                "ontologies": []
+              }
+            },
+            {
+              "targets": {
+                "type": "file",
+                "description": "A BED file containing regions to use (but streams rather than index-jumps)",
+                "pattern": "*.bed",
+                "ontologies": []
+              }
             }
-          ],
-          {
-            "samples": {
-              "type": "file",
-              "description": "A tab-separated file determining which samples should be in which output file\ncolumn 1: The sample name(s) in the input file\ncolumn 2: The sample name(s) to use in the output file (use `-` to keep the original name)\ncolumn 3: The name of the output file\nEither this or a groups file should be given\n",
-              "pattern": "*",
-              "ontologies": []
-            }
-          },
-          {
-            "groups": {
-              "type": "file",
-              "description": "A tab-separated file determining which samples should be in which output file(s)\ncolumn 1: The sample name(s) in the input file\ncolumn 2: The sample name(s) to use in the output file (use `-` to keep the original name)\ncolumn 3: The name of the output file(s)\nEither this or a samples file should be given\n",
-              "pattern": "*",
-              "ontologies": []
-            }
-          },
-          {
-            "regions": {
-              "type": "file",
-              "description": "A BED file containing regions to use",
-              "pattern": "*.bed",
-              "ontologies": []
-            }
-          },
-          {
-            "targets": {
-              "type": "file",
-              "description": "A BED file containing regions to use (but streams rather than index-jumps)",
-              "pattern": "*.bed",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "vcf": [
@@ -140817,6 +140817,130 @@
       }
     },
     {
+      "name": "lsa_cosine",
+      "path": "modules/nf-core/lsa/cosine/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "lsa_cosine",
+        "description": "Calculates the cosine similarity matrix between samples based on a gene expression matrix.",
+        "keywords": [
+          "similarity",
+          "cosine",
+          "clustering",
+          "rnaseq",
+          "heatmap"
+        ],
+        "tools": [
+          {
+            "lsa": {
+              "description": "Latent Semantic Analysis (LSA) package for R.",
+              "homepage": "https://cran.r-project.org/web/packages/lsa/index.html",
+              "documentation": "https://cran.r-project.org/web/packages/lsa/lsa.pdf",
+              "licence": [
+                "GPL-2"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "pheatmap": {
+              "description": "Pretty Heatmaps package for R.",
+              "homepage": "https://cran.r-project.org/web/packages/pheatmap/index.html",
+              "documentation": "https://cran.r-project.org/web/packages/pheatmap/pheatmap.pdf",
+              "licence": [
+                "GPL-2"
+              ],
+              "identifier": "biotools:pheatmap"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. [ id:'test' ].\n"
+              }
+            },
+            {
+              "expression_matrix": {
+                "type": "file",
+                "description": "CSV file containing the expression matrix.\nRows should be features (genes) and columns should be samples.\n",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "matrix": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information, e.g. [ id:'test' ].\n"
+                }
+              },
+              {
+                "*_matrix.csv": {
+                  "type": "file",
+                  "description": "A square matrix (CSV) containing pairwise similarity scores.",
+                  "pattern": "*_matrix.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "heatmap": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information, e.g. [ id:'test' ].\n"
+                }
+              },
+              {
+                "*_heatmap.png": {
+                  "type": "file",
+                  "description": "A PNG image visualizing the similarity matrix as a heatmap.",
+                  "pattern": "*_heatmap.png",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions.",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@miguelrosell"
+        ],
+        "maintainers": [
+          "@miguelrosell"
+        ]
+      }
+    },
+    {
       "name": "ltrfinder",
       "path": "modules/nf-core/ltrfinder/meta.yml",
       "type": "module",
@@ -222672,6 +222796,14 @@
                 "pattern": "*.{bam,cram,sam}",
                 "ontologies": []
               }
+            },
+            {
+              "index_files": {
+                "type": "file",
+                "description": "BAI/CRAI/CSI index file",
+                "pattern": "*.{bai,crai,csi}",
+                "ontologies": []
+              }
             }
           ],
           [
@@ -223272,6 +223404,14 @@
                 "type": "file",
                 "description": "BAM/CRAM file to be reheaded",
                 "pattern": "*.{bam,cram}",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM/CRAM index file to be reheaded",
+                "pattern": "*.{bai,crai,csi}",
                 "ontologies": []
               }
             }
