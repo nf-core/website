@@ -2,7 +2,6 @@
 title: Release procedure
 subtitle: A step-by-step guide for releasing a nf-core pipeline
 markdownPlugin: checklist
-weight: 10
 ---
 
 ## Before you release
