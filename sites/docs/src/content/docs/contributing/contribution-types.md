@@ -3,6 +3,8 @@ title: Contribution types
 subtitle: Understand contributor types
 ---
 
+<!-- TODO File/title should be renamed to be more descriptive that it's about classifying contributor types -->
+
 Each nf-core pipeline includes a `nextflow.config` file with a manifest that lists all pipeline contributors.
 The manifest includes a `contributions` attribute that describes what each person contributed to the pipeline.
 

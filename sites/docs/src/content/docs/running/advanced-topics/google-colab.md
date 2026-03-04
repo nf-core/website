@@ -5,6 +5,7 @@ shortTitle: Google Colab
 ---
 
 <!-- TODO this page should be checked for command accuracy, the command blocks appear to be missing parts of the code blocks -->
+<!-- TODO consider better file name for side bar title, e.g. running_on_google_colab.md maybe, currently title is not sufficient to draw readers in -->
 
 This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments.
 Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure.
@@ -20,6 +21,7 @@ You will need the following to get started:
 
 - A Google account to access [Google Colab](https://colab.research.google.com/)
 - Basic familiarity with [Nextflow](/get_started/environment_setup/nextflow/) and nf-core pipelines <!-- TODO broken link -->
+
 - Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity installation require root access unavailable in Colab) <!-- TODO broken link -->
   :::
 
