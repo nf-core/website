@@ -82,7 +82,7 @@ If it isn't, then remove the variable entirely, and just directly use the conten
 
 If the variable is used multiple times, you can convert the variable to a parameter. For example:
 
-```diff groovy
+````diff groovy
 - def variable_name = <code>
 + params.variable_name = <code>
 > [!WARNING]
@@ -97,7 +97,7 @@ validation {
         <list_all_used_parameters>
     ]
 }
-```
+````
 
 #### Example
 
