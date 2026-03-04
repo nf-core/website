@@ -35,5 +35,4 @@ Please go to the third floor and check yourself in at the reception. The hackath
 
 ## Projects
 
-- [nf-google](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-google) & [nf-k8s](https://github.com/nextflow-io/nextflow/tree/master/plugins/nf-k8s): Solving issues in both of these plugins & potentially expanding functionality (e.g. for k8s, implementing backoff limit)
-- nf-test development: work on resolving nf-test issues and add new features to the codebase.
+Take a look at the [projects overview page](https://nf-co.re/events/2026/hackathon-march-2026#registered-projects) to see which projects will be worked on during in our local site.
