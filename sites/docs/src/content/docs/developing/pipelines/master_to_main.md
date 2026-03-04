@@ -77,7 +77,7 @@ You will need the following to get started:
 
    :::warning
    Make sure not to modify references of master in links to other repositories!
-If in doubt, ask on the nf-core Slack!
+   If in doubt, ask on the nf-core Slack!
    :::
 
 1. Run the linting tool to check for issues:

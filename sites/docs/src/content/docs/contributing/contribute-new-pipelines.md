@@ -78,7 +78,7 @@ To push your new pipeline to GitHub:
 1. Create an empty repository on GitHub under your personal account.
    - Go to GitHub and select **+** then **New Repository**.
    - Do not initialise the repository with any files (`README`, `LICENSE`, or `.gitignore`).
-   The nf-core template already includes these files.
+     The nf-core template already includes these files.
 
 1. Add the GitHub repository as a remote to your local git repository:
 

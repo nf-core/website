@@ -125,7 +125,7 @@ Using GRCh38 as an example:
 
    :::note
    The pipeline will generate and save reference assets.
-For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
+   For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
    :::
 
 1. Move generated assets to a central, persistent storage location for re-use in future runs.
@@ -171,7 +171,7 @@ To use Refgenie:
    ```
 
    Asset paths are automatically added to `~/.nextflow/nf-core/refgenie_genomes.config`.
-For example:
+   For example:
 
    ```groovy title="refgenie_genomes.config"
    // This is a read-only config file managed by refgenie. Manual changes to this file will be overwritten.
