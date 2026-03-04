@@ -14,7 +14,6 @@ If this is your first release, follow the [first release guide](/docs/contributi
 - [ ] If you have a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones), check all planned functionality and improvements are addressed.
   - [ ] Move any postposed issues to the next milestone
 - [ ] Check the pipeline follows [nf-core guidelines](/docs/specifications/pipelines/overview) and [nf-core pipeline release review guidelines](/docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release).
-  - This is what reviewers will be checking against.
 - [ ] Check that all continuous-integration tests on the `dev` branch pass
   - [ ] Check the output of linting for warnings and address all that you can resolve.
 
