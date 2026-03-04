@@ -5,24 +5,24 @@ subtitle: Announcement and recommendations for updating nf-core/configs Nextflow
 
 ## Introduction
 
-Nextflow will very soon be making it's new '[Strict Syntax](https://www.nextflow.io/docs/latest/strict-syntax.html#preparing-for-strict-syntax)' mode default (from 26.04).
-This more restrictive way of writing Nextflow code is being implemented by the Nextflow team to improve error messages and more consistent code.
+From 26.04, Nextflow will make its new '[Strict Syntax](https://www.nextflow.io/docs/latest/strict-syntax.html#preparing-for-strict-syntax)' mode default.
+It is a more restrictive way of writing Nextflow that improves error messages and makes the code more consistent.
 
-This page is aimed at assisting maintainers of [nf-core/configs](https://github.com/nf-core/configs/) to make their config syntax compliant.
+This page describes ways to make your config syntax compliant. For example, for [nf-core/configs](https://github.com/nf-core/configs/).
 
-## How to check for strict syntax compliance?
+## Check for strict syntax compliance
 
-To see if your existing config is already compliant, we provide below two fast ways to verify that your existing config is already compatible with the new strict syntax.
+There are two ways to check if your existing config is compliant with the new strict syntax.
 
-In both cases you will need to have a local copy of the nf-core/configs repository (ideally as a fork, and on a separate branch in case you have to make changes).
+In both cases, you need a local copy of the nf-core/configs repository (ideally as a fork on a separate branch if you need to make changes).
 
-### In VSCode
+### VS Code
 
-If you have VSCode, the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is the easiest way to discover if you have any problems with your config.
+VS Code with the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is the easiest way to check for problems with your config.
 
 With the nf-core/configs repo open as a VSCode project, the language server used by the extension will highlight by default any issues either using [hover hints or the diagnostics window](https://www.nextflow.io/docs/latest/vscode.html#diagnostics).
 
-### Testing your config locally
+### Command line
 
 If you don't use VSCode, you can instead use Nextflow itself on the command line.
 
