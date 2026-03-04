@@ -45,7 +45,7 @@ You will need the following to get started:
 
    :::note
    Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values.
-Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
+   Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
    :::
 
 1. Make your changes following the [pipeline conventions](#pipeline-contribution-conventions):
@@ -84,7 +84,7 @@ Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
 
    :::note
    Address any failures or warnings.
-Follow the listed URLs for documentation on how to fix specific issues.
+   Follow the listed URLs for documentation on how to fix specific issues.
    :::
 
 1. Commit and push your changes with a clear message:
@@ -117,7 +117,7 @@ Follow the listed URLs for documentation on how to fix specific issues.
 
    :::note
    The nf-core maintainers and automated tests will review your contribution.
-Common feedback includes:
+   Common feedback includes:
    - Code style improvements
    - Additional or updated tests
    - Documentation clarifications

@@ -25,7 +25,7 @@ To transfer Nextflow to an offline system:
 
    :::note
    Nextflow fetches the required plugins.
-It does not need to run to completion.
+   It does not need to run to completion.
    :::
 
 1. Copy the Nextflow binary and `$HOME/.nextflow` folder to your offline environment.
@@ -66,7 +66,7 @@ To transfer pipeline code to an offline system:
 
    :::tip
    If you are downloading _directly_ to the offline storage (e.g., a head node with internet access whilst compute nodes are offline), use the `--singularity-cache-only` option for `nf-core pipelines download` and set the `$NXF_SINGULARITY_CACHEDIR` environment variable.
-This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
+   This reduces total disk space by downloading singularity images to the `$NXF_SINGULARITY_CACHEDIR` folder without copying them into the target downloaded pipeline folder.
    :::
 
 ### Transfer reference genomes offline

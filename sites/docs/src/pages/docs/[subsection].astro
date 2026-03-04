@@ -6,11 +6,13 @@ import type { SidebarEntry } from "@utils/types";
 import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
 
 export async function getStaticPaths() {
-    return ["get-started", "users", "developers", "contributors", "specifications", "community", "nf-core-tools"].map((subsection) => ({
-        params: {
-            subsection: subsection,
-        },
-    }));
+    return ["get-started", "users", "developers", "contributors", "specifications", "community", "nf-core-tools"].map(
+        (subsection) => ({
+            params: {
+                subsection: subsection,
+            },
+        }),
+    );
 }
 
 const { subsection } = Astro.params;
@@ -18,11 +20,11 @@ const { subsection } = Astro.params;
 // Define subsection descriptions from index page
 const subsectionDescriptions: Record<string, string> = {
     "get-started": "New to nf-core? Start here to learn the basics and run your first pipeline.",
-    "users": "Run and configure nf-core pipelines",
-    "developers": "Create and maintain nf-core pipelines, components, and configs",
-    "contributors": "Contribute to the nf-core community",
-    "specifications": "Technical specifications for nf-core pipelines, components, and test data",
-    "community": "Community resources and guidelines",
+    users: "Run and configure nf-core pipelines",
+    developers: "Create and maintain nf-core pipelines, components, and configs",
+    contributors: "Contribute to the nf-core community",
+    specifications: "Technical specifications for nf-core pipelines, components, and test data",
+    community: "Community resources and guidelines",
     "nf-core-tools": "Command-line tools and API for working with nf-core",
 };
 
@@ -212,8 +214,7 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
                                             groupEntries.forEach((entry) => {
                                                 if (entry.type === "link") {
                                                     const doc = docs.find(
-                                                        (d) =>
-                                                            "/docs/" + d.id.replace(/\.[^/.]+$/, "") === entry.href,
+                                                        (d) => "/docs/" + d.id.replace(/\.[^/.]+$/, "") === entry.href,
                                                     );
                                                     groupPages.push({
                                                         label: sanitizeNfCoreLabels(entry.label),
