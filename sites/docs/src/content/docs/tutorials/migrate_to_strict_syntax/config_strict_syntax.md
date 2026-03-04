@@ -402,7 +402,7 @@ For example, for a fork:
 
 ```bash
 nextflow pull nf-core/demo
-NXF_VER=26.01.1-edge nextflow run nf-core/demo -profile test,<config name> --custom_config_base 'https://github.com/<your user name>/nf-core-configs/raw/refs/heads/<your branch name>/nfcore_custom.config'
+NXF_VER=26.02.0-edge nextflow run nf-core/demo -profile test,<config name> --custom_config_base 'https://github.com/<your user name>/nf-core-configs/raw/refs/heads/<your branch name>/nfcore_custom.config'
 ```
 
 and for a branch on nf-core configs:
