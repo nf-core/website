@@ -7,7 +7,7 @@ markdownPlugin: checklist
 ## Before you release
 
 :::warning
-If this is your first release, follow the [first release guide](/docs/contributing/contribute-new-pipelines#make-the-first-release) for extra review requirements
+If this is your first release, follow the [first release guide](/docs/contributing/contribute-new-pipelines#make-the-first-release) for extra review requirements.
 :::
 
 - [ ] Check on the issues tab of GitHub repository that there are no outstanding bug reports that should be resolved.
