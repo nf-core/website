@@ -43,10 +43,10 @@ For example:
    echo "workflow{}" > main.nf
    ```
 
-2. Run the minimal workflow with the latest edge version of Nextflow (`26.01.1-edge`) and pointing to the config file you want to test
+2. Run the minimal workflow with the latest edge version of Nextflow (`26.02.0-edge`) and pointing to the config file you want to test
 
    ```bash
-   NXF_VER=26.01.1-edge nextflow run main.nf -c conf/<your_config>.config
+   NXF_VER=26.02.0-edge nextflow run main.nf -c conf/<your_config>.config
    ```
 
 If you have no warning or errors messages, you are good to go - your config is already compliant!
@@ -82,16 +82,9 @@ If it isn't, then remove the variable entirely, and just directly use the conten
 
 If the variable is used multiple times, you can convert the variable to a parameter. For example:
 
-```groovy
-def variable_name = <code>
-```
-
-Becomes:
-
-```groovy
-params.variable_name = <code>
-```
-
+```diff groovy
+- def variable_name = <code>
++ params.variable_name = <code>
 > [!WARNING]
 > Make sure the parameter names are unique and isolated to the config so they don't overwrite anything in any pipelines themselves!
 > We recommend: `<config_name>_<variable_name>`, but feel free to make it more unique.
