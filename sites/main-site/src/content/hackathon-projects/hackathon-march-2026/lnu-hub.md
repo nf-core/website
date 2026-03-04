@@ -8,12 +8,12 @@ startTime: "09:00+01:00"
 endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
-    - name: Linnaeus University
-      links:
-          - https://lnu.se
-      country: Sweden
-      city: Kalmar
-      geoCoordinates: [56.6593289,16.2106949]
+  - name: Linnaeus University
+    links:
+      - https://lnu.se
+    country: Sweden
+    city: Kalmar
+    geoCoordinates: [56.6593289, 16.2106949]
 ---
 
 We are hosting a hybrid hub for the nf-core hackathon in Kalmar, Sweden. We plan to use this event to work on our nf-core pipelines [metatdenovo](https://github.com/nf-core/metatdenovo), [magmap](https://github.com/nf-core/magmap), and [phyloplace](https://github.com/nf-core/phyloplace). This is an open event, not only for staff at LNU.
