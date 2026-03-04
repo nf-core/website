@@ -13,7 +13,7 @@ leaders:
 ---
 
 This project focusses on a new release for the [nf-core/rangeland pipeline](https://nf-co.re/rangeland/1.0.0/).
-The release should primarily replace local modules with nf-modules, and update the pipeline to use the newest version of the [FORCE tool](https://force-eo.readthedocs.io/en/latest/index.html).
+The release should primarily replace local modules with nf-core modules, and update the pipeline to use the newest version of the [FORCE tool](https://force-eo.readthedocs.io/en/latest/index.html).
 
 ## Tasks
 
