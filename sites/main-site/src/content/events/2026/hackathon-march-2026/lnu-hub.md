@@ -8,11 +8,11 @@ startTime: "09:00+01:00"
 endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
-    - name: Linnaeus University
-      links: [https://lnu.se]
-      country: Sweden
-      city: Kalmar
-      geoCoordinates: [56.6593289, 16.2106949]
+  - name: Linnaeus University
+    links: [https://lnu.se]
+    country: Sweden
+    city: Kalmar
+    geoCoordinates: [56.6593289, 16.2106949]
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 
