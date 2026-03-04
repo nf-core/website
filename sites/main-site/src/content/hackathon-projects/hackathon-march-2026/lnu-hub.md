@@ -18,6 +18,8 @@ layout: "@layouts/events/HackathonMarch2026.astro"
 
 We are hosting a hybrid hub for the nf-core hackathon in Kalmar, Sweden. We plan to use this event to work on our nf-core pipelines [metatdenovo](https://github.com/nf-core/metatdenovo), [magmap](https://github.com/nf-core/magmap), and [phyloplace](https://github.com/nf-core/phyloplace). This is an open event, not only for staff at LNU.
 
+# Contacts
+
 Main contacts:
 Danilo Di Leo ([danilo.dileo@lnu.se](mailto:danilo.dileo@lnu.se))
 Daniel Lundin ([matricaria.suaveolens@gmail.com](mailto:matricaria.suaveolens@gmail.com))
