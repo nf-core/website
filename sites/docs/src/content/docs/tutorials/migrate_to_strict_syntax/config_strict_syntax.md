@@ -82,9 +82,11 @@ If it isn't, then remove the variable entirely, and just directly use the conten
 
 If the variable is used multiple times, you can convert the variable to a parameter. For example:
 
-````diff groovy
+```diff groovy
 - def variable_name = <code>
 + params.variable_name = <code>
+```
+
 > [!WARNING]
 > Make sure the parameter names are unique and isolated to the config so they don't overwrite anything in any pipelines themselves!
 > We recommend: `<config_name>_<variable_name>`, but feel free to make it more unique.
