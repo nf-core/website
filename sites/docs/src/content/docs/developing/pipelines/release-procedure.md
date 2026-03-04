@@ -8,15 +8,15 @@ weight: 10
 ## Before you release
 
 :::warning
-If this is your first release, make sure to follow the [first release tutorial](/docs/contributing/contribute-new-pipelines#make-the-first-release) for extra review requirements!
+If this is your first release, follow the [first release guide](/docs/contributing/contribute-new-pipelines#make-the-first-release) for extra review requirements
 :::
 
 - [ ] Check on the issues tab of GitHub repository that there are no outstanding bug reports that should be resolved.
 - [ ] If you have a [release milestone](https://help.github.com/en/github/managing-your-work-on-github/about-milestones), check all planned functionality and improvements are addressed.
-  - It's fine to decide that some things should be postponed until the next release. Move them on to the next milestone
+  - [ ] Move any postposed issues to the next milestone
 - [ ] Check the pipeline follows [nf-core guidelines](/docs/specifications/pipelines/overview) and [nf-core pipeline release review guidelines](/docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release).
   - This is what reviewers will be checking against.
-- [ ] Check that all continuous-integration tests on the `dev` branch are passing.
+- [ ] Check that all continuous-integration tests on the `dev` branch pass
   - [ ] Check the output of linting for warnings and address all that you can resolve.
 
     ```bash
@@ -27,11 +27,11 @@ If this is your first release, make sure to follow the [first release tutorial](
 
 - [ ] Check that the full-size tests have successfully completed within the `dev` branch.
 - [ ] Review the `CHANGELOG.md` to ensure it includes everything that has been added/fixed in this release.
-  - We recommend you also add the GitHub handle of the main contributors of each CHANGELOG entry (author, and significant reviewers etc.).
+  - Add the GitHub handle of the main contributors of each CHANGELOG entry (author, significant reviewers, etc.).
   - This will mean each release on GitHub will display each contributors icons for extra visibility and recognition.
 - [ ] (**First release**) Finalise the description of the pipeline in the GitHub repository.
-- [ ] (**First release**) Ensure that you remove any "under development" labels in the description, README and so on.
-  - Ensure wording will fill into a ([Bluesky](https://bsky.app/profile/nf-co.re) and/or [Mastodon](https://mstdn.science/@nf_core)) post for the automated announcements.
+- [ ] (**First release**) Remove any "under development" labels in the description, README and so on.
+  - Ensure wording will fit in a ([Bluesky](https://bsky.app/profile/nf-co.re) and/or [Mastodon](https://mstdn.science/@nf_core)) post for the automated announcements.
 
 ## Steps to release
 
@@ -45,7 +45,7 @@ If this is your first release, make sure to follow the [first release tutorial](
     nf-core pipelines bump-version <1.0.0>
     ```
 
-  - Please make sure to use strictly numeric release numbers that follow [Semantic Versioning](https://semver.org/) (for example, must be `1.0.0` NOT `v1.0.1rc`).
+  - Use strictly numeric release numbers that follow [Semantic Versioning](https://semver.org/) (for example, must be `1.0.0` NOT `v1.0.1rc`).
   - Review the [nf-core semantic versioning guidelines](/docs/specifications/pipelines/requirements/semantic_versioning) to decide if you need a patch, minor, or major release (for example `1.0.0` not `1.0`).
 
 - [ ] Update the version in any other files not covered by the nf-core/tools automation (for example, pipeline diagrams, tutorials, and other figures).
