@@ -1,6 +1,6 @@
 ---
 title: External use of nf-core resources
-subtitle: Guidelines for using nf-core code and infrastructure outside the organisation
+subtitle: Use nf-core code externally
 shortTitle: External use
 ---
 

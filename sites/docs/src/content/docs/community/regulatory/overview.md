@@ -1,6 +1,6 @@
 ---
 title: Regulatory aspects for nf-core pipelines
-subtitle: Overview on regulatory aspects for nf-core pipelines
+subtitle: Understand regulatory aspects
 weight: 1
 ---
 

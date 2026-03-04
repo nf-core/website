@@ -1,6 +1,6 @@
 ---
 title: "Installation"
-subtitle: Installation
+subtitle: Install nf-core/tools
 weight: 1
 ---
 

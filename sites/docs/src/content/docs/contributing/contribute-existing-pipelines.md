@@ -1,6 +1,6 @@
 ---
 title: Contributing to existing pipelines
-subtitle: Contribute to existing nf-core pipelines
+subtitle: Contribute to existing pipelines
 shortTitle: Existing pipelines
 ---
 
@@ -69,7 +69,7 @@ You will need the following to get started:
 1. Test your changes locally:
 
    ```bash
-   nextflow run . -profile debug,test,docker --outdir <OUTDIR>
+   nextflow run . -profile debug,test,docker --outdir <outdir>
    ```
 
    :::tip

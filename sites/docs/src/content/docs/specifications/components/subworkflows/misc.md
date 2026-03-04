@@ -1,6 +1,6 @@
 ---
 title: Misc
-subtitle: Miscellaneous specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Follow miscellaneous specifications
 weight: 7
 ---
 

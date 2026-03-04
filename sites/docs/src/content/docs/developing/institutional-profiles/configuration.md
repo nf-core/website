@@ -1,6 +1,6 @@
 ---
 title: Configuration file components
-subtitle: Structuring your institutional profile configuration
+subtitle: Structure institutional profile configuration
 shortTitle: Configuration
 ---
 

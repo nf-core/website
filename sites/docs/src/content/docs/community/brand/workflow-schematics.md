@@ -1,6 +1,6 @@
 ---
 title: Workflow schematics
-subtitle: Components for making pipeline diagrams
+subtitle: Create pipeline diagrams
 ---
 
 Simple workflow schematics help outline the main functionality and steps of a pipeline.

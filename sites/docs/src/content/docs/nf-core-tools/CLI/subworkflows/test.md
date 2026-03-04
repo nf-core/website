@@ -1,6 +1,6 @@
 ---
 title: Create subworkflow test
-subtitle: Create a test for a subworkflow
+subtitle: Create subworkflow tests
 shortTitle: test
 weight: 80
 ---

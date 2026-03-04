@@ -1,6 +1,6 @@
 ---
 title: File structure requirements
-subtitle: Which files to create or modify for your institutional profile
+subtitle: Create institutional profile files
 shortTitle: File structure
 ---
 
@@ -42,7 +42,7 @@ Update these existing files in the nf-core/configs repository to register your p
 **Path**: `nfcore_custom.config`
 
 Add a profile entry that references your configuration file.
-This makes your profile available when users specify `-profile <your_institution>`.
+This makes your profile available when users specify `-profile <institution>`.
 
 Add your profile within the `profiles` scope in alphabetical order:
 

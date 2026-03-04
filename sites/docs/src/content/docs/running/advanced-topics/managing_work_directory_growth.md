@@ -1,11 +1,11 @@
 ---
 title: Managing work directory growth
-subtitle: A guide for efficient storage utilization
+subtitle: Manage storage efficiently
 shortTitle: Managing work directory growth
 ---
 
 The management of intermediate files generated during Nextflow pipeline execution is a challenge for some workflows.
-As pipelines increase in complexity and scale, work directories can rapidly consume available storage, potentially leading to pipeline failures.
+As pipelines increase in complexity and scale, work directories (containing intermediate files) can rapidly consume available storage, potentially leading to pipeline failures.
 This guide summarizes strategies for managing work directory growth while maintaining pipeline reproducibility and debugging capabilities.
 
 ## Work directory accumulation
@@ -48,7 +48,7 @@ nextflow clean -n -before $(nextflow log -q | tail -n 1)
 
 ### Automated cleanup configuration
 
-Nextflow supports automatic work directory cleanup upon successful pipeline completion through configuration directives:
+Nextflow supports automatic work directory cleanup upon _successful_ pipeline completion through configuration directives:
 
 ```groovy title="nextflow.config"
 cleanup = true
@@ -59,9 +59,13 @@ Enabling automatic cleanup prevents the use of resume functionality for the affe
 This configuration suits production pipelines where output reproducibility is assured and resume capability isn't required.
 :::
 
+:::warning
+You must remove the work directory of any _failed_ run manually, such as with with the `nextflow clean` command.
+:::
+
 ### Scratch directory implementation
 
-The scratch directive enables process execution in temporary directories, typically local to compute nodes, with selective output staging to the work directory:
+The scratch directive enables process execution in temporary directories typically local to compute nodes, with only selective output staging to the work directory:
 
 ```groovy
 process SEQUENCE_ALIGNMENT {
@@ -102,11 +106,18 @@ boost {
 }
 ```
 
+:::note
+Enabling of nf-boost prevents the use of resume functionality of pipeline executions.
+:::
+
 See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 ### Pipeline optimization strategies
 
-Minimize intermediate file generation through process optimization:
+<!-- TODO I suggest we remove this as it's not about running pipelines -->
+<!-- TODO Consider moving elsewhere, but it does not match nf-core/modules standards -->
+
+_If writing the pipeline code_, you can minimise intermediate file generation through process optimization:
 
 ```groovy
 process OPTIMIZED_ANALYSIS {
@@ -138,12 +149,12 @@ process OPTIMIZED_ANALYSIS {
 ## Recommendations
 
 Effective management of Nextflow work directories requires a tailored approach.
-The Nextflow `clean` command provides essential functionality for storage recovery and work directory maintenance, though implementation must balance storage optimization with requirements for pipeline resumption and debugging.
+The Nextflow `clean` command provides essential functionality for storage recovery and work directory maintenance, though use must balance storage optimization with requirements for pipeline resumption and debugging.
 
 For development environments, combine reduced test datasets with manual cleanup for optimal flexibility.
+
 Production deployments benefit from automatic cleanup or dynamic solutions like `nf-boost`.
 HPC installations should leverage scratch directories to minimize shared storage impact.
-
 You should establish storage management policies incorporating:
 
 - Regular maintenance schedules

@@ -1,6 +1,6 @@
 ---
 title: Colours
-subtitle: nf-core colour reference
+subtitle: Browse nf-core colours
 ---
 
 The nf-core brand uses a consistent colour palette across all materials.

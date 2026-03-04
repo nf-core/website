@@ -1,6 +1,6 @@
 ---
 title: "nf-core-bot"
-subtitle: "Learn how to control automated GitHub reactions"
+subtitle: "Control automated GitHub reactions"
 ---
 
 The nf-core-bot can automate code fixes and other actions in pull requests.

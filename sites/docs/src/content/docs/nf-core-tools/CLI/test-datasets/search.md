@@ -1,6 +1,6 @@
 ---
 title: Search test datasets
-subtitle: Search through module/pipeline test files in the nf-core/test-datasets repository on github
+subtitle: Search test dataset files
 shortTitle: search
 weight: 10
 parentWeight: 30

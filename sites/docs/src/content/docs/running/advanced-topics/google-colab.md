@@ -1,8 +1,10 @@
 ---
 title: Run nf-core pipelines on Google Colab
-subtitle: A guide for using cloud resources with Google Colab
+subtitle: Use cloud resources with Google Colab
 shortTitle: Google Colab
 ---
+
+<!-- TODO this page should be checked for command accuracy, the command blocks appear to be missing parts of the code blocks -->
 
 This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments.
 Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure.
@@ -17,9 +19,13 @@ For production workloads, consider dedicated cloud computing resources.
 You will need the following to get started:
 
 - A Google account to access [Google Colab](https://colab.research.google.com/)
-- Basic familiarity with [Nextflow](/get_started/environment_setup/nextflow/) and nf-core pipelines
-- Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity require root access unavailable in Colab)
+- Basic familiarity with [Nextflow](/get_started/environment_setup/nextflow/) and nf-core pipelines <!-- TODO broken link -->
+- Understanding of [conda environments](/get_started/environment_setup/software-dependencies/) (Docker and Singularity installation require root access unavailable in Colab) <!-- TODO broken link -->
   :::
+
+## Start new session
+
+Create a new Google Colab session as required by the [Colab interface](https://colab.research.google.com/).
 
 ## Install Java
 
@@ -48,7 +54,7 @@ The final command verifies the installation by displaying the Nextflow version.
 
 ## Configure conda
 
-Docker and Singularity require root access, which is unavailable in Google Colab.
+Docker and Singularity require root access to install, which is unavailable in Google Colab.
 Use conda as the software dependency manager instead.
 
 Install condacolab:
@@ -154,8 +160,8 @@ Understanding these limitations helps you work around them effectively.
 
 Address these limitations through the following practices:
 
-- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate
-- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption
+- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate <!-- TODO is this correct, if session timesout the data is not persistant - where does the `work/` directory go exactly  -->
+- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption <!-- TODO how should this be monitored? -->
 - **Protect your outputs**: Save critical results to Google Drive or external storage throughout execution rather than waiting until completion. Back up results frequently
 - **Maintain reproducibility**: Document your Colab setup (package versions, configurations) in version control for consistent results across sessions
 

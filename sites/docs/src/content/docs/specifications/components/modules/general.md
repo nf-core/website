@@ -1,6 +1,6 @@
 ---
 title: General
-subtitle: General guidelines for nf-core module development
+subtitle: Follow general module guidelines
 markdownPlugin: addNumbersToHeadings
 shortTitle: General
 weight: 1
