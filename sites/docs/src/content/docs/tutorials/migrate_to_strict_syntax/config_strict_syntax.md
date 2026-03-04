@@ -20,7 +20,10 @@ In both cases, you need a local copy of the nf-core/configs repository (ideally 
 
 VS Code with the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is the easiest way to check for problems with your config.
 
-With the nf-core/configs repo open as a VSCode project, the language server used by the extension will highlight by default any issues either using [hover hints or the diagnostics window](https://www.nextflow.io/docs/latest/vscode.html#diagnostics).
+To check your config with the Nextflow VS Code extension:
+
+1. Open the nf-core/configs repo as a VS Code project
+    - The extension language server will highlight any issues using [hover hints or the diagnostics window](https://www.nextflow.io/docs/latest/vscode.html#diagnostics).
 
 ### Command line
 
