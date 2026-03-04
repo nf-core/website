@@ -24,4 +24,5 @@ The release should primarily replace local modules with nf-modules, and update t
 - Optional: [#36](https://github.com/nf-core/rangeland/issues/36): Improve nf-test tests
 
 ## Where
+
 Berlin, online participation is possible.
