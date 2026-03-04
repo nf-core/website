@@ -409,5 +409,5 @@ and for a branch on nf-core configs:
 
 ```bash
 nextflow pull nf-core/demo
-NXF_VER=26.01.1-edge nextflow run nf-core/demo -profile test,<config name> --custom_config_version '<your-fixes-branch>'
+NXF_VER=26.02.0-edge nextflow run nf-core/demo -profile test,<config name> --custom_config_version '<your-fixes-branch>'
 ```
