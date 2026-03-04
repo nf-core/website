@@ -10,7 +10,6 @@ endTime: "17:00+01:00"
 locations:
     - name: Linnaeus University
       links: [https://lnu.se]
-      - https://lnu.se
       country: Sweden
       city: Kalmar
       geoCoordinates: [56.6593289, 16.2106949]
