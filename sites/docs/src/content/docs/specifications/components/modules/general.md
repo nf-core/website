@@ -6,6 +6,12 @@ shortTitle: General
 weight: 1
 ---
 
+<!-- TODO migrate changes form these PRs:
+
+- https://github.com/nf-core/website/pull/3769/changes
+- https://github.com/nf-core/website/pull/3783/changes
+-->
+
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Required and optional input files

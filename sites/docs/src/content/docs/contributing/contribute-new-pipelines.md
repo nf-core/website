@@ -4,6 +4,8 @@ subtitle: Contribute a new pipeline
 shortTitle: New pipelines
 ---
 
+<!-- TODO migrate recently added extra specifications on pre-existing pipelines from old site: https://github.com/nf-core/website/pull/3636/changes -->
+
 nf-core pipelines use a standardized template that provides file structure, boilerplate code, and git infrastructure for template synchronization.
 By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
 
@@ -266,6 +268,11 @@ Use the `dev` branch for new work and make all pull requests against `dev`.
 :::
 
 ## Make the first release
+
+<!-- TODO migrate updates from PRs
+- https://github.com/nf-core/website/pull/3677/changes
+- https://github.com/nf-core/website/pull/3679/changes
+- -->
 
 Once your pipeline is written, tests pass, and the repository is in the nf-core organisation, you can prepare for your first release.
 
