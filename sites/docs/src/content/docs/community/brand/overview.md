@@ -1,6 +1,6 @@
 ---
 title: nf-core brand
-subtitle: nf-core brand specifications
+subtitle: Learn nf-core brand specifications
 weight: 1
 ---
 

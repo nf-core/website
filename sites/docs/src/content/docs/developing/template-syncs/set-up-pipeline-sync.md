@@ -1,6 +1,6 @@
 ---
 title: Setting up a pipeline sync retrospectively
-subtitle: Set up a correct TEMPLATE branch in your pipeline repository
+subtitle: Set up TEMPLATE branch
 shortTitle: Setting up a pipeline sync retrospectively
 ---
 

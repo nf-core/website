@@ -1,6 +1,6 @@
 ---
 title: Subworkflow info
-subtitle: Show information about a subworkflow
+subtitle: View subworkflow information
 shortTitle: info
 weight: 20
 ---

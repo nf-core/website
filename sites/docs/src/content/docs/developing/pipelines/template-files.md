@@ -1,6 +1,6 @@
 ---
 title: Pipeline file structure
-subtitle: Description of the elements of an nf-core template
+subtitle: Understand template elements
 ---
 
 When you create a new pipeline from the nf-core template, the tool generates a complete directory structure containing numerous files and folders.

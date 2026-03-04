@@ -1,6 +1,6 @@
 ---
 title: Components
-subtitle: Specifications for writing nf-core components
+subtitle: Write nf-core components
 weight: 1
 parentWeight: 10
 ---

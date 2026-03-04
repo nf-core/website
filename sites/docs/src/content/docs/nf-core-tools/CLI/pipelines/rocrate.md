@@ -1,6 +1,6 @@
 ---
 title: Create a ROCrate
-subtitle: Create a Research Object (RO) Crate
+subtitle: Create RO-Crates
 shortTitle: rocrate
 weight: 60
 ---

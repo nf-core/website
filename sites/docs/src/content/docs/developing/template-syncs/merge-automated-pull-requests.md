@@ -1,6 +1,6 @@
 ---
 title: Merging automated PRs
-subtitle: Merge automated PRs after a new tools release
+subtitle: Merge automated tool PRs
 shortTitle: Merging automated PRs
 ---
 

@@ -1,6 +1,6 @@
 ---
 title: Markdown on the nf-core website
-subtitle: Special content elements on nf-co.re
+subtitle: Use special content elements
 shortTitle: Markdown
 ---
 

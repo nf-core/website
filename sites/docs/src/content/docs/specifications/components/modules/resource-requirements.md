@@ -1,6 +1,6 @@
 ---
 title: Resource requirements
-subtitle: Guidelines for specifying computational resources in modules
+subtitle: Specify resource requirements
 markdownPlugin: addNumbersToHeadings
 shortTitle: Resource requirements
 weight: 6

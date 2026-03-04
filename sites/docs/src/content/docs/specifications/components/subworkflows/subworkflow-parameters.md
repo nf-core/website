@@ -1,6 +1,6 @@
 ---
 title: Subworkflow parameters
-subtitle: Parameter specifications for nf-core Nextflow DSL2 subworkflows
+subtitle: Use subworkflow parameters
 weight: 4
 ---
 

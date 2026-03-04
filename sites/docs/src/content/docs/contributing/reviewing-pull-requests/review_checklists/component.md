@@ -1,6 +1,6 @@
 ---
 title: Reviewing nf-core components
-subtitle: Review nf-core component pull requests
+subtitle: Review component pull requests
 shortTitle: Reviewing components
 markdownPlugin: checklist
 ---

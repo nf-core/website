@@ -1,6 +1,6 @@
 ---
 title: Pipeline sync
-subtitle: Sync a pipeline with the template
+subtitle: Sync pipelines with template
 shortTitle: sync
 weight: 100
 ---

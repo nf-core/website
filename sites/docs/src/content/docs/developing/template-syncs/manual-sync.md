@@ -1,6 +1,6 @@
 ---
 title: Manually syncing your pipeline
-subtitle: Manually synchronise your pipeline with the latest template
+subtitle: Sync pipeline with template manually
 shortTitle: Manually syncing your pipeline
 ---
 

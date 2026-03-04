@@ -1,6 +1,6 @@
 ---
 title: Terminology
-subtitle: Specification of terms used in the nf-core community
+subtitle: Learn nf-core terminology
 shortTitle: Terminology
 ---
 
