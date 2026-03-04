@@ -22,7 +22,6 @@ If this is your first release, follow the [first release guide](/docs/contributi
     ```
 
   - [ ] If possible, update any software dependencies that are reported to be out of date.
-
 - [ ] Check that the full-size tests have successfully completed within the `dev` branch.
 - [ ] Review the `CHANGELOG.md` to ensure it includes everything that has been added/fixed in this release.
   - Add the GitHub handle of the main contributors of each CHANGELOG entry (author, significant reviewers, etc.).
