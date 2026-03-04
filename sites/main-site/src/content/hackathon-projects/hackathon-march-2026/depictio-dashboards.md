@@ -19,7 +19,7 @@ Create ready-to-use dashboard templates that combine MultiQC reports, Plotly fig
 
 ## What is Depictio?
 
-[Depictio](https://depictio.github.io/depictio-docs/) is an open-source platform for building interactive data dashboards from pipeline results. It features a drag-and-drop UI, YAML-based configuration, sharing capabilities, designed for bioinformaticians who want to visualize and share results without writing frontend code. 
+[Depictio](https://depictio.github.io/depictio-docs/) is an open-source platform for building interactive data dashboards from pipeline results. It features a drag-and-drop UI, YAML-based configuration, sharing capabilities, designed for bioinformaticians who want to visualize and share results without writing frontend code.
 
 :::note{title="See it in action"}
 Check out the [ampliseq dashboard demo](https://demo.depictio.embl.org/).
