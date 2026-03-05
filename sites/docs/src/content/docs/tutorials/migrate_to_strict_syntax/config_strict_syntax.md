@@ -165,7 +165,6 @@ params.random_var = {
 Don't forget to set the `.call()` here at the end.
 This makes sure the code is evaluated during config resolution.
 If you don't add `.call()`, the parameter will be a closure instead of the expected value.
-If you don't add `.call()`, the parameter will be a closure instead of the expected value.
 :::
 
 To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, you should also add the following to your config:
