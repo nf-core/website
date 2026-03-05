@@ -24,6 +24,6 @@ We want to get the nf-core/tcrpmhcbinding pipeline on track towards a first rele
 
 ### Where
 
-Online and in-person at the local Hub Tuebingen Germany.
+Online and in-person at the local Hub in Tuebingen, Germany.
 
 _We welcome contributors of all experience levels!_
