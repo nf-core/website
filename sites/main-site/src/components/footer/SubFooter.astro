@@ -1,7 +1,9 @@
 ---
+import BuildTimestamp from "@components/footer/BuildTimestamp.svelte";
+
 const { md_github_url } = Astro.props;
 
-const buildTimestamp = new Date().toUTCString().split(", ")[1].trim();
+const buildTimestamp = new Date().toISOString();
 ---
 
 <footer class="subfooter bg-body-tertiary py-3">
@@ -16,7 +18,9 @@ const buildTimestamp = new Date().toUTCString().split(", ")[1].trim();
                             See the source code for this page
                         </a>
                     </div>
-                    <div class="col text-secondary small d-none d-md-inline text-end">Built: {buildTimestamp}</div>
+                    <div class="col text-secondary small d-none d-md-inline text-end">
+                        <BuildTimestamp timestamp={buildTimestamp} client:idle />
+                    </div>
                 </div>
             )
         }
