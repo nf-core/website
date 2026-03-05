@@ -3,6 +3,8 @@ title: Pipeline file structure
 subtitle: Understand template elements
 ---
 
+<!-- TODO Rename file to match title, as current file name is unclear when rendered as title in left-hand sidebar -->
+
 When you create a new pipeline from the nf-core template, the tool generates a complete directory structure containing numerous files and folders.
 Some files serve as boilerplate that requires minimal modification, while others are essential to understand during pipeline development.
 
