@@ -37,7 +37,13 @@ This project aims to update [nf-core/viralrecon](https://nf-co.re/viralrecon/dev
 
 🌍 This project will be hybrid, online and in person, since contributors from outside Madrid are welcome.
 
-📍 In Madrid, the project will take place at:
+### 🕸️ On-line
+
+join the [slack channel](https://nfcore.slack.com/archives/C0110R22NH3) to be updated in the on-line mode
+
+### 📍 In person in Madrid
+
+The project will take place at:
 
 🇪🇸 ISCIII - Majadahonda Campus
 Building 53, Meeting Rooms 1 and 2 (To be confirmed)
