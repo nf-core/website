@@ -5,6 +5,8 @@ description: Migrating nf-core modules and pipelines to use topic channels
 shortTitle: Migrating to topic channels
 ---
 
+<!-- TODO migrate changes from https://github.com/nf-core/website/pull/3682/changes (I think just code block formatting) -->
+
 [Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
 Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
 
@@ -38,7 +40,7 @@ To migrate a module to use topic channels for version outputs:
    END_VERSIONS
    ```
 
-1. Remove the `versions.yml` file from the `output` block.
+1. Remove the `versions.yml` file from the `output` and `script` block.
 
 1. Add outputs for each tool in the module:
 

@@ -4,6 +4,8 @@ subtitle: Deprecate a module or subworkflow
 shortTitle: Deprecating modules
 ---
 
+<!-- TODO I find it strange that this page isn't findable as it is not sitting with other module document - I would suggest moving it to developing/components (maybe rename to `deprecating-components.md` or place in `specifications/modules/`)  -->
+
 ## Deprecating a module
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
