@@ -45,10 +45,30 @@ jobs:
           HIDE_PROGRESS: "true"
           NXF_ANSI_LOG: false
         with:
-          commit_changes: "true"
+          commit_changes: "false"
           terminal_width: 100
           skip_git_checks: "true"
           search_include: ".github/workflows/rich-codex.yml"
+
+      - name: Decode HTML entities in generated SVGs
+        run: |
+          python3 -c "
+          import re, html, glob
+          for path in glob.glob('sites/docs/src/assets/images/**/*.svg', recursive=True):
+              content = open(path).read()
+              decoded = re.sub(r'&#[0-9]+;|&#x[0-9a-fA-F]+;', lambda m: html.unescape(m.group(0)), content)
+              if decoded != content:
+                  open(path, 'w').write(decoded)
+                  print(f'Decoded entities in {path}')
+          "
+
+      - name: Commit generated images
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git add --all
+          git diff --staged --quiet || git commit -m "[automated] Update rich-codex images"
+          git push
 
       - name: Restore package.json
         run: |
