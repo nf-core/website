@@ -21,7 +21,7 @@ jobs:
           path: "tools"
 
       - name: setup node
-        uses: actions/setup-node@6044e13b5dc448c55e2357c09f80417699197238 # v6
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
           node-version: "24"
 
@@ -30,7 +30,7 @@ jobs:
           npm install remark unist-util-visit
 
       - name: setup uv
-        uses: astral-sh/setup-uv@eac588ad8def6316056a12d4907a9d4d84ff7a3b # v7
+        uses: astral-sh/setup-uv@5a095e7a2014a4212f075830d4f7277575a9d098 # v7
 
       - name: install nf-core
         run: |
