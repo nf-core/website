@@ -29,9 +29,10 @@ To check your config with the Nextflow VS Code extension:
 
 If you don't use VSCode, you can instead use Nextflow itself on the command line.
 
-> [!WARNING]
-> This does not check the config functionality works!
-> See end of instructions
+:::warning
+This does not check the config functionality works!
+See end of instructions
+:::
 
 The fastest way to test whether your config is Nextflow strict syntax compliant is to make an empty workflow, and run it using your config as a custom config file.
 
@@ -87,9 +88,10 @@ If the variable is used multiple times, you can convert the variable to a parame
 + params.variable_name = <code>
 ```
 
-> [!WARNING]
-> Make sure the parameter names are unique and isolated to the config so they don't overwrite anything in any pipelines themselves!
-> We recommend: `<config_name>_<variable_name>`, but feel free to make it more unique.
+:::warning
+Make sure the parameter names are unique and isolated to the config so they don't overwrite anything in any pipelines themselves!
+We recommend: `<config_name>_<variable_name>`, but feel free to make it more unique.
+:::
 
 To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, you should also add the following to your config:
 
@@ -159,10 +161,11 @@ params.random_var = {
 }.call()
 ```
 
-> [!WARNING]
-> Don't forget to set the `.call()` here at the end.
-> This makes sure the code is evaluated during config resolution.
-> If you don't add `.call()`, the parameter will be a closure instead of the expected value.
+:::warning
+Don't forget to set the `.call()` here at the end.
+This makes sure the code is evaluated during config resolution.
+If you don't add `.call()`, the parameter will be a closure instead of the expected value.
+:::
 
 To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, you should also add the following to your config:
 
@@ -193,9 +196,10 @@ Error <config name>.config:630:14: Unexpected input: '('
 
 Try to refactor your code to not use any functions.
 
-> [!WARNING]
-> We do not currently have a good solution to this, due to a conflict with nf-schema used for pipeline input validation!
-> Our only solution is to repeatedly implement the code at each use of the function within a closure.
+:::warning
+We do not currently have a good solution to this, due to a conflict with nf-schema used for pipeline input validation!
+Our only solution is to repeatedly implement the code at each use of the function within a closure.
+:::
 
 ~~All functions should be converted to callable closures that are assigned to a parameter.~~
 
@@ -263,21 +267,22 @@ process.executor = params.slurm ?
     'local'
 ```
 
-> [!NOTE]
-> This could also be done using the following:
->
-> ```groovy
-> process.executor = {
->     if (params.slurm) {
->         return 'slurm'
->     }
->     return 'local'
-> }.call()
-> ```
->
-> This is similar to using ternary operators but less readable.
-> This is discouraged for simple if-statements, however you can use this in cases of more complex conditions.
-> It's up to the config developer to decide when to use what method.
+:::note
+This could also be done using the following:
+
+```groovy
+process.executor = {
+    if (params.slurm) {
+        return 'slurm'
+    }
+    return 'local'
+}.call()
+```
+
+This is similar to using ternary operators but less readable.
+This is discouraged for simple if-statements, however you can use this in cases of more complex conditions.
+It's up to the config developer to decide when to use what method.
+:::
 
 #### Example
 
