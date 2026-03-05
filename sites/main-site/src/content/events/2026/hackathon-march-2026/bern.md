@@ -9,8 +9,7 @@ endDate: "2026-03-13"
 endTime: "17:00+01:00"
 locations:
   - name: University of Bern
-    address:
-      Room 028, Hochschulstrasse 4, 3012 Bern, Switzerland
+    address: Room 028, Hochschulstrasse 4, 3012 Bern, Switzerland
     links:
       - https://www.bioinformatics.unibe.ch/
     geoCoordinates: [46.95049367852778, 7.4374062197131305]
