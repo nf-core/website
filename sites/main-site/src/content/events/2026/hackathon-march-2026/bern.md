@@ -13,6 +13,8 @@ locations:
     links:
       - https://www.bioinformatics.unibe.ch/
     geoCoordinates: [46.95049367852778, 7.4374062197131305]
+    country: Switzerland
+    city: Bern
 ---
 
 Local event to be held at the Hauptgebäude, University of Bern.
