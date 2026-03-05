@@ -23039,10 +23039,10 @@
                 }
               },
               {
-                "output/Reports/*.{csv,xml,bin}": {
+                "output/Reports": {
                   "type": "file",
                   "description": "Demultiplexing Reports",
-                  "pattern": "Reports/*.{csv,xml,bin}",
+                  "pattern": "Reports",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -23067,10 +23067,10 @@
                 }
               },
               {
-                "output/Logs/*.{log,txt}": {
+                "output/Logs": {
                   "type": "file",
                   "description": "Demultiplexing Logs",
-                  "pattern": "Logs/*.{log,txt}",
+                  "pattern": "Logs",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_2330"
@@ -201478,11 +201478,18 @@
                 }
               },
               {
-                "*.dups.bed": {
+                "*.dups.bed.gz": {
                   "type": "file",
                   "description": "A bed file of sequences purged of false duplications",
-                  "pattern": "*.bed",
-                  "ontologies": []
+                  "pattern": "*.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -292649,7 +292656,8 @@
         ],
         "components": [
           "bcl2fastq",
-          "bclconvert"
+          "bclconvert",
+          "multiqcsav"
         ],
         "input": [
           {
