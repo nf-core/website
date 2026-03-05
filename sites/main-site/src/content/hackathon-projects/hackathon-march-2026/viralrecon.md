@@ -37,7 +37,7 @@ This project aims to update [nf-core/viralrecon](https://nf-co.re/viralrecon/dev
 
 🌍 This project will be hybrid, online and in person, since contributors from outside Madrid are welcome.
 
-### 🕸️ Online
+### 🕸️ On-line
 
 join the [slack channel](https://nfcore.slack.com/archives/C0110R22NH3) to be updated in the on-line mode
 
