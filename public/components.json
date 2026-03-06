@@ -440,19 +440,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_abricate": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "abricate": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "abricate --version | sed 's/^.* //' ": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "abricate": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "abricate --version | sed 's/^.* //' ": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -74353,16 +74385,24 @@
               "description": "which version of the cache to annotate with\n"
             }
           },
-          {
-            "cache": {
-              "type": "file",
-              "description": "path to VEP cache (optional)\n",
-              "ontologies": []
-            }
-          },
           [
             {
               "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing cache information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "cache": {
+                "type": "file",
+                "description": "path to VEP cache (optional)\n",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing fasta reference information\ne.g. [ id:'test' ]\n"
               }
@@ -208684,6 +208724,225 @@
       }
     },
     {
+      "name": "rgi_bwt",
+      "path": "modules/nf-core/rgi/bwt/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rgi_bwt",
+        "description": "Predict antibiotic resistance from protein or nucleotide data",
+        "keywords": [
+          "bacteria",
+          "fasta",
+          "antibiotic resistance"
+        ],
+        "tools": [
+          {
+            "rgi": {
+              "description": "This tool provides a preliminary annotation of your DNA sequence(s) based upon the data available in The Comprehensive Antibiotic Resistance Database (CARD). Hits to genes tagged with Antibiotic Resistance ontology terms will be highlighted. As CARD expands to include more pathogens, genomes, plasmids, and ontology terms this tool will grow increasingly powerful in providing first-pass detection of antibiotic resistance associated genes. See license at CARD website.",
+              "homepage": "https://card.mcmaster.ca",
+              "documentation": "https://github.com/arpcard/rgi",
+              "tool_dev_url": "https://github.com/arpcard/rgi",
+              "doi": "10.1093/nar/gkz935",
+              "licence": [
+                "https://card.mcmaster.ca/about"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Single-end or paired-end nucleotide sequences in FASTQ or FASTA format",
+                "pattern": "*.{fastq,fastq.gz,fq,fq.gz,fasta,fasta.gz,fa,fa.gz,fna,fna.gz,faa,faa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "card": {
+              "type": "directory",
+              "description": "Directory containing the CARD database. This is expected to be the unarchived but otherwise unaltered download folder (see RGI documentation for download instructions).",
+              "pattern": "*/"
+            }
+          },
+          {
+            "wildcard": {
+              "type": "directory",
+              "description": "Directory containing the WildCARD database (optional). This is expected to be the unarchived but otherwise unaltered download folder (see RGI documentation for download instructions).",
+              "pattern": "*/"
+            }
+          }
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.json": {
+                  "type": "file",
+                  "description": "JSON formatted file with RGI results",
+                  "pattern": "*.{json}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.txt": {
+                  "type": "file",
+                  "description": "Tab-delimited file with RGI results",
+                  "pattern": "*.{txt}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tmp": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "temp/": {
+                  "type": "directory",
+                  "description": "Directory containing various intermediate files",
+                  "pattern": "temp/"
+                }
+              }
+            ]
+          ],
+          "versions_rgi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "string",
+                  "description": "The version string returned by the command"
+                }
+              }
+            ]
+          ],
+          "versions_db": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "string",
+                  "description": "The CARD database version string"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "rgi main --version": {
+                  "type": "string",
+                  "description": "Command used to collect the version"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rgi-database": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "echo \\$DB_VERSION": {
+                  "type": "string",
+                  "description": "Command used to collect the version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vinisalazar"
+        ],
+        "maintainers": [
+          "@nickp60",
+          "@vinisalazar"
+        ]
+      }
+    },
+    {
       "name": "rgi_cardannotation",
       "path": "modules/nf-core/rgi/cardannotation/meta.yml",
       "type": "module",
@@ -292863,6 +293122,56 @@
       ]
     },
     {
+      "name": "cache_download_ensemblvep_snpeff",
+      "path": "subworkflows/nf-core/cache_download_ensemblvep_snpeff/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "cache_download_ensemblvep_snpeff",
+        "description": "downlad annotation cache for snpeff and ensemblvep",
+        "keywords": [
+          "ensemblvep",
+          "snpeff",
+          "download",
+          "annotation",
+          "cache"
+        ],
+        "components": [
+          "ensemblvep/download",
+          "snpeff/download"
+        ],
+        "input": [
+          {
+            "ensemblvep_info": {
+              "description": "All information necessary to download the cache\nStructure: [ val(meta), val(ensemblvep_genome), val(ensemblvep_species), val(ensemblvep_cache_version) ]\n"
+            }
+          },
+          {
+            "snpeff_info": {
+              "description": "All information necessary to download the cache\nStructure: [ val(meta), val(snpeff_db) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "ensemblvep_cache": {
+              "description": "Path to ensemblvep cache\nStructure: [ val(meta), path(cache) ]\n"
+            }
+          },
+          {
+            "snpeff_cache": {
+              "description": "Path to snpeff cache\nStructure: [ val(meta), path(cache) ]\n"
+            }
+          }
+        ],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
+        ]
+      }
+    },
+    {
       "name": "deepvariant",
       "path": "subworkflows/nf-core/deepvariant/meta.yml",
       "type": "subworkflow",
@@ -301292,6 +301601,94 @@
         ],
         "maintainers": [
           "@mcmero"
+        ]
+      }
+    },
+    {
+      "name": "utils_annotation_cache",
+      "path": "subworkflows/nf-core/utils_annotation_cache/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "utils_annotation_cache",
+        "description": "Check the path to the annotation cache depending if local or on the cloud, or using annotation-cache itself",
+        "keywords": [
+          "snpeff",
+          "ensemblvep",
+          "annotation-cache",
+          "annotation",
+          "cache",
+          "verification"
+        ],
+        "components": [],
+        "input": [
+          {
+            "ensemblvep_cache": {
+              "description": "Path to root cache\nStructure: [ path(cache) ]\n"
+            }
+          },
+          {
+            "ensemblvep_cache_version": {
+              "description": "cache_version to use\nStructure: [ val(cache_version) ]\n"
+            }
+          },
+          {
+            "ensemblvep_custom_args": {
+              "description": "custom args, to check if refseq or merged is needed\nStructure: [ val(custom args) ]\n"
+            }
+          },
+          {
+            "ensemblvep_genome": {
+              "description": "genome to use\nStructure: [ val(genome) ]\n"
+            }
+          },
+          {
+            "ensemblvep_species": {
+              "description": "species to use\nStructure: [ val(species) ]\n"
+            }
+          },
+          {
+            "ensemblvep_enabled": {
+              "description": "Boolean to enable ensemblvep\nStructure: [ Boolean ]\n"
+            }
+          },
+          {
+            "snpeff_cache": {
+              "description": "Path to root cache\nStructure: [ path(cache) ]\n"
+            }
+          },
+          {
+            "snpeff_db": {
+              "description": "db to use\nStructure: [ val(db) ]\n"
+            }
+          },
+          {
+            "snpeff_enabled": {
+              "description": "Boolean to enable snpeff\nStructure: [ Boolean ]\n"
+            }
+          },
+          {
+            "help_message": {
+              "description": "Extra help message to display when error\nStructure: [ val(species) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "ensemblvep_cache": {
+              "description": "Path to ensemblvep cache\nStructure: [ val(meta), path(cache) ]\n"
+            }
+          },
+          {
+            "snpeff_cache": {
+              "description": "Path to snpeff cache\nStructure: [ val(meta), path(cache) ]\n"
+            }
+          }
+        ],
+        "authors": [
+          "@maxulysse"
+        ],
+        "maintainers": [
+          "@maxulysse"
         ]
       }
     },
