@@ -2,7 +2,7 @@
 import Project from "@components/event/HackathonProjects/Project.astro";
 import { getCollection } from "astro:content";
 
-const { eventPath } = Astro.props;
+const { eventPath, showCount = false } = Astro.props;
 
 export interface Props {
     eventPath?: string;
