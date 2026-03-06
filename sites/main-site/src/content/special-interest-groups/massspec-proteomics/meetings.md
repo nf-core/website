@@ -10,6 +10,6 @@ The massspec-proteomics special interest group kicked off on March 5th, 2026 at 
 
 We will have regular meetings that will be posted here and in the `#massspec-proteomics` Slack channel. Stay tuned for updates!
 
-| Date | Speaker                                | Event                                                            |
-| ---: | :------------------------------------- | ---------------------------------------------------------------- |
+|  Date | Speaker                                | Event                                                            |
+| ----: | :------------------------------------- | ---------------------------------------------------------------- |
 | Mar 5 | Dongze He, Henry Webel, Roger Olivella | [Kick off meeting](/events/2026/SIG_massspec-proteomics_kickoff) |
