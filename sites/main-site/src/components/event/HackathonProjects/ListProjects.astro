@@ -9,7 +9,6 @@ export interface Props {
     showCount?: boolean;
 }
 
-const showCount = Astro.props.showCount ?? false;
 
 let projects = await getCollection("hackathon-projects");
 
