@@ -75,7 +75,7 @@ To transfer pipeline code to an offline system:
 To use nf-core reference genomes offline, download and transfer them to your offline cluster.
 See [Reference genomes](./reference-genomes.md) for more information.
 
-<!-- TODO: reference genomes link is dead -->
+<!-- TODO: Fix reference genomes link -->
 
 ## Additional resources
 

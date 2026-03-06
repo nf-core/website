@@ -201,7 +201,7 @@ Configuration files are applied in order and later files override earlier settin
 
 For detailed configuration options, see the [Configuration guide](../running/configuration/overview.md).
 
-<!-- TODO configuration guide is a dead link -->
+<!-- TODO Fix the configuration guide link -->
 
 ### Resuming runs
 
@@ -227,4 +227,4 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
 
-<!-- TODO: Add links, if any -->
+<!-- TODO: Add links, if any extra seem applicable -->
