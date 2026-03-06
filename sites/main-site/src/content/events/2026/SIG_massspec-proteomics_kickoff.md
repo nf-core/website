@@ -33,7 +33,7 @@ We spent a significant portion of the meeting discussing the excellent work done
 - We have successfully implemented the [`diann` module](https://github.com/nf-core/modules/tree/master/modules/nf-core/diann).
 - The [`dia_proteomics_analysis` subworkflow](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/dia_proteomics_analysis) is currently available in nf-core.
 - **Validation Success:** We confirmed that running the nf-core `thermorawfileparser` combined with the `dia_proteomics_analysis` subworkflow produces _exactly the same results_ as `quantms`. This includes identical DIANN configurations and step-by-step outputs.
-- We are working on a comprehensive module and subworkflow collection  for [fragpipe](https://fragpipe.nesvilab.org/) as well. This will be released in the upcoming weeks and will be a PR to nf-core/modules.
+- We are working on a comprehensive module and subworkflow collection for [fragpipe](https://fragpipe.nesvilab.org/) as well. This will be released in the upcoming weeks and will be a PR to nf-core/modules.
 
 ### 2. Expanding the Module Library
 
