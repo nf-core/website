@@ -420,4 +420,4 @@ For more information about configuration syntax and parameters, see:
 
 - Links
 
-<!-- TODO: Add links, if any -->
+<!-- TODO: Add links, if any, otherwise remove this section -->

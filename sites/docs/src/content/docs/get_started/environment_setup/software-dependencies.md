@@ -86,4 +86,4 @@ Containers are recommended when possible.
 
 For installation instructions, see [Mamba installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
 
-<!-- TODO: Add additional resources -->
+<!-- TODO: Add additional resources, if any -->

@@ -114,9 +114,6 @@ See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.
 
 ### Pipeline optimization strategies
 
-<!-- TODO I suggest we remove this as it's not about running pipelines -->
-<!-- TODO Consider moving elsewhere, but it does not match nf-core/modules standards -->
-
 _If writing the pipeline code_, you can minimise intermediate file generation through process optimization:
 
 ```groovy

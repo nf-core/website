@@ -5,6 +5,8 @@ shortTitle: Nextflow
 weight: 2
 ---
 
+<!-- TODO: Verify if specifying bioconda::nextflow in a dedicated environment gets the latest version. Also, consider adding instructions to move the distribution asset to bin directory (similar to self-installing package -->
+
 Nextflow is the workflow management system that runs all nf-core pipelines.
 This page will walk you through installing and configuring Nextflow on your system.
 
@@ -84,8 +86,6 @@ To install Nextflow with the self-installing package:
 
 ### Conda installation
 
-<!-- TODO: Verify if specifying bioconda::nextflow in a dedicated environment gets the latest version -->
-
 To install Nextflow with Conda:
 
 1. Create an environment with Nextflow:
@@ -112,8 +112,6 @@ Use the self-installing package method when possible.
 :::
 
 ### Standalone distribution
-
-<!-- TODO: Consider adding instructions to move the distribution asset to bin directory (similar to self-installing package) -->
 
 For offline or restricted environments, you can download a pre-built executable from the [Nextflow GitHub releases](https://github.com/nextflow-io/nextflow/releases).
 

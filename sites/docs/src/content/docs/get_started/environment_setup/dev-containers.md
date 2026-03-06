@@ -45,8 +45,6 @@ Local VS Code Dev Containers require additional SSH key forwarding setup for rem
 
 ## Testing your environment
 
-<!-- TODO: Consider if this section is too detailed for getting started - may be jumping ahead before users complete the getting started guide -->
-
 Once the containerised environment loads, run workflows using the singularity profile:
 
 ```bash

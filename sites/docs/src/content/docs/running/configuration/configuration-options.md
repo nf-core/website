@@ -79,14 +79,14 @@ All nf-core pipelines load these shared profiles at run time.
 Check if your system has a profile at [https://github.com/nf-core/configs](https://github.com/nf-core/configs).
 If not, follow the repository instructions or the tutorial to add your cluster.
 
-<!-- TODO: Add link to tutorial -->
+<!-- TODO: Add link to tutorial from nextflow training, if it exists? -->
 
 ### Custom configuration files
 
 If you run the pipeline alone on a local machine, create a local configuration file.
 Nextflow searches for configuration files in three locations:
 
-<!-- TODO this is not just local machine though, also works for HPC... ? -->
+<!-- TODO Check if this is for just local machine, i.e., does this also works for HPC or cloud? -->
 
 1. User's home directory: `~/.nextflow/config`
 2. Analysis working directory: `nextflow.config`
@@ -108,7 +108,7 @@ Parameters in `custom.config` files will not override defaults in `nextflow.conf
 Use `-params-file` with YAML or JSON format instead.
 :::
 
-<!-- TODO I'm pretty sure `custom.config` WILL overwrite `nextflow.config`, particularly given my comment above about `nextflow.config` being teh pipeline defaults  -->
+<!-- TODO Check if `custom.config` WILL overwrite `nextflow.config`, particularly given the comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).
@@ -120,4 +120,4 @@ For more information about configuration syntax and parameters, see:
 
 - [Nextflow config](https://www.nextflow.io/docs/latest/config.html)
 
-<!-- TODO: Add links, if any -->
+<!-- TODO: Add links, if any, otherwise remove this section -->

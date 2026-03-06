@@ -6,8 +6,6 @@ menu:
     weight: 60
 ---
 
-<!-- TODO rename file to documentation.md to remove colloquism -->
-
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 All documentation MUST be bundled with the pipeline code in the main repository, within a directory called `docs`.
