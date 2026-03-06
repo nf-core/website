@@ -23,10 +23,10 @@ You can also work on your own fork.
 1. Clone your pipeline into a new directory:
 
    ```bash
-   mkdir <temp_directory>
-   cd <temp_directory>
-   git clone https://github.com/nf-core/<pipeline_name>.git
-   cd <pipeline_name>
+   mkdir <temp-directory>
+   cd <temp-directory>
+   git clone https://github.com/nf-core/<pipeline-name>.git
+   cd <pipeline-name>
    ```
 
 1. Create the new `TEMPLATE` branch and delete all files to create a completely empty branch:
@@ -73,9 +73,9 @@ You can also work on your own fork.
 1. Move the newly created template files into your root git directory:
 
    ```bash
-   mv nf-core-<pipeline_name>/* .
-   mv nf-core-<pipeline_name>/.[!.]* .
-   rmdir nf-core-<pipeline_name>
+   mv nf-core-<pipeline-name>/* .
+   mv nf-core-<pipeline-name>/.[!.]* .
+   rmdir nf-core-<pipeline-name>
    ```
 
 1. Verify the newly created files are in the correct place:

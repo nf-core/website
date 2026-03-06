@@ -23,7 +23,7 @@ There are four additional flags that you can use when installing a subworkflow:
 - `--dir`: Pipeline directory, the default is the current working directory.
 - `--force`: Overwrite a previously installed version of the subworkflow.
 - `--prompt`: Select the subworkflow version using a cli prompt.
-- `--sha <commit_sha>`: Install the subworkflow at a specific commit.
+- `--sha <commit-sha>`: Install the subworkflow at a specific commit.
 
 :::note
 You can use the `meta.yml` file to specify different remotes for the components

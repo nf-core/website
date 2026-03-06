@@ -10,7 +10,7 @@ The `nf-core pipelines bump-version` command automates this process to avoid man
 
 This command requires your pipeline to pass the linting tests.
 
-Run `nf-core pipelines bump-version <new_version>`, for example:
+Run `nf-core pipelines bump-version <new-version>`, for example:
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
@@ -18,5 +18,5 @@ working_dir: tmp/nf-core-nextbigthing
 
 ![`nf-core pipelines bump-version 1.1`](../../../../../assets/images/tools/nf-core-bump-version.svg)
 
-To specify a different directory, use `--dir <pipeline_dir>`.
+To specify a different directory, use `--dir <pipeline-dir>`.
 To change the required version of Nextflow instead of the pipeline version number, use the `--nextflow` flag.

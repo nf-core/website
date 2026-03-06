@@ -31,7 +31,7 @@ For bioinformatics pipelines, files are typically organised by discipline, organ
 
 Downstream or related test data files SHOULD be named based on the upstream file name.
 
-For example, if `genome.fasta` is used as the upstream file, the output file should be named `genome.<new_extension>`.
+For example, if `genome.fasta` is used as the upstream file, the output file should be named `genome.<new-extension>`.
 
 ## Module test data documentation
 

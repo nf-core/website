@@ -142,7 +142,7 @@ my_command -r ${meta.strand} input.txt output.txt
 ... but rather:
 
 ```groovy title="modules.conf"
-ext.args = { "--r ${meta.<pipeline_authors_choice_of_name>}" }
+ext.args = { "--r ${meta.<pipeline-authors-choice-of-name>}" }
 ```
 
 and then in the module code:

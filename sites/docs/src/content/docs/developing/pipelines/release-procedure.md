@@ -128,7 +128,7 @@ Finally, the last step is to bump up the pipeline version number in the developm
 - [ ] Update snapshots to include the new version and any other changes:
 
   ```bash
-  nf-test test tests/ --profile=+<docker/singularity/conda etc.>
+  nf-test test tests/ --profile=+<docker/singularity/conda-etc.>
   ```
 
 - [ ] [Open a Pull Request (PR)](https://help.github.com/en/articles/creating-a-pull-request) with these changes from your fork to the `dev` branch on the nf-core repository.

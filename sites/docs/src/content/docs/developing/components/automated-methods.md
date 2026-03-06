@@ -26,13 +26,13 @@ Within the nf-core template, boilerplate code for a minimal version of this sect
 This boilerplate code comes from two sections in the nf-core pipeline structure:
 
 - [`assets/methods_description_template.yml`](https://github.com/nf-core/tools/blob/af02d91fdafd5937c658a837fa868cc8ad7de4fb/nf_core/pipeline-template/assets/methods_description_template.yml)
-- [`subworkflows/local/utils_nfcore_<pipeline_name>/main.nf`](https://github.com/nf-core/tools/blob/059473c2e138aecfb451f2f848265767761d798a/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf)
+- [`subworkflows/local/utils_nfcore_<pipeline-name>/main.nf`](https://github.com/nf-core/tools/blob/059473c2e138aecfb451f2f848265767761d798a/nf_core/pipeline-template/subworkflows/local/utils_nfcore_pipeline_pipeline/main.nf)
 
 The `methods_description_template.yml` is the main MultiQC compatible YAML file that gets processed within the pipeline.
 This contains the basic overall information about the pipeline run (name, run, version, nf-core and Nextflow citations).
 
-However inside this YAML file, customised text gets 'injected' into parts of this file with strings that are generated from the `utils_nfcore_<pipeline_name>` subworkflow.
-You can update the `utils_nfcore_<pipeline_name>` subworkflow to dynamically generate the text that gets injected depending on the pipeline parameters (for example, to add citation information for tools used in the particular run).
+However inside this YAML file, customised text gets 'injected' into parts of this file with strings that are generated from the `utils_nfcore_<pipeline-name>` subworkflow.
+You can update the `utils_nfcore_<pipeline-name>` subworkflow to dynamically generate the text that gets injected depending on the pipeline parameters (for example, to add citation information for tools used in the particular run).
 
 ## General text
 
@@ -40,7 +40,7 @@ In most cases you do not need to edit this file, unless you wish to provide addi
 
 You should NOT edit the [MultiQC header tags](https://github.com/nf-core/tools/blob/e6497bcdf8660b7029bd739f890c2d73e87dd867/nf_core/pipeline-template/assets/methods_description_template.yml#L1-L5).
 If changes or additional information is required to the main text of the methods description, you can modify or add additional HTML text and code to the [`data:` section](https://github.com/nf-core/tools/blob/e6497bcdf8660b7029bd739f890c2d73e87dd867/nf_core/pipeline-template/assets/methods_description_template.yml#L8-L29) of this file for rendering.
-The dynamic text strings that come from the `utils_nfcore_<pipeline_name>` subworkflow are 'imported' via the `${tool_citations}` and `${tool_bibliography}` variables and should not be removed or modified.
+The dynamic text strings that come from the `utils_nfcore_<pipeline-name>` subworkflow are 'imported' via the `${tool_citations}` and `${tool_bibliography}` variables and should not be removed or modified.
 
 Importantly, compared to the subworkflow, the text in this YAML file will be rendered in every single MultiQC run - no dynamic text construction code can be used within this file.
 
@@ -60,7 +60,7 @@ For example, a pipeline uses the tool `fastp` for the preprocessing of input fil
 
 By default, the boilerplate text will say:
 
-```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
+```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolCitationText() {
     def citation_text = [
             "Tools used in the workflow included:",
@@ -99,7 +99,7 @@ It is critical that for any time a citation is added to `toolCitationText()`, th
 
 For example, the boilerplate:
 
-```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
+```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             "<li>Ewels, P., Magnusson, M., Lundin, S., & Käller, M. (2016). MultiQC: summarize analysis results for multiple tools and samples in a single report. Bioinformatics , 32(19), 3047–3048. doi: /10.1093/bioinformatics/btw354</li>"{% endif %}
@@ -111,7 +111,7 @@ def toolBibliographyText() {
 
 Becomes:
 
-```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
+```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def reference_text = [
             params.run_fastp ? "<li>Chen, S., Zhou, Y., Chen, Y., & Gu, J. (2018). fastp: an ultra-fast all-in-one FASTQ preprocessor. Bioinformatics , 34(17), i884–i890. <a href=\"https://doi.org/10.1093/bioinformatics/bty560\">10.1093/bioinformatics/bty560</a></li>" : "",
@@ -132,7 +132,7 @@ The leading sentence and condition can also be made more descriptive for more co
 
 For example, in a case where there were three different preprocessing steps, and there were mutually exclusive options for some of these preprocessing steps, the text could instead read:
 
-```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
+```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolCitationText() {
     def text_seq_qc = [
         "Sequencing quality control with",
@@ -170,7 +170,7 @@ So if a user specified `--preprocessing_qc_tool falco`, `--shortread_qc_tool ada
 
 The corresponding `toolBibliographyText()` function would be:
 
-```groovy title="utils_nfcore_pipeline_<pipeline_name>.nf"
+```groovy title="utils_nfcore_pipeline_<pipeline-name>.nf"
 def toolBibliographyText() {
     def text_seq_qc = [
         params.preprocessing_qc_tool == "falco"  ? "<li>de Sena Brandine, G., & Smith, A. D. (2021). Falco: high-speed FastQC emulation for quality control of sequencing data. F1000Research, 8(1874), 1874.  <a href=\"https://doi.org/10.12688/f1000research.21142.2\">10.12688/f1000research.21142.2</li>" : "",

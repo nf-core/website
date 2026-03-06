@@ -29,8 +29,8 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
 1. Clone the main nf-core pipeline repository to your local machine (not your development fork):
 
    ```bash
-   git clone https://github.com/nf-core/<pipeline_name>.git
-   cd <pipeline_name>
+   git clone https://github.com/nf-core/<pipeline-name>.git
+   cd <pipeline-name>
    ```
 
 1. Retrieve the commit hash from when the original nf-core template was used to generate the pipeline (that is, with `nf-core pipelines create`). If you started with the nf-core template, check your git log:
@@ -45,7 +45,7 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
 1. Reset the `TEMPLATE` branch to this commit:
 
    ```bash
-   git reset --hard <commit_hash>
+   git reset --hard <commit-hash>
    ```
 
 1. Push the cleaned branch back to the repository:
@@ -71,9 +71,9 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
 1. Pull the fresh template branch into your personal fork:
 
    ```bash
-   cd <path_to_forked_pipeline>
+   cd <path-to-forked-pipeline>
    git branch -D TEMPLATE
-   git remote add upstream git@github.com:nf-core/<pipeline_name>.git
+   git remote add upstream git@github.com:nf-core/<pipeline-name>.git
    git fetch upstream TEMPLATE
    git checkout --track upstream/TEMPLATE
    git push --force

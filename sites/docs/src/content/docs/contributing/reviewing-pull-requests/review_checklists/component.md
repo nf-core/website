@@ -29,7 +29,7 @@ You can cover most of the specifications by checking for the following:
 
 ## Review the main module file
 
-Check `modules/nf-core/<module_name>/main.nf` for:
+Check `modules/nf-core/<module-name>/main.nf` for:
 
 - [ ] All optional parameters are in the `$args` section
 - [ ] Software version extraction command is optimised, if required
@@ -44,7 +44,7 @@ Check `modules/nf-core/<module_name>/main.nf` for:
 
 ## Review tests and metadata
 
-Check `../tests/modules/nf-core/<module_name>/main.nf` and `meta.yml` for:
+Check `../tests/modules/nf-core/<module-name>/main.nf` and `meta.yml` for:
 
 - [ ] Tests exist for all outputs, including optional ones
 - [ ] `meta.yml` file has correct documentation links and patterns of files

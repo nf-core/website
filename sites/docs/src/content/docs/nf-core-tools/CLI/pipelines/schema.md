@@ -21,7 +21,7 @@ To help developers working with pipeline schema, nf-core tools has three `schema
 Nextflow can take input parameters in a JSON or YAML file when running a pipeline using the `-params-file` option.
 This command validates such a file against the pipeline schema.
 
-Run `nf-core pipelines schema validate <pipeline> <parameter file>`, for example with the pipeline downloaded [above](#download-pipeline):
+Run `nf-core pipelines schema validate <pipeline> <parameter-file>`, for example with the pipeline downloaded [above](#download-pipeline):
 
 <!-- RICH-CODEX
 working_dir: tmp
@@ -43,7 +43,7 @@ If no schema exists, it will create one for you.
 Once built, the tool can send the schema to the nf-core website where you can use a graphical interface to organise and fill in the schema.
 The tool checks your schema status on the website and saves your changes locally once complete.
 
-Run `nf-core schema build -d <pipeline_directory>`, for example:
+Run `nf-core schema build -d <pipeline-directory>`, for example:
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
@@ -55,10 +55,10 @@ before_command: sed '25,30d' nextflow_schema.json > nextflow_schema.json.tmp && 
 
 There are four flags that you can use with this command:
 
-- `--dir <pipeline_dir>`: Specify a pipeline directory other than the current working directory
+- `--dir <pipeline-dir>`: Specify a pipeline directory other than the current working directory
 - `--no-prompts`: Make changes without prompting for confirmation each time. Does not launch web tool.
 - `--web-only`: Skips comparison of the schema against the pipeline parameters and only launches the web tool.
-- `--url <web_address>`: Supply a custom URL for the online tool. Useful when testing locally.
+- `--url <web-address>`: Supply a custom URL for the online tool. Useful when testing locally.
 
 ## Display the documentation for a pipeline schema
 
@@ -70,7 +70,7 @@ There are four flags that you can use with this command:
 - `--output <filename>`: Output filename. Defaults to standard out.
 - `--format [markdown|html]`: Format to output docs in.
 - `--force`: Overwrite existing files
-- `--columns <columns_list>`: CSV list of columns to include in the parameter tables
+- `--columns <columns-list>`: CSV list of columns to include in the parameter tables
 
 ## Add new parameters to the pipeline schema
 

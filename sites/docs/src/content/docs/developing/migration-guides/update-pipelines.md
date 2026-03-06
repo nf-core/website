@@ -51,7 +51,7 @@ To migrate a module to use topic channels for version outputs:
    Replace `<tool1>` and `tool1 --version` with the tool name and version command.
    - Repeat this for each tool used in the module.
 
-1. Run `nf-core modules lint <module_name> --fix` to migrate the `meta.yml` file with the new topic outputs.
+1. Run `nf-core modules lint <module-name> --fix` to migrate the `meta.yml` file with the new topic outputs.
 
 1. Add a `type` and `description` for each field in the versions output:
 
@@ -63,12 +63,12 @@ To migrate a module to use topic channels for version outputs:
        - <tool>:
            type: string
            description: The tool name
-       - <versions_command>:
+       - <versions-command>:
            type: string
            description: The version of the tool
    ```
 
-   Update `<tool>` and `<versions_command>` to the output channel values.
+   Update `<tool>` and `<versions-command>` to the output channel values.
 
 1. Add the topics block to the `meta.yml`file below the outputs section:
 
@@ -93,7 +93,7 @@ To migrate a module to use topic channels for version outputs:
 1. Run tests to regenerate the snapshots:
 
    ```bash
-   nf-core modules test <module_name> --update
+   nf-core modules test <module-name> --update
    ```
 
 1. Check that the snapshot is correct and that all versions are being captured correctly.

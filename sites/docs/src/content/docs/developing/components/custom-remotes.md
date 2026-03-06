@@ -6,8 +6,8 @@ shortTitle: Setting custom remotes
 
 The `modules` and `subworkflows` command groups come with two flags for specifying a custom remote:
 
-- `--git-remote <git remote url>`: Specify the repository to fetch modules and subworkflows from as a git URL. Defaults to the GitHub repository of `nf-core/modules`.
-- `--branch <branch name>`: Specify the branch to fetch modules and subworkflows from. Defaults to the default branch of your repository.
+- `--git-remote <git-remote-url>`: Specify the repository to fetch modules and subworkflows from as a git URL. Defaults to the GitHub repository of `nf-core/modules`.
+- `--branch <branch-name>`: Specify the branch to fetch modules and subworkflows from. Defaults to the default branch of your repository.
 
 For example, if you want to install the `fastqc` module from the repository `nf-core/modules-test` hosted at `gitlab.com`, you can use the following command:
 

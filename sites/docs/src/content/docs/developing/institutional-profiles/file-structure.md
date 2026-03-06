@@ -13,7 +13,7 @@ Create these new files for your institutional profile:
 
 ### Configuration file
 
-**Path**: `conf/<cluster_name>.config`
+**Path**: `conf/<cluster-name>.config`
 
 This is the main configuration file that defines your cluster's settings.
 It contains all the Nextflow configuration scopes (parameters, process settings, executor options, container configurations) that apply to your cluster.
@@ -24,7 +24,7 @@ See [Configuration file components](configuration.md) for detailed information a
 
 ### Documentation file
 
-**Path**: `docs/<cluster_name>.md`
+**Path**: `docs/<cluster-name>.md`
 
 This markdown file documents your profile's purpose, usage instructions, and any special requirements.
 It helps users at your institution understand how to use the profile and troubleshoot common issues.
@@ -102,7 +102,7 @@ Follow the existing pattern in the file and add your profile to the appropriate 
 
 If you need a pipeline-specific profile (not common), create an additional directory and configuration file:
 
-**Path**: `conf/pipeline/<pipeline_name>/<cluster_name>.config`
+**Path**: `conf/pipeline/<pipeline-name>/<cluster-name>.config`
 
 For example, to create a profile specific to the rnaseq pipeline for big_university:
 

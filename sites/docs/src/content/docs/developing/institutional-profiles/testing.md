@@ -37,14 +37,14 @@ This parameter tells Nextflow to load configurations from your fork instead of t
 If you cloned your fork to the cluster where you will run tests:
 
 ```bash
-nextflow run nf-core/<pipeline_name> \
+nextflow run nf-core/<pipeline-name> \
   -profile <profile>,test \
   --custom_config_base /path/to/your/configs
 ```
 
 Replace:
 
-- `<pipeline_name>`: The pipeline to test (for example, `rnaseq`, `sarek`, `atacseq`)
+- `<pipeline-name>`: The pipeline to test (for example, `rnaseq`, `sarek`, `atacseq`)
 - `<profile>`: The profile name (for example, `big_university`)
 - `/path/to/your/configs`: The absolute path to your cloned configs directory
 
@@ -53,7 +53,7 @@ Replace:
 If your changes are pushed to GitHub, test directly from your fork:
 
 ```bash
-nextflow run nf-core/<pipeline_name> \
+nextflow run nf-core/<pipeline-name> \
   -profile <profile>,test \
   --custom_config_base 'https://raw.githubusercontent.com/<username>/configs/<branch>'
 ```
@@ -205,7 +205,7 @@ The `maxRetries` setting should allow jobs to resubmit with increased resources 
 
 **Solution:** Verify your profile configuration and loading:
 
-- Check for syntax errors in `conf/<cluster_name>.config`
+- Check for syntax errors in `conf/<cluster-name>.config`
 - Verify your profile is listed in `nfcore_custom.config`
 - Ensure you specified the correct profile name with `-profile`
 

@@ -101,13 +101,13 @@ Before contributing your component, thoroughly test it to ensure it meets nf-cor
    - For modules:
 
      ```bash
-     nf-core modules lint <module_name>
+     nf-core modules lint <module-name>
      ```
 
    - For subworkflows:
 
      ```bash
-     nf-core subworkflows lint <subworkflow_name>
+     nf-core subworkflows lint <subworkflow-name>
      ```
 
    The linting tool checks for common issues such as missing files, incorrect formatting, and invalid metadata.
@@ -116,13 +116,13 @@ Before contributing your component, thoroughly test it to ensure it meets nf-cor
    - For modules:
 
      ```bash
-     nf-core modules test <module_name>
+     nf-core modules test <module-name>
      ```
 
    - For subworkflows:
 
      ```bash
-     nf-core subworkflows test <subworkflow_name>
+     nf-core subworkflows test <subworkflow-name>
      ```
 
    All tests must pass before you can contribute your component.

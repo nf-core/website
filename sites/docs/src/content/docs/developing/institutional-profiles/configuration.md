@@ -4,7 +4,7 @@ subtitle: Structure institutional profile configuration
 shortTitle: Configuration
 ---
 
-The main configuration file (`conf/<cluster_name>.config`) defines all cluster-specific settings using Nextflow's configuration syntax.
+The main configuration file (`conf/<cluster-name>.config`) defines all cluster-specific settings using Nextflow's configuration syntax.
 This file contains multiple configuration scopes that control different aspects of pipeline execution.
 
 ## params scope

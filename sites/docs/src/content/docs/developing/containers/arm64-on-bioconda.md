@@ -174,7 +174,7 @@ For conda-forge packages (for example, a package named `perl-nonsense`):
 Clone the feedstock:
 
 ```bash
-git clone git@github.com:<your-github-username>/<package-name>-feedstock.git
+git clone git@github.com:<github-username>/<package-name>-feedstock.git
 cd <package-name>-feedstock
 git remote add bot https://github.com/regro-cf-autotick-bot/<package-name>-feedstock
 git fetch bot

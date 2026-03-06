@@ -23,7 +23,7 @@ There are six additional flags that you can use with this command:
 - `--dir`: Pipeline directory, the default is the current working directory.
 - `--force`: Reinstall subworkflow even if it appears to be up to date
 - `--prompt`: Select the subworkflow version using a cli prompt.
-- `--sha <commit_sha>`: Install the subworkflow at a specific commit from the `nf-core/modules` repository.
+- `--sha <commit-sha>`: Install the subworkflow at a specific commit from the `nf-core/modules` repository.
 - `--preview/--no-preview`: Show the diff between the installed files and the new version before installing.
 - `--save-diff <filename>`: Save diffs to a file instead of updating in place. The diffs can then be applied with `git apply <filename>`.
 - `--all`: Use this flag to run the command on all subworkflows in the pipeline.

@@ -10,8 +10,8 @@ The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as descri
 
 Subworkflow names SHOULD be based on their module composition.
 
-For short chains of modules without conditional logic, use the format `<file_type>_<operation_1>_<operation_n>_<tool_1>_<tool_n>`.
-For example, `bam_sort_stats_samtools` where `bam` = `<file_type>`, `sort` = `<operation>` and `samtools` = `<tool>`.
+For short chains of modules without conditional logic, use the format `<file-type>_<operation-1>_<operation-n>_<tool-1>_<tool-n>`.
+For example, `bam_sort_stats_samtools` where `bam` = `<file-type>`, `sort` = `<operation>` and `samtools` = `<tool>`.
 Exclude routine operations from the name (for example, indexing after BAM creation).
 Collapse directly related steps into a general name.
 For example, if a binning tool has three required steps (`<tool> split`, `<tool> calculate`, `<tool> merge`) to perform contig binning, collapse these into one (for example, `fasta_binning_concoct`, rather than `fasta_split_calculate_merge_concoct`).

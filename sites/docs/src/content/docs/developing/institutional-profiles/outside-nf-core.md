@@ -71,15 +71,15 @@ This approach does not support offline mode or testing against development branc
 Once configured, execute your custom workflow using an institutional profile:
 
 ```bash
-nextflow run main.nf -profile <institutional_profile>
+nextflow run main.nf -profile <institutional-profile>
 ```
 
-Replace `<institutional_profile>` with your institution's profile name (for example, `biohpc_gen`, `uppmax`, `czbiohub_aws`).
+Replace `<institutional-profile>` with your institution's profile name (for example, `biohpc_gen`, `uppmax`, `czbiohub_aws`).
 
 You can also combine multiple profiles:
 
 ```bash
-nextflow run main.nf -profile <institutional_profile>,docker
+nextflow run main.nf -profile <institutional-profile>,docker
 ```
 
 ## Troubleshooting

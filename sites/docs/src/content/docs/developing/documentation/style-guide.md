@@ -61,19 +61,19 @@ We're here to help!
 
 - Use triple backticks with the language name for syntax highlighting
 - Include blank lines before and after code blocks
-- Use `<placeholder_text>` format for values users need to replace
+- Use `<placeholder-text>` format for values users need to replace
 - Example:
 
   ```bash
-  nextflow run <pipeline_name> --input <input_file>
+  nextflow run <pipeline-name> --input <input-file>
   ```
 
 ### Placeholder text
 
 When showing examples with values users must replace:
 
-- Use angle brackets: `<your-value>`
-- Be descriptive: `<your_email@example.com>` not just `<email>`
+- Use angle brackets: `<value>`
+- Be descriptive: `<email@example.com>` not just `<email>`
 - For test tokens in examples, use realistic fake values (see GitLab guide)
 
 ## Headings

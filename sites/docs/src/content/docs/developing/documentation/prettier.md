@@ -56,7 +56,7 @@ Most nf-core repositories already include a `.pre-commit-config.yaml` file:
 
 ```yaml
 - repo: https://github.com/pre-commit/mirrors-prettier
-  rev: <sha_or_tag> # Use the sha or tag you want to point at
+  rev: <sha-or-tag> # Use the sha or tag you want to point at
   hooks:
     - id: prettier
 ```
