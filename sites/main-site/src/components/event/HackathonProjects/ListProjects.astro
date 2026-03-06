@@ -6,7 +6,10 @@ const { eventPath } = Astro.props;
 
 export interface Props {
     eventPath?: string;
+    showCount?: boolean;
 }
+
+const showCount = Astro.props.showCount ?? false;
 
 let projects = await getCollection("hackathon-projects");
 
@@ -43,9 +46,19 @@ const projectsByLocation = locations.map((location) => ({
     location,
     projects: projects.filter((project) => project.data.location === location),
 }));
+
+const projectCount = projects.length;
+const categoryCount = new Set(projects.map((project) => project.data.category)).size;
 ---
 
 <div>
+    {
+        showCount && (
+            <p>
+                There are currently {projectCount} registered projects across {categoryCount} categories!
+            </p>
+        )
+    }
     {
         projectsByLocation.map(({ location, projects }) => (
             <>
