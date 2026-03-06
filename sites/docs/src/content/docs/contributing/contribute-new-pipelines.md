@@ -126,7 +126,7 @@ To develop your pipeline:
 1. Use the `debug` profile when testing to get additional information:
 
    ```bash
-   nextflow run <pipeline_name> -profile debug
+   nextflow run <pipeline-name> -profile debug
    ```
 
    - This enables warnings about process selectors, shows additional debug output, and disables cleanup.
@@ -153,7 +153,7 @@ To add your test data to the nf-core/test-datasets repository:
    ```bash
    git clone https://github.com/<username>/test-datasets.git
    cd test-datasets
-   git checkout -b <pipeline_name>
+   git checkout -b <pipeline-name>
    ```
 
 1. Add your test data files.
@@ -167,8 +167,8 @@ To add your test data to the nf-core/test-datasets repository:
 
    ```bash
    git add .
-   git commit -m "Add test data for <pipeline_name>"
-   git push --set-upstream origin <pipeline_name>
+   git commit -m "Add test data for <pipeline-name>"
+   git push --set-upstream origin <pipeline-name>
    ```
 
 1. Create a pull request against the main [nf-core/test-datasets](https://github.com/nf-core/test-datasets/) repository.
@@ -190,7 +190,7 @@ To configure the test profile in your pipeline:
 1. Run the pipeline with the test profile to verify it works:
 
    ```bash
-   nextflow run <pipeline_name> -profile test,docker --outdir <outdir>
+   nextflow run <pipeline-name> -profile test,docker --outdir <outdir>
    ```
 
 1. Update the `.github/workflows/` YAML files if you modify the test command.
@@ -287,7 +287,7 @@ To prepare for release:
 1. Update the version number on the `dev` branch:
 
    ```bash
-   nf-core pipelines bump-version --nextflow <new_version>
+   nf-core pipelines bump-version --nextflow <new-version>
    ```
 
    - The first release should be version `1.0.0` (pre-releases are discouraged).

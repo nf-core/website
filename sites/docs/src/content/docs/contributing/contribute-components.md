@@ -64,10 +64,10 @@ To set up your development environment:
 1. Clone your fork locally and set up the upstream remote:
 
    ```bash
-   git clone https://github.com/<github_username>/modules.git nf-core-modules
+   git clone https://github.com/<github-username>/modules.git nf-core-modules
    cd nf-core-modules
    git remote add upstream https://github.com/nf-core/modules.git
-   git checkout -b <component_name>
+   git checkout -b <component-name>
    ```
 
 1. Install pre-commit hooks:
@@ -113,13 +113,13 @@ Before submitting, thoroughly test your component:
    - For modules:
 
      ```bash
-     nf-core modules lint <module_name>
+     nf-core modules lint <module-name>
      ```
 
    - For subworkflows:
 
      ```bash
-     nf-core subworkflows lint <subworkflow_name>
+     nf-core subworkflows lint <subworkflow-name>
      ```
 
    The linting checks ensure your component follows nf-core standards and includes all required files.
@@ -128,13 +128,13 @@ Before submitting, thoroughly test your component:
    - For modules:
 
      ```bash
-     nf-core modules test <module_name>
+     nf-core modules test <module-name>
      ```
 
    - For subworkflows:
 
      ```bash
-     nf-core subworkflows test <subworkflow_name>
+     nf-core subworkflows test <subworkflow-name>
      ```
 
    All tests must pass before submission.
@@ -151,14 +151,14 @@ To submit your component for review:
 
    ```bash
    git add .
-   git commit -m "Add new component: <component_name>"
+   git commit -m "Add new component: <component-name>"
    ```
 
 1. Sync your branch with upstream before pushing:
 
    ```bash
    git pull --rebase upstream master
-   git push origin <component_name>
+   git push origin <component-name>
    ```
 
 :::tip
@@ -203,7 +203,7 @@ The nf-core maintainers will review your contribution:
    ```bash
    git add .
    git commit -m "Address review feedback"
-   git push origin <component_name>
+   git push origin <component-name>
    ```
 
    The pull request will update automatically with your new changes.

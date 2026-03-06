@@ -5,7 +5,7 @@ shortTitle: info
 weight: 20
 ---
 
-For quick help about how a subworkflow works, use `nf-core subworkflows info <subworkflow_name>`.
+For quick help about how a subworkflow works, use `nf-core subworkflows info <subworkflow-name>`.
 This shows documentation about the subworkflow on the command line, similar to what's available on the
 [nf-core website](https://nf-co.re/subworkflows).
 

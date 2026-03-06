@@ -4,7 +4,7 @@ subtitle: Document institutional profiles
 shortTitle: Documentation
 ---
 
-Each institutional profile requires a documentation file (`docs/<cluster_name>.md`) that explains how to use the profile and provides cluster-specific information.
+Each institutional profile requires a documentation file (`docs/<cluster-name>.md`) that explains how to use the profile and provides cluster-specific information.
 Clear documentation helps users at your institution get started quickly and troubleshoot common issues.
 
 ## Required sections
@@ -35,7 +35,7 @@ Explain how users at your institution should use the profile:
 To use this profile, specify it when running any nf-core pipeline:
 
 \```bash
-nextflow run nf-core/<pipeline_name> -profile big_university
+nextflow run nf-core/<pipeline-name> -profile big_university
 \```
 
 This will automatically apply all cluster-specific settings including executor,
@@ -152,7 +152,7 @@ Include common problems and solutions:
 If jobs fail with out-of-memory errors, try the `bigmem` sub-profile:
 
 \```bash
-nextflow run nf-core/<pipeline_name> -profile big_university,bigmem
+nextflow run nf-core/<pipeline-name> -profile big_university,bigmem
 \```
 
 ### Quota exceeded errors
@@ -161,7 +161,7 @@ Move your work directory to `/scratch` if you exceed `/home` quota:
 
 \```bash
 cd /scratch/$USER
-nextflow run nf-core/<pipeline_name> -profile big_university
+nextflow run nf-core/<pipeline-name> -profile big_university
 \```
 ````
 
@@ -199,7 +199,7 @@ for questions or issues.
 To use this profile, specify it when running any nf-core pipeline:
 
 \```bash
-nextflow run nf-core/<pipeline_name> -profile big_university
+nextflow run nf-core/<pipeline-name> -profile big_university
 \```
 
 This will automatically apply all cluster-specific settings including executor,
@@ -242,7 +242,7 @@ Move your work directory to `/scratch` if you exceed `/home` quota:
 
 \```bash
 cd /scratch/$USER
-nextflow run nf-core/<pipeline_name> -profile big_university
+nextflow run nf-core/<pipeline-name> -profile big_university
 \```
 
 ## Support

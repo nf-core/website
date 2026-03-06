@@ -37,14 +37,14 @@ You will need the following to get started:
 1. Fork the pipeline repository to your GitHub account and clone it locally:
 
    ```bash
-   git clone https://github.com/<github_username>/<pipeline_name>.git
-   cd <pipeline_name>
-   git remote add upstream https://github.com/nf-core/<pipeline_name>.git
-   git checkout -b <branch_name>
+   git clone https://github.com/<github-username>/<pipeline-name>.git
+   cd <pipeline-name>
+   git remote add upstream https://github.com/nf-core/<pipeline-name>.git
+   git checkout -b <branch-name>
    ```
 
    :::note
-   Replace `<github_username>`, `<pipeline_name>`, and `<branch_name>` with appropriate values.
+   Replace `<github-username>`, `<pipeline-name>`, and `<branch-name>` with appropriate values.
    Use descriptive branch names like `add-fastqc-module` or `fix-memory-issue`.
    :::
 
@@ -92,7 +92,7 @@ You will need the following to get started:
    ```bash
    git add .
    git commit -m "Add feature: <description>"
-   git push origin <branch_name>
+   git push origin <branch-name>
    ```
 
    :::tip

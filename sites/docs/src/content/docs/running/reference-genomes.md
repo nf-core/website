@@ -41,7 +41,7 @@ Using GRCh38 as an example:
    ```
 
    :::note
-   The pipeline will generate and save reference assets. For example, the STAR index will be stored in `<results_dir>/genome/index/star`.
+   The pipeline will generate and save reference assets. For example, the STAR index will be stored in `<results-dir>/genome/index/star`.
    :::
 
 3. Move generated assets to a central, persistent storage location for re-use in future runs.
@@ -174,8 +174,8 @@ To use Refgenie:
    params {
      genomes {
        't7' {
-         bowtie2_index     = "<path_to_refgenie_genomes>/alias/t7/bowtie2_index/default/t7"
-         fasta             = "<path_to_refgenie_genomes>/alias/t7/fasta/default/t7.fa"
+         bowtie2_index     = "<path-to-refgenie-genomes>/alias/t7/bowtie2_index/default/t7"
+         fasta             = "<path-to-refgenie-genomes>/alias/t7/fasta/default/t7.fa"
        }
      }
    }
@@ -184,7 +184,7 @@ To use Refgenie:
 4. Run your pipeline with the required genome. For example:
 
    :::bash
-   nextflow run nf-core/<pipeline_name> --genome t7
+   nextflow run nf-core/<pipeline-name> --genome t7
    :::
 
 ### Handle asset name mismatches

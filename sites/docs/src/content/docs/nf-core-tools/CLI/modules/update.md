@@ -14,13 +14,13 @@ working_dir: tmp/nf-core-nextbigthing
 ![`nf-core modules update --all --no-preview`](../../../../../assets/images/tools/nf-core-modules-update.svg)
 
 You can pass the module name as an optional argument to `nf-core modules update` instead of using the CLI prompt, for example `nf-core modules update fastqc`.
-You can specify a pipeline directory other than the current working directory by using the `--dir <pipeline dir>`.
+You can specify a pipeline directory other than the current working directory by using the `--dir <pipeline-dir>`.
 
 There are five additional flags that you can use with this command:
 
 - `--force`: Reinstall module even if it appears to be up to date.
 - `--prompt`: Select the module version using a CLI prompt.
-- `--sha <commit_sha>`: Install the module at a specific commit from the `nf-core/modules` repository.
+- `--sha <commit-sha>`: Install the module at a specific commit from the `nf-core/modules` repository.
 - `--preview/--no-preview`: Show the diff between the installed files and the new version before installing.
 - `--save-diff <filename>`: Save diffs to a file instead of updating in place. The diffs can then be applied with `git apply <filename>`.
 - `--all`: Use this flag to run the command on all modules in the pipeline.

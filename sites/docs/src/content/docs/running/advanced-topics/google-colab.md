@@ -88,7 +88,7 @@ This downloads the demo pipeline and executes it with the test profile, which us
 For other pipelines, replace `nf-core/demo` with the pipeline name and adjust parameters according to the pipeline documentation:
 
 ```bash
-!nextflow run nf-core/<pipeline_name> -profile conda,test --outdir <output_directory>
+!nextflow run nf-core/<pipeline-name> -profile conda,test --outdir <output-directory>
 ```
 
 ## Integrate with VS Code
@@ -101,7 +101,7 @@ Install and configure vscode-colab:
 !pip install vscode-colab
 import vscode_colab
 vscode_colab.login()  # Authenticate with GitHub
-vscode_colab.connect(name="<tunnel_name>", git_user_name="<github_username>")
+vscode_colab.connect(name="<tunnel-name>", git_user_name="<github-username>")
 ```
 
 Connect from VS Code desktop:
@@ -128,7 +128,7 @@ drive.mount('/content/drive')
 After mounting, specify output directories within your Drive mount point:
 
 ```bash
-!nextflow run nf-core/<pipeline_name> -profile conda,test --outdir /content/drive/MyDrive/<output_directory>
+!nextflow run nf-core/<pipeline-name> -profile conda,test --outdir /content/drive/MyDrive/<output-directory>
 ```
 
 :::warning
@@ -173,7 +173,7 @@ Address these limitations through the following practices:
 If your session times out mid-execution, you can resume the pipeline:
 
 ```bash
-!nextflow run nf-core/<pipeline_name> -profile conda,test --outdir <output_directory> -resume
+!nextflow run nf-core/<pipeline-name> -profile conda,test --outdir <output-directory> -resume
 ```
 
 Nextflow's resume functionality relies on the work directory remaining intact.

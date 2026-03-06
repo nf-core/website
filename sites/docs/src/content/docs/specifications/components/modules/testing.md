@@ -64,7 +64,7 @@ tag "modules"
 tag "modules_nfcore"
 tag "<tool>"
 tag "<tool>/<subtool>" // Only if there is a subtool
-tag "<dependent_tool>/<dependent_subtool>" // Only if there is a tool this module depends on
+tag "<dependent-tool>/<dependent-subtool>" // Only if there is a tool this module depends on
 ```
 
 ## `assertAll()`

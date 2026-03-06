@@ -25,7 +25,7 @@ head: 25
 
 To list modules installed in a local pipeline directory you can use `nf-core modules list local`.
 This will list the modules installed in the current working directory by default.
-If you want to specify another directory, use the `--dir <pipeline_dir>` flag.
+If you want to specify another directory, use the `--dir <pipeline-dir>` flag.
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing

@@ -19,14 +19,14 @@ Use this approach when working with an official nf-core pipeline that needs manu
 1. Navigate to your pipeline directory and check out your development branch:
 
    ```bash
-   cd <pipeline_name>
+   cd <pipeline-name>
    git checkout dev
    ```
 
 1. If you work on a fork, pull the `TEMPLATE` branch from the upstream nf-core repository:
 
    ```bash
-   git remote add upstream https://github.com/nf-core/<pipeline_name>.git
+   git remote add upstream https://github.com/nf-core/<pipeline-name>.git
    git checkout --track upstream/TEMPLATE
    git checkout dev
    ```
@@ -46,18 +46,18 @@ Use this approach when you maintain a custom pipeline and want to create a pull 
 1. Navigate to your pipeline directory:
 
    ```bash
-   cd <pipeline_name>
+   cd <pipeline-name>
    ```
 
 1. Run the sync command with pull request options:
 
    ```bash
    nf-core pipelines sync \
-      --dir <pipeline_directory> \
+      --dir <pipeline-directory> \
       --from-branch dev \
       --pull-request \
-      --username <github_username> \
-      --github-repository <github_repository_url>
+      --username <github-username> \
+      --github-repository <github-repository-url>
    ```
 
 This creates a pull request in your repository that you can review and merge through the GitHub interface.

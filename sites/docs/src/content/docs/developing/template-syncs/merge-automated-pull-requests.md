@@ -39,7 +39,7 @@ Local resolution allows you to test changes on your machine before committing.
 1. Add the nf-core repository as a git remote called `upstream`:
 
    ```bash
-   git remote add upstream https://github.com/nf-core/<pipeline_name>.git
+   git remote add upstream https://github.com/nf-core/<pipeline-name>.git
    ```
 
 1. Check out a new branch for these changes:

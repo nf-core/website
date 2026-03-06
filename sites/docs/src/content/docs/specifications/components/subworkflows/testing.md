@@ -44,7 +44,7 @@ Tags MUST be specified for any dependent modules to ensure changes to upstream m
 ```groovy
 tag "subworkflows"
 tag "subworkflows_nfcore"
-tag "<subworkflow_name>"
+tag "<subworkflow-name>"
 tag "<tool>" // Add each tool as a separate tag
 tag "<tool>/<subtool>" // Add each subtool as a separate tag
 ```

@@ -29,7 +29,7 @@ It will fail if it cannot do either.
 The `nf-core pipelines create` command creates this template automatically when you start your pipeline.
 See the [nf-core website sync documentation](https://nf-co.re/developers/sync) if you have difficulties.
 
-To specify a directory other than the current working directory, use `--dir <pipeline_dir>`.
+To specify a directory other than the current working directory, use `--dir <pipeline-dir>`.
 
 By default, the tool collects workflow variables from the current branch in your pipeline directory.
 Supply the `--from-branch` flag to specify a different branch.
