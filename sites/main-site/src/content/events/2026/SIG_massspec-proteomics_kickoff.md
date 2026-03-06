@@ -3,9 +3,9 @@ title: "Mass Spec Proteomics SIG: Kickoff Meeting"
 subtitle: "Initial meeting to discuss quantms integration, module development, and legacy pipelines."
 type: "talk"
 startDate: "2026-03-05"
-startTime: "08:00-08:00"
+startTime: "17:00+01:00"
 endDate: "2026-03-05"
-endTime: "09:30-08:00"
+endTime: "18:00+01:00"
 locations:
   - name: Virtual
 ---
@@ -19,7 +19,7 @@ Following the recent introduction of the [Mass Spec Proteomics SIG](https://nf-c
 - [Phil Ewels](https://phil.ewels.co.uk/projects/nf-core/)
 - [Martin Gordon](https://www.linkedin.com/in/martin-gordon-983a7a1b6/)
 - [Dongze He](https://www.linkedin.com/in/dongzehe/)
-- [enryh](https://github.com/enryh)
+- [enryh](https://orbit.dtu.dk/en/persons/henry-emanuel-webel/)
 - SIG Lead
 
 ## Key Discussion Points
@@ -33,6 +33,7 @@ We spent a significant portion of the meeting discussing the excellent work done
 - We have successfully implemented the [`diann` module](https://github.com/nf-core/modules/tree/master/modules/nf-core/diann).
 - The [`dia_proteomics_analysis` subworkflow](https://github.com/nf-core/modules/tree/master/subworkflows/nf-core/dia_proteomics_analysis) is currently available in nf-core.
 - **Validation Success:** We confirmed that running the nf-core `thermorawfileparser` combined with the `dia_proteomics_analysis` subworkflow produces _exactly the same results_ as `quantms`. This includes identical DIANN configurations and step-by-step outputs.
+- We are working on a comprehensive module and subworkflow collection  for [fragpipe](https://fragpipe.nesvilab.org/) as well. This will be released in the upcoming weeks and will be a PR to nf-core/modules.
 
 ### 2. Expanding the Module Library
 
