@@ -201954,13 +201954,29 @@
               {
                 "*_best_fit.txt": {
                   "type": "file",
-                  "description": "TXT file continaing the pyclone-vi best fit.",
+                  "description": "TXT file containing the pyclone-vi best fit.",
                   "pattern": "*_best_fit.txt",
                   "ontologies": []
                 }
               }
             ]
           ],
+          "versions_pyclonevi": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
