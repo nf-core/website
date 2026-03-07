@@ -20,7 +20,6 @@ Following the recent introduction of the [Mass Spec Proteomics SIG](https://nf-c
 - [Martin Gordon](https://www.linkedin.com/in/martin-gordon-983a7a1b6/)
 - [Dongze He](https://www.linkedin.com/in/dongzehe/)
 - [Henry Webel](https://orbit.dtu.dk/en/persons/henry-emanuel-webel/)
-- SIG Lead
 
 ## Key Discussion Points
 
