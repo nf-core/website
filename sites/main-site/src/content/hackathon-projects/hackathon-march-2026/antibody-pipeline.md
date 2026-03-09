@@ -18,7 +18,7 @@ from scratch during the hackathon.
 
 ## Description
 
-Pipeline will coveri CDR redesign (AntiFold), structural verification (ABodyBuilder2), humanization (BioPhi Sapiens) and humanness scoring (OASis).
+Pipeline will cover CDR redesign (AntiFold), structural verification (ABodyBuilder2), humanization (BioPhi Sapiens) and humanness scoring (OASis).
 
 
 
