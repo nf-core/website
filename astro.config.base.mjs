@@ -127,7 +127,7 @@ export default {
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com", "github.com"],
+        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com", "github.com","nf-core-docs.netlify.app","nf-core-main-site.netlify.app"],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },

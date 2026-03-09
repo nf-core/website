@@ -952,3 +952,21 @@ Please keep the file sorted alphabetically.
 ### General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
+
+To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors.
+Utilize the following command to check your code:
+
+```bash
+NXF_SYNTAX_PARSER=v2 nextflow lint modules/nf-core/module_name
+```
+
+Common issues to avoid:
+
+| Old syntax                                               | Prefered syntax                                     |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| Unused `def args = task.ext.args ?: ''{:groovy}` in stub | delete it                                           |
+| undeclared variable `my_variable{:groovy}`               | add `def my_variable{:groovy}`                      |
+| `input.collect{ it[1].name }{:groovy}`                   | `input.collect{ meta, file -> file.name }{:groovy}` |
+| `for{:groovy}` loop                                      | `.each{}{:groovy}` operator                         |
+
+By following these guidelines, you will ensure that your code is compliant with Nextflow standards.

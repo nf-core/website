@@ -2,10 +2,11 @@
 import Project from "@components/event/HackathonProjects/Project.astro";
 import { getCollection } from "astro:content";
 
-const { eventPath } = Astro.props;
+const { eventPath, showCount = false } = Astro.props;
 
 export interface Props {
     eventPath?: string;
+    showCount?: boolean;
 }
 
 let projects = await getCollection("hackathon-projects");
@@ -43,9 +44,19 @@ const projectsByLocation = locations.map((location) => ({
     location,
     projects: projects.filter((project) => project.data.location === location),
 }));
+
+const projectCount = projects.length;
+const categoryCount = new Set(projects.map((project) => project.data.category)).size;
 ---
 
 <div>
+    {
+        showCount && (
+            <p>
+                There are currently {projectCount} registered projects across {categoryCount} categories!
+            </p>
+        )
+    }
     {
         projectsByLocation.map(({ location, projects }) => (
             <>

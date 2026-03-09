@@ -37,8 +37,24 @@ We have a reserved space for up to 20 participants at our facility. Attendees fr
 
 ## Schedule
 
-tba
+9:00-17:00 (GMT+3)
 
 ## Project
 
-Plans for 3 projects for beginners, intermediate and advanced Nextflow programmers are currently in the works and will be uploaded by Monday 1st March at the latest.
+### 🟢 Beginner – Documentation & Translation
+
+- Review AI-generated Turkish translations of Nextflow training websites
+- Contribute to nf-core/sarek pipeline updates (topic channels / strict syntax) [(Project link)](https://nf-co.re/hackathon-projects/hackathon-march-2026/sarek)
+- Help review new Nextflow documentation [(Project link)](https://nf-co.re/hackathon-projects/hackathon-march-2026/docs-v2)
+
+### 🔵 Intermediate & Advanced – scdownstream Development
+
+Focus on resolving the following nf-core/scdownstream issues:
+
+- Cell cycle analysis implementation [(issue #170)](https://github.com/nf-core/scdownstream/issues/170)
+- scDblFinder module implementation [(issue #144)](https://github.com/nf-core/scdownstream/issues/144)
+- Sample sex prediction [(issue #171)](https://github.com/nf-core/scdownstream/issues/171)
+- Migration of legacy steps to `AnndataR` [(issue #207)](https://github.com/nf-core/scdownstream/issues/207)
+- Update MAD-based dynamic filtering option open pull request to comply with the latest nf-core template [(PR #204)](https://github.com/nf-core/scdownstream/pull/204)
+
+Beginners and intermediates will be supported by experienced members throughout the process.
