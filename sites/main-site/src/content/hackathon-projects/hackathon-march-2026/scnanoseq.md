@@ -24,8 +24,10 @@ Add new features and fixes to the pipeline and evaluate GPU implementation where
 1. Evaluate, review, test PR [#65](https://github.com/nf-core/scnanoseq/pull/65) for improvements linked to file compression.
 2. Address Issue [#80](https://github.com/nf-core/scnanoseq/issues/80).
 3. Address Issue [#83](https://github.com/nf-core/scnanoseq/issues/83).
-4. Review latest changes to `BLAZE`, identify improvements and address issues or feature requests, e.g.: Issues [#75](https://github.com/nf-core/scnanoseq/issues/75) and [#87](https://github.com/nf-core/scnanoseq/issues/87).
-5. Evaluate GPU integration where possible (e.g.: `minimap2`).
+4. Evaluate latest version of `IsoQuant` (particularly its parallelization performance) and update version in scnanoseq.
+5. Review latest changes to `BLAZE`, identify improvements and address issues or feature requests, e.g.: Issues [#75](https://github.com/nf-core/scnanoseq/issues/75) and [#87](https://github.com/nf-core/scnanoseq/issues/87).
+6. Make progress towards single-cell DNA processsing PR [#79](https://github.com/nf-core/scnanoseq/pull/79) with help from [Luuk Harbers](https://github.com/ljwharbers).
+7. Evaluate GPU integration where possible (e.g.: `minimap2`).
 
 ## Where
 
