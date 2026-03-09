@@ -6384,13 +6384,7 @@
           "@apeltzer",
           "@TCLamnidis"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomicrelatedness",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "anndata_barcodes",
@@ -19516,10 +19510,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "genomicrelatedness",
-          "version": "dev"
-        },
         {
           "name": "phaseimpute",
           "version": "1.1.0"
@@ -37728,7 +37718,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "riboseq",
@@ -73818,19 +73808,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_emu": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "emu": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "emu --version 2>&1 | sed \"s/^.*emu //; s/Using.*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "emu": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "emu --version 2>&1 | sed \"s/^.*emu //; s/Using.*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -79023,8 +79045,8 @@
           {
             "fastplong": {
               "description": "Ultra-fast preprocessing and quality control for long-read sequencing data.",
-              "homepage": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
-              "documentation": "https://github.com/OpenGene/fastplong/blob/v0.3.0/README.md",
+              "homepage": "https://github.com/OpenGene/fastplong/blob/v0.4.1/README.md",
+              "documentation": "https://github.com/OpenGene/fastplong/blob/v0.4.1/README.md",
               "tool_dev_url": "https://github.com/OpenGene/fastplong",
               "doi": "10.1002/imt2.107",
               "licence": [
@@ -89238,7 +89260,13 @@
         "maintainers": [
           "@thomasisensee"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "genomicrelatedness",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gatk4_annotateintervals",
@@ -114518,6 +114546,10 @@
         },
         {
           "name": "genomeannotator",
+          "version": "dev"
+        },
+        {
+          "name": "genomicrelatedness",
           "version": "dev"
         },
         {
@@ -147433,19 +147465,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_megahit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "megahit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "megahit -v | sed 's/MEGAHIT v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "megahit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "megahit -v | sed 's/MEGAHIT v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -158766,6 +158830,22 @@
               }
             ]
           ],
+          "versions_mobster": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -166842,19 +166922,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_nanoq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "nanoq": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "nanoq --version | sed -e 's/nanoq //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nanoq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nanoq --version | sed -e 's/nanoq //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249394,19 +249506,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_spades": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "spades": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "spades.py --version 2>&1 | sed -n 's/^.*SPAdes genome assembler v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "spades": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "spades.py --version 2>&1 | sed -n 's/^.*SPAdes genome assembler v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -281222,6 +281366,22 @@
               }
             ]
           ],
+          "versions_viber": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -302124,7 +302284,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "proteinannotator",
@@ -302549,7 +302709,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "proteinannotator",
@@ -302966,7 +303126,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.0"
+          "version": "3.0.1"
         },
         {
           "name": "proteinannotator",
