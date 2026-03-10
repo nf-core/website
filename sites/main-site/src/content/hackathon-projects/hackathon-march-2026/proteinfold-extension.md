@@ -28,20 +28,16 @@ drug discovery and structural biology research.
    Write a new nf-core module
    for `usalign/align`. US-align measures RMSD and TM-score between a predicted
    structure and a known reference — quantifying how accurate the prediction is.
-
- 
    - Source: https://github.com/pylelab/USalign
- 
 
    Level: Intermediate — some Nextflow/nf-core experience recommended.
 
 3. **Add DockQ v2 interface scoring module**
 
-   Write  new nf-core module for `dockq/score`.
-   DockQ specifically scores the quality of the binding interface between two proteins 
+   Write new nf-core module for `dockq/score`.
+   DockQ specifically scores the quality of the binding interface between two proteins
 
    Issue: https://github.com/nf-core/proteinfold/issues/516
-   
    - Source: https://github.com/bjornwallner/DockQ
 
    Level: Intermediate — some Nextflow/nf-core experience recommended.
@@ -54,4 +50,3 @@ drug discovery and structural biology research.
    Issue: https://github.com/nf-core/proteinfold/issues/515
 
    Level: Intermediate — Nextflow pipeline development experience recommended.
-
