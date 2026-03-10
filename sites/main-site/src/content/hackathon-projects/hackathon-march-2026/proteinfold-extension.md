@@ -2,6 +2,7 @@
 title: nf-core/proteinfold Extension
 category: pipelines
 location: Skopje (Loka Office)
+slack: https://nfcore.slack.com/archives/C08THK11CHX
 leaders:
   JelPej:
     name: Jelena Pejovic
