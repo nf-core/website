@@ -1,7 +1,7 @@
 ---
 title: Create and publish new nf-core modules
 category: components
-slack: https://nfcore.slack.com/team/U08FS0W6SHZ
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-new-modules
 location: Medellin and online
 leaders:
   florian:

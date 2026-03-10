@@ -3,7 +3,7 @@ title: Working on nextflow/plugins/nf-google & nf-k8s
 category: tooling
 location: Brussels (Google offices) and online
 intro_video: ""
-slack: "https://nfcore.slack.com/archives/C02T98BKE2K"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-nf-google-and-k8s-plugins
 image: ""
 image_alt: ""
 leaders:
