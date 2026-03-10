@@ -2,6 +2,7 @@
 title: Antibody Optimization Pipeline
 category: pipelines
 location: Skopje (Loka Office)
+slack: "https://nfcore.slack.com/archives/C0ACF0TPF5E"
 leaders:
   JelPej:
     name: Jelena Pejovic
