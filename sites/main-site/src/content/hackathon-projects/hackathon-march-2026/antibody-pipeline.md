@@ -3,7 +3,9 @@ title: Antibody Optimization Pipeline
 category: pipelines
 location: Skopje (Loka Office)
 leaders:
-  - JelPej
+  JelPej:
+  		name: Jelena Pejovic
+  		slack: https://nfcore.slack.com/archives/D0AJXGCSNET
 ---
 
 Building end-to-end Nextflow pipeline for antibody CDR redesign,
