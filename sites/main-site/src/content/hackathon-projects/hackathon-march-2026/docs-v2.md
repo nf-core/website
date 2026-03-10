@@ -15,11 +15,9 @@ leaders:
     slack: https://nfcore.slack.com/team/UEM37TBAR
 ---
 
-Contribute to the final push for releasing v2 of the nf-core documentation. Help with quality control, link fixes, and content refinement.
-
 ## Goal
 
-Work towards completing the final quality control phase of the nf-core documentation v2 release by fixing links, filling content gaps, and helping the documentation meet our new standards.
+Help us work towards completing the final quality control phase of the nf-core documentation v2 release by fixing links, filling content gaps, and helping the documentation meet our new standards.
 
 ## Description
 
@@ -45,6 +43,8 @@ Our goal is to merge the new and improved documentation at the end of the hackat
 
 With the rapid initial migration complete, we need careful review and refinement to help make the v2 documentation launch as successful as possible and improve the user experience.
 
+We need as many eyes on the docs as possible to help us with quality control. We realise that not everything will be perfect for the iniital release, but would like to get as close as we can.
+
 :::info{title="Great first issues"}
 This project is suitable for newcomers to nf-core and open source contributions.
 We expect to have many "great first issues" available to help you get started.
@@ -60,7 +60,14 @@ Specific tasks include:
 - Validate examples and code snippets
 - Ensure style guide compliance across pages
 
-:::note
-We have been marking issues during the initial migration and will have a comprehensive list GitHub issues ready for the hackathon.
-Keep an eye on this page for more updates.
-:::
+For a list of open issues, see Website [issues](https://github.com/nf-core/website/issues).
+
+If you find other issues you would like to work on, please make them into GitHub issues for visibity.
+
+## Making PRs
+
+All updates should be made against the [docs-v2](https://github.com/nf-core/website/tree/docs-v2) branch.
+
+As we are pushing towards a major release of documentation and will not be strictly following the standard nf-core review protocols, leave merges open for James or Chris to reivew and merge. Tag them for reviews as you make the PRs.
+
+Chris will largely be working in New Zealand time, while James will be working in European time. There may be a delay in resonse to your PR.
