@@ -1,7 +1,7 @@
 ---
 title: Docs v2
 category: community
-slack: https://nfcore.slack.com/archives/C06RR8F5L3E
+slack: https://nfcore.slack.com/archives/C01QPMKBYNR
 # intro_video: ""
 location: online
 image: "/assets/images/events/2026/hackathon-march/development-guides.jpg"
