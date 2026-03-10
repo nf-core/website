@@ -68,6 +68,6 @@ If you find other issues you would like to work on, please make them into GitHub
 
 All updates should be made against the [docs-v2](https://github.com/nf-core/website/tree/docs-v2) branch.
 
-As we are pushing towards a major release of documentation and will not be strictly following the standard nf-core review protocols, leave merges open for James or Chris to reivew and merge. Tag them for reviews as you make the PRs.
+As we are pushing towards a major release of documentation and will not be strictly following the standard nf-core review protocols, leave merges open for [James](https://github.com/jfy133) or [Chris](https://github.com/christopher-hakkaart) to reivew and merge. Tag them for reviews as you make the PRs.
 
 Chris will largely be working in New Zealand time, while James will be working in European time. There may be a delay in resonse to your PR.
