@@ -19,10 +19,7 @@ drug discovery and structural biology research.
 
 1. **Add Boltz-2 co-folding module**
 
-   Write a new nf-core module for `boltz/predict`.
-   Boltz-2 supports protein-protein, antibody-antigen and protein-ligand co-folding,
-   and predicts both structure and binding affinity.
-
+   Validating Boltz-2 in proteinfold pipeline.
 
    Level: Intermediate — some Nextflow/nf-core experience recommended.
 
@@ -43,7 +40,8 @@ drug discovery and structural biology research.
    Write  new nf-core module for `dockq/score`.
    DockQ specifically scores the quality of the binding interface between two proteins 
 
- 
+   Issue: https://github.com/nf-core/proteinfold/issues/516
+   
    - Source: https://github.com/bjornwallner/DockQ
 
    Level: Intermediate — some Nextflow/nf-core experience recommended.
@@ -52,6 +50,8 @@ drug discovery and structural biology research.
 
    Connect Boltz-2 → US-align → DockQ into the existing proteinfold workflow
    and validate with the built-in test profile.
+
+   Issue: https://github.com/nf-core/proteinfold/issues/515
 
    Level: Intermediate — Nextflow pipeline development experience recommended.
 
