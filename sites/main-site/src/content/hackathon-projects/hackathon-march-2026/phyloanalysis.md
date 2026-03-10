@@ -25,7 +25,7 @@ Contribute to the [nf-core/phyloanalysis](https://github.com/ninaxiong11/nf-core
 - Support more input types, e.g. alignment and tree in same file
 - Add support for other phylogenetic analysis tools such as PAML
 
-### Location
+## Location
 
 Participants can join in person at Cambridge, MA, USA or online.
 
