@@ -29,6 +29,38 @@ const { headings, Content } = await render(event);
 const md_github_url =
     "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/events/" + event.id + ".md";
 
+const siteUrl = "https://nf-co.re";
+const eventUrl = `${siteUrl}/events/${event.id.replace(/\.[^/.]+$/, "")}`;
+const eventLocation = frontmatter.locations?.[0];
+const eventJsonLd: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "Event",
+    name: title,
+    description: subtitle,
+    url: eventUrl,
+    startDate: `${frontmatter.startDate}T${frontmatter.startTime}`,
+    endDate: `${frontmatter.endDate}T${frontmatter.endTime}`,
+    eventStatus: "https://schema.org/EventScheduled",
+    organizer: { "@id": `${siteUrl}/#organization` },
+    ...(eventLocation
+        ? {
+              location: {
+                  "@type": eventLocation.geoCoordinates ? "Place" : "VirtualLocation",
+                  name: eventLocation.name,
+                  ...(eventLocation.address && { address: eventLocation.address }),
+                  ...(eventLocation.geoCoordinates && {
+                      geo: {
+                          "@type": "GeoCoordinates",
+                          latitude: eventLocation.geoCoordinates[0],
+                          longitude: eventLocation.geoCoordinates[1],
+                      },
+                  }),
+                  ...(eventLocation.links?.[0] && { url: eventLocation.links[0] }),
+              },
+          }
+        : { location: { "@type": "VirtualLocation", url: eventUrl } }),
+};
+
 let video = event.data.youtubeEmbed;
 // convert video to array if it is string
 if (typeof video === "string") {
@@ -141,6 +173,7 @@ sections.forEach((year) => {
     headings={headings}
     sections={sections}
     leftSidebar={true}
+    jsonLd={eventJsonLd}
     docSearchTags={[
         { name: "page_type", content: "Event" },
         { name: "page_subtype", content: frontmatter.type },

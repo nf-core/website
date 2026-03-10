@@ -54,6 +54,34 @@ const { headings, Content } = await render(post);
 const title = post.data.title;
 const subtitle = post.data.subtitle;
 const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-site/src/content/blog/" + post.id;
+
+const siteUrl = "https://nf-co.re";
+const blogPostUrl = `${siteUrl}/blog/${post.id.replace(/\.[^/.]+$/, "")}`;
+const blogPostJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: title,
+    description: subtitle,
+    url: blogPostUrl,
+    datePublished: post.data.pubDate.toISOString(),
+    author: post.data.authors.map((author) => ({
+        "@type": "Person",
+        name: author,
+        url: `https://github.com/${author}`,
+    })),
+    publisher: {
+        "@id": `${siteUrl}/#organization`,
+    },
+    isPartOf: {
+        "@type": "Blog",
+        "@id": `${siteUrl}/blog/#blog`,
+        name: "nf-core Blog",
+        url: `${siteUrl}/blog`,
+    },
+    ...(post.data.headerImage && {
+        image: post.data.headerImage.startsWith("http") ? post.data.headerImage : `${siteUrl}${post.data.headerImage}`,
+    }),
+};
 ---
 
 <MarkdownTocLayout
@@ -61,6 +89,7 @@ const md_github_url = "https://github.com/nf-core/website/blob/main/sites/main-s
     subtitle={subtitle}
     md_github_url={md_github_url}
     headings={headings}
+    jsonLd={blogPostJsonLd}
     image={`/og.png?title=${encodeURIComponent(title)}&subtitle=${encodeURIComponent(
         subtitle,
     )}&category=blog&authors=${encodeURIComponent(post.data.authors.join(","))}`}
