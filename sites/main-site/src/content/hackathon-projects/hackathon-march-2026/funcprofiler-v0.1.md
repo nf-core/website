@@ -1,7 +1,7 @@
 ---
 title: Preparing funcprofiler for first release
 category: community
-slack: https://nfcore.slack.com/archives/C09A1GY7J4B
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-funcprofiler
 # intro_video: ""
 location: online/NC
 leaders:

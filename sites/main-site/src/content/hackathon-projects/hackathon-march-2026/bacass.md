@@ -1,7 +1,7 @@
 ---
 title: nf-core/bacass updates
 category: pipelines
-slack: https://nfcore.slack.com/archives/CJDV0UWH2
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-bacass
 # intro_video: ""
 location: Madrid (ISCIII) And Online
 image: ""

@@ -1,7 +1,7 @@
 ---
 title: Preparing mspepid for first (dev) release
 category: pipelines
-slack: https://nfcore.slack.com/archives/C09NMCR5M4P
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-mspepid
 intro_video: ""
 location: online
 image: ""

@@ -3,7 +3,7 @@ title: Updating the LRSomatic pipeline
 category: pipelines
 location: Brussels (Google offices) and online
 intro_video: ""
-slack: "https://nfcore.slack.com/archives/C0AGYQD6W5P"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-lrsomatic-updates
 image: ""
 image_alt: ""
 leaders:

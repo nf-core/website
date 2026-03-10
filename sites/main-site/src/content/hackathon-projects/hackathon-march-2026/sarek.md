@@ -1,7 +1,7 @@
 ---
 title: nf-core/sarek language updates
 category: pipelines
-slack: https://nfcore.slack.com/archives/C05V9FRJYMV
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-sarek
 intro_video: ""
 location: online
 image: "/assets/images/events/2026/hackathon-march/nfcore-sarek-icon.svg"

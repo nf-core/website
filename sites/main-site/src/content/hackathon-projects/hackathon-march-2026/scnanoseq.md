@@ -1,7 +1,7 @@
 ---
 title: nf-core/scnanoseq
 category: pipelines
-slack: "https://nfcore.slack.com/archives/C03TUE2K6NS"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-scnanoseq
 leaders:
   lianov:
     name: Lara Ianov

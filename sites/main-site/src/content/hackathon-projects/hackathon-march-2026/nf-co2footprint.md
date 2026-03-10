@@ -1,7 +1,7 @@
 ---
 title: "nf-co2footprint plugin: HTML report visualizations & integration"
 category: tooling
-slack: https://nfcore.slack.com/channels/nf-co2footprint
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-nf-co2footprint
 location: Tübingen and online
 image: ""
 image_alt: ""

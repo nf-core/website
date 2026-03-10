@@ -1,7 +1,7 @@
 ---
 title: nf-core/viralrecon updates
 category: pipelines
-slack: https://nfcore.slack.com/archives/C0110R22NH3
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-viralrecon
 # intro_video: ""
 location: Madrid (ISCIII) And Online
 image: ""

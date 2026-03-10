@@ -1,7 +1,7 @@
 ---
 title: nf-core/variantbenchmarking
 category: pipelines
-slack: https://nfcore.slack.com/archives/C06K0KEAMTN
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-variantbenchmarking
 intro_video: "https://www.youtube.com/watch?v=nhrm3M1Fsg8"
 location: Heidelberg and online
 image: ""

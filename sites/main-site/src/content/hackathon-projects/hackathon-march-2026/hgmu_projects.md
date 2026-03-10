@@ -1,7 +1,7 @@
 ---
 title: nf-core/scrnaseq
 category: pipelines
-slack: https://nfcore.slack.com/archives/C06PKQ25BJT
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-hgmu_projects
 location: Helmholtz Munich and Online
 image: ""
 image_alt: ""

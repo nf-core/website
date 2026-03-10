@@ -1,7 +1,7 @@
 ---
 title: nf-core/phaseimpute updates
 category: pipelines
-slack: "https://nfcore.slack.com/archives/C05G7UE94CT"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-phaseimpute
 intro_video: ""
 image: ""
 image_alt: ""

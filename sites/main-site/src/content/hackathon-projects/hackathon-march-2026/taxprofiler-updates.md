@@ -1,7 +1,7 @@
 ---
 title: nf-core/taxprofiler updates
 category: pipelines
-slack: "https://nfcore.slack.com/archives/C08CY275C06"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-taxprofiler-updates
 intro_video: "https://www.youtube.com/watch?v=p1EQtidJiUY"
 image: ""
 image_alt: ""

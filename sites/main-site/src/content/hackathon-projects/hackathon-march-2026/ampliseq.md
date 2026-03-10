@@ -2,7 +2,7 @@
 title: Working on nf-core/ampliseq
 category: pipelines
 intro_video: "https://youtu.be/a0VOEeAvETs"
-slack: https://nfcore.slack.com/archives/CEA7TBJGJ
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-ampliseq
 location: Tübingen and online
 image: ""
 image_alt: ""

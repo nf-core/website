@@ -1,7 +1,7 @@
 ---
 title: nf-core/proteinfold
 category: pipelines
-slack: https://nfcore.slack.com/archives/C06PKQ25BJT
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-proteinfold
 location: Barcelona (CRG) and online
 image: ""
 image_alt: ""

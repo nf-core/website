@@ -1,7 +1,7 @@
 ---
 title: Working on nf-core/genomeqc
 category: pipelines
-slack: https://nfcore.slack.com/archives/C07LY51P4S2
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-genomeqc
 location: London and online
 leaders:
   FernandoDuarteF:

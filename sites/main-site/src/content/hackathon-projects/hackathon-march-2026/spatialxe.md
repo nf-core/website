@@ -1,7 +1,7 @@
 ---
 title: nf-core/spatialxe
 category: pipelines
-slack: https://nfcore.slack.com/archives/C06PKQ25BJT
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-spatialxe
 location: Barcelona (CRG) and online
 image: ""
 image_alt: ""

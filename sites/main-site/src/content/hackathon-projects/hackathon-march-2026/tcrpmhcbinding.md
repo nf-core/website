@@ -1,7 +1,7 @@
 ---
 title: Preparing nf-core/tcrpmhcbinding
 category: pipelines
-slack: https://nfcore.slack.com/archives/C0919443QPP
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-tcrpmhcbinding
 location: Tübingen and online
 image: ""
 image_alt: ""

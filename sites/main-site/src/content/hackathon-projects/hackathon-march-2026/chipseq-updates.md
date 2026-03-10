@@ -1,7 +1,7 @@
 ---
 title: nf-core/chipseq updates
 category: pipelines
-slack: https://nfcore.slack.com/archives/CFP55NZ5G
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-chipseq-updates
 # intro_video: ""
 location: Online
 image: ""

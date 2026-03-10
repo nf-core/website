@@ -2,7 +2,7 @@
 title: QuantMS pipeline (DIANN, nf-core updates, documentation, benchmarking)
 category: pipelines
 location: "ZS Copenhagen and online"
-slack: "https://nfcore.slack.com/archives/C02Q3FL29PD"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-quantms
 leaders:
   enryh:
     name: Henry Webel
