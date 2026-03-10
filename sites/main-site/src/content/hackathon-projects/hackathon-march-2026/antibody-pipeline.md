@@ -3,10 +3,10 @@ title: Antibody Optimization Pipeline
 category: pipelines
 location: Skopje (Loka Office)
 leaders:
-  -  JelPej
+  - JelPej
 ---
 
-Building  end-to-end Nextflow pipeline for antibody CDR redesign,
+Building end-to-end Nextflow pipeline for antibody CDR redesign,
 structural validation, humanization and developability scoring.
 
 ## Goal
@@ -19,7 +19,3 @@ from scratch during the hackathon.
 ## Description
 
 Pipeline will cover CDR redesign (AntiFold), structural verification (ABodyBuilder2), humanization (BioPhi Sapiens) and humanness scoring (OASis).
-
-
-
-
