@@ -17,7 +17,6 @@ We're here to help!
 [Join the Slack](https://nf-co.re/join#slack).
 :::
 
-
 ## Concept
 
 Concept topics explain ideas, background information, and how things work.
