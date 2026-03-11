@@ -6,8 +6,7 @@ subtitle: Create and publish advisories
 Advisories serve as structured, long-lived notices for significant technical issues affecting nf-core components.
 They prioritise clarity and practical value, helping users avoid common pitfalls.
 
-<!-- TODO: Add image of advisory somewhere on this page -->
-![Example of an nf-core advisory](https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-dark.png)
+![Example of an nf-core advisory](/Users/skku_aws2_26/nf-core_doc2/sites/docs/public/images/advisory_example.png)
 
 ## What are advisories?
 
