@@ -1,7 +1,7 @@
 ---
 title: QuantMS pipeline (DIANN, nf-core updates, documentation, benchmarking)
 category: pipelines
-location: "ZS Copenhagen and online"
+location: "ZS Copenhagen"
 slack: "https://nfcore.slack.com/archives/C02Q3FL29PD"
 leaders:
   enryh:
@@ -23,11 +23,16 @@ and deployment instructions can be done during the hackathon.
 Last, if people want to rather explore datasets, benchmarking of microbial datasets
 can be done.
 
+Good to prepare
+
+- local up-to-date docker, nextflow and nf-core tools installation
+- nf-core tutorial for modules and subworkflows
+
 ## DIA-NN updates
 
-- [ ] document how to use a DIA-NN image using a private registry
-- [ ] DIA-NN updates: https://github.com/bigbio/quantms/issues/663
-- [ ] try to use `ext.args` see [PR660](https://github.com/bigbio/quantms/pull/660)
+- document how to use a DIA-NN image using a private registry
+- DIA-NN updates: [#663](https://github.com/bigbio/quantms/issues/663)
+- try to use `ext.args` see [PR660](https://github.com/bigbio/quantms/pull/660)
 
 ### Subworkflows
 
@@ -80,6 +85,29 @@ in `nf-core/modules` repo. For example:
 
 - Update ThermoRawFileParser (C#) to use `nf-core/modules/thermorawfileparser` version
   instead of `modules/bigbio/thermorawfileparser`
+
+## Updates to nextflow language
+
+In the [bigbio/nf-modules](https://github.com/bigbio/nf-modules) repo
+
+- read and parse `args` and `prefix,` see
+  [#23](https://github.com/bigbio/nf-modules/issues/23)
+- fix issues shown by the language server, see
+  [#24](https://github.com/bigbio/nf-modules/issues/24)
+
+Compare with `nf-core/modules` repo, see
+[here](https://github.com/bigbio/nf-modules/tree/main/modules/bigbio)
+
+There are currently only 3 modules in
+[bigbio/nf-modules](https://github.com/bigbio/nf-modules) repo, so further could be
+added.
+
+W.r.t to [#23](https://github.com/bigbio/nf-modules/issues/23) and
+[#24](https://github.com/bigbio/nf-modules/issues/24)
+we need to check:
+
+- `thermorawfileparser`
+- `onsite`
 
 ### Exercise: Add a module to nf-core/modules
 
