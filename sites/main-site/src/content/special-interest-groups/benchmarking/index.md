@@ -3,17 +3,16 @@ title: Introduction
 subtitle: "The nf-core special interest group around benchmarking tools and methods"
 groupName: Benchmarking
 leads:
-    - kubranarci: Kübra Narcı
+  - kubranarci: Kübra Narcı
 pipelines:
-    - variantbenchmarking
-    - sarek
-    - drugresponseeval
-    - diseasemodulediscovery
-    - scspatialmap
-    - rnavar
-    - taxprofiler
+  - variantbenchmarking
+  - sarek
+  - drugresponseeval
+  - diseasemodulediscovery
+  - scspatialmap
+  - rnavar
+  - taxprofiler
 ---
-
 
 # Introduction
 
@@ -25,7 +24,6 @@ The Benchmarking Special Interest Group provides a centralized home within nf-co
 - Community Needs Forum: Identifying what researchers need to compare (ranging from metagenomics and spatial transcriptomics to drug response prediction) and prioritizing tool development accordingly.
 - Network Syntonization: Keeping nf-core aligned with external benchmarking standards and platforms like NCBench, openEBench, and Open Problems in Single-Cell Analysis.
 
-
 # Activities
 
-Activities will involve monthly meetings with pre-selected topics and a presentation for an in-depth discussion. Suggestions and feedback are welcome for anyone and everyone! 
+Activities will involve monthly meetings with pre-selected topics and a presentation for an in-depth discussion. Suggestions and feedback are welcome for anyone and everyone!
