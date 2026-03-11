@@ -1,7 +1,7 @@
 ---
 import EventLayout from "@layouts/EventLayout.astro";
 import { getCollection } from "astro:content";
-import { markdown } from "@astropub/md";
+import { markdown } from "@mashehu/astropub-md";
 let events = await getCollection("events");
 
 events = events.filter((event) => {
