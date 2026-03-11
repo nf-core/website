@@ -1,7 +1,7 @@
 ---
 import AdvisoryLayout from "@layouts/AdvisoryLayout.astro";
 import { getCollection } from "astro:content";
-import { markdown } from "@astropub/md";
+import { markdown } from "@mashehu/astropub-md";
 
 export async function getStaticPaths() {
     let advisories = await getCollection("advisories");
