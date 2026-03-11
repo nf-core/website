@@ -114,3 +114,4 @@ Rename the following:
 - `ci.yml`: The name of your pipeline (rather than `nf-core CI tests`)
 
 <!-- TODO: Add link to using external module repositories -->
+For more information on using external module repositories, see [documentation](https://nf-co.re/docs/nf-core-tools/custom_remotes).
