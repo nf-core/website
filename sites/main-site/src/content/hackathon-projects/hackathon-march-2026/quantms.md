@@ -24,9 +24,9 @@ Last, if people want to rather explore datasets, benchmarking of microbial datas
 can be done.
 
 Good to prepare
+
 - local up-to-date docker, nextflow and nf-core tools installation
 - nf-core tutorial for modules and subworkflows
-
 
 ## DIA-NN updates
 
@@ -90,17 +90,17 @@ in `nf-core/modules` repo. For example:
 
 In the [bigbio/nf-modules](https://github.com/bigbio/nf-modules) repo
 
-- read and parse `args` and `prefix,` see 
+- read and parse `args` and `prefix,` see
   [#23](https://github.com/bigbio/nf-modules/issues/23)
-- fix issues shown by the language server, see 
+- fix issues shown by the language server, see
   [#24](https://github.com/bigbio/nf-modules/issues/24)
 
 Compare with `nf-core/modules` repo, see
 [here](https://github.com/bigbio/nf-modules/tree/main/modules/bigbio)
 
-There are currently only 3 modules in 
-[bigbio/nf-modules](https://github.com/bigbio/nf-modules) repo, so further could be 
-added. 
+There are currently only 3 modules in
+[bigbio/nf-modules](https://github.com/bigbio/nf-modules) repo, so further could be
+added.
 
 W.r.t to [#23](https://github.com/bigbio/nf-modules/issues/23) and
 [#24](https://github.com/bigbio/nf-modules/issues/24)
