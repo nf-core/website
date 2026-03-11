@@ -12,9 +12,8 @@ This guide covers the essential styling rules for nf-core documentation.
 Need help or have questions about documentation?
 Contact the nf-core docs-team on Slack at team-docs.
 We're here to help!
+[Join the Slack](https://join.slack.com/t/nfcore/shared_invite/zt-3s7fipubq-EpwJ37WDVz0S4jh4Tde2sw)
 :::
-
-<!-- TODO: Add links to nf-core Slack -->
 
 ## Voice and tone
 
