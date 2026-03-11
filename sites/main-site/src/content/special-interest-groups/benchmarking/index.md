@@ -14,7 +14,6 @@ pipelines:
     - taxprofiler
 ---
 
-Bioinformatics moves fast. New tools and methods appear every week. This makes it hard to know which software is the best for a specific task. We need to know which tools are the most accurate and which ones use the least amount of memory. This is why we are happy to announce the formation of Benchmarking special interest group within nf-core.
 
 # Introduction
 
