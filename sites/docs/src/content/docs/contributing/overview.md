@@ -46,14 +46,14 @@ Reviewing contributions is an important part of nf-core's collaborative developm
 
 Large projects that affect a significant proportion of the community go through the nf-core RFC (Request for Comment) process:
 
-- **[Project proposals](./contributing/project-proposals):** Propose and develop major changes through the nf-core RFC process, from initial suggestion through to implementation
+- **[Project proposals](/contributing/project-proposals):** Propose and develop major changes through the nf-core RFC process, from initial suggestion through to implementation
 
 ## Other considerations
 
 These pages cover additional topics that may be relevant depending on your contribution:
 
-- **[Deprecating modules](./developing/components/deprecating-components):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
-- **[Contribution types](./contributing/contribution-types):** Understand how nf-core attributes and recognizes different types of contributions in pipeline manifests
+- **[Deprecating modules](../developing/components/deprecating-components):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
+- **[Contribution types](./contribution-types):** Understand how nf-core attributes and recognizes different types of contributions in pipeline manifests
 
 ## Ask the community
 
