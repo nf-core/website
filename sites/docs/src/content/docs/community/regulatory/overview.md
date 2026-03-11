@@ -45,8 +45,7 @@ Each institution must perform their own validation according to their specific r
 
 A simplistic diagram of what you as a user intending to work under regulation would provide compared to what nf-core can provide you with is outlined below in the figure:
 
-<!-- TODO: Fix image path -->
-<!-- ![Regulatory validation overview](../../../../assets/images/regulatory/regulatory_layers_nfcore.png) -->
+![Regulatory validation overview](../../../../assets/images/regulatory/regulatory_layers_nfcore.png)
 
 ## nf-core metrics and reporting system
 
