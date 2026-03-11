@@ -1,7 +1,7 @@
 ---
 title: nf-test development
 category: tooling
-slack: "https://nfcore.slack.com/archives/C09MLN67BQU"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-nf-test
 location: Brussels (Google offices) and online
 intro_video: ""
 image: ""

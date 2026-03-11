@@ -1,7 +1,7 @@
 ---
 title: Build your nf-core pipeline dashboard with Depictio
 category: community
-slack: https://nfcore.slack.com/archives/C0AFS06G9HR
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-depictio-dashboards
 location: Online
 image: "/assets/images/events/2026/hackathon-march/depictio_logo.png"
 image_alt: "Depictio logo"
