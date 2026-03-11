@@ -47,9 +47,7 @@ Common software dependency and compute environment profiles include:
 - `conda`: Uses Conda environments
 
 Combine profiles with commas: `-profile test,docker`.
-For a full list of supported options, see [Software dependencies](./environment_setup/software-dependencies.md).
-
-<!-- TODO software-dependencies is a dead link -->
+For a full list of supported options, see [Software dependencies](../get_started/environment_setup/software-dependencies).
 
 :::
 
