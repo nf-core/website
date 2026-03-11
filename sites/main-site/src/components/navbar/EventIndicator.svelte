@@ -8,7 +8,7 @@
     let { type, timeSpan = [0, 0], children }: Props = $props();
 
     const now = new Date().getTime();
-    const show = timeSpan[0] < now && timeSpan[1] > now;
+    const show = $derived(timeSpan[0] < now && timeSpan[1] > now);
 </script>
 
 <div class={`event-indicator align-center d-inline-block ${type}`} class:d-none={!show}>
