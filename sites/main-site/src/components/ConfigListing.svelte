@@ -87,7 +87,7 @@
 
                     <td>
                         {#if pipelineConfigs}
-                            {#each pipelineConfigs.filter( (pipelineConfig) => pipelineConfig.id.includes(config.id.replace("conf/", "")), ) as pipelineConfig}
+                            {#each pipelineConfigs.filter( (pipelineConfig) => pipelineConfig.id.endsWith("/" + config.id.replace("conf/", "")), ) as pipelineConfig}
                                 <a
                                     class="badge bg-secondary me-2 fw-normal"
                                     href={`/configs/${config.id.replace("conf/", "").replace("(pipeline/.*)/", "")}/#${pipelineConfig.id.split("/").slice(-2, -1).join("/")}`}
