@@ -52,7 +52,7 @@ Large projects that affect a significant proportion of the community go through 
 
 These pages cover additional topics that may be relevant depending on your contribution:
 
-- **[Deprecating modules](/contributing/depreciate-modules):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
+- **[Deprecating modules](/developing/components/deprecating-components):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
 - **[Contribution types](/contributing/contribution-types):** Understand how nf-core attributes and recognizes different types of contributions in pipeline manifests
 
 ## Ask the community
