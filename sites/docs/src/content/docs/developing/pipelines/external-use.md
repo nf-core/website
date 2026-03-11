@@ -41,7 +41,7 @@ Replace the following:
   :::warning
   If you still wish to use the `nf-core tools` linting functionality, this may cause linting failures.
   Create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests.
-  See linting config for more information. <!-- TODO: Add link to linting config -->
+  See [linting config](https://nf-co.re/docs/nf-core-tools/pipelines/lint#linting-config) for more information.
   :::
 
 ### `README`
