@@ -93,7 +93,9 @@ To run `nf-core/demo` with your own sequencing data:
 
 ### Use parameter files
 
-<!-- TODO: Add a link to nextflow docs about params files, or add a section (maybe a hidden dropdown?) about it here. A link is preferable -->
+   :::tip
+   Check out the Nextflow documentation for [Configuration Files](https://www.nextflow.io/docs/latest/config.html)
+   :::
 
 To run `nf-core/demo` with a parameters file:
 
