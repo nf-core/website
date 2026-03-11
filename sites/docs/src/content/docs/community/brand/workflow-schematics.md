@@ -56,10 +56,6 @@ To open the nf-core component library:
 
 This will load the nf-core shapes into the sidebar without any CORS issues.
 
-```bash
-https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml
-```
-
 :::tip
 Components can also be accessed via [bioicons](https://bioicons.com/icons/cc-0/Chemo-_and_Bioinformatics/James-A--Fellows-Yates/metromap_style_pipeline_workflow_components.svg).
 :::
