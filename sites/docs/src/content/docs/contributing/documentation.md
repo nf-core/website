@@ -77,10 +77,8 @@ Here are some ways to find documentation that needs improvement:
 
 If you have questions at any point:
 
-- Contact **#team-docs** on the nf-core Slack workspace
+- Contact **#team-docs** on the [nf-core Slack](https://nf-co.re/join#Slack) workspace
 - Ask in your pull request comments
 - Review existing documentation for examples
-
-<!-- TODO: Add links to nf-core Slack -->
 
 We're a friendly community and happy to help new contributors!
