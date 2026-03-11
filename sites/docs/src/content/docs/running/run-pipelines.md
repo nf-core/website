@@ -197,7 +197,7 @@ Common configuration scenarios include:
 Configuration files are applied in order and later files override earlier settings. Multiple `-c` flags can be used to layer configurations.
 :::
 
-For detailed configuration options, see the [Configuration guide](./configuration/configuration-options.md)
+For detailed configuration options, see the [Configuration guide](./configuration/configuration-options)
 
 ### Resuming runs
 
@@ -219,7 +219,7 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 
 ## Next steps
 
-- [Configure pipelines](./configuration/configuration-options.md)
+- [Configure pipelines](./configuration/configuration-options)
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
 
