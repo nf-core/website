@@ -51,15 +51,15 @@ tool subtool -T -K test.bam > test.log
 The following table lists the permitted keys used in nf-core modules. Other keys must be discussed with
 maintainers, and added here when permitted.
 
-| Key         | Description                                            |
-| ----------- | ------------------------------------------------------ |
-| ext.args    | Additional arguments appended to command in module.    |
-| ext.args2   | Second set of arguments appended to command in module. |
-| ext.args3   | Third set of arguments appended to command in module.  |
-| ext.argsN   | Nth set of arguments appended to command in module.    |
-| ext.prefix  | File name prefix for output files.                     |
-| ext.when    | Boolean expression to determine when a module runs.    |
-| ext.use_gpu | Determines whether the module uses GPU settings.       |
+| Key                                   | Description                                                                                  |
+| ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| ext.args                              | Additional arguments appended to command in module.                                          |
+| ext.args2                             | Second set of arguments appended to command in module.                                       |
+| ext.args3                             | Third set of arguments appended to command in module.                                        |
+| ext.argsN                             | Nth set of arguments appended to command in module.                                          |
+| ext.prefix                            | File name prefix for output files.                                                           |
+| ext.when                              | Boolean expression to determine when a module runs.                                          |
+| ext.use_gpu                           | Determines whether the module uses GPU settings.                                             |
 | ext.singularity_pull_docker_container | Whether to use the Docker URI instead of the Singularity URI under the `singularity` profile |
 
 :::note
