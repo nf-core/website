@@ -4,9 +4,7 @@ subtitle: Follow nf-core style rules
 shortTitle: Style guide
 ---
 
-<!-- TODO: Add high level section here -->
-
-This guide covers the essential styling rules for nf-core documentation.
+# This guide covers the essential styling rules for nf-core documentation.
 
 :::tip
 Need help or have questions about documentation?
