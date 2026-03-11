@@ -269,11 +269,6 @@ Use the `dev` branch for new work and make all pull requests against `dev`.
 
 ## Make the first release
 
-<!-- TODO migrate updates from PRs
-- https://github.com/nf-core/website/pull/3677/changes
-- https://github.com/nf-core/website/pull/3679/changes
-- -->
-
 Once your pipeline is written, tests pass, and the repository is in the nf-core organisation, you can prepare for your first release.
 
 ### Reset the default branch
