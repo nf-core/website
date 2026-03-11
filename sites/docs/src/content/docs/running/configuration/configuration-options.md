@@ -80,6 +80,7 @@ Check if your system has a profile at [https://github.com/nf-core/configs](https
 If not, follow the repository instructions or the tutorial to add your cluster.
 
 <!-- TODO: Add link to tutorial from nextflow training, if it exists? -->
+For more information on running configurations, see [Nextflow training tutorial](https://training.nextflow.io/latest/nextflow_run/03_config/).
 
 ### Custom configuration files
 
