@@ -225,16 +225,16 @@ Reject the incoming changes to keep your citations.
 
 The above mentioned removal of `check_max()` might cause conflicts in the config files
 
-```diff title="conf/base.config"
+```groovy title="conf/base.config"
 <<<<<<< HEAD
--    cpus   = { check_max( 1    * task.attempt, 'cpus'   ) }
--    memory = { check_max( 6.GB * task.attempt, 'memory' ) }
--    time   = { check_max( 4.h  * task.attempt, 'time'   ) }
+    cpus   = { check_max( 1    * task.attempt, 'cpus'   ) } // [!code --]
+    memory = { check_max( 6.GB * task.attempt, 'memory' ) } // [!code --]
+    time   = { check_max( 4.h  * task.attempt, 'time'   ) } // [!code --]
 =======
-+    // TODO nf-core: Check the defaults for all processes
-+    cpus   = { 1      * task.attempt }
-+    memory = { 6.GB   * task.attempt }
-+    time   = { 4.h    * task.attempt }
+    // TODO nf-core: Check the defaults for all processes // [!code ++]
+    cpus   = { 1      * task.attempt } // [!code ++]
+    memory = { 6.GB   * task.attempt } // [!code ++]
+    time   = { 4.h    * task.attempt } // [!code ++]
 >>>>>>> TEMPLATE
 ```
 
@@ -288,19 +288,19 @@ In `subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf` the switch 
 
 Be careful in accepting incoming changes. The main changes you should do are:
 
-```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
-- include { fromSamplesheet } from 'plugin/nf-validation'
-+ include { samplesheetToList } from 'plugin/nf-schema'
+```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+include { fromSamplesheet } from 'plugin/nf-validation' // [!code --]
+include { samplesheetToList } from 'plugin/nf-schema' // [!code ++]
 ```
 
-```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
-- Channel.fromSamplesheet("input")
-+ Channel.fromList(samplesheetToList(params.input, "path/to/samplesheet/schema"))
+```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+Channel.fromSamplesheet("input") // [!code --]
+Channel.fromList(samplesheetToList(params.input, "path/to/samplesheet/schema")) // [!code ++]
 ```
 
-```diff title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
--  UTILS_NFVALIDATION_PLUGIN (
-+  UTILS_NFSCHEMA_PLUGIN (
+```groovy title="subworkflows/local/utils_nfcore_$PIPELINE_NAME_pipeline/main.nf"
+ UTILS_NFVALIDATION_PLUGIN ( // [!code --]
+ UTILS_NFSCHEMA_PLUGIN ( // [!code ++]
 ```
 
 See the [nf-schema migration guide](https://nextflow-io.github.io/nf-schema/2.0/migration_guide/) for more details in replacing the `fromSamplesheet` function.
