@@ -17,7 +17,7 @@ Thank you for helping make nf-core documentation better for everyone.
 :::tip
 Need help or have questions about documentation?
 Contact the nf-core docs-team on Slack at **#team-docs**.
-We're here to help!
+We're here to help! [Join the Slack](https://nf-co.re/join#slack).
 :::
 
 ## How to contribute
