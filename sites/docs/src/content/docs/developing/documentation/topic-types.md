@@ -14,6 +14,7 @@ Most pages combine multiple topic types—for example, starting with a concept i
 Need help or have questions about documentation?
 Contact the nf-core docs-team on Slack at **#team-docs**.
 We're here to help!
+[Join the Slack](https://nf-co.re/join#slack).
 :::
 
 <!-- TODO: Add links to nf-core Slack -->
