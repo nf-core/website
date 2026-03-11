@@ -1,7 +1,7 @@
 ---
 title: nf-core/modules topics migration
 category: components
-slack: https://nfcore.slack.com/archives/C09LJTQQ3EY
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-modules-topics
 intro_video: "https://www.youtube.com/watch?v=x_rJu-2M0Yo"
 location: online
 leaders:

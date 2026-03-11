@@ -1,7 +1,7 @@
 ---
 title: Optimizing Korean LLM Prompts for training.nextflow.io
 category: community
-slack: https://nfcore.slack.com/archives/C0ACF0TPF5E
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-training-kr-llm
 location: Seoul and Online
 image: ""
 image_alt: ""
