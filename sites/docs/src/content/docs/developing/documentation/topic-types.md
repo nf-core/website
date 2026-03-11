@@ -17,7 +17,6 @@ We're here to help!
 [Join the Slack](https://nf-co.re/join#slack).
 :::
 
-<!-- TODO: Add links to nf-core Slack -->
 
 ## Concept
 
