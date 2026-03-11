@@ -16,22 +16,22 @@ This section covers the different ways you can contribute to nf-core.
 
 nf-core pipelines are end-to-end bioinformatics workflows built using the nf-core template and community standards.
 
-- **[Contributing a new pipeline](./docs/contributing/contribute-new-pipelines):** Propose, develop, and release a new nf-core pipeline, from initial proposal through to your first release
-- **[Contributing to existing pipelines](./docs/contributing/contribute-existing-pipelines):** Add features, fix bugs, or improve documentation in existing nf-core pipelines
+- **[Contributing a new pipeline](./contribute-new-pipelines):** Propose, develop, and release a new nf-core pipeline, from initial proposal through to your first release
+- **[Contributing to existing pipelines](./contribute-existing-pipelines):** Add features, fix bugs, or improve documentation in existing nf-core pipelines
 
 ## Components
 
 nf-core modules and subworkflows are reusable components shared across pipelines.
 Contributing components benefits the entire Nextflow community by reducing duplicated effort and enabling standardized, reproducible analyses:
 
-- **[Contributing components](./docs/contributing/contribute-components):** Contribute modules and subworkflows to the nf-core/modules repository
+- **[Contributing components](./contribute-components):** Contribute modules and subworkflows to the nf-core/modules repository
 
 ## Documentation
 
 Good documentation is essential to nf-core's mission.
 Documentation contributions are just as valuable as code contributions:
 
-- **[Contributing documentation](./docs/contributing/documentation):** Fix typos, clarify instructions, or write new guides for nf-core documentation
+- **[Contributing documentation](./documentation):** Fix typos, clarify instructions, or write new guides for nf-core documentation
 
 ## Reviewing pull requests
 
