@@ -7,6 +7,7 @@ Advisories serve as structured, long-lived notices for significant technical iss
 They prioritise clarity and practical value, helping users avoid common pitfalls.
 
 <!-- TODO: Add image of advisory somewhere on this page -->
+![Example of an nf-core advisory](https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-dark.png)
 
 ## What are advisories?
 
