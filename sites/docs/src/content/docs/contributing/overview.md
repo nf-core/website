@@ -46,7 +46,7 @@ Reviewing contributions is an important part of nf-core's collaborative developm
 
 Large projects that affect a significant proportion of the community go through the nf-core RFC (Request for Comment) process:
 
-- **[Project proposals](/contributing/project-proposals):** Propose and develop major changes through the nf-core RFC process, from initial suggestion through to implementation
+- **[Project proposals](./project-proposals):** Propose and develop major changes through the nf-core RFC process, from initial suggestion through to implementation
 
 ## Other considerations
 
