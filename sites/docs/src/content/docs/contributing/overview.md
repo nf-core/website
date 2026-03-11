@@ -37,10 +37,10 @@ Documentation contributions are just as valuable as code contributions:
 
 Reviewing contributions is an important part of nf-core's collaborative development process:
 
-- **[Reviewing components](./contributing/reviewing-pull-requests/review_checklists/component):** Checklist for reviewing module and subworkflow pull requests
-- **[Reviewing pipeline releases](./contributing/reviewing-pull-requests/review_checklists/pipeline-release):** Checklist for reviewing pipeline release pull requests
-- **[Reviewing nf-core/tools](./contributing/reviewing-pull-requests/review_checklists/nf-core-tools):** Checklist for reviewing nf-core/tools pull requests
-- **[nf-core-bot](./contributing/reviewing-pull-requests/nf-core-bot):** Use the nf-core bot to control automated GitHub actions on pull requests
+- **[Reviewing components](./reviewing-pull-requests/review_checklists/component):** Checklist for reviewing module and subworkflow pull requests
+- **[Reviewing pipeline releases](./reviewing-pull-requests/review_checklists/pipeline-release):** Checklist for reviewing pipeline release pull requests
+- **[Reviewing nf-core/tools](./reviewing-pull-requests/review_checklists/nf-core-tools):** Checklist for reviewing nf-core/tools pull requests
+- **[nf-core-bot](./reviewing-pull-requests/nf-core-bot):** Use the nf-core bot to control automated GitHub actions on pull requests
 
 ## Project proposals
 
