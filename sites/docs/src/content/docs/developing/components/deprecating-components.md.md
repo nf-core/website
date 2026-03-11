@@ -4,7 +4,6 @@ subtitle: Deprecate a module or subworkflow
 shortTitle: Deprecating modules
 ---
 
-
 ## Deprecating a module
 
 Sometimes modules or subworkflows become outdated and need to be deprecated (available, but no longer recommended).
