@@ -201,7 +201,6 @@ Configuration files are applied in order and later files override earlier settin
 
 For detailed configuration options, see the [Configuration guide](./configuration/configuration-options.md)
 
-
 ### Resuming runs
 
 Add `-resume` to continue from where a pipeline stopped (due to errors or cancellation):
