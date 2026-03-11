@@ -1,7 +1,7 @@
 ---
 title: nf-core/phyloanalysis
 category: pipelines
-slack: ""
+slack: "https://nfcore.slack.com/channels/phyloanalysis"
 location: Cambridge, MA, USA
 image: ""
 image_alt: ""
