@@ -17,8 +17,9 @@ import { Image } from "astro:assets";
 import summitCard from "@assets/images/events/2024/hackathon-barcelona/summit-2024-barcelona.png";
 import ontLogo from "@assets/images/events/2024/hackathon-barcelona/ont-logo.svg";
 import ontLogoDarkbg from "@assets/images/events/2024/hackathon-barcelona/ont-logo-darkbg.svg";
-import Profile from "@components/GitHubProfilePictureExtended.svelte";
+import Profile from "@components/GitHubProfilePictureExtended.astro";
 import HackathonGroup from "@components/event/HackathonGroup.astro";
+import DarkModeImage from "@components/DarkModeImage.astro";
 
 # Welcome
 
@@ -40,14 +41,8 @@ This nf-core hackathon is sponsored by [Seqera](https://seqera.io/) and
 Many thanks to both companies for making this event possible!
 
 <div class="d-flex justify-content-evenly my-5">
-    <Image src={ontLogo} alt="Oxford Nanopore" class="hide-dark" style="height: 50px; width:auto;" />
-    <Image src={ontLogoDarkbg} alt="Oxford Nanopore" class="hide-light" style="height: 50px; width:auto;" />
-    <img
-        src="/images/contributors/colour/seqera.svg"
-        alt="Seqera"
-        class="darkmode-image"
-        style="height: 40px; width:auto;"
-    />
+    <DarkModeImage lightSrc={ontLogo} darkSrc={ontLogoDarkbg} alt="Oxford Nanopore" width={200} height={60} />
+    <DarkModeImage src="/images/contributors/colour/seqera.svg" alt="Seqera" width={200} height={40} />
 </div>
 
 # How the hackathon works

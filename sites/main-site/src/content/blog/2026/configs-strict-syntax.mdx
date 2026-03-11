@@ -1,0 +1,47 @@
+---
+title: Making nf-core/configs strict syntax compliant
+subtitle: Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant
+pubDate: 2026-03-05T09:00:00+01:00
+authors:
+    - nvnieuwk
+    - jfy133
+label:
+    - configs
+    - infrastructure
+---
+
+## Introduction
+
+Nextflow will very soon be making it's new '[Strict Syntax](https://www.nextflow.io/docs/latest/strict-syntax.html#preparing-for-strict-syntax)' mode default (from 26.04).
+This more restrictive way of writing Nextflow code is being implemented by the Nextflow team to improve error messages and more consistent code.
+
+Representing best-practice Nextflow code, nf-core is therefore also pushing forward with requiring strict syntax compliance across the board - whether in pipelines, modules, and also now configs.
+
+The core team, lead by Nicolas (@nvnieuwk), has done a survey of existing configs and [identified 57 configs](https://github.com/nf-core/configs/issues/1020) on nf-core/configs repository that are not currently Nextflow Syntax compliant.
+Once the users on these infrastructures update to the latest version of Nextflow, their pipelines will not be able to execute.
+
+## What are we doing?
+
+To assist configs maintainers and users in avoiding potential problems running pipelines on their infrastructure when they update to future versions of Nextflows,
+we are trying a multi-pronged approach to spread awareness of the changes:
+
+1. Notify the **config maintainers** of soon-to-be non-compliance on a dedicated [issue](https://github.com/nf-core/configs/issues/1020)
+2. Post (this!) blog post for outside visibility, but also a cross-reference on the nf-core Slack's [#announcements](https://nfcore.slack.com/archives/CE6P95170) channel
+3. For configs without fixes, the core team will update config description message displayed at the beginning of nf-core runs to make **users** aware and to tell them to contact us
+    - e.g. if the original config author no longer is responsibility
+4. If we do not hear from config maintainers or pipeline users, we will consider a form of deprecating the config
+
+We have also prepared a ['migration' guide](/docs/tutorials/migrate_to_strict_syntax/config_strict_syntax) describing recommended fixes for common 'patterns' of non-compliance.
+Note this remains an open document, and we welcome any contributions, whether fixes, improvements, or updates!
+
+## Timeline
+
+We do not have a fixed timeline for this roll out, except for the deadline of the release of Nextflow v26.04.
+
+The GitHub issue has already been made, and we will monitor the speed of responses before moving onto phase 3 and 4.
+
+## Summary
+
+The nf-core core team hopes that with these steps we will ensure continued smooth and uninterrupted execution of the communities' exciting analysis and research!
+
+If you have any questions, or need any help feel free to ask for help at any time on Slack, on the [#configs](https://nfcore.slack.com/archives/CGRTMASKY) channel.

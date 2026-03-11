@@ -1,0 +1,91 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    name: string;
+    count?: number;
+    image?: string;
+    size?: number;
+    circle?: boolean;
+    linkClasses?: string;
+    wrapperClasses?: string;
+    imgClasses?: string;
+    containerQuery?: boolean;
+}
+
+const {
+    name,
+    count = 0,
+    image = "https://github.com/" + name + ".png",
+    size = 60,
+    circle = false,
+    linkClasses = "",
+    wrapperClasses = "",
+    imgClasses = "",
+    containerQuery = false,
+} = Astro.props;
+
+const tooltip = count > 0 ? (count === 1 ? `${name} (1 commit)` : `${name} (${count} commits)`) : name;
+const tooltipAttr = containerQuery ? "" : tooltip;
+const avatar_url = image.match(/\?/) ? `${image}&s=${size}` : `${image}?s=${size}`;
+---
+
+<div
+    class:list={["github-profile-wrapper", wrapperClasses, { "github-profile": containerQuery }]}
+    style={`--size:${size};`}
+>
+    <a
+        href={`https://github.com/${name}`}
+        class:list={["text-decoration-none github-link", linkClasses]}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={`--size:${size};`}
+    >
+        <Image
+            src={avatar_url}
+            width={size}
+            height={size}
+            class:list={[imgClasses, { "rounded-circle": circle }]}
+            data-bs-placement="bottom"
+            data-bs-toggle="tooltip"
+            title={tooltipAttr}
+            alt={`Github user ${name}`}
+            style={`--size:${size};`}
+            height={size}
+            width={size}
+        />
+        <div class="profile-name text-nowrap overflow-x-auto">
+            <slot />
+        </div>
+    </a>
+</div>
+
+<style lang="scss">
+    img {
+        background-color: var(--bs-light);
+    }
+    .github-profile-wrapper {
+        min-width: fit-content;
+        width: calc(var(--size) * 1px + 1rem);
+    }
+    .github-profile {
+        container-type: size;
+        container-name: github-profile;
+    }
+    .github-link {
+        max-width: fit-content;
+    }
+    @container github-profile (width < 13rem) {
+        :global(.profile-name) {
+            display: none !important;
+        }
+    }
+    :global(.github-profile:hover) {
+        z-index: 1000;
+        width: 54%; // should cover most cases, but extra long usernames, will still be not completely covered
+        :global(.profile-name) {
+            display: block !important;
+            z-index: 1000;
+        }
+    }
+</style>
