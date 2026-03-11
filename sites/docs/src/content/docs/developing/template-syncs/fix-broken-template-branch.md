@@ -80,6 +80,6 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
    ```
 
 You can now recreate the pull request from `TEMPLATE` into `dev`.
-If conflicts occur, resolve them locally following the instructions in the sync documentation.
+If conflicts occur, resolve them locally following the instructions in the [sync documentation](https://nf-co.re/docs/tutorials/sync/overview).
 
 <!-- TODO: Add links to sync documentation -->
