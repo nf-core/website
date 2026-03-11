@@ -46,14 +46,21 @@ so the script becomes:
 tool subtool -T -K test.bam > test.log
 ```
 
-The following table lists the available keys commonly used in nf-core modules.
+## Permitted ext keys
 
-| Key        | Description                                            |
-| ---------- | ------------------------------------------------------ |
-| ext.args   | Additional arguments appended to command in module.    |
-| ext.args2  | Second set of arguments appended to command in module. |
-| ext.args3  | Third set of arguments appended to command in module.  |
-| ext.prefix | File name prefix for output files.                     |
+The following table lists the permitted keys used in nf-core modules. Other keys must be discussed with
+maintainers, and added here when permitted.
+
+| Key         | Description                                            |
+| ----------- | ------------------------------------------------------ |
+| ext.args    | Additional arguments appended to command in module.    |
+| ext.args2   | Second set of arguments appended to command in module. |
+| ext.args3   | Third set of arguments appended to command in module.  |
+| ext.argsN   | Nth set of arguments appended to command in module.    |
+| ext.prefix  | File name prefix for output files.                     |
+| ext.when    | Boolean expression to determine when a module runs.    |
+| ext.use_gpu | Determines whether the module uses GPU settings.       |
+| ext.singularity_pull_docker_container | Whether to use the Docker URI instead of the Singularity URI under the `singularity` profile |
 
 :::note
 The order of the numeric ID of `args` must match the order of the tools as used in the module.
@@ -64,3 +71,7 @@ To see some more advanced examples of these keys in use see:
 - [Set ext.args based on parameter settings](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L222-L226)
 - [Set ext.prefix based on task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L297)
 - [Set ext.args based on both parameters and task inputs](https://github.com/nf-core/rnaseq/blob/e049f51f0214b2aef7624b9dd496a404a7c34d14/conf/modules.config#L377-L381)
+
+## Rational
+
+The ext keys are properties that are intended to allow a pipeline user to change via configuration file how a module behaves. They are not a means for a developer to bypass passing values via a module's `input:`. The majority of optional command-line flags are passed through `ext.args`. If changing an ext key would lead to pipeline instability, it should be an `input:`. This allows module parameters to be fully described and documented.
