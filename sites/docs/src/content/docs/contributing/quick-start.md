@@ -18,7 +18,7 @@ Every pipeline has a dedicated channel on Slack.
 You can search pipeline names in the channel browser.
 :::
 
-## Join the nf-core Slack and GitHub organization
+## nf-core Slack and GitHub
 
 See [Join nf-core](https://nf-co.re/join) for instructions on how to join the nf-core Slack.
 
@@ -141,12 +141,10 @@ See the following for general reviewing checklists:
 - [Reviewing pipeline releases](../contributing/reviewing-pull-requests/review_checklists/pipeline-releases)
 - [Reviewing nf-core/tools](../contributing/reviewing-pull-requests/review_checklists/nf-core-tools.md)
 
-## Community structure and contact
+## When everything else fails
 
-See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community's organizational structure.
-
-As a general rule, ask the entire community first!
-The nf-core community can answer most questions.
+As a general rule, ask the wider community first.
+Collectively, the nf-core community can answer most questions.
 
 :::tip[Need specialist help?]
 If the community can't help, reach out to the relevant team:
@@ -158,3 +156,5 @@ If the community can't help, reach out to the relevant team:
 - [Docs team](https://nf-co.re/governance#docs) for questions about nf-core documentation
 - [Safety team](https://nf-co.re/governance#safety) for interpersonal conflict with another community member
 :::
+
+See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community's organizational structure.
