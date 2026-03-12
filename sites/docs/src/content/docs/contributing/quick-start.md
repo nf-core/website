@@ -2,6 +2,7 @@
 title: Quick start
 subtitle: How to start contributing to nf-core and contribution etiquette
 shortTitle: Quick start
+weight: 2
 ---
 
 There are many ways to contribute to nf-core.
