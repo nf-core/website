@@ -5,8 +5,41 @@ shortTitle: Overview
 weight: 1
 ---
 
-<!-- TODO: Write overview -->
+nf-core is an open-source community dedicated to building high-quality, reproducible, and well-documented Nextflow pipelines.
+The community is collaborative, transparent, and welcoming to contributors at all levels.
 
-Overview page
+This section covers community resources, standards, and guidelines that help you understand, engage with, and contribute to nf-core.
 
-https://nf-co.re/docs/contributing/how_to_contribute_to_nf-core
+:::note
+All community members are expected to follow the [nf-core code of conduct](https://nf-co.re/code_of_conduct).
+:::
+
+## Getting started
+
+Before diving into the nf-core ecosystem, it helps to understand the terminology used across pipelines, modules, and components.
+
+- **[Terminology](terminology):** Definitions for key nf-core and Nextflow DSL2 concepts, including modules, subworkflows, components, and workflows
+
+## Brand
+
+nf-core provides a set of official brand assets to help maintain a consistent identity across pipelines and community materials.
+
+- **[Brand overview](brand/overview):** Introduction to nf-core's visual identity and available brand assets
+- **[Colours](brand/colours):** Official RGB and HEX values for the nf-core colour palette
+- **[Fonts](brand/fonts):** Approved typefaces and licensing information
+- **[Logos](brand/logos):** Pipeline and project logos in multiple formats, with guidelines for custom branding
+- **[Presentations](brand/presentations):** Guidelines and examples for conference posters and oral presentations
+- **[Workflow schematics](brand/workflow-schematics):** Components and examples for creating pipeline diagrams
+
+## Regulatory
+
+nf-core provides resources to support institutions working under regulatory frameworks, including automated validation reports and implementation guidance.
+
+- **[Regulatory overview](regulatory/overview):** nf-core's validation strategy, metrics collection, and guidance for institutional compliance
+- **[Checklist](regulatory/checklist):** A structured checklist covering each phase of the pipeline validation process
+
+## Advisories
+
+nf-core publishes advisories to communicate significant technical issues affecting pipelines, modules, or other components.
+
+- **[Advisories](advisories):** What advisories are, who can publish them, and how to submit one
