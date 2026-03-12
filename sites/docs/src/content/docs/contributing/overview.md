@@ -6,7 +6,7 @@ weight: 1
 ---
 
 nf-core is a community-driven project built on the contributions.
-Whether you're fixing a bug, developing a new pipeline, writing documentation, or reviewing pull requests, every contribution helps advance reproducible bioinformatics for the entire community.
+Whether you're fixing a bug, developing a new pipeline, writing documentation, or reviewing pull requests, every contribution helps advance reproducible analysis for the entire community.
 
 This section covers the different ways you can contribute to nf-core.
 
