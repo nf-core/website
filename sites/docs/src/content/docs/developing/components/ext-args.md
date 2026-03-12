@@ -40,16 +40,21 @@ tool subtool -T -K test.bam > test.log
 
 The `ext.args` value replaces the `$args` variable in the module script, and the `$bam` and `${prefix}` variables are populated from the module inputs and configuration.
 
-## Common `ext` keys
+## Permitted `ext` keys
 
-Different `ext` keys serve specific purposes in module configuration:
+Different `ext` keys serve specific purposes in module configuration.
+This is the list of permitted keys:
 
-| Key          | Purpose                                                          |
-| ------------ | ---------------------------------------------------------------- |
-| `ext.args`   | Additional command arguments for the primary tool                |
-| `ext.args2`  | Secondary argument set for the second tool in multi-tool modules |
-| `ext.args3`  | Tertiary argument set for the third tool in multi-tool modules   |
-| `ext.prefix` | Custom prefix for output file names                              |
+| Key                                   | Description                                                                                  |
+| ------------------------------------- | -------------------------------------------------------------------------------------------- |
+| ext.args                              | Additional arguments appended to command in module.                                          |
+| ext.args2                             | Second set of arguments appended to command in module.                                       |
+| ext.args3                             | Third set of arguments appended to command in module.                                        |
+| ext.argsN                             | Nth set of arguments appended to command in module.                                          |
+| ext.prefix                            | File name prefix for output files.                                                           |
+| ext.when                              | Boolean expression to determine when a module runs.                                          |
+| ext.use_gpu                           | Determines whether the module uses GPU settings.                                             |
+| ext.singularity_pull_docker_container | Whether to use the Docker URI instead of the Singularity URI under the `singularity` profile |
 
 :::warning
 The numeric order of `args` keys must match the order of tools as they appear in the module script.
@@ -109,3 +114,13 @@ process {
     }
 }
 ```
+
+:::info{title="Rationale" collapse}
+
+The `ext` keys allow pipeline users to customize module behavior via configuration files.
+They are not a workaround for avoiding defined `input:` channels.
+Most optional command-line flags SHOULD be passed via `ext.args`.
+If modifying an `ext` key could cause pipeline instability or break downstream tasks, it MUST be defined as an `input:`.
+Using `input:` for critical variables ensures that module parameters remain explicitly documented in the `meta.yml` and traceable.
+
+:::

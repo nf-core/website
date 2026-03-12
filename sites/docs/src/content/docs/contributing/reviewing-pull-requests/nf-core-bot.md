@@ -34,7 +34,7 @@ This will start a GitHub Actions workflow that will:
 :::info
 Available for:
 
-- [All nf-core pipelines](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/.github/workflows/fix-linting.yml)
+- [All nf-core pipelines](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/.github/workflows/fix_linting.yml)
 - [nf-core/modules](https://github.com/nf-core/modules/blob/master/.github/workflows/fix-linting.yml)
 - [nf-core/tools](https://github.com/nf-core/tools/blob/main/.github/workflows/fix-linting.yml)
 - [nf-core/website](https://github.com/nf-core/website/blob/main/.github/workflows/fix-linting.yml)
