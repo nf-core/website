@@ -80,7 +80,7 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
 
 :::note
-All nf-core pipelines have a `conf/base.config` where computational resource request defaults are specified.
+All nf-core pipelines have a `conf/base.config` where default computational resource request are specified.
 :::
 
 ### Custom configuration files
