@@ -210,7 +210,7 @@ For each tool used in the module, add a topic output in the `output:` block:
 tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
 ```
 
-Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g. `versions_samtools`).
+Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g., `versions_samtools`).
 
 If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
 
