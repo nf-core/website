@@ -5,10 +5,8 @@ shortTitle: Overview
 weight: 1
 ---
 
-<!-- TODO: Review page content and check links -->
-
 nf-core is a community-driven project built on the contributions.
-Whether you're fixing a bug, developing a new pipeline, writing documentation, or reviewing pull requests, every contribution helps advance reproducible bioinformatics for the entire community.
+Whether you're fixing a bug, developing a new pipeline, writing documentation, or reviewing pull requests, every contribution helps advance reproducible analysis for the entire community.
 
 This section covers the different ways you can contribute to nf-core.
 
@@ -54,6 +52,12 @@ These pages cover additional topics that may be relevant depending on your contr
 
 - **[Deprecating modules](../developing/components/deprecating-components):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
 - **[Contribution types](./contribution-types):** Understand how nf-core attributes and recognizes different types of contributions in pipeline manifests
+
+## Contributor's list
+
+All nf-core contributors are welcome to add their institution to the [nf-core website](https://nf-co.re/contributors#organisations) to be featured:
+
+- **[Contributor's list](./contributors-list):** Add your organisation to the contributors list
 
 ## Ask the community
 
