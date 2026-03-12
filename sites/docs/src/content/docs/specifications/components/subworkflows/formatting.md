@@ -1,6 +1,7 @@
 ---
-title: Misc
-subtitle: Follow miscellaneous specifications
+title: Formatting
+subtitle: Nextflow code formatting requirements
+markdownPlugin: addNumbersToHeadings
 weight: 7
 ---
 
