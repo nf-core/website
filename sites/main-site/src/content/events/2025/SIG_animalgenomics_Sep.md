@@ -1,6 +1,6 @@
 ---
 title: "#animal-genomics: September Meeting"
-subtitle: Brenda Murdoch & Temitayo Olangunju
+subtitle: Brenda Murdoch & Temitayo Olangunju (University of Idaho, USA)
 
 type: talk
 startDate: "2025-09-17"
