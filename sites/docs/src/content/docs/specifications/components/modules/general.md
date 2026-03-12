@@ -208,6 +208,7 @@ The only difference is that they should also use the topic output qualifier to s
 ```groovy title="main.nf"
 path "versions.yml", emit: versions, topic: versions
 ```
+
 :::
 
 :::tip{title="Tips for extracting the version string" collapse}
