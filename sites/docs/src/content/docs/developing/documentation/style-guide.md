@@ -4,9 +4,9 @@ subtitle: Follow nf-core style rules
 shortTitle: Style guide
 ---
 
-<!-- TODO: Add high level section here -->
+The nf-core style guide defines writing and formatting standards for nf-core documentation, covering voice, grammar, and punctuation. It also details conventions for text formatting, headings, lists, links, tables, and images.
 
-This guide covers the essential styling rules for nf-core documentation.
+See below for specific style guidelines.
 
 :::tip
 Need help or have questions about documentation?

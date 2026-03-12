@@ -10,7 +10,11 @@ You can configure pipelines using three approaches:
   - [Default configuration profiles](#default-configuration-profiles)
   - [Shared nf-core/configs](#shared-nf-coreconfigs)
   - [Custom configuration files](#custom-configuration-files)
-- [Additional resources](#additional-resources)
+You can configure pipelines using three approaches:
+
+- [Default configuration profiles](#default-configuration-profiles)
+- [Shared nf-core/configs](#shared-nf-coreconfigs)
+- [Custom configuration files](#custom-configuration-files)
 
 :::warning{title="Do not edit the pipeline code to configure nf-core pipelines"}
 Editing pipeline defaults prevents you from updating to newer versions without overwriting your changes.
@@ -79,7 +83,7 @@ All nf-core pipelines load these shared profiles at run time.
 Check if your system has a profile at [https://github.com/nf-core/configs](https://github.com/nf-core/configs).
 If not, follow the repository instructions or the tutorial to add your cluster.
 
-<!-- TODO: Add link to tutorial from nextflow training, if it exists? -->
+See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
 
 ### Custom configuration files
 
