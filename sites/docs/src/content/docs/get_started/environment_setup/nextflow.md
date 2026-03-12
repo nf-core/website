@@ -5,8 +5,6 @@ shortTitle: Nextflow
 weight: 2
 ---
 
-<!-- TODO: Verify if specifying bioconda::nextflow in a dedicated environment gets the latest version. Also, consider adding instructions to move the distribution asset to bin directory (similar to self-installing package -->
-
 Nextflow is the workflow management system that runs all nf-core pipelines.
 This page will walk you through installing and configuring Nextflow on your system.
 
@@ -60,13 +58,13 @@ To install Nextflow with the self-installing package:
    curl -s https://get.nextflow.io | bash
    ```
 
-1. Make the binary executable:
+2. Make the binary executable:
 
    ```bash
    chmod +x nextflow
    ```
 
-1. Move Nextflow to a directory in your `$PATH`:
+3. Move Nextflow to a directory in your `$PATH`:
 
    ```bash
    mkdir -p $HOME/.local/bin/
@@ -78,7 +76,7 @@ To install Nextflow with the self-installing package:
    Make sure the directory you choose is in your `$PATH` environment variable.
    :::
 
-1. Verify the installation:
+4. Verify the installation:
 
    ```bash
    nextflow info
@@ -94,16 +92,16 @@ To install Nextflow with Conda:
    conda create --name nf-env bioconda::nextflow
    ```
 
-1. Activate the environment:
+2. Activate the environment:
 
    ```bash
    source activate nf-env
    ```
 
-1. Confirm Nextflow is installed correctly:
+3. Confirm Nextflow is installed correctly:
 
    ```bash
-   nextflow infoactivate nf-env
+   nextflow info
    ```
 
 :::warning
@@ -119,16 +117,23 @@ To use the standalone distribution:
 
 1. Download the standalone distribution from Assets section of the GitHub releases page.
 
-1. Grant execution permissions to the downloaded file. For example:
+2. Grant execution permissions to the downloaded file. For example:
 
    ```bash
    chmod +x nextflow-25.10.0-dist
    ```
 
-1. Use it as a drop-in replacement for nextflow command. For example:
+3. Move Nextflow to a directory in your `$PATH`:
 
    ```bash
-   ./nextflow-25.10.0-dist run info
+   mkdir -p $HOME/.local/bin/
+   mv nextflow-25.10.0-dist $HOME/.local/bin/
+   ```
+
+4. Use it as a drop-in replacement for nextflow command. For example:
+
+   ```bash
+   nextflow-25.10.0-dist info
    ```
 
 Replace `25.10.0` with your desired version number.
