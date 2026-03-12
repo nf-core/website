@@ -83,7 +83,6 @@ All nf-core pipelines load these shared profiles at run time.
 Check if your system has a profile at [https://github.com/nf-core/configs](https://github.com/nf-core/configs).
 If not, follow the repository instructions or the tutorial to add your cluster.
 
-<!-- TODO: Add link to tutorial from nextflow training, if it exists? -->
 See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
 
 ### Custom configuration files
