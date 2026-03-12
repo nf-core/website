@@ -95,7 +95,7 @@ To install Nextflow with Conda:
 2. Activate the environment:
 
    ```bash
-   source activate nf-env
+   conda activate nf-env
    ```
 
 3. Confirm Nextflow is installed correctly:
