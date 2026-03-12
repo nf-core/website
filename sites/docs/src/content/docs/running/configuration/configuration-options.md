@@ -113,3 +113,10 @@ The loading order is:
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).
 :::
+
+## Additional resources
+
+For more information about configuration syntax and parameters, see:
+
+- [Nextflow config](https://www.nextflow.io/docs/latest/config.html)
+- [Institutional profiles](../../developing/institutional-profiles/overview.md)
