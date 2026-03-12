@@ -58,13 +58,13 @@ To install Nextflow with the self-installing package:
    curl -s https://get.nextflow.io | bash
    ```
 
-2. Make the binary executable:
+1. Make the binary executable:
 
    ```bash
    chmod +x nextflow
    ```
 
-3. Move Nextflow to a directory in your `$PATH`:
+1. Move Nextflow to a directory in your `$PATH`:
 
    ```bash
    mkdir -p $HOME/.local/bin/
@@ -76,7 +76,7 @@ To install Nextflow with the self-installing package:
    Make sure the directory you choose is in your `$PATH` environment variable.
    :::
 
-4. Verify the installation:
+1. Verify the installation:
 
    ```bash
    nextflow info
@@ -92,13 +92,13 @@ To install Nextflow with Conda:
    conda create --name nf-env bioconda::nextflow
    ```
 
-2. Activate the environment:
+1. Activate the environment:
 
    ```bash
    conda activate nf-env
    ```
 
-3. Confirm Nextflow is installed correctly:
+1. Confirm Nextflow is installed correctly:
 
    ```bash
    nextflow info
@@ -117,20 +117,25 @@ To use the standalone distribution:
 
 1. Download the standalone distribution from Assets section of the GitHub releases page.
 
-2. Grant execution permissions to the downloaded file. For example:
+1. Grant execution permissions to the downloaded file. For example:
 
    ```bash
    chmod +x nextflow-25.10.0-dist
    ```
 
-3. Move Nextflow to a directory in your `$PATH`:
+1. Move Nextflow to a directory in your `$PATH`:
 
    ```bash
    mkdir -p $HOME/.local/bin/
    mv nextflow-25.10.0-dist $HOME/.local/bin/
    ```
 
-4. Use it as a drop-in replacement for nextflow command. For example:
+   :::note
+   Common directories on Linux or OSX operating systems for executables include `$HOME/.local/bin/`, `/usr/local/bin/`, or `$HOME/bin/`.
+   Make sure the directory you choose is in your `$PATH` environment variable.
+   :::
+
+1. Use it as a drop-in replacement for nextflow command. For example:
 
    ```bash
    nextflow-25.10.0-dist info
