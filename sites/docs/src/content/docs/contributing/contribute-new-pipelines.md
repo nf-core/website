@@ -46,9 +46,7 @@ To propose a new nf-core pipeline:
    - [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) for major change announcements and general pipeline development discussion.
    - [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to coordinate the two reviews required for your first release.
 
-:::warning
-
-**Contributing a pre-existing pipeline**
+:::warning{title="Contributing a pre-existing pipeline"}
 
 In some cases, you might have a Nextflow pipeline built outside of nf-core that you believe would be a valuable addition to the community.
 Make sure to [start the discussion](https://github.com/nf-core/proposals/issues) as early as possible.
