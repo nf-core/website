@@ -185,9 +185,30 @@ The topic output qualifier in Nextflow collects outputs from multiple processes 
 Use this feature in nf-core modules to collect version information from all tools without complex channel mixing logic.
 See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
+```groovy title="main.nf"
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+```
+
+Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g., `versions_samtools`).
+
+If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
+```
+
+Remember to update this string when bumping the container version.
+
 :::warning
 For modules that use the template process directive, they will currently continue to depend on the old approach with `versions.yml`.
 The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic.
+
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic:
+
+```groovy title="main.nf"
+path "versions.yml", emit: versions, topic: versions
+```
+
 :::
 
 :::tip{title="Tips for extracting the version string" collapse}
