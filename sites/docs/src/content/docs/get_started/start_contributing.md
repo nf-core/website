@@ -38,7 +38,7 @@ You can search pipeline names in the channel browser.
 
 See [Join nf-core](https://nf-co.re/join) for instructions how to join the nf-core Slack.
 
-After joining Slack, join the nf-core GitHub organisation.
+After joining Slack, [join the nf-core GitHub organisation](https://nf-co.re/join#github).
 The GitHub organisation is open to everyone and offers a range of benefits.
 These include not having to wait for someone to approve CI tests, and reviewing and merging rights (on most repositories).
 
