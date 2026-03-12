@@ -5,8 +5,6 @@ shortTitle: Overview
 weight: 1
 ---
 
-Now you have run your first pipeline, you may wish to start contributing!
-
 There are many ways to contribute to nf-core.
 This can be through pipelines, pipeline components, documentation, tooling, or even just feature requests or bug reports.
 
@@ -14,8 +12,8 @@ This page provides and overview for how to contribute to nf-core.
 
 ## Code of conduct
 
-The [code of conduct](https://nf-co.re/code_of_conduct) is a core document to ensure everyone gets along well within the diverse and distributed nf-core community.
-Before you start, take a moment to review this document.
+Before you start, take a moment to review the [code of conduct](https://nf-co.re/code_of_conduct).
+The code of conduct is a core document to ensure everyone gets along well within the diverse and distributed nf-core community.
 
 ## Communication
 
@@ -43,12 +41,12 @@ The GitHub organisation is open to everyone and offers a range of benefits.
 These include not having to wait for someone to approve CI tests, and reviewing and merging rights (on most repositories).
 
 :::tip
-You need to join our Slack workspace first before joining the GitHub organisation!
+You need to join the Slack workspace first before joining the GitHub organisation!
 :::
 
 ## Asking for help
 
-If you have questions and don't know where to start, ask in our dedicated Slack help channels:
+If you have questions and don't know where to start, ask in the dedicated Slack help channels:
 
 - [#nostupidquestions](https://nfcore.slack.com/archives/C043FMKUNLB)
 - [#help](https://nfcore.slack.com/archives/CE6SDBX2A)
@@ -71,9 +69,9 @@ Ensure issues are descriptive:
 
 ### Forks and branches
 
-In most cases, we ask for contributors to develop on forks of original repositories.
+When working on nf-core projects, contributors should develop on forks of original repositories.
 
-When on a GitHub repository, press the **Fork** button in the top right set of buttons on the page.
+To make a fork on a GitHub repository, press the **Fork** button in the top right set of buttons on the page.
 This will make a copy of the repository under your own user name for you to develop on.
 
 :::tip
@@ -81,13 +79,11 @@ We recommend naming the forked repository to `nf-core-<original name>`, to disti
 For example, `nf-core/rnaseq` would become `<your username>/nf-core-rnaseq`.
 :::
 
-Once you are on your fork, please make a `git` branch to make your changes on.
+Once on the newly created fork, make a `git` branch to make your changes on.
 
 ### Pull requests
 
-Once ready, open a pull request from your fork to the original repository.
-
-Everyone is welcome to open a pull request on our GitHub repositories.
+Everyone is welcome to open a pull request from their forks into the nf-core GitHub repositories.
 As a general rule, all pull requests must be [reviewed](#reviewing) by another community member.
 
 Be patient when waiting for a review.
@@ -104,7 +100,7 @@ Here are some tips to get faster reviews:
 
 ### Contributing to shared repositories
 
-To contribute to specific nf-core shared repositories, please see the specific guidance on the relevant pages:
+To contribute to specific nf-core shared repositories, see the specific guidance on the relevant pages:
 
 - [Contribute components](../contributing/contribute-components)
 - [Contribute to existing pipelines](../contributing/contribute-existing-pipelines)
@@ -112,7 +108,7 @@ To contribute to specific nf-core shared repositories, please see the specific g
 
 ### Contributing to new pipelines
 
-If you wish to contribute a new pipeline to nf-core, _before you start working_, refer to [Contribute new pipelines](../contributing/contribute-new-pipelines.md).
+To contribute a new pipeline to nf-core, _before you start working_, refer to [Contribute new pipelines](../contributing/contribute-new-pipelines.md).
 
 :::note
 nf-core is not a registry of any Nextflow pipelines!
