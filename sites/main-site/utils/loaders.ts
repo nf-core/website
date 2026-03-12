@@ -358,10 +358,12 @@ class GitHubContentFetcher {
         path,
         processors,
         getDates = false,
+        additionalData = {},
     }: {
         path: string | RegExp;
         processors: Processors;
         getDates?: boolean;
+        additionalData?: Record<string, unknown>;
     }): Promise<void> {
         const { logger, meta, store } = this.context;
         logger.debug(`Loading files from ${this.org}/${this.repo}@${this.ref}`);
@@ -372,10 +374,11 @@ class GitHubContentFetcher {
             "json",
         );
 
-        // Skip if tree hasn't changed
-        const lastTreeSha = meta.get("lastTreeSha");
+        // Skip if tree hasn't changed (scope by repo and ref)
+        const treeShaKey = `tree:${this.repo}:${this.ref}`;
+        const lastTreeSha = meta.get(treeShaKey);
         if (lastTreeSha === treeData.sha) {
-            logger.debug("No changes detected in GitHub tree, skipping update");
+            logger.debug(`No changes detected in GitHub tree for ${this.repo}@${this.ref}, skipping update`);
             return;
         }
 
@@ -392,20 +395,21 @@ class GitHubContentFetcher {
             if (!pathMatch) continue;
 
             logger.debug(`Processing ${leaf.path}`);
-            const id = await this.processFile(leaf.path, processors, getDates);
+            const id = await this.processFile(leaf.path, processors, getDates, additionalData);
             if (id) processedIds.add(id);
         }
 
-        // Clean up deleted files
+        // Clean up deleted files (only for this repo/ref)
+        const repoRefPrefix = `${this.repo}/${this.ref}/`;
         for (const id of store.keys()) {
-            if (!processedIds.has(id)) {
+            if (id.startsWith(repoRefPrefix) && !processedIds.has(id)) {
                 logger.debug(`Removing deleted file: ${id}`);
                 store.delete(id);
             }
         }
 
         // Update tree SHA
-        meta.set("lastTreeSha", treeData.sha);
+        meta.set(treeShaKey, treeData.sha);
         logger.debug("GitHub file processing completed successfully");
     }
 }
@@ -486,20 +490,24 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                 for (const release of pipeline.releases) {
                     const fetcher = new GitHubContentFetcher("nf-core", pipeline.name, release.tag_name, context);
 
-                    // Process schema if available
+                    // Build list of files to process
+                    const filesToProcess = [...release.doc_files, "README.md"];
                     if (release.has_schema) {
-                        const schemaProcessor = createSchemaProcessor(context.renderMarkdown);
-                        await fetcher.processFile(`nextflow_schema.json`, schemaProcessor, false, {
-                            name: pipeline.name,
-                        });
+                        filesToProcess.push("nextflow_schema.json");
                     }
 
-                    // Process documentation files
-                    const docFiles = [...release.doc_files, "README.md"];
-                    const processors = createGitHubMarkdownProcessor(context.renderMarkdown, {
-                        repo: pipeline.name,
-                        ref: release.tag_name,
-                    });
+                    // Create a regex pattern that matches any of the files we want
+                    const filePattern = new RegExp(`^(${filesToProcess.map(f => f.replace('.', '\\.')).join('|')})$`);
+
+                    // Use processFilesFromTree to leverage tree SHA caching
+                    const processors = {
+                        ...createGitHubMarkdownProcessor(context.renderMarkdown, {
+                            repo: pipeline.name,
+                            ref: release.tag_name,
+                        }),
+                        ...createSchemaProcessor(context.renderMarkdown),
+                    };
+
                     const metadata = {
                         name: pipeline.name,
                         archived: pipeline.archived,
@@ -509,15 +517,15 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                         stargazers_count: pipeline.stargazers_count,
                     };
 
-                    for (const docFile of docFiles) {
-                        context.logger.debug(`Loading ${pipeline.name}@${release.tag_name}/${docFile}`);
-                        try {
-                            await fetcher.processFile(docFile, processors, false, metadata);
-                        } catch (error) {
-                            context.logger.error(
-                                `Error processing ${pipeline.name}@${release.tag_name}/${docFile}: ${error.message}`,
-                            );
-                        }
+                    try {
+                        await fetcher.processFilesFromTree({
+                            path: filePattern,
+                            processors,
+                            getDates: false,
+                            additionalData: metadata,
+                        });
+                    } catch (error) {
+                        context.logger.error(`Error processing ${pipeline.name}@${release.tag_name}: ${error.message}`);
                     }
                 }
             }

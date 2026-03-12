@@ -28,7 +28,7 @@
     } = $props();
 
     // Calculate the circumference of the circle
-    const circumference = 2 * Math.PI * (size - strokeWidth);
+    const circumference = $derived(2 * Math.PI * (size - strokeWidth));
 
     onMount(() => {
         if (onScroll) {
