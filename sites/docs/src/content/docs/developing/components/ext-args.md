@@ -115,10 +115,12 @@ process {
 }
 ```
 
-## Rationale
+:::info{title="Rationale" collapse}
 
 The `ext` keys allow pipeline users to customize module behavior via configuration files.
 They are not a workaround for avoiding defined `input:` channels.
 Most optional command-line flags SHOULD be passed via `ext.args`.
 If modifying an `ext` key could cause pipeline instability or break downstream tasks, it MUST be defined as an `input:`.
 Using `input:` for critical variables ensures that module parameters remain explicitly documented in the `meta.yml` and traceable.
+
+:::
