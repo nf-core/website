@@ -84,7 +84,6 @@ Parameters in `custom.config` files will not override defaults in `nextflow.conf
 Use `-params-file` with YAML or JSON format instead.
 :::
 
-
 :::note
 In nf-core pipelines we have `base.config` as this is where we set our _Resource_ defaults
 :::
@@ -109,12 +108,8 @@ The loading order is:
 4. Each `-c` file in the order you specify
 5. Command line parameters (`--<parameter>`)
 
-
-
 <!-- TODO Check if `custom.config` WILL overwrite `nextflow.config`, particularly given the comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).
 :::
-
-
