@@ -79,7 +79,6 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 
 See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
 
-
 :::note
 All nf-core pipelines have a `conf/base.config` where computational resource request defaults are specified.
 :::
@@ -108,6 +107,7 @@ The loading order is:
 Parameters in `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
+
 <!-- TODO Check if `custom.config` WILL overwrite `nextflow.config`, particularly given the comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
