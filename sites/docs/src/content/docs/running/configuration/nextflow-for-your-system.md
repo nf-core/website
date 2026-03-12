@@ -417,6 +417,7 @@ docker {
 ## Additional resources
 
 For more information about configuration syntax and parameters, see:
+
 - [Nextflow configuration documentation](https://www.nextflow.io/docs/latest/config.html)
 - [Nextflow executors](https://www.nextflow.io/docs/latest/executor.html)
 - [nf-core/configs](https://github.com/nf-core/configs)
