@@ -58,21 +58,6 @@ profiles {
 
 The profile name in this file determines how users access your profile with the `-profile` flag.
 
-### README.md
-
-**Path**: `README.md`
-
-Add your institution to the documentation table in the main README.
-This provides visibility for users browsing the repository.
-
-Add a row to the institution table in alphabetical order:
-
-```markdown
-| big_university | Big University HPC | [big_university.md](docs/big_university.md) |
-```
-
-Include the profile name, institution name, and link to your documentation file.
-
 ### GitHub Actions workflow
 
 **Path**: `.github/workflows/main.yml`
