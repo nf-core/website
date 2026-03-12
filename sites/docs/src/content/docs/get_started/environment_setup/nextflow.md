@@ -5,8 +5,6 @@ shortTitle: Nextflow
 weight: 2
 ---
 
-<!-- TODO: Verify if specifying bioconda::nextflow in a dedicated environment gets the latest version. Also, consider adding instructions to move the distribution asset to bin directory (similar to self-installing package -->
-
 Nextflow is the workflow management system that runs all nf-core pipelines.
 This page will walk you through installing and configuring Nextflow on your system.
 
@@ -97,13 +95,13 @@ To install Nextflow with Conda:
 1. Activate the environment:
 
    ```bash
-   source activate nf-env
+   conda activate nf-env
    ```
 
 1. Confirm Nextflow is installed correctly:
 
    ```bash
-   nextflow infoactivate nf-env
+   nextflow info
    ```
 
 :::warning
@@ -125,10 +123,22 @@ To use the standalone distribution:
    chmod +x nextflow-25.10.0-dist
    ```
 
+1. Move Nextflow to a directory in your `$PATH`:
+
+   ```bash
+   mkdir -p $HOME/.local/bin/
+   mv nextflow-25.10.0-dist $HOME/.local/bin/
+   ```
+
+   :::note
+   Common directories on Linux or OSX operating systems for executables include `$HOME/.local/bin/`, `/usr/local/bin/`, or `$HOME/bin/`.
+   Make sure the directory you choose is in your `$PATH` environment variable.
+   :::
+
 1. Use it as a drop-in replacement for nextflow command. For example:
 
    ```bash
-   ./nextflow-25.10.0-dist run info
+   nextflow-25.10.0-dist info
    ```
 
 Replace `25.10.0` with your desired version number.
