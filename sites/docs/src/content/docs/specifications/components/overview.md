@@ -23,7 +23,6 @@ The following specifications define standards for developing nf-core modules:
 - **[Resource requirements](/developers/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
 - **[Software requirements](/developers/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
 - **[Testing](/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
-- **[Miscellaneous](/developers/specifications/modules/misc):** Code formatting standards including the "Harshil Alignment" format.
 
 ## Subworkflow specifications
 
@@ -35,4 +34,3 @@ The following specifications define standards for developing nf-core subworkflow
 - **[Subworkflow parameters](/developers/specifications/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
 - **[Documentation](/developers/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
 - **[Testing](/developers/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
-- **[Miscellaneous](/developers/specifications/subworkflows/misc):** Code formatting standards including the "Harshil Alignment" format.
