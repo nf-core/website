@@ -61,3 +61,7 @@ The `nf-core` Python package provides a command-line interface (CLI) and helper 
 It supports creating pipelines from the template, linting code against nf-core specifications, managing modules and subworkflows, and more.
 
 [Explore nf-core tools](/nf-core-tools/CLI/installation)
+
+## Code of Conduct
+
+The nf-core [Code of Conduct](https://nf-co.re/code_of_conduct) sets the standard for a safe, inclusive, and collaborative community. It outlines the behaviours that help nf-core thrive. Before you start, take a moment to read it.
