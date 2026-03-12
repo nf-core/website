@@ -1,5 +1,5 @@
 ---
-title: Contribution types
+title: Pipeline contributor types
 subtitle: Understand contributor types
 ---
 
