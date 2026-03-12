@@ -38,6 +38,14 @@ nf-core provides resources to support institutions working under regulatory fram
 - **[Regulatory overview](regulatory/overview):** nf-core's validation strategy, metrics collection, and guidance for institutional compliance
 - **[Checklist](regulatory/checklist):** A structured checklist covering each phase of the pipeline validation process
 
+## Governance
+
+nf-core governance documentation covers the structure, roles, and responsibilities of the teams that maintain and coordinate the community.
+
+- **[Teams](teams):** An overview of the nf-core leadership teams and their roles
+- **[Core team tasks](governance/core-team):** Procedures for nf-core core team administrative tasks, including on-call duties and community operations
+- **[Maintainers tasks](governance/maintainers-team):** Step-by-step procedures for maintainers team members, including onboarding, team membership management, and helpdesk sessions
+
 ## Advisories
 
 nf-core publishes advisories to communicate significant technical issues affecting pipelines, modules, or other components.
