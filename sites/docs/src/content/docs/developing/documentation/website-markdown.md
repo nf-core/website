@@ -1,10 +1,8 @@
 ---
 title: Markdown on the nf-core website
 subtitle: Use special content elements
-shortTitle: Markdown
+shortTitle: Website Markdown
 ---
-
-<!-- TODO the file name should be changed to website-markdown.md to make the left side bar title clearer-->
 
 We write all of the nf-core documentation, including pipelines, in [Markdown](https://www.markdownguide.org/).
 Markdown is a simple markup language that allows you to write text in a way that is easy to read and write, but can be converted to HTML for display on the web.
