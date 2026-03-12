@@ -86,4 +86,14 @@ Containers are recommended when possible.
 
 For installation instructions, see [Mamba installation](https://mamba.readthedocs.io/en/latest/installation/mamba-installation.html)
 
-<!-- TODO: Add additional resources, if any -->
+### Additional resources
+
+- **Nextflow dependency management documentation** – Explains how Nextflow integrates containers and Conda environments within workflow definitions [https://training.nextflow.io/2.1/basic_training/containers/]
+- **nf-core best practices for containers** – Guidelines for building and maintaining reproducible software environments for pipelines [https://nf-co.re/docs/guidelines/external_use]
+- **Docker container best practices** – Recommendations for creating lightweight and reproducible container images [https://docs.docker.com/build/building/best-practices/]
+- **Apptainer / Singularity container guide for HPC** – Documentation for running containerized workflows on shared clusters [https://centers.hpc.mil/users/docs/general/singularity.html]
+- **Conda environment management guide** – Details on creating reproducible Conda environments and managing package versions [https://docs.conda.io/projects/conda/en/stable/user-guide/tasks/manage-environments.html]
+- **Mamba environment management guide** – Details on creating reproducible Mamba environments and managing package versions [https://mamba.readthedocs.io/en/latest/user_guide/mamba.html]
+- **BioContainers project** – A community-driven repository providing pre-built containers for bioinformatics software [https://biocontainers.pro/]
+- **Reproducible bioinformatics workflows with Nextflow** – Overview of workflow reproducibility strategies using containerized pipelines [https://genomicsaotearoa.github.io/Nextflow_Workshop/]
+- **nf-core configuration profiles documentation** – Describes how configuration profiles define execution environments and dependency resolution [https://nf-co.re/docs/usage/getting_started/configuration]
