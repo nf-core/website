@@ -10,19 +10,18 @@ Now you have run your first pipeline, you may wish to start contributing!
 There are many ways to contribute to nf-core.
 This can be through pipelines, pipeline components, documentation, tooling, or even just feature requests or bug reports.
 
-If this is your first time contributing, please read this page to orient yourself on how contributing works within our community.
+This page provides and overview for how to contribute to nf-core.
 
 ## Code of conduct
 
-The [code of conduct](https://nf-co.re/code_of_conduct) is a core document for ensuring everyone gets along well within our diverse, distributed group.
+The [code of conduct](https://nf-co.re/code_of_conduct) is a core document to ensure everyone gets along well within the diverse and distributed nf-core community.
 Before you start, take a moment to review this document.
 
 ## Communication
 
-Our primary communication platform is our [Slack workspace](https://nfcore.slack.com/).
-We also communicate using [Issues](#issues) and [Pull Requests](#pull-requests) on our GitHub repositories.
+[Slack](https://nfcore.slack.com/) and GitHub [Issues](#issues) and [Pull Requests](#pull-requests) are the primary ways to communicate with others in the nf-core community.
 
-Popular common repositories include:
+Popular GitHub repositories include:
 
 - [nf-core/modules](https://github.com/nf-core/modules): Shared Nextflow modules and subworkflows
 - [nf-core/tools](https://github.com/nf-core/tools): nf-core toolkit, including module, subworkflow, and pipeline templates
@@ -32,14 +31,14 @@ Popular common repositories include:
 
 :::tip
 Every pipeline has a dedicated channel on [Slack](#joining-the-slack-and-github-organisations).
-Search for the pipeline name in the Channel browser.
+You can search pipeline names in the channel browser.
 :::
 
 ## Joining the Slack and GitHub organisations
 
-To join the Slack workspace, see our [Join nf-core](https://nf-co.re/join) page for instructions.
+See [Join nf-core](https://nf-co.re/join) for instructions how to join the nf-core Slack.
 
-After joining Slack, we recommend you join our GitHub organisation.
+After joining Slack, join the nf-core GitHub organisation.
 The GitHub organisation is open to everyone and offers a range of benefits.
 These include not having to wait for someone to approve CI tests, and reviewing and merging rights (on most repositories).
 
