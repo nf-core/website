@@ -10,7 +10,11 @@ You can configure pipelines using three approaches:
   - [Default configuration profiles](#default-configuration-profiles)
   - [Shared nf-core/configs](#shared-nf-coreconfigs)
   - [Custom configuration files](#custom-configuration-files)
-- [Additional resources](#additional-resources)
+You can configure pipelines using three approaches:
+
+- [Default configuration profiles](#default-configuration-profiles)
+- [Shared nf-core/configs](#shared-nf-coreconfigs)
+- [Custom configuration files](#custom-configuration-files)
 
 :::warning{title="Do not edit the pipeline code to configure nf-core pipelines"}
 Editing pipeline defaults prevents you from updating to newer versions without overwriting your changes.
