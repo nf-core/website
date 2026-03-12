@@ -113,5 +113,4 @@ Rename the following:
 
 - `ci.yml`: The name of your pipeline (rather than `nf-core CI tests`)
 
-<!-- TODO: Add link to using external module repositories -->
 See [Setting custom remotes](../../developing/components/custom-remotes).
