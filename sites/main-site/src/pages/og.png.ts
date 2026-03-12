@@ -1,40 +1,35 @@
 // @ts-ignore: no types
-import { html } from 'satori-html';
-import satori, { init as initSatori } from 'satori/wasm';
-import type { APIRoute } from 'astro';
-import sharp from 'sharp';
-// @ts-ignore: no types
-import initYoga from 'yoga-wasm-web/asm';
+import { html } from "satori-html";
+import satori from "satori";
+import type { APIRoute } from "astro";
+import sharp from "sharp";
 
-const YOGA = initYoga();
-initSatori(YOGA);
-
-console.log('rendering og image');
+console.log("rendering og image");
 export const GET: APIRoute = async ({ params, request }) => {
     const searchParams = new URL(request.url).searchParams;
     const args = Object.fromEntries(searchParams);
     const backgroundImage =
         args.backgroundImage ||
-        'https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png';
-    let subtitle = '';
-    const authors = args.authors ? args.authors.split(',') : [];
+        "https://raw.githubusercontent.com/nf-core/website/main/public/images/logo/nf-core-logo-darkbg.png";
+    let subtitle = "";
+    const authors = args.authors ? args.authors.split(",") : [];
     if (args.title !== undefined) {
         subtitle = args.subtitle
-            ? args.subtitle?.indexOf('. ') !== -1
-                ? args.subtitle.substring(0, args.subtitle.indexOf('. ') + 1)
+            ? args.subtitle?.indexOf(". ") !== -1
+                ? args.subtitle.substring(0, args.subtitle.indexOf(". ") + 1)
                 : args.subtitle
-            : '';
+            : "";
         // shorten to max 104 chars including the title, which is counted double
         if (subtitle && subtitle.length + args.title.length * 2 > 104) {
             subtitle = subtitle.substring(0, 104 - args.title.length * 2);
             // shorten to last previous word
-            subtitle = subtitle.substring(0, subtitle.lastIndexOf(' '));
+            subtitle = subtitle.substring(0, subtitle.lastIndexOf(" "));
         }
         // remove from emoji icons
-        subtitle = subtitle.replace(/:[^:]*:$/, '');
+        subtitle = subtitle.replace(/:[^:]*:$/, "");
     } else {
-        args.title = 'nf-core';
-        args.subtitle = 'A community effort to collect a curated set of analysis pipelines built using Nextflow.';
+        args.title = "nf-core";
+        args.subtitle = "A community effort to collect a curated set of analysis pipelines built using Nextflow.";
         subtitle = args.subtitle;
     }
     const html_string = `
@@ -69,8 +64,8 @@ export const GET: APIRoute = async ({ params, request }) => {
                         ${args.title}
                     </h1>
                     ${
-                        args.subtitle === undefined || subtitle === ''
-                            ? ''
+                        args.subtitle === undefined || subtitle === ""
+                            ? ""
                             : `<div style="font-weight: 400;font-family: 'inter'; text-wrap: balance;">${subtitle}</div>`
                     }
                 </div>
@@ -88,9 +83,9 @@ export const GET: APIRoute = async ({ params, request }) => {
                             padding-bottom: 0.5rem;
                             background: #2c2c2c;
                             border: 3pt solid #757575;">
-                        ${args.category ? args.category : 'nf-co.re'}
+                        ${args.category ? args.category : "nf-co.re"}
                     </div>
-                    ${authors.length > 0 ? `<div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:${authors.map((author) => `<img  src="https://github.com/${author}.png" style="margin-left:0.75rem" width="50px" height="50px" />`).join('')}</div>` : ''}
+                    ${authors.length > 0 ? `<div style="display: flex;flex-direction: row;align-items: center;justify-content: flex-start; margin-top:1rem">Written by:${authors.map((author) => `<img  src="https://github.com/${author}.png?" style="margin-left:0.75rem" width="10%"/>`).join("")}</div>` : ""}
                 </div>
             </div>
     </div>`;
@@ -102,8 +97,8 @@ export const GET: APIRoute = async ({ params, request }) => {
     return new Response(buffer, {
         status: 200,
         headers: {
-            'Content-Type': 'image/png',
-            'Cache-Control': 'max-age=31536000, immutable',
+            "Content-Type": "image/png",
+            "Cache-Control": "max-age=31536000, immutable",
         },
     });
 };
@@ -117,7 +112,7 @@ type ImageOptions = {
 
 async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
     const mavenpro = await fetch(
-        'https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff',
+        "https://fonts.gstatic.com/s/mavenpro/v32/7Auup_AqnyWWAxW2Wk3swUz56MS91Eww8cLx1nejpBh8CvRBOA.woff",
     ).then((res) => res.arrayBuffer());
     const inter = await fetch(
         `https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff`,
@@ -128,16 +123,16 @@ async function generateImage(jsx: any, { width, height, debug }: ImageOptions) {
         height: height,
         fonts: [
             {
-                name: 'mavenpro',
+                name: "mavenpro",
                 data: mavenpro,
                 weight: 700,
-                style: 'normal',
+                style: "normal",
             },
             {
-                name: 'inter',
+                name: "inter",
                 data: inter,
                 weight: 400,
-                style: 'normal',
+                style: "normal",
             },
         ],
     });

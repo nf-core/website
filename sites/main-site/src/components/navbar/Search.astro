@@ -1,0 +1,168 @@
+---
+interface Props {
+    id?: string;
+}
+
+const { id = "docsearch" } = Astro.props;
+---
+
+<div id={id} data-search-container>
+    <button type="button" class="DocSearch DocSearch-Button" aria-label="Search">
+        <span class="DocSearch-Button-Container">
+            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true" class="DocSearch-Search-Icon">
+                <circle cx="11" cy="11" r="8" stroke="currentColor" fill="none" stroke-width="1.4"></circle>
+                <path
+                    d="m21 21-4.3-4.3"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"></path>
+            </svg>
+            <span class="DocSearch-Button-Placeholder">Search</span>
+        </span>
+        <span class="DocSearch-Button-Keys"></span>
+    </button>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        // Lazy load DocSearch CSS and JS only when needed
+        const [docsearchModule] = await Promise.all([import("@docsearch/js"), import("@docsearch/css")]);
+
+        const docsearch = docsearchModule.default;
+
+        // Initialize all search instances
+        const searchContainers = document.querySelectorAll("[data-search-container]");
+        searchContainers.forEach((container) => {
+            const id = container.id;
+            if (id) {
+                docsearch({
+                    container: "#" + id,
+                    appId: "01BY3A8NRJ",
+                    indexName: "nf-co",
+                    apiKey: "c726615ab69f88b4e26bc891c97c1808",
+                    placeholder: "Search",
+                });
+            }
+        });
+    });
+</script>
+
+<style lang="scss" is:global>
+    :root {
+        --docsearch-text-color: var(--bs-body-color);
+        --docsearch-searchbox-background: var(--bs-body-bg);
+        --docsearch-searchbox-shadow: none;
+        --docsearch-searchbox-focus-background: var(--bs-body-bg);
+        --docsearch-primary-color: #{var(--bs-success)};
+        --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
+        --docsearch-modal-background: #{var(--bs-body-bg)};
+        --docsearch-modal-shadow: "none";
+        --docsearch-footer-shadow: none;
+        --docsearch-muted-color: #{var(--bs-secondary)};
+        --docsearch-secondary-text-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-icon-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-highlight-color: #{var(--bs-tertiary-emphasis)};
+    }
+    [data-bs-theme="dark"]:root {
+        --docsearch-text-color: var(--bs-body-color);
+        --docsearch-searchbox-background: var(--bs-body-bg);
+        --docsearch-searchbox-shadow: none;
+        --docsearch-searchbox-focus-background: var(--bs-body-bg);
+        --docsearch-search-button-background: var(--bs-body-bg);
+        --docsearch-primary-color: #{var(--bs-success)};
+        --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
+        --docsearch-modal-background: #{var(--bs-body-bg)};
+        --docsearch-modal-shadow: "none";
+        --docsearch-footer-shadow: none;
+        --docsearch-muted-color: #{var(--bs-secondary)};
+        --docsearch-secondary-text-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-icon-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-highlight-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-searchbox-background: var(--bs-body-bg);
+        --docsearch-hit-color: #{var(--bs-body-color)};
+        --docsearch-icon-color: #{var(--bs-body-color)};
+        --docsearch-logo-color: #{var(--bs-body-color)};
+        --docsearch-hit-background: #{var(--bs-body-bg)};
+        --docsearch-hit-shadow: "none";
+        --docsearch-footer-background: #{var(--bs-tertiary-bg)};
+        --docsearch-muted-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-subtle-color: #{var(--bs-tertiary-emphasis)};
+        --docsearch-background-color: #{var(--bs-body-bg)};
+    }
+    @media (max-width: 768px) {
+        .DocSearch-Modal {
+            margin-top: 2rem;
+        }
+    }
+    .DocSearch-Form {
+        border: 1pt solid var(--bs-border-color);
+    }
+    button.DocSearch-Button {
+        border-radius: var(--bs-border-radius);
+        margin-left: 0;
+    }
+
+    button.DocSearch-Button .DocSearch-Button-Keys {
+        background: none;
+        border-radius: var(--bs-border-radius-sm);
+
+        //   padding: 0.2rem;
+        margin-top: 0.15rem;
+
+        min-width: 3rem;
+        justify-content: space-around;
+        align-items: center;
+
+        display: none;
+        /*
+        @include media-breakpoint-up(xxl) {
+            display: flex;
+        }
+        */
+    }
+    .DocSearch-Button-Key,
+    kbd.DocSearch-Commands-Key {
+        align-items: center;
+        background: var(--bs-dark);
+        box-shadow: 0 0 0 1px var(--bs-secondary-color) !important;
+        margin-right: 0.2rem;
+        padding: 0;
+    }
+    .DocSearch .DocSearch-Hits {
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        &::before {
+            height: 0;
+        }
+    }
+    .DocSearch-Hit {
+        & a {
+            box-shadow: none;
+        }
+        & mark {
+            padding: 0;
+        }
+    }
+    .DocSearch-Hit-icon:has(svg[height="20"]) {
+        line-height: 20px;
+    }
+
+    .DocSearch-Hit-source {
+        font-size: 1rem;
+    }
+
+    .DocSearch-Screen-Icon svg {
+        stroke: var(--bs-body-color);
+    }
+    [data-bs-theme="dark"] .DocSearch-Hit[aria-selected="true"] a {
+        background-color: rgba(var(--bs-success-rgb), 0.75);
+    }
+    [data-bs-theme="dark"] {
+        .cls-1,
+        .cls-2 {
+            fill: #{var(--bs-body-color)};
+        }
+    }
+</style>
