@@ -6,12 +6,6 @@ shortTitle: Configuration options
 
 You can configure pipelines using three approaches:
 
-- [Choosing your configuration approach](#choosing-your-configuration-approach)
-  - [Default configuration profiles](#default-configuration-profiles)
-  - [Shared nf-core/configs](#shared-nf-coreconfigs)
-  - [Custom configuration files](#custom-configuration-files)
-    You can configure pipelines using three approaches:
-
 - [Default configuration profiles](#default-configuration-profiles)
 - [Shared nf-core/configs](#shared-nf-coreconfigs)
 - [Custom configuration files](#custom-configuration-files)
