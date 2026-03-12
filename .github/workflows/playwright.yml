@@ -2,7 +2,7 @@ name: Playwright Tests
 on:
   pull_request:
     paths:
-      - "sites/**"
+      - "sites/main-site/**"
 
 # Cancel if a newer run is started
 concurrency:
