@@ -79,7 +79,7 @@ If not, follow the repository instructions or the tutorial to add your cluster.
 
 See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
 
-:::warnings
+:::warning
 Parameters in `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
