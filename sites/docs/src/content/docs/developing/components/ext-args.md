@@ -42,7 +42,8 @@ The `ext.args` value replaces the `$args` variable in the module script, and the
 
 ## Permitted `ext` keys
 
-Different `ext` keys serve specific purposes in module configuration. This is the list of permitted keys:
+Different `ext` keys serve specific purposes in module configuration.
+This is the list of permitted keys:
 
 | Key                                   | Description                                                                                  |
 | ------------------------------------- | -------------------------------------------------------------------------------------------- |
@@ -114,6 +115,10 @@ process {
 }
 ```
 
-## Rational
+## Rationale
 
-The `ext` keys allow pipeline users to customize module behavior via configuration files. They are not a workaround for avoiding defined `input:` channels. Most optional command-line flags should be passed via `ext.args`. If modifying an `ext` key could cause pipeline instability or break downstream tasks, it must be defined as an `input:`. Using `input:` for critical variables ensures that module parameters remain explicitly documented in the `meta.yml` and traceable.
+The `ext` keys allow pipeline users to customize module behavior via configuration files.
+They are not a workaround for avoiding defined `input:` channels.
+Most optional command-line flags SHOULD be passed via `ext.args`.
+If modifying an `ext` key could cause pipeline instability or break downstream tasks, it MUST be defined as an `input:`.
+Using `input:` for critical variables ensures that module parameters remain explicitly documented in the `meta.yml` and traceable.
