@@ -85,7 +85,7 @@ Use `-params-file` with YAML or JSON format instead.
 :::
 
 :::note
-In nf-core pipelines we have `base.config` as this is where we set our _Resource_ defaults
+All nf-core pipelines have a `conf/base.config` where computational resource request defaults are specified.
 :::
 
 ### Custom configuration files
