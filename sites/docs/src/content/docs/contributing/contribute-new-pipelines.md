@@ -29,6 +29,10 @@ You will need the following to get started:
 To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributors/contribute-existing-pipelines).
 :::
 
+:::info
+If your proposal is turned down, you can still use the nf-core template, tooling, and components - see [this page](../developing/external-use).
+:::
+
 ## Request a new pipeline
 
 To propose a new nf-core pipeline:
