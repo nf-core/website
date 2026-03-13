@@ -90,7 +90,7 @@ Here are some tips to get faster reviews:
 1. **Keep your pull requests small**: one or two modified files, or less than 100 lines of code, will more likely be reviewed than 100 files with 1000s of lines of code changes.
 2. **Request reviews on Slack**: use the [#request-review](https://nfcore.slack.com/archives/request-review) channel on Slack to get visibility of your request.
 3. **Trade reviews**: if you request a review, review someone else's — they will likely reciprocate! Track other requests on the #request-review channel.
-:::
+   :::
 
 For detailed guidance on contributing to specific nf-core repositories, see:
 
@@ -156,6 +156,6 @@ If the community can't help, reach out to the relevant team:
 - [Core team](https://nf-co.re/governance#core-team) for critical decisions affecting the entire community, or anything requiring passwords
 - [Docs team](https://nf-co.re/governance#docs) for questions about nf-core documentation
 - [Safety team](https://nf-co.re/governance#safety) for interpersonal conflict with another community member
-:::
+  :::
 
 See the [Governance](https://nf-co.re/governance#governance) page for an overview of the community's organizational structure.
