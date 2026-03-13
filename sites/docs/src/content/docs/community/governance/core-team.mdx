@@ -6,13 +6,6 @@ description: This page provides detailed procedures for nf-core core team admini
 markdownPlugin: checklist
 ---
 
-/\* TODO migrate updates from PRs:
-
-- https://github.com/nf-core/website/pull/3677/changes
-- https://github.com/nf-core/website/pull/3679/changes
-- https://github.com/nf-core/website/pull/3821/changes
-  \*/
-
 This page provides detailed procedures for nf-core core team administrative tasks.
 Core team members rotate week 'on-call' duties to manage community operations and support pipeline development.
 
@@ -39,6 +32,9 @@ To approve and setup a new [nf-core pipeline](https://github.com/nf-core/proposa
     - If not accepted: update the project status to 'Turned down' (process ends here)
 1. **Core**: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name)
 1. **Core**: Create a slack channel with approved pipeline name:
+    - Invite the Slack bot to the channel (`/invite @Full test notifications`).
+      This is required for CI/CD Slack notifications via the [nf-slack plugin](https://github.com/seqeralabs/nf-slack).
+      The bot **will silently fail** if not invited.
     - Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
 1. **Core**: Add the main developer(s) to:
     - [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
@@ -47,12 +43,9 @@ To approve and setup a new [nf-core pipeline](https://github.com/nf-core/proposa
 1. **Core/Dev**: Set up the pipeline repository:
     - If development started in a custom (non-nf-core) repo, [transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core
     - If starting fresh, create a new GitHub repository with the name of the pipeline
-1. **Core**: Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list
-1. **Core/Dev**: Use `nf-core pipelines create` to create a git repository and push it to GitHub
-1. **Core/Dev**: Once first release (mostly) ready:
-    - Transfer the repository to nf-core GitHub organisation and remove the repository on the local machine/user account.
-1. **Core/Dev**: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is listed
-1. **Core/Dev**: Trigger the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml) to sync the `nf-co.re` pipelines page:
+1. Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list (until the pipeline is in advanced development or there is a need to surface it already).
+1. **Core/Dev**: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is there.
+1. **Core/Dev**: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
     - **Website repo > Actions > Build json files and md-cache > Run workflow > From main**
 
 ## Upload test data to a S3 bucket
@@ -62,7 +55,7 @@ To upload full-test AWS files for to a S3 bucket:
 1. Check the test data is valid.
 
     :::note
-    Small i nput data may be unreliable when downloaded from other repositories (e.g., limit total file size to < 10 GB total).
+    Small input data may be unreliable when downloaded from other repositories (e.g., limit total file size to < 10 GB total).
     :::
 
 1. Check that large files cannot be reduced or subset
@@ -234,9 +227,11 @@ To onboard a new core team member:
 
 Duties for core team weekly 'on-call' rotation:
 
+- Distribute first release reviews => [Slack](https://nfcore.slack.com/archives/C08K66XCZSL)
 - Facilitate discussions and handling acceptance/rejection procedures on nf-core/proposals (pipelines, RFCs, SIGs, etc.) => [Github](http://github.com/nf-core/proposals) and [Slack](https://nfcore.slack.com/archives/CE6SDEDAA)
 - Add new community members to the GitHub organisation => [Github](http://github.com/orgs/nf-core/people) and [Slack](https://nfcore.slack.com/archives/CEB982K2T)
-- Upload test data to AWS S3 buckets for new pipelines => [Slack](https://nfcore.slack.com/archives/C09H6NYHR9T)
-- Upload containers to [quay.io](https://quay.io/)
-- Distribute first release reviews => [Slack](https://nfcore.slack.com/archives/C08K66XCZSL)
-- Activate Zenodo => [Link](https://zenodo.org/account/settings/github/)
+- Monitor [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel for requests to:
+    - Upload test data to AWS S3 nf-core-awsmegatest buckets for new pipelines
+    - Upload containers to [quay.io](https://quay.io/)
+    - Activate Zenodo via the [Zenodo Github settings](https://zenodo.org/account/settings/github/)
+    - Transfer pipeline repositories
