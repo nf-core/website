@@ -4,8 +4,6 @@ subtitle: Use nf-core code externally
 shortTitle: External use
 ---
 
-<!-- TODO: Add links to this page from contributing and developing pages, maybe move this to developing? -->
-
 Whenever possible, you should contribute to existing nf-core pipelines.
 However, in some cases, this may not be possible or appropriate.
 In this case, you should still use parts of nf-core best practices for your own non-nf-core pipeline.
