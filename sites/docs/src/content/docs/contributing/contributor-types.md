@@ -1,24 +1,22 @@
 ---
-title: Contribution types
+title: Pipeline contributor types
 subtitle: Understand contributor types
 ---
-
-<!-- TODO File/title should be renamed to be more descriptive that it's about classifying contributor types -->
 
 Each nf-core pipeline includes a `nextflow.config` file with a manifest that lists all pipeline contributors.
 The manifest includes a `contributions` attribute that describes what each person contributed to the pipeline.
 
 This page outlines nf-core's guidelines for attributing contributions to recognise all contributors to nf-core pipelines.
 
-## Contribution types
+## Contributor types
 
-The [manifest](https://nextflow.io/docs/latest/reference/config.html#manifest) supports three contribution types:
+The [manifest](https://nextflow.io/docs/latest/reference/config.html#manifest) supports three contributor types:
 
 - `author`
 - `maintainer`
 - `contributor`
 
-The following sections describe how nf-core uses these contribution types.
+The following sections describe how nf-core uses these contributor types.
 
 ### Author
 
@@ -63,11 +61,9 @@ Contributors can be both current and past.
 
 ## Case study
 
-The nf-core/mag pipeline demonstrates how to distinguish between the different contribution types.
+The nf-core/mag pipeline demonstrates how to distinguish between the different contributor types.
 
-<!-- /images/mag_contributors_plot.png -->
-
-<!-- TODO: Fix link -->
+![contributors_plot](../../../assets/images/mag_contributors_plot.png)
 
 - Hadrien was the original architect and wrote the majority of v1 of the pipeline from 2018, and finished developing v1 in 2020. He is therefore an author.
 - Daniel and Sabrina started assisting Hadrien in 2019, and took over as the lead maintainers between 2019 and 2022, keeping the pipeline up to date and adding new features. During this period they were maintainers.
@@ -77,7 +73,7 @@ The nf-core/mag pipeline demonstrates how to distinguish between the different c
 
 ## Best practices
 
-A person can have one or more contribution designations.
+A person can have one or more designations.
 Evaluate each contributor's role and apply the appropriate types.
 
 :::note{title="Important"}
@@ -86,4 +82,4 @@ Acknowledge everyone who has contributed to the pipeline at any point in its his
 :::
 
 Community and collaboration are core to nf-core.
-Using these contribution types helps strengthen community ownership of pipelines and supports their long-term maintenance!
+Using these contributor types helps strengthen community ownership of pipelines and supports their long-term maintenance!

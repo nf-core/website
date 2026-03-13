@@ -197,7 +197,7 @@ Common configuration scenarios include:
 Configuration files are applied in order and later files override earlier settings. Multiple `-c` flags can be used to layer configurations.
 :::
 
-For detailed configuration options, see the [Configuration guide](./configuration/configuration-options.md)
+For detailed configuration options, see the [Configuration guide](./configuration/configuration-options)
 
 ### Resuming runs
 
@@ -217,10 +217,13 @@ Nextflow caches completed steps and only re-runs processes with changed inputs, 
 Always use `-resume` when re-running a pipeline after fixing errors or updating parameters. Nextflow automatically determines which steps need to re-execute.
 :::
 
+### Notifications
+
+- Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://www.nextflow.io/docs/latest/mail.html#mail-configuration)).
+- To receive notifications from your pipeline (e.g. on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
+
 ## Next steps
 
-- [Configure pipelines](./configuration/configuration-options.md)
+- [Configure pipelines](./configuration/configuration-options)
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
-
-<!-- TODO: Add links, if any extra seem applicable -->

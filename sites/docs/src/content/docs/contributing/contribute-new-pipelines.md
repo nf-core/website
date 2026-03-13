@@ -46,6 +46,24 @@ To propose a new nf-core pipeline:
    - [#pipeline-maintainers](https://nfcore.slack.com/channels/pipeline-maintainers) for major change announcements and general pipeline development discussion.
    - [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to coordinate the two reviews required for your first release.
 
+:::warning{title="Contributing a pre-existing pipeline"}
+
+In some cases, you might have a Nextflow pipeline built outside of nf-core that you believe would be a valuable addition to the community.
+Make sure to [start the discussion](https://github.com/nf-core/proposals/issues) as early as possible.
+
+While we can accept this type of contribution, you should be aware of several caveats in this scenario:
+
+- You must ensure your pipeline already uses the nf-core template
+- You will be asked to contribute to an existing pipeline instead if one with an identical or similar purpose exists, even if your pipeline is more mature at the time of submission
+- You may need to make major (possibly breaking) changes to your pipeline to meet [the guidelines](/docs/guidelines/pipelines/overview)
+- You may need to change the name of the pipeline to follow the [pipeline specifications](../specifications/pipelines/requirements/workflow_name)
+
+Note that a rejected proposal is not a statement on the quality of the pipeline.
+However, as collaboration is a core philosophy of nf-core, we will always promote building larger teams around a single pipeline.
+
+Otherwise, you can still [contribute to existing pipelines](../contributing/contribute-existing-pipelines), and are always welcome to [use nf-core components](../developing/pipelines/external-use) for your own project.
+:::
+
 ## Create the pipeline from the template
 
 To create a new pipeline from the nf-core template:
@@ -268,11 +286,6 @@ Use the `dev` branch for new work and make all pull requests against `dev`.
 :::
 
 ## Make the first release
-
-<!-- TODO migrate updates from PRs
-- https://github.com/nf-core/website/pull/3677/changes
-- https://github.com/nf-core/website/pull/3679/changes
-- -->
 
 Once your pipeline is written, tests pass, and the repository is in the nf-core organisation, you can prepare for your first release.
 
