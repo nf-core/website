@@ -49,7 +49,7 @@ For even more convenience, you can use the asset library [nf-core xml item libra
 It contains all of the components from the components above.
 To open the nf-core component library:
 
-1. Download the <a href="/public/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml" download>library file</a>
+1. Download the <a href="/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml" download>library file</a>
 2. Go to [draw.io](https://draw.io/)
 3. Click _File → Open Library from → Device_
 4. Select the downloaded the file
