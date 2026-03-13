@@ -14,7 +14,7 @@ While these specifications are mandatory for components contributed to the nf-co
 ## Module specifications
 
 The following specifications define standards for developing nf-core modules:
-- **[General](/docs/specifications/commponents/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
+- **[General](/docs/specifications/components/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
 - **[Naming conventions](/docs/specifications/components/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
 - **[Input/output options](/docs/specifications/components/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
 - **[Documentation](/docs/specifications/components/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
