@@ -30,7 +30,7 @@ To contribute features, bug fixes, or improvements to existing nf-core pipelines
 :::
 
 :::info
-If your proposal is turned down, you can still use the nf-core template, tooling, and components - see [this page](../developing/external-use).
+If your proposal is turned down, you can still use the nf-core template, tooling, and components. See [developing external pipelines with nf-core](developing/external-use).
 :::
 
 ## Request a new pipeline
