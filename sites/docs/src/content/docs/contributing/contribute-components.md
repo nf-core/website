@@ -186,6 +186,11 @@ Components are tested via GitHub Actions CI using Docker, Singularity, and Conda
 The automated tests must pass before your component can be merged.
 :::
 
+:::tip
+The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common code linting mistakes and other actions in pull requests.
+Leave a comment of `@nf-core-bot fix linting` on the pull request to trigger the fixes.
+:::
+
 ## Address review feedback
 
 The nf-core maintainers will review your contribution:
