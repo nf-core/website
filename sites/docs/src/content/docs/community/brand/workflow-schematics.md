@@ -49,10 +49,10 @@ For even more convenience, you can use the asset library [nf-core xml item libra
 It contains all of the components from the components above.
 To open the nf-core component library:
 
-1. Go to [this URL](https://raw.githubusercontent.com/nf-core/website/refs/heads/main/sites/docs/src/assets/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml) and press Ctrl+S / Cmd+S to save the file
-1. Go to [draw.io](https://draw.io/)
-1. Click _File → Open Library from → Device_
-1. Select the downloaded the file
+1. Download the <a href="/public/images/graphic_design_assets/workflow_schematics_components/generic/nf-core_components.xml" download='nf-core_components.xml'>thelibrary file</a>
+2. Go to [draw.io](https://draw.io/)
+3. Click _File → Open Library from → Device_
+4. Select the downloaded the file
 
 This will load the nf-core shapes into the sidebar without any CORS issues.
 
