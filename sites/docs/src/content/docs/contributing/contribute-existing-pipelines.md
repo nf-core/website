@@ -113,6 +113,10 @@ You will need the following to get started:
    - Explain how you tested your changes
    - Include example commands or screenshots if helpful
 
+   :::tip
+   The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automate code fixes and other actions in pull requests.
+   :::
+
 1. Address review feedback
 
    :::note
