@@ -6,12 +6,6 @@ shortTitle: General
 weight: 1
 ---
 
-<!-- TODO migrate changes form these PRs:
-
-- https://github.com/nf-core/website/pull/3769/changes
-- https://github.com/nf-core/website/pull/3783/changes
--->
-
 The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Required and optional input files
@@ -70,6 +64,27 @@ ext.args = { "--id ${meta.id}" }
 ```
 
 :::
+
+## Module granularity
+
+A module SHOULD represent a single command or single subcommand with distinct functionality.
+Unless absolutely necessary, the finest level of granularity is `<tool>` or `<tool>/<subtool>`.
+
+This is reflected in the naming of modules:
+
+- A tool with a single execution command uses the naming pattern `<tool>` (or `<tool>/<tool>` if the tool also has subcommands).
+- A tool with subcommands uses the naming pattern `<tool>/<subtool>`.
+- If a tool has mutually exclusive functionality controlled only by flags (rather than subcommands), the flag name can replace the subcommand in the module name.
+- If a tool has sub-sub-commands, each subcommand SHOULD be appended to the first subcommand.
+
+**Examples:**
+
+| Tool    | Scenario                                                                                               | Module name                  |
+| ------- | ------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| kraken2 | Primary execution command (`kraken2 <params>`), but tool also has subcommands                          | `kraken2/kraken2`            |
+| kraken2 | Build subcommand (`kraken2 build <params>`)                                                            | `kraken2/build`              |
+| ANGSD   | Mutually exclusive functionality controlled by flags (e.g. `-doCounts`, `-GL`) rather than subcommands | `angsd/docounts`, `angsd/gl` |
+| AWS CLI | Sub-sub-command (`aws s3 ls`)                                                                          | `aws/s3ls`                   |
 
 ## Use of multi-command piping
 
@@ -185,9 +200,30 @@ The topic output qualifier in Nextflow collects outputs from multiple processes 
 Use this feature in nf-core modules to collect version information from all tools without complex channel mixing logic.
 See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
+```groovy title="main.nf"
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+```
+
+Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g., `versions_samtools`).
+
+If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
+```
+
+Remember to update this string when bumping the container version.
+
 :::warning
 For modules that use the template process directive, they will currently continue to depend on the old approach with `versions.yml`.
 The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic.
+
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic:
+
+```groovy title="main.nf"
+path "versions.yml", emit: versions, topic: versions
+```
+
 :::
 
 :::tip{title="Tips for extracting the version string" collapse}

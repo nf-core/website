@@ -80,5 +80,6 @@ If you have questions at any point:
 - Contact **#team-docs** on the [nf-core Slack](https://nf-co.re/join#Slack) workspace
 - Ask in your pull request comments
 - Review existing documentation for examples
+- Use the [nf-core-bot](reviewing-pull-requests/nf-core-bot) to automatically fix some common markdown formatting mistakes and other actions in pull requests.
 
 We're a friendly community and happy to help new contributors!

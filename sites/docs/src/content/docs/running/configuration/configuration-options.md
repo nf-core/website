@@ -6,11 +6,9 @@ shortTitle: Configuration options
 
 You can configure pipelines using three approaches:
 
-- [Choosing your configuration approach](#choosing-your-configuration-approach)
-  - [Default configuration profiles](#default-configuration-profiles)
-  - [Shared nf-core/configs](#shared-nf-coreconfigs)
-  - [Custom configuration files](#custom-configuration-files)
-- [Additional resources](#additional-resources)
+- [Default configuration profiles](#default-configuration-profiles)
+- [Shared nf-core/configs](#shared-nf-coreconfigs)
+- [Custom configuration files](#custom-configuration-files)
 
 :::warning{title="Do not edit the pipeline code to configure nf-core pipelines"}
 Editing pipeline defaults prevents you from updating to newer versions without overwriting your changes.
@@ -79,7 +77,11 @@ All nf-core pipelines load these shared profiles at run time.
 Check if your system has a profile at [https://github.com/nf-core/configs](https://github.com/nf-core/configs).
 If not, follow the repository instructions or the tutorial to add your cluster.
 
-<!-- TODO: Add link to tutorial from nextflow training, if it exists? -->
+See [Run configuration](https://training.nextflow.io/latest/nextflow_run/03_config/) for a guided configuration tutorial.
+
+:::note
+All nf-core pipelines have a `conf/base.config` where default computational resource requests are specified.
+:::
 
 ### Custom configuration files
 
@@ -101,9 +103,7 @@ The loading order is:
 4. Each `-c` file in the order you specify
 5. Command line parameters (`--<parameter>`)
 
-<!-- TODO I think this _maybe_ should go before the explanation of how to customise with local configuration files, as this is the default behaviour BEFORe you start customising so the logic will maybe be more familiar. Relatd, maybe we should mention that in nf-core pipelines we have `base.config` as this is where we set our _Resource_ defaults -->
-
-:::warnings
+:::warning
 Parameters in `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
@@ -119,5 +119,4 @@ Generate a parameters file using the **Launch** button on the [nf-co.re website]
 For more information about configuration syntax and parameters, see:
 
 - [Nextflow config](https://www.nextflow.io/docs/latest/config.html)
-
-<!-- TODO: Add links, if any, otherwise remove this section -->
+- [Institutional profiles](../../developing/institutional-profiles/overview.md)
