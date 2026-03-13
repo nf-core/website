@@ -36,6 +36,8 @@ nf-core/configs contains a set of Nextflow configuration files for specific clus
 
 - **[Contributing configs](https://github.com/nf-core/configs):** Add a new institutional configuration file with custom parameters to run nf-core pipelines
 
+<!-- TODO: Add a section about plugins when docs become available in the future -->
+
 ## Documentation
 
 Good documentation is essential to nf-core's mission.
