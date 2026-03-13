@@ -26,7 +26,7 @@ You will need the following to get started:
 
 ## Start new session
 
-Create a new Google Colab session as required by the [Colab interface](https://colab.research.google.com/).
+Create a new Google Colab session as required by the <a href="https://colab.research.google.com/" target="_blank">Colab interface</a>.
 
 ## Install Java
 
