@@ -6,19 +6,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           # Use @nf-core-bot token to check out so we can push without a PR
           token: ${{ secrets.NF_CORE_BOT_AUTH_TOKEN }}
 
       # Add Node.js setup step
       - name: Setup Node.js
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
           node-version: "24"
 
       - name: Set up Python
-        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548 # v6
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6
         with:
           python-version: 3.14
 
@@ -45,10 +45,30 @@ jobs:
           HIDE_PROGRESS: "true"
           NXF_ANSI_LOG: false
         with:
-          commit_changes: "true"
+          commit_changes: "false"
           terminal_width: 100
           skip_git_checks: "true"
           search_include: ".github/workflows/rich-codex.yml"
+
+      - name: Decode HTML entities in generated SVGs
+        run: |
+          python3 -c "
+          import re, html, glob
+          for path in glob.glob('sites/docs/src/assets/images/**/*.svg', recursive=True):
+              content = open(path).read()
+              decoded = re.sub(r'&#[0-9]+;|&#x[0-9a-fA-F]+;', lambda m: html.unescape(m.group(0)), content)
+              if decoded != content:
+                  open(path, 'w').write(decoded)
+                  print(f'Decoded entities in {path}')
+          "
+
+      - name: Commit generated images
+        run: |
+          git config user.email "core@nf-co.re"
+          git config user.name "nf-core-bot"
+          git add --all
+          git diff --staged --quiet || git commit -m "[automated] Update rich-codex images"
+          git push
 
       - name: Restore package.json
         run: |

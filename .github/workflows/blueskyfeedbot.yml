@@ -7,6 +7,7 @@ on:
 jobs:
   rss-to-bluesky:
     runs-on: ubuntu-latest
+    if: github.repository == 'nf-core/website'
     steps:
       - name: Generate cache key
         uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # v8
@@ -15,7 +16,7 @@ jobs:
           script: |
             core.setOutput('cache-key', new Date().valueOf())
       - name: Retrieve cache
-        uses: actions/cache@9255dc7a253b0ccc959486e2bca901246202afeb # v5
+        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
         with:
           path: ${{ github.workspace }}/blueskyfeedbot
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}

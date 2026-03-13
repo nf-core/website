@@ -6,7 +6,8 @@ import pipelines_json from "@public/pipelines.json";
 import type { SidebarEntry } from "@utils/types";
 import { getCollection } from "astro:content";
 import semver from "semver";
-import { formatAdvisoryType } from "../components/advisory/advisoryUtils.ts";
+
+import "katex/dist/katex.min.css";
 
 export interface Props {
     pipeline: string | undefined;

@@ -12,16 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
       - name: Checkout tools code
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           repository: "nf-core/tools"
           ref: ${{ inputs.ref_name }}
           path: "tools"
 
       - name: setup node
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
           node-version: "24"
 
@@ -29,21 +29,27 @@ jobs:
         run: |
           npm install remark unist-util-visit
 
+      - name: setup uv
+        uses: astral-sh/setup-uv@6ee6290f1cbc4156c0bdd66691b2c144ef8df19a # v7
+
       - name: install nf-core
         run: |
           cd tools
-          pip install --upgrade -r requirements-dev.txt -e .
+          uv sync --all-extras
 
       - name: run API generation script
         run: |
           cd tools
-          pip install sphinx-markdown-builder
-          bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
+          uv add sphinx-markdown-builder
+          if [ -f docs/api/requirements.txt ]; then
+            uv add -r docs/api/requirements.txt
+          fi
+          uv run bash docs/api/generate-api-docs.sh --release ${{ inputs.ref_name }}
 
       - name: remove tools code
         run: rm -rf tools
 
-      - uses: j178/prek-action@91fd7d7cf70ae1dee9f4f44e7dfa5d1073fe6623 # v1
+      - uses: j178/prek-action@0bb87d7f00b0c99306c8bcb8b8beba1eb581c037 # v1
         with:
           install-only: true
 
@@ -65,7 +71,7 @@ jobs:
           git commit -m "[automated] Update nf-core/tools API docs for ${{ inputs.ref_name }}"
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@98357b18bf14b5342f975ff684046ec3b2a07725 # v8
+        uses: peter-evans/create-pull-request@c0f553fe549906ede9cf27b5156039d195d2ece0 # v8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: Update nf-core/tools API docs for ${{inputs.ref_name}}

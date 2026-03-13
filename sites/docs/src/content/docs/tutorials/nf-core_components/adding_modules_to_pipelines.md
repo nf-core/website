@@ -27,7 +27,7 @@ Different pipelines may have different workflows, but the following steps will c
 7. Update the `nextflow_schema.json` to include new parameters with
 
    ```bash
-   nf-core schema build
+   nf-core pipelines schema build
    ```
 
 8. Update `assets/multiqc_config.yml` to include any new MultiQC modules (if any exist) and specify order in the report
@@ -55,7 +55,7 @@ Different pipelines may have different workflows, but the following steps will c
 15. Lint the new code with
 
     ```bash
-    nf-core lint
+    nf-core pipelines lint
     ```
 
 Then open the pull request!

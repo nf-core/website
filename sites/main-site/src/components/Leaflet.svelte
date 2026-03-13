@@ -23,9 +23,14 @@
     let m;
     function createMap(container) {
         m = map(container, {
-            minZoom: 1.4,
+            minZoom: 1.49,
             fullscreenControl: true,
-        }).setView([20, 22.09], 1.5); // Adjusted center point and zoom
+            maxBounds: [
+                [-90, -180],
+                [90, 180],
+            ],
+            maxBoundsViscosity: 1.0,
+        }).setView([20, 32.09], 1.49);
 
         let greenIcon = new Icon({
             iconUrl: "/images/marker-icon-2x-green.png",
@@ -38,6 +43,7 @@
         tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
         }).addTo(m);
+
         locations.map(function (locationMarker) {
             if (locationMarker != null) {
                 const image = locationMarker.image
@@ -81,18 +87,18 @@
 
 <style lang="scss">
     .map {
-        height: 500px;
-        width: 80%;
+        width: 100%;
+        height: 460px;
+        max-width: 800px;
     }
     @media (max-width: 767.98px) {
         // md-breakpoint
         .map {
-            height: 350px;
-            width: 100%;
+            height: 300px;
         }
     }
     :global(.contributor_map_logo) {
-        max-height: 5rem;
+        max-height: 5.2rem;
         margin-top: 0.25rem;
     }
     :global(.leaflet-popup-content-wrapper) {
