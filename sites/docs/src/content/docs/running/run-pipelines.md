@@ -227,4 +227,3 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 - [Configure pipelines](./configuration/configuration-options)
 - Browse the [pipeline catalog](https://nf-co.re/pipelines) to find workflows for your research
 - Join the [nf-core Slack](https://nf-co.re/join/slack) community for support
-
