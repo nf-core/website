@@ -358,6 +358,9 @@ See the documentation pinned in [#release-review-trading](https://nfcore.slack.c
 
 Once reviewers approve your pull request:
 
+1. Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
+   - All unreleased nf-core pipelines have this ruleset applied, which prevents tag creation until the pipeline is ready for its first release.
+
 1. Add a changelog entry describing the pipeline functionality at release.
    - Describe the general features and capabilities.
    - Tag contributors with their GitHub handles so their icons appear on the release page.
