@@ -27,9 +27,9 @@ The following specifications define standards for developing nf-core modules:
 
 The following specifications define standards for developing nf-core subworkflows:
 
-- **[General](/docs/specifications/subworkflows/general):** Foundation for subworkflow development including minimum subworkflow size and version reporting channels.
-- **[Naming conventions](/docs/specifications/subworkflows/naming-conventions):** Standards for naming subworkflow files, parameters, functions, channels, and input/output structures.
-- **[Input/output options](/docs/specifications/subworkflows/input-output-options):** Guidelines for defining required input and output channels, and handling optional inputs.
-- **[Subworkflow parameters](/docs/specifications/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
-- **[Documentation](/docs/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
-- **[Testing](/docs/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
+- **[General](/docs/specifications/components/subworkflows/general):** Foundation for subworkflow development including minimum subworkflow size and version reporting channels.
+- **[Naming conventions](/docs/specifications/components/subworkflows/naming-conventions):** Standards for naming subworkflow files, parameters, functions, channels, and input/output structures.
+- **[Input/output options](/docs/specifications/components/subworkflows/input-output-options):** Guidelines for defining required input and output channels, and handling optional inputs.
+- **[Subworkflow parameters](/docs/specifications/components/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
+- **[Documentation](/docs/specifications/components/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
+- **[Testing](/docs/specifications/components/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
