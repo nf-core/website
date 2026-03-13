@@ -8,15 +8,15 @@ The manifest includes a `contributions` attribute that describes what each perso
 
 This page outlines nf-core's guidelines for attributing contributions to recognise all contributors to nf-core pipelines.
 
-## Contribution types
+## Contributor types
 
-The [manifest](https://nextflow.io/docs/latest/reference/config.html#manifest) supports three contribution types:
+The [manifest](https://nextflow.io/docs/latest/reference/config.html#manifest) supports three contributor types:
 
 - `author`
 - `maintainer`
 - `contributor`
 
-The following sections describe how nf-core uses these contribution types.
+The following sections describe how nf-core uses these contributor types.
 
 ### Author
 
@@ -61,7 +61,7 @@ Contributors can be both current and past.
 
 ## Case study
 
-The nf-core/mag pipeline demonstrates how to distinguish between the different contribution types.
+The nf-core/mag pipeline demonstrates how to distinguish between the different contributor types.
 
 ![contributors_plot](../../../assets/images/mag_contributors_plot.png)
 
@@ -73,7 +73,7 @@ The nf-core/mag pipeline demonstrates how to distinguish between the different c
 
 ## Best practices
 
-A person can have one or more contribution designations.
+A person can have one or more designations.
 Evaluate each contributor's role and apply the appropriate types.
 
 :::note{title="Important"}
@@ -82,4 +82,4 @@ Acknowledge everyone who has contributed to the pipeline at any point in its his
 :::
 
 Community and collaboration are core to nf-core.
-Using these contribution types helps strengthen community ownership of pipelines and supports their long-term maintenance!
+Using these contributor types helps strengthen community ownership of pipelines and supports their long-term maintenance!
