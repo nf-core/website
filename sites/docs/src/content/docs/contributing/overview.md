@@ -24,6 +24,18 @@ Contributing components benefits the entire Nextflow community by reducing dupli
 
 - **[Contributing components](./contribute-components):** Contribute modules and subworkflows to the nf-core/modules repository
 
+## Tools
+
+nf-core/tool is a Python package with helper tools for developing and maintaining nf-core pipelines, modules and subworklows:
+
+- **[Contributing tools](https://nf-co.re/docs/nf-core-tools):** Contribute to the nf-core/tool package
+
+## Configs
+
+nf-core/configs contains a set of Nextflow configuration files for specific clusters or compute environments at different institutions:
+
+- **[Contributing configs](https://github.com/nf-core/configs):** Add a new institutional configuration file with custom parameters to run nf-core pipelines
+
 ## Documentation
 
 Good documentation is essential to nf-core's mission.
