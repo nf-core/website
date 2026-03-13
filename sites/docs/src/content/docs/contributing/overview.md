@@ -28,7 +28,7 @@ Contributing components benefits the entire Nextflow community by reducing dupli
 
 nf-core/tool is a Python package with helper tools for developing and maintaining nf-core pipelines, modules, and subworkflows:
 
-- **[nf-core/tools documentation](https://docs-v2--nf-core-docs.netlify.app/docs/nf-core-tools/cli/installation):** Documentation of the nf-core/tools command-line tooling 
+- **[nf-core/tools documentation](https://docs-v2--nf-core-docs.netlify.app/docs/nf-core-tools/cli/installation):** Documentation of the nf-core/tools command-line tooling
 - **[Contributing tools](https://nf-co.re/docs/nf-core-tools):** Contribute to the nf-core/tool package
 
 ## Configs
