@@ -175,6 +175,10 @@ To add your test data to the nf-core/test-datasets repository:
    - First, create a new branch with your pipeline name using the GitHub web interface on the [nf-core/test-datasets repository](https://github.com/nf-core/test-datasets/).
    - Then open a pull request and select this branch as the target.
 
+   :::tip
+   The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automate code fixes and other actions in pull requests.
+   :::
+
 ### Configure the test profile
 
 To configure the test profile in your pipeline:
