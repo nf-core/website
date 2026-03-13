@@ -161,8 +161,8 @@ Understanding these limitations helps you work around them effectively.
 
 Address these limitations through the following practices:
 
-- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate <!-- TODO is this correct, if session timesout the data is not persistant - where does the `work/` directory go exactly  -->
-- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption <!-- TODO how should this be monitored? -->
+- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate
+- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption
 - **Protect your outputs**: Save critical results to Google Drive or external storage throughout execution rather than waiting until completion. Back up results frequently
 - **Maintain reproducibility**: Document your Colab setup (package versions, configurations) in version control for consistent results across sessions
 
