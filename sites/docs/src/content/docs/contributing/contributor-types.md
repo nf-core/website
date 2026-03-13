@@ -73,7 +73,7 @@ The nf-core/mag pipeline demonstrates how to distinguish between the different c
 
 ## Best practices
 
-A person can have one or more  designations.
+A person can have one or more designations.
 Evaluate each contributor's role and apply the appropriate types.
 
 :::note{title="Important"}
