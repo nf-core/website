@@ -167,7 +167,9 @@ Address these limitations through the following practices:
 - **Maintain reproducibility**: Document your Colab setup (package versions, configurations) in version control for consistent results across sessions
 
 :::info
-When a session times out and the work directory is set to a folder in your persistent Google Drive storage, then resuming is possible. However, if you do not do this, then it goes into temporary colab storage. This means that the session does not persist and resuming is not possible.
+If a session times out and the work directory is set to a folder in your persistent Google Drive storage, then resuming is possible.
+Otherwise, the work directory will be in the temporary colab storage.
+In this case, the session does not persist and resuming is not possible.
 :::
 
 ## Troubleshooting
