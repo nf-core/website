@@ -79,12 +79,12 @@ This is reflected in the naming of modules:
 
 **Examples:**
 
-| Tool    | Scenario                                                                                                | Module name                  |
-| ------- | ------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| kraken2 | Primary execution command (`kraken2 <params>`), but tool also has subcommands                           | `kraken2/kraken2`            |
-| kraken2 | Build subcommand (`kraken2 build <params>`)                                                             | `kraken2/build`              |
+| Tool    | Scenario                                                                                               | Module name                  |
+| ------- | ------------------------------------------------------------------------------------------------------ | ---------------------------- |
+| kraken2 | Primary execution command (`kraken2 <params>`), but tool also has subcommands                          | `kraken2/kraken2`            |
+| kraken2 | Build subcommand (`kraken2 build <params>`)                                                            | `kraken2/build`              |
 | ANGSD   | Mutually exclusive functionality controlled by flags (e.g. `-doCounts`, `-GL`) rather than subcommands | `angsd/docounts`, `angsd/gl` |
-| AWS CLI | Sub-sub-command (`aws s3 ls`)                                                                           | `aws/s3ls`                   |
+| AWS CLI | Sub-sub-command (`aws s3 ls`)                                                                          | `aws/s3ls`                   |
 
 ## Use of multi-command piping
 
