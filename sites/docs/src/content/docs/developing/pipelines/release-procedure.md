@@ -69,7 +69,7 @@ Once all checks pass and pipeline version updated you are now ready to get your 
   - (**First release only**) Request one review from one core or maintainers team member - feel free to ping the two teams on slack under your post on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
   - One review can come from a member of the same development team, but we strongly recommend the second to be an another external/neutral person from the community.
 - [ ] While you're waiting for reviews on your PR, review another community member's release PR requested in [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
-- [ ] (**First release only**) Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset — this ruleset prevents tag creation on unreleased pipelines and must be removed before you can create the release.
+- [ ] (**First release only**) Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
 - [ ] Once your PR is approved by two reviewers, update `CHANGELOG.md` for any further changes and the release date, and merge your PR into `main`.
 - [ ] (**First release only**) Delete any label of types: "under development", "under construction" or variants of these on the GitHub repository itself.
 - [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to activate the Zenodo functionality to generate DOIs for this repository .
