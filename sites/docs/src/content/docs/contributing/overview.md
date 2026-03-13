@@ -52,12 +52,8 @@ These pages cover additional topics that may be relevant depending on your contr
 
 - **[Deprecating modules](../developing/components/deprecating-components):** Mark outdated modules or subworkflows as deprecated when a better alternative is available
 - **[Contributor types](./contributor-types):** Understand how nf-core attributes and recognizes different types of contributors in pipeline manifests
+- **[Contributor's list](./contributors-list):** Add your institution to the [nf-core website](https://nf-co.re/contributors#organisations) to be featured
 
-## Contributor's list
-
-All nf-core contributors are welcome to add their institution to the [nf-core website](https://nf-co.re/contributors#organisations) to be featured:
-
-- **[Contributor's list](./contributors-list):** Add your organisation to the contributors list
 
 ## Ask the community
 
