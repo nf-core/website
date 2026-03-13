@@ -54,7 +54,6 @@ These pages cover additional topics that may be relevant depending on your contr
 - **[Contributor types](./contributor-types):** Understand how nf-core attributes and recognizes different types of contributors in pipeline manifests
 - **[Contributor's list](./contributors-list):** Add your institution to the [nf-core website](https://nf-co.re/contributors#organisations) to be featured
 
-
 ## Ask the community
 
 If you're unsure where to start or have questions about contributing, reach out on [nf-core Slack](https://nf-co.re/join).
