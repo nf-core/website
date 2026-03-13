@@ -114,7 +114,7 @@ You will need the following to get started:
    - Include example commands or screenshots if helpful
 
    :::tip
-   The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common  code linting mistakes and other actions in pull requests.
+   The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common code linting mistakes and other actions in pull requests.
    Leave a comment of `@nf-core-bot fix linting` on the pull request to trigger the fixes.
    :::
 
