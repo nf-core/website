@@ -7,7 +7,6 @@ import Admonition from "@components/Admonition.astro";
 import type { CollectionEntry } from "astro:content";
 import type { SidebarEntry } from "@utils/types";
 import { createLinkOrGroup } from "@utils/functions";
-import ListModals from "@components/event/HackathonProjects/ListModals.astro";
 
 export async function getStaticPaths() {
     const events = await getCollection("events");
@@ -175,10 +174,5 @@ sections.forEach((year) => {
                     <YouTube id={id} poster={posters[i]} />
                 </VideoTranscript>
             ))
-    }
-    {
-        frontmatter.hackathonProjectListModals && (
-            <ListModals slot="post-footer" eventPath={frontmatter.hackathonProjectListModals} />
-        )
     }
 </MarkdownTocLayout>

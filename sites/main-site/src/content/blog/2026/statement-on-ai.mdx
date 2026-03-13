@@ -1,0 +1,89 @@
+---
+title: "nf-core and AI"
+subtitle: "Core team statement on AI within nf-core"
+pubDate: 2026-01-14T10:00:00+01:00
+embedHeaderImage: true
+authors:
+    - "jfy133"
+label:
+    - "community"
+---
+
+![Badly photoshop image of a Pigeon developing code on a laptop, and Maxime Garcia giving a thumbs up from the laptop screen](../../../assets/images/blog/statement-on-ai/maxime-pigeon.png)
+
+> If a pigeon were to commit good code, I would accept it
+
+\- _Maxime Garcia (@maxulysse), Jan. 2026_
+
+## Short summary
+
+nf-core's policy remains unchanged. Humans are still ultimately responsible for their submitted code.
+
+If you're using AI tools, try to stick by these guidelines:
+
+- Keep PRs as small and focussed as possible
+- Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
+- Review all generated code yourself before opening a PR, and ensure that you understand it
+- Engage with the community review process and expect to make revisions
+
+## Background
+
+As everyone reading this is most likely aware, Large Language Models (LLMs) have exploded in usage in many areas of society usually under the term artificial intelligence (AI).
+Particularly in software development, many tools and services have been developed and adopted by many companies, institutes, and developers.
+
+However, the use of AI/LLMs remain a contentious topic, and many conflicting opinions on their use, ethics, and implications remain.
+
+Within nf-core, two discussions have recently taken place regarding the use of AI in code contributions [^1] [^2], with two main viewpoints emerging of strong enthusiasm vs scepticism.
+
+[^1]: [https://github.com/nf-core/proposals/issues/91](https://github.com/nf-core/proposals/issues/91)
+
+[^2]: [https://github.com/nf-core/proposals/issues/61](https://github.com/nf-core/proposals/issues/61)
+
+Despite differing opinions and experiences, we reached a consensus on an approach that aims to be as inclusive as possible on how AI and LLMs will be treated within nf-core.
+
+## Pros and Cons
+
+To briefly summarise the main arguments for and against the use of AI in code contributions to nf-core.
+
+For the people who were very much in favour, they felt that:
+
+- Their use of AI related tools made their development work more efficient, speeding up development
+- The AI tools took over more boring leg work allowing them to work on more fun tasks
+- In some cases the use of LLM tools can help with ensuring more consistency in code and quality across the community
+- AIs are just ultimately tools, no different to linters, code formatters, or other automated tools already being widely used - it's up to the human behind the keyboard not to abuse them
+
+On the flip side people who were more sceptical said they worried about:
+
+- AI code and automated reviews having variable and inconsistent quality
+- Increased risk of 'drive-by PRs' with limited engagement by author
+- Increased risk of low-effort but large contributions with significant code changes outside original scope
+- Moral, ethical, environmental, and legal questions such as source data attribution remaining unaddressed
+- Ultimately risking greater waste of reviewer and community maintenance time
+
+## nf-core's stance
+
+nf-core core team will not ban or prohibit the use of AI or LLM tools in code contributions, nor force any community member to use AI tools.
+
+Our position is that the human using the AI tools remains responsible for any code they submit[^3].
+
+[^3]: Something adopted by other projects, a good guidance document is that of [FastAPI](https://fastapi.tiangolo.com/contributing/#closing-automated-and-ai-prs).
+
+As with any other code, **nf-core community members reserve the right to reject contributions that do not meet our guidelines**.
+This therefore includes cases where PRs, reviews, or other content have been obviously AI-generated without due care.
+Accordingly, repeated drive-by or low quality PRs will see the same consequences as with any other violation of our contribution guidelines.
+
+We will continue to encourage community members to be open and honest, for example, acknowledging very significant use of AI tools in PR descriptions.
+The community will be mindful when assisting members who wish to apply AI tools to nf-core development, that we do not impact the experience of others.
+For example, we will aim to not clutter the template with many AI helper files where unnecessary (e.g. `AGENT.md`, `CLAUDE.md`, `.mcp.json` etc.), but will consult with the community via blog posts and RFCs on [nf-core/proposals](https://github.com/nf-core/proposals).
+
+We will also aim to further develop and promote best-practice guidelines and etiquette.
+For example, we hope to find approaches that encourage smaller, focused, and incremental feature PRs - something that will also benefit 'human' contributors, such as through faster review response time.
+
+Finally, we will continue to monitor the situation and community feedback.
+If at any point you have concerns about a PR or possible adoption of AI features in the community, feel free to contact the core team.
+
+## Conclusion
+
+To conclude, nothing changes within nf-core. Humans are still responsible for their code, regardless of the tools they use.
+
+_This statement was drafted by James Fellows Yates with help from GitHub Co-Pilot Pro's GPT-4.1 autocompletion. It was reviewed by the nf-core core team. However the image is pure, handmade, artisanal (terrible) 'photoshopping'._
