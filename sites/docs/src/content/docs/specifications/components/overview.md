@@ -15,14 +15,14 @@ While these specifications are mandatory for components contributed to the nf-co
 
 The following specifications define standards for developing nf-core modules:
 
-- **[General](/developers/specifications/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
-- **[Naming conventions](/developers/specifications/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
-- **[Input/output options](/developers/specifications/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
-- **[Documentation](/developers/specifications/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
-- **[Module parameters](/developers/specifications/modules/module-parameters):** Guidelines for parameter usage ensuring modules remain flexible and reusable across different pipeline contexts.
-- **[Resource requirements](/developers/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
-- **[Software requirements](/developers/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
-- **[Testing](/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
+- **[General](/docs/developers/specifications/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
+- **[Naming conventions](/docs/developers/specifications/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
+- **[Input/output options](/docs/developers/specifications/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
+- **[Documentation](/docs/developers/specifications/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
+- **[Module parameters](/docs/developers/specifications/modules/module-parameters):** Guidelines for parameter usage ensuring modules remain flexible and reusable across different pipeline contexts.
+- **[Resource requirements](/docs/developers/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
+- **[Software requirements](/docs/developers/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
+- **[Testing](/docs/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
 
 ## Subworkflow specifications
 
