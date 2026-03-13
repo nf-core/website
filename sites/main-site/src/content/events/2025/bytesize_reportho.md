@@ -7,6 +7,7 @@ startTime: "13:00+01:00"
 endDate: "2025-12-09"
 endTime: "13:30+01:00"
 youtubeEmbed: https://youtu.be/KIKb1LyX2vw
+embedAt: 'reportho'
 locations:
   - name: Online
     links:
