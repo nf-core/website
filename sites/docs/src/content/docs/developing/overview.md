@@ -90,11 +90,11 @@ As Nextflow and nf-core evolve, pipelines and components occasionally need updat
 These guides walk through specific migrations step by step.
 
 - **[Migrating to topic channels](migration-guides/update-pipelines):** Update modules and pipelines to use Nextflow topic channels for version tracking
- 
+
 ## External documentation
 
-There is a range of other useful documentation outside of the nf-core initiative, such as for external tooling regularly used by the community.  
+There is a range of other useful documentation outside of the nf-core initiative, such as for external tooling regularly used by the community.
 
 - **[Nextflow documentation](https://www.nextflow.io/docs/):** Central Nextflow documentation
-- **[Nextflow training](https://training.nextflow.io/latest/):** Self-teaching material for learning how to run and write Nextflow code 
+- **[Nextflow training](https://training.nextflow.io/latest/):** Self-teaching material for learning how to run and write Nextflow code
 - **[nf-test documentation](https://www.nf-test.com/):** Documentation for the testing framework used in modules, subworkflows, and pipelines
