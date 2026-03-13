@@ -15,22 +15,22 @@ While these specifications are mandatory for components contributed to the nf-co
 
 The following specifications define standards for developing nf-core modules:
 
-- **[General](/docs/developers/specifications/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
-- **[Naming conventions](/docs/developers/specifications/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
-- **[Input/output options](/docs/developers/specifications/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
-- **[Documentation](/docs/developers/specifications/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
-- **[Module parameters](/docs/developers/specifications/modules/module-parameters):** Guidelines for parameter usage ensuring modules remain flexible and reusable across different pipeline contexts.
-- **[Resource requirements](/docs/developers/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
-- **[Software requirements](/docs/developers/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
-- **[Testing](/docs/developers/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
+- **[General](/docs/specifications/modules/general):** Foundation for module development including input/output handling, `ext.args`, multi-tool piping, compression, version emission, and script templating.
+- **[Naming conventions](/docs/specifications/modules/naming-conventions):** Standards for naming module files, processes, parameters, functions, channels, and outputs.
+- **[Input/output options](/docs/specifications/modules/input-output-options):** Guidelines for defining input channels, output emissions, and handling optional inputs and outputs.
+- **[Documentation](/docs/specifications/modules/documentation):** Requirements for `meta.yaml` files including tool descriptions, keywords, and ontology integration.
+- **[Module parameters](/docs/specifications/modules/module-parameters):** Guidelines for parameter usage ensuring modules remain flexible and reusable across different pipeline contexts.
+- **[Resource requirements](/docs/specifications/modules/resource-requirements):** Standards for specifying computational resources through process labels and the `task` directive.
+- **[Software requirements](/docs/specifications/modules/software-requirements):** Guidelines for declaring software dependencies using Conda, Docker, and Singularity through BioContainers.
+- **[Testing](/docs/specifications/modules/testing):** Requirements for nf-test including snapshot testing, stub tests, and CI configuration.
 
 ## Subworkflow specifications
 
 The following specifications define standards for developing nf-core subworkflows:
 
-- **[General](/developers/specifications/subworkflows/general):** Foundation for subworkflow development including minimum subworkflow size and version reporting channels.
-- **[Naming conventions](/developers/specifications/subworkflows/naming-conventions):** Standards for naming subworkflow files, parameters, functions, channels, and input/output structures.
-- **[Input/output options](/developers/specifications/subworkflows/input-output-options):** Guidelines for defining required input and output channels, and handling optional inputs.
-- **[Subworkflow parameters](/developers/specifications/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
-- **[Documentation](/developers/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
-- **[Testing](/developers/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
+- **[General](/docs/specifications/subworkflows/general):** Foundation for subworkflow development including minimum subworkflow size and version reporting channels.
+- **[Naming conventions](/docs/specifications/subworkflows/naming-conventions):** Standards for naming subworkflow files, parameters, functions, channels, and input/output structures.
+- **[Input/output options](/docs/specifications/subworkflows/input-output-options):** Guidelines for defining required input and output channels, and handling optional inputs.
+- **[Subworkflow parameters](/docs/specifications/subworkflows/subworkflow-parameters):** Guidelines for parameter usage ensuring subworkflows remain flexible and reusable across different pipeline contexts.
+- **[Documentation](/docs/specifications/subworkflows/documentation):** Requirements for documenting channel structures in code comments and `meta.yml` files.
+- **[Testing](/docs/specifications/subworkflows/testing):** Requirements for nf-test including scope of testing, tags for dependent modules, assertions, and CI configuration.
