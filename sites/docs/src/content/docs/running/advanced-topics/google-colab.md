@@ -166,6 +166,10 @@ Address these limitations through the following practices:
 - **Protect your outputs**: Save critical results to Google Drive or external storage throughout execution rather than waiting until completion. Back up results frequently
 - **Maintain reproducibility**: Document your Colab setup (package versions, configurations) in version control for consistent results across sessions
 
+:::info
+When a session times out and the work directory is set to a folder in your persistent Google Drive storage, then resuming is possible. However, if you do not do this, then it goes into temporary colab storage. This means that the session does not persist and resuming is not possible.
+:::
+
 ## Troubleshooting
 
 ### Session timeout during execution
