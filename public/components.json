@@ -15753,19 +15753,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bam2fastx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bam2fastx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bam2fastq --version 2>&1) | sed 's/^.*bam2fastq //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bam2fastx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bam2fastq --version 2>&1) | sed 's/^.*bam2fastq //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -34824,10 +34856,26 @@
                 "type": "file",
                 "description": "Input fasta file",
                 "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          {
+            "taxid_map": {
+              "type": "file",
+              "description": "taxID mapping files are tab-delimited text files used to map custom sequence IDs to NCBI taxonomic identifiers (taxIDs) during the creation of a BLAST database",
+              "pattern": "*.txt",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2330"
+                }
+              ]
+            }
+          }
         ],
         "output": {
           "db": [
@@ -78747,20 +78795,6 @@
           }
         ],
         "output": {
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ],
           "samplesheet_converted": [
             {
               "${prefix}.${format}": {
@@ -78769,6 +78803,52 @@
                 "ontologies": []
               }
             }
+          ],
+          "versions_eido": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eido": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eido --version 2>&1 | sed 's/^.*eido //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eido": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eido --version 2>&1 | sed 's/^.*eido //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -78838,20 +78918,6 @@
           }
         ],
         "output": {
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ],
           "log": [
             {
               "*.log": {
@@ -78861,6 +78927,52 @@
                 "ontologies": []
               }
             }
+          ],
+          "versions_eido": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eido": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eido --version 2>&1 | sed 's/^.*eido //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eido": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eido --version 2>&1 | sed 's/^.*eido //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -128878,7 +128990,14 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "postprocessing_script": {
+              "type": "string",
+              "description": "Post processing script in shell, e.g., '| sed \"/^>/!s/-//g\"'",
+              "pattern": "| *"
+            }
+          }
         ],
         "output": {
           "seqreformated": [
@@ -160369,7 +160488,40 @@
           {
             "ds_id": {
               "type": "string",
-              "description": "METASPACE dataset ID"
+              "description": "METASPACE dataset identifier to retrieve and convert to AnnData and SpatialData formats."
+            }
+          },
+          {
+            "database_name_": {
+              "type": "string",
+              "description": "Name of the metabolite annotation database to use (e.g., HMDB)"
+            }
+          },
+          {
+            "database_version_": {
+              "type": "string",
+              "description": "Version of the annotation database to use (e.g., v4)"
+            }
+          },
+          {
+            "fdr_": {
+              "type": "string",
+              "description": "False Discovery Rate threshold for filtering metabolite annotations.",
+              "pattern": "^(0(\\.[0-9]+)?|1(\\.0+)?)$"
+            }
+          },
+          {
+            "use_tic_": {
+              "type": "string",
+              "description": "Controls whether intensity values are scaled by the total ion count per pixel.\n",
+              "pattern": "^(true|false)$"
+            }
+          },
+          {
+            "metadata_as_obs_": {
+              "type": "string",
+              "description": "Whether to store metadata in the obs dataframe instead of uns.\n",
+              "pattern": "^(true|false)$"
             }
           }
         ],
