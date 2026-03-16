@@ -14,7 +14,7 @@ This section covers the different ways you can contribute to nf-core.
 
 New to contributing? Start here:
 
-- **[Quick start](./quick-start):** An introduction to contributing to nf-core, including contribution etiquette and where to begin
+- **[How to contribute](./how-to-contribute):** An introduction to contributing to nf-core, including contribution etiquette and where to begin
 
 ## Pipelines
 
