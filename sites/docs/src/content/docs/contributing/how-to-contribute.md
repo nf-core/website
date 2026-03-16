@@ -1,7 +1,7 @@
 ---
-title: Quick start
+title: How to contribute
 subtitle: How to start contributing to nf-core and contribution etiquette
-shortTitle: Quick start
+shortTitle: How to contribute
 weight: 2
 ---
 
