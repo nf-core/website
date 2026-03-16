@@ -6,15 +6,49 @@ description: The stories, traditions, and swag that make nf-core special
 import { Image } from "astro:assets";
 import DarkModeImage from "@components/DarkModeImage.astro";
 import loreSvg from "../../assets/images/nf-lore/lore.svg";
+import event2018Intro from "../../assets/images/nf-lore/2018-nf-core-introduced.jpg";
+import event2018Hack from "../../assets/images/nf-lore/hackathon-april2018.jpg";
+import event2019Cook from "../../assets/images/nf-lore/2019-nf-core-barcelona-cooking.jpg";
 import socksEmoji from "../../assets/images/nf-lore/nf-core-socks_360.png";
 import socksCollection from "../../assets/images/nf-lore/nf-core-socks.jpg";
 import sarekExpedition from "../../assets/images/nf-lore/sarek4_720.jpg";
+import nfcorePlank from "../../assets/images/nf-lore/nf-core-hackathon-planking.jpg";
 
 ![nf-core logo where "core" is replaced with "lore"](../../assets/images/nf-lore/lore.svg)
 
 # nf-core Lore
 
 Welcome to the nf-core lore page - a collection of the stories, traditions, and beloved artifacts that have shaped our community over the years.
+
+## Early nf-core Events
+
+<div class="d-flex justify-content-between border-top pt-4 my-5">
+
+  <div class="text-center" style="width:180px">
+    <Image src={event2018Intro} alt="nf-core concept introduced at the 2018 Nextflow User Meeting in Barcelona" width={120} class="rounded-circle mb-2" />
+    <p><strong>2018</strong></p>
+    <p>The concept for nf-core is introduced for the first time at the 2018 Nextflow User Meeting in Barcelona</p>
+  </div>
+
+  <div class="text-center" style="width:180px">
+    <Image src={event2018Hack} alt="Attendees at an early nf-core hackathon" width={120} class="rounded-circle mb-2" />
+    <p><strong>2018</strong></p>
+    <p>Attendees at an early nf-core hackathon. Imagine all attendees for nf-core hackathons trying to fit in one picture now!</p>
+  </div>
+
+  <div class="text-center" style="width:180px">
+    <Image src={event2019Cook} alt="Early nf-core cooking event in Barcelona, 2019" width={120} class="rounded-circle mb-2" />
+    <p><strong>2019</strong></p>
+    <p>Early nf-core included famous cooking events at the early "Nextflow hack" events.</p>
+  </div>
+
+</div>
+
+## The Barcelona Cooking Events
+
+The early "Nextflow hack" events (predecessors to the Nextflow Summit) pioneered having group-cooking events for the main social activity. These were hugely popular, especially with generous support from AWS who kept funding them, so we continued the tradition at every Barcelona event until we grew too large to fit everyone in a kitchen.
+
+These events were where the nf-core aprons were distributed, and they remain a fond memory for many early community members who participated.
 
 ## The Legend of the Socks
 
@@ -66,12 +100,6 @@ Ah, the stickers. We've created so many pipeline and project stickers over the y
 
 Speaking of stickers, we even have a dedicated [stickers page](https://nf-co.re/stickers/) where you can browse the collection.
 
-## The Barcelona Cooking Events
-
-The early "Nextflow hack" events (predecessors to the Nextflow Summit) pioneered having group-cooking events for the main social activity. These were hugely popular, especially with generous support from AWS who kept funding them, so we continued the tradition at every Barcelona event until we grew too large to fit everyone in a kitchen.
-
-These events were where the nf-core aprons were distributed, and they remain a fond memory for many early community members who participated.
-
 ## The Sarek Expedition
 
 [Sarek](https://nf-co.re/sarek) is both a beautiful national park in northern Sweden and an nf-core pipeline for genomic variant calling. Sarek National Park is the most remote place you can visit in Europe - you can be 85km away from any road, with no mobile reception. Digital detox at its finest!
@@ -87,13 +115,18 @@ To honor this connection, one intrepid community member carried an nf-core coast
     </figcaption>
 </figure>
 
-_The sarek and nf-core coaster along the northern Sweden wilderness_
-
 ## Hackathon Traditions
 
 ### The Plank Tradition
 
 At nf-core hackathons, there's a long-standing tradition of "planking" - the art of lying face down in unusual places for photos. While this tradition has existed for years, we're always looking for creative new plank photos at each event!
+
+<figure class="text-center my-4">
+    <Image src={nfcorePlank} alt="nf-core hackathon planking" width={300} />
+    <figcaption>
+        <em>nf-core hackathon team participating in the longstanding plank tradition</em>
+    </figcaption>
+</figure>
 
 ### The Social Events
 
