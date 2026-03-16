@@ -111,6 +111,13 @@ Connect from VS Code desktop:
 3. Run the **Remote Tunnels: Connect to Tunnel...** command
 4. Select your tunnel from the list
 
+:::tip{title="Execution Best Practice"}
+Complete the VS Code integration and connect your tunnel _before_ running any pipeline code.
+This provides the most stable experience.
+Once connected, execute your Nextflow and nf-core commands directly within the VS Code integrated terminal rather than running them as Colab notebook cells.
+Running intensive pipeline commands in Colab cells while the tunnel is active can lead to unexpected VS Code disconnections.
+:::
+
 ## Manage data and outputs
 
 Google Colab provides temporary storage that persists only for the duration of your session.
