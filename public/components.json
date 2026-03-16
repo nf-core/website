@@ -1705,7 +1705,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -1760,7 +1760,7 @@
                 }
               },
               {
-                "agat_convert_bed2gff.pl --help | grep Version | cut -d\" \" -f11": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -1784,7 +1784,7 @@
                 }
               },
               {
-                "agat_convert_bed2gff.pl --help | grep Version | cut -d\" \" -f11": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2010,31 +2010,6 @@
               }
             ]
           ],
-          "log": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information"
-                }
-              },
-              {
-                "*.log": {
-                  "type": "file",
-                  "description": "Log file of the conversion process",
-                  "pattern": "*.{log}",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/data_1678"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_2330"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
           "versions_agat": [
             [
               {
@@ -2050,7 +2025,7 @@
                 }
               },
               {
-                "agat --version": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2074,7 +2049,7 @@
                 }
               },
               {
-                "agat --version": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2183,7 +2158,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2207,7 +2182,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2305,28 +2280,6 @@
               }
             ]
           ],
-          "log": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information"
-                }
-              },
-              {
-                "*.log": {
-                  "type": "file",
-                  "description": "Log file of the conversion process",
-                  "pattern": "*.{log}",
-                  "ontologies": [
-                    {
-                      "edam": "http://edamontology.org/format_2330"
-                    }
-                  ]
-                }
-              }
-            ]
-          ],
           "versions_agat": [
             [
               {
@@ -2342,7 +2295,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2366,7 +2319,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2492,7 +2445,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2516,7 +2469,7 @@
                 }
               },
               {
-                "agat --version | sed 's/^v//'": {
+                "agat --version | sed 's/v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -2796,19 +2749,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_agat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "agat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "agat --version | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "agat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "agat --version | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -3483,19 +3468,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_agat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "agat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "agat --version | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "agat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "agat --version | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -35923,7 +35940,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n '1s/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of bowtie2"
                 }
@@ -35991,7 +36008,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | sed -n '1s/.*bowtie2-align-s version //p'": {
+                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of bowtie2"
                 }
@@ -36202,7 +36219,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | head -1 | sed \"s/^.*bowtie2-align-s version //; s/ .*//\"": {
+                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36226,7 +36243,7 @@
                 }
               },
               {
-                "bowtie2 --version 2>&1 | head -1 | sed \"s/^.*bowtie2-align-s version //; s/ .*//\"": {
+                "bowtie2 --version 2>&1 | sed -n 's/.*bowtie2-align-s version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -41757,6 +41774,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -42084,6 +42105,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -42405,6 +42430,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -42622,6 +42651,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -42816,6 +42849,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -43592,6 +43629,10 @@
         {
           "name": "mag",
           "version": "5.4.1"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -53176,19 +53217,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cnvkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -61175,19 +61290,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_crispresso2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "crispresso2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CRISPResso --version 2>&1 | sed 's/CRISPResso //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "crispresso2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CRISPResso --version 2>&1 | sed 's/CRISPResso //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -179161,6 +179308,319 @@
       }
     },
     {
+      "name": "numorph_intensity",
+      "path": "modules/nf-core/numorph/intensity/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "numorph_intensity",
+        "description": "performs shading correction and intensity normalization between tile stacks",
+        "keywords": [
+          "intensity correction",
+          "light-sheet microscopy",
+          "numorph",
+          "lsmquant"
+        ],
+        "tools": [
+          {
+            "numorph": {
+              "description": "A toolkit for processing and analysis of light-sheet microscopy images",
+              "homepage": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "documentation": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "tool_dev_url": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "img_directory": {
+                "type": "directory",
+                "description": "Directory containing image files",
+                "pattern": "*.{tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  }
+                ]
+              }
+            },
+            {
+              "parameter_file": {
+                "type": "file",
+                "description": "File containing parameters for numorph tools",
+                "pattern": "*.{csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "variables": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "results/variables/": {
+                  "type": "directory",
+                  "description": "Directory containing tile normalization factors and intensity thresholds",
+                  "pattern": "/{results}/variables/*"
+                }
+              }
+            ]
+          ],
+          "samples": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "results/samples/": {
+                  "type": "directory",
+                  "description": "Directory containing QC images for tile normalization and intensity adjusted example images",
+                  "pattern": "/{results}/samples/*"
+                }
+              }
+            ]
+          ],
+          "NM_variable": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "results/NM_variables.mat": {
+                  "type": "file",
+                  "description": "File containing processing parameters and varaiables in .mat format",
+                  "pattern": "/{results}/NM_variables.mat",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3626"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_numorph_intensity": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_intensity": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_intensity": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@CaroAMN"
+        ],
+        "maintainers": [
+          "@CaroAMN"
+        ]
+      }
+    },
+    {
+      "name": "numorph_resample",
+      "path": "modules/nf-core/numorph/resample/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "numorph_resample",
+        "description": "performs resampling of light-sheet microscopy images",
+        "keywords": [
+          "resampling",
+          "light-sheet microscopy",
+          "numorph",
+          "lsmquant"
+        ],
+        "tools": [
+          {
+            "numorph": {
+              "description": "A toolkit for processing and analysis of light-sheet microscopy images",
+              "homepage": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "documentation": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "tool_dev_url": "https://github.com/qbic-pipelines/Numorph-toolkit",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "stitch_directory": {
+                "type": "directory",
+                "description": "Directory containing stitched images format",
+                "pattern": "*.{tif,tiff}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3727"
+                  }
+                ]
+              }
+            },
+            {
+              "parameter_file": {
+                "type": "file",
+                "description": "File containing parameters for numorph tools",
+                "pattern": "*.{csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "resampled": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "results/resampled/": {
+                  "type": "directory",
+                  "description": "Directory containing resampled images",
+                  "pattern": "/{results}/resampled/*"
+                }
+              }
+            ]
+          ],
+          "versions_numorph_analyze": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_resample": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "numorph_resample": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@CaroAMN"
+        ],
+        "maintainers": [
+          "@CaroAMN"
+        ]
+      }
+    },
+    {
       "name": "oatk",
       "path": "modules/nf-core/oatk/meta.yml",
       "type": "module",
@@ -226955,6 +227415,186 @@
         ],
         "maintainers": [
           "@scorreard"
+        ]
+      }
+    },
+    {
+      "name": "saltshaker_call",
+      "path": "modules/nf-core/saltshaker/call/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "saltshaker_call",
+        "description": "mtDNA deletion and duplication calling downstream of mitosalt",
+        "keywords": [
+          "saltshaker",
+          "mitosalt",
+          "mtDNA",
+          "structural-variant calling"
+        ],
+        "tools": [
+          {
+            "saltshaker": {
+              "description": "A Python package for classifying and visualizing mitochondrial structural variants from MitoSAlt pipeline output.",
+              "homepage": "https://github.com/aksenia/saltshaker",
+              "documentation": "https://github.com/aksenia/saltshaker/tree/main/saltshaker/docs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "breakpoint": {
+                "type": "file",
+                "description": "breakpoint file from mitosalt",
+                "pattern": "*.{breakpoint}",
+                "ontologies": []
+              }
+            },
+            {
+              "cluster": {
+                "type": "file",
+                "description": "cluster file from mitosalt",
+                "pattern": "*.{cluster}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'fasta' ]\n"
+              }
+            },
+            {
+              "mtfasta": {
+                "type": "file",
+                "description": "Reference mitochondrial genome in FASTA format",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "flank": {
+              "type": "integer",
+              "description": "Basepairs flanking a deletion"
+            }
+          },
+          {
+            "heteroplasmy_limit": {
+              "type": "float",
+              "description": "Minimum heteroplasmy level to report a deletion/duplication"
+            }
+          },
+          {
+            "mito_length": {
+              "type": "integer",
+              "description": "Length of the mitochondrial genome"
+            }
+          },
+          {
+            "heavy_strand_origin_start": {
+              "type": "integer",
+              "description": "Start position of the heavy strand origin of replication"
+            }
+          },
+          {
+            "heavy_strand_origin_end": {
+              "type": "integer",
+              "description": "End position of the heavy strand origin of replication"
+            }
+          },
+          {
+            "light_strand_origin_start": {
+              "type": "integer",
+              "description": "Start position of the light strand origin of replication"
+            }
+          },
+          {
+            "light_strand_origin_end": {
+              "type": "integer",
+              "description": "End position of the light strand origin of replication"
+            }
+          }
+        ],
+        "output": {
+          "call": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_call_metadata.tsv": {
+                  "type": "file",
+                  "description": "tsv with variant call metadata to be used in saltshaker_classify",
+                  "pattern": "*_call_metadata.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_saltshaker": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "saltshaker": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "Hardcoded version of saltshaker used in the module"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "saltshaker": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "Hardcoded version of saltshaker used in the module"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ieduba"
+        ],
+        "maintainers": [
+          "@ieduba"
         ]
       }
     },
@@ -284480,6 +285120,10 @@
           "version": "dev"
         },
         {
+          "name": "seqsubmit",
+          "version": "dev"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.1"
         },
@@ -305211,7 +305855,13 @@
           "@d4straub",
           "@muabnezor"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "seqsubmit",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "fasta_clean_fcs",
