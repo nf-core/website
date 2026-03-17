@@ -29,6 +29,10 @@ You will need the following to get started:
 To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributors/contribute-existing-pipelines).
 :::
 
+:::info
+If your proposal is turned down, you can still use the nf-core template, tooling, and components. See [developing external pipelines with nf-core](developing/external-use).
+:::
+
 ## Request a new pipeline
 
 To propose a new nf-core pipeline:
@@ -353,6 +357,9 @@ See the documentation pinned in [#release-review-trading](https://nfcore.slack.c
 ### Complete the release
 
 Once reviewers approve your pull request:
+
+1. Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
+   - All unreleased nf-core pipelines have this ruleset applied, which prevents tag creation until the pipeline is ready for its first release.
 
 1. Add a changelog entry describing the pipeline functionality at release.
    - Describe the general features and capabilities.
