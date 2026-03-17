@@ -290,7 +290,7 @@ class GitHubContentFetcher {
         const existingEntry = store.get(fileId);
         if (existingEntry && !existingEntry.id.startsWith("configs/")) {
             logger.info(`File ${filepath} unchanged, skipping`);
-            return;
+            return fileId;
         }
 
         try {
