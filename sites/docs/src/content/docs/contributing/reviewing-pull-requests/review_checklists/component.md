@@ -11,6 +11,10 @@ When you review a component pull request, you examine a new component submission
 The team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the review process for components, but community input helps catch issues and ensures components work well across different use cases.
 Your perspective as a user of the components is valuable, particularly if you've used the tool before or understand common use cases.
 
+:::note{title="Component specifications"}
+For more information about best practices for nf-core components, see [Module specifications](../../../specifications/components/overview#module-specifications) and [Subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications).
+:::
+
 ## General
 
 Start by verifying that the component meets the general specifications:
