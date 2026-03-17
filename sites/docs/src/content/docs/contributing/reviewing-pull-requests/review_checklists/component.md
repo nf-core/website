@@ -12,14 +12,14 @@ The team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/memb
 Your perspective as a user of the components is valuable, particularly if you've used the tool before or understand common use cases.
 
 :::note{title="Component specifications"}
-For more information about best practices for nf-core components, see [Module specifications](../../../specifications/components/overview#module-specifications) and [Subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications).
+For information about best practices for nf-core components, see [Module specifications](../../../specifications/components/overview#module-specifications) and [Subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications).
 :::
 
 ## General
 
 Start by verifying that the component meets the general specifications:
 
-- [ ] All components adhere to the nf-core [module specifications](/docs/guidelines/components/modules) or [subworkflow specifications](/docs/guidelines/components/subworkflows)
+- [ ] All components adhere to the nf-core [module specifications](../../../specifications/components/overview#module-specifications) or [subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications)
 - [ ] All checks pass, including linting, conda, singularity, and docker
 
 You can cover most of the specifications by checking for the following:
