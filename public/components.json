@@ -2143,7 +2143,13 @@
         "maintainers": [
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "agat_convertspgff2gtf",
@@ -2411,7 +2417,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         }
       ]
     },
@@ -10932,7 +10938,13 @@
           "@praveenraj2018",
           "@rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "arriba_download",
@@ -11282,7 +11294,13 @@
         "authors": [
           "@rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "art_illumina",
@@ -15834,19 +15852,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bakta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bakta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bakta --version 2>&1 | sed 's/bakta //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bakta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bakta --version 2>&1 | sed 's/bakta //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -15905,6 +15955,7 @@
             }
           }
         ],
+        "input": [],
         "output": {
           "db": [
             {
@@ -15915,19 +15966,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bakta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bakta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bakta --version 2>&1 | sed 's/bakta //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bakta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bakta --version 2>&1 | sed 's/bakta //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -30653,6 +30736,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "smrnaseq",
           "version": "2.4.1"
         }
@@ -41569,7 +41656,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "sarek",
@@ -41789,7 +41876,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -55197,6 +55284,137 @@
       }
     },
     {
+      "name": "cobiontid_kmercounter",
+      "path": "modules/nf-core/cobiontid/kmercounter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cobiontid_kmercounter",
+        "description": "A rust based tool based on Needletail's FASTA parser tallies k-mer counts\nfor large sequencing rounds. Written with downstream processing with Tensorflow\nor numpy in mind.\n",
+        "keywords": [
+          "cobiontid",
+          "kmer",
+          "counts",
+          "npy",
+          "fasta"
+        ],
+        "tools": [
+          {
+            "kmer-counter": {
+              "description": "A rust based tool based on Needletail's FASTA parser tallies k-mer counts\nfor large sequencing rounds. Written with downstream processing with Tensorflow\nor numpy in mind.\n",
+              "homepage": "https://github.com/CobiontID/kmer-counter",
+              "documentation": "https://github.com/CobiontID/kmer-counter",
+              "license": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input fasta assembly file\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "kmer_size": {
+              "type": "integer",
+              "description": "Size of kmer to scan the genome for.\n"
+            }
+          }
+        ],
+        "output": {
+          "npy": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.npy": {
+                  "type": "file",
+                  "description": "A Numpy file containing the kmer counts.\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_4003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_kmercounter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmer-counter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmer-counter --version | sed -e \"s/K-mer counter //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmer-counter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmer-counter --version | sed -e \"s/K-mer counter //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
       "name": "cobrameta",
       "path": "modules/nf-core/cobrameta/meta.yml",
       "type": "module",
@@ -62517,7 +62735,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "ctatsplicing_startocancerintrons",
@@ -62842,7 +63066,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "ctree",
@@ -63702,10 +63932,6 @@
         {
           "name": "readsimulator",
           "version": "1.0.1"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.1b"
         },
         {
           "name": "rnasplice",
@@ -86519,7 +86745,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -87175,7 +87401,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -94468,7 +94694,13 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "fusioninspector",
@@ -94734,7 +94966,13 @@
           "@alanmmobbs93",
           "@martings"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "fusionreport_detect",
@@ -95017,7 +95255,13 @@
         "authors": [
           "@praveenraj2018, @rannick"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "fusionreport_download",
@@ -95083,7 +95327,13 @@
         "authors": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "galah",
@@ -98364,7 +98614,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnavar",
@@ -100464,7 +100714,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnavar",
@@ -104393,7 +104643,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "sarek",
@@ -115260,6 +115510,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -171997,7 +172251,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -194900,7 +195154,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         }
       ]
     },
@@ -195272,7 +195526,13 @@
         "maintainers": [
           "@anoronh4"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "picard_collectvariantcallingmetrics",
@@ -195649,7 +195909,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -227377,6 +227637,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -227595,6 +227859,10 @@
         {
           "name": "riboseq",
           "version": "1.2.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -230818,6 +231086,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "sarek",
           "version": "3.8.1"
         }
@@ -231212,6 +231484,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnavar",
@@ -232078,7 +232354,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -232959,6 +233235,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -233324,6 +233604,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -233801,7 +234085,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -235547,7 +235831,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -236025,6 +236309,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -236432,10 +236720,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "3.0.1b"
         },
         {
           "name": "rnaseq",
@@ -263714,7 +263998,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -263990,7 +264274,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -265235,7 +265519,13 @@
         "maintainers": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "starfusion_detect",
@@ -265372,7 +265662,13 @@
         "authors": [
           "@praveenraj2018"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "stecfinder",
@@ -267072,7 +267368,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         }
       ]
     },
@@ -267264,7 +267560,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "3.0.1b"
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -283609,6 +283905,10 @@
         {
           "name": "circrna",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         }
       ]
     },
@@ -285049,6 +285349,10 @@
         {
           "name": "riboseq",
           "version": "1.2.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -303967,6 +304271,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -304257,6 +304565,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -304350,7 +304662,13 @@
           "@rannick",
           "@nvnieuwk"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        }
+      ]
     },
     {
       "name": "bam_subsampledepth_samtools",
@@ -309732,6 +310050,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnavar",
           "version": "1.2.3"
         }
@@ -310536,6 +310858,10 @@
         {
           "name": "riboseq",
           "version": "1.2.0"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
@@ -314621,6 +314947,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -315050,6 +315380,10 @@
           "version": "dev"
         },
         {
+          "name": "rnafusion",
+          "version": "4.1.0"
+        },
+        {
           "name": "rnaseq",
           "version": "3.23.0"
         },
@@ -315461,6 +315795,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.0"
         },
         {
           "name": "rnaseq",
