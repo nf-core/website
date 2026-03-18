@@ -199563,7 +199563,7 @@
               }
             },
             {
-              "seqs": {
+              "fasta": {
                 "type": "file",
                 "description": "Input FASTA or FASTQ formatted genome sequences",
                 "pattern": "*.{fastq.gz,fq.gz,fastq.gz,fna.gz,fa.gz}",
@@ -199671,22 +199671,55 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_plasmidfinder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plasmidfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "plasmidfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1.6": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
+          "@eit-maxlcummins",
           "@rpetit3"
         ],
         "maintainers": [
@@ -228064,6 +228097,134 @@
                     },
                     {
                       "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_saltshaker": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "saltshaker": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "Hardcoded version of saltshaker used in the module"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "saltshaker": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "Hardcoded version of saltshaker used in the module"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ieduba"
+        ],
+        "maintainers": [
+          "@ieduba"
+        ]
+      }
+    },
+    {
+      "name": "saltshaker_plot",
+      "path": "modules/nf-core/saltshaker/plot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "saltshaker_plot",
+        "description": "mtDNA deletion and duplication plotting downstream of mitosalt",
+        "keywords": [
+          "saltshaker",
+          "mitosalt",
+          "mtDNA",
+          "structural-variant calling"
+        ],
+        "tools": [
+          {
+            "saltshaker": {
+              "description": "A Python package for classifying and visualizing mitochondrial structural variants from MitoSAlt pipeline output.",
+              "homepage": "https://github.com/aksenia/saltshaker",
+              "documentation": "https://github.com/aksenia/saltshaker/tree/main/saltshaker/docs"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "classify": {
+                "type": "file",
+                "description": "classify metadata file from saltshaker_classify",
+                "pattern": "*_classify_metadata.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/operation_3225"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "plot": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*saltshaker.png": {
+                  "type": "file",
+                  "description": "png file with saltshaker plot",
+                  "pattern": "*saltshaker.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/operation_0337"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3603"
                     }
                   ]
                 }
@@ -265611,6 +265772,28 @@
                 }
               }
             ]
+          ],
+          "versions_rsync": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rsync": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rsync --version | sed '1!d;s/^rsync  version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -265650,6 +265833,26 @@
               },
               {
                 "R --version | sed \"1!d; s/.*version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rsync": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rsync --version | sed '1!d;s/^rsync  version //; s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -277696,6 +277899,14 @@
                 "type": "file",
                 "description": "Input FASTA file",
                 "pattern": "*.{fasta,fa}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Input FASTA index file",
+                "pattern": "*.{fai}",
                 "ontologies": []
               }
             }
