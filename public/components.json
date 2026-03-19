@@ -162721,7 +162721,11 @@
                 "type": "file",
                 "description": "A tiff file containing gridlines as produced by Molecular Cartography imaging.",
                 "pattern": "*.{tif,tiff}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3591"
+                  }
+                ]
               }
             }
           ]
@@ -162740,24 +162744,60 @@
                   "type": "file",
                   "description": "A tiff file with gridlines filled based on consecutive gaussian blurring.",
                   "pattern": "*.{tiff}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3591"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mindagap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mindagap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mindagap.py test -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mindagap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mindagap.py test -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173137,7 +173177,7 @@
                 }
               },
               {
-                "fullAlignment.fasta.gz": {
+                "*fullAlignment.fasta.gz": {
                   "type": "file",
                   "description": "Fasta a fasta file of all positions contained in the VCF files i.e. including ref calls",
                   "pattern": ".fasta.gz",
@@ -173162,7 +173202,7 @@
                 }
               },
               {
-                "info.txt": {
+                "*info.txt": {
                   "type": "file",
                   "description": "Information about the run",
                   "pattern": ".txt",
@@ -173180,7 +173220,7 @@
                 }
               },
               {
-                "snpAlignment.fasta.gz": {
+                "*snpAlignment.fasta.gz": {
                   "type": "file",
                   "description": "A fasta file of just SNP positions with samples only",
                   "pattern": ".fasta.gz",
@@ -173205,7 +173245,7 @@
                 }
               },
               {
-                "snpAlignmentIncludingRefGenome.fasta.gz": {
+                "*snpAlignmentIncludingRefGenome.fasta.gz": {
                   "type": "file",
                   "description": "A fasta file of just SNP positions with reference genome",
                   "pattern": ".fasta.gz",
@@ -173230,7 +173270,7 @@
                 }
               },
               {
-                "snpStatistics.tsv": {
+                "*snpStatistics.tsv": {
                   "type": "file",
                   "description": "Some basic statistics about the SNP calls of each sample",
                   "pattern": ".tsv",
@@ -173252,7 +173292,7 @@
                 }
               },
               {
-                "snpTable.tsv": {
+                "*snpTable.tsv": {
                   "type": "file",
                   "description": "Basic SNP table of combined positions taken from each VCF file",
                   "pattern": ".tsv",
@@ -173274,7 +173314,7 @@
                 }
               },
               {
-                "snpTableForSnpEff.tsv": {
+                "*snpTableForSnpEff.tsv": {
                   "type": "file",
                   "description": "Input file for SnpEff",
                   "pattern": ".tsv",
@@ -173296,9 +173336,9 @@
                 }
               },
               {
-                "snpTableWithUncertaintyCalls.tsv": {
+                "*snpTableWithUncertaintyCalls.tsv": {
                   "type": "file",
-                  "description": "Same as above, but with lower case characters indicating uncertainty calls",
+                  "description": "Same as above, but with lower case characters indicating uncertain calls",
                   "pattern": ".tsv",
                   "ontologies": [
                     {
@@ -173318,7 +173358,7 @@
                 }
               },
               {
-                "structureGenotypes.tsv": {
+                "*structureGenotypes.tsv": {
                   "type": "file",
                   "description": "Input file for STRUCTURE",
                   "pattern": ".tsv",
@@ -173340,7 +173380,7 @@
                 }
               },
               {
-                "structureGenotypes_noMissingData-Columns.tsv": {
+                "*structureGenotypes_noMissingData-Columns.tsv": {
                   "type": "file",
                   "description": "Alternate input file for STRUCTURE",
                   "pattern": ".tsv",
@@ -173362,7 +173402,7 @@
                 }
               },
               {
-                "MultiVCFAnalyzer.json": {
+                "*MultiVCFAnalyzer.json": {
                   "type": "file",
                   "description": "Summary statistics in MultiQC JSON format",
                   "pattern": ".json",
