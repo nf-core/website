@@ -20588,13 +20588,7 @@
           "@abhi18av",
           "@LouisLeNezet"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "genomicrelatedness",
-          "version": "dev"
-        }
-      ]
+      }
     },
     {
       "name": "bcftools_concat",
@@ -127267,7 +127261,8 @@
               "doi": "10.1093/bioinformatics/btac808",
               "licence": [
                 "Pacific Biosciences Software License Agreement"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -127283,14 +127278,16 @@
               "bam": {
                 "type": "file",
                 "description": "Sorted BAM or CRAM file from PacBio HiFi reads",
-                "pattern": "*.{bam,cram}"
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
               }
             },
             {
               "bai": {
                 "type": "file",
                 "description": "BAM index file (CSI, CRAI, or BAI format)",
-                "pattern": "*.{bai,csi,crai}"
+                "pattern": "*.{bai,csi,crai}",
+                "ontologies": []
               }
             },
             {
@@ -127298,7 +127295,8 @@
                 "type": "file",
                 "description": "Minor allele frequency file (VCF format)",
                 "pattern": "*.{vcf,vcf.gz}",
-                "optional": true
+                "optional": true,
+                "ontologies": []
               }
             }
           ],
@@ -127313,7 +127311,8 @@
               "ref": {
                 "type": "file",
                 "description": "Reference genome FASTA file",
-                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}"
+                "pattern": "*.{fa,fasta,fa.gz,fasta.gz}",
+                "ontologies": []
               }
             }
           ],
@@ -127329,7 +127328,8 @@
                 "type": "file",
                 "description": "BED file containing regions to exclude from CNV calling",
                 "pattern": "*.{bed,bed.gz}",
-                "optional": true
+                "optional": true,
+                "ontologies": []
               }
             }
           ],
@@ -127345,7 +127345,8 @@
                 "type": "file",
                 "description": "BED file containing expected copy number regions",
                 "pattern": "*.{bed,bed.gz}",
-                "optional": true
+                "optional": true,
+                "ontologies": []
               }
             }
           ]
@@ -127363,7 +127364,8 @@
                 "*.copynum.bedgraph": {
                   "type": "file",
                   "description": "Copy number bedGraph file",
-                  "pattern": "*.copynum.bedgraph"
+                  "pattern": "*.copynum.bedgraph",
+                  "ontologies": []
                 }
               }
             ]
@@ -127380,7 +127382,8 @@
                 "*.depth.bw": {
                   "type": "file",
                   "description": "Depth coverage bigWig file",
-                  "pattern": "*.depth.bw"
+                  "pattern": "*.depth.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -127398,7 +127401,8 @@
                   "type": "file",
                   "description": "Minor allele frequency bigWig file",
                   "pattern": "*.maf.bw",
-                  "optional": true
+                  "optional": true,
+                  "ontologies": []
                 }
               }
             ]
@@ -127415,19 +127419,57 @@
                 "*.vcf.gz": {
                   "type": "file",
                   "description": "Copy number variants in VCF format",
-                  "pattern": "*.{vcf.gz}"
+                  "pattern": "*.{vcf.gz}",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+          "versions_hificnv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "hificnv": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "hificnv --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "hificnv": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "hificnv --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -138459,6 +138501,12 @@
               "description": "One or multiple files serving as input data for the notebook.",
               "pattern": "*",
               "ontologies": []
+            }
+          },
+          {
+            "kernel_": {
+              "type": "string",
+              "description": "Name of the kernel to use."
             }
           }
         ],
@@ -156033,24 +156081,60 @@
                   "type": "file",
                   "description": "One output .tif file containing concatenated tiles of the cycle.",
                   "pattern": "*.{tif,tiff}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3591"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_phenoimager2mc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phenoimager2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /phenoimager2mc/scripts/phenoimager2mc.py --version | sed \"s/v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phenoimager2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python /phenoimager2mc/scripts/phenoimager2mc.py --version | sed \"s/v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162646,26 +162730,62 @@
               {
                 "*markedDups.txt": {
                   "type": "file",
-                  "description": "tsv file containing one spot per row, with duplicated spots labeled with \"Duplicated\" in their gene column.",
+                  "description": "tab-separated text file containing one spot per row, with duplicated spots labeled with \"Duplicated\" in their gene column.",
                   "pattern": "*.{markedDups.txt}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mindagap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mindagap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mindagap.py test -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mindagap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mindagap.py test -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -222190,26 +222310,6 @@
                 "GPL-3"
               ],
               "identifier": ""
-            }
-          }
-        ],
-        "params": [
-          {
-            "parametrize": {
-              "type": "boolean",
-              "description": "If true, parametrize the notebook"
-            }
-          },
-          {
-            "implicit_params": {
-              "type": "boolean",
-              "description": "If true (default), include the implicit params\n  * `input_dir`, which points to the directory containing the files added via `input_files`,\n  * `artifact_dir`, which points to the directory where the notebook should place output files, and\n  * `cpus`, which contains the value of ${task.cpus}\n"
-            }
-          },
-          {
-            "meta_params": {
-              "type": "boolean",
-              "description": "If true, include a parameter `meta` which contains the information specified\nvia the `meta` input channel.\n"
             }
           }
         ],
