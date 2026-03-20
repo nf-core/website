@@ -1,6 +1,6 @@
 ---
 title: Meta maps and sample metadata
-subtitle: Using sample metadata stored in meta maps
+subtitle: Using sample metadata stored in meta maps within nf-core pipelines
 shortTitle: Meta maps
 ---
 
