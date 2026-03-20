@@ -11,13 +11,13 @@ They are commonly used for recording IDs or names, tracking pipeline-generated m
 
 ## Structure
 
-Meta maps within Nextflow are groovy [unordered key-value lists](https://www.tutorialspoint.com/groovy/groovy_maps.htm).
+A meta map in nf-core pipelines are groovy a [unordered key-value list](https://www.tutorialspoint.com/groovy/groovy_maps.htm).
 
 ```groovy
 [id: 'test', single_end: false]
 ```
 
-A meta map sits in a Nextflow channel object next to the one or more files the metadata is describing.
+A meta map sits a tuple within a Nextflow channel object, next to the one or more files the metadata is describing.
 
 ```groovy
 [ [id: 'test', single_end: false], sample1_R1.fastq.gz ]
@@ -53,7 +53,7 @@ In most cases however, meta maps will be created and updated within Nextflow cha
 
 Generation of a meta map within a channel occurs through using the `.map{}` operator.
 
-```groovy groovy
+```groovy
 ch_fastq = Channel.fromPath('sample1_R1.fastq.gz')
   .map {
     fastq ->
