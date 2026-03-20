@@ -89505,16 +89505,16 @@
                 "pattern": "*.bam",
                 "ontologies": []
               }
+            },
+            {
+              "interval_list": {
+                "type": "file",
+                "description": "Calculation of metrics may be restricted to a set of regions using the --intervals parameter. The file format is descripted here https://samtools.github.io/htsjdk/javadoc/htsjdk/index.html?htsjdk/samtools/util/Interval.html",
+                "pattern": "*.{tsv|txt|interval_list}",
+                "ontologies": []
+              }
             }
-          ],
-          {
-            "interval_list": {
-              "type": "file",
-              "description": "Calculation of metrics may be restricted to a set of regions using the --intervals parameter. The file format is descripted here https://samtools.github.io/htsjdk/javadoc/htsjdk/index.html?htsjdk/samtools/util/Interval.html",
-              "pattern": "*.{tsv|txt|interval_list}",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "family_sizes": [
@@ -90089,7 +90089,23 @@
               "fasta": {
                 "type": "file",
                 "description": "Fasta file containing genomic sequence information",
-                "pattern": "*.bam",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": []
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Fasta index file",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "dict": {
+                "type": "file",
+                "description": "Fasta dictionary file",
+                "pattern": "*.dict",
                 "ontologies": []
               }
             }
@@ -90525,6 +90541,14 @@
               }
             },
             {
+              "mapped_bam": {
+                "type": "file",
+                "description": "mapped BAM/SAM file",
+                "pattern": "*.{bam,sam}",
+                "ontologies": []
+              }
+            },
+            {
               "unmapped_bam": {
                 "type": "file",
                 "description": "unmapped BAM file",
@@ -90537,22 +90561,6 @@
             {
               "meta2": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-              }
-            },
-            {
-              "mapped_bam": {
-                "type": "file",
-                "description": "mapped BAM/SAM file",
-                "pattern": "*.{bam,sam}",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
                 "description": "Groovy Map containing reference information\ne.g. [ id:'GRCh38' ]\n"
               }
             },
@@ -90560,23 +90568,23 @@
               "fasta": {
                 "type": "file",
                 "description": "fasta file containing genomic sequence information",
-                "pattern": "*.{fasta,fa}",
+                "pattern": "*.{fasta,fna,fa}",
                 "ontologies": []
               }
-            }
-          ],
-          [
+            },
             {
-              "meta4": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'GRCh38' ]\n"
+              "index": {
+                "type": "file",
+                "description": "fasta index file",
+                "pattern": "*.fai",
+                "ontologies": []
               }
             },
             {
               "dict": {
                 "type": "file",
                 "description": "dict file containing a sequence dictionary for the fasta file",
-                "pattern": "*.{dict}",
+                "pattern": "*.dict",
                 "ontologies": []
               }
             }
@@ -287882,6 +287890,90 @@
       }
     },
     {
+      "name": "variantextractor",
+      "path": "modules/nf-core/variantextractor/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "variantextractor",
+        "description": "Deterministic and standard extractor of SNVs, indels and structural variants (SVs)\nfrom VCF files. Homogenizes multiallelic variants, MNPs and SVs (including imprecise\npaired breakends and single breakends) to facilitate downstream processing.\n",
+        "keywords": [
+          "vcf",
+          "variant",
+          "structural variant",
+          "normalization",
+          "homogenization"
+        ],
+        "tools": [
+          {
+            "variant-extractor": {
+              "description": "Deterministic and standard extractor of SNVs, indels and structural variants\nfrom VCF files built under the frame of EUCANCan.\n",
+              "homepage": "https://github.com/EUCANCan/variant-extractor",
+              "documentation": "https://eucancan.github.io/variant-extractor/",
+              "tool_dev_url": "https://github.com/EUCANCan/variant-extractor",
+              "doi": "10.1016/j.xgen.2024.100639",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:variant_extractor"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file containing variants to be extracted and homogenized.",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. [ id:'sample1' ]\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "VCF file with variants extracted and homogenized (multiallelic split,\nMNPs decomposed, SV breakends deduplicated).\n",
+                  "pattern": "*.vcf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions.",
+                "pattern": "versions.yml"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@sbreuch"
+        ],
+        "maintainers": [
+          "@sbreuch"
+        ]
+      }
+    },
+    {
       "name": "varlociraptor_callvariants",
       "path": "modules/nf-core/varlociraptor/callvariants/meta.yml",
       "type": "module",
@@ -310396,22 +310488,23 @@
             }
           },
           {
-            "fasta_fai": {
+            "fasta_fai_dict": {
               "type": "file",
-              "description": "The reference fasta file and fasta.fai file",
-              "pattern": "*.{fa,fasta,fna,fai}"
+              "description": "The reference fasta file, index and dictionary",
+              "pattern": "*.{fa,fasta,fna,fai,dict}"
             }
           },
           {
-            "read_structure": {
-              "type": "string",
-              "description": "A read structure should always be provided for each of the fastq files.\nIf single end, the string will contain only one structure (i.e. \"2M11S+T\"), if paired-end the string\nwill contain two structures separated by a blank space (i.e. \"2M11S+T 2M11S+T\").\nIf the read does not contain any UMI, the structure will be +T (i.e. only template of any length).\nhttps://github.com/fulcrumgenomics/fgbio/wiki/Read-Structures\n"
+            "bwa_index": {
+              "type": "file",
+              "description": "The reference genome bwa index files",
+              "pattern": "*.{fa,fasta,fna,amb,ann,bwt,pac,sa}"
             }
           },
           {
             "groupreadsbyumi_strategy": {
               "type": "string",
-              "description": "",
+              "description": "Defines the UMI assignment strategy.",
               "Required argument": "defines the UMI assignment strategy.",
               "enum": [
                 "Identity",
@@ -310419,6 +310512,40 @@
                 "Adjacency",
                 "Paired"
               ]
+            }
+          },
+          {
+            "aligner": {
+              "type": "string",
+              "description": "The aligner to use for mapping the reads to the reference genome. Options are bwa-mem and bwamem2.",
+              "enum": [
+                "bwa-mem",
+                "bwamem2"
+              ]
+            }
+          },
+          {
+            "duplex": {
+              "type": "boolean",
+              "description": "Whether the library contains duplex UMIs."
+            }
+          },
+          {
+            "min_reads": {
+              "type": "integer",
+              "description": "One integer (for non-duplex) or a string of up-to three space-separated numbers for duplex sequencing"
+            }
+          },
+          {
+            "min_baseq": {
+              "type": "integer",
+              "description": "Minimum base quality for bases to be considered in consensus calling."
+            }
+          },
+          {
+            "max_base_error_rate": {
+              "type": "integer",
+              "description": "Maximum base error rate for consensus building"
             }
           }
         ],
@@ -310441,6 +310568,13 @@
             "consensusbam": {
               "type": "file",
               "description": "mapped bam file, where reads are created as consensus of those\nbelonging to the same UMI group\n",
+              "pattern": "*.bam"
+            }
+          },
+          {
+            "mappedconsensusbam": {
+              "type": "file",
+              "description": "mapped bam file, where reads are created as consensus of those\nbelonging to the same UMI group and filtered for minimum base quality and maximum error rate\n",
               "pattern": "*.bam"
             }
           }
