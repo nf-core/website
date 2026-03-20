@@ -118,7 +118,7 @@ This branch will then be used to create the PR
 
 Delete all tracked files and subsequent empty directories in the TEMPLATE branch
 
-#### `get_wf_config(){:python}`
+#### `get_wf_config() → None{:python}`
 
 Check out the target branch if requested and fetch the nextflow config.
 Check that we have the required config variables.
@@ -135,7 +135,7 @@ from a head branch (default: TEMPLATE)
 
 Returns: An instance of class requests.Response
 
-#### `make_template_pipeline(){:python}`
+#### `make_template_pipeline() → None{:python}`
 
 Delete all files and make a fresh template using the workflow variables
 
