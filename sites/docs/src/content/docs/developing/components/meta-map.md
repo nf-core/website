@@ -90,7 +90,7 @@ New meta map keys defined during the subworkflow must be documented in the assoc
 
 ```yaml title="meta.yaml"
 
-...
+---
 output:
   - bam:
       description: |
@@ -99,7 +99,6 @@ output:
         Note: the subworkflow adds a new meta ID `meta.id_index` that _must_
         be used in `prefix` to ensure unique file names. See the associated
         nextflow.config file.
-...
 ```
 
 ## Usage in pipelines
