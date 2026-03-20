@@ -276,10 +276,14 @@ To set up the branch structure:
 
 Configure the following repository settings on GitHub:
 
-- Add a description, the [https://nf-co.re](https://nf-co.re) URL, and keywords.
-- Enable **Issues** and disable **Wiki** and **Projects**.
-- Protect the `master` branch to require review and passing tests.
-- Set write permissions for `nf-core/all` and admin permissions for `nf-core/admin`.
+- Add a description, the [https://nf-co.re](https://nf-co.re) URL and lots of keywords
+- Enable issues, disable **Wiki** and **Projects**
+- Enable **Always suggest updating pull request branches**
+- Enable **Automatically delete head branches**
+- Add the **contributors** team with **Write** access and the **core** team with **Admin** access
+- Set `master`/`main`, `dev` and `TEMPLATE` branches as protected, so that they require review and passing tests (via rulesets)
+
+The full step-by-step checklist for these settings is in the [core team checklist](/docs/community/governance/core-team#pipeline-repository-settings).
 
 Verify these settings using the nf-core [repository health web page](https://nf-co.re/pipeline_health).
 This page reports the status of various checks and can fix errors automatically via the GitHub API.

@@ -43,6 +43,7 @@ To approve and setup a new [nf-core pipeline](https://github.com/nf-core/proposa
 1. **Core/Dev**: Set up the pipeline repository:
     - If development started in a custom (non-nf-core) repo, [transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core
     - If starting fresh, create a new GitHub repository with the name of the pipeline
+    - In both cases, [configure the repository settings](#pipeline-repository-settings)
 1. Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list (until the pipeline is in advanced development or there is a need to surface it already).
 1. **Core/Dev**: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is there.
 1. **Core/Dev**: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
@@ -71,23 +72,34 @@ To transfer an existing repository to the nf-core GitHub organisation:
 1. Transfer the repository to the nf-core organisation
     - In the repository, go to **Settings**, scroll to the bottom of the **General** page, and select **Transfer**
     - Confirm or update the repository name if needed
-1. Configure repository settings in the nf-core organisation
-    - Ask Matthias for the repository ruleset JSON files
+1. [Configure the repository settings](#pipeline-repository-settings) in the nf-core organisation
 
-        :::note
-        These are still under development, but pinned in the core channel
-        :::
-    1. In the repository, go to **Settings**
-    1. In the left sidebar, select **Rules**
-    1. Select **New ruleset**
-    1. Select **Import a ruleset**, then select a JSON file
-    1. Select **Create** at the bottom of the page
+## Pipeline repository settings
 
-        :::warning
-        Do not modify any fields
-        :::
+After creating a new pipeline repository or transferring an existing one to the nf-core organisation, configure the following settings.
 
-    1. Repeat the import and create steps for each JSON file provided
+### General settings
+
+1. [ ] In the repository, go to **Settings** > **General**.
+2. [ ] Add a description, the https://nf-co.re URL, and relevant topic keywords.
+3. [ ] Under **Features**, disable **Wikis** and **Projects**.
+4. [ ] Under **Pull Requests**, enable **Always suggest updating pull request branches**.
+5. [ ] Under **Pull Requests**, enable **Automatically delete head branches**.
+
+### Team access
+
+1. [ ] Go to **Settings** > **Collaborators and teams**.
+2. [ ] Add the **contributors** team with **Write** access.
+3. [ ] Add the **core** team with **Admin** access.
+
+### Rulesets
+
+1. [ ] Apply the 4 repository ruleset JSON files: `main`/`master`, `dev`, `TEMPLATE` and tag creation (these are pinned in the core channel).
+2. [ ] Go to **Settings** > **Rules** (under Code and automation).
+3. [ ] Select **New ruleset**.
+4. [ ] Select **Import a ruleset**, then select one of the JSON files.
+5. [ ] Select **Create** at the bottom of the page. Do not modify any fields.
+6. [ ] Repeat the import (step 4) and create (step 5) steps for each JSON file provided.
 
 ## Create custom Docker containers for modules
 
