@@ -89,7 +89,6 @@ In contrast to modules, nf-core/subworkflows are allowed to generate new meta ma
 New meta map keys defined during the subworkflow must be documented in the associated `meta.yml` of the nf-core/subworkflow.
 
 ```yaml title="meta.yaml"
-
 ---
 output:
   - bam:
