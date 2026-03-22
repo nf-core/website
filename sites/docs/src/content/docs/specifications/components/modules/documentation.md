@@ -55,6 +55,10 @@ tools:
 
 Only include entries of input and output channels in the Input and Output sections of the `meta.yaml`.
 
+## Meta maps variables should be documented
+
+Each meta map (`meta`, `meta2`, `meta3`, and so on) MUST be documented in the `meta.yaml`.
+
 ## Documentation of tuples
 
 Split input and output tuples into separate entries.

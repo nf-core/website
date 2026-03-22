@@ -29,7 +29,7 @@ def args = task.ext.args ?: ''
 def prefix = task.ext.prefix ?: "${meta.id}"
 """
 fastqc \\
-    $args \\
+    ${args} \\
       <...>
 """
 ```
@@ -93,7 +93,7 @@ Software that can be piped together SHOULD be added to separate module files unl
 For example, using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
 ```bash
-bwa mem $args | samtools view $args2 -B -T ref.fasta
+bwa mem ${args} | samtools view ${args2} -B -T ref.fasta
 ```
 
 :::info
@@ -115,30 +115,89 @@ For example, `SAMTOOLS/COLLATEFASTQ`.
 
 ## Each command must have an $args variable
 
-Each tool in a multi-tool module MUST have an `$args`:
+### Use of args variable
 
-```bash
-bwa mem $args | samtools view $args2 -B -T ref.fasta | samtools sort $args3
+Each tool in a use in a module MUST have an `${args}`:
+
+```bash title="main.nf" {3}
+<tool> \\
+  -r ${meta.single_end} \\
+  ${args}
+  input.txt \\
+  output.txt
+```
+
+```bash title="main.nf"
+bwa mem ${args} | samtools view ${args2} -B -T ref.fasta | samtools sort ${args3}
 ```
 
 or
 
-```bash
+```bash {3,5}
 <tool> \\
    <subcommand> \\
-   $args
+   ${args}
 gzip \\
-    $args2
+    ${args2}
 ```
 
-The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`.
-For example, in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
+### Naming of args variables
 
-## Types of meta fields
+Arg variable names MUST use the naming convention of `args<n>`, where `<n>` corresponds to the number of the tool in a pipe.
+
+| Tool position in pipe | `args` variable name |
+| --------------------- | -------------------- |
+| First                 | `args`               |
+| Second                | `args2`              |
+| Third                 | `args3`              |
+| _n_                   | `args<n>`            |
+
+For example, in the first example, `bwa mem` is the first tool so is given `${args}`, `samtools view` is the second tool so is `${args2}`, etc.
+
+## Use of meta maps
+
+### Modules should include meta maps
+
+Modules SHOULD support meta maps in any _file_ input channel.
+They maybe omitted if there is no possible cases where a meta map would be required or used by the module.
+
+Examples:
+
+```groovy title='main.nf'
+...
+input:
+tuple val(meta), path(fastq)
+tuple val(cleanup)
+...
+```
+
+```groovy title='main.nf'
+...
+input:
+tuple val(meta), path(fastq)
+tuple val(meta2), path(reference)
+...
+```
+
+### Meta map variable naming
+
+Input channels that expect a meta map MUST use the naming convention
+
+| Channel | Meta map variable name |
+| ------- | ---------------------- |
+| First   | `meta`                 |
+| Second  | `meta2`                |
+| Third   | `meta3`                |
+| _n_     | `meta<n>`              |
+
+Meta variables SHOULD NOT use custom names.
+
+### Types of meta map keys
 
 'Custom' hardcoded `meta` fields MUST NOT be used in modules.
 Do not refer to them within the module as expected input, nor generate new fields as output.
-The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
+
+The only accepted 'standard' meta map keys are `meta.id` or `meta.single_end`.
 Discuss proposals for other 'standard' fields for other disciplines with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
 :::info{title="Rationale" collapse}
@@ -146,12 +205,17 @@ Write modules to allow as much flexibility to pipeline developers as possible.
 
 Hardcoding `meta` fields as input and output reduces the freedom of developers to use their own metadata names in their specific context.
 
-As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
+As all non-mandatory arguments MUST go via `${args}`, pipeline developers can insert such `meta` information into `${args}` with whatever name they wish.
 
 In the module code DO NOT:
 
-```bash title="main.nf"
-my_command -r ${meta.strand} input.txt output.txt
+```nextflow title="main.nf"
+"""script
+my_command \\
+  -r ${meta.strand} \\
+  input.txt \\
+  output.txt
+"""
 ```
 
 ... but rather:
@@ -162,8 +226,14 @@ ext.args = { "--r ${meta.<pipeline-authors-choice-of-name>}" }
 
 and then in the module code:
 
-```bash title="main.nf"
-my_command $args input.txt output.txt
+```nextflow title="main.nf"
+script
+"""
+my_command \\
+  ${args} \\
+  input.txt \\
+  output.txt
+"""
 ```
 
 :::
