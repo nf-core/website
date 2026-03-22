@@ -34,7 +34,7 @@ If you then decide to develop with the community
 
 1. Install [nf-core tools](../environment_setup/nf-core-tools) for additional utilities and pipeline management features
 1. Set up [VS Code](../environment_setup/vs-code) with the recommended extensions if you plan to develop pipelines
-1. Set up [Prettier](../environment_setup/prettier) so you can have auto-formatting of your code before pushing to GitHub
+1. Set up [Prettier with pre-commit](../environment_setup/prettier) so you can have auto-formatting of your code before pushing to GitHub
 
 :::note
 System requirements and installation methods vary depending on your operating system and whether you have administrator privileges. If you are uncertain, speak to your system administrator.
