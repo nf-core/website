@@ -11,13 +11,13 @@ For a detailed practical tutorial on how to create and use meta maps within pipe
 
 ## Structure
 
-A meta map in nf-core pipelines are groovy a [unordered key-value list](https://www.tutorialspoint.com/groovy/groovy_maps.htm).
+A meta map in nf-core pipelines is a Groovy [unordered key-value list](https://www.tutorialspoint.com/groovy/groovy_maps.htm).
 
 ```nextflow
 [id: 'test', single_end: false]
 ```
 
-A meta map sits a tuple within a Nextflow channel object, next to the one or more files the metadata is describing.
+A meta map sits in a tuple within a Nextflow channel object, next to the one or more files the metadata is describing.
 
 ```nextflow
 [ [id: 'test', single_end: false], sample1_R1.fastq.gz ]
@@ -82,7 +82,7 @@ All other usage of meta map keys within a module must come via the `ext.args` va
 
 ### Subworkflows
 
-No meta data keys are to be assumed to be present in input channels other than the standard [key names], similarly to [modules](#modules).
+No meta maps keys are to be assumed to be present in input channels other than the standard [key names](#key-names), similarly to [modules](#modules).
 
 In contrast to modules, nf-core/subworkflows are allowed to generate new meta map keys, that can be optionally emitted at the end of the subworkflow.
 
