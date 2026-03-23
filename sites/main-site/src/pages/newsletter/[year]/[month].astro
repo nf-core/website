@@ -18,6 +18,8 @@ import type { NewsletterMonth } from "@utils/newsletter";
 import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
 import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
 
+const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/**", { eager: true });
+
 export async function getStaticPaths() {
     let blogPosts = await getCollection("blog");
     blogPosts = blogPosts.filter((post) => new Date(post.data.pubDate) < new Date());
@@ -125,23 +127,18 @@ function pipelineUrl(name: string): string {
     return `${baseUrl}/${name}`;
 }
 
-function eventImageUrl(headerImage: string): string {
+function resolveImageUrl(headerImage: string): string {
     if (headerImage.startsWith("https://images.unsplash.com/")) {
         return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
     }
     if (headerImage.startsWith("/assets/")) {
-        return `${baseUrl}${headerImage}`;
-    }
-    return headerImage;
-}
-
-function blogImageUrl(headerImage: string): string {
-    // Unsplash URLs: append size params for newsletter
-    if (headerImage.startsWith("https://images.unsplash.com/")) {
-        return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
-    }
-    // Local assets: use absolute URL
-    if (headerImage.startsWith("/assets/")) {
+        // Resolve through Astro's asset pipeline to get the built URL
+        const key = "../.." + headerImage;
+        const resolved = images[key];
+        if (resolved) {
+            return resolved.default.src;
+        }
+        // Fallback if not found in glob
         return `${baseUrl}${headerImage}`;
     }
     return headerImage;
@@ -230,7 +227,7 @@ function blogImageUrl(headerImage: string): string {
                                 <td style="padding: 0;">
                                     <a href={blogUrl(post.id)} style="text-decoration: none;">
                                         <img
-                                            src={blogImageUrl(post.data.headerImage)}
+                                            src={resolveImageUrl(post.data.headerImage)}
                                             alt={post.data.headerImageAlt || ""}
                                             width="760"
                                             style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
@@ -359,7 +356,7 @@ function blogImageUrl(headerImage: string): string {
                                     <td style="padding: 0;">
                                         <a href={eventUrl(event.id)} style="text-decoration: none;">
                                             <img
-                                                src={eventImageUrl(event.data.headerImage)}
+                                                src={resolveImageUrl(event.data.headerImage)}
                                                 alt={event.data.headerImageAlt || event.data.title}
                                                 width="760"
                                                 style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
