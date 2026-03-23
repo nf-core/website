@@ -30,7 +30,7 @@ If you are new to nf-core, we recommend following the guides in order:
 1. [Install Nextflow](../environment_setup/nextflow)
 1. Set up a [Container or compute environment manager](../environment_setup/software-dependencies) based on your system
 
-If you then decide to develop with the community
+If you then decide to develop with the community:
 
 1. Install [nf-core tools](../environment_setup/nf-core-tools) for additional utilities and pipeline management features
 1. Set up [VS Code](../environment_setup/vs-code) with the recommended extensions if you plan to develop pipelines
