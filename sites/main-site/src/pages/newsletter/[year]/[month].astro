@@ -132,14 +132,12 @@ function resolveImageUrl(headerImage: string): string {
         return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
     }
     if (headerImage.startsWith("/assets/")) {
-        // Resolve through Astro's asset pipeline to get the built URL
+        // Resolve through Astro's asset pipeline to get the built URL (e.g. /_astro/image.abc123.png)
         const key = "../../../.." + headerImage;
         const resolved = images[key];
         if (resolved) {
             return resolved.default.src;
         }
-        // Fallback if not found in glob
-        return `${baseUrl}${headerImage}`;
     }
     return headerImage;
 }
