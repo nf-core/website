@@ -285,6 +285,7 @@ for (const event of upcomingEvents) {
                             <tr>
                                 <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
                                     <a
+                                        class="nl-green"
                                         href={pipelineUrl(release.pipelineName)}
                                         style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
                                     >
@@ -536,7 +537,7 @@ for (const event of upcomingEvents) {
                     <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">Pipeline Proposals</h3>
                     <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
                         From{" "}
-                        <a href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                        <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
                             nf-core/proposals
                         </a>
                     </p>
@@ -626,7 +627,7 @@ for (const event of upcomingEvents) {
         {/* ----- FOOTER ----- */}
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px; border-top: 2px solid #eeeeee;">
             <tr>
-                <td style="text-align: center; padding: 24px 0;">
+                <td class="nl-green" style="text-align: center; padding: 24px 0;">
                     <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
                         This newsletter is brought to you by the <a
                             href="https://nf-co.re"
@@ -696,6 +697,10 @@ for (const event of upcomingEvents) {
         color: #cccccc !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content a {
+        color: #e0e0e0 !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-green) a,
+    :global([data-bs-theme="dark"]) #newsletter-content a:global(.nl-green) {
         color: #4ade80 !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
@@ -730,6 +735,10 @@ for (const event of upcomingEvents) {
             color: #cccccc !important;
         }
         #newsletter-content a {
+            color: #e0e0e0 !important;
+        }
+        #newsletter-content .nl-green a,
+        #newsletter-content a.nl-green {
             color: #4ade80 !important;
         }
         #newsletter-content .nl-muted {
@@ -758,6 +767,10 @@ for (const event of upcomingEvents) {
         color: #cccccc !important;
     }
     [data-ogsc] #newsletter-content a {
+        color: #e0e0e0 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-green a,
+    [data-ogsc] #newsletter-content a.nl-green {
         color: #4ade80 !important;
     }
     [data-ogsc] #newsletter-content .nl-muted {
