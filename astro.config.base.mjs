@@ -43,24 +43,25 @@ export default {
             }),
         },
     },
+    fonts: [
+        {
+            provider: fontProviders.fontsource(),
+            name: "Inter",
+            cssVariable: "--font-inter",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"],
+        },
+        {
+            provider: fontProviders.fontsource(),
+            name: "Maven Pro",
+            cssVariable: "--font-maven-pro",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"],
+        },
+    ],
     experimental: {
-        fonts: [
-            {
-                provider: fontProviders.fontsource(),
-                name: "Inter",
-                cssVariable: "--font-inter",
-                fallbacks: ["sans-serif"],
-                weights: ["300 700"],
-            },
-            {
-                provider: fontProviders.fontsource(),
-                name: "Maven Pro",
-                cssVariable: "--font-maven-pro",
-                fallbacks: ["sans-serif"],
-                weights: ["300 700"],
-            },
-        ],
         svgo: true,
+        rustCompiler: true,
     },
     integrations: [
         svelte(),
@@ -129,7 +130,14 @@ export default {
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com", "github.com","nf-core-docs.netlify.app","nf-core-main-site.netlify.app"],
+        domains: [
+            "raw.githubusercontent.com",
+            "unsplash.com",
+            "avatars.githubusercontent.com",
+            "github.com",
+            "nf-core-docs.netlify.app",
+            "nf-core-main-site.netlify.app",
+        ],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
