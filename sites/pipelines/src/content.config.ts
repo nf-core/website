@@ -1,4 +1,5 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { pipelineLoader, releaseLoader } from "@utils/loaders";
 import { glob } from "astro/loaders";
 
@@ -47,22 +48,22 @@ const events = defineCollection({
                 .array(
                     z.object({
                         name: z.string().optional(),
-                        links: z.string().url().or(z.string().startsWith("#")).or(z.array(z.string().url())).optional(),
-                        geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        links: z.url().or(z.string().startsWith("#")).or(z.array(z.url())).optional(),
+                        geoCoordinates: z.tuple([z.number(), z.number()]).optional(),
                         address: z.string().optional(),
                         country: z.string().optional(),
                         city: z.string().optional(),
                     }),
                 )
                 .optional(),
-            links: z.array(z.string().url()).optional(),
+            links: z.array(z.url()).optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
             hackathonProjectListModals: z.string().optional(),
-            youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
+            youtubeEmbed: z.array(z.url()).optional().or(z.url()).optional(),
             hideExportButton: z.boolean().optional(),
         })
         .refine((data) => {
