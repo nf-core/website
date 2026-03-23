@@ -115,9 +115,9 @@ For example, `SAMTOOLS/COLLATEFASTQ`.
 
 ## Each command must have an $args variable
 
-### Use of args variable
+### Use of args variables
 
-Each tool in a use in a module MUST have an `${args}`:
+Each tool in a use in a module MUST have at a minimum one `${args}`:
 
 ```bash title="main.nf" {3}
 <tool> \\
@@ -137,9 +137,23 @@ or
 <tool> \\
    <subcommand> \\
    ${args}
+
 gzip \\
     ${args2}
 ```
+
+Tools that can have two set of positional arguments MAY specify multiple `args` for the same tool.
+
+```bash {2,4}
+<tool> \\
+   ${args}
+   <subcommand>
+   ${args2}
+```
+
+In the example above, a tool has multiple subcommands.
+In the first position it specifies 'common' options across all subcommands which is specified with `${args}`.
+In the second position it specifies subcommand specific options after the subcommand name (${args2})
 
 ### Naming of args variables
 
@@ -212,7 +226,7 @@ In the module code DO NOT:
 ```nextflow title="main.nf"
 """script
 my_command \\
-  -r ${meta.strand} \\
+  -r ${meta.strandedness} \\
   input.txt \\
   output.txt
 """
@@ -221,7 +235,7 @@ my_command \\
 ... but rather:
 
 ```groovy title="modules.conf"
-ext.args = { "--r ${meta.<pipeline-authors-choice-of-name>}" }
+ext.args = { "-r ${meta.strandedness}" }
 ```
 
 and then in the module code:
@@ -236,6 +250,13 @@ my_command \\
 """
 ```
 
+:::
+
+:::note
+Modules are intended to be kept as flexible as possible.
+However, once a module is included into a pipeline, they can be customised at the pipeline level.
+This can be performed with `nf-core modules patch`,
+If a hardcoded meta key name is an absolute necessity in a module, it MAY be incorporated and maintained with a patch file.
 :::
 
 ## Compression of input and output files
@@ -487,28 +508,28 @@ For example, the `deseq2/differential` nf-core module will use the `deseq2_diffe
 
 Refer to the template file within the module using the template function:
 
-    ```nextflow
-    script:
-    template 'deseq2_differential.R'
-    ```
+```nextflow
+script:
+template 'deseq2_differential.R'
+```
 
 See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
 
 The resulting structure would look like this.
 
-    ```tree
-    deseq2
-    └── differential
-        ├── environment.yml
-        ├── main.nf
-        ├── meta.yml
-        ├── templates
-        │   └── deqseq2_differential.R
-        └── tests
-            ├── main.nf.test
-            ├── main.nf.test.snap
-            └── tags.yml
-    ```
+```tree
+deseq2
+└── differential
+├── environment.yml
+├── main.nf
+├── meta.yml
+├── templates
+│ └── deqseq2_differential.R
+└── tests
+├── main.nf.test
+├── main.nf.test.snap
+└── tags.yml
+```
 
 ### Template or inline script-code contents
 
