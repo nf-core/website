@@ -131,299 +131,340 @@ function pipelineUrl(name: string): string {
     {/* ===== NAVIGATION (excluded from email) ===== */}
     <nav class="mb-4 newsletter-nav">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            {prevMonth ? (
-                <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
-                    &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
-                </a>
-            ) : (
-                <span></span>
-            )}
+            {
+                prevMonth ? (
+                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
+                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
 
             <select id="newsletter-month-select" class="form-select form-select-sm w-auto">
-                {allMonths.map((m) => (
-                    <option
-                        value={monthUrl(m)}
-                        selected={m.year === year && m.month === month}
-                    >
-                        {getMonthName(m.month)} {m.year}
-                    </option>
-                ))}
+                {
+                    allMonths.map((m) => (
+                        <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
+                            {getMonthName(m.month)} {m.year}
+                        </option>
+                    ))
+                }
             </select>
 
-            {nextMonth ? (
-                <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
-                    {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
-                </a>
-            ) : (
-                <span></span>
-            )}
+            {
+                nextMonth ? (
+                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
+                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
         </div>
     </nav>
 
     {/* ===== NEWSLETTER CONTENT (extractable for email) ===== */}
     <div id="newsletter-content">
-
         {/* ----- HEADER ----- */}
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
             <tr>
                 <td style="text-align: center; padding: 20px 0;">
-                    <h1 style="margin: 0; font-size: 28px; color: #333333;">
-                        nf-core Newsletter
-                    </h1>
+                    <h1 style="margin: 0; font-size: 28px; color: #333333;">nf-core Newsletter</h1>
                     <p style="margin: 8px 0 0; font-size: 18px; color: #666666;">
-                        {monthName} {year}
+                        {monthName}
+                        {year}
                     </p>
                 </td>
             </tr>
         </table>
 
         {/* ----- EVENTS THIS MONTH ----- */}
-        {thisMonthEvents.length > 0 && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    Events This Month
-                </h2>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {thisMonthEvents.map((event) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
-                                <table width="100%" cellpadding="0" cellspacing="0">
-                                    <tr>
-                                        <td style="vertical-align: top; width: 100%;">
-                                            <a href={eventUrl(event.id)} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;">
-                                                {event.data.title}
-                                            </a>
-                                            <br />
-                                            <span style="font-size: 13px; color: #666666;">
-                                                {formatDate(event.data.start)}
-                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                                    <> &ndash; {formatDate(event.data.end)}</>
-                                                )}
-                                            </span>
-                                            <span style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}>
-                                                {eventTypeLabel[event.data.type] || event.data.type}
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            thisMonthEvents.length > 0 && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        Events This Month
+                    </h2>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {thisMonthEvents.map((event) => (
+                            <tr>
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
+                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="vertical-align: top; width: 100%;">
+                                                <a
+                                                    href={eventUrl(event.id)}
+                                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                                >
+                                                    {event.data.title}
+                                                </a>
+                                                <br />
+                                                <span style="font-size: 13px; color: #666666;">
+                                                    {formatDate(event.data.start)}
+                                                    {event.data.start.toDateString() !==
+                                                        event.data.end.toDateString() && (
+                                                        <> &ndash; {formatDate(event.data.end)}</>
+                                                    )}
+                                                </span>
+                                                <span
+                                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                                >
+                                                    {eventTypeLabel[event.data.type] || event.data.type}
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- UPCOMING EVENTS ----- */}
-        {upcomingEvents.length > 0 && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    Upcoming Events
-                </h2>
-                <p style="font-size: 14px; color: #666666; margin-bottom: 12px;">
-                    Events in the next couple of months.
-                </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {upcomingEvents.map((event) => (
-                        <tr>
-                            <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
-                                <a href={eventUrl(event.id)} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;">
-                                    {event.data.title}
-                                </a>
-                                <br />
-                                <span style="font-size: 13px; color: #666666;">
-                                    {formatDate(event.data.start)}
-                                    {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                        <> &ndash; {formatDate(event.data.end)}</>
-                                    )}
-                                </span>
-                                <span style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}>
-                                    {eventTypeLabel[event.data.type] || event.data.type}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            upcomingEvents.length > 0 && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        Upcoming Events
+                    </h2>
+                    <p style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                        Events in the next couple of months.
+                    </p>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {upcomingEvents.map((event) => (
+                            <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
+                                    <a
+                                        href={eventUrl(event.id)}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                    >
+                                        {event.data.title}
+                                    </a>
+                                    <br />
+                                    <span style="font-size: 13px; color: #666666;">
+                                        {formatDate(event.data.start)}
+                                        {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                            <> &ndash; {formatDate(event.data.end)}</>
+                                        )}
+                                    </span>
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                    >
+                                        {eventTypeLabel[event.data.type] || event.data.type}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- BLOG POSTS THIS MONTH ----- */}
-        {thisMonthBlogPosts.length > 0 && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    Blog Posts
-                </h2>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {thisMonthBlogPosts.map((post) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <a href={blogUrl(post.id)} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;">
-                                    {post.data.title}
-                                </a>
-                                <br />
-                                <span style="font-size: 14px; color: #555555;">
-                                    {post.data.subtitle}
-                                </span>
-                                <br />
-                                <span style="font-size: 13px; color: #888888;">
-                                    {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            thisMonthBlogPosts.length > 0 && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        Blog Posts
+                    </h2>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {thisMonthBlogPosts.map((post) => (
+                            <tr>
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                    <a
+                                        href={blogUrl(post.id)}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                    <br />
+                                    <span style="font-size: 14px; color: #555555;">{post.data.subtitle}</span>
+                                    <br />
+                                    <span style="font-size: 13px; color: #888888;">
+                                        {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- IN CASE YOU MISSED IT ----- */}
-        {olderBlogPosts.length > 0 && (
-            <>
-                <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">
-                    In Case You Missed It
-                </h3>
-                <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                    Blog posts from the past couple of months.
-                </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {olderBlogPosts.map((post) => (
-                        <tr>
-                            <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                <a href={blogUrl(post.id)} style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;">
-                                    {post.data.title}
-                                </a>
-                                <span style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                    {formatDate(post.data.pubDate)}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            olderBlogPosts.length > 0 && (
+                <>
+                    <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">In Case You Missed It</h3>
+                    <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                        Blog posts from the past couple of months.
+                    </p>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {olderBlogPosts.map((post) => (
+                            <tr>
+                                <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                    <a
+                                        href={blogUrl(post.id)}
+                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                    >
+                                        {post.data.title}
+                                    </a>
+                                    <span style="font-size: 12px; color: #999999; margin-left: 8px;">
+                                        {formatDate(post.data.pubDate)}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- FIRST PIPELINE RELEASES ----- */}
-        {firstReleases.length > 0 && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    New Pipeline First Releases! &#127881;
-                </h2>
-                <p style="font-size: 14px; color: #666666; margin-bottom: 12px;">
-                    These pipelines published their very first release this month.
-                </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {firstReleases.map((release) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <a href={pipelineUrl(release.pipelineName)} style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;">
-                                    nf-core/{release.pipelineName}
-                                </a>
-                                <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
-                                    v{release.tagName}
-                                </span>
-                                <br />
-                                <span style="font-size: 14px; color: #555555;">
-                                    {release.description}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            firstReleases.length > 0 && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        New Pipeline First Releases! &#127881;
+                    </h2>
+                    <p style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                        These pipelines published their very first release this month.
+                    </p>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {firstReleases.map((release) => (
+                            <tr>
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                    <a
+                                        href={pipelineUrl(release.pipelineName)}
+                                        style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
+                                    >
+                                        nf-core/{release.pipelineName}
+                                    </a>
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
+                                        v{release.tagName}
+                                    </span>
+                                    <br />
+                                    <span style="font-size: 14px; color: #555555;">{release.description}</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- OTHER PIPELINE RELEASES ----- */}
-        {otherReleases.length > 0 && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    Pipeline Releases
-                </h2>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {otherReleases.map((release) => (
-                        <tr>
-                            <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                <a href={pipelineUrl(release.pipelineName)} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;">
-                                    nf-core/{release.pipelineName}
-                                </a>
-                                <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #6c757d;">
-                                    v{release.tagName}
-                                </span>
-                                <span style="font-size: 13px; color: #888888; margin-left: 8px;">
-                                    {formatDate(new Date(release.publishedAt))}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            otherReleases.length > 0 && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        Pipeline Releases
+                    </h2>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {otherReleases.map((release) => (
+                            <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
+                                    <a
+                                        href={pipelineUrl(release.pipelineName)}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                    >
+                                        nf-core/{release.pipelineName}
+                                    </a>
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #6c757d;">
+                                        v{release.tagName}
+                                    </span>
+                                    <span style="font-size: 13px; color: #888888; margin-left: 8px;">
+                                        {formatDate(new Date(release.publishedAt))}
+                                    </span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- NEW PIPELINES & PROPOSALS ----- */}
-        {(newPipelines.length > 0 || proposals.length > 0) && (
-            <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
-                    New Pipelines &amp; Proposals
-                </h2>
-            </>
-        )}
+        {
+            (newPipelines.length > 0 || proposals.length > 0) && (
+                <>
+                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                        New Pipelines &amp; Proposals
+                    </h2>
+                </>
+            )
+        }
 
-        {newPipelines.length > 0 && (
-            <>
-                <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">
-                    New Pipeline Repositories
-                </h3>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {newPipelines.map((p) => (
-                        <tr>
-                            <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                <a href={pipelineUrl(p.name)} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;">
-                                    nf-core/{p.name}
-                                </a>
-                                {p.isDevOnly && (
-                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #856404; background-color: #fff3cd;">
-                                        In Development
-                                    </span>
-                                )}
-                                <br />
-                                <span style="font-size: 14px; color: #555555;">
-                                    {p.description}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            newPipelines.length > 0 && (
+                <>
+                    <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">New Pipeline Repositories</h3>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {newPipelines.map((p) => (
+                            <tr>
+                                <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
+                                    <a
+                                        href={pipelineUrl(p.name)}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                    >
+                                        nf-core/{p.name}
+                                    </a>
+                                    {p.isDevOnly && (
+                                        <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #856404; background-color: #fff3cd;">
+                                            In Development
+                                        </span>
+                                    )}
+                                    <br />
+                                    <span style="font-size: 14px; color: #555555;">{p.description}</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
-        {proposals.length > 0 && (
-            <>
-                <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">
-                    Pipeline Proposals
-                </h3>
-                <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                    New proposals and approvals from <a href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">nf-core/proposals</a>.
-                </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {proposals.map((p) => (
-                        <tr>
-                            <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                <a href={p.url} style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;">
-                                    {p.title}
-                                </a>
-                                <span style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                    #{p.number}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )}
+        {
+            proposals.length > 0 && (
+                <>
+                    <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">Pipeline Proposals</h3>
+                    <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                        New proposals and approvals from{" "}
+                        <a href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                            nf-core/proposals
+                        </a>
+                        .
+                    </p>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {proposals.map((p) => (
+                            <tr>
+                                <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                    <a
+                                        href={p.url}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                    >
+                                        {p.title}
+                                    </a>
+                                    <span style="font-size: 12px; color: #999999; margin-left: 8px;">#{p.number}</span>
+                                </td>
+                            </tr>
+                        ))}
+                    </table>
+                </>
+            )
+        }
 
         {/* ----- FOOTER ----- */}
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px; border-top: 2px solid #eeeeee;">
             <tr>
                 <td style="text-align: center; padding: 24px 0;">
                     <p style="font-size: 14px; color: #666666; margin: 0;">
-                        This newsletter is brought to you by the <a href="https://nf-co.re" style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a> community.
+                        This newsletter is brought to you by the <a
+                            href="https://nf-co.re"
+                            style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
+                        > community.
                     </p>
                     <p style="font-size: 13px; color: #999999; margin: 8px 0 0;">
                         <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
@@ -434,7 +475,6 @@ function pipelineUrl(name: string): string {
                 </td>
             </tr>
         </table>
-
     </div>
 </PageLayout>
 
