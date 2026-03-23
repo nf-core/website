@@ -519,32 +519,33 @@ function pipelineUrl(name: string): string {
         text-decoration: underline !important;
     }
 
-    /* Web dark mode: matches nf-core site theme toggle (data-bs-theme) */
+    /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).
+     * Needs !important to beat inline styles on email-friendly elements. */
     :global([data-bs-theme="dark"]) #newsletter-content {
-        background-color: #1e1e2e;
-        color: #e0e0e0;
+        background-color: #1e1e2e !important;
+        color: #e0e0e0 !important;
     }
-    :global([data-bs-theme="dark"]) #newsletter-content .nl-logo-light {
-        display: none;
+    :global([data-bs-theme="dark"]) :global(.nl-logo-light) {
+        display: none !important;
     }
-    :global([data-bs-theme="dark"]) #newsletter-content .nl-logo-dark {
-        display: block;
+    :global([data-bs-theme="dark"]) :global(.nl-logo-dark) {
+        display: block !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h2 {
-        color: #4ade80;
-        border-bottom-color: #4ade80;
+        color: #4ade80 !important;
+        border-bottom-color: #4ade80 !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h3 {
-        color: #cccccc;
+        color: #cccccc !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content a {
-        color: #4ade80;
+        color: #4ade80 !important;
     }
-    :global([data-bs-theme="dark"]) #newsletter-content .nl-muted {
-        color: #aaaaaa;
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
+        color: #aaaaaa !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content td {
-        border-bottom-color: #333344;
+        border-bottom-color: #333344 !important;
     }
 
     /*
