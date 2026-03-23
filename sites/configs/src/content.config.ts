@@ -1,4 +1,5 @@
-import { z, defineCollection  } from 'astro:content';
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { githubFileLoader, type RenderedContent } from "@utils/loaders";
 import { createMarkdownProcessor } from "@astrojs/markdown-remark";
 
@@ -44,7 +45,10 @@ const configProcessor = async (text: string, config: AstroConfig): Promise<Rende
     });
 
     //remove provided by nf-core/configs string from description
-    NFConfig.config_profile_description = NFConfig.config_profile_description.replace(" provided by nf-core/configs", "");
+    NFConfig.config_profile_description = NFConfig.config_profile_description.replace(
+        " provided by nf-core/configs",
+        "",
+    );
 
     return {
         html: text,
@@ -64,7 +68,7 @@ const processors = {
             throw error;
         }
     },
-    config: configProcessor
+    config: configProcessor,
 };
 
 const configs = defineCollection({
@@ -77,7 +81,7 @@ const configs = defineCollection({
         getDates: true,
     }),
     schema: z.object({
-        extension: z.literal('md').or(z.literal('config')),
+        extension: z.literal("md").or(z.literal("config")),
         sha: z.string(),
         lastCommit: z.string().datetime(),
     }),

@@ -1,8 +1,6 @@
-import { z, defineCollection } from "astro:content";
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
 import { glob } from "astro/loaders";
-import type { AstroConfig } from "astro";
-import { githubFileLoader } from "@utils/loaders";
-import { octokit } from "@components/octokit.js";
 import semver from "semver";
 
 // Define reusable schemas for common validation patterns
@@ -31,13 +29,6 @@ const commonSchemas = {
     ]),
 };
 
-const teams = await octokit.request("GET /orgs/{org}/teams", {
-    org: "nf-core",
-    headers: {
-        "X-GitHub-Api-Version": "2022-11-28",
-    },
-});
-
 const events = defineCollection({
     loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/events" }),
     schema: z
@@ -61,22 +52,22 @@ const events = defineCollection({
                 .array(
                     z.object({
                         name: z.string().optional(),
-                        links: z.string().url().or(z.string().startsWith("#")).or(z.array(z.string().url())).optional(),
-                        geoCoordinates: z.array(z.number(), z.number()).optional(),
+                        links: z.url().or(z.string().startsWith("#")).or(z.array(z.url())).optional(),
+                        geoCoordinates: z.tuple([z.number(), z.number()]).optional(),
                         address: z.string().optional(),
                         country: z.string().optional(),
                         city: z.string().optional(),
                     }),
                 )
                 .optional(),
-            links: z.array(z.string().url()).optional(),
+            links: z.array(z.url()).optional(),
             start: z.date().optional(),
             end: z.date().optional(),
             duration: z.string().optional(),
             embedAt: z.string().optional(),
             importTypeform: z.boolean().optional(),
             hackathonProjectListModals: z.string().optional(),
-            youtubeEmbed: z.array(z.string().url()).optional().or(z.string().url()).optional(),
+            youtubeEmbed: z.array(z.url()).optional().or(z.url()).optional(),
             hideExportButton: z.boolean().optional(),
         })
         .transform((data) => {
@@ -115,7 +106,7 @@ const about = defineCollection({
     schema: z.object({
         title: z.string(),
         description: z.string(),
-        md_github_url: z.string().url().optional(),
+        md_github_url: z.url().optional(),
         minHeadingDepth: z.number().optional(),
         maxHeadingDepth: z.number().optional(),
     }),
@@ -159,10 +150,10 @@ const advisories = defineCollection({
                 .transform((val) => (Array.isArray(val) ? val : [val])),
             severity: z.enum(["low", "medium", "high", "critical"]),
             publishedDate: commonSchemas.dateFormat.transform((date) => new Date(date)),
-            reporter: z.nullable(z.array(z.string()).or(z.array(z.record(z.string())))),
+            reporter: z.nullable(z.array(z.string()).or(z.array(z.record(z.string(), z.string())))),
             reviewer: z
                 .array(z.string())
-                .or(z.array(z.record(z.string())))
+                .or(z.array(z.record(z.string(), z.string())))
                 .optional(),
             // pipelines is an array of pipeline names strings or an array of objects with pipeline name and versions
             pipelines: z
@@ -216,7 +207,7 @@ const advisories = defineCollection({
                             return semver.valid(semver.coerce(v));
                         },
                         {
-                            message: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
+                            error: "Must follow semantic versioning (e.g., 1.0, 1.0.0, 2.1.3-beta.1)",
                         },
                     ),
                 ),
@@ -262,7 +253,7 @@ const advisories = defineCollection({
                     z.object({
                         title: z.string(),
                         description: z.string(),
-                        url: z.string().url(),
+                        url: z.url(),
                     }),
                 ),
             ),
@@ -293,9 +284,9 @@ const blog = defineCollection({
             title: z.string(),
             subtitle: z.string(),
             shortTitle: z.string().optional(),
-            headerImage: z.string().url().optional().or(z.string().startsWith("/assets/images/blog/")).optional(),
+            headerImage: z.url().optional().or(z.string().startsWith("/assets/images/blog/")).optional(),
             headerImageAlt: z.string().optional(),
-            headerImageDim: z.array(z.number(), z.number()).optional(),
+            headerImageDim: z.tuple([z.number(), z.number()]).optional(),
             label: z.array(z.string()),
             pubDate: z.date(),
             authors: z.array(z.string()),
@@ -346,7 +337,7 @@ const specialInterestGroups = defineCollection({
             // for index.md pages also require lead and pipelines
             leads: z
                 .array(z.string())
-                .or(z.array(z.record(z.string())))
+                .or(z.array(z.record(z.string(), z.string())))
                 .optional(),
             pipelines: z
                 .array(z.string())
@@ -372,17 +363,16 @@ const hackathonProjects = defineCollection({
             category: z.enum(["pipelines", "components", "tooling", "community", "special-interest-groups"]),
             location: z.string().optional(),
             leaders: z.record(
+                z.string(),
                 z.object({
                     name: z.string(),
                     slack: z
                         .string()
                         .url()
-                        .refine((url) => {
-                            if (url && !url.startsWith("https://nfcore.slack.com/")) {
-                                throw new Error("leaders `slack` must be a nf-core or Nextflow slack URL: " + url);
-                            }
-                            return true;
-                        })
+                        .refine(
+                            (url) => !url || url.startsWith("https://nfcore.slack.com/"),
+                            (url) => ({ message: "leaders `slack` must be a nf-core or Nextflow slack URL: " + url }),
+                        )
                         .optional(),
                 }),
             ),
