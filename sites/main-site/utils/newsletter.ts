@@ -214,13 +214,13 @@ export function getPipelineReleasesForMonth(
 
     const releases = [...grouped.values()];
 
-    // Sort tag names within each release by semver descending
+    // Sort tag names within each release by semver ascending (oldest first, left to right)
     for (const release of releases) {
         release.tagNames.sort((a, b) => {
             const aNum = a.replace(/^v/, "").split(".").map(Number);
             const bNum = b.replace(/^v/, "").split(".").map(Number);
             for (let i = 0; i < Math.max(aNum.length, bNum.length); i++) {
-                if ((bNum[i] || 0) !== (aNum[i] || 0)) return (bNum[i] || 0) - (aNum[i] || 0);
+                if ((aNum[i] || 0) !== (bNum[i] || 0)) return (aNum[i] || 0) - (bNum[i] || 0);
             }
             return 0;
         });
