@@ -16,6 +16,7 @@ import {
 } from "@utils/newsletter";
 import type { NewsletterMonth } from "@utils/newsletter";
 import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
+import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
 
 export async function getStaticPaths() {
     let blogPosts = await getCollection("blog");
@@ -171,12 +172,20 @@ function pipelineUrl(name: string): string {
             <tr>
                 <td style="text-align: center; padding: 20px 0;">
                     <img
+                        class="nl-logo-light"
                         src={newsletterLogoLight.src}
                         alt="nf-core newsletter"
                         width="400"
-                        style="max-width: 100%; height: auto;"
+                        style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
                     />
-                    <p style="margin: 12px 0 0; font-size: 18px; color: #666666;">
+                    <img
+                        class="nl-logo-dark"
+                        src={newsletterLogoDark.src}
+                        alt="nf-core newsletter"
+                        width="400"
+                        style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
+                    />
+                    <p class="nl-muted" style="margin: 12px 0 0; font-size: 18px; color: #666666;">
                         {monthName}
                         {year}
                     </p>
@@ -202,7 +211,7 @@ function pipelineUrl(name: string): string {
                                         {event.data.title}
                                     </a>
                                     <br />
-                                    <span style="font-size: 13px; color: #666666;">
+                                    <span class="nl-muted" style="font-size: 13px; color: #666666;">
                                         {formatDate(event.data.start)}
                                         {event.data.start.toDateString() !== event.data.end.toDateString() && (
                                             <> &ndash; {formatDate(event.data.end)}</>
@@ -236,7 +245,7 @@ function pipelineUrl(name: string): string {
                                     >
                                         {event.data.title}
                                     </a>
-                                    <span style="font-size: 12px; color: #888888; margin-left: 8px;">
+                                    <span class="nl-muted" style="font-size: 12px; color: #888888; margin-left: 8px;">
                                         {formatDate(event.data.start)}
                                         {event.data.start.toDateString() !== event.data.end.toDateString() && (
                                             <> &ndash; {formatDate(event.data.end)}</>
@@ -273,9 +282,11 @@ function pipelineUrl(name: string): string {
                                         {post.data.title}
                                     </a>
                                     <br />
-                                    <span style="font-size: 14px; color: #555555;">{post.data.subtitle}</span>
+                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                        {post.data.subtitle}
+                                    </span>
                                     <br />
-                                    <span style="font-size: 13px; color: #888888;">
+                                    <span class="nl-muted" style="font-size: 13px; color: #888888;">
                                         {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
                                     </span>
                                 </td>
@@ -291,7 +302,7 @@ function pipelineUrl(name: string): string {
             olderBlogPosts.length > 0 && (
                 <>
                     <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">In Case You Missed It</h3>
-                    <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
                         Blog posts from the past couple of months.
                     </p>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
@@ -304,7 +315,7 @@ function pipelineUrl(name: string): string {
                                     >
                                         {post.data.title}
                                     </a>
-                                    <span style="font-size: 12px; color: #999999; margin-left: 8px;">
+                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
                                         {formatDate(post.data.pubDate)}
                                     </span>
                                 </td>
@@ -322,7 +333,7 @@ function pipelineUrl(name: string): string {
                     <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                         New Pipeline First Releases! &#127881;
                     </h2>
-                    <p style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                    <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
                         These pipelines published their very first release this month.
                     </p>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
@@ -339,7 +350,9 @@ function pipelineUrl(name: string): string {
                                         v{release.tagName}
                                     </span>
                                     <br />
-                                    <span style="font-size: 14px; color: #555555;">{release.description}</span>
+                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                        {release.description}
+                                    </span>
                                 </td>
                             </tr>
                         ))}
@@ -410,7 +423,9 @@ function pipelineUrl(name: string): string {
                                         </span>
                                     )}
                                     <br />
-                                    <span style="font-size: 14px; color: #555555;">{p.description}</span>
+                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                        {p.description}
+                                    </span>
                                 </td>
                             </tr>
                         ))}
@@ -423,7 +438,7 @@ function pipelineUrl(name: string): string {
             proposals.length > 0 && (
                 <>
                     <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">Pipeline Proposals</h3>
-                    <p style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
                         New proposals and approvals from{" "}
                         <a href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
                             nf-core/proposals
@@ -440,7 +455,9 @@ function pipelineUrl(name: string): string {
                                     >
                                         {p.title}
                                     </a>
-                                    <span style="font-size: 12px; color: #999999; margin-left: 8px;">#{p.number}</span>
+                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
+                                        #{p.number}
+                                    </span>
                                 </td>
                             </tr>
                         ))}
@@ -453,13 +470,13 @@ function pipelineUrl(name: string): string {
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px; border-top: 2px solid #eeeeee;">
             <tr>
                 <td style="text-align: center; padding: 24px 0;">
-                    <p style="font-size: 14px; color: #666666; margin: 0;">
+                    <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
                         This newsletter is brought to you by the <a
                             href="https://nf-co.re"
                             style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
                         > community.
                     </p>
-                    <p style="font-size: 13px; color: #999999; margin: 8px 0 0;">
+                    <p class="nl-muted" style="font-size: 13px; color: #999999; margin: 8px 0 0;">
                         <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
                         <a href="https://nf-co.re/blog" style="color: #22ae63;">Blog</a> &middot;
                         <a href="https://nf-co.re/events" style="color: #22ae63;">Events</a> &middot;
@@ -490,7 +507,7 @@ function pipelineUrl(name: string): string {
         margin: 0 auto;
         padding: 16px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        /* Force light mode for email compatibility - always readable in both web themes */
+        /* Light mode base - always readable */
         background-color: #ffffff;
         color: #333333;
         border-radius: 8px;
@@ -500,5 +517,64 @@ function pipelineUrl(name: string): string {
     }
     #newsletter-content a:hover {
         text-decoration: underline !important;
+    }
+
+    /* Dark mode: Apple Mail, Outlook Mac, and web browsers */
+    @media (prefers-color-scheme: dark) {
+        #newsletter-content {
+            background-color: #1e1e2e !important;
+            color: #e0e0e0 !important;
+        }
+        #newsletter-content .nl-logo-light {
+            display: none !important;
+        }
+        #newsletter-content .nl-logo-dark {
+            display: block !important;
+        }
+        #newsletter-content h2 {
+            color: #4ade80 !important;
+            border-bottom-color: #4ade80 !important;
+        }
+        #newsletter-content h3 {
+            color: #cccccc !important;
+        }
+        #newsletter-content a {
+            color: #4ade80 !important;
+        }
+        #newsletter-content .nl-muted {
+            color: #aaaaaa !important;
+        }
+        #newsletter-content td {
+            border-bottom-color: #333344 !important;
+        }
+        /* Keep badge/pill backgrounds as-is - they have white text already */
+    }
+
+    /* Dark mode: Outlook iOS/Android apps */
+    [data-ogsc] #newsletter-content {
+        background-color: #1e1e2e !important;
+        color: #e0e0e0 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-light {
+        display: none !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-dark {
+        display: block !important;
+    }
+    [data-ogsc] #newsletter-content h2 {
+        color: #4ade80 !important;
+        border-bottom-color: #4ade80 !important;
+    }
+    [data-ogsc] #newsletter-content h3 {
+        color: #cccccc !important;
+    }
+    [data-ogsc] #newsletter-content a {
+        color: #4ade80 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-muted {
+        color: #aaaaaa !important;
+    }
+    [data-ogsc] #newsletter-content td {
+        border-bottom-color: #333344 !important;
     }
 </style>
