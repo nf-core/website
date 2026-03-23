@@ -257,6 +257,25 @@ Modules are intended to be kept as flexible as possible.
 However, once a module is included into a pipeline, they can be customised at the pipeline level.
 This can be performed with `nf-core modules patch`,
 If a hardcoded meta key name is an absolute necessity in a module, it MAY be incorporated and maintained with a patch file.
+
+In this example, `-r ${meta.strandedness}` is hardcoded in the `my_command` module. 
+
+First install the tool into your pipeline with `nf-core modules install my_command`
+
+Edit the `main.nf` to include `-r ${meta.strandedness}` and save it.
+
+```nextflow title="main.nf"
+script
+"""
+my_command \\
+  -r ${meta.strandedness} \\
+  ${args} \\
+  input.txt \\
+  output.txt
+"""
+```
+
+Then use `nf-core modules patch my_command` to create a patch file (`*.diff`), which should be version controlled with the module. The patch file will then be used to modify the module whenever you run `nf-core modules update my_command` preserving your modifications for the pipeline while still allowing module updates. 
 :::
 
 ## Compression of input and output files
