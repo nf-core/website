@@ -15,6 +15,7 @@ import {
     getProposalsForMonth,
 } from "@utils/newsletter";
 import type { NewsletterMonth } from "@utils/newsletter";
+import { Image } from "astro:assets";
 import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
 import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
 
@@ -127,31 +128,28 @@ function pipelineUrl(name: string): string {
     return `${baseUrl}/${name}`;
 }
 
-async function resolveImageUrl(headerImage: string): Promise<string> {
-    if (headerImage.startsWith("https://images.unsplash.com/")) {
-        return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
-    }
+async function resolveImageSrc(headerImage: string): Promise<any> {
     if (headerImage.startsWith("/assets/")) {
-        // Resolve through Astro's asset pipeline to get the built URL (e.g. /_astro/image.abc123.png)
         const key = "../../../.." + headerImage;
         const loader = images[key];
         if (loader) {
             const mod = (await loader()) as any;
-            return mod.default.src;
+            return mod.default;
         }
     }
+    // External URLs (unsplash, etc) — pass through directly
     return headerImage;
 }
 
-// Pre-resolve all image URLs (async, must happen in frontmatter)
-const blogImageUrls = new Map<string, string>();
+// Pre-resolve all image sources (async, must happen in frontmatter)
+const blogImageSrcs = new Map<string, any>();
 for (const post of [...thisMonthBlogPosts, ...olderBlogPosts]) {
-    blogImageUrls.set(post.id, await resolveImageUrl(post.data.headerImage));
+    blogImageSrcs.set(post.id, await resolveImageSrc(post.data.headerImage));
 }
-const eventImageUrls = new Map<string, string>();
+const eventImageSrcs = new Map<string, any>();
 for (const event of upcomingEvents) {
     if (event.data.headerImage) {
-        eventImageUrls.set(event.id, await resolveImageUrl(event.data.headerImage));
+        eventImageSrcs.set(event.id, await resolveImageSrc(event.data.headerImage));
     }
 }
 ---
@@ -237,10 +235,11 @@ for (const event of upcomingEvents) {
                             <tr>
                                 <td style="padding: 0;">
                                     <a href={blogUrl(post.id)} style="text-decoration: none;">
-                                        <img
-                                            src={blogImageUrls.get(post.id)}
+                                        <Image
+                                            src={blogImageSrcs.get(post.id)}
                                             alt={post.data.headerImageAlt || ""}
-                                            width="760"
+                                            width={760}
+                                            height={200}
                                             style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
                                         />
                                     </a>
@@ -365,12 +364,13 @@ for (const event of upcomingEvents) {
                         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                             {event.data.headerImage && (
                                 <tr>
-                                    <td style="padding: 0;">
+                                    <td colspan="2" style="padding: 0;">
                                         <a href={eventUrl(event.id)} style="text-decoration: none;">
-                                            <img
-                                                src={eventImageUrls.get(event.id)}
+                                            <Image
+                                                src={eventImageSrcs.get(event.id)}
                                                 alt={event.data.headerImageAlt || event.data.title}
-                                                width="760"
+                                                width={760}
+                                                height={200}
                                                 style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
                                             />
                                         </a>
@@ -378,14 +378,15 @@ for (const event of upcomingEvents) {
                                 </tr>
                             )}
                             <tr>
-                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: middle;">
                                     <a
                                         href={eventUrl(event.id)}
                                         style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
                                     >
                                         {event.data.title}
                                     </a>
-                                    <br />
+                                </td>
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: middle; text-align: right; white-space: nowrap;">
                                     <span class="nl-muted" style="font-size: 13px; color: #666666;">
                                         {formatDate(event.data.start)}
                                         {event.data.start.toDateString() !== event.data.end.toDateString() && (
@@ -409,7 +410,9 @@ for (const event of upcomingEvents) {
         {
             thisMonthEvents.length > 0 && (
                 <>
-                    <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">Events That Happened This Month</h3>
+                    <h2 style="font-size: 18px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
+                        Events That Happened This Month
+                    </h2>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                         {thisMonthEvents
                             .reduce((rows: any[][], event, i) => {
@@ -453,7 +456,9 @@ for (const event of upcomingEvents) {
         {
             olderBlogPosts.length > 0 && (
                 <>
-                    <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">In Case You Missed It</h3>
+                    <h2 style="font-size: 18px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
+                        In Case You Missed It
+                    </h2>
                     <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
                         Blog posts from the past couple of months.
                     </p>
