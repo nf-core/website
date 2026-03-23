@@ -124,7 +124,13 @@ export default {
             preprocessorOptions: {
                 scss: {
                     api: "modern-compiler",
-                    silenceDeprecations: ["legacy-js-api", "color-functions", "global-builtin", "import"],
+                    silenceDeprecations: [
+                        "legacy-js-api",
+                        "color-functions",
+                        "global-builtin",
+                        "import",
+                        "if-function",
+                    ],
                 },
             },
         },

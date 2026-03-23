@@ -1,5 +1,5 @@
 import { defineCollection } from "astro:content";
-import { z } from "astro:content";
+import { z } from "astro/zod";
 import type { AstroConfig } from "astro";
 import { githubFileLoader } from "@utils/loaders";
 import { octokit } from "@components/octokit.js";
