@@ -19,7 +19,7 @@ import { Image } from "astro:assets";
 import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
 import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
 
-const images = import.meta.glob("../../../../assets/**");
+const images = import.meta.glob("/src/assets/**");
 
 export async function getStaticPaths() {
     let blogPosts = await getCollection("blog");
@@ -130,7 +130,7 @@ function pipelineUrl(name: string): string {
 
 async function resolveImageSrc(headerImage: string): Promise<any> {
     if (headerImage.startsWith("/assets/")) {
-        const key = "../../../.." + headerImage;
+        const key = "/src" + headerImage;
         const loader = images[key];
         if (loader) {
             const mod = (await loader()) as any;
