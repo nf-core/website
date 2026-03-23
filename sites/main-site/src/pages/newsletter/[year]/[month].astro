@@ -82,8 +82,10 @@ const newPipelines = getNewPipelines(pipelines, year, month);
 const thisMonthEvents = getEventsForMonth(events, year, month);
 const upcomingEvents = getFutureEvents(events, year, month, 2);
 
-// Filter proposals for this month
+// Filter proposals for this month, split by category
 const proposals = getProposalsForMonth(allProposals, year, month);
+const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
+const otherProposals = proposals.filter((p) => p.category === "other");
 
 // Event type color mapping
 const eventTypeColor: Record<string, string> = {
@@ -398,7 +400,7 @@ function pipelineUrl(name: string): string {
 
         {/* ----- NEW PIPELINES & PROPOSALS ----- */}
         {
-            (newPipelines.length > 0 || proposals.length > 0) && (
+            (newPipelines.length > 0 || pipelineProposals.length > 0 || otherProposals.length > 0) && (
                 <>
                     <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                         New Pipelines &amp; Proposals
@@ -439,32 +441,76 @@ function pipelineUrl(name: string): string {
         }
 
         {
-            proposals.length > 0 && (
+            pipelineProposals.length > 0 && (
                 <>
                     <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">Pipeline Proposals</h3>
                     <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                        New proposals and approvals from{" "}
+                        From{" "}
                         <a href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
                             nf-core/proposals
                         </a>
-                        .
                     </p>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {proposals.map((p) => (
-                            <tr>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                    <a
-                                        href={p.url}
-                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {p.title}
-                                    </a>
-                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                        #{p.number}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
+                        {pipelineProposals
+                            .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                            .map((p) => (
+                                <tr>
+                                    <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                        <a
+                                            href={p.url}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {p.displayTitle}
+                                        </a>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                        >
+                                            {p.status === "accepted" ? "Accepted" : "New"}
+                                        </span>
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
+                                        >
+                                            #{p.number}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
+                    </table>
+                </>
+            )
+        }
+
+        {
+            otherProposals.length > 0 && (
+                <>
+                    <h3 style="font-size: 18px; color: #333333; margin-top: 16px;">Other Proposals</h3>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        {otherProposals
+                            .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                            .map((p) => (
+                                <tr>
+                                    <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
+                                        <a
+                                            href={p.url}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {p.displayTitle}
+                                        </a>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                        >
+                                            {p.status === "accepted" ? "Accepted" : "New"}
+                                        </span>
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
+                                        >
+                                            #{p.number}
+                                        </span>
+                                    </td>
+                                </tr>
+                            ))}
                     </table>
                 </>
             )

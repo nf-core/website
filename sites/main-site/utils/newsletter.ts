@@ -43,11 +43,14 @@ export interface NewPipeline {
 
 export interface Proposal {
     title: string;
+    displayTitle: string;
     url: string;
     number: number;
     labels: string[];
     closedAt: string | null;
     createdAt: string;
+    category: "pipeline" | "other";
+    status: "new" | "accepted";
 }
 
 // ========================================
@@ -321,16 +324,45 @@ export async function fetchAllProposals(): Promise<Proposal[]> {
 }
 
 /**
- * Filter proposals to those approved/closed in a given month.
+ * Categorize a proposal title: strip "New pipeline:" prefix for pipeline proposals,
+ * keep full title with prefix for others (RFCs, SIGs, etc).
+ */
+function categorizeProposal(title: string): { category: "pipeline" | "other"; displayTitle: string } {
+    const pipelineMatch = title.match(/^New pipeline:\s*(.+)$/i);
+    if (pipelineMatch) {
+        return { category: "pipeline", displayTitle: pipelineMatch[1].trim() };
+    }
+    return { category: "other", displayTitle: title };
+}
+
+/**
+ * Filter proposals to those opened or closed/accepted in a given month.
+ * Assigns status ("new" for opened this month, "accepted" for closed this month).
+ * A proposal can appear as both if opened and closed in the same month.
  */
 export function getProposalsForMonth(proposals: Proposal[], year: number, month: number): Proposal[] {
-    return proposals.filter((p) => {
-        // Include if closed in this month (approved proposals get closed)
-        if (p.closedAt && isInMonth(new Date(p.closedAt), year, month)) return true;
-        // Also include if created this month and has an approval-related label
-        const approvalLabels = ["approved", "accepted", "pipeline"];
-        const hasApprovalLabel = p.labels.some((l) => approvalLabels.includes(l.toLowerCase()));
-        if (hasApprovalLabel && isInMonth(new Date(p.createdAt), year, month)) return true;
-        return false;
-    });
+    const results = new Map<string, Proposal>();
+
+    for (const p of proposals) {
+        const { category, displayTitle } = categorizeProposal(p.title);
+        const key = `${p.number}`;
+
+        // Opened this month
+        if (isInMonth(new Date(p.createdAt), year, month)) {
+            results.set(key, { ...p, displayTitle, category, status: "new" });
+        }
+
+        // Closed this month (accepted)
+        if (p.closedAt && isInMonth(new Date(p.closedAt), year, month)) {
+            const existing = results.get(key);
+            if (existing) {
+                // If opened and closed same month, show as accepted
+                existing.status = "accepted";
+            } else {
+                results.set(key, { ...p, displayTitle, category, status: "accepted" });
+            }
+        }
+    }
+
+    return [...results.values()];
 }
