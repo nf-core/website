@@ -22,7 +22,7 @@ jobs:
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: "joschi/blueskyfeedbot@9bf0141c9510807ec8e7085a5123c626251dd6af" # v0.0.4
+        uses: "joschi/blueskyfeedbot@d20ac006c2187df83e4985046aa6e4caade2362a" # v0.0.6
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml
