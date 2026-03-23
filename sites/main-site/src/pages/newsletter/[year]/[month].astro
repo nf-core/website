@@ -346,9 +346,11 @@ function pipelineUrl(name: string): string {
                                     >
                                         nf-core/{release.pipelineName}
                                     </a>
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
-                                        v{release.tagName}
-                                    </span>
+                                    {release.tagNames.map((tag) => (
+                                        <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
+                                            v{tag}
+                                        </span>
+                                    ))}
                                     <br />
                                     <span class="nl-muted" style="font-size: 14px; color: #555555;">
                                         {release.description}
@@ -378,10 +380,12 @@ function pipelineUrl(name: string): string {
                                     >
                                         nf-core/{release.pipelineName}
                                     </a>
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #6c757d;">
-                                        v{release.tagName}
-                                    </span>
-                                    <span style="font-size: 13px; color: #888888; margin-left: 8px;">
+                                    {release.tagNames.map((tag) => (
+                                        <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #6c757d;">
+                                            v{tag}
+                                        </span>
+                                    ))}
+                                    <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 8px;">
                                         {formatDate(new Date(release.publishedAt))}
                                     </span>
                                 </td>

@@ -29,7 +29,7 @@ export interface NewsletterMonth {
 export interface NewsletterRelease {
     pipelineName: string;
     description: string;
-    tagName: string;
+    tagNames: string[];
     publishedAt: string;
     isFirstRelease: boolean;
 }
@@ -169,7 +169,7 @@ export function getPipelineReleasesForMonth(
     year: number,
     month: number,
 ): NewsletterRelease[] {
-    const releases: NewsletterRelease[] = [];
+    const grouped = new Map<string, NewsletterRelease>();
 
     for (const pipeline of pipelines) {
         if (pipeline.archived) continue;
@@ -186,14 +186,41 @@ export function getPipelineReleasesForMonth(
             const pubDate = new Date(release.published_at);
             if (!isInMonth(pubDate, year, month)) continue;
 
-            releases.push({
-                pipelineName: pipeline.name,
-                description: pipeline.description,
-                tagName: release.tag_name,
-                publishedAt: release.published_at,
-                isFirstRelease: release.tag_name === firstReleaseTag,
-            });
+            const existing = grouped.get(pipeline.name);
+            if (existing) {
+                existing.tagNames.push(release.tag_name);
+                // Keep the most recent publish date
+                if (new Date(release.published_at) > new Date(existing.publishedAt)) {
+                    existing.publishedAt = release.published_at;
+                }
+                // If any release is a first release, flag it
+                if (release.tag_name === firstReleaseTag) {
+                    existing.isFirstRelease = true;
+                }
+            } else {
+                grouped.set(pipeline.name, {
+                    pipelineName: pipeline.name,
+                    description: pipeline.description,
+                    tagNames: [release.tag_name],
+                    publishedAt: release.published_at,
+                    isFirstRelease: release.tag_name === firstReleaseTag,
+                });
+            }
         }
+    }
+
+    const releases = [...grouped.values()];
+
+    // Sort tag names within each release by semver descending
+    for (const release of releases) {
+        release.tagNames.sort((a, b) => {
+            const aNum = a.replace(/^v/, "").split(".").map(Number);
+            const bNum = b.replace(/^v/, "").split(".").map(Number);
+            for (let i = 0; i < Math.max(aNum.length, bNum.length); i++) {
+                if ((bNum[i] || 0) !== (aNum[i] || 0)) return (bNum[i] || 0) - (aNum[i] || 0);
+            }
+            return 0;
+        });
     }
 
     // Sort: first releases first, then alphabetically by pipeline name
