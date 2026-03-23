@@ -48,6 +48,7 @@ export interface Proposal {
     number: number;
     labels: string[];
     closedAt: string | null;
+    stateReason: string | null;
     createdAt: string;
     category: "pipeline" | "other";
     status: "new" | "accepted";
@@ -315,6 +316,7 @@ export async function fetchAllProposals(): Promise<Proposal[]> {
                 number: issue.number,
                 labels: issue.labels.map((l: any) => (typeof l === "string" ? l : l.name)),
                 closedAt: issue.closed_at,
+                stateReason: issue.state_reason ?? null,
                 createdAt: issue.created_at,
             }));
     } catch (error) {
@@ -352,11 +354,10 @@ export function getProposalsForMonth(proposals: Proposal[], year: number, month:
             results.set(key, { ...p, displayTitle, category, status: "new" });
         }
 
-        // Closed this month (accepted)
-        if (p.closedAt && isInMonth(new Date(p.closedAt), year, month)) {
+        // Closed this month as "completed" = accepted (skip "not_planned" = rejected)
+        if (p.closedAt && p.stateReason === "completed" && isInMonth(new Date(p.closedAt), year, month)) {
             const existing = results.get(key);
             if (existing) {
-                // If opened and closed same month, show as accepted
                 existing.status = "accepted";
             } else {
                 results.set(key, { ...p, displayTitle, category, status: "accepted" });
