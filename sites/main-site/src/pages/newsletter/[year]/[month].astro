@@ -125,22 +125,14 @@ function pipelineUrl(name: string): string {
     return `${baseUrl}/${name}`;
 }
 
-function eventImageUrl(event: {
-    id: string;
-    data: { title: string; subtitle: string; type: string; headerImage?: string };
-}): string {
-    if (event.data.headerImage) {
-        // Use the explicit header image
-        if (event.data.headerImage.startsWith("https://images.unsplash.com/")) {
-            return `${event.data.headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
-        }
-        if (event.data.headerImage.startsWith("/assets/")) {
-            return `${baseUrl}${event.data.headerImage}`;
-        }
-        return event.data.headerImage;
+function eventImageUrl(headerImage: string): string {
+    if (headerImage.startsWith("https://images.unsplash.com/")) {
+        return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
     }
-    // Fall back to the dynamically generated OG social card
-    return `${baseUrl}/og.png?title=${encodeURIComponent(event.data.title)}&subtitle=${encodeURIComponent(event.data.subtitle || "")}&category=${encodeURIComponent("Event/" + event.data.type)}`;
+    if (headerImage.startsWith("/assets/")) {
+        return `${baseUrl}${headerImage}`;
+    }
+    return headerImage;
 }
 
 function blogImageUrl(headerImage: string): string {
@@ -362,18 +354,20 @@ function blogImageUrl(headerImage: string): string {
                     </h2>
                     {upcomingEvents.map((event) => (
                         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                            <tr>
-                                <td style="padding: 0;">
-                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
-                                        <img
-                                            src={eventImageUrl(event)}
-                                            alt={event.data.headerImageAlt || event.data.title}
-                                            width="760"
-                                            style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
-                                        />
-                                    </a>
-                                </td>
-                            </tr>
+                            {event.data.headerImage && (
+                                <tr>
+                                    <td style="padding: 0;">
+                                        <a href={eventUrl(event.id)} style="text-decoration: none;">
+                                            <img
+                                                src={eventImageUrl(event.data.headerImage)}
+                                                alt={event.data.headerImageAlt || event.data.title}
+                                                width="760"
+                                                style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
+                                            />
+                                        </a>
+                                    </td>
+                                </tr>
+                            )}
                             <tr>
                                 <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
                                     <a
