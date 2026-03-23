@@ -117,7 +117,7 @@ For example, `SAMTOOLS/COLLATEFASTQ`.
 
 ### Use of args variables
 
-Each tool in a use in a module MUST have at a minimum one `${args}`:
+Each tool in a module MUST have at a minimum a single `${args}`:
 
 ```bash title="main.nf" {3}
 <tool> \\
