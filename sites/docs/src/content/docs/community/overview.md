@@ -20,6 +20,12 @@ Before diving into the nf-core ecosystem, it helps to understand the terminology
 
 - **[Terminology](terminology):** Definitions for key nf-core and Nextflow DSL2 concepts, including modules, subworkflows, components, and workflows
 
+## Advisories
+
+nf-core publishes advisories to communicate significant technical issues affecting pipelines, modules, or other components.
+
+- **[Advisories](advisories):** What advisories are, who can publish them, and how to submit one
+
 ## Brand
 
 nf-core provides a set of official brand assets to help maintain a consistent identity across pipelines and community materials.
@@ -31,13 +37,6 @@ nf-core provides a set of official brand assets to help maintain a consistent id
 - **[Presentations](brand/presentations):** Guidelines and examples for conference posters and oral presentations
 - **[Workflow schematics](brand/workflow-schematics):** Components and examples for creating pipeline diagrams
 
-## Regulatory
-
-nf-core provides resources to support institutions working under regulatory frameworks, including automated validation reports and implementation guidance.
-
-- **[Regulatory overview](regulatory/overview):** nf-core's validation strategy, metrics collection, and guidance for institutional compliance
-- **[Checklist](regulatory/checklist):** A structured checklist covering each phase of the pipeline validation process
-
 ## Governance
 
 nf-core governance documentation covers the structure, roles, and responsibilities of the teams that maintain and coordinate the community.
@@ -46,8 +45,15 @@ nf-core governance documentation covers the structure, roles, and responsibiliti
 - **[Core team tasks](governance/core-team):** Procedures for nf-core core team administrative tasks, including on-call duties and community operations
 - **[Maintainers tasks](governance/maintainers-team):** Step-by-step procedures for maintainers team members, including onboarding, team membership management, and helpdesk sessions
 
-## Advisories
+## Regulatory
 
-nf-core publishes advisories to communicate significant technical issues affecting pipelines, modules, or other components.
+nf-core provides resources to support institutions working under regulatory frameworks, including automated validation reports and implementation guidance.
 
-- **[Advisories](advisories):** What advisories are, who can publish them, and how to submit one
+- **[Regulatory overview](regulatory/overview):** nf-core's validation strategy, metrics collection, and guidance for institutional compliance
+- **[Checklist](regulatory/checklist):** A structured checklist covering each phase of the pipeline validation process
+
+## Very important pipelines
+
+nf-core pipelines that are widely adopted across the community serve as references for pipeline development best practices.
+
+- **[Very Important Pipelines](very-important-pipelines):** Elevated expectations around maintenance, governance, testing, and documentation for widely adopted pipelines
