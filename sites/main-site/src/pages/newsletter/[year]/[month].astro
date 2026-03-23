@@ -238,8 +238,9 @@ for (const event of upcomingEvents) {
                                         <Image
                                             src={blogImageSrcs.get(post.id)}
                                             alt={post.data.headerImageAlt || ""}
-                                            width={760}
-                                            height={200}
+                                            width={1600}
+                                            height={420}
+                                            densities={[1.5, 2]}
                                             style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
                                         />
                                     </a>
@@ -369,8 +370,9 @@ for (const event of upcomingEvents) {
                                             <Image
                                                 src={eventImageSrcs.get(event.id)}
                                                 alt={event.data.headerImageAlt || event.data.title}
-                                                width={760}
-                                                height={200}
+                                                width={1600}
+                                                height={420}
+                                                densities={[1.5, 2]}
                                                 style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
                                             />
                                         </a>
