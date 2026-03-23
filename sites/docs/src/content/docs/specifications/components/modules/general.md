@@ -6,7 +6,7 @@ shortTitle: General
 weight: 1
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Required and optional input files
 
@@ -151,7 +151,7 @@ Tools that can have two set of positional arguments MAY specify multiple `args` 
    ${args2}
 ```
 
-In the example above, a tool has multiple subcommands.
+In the example above, the tool has multiple subcommands.
 In the first position it specifies 'common' options across all subcommands which is specified with `${args}`.
 In the second position it specifies subcommand specific options after the subcommand name (${args2})
 
@@ -238,7 +238,7 @@ my_command \\
 ext.args = { "-r ${meta.strandedness}" }
 ```
 
-and then in the module code:
+And then in the module code:
 
 ```nextflow title="main.nf"
 script
@@ -266,7 +266,7 @@ Where applicable, compressed files SHOULD be used as input and output:
 - `*.fastq.gz` and NOT `*.fastq`
 - `*.bam` and NOT `*.sam`
 
-If a tool does not support compressed input or output natively, nf-core RECOMMENDS passing the uncompressed data via unix pipes so that it never gets written to disk, for example:
+If a tool does not support compressed input or output natively, nf-core RECOMMENDS passing the uncompressed data via UNIX pipes so that it never gets written to disk, for example:
 
 ```bash
 gzip -cdf $input | tool | gzip > $output
@@ -309,7 +309,7 @@ Remember to update this string when bumping the container version.
 For modules that use the template process directive, they will currently continue to depend on the old approach with `versions.yml`.
 The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic.
 
-The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic:
+The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic:
 
 ```groovy title="main.nf"
 path "versions.yml", emit: versions, topic: versions
@@ -363,7 +363,7 @@ resulting in, for instance,
 All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
 A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
-The exit status of sub-shells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
+The exit status of subshells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
 
 If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information.
 For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
@@ -513,7 +513,7 @@ script:
 template 'deseq2_differential.R'
 ```
 
-See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
+See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in a nf-core pipeline.
 
 The resulting structure would look like this.
 
@@ -547,7 +547,7 @@ See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4
 
 A templated module MUST have a stub block in the same way as any other module.
 For example, use `touch` to generate empty files and versions.
-See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
+See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in a nf-core module.
 
 An inline command MAY be used to call the version for libraries for the `versions.yml` in this case.
 For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
@@ -586,7 +586,7 @@ echo "" | gzip > ${prefix}.txt.gz
 ```
 
 :::info{title="Rationale" collapse}
-Touching a file with the file name ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and cannot be read.
+Touching a file with the filename ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and cannot be read.
 
 Generate a valid gzipped file for nf-test to accept it during tests.
 :::
