@@ -85,30 +85,28 @@ All nf-core pipelines have a `conf/base.config` where default computational reso
 
 ### Custom configuration files
 
-If you run the pipeline alone on a local machine, create a local configuration file.
-Nextflow searches for configuration files in three locations:
+You can add additional configuration files to customize your pipeline execution.
 
-<!-- TODO Check if this is for just local machine, i.e., does this also works for HPC or cloud? -->
+When you launch a pipeline script, Nextflow detects configuration files from multiple sources and applies them in the following order (from lowest to highest priority):
 
-1. User's home directory: `~/.nextflow/config`
-2. Analysis working directory: `nextflow.config`
-3. Custom path on the command line: `-c path/to/config` (you can specify multiple files)
+1. `$NXF_HOME/config` (defaults to `$HOME/.nextflow/config`)
+1. `nextflow.config` in the project directory
+1. `nextflow.config` in the launch directory
+1. Config files specified with `-c <config-files>`
 
-Nextflow loads configuration parameters sequentially and overwrites previous values.
+Nextflow loads configuration **parameters** sequentially and overwrites previous values.
 The loading order is:
 
 1. Pipeline defaults
-2. User's home directory
-3. Working directory
-4. Each `-c` file in the order you specify
-5. Command line parameters (`--<parameter>`)
+1. User's home directory
+1. Working directory
+1. Each `-c` file in the order you specify
+1. Command line parameters (`--<parameter>`)
 
 :::warning
-Parameters in `custom.config` files will not override defaults in `nextflow.config`.
+Parameters set in your `custom.config` files will not override defaults in `nextflow.config`.
 Use `-params-file` with YAML or JSON format instead.
 :::
-
-<!-- TODO Check if `custom.config` WILL overwrite `nextflow.config`, particularly given the comment above about `nextflow.config` being teh pipeline defaults  -->
 
 :::tip
 Generate a parameters file using the **Launch** button on the [nf-co.re website](https://nf-co.re/launch).
