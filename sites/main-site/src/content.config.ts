@@ -293,8 +293,8 @@ const blog = defineCollection({
             title: z.string(),
             subtitle: z.string(),
             shortTitle: z.string().optional(),
-            headerImage: z.string().url().optional().or(z.string().startsWith("/assets/images/blog/")).optional(),
-            headerImageAlt: z.string().optional(),
+            headerImage: z.string().url().or(z.string().startsWith("/assets/images/blog/")),
+            headerImageAlt: z.string(),
             headerImageDim: z.array(z.number(), z.number()).optional(),
             label: z.array(z.string()),
             pubDate: z.date(),
@@ -311,10 +311,6 @@ const blog = defineCollection({
             maxHeadingDepth: z.number().optional(),
         })
         .refine((data) => {
-            // Check if headerImage is present but headerImageAlt is not
-            if (data.headerImage && !data.headerImageAlt) {
-                throw new Error("Please provide alt text for your `headerImage` in `headerImageAlt`.");
-            }
             // Check if headerImageDim is present but headerImage is not present or does not start with /assets/
             if (data.headerImageDim && (!data.headerImage || !data.headerImage.startsWith("/assets/"))) {
                 throw new Error(

@@ -124,6 +124,18 @@ function eventUrl(eventId: string): string {
 function pipelineUrl(name: string): string {
     return `${baseUrl}/${name}`;
 }
+
+function blogImageUrl(headerImage: string): string {
+    // Unsplash URLs: append size params for newsletter
+    if (headerImage.startsWith("https://images.unsplash.com/")) {
+        return `${headerImage}?w=760&h=200&fit=crop&crop=center&auto=format`;
+    }
+    // Local assets: use absolute URL
+    if (headerImage.startsWith("/assets/")) {
+        return `${baseUrl}${headerImage}`;
+    }
+    return headerImage;
+}
 ---
 
 <PageLayout
@@ -195,7 +207,7 @@ function pipelineUrl(name: string): string {
             </tr>
         </table>
 
-        {/* ----- UPCOMING EVENTS (primary) ----- */}
+        {/* ----- UPCOMING EVENTS (primary, full width) ----- */}
         {
             upcomingEvents.length > 0 && (
                 <>
@@ -232,49 +244,71 @@ function pipelineUrl(name: string): string {
             )
         }
 
-        {/* ----- EVENTS THIS MONTH (secondary, smaller) ----- */}
+        {/* ----- EVENTS THIS MONTH (secondary, 2-column) ----- */}
         {
             thisMonthEvents.length > 0 && (
                 <>
                     <h3 style="font-size: 18px; color: #666666; margin-top: 24px;">Events This Month</h3>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {thisMonthEvents.map((event) => (
-                            <tr>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top;">
-                                    <a
-                                        href={eventUrl(event.id)}
-                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {event.data.title}
-                                    </a>
-                                    <span class="nl-muted" style="font-size: 12px; color: #888888; margin-left: 8px;">
-                                        {formatDate(event.data.start)}
-                                        {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                            <> &ndash; {formatDate(event.data.end)}</>
-                                        )}
-                                    </span>
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
-                                    >
-                                        {eventTypeLabel[event.data.type] || event.data.type}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
+                        {thisMonthEvents
+                            .reduce((rows: any[][], event, i) => {
+                                if (i % 2 === 0) rows.push([event]);
+                                else rows[rows.length - 1].push(event);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((event: any) => (
+                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={eventUrl(event.id)}
+                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {event.data.title}
+                                            </a>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                                {formatDate(event.data.start)}
+                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                                    <> &ndash; {formatDate(event.data.end)}</>
+                                                )}
+                                            </span>
+                                            <span
+                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                            >
+                                                {eventTypeLabel[event.data.type] || event.data.type}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
                     </table>
                 </>
             )
         }
 
-        {/* ----- BLOG POSTS THIS MONTH ----- */}
+        {/* ----- BLOG POSTS THIS MONTH (primary, full width with images) ----- */}
         {
             thisMonthBlogPosts.length > 0 && (
                 <>
                     <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                         Blog Posts
                     </h2>
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {thisMonthBlogPosts.map((post) => (
+                    {thisMonthBlogPosts.map((post) => (
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                            <tr>
+                                <td style="padding: 0;">
+                                    <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                        <img
+                                            src={blogImageUrl(post.data.headerImage)}
+                                            alt={post.data.headerImageAlt || ""}
+                                            width="760"
+                                            style="width: 100%; height: auto; display: block; border-radius: 6px 6px 0 0; object-fit: cover; max-height: 200px;"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
                             <tr>
                                 <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
                                     <a
@@ -293,13 +327,13 @@ function pipelineUrl(name: string): string {
                                     </span>
                                 </td>
                             </tr>
-                        ))}
-                    </table>
+                        </table>
+                    ))}
                 </>
             )
         }
 
-        {/* ----- IN CASE YOU MISSED IT ----- */}
+        {/* ----- IN CASE YOU MISSED IT (secondary, 2-column) ----- */}
         {
             olderBlogPosts.length > 0 && (
                 <>
@@ -308,27 +342,37 @@ function pipelineUrl(name: string): string {
                         Blog posts from the past couple of months.
                     </p>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {olderBlogPosts.map((post) => (
-                            <tr>
-                                <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                    <a
-                                        href={blogUrl(post.id)}
-                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {post.data.title}
-                                    </a>
-                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                        {formatDate(post.data.pubDate)}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
+                        {olderBlogPosts
+                            .reduce((rows: any[][], post, i) => {
+                                if (i % 2 === 0) rows.push([post]);
+                                else rows[rows.length - 1].push(post);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((post: any) => (
+                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={blogUrl(post.id)}
+                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {post.data.title}
+                                            </a>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                {formatDate(post.data.pubDate)}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
                     </table>
                 </>
             )
         }
 
-        {/* ----- FIRST PIPELINE RELEASES ----- */}
+        {/* ----- FIRST PIPELINE RELEASES (primary, full width) ----- */}
         {
             firstReleases.length > 0 && (
                 <>
@@ -365,7 +409,7 @@ function pipelineUrl(name: string): string {
             )
         }
 
-        {/* ----- OTHER PIPELINE RELEASES ----- */}
+        {/* ----- OTHER PIPELINE RELEASES (secondary, 2-column) ----- */}
         {
             otherReleases.length > 0 && (
                 <>
@@ -373,26 +417,39 @@ function pipelineUrl(name: string): string {
                         Pipeline Releases
                     </h2>
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {otherReleases.map((release) => (
-                            <tr>
-                                <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
-                                    <a
-                                        href={pipelineUrl(release.pipelineName)}
-                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
-                                    >
-                                        nf-core/{release.pipelineName}
-                                    </a>
-                                    {release.tagNames.map((tag) => (
-                                        <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #6c757d;">
-                                            v{tag}
-                                        </span>
+                        {otherReleases
+                            .reduce((rows: any[][], release, i) => {
+                                if (i % 2 === 0) rows.push([release]);
+                                else rows[rows.length - 1].push(release);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((release: any) => (
+                                        <td style="padding: 10px 8px 10px 0; border-bottom: 1px solid #eeeeee; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={pipelineUrl(release.pipelineName)}
+                                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                            >
+                                                nf-core/{release.pipelineName}
+                                            </a>
+                                            <br />
+                                            {release.tagNames.map((tag: string) => (
+                                                <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #ffffff; background-color: #6c757d;">
+                                                    v{tag}
+                                                </span>
+                                            ))}
+                                            <span
+                                                class="nl-muted"
+                                                style="font-size: 13px; color: #888888; margin-left: 4px;"
+                                            >
+                                                {formatDate(new Date(release.publishedAt))}
+                                            </span>
+                                        </td>
                                     ))}
-                                    <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 8px;">
-                                        {formatDate(new Date(release.publishedAt))}
-                                    </span>
-                                </td>
-                            </tr>
-                        ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
                     </table>
                 </>
             )
@@ -440,6 +497,7 @@ function pipelineUrl(name: string): string {
             )
         }
 
+        {/* Pipeline proposals (secondary, 2-column) */}
         {
             pipelineProposals.length > 0 && (
                 <>
@@ -453,27 +511,35 @@ function pipelineUrl(name: string): string {
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                         {pipelineProposals
                             .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
-                            .map((p) => (
+                            .reduce((rows: any[][], p, i) => {
+                                if (i % 2 === 0) rows.push([p]);
+                                else rows[rows.length - 1].push(p);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
                                 <tr>
-                                    <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                        <a
-                                            href={p.url}
-                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                        >
-                                            {p.displayTitle}
-                                        </a>
-                                        <span
-                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                        >
-                                            {p.status === "accepted" ? "Accepted" : "New"}
-                                        </span>
-                                        <span
-                                            class="nl-muted"
-                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
-                                        >
-                                            #{p.number}
-                                        </span>
-                                    </td>
+                                    {pair.map((p: any) => (
+                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={p.url}
+                                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {p.displayTitle}
+                                            </a>
+                                            <span
+                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                            >
+                                                {p.status === "accepted" ? "Accepted" : "New"}
+                                            </span>
+                                            <span
+                                                class="nl-muted"
+                                                style="font-size: 12px; color: #999999; margin-left: 4px;"
+                                            >
+                                                #{p.number}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
                                 </tr>
                             ))}
                     </table>
@@ -481,6 +547,7 @@ function pipelineUrl(name: string): string {
             )
         }
 
+        {/* Other proposals (secondary, 2-column) */}
         {
             otherProposals.length > 0 && (
                 <>
@@ -488,27 +555,35 @@ function pipelineUrl(name: string): string {
                     <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                         {otherProposals
                             .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
-                            .map((p) => (
+                            .reduce((rows: any[][], p, i) => {
+                                if (i % 2 === 0) rows.push([p]);
+                                else rows[rows.length - 1].push(p);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
                                 <tr>
-                                    <td style="padding: 8px 0; border-bottom: 1px solid #f0f0f0;">
-                                        <a
-                                            href={p.url}
-                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                        >
-                                            {p.displayTitle}
-                                        </a>
-                                        <span
-                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                        >
-                                            {p.status === "accepted" ? "Accepted" : "New"}
-                                        </span>
-                                        <span
-                                            class="nl-muted"
-                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
-                                        >
-                                            #{p.number}
-                                        </span>
-                                    </td>
+                                    {pair.map((p: any) => (
+                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={p.url}
+                                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {p.displayTitle}
+                                            </a>
+                                            <span
+                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                            >
+                                                {p.status === "accepted" ? "Accepted" : "New"}
+                                            </span>
+                                            <span
+                                                class="nl-muted"
+                                                style="font-size: 12px; color: #999999; margin-left: 4px;"
+                                            >
+                                                #{p.number}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
                                 </tr>
                             ))}
                     </table>
@@ -553,7 +628,7 @@ function pipelineUrl(name: string): string {
         padding-bottom: 1rem;
     }
     #newsletter-content {
-        max-width: 600px;
+        max-width: 800px;
         margin: 0 auto;
         padding: 16px;
         font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
