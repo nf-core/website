@@ -37865,6 +37865,24 @@
               }
             ]
           ],
+          "batch_summary_failed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*-busco.batch_summary.failed.txt": {
+                  "type": "file",
+                  "description": "Batch summary lines indicating BUSCO run failures",
+                  "pattern": "*-busco.batch_summary.failed.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
           "short_summaries_txt": [
             [
               {
@@ -164913,19 +164931,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_miniprot": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "miniprot": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "miniprot --version": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "miniprot": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "miniprot --version": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -165000,19 +165050,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_miniprot": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "miniprot": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "miniprot --version": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "miniprot": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "miniprot --version": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173145,6 +173227,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "ncrnannotator",
+          "version": "dev"
+        },
+        {
           "name": "omicsgenetraitassociation",
           "version": "dev"
         },
@@ -174532,19 +174618,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mummer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "mummer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "3.23": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "mummer": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "3.23": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -316850,6 +316968,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "ncrnannotator",
+          "version": "dev"
+        },
+        {
           "name": "oncoanalyser",
           "version": "2.3.0"
         },
@@ -317283,6 +317405,10 @@
           "version": "2.3.0"
         },
         {
+          "name": "ncrnannotator",
+          "version": "dev"
+        },
+        {
           "name": "oncoanalyser",
           "version": "2.3.0"
         },
@@ -317706,6 +317832,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "ncrnannotator",
+          "version": "dev"
         },
         {
           "name": "oncoanalyser",
