@@ -127,7 +127,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     </p>
 
     {/* ----- HEADER WITH LOGO ----- */}
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
         <tr>
             <td style="text-align: center; padding: 20px 0;">
                 <img
@@ -160,7 +160,13 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     Blog posts
                 </h2>
                 {thisMonthBlogPosts.map((post) => (
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="margin-bottom: 16px;"
+                    >
                         <tr>
                             <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
                                 <a
@@ -179,7 +185,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                 </span>
                             </td>
                             <td style="padding: 12px 0 12px 16px; border-bottom: 1px solid #eeeeee; vertical-align: middle; width: 240px;">
-                                <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                <a href={blogUrl(post.id)} aria-label={post.data.title} style="text-decoration: none;">
                                     <Image
                                         src={blogImageSrcs.get(post.id)}
                                         alt={post.data.headerImageAlt || ""}
@@ -204,7 +210,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                     Advisories
                 </h2>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {monthAdvisories.map((advisory) => (
                         <tr>
                             <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
@@ -248,7 +254,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
                     These pipelines just had their very first release.
                 </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {firstReleases.map((release) => (
                         <tr>
                             <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
@@ -283,7 +289,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                     Pipeline releases
                 </h2>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {otherReleases
                         .reduce((rows: any[][], release, i) => {
                             if (i % 2 === 0) rows.push([release]);
@@ -293,7 +299,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         .map((pair: any[]) => (
                             <tr>
                                 {pair.map((release: any) => (
-                                    <td style="padding: 10px 12px; border-bottom: 1px solid #eeeeee; vertical-align: top; width: 50%;">
+                                    <td
+                                        class="nl-col"
+                                        style="padding: 10px 12px; border-bottom: 1px solid #eeeeee; vertical-align: top; width: 50%;"
+                                    >
                                         <a
                                             href={pipelineUrl(release.pipelineName)}
                                             style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
@@ -330,7 +339,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     Upcoming events
                 </h2>
                 {upcomingEvents.map((event) => (
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
                         <tr>
                             {/* Row 1: tag + title + date right-aligned */}
                             <td style="padding: 12px 0 0; vertical-align: middle;">
@@ -370,7 +379,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         {event.data.headerImage && (
                             <tr>
                                 <td colspan={2} style="padding: 8px 0 0;">
-                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
+                                    <a
+                                        href={eventUrl(event.id)}
+                                        aria-label={event.data.title}
+                                        style="text-decoration: none;"
+                                    >
                                         <Image
                                             src={eventImageSrcs.get(event.id)}
                                             alt={event.data.headerImageAlt || event.data.title}
@@ -401,7 +414,13 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
                 {/* Recent events (secondary, 2-column) */}
                 {recentEvents.length > 0 && (
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                    <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="margin-bottom: 16px; margin-top: 16px;"
+                    >
                         {recentEvents
                             .reduce((rows: any[][], event, i) => {
                                 if (i % 2 === 0) rows.push([event]);
@@ -411,7 +430,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             .map((pair: any[]) => (
                                 <tr>
                                     {pair.map((event: any) => (
-                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                        <td
+                                            class="nl-col"
+                                            style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;"
+                                        >
                                             <a
                                                 href={eventUrl(event.id)}
                                                 style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
@@ -440,7 +462,13 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
                 {/* Older blog posts (secondary, 2-column) */}
                 {olderBlogPosts.length > 0 && (
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                    <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="margin-bottom: 16px; margin-top: 16px;"
+                    >
                         {olderBlogPosts
                             .reduce((rows: any[][], post, i) => {
                                 if (i % 2 === 0) rows.push([post]);
@@ -450,8 +478,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             .map((pair: any[]) => (
                                 <tr>
                                     {pair.map((post: any) => (
-                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
-                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                        <td
+                                            class="nl-col"
+                                            style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;"
+                                        >
+                                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                                                 <tr>
                                                     <td style="vertical-align: top; padding-right: 8px;">
                                                         <a
@@ -466,7 +497,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                                         </span>
                                                     </td>
                                                     <td style="vertical-align: middle; width: 80px;">
-                                                        <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                                        <a
+                                                            href={blogUrl(post.id)}
+                                                            aria-label={post.data.title}
+                                                            style="text-decoration: none;"
+                                                        >
                                                             <Image
                                                                 src={blogImageSrcs.get(post.id)}
                                                                 alt={post.data.headerImageAlt || ""}
@@ -489,7 +524,13 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
                 {/* Older advisories (secondary, 2-column) */}
                 {olderAdvisories.length > 0 && (
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                    <table
+                        role="presentation"
+                        width="100%"
+                        cellpadding="0"
+                        cellspacing="0"
+                        style="margin-bottom: 16px; margin-top: 16px;"
+                    >
                         {olderAdvisories
                             .reduce((rows: any[][], a, i) => {
                                 if (i % 2 === 0) rows.push([a]);
@@ -499,7 +540,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             .map((pair: any[]) => (
                                 <tr>
                                     {pair.map((advisory: any) => (
-                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                        <td
+                                            class="nl-col"
+                                            style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;"
+                                        >
                                             <span
                                                 style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
                                             >
@@ -541,7 +585,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         newPipelines.length > 0 && (
             <>
                 <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">New pipeline repositories</h3>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {newPipelines.map((p) => (
                         <tr>
                             <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
@@ -579,7 +623,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         nf-core/proposals
                     </a>
                 </p>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {pipelineProposals
                         .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
                         .reduce((rows: any[][], p, i) => {
@@ -590,7 +634,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         .map((pair: any[]) => (
                             <tr>
                                 {pair.map((p: any) => (
-                                    <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                    <td
+                                        class="nl-col"
+                                        style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;"
+                                    >
                                         <a
                                             href={p.url}
                                             style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
@@ -623,7 +670,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         otherProposals.length > 0 && (
             <>
                 <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
-                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
                     {otherProposals
                         .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
                         .reduce((rows: any[][], p, i) => {
@@ -634,7 +681,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         .map((pair: any[]) => (
                             <tr>
                                 {pair.map((p: any) => (
-                                    <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                    <td
+                                        class="nl-col"
+                                        style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;"
+                                    >
                                         <a
                                             href={p.url}
                                             style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
@@ -663,7 +713,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     }
 
     {/* ----- FOOTER ----- */}
-    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
         <tr>
             <td style="border-bottom: 1px solid #eeeeee;"></td>
         </tr>
@@ -702,6 +752,14 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     }
     #newsletter-content a:hover {
         text-decoration: underline !important;
+    }
+
+    /* Responsive: stack 2-column cells on narrow screens */
+    @media screen and (max-width: 600px) {
+        #newsletter-content :global(.nl-col) {
+            display: block !important;
+            width: 100% !important;
+        }
     }
 
     /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).

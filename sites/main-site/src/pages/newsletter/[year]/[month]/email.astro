@@ -52,9 +52,15 @@ const contentData = await getNewsletterContentData(getCollection, pipelines, yea
                     background-color: #121212;
                 }
             }
+            @media screen and (max-width: 600px) {
+                .nl-col {
+                    display: block !important;
+                    width: 100% !important;
+                }
+            }
         </style>
     </head>
-    <body>
+    <body style="margin: 0; padding: 0;">
         <NewsletterContent data={contentData} />
     </body>
 </html>
