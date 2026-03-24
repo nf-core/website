@@ -1,6 +1,6 @@
 import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
-import pipelines_json from "../../public/pipelines.json";
+import pipelines_json from "@public/pipelines.json";
 import {
     getNewsletterMonths,
     getBlogPostsForMonth,
@@ -9,7 +9,7 @@ import {
     getFutureEvents,
     getMonthName,
     getAdvisoriesForMonth,
-} from "../../utils/newsletter.ts";
+} from "@utils/newsletter";
 
 export async function GET(context) {
     let blogPosts = await getCollection("blog");
