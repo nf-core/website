@@ -675,8 +675,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     /* Responsive: stack 2-column cells on narrow screens */
     @media screen and (max-width: 600px) {
         #newsletter-content :global(.nl-col) {
+            max-width: 100% !important;
             display: block !important;
-            width: 100% !important;
         }
     }
 
