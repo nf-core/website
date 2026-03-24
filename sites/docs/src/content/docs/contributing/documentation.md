@@ -50,7 +50,7 @@ Following the style guide ensures consistency across all nf-core documentation a
 
 ### Topic types
 
-The [topic types](../developing/documentation/topic_types) page explains how to structure different kinds of documentation content framework:
+The [topic types](../developing/documentation/topic-types) page explains how to structure different kinds of documentation content framework:
 
 - **Concept**: Explain what features are and why they matter.
 - **Task**: Provide step-by-step instructions for completing actions.

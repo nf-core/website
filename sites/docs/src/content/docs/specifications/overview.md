@@ -19,28 +19,28 @@ The nf-core specifications are organized into three main categories:
 Standards for developing reusable nf-core modules and subworkflows.
 These specifications ensure consistency across the nf-core component library and facilitate sharing and maintenance of workflow building blocks.
 
-- **[Module specifications](/developers/specifications/components/modules):** Guidelines for developing individual process wrappers
-- **[Subworkflow specifications](/developers/specifications/components/subworkflows):** Standards for combining modules into reusable workflow units
+- **[Module specifications](../specifications/components/modules/general):** Guidelines for developing individual process wrappers
+- **[Subworkflow specifications](../specifications/components/subworkflows/general):** Standards for combining modules into reusable workflow units
 
 ### Pipelines
 
 Requirements and recommendations for nf-core end-to-end analysis pipelines.
 These specifications define what it means to be an nf-core pipeline and provide best practice guidance.
 
-- **[Pipeline requirements](/developers/specifications/pipelines/requirements):** Mandatory standards all nf-core pipelines MUST follow
-- **[Pipeline recommendations](/developers/specifications/pipelines/recommendations):** Best practices nf-core pipelines SHOULD adopt where applicable
+- **[Pipeline requirements](../specifications/pipelines/overview#requirements):** Mandatory standards all nf-core pipelines MUST follow
+- **[Pipeline recommendations](../specifications/pipelines/overview#recommendations):** Best practices nf-core pipelines SHOULD adopt where applicable
 
 ### Test Data
 
 Guidelines for managing test data used in continuous integration and testing of nf-core components and pipelines.
 
-- **[Test data specifications](/developers/specifications/test-data):** Standards for test data organization, size, licensing, and documentation
+- **[Test data specifications](../specifications/test-data/overview):** Standards for test data organization, size, licensing, and documentation
 
 ### Reviews
 
 Best practices for reviewing pull requests and managing the collaborative development process within nf-core repositories.
 
-- **[Review guidelines](/developers/specifications/reviews):** Standards for requesting reviews, merging pull requests, managing feedback, and commit strategies
+- **[Review guidelines](../specifications/reviews/overview):** Standards for requesting reviews, merging pull requests, managing feedback, and commit strategies
 
 ## If the guidelines don't fit
 
