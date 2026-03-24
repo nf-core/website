@@ -163,8 +163,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     Blog posts
                 </h2>
                 {thisMonthBlogPosts.map((post) => (
-                    <div style="padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
-                        <div style="display: inline-block; vertical-align: top; width: 100%; max-width: calc(100% - 256px);">
+                    <div style="font-size: 0; padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
+                        <div
+                            class="nl-blog-text"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
+                        >
                             <a
                                 href={blogUrl(post.id)}
                                 style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
@@ -180,7 +183,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                 {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
                             </span>
                         </div>
-                        <div style="display: inline-block; vertical-align: middle; width: 240px; padding-left: 16px; box-sizing: border-box;">
+                        <div
+                            class="nl-blog-img"
+                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: 240px; font-size: 14px; padding-top: 8px;"
+                        >
                             <a href={blogUrl(post.id)} style="text-decoration: none;">
                                 <img
                                     src={imgSrc(blogImageSrcs.get(post.id))}
@@ -666,7 +672,9 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
     /* Responsive: stack 2-column cells on narrow screens */
     @media screen and (max-width: 600px) {
-        #newsletter-content :global(.nl-col) {
+        #newsletter-content :global(.nl-col),
+        #newsletter-content :global(.nl-blog-text),
+        #newsletter-content :global(.nl-blog-img) {
             max-width: 100% !important;
             display: block !important;
         }
