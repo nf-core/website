@@ -716,7 +716,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
         color: #aaaaaa !important;
     }
-    :global([data-bs-theme="dark"]) #newsletter-content td {
+    :global([data-bs-theme="dark"]) #newsletter-content td,
+    :global([data-bs-theme="dark"]) #newsletter-content div {
         border-bottom-color: #333344 !important;
     }
 
@@ -754,7 +755,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         #newsletter-content .nl-muted {
             color: #aaaaaa !important;
         }
-        #newsletter-content td {
+        #newsletter-content td,
+        #newsletter-content div {
             border-bottom-color: #333344 !important;
         }
     }
@@ -786,7 +788,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     [data-ogsc] #newsletter-content .nl-muted {
         color: #aaaaaa !important;
     }
-    [data-ogsc] #newsletter-content td {
+    [data-ogsc] #newsletter-content td,
+    [data-ogsc] #newsletter-content div {
         border-bottom-color: #333344 !important;
     }
 </style>
