@@ -17,5 +17,5 @@ While these specifications are mandatory for test data contributed to nf-core re
 
 The following specifications define standards for managing test data in nf-core:
 
-- **[General](/developers/specifications/test-data/general):** Guidelines for test data replication, file size limits, licensing requirements, and documentation standards to ensure test data is accessible and properly managed.
-- **[Modules](/developers/specifications/test-data/modules):** Module-specific guidelines for reusing existing test data, handling large datasets with stub runs, proper organization structure in test-datasets repository, and naming conventions for test files.
+- **[General](/docs/specifications/test-data/general):** Guidelines for test data replication, file size limits, licensing requirements, and documentation standards to ensure test data is accessible and properly managed.
+- **[Modules](/docs/specifications/test-data/modules):** Module-specific guidelines for reusing existing test data, handling large datasets with stub runs, proper organization structure in test-datasets repository, and naming conventions for test files.
