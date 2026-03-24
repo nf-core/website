@@ -664,6 +664,31 @@ for (const event of upcomingEvents) {
             </tr>
         </table>
     </div>
+
+    {/* ===== BOTTOM NAVIGATION (excluded from email) ===== */}
+    <hr class="my-4" />
+    <nav class="mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            {
+                prevMonth ? (
+                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
+                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+            {
+                nextMonth ? (
+                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
+                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+        </div>
+    </nav>
 </PageLayout>
 
 <script>
