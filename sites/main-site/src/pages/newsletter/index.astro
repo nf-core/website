@@ -11,7 +11,8 @@ let events = await getCollection("events");
 events = events.filter((e) => e.id.split("/").length === 2);
 
 const pipelines = pipelines_json.remote_workflows;
-const months = getNewsletterMonths(blogPosts, events, pipelines);
+const advisories = await getCollection("advisories");
+const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
 
 // Group by year
 const byYear = new Map<number, { year: number; month: number }[]>();
