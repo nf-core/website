@@ -213,34 +213,38 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     Advisories
                 </h2>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {monthAdvisories.map((advisory) => (
-                        <tr>
-                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
-                                >
-                                    {advisory.data.severity}
-                                </span>
-                                {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
-                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
-                                        {label}
+                    {monthAdvisories.map((advisory) => {
+                        const colors = getAdvisoryBadgeColors(advisory.data.severity);
+                        const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
+                        return (
+                            <tr>
+                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
+                                    >
+                                        {advisory.data.severity}
                                     </span>
-                                ))}
-                                <br />
-                                <a
-                                    class="nl-green"
-                                    href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
-                                    style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
-                                >
-                                    {advisory.data.title}
-                                </a>
-                                <br />
-                                <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
-                                    {advisory.data.subtitle}
-                                </span>
-                            </td>
-                        </tr>
-                    ))}
+                                    {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
+                                        <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
+                                            {label}
+                                        </span>
+                                    ))}
+                                    <br />
+                                    <a
+                                        class="nl-green"
+                                        href={advisoryUrl}
+                                        style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                    >
+                                        {advisory.data.title}
+                                    </a>
+                                    <br />
+                                    <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
+                                        {advisory.data.subtitle}
+                                    </span>
+                                </td>
+                            </tr>
+                        );
+                    })}
                 </table>
             </>
         )
@@ -518,30 +522,34 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     >
                         <tr>
                             <td style="font-size: 0;">
-                                {olderAdvisories.map((advisory: any) => (
-                                    <div
-                                        class="nl-col"
-                                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
-                                    >
-                                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                            <span
-                                                style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
-                                            >
-                                                {advisory.data.severity}
-                                            </span>
-                                            <a
-                                                href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
-                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                            >
-                                                {advisory.data.title}
-                                            </a>
-                                            <br />
-                                            <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                {formatDate(advisory.data.publishedDate)}
-                                            </span>
+                                {olderAdvisories.map((advisory: any) => {
+                                    const colors = getAdvisoryBadgeColors(advisory.data.severity);
+                                    const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
+                                    return (
+                                        <div
+                                            class="nl-col"
+                                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                                        >
+                                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                                <span
+                                                    style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
+                                                >
+                                                    {advisory.data.severity}
+                                                </span>
+                                                <a
+                                                    href={advisoryUrl}
+                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                >
+                                                    {advisory.data.title}
+                                                </a>
+                                                <br />
+                                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                    {formatDate(advisory.data.publishedDate)}
+                                                </span>
+                                            </div>
                                         </div>
-                                    </div>
-                                ))}
+                                    );
+                                })}
                             </td>
                         </tr>
                     </table>
