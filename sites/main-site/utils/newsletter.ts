@@ -41,15 +41,18 @@ export interface NewPipeline {
     isDevOnly: boolean;
 }
 
-export interface Proposal {
+export interface RawProposal {
     title: string;
-    displayTitle: string;
     url: string;
     number: number;
     labels: string[];
     closedAt: string | null;
     stateReason: string | null;
     createdAt: string;
+}
+
+export interface Proposal extends RawProposal {
+    displayTitle: string;
     category: "pipeline" | "other";
     status: "new" | "accepted";
 }
@@ -84,6 +87,7 @@ export function getNewsletterMonths(
     blogPosts: { data: { pubDate: Date } }[],
     events: { data: { start: Date } }[],
     pipelines: PipelineWorkflow[],
+    advisories: { data: { publishedDate: Date } }[] = [],
 ): NewsletterMonth[] {
     const monthSet = new Set<string>();
 
@@ -94,6 +98,11 @@ export function getNewsletterMonths(
 
     for (const event of events) {
         const d = new Date(event.data.start);
+        monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
+    }
+
+    for (const advisory of advisories) {
+        const d = new Date(advisory.data.publishedDate);
         monthSet.add(`${d.getUTCFullYear()}-${d.getUTCMonth() + 1}`);
     }
 
@@ -268,6 +277,22 @@ export function getEventsForMonth(
 }
 
 /**
+ * Advisories published in the given month.
+ */
+export function getAdvisoriesForMonth(
+    advisories: {
+        id: string;
+        data: { publishedDate: Date; title: string; subtitle: string; severity: string; type: string[] };
+    }[],
+    year: number,
+    month: number,
+) {
+    return advisories
+        .filter((a) => isInMonth(new Date(a.data.publishedDate), year, month))
+        .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+}
+
+/**
  * Events starting in the next N months after the given month.
  */
 export function getFutureEvents(
@@ -296,9 +321,9 @@ export function getFutureEvents(
  * Fetch approved proposals from nf-core/proposals GitHub repo.
  * Returns all proposals, to be filtered per-month in the page.
  */
-export async function fetchAllProposals(): Promise<Proposal[]> {
+export async function fetchAllProposals(): Promise<RawProposal[]> {
     try {
-        const issues = await octokit.paginate("GET /repos/{owner}/{repo}/issues", {
+        const issues = await octokit.paginate(octokit.rest.issues.listForRepo, {
             owner: "nf-core",
             repo: "proposals",
             state: "all",
@@ -309,15 +334,15 @@ export async function fetchAllProposals(): Promise<Proposal[]> {
         });
 
         return issues
-            .filter((issue: any) => !issue.pull_request) // Exclude PRs
-            .map((issue: any) => ({
+            .filter((issue) => !issue.pull_request) // Exclude PRs
+            .map((issue) => ({
                 title: issue.title,
                 url: issue.html_url,
                 number: issue.number,
-                labels: issue.labels.map((l: any) => (typeof l === "string" ? l : l.name)),
+                labels: issue.labels.map((l) => (typeof l === "string" ? l : l.name || "")),
                 closedAt: issue.closed_at,
-                stateReason: issue.state_reason ?? null,
-                createdAt: issue.created_at,
+                stateReason: (issue as any).state_reason ?? null,
+                createdAt: issue.created_at || "",
             }));
     } catch (error) {
         console.error("Failed to fetch proposals from nf-core/proposals:", error);
@@ -342,7 +367,7 @@ function categorizeProposal(title: string): { category: "pipeline" | "other"; di
  * Assigns status ("new" for opened this month, "accepted" for closed this month).
  * A proposal can appear as both if opened and closed in the same month.
  */
-export function getProposalsForMonth(proposals: Proposal[], year: number, month: number): Proposal[] {
+export function getProposalsForMonth(proposals: RawProposal[], year: number, month: number): Proposal[] {
     const results = new Map<string, Proposal>();
 
     for (const p of proposals) {
@@ -366,4 +391,135 @@ export function getProposalsForMonth(proposals: Proposal[], year: number, month:
     }
 
     return [...results.values()];
+}
+
+// ========================================
+// SHARED DATA HELPERS
+// ========================================
+
+/**
+ * Shared getStaticPaths data for newsletter pages.
+ * Both [month].astro and [month]/email.astro call this.
+ */
+export async function getNewsletterStaticPathsData(
+    getCollectionFn: (name: string) => Promise<any[]>,
+    pipelines: PipelineWorkflow[],
+) {
+    let blogPosts = await getCollectionFn("blog");
+    blogPosts = blogPosts.filter((post: any) => new Date(post.data.pubDate) < new Date());
+
+    let events = await getCollectionFn("events");
+    events = events.filter((e: any) => e.id.split("/").length === 2);
+
+    const advisories = await getCollectionFn("advisories");
+    const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
+
+    let allProposals: any[] = [];
+    try {
+        allProposals = await fetchAllProposals();
+    } catch (e) {
+        console.warn("Could not fetch proposals:", e);
+    }
+
+    return { months, allProposals };
+}
+
+/**
+ * Shared content data fetching for a single newsletter month.
+ * Returns the data object expected by NewsletterContent component.
+ */
+export async function getNewsletterContentData(
+    getCollectionFn: (name: string) => Promise<any[]>,
+    pipelines: PipelineWorkflow[],
+    year: number,
+    month: number,
+    allProposals: any[],
+    images: Record<string, () => Promise<any>>,
+) {
+    const monthName = getMonthName(month);
+    const baseUrl = "https://nf-co.re";
+
+    // Content month (previous calendar month — newsletter looks back)
+    const contentMonth = month === 1 ? 12 : month - 1;
+    const contentYear = month === 1 ? year - 1 : year;
+
+    let blogPosts = await getCollectionFn("blog");
+    blogPosts = blogPosts.filter((post: any) => new Date(post.data.pubDate) < new Date());
+
+    let events = await getCollectionFn("events");
+    events = events.filter((e: any) => e.id.split("/").length === 2);
+
+    const thisMonthBlogPosts = getBlogPostsForMonth(blogPosts, contentYear, contentMonth);
+    const olderBlogPosts = getBlogPostsForPreviousMonths(blogPosts, contentYear, contentMonth, 2);
+    const releases = getPipelineReleasesForMonth(pipelines, contentYear, contentMonth);
+    const firstReleases = releases.filter((r) => r.isFirstRelease);
+    const otherReleases = releases.filter((r) => !r.isFirstRelease);
+    const newPipelines = getNewPipelines(pipelines, contentYear, contentMonth);
+    const recentEvents = getEventsForMonth(events, contentYear, contentMonth);
+    const allAdvisories = await getCollectionFn("advisories");
+    const monthAdvisories = getAdvisoriesForMonth(allAdvisories, contentYear, contentMonth);
+    const proposals = getProposalsForMonth(allProposals, contentYear, contentMonth);
+    const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
+    const otherProposals = proposals.filter((p) => p.category === "other");
+
+    const upcomingEvents = [...getEventsForMonth(events, year, month), ...getFutureEvents(events, year, month, 1)];
+
+    // Build email preview summary (~90 chars for Gmail)
+    const previewParts: string[] = [];
+    if (thisMonthBlogPosts.length > 0)
+        previewParts.push(`${thisMonthBlogPosts.length} blog post${thisMonthBlogPosts.length > 1 ? "s" : ""}`);
+    if (monthAdvisories.length > 0)
+        previewParts.push(`${monthAdvisories.length} advisor${monthAdvisories.length > 1 ? "ies" : "y"}`);
+    if (releases.length > 0)
+        previewParts.push(`${releases.length} pipeline release${releases.length > 1 ? "s" : ""}`);
+    if (upcomingEvents.length > 0)
+        previewParts.push(`${upcomingEvents.length} upcoming event${upcomingEvents.length > 1 ? "s" : ""}`);
+    const previewText =
+        previewParts.length > 0 ? previewParts.join(", ") + "." : `Community news for ${monthName} ${year}.`;
+    const newsletterUrl = `${baseUrl}/newsletter/${year}/${String(month).padStart(2, "0")}`;
+
+    // Pre-resolve all image sources
+    async function resolveImageSrc(headerImage: string): Promise<any> {
+        if (headerImage.startsWith("/assets/")) {
+            const key = "/src" + headerImage;
+            const loader = images[key];
+            if (loader) {
+                const mod = (await loader()) as any;
+                return mod.default;
+            }
+        }
+        return headerImage;
+    }
+
+    const blogImageSrcs = new Map<string, any>();
+    for (const post of [...thisMonthBlogPosts, ...olderBlogPosts]) {
+        blogImageSrcs.set(post.id, await resolveImageSrc((post as any).data.headerImage));
+    }
+    const eventImageSrcs = new Map<string, any>();
+    for (const event of upcomingEvents) {
+        if ((event as any).data.headerImage) {
+            eventImageSrcs.set(event.id, await resolveImageSrc((event as any).data.headerImage));
+        }
+    }
+
+    return {
+        year,
+        month,
+        monthName,
+        baseUrl,
+        newsletterUrl,
+        previewText,
+        thisMonthBlogPosts,
+        olderBlogPosts,
+        firstReleases,
+        otherReleases,
+        newPipelines,
+        recentEvents,
+        upcomingEvents,
+        pipelineProposals,
+        otherProposals,
+        monthAdvisories,
+        blogImageSrcs,
+        eventImageSrcs,
+    };
 }

@@ -1,0 +1,781 @@
+---
+import { Image } from "astro:assets";
+import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
+import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
+
+interface Props {
+    data: {
+        year: number;
+        month: number;
+        monthName: string;
+        baseUrl: string;
+        newsletterUrl: string;
+        previewText: string;
+        thisMonthBlogPosts: any[];
+        olderBlogPosts: any[];
+        firstReleases: any[];
+        otherReleases: any[];
+        newPipelines: any[];
+        recentEvents: any[];
+        upcomingEvents: any[];
+        pipelineProposals: any[];
+        otherProposals: any[];
+        monthAdvisories: any[];
+        blogImageSrcs: Map<string, any>;
+        eventImageSrcs: Map<string, any>;
+    };
+}
+
+const { data } = Astro.props;
+const {
+    year,
+    month,
+    monthName,
+    baseUrl,
+    newsletterUrl,
+    previewText,
+    thisMonthBlogPosts,
+    olderBlogPosts,
+    firstReleases,
+    otherReleases,
+    newPipelines,
+    recentEvents,
+    upcomingEvents,
+    pipelineProposals,
+    otherProposals,
+    monthAdvisories,
+    blogImageSrcs,
+    eventImageSrcs,
+} = data;
+
+// Helper functions
+const eventTypeColor: Record<string, string> = {
+    bytesize: "#22ae63",
+    hackathon: "#0d6efd",
+    talk: "#0dcaf0",
+    training: "#ffc107",
+};
+const eventTypeLabel: Record<string, string> = {
+    bytesize: "Bytesize",
+    hackathon: "Hackathon",
+    talk: "Talk",
+    training: "Training",
+};
+
+function formatDate(date: Date): string {
+    return new Date(date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "short",
+        year: "numeric",
+    });
+}
+
+function blogUrl(postId: string): string {
+    return `${baseUrl}/blog/${postId.replace(/\.[^/.]+$/, "")}`;
+}
+
+function eventUrl(eventId: string): string {
+    return `${baseUrl}/events/${eventId.replace(/\.[^/.]+$/, "")}`;
+}
+
+function pipelineUrl(name: string): string {
+    return `${baseUrl}/${name}`;
+}
+
+const severityColors: Record<string, string> = {
+    low: "#0d6efd",
+    medium: "#ffc107",
+    high: "#dc3545",
+    critical: "#dc3545",
+};
+const severityTextColors: Record<string, string> = {
+    low: "#ffffff",
+    medium: "#333333",
+    high: "#ffffff",
+    critical: "#ffffff",
+};
+
+function getAdvisoryBadgeColors(severity: string) {
+    return {
+        bg: severityColors[severity] || "#6c757d",
+        text: severityTextColors[severity] || "#ffffff",
+    };
+}
+
+function formatAdvisoryTypes(type: string | string[]): string[] {
+    const types = Array.isArray(type) ? type : [type];
+    return types.map((t) =>
+        t
+            .split("_")
+            .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
+            .join(" "),
+    );
+}
+---
+
+<div id="newsletter-content">
+    {/* ----- EMAIL PREVIEW TEXT + VIEW IN BROWSER ----- */}
+    <p class="nl-muted" style="font-size: 12px; color: #bbbbbb; margin: 0 0 2px; text-align: center;">
+        {previewText}
+    </p>
+    <p class="nl-muted" style="font-size: 11px; margin: 0 0 16px; text-align: center;">
+        <a class="nl-muted" href={newsletterUrl} style="color: #bbbbbb; text-decoration: underline;">
+            View in browser
+        </a>
+    </p>
+
+    {/* ----- HEADER WITH LOGO ----- */}
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
+        <tr>
+            <td style="text-align: center; padding: 20px 0;">
+                <img
+                    class="nl-logo-light"
+                    src={newsletterLogoLight.src}
+                    alt="nf-core newsletter"
+                    width="400"
+                    style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
+                />
+                <img
+                    class="nl-logo-dark"
+                    src={newsletterLogoDark.src}
+                    alt="nf-core newsletter"
+                    width="400"
+                    style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
+                />
+                <p class="nl-muted" style="margin: 12px 0 0; font-size: 18px; color: #666666;">
+                    1st {monthName}
+                    {year}
+                </p>
+            </td>
+        </tr>
+    </table>
+
+    {/* ----- 1. BLOG POSTS THIS MONTH (primary, full width with images) ----- */}
+    {
+        thisMonthBlogPosts.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    Blog posts
+                </h2>
+                {thisMonthBlogPosts.map((post) => (
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
+                                <a
+                                    href={blogUrl(post.id)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {post.data.title}
+                                </a>
+                                <br />
+                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                    {post.data.subtitle}
+                                </span>
+                                <br />
+                                <span class="nl-muted" style="font-size: 13px; color: #888888;">
+                                    {formatDate(post.data.pubDate)} &middot; by {post.data.authors.join(", ")}
+                                </span>
+                            </td>
+                            <td style="padding: 12px 0 12px 16px; border-bottom: 1px solid #eeeeee; vertical-align: middle; width: 240px;">
+                                <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                    <Image
+                                        src={blogImageSrcs.get(post.id)}
+                                        alt={post.data.headerImageAlt || ""}
+                                        width={480}
+                                        height={270}
+                                        densities={[1.5, 2]}
+                                        style="width: 240px; height: 135px; display: block; border-radius: 6px; object-fit: cover;"
+                                    />
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                ))}
+            </>
+        )
+    }
+
+    {/* ----- ADVISORIES ----- */}
+    {
+        monthAdvisories.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    Advisories
+                </h2>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {monthAdvisories.map((advisory) => (
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
+                                >
+                                    {advisory.data.severity}
+                                </span>
+                                {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
+                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
+                                        {label}
+                                    </span>
+                                ))}
+                                <br />
+                                <a
+                                    class="nl-green"
+                                    href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
+                                    style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {advisory.data.title}
+                                </a>
+                                <br />
+                                <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
+                                    {advisory.data.subtitle}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- 2. FIRST PIPELINE RELEASES (primary, full width) ----- */}
+    {
+        firstReleases.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    New pipeline first releases! &#127881;
+                </h2>
+                <p class="nl-muted" style="font-size: 14px; color: #666666; margin-bottom: 12px;">
+                    These pipelines just had their very first release.
+                </p>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {firstReleases.map((release) => (
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                <a
+                                    class="nl-green"
+                                    href={pipelineUrl(release.pipelineName)}
+                                    style="color: #22ae63; text-decoration: none; font-weight: 700; font-size: 16px;"
+                                >
+                                    nf-core/{release.pipelineName}
+                                </a>
+                                {release.tagNames.map((tag: string) => (
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
+                                        v{tag}
+                                    </span>
+                                ))}
+                                <br />
+                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                    {release.description}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- 3. OTHER PIPELINE RELEASES (secondary, 2-column) ----- */}
+    {
+        otherReleases.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    Pipeline releases
+                </h2>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {otherReleases
+                        .reduce((rows: any[][], release, i) => {
+                            if (i % 2 === 0) rows.push([release]);
+                            else rows[rows.length - 1].push(release);
+                            return rows;
+                        }, [])
+                        .map((pair: any[]) => (
+                            <tr>
+                                {pair.map((release: any) => (
+                                    <td style="padding: 10px 12px; border-bottom: 1px solid #eeeeee; vertical-align: top; width: 50%;">
+                                        <a
+                                            href={pipelineUrl(release.pipelineName)}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                        >
+                                            nf-core/{release.pipelineName}
+                                        </a>
+                                        <br />
+                                        {release.tagNames.map((tag: string) => (
+                                            <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #ffffff; background-color: #6c757d;">
+                                                v{tag}
+                                            </span>
+                                        ))}
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 13px; color: #888888; margin-left: 4px;"
+                                        >
+                                            {formatDate(new Date(release.publishedAt))}
+                                        </span>
+                                    </td>
+                                ))}
+                                {pair.length === 1 && <td style="width: 50%;" />}
+                            </tr>
+                        ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- 4. UPCOMING EVENTS (primary, full width with images) ----- */}
+    {
+        upcomingEvents.length > 0 && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    Upcoming events
+                </h2>
+                {upcomingEvents.map((event) => (
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+                        <tr>
+                            {/* Row 1: tag + title + date right-aligned */}
+                            <td style="padding: 12px 0 0; vertical-align: middle;">
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                >
+                                    {eventTypeLabel[event.data.type] || event.data.type}
+                                </span>
+                                <a
+                                    href={eventUrl(event.id)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {event.data.title}
+                                </a>
+                            </td>
+                            <td
+                                class="nl-muted"
+                                style="padding: 12px 0 0; vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
+                            >
+                                {formatDate(event.data.start)}
+                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                    <> &ndash; {formatDate(event.data.end)}</>
+                                )}
+                            </td>
+                        </tr>
+                        {/* Row 2: subtitle */}
+                        {event.data.subtitle && (
+                            <tr>
+                                <td colspan={2} style="padding: 4px 0 8px;">
+                                    <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                        {event.data.subtitle}
+                                    </span>
+                                </td>
+                            </tr>
+                        )}
+                        {/* Row 3: image if present */}
+                        {event.data.headerImage && (
+                            <tr>
+                                <td colspan={2} style="padding: 8px 0 0;">
+                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
+                                        <Image
+                                            src={eventImageSrcs.get(event.id)}
+                                            alt={event.data.headerImageAlt || event.data.title}
+                                            width={480}
+                                            densities={[1.5, 2]}
+                                            style="width: 240px; height: auto; display: block; border-radius: 6px;"
+                                        />
+                                    </a>
+                                </td>
+                            </tr>
+                        )}
+                        <tr>
+                            <td colspan={2} style="border-bottom: 1px solid #eeeeee;" />
+                        </tr>
+                    </table>
+                ))}
+            </>
+        )
+    }
+
+    {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts) ----- */}
+    {
+        (recentEvents.length > 0 || olderBlogPosts.length > 0) && (
+            <>
+                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
+                    In case you missed it
+                </h2>
+
+                {/* Recent events (secondary, 2-column) */}
+                {recentEvents.length > 0 && (
+                    <>
+                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Recent events</h3>
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                            {recentEvents
+                                .reduce((rows: any[][], event, i) => {
+                                    if (i % 2 === 0) rows.push([event]);
+                                    else rows[rows.length - 1].push(event);
+                                    return rows;
+                                }, [])
+                                .map((pair: any[]) => (
+                                    <tr>
+                                        {pair.map((event: any) => (
+                                            <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                                <a
+                                                    href={eventUrl(event.id)}
+                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                >
+                                                    {event.data.title}
+                                                </a>
+                                                <br />
+                                                <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                                    {formatDate(event.data.start)}
+                                                    {event.data.start.toDateString() !==
+                                                        event.data.end.toDateString() && (
+                                                        <> &ndash; {formatDate(event.data.end)}</>
+                                                    )}
+                                                </span>
+                                                <span
+                                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                                >
+                                                    {eventTypeLabel[event.data.type] || event.data.type}
+                                                </span>
+                                            </td>
+                                        ))}
+                                        {pair.length === 1 && <td style="width: 50%;" />}
+                                    </tr>
+                                ))}
+                        </table>
+                    </>
+                )}
+
+                {/* Older blog posts (secondary, 2-column) */}
+                {olderBlogPosts.length > 0 && (
+                    <>
+                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Older blog posts</h3>
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                            {olderBlogPosts
+                                .reduce((rows: any[][], post, i) => {
+                                    if (i % 2 === 0) rows.push([post]);
+                                    else rows[rows.length - 1].push(post);
+                                    return rows;
+                                }, [])
+                                .map((pair: any[]) => (
+                                    <tr>
+                                        {pair.map((post: any) => (
+                                            <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                                <table width="100%" cellpadding="0" cellspacing="0">
+                                                    <tr>
+                                                        <td style="vertical-align: top; padding-right: 8px;">
+                                                            <a
+                                                                href={blogUrl(post.id)}
+                                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                            >
+                                                                {post.data.title}
+                                                            </a>
+                                                            <br />
+                                                            <span
+                                                                class="nl-muted"
+                                                                style="font-size: 12px; color: #999999;"
+                                                            >
+                                                                {formatDate(post.data.pubDate)}
+                                                            </span>
+                                                        </td>
+                                                        <td style="vertical-align: middle; width: 80px;">
+                                                            <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                                                <Image
+                                                                    src={blogImageSrcs.get(post.id)}
+                                                                    alt={post.data.headerImageAlt || ""}
+                                                                    width={160}
+                                                                    height={90}
+                                                                    densities={[1.5, 2]}
+                                                                    style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                                />
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                        ))}
+                                        {pair.length === 1 && <td style="width: 50%;" />}
+                                    </tr>
+                                ))}
+                        </table>
+                    </>
+                )}
+            </>
+        )
+    }
+
+    {/* ----- 7. NEW PIPELINES & PROPOSALS ----- */}
+    {
+        (newPipelines.length > 0 || pipelineProposals.length > 0 || otherProposals.length > 0) && (
+            <>
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
+                    New pipelines &amp; proposals
+                </h2>
+            </>
+        )
+    }
+
+    {
+        newPipelines.length > 0 && (
+            <>
+                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">New pipeline repositories</h3>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {newPipelines.map((p) => (
+                        <tr>
+                            <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
+                                <a
+                                    href={pipelineUrl(p.name)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                >
+                                    nf-core/{p.name}
+                                </a>
+                                {p.isDevOnly && (
+                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #856404; background-color: #fff3cd;">
+                                        In Development
+                                    </span>
+                                )}
+                                <br />
+                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                    {p.description}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* Pipeline proposals (secondary, 2-column) */}
+    {
+        pipelineProposals.length > 0 && (
+            <>
+                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Pipeline proposals</h3>
+                <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                    From{" "}
+                    <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                        nf-core/proposals
+                    </a>
+                </p>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {pipelineProposals
+                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .reduce((rows: any[][], p, i) => {
+                            if (i % 2 === 0) rows.push([p]);
+                            else rows[rows.length - 1].push(p);
+                            return rows;
+                        }, [])
+                        .map((pair: any[]) => (
+                            <tr>
+                                {pair.map((p: any) => (
+                                    <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                        <a
+                                            href={p.url}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {p.displayTitle}
+                                        </a>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                        >
+                                            {p.status === "accepted" ? "Accepted" : "New"}
+                                        </span>
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 12px; color: #999999; margin-left: 4px;"
+                                        >
+                                            #{p.number}
+                                        </span>
+                                    </td>
+                                ))}
+                                {pair.length === 1 && <td style="width: 50%;" />}
+                            </tr>
+                        ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* Other proposals (secondary, 2-column) */}
+    {
+        otherProposals.length > 0 && (
+            <>
+                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                    {otherProposals
+                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .reduce((rows: any[][], p, i) => {
+                            if (i % 2 === 0) rows.push([p]);
+                            else rows[rows.length - 1].push(p);
+                            return rows;
+                        }, [])
+                        .map((pair: any[]) => (
+                            <tr>
+                                {pair.map((p: any) => (
+                                    <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                        <a
+                                            href={p.url}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {p.displayTitle}
+                                        </a>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                        >
+                                            {p.status === "accepted" ? "Accepted" : "New"}
+                                        </span>
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 12px; color: #999999; margin-left: 4px;"
+                                        >
+                                            #{p.number}
+                                        </span>
+                                    </td>
+                                ))}
+                                {pair.length === 1 && <td style="width: 50%;" />}
+                            </tr>
+                        ))}
+                </table>
+            </>
+        )
+    }
+
+    {/* ----- FOOTER ----- */}
+    <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
+        <tr>
+            <td style="border-bottom: 1px solid #eeeeee;"></td>
+        </tr>
+        <tr>
+            <td class="nl-green" style="text-align: center; padding: 24px 0;">
+                <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
+                    This newsletter is brought to you by the <a
+                        href="https://nf-co.re"
+                        style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
+                    > community.
+                </p>
+                <p class="nl-muted" style="font-size: 13px; color: #999999; margin: 8px 0 0;">
+                    <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
+                    <a href="https://nf-co.re/blog" style="color: #22ae63;">Blog</a> &middot;
+                    <a href="https://nf-co.re/events" style="color: #22ae63;">Events</a> &middot;
+                    <a href="https://github.com/nf-core" style="color: #22ae63;">GitHub</a>
+                </p>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<style lang="scss">
+    #newsletter-content {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 16px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        /* Light mode base */
+        background-color: #ffffff;
+        color: #333333;
+        border-radius: 8px;
+    }
+    #newsletter-content table {
+        border-collapse: collapse;
+    }
+    #newsletter-content a:hover {
+        text-decoration: underline !important;
+    }
+
+    /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).
+     * Needs !important to beat inline styles on email-friendly elements. */
+    :global([data-bs-theme="dark"]) #newsletter-content {
+        background-color: #1e1e2e !important;
+        color: #e0e0e0 !important;
+    }
+    :global([data-bs-theme="dark"]) :global(.nl-logo-light) {
+        display: none !important;
+    }
+    :global([data-bs-theme="dark"]) :global(.nl-logo-dark) {
+        display: block !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content h2 {
+        color: #4ade80 !important;
+        border-bottom-color: #4ade80 !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content h3 {
+        color: #cccccc !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content a {
+        color: #e0e0e0 !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-green) a,
+    :global([data-bs-theme="dark"]) #newsletter-content a:global(.nl-green) {
+        color: #4ade80 !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
+        color: #aaaaaa !important;
+    }
+    :global([data-bs-theme="dark"]) #newsletter-content td {
+        border-bottom-color: #333344 !important;
+    }
+
+    /*
+     * Email dark mode: Apple Mail, Outlook Mac use prefers-color-scheme.
+     * Outlook iOS/Android use [data-ogsc].
+     * These only matter when the HTML is extracted and sent as email,
+     * not on the website (where data-bs-theme handles it above).
+     */
+    @media (prefers-color-scheme: dark) {
+        #newsletter-content {
+            background-color: #1e1e2e !important;
+            color: #e0e0e0 !important;
+        }
+        #newsletter-content .nl-logo-light {
+            display: none !important;
+        }
+        #newsletter-content .nl-logo-dark {
+            display: block !important;
+        }
+        #newsletter-content h2 {
+            color: #4ade80 !important;
+            border-bottom-color: #4ade80 !important;
+        }
+        #newsletter-content h3 {
+            color: #cccccc !important;
+        }
+        #newsletter-content a {
+            color: #e0e0e0 !important;
+        }
+        #newsletter-content .nl-green a,
+        #newsletter-content a.nl-green {
+            color: #4ade80 !important;
+        }
+        #newsletter-content .nl-muted {
+            color: #aaaaaa !important;
+        }
+        #newsletter-content td {
+            border-bottom-color: #333344 !important;
+        }
+    }
+
+    [data-ogsc] #newsletter-content {
+        background-color: #1e1e2e !important;
+        color: #e0e0e0 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-light {
+        display: none !important;
+    }
+    [data-ogsc] #newsletter-content .nl-logo-dark {
+        display: block !important;
+    }
+    [data-ogsc] #newsletter-content h2 {
+        color: #4ade80 !important;
+        border-bottom-color: #4ade80 !important;
+    }
+    [data-ogsc] #newsletter-content h3 {
+        color: #cccccc !important;
+    }
+    [data-ogsc] #newsletter-content a {
+        color: #e0e0e0 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-green a,
+    [data-ogsc] #newsletter-content a.nl-green {
+        color: #4ade80 !important;
+    }
+    [data-ogsc] #newsletter-content .nl-muted {
+        color: #aaaaaa !important;
+    }
+    [data-ogsc] #newsletter-content td {
+        border-bottom-color: #333344 !important;
+    }
+</style>
