@@ -7,9 +7,8 @@ import type { NewsletterMonth } from "@utils/newsletter";
 import NewsletterContent from "@components/newsletter/NewsletterContent.astro";
 
 const images = import.meta.glob("/src/assets/**");
-const pipelines = pipelines_json.remote_workflows;
-
 export async function getStaticPaths() {
+    const pipelines = pipelines_json.remote_workflows;
     const { months, allProposals } = await getNewsletterStaticPathsData(getCollection, pipelines);
 
     return months.map(({ year, month }, index) => ({
@@ -37,6 +36,7 @@ const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.pro
     nextMonth: NewsletterMonth | null;
 };
 
+const pipelines = pipelines_json.remote_workflows;
 const contentData = await getNewsletterContentData(getCollection, pipelines, year, month, allProposals, images);
 
 function monthUrl(m: NewsletterMonth): string {
