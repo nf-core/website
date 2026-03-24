@@ -386,12 +386,7 @@ for (const event of upcomingEvents) {
                         Upcoming events
                     </h2>
                     {upcomingEvents.map((event) => (
-                        <table
-                            width="100%"
-                            cellpadding="0"
-                            cellspacing="0"
-                            style="margin-bottom: 0; border-bottom: 1px solid #eeeeee;"
-                        >
+                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
                             <tr>
                                 {/* Row 1: tag + title + date right-aligned */}
                                 <td style="padding: 12px 0 0; vertical-align: middle;">
@@ -430,7 +425,7 @@ for (const event of upcomingEvents) {
                             {/* Row 3: image if present */}
                             {event.data.headerImage && (
                                 <tr>
-                                    <td colspan={2} style="padding: 8px 0 12px;">
+                                    <td colspan={2} style="padding: 8px 0 0;">
                                         <a href={eventUrl(event.id)} style="text-decoration: none;">
                                             <Image
                                                 src={eventImageSrcs.get(event.id)}
@@ -443,6 +438,9 @@ for (const event of upcomingEvents) {
                                     </td>
                                 </tr>
                             )}
+                            <tr>
+                                <td colspan={2} style="border-bottom: 1px solid #eeeeee;" />
+                            </tr>
                         </table>
                     ))}
                 </>
@@ -698,9 +696,9 @@ for (const event of upcomingEvents) {
         }
 
         {/* ----- FOOTER ----- */}
-        <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px; border-top: 2px solid #eeeeee;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="margin-top: 32px;">
             <tr>
-                <td class="nl-green" style="text-align: center; padding: 24px 0;">
+                <td class="nl-green" style="text-align: center; padding: 24px 0; border-top: 2px solid #eeeeee;">
                     <p class="nl-muted" style="font-size: 14px; color: #666666; margin: 0;">
                         This newsletter is brought to you by the <a
                             href="https://nf-co.re"
