@@ -386,49 +386,51 @@ for (const event of upcomingEvents) {
                         Upcoming events
                     </h2>
                     {upcomingEvents.map((event) => (
-                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 0;">
+                        <table
+                            width="100%"
+                            cellpadding="0"
+                            cellspacing="0"
+                            style="margin-bottom: 0; border-bottom: 1px solid #eeeeee;"
+                        >
                             <tr>
-                                <td style="padding: 12px 0 0; border-bottom: 1px solid #eeeeee; vertical-align: top;">
-                                    {/* Row 1: tag + title + date right-aligned */}
-                                    <table width="100%" cellpadding="0" cellspacing="0">
-                                        <tr>
-                                            <td style="vertical-align: middle;">
-                                                <span
-                                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
-                                                >
-                                                    {eventTypeLabel[event.data.type] || event.data.type}
-                                                </span>
-                                                <a
-                                                    href={eventUrl(event.id)}
-                                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
-                                                >
-                                                    {event.data.title}
-                                                </a>
-                                            </td>
-                                            <td
-                                                class="nl-muted"
-                                                style="vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
-                                            >
-                                                {formatDate(event.data.start)}
-                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                                    <> &ndash; {formatDate(event.data.end)}</>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    </table>
-                                    {/* Row 2: subtitle */}
-                                    {event.data.subtitle && (
-                                        <p
-                                            class="nl-muted"
-                                            style="font-size: 14px; color: #555555; margin: 4px 0 0; padding-bottom: 8px;"
-                                        >
-                                            {event.data.subtitle}
-                                        </p>
-                                    )}
-                                    {!event.data.subtitle && <div style="padding-bottom: 8px;" />}
+                                {/* Row 1: tag + title + date right-aligned */}
+                                <td style="padding: 12px 0 0; vertical-align: middle;">
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                    >
+                                        {eventTypeLabel[event.data.type] || event.data.type}
+                                    </span>
+                                    <a
+                                        href={eventUrl(event.id)}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                    >
+                                        {event.data.title}
+                                    </a>
                                 </td>
-                                {event.data.headerImage && (
-                                    <td style="padding: 12px 0 12px 16px; border-bottom: 1px solid #eeeeee; vertical-align: middle; width: 240px;">
+                                <td
+                                    class="nl-muted"
+                                    style="padding: 12px 0 0; vertical-align: middle; text-align: right; white-space: nowrap; font-size: 13px; color: #666666; padding-left: 12px;"
+                                >
+                                    {formatDate(event.data.start)}
+                                    {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                        <> &ndash; {formatDate(event.data.end)}</>
+                                    )}
+                                </td>
+                            </tr>
+                            {/* Row 2: subtitle */}
+                            {event.data.subtitle && (
+                                <tr>
+                                    <td colspan={2} style="padding: 4px 0 8px;">
+                                        <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                            {event.data.subtitle}
+                                        </span>
+                                    </td>
+                                </tr>
+                            )}
+                            {/* Row 3: image if present */}
+                            {event.data.headerImage && (
+                                <tr>
+                                    <td colspan={2} style="padding: 8px 0 12px;">
                                         <a href={eventUrl(event.id)} style="text-decoration: none;">
                                             <Image
                                                 src={eventImageSrcs.get(event.id)}
@@ -439,8 +441,8 @@ for (const event of upcomingEvents) {
                                             />
                                         </a>
                                     </td>
-                                )}
-                            </tr>
+                                </tr>
+                            )}
                         </table>
                     ))}
                 </>
