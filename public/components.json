@@ -50544,19 +50544,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_circexplorer2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "circexplorer2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CIRCexplorer2 --version 2>&1; true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "circexplorer2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "CIRCexplorer2 --version 2>&1; true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -62874,7 +62906,6 @@
       "meta": {
         "name": "ctatsplicing_prepgenomelib",
         "description": "Reference preparation for CTAT-splicing",
-        "long_description": "This module prepares the CTAT genome library reference for splicing analysis by integrating cancer intron annotations.\nIt takes a CTAT genome library and a cancer intron TSV file as input, and outputs a modified genome library reference.\nThe output can be used in subsequent CTAT-splicing analyses to detect and annotate cancer splicing aberrations.\nMake sure to provide the correct genome library and cancer intron data resource.\n",
         "keywords": [
           "splicing",
           "cancer",
@@ -62887,7 +62918,8 @@
               "description": "Detection and annotation of cancer splicing aberrations",
               "homepage": "https://github.com/TrinityCTAT/CTAT-SPLICING",
               "documentation": "https://github.com/TrinityCTAT/CTAT-SPLICING",
-              "tool_dev_url": "https://github.com/TrinityCTAT/CTAT-SPLICING"
+              "tool_dev_url": "https://github.com/TrinityCTAT/CTAT-SPLICING",
+              "identifier": ""
             }
           }
         ],
@@ -62903,14 +62935,16 @@
               "genome_lib": {
                 "type": "file",
                 "description": "CTAT genome library reference",
-                "pattern": "*"
+                "pattern": "*",
+                "ontologies": []
               }
             }
           ],
           {
             "cancer_intron_tsv": {
               "type": "file",
-              "description": "CTAT-splicing data resource supplement"
+              "description": "CTAT-splicing data resource supplement",
+              "ontologies": []
             }
           }
         ],
@@ -62927,19 +62961,57 @@
                 "genome_lib": {
                   "type": "file",
                   "description": "Modified CTAT genome library reference",
-                  "pattern": "*"
+                  "pattern": "*",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+          "versions_ctatsplicing": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ctatsplicing": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ctatsplicing": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -62948,7 +63020,8 @@
         ],
         "maintainers": [
           "@anoronh4"
-        ]
+        ],
+        "long_description": "This module prepares the CTAT genome library reference for splicing analysis by integrating cancer intron annotations.\nIt takes a CTAT genome library and a cancer intron TSV file as input, and outputs a modified genome library reference.\nThe output can be used in subsequent CTAT-splicing analyses to detect and annotate cancer splicing aberrations.\nMake sure to provide the correct genome library and cancer intron data resource.\n"
       },
       "pipelines": [
         {
@@ -62964,7 +63037,6 @@
       "meta": {
         "name": "ctatsplicing_startocancerintrons",
         "description": "Detection and annotation of aberrant splicing isoforms in cancer transcriptomes",
-        "long_description": "This module detects and annotates aberrant splicing isoforms in cancer transcriptomes using CTAT-splicing.\nIt takes STAR alignment files, a sorted BAM file, and a CTAT genome library reference as input, and outputs various files related to cancer introns.\nThe output can be used for further analysis of splicing aberrations in cancer.\nMake sure to provide the correct STAR alignment files and CTAT genome library reference.\n",
         "keywords": [
           "splicing",
           "cancer",
@@ -62977,7 +63049,8 @@
               "description": "Detection and annotation of cancer splicing aberrations",
               "homepage": "https://github.com/TrinityCTAT/CTAT-SPLICING",
               "documentation": "https://github.com/TrinityCTAT/CTAT-SPLICING",
-              "tool_dev_url": "https://github.com/TrinityCTAT/CTAT-SPLICING"
+              "tool_dev_url": "https://github.com/TrinityCTAT/CTAT-SPLICING",
+              "identifier": ""
             }
           }
         ],
@@ -62993,14 +63066,20 @@
               "split_junction": {
                 "type": "file",
                 "description": "STAR alignment splice junction tab file",
-                "pattern": "*.SJ.out.tab"
+                "pattern": "*.SJ.out.tab",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             },
             {
               "junction": {
                 "type": "file",
                 "description": "STAR alignment chimeric junction file",
-                "pattern": "*.out.junction"
+                "pattern": "*.out.junction",
+                "ontologies": []
               }
             },
             {
@@ -63045,7 +63124,8 @@
               "genome_lib": {
                 "type": "file",
                 "description": "CTAT genome library reference with integrated cancer intron annotation",
-                "pattern": "*"
+                "pattern": "*",
+                "ontologies": []
               }
             }
           ]
@@ -63151,7 +63231,8 @@
                 "*.cancer.introns": {
                   "type": "file",
                   "description": "File containing detected and filtered introns that are found to be enriched in cancer transcriptomes",
-                  "pattern": "*.cancer.introns"
+                  "pattern": "*.cancer.introns",
+                  "ontologies": []
                 }
               }
             ]
@@ -63168,7 +63249,8 @@
                 "*.cancer.introns.prelim": {
                   "type": "file",
                   "description": "File containing detected introns that have at least one supporting read and are found to be enriched in cancer transcriptomes",
-                  "pattern": "*.cancer.introns.prelim"
+                  "pattern": "*.cancer.introns.prelim",
+                  "ontologies": []
                 }
               }
             ]
@@ -63185,7 +63267,8 @@
                 "*${prefix}.introns": {
                   "type": "file",
                   "description": "File containing all detected introns",
-                  "pattern": "*${prefix}.introns"
+                  "pattern": "*${prefix}.introns",
+                  "ontologies": []
                 }
               }
             ]
@@ -63224,7 +63307,8 @@
                 "*.ctat-splicing.igv.html": {
                   "type": "file",
                   "description": "Self-contained IGV-report in HTML format for visualization of cancer introns",
-                  "pattern": "*.ctat-splicing.igv.html"
+                  "pattern": "*.ctat-splicing.igv.html",
+                  "ontologies": []
                 }
               }
             ]
@@ -63241,7 +63325,8 @@
                 "*.igv.tracks": {
                   "type": "file",
                   "description": "IGV tracks file for visualizing cancer introns in IGV",
-                  "pattern": "*.igv.tracks"
+                  "pattern": "*.igv.tracks",
+                  "ontologies": []
                 }
               }
             ]
@@ -63258,19 +63343,57 @@
                 "*.chckpts": {
                   "type": "file",
                   "description": "Checkpoint files for CTAT-SPLICING, useful for debugging or resuming interrupted runs",
-                  "pattern": "*.chckpts"
+                  "pattern": "*.chckpts",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+          "versions_ctatsplicing": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ctatsplicing": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ctatsplicing": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -63279,7 +63402,8 @@
         ],
         "maintainers": [
           "@anoronh4"
-        ]
+        ],
+        "long_description": "This module detects and annotates aberrant splicing isoforms in cancer transcriptomes using CTAT-splicing.\nIt takes STAR alignment files, a sorted BAM file, and a CTAT genome library reference as input, and outputs various files related to cancer introns.\nThe output can be used for further analysis of splicing aberrations in cancer.\nMake sure to provide the correct STAR alignment files and CTAT genome library reference.\n"
       },
       "pipelines": [
         {
@@ -66146,19 +66270,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_damageprofiler": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "damageprofiler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "damageprofiler -v | sed 's/^DamageProfiler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "damageprofiler": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "damageprofiler -v | sed 's/^DamageProfiler v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -67825,19 +67981,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_deeparg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deeparg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deeparg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -81941,7 +82129,13 @@
                 "description": "cache version\n"
               }
             }
-          ]
+          ],
+          {
+            "preflight_check": {
+              "type": "boolean",
+              "description": "Whether to check that the expected cache file is listed in the Ensembl CHECKSUMS file before downloading\n"
+            }
+          }
         ],
         "output": {
           "cache": [
@@ -85822,19 +86016,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_py_fasta_validator": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "py_fasta_validator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "py_fasta_validator --version | cut -d\" \" -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "py_fasta_validator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "py_fasta_validator --version | cut -d\" \" -f3": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -184075,6 +184301,127 @@
       }
     },
     {
+      "name": "openms_textexporter",
+      "path": "modules/nf-core/openms/textexporter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_textexporter",
+        "description": "Exports various OpenMS XML formats (featureXML, consensusXML, idXML, mzML) to a human-readable text format.",
+        "keywords": [
+          "export",
+          "openms",
+          "proteomics",
+          "text",
+          "tsv"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/s41592-024-02197-7",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "input_file": {
+                "type": "file",
+                "description": "OpenMS data file to export to text format.",
+                "pattern": "*.{featureXML,consensusXML,idXML,mzML}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated text export of the input data.",
+                  "pattern": "*.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_openms": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
       "name": "openmsthirdparty_cometadapter",
       "path": "modules/nf-core/openmsthirdparty/cometadapter/meta.yml",
       "type": "module",
@@ -251265,19 +251612,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions.",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sequali": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequali": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequali --version |& sed '1!d ; s/sequali //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sequali": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sequali --version |& sed '1!d ; s/sequali //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -279015,6 +279394,516 @@
         ],
         "maintainers": [
           "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "telogator2",
+      "path": "modules/nf-core/telogator2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "telogator2",
+        "description": "Allele-specific telomere length estimation and TVR characterization from long reads",
+        "keywords": [
+          "bam",
+          "cram",
+          "genomics",
+          "telomere",
+          "long-read",
+          "pacbio",
+          "nanopore"
+        ],
+        "tools": [
+          {
+            "telogator2": {
+              "description": "A method for measuring allele-specific TL and characterizing telomere variant repeat (TVR) sequences from long reads",
+              "homepage": "https://github.com/zstephens/telogator2",
+              "documentation": "https://github.com/zstephens/telogator2",
+              "tool_dev_url": "https://github.com/zstephens/telogator2",
+              "doi": "10.1093/bioinformatics/btae078",
+              "licence": [
+                "MIT"
+              ],
+              "args_id": "$args",
+              "identifier": "biotools:telogator2"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "BAM or CRAM file of long reads (PacBio or ONT)",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "reads_index": {
+                "type": "file",
+                "description": "Index file for the input BAM/CRAM",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Optional reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Optional FASTA index file",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tlens": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/tlens_by_allele.tsv": {
+                  "type": "file",
+                  "description": "TSV file with telomere length estimates per allele",
+                  "pattern": "*/tlens_by_allele.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/*.png": {
+                  "type": "file",
+                  "description": "PNG plots including allele visualizations and violin plots",
+                  "pattern": "*/*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "cmd": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc/cmd.txt": {
+                  "type": "file",
+                  "description": "Text file recording the telogator2 command that was run",
+                  "pattern": "*/qc/cmd.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc/stats.txt": {
+                  "type": "file",
+                  "description": "Text file with QC statistics including read counts and telomere read filtering",
+                  "pattern": "*/qc/stats.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "qc_readlens": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc/qc_readlens.png": {
+                  "type": "file",
+                  "description": "PNG plot of read length distribution",
+                  "pattern": "*/qc/qc_readlens.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "readlens": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc/readlens.npz": {
+                  "type": "file",
+                  "description": "Numpy compressed array of read length data",
+                  "pattern": "*/qc/readlens.npz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "rng": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/qc/rng.txt": {
+                  "type": "file",
+                  "description": "Text file recording the random seed used",
+                  "pattern": "*/qc/rng.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_telogator2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telogator2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "telogator2 --version | sed 's/telogator2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telogator2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "telogator2 --version | sed 's/telogator2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "telomerehunter",
+      "path": "modules/nf-core/telomerehunter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "telomerehunter",
+        "description": "In silico estimation of telomere content and composition from cancer genomes",
+        "keywords": [
+          "bam",
+          "genomics",
+          "telomere",
+          "telomerehunter",
+          "cancer"
+        ],
+        "tools": [
+          {
+            "telomerehunter": {
+              "description": "In silico estimation of telomere content and composition from cancer genomes",
+              "homepage": "https://github.com/linasieverling/TelomereHunter",
+              "documentation": "https://github.com/linasieverling/TelomereHunter",
+              "tool_dev_url": "https://github.com/linasieverling/TelomereHunter",
+              "doi": "10.1186/s12859-019-2851-0",
+              "licence": [
+                "GPL v3"
+              ],
+              "args_id": "$args",
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "tumor_bam": {
+                "type": "file",
+                "description": "Indexed BAM file of the tumor sample",
+                "pattern": "*.{bam}",
+                "ontologies": []
+              }
+            },
+            {
+              "tumor_bai": {
+                "type": "file",
+                "description": "BAM index file for the tumor sample",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            },
+            {
+              "control_bam": {
+                "type": "file",
+                "description": "Optional indexed BAM file of the control sample",
+                "pattern": "*.{bam}",
+                "ontologies": []
+              }
+            },
+            {
+              "control_bai": {
+                "type": "file",
+                "description": "Optional BAM index file for the control sample",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_summary.tsv": {
+                  "type": "file",
+                  "description": "Combined summary TSV with telomere content estimates",
+                  "pattern": "*_summary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tumor": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/tumor_TelomerCnt_${prefix}/": {
+                  "type": "directory",
+                  "description": "Directory with tumor telomere analysis results",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "control": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}/control_TelomerCnt_${prefix}/": {
+                  "type": "directory",
+                  "description": "Directory with control telomere analysis results",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_telomerehunter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telomerehunter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip show telomerehunter | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version |& sed '1!d; s/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "telomerehunter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pip show telomerehunter | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version |& sed '1!d; s/^.*samtools //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
         ]
       }
     },
@@ -308076,6 +308965,11 @@
           {
             "snpeff_info": {
               "description": "All information necessary to download the cache\nStructure: [ val(meta), val(snpeff_db) ]\n"
+            }
+          },
+          {
+            "ensemblvep_preflight_check": {
+              "description": "Whether to check that the expected cache file is listed in the Ensembl CHECKSUMS file before downloading\nStructure: val(true/false)\n"
             }
           }
         ],
