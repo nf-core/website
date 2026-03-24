@@ -213,38 +213,34 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     Advisories
                 </h2>
                 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {monthAdvisories.map((advisory) => {
-                        const colors = getAdvisoryBadgeColors(advisory.data.severity);
-                        const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
-                        return (
-                            <tr>
-                                <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
-                                    >
-                                        {advisory.data.severity}
+                    {monthAdvisories.map((advisory) => (
+                        <tr>
+                            <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
+                                >
+                                    {advisory.data.severity}
+                                </span>
+                                {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
+                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
+                                        {label}
                                     </span>
-                                    {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
-                                        <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
-                                            {label}
-                                        </span>
-                                    ))}
-                                    <br />
-                                    <a
-                                        class="nl-green"
-                                        href={advisoryUrl}
-                                        style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
-                                    >
-                                        {advisory.data.title}
-                                    </a>
-                                    <br />
-                                    <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
-                                        {advisory.data.subtitle}
-                                    </span>
-                                </td>
-                            </tr>
-                        );
-                    })}
+                                ))}
+                                <br />
+                                <a
+                                    class="nl-green"
+                                    href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
+                                    style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
+                                >
+                                    {advisory.data.title}
+                                </a>
+                                <br />
+                                <span class="nl-muted" style="font-size: 13px; color: #666666; line-height: 1.4;">
+                                    {advisory.data.subtitle}
+                                </span>
+                            </td>
+                        </tr>
+                    ))}
                 </table>
             </>
         )
@@ -295,39 +291,32 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                     Pipeline releases
                 </h2>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    <tr>
-                        <td style="font-size: 0;">
-                            {otherReleases.map((release) => (
-                                <div
-                                    class="nl-col"
-                                    style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                <div style="font-size: 0; margin-bottom: 16px;">
+                    {otherReleases.map((release) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                        >
+                            <div style="padding: 10px 12px; border-bottom: 1px solid #eeeeee;">
+                                <a
+                                    href={pipelineUrl(release.pipelineName)}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
                                 >
-                                    <div style="padding: 10px 12px; border-bottom: 1px solid #eeeeee;">
-                                        <a
-                                            href={pipelineUrl(release.pipelineName)}
-                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
-                                        >
-                                            nf-core/{release.pipelineName}
-                                        </a>
-                                        <br />
-                                        {release.tagNames.map((tag: string) => (
-                                            <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #ffffff; background-color: #6c757d;">
-                                                v{tag}
-                                            </span>
-                                        ))}
-                                        <span
-                                            class="nl-muted"
-                                            style="font-size: 13px; color: #888888; margin-left: 4px;"
-                                        >
-                                            {formatDate(new Date(release.publishedAt))}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
-                        </td>
-                    </tr>
-                </table>
+                                    nf-core/{release.pipelineName}
+                                </a>
+                                <br />
+                                {release.tagNames.map((tag: string) => (
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #ffffff; background-color: #6c757d;">
+                                        v{tag}
+                                    </span>
+                                ))}
+                                <span class="nl-muted" style="font-size: 13px; color: #888888; margin-left: 4px;">
+                                    {formatDate(new Date(release.publishedAt))}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </>
         )
     }
@@ -414,145 +403,115 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
                 {/* Recent events (secondary, 2-column) */}
                 {recentEvents.length > 0 && (
-                    <table
-                        role="presentation"
-                        width="100%"
-                        cellpadding="0"
-                        cellspacing="0"
-                        style="margin-bottom: 16px; margin-top: 16px;"
-                    >
-                        <tr>
-                            <td style="font-size: 0;">
-                                {recentEvents.map((event: any) => (
-                                    <div
-                                        class="nl-col"
-                                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
+                        {recentEvents.map((event: any) => (
+                            <div
+                                class="nl-col"
+                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                            >
+                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                    <a
+                                        href={eventUrl(event.id)}
+                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
                                     >
-                                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                            <a
-                                                href={eventUrl(event.id)}
-                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                            >
-                                                {event.data.title}
-                                            </a>
-                                            <br />
-                                            <span class="nl-muted" style="font-size: 12px; color: #888888;">
-                                                {formatDate(event.data.start)}
-                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                                    <> &ndash; {formatDate(event.data.end)}</>
-                                                )}
-                                            </span>
-                                            <span
-                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
-                                            >
-                                                {eventTypeLabel[event.data.type] || event.data.type}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                            </td>
-                        </tr>
-                    </table>
+                                        {event.data.title}
+                                    </a>
+                                    <br />
+                                    <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                        {formatDate(event.data.start)}
+                                        {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                            <> &ndash; {formatDate(event.data.end)}</>
+                                        )}
+                                    </span>
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                    >
+                                        {eventTypeLabel[event.data.type] || event.data.type}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
 
                 {/* Older blog posts (secondary, 2-column) */}
                 {olderBlogPosts.length > 0 && (
-                    <table
-                        role="presentation"
-                        width="100%"
-                        cellpadding="0"
-                        cellspacing="0"
-                        style="margin-bottom: 16px; margin-top: 16px;"
-                    >
-                        <tr>
-                            <td style="font-size: 0;">
-                                {olderBlogPosts.map((post: any) => (
-                                    <div
-                                        class="nl-col"
-                                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
-                                    >
-                                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                            <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="vertical-align: top; padding-right: 8px;">
-                                                        <a
-                                                            href={blogUrl(post.id)}
-                                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                        >
-                                                            {post.data.title}
-                                                        </a>
-                                                        <br />
-                                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                            {formatDate(post.data.pubDate)}
-                                                        </span>
-                                                    </td>
-                                                    <td style="vertical-align: middle; width: 80px;">
-                                                        <a
-                                                            href={blogUrl(post.id)}
-                                                            aria-label={post.data.title}
-                                                            style="text-decoration: none;"
-                                                        >
-                                                            <img
-                                                                src={imgSrc(blogImageSrcs.get(post.id))}
-                                                                alt={post.data.headerImageAlt || ""}
-                                                                width="80"
-                                                                height="45"
-                                                                style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
-                                                            />
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </div>
-                                    </div>
-                                ))}
-                            </td>
-                        </tr>
-                    </table>
+                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
+                        {olderBlogPosts.map((post: any) => (
+                            <div
+                                class="nl-col"
+                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                            >
+                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td style="vertical-align: top; padding-right: 8px;">
+                                                <a
+                                                    href={blogUrl(post.id)}
+                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                >
+                                                    {post.data.title}
+                                                </a>
+                                                <br />
+                                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                    {formatDate(post.data.pubDate)}
+                                                </span>
+                                            </td>
+                                            <td style="vertical-align: middle; width: 80px;">
+                                                <a
+                                                    href={blogUrl(post.id)}
+                                                    aria-label={post.data.title}
+                                                    style="text-decoration: none;"
+                                                >
+                                                    <img
+                                                        src={imgSrc(blogImageSrcs.get(post.id))}
+                                                        alt={post.data.headerImageAlt || ""}
+                                                        width="80"
+                                                        height="45"
+                                                        style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                    />
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
                 )}
 
                 {/* Older advisories (secondary, 2-column) */}
                 {olderAdvisories.length > 0 && (
-                    <table
-                        role="presentation"
-                        width="100%"
-                        cellpadding="0"
-                        cellspacing="0"
-                        style="margin-bottom: 16px; margin-top: 16px;"
-                    >
-                        <tr>
-                            <td style="font-size: 0;">
-                                {olderAdvisories.map((advisory: any) => {
-                                    const colors = getAdvisoryBadgeColors(advisory.data.severity);
-                                    const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
-                                    return (
-                                        <div
-                                            class="nl-col"
-                                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
+                        {olderAdvisories.map((advisory: any) => {
+                            const colors = getAdvisoryBadgeColors(advisory.data.severity);
+                            const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
+                            return (
+                                <div
+                                    class="nl-col"
+                                    style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                                >
+                                    <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                        <span
+                                            style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
                                         >
-                                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                                <span
-                                                    style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
-                                                >
-                                                    {advisory.data.severity}
-                                                </span>
-                                                <a
-                                                    href={advisoryUrl}
-                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                >
-                                                    {advisory.data.title}
-                                                </a>
-                                                <br />
-                                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                    {formatDate(advisory.data.publishedDate)}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
-                            </td>
-                        </tr>
-                    </table>
+                                            {advisory.data.severity}
+                                        </span>
+                                        <a
+                                            href={advisoryUrl}
+                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {advisory.data.title}
+                                        </a>
+                                        <br />
+                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                            {formatDate(advisory.data.publishedDate)}
+                                        </span>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 )}
             </>
         )
@@ -611,40 +570,33 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         nf-core/proposals
                     </a>
                 </p>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    <tr>
-                        <td style="font-size: 0;">
-                            {pipelineProposals
-                                .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
-                                .map((p) => (
-                                    <div
-                                        class="nl-col"
-                                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                <div style="font-size: 0; margin-bottom: 16px;">
+                    {pipelineProposals
+                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .map((p) => (
+                            <div
+                                class="nl-col"
+                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                            >
+                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                    <a
+                                        href={p.url}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
                                     >
-                                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                            <a
-                                                href={p.url}
-                                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                            >
-                                                {p.displayTitle}
-                                            </a>
-                                            <span
-                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                            >
-                                                {p.status === "accepted" ? "Accepted" : "New"}
-                                            </span>
-                                            <span
-                                                class="nl-muted"
-                                                style="font-size: 12px; color: #999999; margin-left: 4px;"
-                                            >
-                                                #{p.number}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                        </td>
-                    </tr>
-                </table>
+                                        {p.displayTitle}
+                                    </a>
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                    >
+                                        {p.status === "accepted" ? "Accepted" : "New"}
+                                    </span>
+                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                        #{p.number}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                </div>
             </>
         )
     }
@@ -654,40 +606,33 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         otherProposals.length > 0 && (
             <>
                 <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    <tr>
-                        <td style="font-size: 0;">
-                            {otherProposals
-                                .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
-                                .map((p) => (
-                                    <div
-                                        class="nl-col"
-                                        style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                <div style="font-size: 0; margin-bottom: 16px;">
+                    {otherProposals
+                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .map((p) => (
+                            <div
+                                class="nl-col"
+                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px;"
+                            >
+                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                    <a
+                                        href={p.url}
+                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
                                     >
-                                        <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                            <a
-                                                href={p.url}
-                                                style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                            >
-                                                {p.displayTitle}
-                                            </a>
-                                            <span
-                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                            >
-                                                {p.status === "accepted" ? "Accepted" : "New"}
-                                            </span>
-                                            <span
-                                                class="nl-muted"
-                                                style="font-size: 12px; color: #999999; margin-left: 4px;"
-                                            >
-                                                #{p.number}
-                                            </span>
-                                        </div>
-                                    </div>
-                                ))}
-                        </td>
-                    </tr>
-                </table>
+                                        {p.displayTitle}
+                                    </a>
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                    >
+                                        {p.status === "accepted" ? "Accepted" : "New"}
+                                    </span>
+                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                        #{p.number}
+                                    </span>
+                                </div>
+                            </div>
+                        ))}
+                </div>
             </>
         )
     }
@@ -737,7 +682,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     /* Responsive: stack 2-column cells on narrow screens */
     @media screen and (max-width: 600px) {
         #newsletter-content :global(.nl-col) {
-            max-width: 100% !important;
+            display: block !important;
+            width: 100% !important;
         }
     }
 
