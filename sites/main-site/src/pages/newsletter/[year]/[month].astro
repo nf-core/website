@@ -90,6 +90,19 @@ const proposals = getProposalsForMonth(allProposals, year, month);
 const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
 const otherProposals = proposals.filter((p) => p.category === "other");
 
+// Build email preview summary (~90 chars for Gmail)
+const previewParts: string[] = [];
+if (thisMonthBlogPosts.length > 0)
+    previewParts.push(`${thisMonthBlogPosts.length} blog post${thisMonthBlogPosts.length > 1 ? "s" : ""}`);
+if (releases.length > 0) previewParts.push(`${releases.length} pipeline release${releases.length > 1 ? "s" : ""}`);
+if (upcomingEvents.length > 0)
+    previewParts.push(`${upcomingEvents.length} upcoming event${upcomingEvents.length > 1 ? "s" : ""}`);
+if (thisMonthEvents.length > 0)
+    previewParts.push(`${thisMonthEvents.length} event${thisMonthEvents.length > 1 ? "s" : ""} this month`);
+const previewText =
+    previewParts.length > 0 ? previewParts.join(", ") + "." : `Community news for ${monthName} ${year}.`;
+const newsletterUrl = `${baseUrl}/newsletter/${year}/${String(month).padStart(2, "0")}`;
+
 // Event type color mapping
 const eventTypeColor: Record<string, string> = {
     bytesize: "#22ae63",
@@ -197,6 +210,16 @@ for (const event of upcomingEvents) {
 
     {/* ===== NEWSLETTER CONTENT (extractable for email) ===== */}
     <div id="newsletter-content">
+        {/* ----- EMAIL PREVIEW TEXT + VIEW IN BROWSER ----- */}
+        <p class="nl-muted" style="font-size: 13px; color: #888888; margin: 0 0 4px;">
+            {previewText}
+        </p>
+        <p style="font-size: 12px; margin: 0 0 16px;">
+            <a class="nl-green" href={newsletterUrl} style="color: #22ae63;">
+                Not displaying properly? View in browser &rarr;
+            </a>
+        </p>
+
         {/* ----- HEADER WITH LOGO ----- */}
         <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 24px;">
             <tr>
