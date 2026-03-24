@@ -73,5 +73,5 @@ Follow these steps to generate both Docker and Singularity container URLs for yo
 ## Additional resources
 
 - [Seqera Containers website](https://seqera.io/containers/)
-- [Contributing components guide](../../contributors/contribute-components.md)
+- [Contributing components guide](../../contributing/contribute-components)
 - [nf-core/modules repository](https://github.com/nf-core/modules)

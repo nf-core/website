@@ -8,11 +8,11 @@ markdownPlugin: checklist
 Pipeline release reviews ensure that pipelines meet nf-core standards before they reach the community.
 When you review a pipeline release pull request, you examine the submission and provide constructive feedback before maintainers merge the changes into the nf-core repository.
 
-Pipeline release PRs vary widely in their contents, making it harder to provide strict universal criteria compared to reviewing [components](/docs/contributors/reviewing-pull-requests/review_checklists/component).
+Pipeline release PRs vary widely in their contents, making it harder to provide strict universal criteria compared to reviewing [components](/docs/contributing/reviewing-pull-requests/review_checklists/component).
 Your role as a reviewer is to check for adherence to the central principles of nf-core: reproducibility, excellent reporting, documentation, and template compliance.
 
 :::tip
-Use the [pipeline release review checklist](/docs/contributors/reviewing-pull-requests/review_checklists/pipeline-release) for a quick reference whilst reviewing.
+Use the [pipeline release review checklist](/docs/contributing/reviewing-pull-requests/review_checklists/pipeline-release) for a quick reference whilst reviewing.
 :::
 
 ## Before you start
