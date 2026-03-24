@@ -21,6 +21,7 @@ interface Props {
         pipelineProposals: any[];
         otherProposals: any[];
         monthAdvisories: any[];
+        olderAdvisories: any[];
         blogImageSrcs: Map<string, any>;
         eventImageSrcs: Map<string, any>;
     };
@@ -44,6 +45,7 @@ const {
     pipelineProposals,
     otherProposals,
     monthAdvisories,
+    olderAdvisories,
     blogImageSrcs,
     eventImageSrcs,
 } = data;
@@ -389,9 +391,9 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         )
     }
 
-    {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts) ----- */}
+    {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts + older advisories) ----- */}
     {
-        (recentEvents.length > 0 || olderBlogPosts.length > 0) && (
+        (recentEvents.length > 0 || olderBlogPosts.length > 0 || olderAdvisories.length > 0) && (
             <>
                 <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
                     In case you missed it
@@ -399,100 +401,126 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
 
                 {/* Recent events (secondary, 2-column) */}
                 {recentEvents.length > 0 && (
-                    <>
-                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Recent events</h3>
-                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                            {recentEvents
-                                .reduce((rows: any[][], event, i) => {
-                                    if (i % 2 === 0) rows.push([event]);
-                                    else rows[rows.length - 1].push(event);
-                                    return rows;
-                                }, [])
-                                .map((pair: any[]) => (
-                                    <tr>
-                                        {pair.map((event: any) => (
-                                            <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
-                                                <a
-                                                    href={eventUrl(event.id)}
-                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                >
-                                                    {event.data.title}
-                                                </a>
-                                                <br />
-                                                <span class="nl-muted" style="font-size: 12px; color: #888888;">
-                                                    {formatDate(event.data.start)}
-                                                    {event.data.start.toDateString() !==
-                                                        event.data.end.toDateString() && (
-                                                        <> &ndash; {formatDate(event.data.end)}</>
-                                                    )}
-                                                </span>
-                                                <span
-                                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
-                                                >
-                                                    {eventTypeLabel[event.data.type] || event.data.type}
-                                                </span>
-                                            </td>
-                                        ))}
-                                        {pair.length === 1 && <td style="width: 50%;" />}
-                                    </tr>
-                                ))}
-                        </table>
-                    </>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                        {recentEvents
+                            .reduce((rows: any[][], event, i) => {
+                                if (i % 2 === 0) rows.push([event]);
+                                else rows[rows.length - 1].push(event);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((event: any) => (
+                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <a
+                                                href={eventUrl(event.id)}
+                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {event.data.title}
+                                            </a>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                                {formatDate(event.data.start)}
+                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
+                                                    <> &ndash; {formatDate(event.data.end)}</>
+                                                )}
+                                            </span>
+                                            <span
+                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                            >
+                                                {eventTypeLabel[event.data.type] || event.data.type}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
+                    </table>
                 )}
 
                 {/* Older blog posts (secondary, 2-column) */}
                 {olderBlogPosts.length > 0 && (
-                    <>
-                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Older blog posts</h3>
-                        <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                            {olderBlogPosts
-                                .reduce((rows: any[][], post, i) => {
-                                    if (i % 2 === 0) rows.push([post]);
-                                    else rows[rows.length - 1].push(post);
-                                    return rows;
-                                }, [])
-                                .map((pair: any[]) => (
-                                    <tr>
-                                        {pair.map((post: any) => (
-                                            <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
-                                                <table width="100%" cellpadding="0" cellspacing="0">
-                                                    <tr>
-                                                        <td style="vertical-align: top; padding-right: 8px;">
-                                                            <a
-                                                                href={blogUrl(post.id)}
-                                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                            >
-                                                                {post.data.title}
-                                                            </a>
-                                                            <br />
-                                                            <span
-                                                                class="nl-muted"
-                                                                style="font-size: 12px; color: #999999;"
-                                                            >
-                                                                {formatDate(post.data.pubDate)}
-                                                            </span>
-                                                        </td>
-                                                        <td style="vertical-align: middle; width: 80px;">
-                                                            <a href={blogUrl(post.id)} style="text-decoration: none;">
-                                                                <Image
-                                                                    src={blogImageSrcs.get(post.id)}
-                                                                    alt={post.data.headerImageAlt || ""}
-                                                                    width={160}
-                                                                    height={90}
-                                                                    densities={[1.5, 2]}
-                                                                    style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
-                                                                />
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                        ))}
-                                        {pair.length === 1 && <td style="width: 50%;" />}
-                                    </tr>
-                                ))}
-                        </table>
-                    </>
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                        {olderBlogPosts
+                            .reduce((rows: any[][], post, i) => {
+                                if (i % 2 === 0) rows.push([post]);
+                                else rows[rows.length - 1].push(post);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((post: any) => (
+                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <table width="100%" cellpadding="0" cellspacing="0">
+                                                <tr>
+                                                    <td style="vertical-align: top; padding-right: 8px;">
+                                                        <a
+                                                            href={blogUrl(post.id)}
+                                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                        >
+                                                            {post.data.title}
+                                                        </a>
+                                                        <br />
+                                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                            {formatDate(post.data.pubDate)}
+                                                        </span>
+                                                    </td>
+                                                    <td style="vertical-align: middle; width: 80px;">
+                                                        <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                                            <Image
+                                                                src={blogImageSrcs.get(post.id)}
+                                                                alt={post.data.headerImageAlt || ""}
+                                                                width={160}
+                                                                height={90}
+                                                                densities={[1.5, 2]}
+                                                                style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                            />
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
+                    </table>
+                )}
+
+                {/* Older advisories (secondary, 2-column) */}
+                {olderAdvisories.length > 0 && (
+                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px; margin-top: 16px;">
+                        {olderAdvisories
+                            .reduce((rows: any[][], a, i) => {
+                                if (i % 2 === 0) rows.push([a]);
+                                else rows[rows.length - 1].push(a);
+                                return rows;
+                            }, [])
+                            .map((pair: any[]) => (
+                                <tr>
+                                    {pair.map((advisory: any) => (
+                                        <td style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                            <span
+                                                style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
+                                            >
+                                                {advisory.data.severity}
+                                            </span>
+                                            <a
+                                                href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
+                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                            >
+                                                {advisory.data.title}
+                                            </a>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                                {formatDate(advisory.data.publishedDate)}
+                                            </span>
+                                        </td>
+                                    ))}
+                                    {pair.length === 1 && <td style="width: 50%;" />}
+                                </tr>
+                            ))}
+                    </table>
                 )}
             </>
         )
