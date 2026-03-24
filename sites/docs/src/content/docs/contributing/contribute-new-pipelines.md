@@ -26,11 +26,11 @@ You will need the following to get started:
 :::
 
 :::tip
-To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributors/contribute-existing-pipelines).
+To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributing/contribute-existing-pipelines).
 :::
 
 :::info
-If your proposal is turned down, you can still use the nf-core template, tooling, and components. See [developing external pipelines with nf-core](developing/external-use).
+If your proposal is turned down, you can still use the nf-core template, tooling, and components. See [developing external pipelines with nf-core](/docs/developing/external-use).
 :::
 
 ## Request a new pipeline
@@ -369,7 +369,7 @@ Once reviewers approve your pull request:
    - Describe the general features and capabilities.
    - Tag contributors with their GitHub handles so their icons appear on the release page.
 
-1. Follow the [pipeline release checklist](/docs/contributors/pipeline-release) to complete the release process.
+1. Follow the [pipeline release checklist](../developing/pipelines/release-procedure) to complete the release process.
 
 The nf-core website and tools will automatically detect and display your new release.
 
