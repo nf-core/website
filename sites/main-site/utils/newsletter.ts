@@ -264,6 +264,34 @@ export function getNewPipelines(pipelines: PipelineWorkflow[], year: number, mon
 }
 
 /**
+ * Advisories from the previous N months (for "in case you missed it").
+ */
+export function getAdvisoriesForPreviousMonths(
+    advisories: {
+        id: string;
+        data: { publishedDate: Date; title: string; subtitle: string; severity: string; type: string[] };
+    }[],
+    year: number,
+    month: number,
+    count: number = 2,
+) {
+    const results: typeof advisories = [];
+    let y = year;
+    let m = month;
+
+    for (let i = 0; i < count; i++) {
+        m--;
+        if (m === 0) {
+            m = 12;
+            y--;
+        }
+        results.push(...getAdvisoriesForMonth(advisories, y, m));
+    }
+
+    return results.sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+}
+
+/**
  * Events starting in the given month.
  */
 export function getEventsForMonth(
@@ -458,6 +486,7 @@ export async function getNewsletterContentData(
     const recentEvents = getEventsForMonth(events, contentYear, contentMonth);
     const allAdvisories = await getCollectionFn("advisories");
     const monthAdvisories = getAdvisoriesForMonth(allAdvisories, contentYear, contentMonth);
+    const olderAdvisories = getAdvisoriesForPreviousMonths(allAdvisories, contentYear, contentMonth, 2);
     const proposals = getProposalsForMonth(allProposals, contentYear, contentMonth);
     const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
     const otherProposals = proposals.filter((p) => p.category === "other");
@@ -519,6 +548,7 @@ export async function getNewsletterContentData(
         pipelineProposals,
         otherProposals,
         monthAdvisories,
+        olderAdvisories,
         blogImageSrcs,
         eventImageSrcs,
     };
