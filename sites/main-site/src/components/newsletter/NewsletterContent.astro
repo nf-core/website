@@ -188,10 +188,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                 </span>
                             </td>
                             <td style="padding: 12px 0 12px 16px; border-bottom: 1px solid #eeeeee; vertical-align: middle; width: 240px;">
-                                <a href={blogUrl(post.id)} aria-label={post.data.title} style="text-decoration: none;">
+                                <a href={blogUrl(post.id)} style="text-decoration: none;">
                                     <img
                                         src={imgSrc(blogImageSrcs.get(post.id))}
-                                        alt={post.data.headerImageAlt || ""}
+                                        alt={post.data.title}
                                         width="240"
                                         height="135"
                                         style="width: 240px; height: 135px; display: block; border-radius: 6px; object-fit: cover;"
@@ -369,15 +369,12 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                         {event.data.headerImage && (
                             <tr>
                                 <td colspan={2} style="padding: 8px 0 0;">
-                                    <a
-                                        href={eventUrl(event.id)}
-                                        aria-label={event.data.title}
-                                        style="text-decoration: none;"
-                                    >
+                                    <a href={eventUrl(event.id)} style="text-decoration: none;">
                                         <img
                                             src={imgSrc(eventImageSrcs.get(event.id))}
-                                            alt={event.data.headerImageAlt || event.data.title}
+                                            alt={event.data.title}
                                             width="240"
+                                            height="126"
                                             style="width: 240px; height: auto; display: block; border-radius: 6px;"
                                         />
                                     </a>
@@ -458,14 +455,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                                 </span>
                                             </td>
                                             <td style="vertical-align: middle; width: 80px;">
-                                                <a
-                                                    href={blogUrl(post.id)}
-                                                    aria-label={post.data.title}
-                                                    style="text-decoration: none;"
-                                                >
+                                                <a href={blogUrl(post.id)} style="text-decoration: none;">
                                                     <img
                                                         src={imgSrc(blogImageSrcs.get(post.id))}
-                                                        alt={post.data.headerImageAlt || ""}
+                                                        alt={post.data.title}
                                                         width="80"
                                                         height="45"
                                                         style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
