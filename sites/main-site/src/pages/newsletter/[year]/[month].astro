@@ -67,6 +67,10 @@ const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.pro
 const monthName = getMonthName(month);
 const baseUrl = "https://nf-co.re";
 
+// Content month (previous calendar month — newsletter looks back)
+const contentMonth = month === 1 ? 12 : month - 1;
+const contentYear = month === 1 ? year - 1 : year;
+
 // Fetch all data
 let blogPosts = await getCollection("blog");
 blogPosts = blogPosts.filter((post) => new Date(post.data.pubDate) < new Date());
@@ -76,19 +80,20 @@ events = events.filter((e) => e.id.split("/").length === 2);
 
 const pipelines = pipelines_json.remote_workflows;
 
-const thisMonthBlogPosts = getBlogPostsForMonth(blogPosts, year, month);
-const olderBlogPosts = getBlogPostsForPreviousMonths(blogPosts, year, month, 2);
-const releases = getPipelineReleasesForMonth(pipelines, year, month);
+// Main content: from the previous month (looking back)
+const thisMonthBlogPosts = getBlogPostsForMonth(blogPosts, contentYear, contentMonth);
+const olderBlogPosts = getBlogPostsForPreviousMonths(blogPosts, contentYear, contentMonth, 2);
+const releases = getPipelineReleasesForMonth(pipelines, contentYear, contentMonth);
 const firstReleases = releases.filter((r) => r.isFirstRelease);
 const otherReleases = releases.filter((r) => !r.isFirstRelease);
-const newPipelines = getNewPipelines(pipelines, year, month);
-const thisMonthEvents = getEventsForMonth(events, year, month);
-const upcomingEvents = getFutureEvents(events, year, month, 2);
-
-// Filter proposals for this month, split by category
-const proposals = getProposalsForMonth(allProposals, year, month);
+const newPipelines = getNewPipelines(pipelines, contentYear, contentMonth);
+const recentEvents = getEventsForMonth(events, contentYear, contentMonth);
+const proposals = getProposalsForMonth(allProposals, contentYear, contentMonth);
 const pipelineProposals = proposals.filter((p) => p.category === "pipeline");
 const otherProposals = proposals.filter((p) => p.category === "other");
+
+// Upcoming events: this month and next (from the reader's perspective)
+const upcomingEvents = [...getEventsForMonth(events, year, month), ...getFutureEvents(events, year, month, 1)];
 
 // Build email preview summary (~90 chars for Gmail)
 const previewParts: string[] = [];
@@ -97,8 +102,6 @@ if (thisMonthBlogPosts.length > 0)
 if (releases.length > 0) previewParts.push(`${releases.length} pipeline release${releases.length > 1 ? "s" : ""}`);
 if (upcomingEvents.length > 0)
     previewParts.push(`${upcomingEvents.length} upcoming event${upcomingEvents.length > 1 ? "s" : ""}`);
-if (thisMonthEvents.length > 0)
-    previewParts.push(`${thisMonthEvents.length} event${thisMonthEvents.length > 1 ? "s" : ""} this month`);
 const previewText =
     previewParts.length > 0 ? previewParts.join(", ") + "." : `Community news for ${monthName} ${year}.`;
 const newsletterUrl = `${baseUrl}/newsletter/${year}/${String(month).padStart(2, "0")}`;
@@ -426,107 +429,114 @@ for (const event of upcomingEvents) {
             )
         }
 
-        {/* ----- 5. EVENTS THIS MONTH (secondary, 2-column) ----- */}
+        {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts) ----- */}
         {
-            thisMonthEvents.length > 0 && (
-                <>
-                    <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
-                        Events that happened this month
-                    </h2>
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {thisMonthEvents
-                            .reduce((rows: any[][], event, i) => {
-                                if (i % 2 === 0) rows.push([event]);
-                                else rows[rows.length - 1].push(event);
-                                return rows;
-                            }, [])
-                            .map((pair: any[]) => (
-                                <tr>
-                                    {pair.map((event: any) => (
-                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
-                                            <a
-                                                href={eventUrl(event.id)}
-                                                style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                            >
-                                                {event.data.title}
-                                            </a>
-                                            <br />
-                                            <span class="nl-muted" style="font-size: 12px; color: #888888;">
-                                                {formatDate(event.data.start)}
-                                                {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                                    <> &ndash; {formatDate(event.data.end)}</>
-                                                )}
-                                            </span>
-                                            <span
-                                                style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
-                                            >
-                                                {eventTypeLabel[event.data.type] || event.data.type}
-                                            </span>
-                                        </td>
-                                    ))}
-                                    {pair.length === 1 && <td style="width: 50%;" />}
-                                </tr>
-                            ))}
-                    </table>
-                </>
-            )
-        }
-
-        {/* ----- 6. IN CASE YOU MISSED IT (secondary, 2-column) ----- */}
-        {
-            olderBlogPosts.length > 0 && (
+            (recentEvents.length > 0 || olderBlogPosts.length > 0) && (
                 <>
                     <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
                         In case you missed it
                     </h2>
-                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                        Blog posts from the past couple of months.
-                    </p>
-                    <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                        {olderBlogPosts
-                            .reduce((rows: any[][], post, i) => {
-                                if (i % 2 === 0) rows.push([post]);
-                                else rows[rows.length - 1].push(post);
-                                return rows;
-                            }, [])
-                            .map((pair: any[]) => (
-                                <tr>
-                                    {pair.map((post: any) => (
-                                        <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
-                                            <table width="100%" cellpadding="0" cellspacing="0">
-                                                <tr>
-                                                    <td style="vertical-align: top; padding-right: 8px;">
-                                                        <a
-                                                            href={blogUrl(post.id)}
-                                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                                        >
-                                                            {post.data.title}
-                                                        </a>
-                                                        <br />
-                                                        <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                            {formatDate(post.data.pubDate)}
-                                                        </span>
-                                                    </td>
-                                                    <td style="vertical-align: middle; width: 80px;">
-                                                        <a href={blogUrl(post.id)} style="text-decoration: none;">
-                                                            <Image
-                                                                src={blogImageSrcs.get(post.id)}
-                                                                alt={post.data.headerImageAlt || ""}
-                                                                width={160}
-                                                                height={90}
-                                                                densities={[1.5, 2]}
-                                                                style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
-                                                            />
-                                                        </a>
-                                                    </td>
-                                                </tr>
-                                            </table>
-                                        </td>
+
+                    {/* Recent events (secondary, 2-column) */}
+                    {recentEvents.length > 0 && (
+                        <>
+                            <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Recent events</h3>
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                                {recentEvents
+                                    .reduce((rows: any[][], event, i) => {
+                                        if (i % 2 === 0) rows.push([event]);
+                                        else rows[rows.length - 1].push(event);
+                                        return rows;
+                                    }, [])
+                                    .map((pair: any[]) => (
+                                        <tr>
+                                            {pair.map((event: any) => (
+                                                <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                                    <a
+                                                        href={eventUrl(event.id)}
+                                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                    >
+                                                        {event.data.title}
+                                                    </a>
+                                                    <br />
+                                                    <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                                        {formatDate(event.data.start)}
+                                                        {event.data.start.toDateString() !==
+                                                            event.data.end.toDateString() && (
+                                                            <> &ndash; {formatDate(event.data.end)}</>
+                                                        )}
+                                                    </span>
+                                                    <span
+                                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                                    >
+                                                        {eventTypeLabel[event.data.type] || event.data.type}
+                                                    </span>
+                                                </td>
+                                            ))}
+                                            {pair.length === 1 && <td style="width: 50%;" />}
+                                        </tr>
                                     ))}
-                                    {pair.length === 1 && <td style="width: 50%;" />}
-                                </tr>
-                            ))}
-                    </table>
+                            </table>
+                        </>
+                    )}
+
+                    {/* Older blog posts (secondary, 2-column) */}
+                    {olderBlogPosts.length > 0 && (
+                        <>
+                            <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Older blog posts</h3>
+                            <table width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
+                                {olderBlogPosts
+                                    .reduce((rows: any[][], post, i) => {
+                                        if (i % 2 === 0) rows.push([post]);
+                                        else rows[rows.length - 1].push(post);
+                                        return rows;
+                                    }, [])
+                                    .map((pair: any[]) => (
+                                        <tr>
+                                            {pair.map((post: any) => (
+                                                <td style="padding: 8px 8px 8px 0; border-bottom: 1px solid #f0f0f0; vertical-align: top; width: 50%;">
+                                                    <table width="100%" cellpadding="0" cellspacing="0">
+                                                        <tr>
+                                                            <td style="vertical-align: top; padding-right: 8px;">
+                                                                <a
+                                                                    href={blogUrl(post.id)}
+                                                                    style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                                                >
+                                                                    {post.data.title}
+                                                                </a>
+                                                                <br />
+                                                                <span
+                                                                    class="nl-muted"
+                                                                    style="font-size: 12px; color: #999999;"
+                                                                >
+                                                                    {formatDate(post.data.pubDate)}
+                                                                </span>
+                                                            </td>
+                                                            <td style="vertical-align: middle; width: 80px;">
+                                                                <a
+                                                                    href={blogUrl(post.id)}
+                                                                    style="text-decoration: none;"
+                                                                >
+                                                                    <Image
+                                                                        src={blogImageSrcs.get(post.id)}
+                                                                        alt={post.data.headerImageAlt || ""}
+                                                                        width={160}
+                                                                        height={90}
+                                                                        densities={[1.5, 2]}
+                                                                        style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
+                                                                    />
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                            ))}
+                                            {pair.length === 1 && <td style="width: 50%;" />}
+                                        </tr>
+                                    ))}
+                            </table>
+                        </>
+                    )}
                 </>
             )
         }
