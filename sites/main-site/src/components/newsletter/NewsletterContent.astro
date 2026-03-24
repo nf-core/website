@@ -1,5 +1,4 @@
 ---
-import { Image } from "astro:assets";
 import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
 import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
 
@@ -82,6 +81,10 @@ function eventUrl(eventId: string): string {
 
 function pipelineUrl(name: string): string {
     return `${baseUrl}/${name}`;
+}
+
+function imgSrc(src: any): string {
+    return typeof src === "string" ? src : src.src;
 }
 
 const severityColors: Record<string, string> = {
@@ -186,12 +189,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             </td>
                             <td style="padding: 12px 0 12px 16px; border-bottom: 1px solid #eeeeee; vertical-align: middle; width: 240px;">
                                 <a href={blogUrl(post.id)} aria-label={post.data.title} style="text-decoration: none;">
-                                    <Image
-                                        src={blogImageSrcs.get(post.id)}
+                                    <img
+                                        src={imgSrc(blogImageSrcs.get(post.id))}
                                         alt={post.data.headerImageAlt || ""}
-                                        width={480}
-                                        height={270}
-                                        densities={[1.5, 2]}
+                                        width="240"
+                                        height="135"
                                         style="width: 240px; height: 135px; display: block; border-radius: 6px; object-fit: cover;"
                                     />
                                 </a>
@@ -379,11 +381,10 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                         aria-label={event.data.title}
                                         style="text-decoration: none;"
                                     >
-                                        <Image
-                                            src={eventImageSrcs.get(event.id)}
+                                        <img
+                                            src={imgSrc(eventImageSrcs.get(event.id))}
                                             alt={event.data.headerImageAlt || event.data.title}
-                                            width={480}
-                                            densities={[1.5, 2]}
+                                            width="240"
                                             style="width: 240px; height: auto; display: block; border-radius: 6px;"
                                         />
                                     </a>
@@ -487,12 +488,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                                             aria-label={post.data.title}
                                                             style="text-decoration: none;"
                                                         >
-                                                            <Image
-                                                                src={blogImageSrcs.get(post.id)}
+                                                            <img
+                                                                src={imgSrc(blogImageSrcs.get(post.id))}
                                                                 alt={post.data.headerImageAlt || ""}
-                                                                width={160}
-                                                                height={90}
-                                                                densities={[1.5, 2]}
+                                                                width="80"
+                                                                height="45"
                                                                 style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
                                                             />
                                                         </a>
