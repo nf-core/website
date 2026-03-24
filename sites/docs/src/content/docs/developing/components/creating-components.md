@@ -9,7 +9,7 @@ Modules are individual tool wrappers that represent single processes, while subw
 Shared components enable standardized, reproducible analyses across research groups worldwide, reduce duplicated development effort, and accelerate scientific discovery.
 
 This guide explains how to write and develop modules and subworkflows for nf-core.
-Once your component is ready, see [Contributing Components](../../contributors/contribute-components.md) for instructions on contributing it to nf-core.
+Once your component is ready, see [Contributing Components](../../contributing/contribute-components) for instructions on contributing it to nf-core.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
@@ -135,7 +135,7 @@ GitHub Actions automatically runs these tests when you submit a pull request, bu
 
 Once your component is written and all tests pass, you can contribute it to nf-core:
 
-- Follow the [Contributing Components](../../contributors/contribute-components.md) guide to submit your component to the nf-core/modules repository.
+- Follow the [Contributing Components](../../contributing/contribute-components) guide to submit your component to the nf-core/modules repository.
 - Your component will be reviewed by the nf-core community and, once approved, will be available to all nf-core pipelines and the Nextflow community.
 
 ## Additional resources

@@ -5,19 +5,21 @@ shortTitle: Reviewing components
 markdownPlugin: checklist
 ---
 
-<!-- TODO: Add links to other pages and guide where possible -->
-
-Component reviews ensure that modules and subworkflows meet nf-core standards before they reach the community.
+Component reviews ensure that [modules](https://nf-co.re/modules/) and [subworkflows](https://nf-co.re/subworkflows/) meet nf-core standards before they reach the community.
 When you review a component pull request, you examine a new component submission or proposed changes to an existing component and provide constructive feedback before maintainers merge them into the nf-core repository.
 
 The team of [maintainers](https://github.com/orgs/nf-core/teams/maintainers/members) oversees the review process for components, but community input helps catch issues and ensures components work well across different use cases.
 Your perspective as a user of the components is valuable, particularly if you've used the tool before or understand common use cases.
 
+:::note{title="Component specifications"}
+For information about best practices for nf-core components, see [Module specifications](../../../specifications/components/overview#module-specifications) and [Subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications).
+:::
+
 ## General
 
 Start by verifying that the component meets the general specifications:
 
-- [ ] All components adhere to the nf-core [module specifications](/docs/guidelines/components/modules) or [subworkflow specifications](/docs/guidelines/components/subworkflows)
+- [ ] All components adhere to the nf-core [module specifications](../../../specifications/components/overview#module-specifications) or [subworkflow specifications](../../../specifications/components/overview#subworkflow-specifications)
 - [ ] All checks pass, including linting, conda, singularity, and docker
 
 You can cover most of the specifications by checking for the following:
@@ -50,4 +52,4 @@ Check `../tests/modules/nf-core/<module-name>/main.nf` and `meta.yml` for:
 - [ ] `meta.yml` file has correct documentation links and patterns of files
 - [ ] `meta.yml` file has correct [`bio.tools`](https://bio.tools/) ID for the tool and correct [EDAM ontology](https://edamontology.github.io/edam-browser/#topic_0091) links of files
 - [ ] Tool help has been checked to ensure important input (usually optional) has not been missed
-- [ ] nf-test runs successfully (for example, on Gitpod) and captures all outputs
+- [ ] [nf-test](https://www.nf-test.com/) runs successfully (for example, on Gitpod) and captures all outputs
