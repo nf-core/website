@@ -395,6 +395,14 @@ for (const event of upcomingEvents) {
                                     >
                                         {event.data.title}
                                     </a>
+                                    {event.data.subtitle && (
+                                        <>
+                                            <br />
+                                            <span class="nl-muted" style="font-size: 14px; color: #555555;">
+                                                {event.data.subtitle}
+                                            </span>
+                                        </>
+                                    )}
                                     <br />
                                     <span class="nl-muted" style="font-size: 13px; color: #666666;">
                                         {formatDate(event.data.start)}
