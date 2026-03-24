@@ -189,7 +189,7 @@ for (const event of upcomingEvents) {
                 )
             }
 
-            <select id="newsletter-month-select" class="form-select form-select-sm w-auto">
+            <select class="newsletter-month-select form-select form-select-sm w-auto">
                 {
                     allMonths.map((m) => (
                         <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
@@ -719,6 +719,17 @@ for (const event of upcomingEvents) {
                     <span />
                 )
             }
+
+            <select class="newsletter-month-select form-select form-select-sm w-auto">
+                {
+                    allMonths.map((m) => (
+                        <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
+                            {getMonthName(m.month)} {m.year}
+                        </option>
+                    ))
+                }
+            </select>
+
             {
                 nextMonth ? (
                     <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
@@ -733,12 +744,11 @@ for (const event of upcomingEvents) {
 </PageLayout>
 
 <script>
-    const select = document.getElementById("newsletter-month-select") as HTMLSelectElement;
-    if (select) {
+    document.querySelectorAll<HTMLSelectElement>(".newsletter-month-select").forEach((select) => {
         select.addEventListener("change", () => {
             window.location.href = select.value;
         });
-    }
+    });
 </script>
 
 <style lang="scss">
