@@ -532,7 +532,7 @@ script:
 template 'deseq2_differential.R'
 ```
 
-See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in a nf-core pipeline.
+See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
 
 The resulting structure would look like this.
 
