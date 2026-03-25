@@ -312,7 +312,6 @@ All modules MUST report the versions of all tools used within it.
 
 All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
-
 ```groovy title="main.nf"
 tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
 ```
