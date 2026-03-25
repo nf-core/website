@@ -4,7 +4,7 @@ subtitle: Recognition for nf-core pipeline publications
 weight: 123
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 All pipeline publications and presentations, or those that describe pipelines, SHOULD give attribution to the nf-core community.
 
