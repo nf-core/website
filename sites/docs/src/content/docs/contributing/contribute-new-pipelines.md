@@ -26,7 +26,11 @@ You will need the following to get started:
 :::
 
 :::tip
-To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributors/contribute-existing-pipelines).
+To contribute features, bug fixes, or improvements to existing nf-core pipelines, see [Contributing to existing pipelines](/docs/contributing/contribute-existing-pipelines).
+:::
+
+:::info
+If your proposal is turned down, you can still use the nf-core template, tooling, and components. See [developing external pipelines with nf-core](/docs/developing/external-use).
 :::
 
 ## Request a new pipeline
@@ -272,10 +276,14 @@ To set up the branch structure:
 
 Configure the following repository settings on GitHub:
 
-- Add a description, the [https://nf-co.re](https://nf-co.re) URL, and keywords.
-- Enable **Issues** and disable **Wiki** and **Projects**.
-- Protect the `master` branch to require review and passing tests.
-- Set write permissions for `nf-core/all` and admin permissions for `nf-core/admin`.
+- Add a description, the [https://nf-co.re](https://nf-co.re) URL and lots of keywords
+- Enable issues, disable **Wiki** and **Projects**
+- Enable **Always suggest updating pull request branches**
+- Enable **Automatically delete head branches**
+- Add the **contributors** team with **Write** access and the **core** team with **Admin** access
+- Set `master`/`main`, `dev` and `TEMPLATE` branches as protected, so that they require review and passing tests (via rulesets)
+
+The full step-by-step checklist for these settings is in the [core team checklist](/docs/community/governance/core-team#pipeline-repository-settings).
 
 Verify these settings using the nf-core [repository health web page](https://nf-co.re/pipeline_health).
 This page reports the status of various checks and can fix errors automatically via the GitHub API.
@@ -354,11 +362,14 @@ See the documentation pinned in [#release-review-trading](https://nfcore.slack.c
 
 Once reviewers approve your pull request:
 
+1. Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset.
+   - All unreleased nf-core pipelines have this ruleset applied, which prevents tag creation until the pipeline is ready for its first release.
+
 1. Add a changelog entry describing the pipeline functionality at release.
    - Describe the general features and capabilities.
    - Tag contributors with their GitHub handles so their icons appear on the release page.
 
-1. Follow the [pipeline release checklist](/docs/contributors/pipeline-release) to complete the release process.
+1. Follow the [pipeline release checklist](../developing/pipelines/release-procedure) to complete the release process.
 
 The nf-core website and tools will automatically detect and display your new release.
 

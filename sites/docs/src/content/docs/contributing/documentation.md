@@ -38,7 +38,7 @@ Before you start writing, familiarize yourself with these essential resources:
 
 ### Style guide
 
-The [style guide](../developers/documentation/style_guide.md) covers all the essential styling rules for nf-core documentation, including:
+The [style guide](../developers/documentation/style-guide) covers all the essential styling rules for nf-core documentation, including:
 
 - Voice and tone guidelines for conversational, concise writing
 - Grammar and punctuation rules (British English, active voice, Oxford comma)
@@ -50,7 +50,7 @@ Following the style guide ensures consistency across all nf-core documentation a
 
 ### Topic types
 
-The [topic types](../developers/documentation/topic_types) page explains how to structure different kinds of documentation content framework:
+The [topic types](../developing/documentation/topic-types) page explains how to structure different kinds of documentation content framework:
 
 - **Concept**: Explain what features are and why they matter.
 - **Task**: Provide step-by-step instructions for completing actions.
@@ -80,5 +80,6 @@ If you have questions at any point:
 - Contact **#team-docs** on the [nf-core Slack](https://nf-co.re/join#Slack) workspace
 - Ask in your pull request comments
 - Review existing documentation for examples
+- Use the [nf-core-bot](reviewing-pull-requests/nf-core-bot) to automatically fix some common markdown formatting mistakes and other actions in pull requests.
 
 We're a friendly community and happy to help new contributors!

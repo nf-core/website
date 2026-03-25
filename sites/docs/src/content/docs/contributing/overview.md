@@ -10,6 +10,16 @@ Whether you're fixing a bug, developing a new pipeline, writing documentation, o
 
 This section covers the different ways you can contribute to nf-core.
 
+:::note{title="Very Important Pipelines"}
+Some widely adopted nf-core pipelines play a critical role in the ecosystem and have additional considerations for contributions. See [Very Important Pipelines](../community/very-important-pipelines) for more information.
+:::
+
+## Quick start
+
+New to contributing? Start here:
+
+- **[How to contribute](./how-to-contribute):** An introduction to contributing to nf-core, including contribution etiquette and where to begin
+
 ## Pipelines
 
 nf-core pipelines are end-to-end bioinformatics workflows built using the nf-core template and community standards.
