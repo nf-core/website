@@ -260,7 +260,7 @@ If a hardcoded meta key name is an absolute necessity in a module, it MAY be inc
 
 In this example, `-r ${meta.strandedness}` is hardcoded in the `my_command` module.
 
-First install the tool into your pipeline with `nf-core modules install my_command`
+First install the tool into your pipeline with `nf-core modules install my_command`.
 
 Edit the `main.nf` to include `-r ${meta.strandedness}` and save it.
 
