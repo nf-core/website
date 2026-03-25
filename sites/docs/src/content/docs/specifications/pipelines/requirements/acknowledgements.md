@@ -6,7 +6,7 @@ menu:
     weight: 140
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 Where previous work from other pipelines or projects is used within a pipeline, the original author(s) MUST be properly acknowledged.
 

@@ -6,7 +6,7 @@ menu:
     weight: 90
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 - Pipelines MUST be released with stable release tags.
 - Releases MUST use GitHub releases and include a [detailed changelog](https://keepachangelog.com/en/1.0.0/) file.

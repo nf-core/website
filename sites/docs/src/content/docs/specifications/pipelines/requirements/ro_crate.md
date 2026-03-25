@@ -4,7 +4,7 @@ subtitle: Pipelines must come with their own Research Object (RO) Crate
 shortTitle: RO Crate
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 All nf-core pipelines MUST come with their own Research Object (RO) Crate.
 
