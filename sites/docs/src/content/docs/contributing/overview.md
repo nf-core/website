@@ -47,7 +47,7 @@ nf-core/configs contains a set of centralised Nextflow configuration files that 
 
 - **[Contributing configs](https://github.com/nf-core/configs):** Add a new institutional configuration file with custom parameters to run nf-core pipelines
 
-<!-- TODO: Add a section about plugins when docs become available in the future -->
+<!-- TODO post-v2: Add a section about plugins when docs become available in the future -->
 
 ## Documentation
 

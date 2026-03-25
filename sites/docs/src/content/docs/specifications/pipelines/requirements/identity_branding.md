@@ -6,7 +6,7 @@ menu:
     weight: 5
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 All nf-core pipelines are [community owned](/docs/guidelines/pipelines/requirements/community_owned).
 nf-core pipelines MUST be owned by nf-core, and nf-core alone.

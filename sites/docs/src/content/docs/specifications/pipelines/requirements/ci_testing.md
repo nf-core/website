@@ -7,7 +7,7 @@ menu:
     weight: 80
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 Pipelines MUST have automated continuous integration testing running using GitHub Actions.
 There MUST also be CI tests using AWS (`test` and `test_full`).
