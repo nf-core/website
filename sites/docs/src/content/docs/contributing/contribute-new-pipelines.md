@@ -4,8 +4,6 @@ subtitle: Contribute a new pipeline
 shortTitle: New pipelines
 ---
 
-<!-- TODO migrate recently added extra specifications on pre-existing pipelines from old site: https://github.com/nf-core/website/pull/3636/changes -->
-
 nf-core pipelines use a standardized template that provides file structure, boilerplate code, and git infrastructure for template synchronization.
 By starting with the nf-core template, you benefit from automated testing, consistent structure, and easier integration with the nf-core community.
 
