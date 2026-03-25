@@ -306,35 +306,16 @@ Only if a tool reads the input multiple times, uncompress the file before runnin
 
 ## Emission of versions
 
-The topic output qualifier in Nextflow collects outputs from multiple processes across a pipeline.
-Use this feature in nf-core modules to collect version information from all tools without complex channel mixing logic.
-See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
+### Version strings should start with a number
 
-```groovy title="main.nf"
-tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
-```
+All modules MUST report the versions of all tools used within it.
 
-Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g., `versions_samtools`).
+All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
-If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
 
 ```groovy title="main.nf"
 tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
 ```
-
-Remember to update this string when bumping the container version.
-
-:::warning
-For modules that use the template process directive, they will currently continue to depend on the old approach with `versions.yml`.
-The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic.
-
-The only difference is that they should also use the topic output qualifier to send the `versions.yml` file to the versions topic:
-
-```groovy title="main.nf"
-path "versions.yml", emit: versions, topic: versions
-```
-
-:::
 
 :::tip{title="Tips for extracting the version string" collapse}
 
@@ -356,10 +337,29 @@ tool --version | sed '1!d'
 
 :::
 
-:::note
-For not yet converted modules, you will see a different approach for collecting versions.
-Even though the approach is deprecated, it is shown below for reference.
+### Topic qualifiers should be used for emitting versions
+
+Modules SHOULD use the Nextflow topic output qualifier to collect outputs from multiple processes across a pipeline.
+This feature allows collecting of version information from all tools without complex channel mixing logic.
+
+See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+```
+
+:::warning
+For modules that use the template process directive, they will currently continue to depend on the old HEREDOC approach to generate a `versions.yml`.
+
+The topic output qualifier MUST still be used to send the `versions.yml` file to the versions topic:
+
+```groovy title="main.nf"
+path "versions.yml", emit: versions, topic: versions
+```
+
 :::
+
+:::info{title="Deprecated module HEREDOC version capture " collapse}
 
 Where applicable, each module command MUST emit a file `versions.yml` containing the version number for each tool executed by the module, for example:
 
@@ -378,8 +378,6 @@ resulting in, for instance,
   fastqc: 0.11.9
   samtools: 1.12
 ```
-
-All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
 
 A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
 The exit status of subshells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
@@ -419,6 +417,17 @@ END_VERSIONS
 
 If the HEREDOC cannot be used because the script is not bash, write the `versions.yml` directly.
 For example, [ascat module](https://github.com/nf-core/modules/blob/master/modules/nf-core/ascat/main.nf).
+:::
+
+### Each tool in a module must report a version
+
+Each tool used in the module MUST have a dedicated version emission output channel, each with a unique `emit` name (e.g., `versions_samtools`).
+
+If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
+```
 
 ## Presence of when statement
 
