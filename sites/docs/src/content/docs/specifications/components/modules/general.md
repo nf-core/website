@@ -255,7 +255,7 @@ my_command \\
 :::note
 Modules are intended to be kept as flexible as possible.
 However, once a module is included into a pipeline, they can be customised at the pipeline level.
-This can be performed with `nf-core modules patch`,
+This can be performed with `nf-core modules patch`.
 If a hardcoded meta key name is an absolute necessity in a module, it MAY be incorporated and maintained with a patch file.
 
 In this example, `-r ${meta.strandedness}` is hardcoded in the `my_command` module.
