@@ -124,7 +124,7 @@ process {
 }
 ```
 
-## Useful links
+## Additional resources
 
 - **[Nextflow training tutorial](https://training.nextflow.io/latest/side_quests/metadata/#12-pick-out-specific-fields-with-map)**: A step-by-step guided tutorial for writing and using meta maps
 - **[Rob Syme's nf-core/bytesize talk](https://www.youtube.com/watch?v=A357C-ux6Dw&t=597s)**: A youtube video on how to safely modify Groovy meta map objects within Nextflow
