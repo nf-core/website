@@ -134,7 +134,7 @@ To migrate a pipelines to use topic channels for version outputs:
 
 1. Update the pipeline template a version that includes support for topic channels (version 3.5.0 or later).
 
-   The main change in the template are the following lines:
+   The main change in the template include:
 
    ```groovy title="$PIPELINE_NAME.nf"
      def topic_versions = channel.topic("versions")// [!code ++]
