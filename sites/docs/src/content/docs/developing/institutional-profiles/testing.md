@@ -245,4 +245,4 @@ The `maxRetries` setting should allow jobs to resubmit with increased resources 
 
 After successful testing, you are ready to submit your profile to the nf-core/configs repository.
 
-<!-- TODO: Link to page about making PRs -->
+For your next steps, see [how to contribute](../../contributing/how-to-contribute#pull-requests) to learn how to make pull requests in nf-core.
