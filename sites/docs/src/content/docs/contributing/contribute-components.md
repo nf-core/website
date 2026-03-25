@@ -24,7 +24,7 @@ You will need the following to get started:
 :::
 
 :::tip
-For detailed information about writing components, see [Create Components](../developers/components/create-components.md).
+For detailed information about writing components, see [Create Components](../developing/components/creating-components).
 :::
 
 ## Check if the component exists
@@ -100,7 +100,7 @@ To create the component structure:
 
    This command creates the necessary files and directory structure with template code to guide you.
 
-1. Write your component following the [Create Components guide](../developers/components/create-components.md).
+2. Write your component following the [Create Components guide](../developing/components/creating-components).
    - Implement the tool command or workflow logic in `main.nf`.
    - Complete the metadata in `meta.yml`.
    - Write comprehensive tests in `tests/main.nf.test`.
@@ -186,6 +186,11 @@ Components are tested via GitHub Actions CI using Docker, Singularity, and Conda
 The automated tests must pass before your component can be merged.
 :::
 
+:::tip
+The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common code linting mistakes and other actions in pull requests.
+Leave a comment of `@nf-core-bot fix linting` on the pull request to trigger the fixes.
+:::
+
 ## Address review feedback
 
 The nf-core maintainers will review your contribution:
@@ -229,7 +234,7 @@ If you need assistance during the contribution process:
 
 - Ask in the `#modules` channel on [nf-core Slack](https://nf-co.re/join).
 - Check existing components in the [nf-core/modules repository](https://github.com/nf-core/modules) for examples.
-- Review the [Create Components guide](../developers/components/create-components.md) for technical details.
+- Review the [Create Components guide](../developing/components/creating-components) for technical details.
 
 The nf-core community is here to help.
 Don't hesitate to ask questions.

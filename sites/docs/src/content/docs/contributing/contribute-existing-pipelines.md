@@ -113,6 +113,11 @@ You will need the following to get started:
    - Explain how you tested your changes
    - Include example commands or screenshots if helpful
 
+   :::tip
+   The [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common code linting mistakes and other actions in pull requests.
+   Leave a comment of `@nf-core-bot fix linting` on the pull request to trigger the fixes.
+   :::
+
 1. Address review feedback
 
    :::note
@@ -136,7 +141,7 @@ Pull requests are typically fully reviewed when these tests pass.
 
 ### Lint tests
 
-All nf-core pipelines must adhere to a [set of guidelines](https://nf-co.re/developers/guidelines).
+All nf-core pipelines must adhere to a [set of guidelines](../specifications/pipelines/overview).
 The linting tool checks that your code follows these standards:
 
 ```bash
@@ -262,7 +267,7 @@ nf-core pipelines bump-version --nextflow . [min_nf_version]
 
 ### Images and figures
 
-Follow the nf-core [style guidelines](https://nf-co.re/developers/design_guidelines) for pipeline diagrams, workflow images, and other visual documentation.
+Follow the nf-core [style guidelines](../community/brand/overview) for pipeline diagrams, workflow images, and other visual documentation.
 
 ## Additional resources
 

@@ -26,7 +26,7 @@ You will need the following to get started:
 
 ## Start new session
 
-Create a new Google Colab session as required by the [Colab interface](https://colab.research.google.com/).
+Create a new Google Colab session as required by the <a href="https://colab.research.google.com/" target="_blank">Colab interface</a>.
 
 ## Install Java
 
@@ -111,6 +111,13 @@ Connect from VS Code desktop:
 3. Run the **Remote Tunnels: Connect to Tunnel...** command
 4. Select your tunnel from the list
 
+:::tip{title="Execution Best Practice"}
+Complete the VS Code integration and connect your tunnel _before_ running any pipeline code.
+This provides the most stable experience.
+Once connected, execute your Nextflow and nf-core commands directly within the VS Code integrated terminal rather than running them as Colab notebook cells.
+Running intensive pipeline commands in Colab cells while the tunnel is active can lead to unexpected VS Code disconnections.
+:::
+
 ## Manage data and outputs
 
 Google Colab provides temporary storage that persists only for the duration of your session.
@@ -161,10 +168,16 @@ Understanding these limitations helps you work around them effectively.
 
 Address these limitations through the following practices:
 
-- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate <!-- TODO is this correct, if session timesout the data is not persistant - where does the `work/` directory go exactly  -->
-- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption <!-- TODO how should this be monitored? -->
+- **Manage session interruptions**: Use the `-resume` flag to restart pipelines after session timeouts. Commit code changes to version control regularly to prevent loss when sessions terminate
+- **Optimize storage usage**: Start with small test datasets to verify configurations. Monitor storage throughout execution and configure intermediate file cleanup to manage consumption
 - **Protect your outputs**: Save critical results to Google Drive or external storage throughout execution rather than waiting until completion. Back up results frequently
 - **Maintain reproducibility**: Document your Colab setup (package versions, configurations) in version control for consistent results across sessions
+
+:::info
+If a session times out and the work directory is set to a folder in your persistent Google Drive storage, then resuming is possible.
+Otherwise, the work directory will be in the temporary colab storage.
+In this case, the session does not persist and resuming is not possible.
+:::
 
 ## Troubleshooting
 
