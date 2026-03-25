@@ -6,7 +6,7 @@ shortTitle: General
 weight: 1
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Required and optional input files
 
@@ -29,7 +29,7 @@ def args = task.ext.args ?: ''
 def prefix = task.ext.prefix ?: "${meta.id}"
 """
 fastqc \\
-    $args \\
+    ${args} \\
       <...>
 """
 ```
@@ -93,7 +93,7 @@ Software that can be piped together SHOULD be added to separate module files unl
 For example, using a combination of `bwa` and `samtools` to output a BAM file instead of a SAM file:
 
 ```bash
-bwa mem $args | samtools view $args2 -B -T ref.fasta
+bwa mem ${args} | samtools view ${args2} -B -T ref.fasta
 ```
 
 :::info
@@ -115,30 +115,103 @@ For example, `SAMTOOLS/COLLATEFASTQ`.
 
 ## Each command must have an $args variable
 
-Each tool in a multi-tool module MUST have an `$args`:
+### Use of args variables
 
-```bash
-bwa mem $args | samtools view $args2 -B -T ref.fasta | samtools sort $args3
+Each tool in a module MUST have at a minimum a single `${args}`:
+
+```bash title="main.nf" {3}
+<tool> \\
+  -r ${meta.single_end} \\
+  ${args}
+  input.txt \\
+  output.txt
+```
+
+```bash title="main.nf"
+bwa mem ${args} | samtools view ${args2} -B -T ref.fasta | samtools sort ${args3}
 ```
 
 or
 
-```bash
+```bash {3,5}
 <tool> \\
    <subcommand> \\
-   $args
+   ${args}
+
 gzip \\
-    $args2
+    ${args2}
 ```
 
-The numbering of each `$args` variable MUST correspond to the order of the tools, and MUST be documented in `meta.yml`.
-For example, in the first example, `bwa mem` is the first tool so is given `$args`, `samtools view` is the second tool so is `$args2`, etc.
+Tools that can have two set of positional arguments MAY specify multiple `args` for the same tool.
 
-## Types of meta fields
+```bash {2,4}
+<tool> \\
+   ${args}
+   <subcommand>
+   ${args2}
+```
+
+In the example above, the tool has multiple subcommands.
+In the first position it specifies 'common' options across all subcommands which is specified with `${args}`.
+In the second position it specifies subcommand specific options after the subcommand name (${args2})
+
+### Naming of args variables
+
+Arg variable names MUST use the naming convention of `args<n>`, where `<n>` corresponds to the number of the tool in a pipe.
+
+| Tool position in pipe | `args` variable name |
+| --------------------- | -------------------- |
+| First                 | `args`               |
+| Second                | `args2`              |
+| Third                 | `args3`              |
+| _n_                   | `args<n>`            |
+
+For example, in the first example, `bwa mem` is the first tool so is given `${args}`, `samtools view` is the second tool so is `${args2}`, etc.
+
+## Use of meta maps
+
+### Modules should include meta maps
+
+Modules SHOULD support meta maps in any _file_ input channel.
+They maybe omitted if there is no possible cases where a meta map would be required or used by the module.
+
+Examples:
+
+```groovy title='main.nf'
+...
+input:
+tuple val(meta), path(fastq)
+tuple val(cleanup)
+...
+```
+
+```groovy title='main.nf'
+...
+input:
+tuple val(meta), path(fastq)
+tuple val(meta2), path(reference)
+...
+```
+
+### Meta map variable naming
+
+Input channels that expect a meta map MUST use the naming convention
+
+| Channel | Meta map variable name |
+| ------- | ---------------------- |
+| First   | `meta`                 |
+| Second  | `meta2`                |
+| Third   | `meta3`                |
+| _n_     | `meta<n>`              |
+
+Meta variables SHOULD NOT use custom names.
+
+### Types of meta map keys
 
 'Custom' hardcoded `meta` fields MUST NOT be used in modules.
 Do not refer to them within the module as expected input, nor generate new fields as output.
-The only accepted 'standard' meta fields are `meta.id` or `meta.single_end`.
+
+The only accepted 'standard' meta map keys are `meta.id` or `meta.single_end`.
 Discuss proposals for other 'standard' fields for other disciplines with the maintainers team on slack under the [#modules channel](https://nfcore.slack.com/archives/CJRH30T6V).
 
 :::info{title="Rationale" collapse}
@@ -146,26 +219,63 @@ Write modules to allow as much flexibility to pipeline developers as possible.
 
 Hardcoding `meta` fields as input and output reduces the freedom of developers to use their own metadata names in their specific context.
 
-As all non-mandatory arguments MUST go via `$args`, pipeline developers can insert such `meta` information into `$args` with whatever name they wish.
+As all non-mandatory arguments MUST go via `${args}`, pipeline developers can insert such `meta` information into `${args}` with whatever name they wish.
 
 In the module code DO NOT:
 
-```bash title="main.nf"
-my_command -r ${meta.strand} input.txt output.txt
+```nextflow title="main.nf"
+"""script
+my_command \\
+  -r ${meta.strandedness} \\
+  input.txt \\
+  output.txt
+"""
 ```
 
 ... but rather:
 
 ```groovy title="modules.conf"
-ext.args = { "--r ${meta.<pipeline-authors-choice-of-name>}" }
+ext.args = { "-r ${meta.strandedness}" }
 ```
 
-and then in the module code:
+And then in the module code:
 
-```bash title="main.nf"
-my_command $args input.txt output.txt
+```nextflow title="main.nf"
+script
+"""
+my_command \\
+  ${args} \\
+  input.txt \\
+  output.txt
+"""
 ```
 
+:::
+
+:::note
+Modules are intended to be kept as flexible as possible.
+However, once a module is included into a pipeline, they can be customised at the pipeline level.
+This can be performed with `nf-core modules patch`.
+If a hardcoded meta key name is an absolute necessity in a module, it MAY be incorporated and maintained with a patch file.
+
+In this example, `-r ${meta.strandedness}` is hardcoded in the `my_command` module.
+
+First install the tool into your pipeline with `nf-core modules install my_command`.
+
+Edit the `main.nf` to include `-r ${meta.strandedness}` and save it.
+
+```nextflow title="main.nf"
+script
+"""
+my_command \\
+  -r ${meta.strandedness} \\
+  ${args} \\
+  input.txt \\
+  output.txt
+"""
+```
+
+Then use `nf-core modules patch my_command` to create a patch file (`*.diff`), which should be version controlled with the module. The patch file will then be used to modify the module whenever you run `nf-core modules update my_command` preserving your modifications for the pipeline while still allowing module updates.
 :::
 
 ## Compression of input and output files
@@ -175,7 +285,7 @@ Where applicable, compressed files SHOULD be used as input and output:
 - `*.fastq.gz` and NOT `*.fastq`
 - `*.bam` and NOT `*.sam`
 
-If a tool does not support compressed input or output natively, nf-core RECOMMENDS passing the uncompressed data via unix pipes so that it never gets written to disk, for example:
+If a tool does not support compressed input or output natively, nf-core RECOMMENDS passing the uncompressed data via UNIX pipes so that it never gets written to disk, for example:
 
 ```bash
 gzip -cdf $input | tool | gzip > $output
@@ -201,6 +311,10 @@ Only if a tool reads the input multiple times, uncompress the file before runnin
 All modules MUST report the versions of all tools used within it.
 
 All reported versions MUST be without a leading `v` or similar (that is, must start with a numeric character), or for unversioned software, a Git SHA commit id (40 character hexadecimal string).
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
+```
 
 :::tip{title="Tips for extracting the version string" collapse}
 
@@ -265,7 +379,7 @@ resulting in, for instance,
 ```
 
 A [HEREDOC](https://tldp.org/LDP/abs/html/here-docs.html) is used over piping into the versions file line-by-line to avoid accidentally overwriting the file.
-The exit status of sub-shells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
+The exit status of subshells evaluated within the HEREDOC is ignored, ensuring that a tool's version command does not erroneously terminate the module.
 
 If the software is unable to output a version number on the command-line, manually specify a variable called `VERSION` to provide this information.
 For example, [homer/annotatepeaks module](https://github.com/nf-core/modules/blob/master/modules/nf-core/homer/annotatepeaks/main.nf).
@@ -421,28 +535,28 @@ For example, the `deseq2/differential` nf-core module will use the `deseq2_diffe
 
 Refer to the template file within the module using the template function:
 
-    ```nextflow
-    script:
-    template 'deseq2_differential.R'
-    ```
+```nextflow
+script:
+template 'deseq2_differential.R'
+```
 
 See [`deseq2/differential`](https://github.com/nf-core/modules/blob/master/modules/nf-core/deseq2/differential/main.nf#L47) for an example of a template in an nf-core pipeline.
 
 The resulting structure would look like this.
 
-    ```tree
-    deseq2
-    └── differential
-        ├── environment.yml
-        ├── main.nf
-        ├── meta.yml
-        ├── templates
-        │   └── deqseq2_differential.R
-        └── tests
-            ├── main.nf.test
-            ├── main.nf.test.snap
-            └── tags.yml
-    ```
+```tree
+deseq2
+└── differential
+├── environment.yml
+├── main.nf
+├── meta.yml
+├── templates
+│ └── deqseq2_differential.R
+└── tests
+├── main.nf.test
+├── main.nf.test.snap
+└── tags.yml
+```
 
 ### Template or inline script-code contents
 
@@ -460,7 +574,7 @@ See the [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4
 
 A templated module MUST have a stub block in the same way as any other module.
 For example, use `touch` to generate empty files and versions.
-See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in an nf-core module.
+See [`deseq2/differential` module](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L34-L49) for an example in a nf-core module.
 
 An inline command MAY be used to call the version for libraries for the `versions.yml` in this case.
 For an R example see [deseq2/differential](https://github.com/nf-core/modules/blob/4c2d06a5e79abf08ba7f04c58e39c7dad75f094d/modules/nf-core/deseq2/differential/main.nf#L47).
@@ -499,7 +613,7 @@ echo "" | gzip > ${prefix}.txt.gz
 ```
 
 :::info{title="Rationale" collapse}
-Touching a file with the file name ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and cannot be read.
+Touching a file with the filename ending in `.gz` will break nf-test's Gzip file parser, as the file is not actually gzipped and cannot be read.
 
 Generate a valid gzipped file for nf-test to accept it during tests.
 :::
