@@ -51,6 +51,13 @@ To migrate a module to use topic channels for version outputs:
    Replace `<tool1>` and `tool1 --version` with the tool name and version command.
    - Repeat this for each tool used in the module.
 
+:::note{title="Hard-coded version"}
+
+If your tool has no '--version' available or if you need to override it, you can replace above `eval('tool1 --version')` by `val("1.2.3")`.
+Please also note that `topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
+
+:::
+
 1. Run `nf-core modules lint <module-name> --fix` to migrate the `meta.yml` file with the new topic outputs.
 
 1. Add a `type` and `description` for each field in the versions output:
