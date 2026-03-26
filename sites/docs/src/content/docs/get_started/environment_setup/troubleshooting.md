@@ -2,7 +2,7 @@
 title: Troubleshooting
 subtitle: Troubleshoot common issues
 shortTitle: Troubleshooting
-weight: 10
+weight: 11
 ---
 
 This page covers common issues you may encounter when setting up your nf-core environment.
