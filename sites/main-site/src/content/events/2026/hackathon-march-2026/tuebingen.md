@@ -1,7 +1,7 @@
 ---
 title: "Hackathon - March 2026 (Tuebingen)"
 subtitle: "Local node for the nf-core hackathon in Tuebingen, Germany"
-shortTitle: "Tuebingen, Germany"
+shortTitle: "🇩🇪 Tuebingen, Germany"
 type: "hackathon"
 startDate: "2026-03-11"
 startTime: "09:00+01:00"
@@ -12,6 +12,7 @@ locations:
     address: Maria-von-Linden-Straße 1, Room A-207, 72076 Tuebingen
     country: Germany
     city: Tuebingen
+    geoCoordinates: [48.539265, 9.055695]
 layout: "@layouts/events/HackathonMarch2026.astro"
 ---
 

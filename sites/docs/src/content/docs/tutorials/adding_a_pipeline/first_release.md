@@ -74,6 +74,12 @@ Don't feel shy, it's a good way to start and get a better understanding reviews 
 See the documentation pinned on the [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL) for instructions.
 :::
 
+## Remove the "Block releases" ruleset
+
+All unreleased nf-core pipelines have a GitHub repository ruleset named **"Block releases"** that prevents tag creation. A core team member must remove this ruleset before the release can proceed.
+
+Once your release PR has been approved, ask a core team member to remove the **"Block releases"** ruleset by posting in the [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) Slack channel.
+
 ## Making the release
 
 Once any requested changes have been made and the associated PR approved, you can go ahead

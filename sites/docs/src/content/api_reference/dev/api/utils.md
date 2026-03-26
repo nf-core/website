@@ -749,6 +749,9 @@ Remove paired quotes (single or double) from start and end of string.
 Uses ast.literal_eval to safely parse Python string literals, preserving
 the original string if it’s not a valid literal.
 
+Special handling for ruamel.yaml DoubleQuotedScalarString to preserve
+strings that should not be converted to numbers (e.g., “123” stays as string).
+
 - **Parameters:**
   **s** – String potentially containing quotes
 - **Returns:**

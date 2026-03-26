@@ -204,9 +204,30 @@ The topic output qualifier is a new feature in Nextflow that provides a streamli
 This feature is particularly useful for nf-core modules to collect version information from all tools used in a pipeline without the complex channel mixing logic that was previously required.
 See the [fastqc module](https://github.com/nf-core/modules/blob/0c47e4193ddde2c5edbc206b5420cbcbee5c9797/modules/nf-core/fastqc/main.nf#L16) as an example.
 
+For each tool used in the module, add a topic output in the `output:` block:
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
+```
+
+Replace `fastqc` with the tool name and the `eval(...)` expression with the appropriate version command. Repeat for each tool used in the module, giving each a unique `emit` name (e.g., `versions_samtools`).
+
+If the tool does not provide a version via the command line, use `val()` with a hard-coded version string instead of `eval()`:
+
+```groovy title="main.nf"
+tuple val("${task.process}"), val('tool'), val('1.2.3'), emit: versions_tool, topic: versions
+```
+
+Remember to update this string when bumping the container version.
+
 :::warning
 For modules that use the template process directive, for now they will continue to depend on the old approach with versions.yml.
-The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic.
+The only difference is that they should also use the topic output qualifier to send the versions.yml file to the versions topic:
+
+```groovy title="main.nf"
+path "versions.yml", emit: versions, topic: versions
+```
+
 :::
 
 :::tip{title="Tips for extracting the version string" collapse}
@@ -952,3 +973,21 @@ Please keep the file sorted alphabetically.
 ### General module code formatting
 
 All code MUST be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format.
+
+To maintain code quality and prevent issues, all code MUST be free of Nextflow warnings and errors.
+Utilize the following command to check your code:
+
+```bash
+NXF_SYNTAX_PARSER=v2 nextflow lint modules/nf-core/module_name
+```
+
+Common issues to avoid:
+
+| Old syntax                                               | Prefered syntax                                     |
+| -------------------------------------------------------- | --------------------------------------------------- |
+| Unused `def args = task.ext.args ?: ''{:groovy}` in stub | delete it                                           |
+| undeclared variable `my_variable{:groovy}`               | add `def my_variable{:groovy}`                      |
+| `input.collect{ it[1].name }{:groovy}`                   | `input.collect{ meta, file -> file.name }{:groovy}` |
+| `for{:groovy}` loop                                      | `.each{}{:groovy}` operator                         |
+
+By following these guidelines, you will ensure that your code is compliant with Nextflow standards.

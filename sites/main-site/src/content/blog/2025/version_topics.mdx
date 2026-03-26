@@ -98,7 +98,7 @@ You can update the meta.yml conveniently using
           type: string
           description: The tool name
       - fastqc --version | sed "/FastQC v/!d; s/.*v//":
-          type: string
+          type: eval
           description: The command used to generate the version of the tool
 topics:
     versions:
@@ -109,7 +109,7 @@ topics:
             type: string
             description: The tool name
         - fastqc --version | sed "/FastQC v/!d; s/.*v//:
-            type: string
+            type: eval
             description: The command used to generate the version of the tool
 ```
 

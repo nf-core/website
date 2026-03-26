@@ -2,10 +2,11 @@
 import Project from "@components/event/HackathonProjects/Project.astro";
 import { getCollection } from "astro:content";
 
-const { eventPath } = Astro.props;
+const { eventPath, showCount = false } = Astro.props;
 
 export interface Props {
     eventPath?: string;
+    showCount?: boolean;
 }
 
 let projects = await getCollection("hackathon-projects");
@@ -13,6 +14,16 @@ let projects = await getCollection("hackathon-projects");
 if (eventPath) {
     projects = projects.filter((project) => project.id.startsWith(eventPath));
 }
+
+// Update projects to set location to "Online" if not provided
+projects = projects.map((project) => ({
+    ...project,
+    data: {
+        ...project.data,
+        location: project.data.location || "online",
+    },
+}));
+
 // sort projects by data.location and then data.category
 projects.sort((a, b) => {
     return (
@@ -33,9 +44,19 @@ const projectsByLocation = locations.map((location) => ({
     location,
     projects: projects.filter((project) => project.data.location === location),
 }));
+
+const projectCount = projects.length;
+const categoryCount = new Set(projects.map((project) => project.data.category)).size;
 ---
 
 <div>
+    {
+        showCount && (
+            <p>
+                There are currently {projectCount} registered projects across {categoryCount} categories!
+            </p>
+        )
+    }
     {
         projectsByLocation.map(({ location, projects }) => (
             <>
