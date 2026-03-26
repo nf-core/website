@@ -1,7 +1,8 @@
 ---
-title: Code formatting
+title: Prettier
 subtitle: Maintain consistent code style
-shortTitle: Code formatting
+shortTitle: Prettier
+weight: 10
 ---
 
 The nf-core community uses automated code formatting tools to maintain a consistent style across repositories.
