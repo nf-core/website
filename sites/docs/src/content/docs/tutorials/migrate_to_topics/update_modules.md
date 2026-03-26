@@ -37,6 +37,10 @@ To update a module to use topic channels for version outputs:
 
    Update `<tool1>` and `tool1 --version` with the tool name and version command. Repeat this for each tool used in the module.
 
+:::note
+If your tool has no '--version' available or if you need to override it. You can replace above `eval('tool1 --version')` by `val("1.2.3")`. Remember that using intermediate variable `def VERSION =` is not possible with `topic`.
+:::
+
 1. Run
 
    ```bash
