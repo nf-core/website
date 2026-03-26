@@ -51316,7 +51316,7 @@
                 "meta": {
                   "type": "map",
                   "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n",
-                  "pattern": "*.{gvcf.tbi,gvcf.gz.tbi}"
+                  "pattern": "*.{vcf,vcf.gz}"
                 }
               },
               {
@@ -51329,19 +51329,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_clair3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clair3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_clair3.sh --version | sed \"s/^Clair3 v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clair3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_clair3.sh --version | sed \"s/^Clair3 v//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -152504,6 +152536,423 @@
       }
     },
     {
+      "name": "macsyfinder_download",
+      "path": "modules/nf-core/macsyfinder/download/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "macsyfinder_download",
+        "description": "Download MacSyFinder models using msf_data",
+        "keywords": [
+          "genomics",
+          "protein",
+          "macromolecular systems",
+          "models",
+          "database"
+        ],
+        "tools": [
+          {
+            "macsyfinder": {
+              "description": "Detection of macromolecular systems in protein datasets using systems\nmodelling and similarity search\n",
+              "homepage": "https://github.com/gem-pasteur/macsyfinder",
+              "documentation": "https://macsyfinder.readthedocs.io",
+              "tool_dev_url": "https://github.com/gem-pasteur/macsyfinder",
+              "doi": "10.24072/pcjournal.250",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:macsyfinder"
+            }
+          }
+        ],
+        "input": [
+          {
+            "model_name": {
+              "type": "string",
+              "description": "Name of the MacSyFinder model to download (e.g., 'TXSScan', 'CasFinder')"
+            }
+          }
+        ],
+        "output": {
+          "models": [
+            {
+              "models": {
+                "type": "directory",
+                "description": "Directory containing downloaded MacSyFinder model definitions",
+                "pattern": "models"
+              }
+            }
+          ],
+          "versions_macsyfinder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macsyfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macsyfinder --version 2>&1 | sed \"1!d;s/^.*MacSyFinder //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_macsydata": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "msf_data": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "msf_data --version 2>&1 | sed \"4!d;s/^- MacSyLib //;s/ *$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macsyfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macsyfinder --version 2>&1 | sed \"1!d;s/^.*MacSyFinder //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "msf_data": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "msf_data --version 2>&1 | sed \"4!d;s/^- MacSyLib //;s/ *$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
+      }
+    },
+    {
+      "name": "macsyfinder_search",
+      "path": "modules/nf-core/macsyfinder/search/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "macsyfinder_search",
+        "description": "Search for macromolecular systems in protein datasets using MacSyFinder",
+        "notes": "The current input structure searches all specified models in a single MacSyFinder process\n(using internal parallelization via --worker). For Nextflow-level parallelization across\nindividual models, the inputs could be combined into a single tuple:\ntuple val(meta), path(proteins), path(models), val(model_names)\n",
+        "keywords": [
+          "genomics",
+          "protein",
+          "macromolecular systems",
+          "hmmer",
+          "search"
+        ],
+        "tools": [
+          {
+            "macsyfinder": {
+              "description": "Detection of macromolecular systems in protein datasets using systems\nmodelling and similarity search\n",
+              "homepage": "https://github.com/gem-pasteur/macsyfinder",
+              "documentation": "https://macsyfinder.readthedocs.io",
+              "tool_dev_url": "https://github.com/gem-pasteur/macsyfinder",
+              "doi": "10.24072/pcjournal.250",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:macsyfinder"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test' ]`\n"
+              }
+            },
+            {
+              "proteins": {
+                "type": "file",
+                "description": "Protein sequence file in FASTA format",
+                "pattern": "*.{fasta,faa,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "models": {
+              "type": "directory",
+              "description": "Directory containing MacSyFinder model(s)",
+              "pattern": "*"
+            }
+          },
+          {
+            "model_names": {
+              "type": "string",
+              "description": "Space-separated list of model names to search for. If not provided, all models in the directory will be used."
+            }
+          }
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/*": {
+                  "type": "directory",
+                  "description": "Directory containing all MacSyFinder results",
+                  "pattern": "${prefix}/*"
+                }
+              }
+            ]
+          ],
+          "hmmer": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/hmmer_results": {
+                  "type": "directory",
+                  "description": "Directory containing HMMER search results (may contain variable content like timestamps)",
+                  "pattern": "${prefix}/hmmer_results"
+                }
+              }
+            ]
+          ],
+          "stdout": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/macsyfinder.out": {
+                  "type": "file",
+                  "description": "MacSyFinder standard output",
+                  "pattern": "${prefix}/macsyfinder.out",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "stderr": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/macsyfinder.err": {
+                  "type": "file",
+                  "description": "MacSyFinder standard error",
+                  "pattern": "${prefix}/macsyfinder.err",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/all_systems.tsv": {
+                  "type": "file",
+                  "description": "Summary table of all detected systems",
+                  "pattern": "${prefix}/all_systems.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "best_solutions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', db_type:'gembase' ]`\n"
+                }
+              },
+              {
+                "${prefix}/all_best_solutions*": {
+                  "type": "file",
+                  "description": "Best solution files for detected systems",
+                  "pattern": "${prefix}/all_best_solutions*",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_macsyfinder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macsyfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macsyfinder --version 2>&1 | sed \"1!d;s/^.*MacSyFinder //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h 2>&1 | sed \"2!d;s/^# HMMER //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macsyfinder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macsyfinder --version 2>&1 | sed \"1!d;s/^.*MacSyFinder //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmsearch -h 2>&1 | sed \"2!d;s/^# HMMER //;s/ .*$//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@brovolia"
+        ],
+        "maintainers": [
+          "@brovolia"
+        ]
+      }
+    },
+    {
       "name": "mafft_align",
       "path": "modules/nf-core/mafft/align/meta.yml",
       "type": "module",
@@ -238643,14 +239092,42 @@
               }
             }
           ],
-          {
-            "qname": {
-              "type": "file",
-              "description": "Optional file with read names to output only select alignments",
-              "pattern": "*.{txt,list}",
-              "ontologies": []
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "qname": {
+                "type": "file",
+                "description": "Optional file with read names to output only select alignments",
+                "pattern": "*.{txt,list}",
+                "ontologies": []
+              }
             }
-          },
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bed": {
+                "type": "file",
+                "description": "Optional BED file for filtering alignments by genomic region (-L)",
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
           {
             "index_format": {
               "type": "string",
@@ -305433,6 +305910,46 @@
                 }
               ]
             }
+          },
+          {
+            "plots": {
+              "description": "Channel containing plots from differential analysis",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "plots": {
+                    "type": "file",
+                    "description": "Plot file",
+                    "pattern": "*.{png,pdf}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "other": {
+              "description": "Channel containing other outputs from differential analysis",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "other_files": {
+                    "type": "file",
+                    "description": "Other output file from differential analysis",
+                    "pattern": "*.{rds,tsv,log}"
+                  }
+                }
+              ]
+            }
           }
         ],
         "authors": [
@@ -310316,6 +310833,26 @@
             }
           },
           {
+            "gprofiler2_artifacts": {
+              "description": "Channel containing additional gprofiler2 artifacts.",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "artifact": {
+                    "type": "file",
+                    "description": "Additional outputs from gprofiler2, including gost results (RDS),\nfiltered GMT files, R session logs, and PNG plot files.\n",
+                    "pattern": "*.{rds,gmt,log,png}"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "gsea_report": {
               "description": "Channel containing all the output from GSEA needed for further reporting.",
               "structure": [
@@ -310337,6 +310874,26 @@
                     "type": "file",
                     "description": "Main TSV results report file for the target group.",
                     "pattern": "*gsea_report_for_${target}.tsv"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "gsea_artifacts": {
+              "description": "Channel containing additional GSEA output artifacts.",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "artifact": {
+                    "type": "file",
+                    "description": "Additional files generated by GSEA, including reports, plots, archives,\nand supporting HTML/TSV outputs.\n",
+                    "pattern": "*.{rpt,html,tsv,png,zip}"
                   }
                 }
               ]
