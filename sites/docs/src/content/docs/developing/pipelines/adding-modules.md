@@ -70,3 +70,8 @@ To add an nf-core module to your pipeline with nf-core tools:
    - The module executes successfully
    - Outputs are generated correctly
    - No errors or warnings occur
+
+:::tip
+After opening a pull request, the [nf-core-bot](reviewing-pull-requests/nf-core-bot) can automatically fix some common code linting mistakes and other actions in pull requests.
+Leave a comment of `@nf-core-bot fix linting` on the pull request to trigger the fixes.
+:::
