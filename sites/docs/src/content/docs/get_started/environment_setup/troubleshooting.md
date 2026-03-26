@@ -2,28 +2,40 @@
 title: Troubleshooting
 subtitle: Troubleshoot common issues
 shortTitle: Troubleshooting
-weight: 10
+weight: 11
 ---
 
 This page covers common issues you may encounter when setting up your nf-core environment.
 
 ## Nextflow
 
-### Java version issues
+### Error: incompatible Java version
 
-If you encounter errors about an incompatible Java version, ensure you have Java 17 or later installed. Check your version with `java -version` and install a compatible version using SDKMAN if needed (see [Install Java](./environment_setup/nextflow.md#install-java)).
+An incompatible Java version error can occur when running Nextflow.
 
-### Permission denied errors
+This issue occurs when your installed Java version is older than the minimum required version (Java 17). Check your version with `java -version` and install a compatible version using SDKMAN if needed (see [Install Java](./environment_setup/nextflow.md#install-java)).
 
-If you cannot execute Nextflow after installation, the executable likely lacks execution permissions. Make sure the Nextflow executable has execution permissions by running `chmod +x /path/to/nextflow`.
+### Error: `permission denied` when running Nextflow
 
-### Update failures
+A `permission denied` error can occur when trying to execute Nextflow after installation.
 
-If `nextflow self-update` fails, the update may be blocked because Nextflow is installed in a directory with restricted permissions. You can either request elevated permissions to update in the current location, or reinstall Nextflow in a directory where you have write permissions.
+This issue occurs when the Nextflow executable lacks execution permissions. To resolve this issue, run:
 
-### Command not found
+```bash
+chmod +x /path/to/nextflow
+```
 
-If you see `nextflow: command not found`, Nextflow is not in a directory included in your `$PATH`. Add the directory to your PATH by adding this line to `~/.bashrc` or `~/.zshrc`:
+### `nextflow self-update` fails
+
+`nextflow self-update` can fail without applying the update.
+
+This issue occurs when Nextflow is installed in a directory with restricted write permissions. To resolve this issue, either request elevated permissions to update in the current location, or reinstall Nextflow in a directory where you have write permissions.
+
+### Error: `nextflow: command not found`
+
+A `nextflow: command not found` error can occur when running Nextflow from the terminal.
+
+This issue occurs when the Nextflow binary is not in a directory included in your `$PATH`. To resolve this issue, add the directory to your PATH by appending this line to `~/.bashrc` or `~/.zshrc`:
 
 ```bash
 export PATH="$HOME/.local/bin:$PATH"
@@ -31,9 +43,11 @@ export PATH="$HOME/.local/bin:$PATH"
 
 Then reload your shell configuration with `source ~/.bashrc` (or `source ~/.zshrc`).
 
-### Conda installation issues
+### Outdated Nextflow version when installed via Conda
 
-If you experience an outdated Nextflow version or dependency conflicts with Conda, uninstall the Conda version and use the self-installing package method instead:
+The Nextflow version installed via Conda may be outdated or cause dependency conflicts.
+
+This issue occurs because the Conda-packaged version of Nextflow may lag behind the official release. To resolve this issue, uninstall the Conda version and use the self-installing package instead:
 
 ```bash
 conda deactivate
@@ -41,23 +55,47 @@ conda remove --name nf-env --all
 curl -s https://get.nextflow.io | bash
 ```
 
-### Pipeline fails after updating
+### Pipeline fails after updating Nextflow
 
-If your pipeline fails after updating Nextflow, you may need to check for breaking changes. When updating across major stable releases, consult the [Nextflow migration guides](https://nextflow.io/docs/latest/migrations/index.html) and [changelog](https://github.com/nextflow-io/nextflow/releases) for breaking changes that may affect your pipelines.
+A pipeline that previously worked can fail after updating Nextflow.
+
+This issue occurs when a major Nextflow release introduces breaking changes. Consult the [Nextflow migration guides](https://nextflow.io/docs/latest/migrations/index.html) and [changelog](https://github.com/nextflow-io/nextflow/releases) for breaking changes that may affect your pipelines.
 
 ## nf-core tools
 
-### Command not found
+### Error: `nf-core: command not found`
 
-If you see `nf-core: command not found`, ensure nf-core tools is installed in an active environment. For Conda installations, run `conda activate nf-core-env` if you installed in a separate environment. For pip installations, ensure the Python scripts directory is in your `$PATH`. For Docker, check that your alias is properly configured in your shell.
+An `nf-core: command not found` error can occur when running nf-core tools from the terminal.
 
-### Python version issues
+This issue occurs when nf-core tools is not installed in the active environment or is not in your `$PATH`. To resolve this issue:
 
-If installation fails due to your Python version, note that nf-core tools requires Python 3.8 or later. Check your version with `python --version`. If necessary, install a newer Python version using Conda with `conda create --name nf-core-env python=3.11 nf-core`.
+| Installation method | Solution                                                     |
+| ------------------- | ------------------------------------------------------------ |
+| Conda               | Run `conda activate nf-core-env` to activate the environment |
+| pip                 | Ensure the Python scripts directory is in your `$PATH`       |
+| Docker              | Verify your alias is correctly configured in your shell      |
 
-### Permission errors with pip
+### Installation fails due to Python version
 
-If you encounter permission denied errors when installing with pip, install in your user directory instead using `pip install --user nf-core`. Alternatively, use a virtual environment:
+Installation of nf-core tools can fail with an error about your Python version.
+
+This issue occurs because nf-core tools requires Python 3.8 or later. Check your version with `python --version`. To resolve this issue, install a newer Python version using Conda:
+
+```bash
+conda create --name nf-core-env python=3.11 nf-core
+```
+
+### Error: `permission denied` when installing with pip
+
+A `permission denied` error can occur when installing nf-core tools with pip.
+
+This issue occurs when you do not have write permissions to the system Python directory. To resolve this issue, install to your user directory:
+
+```bash
+pip install --user nf-core
+```
+
+Alternatively, use a virtual environment:
 
 ```bash
 python -m venv nf-core-venv
@@ -65,20 +103,28 @@ source nf-core-venv/bin/activate
 pip install nf-core
 ```
 
-### Docker file permissions
+### Files created by Docker have wrong ownership
 
-If files created by Docker have the wrong ownership, always include the `-u $(id -u):$(id -g)` flag when running Docker commands, or use the alias provided in the [Docker installation section](./environment_setup/nf-core-tools.md#install-with-docker).
+Files written by nf-core tools inside a Docker container may be owned by `root` instead of your user.
+
+This issue occurs when the `-u $(id -u):$(id -g)` flag is not passed to Docker, causing the container to run as root. To resolve this issue, always include the flag when running Docker commands, or use the alias provided in the [Docker installation section](./environment_setup/nf-core-tools.md#install-with-docker).
 
 ## Dev Containers
 
-### SKU name errors when creating Codespaces
+### SKU name error when creating a Codespace
 
-If you encounter SKU name errors when creating a Codespace, you likely selected the incorrect hardware option. Select the 4-CPU hardware option instead.
+A SKU name error can occur when creating a GitHub Codespace for a Dev Container.
 
-### Docker daemon connection failures
+This issue occurs when the wrong hardware option is selected. To resolve this issue, select the 4-CPU hardware option.
 
-If you experience connection failures to the Docker daemon in the Dev Containers environment, this is caused by using `-profile docker`. Use `-profile singularity` instead.
+### Docker daemon connection fails in Dev Containers
 
-### Singularity permission errors
+Nextflow may fail to connect to the Docker daemon inside a Dev Container.
 
-If you see Singularity permission errors, the Dev Containers configuration is missing required privileges. Add `"privileged": true` to the `devcontainer.json` file.
+This issue occurs when using `-profile docker`, which conflicts with the Dev Containers environment. The workaround is to use `-profile singularity` instead.
+
+### Singularity permission errors in Dev Containers
+
+Singularity permission errors can occur when running pipelines inside a Dev Container.
+
+This issue occurs when the Dev Container is missing the required privileges to run Singularity. To resolve this issue, add `"privileged": true` to the `devcontainer.json` file.
