@@ -22,6 +22,9 @@ Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approv
     - One member of the core team and one member of the maintainers team.
 5. [ ] Core: Verify that the pipeline name follows the [pipeline naming guidelines](/docs/guidelines/pipelines/requirements/workflow_name).
 6. [ ] Core: Create a slack channel with approved pipeline name.
+    - [ ] Invite the Slack bot to the channel (`/invite @Full test notifications`).
+          This is required for CI/CD Slack notifications via the [nf-slack plugin](https://github.com/seqeralabs/nf-slack).
+          The bot **will silently fail** if not invited.
     - [ ] Inform the new developer of the [next steps](https://nf-co.re/docs/tutorials/adding_a_pipeline/creating_a_pipeline#create-the-pipeline)
 7. [ ] Core: Add the main developers to
     - [ ] [#pipeline-maintainers](https://nfcore.slack.com/archives/C04QR0T3G3H)
@@ -30,6 +33,7 @@ Instructions for [nf-core pipeline](https://github.com/nf-core/proposals) approv
 9. [ ] Core/Dev: Set up the pipeline repository:
     - If development started in a custom (non-nf-core) repo: [Transfer the repository](https://nf-co.re/docs/checklists/community_governance/core_team#repository-transfer-to-nf-core-organisation) to nf-core.
     - If starting fresh: Create a new GitHub repository with the name of the pipeline.
+    - In both cases, [configure the repository settings](https://nf-co.re/docs/checklists/community_governance/core_team#pipeline-repository-settings).
 10. Add the pipeline name to the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) designated to ignore this repository when building the website pipeline list (until the pipeline is in advanced development or there is a need to surface it already).
 11. [ ] Core/Dev: After first release, remove the pipeline name from the [website YAML file](https://github.com/nf-core/website/blob/75a92b76129b0e2c3f644bf26482142ba9e41f6f/sites/main-site/src/config/ignored_repos.yaml) ignoring this pipeline from the build, if it is there.
 12. [ ] Core/Dev: Sync the nf-co.re pipelines page by triggering the [GitHub action](https://github.com/nf-core/website/actions/workflows/build-json-files.yml)
@@ -56,14 +60,34 @@ Instructions for uploading full-test AWS files for a pipeline to a S3 bucket:
     2. Scroll to the bottom of the **General** page.
     3. Select **Transfer**, next to **Transfer ownership**.
     4. Confirm or update the repository name if needed.
-3. [ ] Configure repository settings in the nf-core organisation.
-    1. Ask Matthias for the repository ruleset JSON files (these are still under development, but pinned in the core channel).
-    2. In the repository, go to **Settings**.
-    3. In the left sidebar, select Rules (under Code and automation).
-    4. Select New ruleset.
-    5. Select **Import a ruleset**, then select one of the JSON files.
-    6. Select **Create** at the bottom of the page. Do not modify any fields.
-    7. Repeat the import (step 5) and create (step 6) steps for each JSON file provided.
+3. [ ] [Configure the repository settings](https://nf-co.re/docs/checklists/community_governance/core_team#pipeline-repository-settings) in the nf-core organisation.
+
+## Pipeline repository settings
+
+After creating a new pipeline repository or transferring an existing one to the nf-core organisation, configure the following settings.
+
+### General settings
+
+1. [ ] In the repository, go to **Settings** > **General**.
+2. [ ] Add a description, the https://nf-co.re URL, and relevant topic keywords.
+3. [ ] Under **Features**, disable **Wikis** and **Projects**.
+4. [ ] Under **Pull Requests**, enable **Always suggest updating pull request branches**.
+5. [ ] Under **Pull Requests**, enable **Automatically delete head branches**.
+
+### Team access
+
+1. [ ] Go to **Settings** > **Collaborators and teams**.
+2. [ ] Add the **contributors** team with **Write** access.
+3. [ ] Add the **core** team with **Admin** access.
+
+### Rulesets
+
+1. [ ] Apply the 4 repository ruleset JSON files: `main`/`master`, `dev`, `TEMPLATE` and tag creation (these are pinned in the core channel).
+2. [ ] Go to **Settings** > **Rules** (under Code and automation).
+3. [ ] Select **New ruleset**.
+4. [ ] Select **Import a ruleset**, then select one of the JSON files.
+5. [ ] Select **Create** at the bottom of the page. Do not modify any fields.
+6. [ ] Repeat the import (step 4) and create (step 5) steps for each JSON file provided.
 
 ## Making custom docker containers for modules
 

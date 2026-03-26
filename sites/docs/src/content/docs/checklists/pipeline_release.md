@@ -40,6 +40,7 @@ If this is your first release, make sure to follow the [first release tutorial](
   - [ ] If a first release, one review must come from one core or maintainers team member - feel free to ping the two teams on slack under your post on [#release-review-trading](https://nfcore.slack.com/archives/C08K66XCZSL).
   - [ ] For any other release, one review can come from a member of the same development team, but we strongly recommend the second to be an another external/neutral person from the community
   - [ ] While you're waiting for reviews on your PR, review another community member's release PR (see pinned message in the channel above)
+- [ ] (**First release only**) Ask a core team member on [#release-review-trading](https://nfcore.slack.com/channels/release-review-trading) to remove the **"Block releases"** GitHub repository ruleset — this ruleset prevents tag creation on unreleased pipelines and must be removed before you can create the release.
 - [ ] Once your PR approved by two reviewers, merge your PR into `master`/`main`
   - [ ] (**First release only**) And finally delete any label of types: "under development", "under construction" or variants of these on the repository
 - [ ] (**First release only**) Ask on the [#request-core](https://nfcore.slack.com/archives/C09H6NYHR9T) channel to activate the Zenodo functionality for this repository, which will be used to generate a DOI.

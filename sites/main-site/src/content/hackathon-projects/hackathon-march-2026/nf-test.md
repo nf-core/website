@@ -1,7 +1,7 @@
 ---
 title: nf-test development
 category: tooling
-slack: "https://nfcore.slack.com/archives/C09MLN67BQU"
+slack: https://nfcore.slack.com/channels/hackathon-mar-2026-nf-test
 location: Brussels (Google offices) and online
 intro_video: ""
 image: ""
@@ -20,8 +20,6 @@ Work on resolving nf-test issues and add new features to the codebase.
 
 ## Tasks
 
+Take a look at the [project board](https://github.com/orgs/nf-core/projects/146/views/5?visibleFields=%5B%22Title%22%2C258188611%2C%22Repository%22%2C%22Assignees%22%2C%22Status%22%2C258188612%5D) to see the list of issues we plan to work on.
+
 These task are some of the higher priority ones, but feel free to check the [issues on github](https://github.com/askimed/nf-test/issues) and pick any that you find interesting.
-
-### [Add support for topic channels](https://github.com/askimed/nf-test/issues/258)
-
-nf-test does not yet support the new topic channels introduced in Nextflow 25.04.0. This will make testing our modules using the new topic channels easier.
