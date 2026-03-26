@@ -16,13 +16,13 @@ jobs:
           script: |
             core.setOutput('cache-key', new Date().valueOf())
       - name: Retrieve cache
-        uses: actions/cache@cdf6c1fa76f9f475f3d7449005a359c84ca0f306 # v5
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
           path: ${{ github.workspace }}/blueskyfeedbot
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: "joschi/blueskyfeedbot@9bf0141c9510807ec8e7085a5123c626251dd6af" # v0.0.4
+        uses: "joschi/blueskyfeedbot@d20ac006c2187df83e4985046aa6e4caade2362a" # v0.0.6
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml

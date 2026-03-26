@@ -43,9 +43,13 @@ In the repository settings, set `dev` to be the default branch.
 Remember to configure the repository on the GitHub website with the following:
 
 - A description, the [https://nf-co.re](https://nf-co.re) URL and lots of keywords!
-- Issues enabled, disable Wiki and Projects
-- A protected `master` branch that requires review and passing tests
-- Write permissions for `nf-core/all` and admin permissions for `nf-core/admin`
+- Issues enabled, disable **Wiki** and **Projects**
+- Enable **Always suggest updating pull request branches**
+- Enable **Automatically delete head branches**
+- Add the **contributors** team with **Write** access and the **core** team with **Admin** access
+- Protected `master`/`main`, `dev` and `TEMPLATE` branches that requires review and passing tests (via rulesets)
+
+The full step-by-step checklist for these settings is in the [core team checklist](/docs/checklists/community_governance/core_team#pipeline-repository-settings).
 
 You can check that all of these settings are done correctly by referring to your pipeline
 in the nf-core [Repository health web page](https://nf-co.re/pipeline_health).
