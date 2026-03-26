@@ -30752,7 +30752,6 @@
       "path": "modules/nf-core/bioawk/meta.yml",
       "type": "module",
       "meta": {
-        "schema_version": "1.1.0",
         "name": "bioawk",
         "description": "Bioawk is an extension to Brian Kernighan's awk, adding the support of several common biological data formats.",
         "keywords": [
@@ -30789,10 +30788,39 @@
               "input": {
                 "type": "file",
                 "description": "Input biological sequence file (optionally gzipped) to be manipulated via the program specified in `$args`.\n",
-                "pattern": "*.{bed,gff,sam,vcf,fastq,fasta,tab,bed.gz,gff.gz,sam.gz,vcf.gz,fastq.gz,fasta.gz,tab.gz}"
+                "pattern": "*.{bed,gff,sam,vcf,fastq,fasta,tab,bed.gz,gff.gz,sam.gz,vcf.gz,fastq.gz,fasta.gz,tab.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1975"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             }
-          ]
+          ],
+          {
+            "output_file_extension": {
+              "type": "string",
+              "description": "The suffix to add to the output file name."
+            }
+          }
         ],
         "output": {
           "output": [
@@ -30804,10 +30832,10 @@
                 }
               },
               {
-                "*.gz": {
+                "*.${output_file_extension}": {
                   "type": "file",
-                  "description": "Manipulated and gzipped version of the input sequence file.",
-                  "pattern": "*.gz"
+                  "description": "Manipulated version of the input sequence file.",
+                  "ontologies": []
                 }
               }
             ]
@@ -30829,7 +30857,7 @@
               {
                 "1.0": {
                   "type": "string",
-                  "description": "The version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -30853,7 +30881,7 @@
               {
                 "1.0": {
                   "type": "string",
-                  "description": "The version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -30864,7 +30892,8 @@
         ],
         "maintainers": [
           "@jfy133"
-        ]
+        ],
+        "schema_version": "1.1.0"
       },
       "pipelines": [
         {
@@ -41979,6 +42008,10 @@
         {
           "name": "denovotranscript",
           "version": "1.2.1"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "genomeannotator",
@@ -73716,6 +73749,10 @@
       },
       "pipelines": [
         {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.6"
         }
@@ -80182,7 +80219,13 @@
           "@vagkaratzas",
           "@gallvp"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcprofiler",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "eido_convert",
@@ -88012,6 +88055,10 @@
         {
           "name": "fastquorum",
           "version": "1.2.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "genomeannotator",
@@ -123801,6 +123848,10 @@
         },
         {
           "name": "evexplorer",
+          "version": "dev"
+        },
+        {
+          "name": "funcprofiler",
           "version": "dev"
         },
         {
@@ -162958,6 +163009,10 @@
       },
       "pipelines": [
         {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
+        {
           "name": "taxprofiler",
           "version": "1.2.6"
         }
@@ -173623,6 +173678,10 @@
         {
           "name": "fastquorum",
           "version": "1.2.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -215296,19 +215355,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pypgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -215429,19 +215520,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pypgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -215524,19 +215647,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pypgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -215691,19 +215846,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pypgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pypgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pypgx -v 2>&1 | grep -oE \"[0-9]+\\.[0-9]+\\.[0-9]+\" | head -1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -221590,7 +221777,13 @@
           "@nickp60",
           "@vinisalazar"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "funcprofiler",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "rgi_cardannotation",
@@ -248703,6 +248896,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
         {
           "name": "smrnaseq",
           "version": "2.4.1"
@@ -281135,19 +281332,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tiara": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tiara": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "tiara": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "1.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -289319,6 +289548,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -309842,11 +310075,13 @@
         "authors": [
           "@daichengxin",
           "@wanghong",
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@DongzeHE"
         ],
         "maintainers": [
           "@daichengxin",
-          "@pinin4fjords"
+          "@pinin4fjords",
+          "@DongzeHE"
         ]
       }
     },
@@ -318241,6 +318476,10 @@
           "version": "1.12.0"
         },
         {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
+        {
           "name": "funcscan",
           "version": "3.0.0"
         },
@@ -318676,6 +318915,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -319117,6 +319360,10 @@
         {
           "name": "fastquorum",
           "version": "1.2.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "funcscan",
