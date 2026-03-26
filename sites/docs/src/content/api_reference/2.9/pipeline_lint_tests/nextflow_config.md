@@ -24,7 +24,7 @@ are not checked and will be assumed to be missing.
   - If `--release` is \_not\_ set, the version should end in `dev` (warning triggered if not)
 - `manifest.nextflowVersion`
   - The minimum version of Nextflow required to run the pipeline.
-  - Should be `>=` or `!>=` and a version number, eg. `manifest.nextflowVersion = '>=0.31.0'` (see [Nextflow documentation](https://docs.seqera.io/nextflow/config#scope-manifest))
+  - Should be `>=` or `!>=` and a version number, eg. `manifest.nextflowVersion = '>=0.31.0'` (see [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#scope-manifest)
   - `>=` warns about old versions but tries to run anyway, `!>=` fails for old versions. Only use the latter if you _know_ that the pipeline will certainly fail before this version.
   - This should correspond to the `NXF_VER` version tested by GitHub Actions.
 - `manifest.homePage`
