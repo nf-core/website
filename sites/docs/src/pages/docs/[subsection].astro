@@ -235,45 +235,61 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
                                                         {sanitizeNfCoreLabels(item.label)}
                                                     </h3>
                                                 </div>
-                                                {groupPages.map((page) => (
-                                                    <a
-                                                        href={page.href}
-                                                        class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
-                                                    >
-                                                        <div class="card h-100 page-card">
-                                                            <div class="card-body">
-                                                                <h5 class="h5 card-title mb-2">{page.label}</h5>
-                                                                {page.subtitle && (
-                                                                    <p class="card-description mb-0">{page.subtitle}</p>
-                                                                )}
-                                                            </div>
+                                                <div class="g-col-12">
+                                                    <div class="nested-content">
+                                                        <div class="grid gap-3">
+                                                            {groupPages.map((page) => (
+                                                                <a
+                                                                    href={page.href}
+                                                                    class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                                                >
+                                                                    <div class="card h-100 page-card">
+                                                                        <div class="card-body">
+                                                                            <h5 class="h5 card-title mb-2">
+                                                                                {page.label}
+                                                                            </h5>
+                                                                            {page.subtitle && (
+                                                                                <p class="card-description mb-0">
+                                                                                    {page.subtitle}
+                                                                                </p>
+                                                                            )}
+                                                                        </div>
+                                                                    </div>
+                                                                </a>
+                                                            ))}
                                                         </div>
-                                                    </a>
-                                                ))}
+                                                    </div>
+                                                </div>
                                             </>,
                                         );
                                     }
                                 });
 
+                                const pageCards = directPages.map((page) => (
+                                    <a
+                                        href={page.href}
+                                        class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
+                                    >
+                                        <div class="card h-100 page-card">
+                                            <div class="card-body">
+                                                <h5 class="h5 card-title mb-2">{page.label}</h5>
+                                                {page.subtitle && (
+                                                    <p class="card-description mb-0">{page.subtitle}</p>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </a>
+                                ));
+
                                 return (
-                                    <>
-                                        {directPages.map((page) => (
-                                            <a
-                                                href={page.href}
-                                                class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
-                                            >
-                                                <div class="card h-100 page-card">
-                                                    <div class="card-body">
-                                                        <h5 class="h5 card-title mb-2">{page.label}</h5>
-                                                        {page.subtitle && (
-                                                            <p class="card-description mb-0">{page.subtitle}</p>
-                                                        )}
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        ))}
-                                        {groups}
-                                    </>
+                                    <div class="g-col-12">
+                                        <div class="section-content">
+                                            <div class="grid gap-3">
+                                                {pageCards}
+                                                {groups}
+                                            </div>
+                                        </div>
+                                    </div>
                                 );
                             };
 
@@ -343,6 +359,18 @@ const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
         font-weight: 600;
         font-size: 1.5rem !important;
         margin-top: 2rem;
+    }
+
+    .section-content {
+        border-left: 2px solid var(--bs-border-color);
+        padding-left: 1rem;
+        margin-left: 0.25rem;
+    }
+
+    .nested-content {
+        border-left: 2px solid var(--bs-border-color);
+        padding-left: 1rem;
+        margin-left: 0.25rem;
     }
 
     /* Page Cards - matching index.astro style */
