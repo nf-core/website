@@ -94,7 +94,7 @@ process {
 }
 ```
 
-For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors).
+For more information, see the [Nextflow documentation](https://docs.seqera.io/nextflow/config#process-selectors).
 
 After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c <path>/<to>/<config>.conf`.
 
@@ -104,7 +104,7 @@ Setting memory to `200` allocates 200 bytes of memory.
 
 Use quotes with a space or no quotes with a dot: `"200 GB"` or `200.GB`.
 
-See the Nextflow documentation for [memory](https://www.nextflow.io/docs/latest/process.html#memory), [cpus](https://www.nextflow.io/docs/latest/process.html#cpus), and [time](https://www.nextflow.io/docs/latest/process.html#time).
+See the Nextflow documentation for [memory](https://docs.seqera.io/nextflow/process#memory), [cpus](https://docs.seqera.io/nextflow/process#cpus), and [time](https://docs.seqera.io/nextflow/process#time).
 :::
 
 :::info
@@ -120,7 +120,7 @@ Nextflow pipelines run in 'local' mode by default, executing jobs on the same sy
 Most users need to specify an executor to tell Nextflow how to submit jobs to a job scheduler (e.g., SGE, LSF, Slurm, PBS, or AWS Batch).
 
 You can configure the executor in shared configuration profiles or in custom configuration files.
-For more information about executors, see [Executors](https://www.nextflow.io/docs/latest/executor.html#executor-page).
+For more information about executors, see [Executors](https://docs.seqera.io/nextflow/executor#executor-page).
 
 ## Set max resources
 
@@ -193,7 +193,7 @@ For example, if you set `docker.registry = 'myregistry.com'`, the image pulls fr
 
 ## Update tool versions
 
-The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
+The [Nextflow DSL2](https://docs.seqera.io/nextflow/dsl2) implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
 
 To use a different version of a tool, identify the `process` name and override the Nextflow `container` or `conda` definition for that process using the `withName` declaration.
 
@@ -302,6 +302,6 @@ Pipeline developers provide no warranty when you update tool parameters or chang
 
 For more information about configuration syntax and parameters, see:
 
-- [Nextflow configuration documentation](https://www.nextflow.io/docs/latest/config.html)
-- [Nextflow executors](https://www.nextflow.io/docs/latest/executor.html)
+- [Nextflow configuration documentation](https://docs.seqera.io/nextflow/config)
+- [Nextflow executors](https://docs.seqera.io/nextflow/executor)
 - [nf-core/configs](https://github.com/nf-core/configs)
