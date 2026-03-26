@@ -54,7 +54,7 @@ To migrate a module to use topic channels for version outputs:
 :::note{title="Hard-coded version"}
 
 If your tool has no '--version' available or if you need to override it, replace `eval('tool1 --version')`  in the example above with `val("1.2.3")`.
-Please also note that `topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
+`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
 
 :::
 
