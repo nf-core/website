@@ -10,6 +10,7 @@ This repository contains code for the nf-core website: **<http://nf-co.re/>**
 
 > [!IMPORTANT]
 > The `docs-archive` branch is read only and is an archive for the nf-core documentation before the version 2 migration (March 2026). An administrator is required to make changes to this branch.
+> 
 > View the archived documentation at <https://docs-archive--nf-core-docs.netlify.app/docs>
 
 ## Packages used
