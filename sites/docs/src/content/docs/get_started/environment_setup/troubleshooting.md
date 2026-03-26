@@ -69,11 +69,11 @@ An `nf-core: command not found` error can occur when running nf-core tools from 
 
 This issue occurs when nf-core tools is not installed in the active environment or is not in your `$PATH`. To resolve this issue:
 
-| Installation method | Solution |
-|---|---|
-| Conda | Run `conda activate nf-core-env` to activate the environment |
-| pip | Ensure the Python scripts directory is in your `$PATH` |
-| Docker | Verify your alias is correctly configured in your shell |
+| Installation method | Solution                                                     |
+| ------------------- | ------------------------------------------------------------ |
+| Conda               | Run `conda activate nf-core-env` to activate the environment |
+| pip                 | Ensure the Python scripts directory is in your `$PATH`       |
+| Docker              | Verify your alias is correctly configured in your shell      |
 
 ### Installation fails due to Python version
 
