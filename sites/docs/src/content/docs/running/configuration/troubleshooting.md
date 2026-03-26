@@ -6,7 +6,9 @@ shortTitle: Troubleshooting
 
 This page covers common issues you may encounter when running nf-core pipelines.
 
-## Pipeline crashes immediately
+## Running pipelines
+
+### Pipeline crashes immediately
 
 **Problem:**
 
@@ -24,7 +26,7 @@ Add `-profile docker`, `-profile singularity`, or `-profile conda` to your comma
 nextflow run nf-core/pipeline -profile docker
 ```
 
-## Cluster job submission fails
+### Cluster job submission fails
 
 **Error message:**
 
@@ -47,7 +49,7 @@ Manually submit the failed job to see the actual error:
 3. The scheduler will show the real error (for example, "job memory limit exceeded")
 4. Adjust your configuration based on the error message
 
-## Invalid executor configuration
+### Invalid executor configuration
 
 **Error message:**
 
@@ -93,7 +95,7 @@ singularity {
 
 Or update your Singularity system configuration at `/etc/singularity/singularity.conf`.
 
-## Container not updating
+### Container not updating
 
 **Problem:**
 
