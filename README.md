@@ -4,11 +4,13 @@
   <img src="sites/main-site/src/assets/images/logo/nf-core-logo.svg" alt="nf-core logo" width="400">
 </picture>
 
-**The `docs-archive` branch is read only and is an archive for the nf-core documenation before the version 2 migration (March 2026). An administrator is required to make changes to this branch.**
-
 # [nf-co.re](https://github.com/nf-core/website)
 
 This repository contains code for the nf-core website: **<http://nf-co.re/>**
+
+> [!IMPORTANT]
+> The `docs-archive` branch is read only and is an archive for the nf-core documentation before the version 2 migration (March 2026). An administrator is required to make changes to this branch.
+> View the archived documentation at <https://docs-archive--nf-core-docs.netlify.app/docs>
 
 ## Packages used
 
