@@ -82,4 +82,6 @@ If you find evidence of this merge, rebuild your `TEMPLATE` branch from scratch:
 You can now recreate the pull request from `TEMPLATE` into `dev`.
 If conflicts occur, resolve them locally. See [Merging automated PRs](./merge-automated-pull-requests) for more details.
 
-<!-- TODO: Add links to sync documentation -->
+### Additional resources
+
+- **[Template sync](../template-syncs/overview.md)**: Learn how automated or manual template syncs work once your template is repaired

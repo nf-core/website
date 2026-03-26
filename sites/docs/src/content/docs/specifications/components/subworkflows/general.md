@@ -4,12 +4,7 @@ subtitle: Follow general subworkflow specifications
 weight: 1
 ---
 
-<!-- TODO migrate changes form these PRs:
-
-- https://github.com/nf-core/website/pull/3783/changes
--->
-
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Minimum subworkflow size
 
