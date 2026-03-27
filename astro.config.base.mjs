@@ -113,12 +113,12 @@ export default {
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee"],
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee", "@mashehu/astropub-md"],
         },
         resolve: {
             preserveSymlinks: true,
             browser: true,
-            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee"],
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee", "@mashehu/astropub-md"],
         },
         css: {
             preprocessorOptions: {
@@ -201,7 +201,7 @@ export default {
                     transformers: [transformerNotationDiff()],
                 },
             ],
-            rehypeKatex,
+            [rehypeKatex, { strict: false }],
         ],
     },
 };
