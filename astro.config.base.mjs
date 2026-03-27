@@ -118,6 +118,7 @@ export default {
         resolve: {
             preserveSymlinks: true,
             browser: true,
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee"],
         },
         css: {
             preprocessorOptions: {
