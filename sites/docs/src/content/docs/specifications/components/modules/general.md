@@ -511,7 +511,7 @@ Alternative suggestions:
 ## Script inclusion
 
 Module templates separate scientific logic from workflow-specific logic, improving code clarity and maintainability.
-If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), provide it through a [Nextflow module template](https://www.nextflow.io/docs/latest/module.html#module-templates).
+If a module's `script:` block contains a script rather than command invocations, regardless of the language (for example, Bash, R, Python), and the content is more than a readable length (as a rule of thumb, approximately 20 lines), provide it through a [Nextflow module template](https://docs.seqera.io/nextflow/module#module-templates).
 
 :::note
 We recommend use of Nextflow templates as they are the most portable method of separating custom script content and execution across all execution contexts.
@@ -583,7 +583,7 @@ For an R example see [deseq2/differential](https://github.com/nf-core/modules/bl
 
 ### Stub block must exist
 
-[A stub block](https://www.nextflow.io/docs/latest/process.html#stub) MUST exist for all modules.
+[A stub block](https://docs.seqera.io/nextflow/process#stub) MUST exist for all modules.
 This is a block of code that replaces the `script` command when the option `-stub` is set.
 This enables quick testing of the workflow logic, as a "dry-run".
 
