@@ -1,7 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
 import { remote_workflows as pipelines } from "@public/pipelines.json";
-import GitHubActionTrigger from "@components/GitHubActionTrigger.svelte";
 
 // sort pipelines by name
 pipelines.sort((a, b) => a.name.localeCompare(b.name));
@@ -34,7 +33,7 @@ const countTrue = (fn) => {
 >
     <div class="container-fluid main-content w-100 mw-100">
         <table class="table table-hover table-sm w-100">
-            <thead class="">
+            <thead>
                 <tr class="sticky-top-under z-1">
                     <th class="small fw-normal p-1">Pipeline Name</th>
                     <th

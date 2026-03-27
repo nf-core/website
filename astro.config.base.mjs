@@ -61,7 +61,6 @@ export default {
     ],
     experimental: {
         svgo: true,
-        rustCompiler: true,
     },
     integrations: [
         svelte(),
@@ -114,7 +113,7 @@ export default {
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ["@popperjs/core"],
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "svelte-fast-marquee"],
         },
         resolve: {
             preserveSymlinks: true,
@@ -123,7 +122,6 @@ export default {
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: "modern-compiler",
                     silenceDeprecations: [
                         "legacy-js-api",
                         "color-functions",
