@@ -14,7 +14,7 @@ You will need the following to get started:
 - Bash version 3.2 or later
 - Java version 17 or later (up to Java 25)
 
-For the latest instructions, see the [Nextflow installation guide](https://www.nextflow.io/docs/latest/install.html).
+For the latest instructions, see the [Nextflow installation guide](https://docs.seqera.io/nextflow/install).
 :::
 
 ## Install Java

@@ -2,6 +2,7 @@
 title: "Installation"
 subtitle: Install nf-core/tools
 weight: 1
+parentWeight: 1
 ---
 
 nf-core tools is a Python package that provides command-line utilities for working with nf-core pipelines.
