@@ -8345,10 +8345,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "pacsomatic",
           "version": "dev"
         }
@@ -8452,10 +8448,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "pacsomatic",
           "version": "dev"
@@ -10588,7 +10580,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -20891,10 +20883,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "pacsomatic",
           "version": "dev"
         },
@@ -21768,10 +21756,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -21940,10 +21924,6 @@
         {
           "name": "genomicrelatedness",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -22341,10 +22321,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "phaseimpute",
           "version": "1.1.0"
@@ -22786,10 +22762,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "pacsomatic",
           "version": "dev"
@@ -24691,10 +24663,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         }
@@ -25230,10 +25198,6 @@
         {
           "name": "genomicrelatedness",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -25844,10 +25808,6 @@
         {
           "name": "alleleexpression",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -42026,10 +41986,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -49937,7 +49893,7 @@
       "type": "module",
       "meta": {
         "name": "chromap_chromap",
-        "description": "Performs preprocessing and alignment of chromatin fastq files to\nfasta reference files using chromap.\n",
+        "description": "Performs preprocessing and alignment of chromatin fastq files to fasta reference files using chromap.\n",
         "keywords": [
           "chromap",
           "alignment",
@@ -49954,7 +49910,7 @@
         "tools": [
           {
             "chromap": {
-              "description": "Fast alignment and preprocessing of chromatin profiles",
+              "description": "Fast alignment and preprocessing of chromatin profiles\n",
               "homepage": "https://github.com/haowenz/chromap",
               "documentation": "https://github.com/haowenz/chromap",
               "tool_dev_url": "https://github.com/haowenz/chromap",
@@ -50125,19 +50081,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_chromap": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "chromap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "chromap --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "chromap": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "chromap --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -51384,10 +51414,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "methylong",
           "version": "2.0.0"
@@ -64588,7 +64614,7 @@
             {
               "map_file": {
                 "type": "file",
-                "description": "Genomic map file to process",
+                "description": "Genomic map file to process.\nThis file should contain the data of only one chromosome.\nIt should be a flat file (comma, semicolon, tab or space delimited) with\nat least the physical position and its corresponding recombination\ndistance in centiMorgans.\nThe columns names will be normalised (no space, extra character transformed to \"_\")\nand then automatically recognise as:\n  - chr: _chr, chrom, chromosome\n  - pos: position, bp\n  - id: snp, marker, rsid\n  - cm: genetic_map_cm\n  - rate: combined_rate, combined_rate_cm_mb, cm_mb\nIf no header present, then it will try for 3 columns table with chr, pos, cm format\nand for 4 columns table with chr, id, cm, pos format.\n",
                 "ontologies": []
               }
             }
@@ -66340,13 +66366,7 @@
           "@christopher-hakkaart",
           "@yuukiiwa"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "damageprofiler",
@@ -71493,10 +71513,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "pacvar",
           "version": "1.0.1"
         }
@@ -71734,10 +71750,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "pacvar",
           "version": "1.0.1"
@@ -72012,10 +72024,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "pacvar",
           "version": "1.0.1"
@@ -72304,10 +72312,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "pacvar",
           "version": "1.0.1"
         },
@@ -72438,13 +72442,7 @@
         "maintainers": [
           "@fellen31"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "delly_call",
@@ -92943,19 +92941,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_foldmason": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldmason": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldmason version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldmason": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldmason version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -93327,19 +93357,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_foldmason": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldmason": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldmason version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldmason": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldmason version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -93536,7 +93598,13 @@
         "authors": [
           "@vagkaratzas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "proteinfold",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "force_cube",
@@ -118509,10 +118577,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -123915,10 +123979,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -123960,7 +124020,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         },
         {
           "name": "radseq",
@@ -128311,13 +128371,7 @@
         "maintainers": [
           "@chaochaowong"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "hifitrimmer_filterbam",
@@ -139236,13 +139290,7 @@
         "maintainers": [
           "@nvnieuwk"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "jellyfish_count",
@@ -150248,13 +150296,7 @@
         "maintainers": [
           "@fellen31"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "longphase_phase",
@@ -150485,13 +150527,7 @@
         "maintainers": [
           "@fellen31"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "longstitch",
@@ -165679,10 +165715,6 @@
           "version": "2.0.0"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -165833,10 +165865,6 @@
         {
           "name": "evexplorer",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -168735,7 +168763,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -170096,7 +170124,7 @@
       "pipelines": [
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         }
       ]
     },
@@ -170943,10 +170971,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "methylong",
           "version": "2.0.0"
         }
@@ -171646,10 +171670,6 @@
         {
           "name": "genomicrelatedness",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "pacsomatic",
@@ -174181,10 +174201,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "lsmquant",
           "version": "dev"
         },
@@ -174310,7 +174326,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         },
         {
           "name": "quantms",
@@ -178368,10 +178384,6 @@
         {
           "name": "bacass",
           "version": "2.5.0"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -228034,10 +228046,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         },
@@ -234943,10 +234951,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -235436,10 +235440,6 @@
           "version": "1.1.0"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "methylong",
           "version": "2.0.0"
         },
@@ -235837,10 +235837,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "magmap",
           "version": "1.0.0"
         },
@@ -236210,10 +236206,6 @@
         {
           "name": "lncpipe",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "magmap",
@@ -236660,10 +236652,6 @@
         {
           "name": "lncpipe",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -237204,10 +237192,6 @@
         },
         {
           "name": "hicar",
-          "version": "1.0.0"
-        },
-        {
-          "name": "longraredisease",
           "version": "1.0.0"
         },
         {
@@ -238420,10 +238404,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "magmap",
           "version": "1.0.0"
         },
@@ -238907,10 +238887,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -239378,10 +239354,6 @@
         {
           "name": "hlatyping",
           "version": "2.2.0"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "phaseimpute",
@@ -254049,7 +254021,14 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "suffix_": {
+              "type": "string",
+              "description": "Output format",
+              "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}"
+            }
+          }
         ],
         "output": {
           "merged_variants": [
@@ -256877,6 +256856,106 @@
       ]
     },
     {
+      "name": "singlem_dbdownload",
+      "path": "modules/nf-core/singlem/dbdownload/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "singlem_dbdownload",
+        "description": "Download the SingleM metapackage database used for metagenome profiling",
+        "keywords": [
+          "metagenomics",
+          "database",
+          "download",
+          "profiling",
+          "singlem",
+          "metapackage"
+        ],
+        "tools": [
+          {
+            "singlem": {
+              "description": "SingleM is a tool for profiling shotgun metagenomes. It determines the relative\nabundance of bacterial and archaeal taxa in a sample and can also profile dsDNA\nphages. It has particular strength in dealing with novel lineages and is suitable\nfor tasks such as assessing eukaryotic contamination, finding bias in genome\nrecovery, and lineage-targeted MAG recovery.\n",
+              "homepage": "https://wwood.github.io/singlem",
+              "documentation": "https://wwood.github.io/singlem",
+              "tool_dev_url": "https://github.com/wwood/singlem",
+              "doi": "10.1038/s41587-024-02492-w",
+              "licence": [
+                "GPL-3.0-or-later"
+              ],
+              "identifier": "biotools:singlem"
+            }
+          }
+        ],
+        "output": {
+          "singlem_database": [
+            {
+              "*.smpkg.zb": {
+                "type": "file",
+                "description": "SingleM metapackage database file used for taxonomic profiling",
+                "pattern": "*.smpkg.zb",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_0955"
+                  }
+                ]
+              }
+            }
+          ],
+          "versions_singlem": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "singlem": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "singlem --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "singlem": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "singlem --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@TheGreatJack"
+        ],
+        "maintainers": [
+          "@TheGreatJack"
+        ]
+      }
+    },
+    {
       "name": "sistr",
       "path": "modules/nf-core/sistr/meta.yml",
       "type": "module",
@@ -259482,13 +259561,7 @@
           "@yuukiiwa",
           "@fellen31"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "snippy_core",
@@ -260294,10 +260367,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "rnavar",
           "version": "1.2.3"
         },
@@ -260648,10 +260717,6 @@
         ]
       },
       "pipelines": [
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
         {
           "name": "rnavar",
           "version": "1.2.3"
@@ -269612,10 +269677,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "raredisease",
           "version": "2.6.0"
         }
@@ -276980,10 +277041,6 @@
           "version": "3.0.0"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "nanoseq",
           "version": "3.1.0"
         },
@@ -277205,10 +277262,6 @@
           "version": "3.2.2"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "methylong",
           "version": "2.0.0"
         },
@@ -277371,10 +277424,6 @@
         {
           "name": "drop",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -286236,10 +286285,6 @@
       },
       "pipelines": [
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "variantbenchmarking",
           "version": "1.4.0"
         }
@@ -290043,10 +290088,6 @@
           "version": "dev"
         },
         {
-          "name": "longraredisease",
-          "version": "1.0.0"
-        },
-        {
           "name": "mag",
           "version": "5.4.1"
         },
@@ -290088,7 +290129,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         },
         {
           "name": "rangeland",
@@ -290389,6 +290430,10 @@
         {
           "name": "nascent",
           "version": "2.3.0"
+        },
+        {
+          "name": "proteinfold",
+          "version": "2.0.0"
         },
         {
           "name": "rnadnavar",
@@ -301212,6 +301257,12 @@
                 "description": "URL to download",
                 "pattern": "^https?://*.*"
               }
+            },
+            {
+              "suffix": {
+                "type": "string",
+                "description": "Output suffix"
+              }
             }
           ]
         ],
@@ -308611,10 +308662,6 @@
         {
           "name": "lncpipe",
           "version": "dev"
-        },
-        {
-          "name": "longraredisease",
-          "version": "1.0.0"
         },
         {
           "name": "magmap",
@@ -319194,7 +319241,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         },
         {
           "name": "rangeland",
@@ -319635,7 +319682,7 @@
         },
         {
           "name": "proteinfold",
-          "version": "1.1.1"
+          "version": "2.0.0"
         },
         {
           "name": "rangeland",
@@ -320067,6 +320114,10 @@
           "version": "2.2.0"
         },
         {
+          "name": "proteinfold",
+          "version": "2.0.0"
+        },
+        {
           "name": "rangeland",
           "version": "1.0.0"
         },
@@ -320284,10 +320335,6 @@
         {
           "name": "metaboigniter",
           "version": "2.0.1"
-        },
-        {
-          "name": "proteinfold",
-          "version": "1.1.1"
         },
         {
           "name": "readsimulator",
