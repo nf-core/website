@@ -30776,6 +30776,24 @@
             }
           ],
           {
+            "program_file": {
+              "type": "file",
+              "description": "Optional file containing logic for awk to execute. If you don't wish to use a file, you can use `ext.args2` to specify the logic.",
+              "pattern": "*",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/data_3671"
+                }
+              ]
+            }
+          },
+          {
+            "disable_redirect_output": {
+              "type": "boolean",
+              "description": "Disable the redirection of awk output to a given file. This is\nuseful if you want to use awk's built-in redirect to write files instead\nof the shell's redirect.\n"
+            }
+          },
+          {
             "output_file_extension": {
               "type": "string",
               "description": "The suffix to add to the output file name."
@@ -164873,7 +164891,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -164881,7 +164899,11 @@
                 "type": "file",
                 "description": "Input reads in FastQ format",
                 "pattern": "*.{fastq.gz, fastq}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
               }
             }
           ]
@@ -164892,15 +164914,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "*.contigs.fa": {
+                "*.contigs.fa.gz": {
                   "type": "file",
                   "description": "The assembled contigs",
-                  "pattern": "*.contigs.fa",
-                  "ontologies": []
+                  "pattern": "*.contigs.fa.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -164910,15 +164936,19 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
-                "*.unitigs.fa": {
+                "*.unitigs.fa.gz": {
                   "type": "file",
                   "description": "The assembled unitigs",
-                  "pattern": "*.unitigs.fa",
-                  "ontologies": []
+                  "pattern": "*.unitigs.fa.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -164928,32 +164958,82 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
                 }
               },
               {
                 "*.h5": {
                   "type": "file",
-                  "description": "Minia output h5 file",
-                  "pattern": "*{.h5}",
+                  "description": "Minia assembly graph in binary h5 format",
+                  "pattern": "*.h5",
                   "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*-minia.log": {
+                  "type": "file",
+                  "description": "Minia assembly log file",
+                  "pattern": "*-minia.log",
+                  "ontologies": []
+                }
               }
-            }
+            ]
+          ],
+          "versions_minia": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minia": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minia -v | sed -n 's/Minia version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minia": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minia -v | sed -n 's/Minia version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -280413,6 +280493,217 @@
         ],
         "maintainers": [
           "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "telescope_assign",
+      "path": "modules/nf-core/telescope/assign/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "telescope_assign",
+        "description": "The telescope assign program finds overlapping reads between an alignment (SAM/BAM) and an annotation (GTF) then reassigns reads using a statistical model.",
+        "keywords": [
+          "EM",
+          "single-locus",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "telescope": {
+              "description": "Single locus resolution of Transposable ELEment expression",
+              "homepage": "https://github.com/mlbendall/telescope",
+              "documentation": "https://github.com/mlbendall/telescope",
+              "tool_dev_url": "https://github.com/mlbendall/telescope",
+              "doi": "10.1371/journal.pcbi.1006453",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:Telescope-expression"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta_bam": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM/SAM file, File must be collated so that all alignments for a read pair appear sequentially in the file",
+                "pattern": "*.{bam,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta_gtf": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[id:'sample1' ]`\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Annotation file which includes TE loci.",
+                "pattern": "*.{gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta_bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*{updated,other}.bam": {
+                  "type": "file",
+                  "description": "The updated SAM file contains those fragments that has at least 1 initial alignment to a transposable element.",
+                  "pattern": "*{updated,other}.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta_bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*{updated,other}.sam": {
+                  "type": "file",
+                  "description": "The updated SAM file contains those fragments that has at least 1 initial alignment to a transposable element.",
+                  "pattern": "*{updated,other}.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta_bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "Statistical report associated with the run",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta_bam": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Log file for telescope run output.",
+                  "pattern": "*.log"
+                }
+              }
+            ]
+          ],
+          "versions_telescope": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "telescope": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "telescope --version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "telescope": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "telescope --version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@hanalysis"
+        ],
+        "maintainers": [
+          "@hanalysis"
         ]
       }
     },
