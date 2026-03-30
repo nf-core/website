@@ -82,6 +82,27 @@ interface S3Prefix {
 }
 
 // ========================================
+// CONCURRENCY HELPERS
+// ========================================
+
+/**
+ * Runs async tasks with a maximum concurrency limit
+ */
+async function parallelLimit<T>(tasks: (() => Promise<T>)[], limit: number): Promise<T[]> {
+    const results: (T | undefined)[] = new Array(tasks.length);
+    const queue = tasks.map((task, i) => ({ task, i }));
+    let next = 0;
+    const workers = Array.from({ length: Math.min(limit, tasks.length) }, async () => {
+        while (next < queue.length) {
+            const { task, i } = queue[next++];
+            results[i] = await task();
+        }
+    });
+    await Promise.all(workers);
+    return results as T[];
+}
+
+// ========================================
 // CONTENT PROCESSORS
 // ========================================
 
@@ -106,30 +127,26 @@ function createProcessors(processors: Processors) {
 /**
  * Creates a markdown processor with GitHub-specific transformations
  */
-function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo: string, ref: string }): Processors {
+function createGitHubMarkdownProcessor(renderMarkdown: Function, options: { repo: string; ref: string }): Processors {
     return {
         md: async (text: string, config: AstroConfig, filepath?: string): Promise<RenderedContent> => {
             try {
-                // For GitHub files, we need to use our custom processor with remark plugin
-                // to handle link transformations, image URLs, etc.
+                const parentDir = filepath?.includes("/") ? filepath.split("/").slice(0, -1).join("/") : "";
                 const processor = await createMarkdownProcessor({
                     ...config.markdown,
                     remarkPlugins: [
                         [
                             remarkGitHubMarkdown,
                             {
-                                org: 'nf-core',
+                                org: "nf-core",
                                 repo: options.repo,
                                 ref: options.ref,
-                                parent_directory: filepath?.includes("/")
-                                    ? filepath.split("/").slice(0, -1).join("/")
-                                    : "",
+                                parent_directory: parentDir,
                             },
                         ],
                         ...(config.markdown?.remarkPlugins || []),
                     ],
                 });
-
                 const { code: html, metadata } = await processor.render(text);
                 return { html, metadata };
             } catch (error) {
@@ -165,19 +182,23 @@ function createSchemaProcessor(renderMarkdown: Function): Processors {
                     }));
 
                     // Process markdown content in schema definitions
-                    const defsKey = schema.definitions ? 'definitions' : '$defs';
+                    const defsKey = schema.definitions ? "definitions" : "$defs";
                     if (schema[defsKey]) {
                         // Deep copy the definitions to avoid mutation
                         schema[defsKey] = JSON.parse(JSON.stringify(schema[defsKey]));
 
                         await Promise.all(
                             Object.entries(schema[defsKey]).map(async ([key, definition]) => {
-                                const def = definition as { description: string, help_text: string, properties: Record<string, any> };
+                                const def = definition as {
+                                    description: string;
+                                    help_text: string;
+                                    properties: Record<string, any>;
+                                };
 
                                 // Render markdown for definition-level content
                                 await Promise.all([
-                                    renderMarkdownField(def, 'description', renderMarkdown, `${key}`),
-                                    renderMarkdownField(def, 'help_text', renderMarkdown, `${key}`),
+                                    renderMarkdownField(def, "description", renderMarkdown, `${key}`),
+                                    renderMarkdownField(def, "help_text", renderMarkdown, `${key}`),
                                 ]);
 
                                 // Render markdown for property-level content
@@ -186,13 +207,23 @@ function createSchemaProcessor(renderMarkdown: Function): Processors {
                                         Object.entries(def.properties).map(async ([propKey, property]) => {
                                             const prop = property as any;
                                             await Promise.all([
-                                                renderMarkdownField(prop, 'description', renderMarkdown, `${key}.${propKey}`),
-                                                renderMarkdownField(prop, 'help_text', renderMarkdown, `${key}.${propKey}`),
+                                                renderMarkdownField(
+                                                    prop,
+                                                    "description",
+                                                    renderMarkdown,
+                                                    `${key}.${propKey}`,
+                                                ),
+                                                renderMarkdownField(
+                                                    prop,
+                                                    "help_text",
+                                                    renderMarkdown,
+                                                    `${key}.${propKey}`,
+                                                ),
                                             ]);
-                                        })
+                                        }),
                                     );
                                 }
-                            })
+                            }),
                         );
                     }
                 }
@@ -222,7 +253,7 @@ async function renderMarkdownField(
     obj: any,
     fieldName: string,
     renderMarkdown: Function,
-    context: string
+    context: string,
 ): Promise<void> {
     if (obj[fieldName]) {
         try {
@@ -253,7 +284,7 @@ class GitHubContentFetcher {
     /**
      * Generic method to fetch data from GitHub
      */
-    private async fetchData<T extends any>(filepath: string, type: "json" | "text"): Promise<T> {
+    private async fetchData<T extends any>(filepath: string, type: "json" | "text", retries = 3): Promise<T> {
         try {
             if (filepath.startsWith("https://api.github.com")) {
                 const response = await octokit.request("GET " + filepath.replace("https://api.github.com", ""));
@@ -261,6 +292,12 @@ class GitHubContentFetcher {
             }
 
             const response = await fetch(filepath);
+            if (response.status === 429 && retries > 0) {
+                const retryAfter = Number(response.headers.get("retry-after") ?? 60);
+                console.log(`[rate-limit] ${filepath} — retrying in ${retryAfter}s (${retries} attempts left)`);
+                await new Promise((resolve) => setTimeout(resolve, retryAfter * 1000));
+                return this.fetchData<T>(filepath, type, retries - 1);
+            }
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
             return (type === "json" ? await response.json() : await response.text()) as T;
@@ -289,7 +326,6 @@ class GitHubContentFetcher {
         // Skip if file hasn't changed (except for configs)
         const existingEntry = store.get(fileId);
         if (existingEntry && !existingEntry.id.startsWith("configs/")) {
-            logger.info(`File ${filepath} unchanged, skipping`);
             return fileId;
         }
 
@@ -359,11 +395,13 @@ class GitHubContentFetcher {
         processors,
         getDates = false,
         additionalData = {},
+        concurrency = 5,
     }: {
         path: string | RegExp;
         processors: Processors;
         getDates?: boolean;
         additionalData?: Record<string, unknown>;
+        concurrency?: number;
     }): Promise<void> {
         const { logger, meta, store } = this.context;
         logger.debug(`Loading files from ${this.org}/${this.repo}@${this.ref}`);
@@ -378,24 +416,24 @@ class GitHubContentFetcher {
         const treeShaKey = `tree:${this.repo}:${this.ref}`;
         const lastTreeSha = meta.get(treeShaKey);
         if (lastTreeSha === treeData.sha) {
-            logger.debug(`No changes detected in GitHub tree for ${this.repo}@${this.ref}, skipping update`);
             return;
         }
 
         // Process matching files
+        const matchingLeaves = treeData.tree.filter((leaf) => {
+            if (leaf.type === "tree" || leaf.path?.includes(".github/")) return false;
+            return typeof path === "string" ? leaf.path?.includes(path) : path.test(leaf.path ?? "");
+        });
+
         const processedIds = new Set<string>();
-        for (const leaf of treeData.tree) {
-            if (leaf.type === "tree" || leaf.path?.includes(".github/")) continue;
-
-            // Check if path matches our criteria
-            const pathMatch = typeof path === "string"
-                ? leaf.path?.includes(path)
-                : path.test(leaf.path ?? "");
-
-            if (!pathMatch) continue;
-
-            logger.debug(`Processing ${leaf.path}`);
-            const id = await this.processFile(leaf.path, processors, getDates, additionalData);
+        const ids = await parallelLimit(
+            matchingLeaves.map((leaf) => () => {
+                logger.debug(`Processing ${leaf.path}`);
+                return this.processFile(leaf.path, processors, getDates, additionalData);
+            }),
+            concurrency,
+        );
+        for (const id of ids) {
             if (id) processedIds.add(id);
         }
 
@@ -463,6 +501,95 @@ async function getS3KeysWithPrefixes(client: S3Client, prefixes: string[]) {
 // ========================================
 
 /**
+ * Parses nf-core config files and extracts profile metadata
+ */
+function createConfigProcessor(): Processors {
+    return {
+        config: async (text: string): Promise<RenderedContent> => {
+            const NFConfig = {
+                config_profile_description: "",
+                config_profile_contact: "",
+                config_profile_url: "",
+                executor: "",
+            };
+
+            const descMatch = text.match(/config_profile_description\s*=\s*("+|')([\s\S]*?)\1/);
+            NFConfig.config_profile_description = descMatch?.[2] ?? "";
+
+            const contactMatch = text.match(/config_profile_contact\s*=\s*(.*)/);
+            NFConfig.config_profile_contact = contactMatch?.[1] ?? "";
+
+            const urlMatch = text.match(/config_profile_url\s*=\s*(.*)/);
+            NFConfig.config_profile_url = urlMatch?.[1] ?? "";
+
+            const execMatch = text.match(/executor\s*=\s*(.*)/);
+            NFConfig.executor = execMatch?.[1] ?? "";
+            if (NFConfig.executor === "") {
+                const execNameMatch = text.match(/executor\s*{\s*name\s*=\s*(.*)\s*/);
+                NFConfig.executor = execNameMatch?.[1] ?? "";
+            }
+            if (NFConfig.executor?.includes("?") && NFConfig.executor?.includes(":")) {
+                const match = NFConfig.executor.match(/{.*\?(.*):(.*)}/);
+                NFConfig.executor = match
+                    ? match
+                          .slice(1, 3)
+                          .map((item) => item.trim().replace(/'/g, ""))
+                          .join(", ")
+                    : "";
+                NFConfig.executor = NFConfig.executor.replace(/\/\/.*$/, "");
+            }
+            Object.keys(NFConfig).forEach((key) => {
+                NFConfig[key] = NFConfig[key]?.replace(/'|"/g, "");
+            });
+            NFConfig.config_profile_description = NFConfig.config_profile_description.replace(
+                " provided by nf-core/configs",
+                "",
+            );
+
+            return { html: text, metadata: NFConfig };
+        },
+    };
+}
+
+/**
+ * Config Loader - Loads nf-core institutional config files
+ */
+export function configLoader(): Loader {
+    return {
+        name: "config-loader",
+        load: async (context: LoaderContext) => {
+            console.log("Starting config loader");
+            getCurrentRateLimitRemaining();
+
+            const fetcher = new GitHubContentFetcher("nf-core", "configs", "master", context);
+
+            const processors = {
+                md: async (text: string, config: AstroConfig): Promise<RenderedContent> => {
+                    const processor = await createMarkdownProcessor(config.markdown);
+                    try {
+                        const { code: html, metadata } = await processor.render(text);
+                        return { html, metadata };
+                    } catch (error) {
+                        console.error(`Error processing markdown: ${error.message}`);
+                        throw error;
+                    }
+                },
+                ...createConfigProcessor(),
+            };
+
+            await fetcher.processFilesFromTree({
+                path: /\.(md|mdx|config)$/,
+                processors,
+                getDates: true,
+                concurrency: 10,
+            });
+
+            console.log("Config loader completed successfully");
+        },
+    };
+}
+
+/**
  * GitHub File Loader - Loads files from GitHub repositories
  */
 export function githubFileLoader({ org, repo, ref, processors, path, getDates = false }: GithubLoaderConfig): Loader {
@@ -485,21 +612,22 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
             console.log("Starting pipeline loader");
             getCurrentRateLimitRemaining();
 
-            // Process each pipeline and its releases
-            for (const pipeline of pipelines_json.remote_workflows) {
-                for (const release of pipeline.releases) {
+            // Flatten all pipeline+release combinations and process concurrently
+            const allReleases = pipelines_json.remote_workflows.flatMap((pipeline) =>
+                pipeline.releases.map((release) => ({ pipeline, release })),
+            );
+
+            await parallelLimit(
+                allReleases.map(({ pipeline, release }) => async () => {
                     const fetcher = new GitHubContentFetcher("nf-core", pipeline.name, release.tag_name, context);
 
-                    // Build list of files to process
                     const filesToProcess = [...release.doc_files, "README.md"];
                     if (release.has_schema) {
                         filesToProcess.push("nextflow_schema.json");
                     }
 
-                    // Create a regex pattern that matches any of the files we want
-                    const filePattern = new RegExp(`^(${filesToProcess.map(f => f.replace('.', '\\.')).join('|')})$`);
+                    const filePattern = new RegExp(`^(${filesToProcess.map((f) => f.replace(".", "\\.")).join("|")})$`);
 
-                    // Use processFilesFromTree to leverage tree SHA caching
                     const processors = {
                         ...createGitHubMarkdownProcessor(context.renderMarkdown, {
                             repo: pipeline.name,
@@ -527,8 +655,9 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                     } catch (error) {
                         context.logger.error(`Error processing ${pipeline.name}@${release.tag_name}: ${error.message}`);
                     }
-                }
-            }
+                }),
+                10,
+            );
 
             console.log("Pipeline loader completed successfully");
         },
@@ -580,11 +709,13 @@ export function releaseLoader(pipelines_json: PipelineJson): Loader {
                                     html_url: release.html_url,
                                     prerelease: release.prerelease,
                                     draft: release.draft,
-                                    author: release.author ? {
-                                        login: release.author.login,
-                                        avatar_url: release.author.avatar_url,
-                                        html_url: release.author.html_url,
-                                    } : null,
+                                    author: release.author
+                                        ? {
+                                              login: release.author.login,
+                                              avatar_url: release.author.avatar_url,
+                                              html_url: release.author.html_url,
+                                          }
+                                        : null,
                                     archived: pipeline.archived,
                                     description: pipeline.description,
                                     topics: pipeline.topics,
@@ -595,9 +726,13 @@ export function releaseLoader(pipelines_json: PipelineJson): Loader {
                                 digest,
                             });
 
-                            logger.debug(`Successfully processed release notes for ${pipeline.name}@${release.tag_name}`);
+                            logger.debug(
+                                `Successfully processed release notes for ${pipeline.name}@${release.tag_name}`,
+                            );
                         } catch (error) {
-                            logger.error(`Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`);
+                            logger.error(
+                                `Error processing release notes for ${pipeline.name}@${release.tag_name}: ${error.message}`,
+                            );
                         }
                     }
                 } catch (error) {
@@ -618,20 +753,20 @@ export function awsResultsLoader(pipelines_json: PipelineJson): Loader {
         name: "aws-results-loader",
         load: async (context: LoaderContext) => {
             const { logger, store } = context;
-            logger.info('Starting AWS S3 results loader');
+            logger.info("Starting AWS S3 results loader");
 
             try {
                 // Create S3 client (anonymous access)
                 const client = new S3Client({
-                    region: 'eu-west-1',
+                    region: "eu-west-1",
                     signer: { sign: async (request) => request },
                     credentials: {
-                        accessKeyId: '',
-                        secretAccessKey: '',
+                        accessKeyId: "",
+                        secretAccessKey: "",
                     },
                 });
 
-                const progressBar = new ProgressBar('Processing pipeline: :pipeline [:bar] :percent :etas', {
+                const progressBar = new ProgressBar("Processing pipeline: :pipeline [:bar] :percent :etas", {
                     total: pipelines_json.remote_workflows.length,
                 });
 
@@ -639,7 +774,7 @@ export function awsResultsLoader(pipelines_json: PipelineJson): Loader {
                 for (const pipeline of pipelines_json.remote_workflows) {
                     progressBar.tick({ pipeline: pipeline.name });
 
-                    for (const release of pipeline.releases.filter(rel => rel.tag_name !== "dev")) {
+                    for (const release of pipeline.releases.filter((rel) => rel.tag_name !== "dev")) {
                         const results_path = `results-${release.tag_sha}`;
                         const version = release.tag_name;
                         const pipelineName = pipeline.name;
@@ -663,18 +798,16 @@ export function awsResultsLoader(pipelines_json: PipelineJson): Loader {
                                 version: version,
                                 results_path: results_path,
                                 content: bucketContents,
-                                commonPrefixes: commonPrefixes
-                            }
+                                commonPrefixes: commonPrefixes,
+                            },
                         });
                     }
                 }
 
-                logger.info('AWS results loader completed successfully');
+                logger.info("AWS results loader completed successfully");
             } catch (error) {
                 logger.error(`Error in AWS results loader: ${error.message}`);
             }
         },
     };
 }
-
-
