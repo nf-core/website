@@ -5,7 +5,7 @@ description: Migrating nf-core modules and pipelines to use topic channels
 shortTitle: Migrating to topic channels
 ---
 
-[Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
+[Topic channels](https://docs.seqera.io/nextflow/process-typed#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
 Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
 
 This migration guide provides step-by-step instructions for three different scenarios:
@@ -50,6 +50,13 @@ To migrate a module to use topic channels for version outputs:
 
    Replace `<tool1>` and `tool1 --version` with the tool name and version command.
    - Repeat this for each tool used in the module.
+
+:::note{title="Hard-coded version"}
+
+If your tool has no '--version' available or if you need to override it, replace `eval('tool1 --version')` in the example above with `val("1.2.3")`.
+`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
+
+:::
 
 1. Run `nf-core modules lint <module-name> --fix` to migrate the `meta.yml` file with the new topic outputs.
 

@@ -219,8 +219,8 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 
 ### Notifications
 
-- Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://www.nextflow.io/docs/latest/mail.html#mail-configuration)).
-- To receive notifications from your pipeline (e.g. on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
+- Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://docs.seqera.io/nextflow/mail#mail-configuration)).
+- To receive notifications from your pipeline (e.g., on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
 
 ## Next steps
 
