@@ -49,7 +49,7 @@ jobs:
       - name: remove tools code
         run: rm -rf tools
 
-      - uses: j178/prek-action@79f765515bd648eb4d6bb1b17277b7cb22cb6468 # v2
+      - uses: j178/prek-action@53276d8b0d10f8b6672aa85b4588c6921d0370cc # v2
         with:
           install-only: true
 
