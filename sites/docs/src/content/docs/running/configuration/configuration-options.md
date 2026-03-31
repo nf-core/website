@@ -116,5 +116,5 @@ Generate a parameters file using the **Launch** button on the [nf-co.re website]
 
 For more information about configuration syntax and parameters, see:
 
-- [Nextflow config](https://www.nextflow.io/docs/latest/config.html)
+- [Nextflow config](https://docs.seqera.io/nextflow/config)
 - [Institutional profiles](../../developing/institutional-profiles/overview.md)
