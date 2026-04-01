@@ -35854,14 +35854,14 @@
         ],
         "tools": [
           {
-            "btk": {
+            "blobtk": {
               "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
               "homepage": "https://github.com/genomehubs/blobtk/",
               "documentation": "https://github.com/genomehubs/blobtk/wiki/",
               "licence": [
                 "MIT"
               ],
-              "identifier": "biotools:btk"
+              "identifier": "biotools:blobtk"
             }
           }
         ],
@@ -35987,14 +35987,14 @@
         ],
         "tools": [
           {
-            "btk": {
+            "blobtk": {
               "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
               "homepage": "https://github.com/genomehubs/blobtk/",
               "documentation": "https://github.com/genomehubs/blobtk/wiki/",
               "licence": [
                 "MIT"
               ],
-              "identifier": "biotools:btk"
+              "identifier": "biotools:blobtk"
             }
           }
         ],
@@ -57109,6 +57109,227 @@
       ]
     },
     {
+      "name": "comet",
+      "path": "modules/nf-core/comet/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "comet",
+        "description": "Comet is an open source tandem mass spectrometry (MS/MS) sequence database search tool",
+        "keywords": [
+          "spectrum identification",
+          "search engine",
+          "proteomics",
+          "fasta",
+          "mzml"
+        ],
+        "tools": [
+          {
+            "comet": {
+              "description": "Comet is an open source tandem mass spectrometry (MS/MS) sequence database search tool.",
+              "homepage": "https://uwpr.github.io/Comet/",
+              "documentation": "https://uwpr.github.io/Comet/",
+              "tool_dev_url": "https://github.com/UWPR/Comet",
+              "doi": "10.1002/pmic.201200439",
+              "licence": [
+                "Apache License 2.0"
+              ],
+              "identifier": "biotools:comet"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "mzml": {
+                "type": "file",
+                "description": "File containing mass spectra in mzML format",
+                "pattern": "*.{mzML}",
+                "ontologies": []
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Protein sequence database containing targets and decoys",
+                "pattern": "*.{fasta}",
+                "ontologies": []
+              }
+            },
+            {
+              "comet_params": {
+                "type": "file",
+                "description": "Comet params file containing the search parameters",
+                "pattern": "*.{comet.params}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "params": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.comet.params": {
+                  "type": "file",
+                  "description": "The parameter file used for the Comet search (for reproducibility)",
+                  "pattern": "*.comet.params"
+                }
+              }
+            ]
+          ],
+          "sqt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.sqt": {
+                  "type": "file",
+                  "description": "Search results in SQT format",
+                  "pattern": "*.sqt"
+                }
+              }
+            ]
+          ],
+          "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.txt": {
+                  "type": "file",
+                  "description": "Search results in simple TXT format",
+                  "pattern": "*.txt"
+                }
+              }
+            ]
+          ],
+          "pepxml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.pep.xml": {
+                  "type": "file",
+                  "description": "Search results in pepXML format",
+                  "pattern": "*.pep.xml"
+                }
+              }
+            ]
+          ],
+          "mzid": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.mzid": {
+                  "type": "file",
+                  "description": "Search results in mzIdentML format",
+                  "pattern": "*.mzid"
+                }
+              }
+            ]
+          ],
+          "pin": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}*.pin": {
+                  "type": "file",
+                  "description": "Search results in Percolator input format (pin)",
+                  "pattern": "*.pin"
+                }
+              }
+            ]
+          ],
+          "versions_comet": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "comet": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "comet 2>&1 | head -2 | tail -1 | sed 's;.*\"\\(.*\\).*\";\\1;g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "comet": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "comet 2>&1 | head -2 | tail -1 | sed 's;.*\"\\(.*\\).*\";\\1;g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@julianu"
+        ],
+        "maintainers": [
+          "@julianu"
+        ]
+      }
+    },
+    {
       "name": "concoct_concoct",
       "path": "modules/nf-core/concoct/concoct/meta.yml",
       "type": "module",
@@ -73125,7 +73346,17 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "suffix": {
+              "type": "string",
+              "description": "A flag to specify whether the output should be in BCF or VCF format",
+              "enum": [
+                "bcf",
+                "vcf"
+              ]
+            }
+          }
         ],
         "output": {
           "bcf": [
@@ -73139,7 +73370,7 @@
               {
                 "*.{bcf,vcf.gz}": {
                   "type": "file",
-                  "description": "Called variants in BCF/VCF format. Specify either \"bcf\" or \"vcf\" in ext.suffix to define the output type",
+                  "description": "Called variants in BCF/VCF format. Set suffix to either \"bcf\" or \"vcf\" to define the output type",
                   "pattern": "*.{bcf,vcf.gz}",
                   "ontologies": []
                 }
@@ -90098,7 +90329,7 @@
               "documentation": "https://github.com/ncbi/fcs/wiki/FCS-adaptor",
               "tool_dev_url": "https://github.com/ncbi/fcs",
               "licence": [
-                "United States Government Work"
+                "NCBI-PD"
               ],
               "identifier": ""
             }
@@ -90212,19 +90443,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_fcsadaptor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsadaptor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsadaptor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -90444,19 +90707,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_fcsgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -90521,19 +90816,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_fcsgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -90692,19 +91019,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_fcsgx": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fcsgx": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gx --help | sed '/build/!d; s/.*:v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -114373,16 +114732,16 @@
                 "description": "PED file with family information",
                 "ontologies": []
               }
+            },
+            {
+              "score_config": {
+                "type": "file",
+                "description": "rank model config file",
+                "pattern": "*.{ini}",
+                "ontologies": []
+              }
             }
-          ],
-          {
-            "score_config": {
-              "type": "file",
-              "description": "rank model config file",
-              "pattern": "*.{ini}",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "vcf": [
@@ -271584,19 +271943,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_stringtie": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stringtie": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stringtie --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "stringtie": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "stringtie --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
