@@ -10,3 +10,8 @@ There are two general cases for workflows to use the channel operator ifEmpty:
 
 There are multiple examples of workflows that inject null objects into channels using ifEmpty(null), which can cause unhandled null pointer exceptions.
 This lint test throws warnings for those instances.
+
+The following checks are performed:
+
+- `subworkflow_if_empty_null`: Warns if any `ifEmpty(null)` usage is found
+  in the subworkflow files.
