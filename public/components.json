@@ -48695,6 +48695,163 @@
       ]
     },
     {
+      "name": "centrifuger_build",
+      "path": "modules/nf-core/centrifuger/build/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "centrifuger_build",
+        "description": "Build centrifuger database for taxonomic profiling",
+        "keywords": [
+          "metagenomics",
+          "taxonomic-classification",
+          "database-build",
+          "centrifuger",
+          "centrifuge"
+        ],
+        "tools": [
+          {
+            "centrifuger": {
+              "description": "Lossless compression of microbial genomes for efficient and accurate metagenomic sequence classification.",
+              "homepage": "https://github.com/mourisl/centrifuger",
+              "documentation": "https://github.com/mourisl/centrifuger",
+              "tool_dev_url": "https://github.com/mourisl/centrifuger",
+              "doi": "10.1186/s13059-024-03244-4",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:centrifuger"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[id:'test',\nsingle_end:false ]`\n"
+              }
+            },
+            {
+              "references": {
+                "type": "file",
+                "description": "One or more reference genome sequence files in FASTA format.\nThese are staged into the work directory and used to generate.a renference list file (used with -l option).\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "taxonomy_nodes": {
+              "type": "file",
+              "description": "File describing parent-child relationships of a taxonomic tree in NCBI nodes.dmp format",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1964"
+                }
+              ]
+            }
+          },
+          {
+            "taxonomy_names": {
+              "type": "file",
+              "description": "File describing individual members of a taxonomic tree in NCBI names.dmp format",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1964"
+                }
+              ]
+            }
+          },
+          {
+            "conversion_table": {
+              "type": "file",
+              "description": "Required: a tab-seperated file, mapping sequence IDs to taxonomy IDs.\n",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3475"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "db": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Centrifuger database index files",
+                  "pattern": "${prefix}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_centrifuger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuger -v 2>&1 | head -n 1 | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuger -v 2>&1 | head -n 1 | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@haris18s"
+        ],
+        "maintainers": [
+          "@haris18s"
+        ]
+      }
+    },
+    {
       "name": "checkm2_databasedownload",
       "path": "modules/nf-core/checkm2/databasedownload/meta.yml",
       "type": "module",
@@ -50642,6 +50799,13 @@
                 "description": "The fasta reference file.\n",
                 "ontologies": []
               }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "The fasta reference index file.\n",
+                "ontologies": []
+              }
             }
           ],
           [
@@ -50921,6 +51085,13 @@
               "fasta": {
                 "type": "file",
                 "description": "Fasta reference file.",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Fasta reference index file.",
                 "ontologies": []
               }
             }
@@ -102863,7 +103034,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -137075,6 +137246,134 @@
           "version": "1.2.0"
         }
       ]
+    },
+    {
+      "name": "imc2mc",
+      "path": "modules/nf-core/imc2mc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "imc2mc",
+        "description": "Staging module transforming Imaging Mass Cytometry .txt files to .tif files with OME-XML metadata. Includes optional hot pixel removal.",
+        "keywords": [
+          "imaging",
+          "ome-tif",
+          "staging",
+          "MCMICRO"
+        ],
+        "tools": [
+          {
+            "imc2mc": {
+              "description": "Formatting Imaging Mass Cytrometry (IMC) output files to be compatible with the MCMICRO pipeline.",
+              "homepage": "https://github.com/SchapiroLabor/imc2mc",
+              "documentation": "https://github.com/SchapiroLabor/imc2mc/README.md",
+              "tool_dev_url": "https://github.com/SchapiroLabor/imc2mc",
+              "licence": [
+                "GPL-3.0 license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "txtfile": {
+                "type": "file",
+                "description": "Acquisition TXT file",
+                "pattern": "*.{txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1964"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tif": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tif": {
+                  "type": "file",
+                  "description": "One output .tif file containing acquisition and metadata",
+                  "pattern": "*.{tif}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3591"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_imc2mc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imc2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "imc2mc --version | sed 's/v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "imc2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "imc2mc --version | sed 's/v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@MargotCh",
+          "@kbestak"
+        ],
+        "maintainers": [
+          "@MargotCh"
+        ]
+      }
     },
     {
       "name": "immunedeconv",
@@ -175480,7 +175779,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -235483,7 +235782,7 @@
       "pipelines": [
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -237539,7 +237838,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomeassembler",
@@ -237977,7 +238276,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "evexplorer",
@@ -278805,7 +279104,7 @@
       "pipelines": [
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nanoseq",
@@ -291658,7 +291957,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "fetchngs",
@@ -320773,7 +321072,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "drugresponseeval",
@@ -321214,7 +321513,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "drugresponseeval",
@@ -321663,7 +321962,7 @@
         },
         {
           "name": "drop",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "drugresponseeval",
