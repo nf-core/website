@@ -12,8 +12,8 @@ We have a monthly online meeting every 2nd Thursday of the month at 15:00 (Berli
 
 We meet online either on:
 
-- [WorkAdventure](https://workadventu.re/) (when fewer than 10 people)
-- Zoom (more than 10 people)
+- [WorkAdventure](https://play.workadventu.re/@/nf-core/nf-core/office) (suitable for up to 30 people)
+- or Zoom, as an alternative
 
 The platform is normally decided by vote on the day prior to the meeting on the nf-core Slack.
 
