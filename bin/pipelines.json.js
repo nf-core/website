@@ -1,5 +1,6 @@
 #! /usr/bin/env node
 import { octokit, getDocFiles, getGitHubFile, githubFolderExists } from "../sites/main-site/src/components/octokit.js";
+import { fetchCO2FootprintFiles } from "./s3Utils.js";
 
 import { promises as fs, writeFileSync, existsSync } from "fs";
 import yaml from "js-yaml";
@@ -491,6 +492,17 @@ export const writePipelinesJson = async () => {
           nf_core_version = extractNfCoreVersion(nfCoreYml);
         }
 
+        // Check if this release has plugins already stored either as dev or as "main"/"master"
+        let plugins = data[`main_nextflow_config_plugins`] || data[`master_nextflow_config_plugins`] || [];
+
+        // Fetch CO2 footprint files if nf-co2footprint plugin is used and we are not in the dev tree
+        console.log(plugins);
+        let co2footprint_files = null;
+        if (plugins.join(" ").includes("nf-co2footprint") && tag_name !== "dev") {
+          console.log(`Fetching CO2 footprint files for ${name} ${tag_name}`);
+          co2footprint_files = await fetchCO2FootprintFiles(name, tag_sha);
+        }
+
         let components = await octokit
           .request("GET /repos/{owner}/{repo}/contents/{path}?ref={ref}", {
             owner: "nf-core",
@@ -556,6 +568,8 @@ export const writePipelinesJson = async () => {
           components,
           nextflow_version,
           nf_core_version,
+          plugins,
+          co2footprint_files,
         };
       }),
     );

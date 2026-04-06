@@ -1,1 +1,0 @@
-../../main-site/src/config.ts
