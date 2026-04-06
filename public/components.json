@@ -1854,6 +1854,22 @@
               }
             ]
           ],
+          "versions_affy": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -4864,19 +4880,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ampcombi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ampcombi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1.7": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ampcombi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1.7": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -5814,19 +5862,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_amplify": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "AMPlify": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "AMPlify --help 2>&1 | sed -n 's/AMPlify v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "AMPlify": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "AMPlify --help 2>&1 | sed -n 's/AMPlify v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -7926,7 +8006,7 @@
               }
             ]
           ],
-          "versions": [
+          "versions_anndata": [
             {
               "versions.yml": {
                 "type": "file",
@@ -7937,6 +8017,16 @@
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
               }
             }
           ]
@@ -61790,6 +61880,9 @@
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
                   }
                 ]
               }
@@ -61805,9 +61898,13 @@
             {
               "reference": {
                 "type": "file",
-                "description": "Reference FASTA file to map reads to, or minimap2/strobealign index. Not required if using BAM input.",
+                "description": "Reference FASTA file to map reads to, or minimap2/strobealign index.\nNot required if using BAM input.\n",
                 "pattern": "*.{fasta,fasta.gz,mmi,sti}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
@@ -61822,6 +61919,12 @@
               "type": "boolean",
               "description": "True if input is interleaved fastq file"
             }
+          },
+          {
+            "enable_bam_output": {
+              "type": "boolean",
+              "description": "True to enable BAM output of aligned reads"
+            }
           }
         ],
         "output": {
@@ -61830,15 +61933,41 @@
               {
                 "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
-                  "pattern": "*.depths.{txt}"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
                 }
               },
               {
-                "*.depth.txt": {
+                "*.depth.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited file containing coverage information for each contig and sample.",
+                  "pattern": "*.depth.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
-                  "pattern": "*.depths.{txt}"
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "BAM file containing aligned reads.",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -61994,6 +62123,12 @@
               "description": "How to interpret the `reference` input:\n  - `\"dir\"`: Treat as a directory containing one or more FASTA files.\n  - `\"file\"`: Treat as a single FASTA file.\n  - `\"auto\"`: Automatically detect based on whether the `reference` path is a directory or file.\nDefaults to `\"auto\"` if not provided.\n",
               "pattern": "^(dir|file|auto)$"
             }
+          },
+          {
+            "enable_bam_output": {
+              "type": "boolean",
+              "description": "True to enable BAM output of aligned reads"
+            }
           }
         ],
         "output": {
@@ -62006,13 +62141,35 @@
                 }
               },
               {
-                "*.tsv": {
+                "*.depth.tsv": {
                   "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n",
-                  "pattern": "*.{tsv}",
+                  "description": "Tab-delimited file containing coverage information for each contig and sample.",
+                  "pattern": "*.depth.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "BAM file containing aligned reads.",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
                     }
                   ]
                 }
