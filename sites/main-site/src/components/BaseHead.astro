@@ -10,17 +10,9 @@ export interface Props {
         name: string;
         content: string | string[];
     }[];
-    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-let {
-    title,
-    description,
-    image = "/social_img.png",
-    docSearchTags = [],
-    viewTransitions = false,
-    jsonLd,
-} = Astro.props;
+let { title, description, image = "/social_img.png", docSearchTags = [], viewTransitions = false } = Astro.props;
 
 // remove all html tags from title and description
 title = title?.replaceAll(/<[^>]*>?/g, "");
@@ -72,9 +64,6 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
 
 <!-- DocSearch -->
 {docSearchTags.map(({ name, content }) => <meta name={"docsearch:" + name} content={content} />)}
-
-<!-- JSON-LD Structured Data -->
-{jsonLd && <script type="application/ld+json" set:html={JSON.stringify(Array.isArray(jsonLd) ? jsonLd : [jsonLd])} />}
 
 <!-- Theme -->
 <script is:inline>
