@@ -39,7 +39,6 @@ export interface Props {
         subtitle?: string;
         md_github_url?: string;
     };
-    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
 let {
@@ -60,7 +59,6 @@ let {
     doubleNavbar = true,
     sidebarTitle = "",
     frontmatter,
-    jsonLd,
 } = Astro.props;
 
 if (frontmatter?.title) {
@@ -101,7 +99,6 @@ if (showRightSidebar) {
     viewTransitions={viewTransitions}
     image={image}
     doubleNavbar={doubleNavbar}
-    jsonLd={jsonLd}
 >
     <slot name="header-top" slot="header-top" />
     <div class="container-fluid main-content">
