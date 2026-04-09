@@ -20,20 +20,20 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "users",
+        id: "running",
         label: "Running",
         entries: [],
         collapsed: true,
-        icon: "octicon:git-branch-16",
+        icon: "octicon:rocket-16",
         weight: 2,
     },
     {
         type: "group",
-        id: "developers",
+        id: "developing",
         label: "Developing",
         entries: [],
         collapsed: true,
-        icon: "octicon:git-commit-16",
+        icon: "mdi:hammer-wrench",
         weight: 3,
     },
     {
@@ -108,7 +108,7 @@ const featuredPages = [
     {
         title: "What is nf-core?",
         href: "/docs/get_started/nf-core",
-        icon: "octicon:play-16",
+        icon: "octicon:question-16",
         description: "Introduction to the nf-core project and community",
     },
     {
@@ -137,38 +137,38 @@ const featuredEntries = featuredPages.map(({ title, href, icon, description }) =
 // Define main sections with descriptions
 const mainSections = [
     {
-        section: "Running",
-        sectionHref: "/docs/users/",
-        icon: "octicon:git-branch-16",
+        title: "Running",
+        href: "/docs/users/",
+        icon: "octicon:rocket-16",
         description: "Run and configure nf-core pipelines",
     },
     {
-        section: "Developing",
-        sectionHref: "/docs/developers/",
-        icon: "octicon:git-commit-16",
+        title: "Developing",
+        href: "/docs/developing/",
+        icon: "mdi:hammer-wrench",
         description: "Create and maintain nf-core pipelines, components, and configs",
     },
     {
-        section: "Contributing",
-        sectionHref: "/docs/contributors/",
+        title: "Contributing",
+        href: "/docs/contributors/",
         icon: "octicon:git-pull-request-16",
         description: "Contribute to the nf-core community",
     },
     {
-        section: "Specifications",
-        sectionHref: "/docs/specifications/",
+        title: "Specifications",
+        href: "/docs/specifications/",
         icon: "octicon:checklist-16",
         description: "Technical specifications for nf-core pipelines, components, and test data",
     },
     {
-        section: "Community",
-        sectionHref: "/docs/community/",
+        title: "Community",
+        href: "/docs/community/",
         icon: "mdi:sprout",
         description: "Community resources and guidelines",
     },
     {
-        section: "nf-core/tools",
-        sectionHref: "/docs/nf-core-tools/",
+        title: "nf-core/tools",
+        href: "/docs/nf-core-tools/",
         icon: "octicon:tools-16",
         description: "Command-line tools and API for working with nf-core",
     },
@@ -203,19 +203,18 @@ const trainingCards = [
                 <div class="featured-section mb-5">
                     <h2 class="section-heading mb-2">Get started</h2>
                     <p class="mb-4">New to nf-core? Start here to learn the basics and run your first pipeline.</p>
-                    <div class="grid gap-3">
+                    <div class="grid gap-2">
                         {
                             featuredEntries.map((page) => (
                                 <a href={page.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
-                                    <div class="card h-100 featured-card">
+                                    <div class="card h-100 p-2">
                                         <div class="card-body">
-                                            <div class="featured-icon mb-2">
-                                                <Icon name={page.customIcon} />
-                                            </div>
-                                            <h3 class="h5 card-title mb-2">
-                                                {page.metadata?.data.title || page.label}
-                                            </h3>
+                                            <Icon name={page.customIcon} class="fs-3 mb-2 text-body" />
+                                            <h4 class="mb-1"> {page.metadata?.data.title || page.label}</h4>
                                             <p class="card-description mb-0">{page.description}</p>
+                                            {/* <div class="bg-icon">
+                                                <Icon name={page.customIcon} />
+                                            </div> */}
                                         </div>
                                     </div>
                                 </a>
@@ -226,22 +225,20 @@ const trainingCards = [
 
                 <!-- Main Sections -->
                 <div class="mb-5">
-                    <h2 class="section-heading mb-2">Topics</h2>
-                    <p class="mb-4">Explore documentation by topic.</p>
+                    <h2 class="section-heading">Topics</h2>
+                    <p class="">Explore documentation by topic.</p>
                     <div class="grid gap-3">
                         {
                             mainSections.map((section) => (
-                                <a
-                                    href={section.sectionHref}
-                                    class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4"
-                                >
-                                    <div class="card h-100 section-card">
+                                <a href={section.href} class="text-decoration-none g-col-12 g-col-md-6 g-col-lg-4">
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                            <div class="section-icon mb-2">
-                                                <Icon name={section.icon} />
-                                            </div>
-                                            <h2 class="h5 card-title mb-2">{section.section}</h2>
+                                            <Icon name={section.icon} class="fs-3 mb-2 text-body" />
+                                            <h4 class="mb-1"> {section.title}</h4>
                                             <p class="card-description mb-0">{section.description}</p>
+                                            {/* <div class="bg-icon">
+
+                                            </div> */}
                                         </div>
                                     </div>
                                 </a>
@@ -256,17 +253,18 @@ const trainingCards = [
                     <p class="mb-4">
                         Learn Nextflow and nf-core through comprehensive documentation and hands-on training materials.
                     </p>
-                    <div class="grid gap-3">
+                    <div class="grid gap-2">
                         {
                             trainingCards.map((card) => (
                                 <a href={card.href} class="text-decoration-none g-col-12 g-col-md-6">
-                                    <div class="card h-100 featured-card">
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                            <div class="featured-icon mb-2">
-                                                <Icon name={card.icon} />
-                                            </div>
-                                            <h3 class="h5 card-title mb-2">{card.title}</h3>
+                                            <Icon name={card.icon} class="fs-3 mb-2 text-body" />
+                                            <h4 class="mb-1"> {card.title}</h4>
                                             <p class="card-description mb-0">{card.description}</p>
+                                            {/* <div class="bg-icon">
+                                                <Icon name={card.icon} />
+                                            </div> */}
                                         </div>
                                     </div>
                                 </a>
@@ -282,108 +280,40 @@ const trainingCards = [
     </div>
 </PageLayout>
 <style>
-    /* Intro Text */
-    .intro-text {
-        .lead {
-            color: var(--bs-body-color);
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 0;
-        }
+    .bg-icon svg {
+        font-size: 180px;
+        color: color-mix(in srgb, var(--bs-success), transparent 80%);
+        position: absolute;
+        bottom: -60px;
+        right: -20px;
+        z-index: 1;
     }
-
-    /* Section headings */
-    .section-heading {
-        color: var(--bs-heading-color);
-        font-weight: 600;
-        font-size: 1.75rem;
+    :global([data-bs-theme="dark"]) .bg-icon svg {
+        color: color-mix(in srgb, var(--bs-success), transparent 80%);
     }
-
-    .section-subheading {
-        color: var(--bs-secondary-color);
-        font-size: 1.25rem;
-        line-height: 1.5;
-    }
-
-    /* Featured "Get Started" Cards */
-    .featured-card {
-        border: 1px solid var(--bs-border-color);
-        background: var(--bs-body-bg);
-        transition: border-color 0.2s ease-in-out;
+    .card {
+        text-wrap: pretty;
+        max-width: 25rem;
 
         &:hover {
             border-color: var(--bs-secondary);
-
-            .card-title {
+            h4 {
                 text-decoration: underline;
+            }
+            .card-description {
+                color: var(--bs-body-color);
             }
         }
 
         .card-body {
-            padding: 1.5rem;
-        }
-
-        .featured-icon {
-            font-size: 24px;
-            line-height: 1;
-
-            :global(svg) {
-                width: 24px !important;
-                height: 24px !important;
-            }
-        }
-
-        .card-title {
-            color: var(--bs-heading-color);
-            font-weight: 600;
-            font-size: 1.25rem;
+            color: var(--bs-secondary-color);
+            overflow: hidden;
+            position: relative;
         }
 
         .card-description {
-            color: var(--bs-secondary-color);
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-    }
-
-    /* Section Cards */
-    .section-card {
-        border: 1px solid var(--bs-border-color);
-        background: var(--bs-body-bg);
-        transition: border-color 0.2s ease-in-out;
-
-        &:hover {
-            border-color: var(--bs-secondary);
-
-            .card-title {
-                text-decoration: underline;
-            }
-        }
-
-        .card-body {
-            padding: 1.5rem;
-        }
-
-        .section-icon {
-            font-size: 24px;
-            line-height: 1;
-
-            :global(svg) {
-                width: 24px !important;
-                height: 24px !important;
-            }
-        }
-
-        .card-title {
-            color: var(--bs-heading-color);
-            font-weight: 600;
-            font-size: 1.25rem;
-        }
-
-        .card-description {
-            color: var(--bs-secondary-color);
-            font-size: 0.95rem;
-            line-height: 1.5;
+            position: relative;
+            z-index: 10;
         }
     }
 </style>
