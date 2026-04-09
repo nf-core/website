@@ -35,13 +35,12 @@ We do this by installing it locally on a machine that _does_ have an internet co
 To run a pipeline offline, you need the pipeline code, the software dependencies, and the shared nf-core/configs configuration profiles.
 We have created a helper tool as part of the _nf-core_ package to automate this for you.
 
-On a computer with an internet connection, run `nf-core pipelines download <pipeline>` to download the pipeline and config profiles.
-Add the argument `--container singularity` to also fetch the singularity container(s).
+On a computer with an internet connection, run `nf-core pipelines download <pipeline>` to download the pipeline.
+Add the argument `--container-system singularity` to also fetch the singularity container(s), and the argument `--download-configuration yes` to also include configuration profiles.
 
-The pipeline and requirements will be downloaded, configured with their relative paths, and packaged into a `.tar.gz` file by default.
-This can then be transferred to your offline system and unpacked.
+The pipeline and requirements will be downloaded. If you used `--download-configuration yes` or `--container-system singularity` together with `container-cache-utilisation copy` the pipeline will be configured with the relative configuration and singularity image paths. However if you defined a shared Singularity image download folder, this configuration will be wrong. With `--compress tar.gz` the files can be packaged into a `.tar.gz` archive. This can then be transferred to your offline system and unpacked.
 
-Inside, you will see directories called `workflow` (the pipeline files), `config` (a copy of [nf-core/configs](https://github.com/nf-core/configs)), and (if you used `--container singularity`) a directory called `singularity`.
+Inside, you will see a directory named after the selected release or branch (e.g. `3_5_1` or `dev`) which contains the pipeline files, `configs` (a copy of [nf-core/configs](https://github.com/nf-core/configs) if you used `--download-configuration yes`), and a directory called `singularity-images` (if you used `--container-system singularity` and did't specify another shared singularity image download folder).
 The pipeline code is adjusted by the download tool to expect these relative paths, so as long as you keep them together it should work as is.
 
 To run the pipeline, simply use `nextflow run <download_directory>/workflow [pipeline flags]`.
