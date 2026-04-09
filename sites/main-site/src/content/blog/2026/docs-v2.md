@@ -5,10 +5,10 @@ pubDate: 2026-04-10T09:00:00+01:00
 headerImage: https://images.unsplash.com/photo-1532446997697-0b92fdc456fe
 headerImageAlt: Sparkles
 authors:
-    - christopher-hakkaart
-    - jfy133
+  - christopher-hakkaart
+  - jfy133
 label:
-    - docs
+  - docs
 ---
 
 # Introducing nf-core docs version 2
