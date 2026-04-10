@@ -19914,7 +19914,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sarek",
@@ -28468,7 +28468,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -37223,7 +37223,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
@@ -37422,7 +37422,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
@@ -37868,7 +37868,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "taxprofiler",
@@ -43263,7 +43263,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -65892,7 +65892,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -67102,7 +67102,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -67766,7 +67766,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -81329,7 +81329,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -89517,7 +89517,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sarek",
@@ -90177,7 +90177,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -96172,7 +96172,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -96312,7 +96312,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -118489,7 +118489,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -122402,6 +122402,137 @@
       ]
     },
     {
+      "name": "gridss_annotate",
+      "path": "modules/nf-core/gridss/annotate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gridss_annotate",
+        "description": "Annotates single breakends in a GRIDSS VCF with RepeatMasker annotations using gridss_annotate_vcf_repeatmasker.",
+        "keywords": [
+          "gridss",
+          "structural variants",
+          "annotation",
+          "repeatmasker",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "gridss": {
+              "description": "GRIDSS: the Genomic Rearrangement IDentification Software Suite",
+              "documentation": "https://github.com/PapenfussLab/gridss/wiki/GRIDSS-Documentation",
+              "tool_dev_url": "https://github.com/PapenfussLab/gridss",
+              "doi": "10.1186/s13059-021-02423-x",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": "biotools:gridss"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file generated with GRIDSS",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test']\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Annotated VCF file compressed with bgzip",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gridss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "gridss": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
+        ]
+      }
+    },
+    {
       "name": "gridss_generateponbedpe",
       "path": "modules/nf-core/gridss/generateponbedpe/meta.yml",
       "type": "module",
@@ -122561,9 +122692,9 @@
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
-                  "description": "The command used to generate the version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -122575,17 +122706,17 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The name of the process"
+                  "description": "The process"
                 }
               },
               {
                 "gridss": {
                   "type": "string",
-                  "description": "The name of the tool"
+                  "description": "The tool name"
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -122731,9 +122862,9 @@
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
-                  "description": "The command used to generate the version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -122755,9 +122886,9 @@
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
-                  "description": "The command used to generate the version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -122882,9 +123013,9 @@
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
-                  "description": "The command used to generate the version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -122906,9 +123037,9 @@
                 }
               },
               {
-                "echo \\$(GeneratePonBedpe --version 2>&1) | sed 's/-gridss//'": {
+                "GeneratePonBedpe --version 2>&1 | sed 's/-gridss//'": {
                   "type": "eval",
-                  "description": "The command used to generate the version of the tool"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -126131,7 +126262,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -131633,7 +131764,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -131808,7 +131939,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -131951,7 +132082,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -143883,7 +144014,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -144103,7 +144234,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -147059,7 +147190,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "taxprofiler",
@@ -176815,7 +176946,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -193291,7 +193422,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -202452,7 +202583,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnavar",
@@ -212702,7 +212833,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -220487,7 +220618,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -221254,6 +221385,10 @@
         {
           "name": "coproid",
           "version": "2.0.1"
+        },
+        {
+          "name": "scdownstream",
+          "version": "dev"
         },
         {
           "name": "spatialvi",
@@ -226580,7 +226715,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -228586,7 +228721,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -228767,7 +228902,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -228917,7 +229052,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -229071,7 +229206,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -229309,7 +229444,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -229583,7 +229718,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -229757,7 +229892,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -229911,7 +230046,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "scnanoseq",
@@ -230126,7 +230261,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -230502,7 +230637,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -233098,7 +233233,13 @@
             }
           }
         }
-      }
+      },
+      "pipelines": [
+        {
+          "name": "rnaseq",
+          "version": "3.24.0"
+        }
+      ]
     },
     {
       "name": "s4pred_runmodel",
@@ -233547,7 +233688,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -233771,7 +233912,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -238267,7 +238408,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnavar",
@@ -238704,7 +238845,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "taxprofiler",
@@ -239141,7 +239282,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -239508,7 +239649,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -239986,7 +240127,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -241728,7 +241869,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -242203,7 +242344,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -242636,7 +242777,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
@@ -249486,7 +249627,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -249696,7 +249837,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -250181,7 +250322,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -253314,7 +253455,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "smrnaseq",
@@ -253478,6 +253619,136 @@
           "version": "2.2.0"
         }
       ]
+    },
+    {
+      "name": "seqkit_sample",
+      "path": "modules/nf-core/seqkit/sample/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "seqkit_sample",
+        "description": "Sample sequences from FASTA/FASTQ files by number or proportion",
+        "keywords": [
+          "genomics",
+          "fasta",
+          "fastq",
+          "sample",
+          "subset",
+          "seqkit"
+        ],
+        "tools": [
+          {
+            "seqkit": {
+              "description": "A cross-platform and ultrafast toolkit for FASTA/Q file manipulation",
+              "homepage": "https://bioinf.shenwei.me/seqkit/",
+              "documentation": "https://bioinf.shenwei.me/seqkit/usage/",
+              "tool_dev_url": "https://github.com/shenwei356/seqkit",
+              "doi": "10.1371/journal.pone.0163962",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:seqkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fastx": {
+                "type": "file",
+                "description": "Input FASTA or FASTQ file",
+                "pattern": "*.{fsa,fas,fa,fasta,fastq,fq}{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "fastx": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${extension}": {
+                  "type": "file",
+                  "description": "Sampled output FASTA or FASTQ file",
+                  "pattern": "*.{fasta,fasta.gz,fastq,fastq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_seqkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqkit version | sed 's/^.*v//'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "seqkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "seqkit version | sed 's/^.*v//'": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
+        ]
+      }
     },
     {
       "name": "seqkit_sana",
@@ -254307,7 +254578,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -265534,7 +265805,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -270739,7 +271010,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -271019,7 +271290,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -274446,7 +274717,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -275209,7 +275480,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -275384,7 +275655,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -279362,7 +279633,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -279889,7 +280160,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -288963,7 +289234,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -291112,7 +291383,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -291249,7 +291520,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -291402,7 +291673,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -292857,7 +293128,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "smrnaseq",
@@ -293105,7 +293376,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "scnanoseq",
@@ -293280,7 +293551,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -293601,7 +293872,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -294113,7 +294384,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -310493,7 +310764,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -310606,7 +310877,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -310995,7 +311266,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -311624,7 +311895,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnavar",
@@ -312322,7 +312593,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -312498,7 +312769,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -312788,7 +313059,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -314297,7 +314568,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -318096,7 +318367,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -319277,7 +319548,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "smrnaseq",
@@ -319458,7 +319729,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "rnasplice",
@@ -320526,7 +320797,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -320711,7 +320982,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -321426,7 +321697,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -322286,7 +322557,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -322495,7 +322766,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -322740,7 +323011,7 @@
       "pipelines": [
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         }
       ]
     },
@@ -323376,7 +323647,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
@@ -323817,7 +324088,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
@@ -324246,7 +324517,7 @@
         },
         {
           "name": "rnaseq",
-          "version": "3.23.0"
+          "version": "3.24.0"
         },
         {
           "name": "sammyseq",
