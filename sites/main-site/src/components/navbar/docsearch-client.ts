@@ -22,8 +22,6 @@ async function mountAll(): Promise<void> {
 }
 
 export function initDocsearch(): void {
-    if (import.meta.env.SSR) return;
-
     const htmlDocument = globalThis["document"] as Document | undefined;
     const run = () => void mountAll();
     if (htmlDocument?.readyState === "loading") {
