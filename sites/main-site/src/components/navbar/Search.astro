@@ -27,31 +27,8 @@ const { id = "docsearch" } = Astro.props;
 </div>
 
 <script>
-    const docsearchOpts = {
-        appId: "01BY3A8NRJ",
-        indexName: "nf-co",
-        apiKey: "c726615ab69f88b4e26bc891c97c1808",
-        placeholder: "Search",
-    };
-
-    async function mountAll() {
-        const doc = globalThis["document"];
-        if (!doc) return;
-        const roots = doc.querySelectorAll("[data-search-container]");
-        if (roots.length === 0) return;
-
-        const { default: docsearch } = await import("@docsearch/js");
-        for (const node of roots) {
-            if (!(node instanceof HTMLElement) || node.dataset.docsearchReady === "true") continue;
-            docsearch({ container: node, ...docsearchOpts });
-            node.dataset.docsearchReady = "true";
-        }
-    }
-
-    const doc = globalThis["document"];
-    const run = () => void mountAll();
-    if (doc?.readyState === "loading") doc.addEventListener("DOMContentLoaded", run, { once: true });
-    else run();
+    import { initDocsearch } from "./docsearch-client";
+    initDocsearch();
 </script>
 
 <style lang="scss" is:global>
