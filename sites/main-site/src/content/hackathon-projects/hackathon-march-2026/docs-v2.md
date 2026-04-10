@@ -5,7 +5,7 @@ slack: https://nfcore.slack.com/channels/hackathon-mar-2026-docs-v2
 # intro_video: ""
 location: online
 image: "/assets/images/events/2026/hackathon-march/development-guides.jpg"
-image_alt: Documentation, documentation everywhere
+image_alt: "Documentation, documentation everywhere"
 leaders:
   christopher-hakkaart:
     name: Chris Hakkaart
