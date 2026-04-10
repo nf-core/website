@@ -1,6 +1,6 @@
 ---
 title: Introducing nf-core docs version 2
-subtitle: nf-core docs version 2 have been released, with a refreshed structure and content
+subtitle: Announcing the new nf-core docs: rebuilt, restructured, and shipped
 pubDate: 2026-04-10T09:00:00+01:00
 headerImage: https://images.unsplash.com/photo-1532446997697-0b92fdc456fe
 headerImageAlt: Sparkles
