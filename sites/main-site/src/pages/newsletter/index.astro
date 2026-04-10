@@ -1,0 +1,64 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import pipelines_json from "@public/pipelines.json";
+import { getNewsletterMonths, getMonthName } from "@utils/newsletter";
+
+let blogPosts = await getCollection("blog");
+blogPosts = blogPosts.filter((post) => new Date(post.data.pubDate) < new Date());
+
+let events = await getCollection("events");
+events = events.filter((e) => e.id.split("/").length === 2);
+
+const pipelines = pipelines_json.remote_workflows;
+const advisories = await getCollection("advisories");
+const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
+
+// Group by year
+const byYear = new Map<number, { year: number; month: number }[]>();
+for (const m of months) {
+    if (!byYear.has(m.year)) byYear.set(m.year, []);
+    byYear.get(m.year)!.push(m);
+}
+const years = [...byYear.keys()].sort((a, b) => b - a);
+
+// Latest newsletter for redirect
+const latest = months[0];
+---
+
+<PageLayout
+    title="nf-core Newsletter"
+    subtitle="Monthly community newsletters from nf-core"
+    mainpage_container={true}
+    subfooter={false}
+>
+    {
+        latest && (
+            <div class="alert alert-success mb-4">
+                <strong>Latest newsletter:</strong>
+                <a href={`/newsletter/${latest.year}/${String(latest.month).padStart(2, "0")}`}>
+                    {getMonthName(latest.month)} {latest.year}
+                </a>
+            </div>
+        )
+    }
+
+    {
+        years.map((year) => (
+            <div class="mb-4">
+                <h2>{year}</h2>
+                <div class="list-group">
+                    {byYear.get(year)!.map((m) => (
+                        <a
+                            href={`/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`}
+                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                        >
+                            {getMonthName(m.month)} {m.year}
+                            <span class="badge bg-success rounded-pill">&rarr;</span>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        ))
+    }
+</PageLayout>
