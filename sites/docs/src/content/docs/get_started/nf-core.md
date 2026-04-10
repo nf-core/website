@@ -24,28 +24,28 @@ Get started running, developing, and contributing to nf-core.
 nf-core pipelines are designed to run consistently across laptops, HPC clusters, and cloud environments.
 All pipelines share a common command structure and support extensive configuration options to match your compute infrastructure, resource requirements, and reference data needs.
 
-[Learn how to run nf-core pipelines](/running/overview)
+[Learn how to run nf-core pipelines](/docs/running/overview)
 
 ### Developing pipelines and components
 
 nf-core provides a template, tooling, and guidelines for building standardized Nextflow pipelines and reusable components (modules and subworkflows).
 The nf-core template enforces consistent structure and best practices, while shared modules reduce duplicated effort across the community.
 
-[Learn how to develop with nf-core](/developing/overview)
+[Learn how to develop with nf-core](/docs/developing/overview)
 
 ### Contributing to nf-core
 
 nf-core welcomes contributions of all kinds: new pipelines, bug fixes, documentation improvements, and code reviews.
 All contributions go through a community-driven peer review process to maintain quality and consistency across the project.
 
-[Learn how to contribute to nf-core](/contributing/overview)
+[Learn how to contribute to nf-core](/docs/contributing/overview)
 
 ### Specifications
 
 The nf-core specifications define the requirements and recommendations that all nf-core pipelines and components must follow.
 These standards cover everything from software packaging and testing to documentation and versioning, and represent proven best practices for writing high-quality bioinformatics workflows.
 
-[Browse the nf-core specifications](/specifications/overview)
+[Browse the nf-core specifications](/docs/specifications/overview)
 
 ### Community
 
@@ -53,7 +53,7 @@ nf-core is built and maintained by a global community.
 
 The community communicates primarily through [Slack](https://nf-co.re/join/slack), organises regular events and hackathons, and maintains shared guidelines for collaboration and governance.
 
-[Learn about the nf-core community](/community/overview)
+[Learn about the nf-core community](/docs/community/overview)
 
 ### nf-core tools
 
