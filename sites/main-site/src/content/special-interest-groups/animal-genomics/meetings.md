@@ -11,6 +11,7 @@ of every month, usually at 4 PM CET / 10 AM ET / 7 AM PT for 1h.
 
 |                     Date | Speaker                                                                                                                      | Event                                                        |
 | -----------------------: | :--------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+|             Apr 15, 2026 | David MacHugh (UCD School of Agriculture and Food Science, University College Dublin, Ireland)                               | [April Meeting](/events/2026/SIG_animalgenomics_Apr)         |
 |             Mar 18, 2026 | Junjian Wang (North Carolina State University, USA)                                                                          | [March Meeting](/events/2026/SIG_animalgenomics_Mar)         |
 |             Feb 18, 2025 | Theodore Kalbfleisch (Gluck Equine Research Center, University of Kentucky, USA)                                             | [February Meeting](/events/2026/SIG_animalgenomics_Feb)      |
 |             Nov 19, 2025 | Ekaterina Osipova (Harvard University, USA)                                                                                  | [November Meeting](/events/2025/SIG_animalgenomics_Nov)      |
