@@ -185,6 +185,12 @@ type PageSection =
       };
 
 const activeSubsection = sections.find((s) => s.id === subsection);
+// expand the active subsection
+sections.forEach((section) => {
+    if (section.id === subsection && section.type === "group") {
+        section.collapsed = false;
+    }
+});
 const pageSections: PageSection[] = [];
 if (activeSubsection?.type === "group") {
     for (const section of activeSubsection.entries) {
