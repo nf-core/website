@@ -43,23 +43,23 @@ export default {
             }),
         },
     },
+    fonts: [
+        {
+            provider: fontProviders.fontsource(),
+            name: "Inter",
+            cssVariable: "--font-inter",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"],
+        },
+        {
+            provider: fontProviders.fontsource(),
+            name: "Maven Pro",
+            cssVariable: "--font-maven-pro",
+            fallbacks: ["sans-serif"],
+            weights: ["300 700"],
+        },
+    ],
     experimental: {
-        fonts: [
-            {
-                provider: fontProviders.fontsource(),
-                name: "Inter",
-                cssVariable: "--font-inter",
-                fallbacks: ["sans-serif"],
-                weights: ["300 700"],
-            },
-            {
-                provider: fontProviders.fontsource(),
-                name: "Maven Pro",
-                cssVariable: "--font-maven-pro",
-                fallbacks: ["sans-serif"],
-                weights: ["300 700"],
-            },
-        ],
         svgo: true,
     },
     integrations: [
@@ -113,23 +113,36 @@ export default {
     vite: {
         plugins: [yaml()],
         ssr: {
-            noExternal: ["@popperjs/core"],
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
         },
         resolve: {
             preserveSymlinks: true,
             browser: true,
+            noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
         },
         css: {
             preprocessorOptions: {
                 scss: {
-                    api: "modern-compiler",
-                    silenceDeprecations: ["legacy-js-api", "color-functions", "global-builtin", "import"],
+                    silenceDeprecations: [
+                        "legacy-js-api",
+                        "color-functions",
+                        "global-builtin",
+                        "import",
+                        "if-function",
+                    ],
                 },
             },
         },
     },
     image: {
-        domains: ["raw.githubusercontent.com", "unsplash.com", "avatars.githubusercontent.com", "github.com","nf-core-docs.netlify.app","nf-core-main-site.netlify.app"],
+        domains: [
+            "raw.githubusercontent.com",
+            "unsplash.com",
+            "avatars.githubusercontent.com",
+            "github.com",
+            "nf-core-docs.netlify.app",
+            "nf-core-main-site.netlify.app",
+        ],
         service: {
             entrypoint: "astro/assets/services/sharp",
         },
@@ -188,7 +201,7 @@ export default {
                     transformers: [transformerNotationDiff()],
                 },
             ],
-            rehypeKatex,
+            [rehypeKatex, { strict: false }],
         ],
     },
 };

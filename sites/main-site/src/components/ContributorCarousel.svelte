@@ -1,6 +1,8 @@
 <script>
-    import Marquee from "svelte-fast-marquee";
+    import { onMount } from "svelte";
     import contributors_yml from "../config/contributors.yaml";
+
+    const marqueeSpeed = 45;
 
     let contributors = contributors_yml.contributors
         .filter((contributor) => contributor.image_fn)
@@ -12,8 +14,32 @@
         let moreContributors = contributors.slice(displayContributors.length, displayContributors.length + 5);
         displayContributors = displayContributors.concat(moreContributors);
     }
-    setInterval(addMoreContributors, 10000); // Add more contributors every 10 seconds
+
+    onMount(() => {
+        const id = setInterval(addMoreContributors, 10000);
+        return () => clearInterval(id);
+    });
+
+    const marqueeDurationSec = Math.max(12, Math.round(2000 / marqueeSpeed));
 </script>
+
+{#snippet contribStrip(interactive)}
+    {#each displayContributors as contributor (contributor)}
+        <a
+            href="/contributors/#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}"
+            tabindex={interactive ? undefined : -1}
+        >
+            <img
+                src="/images/contributors/white/{contributor.image_fn}"
+                class="my-lg-3 px-2"
+                data-bs-placement="bottom"
+                data-bs-toggle={interactive ? "tooltip" : undefined}
+                title={interactive ? contributor.full_name : undefined}
+                alt={interactive ? contributor.full_name : ""}
+            />
+        </a>
+    {/each}
+{/snippet}
 
 <div id="community" class="homepage-usedby">
     <div class="container py-5">
@@ -31,20 +57,16 @@
         </p>
 
         <div class="homepage_contrib_logos">
-            <Marquee pauseOnHover={true} speed={50}>
-                {#each displayContributors as contributor (contributor)}
-                    <a href="/contributors/#{contributor.full_name.toLowerCase().replace(/[^a-z]+/i, '-')}">
-                        <img
-                            src="/images/contributors/white/{contributor.image_fn}"
-                            class="my-lg-3 px-2"
-                            data-bs-placement="bottom"
-                            data-bs-toggle="tooltip"
-                            title={contributor.full_name}
-                            alt={contributor.full_name}
-                        />
-                    </a>
-                {/each}
-            </Marquee>
+            <div class="contrib-marquee" style="--marquee-duration: {marqueeDurationSec}s;">
+                <div class="contrib-marquee-track">
+                    <div class="contrib-marquee-row">
+                        {@render contribStrip(true)}
+                    </div>
+                    <div class="contrib-marquee-row" aria-hidden="true">
+                        {@render contribStrip(false)}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -92,7 +114,35 @@
             height: 80px;
         }
     }
-    :global(.marqueeck-wrapper) {
-        background-color: transparent !important;
+
+    .contrib-marquee {
+        overflow: hidden;
+        width: 100%;
+        mask-image: linear-gradient(to right, transparent, #000 4%, #000 96%, transparent);
+    }
+
+    .contrib-marquee-track {
+        display: flex;
+        width: max-content;
+        animation: contrib-marquee-scroll var(--marquee-duration, 40s) linear infinite;
+    }
+
+    .contrib-marquee:hover .contrib-marquee-track {
+        animation-play-state: paused;
+    }
+
+    .contrib-marquee-row {
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+    }
+
+    @keyframes contrib-marquee-scroll {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
     }
 </style>

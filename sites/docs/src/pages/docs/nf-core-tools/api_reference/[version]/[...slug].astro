@@ -39,14 +39,15 @@ export async function getStaticPaths() {
     });
     let api_reference_path = api_reference.map((entry: CollectionEntry<"api_reference">) => {
         const version = entry.filePath?.replace("src/content/api_reference/", "").split("/")[0];
+        const rawSlug = entry.filePath
+            ?.replace("src/content/api_reference/", "")
+            .replace(`${version}/`, "")
+            .replace(/\.md$/, "")
+            .replace("/index", "/");
         return {
             params: {
                 version: version,
-                slug: entry.filePath
-                    ?.replace("src/content/api_reference/", "")
-                    .replace(`${version}/`, "")
-                    .replace(/\.md$/, "")
-                    .replace("/index", "/"),
+                slug: rawSlug === "index" ? undefined : rawSlug,
             },
             props: { entry: entry, versions: versions },
         };
