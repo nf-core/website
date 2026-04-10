@@ -14,7 +14,7 @@ async function mountAll(): Promise<void> {
 
     const mod = await import("@docsearch/js");
     const runDocsearch = mod.default;
-    for (const node of roots) {
+    for (const node of Array.from(roots)) {
         if (!(node instanceof HTMLElement) || node.dataset.docsearchReady === "true") continue;
         runDocsearch({ container: node, ...DOCSEARCH_OPTS });
         node.dataset.docsearchReady = "true";
@@ -23,6 +23,7 @@ async function mountAll(): Promise<void> {
 
 export function initDocsearch(): void {
     const htmlDocument = globalThis["document"] as Document | undefined;
+    if (!htmlDocument) return;
     const run = () => void mountAll();
     if (htmlDocument?.readyState === "loading") {
         htmlDocument.addEventListener("DOMContentLoaded", run, { once: true });
