@@ -19,22 +19,9 @@ It's what helps a newcomer run their first pipeline, guides a developer through 
 Documentation has been a [pain point](https://nf-co.re/blog/2025/survey-results-2025#closer-feedback) for the nf-core community.
 At the [**Barcelona Summit 2025**](https://www.youtube.com/playlist?list=PLPZ8WHdZGxmV92E9hZx4KZiC27ILX6YFF), we announced an initiative to rebuild the nf-core documentation from the ground up, rather than incrementally reorganise things while the wheels were still turning.
 
-Thank you to everyone who flagged issues with the old documentation and contributed to this effort, especially those who joined the documentation team during the [March 2026 hackathon](https://nf-co.re/events/2026/hackathon-march-2026):
+![Documentation everywhere](/assets/images/events/2026/hackathon-march/development-guides.jpg)
 
-- Meng Yuan
-- Fadinda Shafira
-- Jen Reeve
-- Manasvi Ghonge
-- Mrunali Thokadiwala
-- Jess Kan
-- Peter Smith
-- Matthias Hörtenhuber
-- Priyal Tripathi
-- Saurabh
-- Iris
-- Beumjin
-- @ihlee-1014
-- nf-core-bot
+Thank you to everyone who flagged issues with the old documentation and contributed to this effort, especially those who joined the documentation team during the [March 2026 hackathon](https://nf-co.re/events/2026/hackathon-march-2026): Meng Yuan, Fadinda Shafira, Jen Reeve, Manasvi Ghonge, Mrunali Thokadiwala, Kurayi Chawatama, Jess Kan, Peter Smith, Matthias Hörtenhuber, Priyal Tripathi, Saurabh, Iris, Beumjin, @ihlee-1014, and nf-core-bot.
 
 We are excited to share that the initial migration of the docs is complete, and we have shipped the new and improved version.
 
@@ -74,8 +61,6 @@ We know there are areas that need more depth, pages that still need to be writte
 
 Our plan is to continue identifying these gaps, prioritise them with input from you, the community, and work through them steadily.
 This is an ongoing project, not a one-time release.
-
-## How you can help
 
 Documentation is a team sport.
 If you spot something that's unclear, outdated, or just plain missing, please let us know.
