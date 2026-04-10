@@ -2,7 +2,7 @@
 
 Lists available nf-core pipelines and versions.
 
-### _`class{:python}`_`nf_core.pipelines.list.LocalWorkflow(name){:python}`
+### _`class{:python}`_`nf_core.pipelines.list.LocalWorkflow(name: str){:python}`
 
 Bases: `object`
 
@@ -75,9 +75,13 @@ Dump JSON of all parsed information
 
 Prints a summary of all pipelines.
 
+### `nf_core.pipelines.list._get_nextflow_assets_dir() → Path{:python}`
+
+Return the Nextflow assets directory used for local workflow caches.
+
 ### `nf_core.pipelines.list.autocomplete_pipelines(ctx, param, incomplete: str){:python}`
 
-### `nf_core.pipelines.list.get_local_wf(workflow: str | Path, revision=None) → str | None{:python}`
+### `nf_core.pipelines.list.get_local_wf(workflow: Path, revision=None) → Path | None{:python}`
 
 Check if this workflow has a local copy and use nextflow to pull it if not
 
