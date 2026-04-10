@@ -81718,6 +81718,113 @@
       }
     },
     {
+      "name": "ea-utils_gtf2bed",
+      "path": "modules/nf-core/ea-utils/gtf2bed/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eautils_gtf2bed",
+        "description": "Convert a GTF/GFF annotation file to BED12 format",
+        "keywords": [
+          "gtf",
+          "gff",
+          "bed",
+          "bed12",
+          "annotation",
+          "conversion"
+        ],
+        "tools": [
+          {
+            "gtf2bed": {
+              "description": "Perl script from the ea-utils package that converts GTF/GFF annotation\nfiles to BED12 format, handling exons, start/stop codons, and miRNAs.\nProduces UCSC-compatible BED with proper thin/thick regions.\n",
+              "homepage": "https://expressionanalysis.github.io/ea-utils/",
+              "documentation": "https://github.com/ExpressionAnalysis/ea-utils/blob/master/clipper/gtf2bed",
+              "tool_dev_url": "https://github.com/ExpressionAnalysis/ea-utils",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "GTF or GFF annotation file",
+                "pattern": "*.{gtf,gff,gtf.gz,gff.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'genome' ]`\n"
+                }
+              },
+              {
+                "${prefix}.bed": {
+                  "type": "file",
+                  "description": "BED12 format annotation file with one entry per transcript",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "eagle2",
       "path": "modules/nf-core/eagle2/meta.yml",
       "type": "module",
@@ -108886,10 +108993,10 @@
                 }
               },
               {
-                "*.interval_list": {
+                "${prefix}.interval_list": {
                   "type": "file",
                   "description": "Processed interval list file",
-                  "pattern": "*.{bed,interval_list}",
+                  "pattern": "*.interval_list",
                   "ontologies": []
                 }
               }
@@ -115781,19 +115888,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_genomad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomad --version 2>&1 | sed 's/^.*geNomad, version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomad --version 2>&1 | sed 's/^.*geNomad, version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -116162,19 +116301,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_genomad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomad --version 2>&1 | sed 's/^.*geNomad, version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genomad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "genomad --version 2>&1 | sed 's/^.*geNomad, version //; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
