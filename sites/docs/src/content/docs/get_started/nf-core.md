@@ -60,7 +60,7 @@ The community communicates primarily through [Slack](https://nf-co.re/join/slack
 The `nf-core` Python package provides a command-line interface (CLI) and helper utilities for working with nf-core pipelines and components.
 It supports creating pipelines from the template, linting code against nf-core specifications, managing modules and subworkflows, and more.
 
-[Explore nf-core tools](/nf-core-tools/CLI/installation)
+[Explore nf-core tools](/docs/nf-core-tools/CLI/installation)
 
 ## Code of Conduct
 
