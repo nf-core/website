@@ -38,7 +38,7 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "contributors",
+        id: "contributing",
         label: "Contributing",
         entries: [],
         collapsed: true,
@@ -138,7 +138,7 @@ const featuredEntries = featuredPages.map(({ title, href, icon, description }) =
 const mainSections = [
     {
         title: "Running",
-        href: "/docs/users/",
+        href: "/docs/running/",
         icon: "octicon:rocket-16",
         description: "Run and configure nf-core pipelines",
     },
@@ -150,7 +150,7 @@ const mainSections = [
     },
     {
         title: "Contributing",
-        href: "/docs/contributors/",
+        href: "/docs/contributing/",
         icon: "octicon:git-pull-request-16",
         description: "Contribute to the nf-core community",
     },
@@ -293,7 +293,6 @@ const trainingCards = [
     }
     .card {
         text-wrap: pretty;
-        max-width: 25rem;
 
         &:hover {
             border-color: var(--bs-secondary);
