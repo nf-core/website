@@ -1,15 +1,15 @@
 ---
-title: Making nf-core/configs strict syntax compliant
-subtitle: Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant
+title: "Making nf-core/configs strict syntax compliant"
+subtitle: "Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant"
 pubDate: 2026-03-05T09:00:00+01:00
-headerImage: https://images.unsplash.com/photo-1760548425425-e42e77fa38f1
-headerImageAlt: Image of code on a screen
+headerImage: "/assets/images/blog/configs-strict-syntax/stricter_syntax.png"
+headerImageAlt: '"Stricter syntax" written in the style of the Stranger Things logo.'
 authors:
-    - nvnieuwk
-    - jfy133
+  - nvnieuwk
+  - jfy133
 label:
-    - configs
-    - infrastructure
+  - configs
+  - infrastructure
 ---
 
 ## Introduction
@@ -30,7 +30,7 @@ we are trying a multi-pronged approach to spread awareness of the changes:
 1. Notify the **config maintainers** of soon-to-be non-compliance on a dedicated [issue](https://github.com/nf-core/configs/issues/1020)
 2. Post (this!) blog post for outside visibility, but also a cross-reference on the nf-core Slack's [#announcements](https://nfcore.slack.com/archives/CE6P95170) channel
 3. For configs without fixes, the core team will update config description message displayed at the beginning of nf-core runs to make **users** aware and to tell them to contact us
-    - e.g. if the original config author no longer is responsibility
+   - e.g. if the original config author no longer is responsibility
 4. If we do not hear from config maintainers or pipeline users, we will consider a form of deprecating the config
 
 We have also prepared a ['migration' guide](/docs/tutorials/migrate_to_strict_syntax/config_strict_syntax) describing recommended fixes for common 'patterns' of non-compliance.
