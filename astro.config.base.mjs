@@ -79,7 +79,7 @@ export default {
                 ],
                 fa: ["github"],
                 "fa-brands": ["github"],
-                mdi: ["aws", "slack", "youtube"],
+                mdi: ["aws", "slack", "youtube", "hammer-wrench", "sprout"],
                 octicon: [
                     "chevron-right-16",
                     "git-pull-request-16",
@@ -91,6 +91,8 @@ export default {
                     "tasklist-16",
                     "terminal-16",
                     "tools-16",
+                    "question-16",
+                    "book-16",
                 ],
                 "simple-icons": ["bluesky"],
             },

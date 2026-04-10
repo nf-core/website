@@ -1,0 +1,20 @@
+---
+title: Input/output options
+subtitle: Define subworkflow inputs and outputs
+weight: 3
+---
+
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
+## Required input channels
+
+Input channel declarations MUST be defined for all _possible_ input files that the subworkflow requires (i.e., both required and optional files) within the `take` block.
+
+## Required output channels
+
+Named file extensions MUST be emitted for ALL output channels (e.g., `path "*.txt", emit: txt`).
+
+## Optional inputs
+
+Nextflow does not currently support optional inputs.
+Pass an empty list (`[]`) instead of a file as a subworkflow parameter to work around this limitation.
