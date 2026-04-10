@@ -11,7 +11,6 @@ There are three main ways to use reference genomes with nf-core pipelines:
 
 - [Local copies of genomes](#local-copies-of-genomes): user downloaded and self-managed
 - [AWS iGenomes](#aws-igenomes): Illumina-hosted pre-build reference genomes and indices
-- [Refgenie](#refgenie): programmatic genome asset management tool
 
 ## Local copies of genomes
 
