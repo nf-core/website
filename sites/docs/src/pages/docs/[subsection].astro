@@ -7,7 +7,7 @@ import type { SidebarEntry } from "@utils/types";
 import { sanitizeNfCoreLabels, addEntriesToSection } from "@utils/functions";
 
 export async function getStaticPaths() {
-    return ["get-started", "running", "developing", "contributors", "specifications", "community", "nf-core-tools"].map(
+    return ["get-started", "running", "developing", "contributing", "specifications", "community", "nf-core-tools"].map(
         (subsection) => ({
             params: {
                 subsection: subsection,
@@ -22,7 +22,7 @@ const subsectionDescriptions: Record<string, string> = {
     "get-started": "New to nf-core? Start here to learn the basics and run your first pipeline.",
     running: "Run and configure nf-core pipelines",
     developing: "Create and maintain nf-core pipelines, components, and configs",
-    contributors: "Contribute to the nf-core community",
+    contributing: "Contribute to the nf-core community",
     specifications: "Technical specifications for nf-core pipelines, components, and test data",
     community: "Community resources and guidelines",
     "nf-core-tools": "Command-line tools and API for working with nf-core",
@@ -60,7 +60,7 @@ let sections: SidebarEntry[] = [
     },
     {
         type: "group",
-        id: "contributors",
+        id: "contributing",
         label: "Contributing",
         entries: [],
         collapsed: true,
