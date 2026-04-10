@@ -1,4 +1,6 @@
 ---
+import "@docsearch/css";
+
 interface Props {
     id?: string;
 }
@@ -25,27 +27,31 @@ const { id = "docsearch" } = Astro.props;
 </div>
 
 <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-        // Lazy load DocSearch CSS and JS only when needed
-        const [docsearchModule] = await Promise.all([import("@docsearch/js"), import("@docsearch/css")]);
+    const docsearchOpts = {
+        appId: "01BY3A8NRJ",
+        indexName: "nf-co",
+        apiKey: "c726615ab69f88b4e26bc891c97c1808",
+        placeholder: "Search",
+    };
 
-        const docsearch = docsearchModule.default;
+    async function mountAll() {
+        const doc = globalThis["document"];
+        if (!doc) return;
+        const roots = doc.querySelectorAll("[data-search-container]");
+        if (roots.length === 0) return;
 
-        // Initialize all search instances
-        const searchContainers = document.querySelectorAll("[data-search-container]");
-        searchContainers.forEach((container) => {
-            const id = container.id;
-            if (id) {
-                docsearch({
-                    container: "#" + id,
-                    appId: "01BY3A8NRJ",
-                    indexName: "nf-co",
-                    apiKey: "c726615ab69f88b4e26bc891c97c1808",
-                    placeholder: "Search",
-                });
-            }
-        });
-    });
+        const { default: docsearch } = await import("@docsearch/js");
+        for (const node of roots) {
+            if (!(node instanceof HTMLElement) || node.dataset.docsearchReady === "true") continue;
+            docsearch({ container: node, ...docsearchOpts });
+            node.dataset.docsearchReady = "true";
+        }
+    }
+
+    const doc = globalThis["document"];
+    const run = () => void mountAll();
+    if (doc?.readyState === "loading") doc.addEventListener("DOMContentLoaded", run, { once: true });
+    else run();
 </script>
 
 <style lang="scss" is:global>
@@ -57,94 +63,75 @@ const { id = "docsearch" } = Astro.props;
         --docsearch-primary-color: #{var(--bs-success)};
         --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
         --docsearch-modal-background: #{var(--bs-body-bg)};
-        --docsearch-modal-shadow: "none";
+        --docsearch-modal-shadow: none;
         --docsearch-footer-shadow: none;
         --docsearch-muted-color: #{var(--bs-secondary)};
         --docsearch-secondary-text-color: #{var(--bs-tertiary-emphasis)};
         --docsearch-icon-color: #{var(--bs-tertiary-emphasis)};
         --docsearch-highlight-color: #{var(--bs-tertiary-emphasis)};
     }
-    [data-bs-theme="dark"]:root {
-        --docsearch-text-color: var(--bs-body-color);
-        --docsearch-searchbox-background: var(--bs-body-bg);
-        --docsearch-searchbox-shadow: none;
-        --docsearch-searchbox-focus-background: var(--bs-body-bg);
+
+    :root[data-bs-theme="dark"] {
         --docsearch-search-button-background: var(--bs-body-bg);
-        --docsearch-primary-color: #{var(--bs-success)};
-        --docsearch-container-background: #{rgba(var(--bs-black), 0.5)};
-        --docsearch-modal-background: #{var(--bs-body-bg)};
-        --docsearch-modal-shadow: "none";
-        --docsearch-footer-shadow: none;
-        --docsearch-muted-color: #{var(--bs-secondary)};
-        --docsearch-secondary-text-color: #{var(--bs-tertiary-emphasis)};
-        --docsearch-icon-color: #{var(--bs-tertiary-emphasis)};
-        --docsearch-highlight-color: #{var(--bs-tertiary-emphasis)};
-        --docsearch-searchbox-background: var(--bs-body-bg);
         --docsearch-hit-color: #{var(--bs-body-color)};
         --docsearch-icon-color: #{var(--bs-body-color)};
         --docsearch-logo-color: #{var(--bs-body-color)};
         --docsearch-hit-background: #{var(--bs-body-bg)};
-        --docsearch-hit-shadow: "none";
+        --docsearch-hit-shadow: none;
         --docsearch-footer-background: #{var(--bs-tertiary-bg)};
         --docsearch-muted-color: #{var(--bs-tertiary-emphasis)};
         --docsearch-subtle-color: #{var(--bs-tertiary-emphasis)};
         --docsearch-background-color: #{var(--bs-body-bg)};
     }
+
     @media (max-width: 768px) {
         .DocSearch-Modal {
             margin-top: 2rem;
         }
     }
+
     .DocSearch-Form {
         border: 1pt solid var(--bs-border-color);
     }
+
     button.DocSearch-Button {
         border-radius: var(--bs-border-radius);
         margin-left: 0;
     }
 
     button.DocSearch-Button .DocSearch-Button-Keys {
+        display: none;
+        align-items: center;
+        justify-content: space-around;
+        min-width: 3rem;
+        margin-top: 0.15rem;
         background: none;
         border-radius: var(--bs-border-radius-sm);
-
-        //   padding: 0.2rem;
-        margin-top: 0.15rem;
-
-        min-width: 3rem;
-        justify-content: space-around;
-        align-items: center;
-
-        display: none;
-        /*
-        @include media-breakpoint-up(xxl) {
-            display: flex;
-        }
-        */
     }
+
     .DocSearch-Button-Key,
     kbd.DocSearch-Commands-Key {
         align-items: center;
-        background: var(--bs-dark);
+        background: var(--bs-body-bg);
         box-shadow: 0 0 0 1px var(--bs-secondary-color) !important;
         margin-right: 0.2rem;
         padding: 0;
     }
-    .DocSearch .DocSearch-Hits {
-        &:last-of-type {
-            margin-bottom: 0;
-        }
-        &::before {
-            height: 0;
-        }
+
+    .DocSearch .DocSearch-Hits:last-of-type {
+        margin-bottom: 0;
     }
-    .DocSearch-Hit {
-        & a {
-            box-shadow: none;
-        }
-        & mark {
-            padding: 0;
-        }
+    .DocSearch .DocSearch-Hits::before {
+        height: 0;
     }
+
+    .DocSearch-Hit a {
+        box-shadow: none;
+    }
+    .DocSearch-Hit mark {
+        padding: 0;
+    }
+
     .DocSearch-Hit-icon:has(svg[height="20"]) {
         line-height: 20px;
     }
@@ -156,13 +143,13 @@ const { id = "docsearch" } = Astro.props;
     .DocSearch-Screen-Icon svg {
         stroke: var(--bs-body-color);
     }
+
     [data-bs-theme="dark"] .DocSearch-Hit[aria-selected="true"] a {
         background-color: rgba(var(--bs-success-rgb), 0.75);
     }
-    [data-bs-theme="dark"] {
-        .cls-1,
-        .cls-2 {
-            fill: #{var(--bs-body-color)};
-        }
+
+    [data-bs-theme="dark"] .cls-1,
+    [data-bs-theme="dark"] .cls-2 {
+        fill: #{var(--bs-body-color)};
     }
 </style>
