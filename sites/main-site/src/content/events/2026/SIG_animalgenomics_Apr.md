@@ -4,9 +4,9 @@ subtitle: David MacHugh (UCD School of Agriculture and Food Science, University 
 
 type: talk
 startDate: "2026-04-15"
-startTime: "16:00+01:00"
+startTime: "16:00+02:00"
 endDate: "2026-04-15"
-endTime: "17:00+01:00"
+endTime: "17:00+02:00"
 locations:
   - name: Online
     links:
