@@ -42990,10 +42990,6 @@
           "version": "dev"
         },
         {
-          "name": "createpanelrefs",
-          "version": "dev"
-        },
-        {
           "name": "denovotranscript",
           "version": "1.2.1"
         },
@@ -94393,6 +94389,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "createtaxdb",
           "version": "2.1.0"
@@ -284817,7 +284817,7 @@
               "homepage": "https://github.com/zstephens/telogator2",
               "documentation": "https://github.com/zstephens/telogator2",
               "tool_dev_url": "https://github.com/zstephens/telogator2",
-              "doi": "10.1093/bioinformatics/btae078",
+              "doi": "10.1186/s12859-024-05807-5",
               "licence": [
                 "MIT"
               ],
@@ -285169,6 +285169,14 @@
                 "type": "file",
                 "description": "Reference FASTA index",
                 "pattern": "*.fai",
+                "ontologies": []
+              }
+            },
+            {
+              "cytoband": {
+                "type": "file",
+                "description": "Optional cytoband file for the reference genome.\nWhen not provided ([]), telomerehunter uses its bundled hg19 cytoband.\nMust be supplied for hg38 data to avoid an IndexError caused by\nchromosomes that are longer in hg38 than hg19.\n",
+                "pattern": "*.txt",
                 "ontologies": []
               }
             }
@@ -313520,6 +313528,12 @@
             "ch_fasta": {
               "type": "file",
               "description": "Reference genome FASTA with index.\nStructure: [ val(meta2), path(fasta), path(fai) ]\n"
+            }
+          },
+          {
+            "ch_cytoband": {
+              "type": "file",
+              "description": "Optional cytoband file for telomerehunter.\nStructure: [ path(cytoband) ]\nWhen not provided ([[]] / empty), telomerehunter uses its bundled hg19 cytoband.\nMust be supplied for hg38 data to avoid an IndexError caused by\nchromosomes that are longer in hg38 than hg19.\n"
             }
           },
           {
