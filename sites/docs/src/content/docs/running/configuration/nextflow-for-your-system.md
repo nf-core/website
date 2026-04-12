@@ -13,7 +13,7 @@ The base configuration of nf-core pipelines defines default resource allocations
 
 These default values are generous to accommodate diverse workloads across different users.
 However, your jobs might receive more resources than needed, which can reduce system efficiency.
-In contrast, You might also want to increase resources for specific tasks to maximise speed.
+In contrast, you might also want to increase resources for specific tasks to maximise speed.
 Consider increasing resources if a pipeline step fails with a `Command exit status` of `137`.
 
 :::note
@@ -108,7 +108,7 @@ See the Nextflow documentation for [memory](https://docs.seqera.io/nextflow/proc
 :::
 
 :::info
-If you receive a warning when about an unrecognised process selector when running a pipeline, check that you specified the process name correctly.
+If you receive a warning about an unrecognised process selector when running a pipeline, check that you specified the process name correctly.
 :::
 
 If the pipeline defaults need adjustment, contact the pipeline developers on Slack in the pipeline channel or submit a GitHub issue on the pipeline repository.
