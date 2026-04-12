@@ -2,7 +2,7 @@
 
 Create a YAML parameter file
 
-### _`class{:python}`_`nf_core.pipelines.params_file.ParamsFileBuilder(pipeline=None, revision=None){:python}`
+### _`class{:python}`_`nf_core.pipelines.params_file.ParamsFileBuilder(pipeline=None, revision=None, no_prompts=False){:python}`
 
 Bases: `object`
 
