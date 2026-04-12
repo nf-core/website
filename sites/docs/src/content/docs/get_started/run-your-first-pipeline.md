@@ -12,6 +12,8 @@ Running a test pipeline is ideal for verifying your environment is correctly con
 
 [`nf-core/demo`](https://nf-co.re/demo) is a lightweight demonstration pipeline designed to introduce running nf-core pipelines. It performs basic quality control and processing on genomic sequencing data, showcasing the structure and best practices followed by all nf-core pipelines.
 
+![nf-core/demo subway map](../../../assets/images/get_started/nf-core-demo-subway.png)
+
 The `nf-core/demo` pipeline runs three processes:
 
 1. Read QC ([FastQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/))
