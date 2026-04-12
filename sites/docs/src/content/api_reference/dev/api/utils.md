@@ -584,6 +584,10 @@ Return a list of all files in a directory (ignores .gitigore files)
 
 Check file path to see if it is a binary file
 
+### `nf_core.utils.is_interactive() → bool{:python}`
+
+Check if the current session is interactive (has a TTY on stdin, stdout, and stderr).
+
 ### `nf_core.utils.is_pipeline_directory(wf_path){:python}`
 
 Checks if the specified directory have the minimum required files
