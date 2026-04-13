@@ -40,7 +40,7 @@ fastqc \\
         ext.args = { [                                                        // Assign a closure which returns a string
             '--quiet',
             params.fastqc_kmer_size ? "-k ${params.fastqc_kmer_size}" : ''    // Parameter-dependent values can be provided in this way
-        ].join(' ') }                                                         // Join converts the list to a string.
+        ].minus("").join(' ') }                                               // Join converts the list to a string.
         ext.prefix = { "${meta.id}" }                                         // A closure can be used to access variables defined in the script
     }
   }
