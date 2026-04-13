@@ -14625,19 +14625,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_atlasgeneannotationmanipulation": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "atlas-gene-annotation-manipulation": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "atlas-gene-annotation-manipulation": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -16949,7 +16981,7 @@
               "documentation": "https://github.com/tommyau/bamclipper",
               "tool_dev_url": "https://github.com/tommyau/bamclipper",
               "doi": "10.1038/s41598-017-01703-6",
-              "licence": [
+              "license": [
                 "MIT"
               ],
               "identifier": ""
@@ -17027,19 +17059,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bamclipper": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bamclipper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The hardcoded version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bamclipper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The hardcoded version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -32521,7 +32627,15 @@
               "biom": {
                 "type": "file",
                 "description": "Biom formatted feature table file",
-                "pattern": "*.{biom,txt,tsv}"
+                "pattern": "*.{biom,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3746"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
               }
             }
           ]
@@ -32571,19 +32685,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_biomformat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "biom-format": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "biom --version | sed 's/biom, version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "biom-format": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "biom --version | sed 's/biom, version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -55108,14 +55254,54 @@
               "tumor": {
                 "type": "file",
                 "description": "Input tumour sample bam file (or cram)\n",
-                "ontologies": []
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "tumor_index": {
+                "type": "file",
+                "description": "Input tumour sample bam/cram index file (only needed for bam input)\n",
+                "pattern": "*.{bai,crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
               }
             },
             {
               "normal": {
                 "type": "file",
                 "description": "Input normal sample bam file (or cram)\n",
-                "ontologies": []
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "normal_index": {
+                "type": "file",
+                "description": "Input normal sample bam/cram index file (only needed for bam input)\n",
+                "pattern": "*.{bai,crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
               }
             }
           ],
@@ -55130,21 +55316,19 @@
               "fasta": {
                 "type": "file",
                 "description": "Input reference genome fasta file (only needed for cram_input and/or when normal_samples are provided)\n",
-                "ontologies": []
-              }
-            }
-          ],
-          [
-            {
-              "meta3": {
-                "type": "map",
-                "description": "Groovy Map containing reference information\ne.g. [ id:'test' ]\n"
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "fasta_fai": {
                 "type": "file",
                 "description": "Input reference genome fasta index (optional, but recommended for cram_input)\n",
+                "pattern": "*.{fai}",
                 "ontologies": []
               }
             }
@@ -55160,7 +55344,12 @@
               "targets": {
                 "type": "file",
                 "description": "Input target bed file\n",
-                "ontologies": []
+                "pattern": "*.{bed}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
               }
             }
           ],
@@ -55175,6 +55364,7 @@
               "reference": {
                 "type": "file",
                 "description": "Input reference cnn-file (only for germline and tumor-only running)\n",
+                "pattern": "*.{cnn}",
                 "ontologies": []
               }
             }
@@ -55183,6 +55373,7 @@
             "panel_of_normals": {
               "type": "file",
               "description": "Input panel of normals file\n",
+              "pattern": "*.{cnn}",
               "ontologies": []
             }
           }
@@ -55201,7 +55392,11 @@
                   "type": "file",
                   "description": "File containing genomic regions",
                   "pattern": "*.{bed}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
                 }
               }
             ]
@@ -55273,7 +55468,11 @@
                   "type": "file",
                   "description": "File with plot of copy numbers or segments on chromosomes",
                   "pattern": "*.{pdf}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3508"
+                    }
+                  ]
                 }
               }
             ]
@@ -55291,7 +55490,11 @@
                   "type": "file",
                   "description": "File with plot of bin-level log2 coverages and segmentation calls",
                   "pattern": "*.{png}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
                 }
               }
             ]
@@ -66708,6 +66911,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@nictru"
         ],
@@ -66889,6 +67102,136 @@
           "version": "1.5.0"
         }
       ]
+    },
+    {
+      "name": "custom_multiqccustombiotype",
+      "path": "modules/nf-core/custom/multiqccustombiotype/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_multiqccustombiotype",
+        "description": "Generate MultiQC-compatible biotype count summaries from featureCounts output",
+        "keywords": [
+          "biotype",
+          "featurecounts",
+          "multiqc",
+          "rnaseq",
+          "qc"
+        ],
+        "tools": [
+          {
+            "custom": {
+              "description": "Summarise featureCounts biotype assignments for MultiQC reporting",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/multiqccustombiotype/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "count": {
+                "type": "file",
+                "description": "featureCounts output count file",
+                "pattern": "*.featureCounts.txt",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\n"
+              }
+            },
+            {
+              "header": {
+                "type": "file",
+                "description": "Header file for the biotype counts MultiQC table",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*biotype_counts_mqc.tsv": {
+                  "type": "file",
+                  "description": "Biotype counts formatted for MultiQC",
+                  "pattern": "*biotype_counts_mqc.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "rrna": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\n"
+                }
+              },
+              {
+                "*biotype_counts_rrna_mqc.tsv": {
+                  "type": "file",
+                  "description": "rRNA percentage for MultiQC general stats",
+                  "pattern": "*biotype_counts_rrna_mqc.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "custom_rsemmergecounts",
@@ -73909,7 +74252,7 @@
               }
             ]
           ],
-          "vcf_tbi": [
+          "vcf_index": [
             [
               {
                 "meta": {
@@ -73918,10 +74261,10 @@
                 }
               },
               {
-                "${prefix}.vcf.gz.tbi": {
+                "${prefix}.vcf.gz.{tbi,csi}": {
                   "type": "file",
                   "description": "Tabix index file of compressed VCF",
-                  "pattern": "*.vcf.gz.tbi",
+                  "pattern": "*.vcf.gz.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -73949,7 +74292,7 @@
               }
             ]
           ],
-          "gvcf_tbi": [
+          "gvcf_index": [
             [
               {
                 "meta": {
@@ -73958,10 +74301,10 @@
                 }
               },
               {
-                "${prefix}.g.vcf.gz.tbi": {
+                "${prefix}.g.vcf.gz.{tbi,csi}": {
                   "type": "file",
                   "description": "Tabix index file of compressed GVCF",
-                  "pattern": "*.g.vcf.gz.tbi",
+                  "pattern": "*.g.vcf.gz.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -81344,6 +81687,16 @@
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
               }
             }
           ]
@@ -231646,6 +231999,257 @@
       ]
     },
     {
+      "name": "rtgtools_cnveval",
+      "path": "modules/nf-core/rtgtools/cnveval/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rtgtools_cnveval",
+        "description": "The cnveval tool of RTG tools. It is used to evaluate called CNV regions for agreement with a baseline CNV set.",
+        "keywords": [
+          "benchmarking",
+          "vcf",
+          "rtg-tools",
+          "cnv-eval",
+          "copy-number-variants"
+        ],
+        "tools": [
+          {
+            "rtgtools": {
+              "description": "RealTimeGenomics Tools -- Utilities for accurate VCF comparison and manipulation.",
+              "homepage": "https://www.realtimegenomics.com/products/rtg-tools",
+              "documentation": "https://cdn.jsdelivr.net/gh/RealTimeGenomics/rtg-tools@master/installer/resources/tools/RTGOperationsManual.pdf",
+              "tool_dev_url": "https://github.com/RealTimeGenomics/rtg-tools",
+              "licence": [
+                "BSD-2-clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "query_vcf": {
+                "type": "file",
+                "description": "A VCF with called CNV variants to benchmark against the baseline. Records must contain INFO END and INFO SVTYPE (DUP or DEL).",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "query_vcf_tbi": {
+                "type": "file",
+                "description": "The index of the VCF file with called variants",
+                "pattern": "*.{vcf.gz.tbi,vcf.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_vcf": {
+                "type": "file",
+                "description": "A baseline VCF containing expected CNV calls. Records must contain INFO END and INFO SVTYPE (DUP or DEL).",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "truth_vcf_tbi": {
+                "type": "file",
+                "description": "The index of the baseline VCF to compare against",
+                "pattern": "*.{vcf.gz.tbi,vcf.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            },
+            {
+              "evaluation_regions_bed": {
+                "type": "file",
+                "description": "A BED file containing the regions of interest for evaluation (required). Regions are intersected with truth and calls VCFs to obtain CNV regions.",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "baseline_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.baseline.bed.gz": {
+                  "type": "file",
+                  "description": "A BED file containing truth CNV regions with TP/FN status, SVTYPE, and the span of the original truth VCF record",
+                  "pattern": "*.baseline.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "calls_bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.calls.bed.gz": {
+                  "type": "file",
+                  "description": "A BED file containing called CNV regions with TP/FP status, SVTYPE, the span of the original calls VCF record, and the score value",
+                  "pattern": "*.calls.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "weighted_roc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.weighted_roc.tsv.gz": {
+                  "type": "file",
+                  "description": "TSV file containing weighted ROC data that can be plotted with rocplot",
+                  "pattern": "*.weighted_roc.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "summary": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.summary.txt": {
+                  "type": "file",
+                  "description": "A TXT file containing the summary statistics of the evaluation",
+                  "pattern": "*.summary.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1964"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_rtgtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rtgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "rtgtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rtg version | sed 's/Product: RTG Tools //; q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@SevaNur"
+        ],
+        "maintainers": [
+          "@SevaNur"
+        ]
+      }
+    },
+    {
       "name": "rtgtools_format",
       "path": "modules/nf-core/rtgtools/format/meta.yml",
       "type": "module",
@@ -312931,6 +313535,194 @@
         ],
         "maintainers": [
           "@matthdsm"
+        ]
+      }
+    },
+    {
+      "name": "bam_qc_rnaseq",
+      "path": "subworkflows/nf-core/bam_qc_rnaseq/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "bam_qc_rnaseq",
+        "description": "Run post-alignment QC tools on RNA-seq BAM files including library complexity\nestimation (Preseq), biotype QC (featureCounts), RNA-seq-specific QC metrics\n(Qualimap), duplicate rate analysis (dupRadar), and comprehensive RSeQC analysis.\n",
+        "keywords": [
+          "rnaseq",
+          "bam",
+          "qc",
+          "quality_control",
+          "preseq",
+          "qualimap",
+          "dupradar",
+          "rseqc",
+          "featurecounts",
+          "biotype"
+        ],
+        "components": [
+          "preseq/lcextrap",
+          "qualimap/rnaseq",
+          "dupradar",
+          "subread/featurecounts",
+          "custom/multiqccustombiotype",
+          "samtools/sort",
+          "bam_rseqc"
+        ],
+        "input": [
+          {
+            "meta": {
+              "type": "map",
+              "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false, strandedness:'reverse' ]\n"
+            }
+          },
+          {
+            "bam": {
+              "type": "file",
+              "description": "Coordinate-sorted BAM file aligned to the genome",
+              "pattern": "*.{bam}"
+            }
+          },
+          {
+            "bai": {
+              "type": "file",
+              "description": "Index for the genome-aligned BAM file",
+              "pattern": "*.{bai}"
+            }
+          },
+          {
+            "gtf": {
+              "type": "file",
+              "description": "GTF annotation file",
+              "pattern": "*.{gtf}"
+            }
+          },
+          {
+            "gene_bed": {
+              "type": "file",
+              "description": "BED12 file for the reference gene model",
+              "pattern": "*.{bed}"
+            }
+          },
+          {
+            "fasta_fai": {
+              "type": "file",
+              "description": "Tuple of FASTA and FAI files for samtools sort\n[ val(meta), path(fasta), path(fai) ]\n"
+            }
+          },
+          {
+            "biotypes_header": {
+              "type": "file",
+              "description": "Header file for biotype counts MultiQC section",
+              "pattern": "*.{txt}"
+            }
+          },
+          {
+            "tools": {
+              "type": "list",
+              "description": "List of QC tools to run. Top-level tools: 'preseq', 'biotype_qc', 'qualimap',\n'dupradar'. RSeQC modules use an 'rseqc_' prefix: 'rseqc_bam_stat',\n'rseqc_inner_distance', 'rseqc_infer_experiment', 'rseqc_junction_annotation',\n'rseqc_junction_saturation', 'rseqc_read_distribution', 'rseqc_read_duplication',\n'rseqc_tin'. Pass an empty list to skip all.\n"
+            }
+          },
+          {
+            "biotype": {
+              "type": "string",
+              "description": "GTF attribute for biotype grouping (e.g. \"gene_type\" or \"gene_biotype\").\nOnly used when 'biotype_qc' is in tools. Set to empty string to skip biotype QC.\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "multiqc_files": {
+              "type": "file",
+              "description": "Collected MultiQC-compatible output files from all enabled tools"
+            }
+          },
+          {
+            "preseq_lc_extrap": {
+              "type": "file",
+              "description": "Preseq library complexity extrapolation curve",
+              "pattern": "*.lc_extrap.txt"
+            }
+          },
+          {
+            "preseq_log": {
+              "type": "file",
+              "description": "Preseq log file",
+              "pattern": "*.log"
+            }
+          },
+          {
+            "featurecounts_counts": {
+              "type": "file",
+              "description": "featureCounts count matrix",
+              "pattern": "*.featureCounts.txt"
+            }
+          },
+          {
+            "featurecounts_summary": {
+              "type": "file",
+              "description": "featureCounts summary statistics",
+              "pattern": "*.featureCounts.txt.summary"
+            }
+          },
+          {
+            "biotype_tsv": {
+              "type": "file",
+              "description": "Biotype counts formatted for MultiQC bargraph",
+              "pattern": "*biotype_counts_mqc.tsv"
+            }
+          },
+          {
+            "biotype_rrna": {
+              "type": "file",
+              "description": "rRNA percentage for MultiQC general stats",
+              "pattern": "*biotype_counts_rrna_mqc.tsv"
+            }
+          },
+          {
+            "qualimap_results": {
+              "type": "directory",
+              "description": "Qualimap RNA-seq QC results directory"
+            }
+          },
+          {
+            "dupradar_multiqc": {
+              "type": "file",
+              "description": "dupRadar MultiQC-compatible output",
+              "pattern": "*_mqc.txt"
+            }
+          },
+          {
+            "inferexperiment_txt": {
+              "type": "file",
+              "description": "RSeQC infer_experiment results (for strandedness detection)",
+              "pattern": "*.infer_experiment.txt"
+            }
+          },
+          {
+            "bamstat_txt": {
+              "type": "file",
+              "description": "RSeQC bam_stat report",
+              "pattern": "*.bam_stat.txt"
+            }
+          },
+          {
+            "readdistribution_txt": {
+              "type": "file",
+              "description": "RSeQC read_distribution report",
+              "pattern": "*.read_distribution.txt"
+            }
+          },
+          {
+            "tin_txt": {
+              "type": "file",
+              "description": "RSeQC TIN results summary",
+              "pattern": "*.txt"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
         ]
       }
     },
