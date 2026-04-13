@@ -152,7 +152,7 @@ Supply the config only to the tests that use `params`, otherwise define `params`
 :::info
 Modules in pipelines are frequently configured with dynamic inputs. Test parameters do not support this. For example,
 
-```groovy {3} title="nextflow.config"
+```groovy {3-4} title="nextflow.config"
 process {
   withName: 'MODULE' {
     ext.args = { "--sample ${meta.id}" }
@@ -181,7 +181,7 @@ when {
 }
 ```
 
-```groovy {3} title="nextflow.config"
+```groovy {3-4} title="nextflow.config"
 process {
   withName: 'MODULE' {
     ext.args = params.module_args
