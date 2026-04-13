@@ -149,6 +149,49 @@ No other settings should go into this file.
 Supply the config only to the tests that use `params`, otherwise define `params` for every test including the stub test.
 :::
 
+:::info
+Modules in pipelines are frequently configured with dynamic inputs. Test parameters do not support this. For example,
+
+```groovy {3-4} title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = { "--sample ${meta.id}" }
+    ext.prefix = { "${meta.id}_prefix" }
+  }
+}
+```
+
+would be implemented as follows:
+
+```groovy {4-6} title="main.nf.test"
+config './nextflow.config'
+
+when {
+  params {
+    module_args = '--sample test1' // `meta.id` is replaced with the value it would take once dynamically resolved
+  }
+  process {
+    """
+    input[0] = [
+      [ id:'test1', single_end:false ], // meta map
+      file(params.modules_testdata_base_path + 'genomics/prokaryotes/bacteroides_fragilis/genome/genome.fna.gz', checkIfExists: true)
+    ]
+    """
+  }
+}
+```
+
+```groovy {3-4} title="nextflow.config"
+process {
+  withName: 'MODULE' {
+    ext.args = params.module_args
+    ext.prefix = { "${meta.id}_prefix" } // Dynamic prefix configuration remains in the config
+  }
+}
+```
+
+:::
+
 ## Skipping CI test profiles
 
 If a module does not support a particular test profile, you can skip it by adding the path to corresponding section in `.github/skip_nf_test.json`.
