@@ -19,6 +19,7 @@ A pipeline specific config MUST be linked to within the institutional level conf
 
 A config documentation Markdown file MUST contain information on how to use the config in the context of the infrastructure.
 For example, the documentation may describe how to load Nextflow with such as `module load <...>` or `conda activate <...>`.
+It is RECOMMENDED to include a copy-pastable (e.g. using `$USER` rather than placeholders) example of launching a nf-core workflow with the `test` profile.
 
 The documentation MAY also provide additional recommendations such as how to specify scratch or temporary directories using Nextflow-related [environment variables](https://www.nextflow.io/docs/latest/reference/env-vars.html#nextflow-settings).
 

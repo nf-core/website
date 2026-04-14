@@ -33,12 +33,13 @@ There are two config types:
 An institutional config MUST be compatible with any nf-core pipeline or user.
 It defines how the pipeline interacts with the infrastructure, such as scheduling options, software environment settings, and resource limits.
 
-An institutional config SHOULD NOT define any resource defaults with `withName` or `withLabel`.
+An institutional config SHOULD NOT define any resource defaults with `withName` or `withLabel`. It SHOULD provide reasonable default settings for operating on the infrastructure (e.g. `resourceLimits`, `beforeScript`, `clusterOptions`, `runOptions`).
 
 ### Pipeline specific institutional config
 
 A pipeline specific config MAY modify the default resource values (memory, CPUs, time).
 
+Where possible, it's RECOMMENDED to provide defaults for using locally available references and similar resources.
 ## Naming
 
 Institutional configs SHOULD use a short name or acronym as the config name.
@@ -64,7 +65,7 @@ An institutional config MUST consist of two files:
 Files for a pipeline-specific institutional config must be located:
 
 - **[`conf/pipeline/<pipeline name>/<config name>.conf`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
-- - **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
+- **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
 
 Furthermore, the config MUST be referred to in two additional places
 
