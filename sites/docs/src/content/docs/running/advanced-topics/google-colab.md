@@ -4,8 +4,6 @@ subtitle: Use cloud resources with Google Colab
 shortTitle: Google Colab
 ---
 
-<!-- TODO Check this page for command accuracy, the command blocks appear to be missing parts of the code blocks -->
-
 This guide enables you to run computationally intensive nf-core pipelines using Google Colab's cloud resources, addressing limitations in local computing environments.
 Google Colab provides free access to cloud computing resources, making it a useful option for researchers who lack access to high-performance computing infrastructure.
 You can run pipelines directly in the browser or integrate with VS Code for enhanced development capabilities.

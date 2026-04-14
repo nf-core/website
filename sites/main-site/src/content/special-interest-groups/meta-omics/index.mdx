@@ -3,21 +3,25 @@ title: Introduction
 subtitle: "Community of researchers investigating biological community composition and dynamics using metagenomic, metatranscriptomic, and metaproteomic approaches."
 groupName: Meta-omics
 leads:
-    - jfy133: James Fellows Yates
     - erikrikarddaniel: Daniel Lundin
+    - vagkaratzas: Evangelos Karatzas
 pipelines:
     - ampliseq
     - createtaxdb
+    - detaxizer
     - differentialabundance
     - eager
+    - fetchngs
     - funcscan
     - mag
     - magmap
+    - metapep
     - metatdenovo
     - phageannotator
     - phyloplace
-    - rnaseq
+    - proteinfamilies
     - taxprofiler
+    - viralmetagenome
 ---
 
 import metro_omics_metro from "@assets/images/special-interest-groups/meta-omics/nf-core-meta-omics-metromap_2025.png";
@@ -25,14 +29,14 @@ import { Image } from "astro:assets";
 
 # Introduction
 
-Meta-omics methods aim to simultaneously analyse the entire multi-species potential and realised functional capacity of a biological sample. In other words to taxonomically and functionally characterise all organisms and their activity in a community.
+Meta-omics methods aim to simultaneously analyse the entire multi-species potential and realised functional capacity of a biological sample — taxonomically and functionally characterising all organisms and their activity in a community.
 
-The initial aims of this interest group will be:
+The aims of this interest group are:
 
-1. Helping coordinate compatibility between existing and potential meta-omic nf-core pipelines
+1. Coordinating compatibility between existing and potential meta-omic nf-core pipelines
 2. Implementing semi-'chaining' of sequential pipelines
-3. Developing standard parameters for different sub-disciplines (i.e. microbiome analysis) for each pipeline
-4. Documenting usage of 'first level' meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines (e.g., funcscan, phageannotator, phyloplace, rnaseq, differentialabundance) etc.
+3. Developing standard parameters for different sub-disciplines (e.g. microbiome analysis) for each pipeline
+4. Documenting usage of "primary" meta-omic pipelines (createtaxdb, ampliseq, eager, taxprofiler, mag, metatdenovo) followed by complementary analyses with "secondary" pipelines (e.g. funcscan, phageannotator, phyloplace, rnaseq, differentialabundance)
 
 <Image
     src={metro_omics_metro}
@@ -42,12 +46,18 @@ The initial aims of this interest group will be:
     alt="Diagram showcasing how nf-core pipelines can potentially be used for complementary and sequential analysis within meta-omics disciplines using a London Underground style 'tube map'"
 />
 
-Depending on interest/activity, other potential activities could include:
+Other activities include:
 
-1. Benchmarking meta-omic pipelines using relevant datasets (i.e. CAMI2), or reads generated using #readsimulator
+1. Benchmarking meta-omic pipelines using relevant datasets (e.g. CAMI2), or reads generated using #readsimulator
 2. Adding nf-tests to meta-omic pipelines
 3. Reducing functional redundancy between pipelines
 
 # Activities
 
-Initial activities will involve a monthly meeting with developers and users, to identify the most relevant problems related meta-omics with nf-core pipelines. Future activities may include presentations and discussions from topic-experts, as well as tutorials, workshops, and demo-days of nf-core pipelines.
+The group holds monthly meetings with developers and users to identify and discuss the most relevant problems related to meta-omics with nf-core pipelines. Activities also include presentations and discussions from topic-experts, tutorials, workshops, and demo-days of nf-core pipelines.
+
+You can find ideas and planned work on our [GitHub project board](https://github.com/orgs/nf-core/projects/79/views/1), and browse past [meeting notes on HackMD](https://hackmd.io/@nf-core/SyCCVMkT0).
+
+# How to join
+
+Join the [nf-core Slack](/join#slack) and find us in the [#meta-omics](https://nfcore.slack.com/archives/C070369GP7T) channel.

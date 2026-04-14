@@ -27,7 +27,6 @@ export interface Props {
         content: string | string[];
     }[];
     doubleNavbar?: boolean;
-    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 // get entry for page_type in docsearchtags
 
@@ -45,7 +44,6 @@ let {
     viewTransitions = false,
     docSearchTags = [],
     doubleNavbar = true,
-    jsonLd,
 } = Astro.props;
 const pageTypeTag = docSearchTags.find((tag) => tag.name === "page_type");
 const pageSubtypeTag = docSearchTags.find((tag) => tag.name === "page_subtype");
@@ -54,27 +52,6 @@ let category = pageTypeTag?.content || "";
 category += pageSubtypeTag && pageSubtypeTag?.content ? `/${pageSubtypeTag.content}` : "";
 
 image += category;
-
-const siteUrl = "https://nf-co.re";
-const organizationSchema = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "@id": `${siteUrl}/#organization`,
-    name: "nf-core",
-    url: siteUrl,
-    logo: `${siteUrl}/logo/nf-core-logo.png`,
-    sameAs: ["https://github.com/nf-core", "https://twitter.com/nf_core", "https://www.youtube.com/@nf-core"],
-};
-const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "@id": `${siteUrl}/#website`,
-    url: siteUrl,
-    name: "nf-core",
-    publisher: { "@id": `${siteUrl}/#organization` },
-};
-const baseJsonLd = [organizationSchema, websiteSchema];
-const mergedJsonLd = jsonLd ? [...baseJsonLd, ...(Array.isArray(jsonLd) ? jsonLd : [jsonLd])] : baseJsonLd;
 ---
 
 <!doctype html>
@@ -86,7 +63,6 @@ const mergedJsonLd = jsonLd ? [...baseJsonLd, ...(Array.isArray(jsonLd) ? jsonLd
             image={image}
             viewTransitions={viewTransitions}
             docSearchTags={docSearchTags}
-            jsonLd={mergedJsonLd}
         />
     </head>
 

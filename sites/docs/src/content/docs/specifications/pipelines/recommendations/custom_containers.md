@@ -6,7 +6,7 @@ menu:
     weight: 200
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 If a pipeline cannot be constructed with bioconda and therefore cannot be found on biocontainers, please contact `@core-team` on Slack to discuss the best way to proceed.
 

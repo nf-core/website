@@ -12,3 +12,8 @@ If the module has a commit SHA entry in the `modules.json`, the file content is
 compared against the files in the remote at this SHA.
 
 Only runs when linting a pipeline, not the modules repository
+
+The following checks are performed:
+
+- `check_local_copy`: Each module file must be identical to the corresponding
+  file in the remote repository at the pinned commit SHA.

@@ -5,9 +5,7 @@ description: Migrating nf-core modules and pipelines to use topic channels
 shortTitle: Migrating to topic channels
 ---
 
-<!-- TODO migrate changes from https://github.com/nf-core/website/pull/3682/changes (I think just code block formatting) -->
-
-[Topic channels](https://www.nextflow.io/docs/latest/process-typed.html#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
+[Topic channels](https://docs.seqera.io/nextflow/process-typed#topics) are a new feature in Nextflow that allow for more flexible and efficient handling of version outputs across modules and pipelines.
 Instead of collecting versions through YAML files, topic channels enable direct version tracking through structured channel outputs.
 
 This migration guide provides step-by-step instructions for three different scenarios:
@@ -17,12 +15,14 @@ This migration guide provides step-by-step instructions for three different scen
 - **Updating pipelines**: For pipelines that consume modules with topic channels
 
 :::note{title="Prerequisites"}
+
 You will need the following to get started:
 
 - nf-core tools version 3.5.0 or later
 - A clone of the `nf-core/modules` repository (for module updates)
 - Nextflow version 25.04.0 or later
-  :::
+
+:::
 
 ## Migrate modules
 
@@ -50,6 +50,13 @@ To migrate a module to use topic channels for version outputs:
 
    Replace `<tool1>` and `tool1 --version` with the tool name and version command.
    - Repeat this for each tool used in the module.
+
+:::note{title="Hard-coded version"}
+
+If your tool has no '--version' available or if you need to override it, replace `eval('tool1 --version')` in the example above with `val("1.2.3")`.
+`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
+
+:::
 
 1. Run `nf-core modules lint <module-name> --fix` to migrate the `meta.yml` file with the new topic outputs.
 
@@ -134,26 +141,54 @@ To migrate a pipelines to use topic channels for version outputs:
 
 1. Update the pipeline template a version that includes support for topic channels (version 3.5.0 or later).
 
+   The main change in the template include:
+
+   ```groovy title="$PIPELINE_NAME.nf"
+     def topic_versions = channel.topic("versions")// [!code ++]
+         .distinct()// [!code ++]
+         .branch { entry ->// [!code ++]
+             versions_file: entry instanceof Path// [!code ++]
+             versions_tuple: true// [!code ++]
+         }// [!code ++]
+   // [!code ++]
+     def topic_versions_string = topic_versions.versions_tuple// [!code ++]
+         .map { process, tool, version ->// [!code ++]
+             [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]// [!code ++]
+         }// [!code ++]
+         .groupTuple(by:0)// [!code ++]
+         .map { process, tool_versions ->// [!code ++]
+             tool_versions.unique().sort()// [!code ++]
+             "${process}:\n${tool_versions.join('\n')}"// [!code ++]
+         }// [!code ++]
+   // [!code ++]
+     ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))// [!code ++]
+         .mix(topic_versions_string)// [!code ++]
+     ch_collated_versions = softwareVersionsToYAML(ch_versions)// [!code --]
+   ```
+
 1. Run `nf-core modules update` to pull the latest changes.
 
-1. Find and remove instances in the pipeline code where `versions` is referenced as an invalid process output. These outputs are now handled by topic channels and should be removed.
+1. Find and remove instances in the pipeline code where `versions` is referenced as an invalid process output.
+   These outputs are now handled by topic channels and should be removed.
 
    You may encounter errors like this:
 
-   ```console
-   ERROR ~ No such variable: Exception evaluating property 'versions' for nextflow.script.ChannelOut, Reason: groovy.lang.MissingPropertyException: No such property: versions for class: groovyx.gpars.dataflow.DataflowBroadcast
+   ```console title="nextflow.log"
+   ERROR ~ No such variable: Exception evaluating property 'versions' for nextflow.script.ChannelOut,
+   Reason: groovy.lang.MissingPropertyException:
+   No such property: versions for class: groovyx.gpars.dataflow.DataflowBroadcast
    ```
 
    **Example**: A workflow using the `samtools/sort` module might have code like this:
 
-   ```nextflow
+   ```groovy title="main.nf"
    SAMTOOLS_SORT(input)
    ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
    ```
 
    **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
 
-   ```diff
+   ```groovy title="main.nf"
    SAMTOOLS_SORT(input)
-   -ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
+   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions) // [!code --]
    ```

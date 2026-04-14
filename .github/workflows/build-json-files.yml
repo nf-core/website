@@ -24,16 +24,16 @@ jobs:
 
     steps:
       # Set up the main website repo
-      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
         with:
           fetch-depth: 0 # Don't do a shallow clone
           token: ${{secrets.NF_CORE_BOT_AUTH_TOKEN}} # Needed for pushing back to the repo
 
       # install npm dependencies
       - name: Set up node.js
-        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
         with:
-          node-version: 20
+          node-version: 24
           cache: "npm"
 
       - name: Install dependencies

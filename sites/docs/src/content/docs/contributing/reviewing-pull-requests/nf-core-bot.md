@@ -3,8 +3,6 @@ title: "nf-core-bot"
 subtitle: "Control automated GitHub reactions"
 ---
 
-<!-- TODO link to this page in various pages, e.g. contributing new pipelines , writing modules etc.  -->
-
 The nf-core-bot can automate code fixes and other actions in pull requests.
 You trigger these commands by commenting on the PR with specific keywords.
 

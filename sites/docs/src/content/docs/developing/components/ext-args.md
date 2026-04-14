@@ -71,12 +71,11 @@ Set `ext.args` based on parameter settings:
 ```groovy
 process {
     withName: '.*:FASTQC_UMITOOLS_TRIMGALORE:UMITOOLS_EXTRACT' {
-        ext.args   = [
-                params.umitools_extract_method ? "--extract-method=${params.umitools_extract_method}" : '',
-                params.umitools_bc_pattern     ? "--bc-pattern='${params.umitools_bc_pattern}'" : '',
-                params.umitools_bc_pattern2    ? "--bc-pattern2='${params.umitools_bc_pattern2}'" : ''
-            ].join(' ').trim()
-        ]
+        ext.args   = { [
+            params.umitools_extract_method ? "--extract-method=${params.umitools_extract_method}" : '',
+            params.umitools_bc_pattern     ? "--bc-pattern='${params.umitools_bc_pattern}'" : '',
+            params.umitools_bc_pattern2    ? "--bc-pattern2='${params.umitools_bc_pattern2}'" : ''
+        ].minus("").join(' ') }
     }
 }
 ```
@@ -109,7 +108,7 @@ process {
             meta.single_end                 ? '' : '--unpaired-reads=discard --chimeric-pairs=discard',
             params.umitools_grouping_method ? "--method='${params.umitools_grouping_method}'" : '',
             params.umitools_umi_separator   ? "--umi-separator='${params.umitools_umi_separator}'" : ''
-        ].join(' ').trim() }
+        ].minus("").join(' ') }
         ext.prefix = { "${meta.id}.umi_dedup.sorted" }
     }
 }

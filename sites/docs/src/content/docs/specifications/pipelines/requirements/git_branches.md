@@ -6,7 +6,7 @@ menu:
     weight: 160
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 The latest stable release MUST be on the main `main` or `master` branch.
 No additional changes SHOULD be pushed to master after each release.

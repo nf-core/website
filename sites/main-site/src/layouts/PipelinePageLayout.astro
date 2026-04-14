@@ -120,21 +120,6 @@ const gh_url = "https://github.com/nf-core/" + pipeline;
 const pipelineData = pipelines_json.remote_workflows.find((wf) => wf.name === pipeline);
 const topics = pipelineData?.topics ?? [];
 const isDsl2 = pipelineData?.is_DSL2;
-
-const siteUrl = "https://nf-co.re";
-const pipelineJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    name: `nf-core/${pipeline}`,
-    description: subtitle,
-    url: `${siteUrl}/${pipeline}/${version}/`,
-    version: tag_name,
-    applicationCategory: "ScientificApplication",
-    operatingSystem: "Linux, macOS",
-    codeRepository: gh_url,
-    author: { "@id": `${siteUrl}/#organization` },
-    ...(topics.length > 0 && { keywords: topics.join(", ") }),
-};
 ---
 
 <PageLayout
@@ -149,7 +134,6 @@ const pipelineJsonLd = {
     sections={sections}
     {showHiddenBtn}
     viewTransitions={viewTransitions}
-    jsonLd={pipelineJsonLd}
     docSearchTags={[
         ...docSearchTags,
         { name: "version", content: latestVersion === version ? [version, "latest"] : version },

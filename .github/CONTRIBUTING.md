@@ -13,7 +13,7 @@ Hi there! Many thanks for taking an interest in improving the nf-core website.
 ## Instructions to add your institution to the list of contributors
 
 1. Fork this repo
-2. Add your institute details and your name to the [contributors.yaml](../src/config/contributors.yaml)
+2. Add your institute details and your name to the [contributors.yaml](../sites/main-site/src/config/contributors.yaml)
 
 Here's the desired format
 
@@ -61,7 +61,14 @@ If you're not used to this workflow with git, you can start with some [basic doc
 
 When you create a pull request with changes, Github Actions will run automatic tests.
 Typically, pull-requests are only fully reviewed when these tests are passing, though of course we can help out before then.
-For now, the only test is for Markdown syntax, using the `markdownlint` package.
+For now, the main test is for syntax formatting using prettier.
+We use pre-commit to ensure that your code is formatted correctly before submitting your pull request. To automatically check your code before commiting, install [prek](https://prek.j178.dev/installation/) (comes installed as a dev dependency) and the pre-commit hooks defined in `pre-commit.config.yaml`:
+
+```
+prek install --install-hooks
+```
+
+You can manually run the tests using `prek run --all-files` to run all tests.
 
 ## Getting help
 

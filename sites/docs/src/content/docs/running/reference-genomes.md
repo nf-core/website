@@ -7,11 +7,10 @@ shortTitle: Reference genomes
 Many nf-core pipelines use reference genomes for alignment, annotation, and similar tasks.
 This page describes available approaches for managing reference genomes.
 
-There are three main ways to use reference genomes with nf-core pipelines:
+There are two main ways to use reference genomes with nf-core pipelines:
 
 - [Local copies of genomes](#local-copies-of-genomes): user downloaded and self-managed
-- [AWS iGenomes](#aws-igenomes): Illumina-hosted pre-build reference genomes and indices
-- [Refgenie](#refgenie): programmatic genome asset management tool
+- [AWS iGenomes](#aws-igenomes): Illumina-hosted pre-built reference genomes and indices
 
 ## Local copies of genomes
 
@@ -77,7 +76,7 @@ Consider using custom genomes for current annotations.
 :::warning{title="GRCh38 assembly issues"}
 GRCh38 in iGenomes comes from NCBI instead of Ensembl, not the masked Ensembl assembly.
 This can cause pipeline issues in some cases. See [nf-core/rnaseq issue #460](https://github.com/nf-core/rnaseq/issues/460) for details.
-For GRCh38 with masked Ensembl assembly, use [Custom genomes](#custom-genomes).
+For GRCh38 with masked Ensembl assembly, use [local copies of genomes](#local-copies-of-genomes).
 :::
 
 ### Use remote AWS iGenomes
@@ -86,7 +85,7 @@ To use remote AWS iGenomes in supported nf-core pipelines, supply the `--genome`
 On execution the pipeline will then:
 
 1. Automatically download required reference files.
-2. Auto-populated reference genome parameters from `conf/igenomes.config`.
+2. Automatically populates reference genome parameters from `conf/igenomes.config`.
    - Parameters like FASTA, GTF, and index paths are set automatically.
 3. Download only what it requires for that specific workflow.
 
