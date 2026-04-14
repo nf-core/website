@@ -51,6 +51,27 @@ assert snapshot(process.out).match()
 When the snapshot is unstable, use another way to test the output files.
 See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
+## GPU tests
+
+Modules that support both CPU and GPU modes SHOULD include a separate GPU test file (`main.gpu.nf.test`). GPU-only modules (e.g., Parabricks) MAY use a single test file.
+
+GPU tests MUST be tagged with `"gpu"` or `"gpu_highmem"` so the GPU CI workflow discovers and runs them on GPU-enabled runners. The `"gpu"` tag runs on smaller GPU instances (e.g., `g4dn.xlarge`), while `"gpu_highmem"` runs on larger instances (e.g., `g4dn.2xlarge`) for tools with higher memory requirements such as [Parabricks](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks).
+
+GPU tests SHOULD include a `nextflow.gpu.config` that sets `accelerator = 1` on the process.
+
+GPU tests SHOULD use the same assertions as the CPU tests to verify that GPU and CPU modes produce equivalent results.
+
+GPU tests SHOULD include both a real test and a stub test.
+
+```
+modules/nf-core/<tool>/tests/
+  main.nf.test           # CPU tests
+  main.gpu.nf.test       # GPU tests (tag "gpu")
+  nextflow.gpu.config    # Sets accelerator = 1
+```
+
+For an example, see the [`ribodetector` GPU tests](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector/tests).
+
 ## Stub tests
 
 A stub test MUST be included for the module.
