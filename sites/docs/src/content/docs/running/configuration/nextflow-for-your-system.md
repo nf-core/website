@@ -13,7 +13,7 @@ The base configuration of nf-core pipelines defines default resource allocations
 
 These default values are generous to accommodate diverse workloads across different users.
 However, your jobs might receive more resources than needed, which can reduce system efficiency.
-In contrast, You might also want to increase resources for specific tasks to maximise speed.
+In contrast, you might also want to increase resources for specific tasks to maximise speed.
 Consider increasing resources if a pipeline step fails with a `Command exit status` of `137`.
 
 :::note
@@ -94,7 +94,7 @@ process {
 }
 ```
 
-For more information, see the [Nextflow documentation](https://www.nextflow.io/docs/latest/config.html#process-selectors).
+For more information, see the [Nextflow documentation](https://docs.seqera.io/nextflow/config#process-selectors).
 
 After writing your [configuration file](#custom-configuration-files), supply it to your pipeline command with `-c <path>/<to>/<config>.conf`.
 
@@ -104,11 +104,11 @@ Setting memory to `200` allocates 200 bytes of memory.
 
 Use quotes with a space or no quotes with a dot: `"200 GB"` or `200.GB`.
 
-See the Nextflow documentation for [memory](https://www.nextflow.io/docs/latest/process.html#memory), [cpus](https://www.nextflow.io/docs/latest/process.html#cpus), and [time](https://www.nextflow.io/docs/latest/process.html#time).
+See the Nextflow documentation for [memory](https://docs.seqera.io/nextflow/process#memory), [cpus](https://docs.seqera.io/nextflow/process#cpus), and [time](https://docs.seqera.io/nextflow/process#time).
 :::
 
 :::info
-If you receive a warning when about an unrecognised process selector when running a pipeline, check that you specified the process name correctly.
+If you receive a warning about an unrecognised process selector when running a pipeline, check that you specified the process name correctly.
 :::
 
 If the pipeline defaults need adjustment, contact the pipeline developers on Slack in the pipeline channel or submit a GitHub issue on the pipeline repository.
@@ -120,7 +120,7 @@ Nextflow pipelines run in 'local' mode by default, executing jobs on the same sy
 Most users need to specify an executor to tell Nextflow how to submit jobs to a job scheduler (e.g., SGE, LSF, Slurm, PBS, or AWS Batch).
 
 You can configure the executor in shared configuration profiles or in custom configuration files.
-For more information about executors, see [Executors](https://www.nextflow.io/docs/latest/executor.html#executor-page).
+For more information about executors, see [Executors](https://docs.seqera.io/nextflow/executor#executor-page).
 
 ## Set max resources
 
@@ -193,7 +193,7 @@ For example, if you set `docker.registry = 'myregistry.com'`, the image pulls fr
 
 ## Update tool versions
 
-The [Nextflow DSL2](https://www.nextflow.io/docs/latest/dsl2.html) implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
+The [Nextflow DSL2](https://docs.seqera.io/nextflow/dsl2) implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
 
 To use a different version of a tool, identify the `process` name and override the Nextflow `container` or `conda` definition for that process using the `withName` declaration.
 
@@ -298,126 +298,10 @@ Copy existing parameters from the pipeline's `conf/modules.config` file to ensur
 Pipeline developers provide no warranty when you update tool parameters or change `ext.args`.
 :::
 
-## Troubleshooting
-
-### Pipeline crashes immediately
-
-**Problem:**
-
-Pipeline fails at the first process.
-
-**Cause:**
-
-No container or environment profile specified.
-
-**Solution:**
-
-Add `-profile docker`, `-profile singularity`, or `-profile conda` to your command:
-
-```bash
-nextflow run nf-core/pipeline -profile docker
-```
-
-### Cluster job submission fails
-
-**Error message:**
-
-```console
-Failed to submit process to grid scheduler for execution.
-```
-
-**Solution:**
-
-Manually submit the failed job to see the actual error:
-
-1. Navigate to the work directory shown in the error
-2. Submit the command file directly to your scheduler:
-
-   ```bash
-   sbatch .command.run  # For Slurm
-   qsub .command.run    # For SGE
-   ```
-
-3. The scheduler will show the real error (for example, "job memory limit exceeded")
-4. Adjust your configuration based on the error message
-
-### Invalid executor configuration
-
-**Error message:**
-
-```console
-sbatch: error: Invalid account or account/partition combination specified.
-```
-
-**Cause:**
-
-- Missing cluster profile in `-profile` parameter
-- Incorrectly specified executor in your configuration
-- Resource requests exceed your cluster limits
-
-**Solution:**
-
-- Check if your institution has a profile in [nf-core/configs](https://github.com/nf-core/configs)
-- Verify your executor name matches your scheduler (for example, `slurm` not `SLURM`)
-- Confirm your `resourceLimits` match your cluster's capabilities
-
-### Singularity bind path errors
-
-**Error message:**
-
-```console
-ERROR: Failed to resolve path to /home/path: No such file or directory
-```
-
-**Cause:**
-
-Singularity cannot access your file system paths.
-
-**Solution:**
-
-Add bind paths to your Nextflow configuration:
-
-```groovy
-singularity {
-  enabled = true
-  autoMounts = true
-  runOptions = '-B /scratch -B /gpfs -B /work'
-}
-```
-
-Or update your Singularity system configuration at `/etc/singularity/singularity.conf`.
-
-### Container not updating
-
-**Problem:**
-
-Pipeline uses old tool versions despite specifying `dev` branch.
-
-**Cause:**
-
-Docker does not automatically update local images.
-
-**Solution:**
-
-Manually pull the latest container:
-
-```bash
-docker pull nfcore/pipeline:dev
-```
-
-Or add to your configuration to always pull:
-
-```groovy
-docker {
-  enabled = true
-  runOptions = '--pull=always'
-}
-```
-
 ## Additional resources
 
 For more information about configuration syntax and parameters, see:
 
-- [Nextflow configuration documentation](https://www.nextflow.io/docs/latest/config.html)
-- [Nextflow executors](https://www.nextflow.io/docs/latest/executor.html)
+- [Nextflow configuration documentation](https://docs.seqera.io/nextflow/config)
+- [Nextflow executors](https://docs.seqera.io/nextflow/executor)
 - [nf-core/configs](https://github.com/nf-core/configs)

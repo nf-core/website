@@ -1,5 +1,5 @@
 ---
-import { Markdown } from "@astropub/md";
+import { Markdown } from "@mashehu/astropub-md";
 import ComponentParamTable from "@components/component/ComponentParamTable.astro";
 import SidebarStats from "@components/sidebar/SidebarStats.astro";
 import ComponentPageLayout from "@layouts/ComponentPageLayout.astro";
@@ -72,6 +72,13 @@ function truncatURLs(url: string) {
                 <div class="module output mb-5">
                     <ComponentParamTable name={"Output"} icon={"fa-sign-out"} params={module.meta.output} />
                 </div>
+                {
+                    module.meta.topics && (
+                        <div class="module topics mb-5">
+                            <ComponentParamTable name={"Topics"} icon={"fa-tag"} params={module.meta.topics} />
+                        </div>
+                    )
+                }
             </div>
             <div class="module-tools col-12">
                 <h2>

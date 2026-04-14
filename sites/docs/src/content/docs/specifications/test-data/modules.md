@@ -5,7 +5,7 @@ shortTitle: Modules
 weight: 3
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Reuse of existing test data
 
@@ -17,7 +17,7 @@ If appropriate test data does not exist in the `modules` branch of [`nf-core/tes
 
 Adding test data may not be possible for some modules if the input data is too large or requires a local database.
 
-In these scenarios, use the Nextflow [`stub`](https://www.nextflow.io/docs/latest/process.html#stub) feature to test the module.
+In these scenarios, use the Nextflow [`stub`](https://docs.seqera.io/nextflow/process#stub) feature to test the module.
 
 Refer to the [`gtdbtk/classify`](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/modules/gtdbtk/classifywf/main.nf#L66) module and its corresponding [test script](https://github.com/nf-core/modules/blob/79d38a306bdaf07000e0d6f300684d3ed38c8919/tests/modules/gtdbtk/classifywf/main.nf#L20) for an example of how to use this feature for module development.
 

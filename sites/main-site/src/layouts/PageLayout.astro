@@ -23,7 +23,6 @@ let {
     viewTransitions = false,
     docSearchTags = [],
     doubleNavbar = true,
-    jsonLd,
 } = Astro.props;
 
 export interface Props {
@@ -57,7 +56,6 @@ export interface Props {
         content: string | string[];
     }[];
     doubleNavbar?: boolean;
-    jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 if (frontmatter) {
     title = frontmatter.title || title;
@@ -84,7 +82,6 @@ if (frontmatter) {
     {viewTransitions}
     {docSearchTags}
     {doubleNavbar}
-    {jsonLd}
 >
     <div class="mainpage">
         <Header

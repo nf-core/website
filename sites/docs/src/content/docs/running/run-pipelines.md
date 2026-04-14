@@ -16,13 +16,13 @@ For a hands-on introduction, see the [Run your first pipeline](../get_started/ru
 All nf-core pipelines follow a consistent command structure:
 
 ```bash
-nextflow run nf-core/<pipeline> -r <version> -profile <config-name> <pipeline-parameters...>
+nextflow run nf-core/<pipeline> -r <version> -profile <config-name> <pipeline-parameters>
 ```
 
-- `nf-core/<pipeline>`: The pipeline name (for example `nf-core/rnaseq` or `nf-core/sarek`)
-- `-r <version`>: the version, tag, or commit of the pipeline to execute (for example `1.2.0`, `b52fa53`). Optional but recommended
-- `-profile <config-name>`: Configuration profile(s) for software dependencies and execution environment
-- `<pipeline-parameters...>`: Pipeline-specific parameters and Nextflow options
+- `nf-core/<pipeline>`: The pipeline name (for example, `nf-core/rnaseq` or `nf-core/sarek`).
+- `-r <version>`: The version, tag, or commit of the pipeline to execute (for example, `1.2.0`, `b52fa53`). Optional but recommended.
+- `-profile <config-name>`: Configuration profile(s) for software dependencies and execution environment.
+- `<pipeline-parameters>`: Pipeline-specific parameters and Nextflow options.
 
 ## Common operations
 
@@ -36,8 +36,8 @@ All nf-core pipelines include a `test` profile with small datasets for verifying
 nextflow run nf-core/<pipeline> -profile test,<config> --outdir results
 ```
 
-- Replace `<pipeline>` with the pipeline name
-- Replace `<config>` with your software dependency manager
+- Replace `<pipeline>` with the pipeline name.
+- Replace `<config>` with your software dependency manager.
 
 :::tip
 Common software dependency and compute environment profiles include:
@@ -197,7 +197,7 @@ Common configuration scenarios include:
 Configuration files are applied in order and later files override earlier settings. Multiple `-c` flags can be used to layer configurations.
 :::
 
-For detailed configuration options, see the [Configuration guide](./configuration/configuration-options)
+For detailed configuration options, see the [Configuration guide](./configuration/configuration-options).
 
 ### Resuming runs
 
@@ -219,8 +219,8 @@ Always use `-resume` when re-running a pipeline after fixing errors or updating 
 
 ### Notifications
 
-- Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://www.nextflow.io/docs/latest/mail.html#mail-configuration)).
-- To receive notifications from your pipeline (e.g. on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
+- Specify `--email your@email.com` to receive emails when your pipeline completes (requires Nextflow [mail and notification configuration](https://docs.seqera.io/nextflow/mail#mail-configuration)).
+- To receive notifications from your pipeline (e.g., on completion or failure), see the [nf-slack plugin](https://github.com/seqeralabs/nf-slack) for Slack or the [nf-teams plugin](https://github.com/nvnieuwk/nf-teams) for Microsoft Teams.
 
 ## Next steps
 

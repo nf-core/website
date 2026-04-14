@@ -60,7 +60,7 @@ This configuration suits production pipelines where output reproducibility is as
 :::
 
 :::warning
-You must remove the work directory of any _failed_ run manually, such as with with the `nextflow clean` command.
+You must remove the work directory of any _failed_ run manually, such as with the `nextflow clean` command.
 :::
 
 ### Scratch directory implementation
@@ -107,7 +107,7 @@ boost {
 ```
 
 :::note
-Enabling of nf-boost prevents the use of resume functionality of pipeline executions.
+Enabling nf-boost prevents the use of resume functionality for pipeline executions.
 :::
 
 See [nf-boost](https://github.com/bentsherman/nf-boost) for more information.

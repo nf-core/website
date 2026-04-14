@@ -6,7 +6,7 @@ shortTitle: Documentation
 weight: 4
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Module documentation is required
 
@@ -54,6 +54,10 @@ tools:
 ## Required channel documentation
 
 Only include entries of input and output channels in the Input and Output sections of the `meta.yaml`.
+
+## Meta maps variables should be documented
+
+Each meta map (`meta`, `meta2`, `meta3`, and so on) MUST be documented in the `meta.yaml`.
 
 ## Documentation of tuples
 

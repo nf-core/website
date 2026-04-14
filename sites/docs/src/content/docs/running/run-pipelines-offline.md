@@ -79,9 +79,8 @@ See [Reference genomes](./reference-genomes) for more information.
 
 For more information about running nf-core pipelines offline, see:
 
-<!-- TODO: Add link to nf-core pipelines download documentation once available -->
-
-- nf-core/bytesize: Running pipelines offline
+- Read the nf-core/tools [`pipeline download`](../nf-core-tools/cli/pipelines/download) subcommand documentation
+- Watch the nf-core/bytesize: Running pipelines offline
 
   <!-- markdownlint-disable -->
   <iframe width="560" height="315" src="https://www.youtube.com/embed/N1rRr4J0Lps" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

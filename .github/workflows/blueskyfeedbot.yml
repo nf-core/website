@@ -7,21 +7,22 @@ on:
 jobs:
   rss-to-bluesky:
     runs-on: ubuntu-latest
+    if: github.repository == 'nf-core/website'
     steps:
       - name: Generate cache key
-        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9
         id: generate-key
         with:
           script: |
             core.setOutput('cache-key', new Date().valueOf())
       - name: Retrieve cache
-        uses: actions/cache@5a3ec84eff668545956fd18022155c47e93e2684 # v4
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # v5
         with:
           path: ${{ github.workspace }}/blueskyfeedbot
           key: feed-cache-${{ steps.generate-key.outputs.cache-key }}
           restore-keys: feed-cache-
       - name: GitHub
-        uses: "joschi/blueskyfeedbot@9bf0141c9510807ec8e7085a5123c626251dd6af" # v0.0.4
+        uses: "joschi/blueskyfeedbot@ded1962e3afb0d7283f49a037bf4d4fd9d7b86ad" # v0.0.7
         with:
           # This is the RSS feed you want to publish
           rss-feed: https://nf-co.re/blog/rss.xml

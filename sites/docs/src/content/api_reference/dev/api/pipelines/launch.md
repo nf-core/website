@@ -2,7 +2,7 @@
 
 Launch a pipeline, interactively collecting params
 
-### _`class{:python}`_`nf_core.pipelines.launch.Launch(pipeline=None, revision=None, command_only=False, params_in=None, params_out=None, save_all=False, show_hidden=False, url=None, web_id=None){:python}`
+### _`class{:python}`_`nf_core.pipelines.launch.Launch(pipeline=None, revision=None, command_only=False, params_in=None, params_out=None, save_all=False, show_hidden=False, url=None, web_id=None, no_prompts=False){:python}`
 
 Bases: `object`
 

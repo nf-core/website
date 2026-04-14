@@ -26,3 +26,8 @@ Note that many GUI code editors have plugins to list all instances of _TODO_
 in a given project directory. This is a very quick and convenient way to get
 started on your pipeline!
 :::
+
+The following checks are performed:
+
+- `subworkflow_todo`: Warns if any `TODO nf-core:` comment lines are found
+  in the subworkflow files.

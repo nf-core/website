@@ -10,12 +10,10 @@ This section guides you through installing and configuring everything you need t
 
 ## What you'll need
 
-<!-- TODO: Fix astro errors with links (Cannot read properties of undefined (reading id)) -->
-
 The core requirements for running nf-core pipelines are:
 
 1. **[Nextflow](./nextflow)**: The workflow management system that powers all nf-core pipelines
-1. **[Container or compute environment manager](./software-dependencies)**: A system to handle pipeline software (e.g., Docker, Singularity, or Conda)
+2. **[Container or compute environment manager](./software-dependencies)**: A system to handle pipeline software (e.g., Docker, Singularity, or Conda)
 
 These additional tools are recommended for development:
 

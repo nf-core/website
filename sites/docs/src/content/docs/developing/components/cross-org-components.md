@@ -4,8 +4,6 @@ subtitle: Use multi-organization modules
 shortTitle: Cross-organisational components
 ---
 
-<!-- TODO fix typo file name (cross_org_componets,md -> cross_org_components.md) -->
-
 You can specify individual remotes for each module within a subworkflow's `meta.yml` file.
 This allows you to combine components from your own organisation with modules from other sources like nf-core.
 
