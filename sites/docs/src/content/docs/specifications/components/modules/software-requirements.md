@@ -79,6 +79,53 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 - If the multi-tool container already exists, use [this](https://midnighter.github.io/mulled) helper tool to obtain the `mulled-*` path.
 
+## GPU-capable modules
+
+The container approach depends on the tool:
+
+- **Significant GPU overhead** (e.g., CUDA PyTorch adds ~3 GB): use the dual-container pattern below. For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
+- **Minimal overhead or CPU fallback**: a single container is simpler and preferred.
+- **Vendor-provided GPU containers**: use directly, no conda equivalent. For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container. These modules SHOULD guard against conda/mamba profiles:
+
+  ```groovy
+  if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
+      error("This module does not support Conda. Please use Docker / Singularity / Podman instead.")
+  }
+  ```
+
+### Dual-container pattern
+
+When the GPU container is substantially larger, modules SHOULD switch between containers based on `task.accelerator`:
+
+```groovy
+conda "${ task.accelerator ? "${moduleDir}/environment.gpu.yml" : "${moduleDir}/environment.yml" }"
+container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
+    (task.accelerator ? '<singularity-gpu-url>' : '<singularity-cpu-url>') :
+    (task.accelerator ? '<docker-gpu-url>' : '<docker-cpu-url>') }"
+```
+
+A separate `environment.gpu.yml` SHOULD be provided for GPU-specific dependencies. The CPU `environment.yml` MUST remain unchanged so that non-GPU users are unaffected.
+
+GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file. Both Docker and Singularity URLs MUST be provided.
+
+:::note
+ARM GPU containers may not be buildable via Wave/conda if packages depend on the [`__cuda` virtual package](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-virtual.html), which requires CUDA drivers at solve time. Pipelines SHOULD error if GPU features are requested on unsupported architectures.
+:::
+
+### Script patterns
+
+Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator`. For example, [`ribodetector`](https://github.com/nf-core/modules/blob/master/modules/nf-core/ribodetector/main.nf):
+
+```groovy
+def binary = task.accelerator ? "ribodetector" : "ribodetector_cpu"
+```
+
+Tools that accept a GPU count SHOULD read it from `task.accelerator.request`, allowing users to override via their pipeline config (e.g., `accelerator = 2`). For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/master/modules/nf-core/parabricks/rnafq2bam/main.nf):
+
+```groovy
+def num_gpus = task.accelerator ? "--num-gpus ${task.accelerator.request}" : ''
+```
+
 ## Software not on Bioconda
 
 If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. nf-core will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).
