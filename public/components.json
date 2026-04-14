@@ -51551,15 +51551,25 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "The fasta reference file.\n",
-                "ontologies": []
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "fai": {
                 "type": "file",
-                "description": "The fasta reference index file.\n",
-                "ontologies": []
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
               }
             }
           ],
@@ -51839,15 +51849,25 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Fasta reference file.",
-                "ontologies": []
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "fai": {
                 "type": "file",
-                "description": "Fasta reference index file.",
-                "ontologies": []
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
               }
             }
           ]
@@ -144186,10 +144206,26 @@
                 "type": "file",
                 "description": "Uncompressed Protein FASTA file (mandatory)",
                 "pattern": "*.{fa,faa,fasta}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
+          {
+            "nodes_dmp": {
+              "type": "file",
+              "description": "NCBI nodes.dmp file (mandatory)",
+              "pattern": "nodes.dmp",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3751"
+                }
+              ]
+            }
+          },
           {
             "keep_intermediate": {
               "type": "boolean",
@@ -144208,10 +144244,10 @@
                 }
               },
               {
-                "*.fmi": {
+                "*.{fmi,dmp}": {
                   "type": "file",
-                  "description": "Kaiju FM-index file",
-                  "pattern": "*.{fmi}",
+                  "description": "Kaiju FM-index file and nodes.dmp file required for Kaiju classification",
+                  "pattern": "*.{fmi,dmp}",
                   "ontologies": []
                 }
               }
