@@ -10,8 +10,8 @@ leaders:
     slack: "https://nfcore.slack.com/team/U0888QNDQAJ"
 ---
 
-This project focuses on improving [nf-core/scalpel](https://github.com/plasslab/nf-core-scalpel), a nf-core pipeline for large omics data with single-cell data, isoform-aware quantification, and downstream analysis. 
-SCALPEL was previously developed as a standalone Nextflow pipeline and the associated work was published in [Nature Communications (2025)](https://www.nature.com/articles/s41467-025-61118-0). 
+This project focuses on improving [nf-core/scalpel](https://github.com/plasslab/nf-core-scalpel), a nf-core pipeline for large omics data with single-cell data, isoform-aware quantification, and downstream analysis.
+SCALPEL was previously developed as a standalone Nextflow pipeline and the associated work was published in [Nature Communications (2025)](https://www.nature.com/articles/s41467-025-61118-0).
 The current effort consists of reimplementing SCALPEL as a fully fledged nf-core pipeline so that it can be more easily deployed, maintained, and extended while integrating important updates into the workflow.
 
 The Boston hackathon is a great opportunity to expand the pipeline scope, improve reliability, and make it easier for new contributors to get involved.
