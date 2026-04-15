@@ -50,9 +50,9 @@ If you have Prettier installed, you can run it manually to check for formatting 
    prettier -w .
    ```
 
-## Run Prettier With pre-commit
+## Run Prettier With pre-commit hooks
 
-Configure [pre-commit](https://pre-commit.com/) to run Prettier automatically every time you commit code.
+Configure [prek](https://prek.j178.dev/) to run Prettier automatically every time you commit code.
 Most nf-core repositories already include a `.pre-commit-config.yaml` file:
 
 ```yaml
@@ -62,24 +62,28 @@ Most nf-core repositories already include a `.pre-commit-config.yaml` file:
     - id: prettier
 ```
 
-To run Prettier with pre-commit:
+To run Prettier with prek:
 
-1. Install pre-commit:
+1. Install prek:
 
-   ```bash
-   pip install pre-commit
-   ```
-
-1. Install the pre-commit hook in your repository:
+   :::note
+   If you have [nf-core tools](./nf-core-tools) installed, prek is already included — skip this step.
+   :::
 
    ```bash
-   pre-commit install
+   pip install prek
    ```
 
-When you run `git commit`, Prettier runs automatically
+1. Install the hooks in your repository:
+
+   ```bash
+   prek install --install-hooks
+   ```
+
+When you run `git commit`, Prettier runs automatically.
 
 :::tip
-If changes are made, pre-commit aborts the commit.
+If changes are made, prek aborts the commit.
 To continue, run `git add` with the modified files and try the commit again.
 :::
 

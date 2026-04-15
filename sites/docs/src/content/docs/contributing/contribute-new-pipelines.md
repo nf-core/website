@@ -16,8 +16,8 @@ You will need the following to get started:
 
 - [Nextflow version 21.04.0 or later](../../get_started/environment_setup/nextflow.md)
 - [nf-core/tools version 2.7 or later](../../get_started/environment_setup/nf-core-tools.md)
-- [nf-test](https://www.nf-test.com/) for testing
-- [pre-commit](https://pre-commit.com/) for code quality checks
+- [nf-test](https://www.nf-test.com/) for testing (included with nf-core tools)
+- [prek](https://prek.j178.dev/) for code quality checks (included with nf-core tools)
 - A container engine ([Docker](../../get_started/environment_setup/software-dependencies.md#docker), [Singularity](../../get_started/environment_setup/software-dependencies.md#singularity), or [Conda](../../get_started/environment_setup/software-dependencies.md#condamamba))
 - A [GitHub account](https://github.com/signup)
 
