@@ -95,6 +95,18 @@ For the broader picture of how nf-core is rolling out strict syntax across pipel
 
 ## Other improvements
 
+### Switch from pre-commit to prek in the pipeline template
+
+The pipeline template's GitHub Actions linting workflows now use [prek](https://prek.j178.dev/) instead of `pre-commit` to run git hooks.
+`prek` is a fast, Rust-based drop-in replacement for `pre-commit` that uses the same `.pre-commit-config.yaml` format, so no changes are needed to your configuration.
+It comes included with nf-core/tools and to replace your pre-commit setup with prek, you run
+
+```bash
+prek install --overwrite
+```
+
+and you should see moderately to slighlty faster pre-commit checks.
+
 ### Sync: respects an existing `defaultBranch`
 
 `nf-core pipelines sync` no longer overwrites the `defaultBranch` setting in `nextflow.config` if it is already present.
