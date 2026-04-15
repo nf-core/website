@@ -3,7 +3,7 @@ title: nf-core/scalpel
 category: pipelines
 slack: https://nfcore.slack.com/archives/C0AST9JDVHC
 image: "/assets/images/events/2026/hackathon-boston/SCALPEL_meme.png"
-image_alt: "An illustrated surgical scalpel on a blue background for the Boston 2026 hackathon"
+image_alt: "A funny meme"
 leaders:
   Franzx7:
     name: Franz AKE
