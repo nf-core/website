@@ -3,7 +3,7 @@ title: nf-core/scalpel
 category: pipelines
 slack: https://nfcore.slack.com/archives/C0AST9JDVHC
 image: "/assets/images/events/2026/hackathon-boston/SCALPEL_meme.png"
-image_alt: "A funny meme"
+image_alt: "A photo of a surgeon bending over with a scalpel in the hand. Above the following dialogue is written: A: 'Relax Marcel, it's just a small cut with a scalpel, don't be nervous.' B: 'Doctor, my name isn't Marcel!' 'I know, I am Marcel.'"
 leaders:
   Franzx7:
     name: Franz AKE
