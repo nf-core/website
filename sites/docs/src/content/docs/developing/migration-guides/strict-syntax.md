@@ -356,7 +356,7 @@ If you are updating the config on a fork or branch, you can use these two parame
 - `--custom_config_version`: Specify a different branch (for example, a branch within `nf-core/configs`)
 - `--custom_config_base`: Specify a different fork
 
-For example:
+For example, for a fork:
 
 ```bash
 nextflow pull nf-core/demo
