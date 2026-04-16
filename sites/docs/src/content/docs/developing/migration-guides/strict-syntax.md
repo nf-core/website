@@ -90,7 +90,7 @@ Make sure the parameter names are unique and isolated to the config so they don'
 We recommend the format `<config_name>_<variable_name>`, but you can make it more unique if needed.
 :::
 
-To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add the following to your config:
+To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add custom parameters to the `ignoreParams` list in your config:
 
 ```groovy
 validation {
@@ -150,7 +150,7 @@ This ensures the code is evaluated during config resolution.
 Without `.call()`, the parameter will be a closure instead of the expected value.
 :::
 
-To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add the following to your config:
+To prevent [nf-schema](https://github.com/nextflow-io/nf-schema) warnings during pipeline initialisation, add custom parameters to the `ignoreParams` list in your config:
 
 ```groovy
 validation {
@@ -189,7 +189,7 @@ def calculate_something(memory, time) {
 }
 ```
 
-Becomes:
+~Becomes:~
 
 ```groovy
 params.calculate_something = { memory, time ->
@@ -199,9 +199,9 @@ params.calculate_something = { memory, time ->
 }
 ```
 
-Calling the function can then be done via `params.calculate_something(memory, time)` instead of `calculate_something(memory, time)`.
+~Calling the function can then be done via `params.calculate_something(memory, time)` instead of `calculate_something(memory, time)`.~
 
-For a real-world example, see [nf-core/configs PR #1015](https://github.com/nf-core/configs/pull/1015/changes#diff-c60bd9c6097498d07b2f2eb3937b7d4ab3cb15e9167bacf80cb49c9848806e6fR117-R119).
+~For a real-world example, see [nf-core/configs PR #1015](https://github.com/nf-core/configs/pull/1015/changes#diff-c60bd9c6097498d07b2f2eb3937b7d4ab3cb15e9167bacf80cb49c9848806e6fR117-R119).~
 
 ### Basic if-statements
 
