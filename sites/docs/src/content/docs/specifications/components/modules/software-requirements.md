@@ -110,10 +110,11 @@ GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `en
 
 ### CUDA version targeting
 
-GPU containers are tied to a CUDA major version. Within a major version there is full forward compatibility: a container built with CUDA 12.x works on any host with a CUDA 12.0+ driver. In practice, only two variants matter:
+NVIDIA drivers are backward compatible: a host with a CUDA 12.x driver can run containers built for CUDA 11.x or 12.x. A CUDA 11.8 container works on any modern GPU host. The reverse is not true: a CUDA 12.x container cannot run on a host with only a CUDA 11.x driver.
 
-- **CUDA 12.x** (default): covers all current GPU cloud instances and recent HPC drivers.
-- **CUDA 11.8** (optional): covers older on-prem HPC systems with legacy drivers.
+Within a major version there is full forward compatibility: a container built with any CUDA 12.x works on any CUDA 12.0+ driver.
+
+In practice, **CUDA 12.x is the best default** for new modules: it gives access to the latest tool versions (newer PyTorch and similar packages are dropping CUDA 11 builds) while remaining compatible with all current GPU cloud instances and recent HPC drivers. A CUDA 11.8 alternative can be provided for users on older systems.
 
 The `environment.gpu.yml` SHOULD pin the CUDA major version to avoid the conda solver selecting builds for unreleased CUDA versions:
 
