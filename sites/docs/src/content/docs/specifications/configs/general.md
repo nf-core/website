@@ -47,8 +47,17 @@ Where possible, it's RECOMMENDED to provide defaults for using locally available
 
 ## Naming
 
+### Size of name
+
 Institutional configs SHOULD use a short name or acronym as the config name.
-When multiple computational infrastructure exist for a single institution, an institutional prefix MAY be used.
+
+### Formatting
+
+Config names MUST be written (e.g. file names) or referred to (in documentation) in all lower case.
+
+### Names when multiple infrastructure in a single instituation
+
+When multiple computational infrastructure exist for a single institution, an institutional prefix SHOULD be used.
 
 Example, for the MPCDF institution that has two HPCs named `raven` and `viper`:
 
