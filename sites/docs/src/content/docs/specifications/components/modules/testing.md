@@ -63,6 +63,10 @@ GPU tests SHOULD use the same assertions as the CPU tests to verify that GPU and
 
 GPU tests SHOULD include both a real test and a stub test.
 
+:::caution{title="GPU concurrency under Singularity"}
+When multiple GPU processes share a single GPU under Singularity (common in CI), concurrent CUDA processes can deadlock. Docker handles GPU memory arbitration automatically, but Singularity does not. Pipeline test configs SHOULD set `maxForks = 1` for GPU processes to serialize GPU access. This only affects CI testing where all tasks run on one machine; production runs on separate nodes are unaffected.
+:::
+
 ```
 modules/nf-core/<tool>/tests/
   main.nf.test           # CPU tests
