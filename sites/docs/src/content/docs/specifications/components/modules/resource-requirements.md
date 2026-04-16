@@ -32,6 +32,10 @@ See [Software requirements: GPU-capable modules](/docs/specifications/components
 Pipelines set `accelerator = 1` and GPU container flags via `containerOptions` in their process config. Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
 :::
 
+:::caution{title="GPU concurrency under Singularity"}
+Multiple concurrent GPU processes sharing a single GPU can deadlock under Singularity. Docker's NVIDIA runtime handles GPU memory arbitration, but Singularity does not. When GPU tasks may land on the same machine (CI, local executor, shared HPC nodes), set `maxForks = 1` on GPU processes to serialize access.
+:::
+
 ## Specifying multiple threads for piped commands
 
 If a module contains _multiple_ tools that support multi-threading (e.g., [piping output into a samtools command](https://github.com/nf-core/modules/blob/c4cc1db284faba9fc4896f64bddf7703cedc7430/modules/nf-core/bowtie2/align/main.nf#L47-L54)), assign CPUs per tool:
