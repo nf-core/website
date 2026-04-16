@@ -5,7 +5,10 @@ weight: 1
 parentWeight: 10
 ---
 
-<!-- TODO write intro -->
+nf-core/configs are centrally-hosted Nextflow configuration files that allow preconfigured execution of all nf-core pipelines on institutional computational infrastructure.
+These specifications define the standards for writing nf-core/config configs.
+
+While these specifications are mandatory for configs contributed to the nf-core/configs repository, they also represent proven best practices for developing high-quality, maintainable Nextflow configs that can benefit any nf-core pipeline user.
 
 ## Module specifications
 
