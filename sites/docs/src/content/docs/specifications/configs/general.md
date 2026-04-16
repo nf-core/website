@@ -7,7 +7,7 @@ weight: 1
 
 The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-## Permissions
+## Permissions to host on nf-core/configs
 
 Configs hosted on nf-core/configs SHOULD have permission from the administrators of the given infrastructure to host the config publicly within the nf-core GitHub organisation.
 
@@ -15,11 +15,15 @@ Configs hosted on nf-core/configs SHOULD have permission from the administrators
 A config MAY declare the config is 'unofficial' if the system administrators are OK with hosting publicly, as long as they do not maintain it themselves.
 :::
 
+## Alignment of config with local policies
+
+Configurations SHOULD apply with and document administrative policies of the infrastructure as far as possible.
+For example, if multiple possible partitions exist but there is a policy to use specific partitions for specific cases, this SHOULD be represented in the config.
+Another example is if executing the main Nextflow run command on login/submit nodes is not allowed, include a sample job submission script (for example a SLURM `sbatch` script) in the documentation.
+
 ## Size of configs
 
 A single config SHOULD represent a single cluster or type of infrastructure.
-
-A single config MAY include multiple configs using sub `profiles`, when <!-- TODO -->
 
 ## Scope of configs
 
@@ -47,7 +51,7 @@ Institutional configs SHOULD use a short name or acronym as the config name.
 
 The name MUST be used
 
-When multiple computational infrastructures exist for a single institution, an institutional prefix MAY be used.
+When multiple computational infrastructure exist for a single institution, an institutional prefix MAY be used.
 
 Example, for the MPCDF institution that has two HPCs named `raven` and `viper`:
 
