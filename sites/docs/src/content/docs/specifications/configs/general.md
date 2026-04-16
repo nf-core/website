@@ -37,7 +37,8 @@ There are two config types:
 An institutional config MUST be compatible with any nf-core pipeline or user.
 It defines how the pipeline interacts with the infrastructure, such as scheduling options, software environment settings, and resource limits.
 
-An institutional config SHOULD NOT define any resource defaults with `withName` or `withLabel`. It SHOULD provide reasonable default settings for operating on the infrastructure (e.g. `resourceLimits`, `beforeScript`, `clusterOptions`, `runOptions`).
+An institutional config SHOULD NOT define any resource defaults with `withName` or `withLabel`.
+It SHOULD provide reasonable default settings for operating on the infrastructure (e.g. `resourceLimits`, `beforeScript`, `clusterOptions`, `runOptions`).
 
 ### Pipeline specific institutional config
 
