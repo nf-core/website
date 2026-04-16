@@ -108,9 +108,23 @@ A separate `environment.gpu.yml` SHOULD be provided for GPU-specific dependencie
 
 GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file. Both Docker and Singularity URLs MUST be provided.
 
-:::note
-ARM GPU containers may not be buildable via Wave/conda if packages depend on the [`__cuda` virtual package](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-virtual.html), which requires CUDA drivers at solve time. Pipelines SHOULD error if GPU features are requested on unsupported architectures.
-:::
+### CUDA version targeting
+
+GPU containers are tied to a CUDA major version. Within a major version there is full forward compatibility: a container built with CUDA 12.x works on any host with a CUDA 12.0+ driver. In practice, only two variants matter:
+
+- **CUDA 12.x** (default): covers all current GPU cloud instances and recent HPC drivers.
+- **CUDA 11.8** (optional): covers older on-prem HPC systems with legacy drivers.
+
+The `environment.gpu.yml` SHOULD pin the CUDA major version to avoid the conda solver selecting builds for unreleased CUDA versions:
+
+```yaml
+dependencies:
+  - "bioconda::ribodetector=0.3.3"
+  - "conda-forge::pytorch-gpu=2.10.0"
+  - "conda-forge::cuda-version>=12,<13"
+```
+
+Module builders who want to provide alternatives for different CUDA versions can record pre-built container URIs in `meta.yml` so pipeline developers have them available without needing to rebuild.
 
 ### Script patterns
 
