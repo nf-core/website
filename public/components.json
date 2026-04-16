@@ -49105,19 +49105,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellrangerarc_mkref": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc_mkref": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc_mkref": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -54921,6 +54953,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "multiplesequencealign",
           "version": "1.1.1"
@@ -69108,7 +69144,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "crisprseq",
@@ -86918,7 +86954,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -87071,7 +87107,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -91262,7 +91298,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "atacseq",
@@ -100957,7 +100993,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -101054,7 +101090,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -101242,7 +101278,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134856,7 +134892,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134963,7 +134999,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -135080,7 +135116,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -135202,7 +135238,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -135549,6 +135585,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.0.0"
         }
@@ -135722,6 +135762,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "funcscan",
           "version": "3.0.0"
@@ -148547,7 +148591,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -157182,6 +157226,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "multiplesequencealign",
           "version": "1.1.1"
@@ -178093,7 +178141,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -205875,7 +205923,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "genomeqc",
@@ -257963,6 +258011,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.0.0"
         }
@@ -296377,7 +296429,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "atacseq",
@@ -306157,7 +306209,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "crisprseq",
@@ -306606,7 +306658,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         }
       ]
     },
@@ -307067,7 +307119,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         }
       ]
     },
@@ -318750,6 +318802,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.0.0"
         }
@@ -319226,7 +319282,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -325642,7 +325698,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -326083,7 +326139,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -326540,7 +326596,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
