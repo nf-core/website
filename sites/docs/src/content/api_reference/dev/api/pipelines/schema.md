@@ -107,7 +107,7 @@ Creates a markdown table for params from jsonschema properties section
 
 Convert markdown to html
 
-#### `print_documentation(output_fn=None, format='markdown', force=False, columns=None){:python}`
+#### `print_documentation(output_fn=None, output_format='markdown', force=False, columns=None){:python}`
 
 Prints documentation for the schema.
 
