@@ -5,7 +5,7 @@ markdownPlugin: addNumbersToHeadings
 weight: 1
 ---
 
-The key words "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Permissions
 
@@ -40,6 +40,7 @@ An institutional config SHOULD NOT define any resource defaults with `withName` 
 A pipeline specific config MAY modify the default resource values (memory, CPUs, time).
 
 Where possible, it's RECOMMENDED to provide defaults for using locally available references and similar resources.
+
 ## Naming
 
 Institutional configs SHOULD use a short name or acronym as the config name.
