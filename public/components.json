@@ -18983,7 +18983,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -26803,7 +26803,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -27080,7 +27080,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -47812,7 +47812,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -51182,7 +51182,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -68019,7 +68019,7 @@
               {
                 "*biotype_counts_mqc.tsv": {
                   "type": "file",
-                  "description": "Biotype counts formatted for MultiQC",
+                  "description": "Biotype counts formatted for MultiQC. The process fails if the\nnumber of biotype rows exceeds the threshold passed via\n`ext.args = '--max_biotypes N'` (default 100), since MultiQC\ncannot render a bar plot with that many categories.\n",
                   "pattern": "*biotype_counts_mqc.tsv",
                   "ontologies": []
                 }
@@ -88353,7 +88353,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "taxprofiler",
@@ -91079,7 +91079,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -91631,7 +91631,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -98117,7 +98117,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -148884,7 +148884,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "detaxizer",
@@ -162356,7 +162356,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -168759,7 +168759,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -178478,7 +178478,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -179330,7 +179330,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.7.1"
+        }
+      ]
     },
     {
       "name": "multiseqdemux",
@@ -238179,7 +238185,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -258214,7 +258220,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "panoramaseq",
@@ -260131,7 +260137,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -296941,7 +296947,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "differentialabundance",
@@ -317302,7 +317308,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -321694,7 +321700,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -326242,7 +326248,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -326683,7 +326689,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -327136,7 +327142,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
