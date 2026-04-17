@@ -81,11 +81,15 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 ## GPU-capable modules
 
-The container approach depends on the tool:
+GPU-enabled software has two properties that make it awkward to package the same way as CPU-only tools: GPU builds (e.g., CUDA PyTorch) can be several GB larger than their CPU counterparts, and some vendor containers (e.g., NVIDIA Parabricks) are proprietary with no conda equivalent.
+The specification therefore allows three container approaches, chosen according to the tool:
 
-- **Significant GPU overhead** (e.g., CUDA PyTorch adds ~3 GB): use the dual-container pattern below. For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
-- **Minimal overhead or CPU fallback**: a single container is simpler and preferred.
-- **Vendor-provided GPU containers**: use directly, no conda equivalent. For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container. These modules SHOULD guard against conda/mamba profiles:
+- **Dual CPU/GPU variants of a tool**, where the GPU build has significant overhead (e.g., CUDA PyTorch adds ~3 GB): use the [dual-container pattern](#dual-container-pattern) below so CPU-only users are not penalised.
+  For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
+- **Minimal GPU overhead or CPU fallback within one container**: a single container is simpler and preferred.
+- **Vendor-provided GPU containers** with no conda equivalent: use the vendor container directly.
+  For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container.
+  These modules SHOULD guard against conda/mamba profiles:
 
   ```groovy
   if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
@@ -104,17 +108,13 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
     (task.accelerator ? '<docker-gpu-url>' : '<docker-cpu-url>') }"
 ```
 
-A separate `environment.gpu.yml` SHOULD be provided for GPU-specific dependencies. The CPU `environment.yml` MUST remain unchanged so that non-GPU users are unaffected.
+A separate `environment.gpu.yml` SHOULD be provided for GPU-specific dependencies.
+The CPU `environment.yml` MUST remain unchanged so that non-GPU users are unaffected.
 
-GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file. Both Docker and Singularity URLs MUST be provided.
+GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file.
+Both Docker and Singularity URLs MUST be provided.
 
-### CUDA version targeting
-
-NVIDIA drivers are backward compatible: a host with a CUDA 12.x driver can run containers built for CUDA 11.x or 12.x. A CUDA 11.8 container works on any modern GPU host. The reverse is not true: a CUDA 12.x container cannot run on a host with only a CUDA 11.x driver.
-
-Within a major version there is full forward compatibility: a container built with any CUDA 12.x works on any CUDA 12.0+ driver.
-
-In practice, **CUDA 12.x is the best default** for new modules: it gives access to the latest tool versions (newer PyTorch and similar packages are dropping CUDA 11 builds) while remaining compatible with all current GPU cloud instances and recent HPC drivers. A CUDA 11.8 alternative can be provided for users on older systems.
+### CUDA version pinning
 
 The `environment.gpu.yml` SHOULD pin the CUDA major version to avoid the conda solver selecting builds for unreleased CUDA versions:
 
@@ -125,7 +125,8 @@ dependencies:
   - "conda-forge::cuda-version>=12,<13"
 ```
 
-Module builders who want to provide alternatives for different CUDA versions can record pre-built container URIs in `meta.yml` so pipeline developers have them available without needing to rebuild.
+NVIDIA drivers are backward compatible, so a container built against CUDA 12.x will run on any CUDA 12.0+ host driver.
+A CUDA 12.x container will not run on an older CUDA 11.x driver, so modules that need to support older hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
 
 ### Script patterns
 

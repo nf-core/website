@@ -53,9 +53,11 @@ See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on 
 
 ## GPU tests
 
-Modules that support both CPU and GPU modes SHOULD include a separate GPU test file (`main.gpu.nf.test`). GPU-only modules (e.g., Parabricks) MAY use a single test file.
+Modules that support both CPU and GPU modes SHOULD include a separate GPU test file (`main.gpu.nf.test`).
+GPU-only modules MAY use a single test file - see [`parabricks`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks) for an example.
 
-GPU tests MUST be tagged with `"gpu"` or `"gpu_highmem"` so the GPU CI workflow discovers and runs them on GPU-enabled runners. The `"gpu"` tag runs on smaller GPU instances (e.g., `g4dn.xlarge`), while `"gpu_highmem"` runs on larger instances (e.g., `g4dn.2xlarge`) for tools with higher memory requirements such as [Parabricks](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks).
+GPU tests MUST be tagged with `"gpu"` or `"gpu_highmem"` so the GPU CI workflow discovers and runs them on GPU-enabled runners.
+The `"gpu"` tag runs on smaller AWS GPU instances (e.g., [`g4dn.xlarge`](https://aws.amazon.com/ec2/instance-types/g4/)), while `"gpu_highmem"` runs on larger instances (e.g., [`g4dn.2xlarge`](https://aws.amazon.com/ec2/instance-types/g4/)) for tools with higher memory requirements such as [Parabricks](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks).
 
 GPU tests SHOULD include a `nextflow.gpu.config` that sets `accelerator = 1` on the process.
 

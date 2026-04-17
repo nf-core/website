@@ -24,17 +24,22 @@ If the tool does not support multi-threading, consider `process_single` unless l
 
 Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
 Pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config (e.g., via a `process_gpu` label or a `withName` block).
+A label-only alternative would not work for modules that support both CPU and GPU modes (e.g., [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector)), so the specification leaves this to the pipeline author.
 
-The module SHOULD NOT set the `accelerator` directive itself. This is the pipeline's responsibility, allowing users to control GPU allocation through their pipeline config or profiles.
+The module SHOULD NOT set the `accelerator` directive itself.
+This is the pipeline's responsibility, allowing users to control GPU allocation through their pipeline config or profiles.
 
 See [Software requirements: GPU-capable modules](/docs/specifications/components/modules/software-requirements#gpu-capable-modules) for container patterns based on `task.accelerator`.
 
 :::tip{title="Pipeline-side GPU configuration"}
-Pipelines set `accelerator = 1` and GPU container flags via `containerOptions` in their process config. Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
+Pipelines set `accelerator = 1{:groovy}` and GPU container flags via `containerOptions` in their process config.
+Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
 :::
 
 :::caution{title="GPU concurrency under Singularity"}
-Multiple concurrent GPU processes sharing a single GPU can deadlock under Singularity. Docker's NVIDIA runtime handles GPU memory arbitration, but Singularity does not. When GPU tasks may land on the same machine (CI, local executor, shared HPC nodes), set `maxForks = 1` on GPU processes to serialize access.
+Multiple concurrent GPU processes sharing a single GPU can deadlock under Singularity.
+Docker's NVIDIA runtime handles GPU memory arbitration, but Singularity does not.
+When GPU tasks may land on the same machine (CI, local executor, shared HPC nodes), set `maxForks = 1` on GPU processes to serialise access.
 :::
 
 ## Specifying multiple threads for piped commands
