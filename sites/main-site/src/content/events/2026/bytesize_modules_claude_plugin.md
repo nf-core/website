@@ -13,4 +13,3 @@ locations:
 ---
 
 This week, Evangelos Karatzas (@vagkaratzas) will showcase his [Claude Code plugin for nf-core modules](https://github.com/vagkaratzas/nf-core-module-dev).
--> https://github.com/vagkaratzas/nf-core-module-dev
