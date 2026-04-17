@@ -22,7 +22,7 @@ If the tool does not support multi-threading, consider `process_single` unless l
 
 ## GPU acceleration
 
-Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested. 
+Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
 Pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config (e.g., via a `process_gpu` label or a `withName` block).
 
 The module SHOULD NOT set the `accelerator` directive itself. This is the pipeline's responsibility, allowing users to control GPU allocation through their pipeline config or profiles.
