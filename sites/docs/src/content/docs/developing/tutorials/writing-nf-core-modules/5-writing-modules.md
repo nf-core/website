@@ -33,7 +33,7 @@ nf-core uses a separate Conda file rather than the `main.nf` conda directive for
 
 - It enables [automated container building with Seqera's wave infrastructure](https://nf-co.re/blog/2024/seqera-containers-part-1).
 - It makes multi-tool environments easier to read and manage than multiple conda declarations on a single line.
-:::
+  :::
 
 ## The `main.nf` file
 
