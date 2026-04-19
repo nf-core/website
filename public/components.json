@@ -18983,7 +18983,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -26803,7 +26803,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -27080,7 +27080,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -47812,7 +47812,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -51182,7 +51182,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -68019,7 +68019,7 @@
               {
                 "*biotype_counts_mqc.tsv": {
                   "type": "file",
-                  "description": "Biotype counts formatted for MultiQC",
+                  "description": "Biotype counts formatted for MultiQC. The process fails if the\nnumber of biotype rows exceeds the threshold passed via\n`ext.args = '--max_biotypes N'` (default 100), since MultiQC\ncannot render a bar plot with that many categories.\n",
                   "pattern": "*biotype_counts_mqc.tsv",
                   "ontologies": []
                 }
@@ -88353,7 +88353,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "taxprofiler",
@@ -91079,7 +91079,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -91631,7 +91631,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -98117,7 +98117,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -144849,7 +144849,7 @@
           {
             "db": {
               "type": "directory",
-              "description": "List containing the database and nodes files for Kaiju\ne.g. [ 'database.fmi', 'nodes.dmp' ]\n"
+              "description": "List or directory containing the database and NCBI taxonomy files (names and nodes) for Kaiju\ne.g. [ 'database.fmi', 'names.dmp', 'nodes.dmp' ]\n"
             }
           }
         ],
@@ -144876,19 +144876,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -144989,19 +145021,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -145098,19 +145162,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -145221,19 +145317,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -145308,6 +145436,18 @@
             }
           },
           {
+            "names_dmp": {
+              "type": "file",
+              "description": "NCBI names.dmp file (mandatory)",
+              "pattern": "names.dmp",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3751"
+                }
+              ]
+            }
+          },
+          {
             "keep_intermediate": {
               "type": "boolean",
               "description": "Keep intermediate files",
@@ -145327,7 +145467,7 @@
               {
                 "*.{fmi,dmp}": {
                   "type": "file",
-                  "description": "Kaiju FM-index file and nodes.dmp file required for Kaiju classification",
+                  "description": "Kaiju FM-index file, and input {names,nodes}.dmp NCBI taxonomy files required for downstream Kaiju commands",
                   "pattern": "*.{fmi,dmp}",
                   "ontologies": []
                 }
@@ -145370,19 +145510,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -148884,7 +149056,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "detaxizer",
@@ -162356,7 +162528,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -168759,7 +168931,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -178478,7 +178650,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -179330,7 +179502,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.7.1"
+        }
+      ]
     },
     {
       "name": "multiseqdemux",
@@ -238179,7 +238357,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -258214,7 +258392,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "panoramaseq",
@@ -260131,7 +260309,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -261511,19 +261689,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -261648,19 +261858,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -261942,19 +262184,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -262142,19 +262416,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -296941,7 +297247,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "differentialabundance",
@@ -317302,7 +317608,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -321694,7 +322000,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -326242,7 +326548,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -326683,7 +326989,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -327136,7 +327442,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
