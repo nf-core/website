@@ -17,7 +17,7 @@ A config MAY declare the config is 'unofficial' if the system administrators are
 
 ## Alignment of config with local policies
 
-Configurations SHOULD apply with and document administrative policies of the infrastructure as far as possible.
+Configurations SHOULD comply with and document administrative policies of the infrastructure as far as possible.
 For example, if multiple possible partitions exist but there is a policy to use specific partitions for specific cases, this SHOULD be represented in the config.
 Another example is if executing the main Nextflow run command on login/submit nodes is not allowed, include a sample job submission script (for example a SLURM `sbatch` script) in the documentation.
 
