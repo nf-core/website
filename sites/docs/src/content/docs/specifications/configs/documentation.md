@@ -11,7 +11,8 @@ weight: 1
 A config MUST have a Markdown based documentation file describing the usage of the config.
 
 - **`docs/<config name>.md`** for an institutional config
-- **`docs/pipeline/<pipeline>/<config name>`** for a pipeline specific config
+- **`docs/pipeline/<pipeline>/<config name>`** for an institutional pipeline specific config
+- **`docs/pipeline/<pipeline>/<pipeline>.md`** for a global pipeline specific config
 
 A pipeline specific config MUST be linked to within the institutional level config documentation.
 
