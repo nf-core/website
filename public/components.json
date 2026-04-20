@@ -49909,19 +49909,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_centrifuge": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -50101,19 +50133,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_centrifuge": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -50206,19 +50270,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_centrifuge": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuge": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuge --version 2>&1 | sed '1!d;s/.* version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -54005,19 +54101,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_clame": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clame": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "clame -h 2>&1 | sed '2!d;s/version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "clame": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "clame -h 2>&1 | sed '2!d;s/version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -88077,6 +88205,142 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "fairy_coverage",
+      "path": "modules/nf-core/fairy/coverage/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fairy_coverage",
+        "description": "Computes coverage depth statistics for assembled contigs from one or more\nfairy sketch files, producing a MetaBAT2-compatible TSV with per-contig\nmean depth and variance columns.\n",
+        "keywords": [
+          "metagenomics",
+          "coverage",
+          "binning",
+          "alignment-free",
+          "contig"
+        ],
+        "tools": [
+          {
+            "fairy": {
+              "description": "fairy is a fast, alignment-free, k-mer-based tool for computing\ncoverage depth statistics for metagenomic samples. It is orders of\nmagnitude faster than alignment-based approaches and produces output\ndirectly compatible with MetaBAT2.\n",
+              "homepage": "https://github.com/bluenote-1577/fairy",
+              "documentation": "https://github.com/bluenote-1577/fairy",
+              "tool_dev_url": "https://github.com/bluenote-1577/fairy",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "sketches": {
+                "type": "file",
+                "description": "One or more fairy sketch files (.bcsp) produced by `fairy sketch`",
+                "pattern": "*.bcsp",
+                "ontologies": []
+              }
+            },
+            {
+              "contigs": {
+                "type": "file",
+                "description": "Assembled contigs in FASTA format",
+                "pattern": "*.{fa,fasta,fna,fa.gz,fasta.gz,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "coverage": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "MetaBAT2-compatible TSV file with per-contig coverage statistics.\nColumns: contigName, contigLen, totalAvgDepth, and per-sample\nmean depth and variance.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fairy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fairy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fairy --version 2>&1 | sed 's/fairy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fairy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fairy --version 2>&1 | sed 's/fairy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
         ]
       }
     },
@@ -148517,19 +148781,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kraken2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -148680,45 +148976,111 @@
                 "kraken2-database/*k2d": {
                   "type": "file",
                   "description": "Kraken2 k2d binary database files",
-                  "pattern": "*.k2d"
+                  "pattern": "*.k2d",
+                  "ontologies": []
                 }
               },
               {
                 "kraken2-database/*map": {
                   "type": "file",
                   "description": "Kraken2 k2d binary database taxonomy to sequencing mapping file",
-                  "pattern": "*.map"
+                  "pattern": "*.map",
+                  "ontologies": []
                 }
               },
               {
                 "kraken2-database/library/added/*": {
                   "type": "file",
                   "description": "Kraken2 masked FASTA files used to build the database",
-                  "pattern": "*.fasta"
+                  "pattern": "*.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
                 }
               },
               {
                 "kraken2-database/taxonomy/*": {
                   "type": "file",
                   "description": "Kraken2 nodes.dmp, names.dmp, and .accession2taxid taxonomy files",
-                  "pattern": "*.{dmp,accession2taxid}"
+                  "pattern": "*.{dmp,accession2taxid}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3028"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kraken2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "unmapped": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "kraken2-database/unmapped*.txt": {
+                  "type": "file",
+                  "description": "List of unmapped sequence files, i.e. accessions that did not map to any taxonomy ID\nand were excluded\n",
+                  "pattern": "unmapped*.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_2526"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -148779,26 +149141,63 @@
         "output": {
           "db": [
             {
-              "$prefix": {
+              "${prefix}": {
                 "type": "directory",
                 "description": "Directory containing the Kraken2 'standard' database that can be used to perform taxonomic classification",
-                "pattern": "*/"
-              }
-            }
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
+                "pattern": "*/",
                 "ontologies": [
                   {
-                    "edam": "http://edamontology.org/format_3750"
+                    "edam": "http://edamontology.org/data_1049"
                   }
                 ]
               }
             }
+          ],
+          "versions_kraken2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kraken2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kraken2 --version 2>&1 | head -1 | sed \"s/^.*Kraken version //; s/ .*//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -314156,6 +314555,85 @@
             }
           },
           {
+            "genome_stats": {
+              "description": "Channel containing BAM statistics for the genome-aligned BAM only (transcriptome excluded)",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "stats": {
+                    "type": "file",
+                    "description": "BAM statistics file",
+                    "pattern": "*.stats"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "genome_flagstat": {
+              "description": "Channel containing flagstat for the genome-aligned BAM only",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "flagstat": {
+                    "type": "file",
+                    "description": "Flagstat file",
+                    "pattern": "*.flagstat"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "genome_idxstats": {
+              "description": "Channel containing idxstats for the genome-aligned BAM only",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "idxstats": {
+                    "type": "file",
+                    "description": "Idxstats file",
+                    "pattern": "*.idxstats"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "per_sample_mqc_bundle": {
+              "description": "Per-sample MultiQC-feeding outputs (genome-side only: genomic dedup log,\ngenome stats, flagstat, idxstats) joined on meta. Transcriptome stats\nexcluded (MultiQC can't disambiguate them from genome stats).\n",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Metadata map"
+                  }
+                },
+                {
+                  "files": {
+                    "type": "file",
+                    "description": "List of MultiQC-relevant files for the sample"
+                  }
+                }
+              ]
+            }
+          },
+          {
             "multiqc_files": {
               "description": "Channel containing files for MultiQC",
               "structure": [
@@ -314821,6 +315299,11 @@
             }
           },
           {
+            "per_sample_mqc_bundle": {
+              "description": "Per-sample MultiQC-feeding outputs (stats, flagstat, idxstats, metrics) joined on meta.\nStructure: [ val(meta), list(files) ]\n"
+            }
+          },
+          {
             "versions": {
               "description": "Files containing software versions\nStructure: [ path(versions.yml) ]\n"
             }
@@ -315449,6 +315932,12 @@
               "type": "file",
               "description": "RSeQC TIN results summary",
               "pattern": "*.txt"
+            }
+          },
+          {
+            "per_sample_mqc_bundle": {
+              "type": "tuple",
+              "description": "Per-sample MultiQC-feeding outputs (Preseq, biotype TSV, Qualimap,\ndupRadar, and RSeQC bamstat/inferexperiment/innerdistance_freq/\njunctionannotation_log/junctionsaturation_rscript/readdistribution/\nreadduplication_pos/tin) joined on meta.\nStructure: [ val(meta), list(files) ]\n"
             }
           }
         ],
@@ -323926,6 +324415,25 @@
                     "type": "file",
                     "description": "FastQC report ZIP file",
                     "pattern": "*.zip"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "per_sample_mqc_bundle": {
+              "description": "Per-sample MultiQC-feeding outputs (FastQC raw/trim/filtered zips,\ntrim log/JSON, UMI log, BBSplit stats, SortMeRNA log, RiboDetector\nlog, SeqKit stats, Bowtie2 log) joined on meta.\n",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information"
+                  }
+                },
+                {
+                  "files": {
+                    "type": "file",
+                    "description": "List of MultiQC-relevant files for the sample"
                   }
                 }
               ]
