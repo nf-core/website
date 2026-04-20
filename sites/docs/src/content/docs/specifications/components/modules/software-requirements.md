@@ -87,9 +87,9 @@ The specification therefore allows three container approaches, chosen according 
 - **Dual CPU/GPU variants of a tool**, where the GPU build has significant overhead (e.g., CUDA PyTorch adds ~3 GB): use the [dual-container pattern](#dual-container-pattern) below so CPU-only users are not penalised.
   For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
 - **Minimal GPU overhead or CPU fallback within one container**: a single container is simpler and preferred.
-- **Vendor-provided GPU containers** with no conda equivalent: use the vendor container directly.
+- **Vendor-provided GPU containers** with no conda equivalent.
   For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container.
-  These modules SHOULD guard against conda/mamba profiles:
+  Vendor-provided container modules SHOULD guard against conda/mamba profiles:
 
   ```groovy
   if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
@@ -125,18 +125,23 @@ dependencies:
   - "conda-forge::cuda-version>=12,<13"
 ```
 
-NVIDIA drivers are backward compatible, so a container built against CUDA 12.x will run on any CUDA 12.0+ host driver.
-A CUDA 12.x container will not run on an older CUDA 11.x driver, so modules that need to support older hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
+NVIDIA drivers are backward compatible with older CUDA versions: a host with a CUDA 12.x driver can run containers built against CUDA 11.x or 12.x.
+The reverse is not supported, so a CUDA 12.x container cannot run on a host with only a CUDA 11.x driver.
+Modules that need to support older hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
 
-### Script patterns
+### Binary and GPU count selection in scripts
 
-Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator`. For example, [`ribodetector`](https://github.com/nf-core/modules/blob/master/modules/nf-core/ribodetector/main.nf):
+Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator`.
+For example, [`ribodetector`](https://github.com/nf-core/modules/blob/20423f58f6ff54c4bc851dfd143d75f9b9f86f41/modules/nf-core/ribodetector/main.nf):
 
 ```groovy
 def binary = task.accelerator ? "ribodetector" : "ribodetector_cpu"
 ```
 
-Tools that accept a GPU count SHOULD read it from `task.accelerator.request`, allowing users to override via their pipeline config (e.g., `accelerator = 2`). For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/master/modules/nf-core/parabricks/rnafq2bam/main.nf):
+Tools that accept a GPU count SHOULD specify this in the command using `task.accelerator.request`, allowing users to override via their pipeline config (e.g., `accelerator = 2`).
+This parameter SHOULD NOT be hardcoded.
+
+For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/0c44f69eefe8a8c373c7cdd9528b3e1d60cb895f/modules/nf-core/parabricks/rnafq2bam/main.nf):
 
 ```groovy
 def num_gpus = task.accelerator ? "--num-gpus ${task.accelerator.request}" : ''
