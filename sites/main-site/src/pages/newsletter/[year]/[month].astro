@@ -1,0 +1,153 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import pipelines_json from "@public/pipelines.json";
+import { getNewsletterStaticPathsData, getNewsletterContentData, getMonthName } from "@utils/newsletter";
+import type { NewsletterMonth } from "@utils/newsletter";
+import NewsletterContent from "@components/newsletter/NewsletterContent.astro";
+
+const images = import.meta.glob("/src/assets/**");
+export async function getStaticPaths() {
+    const pipelines = pipelines_json.remote_workflows;
+    const { months, allProposals } = await getNewsletterStaticPathsData(getCollection, pipelines);
+
+    return months.map(({ year, month }, index) => ({
+        params: {
+            year: String(year),
+            month: String(month).padStart(2, "0"),
+        },
+        props: {
+            year,
+            month,
+            allMonths: months,
+            allProposals,
+            prevMonth: months[index + 1] || null,
+            nextMonth: months[index - 1] || null,
+        },
+    }));
+}
+
+const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.props as {
+    year: number;
+    month: number;
+    allMonths: NewsletterMonth[];
+    allProposals: any[];
+    prevMonth: NewsletterMonth | null;
+    nextMonth: NewsletterMonth | null;
+};
+
+const pipelines = pipelines_json.remote_workflows;
+const contentData = await getNewsletterContentData(getCollection, pipelines, year, month, allProposals, images);
+
+function monthUrl(m: NewsletterMonth): string {
+    return `/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`;
+}
+---
+
+<PageLayout
+    title={`Newsletter - ${contentData.monthName} ${year}`}
+    subtitle={`nf-core community newsletter for ${contentData.monthName} ${year}`}
+    mainpage_container={true}
+    subfooter={false}
+>
+    {/* ===== NAVIGATION (excluded from email) ===== */}
+    <nav class="mb-4 newsletter-nav">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            {
+                prevMonth ? (
+                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
+                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+
+            <div class="d-flex align-items-center gap-2">
+                <a href="/newsletter/rss.xml" class="btn btn-outline-secondary btn-sm" title="RSS Feed">
+                    <i class="fa-solid fa-rss"></i>
+                </a>
+                <a
+                    href={`${monthUrl({ year, month })}/email`}
+                    class="btn btn-outline-secondary btn-sm"
+                    title="Email HTML version"
+                >
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <select class="newsletter-month-select form-select form-select-sm w-auto">
+                    {
+                        allMonths.map((m) => (
+                            <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
+                                {getMonthName(m.month)} {m.year}
+                            </option>
+                        ))
+                    }
+                </select>
+            </div>
+
+            {
+                nextMonth ? (
+                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
+                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+        </div>
+    </nav>
+
+    {/* ===== NEWSLETTER CONTENT ===== */}
+    <NewsletterContent data={contentData} />
+
+    {/* ===== BOTTOM NAVIGATION (excluded from email) ===== */}
+    <hr class="my-4" />
+    <nav class="mb-4">
+        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+            {
+                prevMonth ? (
+                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
+                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+
+            <select class="newsletter-month-select form-select form-select-sm w-auto">
+                {
+                    allMonths.map((m) => (
+                        <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
+                            {getMonthName(m.month)} {m.year}
+                        </option>
+                    ))
+                }
+            </select>
+
+            {
+                nextMonth ? (
+                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
+                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                    </a>
+                ) : (
+                    <span />
+                )
+            }
+        </div>
+    </nav>
+</PageLayout>
+
+<script>
+    document.querySelectorAll<HTMLSelectElement>(".newsletter-month-select").forEach((select) => {
+        select.addEventListener("change", () => {
+            window.location.href = select.value;
+        });
+    });
+</script>
+
+<style>
+    .newsletter-nav {
+        border-bottom: 1px solid var(--bs-border-color);
+        padding-bottom: 1rem;
+    }
+</style>
