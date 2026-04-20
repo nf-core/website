@@ -24,10 +24,13 @@ If the tool does not support multi-threading, consider `process_single` unless l
 
 Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
 Pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config (e.g., via a `process_gpu` label or a `withName` block).
-A label-only alternative would not work for modules that support both CPU and GPU modes (e.g., [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector)), so the specification leaves this to the pipeline author.
 
 The module SHOULD NOT set the `accelerator` directive itself.
-This is the pipeline's responsibility, allowing users to control GPU allocation through their pipeline config or profiles.
+
+:::info{title="Rationale" collapse}
+Placing GPU allocation in the pipeline config lets users control it through their pipeline config or profiles.
+A label-only alternative (e.g., requiring a `process_gpu` label) would not work for modules that support both CPU and GPU modes (e.g., [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector)), so the specification leaves this to the pipeline author.
+:::
 
 See [Software requirements: GPU-capable modules](/docs/specifications/components/modules/software-requirements#gpu-capable-modules) for container patterns based on `task.accelerator`.
 
