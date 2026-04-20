@@ -10,7 +10,7 @@ These specifications define the standards for writing nf-core/config configs.
 
 While these specifications are mandatory for configs contributed to the nf-core/configs repository, they also represent proven best practices for developing high-quality, maintainable Nextflow configs that can benefit any nf-core pipeline user.
 
-## Module specifications
+## Configs specifications
 
 The following specifications define standards for developing nf-core configs:
 

@@ -54,7 +54,7 @@ Institutional configs SHOULD use a short name or acronym as the config name.
 
 ### Formatting
 
-Config names MUST be written (e.g. file names) or referred to (in documentation) in all lowercase characters or numbers.
+Config names MUST be written (e.g. file names) or referred to (in documentation) in all lowercase letters or numbers.
 
 Configs names MAY use an underscore.
 Config names MUST NOT use any other symbols.
@@ -91,6 +91,8 @@ Furthermore, the config MUST be referred to in two additional places
 
 A config MUST have a current contact person responsible for maintaining the config.
 
+## Paarameters
+
 ## Required parameters
 
 A config MUST include three descriptive parameters:
@@ -109,6 +111,37 @@ params {
 }
 ```
 
+## Optional parameters
+
+### Parameters
+
+A config MAY also define the `max_*` parameters with the same values as the `resourceLimit` directive.
+This provides backwards compatibility of older pipelines with older Nextflow versions.
+
+```groovy
+params {
+    igenomes_ignore = true
+    max_memory      = 750.GB
+    max_cpus        = 200
+    max_time        = 30.d
+}
+```
+
+### Custom parameters
+
+Custom config- or infrastructure-specific parameters MAY be used, such as for cluster scheduler 'account' or 'project' parameters.
+
+Custom config- or infrastructure-specific parameters MUST be documented in the configs `.md`.
+Custom config- or infrastructure-specific parameters MUST be included in an nf-schema validation scope `ignoreParams` parameter.
+
+For example:
+
+```groovy
+validation {
+    ignoreParams = ['cluster_account']
+}
+```
+
 ## Resource limits
 
 ### Directive
@@ -124,19 +157,5 @@ process {
     ]
     executor = 'slurm'
     queue    = { task.memory <= 250.GB ? (task.time <= 24.h ? 'fast' : 'long') : 'bigmem' }
-}
-```
-
-### Parameters
-
-A config MAY also define the `max_*` parameters with the same values as the `resourceLimit` directive.
-This provides backwards compatibility of older pipelines with older Nextflow versions.
-
-```groovy
-params {
-    igenomes_ignore = true
-    max_memory      = 750.GB
-    max_cpus        = 200
-    max_time        = 30.d
 }
 ```
