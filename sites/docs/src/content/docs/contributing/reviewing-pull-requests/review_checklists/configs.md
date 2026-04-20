@@ -35,7 +35,7 @@ For pipeline-specific institutional configs
 - [ ] The name includes only letters or numbers
 - [ ] The name includes only underscore
 - [ ] The name uses no other characters or punctuation
-- [ ] If multiple clusters, uses an institutional suffix
+- [ ] If multiple clusters, uses an institutional suffix (e.g. `ucl_` for all University College London [UCL] configs)
 
 ## Config contents
 
