@@ -91,7 +91,7 @@ Furthermore, the config MUST be referred to in two additional places
 
 A config MUST have a current contact person responsible for maintaining the config.
 
-## Paarameters
+## Parameters
 
 ## Required parameters
 
