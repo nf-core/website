@@ -26,8 +26,8 @@ For institutional configs:
 For pipeline-specific institutional configs
 
 - [ ] Each config targets a single pipeline
-- [ ] Each config has a `*.conf` Nextflow configuration file under `conf/pipeline/<pipele_name>/`
-- [ ] Each file has a `*md` documentation file under `docs/pipeline/<pipeline name>/`
+- [ ] Each config has a `*.conf` Nextflow configuration file under `conf/pipeline/<pipeline_name>/`
+- [ ] Each file has a `*md` documentation file under `docs/pipeline/<pipeline_name>/`
 
 ## Naming
 
