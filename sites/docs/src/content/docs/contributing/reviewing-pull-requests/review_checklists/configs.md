@@ -5,7 +5,7 @@ shortTitle: Reviewing configs
 markdownPlugin: checklist
 ---
 
-nf-core/configs reviews ensure that [configs](https://nf-co.re/configs/).
+nf-core/configs reviews ensure that [configs](https://nf-co.re/configs/) adhere to the nf-core/config specifications and ensure consistency across all configs..
 When you review a nf-core/configs pull request, you examine a new config submission or proposed changes to an existing component and provide constructive feedback before maintainers merge them into the nf-core repository.
 
 :::note{title="Component specifications"}
