@@ -27,10 +27,10 @@ A single config SHOULD represent a single cluster or type of infrastructure.
 
 ## Scope of configs
 
-There are two config types:
+Two config types are possible:
 
-- **[Institutional config](#institutional-config)** that directs how any pipeline works on a given infrastructure
-- **[Pipeline specific config](#pipeline-specific-institutional-config)** that optimises how a specfic pipeline works on a given infrastructure
+- **[Institutional config](#institutional-config)** that directs how any pipeline works on a given infrastructure.
+- **[Pipeline specific config](#pipeline-specific-institutional-config)** that optimises how a specific pipeline works on a given infrastructure.
 
 ### Institutional config
 
@@ -56,11 +56,11 @@ Institutional configs SHOULD use a short name or acronym as the config name.
 
 Config names MUST be written (e.g. file names) or referred to (in documentation) in all lower case.
 
-### Names when multiple infrastructure in a single instituation
+### Names when multiple infrastructure in a single institution
 
 When multiple computational infrastructure exist for a single institution, an institutional prefix SHOULD be used.
 
-Example, for the MPCDF institution that has two HPCs named `raven` and `viper`:
+For example, for the Max Planck Computing and Data Facilitation (MPCDF) institution that has two HPCs named `raven` and `viper`:
 
 ```groovy
 mpcdf_raven.conf
@@ -71,13 +71,13 @@ mpcdf_viper.conf
 
 An institutional config MUST consist of two files:
 
-- `conf/<config name>.conf`
-- `docs/<config name>.md`
+- **`conf/<config name>.conf`** for the config itself.
+- **`docs/<config name>.md`** for documentation about the config.
 
 Files for a pipeline-specific institutional config must be located:
 
 - **[`conf/pipeline/<pipeline name>/<config name>.conf`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
-- **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
+- **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/docs/pipeline)**
 
 Furthermore, the config MUST be referred to in two additional places
 
@@ -92,11 +92,11 @@ A config MUST have a current contact person responsible for maintaining the conf
 
 A config MUST include three descriptive parameters:
 
-| Parameter                    | Purpose                                                                  |
-| ---------------------------- | ------------------------------------------------------------------------ |
-| `config_profile_description` | A short description which infrastructure the config is used for.         |
-| `config_profile_contact`     | The name and GitHub handle of the person currently maintaing the config. |
-| `config_profile_url`         | A URL to details about the infrastructure or the institution.            |
+| Parameter                    | Purpose                                                                    |
+| ---------------------------- | -------------------------------------------------------------------------- |
+| `config_profile_description` | A short description which infrastructure the config is used for.           |
+| `config_profile_contact`     | The name and GitHub handle of the person currently maintaining the config. |
+| `config_profile_url`         | A URL to details about the infrastructure or the institution.              |
 
 ```groovy
 params {
