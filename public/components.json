@@ -1416,7 +1416,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -18983,7 +18983,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -19435,7 +19435,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -26803,7 +26803,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -27080,7 +27080,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -31480,6 +31480,151 @@
       }
     },
     {
+      "name": "bio2zarr_vcfpartition",
+      "path": "modules/nf-core/bio2zarr/vcfpartition/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bio2zarr_vcfpartition",
+        "description": "Outputs a set of region strings that partition indexed VCF/BCF files for parallel processing.",
+        "keywords": [
+          "vcf",
+          "bcf",
+          "partition",
+          "regions",
+          "parallel",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "bio2zarr": {
+              "description": "Convert bioinformatics data to Zarr",
+              "homepage": "https://sgkit-dev.github.io/bio2zarr/",
+              "documentation": "https://sgkit-dev.github.io/bio2zarr",
+              "tool_dev_url": "https://github.com/sgkit-dev/bio2zarr",
+              "doi": "10.1101/2024.06.11.598241",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:bio2zarr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Indexed VCF/BCF file to partition",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Index for the VCF/BCF file",
+                "pattern": "*.{tbi,csi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "partitions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "The output tab-delimited region strings and the file path",
+                  "pattern": "*.{tsv}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_vcfpartition": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcfpartition": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcfpartition --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcfpartition": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcfpartition --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
       "name": "bioawk",
       "path": "modules/nf-core/bioawk/meta.yml",
       "type": "module",
@@ -34614,19 +34759,19 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The process the versions were collected from"
+                  "description": "The name of the process"
                 }
               },
               {
                 "bismark": {
                   "type": "string",
-                  "description": "The tool name"
+                  "description": "The name of the tool"
                 }
               },
               {
-                "bismark --version | grep Version | sed -e \"s/Bismark Version: v//\" | xargs": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -34638,19 +34783,19 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The process the versions were collected from"
+                  "description": "The name of the process"
                 }
               },
               {
                 "bismark": {
                   "type": "string",
-                  "description": "The tool name"
+                  "description": "The name of the tool"
                 }
               },
               {
-                "bismark --version | grep Version | sed -e \"s/Bismark Version: v//\" | xargs": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -34829,7 +34974,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -34853,7 +34998,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -35107,7 +35252,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -35131,7 +35276,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -35465,19 +35610,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bismark": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bismark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bismark": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -35594,7 +35771,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n \"s/^.*Bismark Version: v//p\" | tr -d \"[:space:]\"": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -35618,7 +35795,7 @@
                 }
               },
               {
-                "bismark --version 2>&1 | sed -n \"s/^.*Bismark Version: v//p\" | tr -d \"[:space:]\"": {
+                "bismark -v 2>&1 | sed -n 's/^.*Bismark Version: v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -36654,19 +36831,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_blat": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blat 2>&1 | sed '1!d;s/^.*BLAT v. //;s/ fast.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blat": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blat 2>&1 | sed '1!d;s/^.*BLAT v. //;s/ fast.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -37429,7 +37638,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -37645,7 +37854,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -37784,19 +37993,135 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bowtie": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bowtie": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bowtie --version 2>&1 | sed -n 's/.*bowtie-align-s version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_gzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version 2>&1 | sed '1!d;s/gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bowtie": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bowtie --version 2>&1 | sed -n 's/.*bowtie-align-s version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip --version 2>&1 | sed '1!d;s/gzip //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -37876,7 +38201,7 @@
               },
               {
                 "bowtie": {
-                  "type": "file",
+                  "type": "string",
                   "description": "Folder containing bowtie genome index files",
                   "pattern": "*.ebwt",
                   "ontologies": []
@@ -37884,19 +38209,55 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bowtie": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bowtie": {
+                  "type": "string",
+                  "description": "Folder containing bowtie genome index files",
+                  "pattern": "*.ebwt",
+                  "ontologies": []
+                }
+              },
+              {
+                "bowtie --version 2>&1 | sed -n 's/.*bowtie-align-s version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bowtie": {
+                  "type": "string",
+                  "description": "Folder containing bowtie genome index files",
+                  "pattern": "*.ebwt",
+                  "ontologies": []
+                }
+              },
+              {
+                "bowtie --version 2>&1 | sed -n 's/.*bowtie-align-s version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -38083,7 +38444,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -38417,7 +38778,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -38462,53 +38823,49 @@
               "fasta": {
                 "type": "file",
                 "description": "Genome assembly fasta",
-                "pattern": "*.{fasta,fa,fas,faa,fna}"
+                "pattern": "*.{fasta,fa,fas,faa,fna}",
+                "ontologies": []
               }
             }
           ],
-          [
-            {
-              "bam": {
-                "type": "file",
-                "description": "BAM file of RNA-seq data to be passed to --bam",
-                "pattern": "*.bam"
-              }
+          {
+            "bam": {
+              "type": "file",
+              "description": "BAM file of RNA-seq data to be passed to --bam",
+              "pattern": "*.bam",
+              "ontologies": []
             }
-          ],
-          [
-            {
-              "rnaseq_sets_dirs": {
-                "type": "file",
-                "description": "Directories of RNA-seq data sets to be passed to --rnaseq_sets_dirs"
-              }
+          },
+          {
+            "rnaseq_sets_dirs": {
+              "type": "file",
+              "description": "Directories of RNA-seq data sets to be passed to --rnaseq_sets_dirs",
+              "ontologies": []
             }
-          ],
-          [
-            {
-              "rnaseq_sets_ids": {
-                "type": "file",
-                "description": "IDs of RNA-seq data sets to be passed to --rnaseq_sets_ids"
-              }
+          },
+          {
+            "rnaseq_sets_ids": {
+              "type": "file",
+              "description": "IDs of RNA-seq data sets to be passed to --rnaseq_sets_ids",
+              "ontologies": []
             }
-          ],
-          [
-            {
-              "proteins": {
-                "type": "file",
-                "description": "Protein evidence to be passed to --proteins",
-                "pattern": "*.{fasta,fa,fas,faa}"
-              }
+          },
+          {
+            "proteins": {
+              "type": "file",
+              "description": "Protein evidence to be passed to --proteins",
+              "pattern": "*.{fasta,fa,fas,faa}",
+              "ontologies": []
             }
-          ],
-          [
-            {
-              "hintsfile": {
-                "type": "file",
-                "description": "Hintsfile to be passed to --hintsfile",
-                "pattern": "*.{gff, gtf, gff3}"
-              }
+          },
+          {
+            "hintsfile": {
+              "type": "file",
+              "description": "Hintsfile to be passed to --hintsfile",
+              "pattern": "*.{gff, gtf, gff3}",
+              "ontologies": []
             }
-          ]
+          }
         ],
         "output": {
           "gtf": [
@@ -38517,134 +38874,311 @@
                 "meta": {
                   "type": "file",
                   "description": "Gene transfer format file as output by BRAKER3",
-                  "pattern": "*.{gtf}"
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/braker.gtf": {
+                  "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/braker.gtf": {
-                "type": "file",
-                "description": "Gene transfer format file as output by BRAKER3",
-                "pattern": "*.{gtf}"
-              }
-            }
+            ]
           ],
           "cds": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/braker.codingseq": {
+                  "type": "file",
                   "description": "Coding sequence file as output by BRAKER3",
-                  "pattern": "*.{codingseq}"
+                  "pattern": "*.{codingseq}",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/braker.codingseq": {
-                "type": "file",
-                "description": "Coding sequence file as output by BRAKER3",
-                "pattern": "*.{codingseq}"
-              }
-            }
+            ]
           ],
           "aa": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/braker.aa": {
+                  "type": "file",
                   "description": "Protein sequence file as output by BRAKER3",
-                  "pattern": "*.{aa}"
+                  "pattern": "*.{aa}",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/braker.aa": {
-                "type": "file",
-                "description": "Protein sequence file as output by BRAKER3",
-                "pattern": "*.{aa}"
-              }
-            }
+            ]
           ],
           "log": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/braker.log": {
+                  "type": "file",
                   "description": "BRAKER3 log file",
-                  "pattern": "*.log"
+                  "pattern": "*.log",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/braker.log": {
-                "type": "file",
-                "description": "BRAKER3 log file",
-                "pattern": "*.log"
-              }
-            }
+            ]
           ],
           "hintsfile": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/hintsfile.gff": {
+                  "type": "file",
                   "description": "Hints file as output by BRAKER3",
-                  "pattern": "*hintsfile.{gff}"
+                  "pattern": "*hintsfile.{gff}",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/hintsfile.gff": {
-                "type": "file",
-                "description": "Hints file as output by BRAKER3",
-                "pattern": "*hintsfile.{gff}"
-              }
-            }
+            ]
           ],
           "gff3": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/braker.gff3": {
+                  "type": "file",
                   "description": "GFF3 file as output by BRAKER3",
-                  "pattern": "*.{gff3}"
+                  "pattern": "*.{gff3}",
+                  "ontologies": []
                 }
               }
-            ],
-            {
-              "$prefix/braker.gff3": {
-                "type": "file",
-                "description": "GFF3 file as output by BRAKER3",
-                "pattern": "*.{gff3}"
-              }
-            }
+            ]
           ],
           "citations": [
             [
               {
                 "meta": {
                   "type": "file",
+                  "description": "Gene transfer format file as output by BRAKER3",
+                  "pattern": "*.{gtf}",
+                  "ontologies": []
+                }
+              },
+              {
+                "$prefix/what-to-cite.txt": {
+                  "type": "file",
                   "description": "BRAKER3 citations",
-                  "pattern": "what-to-cite.txt"
+                  "pattern": "what-to-cite.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_braker3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "braker3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "braker.pl --version 2>/dev/null | sed 's/braker.pl version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_augustus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "augustus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "augustus --version |& sed -n 's/AUGUSTUS (\\(.*\\)) is a gene .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_genemarketp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genemark-etp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gmetp.pl |& sed -n 's/ETP version \\(.*\\)/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_prothint": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prothint": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prothint.py --version |& sed 's/prothint.py //1'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "braker3": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "braker.pl --version 2>/dev/null | sed 's/braker.pl version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ],
-            {
-              "$prefix/what-to-cite.txt": {
-                "type": "file",
-                "description": "BRAKER3 citations",
-                "pattern": "what-to-cite.txt"
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "augustus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "augustus --version |& sed -n 's/AUGUSTUS (\\(.*\\)) is a gene .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "genemark-etp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gmetp.pl |& sed -n 's/ETP version \\(.*\\)/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prothint": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prothint.py --version |& sed 's/prothint.py //1'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -41669,19 +42203,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_bwameth": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameth": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bwameth.py --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of samtools"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwameth": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bwameth.py --version | cut -f2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of samtools"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -42809,19 +43417,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_calder": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "calder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.7": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "calder": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.7": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -43049,19 +43689,135 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_canu": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "canu": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_minimap2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minimap2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minimap2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "canu": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "minimap2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "minimap2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools version | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -43498,7 +44254,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -47056,7 +47812,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -48349,19 +49105,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellrangerarc_mkref": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc_mkref": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc_mkref": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -49342,7 +50130,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -49445,7 +50233,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -50394,7 +51182,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -51551,15 +52339,25 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "The fasta reference file.\n",
-                "ontologies": []
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "fai": {
                 "type": "file",
-                "description": "The fasta reference index file.\n",
-                "ontologies": []
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
               }
             }
           ],
@@ -51839,15 +52637,25 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Fasta reference file.",
-                "ontologies": []
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             },
             {
               "fai": {
                 "type": "file",
-                "description": "Fasta reference index file.",
-                "ontologies": []
+                "description": "Reference genome FASTA index file",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3326"
+                  }
+                ]
               }
             }
           ]
@@ -54145,6 +54953,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "multiplesequencealign",
           "version": "1.1.1"
@@ -67207,7 +68019,7 @@
               {
                 "*biotype_counts_mqc.tsv": {
                   "type": "file",
-                  "description": "Biotype counts formatted for MultiQC",
+                  "description": "Biotype counts formatted for MultiQC. The process fails if the\nnumber of biotype rows exceeds the threshold passed via\n`ext.args = '--max_biotypes N'` (default 100), since MultiQC\ncannot render a bar plot with that many categories.\n",
                   "pattern": "*biotype_counts_mqc.tsv",
                   "ontologies": []
                 }
@@ -68332,7 +69144,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "crisprseq",
@@ -75910,7 +76722,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -76047,6 +76859,163 @@
           "version": "1.1.0"
         }
       ]
+    },
+    {
+      "name": "diamond_deepclust",
+      "path": "modules/nf-core/diamond/deepclust/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diamond_deepclust",
+        "description": "Fast graph-based protein sequence clustering using DIAMOND deepclust",
+        "keywords": [
+          "clustering",
+          "protein",
+          "diamond",
+          "deepclust",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "diamond": {
+              "description": "Accelerated BLAST compatible local sequence aligner",
+              "homepage": "https://github.com/bbuchfink/diamond",
+              "documentation": "https://github.com/bbuchfink/diamond/wiki",
+              "tool_dev_url": "https://github.com/bbuchfink/diamond",
+              "doi": "10.1038/s41592-021-01101-x",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:diamond"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input protein FASTA file to be clustered",
+                "pattern": "*.{fa,faa,fasta,fa.gz,faa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "save_aln": {
+              "type": "boolean",
+              "description": "Whether to save clustering alignments to a file (--aln-out)\nWARNING: unusable in this version (2.1.24) of diamond due to bug, leaving as placeholder\n"
+            }
+          }
+        ],
+        "output": {
+          "clusters": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated file mapping each member sequence to its cluster\nrepresentative. The first column contains the representative\naccession and the second column contains the member sequence\naccession.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "alignment": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.aln": {
+                  "type": "file",
+                  "description": "Optional. Tab-separated file containing the clustering alignments,\nproduced when save_aln is true (--aln-out).\n",
+                  "pattern": "*.aln",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_diamond": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "diamond": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "diamond --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "diamond": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "diamond --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "diamond_makedb",
@@ -86142,7 +87111,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -86295,7 +87264,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -87112,6 +88081,130 @@
       }
     },
     {
+      "name": "fairy_sketch",
+      "path": "modules/nf-core/fairy/sketch/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fairy_sketch",
+        "description": "Sketches FASTQ reads into binary sketch (.bcsp) files for alignment-free coverage estimation.",
+        "keywords": [
+          "sketch",
+          "coverage",
+          "fastq",
+          "alignment-free",
+          "metagenomics"
+        ],
+        "tools": [
+          {
+            "fairy": {
+              "description": "Alignment-free tool for rapidly computing coverage of contigs/genomes from short or long reads using sketching.",
+              "homepage": "https://github.com/bluenote-1577/fairy",
+              "documentation": "https://github.com/bluenote-1577/fairy",
+              "tool_dev_url": "https://github.com/bluenote-1577/fairy",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FASTQ files. For paired-end data provide two files [R1, R2];\nfor single-end or long reads provide a single file [reads].\n",
+                "pattern": "*.{fastq,fastq.gz,fq,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sketch": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample1', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}/*.bcsp": {
+                  "type": "file",
+                  "description": "Binary sketch file(s) produced by fairy sketch, used as input for fairy coverage estimation.",
+                  "pattern": "*.bcsp",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_fairy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fairy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fairy --version 2>&1 | sed 's/fairy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fairy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fairy --version 2>&1 | sed 's/fairy //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "falco",
       "path": "modules/nf-core/falco/meta.yml",
       "type": "module",
@@ -87260,11 +88353,11 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -89986,7 +91079,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -90050,7 +91143,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -90486,7 +91579,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "atacseq",
@@ -90538,7 +91631,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -90742,7 +91835,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -94591,7 +95684,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -97024,7 +98117,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -99713,7 +100806,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -99850,7 +100943,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -99980,7 +101073,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -100181,7 +101274,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -100278,7 +101371,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -100466,7 +101559,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -126875,7 +127968,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -134080,7 +135173,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134187,7 +135280,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134304,7 +135397,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134426,7 +135519,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -134773,6 +135866,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.0.0"
         }
@@ -134946,6 +136043,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "funcscan",
           "version": "3.0.0"
@@ -143748,7 +144849,7 @@
           {
             "db": {
               "type": "directory",
-              "description": "List containing the database and nodes files for Kaiju\ne.g. [ 'database.fmi', 'nodes.dmp' ]\n"
+              "description": "List or directory containing the database and NCBI taxonomy files (names and nodes) for Kaiju\ne.g. [ 'database.fmi', 'names.dmp', 'nodes.dmp' ]\n"
             }
           }
         ],
@@ -143775,19 +144876,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -143804,7 +144937,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -143888,19 +145021,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -143913,7 +145078,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -143997,19 +145162,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -144026,7 +145223,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -144120,19 +145317,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -144186,10 +145415,38 @@
                 "type": "file",
                 "description": "Uncompressed Protein FASTA file (mandatory)",
                 "pattern": "*.{fa,faa,fasta}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
               }
             }
           ],
+          {
+            "nodes_dmp": {
+              "type": "file",
+              "description": "NCBI nodes.dmp file (mandatory)",
+              "pattern": "nodes.dmp",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3751"
+                }
+              ]
+            }
+          },
+          {
+            "names_dmp": {
+              "type": "file",
+              "description": "NCBI names.dmp file (mandatory)",
+              "pattern": "names.dmp",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3751"
+                }
+              ]
+            }
+          },
           {
             "keep_intermediate": {
               "type": "boolean",
@@ -144208,10 +145465,10 @@
                 }
               },
               {
-                "*.fmi": {
+                "*.{fmi,dmp}": {
                   "type": "file",
-                  "description": "Kaiju FM-index file",
-                  "pattern": "*.{fmi}",
+                  "description": "Kaiju FM-index file, and input {names,nodes}.dmp NCBI taxonomy files required for downstream Kaiju commands",
+                  "pattern": "*.{fmi,dmp}",
                   "ontologies": []
                 }
               }
@@ -144253,19 +145510,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kaiju": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kaiju": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kaiju -h 2>&1 | sed -n 1p | sed 's/^.*Kaiju //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -146474,7 +147763,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -146581,7 +147870,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -147755,7 +149044,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -147767,7 +149056,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "detaxizer",
@@ -147783,7 +149072,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -147884,7 +149173,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -148100,7 +149389,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -148481,7 +149770,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -148785,7 +150074,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -148914,7 +150203,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -156391,6 +157680,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -157482,7 +158775,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -160099,7 +161392,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -161235,7 +162528,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -161934,7 +163227,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -162085,7 +163378,13 @@
         "maintainers": [
           "@eparisis"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "meningotype",
@@ -165425,7 +166724,13 @@
           "@sofstam",
           "@Gullumluvl"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "metaeuk_easypredict",
@@ -166490,7 +167795,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -166662,7 +167967,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -167626,7 +168931,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -168957,7 +170262,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -169105,7 +170410,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -175137,7 +176442,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -175241,7 +176546,13 @@
         "maintainers": [
           "@sofstam"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "motus_profile",
@@ -175397,7 +176708,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -177283,7 +178594,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -177339,7 +178650,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -177427,7 +178738,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -177659,7 +178970,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -178191,7 +179502,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "demultiplex",
+          "version": "1.7.1"
+        }
+      ]
     },
     {
       "name": "multiseqdemux",
@@ -180154,19 +181471,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_myloasm": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "myloasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "myloasm --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression used to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "myloasm": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "myloasm --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression used to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -181794,7 +183143,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -184702,7 +186051,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -184870,7 +186219,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -185037,7 +186386,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -185134,7 +186483,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -185430,7 +186779,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -185573,7 +186922,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -199822,6 +201171,213 @@
       ]
     },
     {
+      "name": "phenoimager2mc",
+      "path": "modules/nf-core/phenoimager2mc/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "phenoimager2mc",
+        "description": "Formatting PhenoImager TIFF output files into stacked and normalized OME-TIFF files per cycle, compatible as ASHLAR and MCMICRO input.",
+        "keywords": [
+          "imaging",
+          "registration",
+          "ome-tif",
+          "Staging",
+          "MCMICRO"
+        ],
+        "tools": [
+          {
+            "phenoimager2mc": {
+              "description": "PhenoImager output conversion into a stacked and normalized OME-TIFF file per cycle.",
+              "homepage": "https://github.com/SchapiroLabor/phenoimager2mc",
+              "documentation": "https://github.com/SchapiroLabor/phenoimager2mc/README.md",
+              "tool_dev_url": "https://github.com/SchapiroLabor/phenoimager2mc",
+              "licence": [
+                "GPL-2.0 license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tiles": {
+                "type": "list",
+                "description": "Folder or list with TIFF files of one cycle from PhenoImager"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tif": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tif": {
+                  "type": "file",
+                  "description": "One output .tif file containing concatenated tiles of the cycle.",
+                  "pattern": "*.{tif,tiff}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3591"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_phenoimager2mc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phenoimager2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "phenoimager2mc --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_python": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed -e \"s/Python //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_ome_types": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ome_types": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show ome_types | sed -n \"s/Version: //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "phenoimager2mc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "phenoimager2mc --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "python": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python --version | sed -e \"s/Python //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ome_types": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -m pip show ome_types | sed -n \"s/Version: //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@chiarasch",
+          "@kbestak"
+        ],
+        "maintainers": [
+          "@chiarasch"
+        ]
+      }
+    },
+    {
       "name": "phispy",
       "path": "modules/nf-core/phispy/meta.yml",
       "type": "module",
@@ -205033,7 +206589,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "genomeqc",
@@ -212505,7 +214061,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -212652,7 +214208,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -214239,7 +215795,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralmetagenome",
@@ -236801,7 +238357,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -240094,7 +241650,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -241408,7 +242964,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -243617,7 +245173,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -244042,7 +245598,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "viralrecon",
@@ -256836,7 +258392,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "panoramaseq",
@@ -257120,6 +258676,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
         {
           "name": "phyloplace",
           "version": "2.0.0"
@@ -258749,7 +260309,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -260129,19 +261689,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -260266,19 +261858,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -260560,19 +262184,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -260760,19 +262416,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shinyngs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shinyngs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "Rscript -e \"library(shinyngs); cat(as.character(packageVersion('shinyngs')))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -280879,6 +282567,10 @@
         {
           "name": "rnaseq",
           "version": "3.24.0"
+        },
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
         }
       ]
     },
@@ -281274,7 +282966,13 @@
         "maintainers": [
           "@sofstam"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "sylphtax_taxprof",
@@ -281406,6 +283104,10 @@
         {
           "name": "rnaseq",
           "version": "3.24.0"
+        },
+        {
+          "name": "taxprofiler",
+          "version": "2.0.0"
         }
       ]
     },
@@ -283528,7 +285230,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -283655,7 +285357,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         }
       ]
     },
@@ -295521,7 +297223,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "atacseq",
@@ -295545,7 +297247,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "differentialabundance",
@@ -295681,7 +297383,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -295913,7 +297615,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "nascent",
@@ -305301,7 +307003,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "crisprseq",
@@ -305750,7 +307452,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         }
       ]
     },
@@ -306211,7 +307913,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         }
       ]
     },
@@ -315906,7 +317608,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -317894,6 +319596,10 @@
       },
       "pipelines": [
         {
+          "name": "ampliseq",
+          "version": "2.17.0"
+        },
+        {
           "name": "phyloplace",
           "version": "2.0.0"
         }
@@ -318370,7 +320076,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "phyloplace",
@@ -320294,7 +322000,7 @@
       "pipelines": [
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         }
       ]
     },
@@ -324786,7 +326492,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -324842,7 +326548,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -324930,7 +326636,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -325146,7 +326852,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -325227,7 +326933,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -325283,7 +326989,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -325371,7 +327077,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -325587,7 +327293,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -325684,7 +327390,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.16.1"
+          "version": "2.17.0"
         },
         {
           "name": "bacass",
@@ -325736,7 +327442,7 @@
         },
         {
           "name": "demultiplex",
-          "version": "1.7.0"
+          "version": "1.7.1"
         },
         {
           "name": "denovotranscript",
@@ -325812,7 +327518,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "mag",
@@ -326016,7 +327722,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "1.2.6"
+          "version": "2.0.0"
         },
         {
           "name": "tbanalyzer",
