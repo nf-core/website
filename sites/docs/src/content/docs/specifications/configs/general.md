@@ -54,7 +54,10 @@ Institutional configs SHOULD use a short name or acronym as the config name.
 
 ### Formatting
 
-Config names MUST be written (e.g. file names) or referred to (in documentation) in all lower case.
+Config names MUST be written (e.g. file names) or referred to (in documentation) in all lowercase characters or numbers.
+
+Configs names MAY use an underscore.
+Config names MUST NOT use any other symbols.
 
 ### Names when multiple infrastructure in a single institution
 
