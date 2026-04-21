@@ -48778,12 +48778,20 @@
               }
             }
           ],
-          {
-            "reference": {
-              "type": "directory",
-              "description": "Directory containing all the reference indices needed by Cell Ranger ARC"
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reference": {
+                "type": "directory",
+                "description": "Directory containing all the reference indices needed by Cell Ranger ARC"
+              }
             }
-          }
+          ]
         ],
         "output": {
           "outs": [
@@ -48795,42 +48803,82 @@
                 }
               },
               {
-                "${meta.id}/outs/**": {
+                "${prefix}/outs/**": {
                   "type": "file",
                   "description": "Files containing the outputs of Cell Ranger ARC",
-                  "pattern": "${meta.id}/outs/*",
+                  "pattern": "${prefix}/outs/*",
                   "ontologies": []
                 }
               }
             ]
           ],
           "lib": [
-            {
-              "${meta.id}_lib.csv": {
-                "type": "file",
-                "description": "Library",
-                "pattern": "*_lib.csv",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3752"
-                  }
-                ]
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}_lib.csv": {
+                  "type": "file",
+                  "description": "Library",
+                  "pattern": "${prefix}_lib.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
               }
-            }
+            ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellrangerarc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -48923,19 +48971,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellrangerarc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -48973,38 +49053,86 @@
           }
         ],
         "input": [
-          {
-            "gtf": {
-              "type": "file",
-              "description": "The reference GTF transcriptome file",
-              "pattern": "*.gtf",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "The reference GTF transcriptome file",
+                "pattern": "*.gtf",
+                "ontologies": []
+              }
             }
-          }
+          ]
         ],
         "output": {
           "gtf": [
-            {
-              "*.filtered.gtf": {
-                "type": "directory",
-                "description": "The filtered GTF transcriptome file",
-                "pattern": "*.filtered.gtf"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.gtf": {
+                  "type": "directory",
+                  "description": "The filtered GTF transcriptome file",
+                  "pattern": "${prefix}.gtf"
+                }
               }
-            }
+            ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cellrangerarc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cellrangerarc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cellranger-arc --version 2>&1 | sed 's/cellranger-arc cellranger-arc-//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -49047,65 +49175,82 @@
           }
         ],
         "input": [
-          {
-            "fasta": {
-              "type": "file",
-              "description": "Reference genome FASTA file",
-              "pattern": "*.{fasta,fa}",
-              "ontologies": []
-            }
-          },
-          {
-            "gtf": {
-              "type": "file",
-              "description": "Reference transcriptome GTF file",
-              "pattern": "*.gtf",
-              "ontologies": []
-            }
-          },
-          {
-            "motifs": {
-              "type": "file",
-              "description": "Sequence motif file (e.g., from transcription factors)",
-              "pattern": "*.txt",
-              "ontologies": []
-            }
-          },
-          {
-            "reference_config": {
-              "type": "file",
-              "description": "JSON-like file holding organism, genome, reference fasta path, reference annotation gtf path, contigs that should be excluded and sequence format motif file path",
-              "pattern": "config",
-              "ontologies": []
-            }
-          },
-          {
-            "reference_name": {
-              "type": "string",
-              "description": "The name to give the new reference folder",
-              "pattern": "str"
-            }
-          }
-        ],
-        "output": {
-          "reference": [
+          [
             {
-              "${reference_name}": {
-                "type": "directory",
-                "description": "Folder called like the reference_name containing all the reference indices needed by Cell Ranger Arc"
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. `[ id:'genome' ]`\n"
               }
-            }
-          ],
-          "config": [
+            },
             {
-              "config": {
+              "fasta": {
                 "type": "file",
-                "description": "Configuration file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Reference transcriptome GTF file",
+                "pattern": "*.gtf",
+                "ontologies": []
+              }
+            },
+            {
+              "motifs": {
+                "type": "file",
+                "description": "Sequence motif file (e.g., from transcription factors)",
+                "pattern": "*.txt",
+                "ontologies": []
+              }
+            },
+            {
+              "reference_config": {
+                "type": "file",
+                "description": "JSON-like file holding organism, genome, reference fasta path, reference annotation gtf path, contigs that should be excluded and sequence format motif file path",
+                "pattern": "config",
                 "ontologies": []
               }
             }
+          ]
+        ],
+        "output": {
+          "reference": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome' ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "Folder called like the reference_name containing all the reference indices needed by Cell Ranger Arc"
+                }
+              }
+            ]
           ],
-          "versions_cellrangerarc_mkref": [
+          "config": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genome information\ne.g. `[ id:'genome' ]`\n"
+                }
+              },
+              {
+                "config": {
+                  "type": "file",
+                  "description": "Configuration file",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_cellrangerarc": [
             [
               {
                 "${task.process}": {
@@ -49114,7 +49259,7 @@
                 }
               },
               {
-                "cellrangerarc_mkref": {
+                "cellrangerarc": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
@@ -49138,7 +49283,7 @@
                 }
               },
               {
-                "cellrangerarc_mkref": {
+                "cellrangerarc": {
                   "type": "string",
                   "description": "The name of the tool"
                 }
@@ -57909,22 +58054,30 @@
               }
             }
           ],
-          {
-            "fasta": {
-              "type": "file",
-              "description": "specifies reference genome file (only for cram file without reference genome)",
-              "pattern": "*.{fasta,fasta.gz,fa,fa.gz}",
-              "ontologies": []
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "specifies reference genome file (only for cram file without reference genome)",
+                "pattern": "*.{fasta,fasta.gz,fa,fa.gz}",
+                "ontologies": []
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of reference fasta file",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
             }
-          },
-          {
-            "fai": {
-              "type": "file",
-              "description": "Index of reference fasta file",
-              "pattern": "*.fai",
-              "ontologies": []
-            }
-          }
+          ]
         ],
         "output": {
           "pytor": [
@@ -57945,19 +58098,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cnvpytor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvpytor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvpytor --version 2>&1 | sed -n 's/.*CNVpytor //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvpytor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvpytor --version 2>&1 | sed -n 's/.*CNVpytor //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -58041,19 +58226,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cnvpytor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "cnvpytor": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "cnvpytor --version 2>&1 | sed -n 's/.*CNVpytor //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "cnvpytor": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "cnvpytor --version 2>&1 | sed -n 's/.*CNVpytor //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -123211,6 +123428,178 @@
       }
     },
     {
+      "name": "goatools_findenrichment",
+      "path": "modules/nf-core/goatools/findenrichment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "goatools_findenrichment",
+        "description": "Find enriched GO terms in a list of genes",
+        "keywords": [
+          "goatools",
+          "enrichment",
+          "ontology",
+          "geneontology",
+          "go",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "goatools": {
+              "description": "Python scripts to find enrichment of GO terms",
+              "homepage": "https://github.com/tanghaibao/goatools",
+              "documentation": "https://github.com/tanghaibao/goatools/blob/main/README.md",
+              "tool_dev_url": "https://github.com/tanghaibao/goatools",
+              "doi": "10.1038/s41598-018-28948-z",
+              "licence": [
+                "BSD-2-clause"
+              ]
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "study_list": {
+                "type": "file",
+                "description": "Plain text file with one study gene identifier per line",
+                "pattern": "*.{txt,tsv,csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            },
+            {
+              "population_list": {
+                "type": "file",
+                "description": "Plain text file with one background population gene identifier per line",
+                "pattern": "*.{txt,tsv,csv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            },
+            {
+              "annotation": {
+                "type": "file",
+                "description": "Gene-to-GO association file used by GOATOOLS",
+                "pattern": "*"
+              }
+            }
+          ],
+          {
+            "obo": {
+              "type": "file",
+              "description": "Gene Ontology OBO file",
+              "pattern": "*.obo",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2549"
+                }
+              ]
+            }
+          },
+          {
+            "goslim": {
+              "type": "file",
+              "description": "GO slim mapping file used for slim-specific enrichment summaries",
+              "pattern": "*.obo",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2549"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "GO enrichment analysis table generated by GOATOOLS find_enrichment",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_goatools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "goatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "goatools --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "goatools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "goatools --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "goleft_indexcov",
       "path": "modules/nf-core/goleft/indexcov/meta.yml",
       "type": "module",
@@ -131976,7 +132365,7 @@
           ],
           [
             {
-              "meta1": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing information about parental kmers.\n"
               }
@@ -131998,7 +132387,7 @@
           ],
           [
             {
-              "meta2": {
+              "meta3": {
                 "type": "map",
                 "description": "Groovy Map containing information about Hi-C reads\n"
               }
@@ -132020,7 +132409,7 @@
           ],
           [
             {
-              "meta3": {
+              "meta4": {
                 "type": "map",
                 "description": "Groovy Map containing information about the input bin files\n"
               }
@@ -147684,19 +148073,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kmcp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -147797,19 +148218,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kmcp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -147901,19 +148354,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kmcp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -148002,19 +148487,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kmcp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -148109,19 +148626,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kmcp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kmcp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kmcp version 2>&1 | sed 's/^.*kmcp v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
