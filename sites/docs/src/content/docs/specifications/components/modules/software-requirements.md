@@ -131,9 +131,7 @@ Modules that need to support older hosts MAY provide an alternative `environment
 
 ### Pip-based GPU packages
 
-Some GPU-compiled Python tools ship only as pre-built wheels from custom pip indexes rather than conda (e.g. [`llama-cpp-python`](https://abetlen.github.io/llama-cpp-python/whl/)). Two things change compared to the conda-native case:
-
-**Pin the full wheel URL in the `pip:` block**, not via `--extra-index-url` (which leaks into Wave's image tag and fails the push) or `--index-url` (which replaces PyPI and breaks transitive dependency resolution):
+Some GPU-compiled Python tools ship only as pre-built wheels from custom pip indexes rather than conda (e.g. [`llama-cpp-python`](https://abetlen.github.io/llama-cpp-python/whl/)). Pin the full wheel URL in the `pip:` block and pull the CUDA runtime from conda-forge alongside:
 
 ```yaml
 dependencies:
@@ -145,7 +143,7 @@ dependencies:
       - "https://github.com/<owner>/<project>/releases/download/v<version>-cu124/<wheel>.whl"
 ```
 
-**Bake `LD_LIBRARY_PATH` into the image** via Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libs at `dlopen` time:
+Build the container with Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libs at `dlopen` time:
 
 ```bash
 wave --conda-file environment.gpu.yml --freeze --await --singularity \
