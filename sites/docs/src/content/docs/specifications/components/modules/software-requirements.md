@@ -129,6 +129,32 @@ NVIDIA drivers are backward compatible with older CUDA versions: a host with a C
 The reverse is not supported, so a CUDA 12.x container cannot run on a host with only a CUDA 11.x driver.
 Modules that need to support older hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
 
+### Pip-based GPU packages
+
+Some GPU-compiled Python tools ship only as pre-built wheels from custom pip indexes rather than conda (e.g. [`llama-cpp-python`](https://abetlen.github.io/llama-cpp-python/whl/)). Two things change compared to the conda-native case:
+
+**Pin the full wheel URL in the `pip:` block**, not via `--extra-index-url` (which leaks into Wave's image tag and fails the push) or `--index-url` (which replaces PyPI and breaks transitive dependency resolution):
+
+```yaml
+dependencies:
+  - python=3.11
+  - pip
+  - "conda-forge::cuda-version=12.4"
+  - "conda-forge::cuda-runtime"
+  - pip:
+      - "https://github.com/<owner>/<project>/releases/download/v<version>-cu124/<wheel>.whl"
+```
+
+**Bake `LD_LIBRARY_PATH` into the image** via Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libs at `dlopen` time:
+
+```bash
+wave --conda-file environment.gpu.yml --freeze --await --singularity \
+     --config-env 'LD_LIBRARY_PATH=/opt/conda/lib'
+```
+
+Conda's `activate.d` hooks don't fire under `docker run`, so the library path has to be set at image-build time.
+Conda-forge-native GPU packages (e.g. `pytorch-gpu`) ship RPATHs in their binaries and don't need this.
+
 ### Binary and GPU count selection in scripts
 
 Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator`.
