@@ -384,7 +384,6 @@ elprep merge \\
 """
 ```
 
-
 If you must chain tools (for example piping or compression), define additional `args2`, `args3`, and so on, one per command in the pipe.
 
 Do not use custom `meta` elements in modules.
@@ -436,7 +435,6 @@ echo "$args"
 echo "" | gzip > ${prefix}.txt.gz
 """
 ```
-
 
 ## The `meta.yml` file
 
