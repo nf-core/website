@@ -7,7 +7,9 @@ shortTitle: "Chapter 6: Testing modules"
 This chapter describes how to unit test an nf-core module with the [nf-test](https://www.nf-test.com/) framework.
 
 :::warning
-Setting up and debugging tests is a topic of its own. This chapter covers the basics to get you started. Tests are required for all nf-core modules, so do not be discouraged if you need multiple attempts to get them right.
+Setting up and debugging tests is a topic of its own.
+This chapter covers the basics to get you started.
+Tests are required for all nf-core modules, so do not be discouraged if you need multiple attempts to get them right.
 :::
 
 ## The `main.nf.test` file
@@ -116,7 +118,8 @@ You rarely need to edit this section. You may need to extend it to:
 
 ### The `test` block
 
-The test block declares inputs and assertions. You will spend most of your time here.
+The test block declares inputs and assertions.
+You will spend most of your time here.
 
 ```nextflow
 test("sarscov2 - bam") {
@@ -146,11 +149,14 @@ A test block has three parts:
 - The `when` block (inputs).
 - The `then` block (assertions).
 
-The boilerplate provides one test with a single input file plus a stub-run test. All nf-core modules need a stub-run test. You only need to update its title and inputs to match the first test.
+The boilerplate provides one test with a single input file plus a stub-run test.
+All nf-core modules need a stub-run test.
+You only need to update its title and inputs to match the first test.
 
 #### `when` block
 
-Update the test title to make it distinct. At a minimum include the organism of the test data and the file format of the primary input, for example:
+Update the test title to make it distinct.
+At a minimum include the organism of the test data and the file format of the primary input, for example:
 
 ```nextflow
 test("sarscov2 - fastq - pairedend")
@@ -162,7 +168,9 @@ or
 test("sarscov2 - fastq - bakta annotation input")
 ```
 
-In the `when` block, declare each input channel using `input[index]` notation (`input[0]` for the first, `input[1]` for the second, and so on). The block accepts standard Nextflow code — channel factories, operators, and so on — as you would use in a pipeline. Make sure each `input[]` matches the channel structure of your module, including any meta map:
+In the `when` block, declare each input channel using `input[index]` notation (`input[0]` for the first, `input[1]` for the second, and so on).
+The block accepts standard Nextflow code — channel factories, operators, and so on — as you would use in a pipeline.
+Make sure each `input[]` matches the channel structure of your module, including any meta map:
 
 ```nextflow
 when {
@@ -198,7 +206,7 @@ then {
         { assert process.success },
         { assert snapshot(
             process.out.metrics,
-            process.out.versions,
+           process.out.findAll { key, val -> key.startsWith('versions') }
             file(process.out.qc_report[0][1]).name,
         ).match()
         }
@@ -206,13 +214,15 @@ then {
 }
 ```
 
-Here, `metrics` and `versions` have stable md5 sums and use the default snapshot check. The `qc_report` varies, so we only assert that the filename is unchanged.
+Here, `metrics` have stable md5 sums and use the default snapshot check.
+The `qc_report` varies, so we only assert that the filename is unchanged.
+We use a special assertion to print the versions so they are readable in the test output file.
 
 For a full list of nf-test assertions, see the [nf-core documentation on assertions](https://nf-co.re/docs/developing/testing/assertions).
 
 Test outputs using these methods, in order of preference:
 
-1. md5 sums.
+1. `md5sums`.
 2. String contents within a file.
 3. File name or existence.
 

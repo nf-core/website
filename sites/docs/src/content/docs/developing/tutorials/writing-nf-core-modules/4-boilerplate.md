@@ -86,4 +86,4 @@ modules/nf-core/drep/
         └── main.nf.test
 ```
 
-The next chapter walks through each generated file and explains what to change.
+The [next chapter](./5-writing-modules) walks through each generated file and explains what to change.

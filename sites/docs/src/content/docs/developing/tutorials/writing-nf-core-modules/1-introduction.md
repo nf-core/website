@@ -10,9 +10,11 @@ Material originally written for the **A practical introduction to nf-core compon
 Duration: **4hr**
 
 Original author: James A. Fellows Yates (@jfy133), with corrections and improvements from Niklas Schandry (@nschan) and Alexandru Mizeranschi (@amizeranschi).
+Refreshed style by: Chris Hakkaart (@christopher-hakkaart )
 :::
 
-An nf-core module is an atomic, standardised, reproducible, and tested [Nextflow DSL2 module](https://www.nextflow.io/docs/latest/module.html). You can install an nf-core module into any Nextflow pipeline with a single command, then integrate it into your workflow thanks to its consistent internal structure.
+An nf-core module is an atomic, standardised, reproducible, and tested [Nextflow DSL2 module](https://www.nextflow.io/docs/latest/module.html).
+You can install an nf-core module into any Nextflow pipeline with a single command, then efficiently integrate it into your workflow thanks to its consistent internal structure.
 
 ## Why use nf-core modules
 
@@ -53,5 +55,5 @@ By the end of this training, you will be able to:
 - Chapter 8: [Using nf-core modules in pipelines](/docs/developing/tutorials/writing-nf-core-modules/8-using)
 
 :::tip
-Read chapters 2–7 through once before starting development. When you reach chapter 7, return to chapter 2 to begin writing the module itself.
+Read chapters [2](./2-getting-started)–[7](./7-development) through once before starting development. When you reach [chapter 7](./7-development), return to [chapter 2](./2-getting-started) to begin writing the module itself.
 :::

@@ -4,7 +4,8 @@ subtitle: "How to fill in the module files"
 shortTitle: "Chapter 5: Writing modules"
 ---
 
-Once you have generated the boilerplate template files, you can update them to make your module function. The boilerplate contains many `TODO` comments and example content to guide you.
+Once you have generated the boilerplate template files, you can update them to make your module function.
+The boilerplate contains many `TODO` comments and example content to guide you.
 
 This chapter walks through each file, explaining what each section does and why, as defined by the nf-core specifications.
 
@@ -26,7 +27,10 @@ dependencies:
 
 You rarely need to modify this file. The tool and version specified here will usually have a matching biocontainer in the `main.nf` file.
 
-Only modify `environment.yml` when your tool is not on Bioconda and no recipe exists for it. nf-core guidelines strongly recommend Conda support, as Conda is the most accessible software management system. If your tool is not on Bioconda or [conda-forge](https://conda-forge.org/), add it to the appropriate repository.
+Only modify `environment.yml` when your tool is not on Bioconda and no recipe exists for it.
+nf-core guidelines strongly recommend Conda support, as Conda is the most accessible software management system.
+If your tool is not on Bioconda or [conda-forge](https://conda-forge.org/), add it to the appropriate repository.
+Bioconda provides [tutorials](https://bioconda.github.io/tutorials/2024-adding-bioinformatic-software-to-bioconda.html) on their website.
 
 :::info{title="Behind the scenes" collapse}
 nf-core uses a separate Conda file rather than the `main.nf` conda directive for two reasons:
@@ -37,7 +41,8 @@ nf-core uses a separate Conda file rather than the `main.nf` conda directive for
 
 ## The `main.nf` file
 
-The `main.nf` file contains the Nextflow module code. When generated, parts of the module are pre-filled and `TODO` comments mark where you need to make changes.
+The `main.nf` file contains the Nextflow module code.
+When generated, parts of the module are pre-filled and `TODO` comments mark where you need to make changes.
 
 An nf-core module has 9 main Nextflow process blocks:
 
@@ -119,7 +124,8 @@ The `tag` block propagates standard metadata from each input channel's [meta map
 tag "$meta.id"
 ```
 
-You generally do not need to modify this. All nf-core pipelines assume an `id` element in each meta map, and pipeline developers can customise it.
+You generally do not need to modify this.
+All nf-core pipelines assume an `id` element in each meta map, and pipeline developers can customise it.
 
 ### The `label` block
 
@@ -134,7 +140,7 @@ Key points:
 - nf-core defines a preset set of [standard labels with default resources](https://github.com/nf-core/tools/blob/52e810986e382972ffad0aab28e94f828ffd509b/nf_core/pipeline-template/conf/base.config#L22-L54).
 - Select the label that best matches your tool's typical resource needs.
 - Do not use custom labels. Pipeline developers can tune default resources in the pipeline's `conf/base.config`, and users can override per-module resources using `withName:` in a custom config.
-- Standard labels keep modules and pipelines consistent in how resources are defined.
+- Standard labels provide modules and pipelines a consistent set of default resources.
 
 ### The `conda` block
 
@@ -144,7 +150,8 @@ The `conda` block tells Nextflow to use the `environment.yml` file when a pipeli
 conda "${moduleDir}/environment.yml"
 ```
 
-Do not modify this. The only exception is a tool that does not support Conda (typically proprietary tools), where you may remove the line.
+Do not modify this.
+You may only remove this line when a tool that does not support Conda (typically proprietary tools).
 
 ### The `container` block
 
@@ -158,7 +165,8 @@ container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity
 
 The `nf-core modules create` command auto-detects the container name, version, and build from Bioconda and biocontainers.
 
-Do not modify this unless the tool has no Bioconda recipe or biocontainer (typically proprietary tools). In that case, point the lines to the relevant container.
+Do not modify this unless the tool has no Bioconda recipe or biocontainer (typically proprietary tools).
+In that case, update the links to the relevant container.
 
 ### The `input` block
 
@@ -169,7 +177,8 @@ input:
 tuple val(meta), path(bam)
 ```
 
-The boilerplate includes an example BAM input and a [meta map](https://nf-co.re/docs/developing/components/meta-map). Edit this section to declare every file your module needs.
+The boilerplate includes an example BAM input and a [meta map](https://nf-co.re/docs/developing/components/meta-map).
+Edit this section to declare every file your module needs.
 
 Guidelines:
 
@@ -193,13 +202,17 @@ tuple val(meta), path(bam), path(bai)
 ```
 
 :::info{title="Behind the scenes" collapse}
-Nextflow processes must receive files through input channels to stage them correctly in the job's working directory. Declaring every possible input keeps the module reusable across pipelines.
+Nextflow processes must receive files through input channels to stage them correctly in the job's working directory.
+Declaring every possible input keeps the module reusable across pipelines, and minimises breakages for other developers.
 
 Nextflow has no native optional input syntax. Pipeline developers pass an empty list `[]` to indicate an input is not provided.
 
-Mandatory non-file arguments belong in the input block so the module can run without extra configuration. Optional parameters are handled through `ext.args`, described below.
+Mandatory non-file arguments belong in the input block so the module can run without extra configuration.
+Optional parameters are handled through `ext.args`, described below.
 
-The one-channel-one-file rule keeps channel structures consistent. Pipeline developers can use Nextflow's [`.multiMap()`](https://www.nextflow.io/docs/latest/reference/operator.html#multimap) operator to split multi-element channels into sub-channels while keeping elements associated.
+The one-channel-one-file rule keeps channel structures consistent.
+See the nf-core [module specifications](../../../specifications/components/overview) for exceptions.
+Pipeline developers can use Nextflow's [`.multiMap()`](https://www.nextflow.io/docs/latest/reference/operator.html#multimap) operator to split multi-element channels into sub-channels while keeping elements associated.
 :::
 
 :::tip{title="Examples" collapse}
@@ -237,15 +250,16 @@ The `output:` block declares every file the tool can produce.
 
 ```nextflow
 output:
-path "versions.yml"           , emit: versions
+tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
 ```
 
-The boilerplate always includes a mandatory `versions.yml` emission, because nf-core pipelines must report every tool version.
+The boilerplate always includes a mandatory 'topics' version emission channel because nf-core pipelines must report every tool version.
 
 Guidelines:
 
 - Declare as many outputs as possible during first creation, whether default or optional, to maximise reuse and minimise future channel changes.
-- If the module uses a meta map, emit all files with it except `versions.yml`.
+- If the module uses a meta map, emit all files with it.
+- Specify a command to get a 'clean' version number (e.g. just `1.2`, not `samtools v1.2 (2026-01-02)`) in the `eval()` section of the 'versions' topic channel.
 - Give each file type its own `emit` entry, usually one per format.
 - Combine two mutually exclusive formats that serve the same purpose (such as `.bai` and `.csi` indexes for `.bam`) in one channel.
 - Compress output files where the tool supports compressed input, and reflect this in the path pattern.
@@ -257,7 +271,7 @@ output:
 tuple val(meta), path("${prefix}.bam"),  emit: bam,  optional: true
 tuple val(meta), path("${prefix}.cram"), emit: cram, optional: true
 tuple val(meta), path("${prefix}.sam"),  emit: sam,  optional: true
-path  "versions.yml",
+tuple val("${task.process}"), val('samtools'), eval('samtools --version | head -n 1 | cut -d ' ' -f 2'), emit: versions_samtools, topic: versions
 ```
 
 ```nextflow
@@ -280,7 +294,7 @@ tuple val(meta), path('*.html')           , emit: html
 tuple val(meta), path('*.log')            , emit: log
 tuple val(meta), path('*.fail.fastq.gz')  , optional:true, emit: reads_fail
 tuple val(meta), path('*.merged.fastq.gz'), optional:true, emit: reads_merged
-path "versions.yml"                       , emit: versions
+tuple val("${task.process}"), val('fastp'), eval('fastp --version 2>&1 | sed -e "s/fastp //g"'), emit: versions_fastp, topic: versions
 ```
 
 A module producing three mutually exclusive primary outputs:
@@ -290,7 +304,7 @@ output:
 tuple val(meta), path("*.{vcf,vcf.gz,bcf,bcf.gz}"), emit: vcf
 tuple val(meta), path("*.tbi")                    , emit: tbi, optional: true
 tuple val(meta), path("*.csi")                    , emit: csi, optional: true
-path "versions.yml"                               , emit: versions
+tuple val("${task.process}"), val('bcftools'), eval("bcftools --version | sed '1!d; s/^.*bcftools //'"), topic: versions, emit: versions_bcftools
 ```
 
 A module producing multiple files that all support compressed variants:
@@ -304,7 +318,7 @@ tuple val(meta), path('*.{daa,daa.gz}')    , optional: true, emit: daa
 tuple val(meta), path('*.{sam,sam.gz}')    , optional: true, emit: sam
 tuple val(meta), path('*.{tsv,tsv.gz}')    , optional: true, emit: tsv
 tuple val(meta), path('*.{paf,paf.gz}')    , optional: true, emit: paf
-path "versions.yml"                        , emit: versions
+tuple val("${task.process}"), val('diamond'), eval('diamond --version 2>&1 | tail -n 1 | sed "s/^diamond version //"'), emit: versions_diamond, topic: versions
 ```
 
 :::
@@ -322,7 +336,8 @@ Do not modify or remove this block.
 
 ### The `script` block
 
-The `script` block defines the command the module runs. You will edit this section most.
+The `script` block defines the command the module runs.
+You will edit this section most.
 
 ```nextflow
 script:
@@ -331,27 +346,24 @@ def prefix = task.ext.prefix ?: "${meta.id}"
 """
 samtools \\
     sort \\
-    $args \\
+    ${args} \\
     -@ $task.cpus \\
     -o ${prefix}.bam \\
     -T $prefix \\
     $bam
-
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    drep: \$(samtools --version |& sed '1!d ; s/samtools //')
-END_VERSIONS
 """
 ```
 
-The boilerplate includes an example samtools command and a `versions.yml` HEREDOC. Replace both with commands for your tool.
+The boilerplate includes an example samtools command.
+Replace with the command for your tool.
 
 Two standard variables appear at the top of the block. Do not remove them:
 
-- `args` — how pipeline developers inject optional parameters into the command. The value comes from `ext.args` in the process scope of a Nextflow configuration file (defined in `modules.config` for nf-core pipelines). See the "Using in pipelines" chapter for details.
+- `args` — how pipeline developers inject optional parameters into the command. The value comes from `ext.args` in the process scope of a Nextflow configuration file (defined in `modules.config` for nf-core pipelines). See the ["Using in pipelines"](./8-using) chapter for details.
 - `prefix` — the default output file basename. It defaults to the `id` value of the primary input channel's meta map.
 
-Replace the example command with your own command, split across multiple lines with escaped backslashes for readability. Reference all required input variables.
+Replace the example command with your own command, split across multiple lines with escaped backslashes for readability.
+Reference all required input variables.
 
 Every command must use the `$args` variable, and the CPU count where supported.
 
@@ -366,34 +378,20 @@ def single_end  = meta.single_end ? "--single" : ""
 elprep merge \\
        input/ \\
        output/${prefix}.bam \\
-       $args \\
+       ${args} \\
        ${single_end} \\
 ...
 """
 ```
 
-Keep the `versions.yml` HEREDOC, but replace the command to emit a clean version string (for example `1.2.3`, not `v1.2.3`). Use standard UNIX tools like `cut` or `sed` for the clean-up. If the tool does not report its version on the command line, use a dedicated variable after `args` and `prefix`:
-
-```nextflow
-script:
-def args = task.ext.args ?: ''
-def prefix = task.ext.prefix ?: "${meta.id}"
-def VERSION='2.1.3' // WARN: Version information not provided by tool on CLI. Please update this string when bumping
-"""
-...
-
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    scimap: $VERSION
-END_VERSIONS
-```
 
 If you must chain tools (for example piping or compression), define additional `args2`, `args3`, and so on, one per command in the pipe.
 
 Do not use custom `meta` elements in modules.
 
 :::info{title="Behind the scenes" collapse}
-Custom meta fields are not standardised across tools and create extra work for pipeline developers. All optional parameters for dynamic command construction should come from `ext.args`.
+Custom meta fields are not standardised across tools and create extra work for pipeline developers.
+All optional parameters for dynamic command construction should come from `ext.args`.
 :::
 
 :::warning
@@ -410,15 +408,11 @@ The `stub` block simulates the module's output during a `-dry-run` of a pipeline
   def prefix = task.ext.prefix ?: "${meta.id}"
   """
   touch ${prefix}.bam
-
-  cat <<-END_VERSIONS > versions.yml
-  "${task.process}":
-      drep: \$(samtools --version |& sed '1!d ; s/samtools //')
-  END_VERSIONS
   """
 ```
 
-The stub block should mirror the `script` block, except instead of running the tool, it uses `touch` to create empty files matching every output name. For gzipped outputs, pipe an empty echo into `gzip`:
+The stub block should mirror the `script` block, except instead of running the tool, it uses `touch` to create empty files matching every output name.
+For gzipped outputs, pipe an empty echo into `gzip`:
 
 ```nextflow
 stub:
@@ -426,11 +420,6 @@ def args = task.ext.args ?: ''
 def prefix = task.ext.prefix ?: "${meta.id}"
 """
 echo "" | gzip > ${prefix}.txt.gz
-
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-    tool: \$(samtools --version |& sed '1!d ; s/samtools //')
-END_VERSIONS
 """
 ```
 
@@ -445,19 +434,14 @@ def prefix = task.ext.prefix ?: "${meta.id}"
 """
 echo "$args"
 echo "" | gzip > ${prefix}.txt.gz
-
-cat <<-END_VERSIONS > versions.yml
-"${task.process}":
-tool: \$(samtools --version |& sed '1!d ; s/samtools //')
-END_VERSIONS
 """
 ```
 
-Keep the `versions.yml` HEREDOC command. It runs during the dry run.
 
 ## The `meta.yml` file
 
-The `meta.yml` file documents the module with descriptions, keywords, and links to the tool's resources. This information powers the searchable [modules page](https://nf-co.re/modules), improves discoverability on external databases, and supports future automated linkage between modules.
+The `meta.yml` file documents the module with descriptions, keywords, and links to the tool's resources.
+This information powers the searchable [modules page](https://nf-co.re/modules), improves discoverability on external databases, and supports future automated linkage between modules.
 
 The file has four main sections:
 
@@ -520,11 +504,27 @@ output:
             - edam: "http://edamontology.org/format_2573"
             - edam: "http://edamontology.org/format_3462"
 
-  - versions:
-      - "versions.yml":
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
+  versions_drep:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - drep:
+          type: string
+          description: The name of the tool
+      - drep version 2>&1 | sed 's/^.*drep v//':
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - drep:
+          type: string
+          description: The name of the tool
+      - drep version 2>&1 | sed 's/^.*drep v//':
+          type: eval
+          description: The expression to obtain the version of the tool
 
 authors:
   - "@jfy133"
@@ -726,11 +726,46 @@ output:
           type: file
           description: Index file for BAM file
           pattern: "*.{csi}"
-  - versions:
-      - versions.yml:
-          type: file
-          description: File containing software versions
-          pattern: "versions.yml"
+  versions_bwamem2:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - bwamem2:
+          type: string
+          description: The name of the tool
+      - bwa-mem2 version | grep -o -E "[0-9]+(\.[0-9]+)+":
+          type: eval
+          description: The expression to obtain the version of the tool
+  versions_samtools:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - samtools:
+          type: string
+          description: The name of the tool
+      - samtools version | sed '1!d;s/.* //':
+          type: eval
+          description: The expression to obtain the version of the tool
+topics:
+  versions:
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - bwamem2:
+          type: string
+          description: The name of the tool
+      - bwa-mem2 version | grep -o -E "[0-9]+(\.[0-9]+)+":
+          type: eval
+          description: The expression to obtain the version of the tool
+    - - ${task.process}:
+          type: string
+          description: The name of the process
+      - samtools:
+          type: string
+          description: The name of the tool
+      - samtools version | sed '1!d;s/.* //':
+          type: eval
+          description: The expression to obtain the version of the tool
 authors:
   - "@maxulysse"
   - "@matthdsm"
@@ -787,4 +822,4 @@ If you later update a module originally written by someone else, add yourself to
 
 This chapter cannot cover every specification detail or edge case. Always refer to the [nf-core module specifications](https://nf-co.re/docs/specifications/components/modules/general) when writing a module.
 
-The next chapter covers unit testing the module with nf-test.
+The [next chapter](./6-testing) covers unit testing the module with nf-test.
