@@ -23,11 +23,15 @@ From the root of the repository, run:
 nf-core modules create <toolname>/<subcommand>
 ```
 
+:::note
+If your module does not have subcommands, use `<toolname>`
+:::
+
 ### Naming conventions
 
 - All parts of the module name must be lowercase, alphanumeric, with no punctuation or special characters.
-- Single-command tools use the tool name only. For a tool executed with `fastp -i <input> -o <output>`, run `nf-core modules create fastp`.
-- Tools with subcommands use `<tool>/<subcommand>`, even if you only plan to wrap one subcommand. For `samtools view`, run `nf-core modules create samtools/view`.
+- Single-command tools use the tool name only. For example, for a tool executed with `fastp -i <input> -o <output>`, run `nf-core modules create fastp`.
+- Tools with subcommands use `<tool>/<subcommand>`, even if you only plan to wrap one subcommand. For example, `samtools view`, run `nf-core modules create samtools/view`.
 - For a third level of subcommand, append it to the subcommand name. For `samtools view flagstats`, run `nf-core modules create samtools/viewflagstat`.
 
 For example, to create a module for the tool `drep` with the subcommand `compare`:
@@ -38,7 +42,8 @@ nf-core modules create drep/compare
 
 ### Prompts from `nf-core modules create`
 
-The command tries to pre-fill the boilerplate. It searches [Bioconda](https://bioconda.github.io/) and [biocontainers](https://biocontainers.pro/) for the latest version of your tool and adds the container definitions automatically.
+The command tries to pre-fill the boilerplate.
+It searches [Bioconda](https://bioconda.github.io/) and [biocontainers](https://biocontainers.pro/) for the latest version of your tool and adds the container definitions automatically.
 
 You will then be prompted for:
 

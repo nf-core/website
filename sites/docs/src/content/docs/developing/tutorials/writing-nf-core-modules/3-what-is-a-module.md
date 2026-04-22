@@ -4,7 +4,7 @@ subtitle: "What defines an nf-core module"
 shortTitle: "Chapter 3: What is a module?"
 ---
 
-An nf-core module is an opinionated, open-source Nextflow wrapper around a single command-line tool or script. The [central community repository](https://github.com/nf-core/modules) holds more than [1000 modules](https://nf-co.re/modules) that you can reuse in your own pipelines.
+An nf-core module is an opinionated, open-source Nextflow wrapper around a single command-line tool or script. The [central community repository](https://github.com/nf-core/modules) holds more than [1800 modules](https://nf-co.re/modules) that you can reuse in your own pipelines.
 
 This page describes what an nf-core module is and what distinguishes it from a standard Nextflow process.
 
@@ -15,7 +15,8 @@ An nf-core module usually wraps one tool command, or one tool with a single subc
 :::info{collapse title="Comparison with Nextflow modules"}
 A Nextflow process or module has no restrictions on the number of tools or subcommands it can execute.
 
-An nf-core module aims for a single analysis command per module. This atomic design supports lego-block construction of pipelines and makes modules easier to understand, share, and test, although it is not always the most resource-efficient approach.
+An nf-core module aims for a single analysis command per module.
+This atomic design supports lego-block construction of pipelines and makes modules easier to understand, share, and test, although it is not always the most resource-efficient approach.
 :::
 
 Each nf-core module follows strict [specifications](../../../specifications/components/overview) agreed by community consensus. The specifications cover:
@@ -28,7 +29,8 @@ Each nf-core module follows strict [specifications](../../../specifications/comp
 - Use of [meta maps](../../../specifications/components/modules/general#use-of-meta-maps).
 - Use of [stubs](../../../specifications/components/modules/general#stubs).
 
-The specifications also expand the minimum file set from a single Nextflow `.nf` script to five required files. This reflects the nf-core focus on standardisation, reproducibility, and high-quality documentation.
+The specifications also expand the minimum required single file from a single Nextflow `.nf` script to five required files.
+This reflects the nf-core focus on standardisation, reproducibility, and high-quality documentation.
 
 A complete nf-core module directory can contain up to six files:
 
