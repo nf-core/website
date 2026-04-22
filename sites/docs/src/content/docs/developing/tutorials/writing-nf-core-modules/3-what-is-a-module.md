@@ -66,3 +66,5 @@ _Schematic diagram showing the relationship between the three main categories of
 Writing an nf-core module means creating these files and populating them with content that follows the nf-core specifications.
 
 The [next chapter](./4-boilerplate) goes into more detail about the contents of each file.
+
+The [next chapter](./4-boilerplate) goes into more detail about the contents of each file.
