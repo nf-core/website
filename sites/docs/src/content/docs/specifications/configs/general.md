@@ -23,7 +23,10 @@ Another example is if executing the main Nextflow run command on login/submit no
 
 ## Size of configs
 
-A single config SHOULD represent a single cluster or type of infrastructure.
+A single configuration file SHOULD only be represent a single cluster or type of infrastructure.
+
+For HPC infrastructure, a single config MAY represent multiple similar or linked-HPCs that are dynamically selected within the config
+If multiple HPCs are supported in a single config, sub-configs that are selected based on a condition in the main config SHOULD go in in sub directories that are loaded in the main config with `includeConfig()`.
 
 ## Scope of configs
 
