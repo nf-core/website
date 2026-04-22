@@ -21178,7 +21178,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -22411,7 +22411,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantprioritization",
@@ -22989,7 +22989,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -23434,7 +23434,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -24591,13 +24591,7 @@
         "maintainers": [
           "@eweizy"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "1.4.0"
-        }
-      ]
+      }
     },
     {
       "name": "bcftools_pluginsplit",
@@ -25315,6 +25309,10 @@
         {
           "name": "raredisease",
           "version": "2.6.0"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
         }
       ]
     },
@@ -25879,7 +25877,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -26261,7 +26259,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -26493,7 +26491,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -27602,7 +27600,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -29748,7 +29746,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "viralmetagenome",
@@ -44017,6 +44015,10 @@
           "version": "dev"
         },
         {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
+        },
+        {
           "name": "viralmetagenome",
           "version": "1.1.1"
         }
@@ -50595,7 +50597,7 @@
                 }
               },
               {
-                "centrifuger -v 2>&1 | head -n 1 | cut -d ' ' -f 2": {
+                "centrifuger -v 2>&1 | sed 's/Centrifuger v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -50619,7 +50621,7 @@
                 }
               },
               {
-                "centrifuger -v 2>&1 | head -n 1 | cut -d ' ' -f 2": {
+                "centrifuger -v 2>&1 | sed 's/Centrifuger v//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -59585,7 +59587,13 @@
         "maintainers": [
           "@julianu"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "mspepid",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "concoct_concoct",
@@ -67249,7 +67257,7 @@
                 }
               },
               {
-                "*/*.fasta": {
+                "out/${prefix}.fasta": {
                   "type": "file",
                   "description": "FASTA-format combined sequence file",
                   "pattern": "*.{fasta,fa}",
@@ -67267,7 +67275,7 @@
                 }
               },
               {
-                "*/*.gtf": {
+                "out/${prefix}.gtf": {
                   "type": "file",
                   "description": "GTF-format combined annotation file",
                   "pattern": "*.gtf",
@@ -67276,6 +67284,22 @@
               }
             ]
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -67385,6 +67409,22 @@
               }
             }
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -67688,6 +67728,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@pinin4fjords",
           "@WackerO"
@@ -67809,7 +67865,7 @@
               }
             ]
           ],
-          "versions_geneticmapconvert": [
+          "versions": [
             {
               "versions.yml": {
                 "type": "file",
@@ -67828,8 +67884,14 @@
           "versions": [
             {
               "versions.yml": {
-                "type": "string",
-                "description": "The name of the process"
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
             }
           ]
@@ -67942,6 +68004,22 @@
               }
             ]
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -68263,6 +68341,22 @@
               }
             ]
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -68974,19 +69068,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gawk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gawk --version 2>&1 | sed '1!d;s/^.*GNU Awk //; s/, .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gawk --version 2>&1 | sed '1!d;s/^.*GNU Awk //; s/, .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -69063,19 +69189,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mawk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mawk --version | sed '1!d;s/mawk //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mawk --version | sed '1!d;s/mawk //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -69157,19 +69315,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mawk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mawk --version | sed '1!d;s/mawk //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mawk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mawk --version | sed '1!d;s/mawk //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -70546,7 +70736,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -105337,7 +105527,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -115733,6 +115923,10 @@
         {
           "name": "tfactivity",
           "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
         }
       ]
     },
@@ -123190,6 +123384,10 @@
         {
           "name": "tfactivity",
           "version": "dev"
+        },
+        {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
         }
       ]
     },
@@ -128566,6 +128764,10 @@
           "version": "3.1.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.3.0"
         },
@@ -130754,7 +130956,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -130922,7 +131124,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -131198,7 +131400,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -160054,13 +160256,7 @@
         "maintainers": [
           "@FriederikeHanssen"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "variantbenchmarking",
-          "version": "1.4.0"
-        }
-      ]
+      }
     },
     {
       "name": "manta_germline",
@@ -179944,7 +180140,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -189471,6 +189667,10 @@
         {
           "name": "mhcquant",
           "version": "3.1.0"
+        },
+        {
+          "name": "mspepid",
+          "version": "dev"
         }
       ]
     },
@@ -204593,7 +204793,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -205518,7 +205718,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -230191,6 +230391,28 @@
                 }
               }
             ]
+          ],
+          "versions_cuda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "Name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -230212,6 +230434,26 @@
                 "ribodetector --version | sed \"s/ribodetector //\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Name of the process"
+                }
+              },
+              {
+                "cuda": {
+                  "type": "string",
+                  "description": "Name of the runtime"
+                }
+              },
+              {
+                "python -c \"import torch; print(torch.version.cuda or 'no CUDA available')\"": {
+                  "type": "eval",
+                  "description": "CUDA version bundled with the task's pytorch build, or `no CUDA available` on the non-GPU path"
                 }
               }
             ]
@@ -234544,7 +234786,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -234797,7 +235039,13 @@
         "maintainers": [
           "@SevaNur"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "rtgtools_format",
@@ -234948,7 +235196,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -235378,7 +235626,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -235805,7 +236053,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -279825,7 +280073,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -279986,7 +280234,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -280366,7 +280614,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -281399,7 +281647,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -282649,7 +282897,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -282787,7 +283035,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -283390,7 +283638,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -284979,7 +285227,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "viralrecon",
@@ -285196,7 +285444,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantprioritization",
@@ -285368,7 +285616,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantcatalogue",
@@ -289899,6 +290147,10 @@
         {
           "name": "mhcquant",
           "version": "3.1.0"
+        },
+        {
+          "name": "mspepid",
+          "version": "dev"
         },
         {
           "name": "ribomsqc",
@@ -294434,7 +294686,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -296168,7 +296420,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -298252,6 +298504,10 @@
           "version": "4.2.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -298580,6 +298836,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "nascent",
           "version": "2.3.0"
         },
@@ -298697,6 +298957,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "mspepid",
+          "version": "dev"
+        },
         {
           "name": "pacsomatic",
           "version": "dev"
@@ -299956,7 +300220,13 @@
         "maintainers": [
           "@sbreuch"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "variantbenchmarking",
+          "version": "1.5.0"
+        }
+      ]
     },
     {
       "name": "varlociraptor_callvariants",
@@ -312104,7 +312374,7 @@
       "pipelines": [
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         }
       ]
     },
@@ -327762,6 +328032,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -327939,7 +328213,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantprioritization",
@@ -328203,6 +328477,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -328384,7 +328662,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantprioritization",
@@ -328636,6 +328914,10 @@
           "version": "1.2.0"
         },
         {
+          "name": "mspepid",
+          "version": "dev"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -328813,7 +329095,7 @@
         },
         {
           "name": "variantbenchmarking",
-          "version": "1.4.0"
+          "version": "1.5.0"
         },
         {
           "name": "variantprioritization",
