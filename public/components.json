@@ -71015,8 +71015,22 @@
             {
               "versions.yml": {
                 "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3750"
