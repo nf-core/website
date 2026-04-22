@@ -38,4 +38,4 @@ This training assumes you have:
 This training was written and tested with nf-core/tools 3.2.0 and Nextflow 24.10.4.
 :::
 
-The next chapter introduces what defines an nf-core module.
+The [next chapter](./3-what-is-a-module) introduces what defines an nf-core module.
