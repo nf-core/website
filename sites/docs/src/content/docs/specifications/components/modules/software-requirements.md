@@ -114,20 +114,34 @@ The CPU `environment.yml` MUST remain unchanged so that non-GPU users are unaffe
 GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file.
 Both Docker and Singularity URLs MUST be provided.
 
+:::note{title="Wave build template"}
+Until it becomes the default, GPU environments that pull packages requiring the `__cuda` virtual package (most post-2022 CUDA-aware conda builds) MUST be built with `--build-template conda/micromamba:v2` so Wave's [automatic `CONDA_OVERRIDE_CUDA` retry](https://github.com/seqeralabs/wave/pull/1027) kicks in. Solves exercising the retry can exceed the default 15-minute `--await`; pass `--await 60m` to cover them.
+:::
+
 ### CUDA version pinning
 
-The `environment.gpu.yml` SHOULD pin the CUDA major version to avoid the conda solver selecting builds for unreleased CUDA versions:
+Pin `cuda-version` exactly (nf-core does not allow version ranges). The pin sets the minimum NVIDIA driver version required on hosts, so pick the lowest value the GPU package actually supports on conda-forge - that gives the widest host compatibility.
 
 ```yaml
 dependencies:
   - "bioconda::ribodetector=0.3.3"
-  - "conda-forge::pytorch-gpu=2.10.0"
-  - "conda-forge::cuda-version>=12,<13"
+  - "conda-forge::pytorch-gpu=2.1.0"
+  - "conda-forge::cuda-version=11.2"
 ```
 
-NVIDIA drivers are backward compatible with older CUDA versions: a host with a CUDA 12.x driver can run containers built against CUDA 11.x or 12.x.
-The reverse is not supported, so a CUDA 12.x container cannot run on a host with only a CUDA 11.x driver.
-Modules that need to support older hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
+Use `micromamba search -c conda-forge '<package>=<version>'` to see which CUDA minor versions the GPU package was built against on conda-forge - this is usually the real floor. For instance `pytorch-gpu=2.1.0` has `cuda112` builds, while `pytorch-gpu=2.10.0` only has `cuda128`/`cuda129`/`cuda130` builds, raising the driver floor accordingly.
+
+NVIDIA drivers are backward compatible with older CUDA versions, so pinning lower widens host reach. The reverse is not true: a CUDA 12.x container cannot run on a host with a CUDA 11.x-only driver. Modules that specifically want broader reach on legacy hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
+
+### Capturing the CUDA runtime version
+
+GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel so it appears in provenance reports alongside the tool version. One simple pattern, using the pytorch dependency that most CUDA-aware conda envs already pull in:
+
+```groovy
+tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'cpu\')"'), emit: versions_cuda, topic: versions
+```
+
+This reports the actual CUDA minor the container was built with on the GPU path, and `cpu` on the non-GPU path of dual-container modules.
 
 ### Pip-based GPU packages
 
