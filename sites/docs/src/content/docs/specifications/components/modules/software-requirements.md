@@ -115,7 +115,7 @@ GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `en
 Both Docker and Singularity URLs MUST be provided.
 
 :::note{title="Wave build template"}
-Until it becomes the default, GPU environments that pull packages requiring the `__cuda` virtual package (most post-2022 CUDA-aware conda builds) MUST be built with `--build-template conda/micromamba:v2` so Wave's [automatic `CONDA_OVERRIDE_CUDA` retry](https://github.com/seqeralabs/wave/pull/1027) kicks in. Solves exercising the retry can exceed the default 15-minute `--await`; pass `--await 60m` to cover them.
+Pass `--build-template conda/micromamba:v2` to Wave when building GPU environments. Required for now until it becomes the default.
 :::
 
 ### CUDA version pinning
