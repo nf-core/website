@@ -16,30 +16,30 @@ You can re-use and re-model them as you see fit.
 The nf-core brand uses a consistent colour palette across all materials.
 Find official RGB and HEX values for nf-core green, logo colours, and Bootstrap grays.
 
-For more information, see [Colours](/community/brand/colours).
+For more information, see [Colours](/docs/community/brand/colours).
 
 ## Fonts
 
 nf-core uses Maven Pro Bold for headings and Inter for body text.
 Both fonts are available under the Open Font License.
 
-For more information, see [Fonts](/community/brand/fonts).
+For more information, see [Fonts](/docs/community/brand/fonts).
 
 ## Logos
 
 nf-core and pipeline logos are available in multiple formats (PNG, SVG, AI).
 Guidelines are provided for creating custom pipeline branding and hex sticker variants.
 
-For more information, see [Logos](/community/brand/logos).
+For more information, see [Logos](/docs/community/brand/logos).
 
 ## Presentations
 
 Guidelines and examples for presenting nf-core at conferences through posters and oral presentations.
 
-For more information, see [Presentations](/community/brand/presentations).
+For more information, see [Presentations](/docs/community/brand/presentations).
 
 ## Workflow schematics
 
 Components and examples for creating pipeline diagrams using vector editors like Inkscape, Adobe Illustrator, or draw.io.
 
-For more information, see [Workflow schematics](/community/brand/workflow-schematics).
+For more information, see [Workflow schematics](/docs/community/brand/workflow-schematics).
