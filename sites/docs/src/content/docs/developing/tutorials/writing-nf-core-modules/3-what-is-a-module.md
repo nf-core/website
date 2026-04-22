@@ -52,7 +52,7 @@ These files fall into three categories:
 
 The following diagram shows how these files relate to each other:
 
-<img width=80% alt="Diagram showing how the execution, documentation, and testing files in an nf-core module relate to each other." src="../../../../../assets/images/tutorials/training/nf-core-module-file-relationship.png">
+<img width=80% alt="Diagram showing how the execution, documentation, and testing files in an nf-core module relate to each other." src="/images/developing/tutorials/writing-nfcore-modules/nf-core-module-file-relationship.png">
 
 _Schematic diagram showing the relationship between the three main categories of files in an nf-core module._
 
