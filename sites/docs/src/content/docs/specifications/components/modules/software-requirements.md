@@ -138,10 +138,10 @@ NVIDIA drivers are backward compatible with older CUDA versions, so pinning lowe
 GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel so it appears in provenance reports alongside the tool version. One simple pattern, using the pytorch dependency that most CUDA-aware conda envs already pull in:
 
 ```groovy
-tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'cpu\')"'), emit: versions_cuda, topic: versions
+tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'no CUDA available\')"'), emit: versions_cuda, topic: versions
 ```
 
-This reports the actual CUDA minor the container was built with on the GPU path, and `cpu` on the non-GPU path of dual-container modules.
+This reports the actual CUDA minor the container was built with on the GPU path, and `no CUDA available` on the non-GPU path of dual-container modules. Prefer a descriptive string over something like `cpu`, which reviewers reasonably flag as not a version.
 
 ### Pip-based GPU packages
 
