@@ -1,6 +1,6 @@
 ---
-title: "Our community is growing, and so is our core team"
-subtitle: "Welcoming new members to the nf-core core team"
+title: "Welcoming new members to the nf-core core team"
+subtitle: "A growing community, a stronger core"
 pubDate: 2026-04-27T17:00:00+02:00
 authors:
     - "joseespinosa"
