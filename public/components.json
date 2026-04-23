@@ -43833,6 +43833,245 @@
       ]
     },
     {
+      "name": "canvas_germline",
+      "path": "modules/nf-core/canvas/germline/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "canvas_germline",
+        "description": "Calls germline copy number variants (CNVs) from whole genome sequencing data using\nIllumina Canvas in SmallPedigree-WGS mode. Although named SmallPedigree-WGS, this\nmode is recommended for single germline samples as well as small pedigrees.\nThe module accepts aligned reads (BAM), germline SNV calls, and sex-specific ploidy\ninformation, and outputs a VCF with copy number status across the genome together\nwith a coverage-and-variant-frequency file used for downstream segmentation.\n",
+        "keywords": [
+          "CNV",
+          "copy number variants",
+          "germline",
+          "WGS",
+          "canvas"
+        ],
+        "tools": [
+          {
+            "canvas": {
+              "description": "Canvas is a tool for calling copy number variants (CNVs) from human DNA sequencing data.\n",
+              "homepage": "https://github.com/Illumina/canvas",
+              "documentation": "https://github.com/Illumina/canvas/wiki",
+              "tool_dev_url": "https://github.com/Illumina/canvas",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n",
+                "ontologies": []
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file of aligned WGS reads.",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file.",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "germline_snv_vcf": {
+              "type": "file",
+              "description": "VCF (or gzipped VCF) containing germline SNV b-allele sites (PASS filter only).\nTypically produced by a variant caller such as DNAscope or DeepVariant.\n",
+              "pattern": "*.{vcf,vcf.gz}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3016"
+                }
+              ]
+            }
+          },
+          [
+            {
+              "sex": {
+                "type": "string",
+                "description": "Sample sex. Must be either \"male\" or \"female\". Used to select the\nappropriate ploidy VCF for sex chromosomes.\n"
+              }
+            },
+            {
+              "male_ploidy_vcf": {
+                "type": "file",
+                "description": "VCF defining expected ploidy for sex chromosomes in male samples.\nBoth ploidy VCFs (male and female) must always be provided. The module\nautomatically selects the correct one based on the sex value.\nThe sample name in the VCF header is automatically updated to match the SM tag in the BAM header.\nExpected format (hg38 example):\n\n```\n##fileformat=VCFv4.1\n##INFO=<ID=END,Number=1,Type=Integer,Description=\"End position of the variant described in this record\">\n##FORMAT=<ID=CN,Number=1,Type=Integer,Description=\"Copy number genotype for imprecise events\">\n#CHROM  POS      ID  REF  ALT    QUAL  FILTER  INFO              FORMAT  SAMPLE\nchrX    0        .   N    <CNV>  .     PASS    END=10001         CN      1\nchrX    2781479  .   N    <CNV>  .     PASS    END=155701383     CN      1\nchrX    156030895 .  N    <CNV>  .     PASS    END=156040895     CN      1\nchrY    0        .   N    <CNV>  .     PASS    END=57227415      CN      1\n```\n",
+                "pattern": "*.vcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "female_ploidy_vcf": {
+                "type": "file",
+                "description": "VCF defining expected ploidy for sex chromosomes in female samples.\nBoth ploidy VCFs (male and female) must always be provided. The module\nautomatically selects the correct one based on the sex value.\nThe sample name in the VCF header is automatically updated to match the SM tag in the BAM header.\nExpected format (hg38 example):\n\n```\n##fileformat=VCFv4.1\n##INFO=<ID=END,Number=1,Type=Integer,Description=\"End position of the variant described in this record\">\n##FORMAT=<ID=CN,Number=1,Type=Integer,Description=\"Copy number genotype for imprecise events\">\n#CHROM  POS  ID  REF  ALT    QUAL  FILTER  INFO          FORMAT  SAMPLE\nchrY    0    .   N    <CNV>  .     PASS    END=57227415  CN      0\n```\n",
+                "pattern": "*.vcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "genomedir": {
+              "type": "directory",
+              "description": "Canvas genome reference directory containing genome.fa and GenomeSize.xml.\nAvailable for GRCh37/hg19/GRCh38 from s3://canvas-cnv-public.\n"
+            }
+          },
+          {
+            "reference": {
+              "type": "file",
+              "description": "Canvas-ready kmer reference file (kmer.fa).\nAvailable from s3://canvas-cnv-public.\n",
+              "pattern": "*.fa",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          },
+          {
+            "filter13": {
+              "type": "file",
+              "description": "BED file of regions to exclude from CNV calling (e.g. centromeres, telomeres).\nNamed filter13 following Canvas reference package conventions.\nAvailable from s3://canvas-cnv-public.\n",
+              "pattern": "*.bed",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3003"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.vcf.gz": {
+                  "type": "file",
+                  "description": "Bgzipped VCF file containing germline CNV calls. Canvas:REF entries (non-variant regions)\nare excluded. Requires further annotation for standard SV ALT notation.\n",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "covandvarfreq": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information.\ne.g. `[ id:'sample1' ]`\n",
+                  "ontologies": []
+                }
+              },
+              {
+                "${prefix}.CoverageAndVariantFrequency.txt": {
+                  "type": "file",
+                  "description": "Tab-separated file with per-bin coverage and variant allele frequency values.\nUsed as input for CANVAS_CREATESEG to generate segmentation files.\n",
+                  "pattern": "*.CoverageAndVariantFrequency.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_canvas": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "canvas": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.40.0": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded as Canvas is an archived tool)"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "canvas": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.40.0": {
+                  "type": "string",
+                  "description": "The version of the tool (hardcoded as Canvas is an archived tool)"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@ktruve"
+        ],
+        "maintainers": [
+          "@ktruve"
+        ]
+      }
+    },
+    {
       "name": "cat_cat",
       "path": "modules/nf-core/cat/cat/meta.yml",
       "type": "module",
@@ -65714,7 +65953,7 @@
                 }
               },
               {
-                "csvtk version | sed -e \"s/csvtk v//g\"": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -65738,7 +65977,7 @@
                 }
               },
               {
-                "csvtk version | sed -e \"s/csvtk v//g\"": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -65874,7 +66113,7 @@
                 }
               },
               {
-                "csvtk version | sed 's/.*v//g'": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -65898,7 +66137,7 @@
                 }
               },
               {
-                "csvtk version | sed 's/.*v//g'": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -66020,7 +66259,7 @@
                 }
               },
               {
-                "csvtk version | sed -e \"s/csvtk v//g\"": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -66044,7 +66283,7 @@
                 }
               },
               {
-                "csvtk version | sed -e \"s/csvtk v//g\"": {
+                "csvtk version | sed -e 's/csvtk v//g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -66157,19 +66396,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_csvtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "csvtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "csvtk version | sed -e 's/csvtk v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "csvtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "csvtk version | sed -e 's/csvtk v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -71829,19 +72100,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_deepbgc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deepbgc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deepbgc info 2>&1 | sed '6!d;s/.*= version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deepbgc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deepbgc info 2>&1 | sed '6!d;s/.*= version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -72121,19 +72424,93 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_deepbgc": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deepbgc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deepbgc info 2>&1 | sed '6!d;s/.*= version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ],
+          "versions_prodigal": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prodigal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prodigal -v 2>&1 | sed '2!d;s/Prodigal V//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deepbgc": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deepbgc info 2>&1 | sed '6!d;s/.*= version //;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prodigal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prodigal -v 2>&1 | sed '2!d;s/Prodigal V//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -77615,6 +77992,135 @@
               },
               {
                 "diamond --version | sed 's/.* //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
+      "name": "diamond_linclust",
+      "path": "modules/nf-core/diamond/linclust/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "diamond_linclust",
+        "description": "Fast protein sequence clustering using a greedy incremental approach",
+        "keywords": [
+          "clustering",
+          "protein",
+          "diamond",
+          "linclust",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "diamond": {
+              "description": "Accelerated BLAST compatible local sequence aligner",
+              "homepage": "https://github.com/bbuchfink/diamond",
+              "documentation": "https://github.com/bbuchfink/diamond/wiki",
+              "tool_dev_url": "https://github.com/bbuchfink/diamond",
+              "doi": "10.1038/s41592-021-01101-x",
+              "licence": [
+                "GPL v3-or-later"
+              ],
+              "identifier": "biotools:diamond"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input protein FASTA file to be clustered",
+                "pattern": "*.{fa,faa,fasta,fa.gz,faa.gz,fasta.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "clusters": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated file mapping each member sequence to its cluster\nrepresentative. The first column contains the representative\naccession and the second column contains the member sequence\naccession.\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_diamond": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "diamond": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "diamond --version | sed 's/diamond version //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "diamond": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "diamond --version | sed 's/diamond version //g'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -148471,6 +148977,36 @@
                 "pattern": "*/"
               }
             }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "taxdmp": {
+                "type": "directory",
+                "description": "List or directory containing NCBI-like taxdmp files\n(nodes.dmp, names.dmp, and optionally, merged.dmp, delnodes.dmp)\n",
+                "pattern": "*/"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "seq2taxidmap": {
+                "type": "file",
+                "description": "Kraken2 style sequence to taxid mapping file, with two columns:\nsequence ID and taxid\n(e.g. \"accession1\\t12345\")\n",
+                "pattern": "*.map"
+              }
+            }
           ]
         ],
         "output": {
@@ -148756,6 +149292,12 @@
             "db": {
               "type": "directory",
               "description": "Database directory containing taxdump files and taxid file"
+            }
+          },
+          {
+            "level": {
+              "type": "string",
+              "description": "Taxonomic rank to generate profile at (e.g. \"species\", \"strain\", \"assembly\")"
             }
           }
         ],
