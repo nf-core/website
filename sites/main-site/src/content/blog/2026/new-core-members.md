@@ -9,8 +9,6 @@ label:
     - "core team"
 ---
 
-## Welcoming new members to the nf-core core team
-
 We are delighted to announce that five long-time contributors are joining the [nf-core core team](https://nf-co.re/governance#core-team):
 
 - [Anabella Trigila](https://github.com/atrigila) (@atrigila)
@@ -23,15 +21,19 @@ If you have spent some time around nf-core, you probably have already crossed pa
 
 ## Why grow the core team?
 
-nf-core keeps growing. More pipelines, more modules, more users, more questions, more events, more grants, more collaborations across more time zones than ever before. As the community scales, the work of coordinating and sustaining it scales with it, and that load can no longer rest on the same small set of shoulders.
+nf-core keeps growing. More pipelines, more modules, more users, more questions, more events, more grants, more collaborations across more time zones than ever before. These all are very good news but as the community scales, the work of coordinating and sustaining it scales with it, and thus we need more core team members!
 
-Bringing new people into the core team is how we keep up with that growth and, crucially, how we stay a healthy and welcoming community. New members bring new perspectives, new expertise, and new energy. They help distribute responsibilities more evenly, reduce the risk of burnout, and open up more opportunities for mentorship and leadership across the community.
+Bringing new people into the core team is how we keep up with that growth and, how we stay a healthy and welcoming community. New members bring new perspectives, new expertise, and new energy. They help distribute responsibilities more evenly, reduce the risk of burnout, and open up more opportunities for mentorship and leadership across the community.
 
 ## Passing the torch
 
 Just as importantly, several of our current core team members are moving into new chapters of their careers, whether that means changing roles, shifting focus, or simply making room for new challenges. This is something to celebrate: nf-core has always been a place where people grow, learn, and take the skills they build here into exciting next steps. At the same time, it means we need to prepare for these transitions thoughtfully, making sure the knowledge, responsibilities, and relationships that keep nf-core running are shared with people who are ready to carry them forward.
 
 Arthur, Anabella, Louis, Simon, and Matthias are exactly those people. They have already been doing the work. Joining the core team simply reflects the role they are already playing in the community.
+
+## How the core team can help you
+
+A bigger core team also means more capacity to handle the day-to-day tasks that require elevated permissions. If you need something that requires core team involvement — repository transfers, AWS test data uploads, Zenodo activation, quay.io containers, Seqera Platform access, or a first release review — the [#request-core](https://nfcore.slack.com/archives/C056RQB10A8) Slack channel is the right place to ask. A full list of what the core team handles and how to request it is described in the [core team tasks](https://nf-co.re/docs/community/governance/core-team) documentation and in the [governance](https://nf-co.re/governance#core-team) page.
 
 ## Looking ahead
 
