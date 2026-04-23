@@ -6,6 +6,8 @@ shortTitle: Documentation
 weight: 1
 ---
 
+The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
+
 ## General
 
 A config MUST have a Markdown based documentation file describing the usage of the config.
