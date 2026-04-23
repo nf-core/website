@@ -9,13 +9,25 @@ label:
     - "core team"
 ---
 
+import Profile from "@components/GitHubProfilePictureExtended.astro";
+import { Image } from "astro:assets";
+import core_apple_worms from "@assets/images/blog/new-core-members/core_apple_worms.png";
+
+<Image
+    src={core_apple_worms}
+    class="d-block m-auto"
+    width={600}
+    density={[1.5, 2]}
+    alt="Cartoon apple worm characters representing the nf-core community welcoming new core team members."
+/>
+
 We are delighted to announce that five long-time contributors are joining the [nf-core core team](https://nf-co.re/governance#core-team):
 
-- [Anabella Trigila](https://github.com/atrigila) (@atrigila)
-- [Arthur Gymer](https://github.com/awgymer) (@awgymer)
-- [Louis Le Nézet](https://github.com/LouisLeNezet) (@LouisLeNezet)
-- [Matthias de Smet](https://github.com/matthdsm) (@matthdsm)
-- [Simon Pearce](https://github.com/sppearce) (@sppearce)
+<Profile username="atrigila">Anabella Trigila</Profile>
+<Profile username="awgymer">Arthur Gymer</Profile>
+<Profile username="LouisLeNezet">Louis Le Nézet</Profile>
+<Profile username="matthdsm">Matthias de Smet</Profile>
+<Profile username="sppearce">Simon Pearce</Profile>
 
 If you have spent some time around nf-core, you probably have already crossed paths with them. Collectively, they have contributed to pipelines, modules, subworkflows, tooling, reviews, hackathons, helpdesks, training, and the many quieter tasks that keep a community running. Joining the core team is a natural next step for each of them.
 
