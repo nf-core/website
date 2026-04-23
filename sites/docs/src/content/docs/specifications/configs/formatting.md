@@ -71,6 +71,18 @@ queue = {
 }
 ```
 
+Conditional config files MAY be included by passing a closure to `includeConfig()`:
+
+```groovy
+includeConfig ({
+    if (condition) {
+        return "conf1.config"
+    } else if (condition2) {
+        return "conf2.config"
+    } else {
+        return "/dev/null"
+    }
+}.call())
 ### Environmental Variables
 
 Environmental variables MUST be referenced with a `System.getenv` call.
