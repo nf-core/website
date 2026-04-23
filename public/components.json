@@ -58864,19 +58864,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_cobra": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cobra": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cobra-meta --version 2>&1 | sed 's/^.*cobra v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cobra": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cobra-meta --version 2>&1 | sed 's/^.*cobra v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -65521,19 +65553,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "version.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_csvtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "csvtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "csvtk version | sed -e 's/csvtk v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "csvtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "csvtk version | sed -e 's/csvtk v//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -124401,13 +124465,24 @@
             {
               "versions.yml": {
                 "type": "file",
-                "description": "File containing software versions",
+                "description": "YAML file containing versions of tools used in the module",
                 "pattern": "versions.yml",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "YAML file containing versions of tools used in the module",
+                "ontologies": []
               }
             }
           ]
