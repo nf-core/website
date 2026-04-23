@@ -1,0 +1,40 @@
+---
+title: "Our community is growing, and so is our core team"
+subtitle: "Welcoming new members to the nf-core core team"
+pubDate: 2026-04-27T17:00:00+02:00
+authors:
+    - "joseespinosa"
+label:
+    - "community"
+    - "core team"
+---
+
+## Welcoming new members to the nf-core core team
+
+We are delighted to announce that five long-time contributors are joining the [nf-core core team](https://nf-co.re/governance#core-team):
+
+- [Anabella Trigila](https://github.com/atrigila) (@atrigila)
+- [Arthur Gymer](https://github.com/awgymer) (@awgymer)
+- [Louis Le Nézet](https://github.com/LouisLeNezet) (@LouisLeNezet)
+- [Matthias de Smet](https://github.com/matthdsm) (@matthdsm)
+- [Simon Pearce](https://github.com/sppearce) (@sppearce)
+
+If you have spent some time around nf-core, you probably have already crossed paths with them. Between them, they have contributed to pipelines, modules, subworkflows, tooling, reviews, hackathons, helpdesks, training, and the many quieter tasks that keep a community running. Their work has helped shape nf-core into what it is today, and we are thrilled to formalise that impact with a seat on the core team.
+
+## Why grow the core team?
+
+nf-core keeps growing. More pipelines, more modules, more users, more questions, more events, more grants, more collaborations across more time zones than ever before. As the community scales, the work of coordinating and sustaining it scales with it, and that load can no longer rest on the same small set of shoulders.
+
+Bringing new people into the core team is how we keep up with that growth and, crucially, how we stay a healthy and welcoming community. New members bring new perspectives, new expertise, and new energy. They help distribute responsibilities more evenly, reduce the risk of burnout, and open up more opportunities for mentorship and leadership across the community.
+
+## Passing the torch
+
+Just as importantly, several of our current core team members are moving into new chapters of their careers, whether that means changing roles, shifting focus, or simply making room for new challenges. This is something to celebrate: nf-core has always been a place where people grow, learn, and take the skills they build here into exciting next steps. At the same time, it means we need to prepare for these transitions thoughtfully, making sure the knowledge, responsibilities, and relationships that keep nf-core running are shared with people who are ready to carry them forward.
+
+Arthur, Anabella, Louis, Simon, and Matthias are exactly those people. They have already been doing the work. Joining the core team simply reflects the role they are already playing in the community.
+
+## Looking ahead
+
+A growing community needs a growing core team, but it also needs all of you. If you have been thinking about contributing more (reviewing a PR, answering a question on Slack, writing a module, joining a [special interest group](https://nf-co.re/special-interest-groups/), or helping out in a [maintainers](https://nf-co.re/governance) or [documentation](https://nf-co.re/governance#documentation) team, now is a great time. The path from "first contribution" to "core team member" is well travelled, and today's announcement is proof of that.
+
+Welcome, Arthur, Anabella, Louis, Simon, and Matthias. We are very glad to have you. 🎉
