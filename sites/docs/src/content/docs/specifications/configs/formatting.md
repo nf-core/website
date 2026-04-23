@@ -71,7 +71,7 @@ queue = {
 }
 ```
 
-Conditional config files MAY be included by passing a closure to `includeConfig()`:
+If related HPCs are being referred to in a single config, conditional sub-config files MAY be included by passing a closure to `includeConfig()`:
 
 ```groovy
 includeConfig ({
@@ -83,6 +83,8 @@ includeConfig ({
         return "/dev/null"
     }
 }.call())
+```
+
 ### Environmental Variables
 
 Environmental variables MUST be referenced with a `System.getenv` call.
