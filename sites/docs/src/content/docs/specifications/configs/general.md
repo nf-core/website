@@ -27,7 +27,7 @@ Another example is if executing the main Nextflow run command on login/submit no
 
 A single configuration file SHOULD only be used to represent a single cluster or type of infrastructure.
 
-For HPC infrastructure, a single config MAY represent multiple similar or linked-HPCs that are dynamically selected within the config. 
+For HPC infrastructure, a single config MAY represent multiple similar or linked-HPCs that are dynamically selected within the config.
 
 ### Structure when multiple configs
 
