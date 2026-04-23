@@ -23,21 +23,25 @@ Another example is if executing the main Nextflow run command on login/submit no
 
 ## Size of configs
 
+### Number of infrastructures in a config
+
 A single configuration file SHOULD only be used to represent a single cluster or type of infrastructure.
 
 For HPC infrastructure, a single config MAY represent multiple similar or linked-HPCs that are dynamically selected within the config. 
+
+### Structure when multiple configs
 
 If multiple HPCs are supported in a single config, any sub-configs that are selected based on a condition in the main config MUST be placed in a sub-directory with the same base name as the config file (i.e., for a config called `myinstitute.conf`, a directory named `myinstitute`) and be loaded in the main config with `includeConfig()`.
 
 Example:
 
-    ```tree
-    conf/
-    ├── <myinstitute>/
-    │   ├── <hpc1>.conf
-    │   └── <hpc2>.conf
-    └── <myinstitute>.conf
-    ```
+```tree
+conf/
+├── <myinstitute>/
+│   ├── <hpc1>.conf
+│   └── <hpc2>.conf
+└── <myinstitute>.conf
+```
 
 ## Scope of configs
 
