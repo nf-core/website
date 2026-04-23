@@ -17,7 +17,7 @@ We are delighted to announce that five long-time contributors are joining the [n
 - [Matthias de Smet](https://github.com/matthdsm) (@matthdsm)
 - [Simon Pearce](https://github.com/sppearce) (@sppearce)
 
-If you have spent some time around nf-core, you probably have already crossed paths with them. Between them, they have contributed to pipelines, modules, subworkflows, tooling, reviews, hackathons, helpdesks, training, and the many quieter tasks that keep a community running. Their work has helped shape nf-core into what it is today, and we are thrilled to formalise that impact with a seat on the core team.
+If you have spent some time around nf-core, you probably have already crossed paths with them. Collectively, they have contributed to pipelines, modules, subworkflows, tooling, reviews, hackathons, helpdesks, training, and the many quieter tasks that keep a community running. Joining the core team is a natural next step for each of them.
 
 ## Why grow the core team?
 
