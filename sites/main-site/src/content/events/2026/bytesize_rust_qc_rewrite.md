@@ -1,6 +1,6 @@
 ---
 title: "Bytesize: Rust QC "
-subtitle: nf-core, modules, claude, code
+subtitle: nf-core, modules, claude, rust, rustqc, code
 type: talk
 startDate: "2026-05-12"
 startTime: "13:00+02:00"
