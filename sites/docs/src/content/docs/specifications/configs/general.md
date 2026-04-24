@@ -34,7 +34,7 @@ rather than pulling from public registries (e.g., Docker Hub, Quay.io).
 
 ### Offline/air-gapped clusters
 
-A config for infrastructure without external internet access MUST configure a
+A config for infrastructure without external internet access SHOULD configure a
 local container registry (e.g., via `singularity.registry` or `apptainer.registry`).
 It SHOULD set `params.igenomes_ignore = true` and provide paths to locally
 available reference genomes instead.
