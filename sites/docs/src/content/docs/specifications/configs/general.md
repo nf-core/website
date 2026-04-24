@@ -51,16 +51,16 @@ For HPC infrastructure, a single config MAY represent multiple similar or linked
 ### Structure when multiple configs
 
 If multiple HPCs are supported in a single config, any sub-configs that are selected based on a condition in the main config MUST be placed in a subdirectory.
-The subdirectory MUST have the same base name as the config file (i.e., for a config called `myinstitute.conf`, a directory named `myinstitute`) and be loaded in the main config with `includeConfig()`.
+The subdirectory MUST have the same base name as the config file (i.e., for a config called `myinstitute.config`, a directory named `myinstitute`) and be loaded in the main config with `includeConfig()`.
 
 Example:
 
 ```tree
 conf/
 ├── <myinstitute>/
-│   ├── <hpc1>.conf
-│   └── <hpc2>.conf
-└── <myinstitute>.conf
+│   ├── <hpc1>.config
+│   └── <hpc2>.config
+└── <myinstitute>.config
 ```
 
 ## Scope of configs
@@ -112,12 +112,12 @@ mpcdf_viper.conf
 
 An institutional config MUST consist of two files:
 
-- **`conf/<config name>.conf`** for the config itself.
+- **`conf/<config name>.config`** for the config itself.
 - **`docs/<config name>.md`** for documentation about the config.
 
 Files for a pipeline-specific institutional config must be located:
 
-- **[`conf/pipeline/<pipeline name>/<config name>.conf`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
+- **[`conf/pipeline/<pipeline name>/<config name>.config`](https://github.com/nf-core/configs/tree/master/conf/pipeline)**
 - **[`docs/pipeline/<pipeline name>/<config name>.md`](https://github.com/nf-core/configs/tree/master/docs/pipeline)**
 
 Furthermore, the config MUST be referred to in two additional places
