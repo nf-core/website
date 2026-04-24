@@ -23,6 +23,7 @@ If a primary maintainers no longer have access to the infrastructure, the mainta
 
 The nf-core community core- and maintainers teams MAY make minor modifications to configs on the nf-core/configs repository to ensure compatibility with Nextflow and the nf-core template.
 The nf-core community core- and maintainers teams MUST NOT make major changes without permission and testing from the primary contact (for example, changing conditionals for selecting queues)
+Should the primary maintainers become unresponsive, the nf-core community core- and maintainers teams MAY transfer maintainership to another, active, member of the institution willing to take the responsibility on.
 
 ## Deprecation
 
@@ -30,7 +31,7 @@ Deprecation of a config involves the deletion of all files related to that parti
 
 ### Deprecation through change of primary maintainer
 
-A primary maintainer MAY only deprecate a config if they are no longer at the institution hosting the infrastructure, if they found no person to transfer maintainership to.
+A primary maintainer MAY only deprecate a config if they are no longer able to maintain it and found no person to transfer maintainership to.
 
 ### Deprecation through decommissioning
 
