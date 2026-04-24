@@ -17,6 +17,7 @@ The following specifications define standards for developing nf-core configs:
 - **[General](./general)**
 - **[Documentation](./documentation)**
 - **[Formatting](./formatting)**
+- **[Maintenance and deprecation](./maintenance-and-deprecation)**
 
 ## Additional resources
 
