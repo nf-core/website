@@ -2,9 +2,9 @@
 title: "Bytesize: Rust QC "
 subtitle: nf-core, modules, claude, code
 type: talk
-startDate: "2026-05-05"
+startDate: "2026-05-12"
 startTime: "13:00+02:00"
-endDate: "2026-05-05"
+endDate: "2026-05-12"
 endTime: "13:30+02:00"
 locations:
   - name: Online
