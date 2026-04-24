@@ -12,7 +12,7 @@ The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as describ
 Configs hosted on nf-core/configs SHOULD have permission from the administrators of the given infrastructure to host the config publicly within the nf-core GitHub organisation.
 
 :::tip
-A config MAY declare the config is 'unofficial' if the system administrators are OK with hosting publicly, as long as they do not maintain it themselves.
+A config MAY declare the config is 'unofficial' if the system administrators are OK with hosting publicly but do not maintain it themselves.
 :::
 
 ## Alignment of config with local policies
