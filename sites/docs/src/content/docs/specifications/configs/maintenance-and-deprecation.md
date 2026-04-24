@@ -26,6 +26,8 @@ The nf-core community core- and maintainers teams MUST NOT make major changes wi
 
 ## Deprecation
 
+Deprecation of a config involves the deletion of all files related to that particular cluster (config, pipeline-specific configs, and documentation) from the nf-core/configs repository.
+
 ### Deprecation through change of primary maintainer
 
 A primary maintainer MAY only deprecate a config if they are no longer at the institution hosting the infrastructure, if they found no person to transfer maintainership to.
