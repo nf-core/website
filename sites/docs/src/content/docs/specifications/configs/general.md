@@ -9,7 +9,9 @@ The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as describ
 
 ## Permissions to host on nf-core/configs
 
-Configs hosted on nf-core/configs SHOULD have permission from the administrators of the given infrastructure to host the config publicly within the nf-core GitHub organisation.
+Configs hosted on nf-core/configs SHOULD have permission from the administrators of the given infrastructure to host the config publicly within the nf-core GitHub organisation, except for the exceptions described below.
+
+- Configs for sensitive data clusters MUST have permission from the system administrators.
 
 :::tip
 A config MAY declare the config is 'unofficial' if the system administrators are OK with hosting publicly but do not maintain it themselves.
@@ -47,7 +49,8 @@ For HPC infrastructure, a single config MAY represent multiple similar or linked
 
 ### Structure when multiple configs
 
-If multiple HPCs are supported in a single config, any sub-configs that are selected based on a condition in the main config MUST be placed in a sub-directory with the same base name as the config file (i.e., for a config called `myinstitute.conf`, a directory named `myinstitute`) and be loaded in the main config with `includeConfig()`.
+If multiple HPCs are supported in a single config, any sub-configs that are selected based on a condition in the main config MUST be placed in a subdirectory.
+The subdirectory MUST have the same base name as the config file (i.e., for a config called `myinstitute.conf`, a directory named `myinstitute`) and be loaded in the main config with `includeConfig()`.
 
 Example:
 
