@@ -21,6 +21,22 @@ Configurations SHOULD comply with and document administrative policies of the in
 For example, if multiple possible partitions exist but there is a policy to use specific partitions for specific cases, this SHOULD be represented in the config.
 Another example is if executing the main Nextflow run command on login/submit nodes is not allowed, include a sample job submission script (for example a SLURM `sbatch` script) in the documentation.
 
+## Sensitive data and offline environments
+
+### Sensitive data clusters
+
+Configs for infrastructure handling sensitive or restricted data SHOULD document
+any relevant data governance policies that affect pipeline execution.
+A config for sensitive data infrastructure SHOULD use a local container registry
+rather than pulling from public registries (e.g., Docker Hub, Quay.io).
+
+### Offline/air-gapped clusters
+
+A config for infrastructure without external internet access MUST configure a
+local container registry (e.g., via `singularity.registry` or `apptainer.registry`).
+It SHOULD set `params.igenomes_ignore = true` and provide paths to locally
+available reference genomes instead.
+
 ## Size of configs
 
 ### Number of infrastructures in a config

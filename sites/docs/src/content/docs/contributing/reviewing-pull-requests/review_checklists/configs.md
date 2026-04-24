@@ -5,7 +5,7 @@ shortTitle: Reviewing configs
 markdownPlugin: checklist
 ---
 
-nf-core/configs reviews ensure that [configs](https://nf-co.re/configs/) adhere to the nf-core/config specifications and ensure consistency across all configs..
+nf-core/configs reviews ensure that [configs](https://nf-co.re/configs/) adhere to the nf-core/config specifications and ensure consistency across all configs.
 When you review a nf-core/configs pull request, you examine a new config submission or proposed changes to an existing component and provide constructive feedback before maintainers merge them into the nf-core repository.
 
 :::note{title="Component specifications"}
@@ -18,7 +18,7 @@ For information about best practices for nf-core configs, see [configs specifica
 
 For institutional configs:
 
-- [ ] Each config has a `*.conf` Nextflow configuration file under `conf/`
+- [ ] Each config has a `*.config` Nextflow configuration file under `conf/`
 - [ ] Each file has a `*md` documentation file under `docs/`
 - [ ] Does not include `withName` or `withLabel` specifications
 - [ ] Includes `resourceLimits` scope
@@ -26,14 +26,13 @@ For institutional configs:
 For pipeline-specific institutional configs
 
 - [ ] Each config targets a single pipeline
-- [ ] Each config has a `*.conf` Nextflow configuration file under `conf/pipeline/<pipeline_name>/`
+- [ ] Each config has a `*.config` Nextflow configuration file under `conf/pipeline/<pipeline_name>/`
 - [ ] Each file has a `*md` documentation file under `docs/pipeline/<pipeline_name>/`
 
 ## Naming
 
 - [ ] The name is all lowercase
-- [ ] The name includes only letters or numbers
-- [ ] The name includes only underscore
+- [ ] The name includes only letters, numbers and/or underscores
 - [ ] The name uses no other characters or punctuation
 - [ ] If multiple clusters, uses an institutional suffix (e.g. `ucl_` for all University College London [UCL] configs)
 
@@ -47,6 +46,12 @@ For pipeline-specific institutional configs
 - [ ] Custom parameters:
   - [ ] Are documented
   - [ ] Are added to the `ignoreParams` option of the `validation` scope
+
+For sensitive data or offline clusters (if applicable):
+
+- [ ] Local container registry configured
+- [ ] External downloads disabled or documented
+- [ ] Data governance/policy requirements documented
 
 ## Documentation
 

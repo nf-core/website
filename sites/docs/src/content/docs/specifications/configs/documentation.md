@@ -27,6 +27,9 @@ The documentation MAY also provide additional recommendations such as how to spe
 
 The config documentation Markdown file MUST NOT contain generic information, such as installing Nextflow.
 
+For offline or sensitive data infrastructures, the documentation MUST describe
+any special steps required (e.g., pre-pulling containers, local reference paths).
+
 ## Description of environmental variables
 
 Any mandatory parameter or environment variable required for pipeline execution MUST be described in the documentation.
