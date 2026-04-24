@@ -34,8 +34,9 @@ rather than pulling from public registries (e.g., Docker Hub, Quay.io).
 
 ### Offline/air-gapped clusters
 
-A config for infrastructure without external internet access SHOULD configure a
-local container registry (e.g., via `singularity.registry` or `apptainer.registry`).
+A config for infrastructure without external internet access SHOULD describe how to set
+`singularity.cacheDir` or `apptainer.cacheDir` to a directory pre-populated
+using [`nf-core download`](https://nf-co.re/docs/nf-core-tools/cli/pipelines/download) rather than configuring a container registry.
 It SHOULD set `params.igenomes_ignore = true` and provide paths to locally
 available reference genomes instead.
 
