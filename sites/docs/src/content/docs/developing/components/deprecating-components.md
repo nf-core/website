@@ -35,6 +35,7 @@ an automatic update of the module/subworkflow is performed.
 
 ### Updating the nf-tests
 
+Remove anything in the setup block.
 The addition of `assert false` will mean the nf-test will always fail.
 The `then` part of the nf-test should be updated with the following code:
 
