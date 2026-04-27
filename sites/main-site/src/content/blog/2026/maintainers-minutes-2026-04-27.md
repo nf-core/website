@@ -34,7 +34,7 @@ We had lively discussions about relaxing or clarifying some writing rules to mak
 
 ### Modules writing
 
-The "one tuple to rule them all" school of thought (having only one input tuple) is gaining traction (big win for @Maxime !).
+The "one tuple to rule them all" school of thought (having only one input tuple) is gaining traction (big win for @Maxime!).
 It simplifies parallelization and might be supported by Nextflow soon.
 We will not actively rewrite all module inputs now, since adoption of record types will require further changes anyway.
 
@@ -43,14 +43,16 @@ These can be pragmatic solutions for modules that genuinely need two strings (e.
 In conclusion to the debates, similarly to `task.ext.args2`, `task.ext.prefix2` can now be accepted if no simpler alternative is possible.
 
 Another topic that sparked a lot of discussion was adopting a paired reference+index input channel.
-Currently, many modules take the FASTA and its index in separate channels, which is far from ideal.
-We now recommend keeping the FASTA paired with its index (same channel) when the module actually needs the index.
+Currently, many modules take the FASTA file and its index in separate channels, which is far from ideal, as you cannot then parralelize accross different genomes.
+We now recommend keeping the FASTA file paired with its index (same channel) when the module actually needs the index.
 Whether a module requires the index can be tricky to check; if not explicit in the documentation, omitting the index and seeing if the module generates it can be sufficient (e.g., `samtools` modules).
 We will not enforce a global channel standard across all modules — modules that do not need auxiliary files can be adapted in pipelines using a simple `.map{}` operator.
 
 ### Workflows writing
 
-Emitting outputs from nested workflows is error-prone and hard to maintain because each level requires passing through identical outputs. This becomes cumbersome in pipelines with many emits (see rnaseq PR #1679 and the ongoing [Nextflow discussion](https://github.com/nextflow-io/nextflow/issues/6756)). We expect records/record-like features in Nextflow to help resolve this.
+Emitting outputs from nested workflows is error-prone and hard to maintain because each level requires passing through identical outputs.
+This becomes cumbersome in pipelines with many emits (see rnaseq PR #1679 and the ongoing [Nextflow discussion](https://github.com/nextflow-io/nextflow/issues/6756)).
+We expect records/record-like features in Nextflow to help resolve this.
 
 ## Deprecation process
 
@@ -88,7 +90,7 @@ Louis took over the post-hackathon cleanup for modules topics-migration opened P
 ### Codespace / Ona
 
 GitHub Codespaces (now Ona) launched an open-source plan.
-Ana investigated organization-level options but hasn’t received a human response from GitHub yet.
+Ana investigated organization-level options but hasn’t received a human response from Ona yet.
 
 ### Meeting time
 
@@ -99,7 +101,7 @@ Options discussed include a monthly time shift or changing the meeting day — w
 ### R nf-core utils package
 
 R modules currently duplicate code to parse Nextflow inputs and produce log/version YAML files.
-Louis created a small R package exposing two helper functions to handle these tasks.
+Louis created a small [R package](https://github.com/nf-core/r-nf-core-utils) exposing two helper functions to handle these tasks.
 It currently uses base R but could adopt argparse in the future.
 
 ### Bulk modules testing
@@ -111,7 +113,7 @@ We plan to run bulk tests on modules that haven't been run for a long time, prod
 
 Timeouts from Docker to Singularity conversions remain common.
 Planned fixes will also produce conda lock files.
-We may add a new command (e.g., `nf-core modules containers`) to better manage containers.
+We will add a new command (e.g., `nf-core modules containers`) to better manage containers, see https://github.com/nf-core/tools/pull/3954
 
 ### nf-tests and strict syntax
 
