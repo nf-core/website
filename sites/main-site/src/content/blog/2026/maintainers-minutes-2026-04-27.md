@@ -128,7 +128,7 @@ Example: `Dragen` requires dedicated hardware, so we can only run stub tests and
 
 Therefore, all these modules should now have a prominent warning at the top, explaining they are untested or partially tested and that installation/use requires caution.
 
-## Bitesize talk ideas
+## Bytesize talk ideas
 
 We have plenty of ideas but not enough volunteers! Here are some subjects we would like to cover:
 
