@@ -15,8 +15,8 @@ The 'Maintainers Minutes' aims to give further insight into the workings of the 
 
 ## Overview
 
-No, you didn't missed any maintainers minutes, missed publishing maintainers minutes after November — apologies for the gap.
-This post summarizes the main discussions from the four past maintainers meetings held over the first months of 2026.
+No, you didn't miss any maintainers' minutes; we missed publishing maintainers' minutes after November — apologies for the gap.
+This post summarizes the main discussions from the four past maintainers' meetings held over the first months of 2026.
 
 Many things happened during the first months of 2026, we had a hackathon, several lively debates on writing guidelines, deprecation, CI/infra, and contributor experience.
 
@@ -25,7 +25,7 @@ Major topics covered in this period:
 - Writing guidelines
 - Deprecation process
 - March hackathon
-- Miscelleanous things
+- Miscellaneous things
 - Bitesize talks
 
 ## Writing guidelines
@@ -35,7 +35,7 @@ We had lively discussions about relaxing or clarifying some writing rules to mak
 ### Modules writing
 
 The "one tuple to rule them all" school of thought (having only one input tuple) is gaining traction (big win for @Maxime !).
-It simplifies parallelisation and might be supported by Nextflow soon.
+It simplifies parallelization and might be supported by Nextflow soon.
 We will not actively rewrite all module inputs now, since adoption of record types will require further changes anyway.
 
 Maintainers remain split on allowing new fields like `task.ext.prefix2`.
@@ -43,20 +43,20 @@ These can be pragmatic solutions for modules that genuinely need two strings (e.
 In conclusion to the debates, similarly to `task.ext.args2`, `task.ext.prefix2` can now be accepted if no simpler alternative is possible.
 
 Another topic that sparked a lot of discussion was adopting a paired reference+index input channel.
-Currently many modules take the FASTA and its index in separate channels, which is far from ideal.
+Currently, many modules take the FASTA and its index in separate channels, which is far from ideal.
 We now recommend keeping the FASTA paired with its index (same channel) when the module actually needs the index.
-Whether a module requires the index can be tricky to checked, if not explicit in the documentation, omitting the index and seeing if the module generates it can be sufficient (e.g., `samtools` modules).
+Whether a module requires the index can be tricky to check; if not explicit in the documentation, omitting the index and seeing if the module generates it can be sufficient (e.g., `samtools` modules).
 We will not enforce a global channel standard across all modules — modules that do not need auxiliary files can be adapted in pipelines using a simple `.map{}` operator.
 
 ### Workflows writing
 
-Emitting outputs from nested workflows is error-prone and hard to maintain because each level requires passing through identical outputs. This becomes cumbersome in pipelines with many emits (see rnaseq PR #1679 and the ongoing [Nextflow discussion](https://github.com/nextflow-io/nextflow/issues/6756)). We expect records/record-like features in Nextflow to help resolve this
+Emitting outputs from nested workflows is error-prone and hard to maintain because each level requires passing through identical outputs. This becomes cumbersome in pipelines with many emits (see rnaseq PR #1679 and the ongoing [Nextflow discussion](https://github.com/nextflow-io/nextflow/issues/6756)). We expect records/record-like features in Nextflow to help resolve this.
 
 ## Deprecation process
 
 ### Modules
 
-The deprecation process prompted a long discussion after we deprecated `cat_cat` in favour of `find_concatenate`.
+The deprecation process prompted a long discussion after we deprecated `cat_cat` in favor of `find_concatenate`.
 We want a lightweight, documented way to deprecate modules without leaving the modules repository cluttered with unused processes.
 
 Agreed approach:
@@ -66,7 +66,7 @@ Agreed approach:
 
 We considered more advanced options (e.g., having nf-core tools infer deprecation from git history), but the infra team is currently capacity-constrained, so those remain future work.
 
-There is also naming issues in the module repo: 39 process names don’t match the primary tool used in their script blocks (see [linked issue](https://github.com/nf-core/modules/issues/11073)). We should name modules to reflect the main tool and subtool (e.g., a module that primarily runs `AuthentiCT deam2cont` should be named for `AUTHENTICT_DEAM2CONT` even if it calls `samtools view` before hand).
+There are also naming issues in the module repo: 39 process names don’t match the primary tool used in their script blocks (see [linked issue](https://github.com/nf-core/modules/issues/11073)). We should name modules to reflect the main tool and subtool (e.g., a module that primarily runs `AuthentiCT deam2cont` should be named `AUTHENTICT_DEAM2CONT` even if it calls `samtools view` beforehand).
 
 ### Subworkflows
 
@@ -81,14 +81,14 @@ The spring cleaning hackathon ran from 2–6 March and focused on tidying the mo
 - Tags were added to improve triage and track work during and after the hackathon.
 - Pipeline proposals were reviewed and maintainers were asked to add relevant issues to the hackathon project board.
 
-Louis took over the post hackathon cleanup for modules topics-migration opened PRs and issues (7 issues left).
+Louis took over the post-hackathon cleanup for modules topics-migration opened PRs and issues (7 issues left).
 
-## Micelleanous
+## Miscellaneous
 
 ### Codespace / Ona
 
 GitHub Codespaces (now Ona) launched an open-source plan.
-Ana investigated organisation-level options but hasn’t received a human response from GitHub yet.
+Ana investigated organization-level options but hasn’t received a human response from GitHub yet.
 
 ### Meeting time
 
@@ -100,12 +100,12 @@ Options discussed include a monthly time shift or changing the meeting day — w
 
 R modules currently duplicate code to parse Nextflow inputs and produce log/version YAML files.
 Louis created a small R package exposing two helper functions to handle these tasks.
-It currently uses base R but could adopt argparse in future.
+It currently uses base R but could adopt argparse in the future.
 
 ### Bulk modules testing
 
 Updating modules only to discover broken tests is painful.
-We plan to run bulk tests on modules that haven't been ran for a long time, produce a report of failures, and prioritise fixes.
+We plan to run bulk tests on modules that haven't been run for a long time, produce a report of failures, and prioritize fixes.
 
 ### Singularity timeouts and new container system
 
@@ -115,20 +115,20 @@ We may add a new command (e.g., `nf-core modules containers`) to better manage c
 
 ### nf-tests and strict syntax
 
-Strict syntax support has beed added to nf-test and released.
+Strict syntax support has been added to nf-test and released.
 
 ### Proprietary software
 
-Some module processes lack containers because the software is not open‑source.
-In a few cases vendors have provided licences that allow nf‑core to run unit tests, but many remain untestable.
+Some modules lack containers because the software is not open‑source.
+In a few cases, vendors have provided licenses that allow nf‑core to run unit tests, but many remain untestable.
 
 Example: `Dragen` requires dedicated hardware, so we can only run stub tests and cannot verify reported versions.
 
-Therefore all this modules should now have a prominent warning at the top, explaining they are untested or partially tested and that installation/use requires caution.
+Therefore, all these modules should now have a prominent warning at the top, explaining they are untested or partially tested and that installation/use requires caution.
 
-## Bitesize talk idea
+## Bitesize talk ideas
 
-We have plenty of idea but not enough volunteer ! Here are some subject we would like to cover:
+We have plenty of ideas but not enough volunteers! Here are some subjects we would like to cover:
 
 - nf-metro
 - nf-core <3 GPUs
@@ -137,7 +137,7 @@ We have plenty of idea but not enough volunteer ! Here are some subject we would
 
 ## End
 
-That's all folks !
-We’ll aim to publish maintainers minutes more regularly in the coming months.
+That's all folks!
+We’ll aim to publish maintainers' minutes more regularly in the coming months.
 
 \- :heart: from your #maintainers team!
