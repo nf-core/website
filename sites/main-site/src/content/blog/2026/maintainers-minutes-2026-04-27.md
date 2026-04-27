@@ -1,5 +1,5 @@
 ---
-title: "Maintainers Minutes: March 2026"
+title: "Maintainers Minutes: January - April 2026"
 subtitle: "Keeping you informed of the latest maintainers discussions"
 pubDate: 2026-04-27T10:00:00+01:00
 headerImage: "/assets/images/blog/maintainers-minutes-2024-07-26/maintainers-wide.png"
