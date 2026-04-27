@@ -18,9 +18,10 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 # Highlights
 
+- [Auto-generated container config files](#auto-generated-container-config-files)
 - [Nextflow strict syntax in the pipeline template](#nextflow-strict-syntax-in-the-pipeline-template)
 - [New command aliases](#new-command-aliases)
-- Migration to nf-slack
+- [Webhook notifications removed](#webhook-notifications-removed)
 
 ## Webhook notifications removed
 
@@ -93,7 +94,56 @@ This means issues are caught at commit time rather than failing in CI or, worse,
 If you want to understand what strict syntax means in practice and how to update your pipeline, the [migration guide](/docs/tutorials/migrate_to_strict_syntax/config_strict_syntax) covers the most common patterns.
 For the broader picture of how nf-core is rolling out strict syntax across pipelines, modules, and configs, see the [Nextflow syntax roadmap blog post](https://nf-co.re/blog/2025/nextflow_syntax_nf-core_roadmap).
 
+## Auto-generated container config files
+
+nf-core/tools now generates per-platform container config files for your pipeline automatically.
+
+When you run `nf-core modules install`, `nf-core modules update`, or `nf-core modules remove`, tools calls `nextflow inspect` under the hood and writes a set of config files into `conf/`:
+
+```
+conf/containers_docker_amd64.config
+conf/containers_singularity_oras_amd64.config
+conf/containers_singularity_oras_arm64.config
+conf/containers_singularity_https_amd64.config
+conf/containers_singularity_https_arm64.config
+```
+
+Each file contains `process.withName` blocks that pin the exact container for every module, per platform and architecture. This means you no longer have to manage container references by hand — they stay in sync with your installed modules automatically.
+
+Pipeline linting also checks that these files are up to date. If the installed modules have drifted from the generated configs, lint will flag it (and `nf-core pipelines lint --fix container_configs` can regenerate them for you).
+
+## Removed deprecated commands
+
+The `--migrate-pytest` flag and all related migration tooling have been removed. This flag was introduced to help transition modules from pytest-based tests to nf-test, and that migration is now complete.
+
+The following deprecated pipeline sub-commands are also gone:
+
+- `nf-core pipelines rocrate`
+- `nf-core pipelines create-logo`
+
+If you were still using any of these, you'll need to update your workflows before upgrading.
+
 ## Other improvements
+
+### `--force` flag for `modules remove` and `subworkflows remove`
+
+`nf-core modules remove` and `nf-core subworkflows remove` now accept a `--force` flag, which skips the confirmation prompt. This is handy for scripted or CI workflows where you want to remove components non-interactively.
+
+### Apptainer support in module template
+
+The module template now includes Apptainer as a container option alongside Docker and Singularity. New modules created with `nf-core modules create` will have Apptainer directives included by default.
+
+### RO-Crate: contributors from `manifest.contributors`
+
+`nf-core pipelines rocrate` now reads `manifest.contributors` from `nextflow.config` and maps those entries into the RO-Crate metadata. Pipeline contributors declared in the Nextflow manifest will automatically appear in the generated crate without any extra configuration.
+
+### Lint: compressed file syntax in stubs
+
+The linter now checks that stub blocks use correct syntax for compressed output files (`.gz` as the final extension). Incorrect patterns are caught at lint time rather than failing during test runs.
+
+### Fix `pipelines download --platform` output structure
+
+`nf-core pipelines download --platform` now produces the correct output directory structure and container tags. This was a regression that caused platform-targeted downloads to be incorrectly laid out.
 
 ### Switch from pre-commit to prek in the pipeline template
 
