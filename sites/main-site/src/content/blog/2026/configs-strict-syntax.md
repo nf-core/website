@@ -2,8 +2,8 @@
 title: "Making nf-core/configs strict syntax compliant"
 subtitle: "Announcement and recommendations for updating nf-core/configs Nextflow strict syntax compliant"
 pubDate: 2026-03-05T09:00:00+01:00
-headerImage: "/assets/images/blog/configs-strict-syntax/stricter_syntax.png"
-headerImageAlt: '"Stricter syntax" written in the style of the Stranger Things logo.'
+headerImage: "https://images.unsplash.com/photo-1568828859201-eb43a26c2454"
+headerImageAlt: "Many different wires zip-tied together in a neat vertical line."
 authors:
   - nvnieuwk
   - jfy133
