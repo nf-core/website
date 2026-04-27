@@ -26,7 +26,7 @@ Major topics covered in this period:
 - Deprecation process
 - March hackathon
 - Miscellaneous things
-- Bitesize talks
+- Bytesize talks
 
 ## Writing guidelines
 
