@@ -79570,7 +79570,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false , sex:'female']`;\noptions for sex: male, female, none, auto\n"
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false]`\n"
               }
             },
             {
@@ -79583,6 +79583,12 @@
                     "edam": "http://edamontology.org/format_1930"
                   }
                 ]
+              }
+            },
+            {
+              "sex": {
+                "type": "string",
+                "description": "Sample's sex.\nRecognize options: male, female, none, auto\n"
               }
             }
           ],
@@ -79896,7 +79902,12 @@
                 "${prefix}-replay.json": {
                   "type": "file",
                   "description": "Contains the exact set of parameters that specifies the analysis",
-                  "pattern": "*-replay.json"
+                  "pattern": "*-replay.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -79913,7 +79924,12 @@
                 "${prefix}.*_coverage_metrics.csv": {
                   "type": "file",
                   "description": "Provides metrics over a region, a target region, or a QC coverage region",
-                  "pattern": "*.*_coverage_metrics.csv"
+                  "pattern": "*.*_coverage_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -79930,7 +79946,12 @@
                 "${prefix}.SJ.saturation.txt": {
                   "type": "file",
                   "description": "Measures sequencing saturation of the library",
-                  "pattern": "*.SJ.saturation.txt"
+                  "pattern": "*.SJ.saturation.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -79947,7 +79968,12 @@
                 "${prefix}.baf.bedgraph.gz": {
                   "type": "file",
                   "description": "Contains b-allele counting",
-                  "pattern": "*.baf.bedgraph.gz"
+                  "pattern": "*.baf.bedgraph.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -79964,7 +79990,8 @@
                 "${prefix}.baf.bw": {
                   "type": "file",
                   "description": "BigWig file containing variants",
-                  "pattern": "*.baf.bw"
+                  "pattern": "*.baf.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -79981,7 +80008,8 @@
                 "${prefix}.baf.seg": {
                   "type": "file",
                   "description": "Contains segmentation of b-allele loci",
-                  "pattern": "*.baf.seg"
+                  "pattern": "*.baf.seg",
+                  "ontologies": []
                 }
               }
             ]
@@ -79998,7 +80026,8 @@
                 "${prefix}.baf.seq.bw": {
                   "type": "file",
                   "description": "BigWig representation of the BAF segments",
-                  "pattern": "*.baf.seq.bw"
+                  "pattern": "*.baf.seq.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -80015,7 +80044,12 @@
                 "${prefix}.ballele.counts.gz": {
                   "type": "file",
                   "description": "TSV-file containing b-allele counts",
-                  "pattern": "*.ballele.counts.gz"
+                  "pattern": "*.ballele.counts.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80032,7 +80066,12 @@
                 "${prefix}.bam": {
                   "type": "file",
                   "description": "Contains aligned reads",
-                  "pattern": "*.bam"
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
@@ -80049,7 +80088,12 @@
                 "${prefix}.bam.bai": {
                   "type": "file",
                   "description": "Index file for the BAM file",
-                  "pattern": "*.bam.bai"
+                  "pattern": "*.bam.bai",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
+                    }
+                  ]
                 }
               }
             ]
@@ -80066,7 +80110,8 @@
                 "${prefix}.bam.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the BAM file",
-                  "pattern": "*.bam.md5sum"
+                  "pattern": "*.bam.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80083,7 +80128,12 @@
                 "${prefix}.cnv.excluded_intervals.bed.gz": {
                   "type": "file",
                   "description": "Contains excluded intervals from CNV analysis",
-                  "pattern": "*.cnv.excluded_intervals.bed.gz"
+                  "pattern": "*.cnv.excluded_intervals.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80100,7 +80150,12 @@
                 "${prefix}.cnv.gff3": {
                   "type": "file",
                   "description": "GFF3 representation of the CNV events",
-                  "pattern": "*.cnv.gff3"
+                  "pattern": "*.cnv.gff3",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1975"
+                    }
+                  ]
                 }
               }
             ]
@@ -80117,7 +80172,12 @@
                 "${prefix}.cnv.igv_session.xml": {
                   "type": "file",
                   "description": "IGV session XML file is prepopulated with track files",
-                  "pattern": "*.cnv.igv_session.xml"
+                  "pattern": "*.cnv.igv_session.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
                 }
               }
             ]
@@ -80134,7 +80194,12 @@
                 "${prefix}.cnv.pon_correlation.txt.gz": {
                   "type": "file",
                   "description": "PON Correlation File",
-                  "pattern": "*.cnv.pon_correlation.txt.gz"
+                  "pattern": "*.cnv.pon_correlation.txt.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80151,7 +80216,12 @@
                 "${prefix}.cnv.pon_metrics.tsv.gz": {
                   "type": "file",
                   "description": "PON Metrics File",
-                  "pattern": "*.cnv.pon_metrics.tsv.gz"
+                  "pattern": "*.cnv.pon_metrics.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80168,7 +80238,12 @@
                 "${prefix}.cnv.purity.coverage.models.tsv": {
                   "type": "file",
                   "description": "Describes the different tested models and their log-likelihood",
-                  "pattern": "*.cnv.purity.coverage.models.tsv"
+                  "pattern": "*.cnv.purity.coverage.models.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -80185,7 +80260,12 @@
                 "${prefix}.cnv.segdups.joint_coverage.tsv.gz": {
                   "type": "file",
                   "description": "Contains normalized joint coverage",
-                  "pattern": "*.cnv.segdups.joint_coverage.tsv.gz"
+                  "pattern": "*.cnv.segdups.joint_coverage.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80202,7 +80282,12 @@
                 "${prefix}.cnv.segdups.rescued_intervals.tsv.gz": {
                   "type": "file",
                   "description": "Contains rescued intervals",
-                  "pattern": "*.cnv.segdups.rescued_intervals.tsv.gz"
+                  "pattern": "*.cnv.segdups.rescued_intervals.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80219,7 +80304,12 @@
                 "${prefix}.cnv.segdups.site_ratios.tsv.gz": {
                   "type": "file",
                   "description": "Contains proportion of coverage to associate to the first and to the second interval",
-                  "pattern": "*.cnv.segdups.site_ratios.tsv.gz"
+                  "pattern": "*.cnv.segdups.site_ratios.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80236,7 +80326,12 @@
                 "${prefix}.cnv.vcf": {
                   "type": "file",
                   "description": "VCF file containing CNV variants",
-                  "pattern": "*.cnv.vcf"
+                  "pattern": "*.cnv.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
                 }
               }
             ]
@@ -80253,7 +80348,15 @@
                 "${prefix}.cnv.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing CNV variants",
-                  "pattern": "*.cnv.vcf.gz"
+                  "pattern": "*.cnv.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80270,7 +80373,8 @@
                 "${prefix}.cnv.vcf.gz.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the gzipped CNV VCF",
-                  "pattern": "*.cnv.vcf.gz.md5sum"
+                  "pattern": "*.cnv.vcf.gz.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80287,7 +80391,12 @@
                 "${prefix}.cnv.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped CNV VCF",
-                  "pattern": "*.cnv.vcf.gz.tbi"
+                  "pattern": "*.cnv.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
                 }
               }
             ]
@@ -80304,7 +80413,12 @@
                 "${prefix}.cnv_metrics.csv": {
                   "type": "file",
                   "description": "Contains CNV metrics",
-                  "pattern": "*.cnv_metrics.csv"
+                  "pattern": "*.cnv_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80321,7 +80435,12 @@
                 "${prefix}.cnv_sv.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing CNV structural variants",
-                  "pattern": "*.cnv_sv.vcf.gz"
+                  "pattern": "*.cnv_sv.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80338,7 +80457,12 @@
                 "${prefix}.combined.counts.txt.gz": {
                   "type": "file",
                   "description": "Column-wise concatenation of individual counts used to form the panel of normals",
-                  "pattern": "*.combined.counts.txt.gz"
+                  "pattern": "*.combined.counts.txt.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80355,7 +80479,12 @@
                 "${prefix}.cram": {
                   "type": "file",
                   "description": "Contains aligned reads in CRAM format",
-                  "pattern": "*.cram"
+                  "pattern": "*.cram",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
                 }
               }
             ]
@@ -80372,7 +80501,8 @@
                 "${prefix}.cram.crai": {
                   "type": "file",
                   "description": "Index file for the CRAM file",
-                  "pattern": "*.cram.crai"
+                  "pattern": "*.cram.crai",
+                  "ontologies": []
                 }
               }
             ]
@@ -80389,7 +80519,8 @@
                 "${prefix}.cram.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the CRAM file",
-                  "pattern": "*.cram.md5sum"
+                  "pattern": "*.cram.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80406,7 +80537,12 @@
                 "${prefix}.excluded_intervals.bed.gz": {
                   "type": "file",
                   "description": "Gzipped BED file containing excluded intervals",
-                  "pattern": "*.excluded_intervals.bed.gz"
+                  "pattern": "*.excluded_intervals.bed.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80423,7 +80559,12 @@
                 "${prefix}.fastqc_metrics.csv": {
                   "type": "file",
                   "description": "FastQC metrics file",
-                  "pattern": "*.fastqc_metrics.csv"
+                  "pattern": "*.fastqc_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80440,7 +80581,12 @@
                 "${prefix}.fragment_length_hist.csv": {
                   "type": "file",
                   "description": "Contains insert length distribution",
-                  "pattern": "*.fragment_length_hist.csv"
+                  "pattern": "*.fragment_length_hist.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80457,7 +80603,15 @@
                 "${prefix}.g.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing genomic variants",
-                  "pattern": "*.g.vcf.gz"
+                  "pattern": "*.g.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80474,7 +80628,12 @@
                 "${prefix}.g.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped VCF",
-                  "pattern": "*.g.vcf.gz.tbi"
+                  "pattern": "*.g.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
                 }
               }
             ]
@@ -80491,7 +80650,12 @@
                 "${prefix}.gc_metrics.csv": {
                   "type": "file",
                   "description": "Contains GC content metrics",
-                  "pattern": "*.gc_metrics.csv"
+                  "pattern": "*.gc_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80508,7 +80672,8 @@
                 "${prefix}.hard-filtered.baf.bw": {
                   "type": "file",
                   "description": "BigWig file containing hard-filtered BAF segments",
-                  "pattern": "*.hard-filtered.baf.bw"
+                  "pattern": "*.hard-filtered.baf.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -80525,7 +80690,8 @@
                 "${prefix}.hard-filtered.gvcf.gz.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the gzipped hard-filtered GVCF",
-                  "pattern": "*.hard-filtered.gvcf.gz.md5sum"
+                  "pattern": "*.hard-filtered.gvcf.gz.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80542,7 +80708,12 @@
                 "${prefix}.hard-filtered.vcf": {
                   "type": "file",
                   "description": "VCF file containing hard-filtered variants",
-                  "pattern": "*.hard-filtered.vcf"
+                  "pattern": "*.hard-filtered.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
                 }
               }
             ]
@@ -80559,7 +80730,15 @@
                 "${prefix}.hard-filtered.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing hard-filtered variants",
-                  "pattern": "*.hard-filtered.vcf.gz"
+                  "pattern": "*.hard-filtered.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80576,7 +80755,8 @@
                 "${prefix}.hard-filtered.vcf.gz.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the gzipped hard-filtered VCF",
-                  "pattern": "*.hard-filtered.vcf.gz.md5sum"
+                  "pattern": "*.hard-filtered.vcf.gz.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80593,7 +80773,12 @@
                 "${prefix}.hard-filtered.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped hard-filtered VCF",
-                  "pattern": "*.hard-filtered.vcf.gz.tbi"
+                  "pattern": "*.hard-filtered.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3616"
+                    }
+                  ]
                 }
               }
             ]
@@ -80610,7 +80795,8 @@
                 "${prefix}.improper.pairs.bw": {
                   "type": "file",
                   "description": "BigWig file containing improper read pairs",
-                  "pattern": "*.improper.pairs.bw"
+                  "pattern": "*.improper.pairs.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -80627,7 +80813,8 @@
                 "${prefix}.impute.chunk.out.txt": {
                   "type": "file",
                   "description": "Contains chunk regions to be passed along to the internal phase step",
-                  "pattern": "*.impute.chunk.out.txt"
+                  "pattern": "*.impute.chunk.out.txt",
+                  "ontologies": []
                 }
               }
             ]
@@ -80644,7 +80831,8 @@
                 "${prefix}.impute.phase.out.txt": {
                   "type": "file",
                   "description": "List containing all VCF files",
-                  "pattern": "*.impute.phase.out.txt"
+                  "pattern": "*.impute.phase.out.txt",
+                  "ontologies": []
                 }
               }
             ]
@@ -80661,7 +80849,12 @@
                 "${prefix}.impute.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing imputed variants",
-                  "pattern": "*.impute.vcf.gz"
+                  "pattern": "*.impute.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80678,7 +80871,12 @@
                 "${prefix}.insert-stats.tab": {
                   "type": "file",
                   "description": "Contains insert size statistics",
-                  "pattern": "*.insert-stats.tab"
+                  "pattern": "*.insert-stats.tab",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -80695,7 +80893,12 @@
                 "${prefix}.mapping_metrics.csv": {
                   "type": "file",
                   "description": "Contains mapping metrics",
-                  "pattern": "*.mapping_metrics.csv"
+                  "pattern": "*.mapping_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80712,7 +80915,12 @@
                 "${prefix}.multiomics.barcodeSummary.tsv": {
                   "type": "file",
                   "description": "Contains barcode summary information",
-                  "pattern": "*.multiomics.barcodeSummary.tsv"
+                  "pattern": "*.multiomics.barcodeSummary.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -80729,7 +80937,12 @@
                 "${prefix}.multiomics.barcodes.tsv.gz": {
                   "type": "file",
                   "description": "Gzipped File containing barcode summary information",
-                  "pattern": "*.multiomics.barcodes.tsv.gz"
+                  "pattern": "*.multiomics.barcodes.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80746,7 +80959,12 @@
                 "${prefix}.multiomics.features.tsv.gz": {
                   "type": "file",
                   "description": "Gzipped file containing multiomics features",
-                  "pattern": "*.multiomics.features.tsv.gz"
+                  "pattern": "*.multiomics.features.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80763,7 +80981,12 @@
                 "${prefix}.multiomics.filtered.barcodes.tsv.gz": {
                   "type": "file",
                   "description": "Gzipped file containing filtered barcode information",
-                  "pattern": "*.multiomics.filtered.barcodes.tsv.gz"
+                  "pattern": "*.multiomics.filtered.barcodes.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80780,7 +81003,12 @@
                 "${prefix}.multiomics.matrix.mtx.gz": {
                   "type": "file",
                   "description": "Gzipped matrix file containing multiomics data",
-                  "pattern": "*.multiomics.matrix.mtx.gz"
+                  "pattern": "*.multiomics.matrix.mtx.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80797,7 +81025,12 @@
                 "${prefix}.multiomics.metrics.csv": {
                   "type": "file",
                   "description": "Contains multiomics metrics",
-                  "pattern": "*.multiomics.metrics.csv"
+                  "pattern": "*.multiomics.metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80814,7 +81047,8 @@
                 "${prefix}.pcr-mode*.log": {
                   "type": "file",
                   "description": "Log file containing PCR model information",
-                  "pattern": "*.pcr-mode*.log"
+                  "pattern": "*.pcr-mode*.log",
+                  "ontologies": []
                 }
               }
             ]
@@ -80831,7 +81065,8 @@
                 "${prefix}.ploidy.vcf": {
                   "type": "file",
                   "description": "Contains ploidy information in VCF format",
-                  "pattern": "*.ploidy.vcf"
+                  "pattern": "*.ploidy.vcf",
+                  "ontologies": []
                 }
               }
             ]
@@ -80848,7 +81083,12 @@
                 "${prefix}.ploidy.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing ploidy information",
-                  "pattern": "*.ploidy.vcf.gz"
+                  "pattern": "*.ploidy.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80865,7 +81105,8 @@
                 "${prefix}.ploidy.vcf.gz.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the gzipped ploidy VCF",
-                  "pattern": "*.ploidy.vcf.gz.md5sum"
+                  "pattern": "*.ploidy.vcf.gz.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -80882,7 +81123,8 @@
                 "${prefix}.ploidy.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped ploidy VCF",
-                  "pattern": "*.ploidy.vcf.gz.tbi"
+                  "pattern": "*.ploidy.vcf.gz.tbi",
+                  "ontologies": []
                 }
               }
             ]
@@ -80899,7 +81141,12 @@
                 "${prefix}.ploidy_estimation_metrics.csv": {
                   "type": "file",
                   "description": "Contains metrics related to ploidy estimation",
-                  "pattern": "*.ploidy_estimation_metrics.csv"
+                  "pattern": "*.ploidy_estimation_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80916,7 +81163,12 @@
                 "${prefix}.preprocess.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing preprocessed variants",
-                  "pattern": "*.preprocess.vcf.gz"
+                  "pattern": "*.preprocess.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -80933,7 +81185,8 @@
                 "${prefix}.quant.genes.sf": {
                   "type": "file",
                   "description": "Contains gene quantification results in Salmon format",
-                  "pattern": "*.quant.genes.sf"
+                  "pattern": "*.quant.genes.sf",
+                  "ontologies": []
                 }
               }
             ]
@@ -80950,7 +81203,12 @@
                 "${prefix}.quant.metrics.csv": {
                   "type": "file",
                   "description": "Contains quantification metrics in CSV format",
-                  "pattern": "*.quant.metrics.csv"
+                  "pattern": "*.quant.metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -80967,7 +81225,8 @@
                 "${prefix}.quant.sf": {
                   "type": "file",
                   "description": "Contains quantification results in Salmon format",
-                  "pattern": "*.quant.sf"
+                  "pattern": "*.quant.sf",
+                  "ontologies": []
                 }
               }
             ]
@@ -80984,7 +81243,8 @@
                 "${prefix}.quant.transcript_coverage.txt": {
                   "type": "file",
                   "description": "Contains transcript coverage information",
-                  "pattern": "*.quant.transcript_coverage.txt"
+                  "pattern": "*.quant.transcript_coverage.txt",
+                  "ontologies": []
                 }
               }
             ]
@@ -81001,7 +81261,8 @@
                 "${prefix}.quant.transcript_fragment_lengths.txt": {
                   "type": "file",
                   "description": "Contains transcript fragment lengths",
-                  "pattern": "*.quant.transcript_fragment_lengths.txt"
+                  "pattern": "*.quant.transcript_fragment_lengths.txt",
+                  "ontologies": []
                 }
               }
             ]
@@ -81018,7 +81279,8 @@
                 "${prefix}.realigned-regions.bed": {
                   "type": "file",
                   "description": "Contains regions that have been realigned",
-                  "pattern": "*.realigned-regions.bed"
+                  "pattern": "*.realigned-regions.bed",
+                  "ontologies": []
                 }
               }
             ]
@@ -81035,7 +81297,8 @@
                 "${prefix}.repeats.bam": {
                   "type": "file",
                   "description": "Contains reads aligned to repeat regions",
-                  "pattern": "*.repeats.bam"
+                  "pattern": "*.repeats.bam",
+                  "ontologies": []
                 }
               }
             ]
@@ -81052,7 +81315,8 @@
                 "${prefix}.repeats.vcf": {
                   "type": "file",
                   "description": "Contains variants in repeat regions",
-                  "pattern": "*.repeats.vcf"
+                  "pattern": "*.repeats.vcf",
+                  "ontologies": []
                 }
               }
             ]
@@ -81069,7 +81333,12 @@
                 "${prefix}.repeats.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file with variants in repeat regions",
-                  "pattern": "*.repeats.vcf.gz"
+                  "pattern": "*.repeats.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81086,7 +81355,8 @@
                 "${prefix}.repeats.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped repeats VCF",
-                  "pattern": "*.repeats.vcf.gz.tbi"
+                  "pattern": "*.repeats.vcf.gz.tbi",
+                  "ontologies": []
                 }
               }
             ]
@@ -81103,7 +81373,8 @@
                 "${prefix}.roh.bed": {
                   "type": "file",
                   "description": "Contains regions of homozygosity",
-                  "pattern": "*.roh.bed"
+                  "pattern": "*.roh.bed",
+                  "ontologies": []
                 }
               }
             ]
@@ -81120,7 +81391,12 @@
                 "${prefix}.roh_metrics.csv": {
                   "type": "file",
                   "description": "Contains metrics related to regions of homozygosity",
-                  "pattern": "*.roh_metrics.csv"
+                  "pattern": "*.roh_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81137,7 +81413,8 @@
                 "${prefix}.sam": {
                   "type": "file",
                   "description": "Contains aligned read data in SAM format",
-                  "pattern": "*.sam"
+                  "pattern": "*.sam",
+                  "ontologies": []
                 }
               }
             ]
@@ -81154,7 +81431,8 @@
                 "${prefix}.seg": {
                   "type": "file",
                   "description": "Contains segmentation of genomic regions",
-                  "pattern": "*.seg"
+                  "pattern": "*.seg",
+                  "ontologies": []
                 }
               }
             ]
@@ -81171,7 +81449,8 @@
                 "${prefix}.seg.bw": {
                   "type": "file",
                   "description": "BigWig file containing segmentation data",
-                  "pattern": "*.seg.bw"
+                  "pattern": "*.seg.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -81188,7 +81467,8 @@
                 "${prefix}.seg.c.partial.Y": {
                   "type": "file",
                   "description": "Contains partial Y chromosome segmentation data",
-                  "pattern": "*.seg.c.partial.Y"
+                  "pattern": "*.seg.c.partial.Y",
+                  "ontologies": []
                 }
               }
             ]
@@ -81205,7 +81485,8 @@
                 "${prefix}.seg.called": {
                   "type": "file",
                   "description": "Contains called segmentation data",
-                  "pattern": "*.seg.called"
+                  "pattern": "*.seg.called",
+                  "ontologies": []
                 }
               }
             ]
@@ -81222,7 +81503,8 @@
                 "${prefix}.seg.called.merged": {
                   "type": "file",
                   "description": "Contains merged segmentation data",
-                  "pattern": "*.seg.called.merged"
+                  "pattern": "*.seg.called.merged",
+                  "ontologies": []
                 }
               }
             ]
@@ -81239,7 +81521,8 @@
                 "${prefix}.select.gvcf": {
                   "type": "file",
                   "description": "Contains selected genomic variants in GVCF format",
-                  "pattern": "*.select.gvcf"
+                  "pattern": "*.select.gvcf",
+                  "ontologies": []
                 }
               }
             ]
@@ -81256,7 +81539,8 @@
                 "${prefix}.small_indel_dedup": {
                   "type": "file",
                   "description": "Contains deduplicated small indel variants",
-                  "pattern": "*.small_indel_dedup"
+                  "pattern": "*.small_indel_dedup",
+                  "ontologies": []
                 }
               }
             ]
@@ -81273,7 +81557,8 @@
                 "${prefix}.smn_dedup": {
                   "type": "file",
                   "description": "Contains deduplicated SMN variants",
-                  "pattern": "*.smn_dedup"
+                  "pattern": "*.smn_dedup",
+                  "ontologies": []
                 }
               }
             ]
@@ -81290,7 +81575,8 @@
                 "${prefix}.snperror-sampler.log": {
                   "type": "file",
                   "description": "Log file containing information about SNP error sampling",
-                  "pattern": "*.snperror-sampler.log"
+                  "pattern": "*.snperror-sampler.log",
+                  "ontologies": []
                 }
               }
             ]
@@ -81307,7 +81593,8 @@
                 "${prefix}.sv.vcf": {
                   "type": "file",
                   "description": "VCF file containing structural variants",
-                  "pattern": "*.sv.vcf"
+                  "pattern": "*.sv.vcf",
+                  "ontologies": []
                 }
               }
             ]
@@ -81324,7 +81611,8 @@
                 "${prefix}.sv.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped SV VCF",
-                  "pattern": "*.sv.vcf.gz.tbi"
+                  "pattern": "*.sv.vcf.gz.tbi",
+                  "ontologies": []
                 }
               }
             ]
@@ -81341,7 +81629,12 @@
                 "${prefix}.sv_metrics.csv": {
                   "type": "file",
                   "description": "Contains metrics related to structural variants",
-                  "pattern": "*.sv_metrics.csv"
+                  "pattern": "*.sv_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81358,7 +81651,8 @@
                 "${prefix}.target.counts.bw": {
                   "type": "file",
                   "description": "BigWig file containing target counts",
-                  "pattern": "*.target.counts.bw"
+                  "pattern": "*.target.counts.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -81375,7 +81669,8 @@
                 "${prefix}.target.counts.diploid.bw": {
                   "type": "file",
                   "description": "BigWig file containing diploid target counts",
-                  "pattern": "*.target.counts.diploid.bw"
+                  "pattern": "*.target.counts.diploid.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -81392,7 +81687,12 @@
                 "${prefix}.target.counts.gc-corrected.gz": {
                   "type": "file",
                   "description": "Gzipped file containing GC-corrected target counts",
-                  "pattern": "*.target.counts.gc-corrected.gz"
+                  "pattern": "*.target.counts.gc-corrected.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81409,7 +81709,12 @@
                 "${prefix}.target.counts.gz": {
                   "type": "file",
                   "description": "Gzipped file containing target counts",
-                  "pattern": "*.target.counts.gz"
+                  "pattern": "*.target.counts.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81426,7 +81731,12 @@
                 "${prefix}.targeted.json": {
                   "type": "file",
                   "description": "JSON file containing targeted sequencing information",
-                  "pattern": "*.targeted.json"
+                  "pattern": "*.targeted.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
                 }
               }
             ]
@@ -81443,7 +81753,12 @@
                 "${prefix}.targeted.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing targeted variants",
-                  "pattern": "*.targeted.vcf.gz"
+                  "pattern": "*.targeted.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81460,7 +81775,12 @@
                 "${prefix}.time_metrics.csv": {
                   "type": "file",
                   "description": "Contains time metrics for the workflow",
-                  "pattern": "*.time_metrics.csv"
+                  "pattern": "*.time_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81477,7 +81797,8 @@
                 "${prefix}.tn.bw": {
                   "type": "file",
                   "description": "BigWig file containing TN (Tumor Normal) data",
-                  "pattern": "*.tn.bw"
+                  "pattern": "*.tn.bw",
+                  "ontologies": []
                 }
               }
             ]
@@ -81494,7 +81815,12 @@
                 "${prefix}.tn.tsv.gz": {
                   "type": "file",
                   "description": "Contains TN data in gzipped TSV format",
-                  "pattern": "*.tn.tsv.gz"
+                  "pattern": "*.tn.tsv.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81511,7 +81837,12 @@
                 "${prefix}.trimmer_metrics.csv": {
                   "type": "file",
                   "description": "Contains metrics from the trimmer",
-                  "pattern": "*.trimmer_metrics.csv"
+                  "pattern": "*.trimmer_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81528,7 +81859,12 @@
                 "${prefix}.vc_hethom_ratio_metrics.csv": {
                   "type": "file",
                   "description": "Contains heterozygous to homozygous ratio metrics",
-                  "pattern": "*.vc_hethom_ratio_metrics.csv"
+                  "pattern": "*.vc_hethom_ratio_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81545,7 +81881,12 @@
                 "${prefix}.vc_metrics.csv": {
                   "type": "file",
                   "description": "Contains variant calling metrics",
-                  "pattern": "*.vc_metrics.csv"
+                  "pattern": "*.vc_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81562,7 +81903,12 @@
                 "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing genomic variants",
-                  "pattern": "*.vcf.gz"
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81579,7 +81925,8 @@
                 "${prefix}.vcf.gz.md5sum": {
                   "type": "file",
                   "description": "MD5 checksum file for the gzipped VCF",
-                  "pattern": "*.vcf.gz.md5sum"
+                  "pattern": "*.vcf.gz.md5sum",
+                  "ontologies": []
                 }
               }
             ]
@@ -81596,7 +81943,8 @@
                 "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index file for the gzipped VCF",
-                  "pattern": "*.vcf.gz.tbi"
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": []
                 }
               }
             ]
@@ -81613,7 +81961,12 @@
                 "${prefix}.wgs_contig_mean_cov.csv": {
                   "type": "file",
                   "description": "Contains WGS contig mean coverage metrics",
-                  "pattern": "*.wgs_contig_mean_cov.csv"
+                  "pattern": "*.wgs_contig_mean_cov.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81630,7 +81983,12 @@
                 "${prefix}.wgs_coverage_metrics.csv": {
                   "type": "file",
                   "description": "Contains WGS coverage metrics",
-                  "pattern": "*.wgs_coverage_metrics.csv"
+                  "pattern": "*.wgs_coverage_metrics.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81647,7 +82005,12 @@
                 "${prefix}.wgs_fine_hist.csv": {
                   "type": "file",
                   "description": "Contains WGS fine histogram data",
-                  "pattern": "*.wgs_fine_hist.csv"
+                  "pattern": "*.wgs_fine_hist.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81664,7 +82027,12 @@
                 "${prefix}.wgs_hist.csv": {
                   "type": "file",
                   "description": "Contains WGS histogram data",
-                  "pattern": "*.wgs_hist.csv"
+                  "pattern": "*.wgs_hist.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81681,7 +82049,12 @@
                 "${prefix}.wgs_overall_mean_cov.csv": {
                   "type": "file",
                   "description": "Contains WGS overall mean coverage metrics",
-                  "pattern": "*.wgs_overall_mean_cov.csv"
+                  "pattern": "*.wgs_overall_mean_cov.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81698,7 +82071,8 @@
                 "${prefix}_callability.bed": {
                   "type": "file",
                   "description": "BED file containing callability regions",
-                  "pattern": "*_callability.bed"
+                  "pattern": "*_callability.bed",
+                  "ontologies": []
                 }
               }
             ]
@@ -81715,7 +82089,12 @@
                 "${prefix}_chr_start-end.impute.phase.vcf.gz": {
                   "type": "file",
                   "description": "Gzipped VCF file containing phased imputed variants",
-                  "pattern": "*_chr_start-end.impute.phase.vcf.gz"
+                  "pattern": "*_chr_start-end.impute.phase.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -81732,7 +82111,12 @@
                 "${prefix}_contig_mean_cov.csv": {
                   "type": "file",
                   "description": "Contains WGS contig mean coverage metrics",
-                  "pattern": "*_contig_mean_cov.csv"
+                  "pattern": "*_contig_mean_cov.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81749,7 +82133,8 @@
                 "${prefix}_cov_report.bed": {
                   "type": "file",
                   "description": "BED file containing coverage report",
-                  "pattern": "*_cov_report.bed"
+                  "pattern": "*_cov_report.bed",
+                  "ontologies": []
                 }
               }
             ]
@@ -81766,7 +82151,18 @@
                 "${prefix}_evidence.{b,cr,s}am": {
                   "type": "file",
                   "description": "Sorted BAM, CRAM or SAM file containing evidence reads",
-                  "pattern": "*_evidence.{b,cr,s}am"
+                  "pattern": "*_evidence.{b,cr,s}am",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3462"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_2573"
+                    }
+                  ]
                 }
               }
             ]
@@ -81783,7 +82179,12 @@
                 "${prefix}_fine_hist.csv": {
                   "type": "file",
                   "description": "Contains fine histogram data",
-                  "pattern": "*_fine_hist.csv"
+                  "pattern": "*_fine_hist.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81800,7 +82201,12 @@
                 "${prefix}_full_res.bed": {
                   "type": "file",
                   "description": "BED file containing full resolution data",
-                  "pattern": "*_full_res.bed"
+                  "pattern": "*_full_res.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
                 }
               }
             ]
@@ -81817,7 +82223,12 @@
                 "${prefix}_hist.csv": {
                   "type": "file",
                   "description": "Contains histogram data",
-                  "pattern": "*_hist.csv"
+                  "pattern": "*_hist.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81834,7 +82245,12 @@
                 "${prefix}_overall_mean_cov.csv": {
                   "type": "file",
                   "description": "Contains overall mean coverage metrics",
-                  "pattern": "*_overall_mean_cov.csv"
+                  "pattern": "*_overall_mean_cov.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
                 }
               }
             ]
@@ -81851,7 +82267,12 @@
                 "${prefix}_read_cov_report.bed": {
                   "type": "file",
                   "description": "BED file containing read coverage report",
-                  "pattern": "*_read_cov_report.bed"
+                  "pattern": "*_read_cov_report.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
                 }
               }
             ]
@@ -82160,19 +82581,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_dragen": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dragen": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dragen --version 2>&1 | sed 's/^dragen Version //;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dragen": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dragen --version 2>&1 | sed 's/^dragen Version //;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -120441,6 +120894,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@azedinez",
           "@pinin4fjords"
@@ -155216,6 +155679,16 @@
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
               }
             }
           ]
@@ -220510,6 +220983,16 @@
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
               }
             }
           ]
@@ -315388,19 +315871,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_zip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "zip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za i 2>&1 | grep 'p7zip Version' | sed 's/.*p7zip Version //; s/(.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "zip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za i 2>&1 | grep 'p7zip Version' | sed 's/.*p7zip Version //; s/(.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
