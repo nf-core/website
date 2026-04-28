@@ -155,7 +155,7 @@ The linter now checks that stub blocks use syntax according to the [nf-core modu
 
 ### AI and LLM contribution guidelines
 
-Following the [nf-core and AI blog post](/blog/2026/statement-on-ai), we added [guidance to the pipeline template for contributors using AI and LLM tools](https://github.com/nf-core/tools/blob/5b54b0860bfcd92ea34c24489246f087e8cbf132/nf_core/pipeline-template/docs/CONTRIBUTING.md).
+Following the [nf-core and AI blog post](/blog/2026/statement-on-ai), we added [guidance to the pipeline template for contributors using AI and LLM tools](https://github.com/nf-core/tools/blob/5b54b0860bfcd92ea34c24489246f087e8cbf132/nf_core/pipeline-template/docs/CONTRIBUTING.md#use-of-ai-and-llms).
 It covers how to review, test, and mention AI-assisted contributions.
 Thanks [@jfy133](https://github.com/jfy133) for adding this!
 
