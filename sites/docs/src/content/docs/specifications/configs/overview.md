@@ -1,5 +1,5 @@
 ---
-title: Configs
+title: Config specifications
 subtitle: nf-core/config specifications
 weight: 1
 parentWeight: 10
@@ -21,4 +21,4 @@ The following specifications define standards for developing nf-core configs:
 
 ## Additional resources
 
-- **[Migration to strict syntax](../../developing/migration-guides/config-strict-syntax.md)**
+- [Migration to strict syntax](../../developing/migration-guides/config-strict-syntax.md)
