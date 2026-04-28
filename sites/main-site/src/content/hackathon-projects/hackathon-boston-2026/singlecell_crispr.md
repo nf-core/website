@@ -1,6 +1,6 @@
 ---
 title: "Adapt SingleCell perturb-Seq CRISPR  pipelineto nf-core Standards and Implement Testing"
-description: "Modernizing the pinellolab/CRISPR_Pipeline to meet strict nf-core guidelines, integrating existing compatible modules, and establishing a robust CI/CD testing framework using downsampled public Perturb-seq data."
+slack: https://nfcore.slack.com/archives/C0ARV562CNN
 leaders:
   lucassilva:
     name: Lucas Ferreira da Silva
