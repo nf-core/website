@@ -1,5 +1,5 @@
 ---
-title: "Adapt SingleCell perturb-Seq CRISPR  pipelineto nf-core Standards and Implement Testing"
+title: Adapt SingleCell perturb-Seq CRISPR  pipelineto nf-core Standards and Implement Testing
 slack: https://nfcore.slack.com/archives/C0ARV562CNN
 leaders:
   lucassilva:
