@@ -7,7 +7,7 @@ leaders:
     name: Lucas Ferreira da Silva
 ---
 
-![Alt text](https://github.com/pinellolab/CRISPR_Pipeline/blob/main/images/crispr_pipeline.png)
+![Alt text](https://raw.githubusercontent.com/pinellolab/CRISPR_Pipeline/main/images/crispr_pipeline.png)
 
 # Adapt CRISPR_Pipeline to nf-core Standards and Implement Testing
 
