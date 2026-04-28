@@ -26,7 +26,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 ## Nextflow strict syntax in the pipeline template
 
 Nextflow's [strict syntax mode](https://docs.seqera.io/nextflow/strict-syntax) is becoming the default from Nextflow v26.04.
-It enforces more consistent, unambiguous Nextflow code and improves error messages, and nf-core pipelines will be ready for it.
+It enforces more consistent, unambiguous Nextflow code and configs, and improves error messages, and nf-core pipelines will be ready for it.
 
 With this release, the pipeline template is strict syntax compliant and ships with a pre-commit hook that runs `nextflow lint{:bash}` on your code.
 
@@ -106,7 +106,7 @@ The pipeline template no longer includes webhook-based notifications (`hook_url`
 
 Instead, we switched to using dedicated Nextflow plugins for this:
 
-- **Slack**: [nf-slack](https://github.com/seqeralabs/nf-slack) (added in the pipeline template)
+- **Slack**: [nf-slack](https://github.com/seqeralabs/nf-slack) (added in the GitHub actions for the megatests in the pipeline template)
 - **Microsoft Teams**: [nf-teams](https://github.com/nvnieuwk/nf-teams)
 
 These plugins integrate directly with Nextflow and give you notification support without coupling it to the pipeline template.
