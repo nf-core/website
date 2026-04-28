@@ -1,7 +1,7 @@
 ---
 title: Agentic Swarm Repo Cleanup
 category: components
-slack: "#hack-boston-2026-agentic-cleanup"
+slack: https://nfcore.slack.com/archives/C0B1AJFK9MW
 image: /assets/images/events/2026/hackathon-boston/agentic_repo_cleanup.png
 image_alt: An AI swarm of agents collaboratively cleaning up a repository
 leaders:
