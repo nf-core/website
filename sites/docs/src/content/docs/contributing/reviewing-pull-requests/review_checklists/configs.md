@@ -56,7 +56,7 @@ For sensitive data or offline clusters (if applicable):
 ## Documentation
 
 - [ ] Contains information on how to use the config in the context of the instruction
-- [ ] (Optional) documentation includes additional recommendations (e.g. scratch, temporary, or environmental variables)
+- [ ] (Optional) documentation includes additional recommendations (e.g., scratch, temporary, or environmental variables)
 - [ ] Required parameter or environmental variables described
 - [ ] All commands are copy-paste-able examples
 
