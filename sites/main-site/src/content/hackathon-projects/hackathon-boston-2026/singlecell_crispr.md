@@ -2,6 +2,10 @@
 title: Adapt SingleCell perturb-Seq CRISPR  pipelineto nf-core Standards and Implement Testing
 category: pipelines
 slack: https://nfcore.slack.com/archives/C0ARV562CNN
+leaders:
+  Lucas Ferreira da Silva:
+    name: Lucas Ferreira da Silva
+    slack: https://nextflow.slack.com/team/U09F6344B5F
 ---
 
 ![Alt text](https://github.com/pinellolab/CRISPR_Pipeline/blob/main/images/crispr_pipeline.png)
