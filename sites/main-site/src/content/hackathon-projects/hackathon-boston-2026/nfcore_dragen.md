@@ -1,9 +1,9 @@
 ---
 title: nf-core/dragen
 category: pipelines
-slack: 
+slack: https://nfcore.slack.com/archives/C0ARV562CNN
 image: "/assets/images/events/2026/hackathon-boston/dragen.png"
-image_alt: "Dragen pipleine includes three modules demultiplex, mergelane, and alignment"
+image_alt: "Dragen pipeline includes three modules demultiplex, mergelane, and alignment"
 leaders:
   mikefeixu:
     name: Fei Xu
