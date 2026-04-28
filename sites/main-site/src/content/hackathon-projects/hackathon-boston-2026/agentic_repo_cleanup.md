@@ -90,4 +90,3 @@ and follows established nf-core contribution patterns.
 - Review the [nf-core modules contribution guide](https://nf-co.re/docs/contributing/modules)
 - Optional: Read the [stub block conventions from #5409](https://github.com/nf-core/modules/pull/5409)
 - Optional: Explore [hvr-agentic-os](https://github.com/HReed1/hvr-agentic-os) to understand the agentic workflow
-
