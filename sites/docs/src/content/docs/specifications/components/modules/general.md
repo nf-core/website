@@ -609,7 +609,7 @@ Ideally, the stub block should reproduce as much as possible the number of files
 Use the syntax in the following example for stub files output as gzip compressed:
 
 ```bash
-echo | gzip > ${prefix}.txt.gz
+echo | gzip > "${prefix}.txt.gz"
 ```
 
 :::info{title="Rationale" collapse}
