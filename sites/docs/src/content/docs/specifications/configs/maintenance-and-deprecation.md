@@ -1,6 +1,6 @@
 ---
-title: General
-subtitle: Follow general config guidelines
+title: Maintenance and deprecation
+subtitle: Follow config maintenance and deprecation guidelines
 markdownPlugin: addNumbersToHeadings
 weight: 1
 ---
@@ -15,14 +15,14 @@ The names listed in the `config_profile_contact` SHOULD be responsible for maint
 The primary maintainer MAY be more than one person.
 
 Primary maintainers SHOULD test any changes to configs on their infrastructure.
-Primary maintainers SHOULD merge their own pull requests with changes
+Primary maintainers SHOULD merge their own pull requests with changes.
 
-If a primary maintainers no longer have access to the infrastructure, the maintainer SHOULD make a best effort to transfer the maintainer to another contact person who still has access.
+If primary maintainers no longer have access to the infrastructure, they SHOULD make a best effort to transfer maintainership to another contact person who still has access.
 
 ### nf-core community
 
 The nf-core community core- and maintainers teams MAY make minor modifications to configs on the nf-core/configs repository to ensure compatibility with Nextflow and the nf-core template.
-The nf-core community core- and maintainers teams MUST NOT make major changes without permission and testing from the primary contact (for example, changing conditionals for selecting queues)
+The nf-core community core- and maintainers teams MUST NOT make major changes without permission and testing from the primary contact, for example, changing conditionals for selecting queues.
 Should the primary maintainers become unresponsive, the nf-core community core- and maintainers teams MAY transfer maintainership to another, active, member of the institution willing to take the responsibility on.
 
 ## Deprecation
@@ -41,7 +41,7 @@ Primary maintainers SHOULD deprecate a config if a particular infrastructure is 
 
 The nf-core community core- and maintainers teams MAY deprecate a config in certain circumstances.
 
-nf-core community core- and maintainers MAY only deprecate a config if problems with the config affects the entire repository of configs.
+The nf-core community core- and maintainers teams MAY only deprecate a config if problems with the config affect the entire repository of configs.
 
 nf-core community core- and maintainers MUST follow the procedure below for deprecation:
 

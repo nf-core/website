@@ -15,7 +15,7 @@ Compliance of a config to the strict syntax can be checked using the methods des
 
 ### Variables
 
-Variables MUST be defined as a parameter (`param`) for reusing information to different parts of a config.
+Variables MUST be defined as parameters (`params`) for reusing information in different parts of a config.
 
 ```groovy
 - def variable_name = <code>
@@ -85,7 +85,7 @@ includeConfig ({
 }.call())
 ```
 
-### Environmental Variables
+### Environmental variables
 
 Environmental variables MUST be referenced with a `System.getenv` call.
 
