@@ -3,7 +3,7 @@ title: "nf-core/tools - 4.0.0"
 subtitle: "~Friends~ Linters don't lie"
 headerImage: "/assets/images/blog/tools-4_0_0/stricter_syntax.png"
 headerImageAlt: "'Stricter Syntax' written in the style of the Stranger Things logo."
-pubDate: 2026-04-20T12:00:00+02:00
+pubDate: 2026-04-28T12:00:00+02:00
 authors:
   - "mashehu"
 label:
