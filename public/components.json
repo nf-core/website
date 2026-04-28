@@ -83445,19 +83445,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_drep": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "drep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dRep | sed '2!d;s/.*v//g;s/ .*//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "drep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dRep | sed '2!d;s/.*v//g;s/ .*//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -83632,19 +83664,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_drep": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "drep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dRep | sed '2!d;s/.*v//g;s/ .*//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "drep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dRep | sed '2!d;s/.*v//g;s/ .*//g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -84231,19 +84295,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_dssp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dssp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mkdssp --version | sed -n 's/^mkdssp version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "dssp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mkdssp --version | sed -n 's/^mkdssp version //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -178648,7 +178744,13 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "quantize_labels": {
+              "type": "list",
+              "description": "List of labels for quantized coverage bins, e.g. [ \"NO_COVERAGE\", \"LOW_COVERAGE\", \"MEDIUM_COVERAGE\", \"HIGH_COVERAGE\" ]\nThe first value will be assigned to the `MOSDEPTH_Q0` environment variable, the second to `MOSDEPTH_Q1`, and so on.\nThese can then be used in the `--quantize` option of mosdepth to assign labels to quantized coverage bins.\n"
+            }
+          }
         ],
         "output": {
           "global_txt": [
@@ -178883,7 +178985,7 @@
               },
               {
                 "mosdepth --version | sed 's/mosdepth //g'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -178907,7 +179009,7 @@
               },
               {
                 "mosdepth --version | sed 's/mosdepth //g'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -233231,7 +233333,14 @@
               "files": {
                 "type": "file",
                 "description": "File(s) to be searched",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
               }
             }
           ],
@@ -233239,6 +233348,17 @@
             "pattern": {
               "type": "string",
               "description": "Regex pattern to search for"
+            }
+          },
+          {
+            "pattern_file": {
+              "type": "file",
+              "description": "File containing list of patterns to search for",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_2330"
+                }
+              ]
             }
           },
           {
@@ -233263,24 +233383,63 @@
                   "type": "file",
                   "description": "Output file containing the search results",
                   "pattern": "*.txt{.gz,}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ripgrep": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ripgrep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rg --version |& sed '1!d ; s/ripgrep // ; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ripgrep": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rg --version |& sed '1!d ; s/ripgrep // ; s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
