@@ -38,7 +38,7 @@ For pipeline-specific institutional configs
 
 ## Config contents
 
-- [ ] Each config adheres to the Nextflow strict syntax
+- [ ] Each config adheres to the Nextflow [strict syntax](https://docs.seqera.io/nextflow/reference/syntax), for example with no warnings or errors from `nextflow lint`
 - [ ] Each config includes parameters:
   - [ ] `config_profile_description`
   - [ ] `config_profile_contact`
