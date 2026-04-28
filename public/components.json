@@ -51023,6 +51023,217 @@
       }
     },
     {
+      "name": "centrifuger_centrifuger",
+      "path": "modules/nf-core/centrifuger/centrifuger/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "centrifuger_centrifuger",
+        "description": "Classification of sequencing reads using the Centrifuger tool.",
+        "keywords": [
+          "metagenomics",
+          "classification",
+          "centrifuger"
+        ],
+        "tools": [
+          {
+            "centrifuger": {
+              "description": "Lossless compression of microbial genomes for efficient and accurate metagenomic sequence classification.",
+              "homepage": "https://github.com/mourisl/centrifuger",
+              "documentation": "https://github.com/mourisl/centrifuger",
+              "tool_dev_url": "https://github.com/mourisl/centrifuger",
+              "doi": "10.1186/s13059-024-03244-4",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:centrifuger"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1', single_end:false ]`"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files of size 1 and 2 for single-end and paired-end, respectively.\n",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1', single_end:false ]`"
+              }
+            },
+            {
+              "db": {
+                "type": "directory",
+                "description": "Path to directory containing Centrifuger database files (that end in `.cfr`)."
+              }
+            }
+          ],
+          {
+            "save_unclassified": {
+              "type": "boolean",
+              "description": "Optional - if true, output unclassified reads.\n"
+            }
+          },
+          {
+            "save_classified": {
+              "type": "boolean",
+              "description": "Optional - if true, output classified reads.\n"
+            }
+          },
+          {
+            "barcode": {
+              "type": "file",
+              "description": "Optional barcode file.\n"
+            }
+          },
+          {
+            "umi": {
+              "type": "file",
+              "description": "Optional UMI file.\n"
+            }
+          }
+        ],
+        "output": {
+          "classification_file": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1', single_end:false ]`"
+                }
+              },
+              {
+                "${meta.id}.tsv": {
+                  "type": "file",
+                  "description": "File containing classification results\n",
+                  "pattern": "${prefix}.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fastq_classified": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${meta.id}.classified*": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing classified reads",
+                  "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "fastq_unclassified": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${meta.id}.unclassified*": {
+                  "type": "file",
+                  "description": "FASTQ file(s) containing unclassified reads",
+                  "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_centrifuger": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuger -v 2>&1 | sed 's/Centrifuger v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "centrifuger": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "centrifuger -v 2>&1 | sed 's/Centrifuger v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@haris18s"
+        ],
+        "maintainers": [
+          "@haris18s",
+          "@sofstam",
+          "@jfy133"
+        ]
+      }
+    },
+    {
       "name": "checkm2_databasedownload",
       "path": "modules/nf-core/checkm2/databasedownload/meta.yml",
       "type": "module",
@@ -179224,6 +179435,28 @@
                 }
               }
             ]
+          ],
+          "versions_gzip": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip -V 2>&1 | sed 's/gzip \\([0-9.]*\\).*/\\1/;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -179245,6 +179478,26 @@
                 "mosdepth --version | sed 's/mosdepth //g'": {
                   "type": "eval",
                   "description": "The command used to generate the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gzip": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gzip -V 2>&1 | sed 's/gzip \\([0-9.]*\\).*/\\1/;q'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -203139,6 +203392,300 @@
         ],
         "maintainers": [
           "@camlloyd"
+        ]
+      }
+    },
+    {
+      "name": "percolator",
+      "path": "modules/nf-core/percolator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "percolator",
+        "description": "Rescore peptide-spectrum matches and estimate false discovery rates using the Percolator semi-supervised learning algorithm.",
+        "keywords": [
+          "proteomics",
+          "spectrum identification",
+          "psm",
+          "peptide",
+          "protein",
+          "rescoring",
+          "false discovery rate",
+          "features"
+        ],
+        "tools": [
+          {
+            "percolator": {
+              "description": "Semi-supervised learning for peptide identification from shotgun proteomics datasets.",
+              "homepage": "http://percolator.ms",
+              "documentation": "http://percolator.ms",
+              "tool_dev_url": "https://github.com/percolator/percolator",
+              "doi": "10.1038/nmeth1113",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:percolator"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+              }
+            },
+            {
+              "peptide_identification": {
+                "type": "file",
+                "description": "peptide identifications as PIN (Percolator input) file",
+                "pattern": "*.pin",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "pout_xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.pout.xml": {
+                  "type": "file",
+                  "description": "Percolator output in XML format containing all PSM-level results",
+                  "pattern": "*.pout.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "pout_pepxml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.pep.xml": {
+                  "type": "file",
+                  "description": "Percolator output in pepXML format",
+                  "pattern": "*.pep.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3655"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "features_pin": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.features.pin": {
+                  "type": "file",
+                  "description": "Tab-separated file with rescored features (PIN format)",
+                  "pattern": "*.features.pin",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "weights": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.weights.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the final feature weights",
+                  "pattern": "*.weights.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "target_peptides": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.pep.target.pout": {
+                  "type": "file",
+                  "description": "Target peptide-level results in tab separated format (pout)",
+                  "pattern": "*.pep.target.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "decoy_peptides": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.pep.decoy.pout": {
+                  "type": "file",
+                  "description": "Decoy peptide-level results in tab separated format (pout)",
+                  "pattern": "*.pep.decoy.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "target_psms": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.psm.target.pout": {
+                  "type": "file",
+                  "description": "Target PSM-level results in tab separated format (pout)",
+                  "pattern": "*.psm.target.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "decoy_psms": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.psm.decoy.pout": {
+                  "type": "file",
+                  "description": "Decoy PSM-level results in tab separated format (pout)",
+                  "pattern": "*.psm.decoy.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "target_proteins": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.protein.target.pout": {
+                  "type": "file",
+                  "description": "Target protein-level results in tab separated format (pout)",
+                  "pattern": "*.protein.target.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "decoy_proteins": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information. e.g. `[ id:'sample1' ]`"
+                }
+              },
+              {
+                "${prefix}.protein.decoy.pout": {
+                  "type": "file",
+                  "description": "Decoy protein-level results in tab separated format (pout)",
+                  "pattern": "*.protein.decoy.pout",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_percolator": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "percolator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "percolator --help 2>&1 | head -1 | sed \"s;Percolator version \\([^,]*\\),.*;\\1;\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "percolator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "percolator --help 2>&1 | head -1 | sed \"s;Percolator version \\([^,]*\\),.*;\\1;\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@julianu"
+        ],
+        "maintainers": [
+          "@julianu"
         ]
       }
     },
