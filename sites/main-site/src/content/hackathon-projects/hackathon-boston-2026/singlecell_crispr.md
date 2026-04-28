@@ -5,6 +5,7 @@ slack: https://nfcore.slack.com/archives/C0ARV562CNN
 leaders:
   Lucas Ferreira da Silva:
     name: Lucas Ferreira da Silva
+    slack: https://nfcore.slack.com/team/U0ATKNQNET0
 ---
 
 ![Alt text](https://raw.githubusercontent.com/pinellolab/CRISPR_Pipeline/main/images/crispr_pipeline.png)
