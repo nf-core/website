@@ -20,7 +20,7 @@ Running pipelines offline requires three main components:
 
 To transfer Nextflow to an offline system:
 
-1. [Install Nextflow](https://nextflow.io/docs/latest/getstarted.html#installation) in an online environment.
+1. [Install Nextflow](https://docs.seqera.io/nextflow/install) in an online environment.
 2. Run your pipeline locally.
 
    :::note
