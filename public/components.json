@@ -91825,19 +91825,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_fargene": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fargene": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fargene": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "0.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -98546,6 +98578,10 @@
         {
           "name": "proteinfamilies",
           "version": "2.2.0"
+        },
+        {
+          "name": "seqsubmit",
+          "version": "dev"
         }
       ]
     },
@@ -192137,6 +192173,142 @@
           "version": "dev"
         }
       ]
+    },
+    {
+      "name": "openms_fileconverter",
+      "path": "modules/nf-core/openms/fileconverter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "openms_fileconverter",
+        "description": "Converts between different mass spectrometry file formats (e.g. mzML, mzXML, mgf, mzData, dta, dta2d, featureXML, consensusXML, idXML).",
+        "keywords": [
+          "file conversion",
+          "mass spectrometry",
+          "mzml",
+          "mzxml",
+          "openms",
+          "proteomics"
+        ],
+        "tools": [
+          {
+            "openms": {
+              "description": "OpenMS is an open-source software C++ library for LC-MS data management and analyses",
+              "homepage": "https://openms.de",
+              "documentation": "https://openms.readthedocs.io/en/latest/index.html",
+              "tool_dev_url": "https://github.com/OpenMS/OpenMS",
+              "doi": "10.1038/s41592-024-02197-7",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:openms"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "input_file": {
+                "type": "file",
+                "description": "Mass spectrometry data file in any OpenMS-supported input format",
+                "pattern": "*.{mzML,mzXML,mgf,mzData,dta,dta2d,edta,featureXML,consensusXML,idXML,traML,fid,raw}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_2536"
+                  }
+                ]
+              }
+            },
+            {
+              "out_type": {
+                "type": "string",
+                "description": "Target output file extension/format (e.g. `mzML`, `mgf`, `featureXML`)"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "converted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}.${out_type}": {
+                  "type": "file",
+                  "description": "Converted mass spectrometry file in the format specified via `out_type`",
+                  "pattern": "*.{mzML,mzXML,mgf,mzData,dta,dta2d,edta,featureXML,consensusXML,idXML,traML}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_2536"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_openms": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "openms": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "FileInfo --help 2>&1 | sed -nE 's/^Version: ([0-9.]+).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
     },
     {
       "name": "openms_filefilter",
