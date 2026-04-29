@@ -19,7 +19,7 @@ You should already be familiar with:
 You need the following installed or set up:
 
 - [Nextflow](https://www.nextflow.io/docs/latest/install.html).
-- [nf-core tools](https://nf-co.re/docs/nf-core-tools/installation).
+- [nf-core tools](https://nf-co.re/docs/get_started/environment_setup/nf-core-tools).
 - A Nextflow-supported software management system, one of:
   - [Conda](https://conda-forge.org/download/)
   - [Docker](https://docs.docker.com/manuals/)
