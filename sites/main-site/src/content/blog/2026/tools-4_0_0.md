@@ -213,14 +213,7 @@ Accept the template's single-line format. The content is identical; only the YAM
 
 ##### Changes
 
-The template added entries to ignore nf-test artefacts and nf-core module/subworkflow test directories:
-
-```
-.nf-test
-.nf-test.log
-modules/nf-core/**/tests/
-subworkflows/nf-core/**/tests/
-```
+The template added entries to ignore `.lineage/` directories.
 
 ##### Resolution
 
@@ -230,11 +223,11 @@ Accept both template changes and your own additions. You have to have your chang
 
 ##### Changes
 
-- `NFT_VER` was bumped from `0.9.4` to `0.9.5`.
+- `NFT_VER` was bumped from `0.9.4`.
 
 ##### Resolution
 
-Accept the template changes. If your pipeline already requires a higher Nextflow version, keep the higher value.
+Accept the template changes. If your pipeline already requires a higher nf-test version, keep the higher value.
 
 ### .github/workflows/awsfulltest.yml
 
