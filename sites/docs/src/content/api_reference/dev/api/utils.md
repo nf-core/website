@@ -149,6 +149,7 @@ Generate a dictionary representation of the model, optionally specifying which f
   - **fallback** – A function to call when an unknown value is encountered. If not provided,
     a \[PydanticSerializationError]\[pydantic_core.PydanticSerializationError] error is raised.
   - **serialize_as_any** – Whether to serialize fields with duck-typing serialization behavior.
+  - **polymorphic_serialization** – Whether to use model and dataclass polymorphic serialization for this call.
 - **Returns:**
   A dictionary representation of the model.
 
@@ -175,7 +176,7 @@ Pipeline template configuration
 - **Type:**
   Disable updating specific modules/subworkflows (when repository_type is pipeline). See https
 
-### _`class{:python}`_`nf_core.utils.NFCoreYamlLintConfig(, files_unchanged: bool | list[str] | None = None, modules_config: bool | list[str] | None = None, merge_markers: bool | list[str] | None = None, nextflow_config: bool | list[str | dict[str, list[str]]] | None = None, nf_test_content: bool | list[str] | None = None, multiqc_config: bool | list[str] | None = None, files_exist: bool | list[str] | None = None, template_strings: bool | list[str] | None = None, readme: bool | list[str] | None = None, nfcore_components: bool | None = None, actions_nf_test: bool | None = None, actions_awstest: bool | None = None, actions_awsfulltest: bool | None = None, pipeline_todos: bool | None = None, pipeline_if_empty_null: bool | None = None, plugin_includes: bool | None = None, pipeline_name_conventions: bool | None = None, schema_lint: bool | None = None, schema_params: bool | None = None, system_exit: bool | None = None, schema_description: bool | None = None, actions_schema_validation: bool | None = None, modules_json: bool | None = None, modules_structure: bool | None = None, base_config: bool | None = None, nfcore_yml: bool | None = None, version_consistency: bool | None = None, included_configs: bool | None = None, local_component_structure: bool | None = None, rocrate_readme_sync: bool | None = None){:python}`
+### _`class{:python}`_`nf_core.utils.NFCoreYamlLintConfig(, files_unchanged: bool | list[str] | None = None, modules_config: bool | list[str] | None = None, merge_markers: bool | list[str] | None = None, nextflow_config: bool | list[str | dict[str, list[str]]] | None = None, nf_test_content: bool | list[str] | None = None, multiqc_config: bool | list[str] | None = None, files_exist: bool | list[str] | None = None, template_strings: bool | list[str] | None = None, readme: bool | list[str] | None = None, nfcore_components: bool | None = None, actions_nf_test: bool | None = None, actions_awstest: bool | None = None, actions_awsfulltest: bool | None = None, pipeline_todos: bool | None = None, pipeline_if_empty_null: bool | None = None, plugin_includes: bool | None = None, pipeline_name_conventions: bool | None = None, schema_lint: bool | None = None, schema_params: bool | None = None, system_exit: bool | None = None, schema_description: bool | None = None, actions_schema_validation: bool | None = None, modules_json: bool | None = None, modules_structure: bool | None = None, base_config: bool | None = None, nfcore_yml: bool | None = None, version_consistency: bool | None = None, included_configs: bool | None = None, local_component_structure: bool | None = None, container_configs: bool | None = None, rocrate_readme_sync: bool | None = None){:python}`
 
 Bases: `BaseModel`
 
@@ -235,6 +236,10 @@ Lint GitHub Action workflow files with schema
 #### `base_config{:python}`_: bool | None_
 
 Lint base.config file
+
+#### `container_configs{:python}`_: bool | None_
+
+Lint that container configuration files in conf/ are up to date
 
 #### `files_exist{:python}`_: bool | list\[str] | None_
 
