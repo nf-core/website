@@ -89905,19 +89905,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_estsfs": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "est-sfs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.04": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "est-sfs": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.04": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -99598,19 +99630,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_foldcomp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Task process name"
+                }
+              },
+              {
+                "foldcomp": {
+                  "type": "string",
+                  "description": "Software name"
+                }
+              },
+              {
+                "foldcomp --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Task process name"
+                }
+              },
+              {
+                "foldcomp": {
+                  "type": "string",
+                  "description": "Software name"
+                }
+              },
+              {
+                "foldcomp --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -99685,19 +99749,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_foldcomp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldcomp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldcomp --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "foldcomp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "foldcomp --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -103514,19 +103610,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gangstr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Task process name"
+                }
+              },
+              {
+                "gangstr": {
+                  "type": "string",
+                  "description": "Software name"
+                }
+              },
+              {
+                "GangSTR --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Task process name"
+                }
+              },
+              {
+                "gangstr": {
+                  "type": "string",
+                  "description": "Software name"
+                }
+              },
+              {
+                "GangSTR --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268230,9 +268358,9 @@
                 }
               },
               {
-                "${prefix}.se.trimmed.fastq.gz": {
+                "*.se.trimmed.fastq.gz": {
                   "type": "file",
-                  "description": "5' or 3' trimmed (based on base quality) single-end fastq file",
+                  "description": "Single end trimmed reads",
                   "pattern": "*.se.trimmed.fastq.gz",
                   "ontologies": [
                     {
@@ -268252,9 +268380,9 @@
                 }
               },
               {
-                "${prefix}.pe{1,2}.trimmed.fastq.gz": {
+                "*.pe{1,2}.trimmed.fastq.gz": {
                   "type": "file",
-                  "description": "5' or 3' trimmed (based on base quality) paired-end fastq files",
+                  "description": "Paired end trimmed reads",
                   "pattern": "*.pe{1,2}.trimmed.fastq.gz",
                   "ontologies": []
                 }
@@ -268270,9 +268398,9 @@
                 }
               },
               {
-                "${prefix}.singleton.trimmed.fastq.gz": {
+                "*.singleton.trimmed.fastq.gz": {
                   "type": "file",
-                  "description": "5' or 3' trimmed (based on base quality) singleton fastq file",
+                  "description": "Singleton trimmed reads",
                   "pattern": "*.singleton.trimmed.fastq.gz",
                   "ontologies": [
                     {
@@ -268301,19 +268429,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sickle": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sickle": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sickle --version 2>&1 | head -1 | sed \"s/sickle version //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "sickle": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "sickle --version 2>&1 | head -1 | sed \"s/sickle version //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
