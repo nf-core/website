@@ -8323,7 +8323,7 @@
                 }
               },
               {
-                "*.tsv": {
+                "${prefix}.tsv": {
                   "type": "file",
                   "description": "A TSV file containing the annotated variants",
                   "pattern": "*.tsv",
@@ -8345,7 +8345,7 @@
                 }
               },
               {
-                "*.unannotated.tsv": {
+                "${prefix}.unannotated.tsv": {
                   "type": "file",
                   "description": "OPTIONAL - TSV file containing the unannotated variants",
                   "pattern": "*.unannotated.tsv",
@@ -31315,6 +31315,258 @@
         "maintainers": [
           "@vagkaratzas",
           "@SkyLex"
+        ]
+      }
+    },
+    {
+      "name": "bio2zarr_vcf2zarrconvert",
+      "path": "modules/nf-core/bio2zarr/vcf2zarrconvert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bio2zarr_vcf2zarrconvert",
+        "description": "Convert VCF data to the VCF Zarr specification reliably, in parallel or distributed over a cluster.",
+        "keywords": [
+          "vcf",
+          "zarr",
+          "convert",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "vcf2zarr": {
+              "description": "Convert bioinformatics data to Zarr",
+              "homepage": "https://sgkit-dev.github.io/bio2zarr/vcf2zarr/overview.html",
+              "documentation": "https://sgkit-dev.github.io/bio2zarr/",
+              "tool_dev_url": "https://github.com/sgkit-dev/bio2zarr",
+              "doi": "10.1101/2024.06.11.598241",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:bio2zarr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF/BCF file to convert",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcz": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcz": {
+                  "type": "directory",
+                  "description": "Output VCF Zarr store directory",
+                  "pattern": "*.vcz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_vcf2zarr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcf2zarr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcf2zarr --version |& sed -n \"s/.* //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcf2zarr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcf2zarr --version |& sed -n \"s/.* //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
+        ]
+      }
+    },
+    {
+      "name": "bio2zarr_vcf2zarrexplode",
+      "path": "modules/nf-core/bio2zarr/vcf2zarrexplode/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bio2zarr_vcf2zarrexplode",
+        "description": "Convert VCF(s) to intermediate columnar format (ICF)",
+        "keywords": [
+          "vcf",
+          "icf",
+          "zarr",
+          "convert",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "vcf2zarr": {
+              "description": "Convert bioinformatics data to Zarr",
+              "homepage": "https://sgkit-dev.github.io/bio2zarr/vcf2zarr/overview.html",
+              "documentation": "https://sgkit-dev.github.io/bio2zarr/",
+              "tool_dev_url": "https://github.com/sgkit-dev/bio2zarr",
+              "doi": "10.1101/2024.06.11.598241",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:bio2zarr"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF/BCF file(s)",
+                "pattern": "*.{vcf,vcf.gz,bcf,bcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "icf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.icf": {
+                  "type": "directory",
+                  "description": "Intermediate columnar format (ICF) directory produced by vcf2zarr explode",
+                  "pattern": "*.icf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_vcf2zarr": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcf2zarr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcf2zarr --version |& sed -n \"s/.* //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vcf2zarr": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vcf2zarr --version |& sed -n \"s/.* //p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@camlloyd"
+        ],
+        "maintainers": [
+          "@camlloyd"
         ]
       }
     },
@@ -98565,13 +98817,13 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "The name of the process"
+                  "description": "The process the versions were collected from"
                 }
               },
               {
                 "filtlong": {
                   "type": "string",
-                  "description": "The name of the tool"
+                  "description": "The tool name"
                 }
               },
               {
@@ -119427,19 +119679,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gem3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gem3-indexer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gem-indexer --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gem3-indexer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gem-indexer --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -119538,19 +119822,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gem3": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gem3-mapper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gem-mapper --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gem3-mapper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gem-mapper --version 2>&1 | sed 's/v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -286692,6 +287008,138 @@
           "version": "2.6.0"
         }
       ]
+    },
+    {
+      "name": "svdss_index",
+      "path": "modules/nf-core/svdss/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "svdss_index",
+        "description": "Index a reference genome FASTA file using SVDSS (via ropebwt3), producing either an FMD or FMR index for use with SVDSS smooth and search subcommands",
+        "keywords": [
+          "structural variants",
+          "sv calling",
+          "indexing",
+          "reference genome",
+          "fm-index"
+        ],
+        "tools": [
+          {
+            "svdss": {
+              "description": "SVDSS is a tool for structural variant discovery from short-read sequencing data.\nIt implements an FM-index-based approach to efficiently detect SVs against a reference genome.\n",
+              "homepage": "https://github.com/Parsoa/SVDSS",
+              "documentation": "https://github.com/Parsoa/SVDSS",
+              "tool_dev_url": "https://github.com/Parsoa/SVDSS",
+              "doi": "10.1038/s41592-022-01674-1",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome in FASTA format",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "output_format": {
+              "type": "string",
+              "description": "Output index format. Use 'fmd' for the fermi-delta format (adds -d flag)\nor 'fmr' for the ropebwt format (adds -b flag).\n",
+              "pattern": "fmd|fmr"
+            }
+          }
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.${output_format}": {
+                  "type": "file",
+                  "description": "FM-index file produced by SVDSS index, used as input for SVDSS smooth and search",
+                  "pattern": "*.{fmd,fmr}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_svdss": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "svdss": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "SVDSS --version 2>&1 | sed 's/SVDSS, v//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
     },
     {
       "name": "svim_alignment",
