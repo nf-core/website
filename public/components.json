@@ -90294,19 +90294,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_tr2aacds": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tr2aacds": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "\\$EVIGENEHOME/scripts/prot/tr2aacds.pl 2>&1 | sed '1!d;s/.*VERSION //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "tr2aacds": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "\\$EVIGENEHOME/scripts/prot/tr2aacds.pl 2>&1 | sed '1!d;s/.*VERSION //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173335,6 +173367,289 @@
         ],
         "maintainers": [
           "@inemesb"
+        ]
+      }
+    },
+    {
+      "name": "methurator_gtestimator",
+      "path": "modules/nf-core/methurator/gtestimator/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "methurator_gtestimator",
+        "description": "Run estimator for DNA methylation sequencing saturation.\n",
+        "keywords": [
+          "rrbs",
+          "BS-seq",
+          "methylation",
+          "5mC",
+          "methylseq",
+          "bisulphite",
+          "bam"
+        ],
+        "tools": [
+          {
+            "methurator": {
+              "description": "Methurator is a Python package designed to estimate CpGs saturation\nfor DNA methylation sequencing data.\n",
+              "homepage": "https://github.com/VIBTOBIlab/methurator",
+              "documentation": "https://github.com/VIBTOBIlab/methurator/README.md",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Single BAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "Single BAM/CRAM index file",
+                "pattern": "*.{bai,crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "pattern": "*.{fasta,fa}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1332"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "summary_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.yml": {
+                  "type": "file",
+                  "description": "YAML file summarizing the saturation analysis results.\n",
+                  "pattern": "${prefix}.yml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_methurator": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "methurator gtestimator"
+                }
+              },
+              {
+                "methurator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "methurator --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "methurator gtestimator"
+                }
+              },
+              {
+                "methurator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "methurator --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@edogiuili"
+        ],
+        "maintainers": [
+          "@edogiuili"
+        ]
+      }
+    },
+    {
+      "name": "methurator_plot",
+      "path": "modules/nf-core/methurator/plot/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "methurator_plot",
+        "description": "Plots results produced by methurator gtestimator.",
+        "keywords": [
+          "rrbs",
+          "BS-seq",
+          "methylation",
+          "5mC",
+          "methylseq",
+          "bisulphite",
+          "bisulfite",
+          "bam"
+        ],
+        "tools": [
+          {
+            "methurator": {
+              "description": "methurator is a Python package designed to estimate sequencing saturation\nfor DNA methylation sequencing data.\n",
+              "homepage": "https://github.com/VIBTOBIlab/methurator",
+              "documentation": "https://github.com/VIBTOBIlab/methurator/README.md",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "summary_report": {
+                "type": "file",
+                "description": "YAML file summarizing the saturation analysis results.\n",
+                "pattern": "methurator_*.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "plots/*.html": {
+                  "type": "file",
+                  "description": "HTML plots generated from the saturation analysis.\n",
+                  "pattern": "plots/*.html",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2331"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_methurator": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "methurator plot"
+                }
+              },
+              {
+                "methurator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "methurator --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "methurator plot"
+                }
+              },
+              {
+                "methurator": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "methurator --version | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@edogiuili"
+        ],
+        "maintainers": [
+          "@edogiuili"
         ]
       }
     },
@@ -267144,19 +267459,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sha256sum": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "sha256sum": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "sha256sum --version 2>&1 | head -n 1 | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "Software version"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "sha256sum": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "sha256sum --version 2>&1 | head -n 1 | sed 's/.* //'": {
+                  "type": "eval",
+                  "description": "Software version"
+                }
+              }
+            ]
           ]
         },
         "authors": [
