@@ -17,7 +17,7 @@ The template (since nf-core/tools:4.1.0) defines two kinds of labels:
 - **Bundled labels** set CPU, memory and time together. Use exactly one per module: `process_single`, `process_low`, `process_medium`, or `process_high`.
 - **Modifier labels** override a single axis and SHOULD be stacked on top of a bundled label: `process_long` (extends time), `process_low_memory` (drops memory), `process_high_memory` (raises memory).
 
-When labels are stacked, later labels override earlier ones for any axis they set. This lets a module express a shape that none of the bundled labels covers on its own. For example, a CPU-bound but memory-light tool:
+When a process matches more than one `withLabel:` block, Nextflow applies them in the order they appear in the config file - later blocks override earlier ones for any axis they set. The order of the `label` directives in the process itself does not affect precedence. The nf-core template defines bundled labels first and modifier labels after, so a process that stacks a modifier on top of a bundled label gets the modifier values:
 
 ```groovy title="main.nf"
 process FOO {
@@ -27,7 +27,7 @@ process FOO {
 }
 ```
 
-resolves to the CPU and time defaults of `process_high` with the memory of `process_low_memory`.
+This resolves to the CPU and time defaults of `process_high` with the memory of `process_low_memory`.
 
 ## Source of multiple threads or cores value
 
