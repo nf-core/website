@@ -19,6 +19,7 @@ The template (since nf-core/tools:4.1.0) defines two kinds of labels:
 
 When labels are stacked, later labels override earlier ones for any axis they set. This lets a module express a shape that none of the bundled labels covers on its own. For example, a CPU-bound but memory-light tool:
 
+```groovy title="main.nf"
 process FOO {
     label 'process_high'
     label 'process_low_memory'
