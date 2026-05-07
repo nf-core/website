@@ -10,8 +10,15 @@ The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as describ
 
 ## Use of labels in modules
 
-An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config#L29-L46).
-For example, `process_single`, `process_low`, `process_medium` or `process_high`.
+An appropriate resource `label` MUST be provided for the module as listed in the [nf-core pipeline template](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/conf/base.config).
+
+The template (since nf-core/tools:4.1.0) defines two kinds of labels:
+
+- **Bundled labels** set CPU, memory and time together. Use exactly one per module: `process_single`, `process_low`, `process_medium`, or `process_high`.
+- **Modifier labels** override a single axis and SHOULD be stacked on top of a bundled label: `process_long` (extends time), `process_low_memory` (drops memory), `process_high_memory` (raises memory).
+
+When a process matches more than one `withLabel:` block, Nextflow applies them in the order they appear in the config file. The order of the `label` directives in the process itself does not affect precedence.
+The nf-core template defines bundled labels first and modifier labels after, so modifier labels always overwrite the corresponding bundled value.
 
 ## Source of multiple threads or cores value
 
