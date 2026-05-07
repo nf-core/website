@@ -30,7 +30,7 @@ When nf-core releases a new tools version, automated pull requests are created f
 Learn how to review and merge these PRs, whether they contain simple changes or complex merge conflicts.
 This guide covers both web-based conflict resolution for minor conflicts and local resolution for major conflicts.
 
-See [Merge automated PRs](../merge-automated-pull-requests) for more information.
+See [Merge automated PRs](./merge-automated-pull-requests) for more information.
 
 ### Manually sync your pipeline
 
@@ -38,18 +38,18 @@ In rare cases, you need to trigger synchronisation manually.
 This applies when automated sync did not run or when you maintain a custom pipeline.
 Learn how to run the sync command manually, either for official nf-core pipelines or custom pipelines with pull request creation.
 
-See [Manually sync your pipeline](../manual-sync) for more information.
+See [Manually sync your pipeline](./manual-sync) for more information.
 
 ### Fix a broken TEMPLATE branch
 
 If you resolve merge conflicts through the GitHub web interface, your `TEMPLATE` branch can become corrupted with `dev` branch history.
 This guide shows you how to identify a broken `TEMPLATE` branch and rebuild it from scratch to restore proper template syncing.
 
-See [Fix a broken TEMPLATE branch](../fix-broken-template-branch) for more information.
+See [Fix a broken TEMPLATE branch](./fix-broken-template-branch) for more information.
 
 ### Set up a pipeline sync retrospectively
 
 If your pipeline was not created with `nf-core pipelines create`, your `TEMPLATE` branch may not be configured correctly.
 This guide walks you through creating a proper `TEMPLATE` branch and merging it into your existing pipeline to enable future template syncs.
 
-See [Set up a pipeline sync retrospectively](../set-up-pipeline-sync) for more information.
+See [Set up a pipeline sync retrospectively](./set-up-pipeline-sync) for more information.
