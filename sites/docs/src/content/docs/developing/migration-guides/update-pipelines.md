@@ -81,16 +81,16 @@ If your tool has no '--version' available or if you need to override it, replace
 
    ```yaml title="meta.yml"
    topics:
-      versions:
-        - - process:
-              type: string
-              description: The process the versions were collected from
-        - tool:
-              type: string
-              description: The tool name
-        - version:
-              type: string
-              description: The version of the tool
+     versions:
+       - - process:
+             type: string
+             description: The process the versions were collected from
+       - tool:
+           type: string
+           description: The tool name
+       - version:
+           type: string
+           description: The version of the tool
    ```
 
 1. Update the `main.nf.test` file to check for the new version outputs.
