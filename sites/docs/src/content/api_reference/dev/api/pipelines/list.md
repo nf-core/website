@@ -79,6 +79,17 @@ Prints a summary of all pipelines.
 
 Return the Nextflow assets directory used for local workflow caches.
 
+### `nf_core.pipelines.list._resolve_wf_path(path: Path) → Path{:python}`
+
+Resolve the actual pipeline working tree for a given assets dir / workflow path.
+
+Nextflow 26.04+ uses a worktree layout under .repos:
+: <org>/<pipeline>/clones/<sha>/ ← working tree <org>/<pipeline>/bare/ ← bare git repo
+
+Prefers the clone matching the bare repo’s HEAD; falls back to the most
+recently modified clone if HEAD’s clone is missing or the bare repo is unreadable.
+Returns path unchanged for the old (pre-26.04) flat layout.
+
 ### `nf_core.pipelines.list.autocomplete_pipelines(ctx, param, incomplete: str){:python}`
 
 ### `nf_core.pipelines.list.get_local_wf(workflow: str | Path, revision=None) → Path | None{:python}`
