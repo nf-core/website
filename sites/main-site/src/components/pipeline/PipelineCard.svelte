@@ -7,30 +7,30 @@
 
     let { pipeline } = $props();
 
-    const name = pipeline.name;
-    const body = pipeline.description;
-    const stars = pipeline.stargazers_count;
-    const topics = pipeline.topics;
-    const releases = pipeline.releases;
-    const archived = pipeline.archived;
-    const released = releases.length > 1;
-    let latestRelease,
-        tagName = $state(),
-        releaseDateAgo = $state(),
-        recentRelease = $state(false);
-    const lastChangesAge = formatDistanceToNow(new Date(releases[0].published_at), {
-        addSuffix: true,
-    });
-    if (released) {
-        latestRelease = releases[0];
-        tagName = latestRelease.tag_name;
-        releaseDateAgo = formatDistanceToNow(new Date(latestRelease.published_at), {
+    const name = $derived(pipeline.name);
+    const body = $derived(pipeline.description);
+    const stars = $derived(pipeline.stargazers_count);
+    const topics = $derived(pipeline.topics);
+    const releases = $derived(pipeline.releases);
+    const archived = $derived(pipeline.archived);
+    const released = $derived(releases.length > 1);
+
+    const latestRelease = $derived(released ? releases[0] : null);
+    const tagName = $derived(latestRelease?.tag_name ?? "");
+    const releaseDateAgo = $derived(
+        latestRelease ? formatDistanceToNow(new Date(latestRelease.published_at), { addSuffix: true }) : "",
+    );
+    // Release is less than 1 day old
+    const recentRelease = $derived(
+        latestRelease
+            ? new Date(latestRelease.published_at).getTime() > add(new Date().getTime(), { days: -1 }).getTime()
+            : false,
+    );
+    const lastChangesAge = $derived(
+        formatDistanceToNow(new Date(releases[0].published_at), {
             addSuffix: true,
-        });
-        // Check if release is less than 1 day old
-        recentRelease =
-            new Date(latestRelease.published_at).getTime() > add(new Date().getTime(), { days: -1 }).getTime();
-    }
+        }),
+    );
 </script>
 
 <ListingCard {recentRelease}>
@@ -93,7 +93,7 @@
                         href={"https://github.com/nf-core/" + name + "/releases/tag/" + tagName}
                         class="btn btn-outline-secondary"
                     >
-                        <i class="fa-regular fa-tag me-1"></i>
+                        <i class="fa-regular fa-tag fa-weight-keyframes me-1" aria-hidden="true"></i>
                         {tagName}
                     </a>
                     <span class="text-body-secondary text-small"> released {releaseDateAgo}</span>
@@ -108,19 +108,15 @@
 </ListingCard>
 
 <style lang="scss">
-    .gh-stats {
-        float: right;
-    }
     .gh-stats a,
     .release a {
         &:hover {
-            text-decoration: underline !important;
             .fa-regular {
                 font-weight: 900;
             }
         }
     }
     .recent-release-badge {
-        margin-top: -1px;
+        margin-top: -1px; // offset by the border
     }
 </style>

@@ -11,7 +11,21 @@
 
     let { groups = [] }: Props = $props();
 
-    let filteredGroups = groups;
+    let filteredGroups = $derived(
+        groups.filter((group) => {
+            if ($SearchQuery === "") {
+                return true;
+            }
+            const q = $SearchQuery.toLowerCase();
+            if (group.data.groupName.toLowerCase().includes(q)) {
+                return true;
+            }
+            if (group.data.subtitle?.toLowerCase().includes(q)) {
+                return true;
+            }
+            return (group.data.pipelines ?? []).some((p) => typeof p === "string" && p.toLowerCase().includes(q));
+        }),
+    );
 
     const getLeadName = (lead: string | object): string => {
         return typeof lead === "string" ? lead : Object.keys(lead)[0];
