@@ -315,6 +315,7 @@ class GitHubContentFetcher {
         processors: Processors,
         getDates: boolean,
         additionalData: Record<string, unknown> = {},
+        noRenderExtensions: string[] = [],
     ): Promise<string | undefined> {
         const { store, generateDigest, config, logger, renderMarkdown } = this.context;
         logger.info(`Processing ${this.org}/${this.repo}@${this.ref}/${filepath}`);
@@ -334,21 +335,6 @@ class GitHubContentFetcher {
             const body = await this.fetchData<string>(`${this.baseUrl}/${filepath}`, "text");
             const digest = generateDigest(body);
 
-            // Process content based on file type
-            const processorConfig = {
-                ...config,
-                data: {
-                    repo: this.repo,
-                    ref: this.ref,
-                    parent_directory: filepath.includes("/") ? filepath.split("/").slice(0, -1).join("/") : "",
-                },
-            };
-
-            let rendered: RenderedContent;
-            // Use custom processors (may include GitHub-specific transformations for markdown)
-            // The processor proxy will handle missing processors appropriately
-            rendered = await createProcessors(processors)[extension](body, processorConfig, filepath);
-
             // Get commit date if requested
             let lastCommit: string | null = null;
             if (getDates) {
@@ -361,6 +347,20 @@ class GitHubContentFetcher {
                 } catch {
                     // Ignore commit date errors
                 }
+            }
+
+            // Process content based on file type (skipped for deferred extensions)
+            let rendered: RenderedContent | undefined;
+            if (!noRenderExtensions.includes(extension)) {
+                const processorConfig = {
+                    ...config,
+                    data: {
+                        repo: this.repo,
+                        ref: this.ref,
+                        parent_directory: filepath.includes("/") ? filepath.split("/").slice(0, -1).join("/") : "",
+                    },
+                };
+                rendered = await createProcessors(processors)[extension](body, processorConfig, filepath);
             }
 
             // Store processed file
@@ -376,7 +376,7 @@ class GitHubContentFetcher {
                     ...additionalData,
                 },
                 body,
-                rendered,
+                ...(rendered ? { rendered } : {}),
                 digest,
             });
 
@@ -396,12 +396,14 @@ class GitHubContentFetcher {
         getDates = false,
         additionalData = {},
         concurrency = 5,
+        noRenderExtensions = [],
     }: {
         path: string | RegExp;
         processors: Processors;
         getDates?: boolean;
         additionalData?: Record<string, unknown>;
         concurrency?: number;
+        noRenderExtensions?: string[];
     }): Promise<void> {
         const { logger, meta, store } = this.context;
         logger.debug(`Loading files from ${this.org}/${this.repo}@${this.ref}`);
@@ -429,7 +431,7 @@ class GitHubContentFetcher {
         const ids = await parallelLimit(
             matchingLeaves.map((leaf) => () => {
                 logger.debug(`Processing ${leaf.path}`);
-                return this.processFile(leaf.path, processors, getDates, additionalData);
+                return this.processFile(leaf.path, processors, getDates, additionalData, noRenderExtensions);
             }),
             concurrency,
         );
@@ -651,6 +653,7 @@ export function pipelineLoader(pipelines_json: PipelineJson): Loader {
                             processors,
                             getDates: false,
                             additionalData: metadata,
+                            noRenderExtensions: ["md"],
                         });
                     } catch (error) {
                         context.logger.error(`Error processing ${pipeline.name}@${release.tag_name}: ${error.message}`);
