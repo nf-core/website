@@ -28,7 +28,7 @@
     }
 
     let { component }: Props = $props();
-    const href = "/" + component.type + "s/" + component.name + "/";
+    const href = $derived("/" + component.type + "s/" + component.name + "/");
 </script>
 
 <ListingCard>
