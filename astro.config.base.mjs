@@ -8,7 +8,7 @@ import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
 import svelte from "@astrojs/svelte";
 import yaml from "@rollup/plugin-yaml";
-import { envField, fontProviders } from "astro/config";
+import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import { h } from "hastscript";
 import addClasses from "rehype-class-names";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
@@ -60,7 +60,7 @@ export default {
         },
     ],
     experimental: {
-        svgo: true,
+        svgOptimizer: svgoOptimizer()
     },
     integrations: [
         svelte(),
