@@ -37556,18 +37556,6 @@
                   }
                 ]
               }
-            },
-            {
-              "fai": {
-                "type": "file",
-                "description": "Reference genome FASTA index file",
-                "pattern": "*.{fai}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3326"
-                  }
-                ]
-              }
             }
           ],
           {
@@ -37974,18 +37962,6 @@
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1929"
-                  }
-                ]
-              }
-            },
-            {
-              "fai": {
-                "type": "file",
-                "description": "Reference genome FASTA index file",
-                "pattern": "*.{fai}",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3326"
                   }
                 ]
               }
@@ -40772,6 +40748,28 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3462"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.sam": {
+                  "type": "file",
+                  "description": "Output SAM file containing read alignments",
+                  "pattern": "*.{sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2573"
                     }
                   ]
                 }
@@ -104649,19 +104647,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gamma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gamma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1": {
+                  "type": "string",
+                  "description": "The hard-coded version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gamma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2.1": {
+                  "type": "string",
+                  "description": "The hard-coded version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -119967,19 +119997,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_gecco": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gecco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gecco -V |& sed 's/gecco //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gecco": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gecco -V |& sed 's/gecco //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -120180,7 +120242,7 @@
                 }
               },
               {
-                "gecco -V | cut -d\" \" -f2": {
+                "gecco -V |& sed 's/gecco //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -120204,7 +120266,7 @@
                 }
               },
               {
-                "gecco -V | cut -d\" \" -f2": {
+                "gecco -V |& sed 's/gecco //'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -204439,6 +204501,217 @@
       }
     },
     {
+      "name": "parsnp",
+      "path": "modules/nf-core/parsnp/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parsnp",
+        "description": "Parsnp is a command-line-tool for efficient microbial core genome alignment and SNP detection.",
+        "keywords": [
+          "alignment",
+          "bacteria",
+          "phylogeny",
+          "microbial genomics",
+          "core genome",
+          "SNP"
+        ],
+        "tools": [
+          {
+            "parsnp": {
+              "description": "Parsnp is a command-line-tool for efficient microbial core genome alignment and SNP detection.",
+              "homepage": "https://harvest.readthedocs.io/en/latest/content/parsnp/tutorial.html",
+              "documentation": "https://harvest.readthedocs.io/en/latest/content/parsnp/tutorial.html",
+              "tool_dev_url": "https://github.com/marbl/parsnp",
+              "doi": "10.1093/bioinformatics/btae311",
+              "licence": [
+                "custom; see https://raw.githubusercontent.com/marbl/parsnp/master/LICENSE"
+              ],
+              "identifier": "biotools:parsnp"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genomes": {
+                "type": "directory",
+                "description": "Directory containing genome assemblies in FASTA format to be aligned"
+              }
+            }
+          ],
+          {
+            "reference": {
+              "type": "file",
+              "description": "Reference genome in FASTA format",
+              "pattern": "*.{fasta,fa,fna}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_1929"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "xmfa": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.xmfa": {
+                  "type": "file",
+                  "description": "Core-genome multiple sequence alignment in XMFA format",
+                  "pattern": "*.xmfa",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "ggr": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.ggr": {
+                  "type": "file",
+                  "description": "Compressed binary representation of the alignment generated by the Harvest toolkit, used for visualization with Gingr",
+                  "pattern": "*.ggr",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "snps_mblocks": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.snps.mblocks": {
+                  "type": "file",
+                  "description": "Core-SNP signature of each sequence in FASTA format, used to generate the phylogeny. Absent when no SNPs are detected.",
+                  "pattern": "*.snps.mblocks",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tree": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tree": {
+                  "type": "file",
+                  "description": "Resulting phylogeny in Newick format",
+                  "pattern": "*.tree",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1910"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "partition": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "partition": {
+                  "type": "directory",
+                  "description": "Output directory from partition mode containing results of each partitioned run. Only present when --partition is specified.",
+                  "pattern": "partition"
+                }
+              }
+            ]
+          ],
+          "versions_parsnp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "parsnp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "parsnp --version 2>/dev/null | tail -n 1 | sed 's/parsnp //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process"
+                }
+              },
+              {
+                "parsnp": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "parsnp --version 2>/dev/null | tail -n 1 | sed 's/parsnp //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
+        ]
+      }
+    },
+    {
       "name": "pasty",
       "path": "modules/nf-core/pasty/meta.yml",
       "type": "module",
@@ -206431,6 +206704,222 @@
           "version": "1.0.0"
         }
       ]
+    },
+    {
+      "name": "pcne",
+      "path": "modules/nf-core/pcne/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pcne",
+        "description": "Estimates plasmid copy number from assembled genome",
+        "keywords": [
+          "plasmid",
+          "copy number",
+          "genomics",
+          "alignment",
+          "coverage"
+        ],
+        "tools": [
+          {
+            "pcne": {
+              "description": "Estimates plasmid copy number from assembled genome.",
+              "homepage": "https://github.com/riccabolla/PCNE",
+              "documentation": "https://github.com/riccabolla/PCNE",
+              "tool_dev_url": "https://github.com/riccabolla/PCNE",
+              "doi": "10.1177/11779322251410037",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "FASTQ reads (paired or single) or a pre-aligned BAM file",
+                "pattern": "*.{fastq.gz,fq.gz,fastq,fq,bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference chromosome information\ne.g. `[ id:'genome' ]`\n"
+              }
+            },
+            {
+              "chromosome": {
+                "type": "file",
+                "description": "Chromosome contigs FASTA file",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference plasmid information\ne.g. `[ id:'plasmids' ]`\n"
+              }
+            },
+            {
+              "plasmids": {
+                "type": "file",
+                "description": "One or more plasmid FASTA files",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*_results.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the estimated plasmid copy numbers",
+                  "pattern": "*_results.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "PCNE run log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.png": {
+                  "type": "file",
+                  "description": "Bar plot of plasmid copy numbers or GC vs Depth diagnostic plots",
+                  "pattern": "*.png",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_pcne": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcne": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pcne -v | grep 'version' | tail -n 1 | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pcne": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pcne -v | grep 'version' | tail -n 1 | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@riccabolla"
+        ],
+        "maintainers": [
+          "@riccabolla"
+        ]
+      }
     },
     {
       "name": "pdb2pqr",
