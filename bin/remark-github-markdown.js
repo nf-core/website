@@ -20,9 +20,10 @@ export default function remarkGitHubMarkdown(options = {}) {
   const { org = 'nf-core', repo, ref, parent_directory = '' } = options;
   return (tree, file) => {
     // For backward compatibility, also check file.data
-    const fileRepo = file.data?.repo || repo;
-    const fileRef = file.data?.ref || ref;
-    const fileParentDir = file.data?.parent_directory || parent_directory;
+    const fm = file.data?.astro?.frontmatter;
+    const fileRepo = fm?.repo || file.data?.repo || repo;
+    const fileRef = fm?.ref || file.data?.ref || ref;
+    const fileParentDir = fm?.parent_directory ?? file.data?.parent_directory ?? parent_directory;
 
     if (!fileRepo || !fileRef) {
       console.log('Skipping processing - missing repo or ref');
