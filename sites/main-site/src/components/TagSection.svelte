@@ -8,19 +8,20 @@
         inline?: boolean;
     }
 
-    const { tags, maxShown = 0, type, inline = false, includes = false, included = false }: Props = $props();
+    let { tags, maxShown = 0, type, inline = false, includes = false, included = false }: Props = $props();
     let expanded = $state(false);
 
-    const typeSpecificClasses =
+    const typeSpecificClasses = $derived(
         type === "keywords"
             ? "bg-body-tertiary text-success"
             : type === "pipelines"
               ? "border text-body border-warning-subtle bg-warning-subtle"
               : type === "subworkflows"
                 ? "border text-body border-success-subtle bg-success-subtle"
-                : "border text-body border-info-subtle bg-info-subtle"; // modules and components share styling
+                : "border text-body border-info-subtle bg-info-subtle", // modules and components share styling
+    );
 
-    const additionalTagsCount = tags.length - maxShown;
+    const additionalTagsCount = $derived(tags.length - maxShown);
 
     function getHref(tag: string) {
         if (type === "pipelines") return `/${tag.replace("/", "_")}/`;
@@ -37,7 +38,7 @@
         <span class="text-small">{includes ? "Includes:" : "Included in:"}</span>
     {/if}
 
-    {#each expanded || !maxShown ? tags : tags.slice(0, maxShown) as tag}
+    {#each expanded || !maxShown ? tags : tags.slice(0, maxShown) as tag (tag)}
         <a href={getHref(tag)} class="badge fw-normal me-2 text-decoration-none {typeSpecificClasses}">
             {tag}
         </a>
