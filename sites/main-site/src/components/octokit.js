@@ -152,8 +152,6 @@ export const getGitHubFile = async (repo, path, ref) => {
         content = content.replace("# nf-core/" + repo + ": ", "# ");
         // remove everything before introduction
         content = content.replace(/.*?## Introduction/gs, "## Introduction");
-        // replace nextflow with groovy code blocks TODO: remove this when we have a nextflow syntax highlighter works in shiki
-        content = content.replace(/```nextflow/g, "```groovy");
       }
       return content;
     } else {
