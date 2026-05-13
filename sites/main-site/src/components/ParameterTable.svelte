@@ -3,13 +3,14 @@
 
     type ParamVariant = { type: string | null; pipelines: { name: string; version: string }[] };
     type ParamsData = Record<string, ParamVariant[]>;
+    type SortMode = "count" | "alpha";
 
     let paramsData = $state<ParamsData | null>(null);
     let loading = $state(true);
     let error = $state<string | null>(null);
     let minOverlap = $state(5);
-    let sortParams = $state<"count" | "alpha">("count");
-    let sortPipelines = $state<"count" | "alpha">("count");
+    let sortParams = $state<SortMode>("count");
+    let sortPipelines = $state<SortMode>("count");
     let searchQuery = $state("");
 
     function bsTooltip(node: HTMLElement) {
@@ -38,13 +39,12 @@
             if (!res.ok) throw new Error(`HTTP ${res.status}`);
             paramsData = await res.json();
         } catch (e) {
-            error = String(e);
+            error = e instanceof Error ? e.message : String(e);
         } finally {
             loading = false;
         }
     });
 
-    // Map of pipeline name → version string (from any param entry)
     const pipelineVersions = $derived.by(() => {
         const map = new Map<string, string>();
         if (!paramsData) return map;
@@ -54,27 +54,17 @@
         return map;
     });
 
-    const totalPipelines = $derived.by(() => {
-        if (!paramsData) return 0;
-        const s = new Set<string>();
-        for (const variants of Object.values(paramsData))
-            for (const { pipelines } of variants) for (const { name } of pipelines) s.add(name);
-        return s.size;
-    });
-
     const filteredParams = $derived.by(() => {
         if (!paramsData) return [];
-        const maxOv = totalPipelines - 1;
         const q = searchQuery.toLowerCase();
 
-        // Flatten name × type variants into individual rows
         const rows = Object.entries(paramsData).flatMap(([name, variants]) =>
             variants.map(({ type, pipelines }) => ({ name, type, pipelines })),
         );
 
         let filtered = rows.filter(({ name, pipelines }) => {
             const n = pipelines.length;
-            return n >= minOverlap && n <= maxOv && (!q || name.toLowerCase().includes(q));
+            return n >= minOverlap && n < pipelineVersions.size && (!q || name.toLowerCase().includes(q));
         });
 
         filtered.sort((a, b) =>
@@ -92,15 +82,16 @@
         }));
     });
 
+    const pipelineCounts = $derived(
+        new Map(
+            [...pipelineVersions.keys()].map((p) => [p, filteredParams.filter((fp) => fp.pipelineSet.has(p)).length]),
+        ),
+    );
+
     const sortedPipelines = $derived.by(() => {
-        if (!paramsData) return [];
-        const all = new Set<string>();
-        for (const variants of Object.values(paramsData))
-            for (const { pipelines } of variants) for (const { name } of pipelines) all.add(name);
-        const pipes = [...all];
+        const pipes = [...pipelineVersions.keys()];
         if (sortPipelines === "count") {
-            const counts = new Map(pipes.map((p) => [p, filteredParams.filter((fp) => fp.pipelineSet.has(p)).length]));
-            pipes.sort((a, b) => (counts.get(b) ?? 0) - (counts.get(a) ?? 0));
+            pipes.sort((a, b) => (pipelineCounts.get(b) ?? 0) - (pipelineCounts.get(a) ?? 0));
         } else {
             pipes.sort((a, b) => a.localeCompare(b));
         }
@@ -126,7 +117,7 @@
                 type="range"
                 class="form-range"
                 min="1"
-                max="100"
+                max={pipelineVersions.size}
                 bind:value={minOverlap}
                 style="width:120px"
             />
@@ -173,7 +164,7 @@
                 <tr>
                     <th class="param-col"></th>
                     {#each sortedPipelines as pipeline}
-                        {@const usedCount = filteredParams.filter((p) => p.pipelineSet.has(pipeline)).length}
+                        {@const usedCount = pipelineCounts.get(pipeline) ?? 0}
                         {@const version = pipelineVersions.get(pipeline)}
                         {@const isDev = version === "dev"}
                         <th
