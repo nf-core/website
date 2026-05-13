@@ -57,8 +57,29 @@ Input channel `val` declarations MAY be used to control behaviours of the module
 - If a module can output arbitrary or numerous file formats, the output format SHOULD be provided through a channel. The module SHOULD NOT perform bespoke string manipulation on input paths.
   :::info{title="Rationale" collapse}
   Modules can encounter numerous input name scenarios. Custom string operations necessarily make assumptions about the name of the file (for example that the name of a compressed file has at least two dots). Providing an explicit format input returns full control to the pipeline developer and reduces the risk of unexpected behaviour.
+
+  Example:
+  ```nextflow
+  # incorrect
+  out_file = "${prefix}.${in_file.name.split('.')[1]}.gz"
+  # correct
+  out_file = "${prefix}.${out_ext}.gz"
+  ```
   :::
 - If a module contains an optional pipe (for example: compression, sorting), the pipe SHOULD be controlled with a Boolean input channel.
+  :::info{title="Example" collapse}
+  ```nextflow
+  input:
+  ...
+  val compress
+
+  script:
+  compress_cmd = compress ? "gzip" : "cat"
+  """
+  tool $in_file | $compress_cmd > $out_file
+  """
+  ```
+  :::
 
 Non-standard `ext` fields (example: `ext.suffix`) SHOULD NOT be used to control module behaviour. `val` inputs SHOULD NOT be used for subcommands, separate modules SHOULD be used instead.
 
