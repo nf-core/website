@@ -61,15 +61,19 @@ Input channel `val` declarations MAY be used to control behaviours of the module
 
   :::info{title="Example" collapse}
   Example:
+
   ```nextflow
   # incorrect
   out_file = "${prefix}.${in_file.name.split('.')[1]}.gz"
   # correct
   out_file = "${prefix}.${out_ext}.gz"
   ```
+
   :::
+
 - If a module contains an optional pipe (for example: compression, sorting), the pipe SHOULD be controlled with a Boolean input channel.
   :::info{title="Example" collapse}
+
   ```nextflow
   input:
   ...
@@ -81,6 +85,7 @@ Input channel `val` declarations MAY be used to control behaviours of the module
   tool $in_file | $compress_cmd > $out_file
   """
   ```
+
   :::
 
 Non-standard `ext` fields (example: `ext.suffix`) SHOULD NOT be used to control module behaviour. `val` inputs SHOULD NOT be used for subcommands, separate modules SHOULD be used instead.
