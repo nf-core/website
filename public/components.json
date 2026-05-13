@@ -37179,6 +37179,139 @@
       ]
     },
     {
+      "name": "blobtk_create",
+      "path": "modules/nf-core/blobtk/create/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blobtk_create",
+        "description": "Creates a minimal blobdir.\n",
+        "keywords": [
+          "blobdir",
+          "btk",
+          "blobtoolkit",
+          "metadata"
+        ],
+        "tools": [
+          {
+            "btk": {
+              "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
+              "homepage": "https://github.com/genomehubs/blobtk/",
+              "documentation": "https://github.com/genomehubs/blobtk/wiki/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:btk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information and blobtk arguments\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input assembly FASTA.\n",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "full_table": {
+                "type": "file",
+                "description": "Full table TSV from busco.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1915"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "blobdir": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}/": {
+                  "type": "directory",
+                  "description": "A minimal blobdir directory\n",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_blobtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blobtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blobtk --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blobtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blobtk --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
       "name": "blobtk_depth",
       "path": "modules/nf-core/blobtk/depth/meta.yml",
       "type": "module",
@@ -37320,7 +37453,7 @@
         "keywords": [
           "png",
           "svg",
-          "bkt",
+          "btk",
           "blobtoolkit",
           "plot"
         ],
@@ -37422,6 +37555,192 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3604"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_blobtk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blobtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blobtk --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "blobtk": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "blobtk --version | cut -d' ' -f2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@DLBPointon"
+        ],
+        "maintainers": [
+          "@DLBPointon"
+        ]
+      }
+    },
+    {
+      "name": "blobtk_snail",
+      "path": "modules/nf-core/blobtk/snail/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "blobtk_snail",
+        "description": "Creates blobtk snail plots.\n",
+        "keywords": [
+          "svg",
+          "btk",
+          "blobtoolkit",
+          "snailplot"
+        ],
+        "tools": [
+          {
+            "btk": {
+              "description": "BlobTk contains a set of core functions used by BlobToolKit tools.\nImplemented in Rust, these functions are intended to be accessible\nfrom the command line, as python modules and will include web assembly\ncode for use in javascript.\n",
+              "homepage": "https://github.com/genomehubs/blobtk/",
+              "documentation": "https://github.com/genomehubs/blobtk/wiki/",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:btk"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information and blobtk arguments\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input assembly FASTA.\n",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "full_table": {
+                "type": "file",
+                "description": "Full table TSV from busco.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1915"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information and blobtk arguments\ne.g. `[ id:'sample1']`\n"
+              }
+            },
+            {
+              "blob_dir": {
+                "type": "directory",
+                "description": "A local path to a BlobDir.\n",
+                "pattern": "*/"
+              }
+            }
+          ],
+          {
+            "format": {
+              "type": "string",
+              "description": "Output format for the snail plot.\n",
+              "pattern": "{png,svg,json,yaml}"
+            }
+          }
+        ],
+        "output": {
+          "images": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.{svg,png}": {
+                  "type": "file",
+                  "description": "BlobTK image results of input arguments.\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3604"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "descriptions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.{json,yaml}": {
+                  "type": "file",
+                  "description": "BlobTK files describing the snail plot.\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3750"
                     }
                   ]
                 }
@@ -44986,7 +45305,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "circdna",
@@ -95618,7 +95937,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -96733,7 +97052,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     },
@@ -186617,7 +186936,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -195419,6 +195738,154 @@
         },
         "authors": [
           "@ksenia-krasheninnikova"
+        ]
+      }
+    },
+    {
+      "name": "octopusv_clean",
+      "path": "modules/nf-core/octopusv/clean/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "octopusv_clean",
+        "description": "Clean broken VCF/SVCF files using OctopuSV clean",
+        "keywords": [
+          "vcf",
+          "sv",
+          "structural-variants",
+          "clean",
+          "harmonization"
+        ],
+        "tools": [
+          {
+            "octopusv": {
+              "description": "End-to-end structural variant post-processing: standardize, merge, compare, and export SVs.",
+              "homepage": "https://github.com/ylab-hi/OctopuSV",
+              "documentation": "https://github.com/ylab-hi/OctopuSV",
+              "tool_dev_url": "https://github.com/ylab-hi/OctopuSV",
+              "doi": "10.1093/bioinformatics/btaf599",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample1' ]\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF/SVCF file to clean",
+                "pattern": "*.{vcf,vcf.gz,svcf,svcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3615"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Optional reference FASTA for chromosome harmonization",
+                "pattern": "*.{fa,fasta}",
+                "optional": true,
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Bgzipped VCF file",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3615"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_octopusv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
         ]
       }
     },
@@ -249719,7 +250186,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "hlatyping",
@@ -250906,7 +251373,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -251784,7 +252251,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -252151,7 +252618,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -252577,7 +253044,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -253162,7 +253629,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -254838,7 +255305,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -255319,7 +255786,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "circdna",
@@ -337344,7 +337811,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cellpainting",
@@ -337793,7 +338260,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cellpainting",
@@ -338300,7 +338767,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cellpainting",
