@@ -60,6 +60,7 @@ Input channel `val` declarations MAY be used to control behaviours of the module
   :::
 
   :::info{title="Example" collapse}
+
   ```nextflow
   # incorrect
   out_file = "${prefix}.${in_file.name.split('.')[1]}.gz"
