@@ -193,7 +193,7 @@ For example, if you set `docker.registry = 'myregistry.com'`, the image pulls fr
 
 ## Update tool versions
 
-The [Nextflow DSL2](https://docs.seqera.io/nextflow/dsl2) implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
+The Nextflow DSL2 implementation of nf-core pipelines uses one container or Conda environment per process, which simplifies software dependency maintenance and updates.
 
 To use a different version of a tool, identify the `process` name and override the Nextflow `container` or `conda` definition for that process using the `withName` declaration.
 
