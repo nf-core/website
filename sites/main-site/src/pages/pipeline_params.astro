@@ -1,0 +1,12 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import ParameterTable from "@components/ParameterTable.svelte";
+---
+
+<PageLayout title="Pipeline parameters" subtitle="Which parameters are used by which pipelines?">
+    <p class="lead">
+        Each column is a parameter shared by multiple pipelines; each row is a pipeline. A green cell means that
+        pipeline uses the parameter. Hover any cell for details.
+    </p>
+    <ParameterTable client:load />
+</PageLayout>

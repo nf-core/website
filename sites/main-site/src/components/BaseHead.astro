@@ -100,6 +100,10 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
 </script>
 <script>
     import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
+    // Exposed for client islands (e.g. Svelte) that mount after the initial tooltip scan.
+    const globalWithBootstrap = globalThis as typeof globalThis & { bootstrap: typeof bootstrap };
+    globalWithBootstrap.bootstrap = bootstrap;
+
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
     [...tooltipTriggerList].map((tooltipTriggerEl) => {
         const tooltip = bootstrap.Tooltip.getInstance(tooltipTriggerEl);
