@@ -3,6 +3,7 @@
     import TagSection from "@components/TagSection.svelte";
     import Markdown from "@components/markdown/Markdown.svelte";
     import { formatDistanceToNow, add } from "date-fns";
+    import { bsTooltip } from "@components/actions";
     import { Confetti } from "svelte-confetti";
 
     let { pipeline } = $props();
@@ -39,12 +40,11 @@
             <a class="text-decoration-none" href={"/" + pipeline.name + "/" + (released ? tagName : "dev") + "/"}
                 >{name}
                 {#if archived}
-                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
+                    <i class="fa-solid fa-xs fa-archive text-info" title="archived" use:bsTooltip></i>
                 {:else if released}
-                    <i class="fa-solid fa-xs fa-check text-success" title="released" data-bs-toggle="tooltip"></i>
+                    <i class="fa-solid fa-xs fa-check text-success" title="released" use:bsTooltip></i>
                 {:else}
-                    <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" data-bs-toggle="tooltip"
-                    ></i>
+                    <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" use:bsTooltip></i>
                 {/if}
             </a>
 
@@ -55,7 +55,7 @@
                     rel="noreferrer"
                     class="stargazers text-decoration-none mt-2 ms-2 text-warning"
                     title={stars + " stargazers on GitHub"}
-                    data-bs-toggle="tooltip"
+                    use:bsTooltip
                     data-html="true"
                     data-bs-original-title={stars + " stargazers on GitHub"}
                 >

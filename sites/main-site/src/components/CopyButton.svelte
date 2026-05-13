@@ -17,6 +17,8 @@
         children,
     }: Props = $props();
 
+    import { bsTooltip } from "@components/actions";
+
     let copied = $state(false);
 
     let currentClasses = $derived(copied ? copiedClasses : classes);
@@ -34,7 +36,7 @@
     class={"copy-url " + currentClasses}
     onclick={() => copyToClipboard(text)}
     onkeypress={() => copyToClipboard(text)}
-    data-bs-toggle="tooltip"
+    use:bsTooltip
     title="Copy to clipboard"
     role="button"
     tabindex="0"

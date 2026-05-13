@@ -1,5 +1,6 @@
 <script lang="ts">
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { bsTooltip } from "@components/actions";
 
     interface Props {
         name?: string;
@@ -27,7 +28,7 @@
     class:text-end={textEnd}
     class:text-center={textCenter}
     scope="col"
-    data-bs-toggle="tooltip"
+    use:bsTooltip
     data-bs-delay="500"
     title={resolvedTitle}
     onclick={() => handleSort(name)}

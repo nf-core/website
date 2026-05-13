@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { bsTooltip } from "@components/actions";
 
     type ParamVariant = { type: string | null; pipelines: { name: string; version: string }[] };
     type ParamsData = Record<string, ParamVariant[]>;
@@ -12,26 +13,6 @@
     let sortParams = $state<SortMode>("count");
     let sortPipelines = $state<SortMode>("count");
     let searchQuery = $state("");
-
-    function bsTooltip(node: HTMLElement) {
-        let instance: { show(): void; dispose(): void } | null = null;
-        function init() {
-            const bootstrap = (
-                globalThis as typeof globalThis & {
-                    bootstrap?: { Tooltip: new (el: Element, opts: object) => { show(): void; dispose(): void } };
-                }
-            ).bootstrap;
-            if (!bootstrap) return;
-            instance = new bootstrap.Tooltip(node, { trigger: "hover", placement: "top" });
-            if (node.matches(":hover")) instance.show();
-        }
-        node.addEventListener("mouseenter", init, { once: true });
-        return {
-            destroy() {
-                instance?.dispose();
-            },
-        };
-    }
 
     onMount(async () => {
         try {

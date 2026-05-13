@@ -6,6 +6,8 @@
         flatBottom?: boolean;
     }
 
+    import { bsTooltip } from "@components/actions";
+
     let { cmd, icon = true, flatTop = false, flatBottom = false }: Props = $props();
 
     let copied = $state(false);
@@ -42,7 +44,7 @@
         class:text-bg-success={copied}
         class:rounded-top-0={flatTop}
         aria-label="Copy to clipboard"
-        data-bs-toggle="tooltip"
+        use:bsTooltip
         data-bs-placement="left"
         title="Copy to clipboard"
         type="button"
