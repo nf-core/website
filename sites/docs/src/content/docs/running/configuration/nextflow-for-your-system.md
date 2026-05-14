@@ -60,7 +60,7 @@ process {
 }
 ```
 
-Older pipelines use bundled labels (`process_low`, `process_medium`, `process_high`) that set all three axes at once. The bundled labels remain functional but are scheduled for deprecation; see the [resource labels migration guide](/docs/contributing/migrating-resource-labels).
+Older pipelines use bundled labels (`process_low`, `process_medium`, `process_high`) that set all three axes at once. The bundled labels remain functional but are scheduled for deprecation; see the [resource labels migration guide](/docs/developing/migration-guides/process-axis-labels).
 
 The `resourceLimits` list sets the absolute maximum resources any pipeline job can request (typically matching your machine's maximum available resources).
 The label blocks define the initial default resources each pipeline job requests.
