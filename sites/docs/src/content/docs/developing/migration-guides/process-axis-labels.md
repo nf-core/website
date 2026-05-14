@@ -82,11 +82,11 @@ The recipe rewrites the CPU axis only. Memory and time overrides do not translat
 
 ## Deprecation timeline
 
-| Stage    | Status                                                                                                |
-| -------- | ----------------------------------------------------------------------------------------------------- |
-| Now      | Both schemes supported. Lint warns on bundled labels.                                                 |
-| +1 minor | Both schemes supported. nf-core/modules and nf-core/configs migrated.                                 |
-| +2 minor | Bundled labels removed from the template. Pipelines that still use them must define them locally.     |
+| Stage    | Status                                                                                            |
+| -------- | ------------------------------------------------------------------------------------------------- |
+| Now      | Both schemes supported. Lint warns on bundled labels.                                             |
+| +1 minor | Both schemes supported. nf-core/modules and nf-core/configs migrated.                             |
+| +2 minor | Bundled labels removed from the template. Pipelines that still use them must define them locally. |
 
 ## See also
 
