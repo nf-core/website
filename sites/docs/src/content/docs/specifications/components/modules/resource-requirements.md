@@ -18,11 +18,11 @@ The template defines two label schemes. New and updated modules SHOULD use the a
 
 Three independent axes cover CPU, memory and time. A module picks at most one label per axis and combines them to describe its resource shape:
 
-| Axis   | Labels (low to high)                                                                  |
-| ------ | ------------------------------------------------------------------------------------- |
-| CPU    | `process_cpus_single`, `process_cpus_low`, `process_cpus_medium`, `process_cpus_high` |
-| Memory | `process_mem_low`, `process_mem_medium`, `process_mem_high`                           |
-| Time   | `process_time_short`, `process_time_medium`, `process_time_long`                      |
+| Axis   | Labels (low to high)  |                      |                       |                     |
+| ------ | --------------------- | -------------------- | --------------------- | ------------------- |
+| CPU    | `process_cpus_single` | `process_cpus_low`   | `process_cpus_medium` | `process_cpus_high` |
+| Memory |                       | `process_mem_low`    | `process_mem_medium`  | `process_mem_high`  |
+| Time   |                       | `process_time_short` | `process_time_medium` | `process_time_long` |
 
 A CPU-bound but memory-light short job declares:
 
@@ -43,7 +43,7 @@ A module MUST NOT declare more than one label on the same axis. `process_cpus_lo
 
 The original label set ties CPU, memory and time together. Use exactly one per module: `process_single`, `process_low`, `process_medium`, or `process_high`. Two modifier labels override a single axis and SHOULD be stacked on top of a bundled label: `process_long` (extends time), `process_low_memory` (drops memory), `process_high_memory` (raises memory).
 
-These labels remain functional but emit a lint warning, and SHOULD be migrated to the axis-decomposed scheme. See the [migration guide](/docs/contributing/migrating-resource-labels) for the legacy-to-axis mapping table and a recipe for site-config maintainers.
+These labels remain functional but emit a lint warning, and SHOULD be migrated to the axis-decomposed scheme. See the [migration guide](/docs/developing/migration-guides/process-axis-labels) for the legacy-to-axis mapping table and a recipe for site-config maintainers.
 
 ### Label precedence
 
