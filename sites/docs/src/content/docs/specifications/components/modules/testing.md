@@ -51,6 +51,38 @@ assert snapshot(process.out).match()
 When the snapshot is unstable, use another way to test the output files.
 See [nf-test assertions](/docs/contributing/nf-test/assertions) for examples on how to do this.
 
+## GPU tests
+
+Modules that support both CPU and GPU modes SHOULD include a separate GPU test file (`main.gpu.nf.test`).
+GPU-only modules MAY use a single test file - see [`parabricks`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks) for an example.
+
+GPU tests MUST be tagged with `"gpu"` or `"gpu_highmem"` so the GPU CI workflow discovers and runs them on GPU-enabled runners.
+
+:::note
+The `"gpu"` tag runs on smaller AWS GPU instances (e.g., [`g4dn.xlarge`](https://aws.amazon.com/ec2/instance-types/g4/)), while `"gpu_highmem"` runs on larger instances (e.g., [`g4dn.2xlarge`](https://aws.amazon.com/ec2/instance-types/g4/)) for tools with higher memory requirements such as [Parabricks](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks).
+:::
+
+GPU tests SHOULD include a `nextflow.gpu.config` that sets `accelerator = 1` on the process.
+
+GPU tests SHOULD use the same assertions as the CPU tests to verify that GPU and CPU modes produce equivalent results.
+
+GPU tests SHOULD include both a real test and a stub test.
+
+:::caution{title="GPU concurrency under Singularity"}
+When multiple GPU processes share a single GPU under Singularity, concurrent CUDA processes can deadlock.
+Docker handles GPU memory arbitration automatically, but Singularity does not.
+This can happen in CI (where all tasks share one GPU), on HPC nodes with a local executor, or any setup where multiple GPU tasks land on the same machine. Set `maxForks = 1` for GPU processes to serialise access when this is a risk.
+:::
+
+```
+modules/nf-core/<tool>/tests/
+  main.nf.test           # CPU tests
+  main.gpu.nf.test       # GPU tests (tag "gpu")
+  nextflow.gpu.config    # Sets accelerator = 1
+```
+
+For an example, see the [`ribodetector` GPU tests](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector/tests).
+
 ## Stub tests
 
 A stub test MUST be included for the module.
