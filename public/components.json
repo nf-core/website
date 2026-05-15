@@ -206055,6 +206055,336 @@
       }
     },
     {
+      "name": "parsesdrf_convert",
+      "path": "modules/nf-core/parsesdrf/convert/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "parsesdrf_convert",
+        "description": "Convert an SDRF (Sample and Data Relationship Format) file into a\npipeline-specific samplesheet/configuration using the `parse_sdrf\nconvert-<format>` subcommands of the sdrf-pipelines package. The chosen\n`format` selects the subcommand; the module owns the output filenames and\nemits one tuple per supported format (mhcquant, openms, maxquant, msstats,\nnormalyzerde, diann).\n",
+        "keywords": [
+          "sdrf",
+          "sdrf-pipelines",
+          "samplesheet",
+          "proteomics",
+          "immunopeptidomics",
+          "mhcquant",
+          "openms",
+          "maxquant",
+          "msstats",
+          "normalyzerde",
+          "diann",
+          "metadata"
+        ],
+        "tools": [
+          {
+            "sdrf-pipelines": {
+              "description": "A set of tools to validate and convert SDRF files for proteomics pipelines.",
+              "homepage": "https://github.com/bigbio/sdrf-pipelines",
+              "documentation": "https://github.com/bigbio/sdrf-pipelines",
+              "tool_dev_url": "https://github.com/bigbio/sdrf-pipelines",
+              "doi": "10.1021/acs.jproteome.1c00505",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:sdrf-pipelines"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample/run information\ne.g. `[ id:'PXD009752' ]`\n"
+              }
+            },
+            {
+              "sdrf": {
+                "type": "file",
+                "description": "SDRF file describing the experimental design and sample metadata.",
+                "pattern": "*.{tsv,sdrf.tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Protein database FASTA. Required when `format == 'maxquant'`\n(passed to `-f`); pass `[]` otherwise.\n",
+                "pattern": "*.{fasta,fa,fasta.gz,fa.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "raw_folder": {
+                "type": "string",
+                "description": "Directory prefix embedded as a literal string into the\n`<filePaths>` block of the generated MaxQuant `mqpar.xml`; must\nresolve on the host that later runs MaxQuant. Required when\n`format == 'maxquant'`; pass `''` otherwise.\n"
+              }
+            }
+          ],
+          {
+            "format": {
+              "type": "string",
+              "description": "Target converter. One of: `mhcquant`, `openms`, `maxquant`,\n`msstats`, `normalyzerde`, `diann`. Selects the\n`parse_sdrf convert-<format>` subcommand.\n"
+            }
+          }
+        ],
+        "output": {
+          "mhcquant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}_samplesheet.tsv": {
+                  "type": "file",
+                  "description": "MHCquant samplesheet TSV (`-os`).",
+                  "pattern": "*_samplesheet.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_presets.tsv": {
+                  "type": "file",
+                  "description": "MHCquant search-preset TSV (`-op`).",
+                  "pattern": "*_presets.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "openms": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}_samplesheet.tsv": {
+                  "type": "file",
+                  "description": "OpenMS samplesheet TSV (renamed from `openms.tsv`).",
+                  "pattern": "*_samplesheet.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_experimental_design.tsv": {
+                  "type": "file",
+                  "description": "OpenMS experimental design TSV.",
+                  "pattern": "*_experimental_design.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "maxquant": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}.xml": {
+                  "type": "file",
+                  "description": "MaxQuant `mqpar.xml` (`-o1`).",
+                  "pattern": "*.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2332"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_design.txt": {
+                  "type": "file",
+                  "description": "MaxQuant experimental design TXT (`-o2`).",
+                  "pattern": "*_design.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "msstats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}.csv": {
+                  "type": "file",
+                  "description": "MSstats annotation CSV (`-o`).",
+                  "pattern": "*.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "normalyzerde": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}_design.csv": {
+                  "type": "file",
+                  "description": "NormalyzerDE design CSV (`-o`).",
+                  "pattern": "*_design.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_comparisons.csv": {
+                  "type": "file",
+                  "description": "NormalyzerDE comparisons CSV (`-oc`).",
+                  "pattern": "*_comparisons.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "diann": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample/run information"
+                }
+              },
+              {
+                "${prefix}.cfg": {
+                  "type": "file",
+                  "description": "DIA-NN config (renamed from `diann_config.cfg`).",
+                  "pattern": "*.cfg",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_design.tsv": {
+                  "type": "file",
+                  "description": "DIA-NN experimental design TSV (renamed from `diann_design.tsv`).",
+                  "pattern": "*_design.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_sdrfpipelines": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sdrf-pipelines": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "parse_sdrf --version | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sdrf-pipelines": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "parse_sdrf --version | cut -d ' ' -f 2": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
+        ]
+      }
+    },
+    {
       "name": "parsnp",
       "path": "modules/nf-core/parsnp/meta.yml",
       "type": "module",
@@ -248699,6 +249029,267 @@
       }
     },
     {
+      "name": "samplesheetparser_info",
+      "path": "modules/nf-core/samplesheetparser/info/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samplesheetparser_info",
+        "description": "Display a structured JSON summary of an Illumina SampleSheet.csv (V1 or V2)\nincluding format version, sample count, lanes, index type, read lengths,\nadapter sequences, experiment name, and instrument platform.\nUseful for logging run metadata or conditional branching in pipelines.\n",
+        "keywords": [
+          "illumina",
+          "samplesheet",
+          "metadata",
+          "bclconvert",
+          "bcl2fastq",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "samplesheet-parser": {
+              "description": "Format-agnostic parser for Illumina SampleSheet.csv files.\nSupports IEM V1 (bcl2fastq) and BCLConvert V2 with auto-detection,\nbidirectional conversion, index validation, and Hamming distance checking.\n",
+              "homepage": "https://github.com/chaitanyakasaraneni/samplesheet-parser",
+              "documentation": "https://illumina-samplesheet.readthedocs.io",
+              "tool_dev_url": "https://github.com/chaitanyakasaraneni/samplesheet-parser",
+              "doi": "10.5281/zenodo.18989694",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:samplesheet-parser"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\nUse [ id:'run_id' ] to identify the sheet.\n"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "Illumina SampleSheet.csv (V1 or V2 format, auto-detected)",
+                "pattern": "*.{csv,CSV}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.info.json": {
+                  "type": "file",
+                  "description": "JSON summary with file, format, sample_count, lanes, index_type,\nread_lengths, adapters, experiment_name, and instrument fields.\n",
+                  "pattern": "*.info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_samplesheetparser": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samplesheet-parser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samplesheet --version | sed 's/samplesheet-parser //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samplesheet-parser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samplesheet --version | sed 's/samplesheet-parser //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@chaitanyakasaraneni"
+        ],
+        "maintainers": [
+          "@chaitanyakasaraneni"
+        ]
+      }
+    },
+    {
+      "name": "samplesheetparser_validate",
+      "path": "modules/nf-core/samplesheetparser/validate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "samplesheetparser_validate",
+        "description": "Validate an Illumina SampleSheet.csv (V1 or V2) for index, adapter, and\nstructural issues. Format is auto-detected. Exits 0 if valid, 1 if errors\nare found — causing the pipeline to fail early with a clear message rather\nthan discovering demultiplexing problems downstream.\n",
+        "keywords": [
+          "illumina",
+          "samplesheet",
+          "validation",
+          "demultiplexing",
+          "bclconvert",
+          "bcl2fastq",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "samplesheet-parser": {
+              "description": "Format-agnostic parser for Illumina SampleSheet.csv files.\nSupports IEM V1 (bcl2fastq) and BCLConvert V2 with auto-detection,\nbidirectional conversion, index validation, and Hamming distance checking.\n",
+              "homepage": "https://github.com/chaitanyakasaraneni/samplesheet-parser",
+              "documentation": "https://illumina-samplesheet.readthedocs.io",
+              "tool_dev_url": "https://github.com/chaitanyakasaraneni/samplesheet-parser",
+              "doi": "10.5281/zenodo.18989694",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:samplesheet-parser"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information.\nUse [ id:'run_id' ] to identify the sheet.\n"
+              }
+            },
+            {
+              "samplesheet": {
+                "type": "file",
+                "description": "Illumina SampleSheet.csv (V1 or V2 format)",
+                "pattern": "*.{csv,CSV}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.validation.json": {
+                  "type": "file",
+                  "description": "Structured JSON validation report with is_valid, errors, warnings,\nand min_hamming_distance fields.\n",
+                  "pattern": "*.validation.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_samplesheetparser": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samplesheet-parser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samplesheet --version | sed 's/samplesheet-parser //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samplesheet-parser": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samplesheet --version | sed 's/samplesheet-parser //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@chaitanyakasaraneni"
+        ],
+        "maintainers": [
+          "@chaitanyakasaraneni"
+        ]
+      }
+    },
+    {
       "name": "samshee",
       "path": "modules/nf-core/samshee/meta.yml",
       "type": "module",
@@ -258475,6 +259066,16 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
         "authors": [
           "@nictru"
         ],
@@ -258601,6 +259202,16 @@
                     "edam": "http://edamontology.org/format_3750"
                   }
                 ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
               }
             }
           ]
