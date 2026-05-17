@@ -224,16 +224,18 @@ This adds your parameters to `nextflow_schema.json` with descriptions and valida
 
 ### Resource requirements
 
-Define process resource requirements (CPUs, memory, time) in `conf/base.config` using `withLabel:` selectors:
+Define process resource requirements (CPUs, memory, time) in `conf/base.config` using `withLabel:` selectors. The nf-core template ships axis-decomposed labels - pick at most one label per axis (CPU, memory, time) and combine them on each module:
 
 ```groovy
-withLabel: process_low {
-    cpus = 2
-    memory = 4.GB
+withLabel:process_cpus_low {
+    cpus = { 2 * task.attempt }
+}
+withLabel:process_mem_low {
+    memory = { 1.GB * task.attempt }
 }
 ```
 
-Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/master/nf_core/pipeline-template/conf/base.config).
+Use standardized labels from the [nf-core pipeline template](https://github.com/nf-core/tools/blob/main/nf_core/pipeline-template/conf/base.config). The full label catalogue and the deprecation status of the older bundled labels (`process_low`, `process_medium`, `process_high`) are documented in [Resource requirements](/docs/specifications/components/modules/resource-requirements).
 Reference resources dynamically in process blocks:
 
 ```groovy
