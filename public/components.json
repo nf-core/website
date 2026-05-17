@@ -135863,19 +135863,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_haplocheck": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "haplocheck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "haplocheck --version 2>&1 | sed -n 's/^haplocheck //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "haplocheck": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "haplocheck --version 2>&1 | sed -n 's/^haplocheck //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -155739,10 +155771,8 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Application-specific text file with hits information",
-                  "pattern": "*.{txt}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -155759,10 +155789,8 @@
             [
               {
                 "meta": {
-                  "type": "file",
-                  "description": "Application-specific text file with hits information",
-                  "pattern": "*.{txt}",
-                  "ontologies": []
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
                 }
               },
               {
@@ -155779,19 +155807,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kofamscan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kofamscan": {
+                  "type": "string",
+                  "description": "kofamscan version string"
+                }
+              },
+              {
+                "exec_annotation --version 2>&1 | sed 's/exec_annotation //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kofamscan": {
+                  "type": "string",
+                  "description": "kofamscan version string"
+                }
+              },
+              {
+                "exec_annotation --version 2>&1 | sed 's/exec_annotation //;'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -166677,19 +166737,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_maltextract": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "maltextract": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "MaltExtract --help | head -n 2 | tail -n 1 | sed 's/MaltExtract version//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "maltextract": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "MaltExtract --help | head -n 2 | tail -n 1 | sed 's/MaltExtract version//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -200265,19 +200357,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_pairix": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pairix": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pairix --help 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pairix": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "pairix --help 2>&1 | sed -n 's/^Version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -226121,19 +226245,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_prinseqplusplus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prinseqplusplus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prinseq++ --version | cut -f 2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prinseqplusplus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prinseq++ --version | cut -f 2 -d ' '": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -272223,7 +272379,13 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "model": {
+              "type": "string",
+              "description": "Shasta assembly configuration model name\n(e.g. 'Nanopore-Oct2021', 'Nanopore-Dec2019')\n"
+            }
+          }
         ],
         "output": {
           "assembly": [
@@ -272279,19 +272441,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_shasta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "shasta --version | sed -n '1s/.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "shasta": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "shasta --version | sed -n '1s/.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -276394,19 +276588,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_smoothxg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "smoothxg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smoothxg --version 2>&1 | sed 's/^v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "smoothxg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "smoothxg --version 2>&1 | sed 's/^v//; s/-.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -283477,19 +283703,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ssuissero": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ssuissero": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ssuissero": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -320879,19 +321137,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_whamg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whamg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whamg 2>&1 | sed -n 's/^Version: v\\([^-]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "whamg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "whamg 2>&1 | sed -n 's/^Version: v\\([^-]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
