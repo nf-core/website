@@ -70,6 +70,8 @@ Input channel `val` declarations MAY be used to control behaviours of the module
 
   :::
 
+- If the output format of a module is necessarily the same as the input format, the module MAY infer the output format from the input path.
+
 - If a module contains an optional pipe (for example: compression, sorting), the pipe SHOULD be controlled with a Boolean input channel.
   :::info{title="Example" collapse}
 
@@ -86,6 +88,8 @@ Input channel `val` declarations MAY be used to control behaviours of the module
   ```
 
   :::
+
+- If a module has an explicit output format, this format MAY be used to control compression.
 
 Non-standard `ext` fields (example: `ext.suffix`) SHOULD NOT be used to control module behaviour. `val` inputs SHOULD NOT be used for subcommands, separate modules SHOULD be used instead.
 
