@@ -54,7 +54,7 @@ When one and only one of multiple argument are required:
 
 Input channel `val` declarations MAY be used to control behaviours of the module that cannot be expressed with arguments of the underlying tool.
 
-- If a module can output arbitrary or numerous file formats, the output format SHOULD be provided through a channel. The module SHOULD NOT perform bespoke string manipulation on input paths.
+- If a module can output multiple file formats, the output format SHOULD be provided through a channel. The module SHOULD NOT infer the output format from the input path.
   :::info{title="Rationale" collapse}
   Modules can encounter numerous input name scenarios. Custom string operations necessarily make assumptions about the name of the file (for example that the name of a compressed file has at least two dots). Providing an explicit format input returns full control to the pipeline developer and reduces the risk of unexpected behaviour.
   :::
@@ -79,9 +79,9 @@ Input channel `val` declarations MAY be used to control behaviours of the module
   val compress
 
   script:
-  compress_cmd = compress ? "gzip" : "cat"
+  compress_cmd = compress ? "| gzip" : ""
   """
-  tool $in_file | $compress_cmd > $out_file
+  tool $in_file $compress_cmd > $out_file
   """
   ```
 
