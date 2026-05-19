@@ -1,7 +1,8 @@
 ---
 title: Advanced techniques
 subtitle: Write complex assertions
-shortTitle: Advanced
+shortTitle: Advanced assertions
+weight: 3
 ---
 
 Advanced assertion patterns handle complex testing scenarios where standard snapshots are insufficient.
@@ -211,6 +212,8 @@ with(process.out.imputed_plink2) {
 ```
 
 ## Troubleshooting
+
+For CI infrastructure issues (such as insufficient disk space on GitHub Actions runners), see [CI runners](./ci-runners).
 
 When using nf-test with container technologies like Docker, Singularity, or Conda, environment-specific issues can arise, particularly mismatched hashes.
 
