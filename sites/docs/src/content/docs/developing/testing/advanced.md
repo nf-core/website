@@ -1,7 +1,8 @@
 ---
 title: Advanced techniques
 subtitle: Write complex assertions
-shortTitle: Advanced
+shortTitle: Advanced assertions
+weight: 3
 ---
 
 Advanced assertion patterns handle complex testing scenarios where standard snapshots are insufficient.
@@ -12,7 +13,7 @@ Advanced assertion patterns handle complex testing scenarios where standard snap
 
 - [BCLCONVERT](https://github.com/nf-core/modules/blob/master/modules/nf-core/bclconvert/tests/main.nf.test)
 
-```groovy!
+```groovy
 assertAll(
                 { assert process.success },
                 { assert snapshot(
@@ -44,7 +45,7 @@ This creates a snapshot of a specific portion (first five lines) of a file for c
 
 **When to use:** You cannot snapshot the whole file because it is unstable, but you know a portion of the content and the total line count remain stable.
 
-```groovy
+```nextflow
 def lines = path(process.out.file_out[0][1]).linesGzip
 assertAll(
     { assert process.success },
@@ -211,6 +212,8 @@ with(process.out.imputed_plink2) {
 ```
 
 ## Troubleshooting
+
+For CI infrastructure issues (such as insufficient disk space on GitHub Actions runners), see [CI runners](./ci-runners).
 
 When using nf-test with container technologies like Docker, Singularity, or Conda, environment-specific issues can arise, particularly mismatched hashes.
 
