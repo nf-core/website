@@ -228,7 +228,10 @@ See the [test data specifications](/docs/specifications/test-data/general) for c
 
 ### Add full test data
 
-You will need a full-size test dataset for the `test_full` profile. This dataset produces realistic output when executed on each release. Whenever possible, resources such as datasets or databases required here should be specified as stable, secure links to the original source. In rare cases where the data is only available via insecure http, behind a login page, or otherwise difficult to download programatically, contact the core team at #request-core. 
+You will need a full-size test dataset for the `test_full` profile. 
+This dataset produces realistic output when executed on each release and gets rendered on the "Results" tab of your pipeline's page on nf-co.re. 
+Whenever possible, resources such as datasets or databases required here should be specified as stable, secure links to the original source. 
+In rare cases where the data is only available via insecure http, behind a login page, or otherwise difficult to download programatically, contact the core team at [#request-core](https://nfcore.slack.com/channels/request-core. 
 
 For more information about running the tests using the `test_full` profile, watch [Bytesize 19](https://nf-co.re/events/2021/bytesize-19-aws-megatests).
 
