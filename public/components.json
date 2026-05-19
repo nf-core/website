@@ -111310,7 +111310,7 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "panel of normal as compressed vcf file",
                   "pattern": "*.vcf.gz",
@@ -111332,7 +111332,7 @@
                 }
               },
               {
-                "*.tbi": {
+                "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Tabix index of vcf file",
                   "pattern": "*vcf.gz.tbi",
@@ -115946,10 +115946,10 @@
                 }
               },
               {
-                "*.vcf.gz": {
+                "${prefix}.vcf.gz": {
                   "type": "file",
                   "description": "compressed vcf file",
-                  "pattern": "*.vcf.gz",
+                  "pattern": "${prefix}.vcf.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -115968,10 +115968,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "${prefix}.vcf.gz.tbi": {
                   "type": "file",
                   "description": "Index of vcf file",
-                  "pattern": "*vcf.gz.tbi",
+                  "pattern": "${prefix}.vcf.gz.tbi",
                   "ontologies": []
                 }
               }
@@ -115986,10 +115986,10 @@
                 }
               },
               {
-                "*.stats": {
+                "${prefix}.vcf.gz.stats": {
                   "type": "file",
                   "description": "Stats file that pairs with output vcf file",
-                  "pattern": "*vcf.gz.stats",
+                  "pattern": "${prefix}.vcf.gz.stats",
                   "ontologies": []
                 }
               }
@@ -116004,10 +116004,10 @@
                 }
               },
               {
-                "*.f1r2.tar.gz": {
+                "${prefix}.f1r2.tar.gz": {
                   "type": "file",
                   "description": "file containing information to be passed to LearnReadOrientationModel (only outputted when tumor_normal_pair mode is run)",
-                  "pattern": "*.f1r2.tar.gz",
+                  "pattern": "${prefix}.f1r2.tar.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -189928,34 +189928,34 @@
         "containers": {
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/multiqc/.conda-lock/linux_amd64-bd-db7c73dae76bc9e6_1.txt"
+              "lock_file": "modules/nf-core/multiqc/.conda-lock/linux_amd64-bd-839587b417d23042_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/multiqc/.conda-lock/linux_arm64-bd-d167b8012595a136_1.txt"
+              "lock_file": "modules/nf-core/multiqc/.conda-lock/linux_arm64-bd-3e45d17b40a576b4_1.txt"
             }
           },
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/multiqc:1.34--db7c73dae76bc9e6",
-              "build_id": "bd-db7c73dae76bc9e6_1",
-              "scan_id": "sc-66fc7138dbf1cf48_1"
+              "name": "community.wave.seqera.io/library/multiqc:1.35--839587b417d23042",
+              "build_id": "bd-839587b417d23042_1",
+              "scan_id": "sc-f87d7a31551c029f_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/multiqc:1.34--d167b8012595a136",
-              "build_id": "bd-d167b8012595a136_1",
-              "scan_id": "sc-ac701dfa631a2af9_1"
+              "name": "community.wave.seqera.io/library/multiqc:1.35--3e45d17b40a576b4",
+              "build_id": "bd-3e45d17b40a576b4_1",
+              "scan_id": "sc-1d0cf4ed1a4b61e0_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc:1.34--4fc8657c816047c0",
-              "build_id": "bd-4fc8657c816047c0_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/1b/1bef8af6be88c5733461959c46ac8ef73d18f65277f62a1695d0e1633054f9c2/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc:1.35--cb7458fda84d6393",
+              "build_id": "bd-cb7458fda84d6393_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/12/1297c0f5075c19486da167ebf1b6136907d6b5339697b87b29fda335221785b3/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc:1.34--7fbd82d945c06726",
-              "build_id": "bd-7fbd82d945c06726_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/9a/9a1fec9662a152683e6fcae440d0ce20920b3b89dc62d1e3a52e73f92eba0969/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc:1.35--f79e87603d312ac0",
+              "build_id": "bd-f79e87603d312ac0_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/c0/c007304153702edc622f1a76b41505e7fca65c7145e5b8b2ddce62a5c59af207/data"
             }
           }
         }
@@ -190890,34 +190890,34 @@
         "containers": {
           "conda": {
             "linux/amd64": {
-              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-644a84cef31cc4aa_1.txt"
+              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_amd64-bd-d497f2c0ee14021c_1.txt"
             },
             "linux/arm64": {
-              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-039d1ec6b47ba325_1.txt"
+              "lock_file": "modules/nf-core/multiqcsav/.conda-lock/linux_arm64-bd-63d3faa1f4fa1fa6_1.txt"
             }
           },
           "docker": {
             "linux/amd64": {
-              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:644a84cef31cc4aa",
-              "build_id": "bd-644a84cef31cc4aa_1",
-              "scan_id": "sc-253553e37f233660_1"
+              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:d497f2c0ee14021c",
+              "build_id": "bd-d497f2c0ee14021c_1",
+              "scan_id": "sc-872ef428e7dd759e_1"
             },
             "linux/arm64": {
-              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:039d1ec6b47ba325",
-              "build_id": "bd-039d1ec6b47ba325_1",
-              "scan_id": "sc-1c30a1d921d59ec5_1"
+              "name": "community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:63d3faa1f4fa1fa6",
+              "build_id": "bd-63d3faa1f4fa1fa6_1",
+              "scan_id": "sc-d2c09f2fb4caa3ad_1"
             }
           },
           "singularity": {
             "linux/amd64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:9ebe780f2738c655",
-              "build_id": "bd-9ebe780f2738c655_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/45/4590c19f294469392d1bd2689eb9d4a06f18d20f64c5dbc0bbc17473c9941b4e/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:f4f70d0f966edec3",
+              "build_id": "bd-f4f70d0f966edec3_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/80/80a772836e24ece3afc4eb53f6584a311000842e6323b8e725d37fd88b566768/data"
             },
             "linux/arm64": {
-              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:fc57bb53140baade",
-              "build_id": "bd-fc57bb53140baade_1",
-              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/b0/b047611068a4009d62d8352e8bb4ab27fa993708a82c029f115e6758b2e44bec/data"
+              "name": "oras://community.wave.seqera.io/library/multiqc_multiqc_sav_pip_interop:8285dbf19c66f011",
+              "build_id": "bd-8285dbf19c66f011_1",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/20/20f8e844c2df1a8893ac3897249bf3166752c17c41822271c12a51821b13c685/data"
             }
           }
         }
@@ -328923,45 +328923,50 @@
         "components": [
           "gatk4/mutect2",
           "gatk4/genomicsdbimport",
-          "gatk4/createsomaticpanelofnormals"
+          "gatk4/createsomaticpanelofnormals",
+          "gatk4/mergevcfs",
+          "gatk4/mergemutectstats"
         ],
         "input": [
           {
-            "ch_mutect2_in": {
+            "ch_input": {
               "type": "list",
-              "description": "An input channel containing the following files:\n- input: One or more BAM/CRAM files\n- input_index: The index/indices from the BAM/CRAM file(s)\n- interval_file: An interval file to be used with the mutect call\nStructure: [ meta, input, input_index, interval_file ]\n"
+              "description": "An input channel containing the following files:\n- input: One or more BAM/CRAM files\n- input_index: The index/indices from the BAM/CRAM file(s)\nStructure: [ meta, path(input), path(input_index) ]\n"
             }
           },
           {
-            "fasta": {
-              "type": "file",
-              "description": "The reference fasta file",
-              "pattern": "*.fasta"
+            "ch_fasta": {
+              "type": "list",
+              "description": "Reference fasta file\nStructure: [ meta, path(fasta) ]\n"
             }
           },
           {
-            "fai": {
-              "type": "file",
-              "description": "Index of reference fasta file",
-              "pattern": "*.fasta.fai"
+            "ch_fai": {
+              "type": "list",
+              "description": "Reference fasta file index\nStructure: [ meta, path(fai) ]\n"
             }
           },
           {
-            "dict": {
+            "ch_dict": {
+              "type": "list",
+              "description": "GATK sequence dictionary\nStructure: [ meta, path(dict) ]\n"
+            }
+          },
+          {
+            "ch_intervals_gendb": {
               "type": "file",
-              "description": "GATK sequence dictionary",
-              "pattern": "*.dict"
+              "description": "Interval file used for GenomicsDBImport",
+              "pattern": "*.{bed,interval_list}"
+            }
+          },
+          {
+            "ch_intervals_num": {
+              "type": "list",
+              "description": "Intervals channel for scatter and gather strategy. Each item is a tuple of\nan interval file and the total number of intervals. Use [ [], 0 ] if no intervals.\nStructure: [ path(intervals), val(num_intervals) ]\n"
             }
           }
         ],
         "output": [
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
-          },
           {
             "mutect2_vcf": {
               "type": "list",
@@ -329009,7 +329014,8 @@
           "@GCJMackenzie"
         ],
         "maintainers": [
-          "@GCJMackenzie"
+          "@GCJMackenzie",
+          "@maxulysse"
         ]
       },
       "pipelines": [
