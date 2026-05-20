@@ -2163,7 +2163,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -2433,7 +2433,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -4583,6 +4583,7 @@
       "meta": {
         "name": "ampcombi",
         "description": "A tool to parse and summarise results from antimicrobial peptides tools and present functional classification.",
+        "deprecated": true,
         "keywords": [
           "antimicrobial peptides",
           "amps",
@@ -6286,6 +6287,7 @@
       "meta": {
         "name": "amulety_antiberta2",
         "description": "A module to create antiberta2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "deprecated": true,
         "keywords": [
           "embeddings",
           "BCR",
@@ -6390,6 +6392,7 @@
       "meta": {
         "name": "amulety_antiberty",
         "description": "A module to create antiberty embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "deprecated": true,
         "keywords": [
           "embeddings",
           "BCR",
@@ -6494,6 +6497,7 @@
       "meta": {
         "name": "amulety_balmpaired",
         "description": "A module to create BALM paired embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "deprecated": true,
         "keywords": [
           "embeddings",
           "BCR",
@@ -6774,6 +6778,7 @@
       "meta": {
         "name": "amulety_esm2",
         "description": "A module to create esm2 embeddings of antibody (BCR) amino acid sequences using amulety.",
+        "deprecated": true,
         "keywords": [
           "embeddings",
           "BCR",
@@ -9551,6 +9556,7 @@
       "meta": {
         "name": "antismash_antismashlite",
         "description": "antiSMASH allows the rapid genome-wide identification, annotation\nand analysis of secondary metabolite biosynthesis gene clusters.\n",
+        "deprecated": true,
         "keywords": [
           "secondary metabolites",
           "BGC",
@@ -10023,6 +10029,7 @@
       "meta": {
         "name": "antismash_antismashlitedownloaddatabases",
         "description": "antiSMASH allows the rapid genome-wide identification, annotation and analysis of secondary metabolite biosynthesis gene clusters. This module downloads the antiSMASH databases for conda and docker/singularity runs.",
+        "deprecated": true,
         "keywords": [
           "secondary metabolites",
           "BGC",
@@ -11425,7 +11432,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -11781,7 +11788,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -16595,6 +16602,7 @@
       "meta": {
         "name": "bam2fastx_bam2fastq",
         "description": "Conversion of PacBio BAM files into gzipped fastq files, including splitting of barcoded data",
+        "deprecated": true,
         "keywords": [
           "bam2fastx",
           "bam2fastq",
@@ -32266,7 +32274,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "smrnaseq",
@@ -45179,6 +45187,7 @@
       "meta": {
         "name": "cat_cat",
         "description": "A module for concatenation of gzipped or uncompressed files",
+        "deprecated": true,
         "keywords": [
           "concatenate",
           "gzip",
@@ -45336,7 +45345,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "sarek",
@@ -45564,7 +45573,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -58762,6 +58771,151 @@
       ]
     },
     {
+      "name": "cnvkit_coverage",
+      "path": "modules/nf-core/cnvkit/coverage/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnvkit_coverage",
+        "description": "Calculate coverage in the given regions from BAM/CRAM or bedGraph files read depths.",
+        "keywords": [
+          "cnvkit",
+          "coverage",
+          "BAM",
+          "CRAM",
+          "bedGraph",
+          "read depth",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cnvkit": {
+              "description": "Copy number variant detection from high-throughput sequencing.",
+              "homepage": "https://cnvkit.readthedocs.io/en/stable",
+              "documentation": "https://cnvkit.readthedocs.io/en/stable",
+              "tool_dev_url": "https://github.com/etal/cnvkit",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:cnvkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "alignment_file": {
+                "type": "file",
+                "description": "Sorted BAM/CRAM, or bedGraph file containing read alignements.",
+                "pattern": "*.{bam,cram,bed.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_2573"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3583"
+                  }
+                ]
+              }
+            },
+            {
+              "interval": {
+                "type": "file",
+                "description": "bed file containing the target or antitarget regions.",
+                "pattern": "*.{target,antitarget}.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "coverage": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.cnn": {
+                  "type": "file",
+                  "description": "Coverage bedfile with .cnn extension.",
+                  "pattern": "*.{targetcoverage,antitargetcoverage}.cnn",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_cnvkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@aadecock"
+        ],
+        "maintainers": [
+          "@aadecock"
+        ]
+      }
+    },
+    {
       "name": "cnvkit_export",
       "path": "modules/nf-core/cnvkit/export/meta.yml",
       "type": "module",
@@ -68223,7 +68377,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -68605,7 +68759,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -69322,6 +69476,7 @@
       "meta": {
         "name": "custom_dumpsoftwareversions",
         "description": "Custom module used to dump software versions within the nf-core pipeline template",
+        "deprecated": true,
         "keywords": [
           "custom",
           "dump",
@@ -69885,6 +70040,7 @@
       "meta": {
         "name": "custom_getchromsizes",
         "description": "Generates a FASTA file of chromosome sizes and a fasta index file",
+        "deprecated": true,
         "keywords": [
           "fasta",
           "chromosome",
@@ -72518,6 +72674,7 @@
       "meta": {
         "name": "dastool_scaffolds2bin",
         "description": "Helper script to convert a set of bins in fasta format to tabular scaffolds2bin format",
+        "deprecated": true,
         "keywords": [
           "binning",
           "das tool",
@@ -77091,6 +77248,7 @@
       "meta": {
         "name": "deepvariant",
         "description": "(DEPRECATED - see main.nf) DeepVariant is an analysis pipeline that uses a deep neural network to call genetic variants from next-generation DNA sequencing data",
+        "deprecated": true,
         "keywords": [
           "variant calling",
           "machine learning",
@@ -94377,6 +94535,7 @@
       "meta": {
         "name": "fastavalidator",
         "description": "\"Python C-extension for a simple validator for fasta files. The module emits the validated file or an\nerror log upon validation failure.\"\n",
+        "deprecated": true,
         "keywords": [
           "fasta",
           "validation",
@@ -95857,7 +96016,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -96521,7 +96680,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -97873,6 +98032,7 @@
       "meta": {
         "name": "fcs_fcsgx",
         "description": "Run FCS-GX on assembled genomes. The contigs of the assembly are searched against a reference database excluding the given taxid.",
+        "deprecated": true,
         "keywords": [
           "assembly",
           "genomics",
@@ -105167,7 +105327,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -105471,7 +105631,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -105757,7 +105917,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -105868,7 +106028,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -109295,7 +109455,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnavar",
@@ -111395,7 +111555,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnavar",
@@ -115324,7 +115484,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "sarek",
@@ -127436,7 +127596,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -156994,6 +157154,7 @@
       "meta": {
         "name": "kat_hist",
         "description": "Creates a histogram of the number of distinct k-mers having a given frequency.",
+        "deprecated": true,
         "keywords": [
           "k-mer",
           "histogram",
@@ -160798,6 +160959,7 @@
       "meta": {
         "name": "krona_kronadb",
         "description": "KronaTools Update Taxonomy downloads a taxonomy database",
+        "deprecated": true,
         "keywords": [
           "database",
           "taxonomy",
@@ -173273,6 +173435,7 @@
       "meta": {
         "name": "mcstaging_imc2mc",
         "description": "Staging module for MCMICRO transforming Imaging Mass Cytometry .txt files to .tif files with OME-XML metadata. Includes optional hot pixel removal.",
+        "deprecated": true,
         "keywords": [
           "imaging",
           "ome-tif",
@@ -173486,6 +173649,7 @@
       "meta": {
         "name": "mcstaging_phenoimager2mc",
         "description": "Staging module for MCMICRO transforming PhenoImager .tif files into stacked and normalized ome-tif files per cycle, compatible as ASHLAR input.",
+        "deprecated": true,
         "keywords": [
           "imaging",
           "registration",
@@ -180932,6 +181096,184 @@
         ],
         "maintainers": [
           "@rpetit3"
+        ]
+      }
+    },
+    {
+      "name": "mifaser",
+      "path": "modules/nf-core/mifaser/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "mifaser",
+        "description": "Functional annotation of metagenomic reads by assigning enzyme commission (EC) numbers",
+        "keywords": [
+          "metagenomics",
+          "functional annotation",
+          "EC numbers",
+          "fastq"
+        ],
+        "tools": [
+          {
+            "mifaser": {
+              "description": "mi-faser: microsecond functional annotation of sequences, a massive scalability upgrade",
+              "homepage": "https://sourceforge.net/projects/mifaser/",
+              "documentation": "https://sourceforge.net/projects/mifaser/",
+              "tool_dev_url": "https://sourceforge.net/projects/mifaser/",
+              "doi": "10.1093/nar/gkx1209",
+              "licence": [
+                "NPOSL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:true ]`\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "Single-end or paired-end FASTQ files. Use meta.single_end to indicate input type.\n",
+                "pattern": "*.{fastq,fastq.gz,fq,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "db": {
+              "type": "directory",
+              "description": "Path to the mi-faser database folder"
+            }
+          }
+        ],
+        "output": {
+          "multi_ec": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*multi_ec.tsv": {
+                  "type": "file",
+                  "description": "TSV file with multi-EC functional assignments per read",
+                  "pattern": "*multi_ec.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "analysis": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*analysis.tsv": {
+                  "type": "file",
+                  "description": "TSV file with per-sample functional analysis summary",
+                  "pattern": "*analysis.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "ec_counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*ec_count.tsv": {
+                  "type": "file",
+                  "description": "TSV file with EC number counts",
+                  "pattern": "*ec_count.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_mifaser": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "mi-faser": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "mifaser --version 2>&1 | sed 's/* v//'": {
+                  "type": "eval",
+                  "description": "mifaser version string"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "mi-faser": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "mifaser --version 2>&1 | sed 's/* v//'": {
+                  "type": "eval",
+                  "description": "mifaser version string"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nickp60"
+        ],
+        "maintainers": [
+          "@nickp60"
         ]
       }
     },
@@ -188994,6 +189336,7 @@
       "meta": {
         "name": "msisensor_msi",
         "description": "Evaluate microsattelite instability (MSI) using paired tumor-normal sequencing data",
+        "deprecated": true,
         "keywords": [
           "homoploymer",
           "microsatellite",
@@ -189173,6 +189516,7 @@
       "meta": {
         "name": "msisensor_scan",
         "description": "Scan a reference genome to get microsatellite & homopolymer information",
+        "deprecated": true,
         "keywords": [
           "homoploymer",
           "microsatellite",
@@ -190911,7 +191255,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -201399,6 +201743,7 @@
       "meta": {
         "name": "openms_idmassaccuracy",
         "description": "Calculates a distribution of the mass error from given mass spectra and IDs.",
+        "deprecated": true,
         "keywords": [
           "mass_error",
           "openms",
@@ -210208,6 +210553,7 @@
       "meta": {
         "name": "pbbam_pbmerge",
         "description": "The pbbam software package provides components to create, query, & edit PacBio BAM files and associated indices. These components include a core C++ library, bindings for additional languages, and command-line utilities.",
+        "deprecated": true,
         "keywords": [
           "pbbam",
           "pbmerge",
@@ -216437,7 +216783,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -216813,7 +217159,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -217192,7 +217538,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "variantcatalogue",
@@ -249499,19 +249845,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rundbcan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249551,6 +249929,7 @@
             }
           }
         ],
+        "input": [],
         "output": {
           "dbcan_db": [
             {
@@ -249561,19 +249940,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rundbcan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -249819,19 +250230,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rundbcan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -250127,19 +250570,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rundbcan": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rundbcan": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "run_dbcan version | sed 's/dbCAN version: //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -250855,7 +251330,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -251079,7 +251554,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -254646,7 +255121,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "sarek",
@@ -255046,7 +255521,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnavar",
@@ -255909,7 +256384,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -256783,7 +257258,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -256826,6 +257301,7 @@
       "meta": {
         "name": "samtools_getrg",
         "description": "filter/convert SAM/BAM/CRAM file",
+        "deprecated": true,
         "keywords": [
           "view",
           "bam",
@@ -257150,7 +257626,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -257632,7 +258108,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -259378,7 +259854,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -259853,7 +260329,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -289156,7 +289632,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -289440,7 +289916,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -290689,7 +291165,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -290832,7 +291308,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -292675,7 +293151,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -292871,7 +293347,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -310834,7 +311310,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     },
@@ -312282,7 +312758,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -313198,6 +313674,7 @@
       "meta": {
         "name": "untarfiles",
         "description": "Extract files.",
+        "deprecated": true,
         "keywords": [
           "untar",
           "uncompress",
@@ -316428,6 +316905,7 @@
       "meta": {
         "name": "vcf2zarr_convert",
         "description": "Convert VCF data to the VCF Zarr specification reliably, in parallel or distributed over a cluster",
+        "deprecated": true,
         "keywords": [
           "vcf",
           "zarr",
@@ -316555,6 +317033,7 @@
       "meta": {
         "name": "vcf2zarr_explode",
         "description": "Convert VCF(s) to intermediate columnar format",
+        "deprecated": true,
         "keywords": [
           "vcf",
           "icf",
@@ -332237,7 +332716,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -332527,7 +333006,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -332627,7 +333106,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -338170,7 +338649,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnavar",
@@ -339022,7 +339501,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -343152,7 +343631,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -343605,7 +344084,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -344088,7 +344567,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
