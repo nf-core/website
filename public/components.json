@@ -55484,6 +55484,201 @@
       }
     },
     {
+      "name": "civicpy_annotate",
+      "path": "modules/nf-core/civicpy/annotate/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "civicpy_annotate",
+        "description": "A python client and analysis toolkit to annotate variants with information from the Clinical Interpretations of Variants in Cancer (CIViC) knowledgebase",
+        "keywords": [
+          "clinical interpretation",
+          "variant annotation",
+          "genetic variation analysis",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "civicpy": {
+              "description": "CIViC variant knowledgebase analysis toolkit.",
+              "homepage": "https://docs.civicpy.org/en/latest/",
+              "documentation": "https://docs.civicpy.org/en/latest/",
+              "tool_dev_url": "https://github.com/griffithlab/civicpy",
+              "doi": "10.1200/CCI.19.00127",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:CIViCpy"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Sorted and indexed VCF file",
+                "pattern": "*.{vcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "tbi": {
+                "type": "file",
+                "description": "Tabix index for the input VCF",
+                "pattern": "*.tbi",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "annotation_genome_version": {
+              "type": "string",
+              "description": "Reference genome version passed to civicpy (e.g. GRCh38)"
+            }
+          },
+          {
+            "cache": {
+              "type": "file",
+              "description": "Optional civicpy cache file (*.pkl). If not provided, civicpy will download and cache data locally.",
+              "pattern": "*.pkl",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Annotated bgzipped VCF file",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_civicpy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "civicpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "civicpy --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_htslib": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htslib": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version 2>&1 | head -1 | sed 's/bgzip (htslib) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "civicpy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "civicpy --version | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htslib": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "bgzip --version 2>&1 | head -1 | sed 's/bgzip (htslib) //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
+        ]
+      }
+    },
+    {
       "name": "clair3",
       "path": "modules/nf-core/clair3/meta.yml",
       "type": "module",
@@ -115434,6 +115629,10 @@
       },
       "pipelines": [
         {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
+        {
           "name": "rnadnavar",
           "version": "dev"
         },
@@ -115614,6 +115813,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "genomicrelatedness",
           "version": "dev"
@@ -118220,6 +118423,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "createpanelrefs",
+          "version": "dev"
+        },
         {
           "name": "raredisease",
           "version": "3.0.0"
@@ -121810,6 +122017,411 @@
           "version": "3.0.0"
         }
       ]
+    },
+    {
+      "name": "gedi_indexgenome",
+      "path": "modules/nf-core/gedi/indexgenome/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gedi_indexgenome",
+        "description": "Build a GEDI genome index from a FASTA and GTF for downstream PRICE ORF prediction",
+        "keywords": [
+          "riboseq",
+          "index",
+          "genome",
+          "gedi",
+          "price",
+          "orf"
+        ],
+        "tools": [
+          {
+            "gedi": {
+              "description": "Gedi is a Java software platform for working with genomic data (sequencing reads, sequences, per-base numeric values, annotations). It provides the PRICE algorithm for ribosome profiling ORF discovery.",
+              "homepage": "https://github.com/erhard-lab/gedi",
+              "documentation": "https://github.com/erhard-lab/gedi/wiki",
+              "tool_dev_url": "https://github.com/erhard-lab/gedi",
+              "doi": "10.1038/nmeth.4631",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'homo_sapiens' ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "GTF annotation file",
+                "pattern": "*.{gtf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference information\ne.g. `[ id:'homo_sapiens' ]`\n"
+                }
+              },
+              {
+                "${prefix}": {
+                  "type": "directory",
+                  "description": "GEDI genome index directory containing the `.oml` index file and\nits sidecar resources. Consumed as `-genomic` by PRICE. Directory\nname defaults to `meta.id` and can be overridden via `task.ext.prefix`.\n",
+                  "pattern": "*"
+                }
+              }
+            ]
+          ],
+          "versions_gedi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gedi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gedi -e Version 2>&1 | sed -n 's/.*Gedi version \\([^ ]*\\).*/\\1/p' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gedi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gedi -e Version 2>&1 | sed -n 's/.*Gedi version \\([^ ]*\\).*/\\1/p' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "gedi_price",
+      "path": "modules/nf-core/gedi/price/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gedi_price",
+        "description": "Identify translated ORFs from Ribo-seq BAMs using the PRICE algorithm",
+        "keywords": [
+          "riboseq",
+          "orf",
+          "price",
+          "gedi",
+          "translation"
+        ],
+        "tools": [
+          {
+            "gedi": {
+              "description": "Gedi is a Java software platform for working with genomic data (sequencing reads, sequences, per-base numeric values, annotations). It provides the PRICE algorithm (Probabilistic Inference of Codon Activities by an EM algorithm) for ribosome profiling ORF discovery with near-cognate start codon detection.",
+              "homepage": "https://github.com/erhard-lab/gedi",
+              "documentation": "https://github.com/erhard-lab/gedi/wiki",
+              "tool_dev_url": "https://github.com/erhard-lab/gedi",
+              "doi": "10.1038/nmeth.4631",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map identifying the cohort of Ribo-seq BAMs analysed together.\nPRICE is run jointly across all BAMs in this tuple.\ne.g. `[ id:'all_samples' ]`\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "One or more sorted Ribo-seq BAM files. Staged under `bams/` so PRICE\ndiscovers them via a generated bamlist.\n",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bais": {
+                "type": "file",
+                "description": "Index files matching the input BAMs.",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information. `meta2.id` must match the\nbase name used when the index was built (`<id>.oml` lives inside the\nindex directory).\ne.g. `[ id:'homo_sapiens' ]`\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "GEDI genome index directory produced by GEDI_INDEXGENOME.",
+                "pattern": "price_index"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "orfs_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.orfs.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited table of predicted translated ORFs with start codon,\nlocation, p-value and supporting read counts.\n",
+                  "pattern": "*.orfs.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "orfs_cit": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.orfs.cit": {
+                  "type": "file",
+                  "description": "GEDI binary CIT file of called ORFs.",
+                  "pattern": "*.orfs.cit",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "orfs_metadata": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.orfs.cit.metadata.json": {
+                  "type": "file",
+                  "description": "JSON metadata accompanying the ORF CIT file.",
+                  "pattern": "*.orfs.cit.metadata.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "codons_cit": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.codons.cit": {
+                  "type": "file",
+                  "description": "GEDI binary CIT file of per-codon signal.",
+                  "pattern": "*.codons.cit",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "model": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.model": {
+                  "type": "file",
+                  "description": "PRICE model parameters fit during the run.",
+                  "pattern": "*.model",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "signal": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.signal.tsv": {
+                  "type": "file",
+                  "description": "Tab-delimited per-position signal summary.",
+                  "pattern": "*.signal.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "param": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map identifying the analysed cohort.\n"
+                }
+              },
+              {
+                "${prefix}.param": {
+                  "type": "file",
+                  "description": "PRICE run parameters file.",
+                  "pattern": "*.param",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gedi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gedi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gedi -e Version 2>&1 | sed -n 's/.*Gedi version \\([^ ]*\\).*/\\1/p' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "gedi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "gedi -e Version 2>&1 | sed -n 's/.*Gedi version \\([^ ]*\\).*/\\1/p' | head -n 1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "gem2_gem2bedmappability",
@@ -179410,6 +180022,14 @@
                     "edam": "http://edamontology.org/format_1332"
                   }
                 ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "FASTA index file",
+                "pattern": "*.{fai}",
+                "ontologies": []
               }
             }
           ]
