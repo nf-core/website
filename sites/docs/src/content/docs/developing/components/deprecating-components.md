@@ -33,6 +33,20 @@ process OLD_MODULE {
 The purpose of the `assert` is to introduce a mechanism which stops the pipeline and alerts the developer when
 an automatic update of the module/subworkflow is performed.
 
+### Updating meta.yml
+
+Add `deprecated: true{:yml}` above `keywords:` to the module's `meta.yml` to mark it as deprecated in the nf-core registry and tooling:
+
+```yaml title="meta.yml" {3}
+name: old_module
+description: ...
+deprecated: true
+keywords:
+  - ...
+```
+
+This field is used by nf-core tools and the website to flag deprecated modules.
+
 ### Updating the nf-tests
 
 Remove anything in the setup block.
