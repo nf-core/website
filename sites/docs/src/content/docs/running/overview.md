@@ -25,6 +25,12 @@ nf-core pipelines can be configured to work with different execution environment
 - **[System requirements](configuration/nextflow-for-your-system):** Guidance on configuring pipelines to match your system's capabilities, including resource allocation, executors, and tool arguments
 - **[Configuration troubleshooting](configuration/troubleshooting):** Troubleshoot nf-core pipeline runs
 
+## Tutorials
+
+Hands-on walkthroughs that build on the reference material above.
+
+- **[Configure a pipeline run](tutorials/configure-a-pipeline-run):** Hands-on tutorial using nf-core/demo to configure a run with environment variables, parameters, and config files
+
 ## Reference data
 
 Many nf-core pipelines require reference genomes and annotation files.

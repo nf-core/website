@@ -1,0 +1,438 @@
+---
+title: Configure a pipeline run
+subtitle: A hands-on tutorial for configuring nf-core/demo with environment variables, parameters, and config files
+shortTitle: Configure a pipeline run
+---
+
+Every nf-core pipeline run is shaped by three layers of configuration: environment variables that tune Nextflow itself, parameters that tune the pipeline, and config files that tune execution.
+This tutorial walks through each layer in turn using [`nf-core/demo`](https://nf-co.re/demo), then combines them into a single worked example.
+
+By the end you will have:
+
+- Used `NXF_*` environment variables to control Nextflow's runtime
+- Supplied pipeline parameters on the command line and from a `params.yaml` file
+- Activated profiles to switch between container engines and test scenarios
+- Layered a custom `custom.config` file with process-specific overrides
+- Used `ext.args` (the convention for `conf/modules.config`) to extend a tool's command line without editing the module
+- Understood which configuration source overrides which
+
+## Prerequisites
+
+Before starting, make sure you have:
+
+- [Nextflow installed](../../get_started/environment_setup/nextflow.md)
+- A container engine such as Docker, Singularity, or Conda — see [Software dependencies](../../get_started/environment_setup/software-dependencies.md)
+- Run a pipeline at least once — see [Run your first pipeline](../../get_started/run-your-first-pipeline.md)
+
+:::tip
+The tutorial takes around 15 minutes and uses `nf-core/demo`'s built-in test data, so no input files are required.
+:::
+
+## Step 1: Baseline run
+
+Before changing anything, run the pipeline with no custom configuration so you have something to compare against.
+This baseline run relies entirely on `nf-core/demo`'s built-in defaults — no environment variables of your own, no custom parameters, no extra config files.
+In each of the following steps you will replace one of those defaults and observe the effect.
+
+Start with a plain test invocation as your reference point:
+
+```bash
+nextflow run nf-core/demo -profile test,docker --outdir results
+```
+
+Replace `docker` with your preferred software dependency manager (for example, `singularity` or `conda`).
+
+This run uses three defaults that you will override in the next steps:
+
+- The pipeline's bundled [`nextflow.config`](https://github.com/nf-core/demo/blob/master/nextflow.config) and the [`test`](https://github.com/nf-core/demo/blob/master/conf/test.config) and `docker` profiles
+- Default pipeline parameters (input samplesheet, MultiQC title, and so on) — see the [nf-core/demo parameters page](https://nf-co.re/demo/parameters) and [`nextflow_schema.json`](https://github.com/nf-core/demo/blob/master/nextflow_schema.json)
+- Nextflow's default runtime settings (work directory, version, and so on)
+
+:::tip
+Keep the `results/` directory from this run — you can compare it to the output of later steps to confirm your configuration changes took effect.
+:::
+
+## Step 2: Configure with environment variables
+
+`NXF_*` environment variables are the outermost configuration layer.
+Nextflow reads them from your shell as it starts, before any config file or parameter is parsed, so they're the right place for settings that don't change between runs: which Nextflow version to use, where the work directory and container cache live, and whether to operate offline.
+They configure **Nextflow itself**, not the pipeline — you cannot set pipeline inputs or outputs this way.
+
+You set them like any other shell variable: with `export`, inline before a single command, or by adding them to your shell's startup file.
+
+1. Pin a Nextflow version and redirect the work directory for this run:
+
+   ```bash
+   export NXF_VER=24.10.5
+   export NXF_WORK=$HOME/nf-demo-work
+   nextflow run nf-core/demo -profile test,docker --outdir results
+   ```
+
+   The version line at the top of stdout (and in `.nextflow.log`) should now report `24.10.5`, and intermediate files should appear under `$HOME/nf-demo-work/` instead of `./work/`.
+
+2. To set a variable for a single command without exporting it, prefix the invocation:
+
+   ```bash
+   NXF_VER=24.10.5 nextflow run nf-core/demo -profile test,docker --outdir results
+   ```
+
+3. To persist a variable across sessions, add the export to your shell config:
+
+   ```bash title=".bashrc"
+   export NXF_VER=24.10.5
+   ```
+
+:::tip
+The `NXF_*` variables nf-core users reach for most often are:
+
+- `NXF_VER`: Pin a specific Nextflow version
+- `NXF_HOME`: Override Nextflow's home directory (defaults to `$HOME/.nextflow`)
+- `NXF_WORK`: Override the work directory for intermediate files
+- `NXF_OFFLINE`: Run without contacting the network (see [Running pipelines offline](../run-pipelines-offline.md))
+- `NXF_SINGULARITY_CACHEDIR` / `NXF_APPTAINER_CACHEDIR`: Reuse downloaded container images across runs
+
+For the full list, see the [Nextflow environment variables reference](https://docs.seqera.io/nextflow/reference/env-vars).
+:::
+
+:::note
+`NXF_*` variables are distinct from pipeline parameters. They configure how Nextflow runs, not what the pipeline does. You cannot set `--input` or `--outdir` with an environment variable.
+:::
+
+## Step 3: Configure with parameters
+
+Pipeline parameters are the knobs the pipeline itself exposes: inputs, outputs, skip flags, reference data choices, tool toggles, and so on.
+They're documented per pipeline — for `nf-core/demo`, see the [parameters reference](https://nf-co.re/demo/parameters) and [`nextflow_schema.json`](https://github.com/nf-core/demo/blob/master/nextflow_schema.json) — and they're the configuration you'll change most often.
+
+You can supply them two ways: directly on the command line, or from a `params.yaml` or `params.json` file.
+The two forms are interchangeable, and you can mix them. CLI flags override values in a parameter file.
+
+1. Override a single parameter on the command line:
+
+   ```bash
+   nextflow run nf-core/demo -profile test,docker --outdir my_results
+   ```
+
+   Output now goes to `my_results/` instead of `results/`.
+
+2. For longer parameter sets, create a `params.yaml` file:
+
+   ```yaml title="params.yaml"
+   outdir: my_results
+   multiqc_title: "nf-core/demo configured run"
+   ```
+
+3. Apply it with `-params-file`:
+
+   ```bash
+   nextflow run nf-core/demo -profile test,docker -params-file params.yaml
+   ```
+
+   Open `my_results/multiqc/multiqc_report.html` to confirm the report title was set.
+
+:::tip
+Both JSON and YAML are supported for parameter files. Parameter files make runs easier to reproduce and share. You can publish them alongside results so others can re-run the exact same configuration.
+:::
+
+:::warning
+nf-core pipeline parameters must be supplied on the command line or via `-params-file`.
+Setting a parameter inside a custom `.config` file (for example, `params { outdir = '...' }`) will **not** override the pipeline's defaults.
+Use config files for executor and resource settings, and parameter files for pipeline parameters.
+:::
+
+## Step 4: Configure with config files
+
+Config files are the most flexible configuration layer.
+They control both **where** the pipeline runs and **how** it runs: which executor submits jobs (`local`, `slurm`, `awsbatch`, and so on), how much CPU and memory each process should request, what Nextflow does when a process fails, which container registry to pull from, where intermediate work lives, how to apply different settings to specific steps, and much more.
+They're the right place for any setting that depends on your infrastructure rather than on what the pipeline does scientifically.
+
+Nextflow assembles its final configuration from several config files — some it picks up automatically, some you switch on by name with `-profile`, and others you point it at explicitly with `-c`.
+The next four sections cover all three approaches and then show how to target specific processes inside any config file.
+
+### Auto-loaded `nextflow.config` files
+
+Nextflow looks for config files in three places without being told.
+From lowest to highest priority, they are:
+
+1. **The pipeline's own `nextflow.config` in the project directory.** Bundled with every nf-core pipeline and downloaded with the rest of the pipeline code — for example, [`nf-core/demo`'s `nextflow.config`](https://github.com/nf-core/demo/blob/master/nextflow.config), which loads [`conf/base.config`](https://github.com/nf-core/demo/blob/master/conf/base.config) and declares every shipped profile. **Don't edit this file** — see the warning in [Configuration options](../configuration/configuration-options.md).
+2. **`$HOME/.nextflow/config`.** Your personal config, applied to every Nextflow run you launch. Good for settings that should follow you across all pipelines, such as your Singularity cache location or a default executor for your workstation.
+3. **`nextflow.config` in the launch directory.** Applied automatically whenever you run Nextflow from that directory. Good for per-project or per-working-directory settings you don't want to retype each time.
+
+Try the launch-directory form now.
+Drop a `nextflow.config` in your current directory:
+
+```groovy title="nextflow.config"
+process {
+  cpus = 2
+  memory = 4.GB
+}
+```
+
+Re-run the baseline command. No `-c` flag is needed, Nextflow picks the file up automatically:
+
+```bash
+nextflow run nf-core/demo -profile test,docker --outdir results
+```
+
+:::tip
+Use `$HOME/.nextflow/config` for personal defaults that follow you across machines, and a launch-directory `nextflow.config` for project-specific settings.
+Reserve `-c` (covered below) for one-off overrides and shared team configs that should live alongside your pipeline command.
+:::
+
+### Activate bundled settings with profiles
+
+A **profile** is a named bundle of configuration that lives inside a config file under the `profiles` scope.
+You activate one or more with the `-profile` flag.
+You've been using profiles since Step 1. `-profile test,docker` activates two: `test` (a small public dataset) and `docker` (use Docker to manage software).
+
+Every nf-core pipeline ships with a standard set of profiles:
+
+- **Software profiles**: `docker`, `singularity`, `apptainer`, `podman`, `conda`, `charliecloud`, `shifter` — one per container engine or environment manager.
+- **Test profiles**: [`test`](https://github.com/nf-core/demo/blob/master/conf/test.config) (a small dataset for quick verification) and [`test_full`](https://github.com/nf-core/demo/blob/master/conf/test_full.config) (the full-size dataset used in CI).
+- **Institutional profiles**: contributed to [nf-core/configs](https://github.com/nf-core/configs) and loaded automatically by every nf-core pipeline. Activate one with `-profile <institution>` if your cluster has one.
+
+Combine profiles with commas, and remember that order matters — later profiles override earlier ones where they overlap:
+
+```bash
+nextflow run nf-core/demo -profile test,docker --outdir results
+```
+
+You can also define your own profile for settings you'd like to reuse.
+Add a `myserver` profile to your launch-directory `nextflow.config`:
+
+```groovy title="nextflow.config"
+profiles {
+  myserver {
+    process {
+      executor = 'slurm'
+      queue    = 'standard'
+      cpus     = 4
+      memory   = 16.GB
+    }
+  }
+}
+```
+
+Activate it alongside the existing profiles:
+
+```bash
+nextflow run nf-core/demo -profile test,docker,myserver --outdir results
+```
+
+:::note
+The `myserver` profile is illustrative — it will only run successfully if you have access to a SLURM cluster with a `standard` queue.
+On a workstation without SLURM, Nextflow will fail when it tries to submit jobs.
+Drop the `executor` and `queue` lines (or switch `executor` to `'local'`) to try the profile locally.
+:::
+
+:::warning
+Don't put pipeline parameters inside a profile (for example, a `params { input = '...' }` block inside `profiles { myserver { ... } }`).
+The same nf-core constraint from Step 3 applies — parameters must come from the command line or `-params-file`, even when wrapped in a profile.
+:::
+
+### Use shared institutional configs
+
+If you work on a shared HPC cluster or cloud platform, there's a good chance someone has already written a profile for it.
+The [nf-core/configs](https://github.com/nf-core/configs) repository collects over 150 cluster-specific configs contributed by the community, covering the executor, queue, resource limits, container engine, scratch paths, module systems, and any other cluster-specific quirks needed to run nf-core pipelines well in that environment.
+
+Every nf-core pipeline loads these configs automatically — there's nothing to download or copy.
+At run time, each pipeline fetches the [`nfcore_custom.config`](https://github.com/nf-core/configs/blob/master/nfcore_custom.config) from the `nf-core/configs` repository and makes every profile in it available alongside the pipeline's own profiles.
+You activate one the same way you activate any other profile:
+
+```bash
+nextflow run nf-core/demo -profile test,docker,<institution> --outdir results
+```
+
+Replace `<institution>` with the profile name for your environment.
+A handful of examples from the [configs directory](https://github.com/nf-core/configs/tree/master/conf):
+
+- [`uppmax`](https://github.com/nf-core/configs/blob/master/conf/uppmax.config) — UPPMAX (Sweden)
+- [`bih`](https://github.com/nf-core/configs/blob/master/conf/bih.config) — Berlin Institute of Health
+- [`aws_tower`](https://github.com/nf-core/configs/blob/master/conf/aws_tower.config) — Seqera Platform on AWS
+- [`crick`](https://github.com/nf-core/configs/blob/master/conf/crick.config) — Francis Crick Institute
+
+Browse the full list at [nf-co.re/configs](https://nf-co.re/configs).
+
+Some institutions also contribute **pipeline-specific** overrides — a profile that further tunes resources for a particular pipeline on a particular cluster.
+These live under [`conf/pipeline/<pipeline>/<institution>.config`](https://github.com/nf-core/configs/tree/master/conf/pipeline) in the repository and are picked up automatically when you run that pipeline with the matching `-profile`.
+
+:::tip
+If your cluster doesn't have a profile yet, the [nf-core/configs contribution guide](https://github.com/nf-core/configs#documentation) describes how to add one.
+Contributing a profile to `nf-core/configs` is the recommended way to share cluster configuration with your team — it removes the need for everyone to carry a `custom.config` file around, and benefits every nf-core pipeline at once.
+:::
+
+:::note
+The shared configs are loaded over the network at run time.
+If you're working on an air-gapped system, see [Running pipelines offline](../run-pipelines-offline.md) for how to download them ahead of time and point Nextflow at the local copy via the `custom_config_base` parameter.
+:::
+
+### Pass a config explicitly with `-c`
+
+For configuration you don't want loaded by default — a one-off resource bump, a shared institutional config, an experimental override — pass it on the command line with `-c`.
+
+1. Create a small `custom.config`:
+
+   ```groovy title="custom.config"
+   process {
+     cpus = 2
+     memory = 4.GB
+   }
+   ```
+
+2. Apply it with `-c`:
+
+   ```bash
+   nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results
+   ```
+
+3. Open `results/pipeline_info/execution_report.html` and inspect the resource columns to confirm the new requests were applied.
+
+You can pass `-c` more than once.
+Files are applied in order, so later ones override earlier ones — useful for stacking a base config with an environment-specific override.
+
+### Tune how the pipeline executes
+
+Beyond resource requests, config files control **how** each run executes: which scheduler picks up jobs, what to do when a process fails, and where intermediate files live.
+These settings sit alongside the `process` scope you used above, with a few sibling top-level options.
+
+Edit `custom.config` to switch to a SLURM executor with automatic retries and a scratch work directory:
+
+```groovy title="custom.config"
+workDir = '/scratch/$USER/nf-work'
+
+process {
+  executor      = 'slurm'
+  queue         = 'long'
+  errorStrategy = 'retry'
+  maxRetries    = 2
+}
+```
+
+Apply it the same way as before:
+
+```bash
+nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results
+```
+
+:::note
+This config will only run successfully on a SLURM cluster with a `long` queue and access to `/scratch`.
+On a workstation, leave `executor` unset (Nextflow defaults to `local`), drop `queue`, and point `workDir` at a path you can actually write to — or simply skip running this config and read the annotations below.
+:::
+
+Each setting controls a different aspect of the run:
+
+- **`process.executor`**: where jobs go — `local` (default), `slurm`, `awsbatch`, `lsf`, `pbs`, `kubernetes`, and so on.
+- **`process.queue`**: which queue or partition to submit to on shared clusters.
+- **`process.errorStrategy`** with **`process.maxRetries`**: retry transient failures (for example, a node going down or a timeout) instead of failing the whole run.
+- **`workDir`**: where Nextflow stages intermediate files — point it at fast scratch storage on HPC to keep your home filesystem clean.
+
+:::tip
+For the full list of config scopes (`process`, `executor`, `docker`, `singularity`, `aws`, `azure`, `google`, `report`, `trace`, `timeline`, and more), see the [Nextflow config reference](https://docs.seqera.io/nextflow/reference/config).
+nf-core pipelines already enable the standard execution reports under `pipeline_info/`, so you only need to override those if you want custom paths.
+:::
+
+### Target specific processes with `withName` and `withLabel`
+
+The blanket `process { cpus = 2 }` example above applies to every process in the pipeline.
+In practice you'll usually want to target specific steps — bump the resources for an aligner without changing anything else, or pass an extra command-line argument to one tool.
+Nextflow gives you two selectors for this:
+
+- **`withName`** matches a specific process by its fully qualified name. `nf-core/demo` runs three processes — [`FASTQC`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf), [`SEQTK_TRIM`](https://github.com/nf-core/demo/blob/master/modules/nf-core/seqtk/trim/main.nf), and [`MULTIQC`](https://github.com/nf-core/demo/blob/master/modules/nf-core/multiqc/main.nf) — and each has a name you can see in `.nextflow.log` or in `pipeline_info/execution_trace.txt` after a run.
+- **`withLabel`** matches every process that carries a given label. All nf-core pipelines tag their processes with size labels (`process_low`, `process_medium`, `process_high`, `process_high_memory`) — see how they map to resource requests in [`nf-core/demo`'s `conf/base.config`](https://github.com/nf-core/demo/blob/master/conf/base.config) — so a single `withLabel` block can adjust whole resource tiers at once.
+
+Edit your `custom.config` to use both:
+
+```groovy title="custom.config"
+process {
+  withName: 'NFCORE_DEMO:DEMO:FASTQC' {
+    cpus = 4
+    memory = 8.GB
+  }
+
+  withLabel: 'process_low' {
+    cpus = 2
+    memory = 4.GB
+  }
+}
+```
+
+Re-run with `-c custom.config` and check `results/pipeline_info/execution_report.html` — FASTQC should report the resources you set, and every other low-tier process should pick up the `process_low` block.
+
+:::tip
+Find the full process name for `withName` in `.nextflow.log` or in `pipeline_info/execution_trace.txt` after a run.
+Process labels are declared on each `process` definition inside the module — for example, [`FASTQC`'s `main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf) declares `label 'process_medium'` on its second line.
+The size labels (`process_low`, `process_medium`, `process_high`, `process_high_memory`) are standard across all nf-core pipelines.
+:::
+
+### Pass tool arguments with `ext.args`
+
+`ext.args` is a per-process configuration value that nf-core modules use to inject extra command-line flags into the underlying tool.
+It lives inside a `withName` selector (so it follows the same targeting rules as the previous section), and the module picks it up at runtime with `def args = task.ext.args ?: ''`.
+
+By convention, nf-core pipelines collect every per-process option in a dedicated file, [`conf/modules.config`](https://github.com/nf-core/demo/blob/master/conf/modules.config) — another source of configuration loaded automatically through the pipeline's `nextflow.config`.
+Open `nf-core/demo`'s copy to see two real uses of `ext.args`:
+
+```groovy
+withName: FASTQC {
+    ext.args = '--quiet'
+    // ...
+}
+
+withName: 'MULTIQC' {
+    ext.args = { params.multiqc_title ? "--title \"$params.multiqc_title\"" : '' }
+    // ...
+}
+```
+
+FASTQC always runs with `--quiet`.
+MULTIQC dynamically picks up `--title` if the `multiqc_title` parameter is set — which is why the `multiqc_title` value from your `params.yaml` in Step 3 flowed through into the MultiQC report.
+
+To pass your own flags without forking the module, override `ext.args` in `custom.config`:
+
+```groovy title="custom.config"
+process {
+  withName: 'NFCORE_DEMO:DEMO:FASTQC' {
+    ext.args = '--quiet --noextract'
+  }
+}
+```
+
+Re-run with `-c custom.config` and FASTQC will pick up the new flags through `task.ext.args` inside its [`main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf).
+
+Sibling keys you'll see in the same file:
+
+- **`ext.args2`, `ext.args3`** — second and third argument sets for modules that call more than one tool.
+- **`ext.prefix`** — overrides the prefix used for the module's output filenames.
+
+:::tip
+`ext.args` is the right way to pass tool-specific flags that aren't exposed as pipeline parameters.
+Never edit the module's `main.nf` to add a flag — `ext.args` exists precisely so you can extend the command line without diverging from the canonical pipeline.
+:::
+
+For `resourceLimits`, executor tuning, and container registry overrides, see [System requirements](../configuration/nextflow-for-your-system.md).
+For profile precedence and shared institutional configs, see [Configuration options](../configuration/configuration-options.md).
+
+## Precedence cheat sheet
+
+When two sources set the same **parameter**, the higher-priority source wins. From lowest to highest priority:
+
+1. Pipeline defaults (for example, [`conf/base.config`](https://github.com/nf-core/demo/blob/master/conf/base.config) and the project [`nextflow.config`](https://github.com/nf-core/demo/blob/master/nextflow.config))
+2. User config (`$HOME/.nextflow/config`)
+3. `nextflow.config` in the launch directory
+4. Config files passed with `-c`, in the order they appear
+5. The `-params-file` file
+6. Command-line `--<param>` flags
+
+:::note
+`NXF_*` environment variables are not part of this parameter precedence chain — they configure Nextflow's runtime, not pipeline parameters. Think of them as a separate layer that applies before any of the above.
+:::
+
+:::note
+Profiles aren't a separate layer in the list above — they apply through whichever config file declares them. Within a single `-profile a,b,c`, profiles are applied left to right, so later names override earlier ones where they overlap.
+:::
+
+## Next steps
+
+- [Configuration options](../configuration/configuration-options.md) — profiles, shared nf-core/configs, and full precedence rules
+- [System requirements](../configuration/nextflow-for-your-system.md) — resource limits, executors, and tool argument overrides
+- [Running pipelines](../run-pipelines.md) — broader run patterns and common operations
+- [Nextflow configuration documentation](https://docs.seqera.io/nextflow/config)
