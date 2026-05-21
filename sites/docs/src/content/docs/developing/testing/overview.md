@@ -134,3 +134,4 @@ Learn how to write effective test assertions following nf-core guidelines:
 
 - [Writing assertions](./assertions.md) covers nf-core guidelines and common assertion patterns
 - [Advanced techniques](./advanced.md) covers complex patterns and troubleshooting
+- [CI runners](./ci-runners.md) covers RunsOn configuration and CI disk space issues

@@ -324,12 +324,6 @@ class GitHubContentFetcher {
         const [id, extension] = filepath.split(".") ?? [];
         const fileId = `${this.repo}/${this.ref}/${id}`;
 
-        // Skip if file hasn't changed (except for configs)
-        const existingEntry = store.get(fileId);
-        if (existingEntry && !existingEntry.id.startsWith("configs/")) {
-            return fileId;
-        }
-
         try {
             // Fetch file content
             const body = await this.fetchData<string>(`${this.baseUrl}/${filepath}`, "text");
@@ -689,15 +683,14 @@ export function releaseLoader(pipelines_json: PipelineJson): Loader {
                     for (const release of releases.data) {
                         const releaseId = `${pipeline.name}/${release.tag_name}/release-notes`;
 
-                        // Skip if unchanged
+                        const body = release.body || "";
+                        const digest = generateDigest(body);
+
                         const existingEntry = store.get(releaseId);
-                        if (existingEntry && existingEntry.data.tag_name === release.tag_name) {
+                        if (existingEntry?.digest === digest) {
                             logger.debug(`Release notes for ${pipeline.name}@${release.tag_name} unchanged, skipping`);
                             continue;
                         }
-
-                        const body = release.body || "";
-                        const digest = generateDigest(body);
 
                         try {
                             const { html, metadata } = await renderMarkdown(body);
