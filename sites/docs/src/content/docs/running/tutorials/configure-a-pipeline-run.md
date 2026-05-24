@@ -431,6 +431,73 @@ Never edit the module's `main.nf` to add a flag — `ext.args` exists precisely 
 For `resourceLimits`, executor tuning, and container registry overrides, see [System requirements](../configuration/nextflow-for-your-system.md).
 For profile precedence and shared institutional configs, see [Configuration options](../configuration/configuration-options.md).
 
+## Put it all together
+
+Each layer you've explored solves a different problem.
+In practice, a single run usually uses several at once.
+This step combines them into one invocation so you can see how they interact.
+
+1. Set environment variables for runtime concerns that don't change between runs:
+
+   ```bash
+   export NXF_VER=24.10.5
+   export NXF_WORK=$HOME/nf-demo-work
+   ```
+
+2. Capture pipeline parameters in a `params.yaml` file so the run is reproducible:
+
+   ```yaml title="params.yaml"
+   outdir: my_results
+   multiqc_title: "nf-core/demo configured run"
+   ```
+
+3. Put per-process overrides in `custom.config`:
+
+   ```groovy title="custom.config"
+   process {
+     withName: 'NFCORE_DEMO:DEMO:FASTQC' {
+       cpus = 4
+       memory = 8.GB
+       ext.args = '--quiet --noextract'
+     }
+
+     withLabel: 'process_low' {
+       cpus = 2
+       memory = 4.GB
+     }
+   }
+   ```
+
+4. Launch the run, activating the `test` and `docker` profiles and passing the parameter and config files:
+
+   ```bash
+   nextflow run nf-core/demo \
+     -profile test,docker \
+     -params-file params.yaml \
+     -c custom.config
+   ```
+
+This single command exercises every layer the tutorial introduced. Each one is resolved independently:
+
+- **Runtime**: `NXF_VER` and `NXF_WORK` are read from the shell before Nextflow parses any config, pinning the version and redirecting intermediate files.
+- **Configuration**: config files layer in a fixed order — the pipeline's bundled `nextflow.config` (which pulls in `conf/base.config` and `conf/modules.config`) loads first, the `test` and `docker` profiles override matching keys, and `custom.config` overrides them last. The `withName` and `withLabel` blocks in `custom.config` therefore win for FASTQC and every `process_low` step.
+- **Parameters**: values in `params.yaml` set the pipeline parameters. A matching `--flag` on the command line would override them.
+
+To confirm each layer took effect, check:
+
+- `my_results/pipeline_info/execution_report.html` — FASTQC should report 4 CPUs and 8 GB of memory.
+- `my_results/multiqc/multiqc_report.html` — the report title should read "nf-core/demo configured run".
+- `$HOME/nf-demo-work/` — intermediate files should appear here instead of under `./work/`.
+
+:::tip
+A rule of thumb for where each setting belongs:
+
+- **Environment variables** for runtime concerns tied to your machine or session (Nextflow version, cache locations, offline mode).
+- **`params.yaml`** for any setting the pipeline exposes as a parameter.
+- **Profiles** for reusable bundles you switch on by name (container engine, test data, institutional cluster).
+- **`custom.config`** for one-off or team-specific overrides that don't warrant a profile.
+:::
+
 ## Next steps
 
 - [Configuration options](../configuration/configuration-options.md) — profiles, shared nf-core/configs, and full precedence rules
