@@ -7,14 +7,16 @@ shortTitle: Configure a pipeline run
 nf-core pipelines are shaped by multiple levels of of configuration: environment variables that tune Nextflow itself, parameters that tune the pipeline, and config files that tune execution.
 Using [`nf-core/demo`](https://nf-co.re/demo), this tutorial explains each layer as worked examples.
 
+![nf-core/demo subway map](../../../assets/images/get_started/nf-core-demo-subway.png)
+
 By the end you will have:
 
-- Used `NXF_*` environment variables to control Nextflow's runtime
-- Supplied pipeline parameters on the command line and from a `params.yaml` file
-- Activated profiles to switch between container engines and test scenarios
-- Layered a custom `custom.config` file with process-specific overrides
-- Used `ext.args` (the convention for `conf/modules.config`) to extend a tool's command line without editing the module
-- Understood which configuration source overrides which
+- Used `NXF_*` environment variables to control Nextflow's runtime.
+- Supplied pipeline parameters on the command line and from a `params.yaml` file.
+- Activated profiles to switch between container engines and test scenarios.
+- Layered a custom `custom.config` file with process-specific overrides.
+- Used `ext.args` (the convention for `conf/modules.config`) to extend a tool's command line without editing the module.
+- Understood which configuration source overrides which.
 
 :::note{title="Prerequisites"}
 You will need the following to get started:
