@@ -7,7 +7,7 @@ shortTitle: Configure a pipeline run
 nf-core pipelines are shaped by multiple levels of of configuration: environment variables that tune Nextflow itself, parameters that tune the pipeline, and config files that tune execution.
 Using [`nf-core/demo`](https://nf-co.re/demo), this tutorial explains each layer as worked examples.
 
-![nf-core/demo subway map](../../../assets/images/get_started/nf-core-demo-subway.png)
+![nf-core/demo subway map](../../../../assets/images/get_started/nf-core-demo-subway.png)
 
 By the end you will have:
 
