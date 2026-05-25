@@ -706,6 +706,10 @@ Prompt for the pipeline name with questionary
 - **Raises:**
   **AssertionError**\*\*,\*\* **if pipeline cannot be found** –
 
+### `nf_core.utils.read_module_name(main_nf: Path) → str | None{:python}`
+
+Return the process name declared in a Nextflow `main.nf` file, or `None`.
+
 ### `nf_core.utils.rich_force_colors(){:python}`
 
 Check if any environment variables are set to force Rich to use coloured output
