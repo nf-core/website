@@ -174,7 +174,6 @@ From lowest to highest priority, they are:
 2. **`$HOME/.nextflow/config`.** Your personal config, applied to every Nextflow run you launch. Good for settings that should follow you across all pipelines, such as your Singularity cache location or a default executor for your workstation.
 3. **`nextflow.config` in the launch directory.** Applied automatically whenever you run Nextflow from that directory. Good for per-project or per-working-directory settings you don't want to retype each time.
 
-
 Add a `nextflow.config` in your current directory:
 
 ```groovy title="nextflow.config"
@@ -206,9 +205,9 @@ Every nf-core pipeline ships with a standard set of profiles:
 - **Software profiles**: `docker`, `singularity`, `apptainer`, `podman`, `conda`, `charliecloud`, `shifter` (one per container engine or environment manager).
 - **Test profiles**: [`test`](https://github.com/nf-core/demo/blob/master/conf/test.config) (a small dataset for quick verification) and [`test_full`](https://github.com/nf-core/demo/blob/master/conf/test_full.config) (the full-size dataset used in CI).
 
-   :::note
-   The [`test_full`](https://github.com/nf-core/demo/blob/master/conf/test_full.config) is also a very small test dataset that can be used for testing.
-   :::
+  :::note
+  The [`test_full`](https://github.com/nf-core/demo/blob/master/conf/test_full.config) is also a very small test dataset that can be used for testing.
+  :::
 
 - **Institutional profiles**: contributed to [nf-core/configs](https://github.com/nf-core/configs) and loaded automatically by every nf-core pipeline. Activate one with `-profile <institution>` if your cluster has one.
 
@@ -498,7 +497,7 @@ A rule of thumb for where each setting belongs:
 - **`params.yaml`** for any setting the pipeline exposes as a parameter.
 - **Profiles** for reusable bundles you switch on by name (container engine, test data, institutional cluster).
 - **`custom.config`** for one-off or team-specific overrides that don't warrant a profile.
-:::
+  :::
 
 ## Next steps
 
