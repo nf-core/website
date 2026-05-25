@@ -69871,6 +69871,379 @@
       ]
     },
     {
+      "name": "custom_clustermetrics",
+      "path": "modules/nf-core/custom/clustermetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "CUSTOM_CLUSTERMETRICS",
+        "description": "Computes clustering quality metrics (silhouette, Calinski-Harabasz, Davies-Bouldin) and performs k-sweep analysis",
+        "keywords": [
+          "clustering",
+          "metrics",
+          "silhouette",
+          "calinski-harabasz",
+          "davies-bouldin",
+          "evaluation"
+        ],
+        "tools": [
+          {
+            "scikit-learn": {
+              "description": "Machine learning library for clustering metrics",
+              "homepage": "https://scikit-learn.org/",
+              "documentation": "https://scikit-learn.org/stable/modules/clustering.html",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "features": {
+                "type": "file",
+                "description": "Tab-separated feature matrix with a `sample_id` column and one\ncolumn per numeric feature (e.g. PCA scores).\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "clusters": {
+                "type": "file",
+                "description": "Comma-separated cluster assignments with `sample_id` and integer\n`cluster` columns. Label -1 is treated as DBSCAN noise.\n",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.metrics.tsv": {
+                  "type": "file",
+                  "description": "TSV with selected cluster quality metrics",
+                  "pattern": "*.metrics.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "k_sweep": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.k_sweep.csv": {
+                  "type": "file",
+                  "description": "CSV with metrics for different values of k",
+                  "pattern": "*.k_sweep.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "selected": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.selected.json": {
+                  "type": "file",
+                  "description": "JSON with the selected/best metrics",
+                  "pattern": "*.selected.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "plots": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.png": {
+                  "type": "file",
+                  "description": "Optional PNG plots (elbow, silhouette, etc.)",
+                  "pattern": "*.png",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@dbaku42"
+        ],
+        "maintainers": [
+          "@dbaku42"
+        ]
+      }
+    },
+    {
+      "name": "custom_clustervisualization",
+      "path": "modules/nf-core/custom/clustervisualization/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "CUSTOM_CLUSTERVISUALIZATION",
+        "description": "Generates UMAP and t-SNE visualizations colored by cluster",
+        "keywords": [
+          "clustering",
+          "visualization",
+          "pca",
+          "umap",
+          "tsne",
+          "dimension-reduction"
+        ],
+        "tools": [
+          {
+            "scikit-learn": {
+              "description": "Machine learning library for dimension reduction (PCA, t-SNE)",
+              "homepage": "https://scikit-learn.org/",
+              "documentation": "https://scikit-learn.org/stable/modules/clustering.html",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "umap-learn": {
+              "description": "Uniform Manifold Approximation and Projection for dimension reduction",
+              "homepage": "https://umap-learn.readthedocs.io/",
+              "documentation": "https://umap-learn.readthedocs.io/en/latest/",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information"
+              }
+            },
+            {
+              "features": {
+                "type": "file",
+                "description": "Tab-separated feature matrix with a `sample_id` column and one\ncolumn per numeric feature (e.g. PCA scores).\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "clusters": {
+                "type": "file",
+                "description": "Comma-separated cluster assignments with `sample_id` and integer\n`cluster` columns. Label -1 is treated as DBSCAN noise.\n",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "umap_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.umap.tsv": {
+                  "type": "file",
+                  "description": "UMAP coordinates per sample",
+                  "pattern": "*.umap.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/operation_2432"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsne_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.tsne.tsv": {
+                  "type": "file",
+                  "description": "t-SNE coordinates per sample",
+                  "pattern": "*.tsne.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/operation_2432"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "umap_png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.umap.png": {
+                  "type": "file",
+                  "description": "UMAP visualization coloured by cluster",
+                  "pattern": "*.umap.png",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "tsne_png": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.tsne.png": {
+                  "type": "file",
+                  "description": "t-SNE visualization coloured by cluster",
+                  "pattern": "*.tsne.png",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "Software versions used in the module",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@dbaku42"
+        ],
+        "maintainers": [
+          "@dbaku42"
+        ]
+      }
+    },
+    {
       "name": "custom_dumpsoftwareversions",
       "path": "modules/nf-core/custom/dumpsoftwareversions/meta.yml",
       "type": "module",
@@ -71056,6 +71429,157 @@
           "version": "3.26.0"
         }
       ]
+    },
+    {
+      "name": "custom_pcaclustering",
+      "path": "modules/nf-core/custom/pcaclustering/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "CUSTOM_PCACLUSTERING",
+        "description": "Performs KMeans or DBSCAN clustering on a sample-by-feature numeric matrix (e.g. principal components, embeddings)",
+        "keywords": [
+          "clustering",
+          "kmeans",
+          "dbscan",
+          "pca",
+          "embeddings"
+        ],
+        "tools": [
+          {
+            "scikit-learn": {
+              "description": "Machine learning library for clustering",
+              "homepage": "https://scikit-learn.org/",
+              "documentation": "https://scikit-learn.org/stable/modules/clustering.html",
+              "licence": [
+                "BSD-3-Clause"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "features": {
+                "type": "file",
+                "description": "Tab-separated file whose first column is sample IDs (any column\nname) and remaining columns are numeric features (e.g. PLINK2 PCA\ncomponents with `FID` dropped, scikit-learn embeddings, etc.).\n",
+                "pattern": "*.{tsv,txt}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "algorithm": {
+              "type": "string",
+              "description": "Clustering algorithm to use (kmeans or dbscan)"
+            }
+          },
+          {
+            "n_clusters": {
+              "type": "integer",
+              "description": "Number of clusters for KMeans"
+            }
+          },
+          {
+            "dbscan_eps": {
+              "type": "float",
+              "description": "Epsilon parameter for DBSCAN"
+            }
+          },
+          {
+            "dbscan_min_samples": {
+              "type": "integer",
+              "description": "Minimum samples parameter for DBSCAN"
+            }
+          }
+        ],
+        "output": {
+          "clusters": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.clusters.csv": {
+                  "type": "file",
+                  "description": "CSV file with sample_id and assigned cluster",
+                  "pattern": "*.clusters.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "*.clustering_info.json": {
+                  "type": "file",
+                  "description": "JSON file with clustering parameters and statistics",
+                  "pattern": "*.clustering_info.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@dbaku42"
+        ],
+        "maintainers": [
+          "@dbaku42"
+        ]
+      }
     },
     {
       "name": "custom_rsemmergecounts",
@@ -146606,6 +147130,7 @@
       "meta": {
         "name": "hmtnote_annotate",
         "description": "Human mitochondrial variants annotation using HmtVar. Contains .plk file with annotation, so can be run offline",
+        "deprecated": true,
         "keywords": [
           "hmtnote",
           "mitochondria",
@@ -146662,19 +147187,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_hmtnote": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmtnote": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmtnote --version 2>&1 | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmtnote": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmtnote --version 2>&1 | sed 's/.*version //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -201767,6 +202324,134 @@
       }
     },
     {
+      "name": "octopusv_svcf2vcf",
+      "path": "modules/nf-core/octopusv/svcf2vcf/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "octopusv_svcf2vcf",
+        "description": "Converts octopusv SVCF files to the standard VCF format",
+        "keywords": [
+          "structural variants",
+          "svcf2vcf",
+          "genomics",
+          "vcf"
+        ],
+        "tools": [
+          {
+            "octopusv": {
+              "description": "End-to-end structural variant post-processing: standardize, merge, compare, and export SVs.",
+              "homepage": "https://github.com/ylab-hi/OctopuSV",
+              "documentation": "https://github.com/ylab-hi/OctopuSV",
+              "tool_dev_url": "https://github.com/ylab-hi/octopusV",
+              "doi": "10.1093/bioinformatics/btaf599",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "svcf": {
+                "type": "file",
+                "description": "SVCF file to convert to a standard VCF file",
+                "pattern": "*.svcf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf": {
+                  "type": "file",
+                  "description": "Sorted VCF file",
+                  "pattern": "*.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_octopusv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "octopusv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('octopusv'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      }
+    },
+    {
       "name": "odgi_build",
       "path": "modules/nf-core/odgi/build/meta.yml",
       "type": "module",
@@ -231413,6 +232098,128 @@
         "maintainers": [
           "@epaule",
           "@DLBPointon"
+        ]
+      }
+    },
+    {
+      "name": "pridepy_downloadfile",
+      "path": "modules/nf-core/pridepy/downloadfile/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "pridepy_downloadfile",
+        "description": "Download a single file from the PRIDE Archive by name using pridepy.",
+        "keywords": [
+          "pride",
+          "download",
+          "proteomics",
+          "mass spectrometry"
+        ],
+        "tools": [
+          {
+            "pridepy": {
+              "description": "Python client library and command-line tool to access PRIDE Archive data\nprogrammatically, including downloading files from public proteomics datasets.\n",
+              "homepage": "https://github.com/PRIDE-Archive/pridepy",
+              "documentation": "https://github.com/PRIDE-Archive/pridepy",
+              "tool_dev_url": "https://github.com/PRIDE-Archive/pridepy",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "file_name": {
+                "type": "string",
+                "description": "Name of the file to download from the PRIDE Archive dataset"
+              }
+            },
+            {
+              "pride_accession": {
+                "type": "string",
+                "description": "PRIDE Archive project accession (e.g. PXD000001) identifying the dataset"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "file": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${file_name}": {
+                  "type": "file",
+                  "description": "The file downloaded from the PRIDE Archive",
+                  "pattern": "*"
+                }
+              }
+            ]
+          ],
+          "versions_pridepy": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pridepy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"from importlib.metadata import version; print(version('pridepy'))\"": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "pridepy": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"from importlib.metadata import version; print(version('pridepy'))\"": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@jonasscheid"
+        ],
+        "maintainers": [
+          "@jonasscheid"
         ]
       }
     },
@@ -262961,6 +263768,226 @@
           "version": "3.0.0"
         }
       ]
+    },
+    {
+      "name": "savana_classify",
+      "path": "modules/nf-core/savana/classify/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "savana_classify",
+        "description": "Classify structural variants using SAVANA",
+        "keywords": [
+          "classify",
+          "structural variants",
+          "somatic",
+          "germline",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "savana": {
+              "description": "SAVANA: a somatic structural variant caller for long-read data.",
+              "homepage": "https://github.com/cortes-ciriano-lab/savana",
+              "documentation": "https://github.com/cortes-ciriano-lab/savana",
+              "tool_dev_url": "https://github.com/cortes-ciriano-lab/savana",
+              "doi": "10.1038/s41592-025-02708-0",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Input VCF file",
+                "pattern": "*{.vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3615"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "classified_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.classified.vcf": {
+                  "type": "file",
+                  "description": "VCF containing information about variant classification in the INFO field",
+                  "pattern": "*.classified.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "somatic_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.classified.somatic.vcf": {
+                  "type": "file",
+                  "description": "VCF containing variants classified as somatic",
+                  "pattern": "*.classified.somatic.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "germline_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.classified.germline.vcf": {
+                  "type": "file",
+                  "description": "VCF containing variants classified as germline",
+                  "pattern": "*.classified.germline.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "somatic_bedpe": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.classified.somatic.bedpe": {
+                  "type": "file",
+                  "description": "Variants classified as somatic in BEDPE format",
+                  "pattern": "*.classified.somatic.bedpe",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "legacy_vcfs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.classified.{strict,lenient}.vcf": {
+                  "type": "file",
+                  "description": "Legacy strict/lenient VCFs",
+                  "pattern": "*.classified.{strict,lenient}.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_savana": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "savana": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('savana'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "savana": {
+                  "type": "string",
+                  "description": "Name of the tool"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('savana'))\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      }
     },
     {
       "name": "sawfish_discover",
@@ -317587,7 +318614,14 @@
                 "type": "file",
                 "description": "BAM/CRAM file",
                 "pattern": "*.{bam,cram}",
-                "ontologies": []
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
               }
             }
           ]
@@ -317606,24 +318640,60 @@
                   "type": "file",
                   "description": "Filtered or downsampled BAM file",
                   "pattern": "*.{bam}",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_variant": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "VariantBam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.4.4a": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "VariantBam": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.4.4a": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
