@@ -501,7 +501,6 @@ A rule of thumb for where each setting belongs:
 
 ## Next steps
 
-- [Configuration options](../configuration/configuration-options.md) — profiles, shared nf-core/configs, and full precedence rules
-- [System requirements](../configuration/nextflow-for-your-system.md) — resource limits, executors, and tool argument overrides
-- [Running pipelines](../run-pipelines.md) — broader run patterns and common operations
-- [Nextflow configuration documentation](https://docs.seqera.io/nextflow/config)
+- Learn more about [configuration options](../configuration/configuration-options.md) (i.e., profiles, shared nf-core/configs, and full precedence rules)
+- Learn more about [aystem requirements](../configuration/nextflow-for-your-system.md) (i.e., resource limits, executors, and tool argument overrides)
+- Learn more about [Nextflow configuration](https://docs.seqera.io/nextflow/config)
