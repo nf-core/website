@@ -20,7 +20,7 @@ export function getStaticPaths() {
     });
 }
 const { module } = Astro.props;
-
+const deprecated = module.meta.deprecated || false;
 const tools = module.meta.tools;
 
 function truncatURLs(url: string) {
@@ -44,6 +44,13 @@ function truncatURLs(url: string) {
     type="modules"
     topics={module.meta.keywords}
 >
+    {
+        deprecated && (
+            <div class="alert alert-danger" role="alert">
+                <i class="fa-duotone fa-triangle-exclamation fa-fw" /> This module is deprecated.
+            </div>
+        )
+    }
     <div class="row">
         <div class="col-12 col-md-9">
             <div class="mb-5">
@@ -216,7 +223,7 @@ function truncatURLs(url: string) {
                                                 </div>
                                             </div>
                                         </div>
-                                        {tools.lenght > 1 && <hr />}
+                                        {tools.length > 1 && <hr />}
                                     </div>
                                 );
                             },
