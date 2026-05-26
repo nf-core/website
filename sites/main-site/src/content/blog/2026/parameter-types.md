@@ -178,7 +178,7 @@ lint:
 
 ## Still having some issues?
 
-Feel free to reach out on Slack in the `#help` channel if something is still not working after this migration.
+Feel free to reach out on Slack in the [#help](https://nfcore.slack.com/channels/help) channel if something is still not working after this migration.
 
 After all the hard work done migrating your pipeline to parameter types, you deserve a copy of this meme!
 
