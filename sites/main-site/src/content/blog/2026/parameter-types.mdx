@@ -117,7 +117,7 @@ Don't specify defaults in `main.nf` for these parameters since these will never 
 
 #### Parameters that are used for configuration options
 
-These parameters should still be defined in `nextflow.config` as parameter types are only applied after configuration resolution. Keep in mind that no typecasting has been done during config resolution so you should add `.toBoolean()`, `.toInteger()` or `.toFloat()` to all parameters that you do not expect to be string values.
+These parameters should still be defined in `nextflow.config` as parameter types are only applied after configuration resolution.
 
 This a non-exhaustive list of parameters that belong to this list. This depends a lot from pipeline to pipeline of course:
 
