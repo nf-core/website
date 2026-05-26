@@ -35,7 +35,15 @@ As a user you have two options to mitigate the error when bumping Nextflow versi
 ### Stop using CLI parameters
 
 The best option as a pipeline user is to not pass any parameters to Nextflow via the CLI, but use a parameters file instead. A parameters file is a JSON or YAML file in which you can specify the parameters to be used by the pipeline. These files have support for simple types (strings, integers, booleans, floats...), thus making sure that Nextflow uses the expected types out of the box.
+
 For example:
+
+```yml title="params.yml"
+answer_to_everything: 42,
+am_i_a_teapot: false,
+hotel: "trivago",
+```
+can then be used with `nextflow run .  -params-file params.yml {:bash}`
 
 You can read more about the parameters file in the [Nextflow documentation](https://docs.seqera.io/nextflow/cli#pipeline-parameters)
 
@@ -45,7 +53,7 @@ nf-schema 2.7.2 and higher automatically converts CLI parameters to their correc
 
 You can bump the plugin via a configuration file:
 
-```groovy
+```groovy title="nextflow.config"
 plugins {
     id 'nf-schema@2.7.2'
 }
@@ -125,19 +133,30 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
+```groovy title="igenomes.conf"
+params.genomes {
+    'GRCh38' {
+        fasta = "..."
+        fai = "..."
+    }
+    'hg19' {
+        fasta: "..."
+        fai: "..."
+    }
+}
+
 should become:
 
+
+```groovy title="igenomes.conf"
 params.genomes = [
-'GRCh38': [
-fasta: "...",
-fai: "..."
-],
-'hg19': [
-fasta: "...",
-fai: "..."
+    'GRCh38': [
+        fasta: "...",
+        fai: "..."
+    ],
+    'hg19': [
+        fasta: "...",
+        fai: "..."
+    ]
 ]
-]
-
-```
-
 ```
