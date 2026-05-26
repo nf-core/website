@@ -28,7 +28,6 @@ In syntax parser v2, this system has been removed and all parameters given via t
 * --am_i_a_teapot (false): Value is [string] but should be [boolean]
 ```
 
-
 ## What to do as a pipeline user
 
 As a user you have two options to mitigate the error when bumping Nextflow versions:
@@ -42,7 +41,7 @@ You can read more about the parameters file in the [Nextflow documentation](http
 
 ### Bump nf-schema
 
-nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen for the validation of the parameters and can still cause some unexpected issues downstream in the pipeline. 
+nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen for the validation of the parameters and can still cause some unexpected issues downstream in the pipeline.
 
 You can bump the plugin via a configuration file:
 
@@ -66,7 +65,7 @@ As a developer you can migrate your pipeline to start using [parameter types](ht
 1. Make sure the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is installed
 1. Open the `main.nf` file located in the root of the repository
 1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kdb>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
-1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans always will be `false`. 
+1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans always will be `false`.
 1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects. (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions)
 1. Make sure all parameters without a default that are optional have a `?` after the type. e.g. for an optional string parameter you would use the `String?` type if it has no default value. This will automatically assign `null` to that parameter.
 1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in the following [section](#remove-parameters-from-nextflowconfig).
@@ -110,12 +109,12 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 - `monochrome_logs`: used for the `validation.monochromeLogs` option
 
 :::note
-Parameters used in `modules.config` should not have defaults in `nextflow.config` as these can be accessed during the pipeline run using closures (`{}`). 
+Parameters used in `modules.config` should not have defaults in `nextflow.config` as these can be accessed during the pipeline run using closures (`{}`).
 :::
 
 #### Parameters that are used to define defaults for other parameters
 
-These parameters need to be set before the params block in `main.nf` is resolved, otherwise all values will be `null`. 
+These parameters need to be set before the params block in `main.nf` is resolved, otherwise all values will be `null`.
 
 This a non-exhaustive list of parameters that belong to this list. This depends a lot from pipeline to pipeline of course:
 
@@ -126,17 +125,19 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-
 should become:
 
 params.genomes = [
-    'GRCh38': [
-        fasta: "...",
-        fai: "..."
-    ],
-    'hg19': [
-        fasta: "...",
-        fai: "..."
-    ]
+'GRCh38': [
+fasta: "...",
+fai: "..."
+],
+'hg19': [
+fasta: "...",
+fai: "..."
 ]
+]
+
+```
+
 ```
