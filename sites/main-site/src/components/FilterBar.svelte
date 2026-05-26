@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onMount } from "svelte";
     import { CurrentFilter, Filters, SortBy, DisplayStyle, SearchQuery } from "@components/store";
+    import { bsTooltip } from "@components/actions";
 
     interface FilterItem {
         name: string;
@@ -95,7 +96,7 @@
                 {#each $Filters as fil}
                     <button
                         type="button"
-                        data-bs-toggle="tooltip"
+                        use:bsTooltip
                         data-bs-placement="top"
                         data-bs-delay="500"
                         title="Double click to only show items from this category"
@@ -195,7 +196,7 @@
                             onclick={(e) => handleDisplayStyle(dis.name)}
                             class:active={$DisplayStyle === dis.name}
                             title={dis.name + " view"}
-                            data-bs-toggle="tooltip"
+                            use:bsTooltip
                             aria-label={dis.name + " view"}
                             ><i class={dis.icon}></i>
                         </button>

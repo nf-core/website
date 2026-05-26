@@ -8,6 +8,8 @@
         inline?: boolean;
     }
 
+    import { bsTooltip } from "@components/actions";
+
     let { tags, maxShown = 0, type, inline = false, includes = false, included = false }: Props = $props();
     let expanded = $state(false);
 
@@ -52,7 +54,7 @@
             onkeydown={onclick}
             tabindex="0"
             role="button"
-            data-bs-toggle="tooltip"
+            use:bsTooltip
             data-bs-delay="500"
         >
             {#if expanded}

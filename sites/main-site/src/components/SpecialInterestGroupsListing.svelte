@@ -2,6 +2,7 @@
     import ListingTableHeader from "@components/ListingTableHeader.svelte";
     import ListingCard from "./ListingCard.svelte";
     import { DisplayStyle, SearchQuery } from "@components/store";
+    import { bsTooltip } from "@components/actions";
 
     import type { CollectionEntry } from "astro:content";
 
@@ -75,7 +76,7 @@
                                                         target="_blank"
                                                         rel="noopener noreferrer"
                                                         class="badge text-bg-dark text-decoration-none"
-                                                        data-bs-toggle="tooltip"
+                                                        use:bsTooltip
                                                         title={getLeadName(lead)}
                                                     >
                                                         @{getLeadName(lead)}
@@ -128,7 +129,7 @@
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             class="badge text-bg-dark text-decoration-none"
-                                            data-bs-toggle="tooltip"
+                                            use:bsTooltip
                                             title={getLeadName(lead)}
                                         >
                                             @{getLeadName(lead)}

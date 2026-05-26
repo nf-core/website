@@ -3,6 +3,7 @@
     import PipelineCard from "@components/pipeline/PipelineCard.svelte";
     import { CurrentFilter, SortBy, DisplayStyle, SearchQuery } from "@components/store";
     import { onMount } from "svelte";
+    import { bsTooltip } from "@components/actions";
 
     interface Pipeline {
         name: string;
@@ -149,15 +150,12 @@
                         </td>
                         <td class="text-center">
                             {#if pipeline.archived}
-                                <i class="fa-solid fa-archive text-info" title="archived" data-bs-toggle="tooltip"></i>
+                                <i class="fa-solid fa-archive text-info" title="archived" use:bsTooltip></i>
                             {:else if pipeline.releases.length === 1}
-                                <i
-                                    class="fa-solid fa-xs fa-wrench text-warning"
-                                    title="under development"
-                                    data-bs-toggle="tooltip"
+                                <i class="fa-solid fa-xs fa-wrench text-warning" title="under development" use:bsTooltip
                                 ></i>
                             {:else if pipeline.releases.length > 1}
-                                <i class="fa-solid fa-check text-success" title="released" data-bs-toggle="tooltip"></i>
+                                <i class="fa-solid fa-check text-success" title="released" use:bsTooltip></i>
                             {/if}
                         </td>
                         <td class="text-end">

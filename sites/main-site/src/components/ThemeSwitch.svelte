@@ -1,5 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
+    import { bsTooltip } from "@components/actions";
     interface Props {
         light?: import("svelte").Snippet;
         dark?: import("svelte").Snippet;
@@ -45,7 +46,7 @@
     });
 </script>
 
-<div class="dropdown" title="Change theme" data-bs-toggle="tooltip" data-bs-placement="bottom">
+<div class="dropdown" title="Change theme" use:bsTooltip data-bs-placement="bottom">
     <button
         class="nav-link dropdown-toggle"
         type="button"
