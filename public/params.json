@@ -260,7 +260,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -290,7 +290,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "viralmetagenome",
@@ -2134,6 +2134,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "hgtseq",
           "version": "1.1.0"
         },
@@ -3722,7 +3726,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -3755,7 +3759,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -5673,7 +5677,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -5684,7 +5688,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -5695,7 +5699,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -5706,7 +5710,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -5717,7 +5721,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -9037,6 +9041,303 @@
       ]
     }
   ],
+  "bullseye_annotation_file": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_code_dir": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_container": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_contrasts": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_control_group": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_control_min_coverage": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_edit_fold_threshold": [
+    {
+      "type": "number",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_edit_type": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_edited_min_coverage": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_functions_r_file": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_gather_coverage": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_gather_mutations": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_gather_score": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_glm_coldata_file": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_glm_design": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_glm_link": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_glm_min_cov": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_glm_mock": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_max_edit": [
+    {
+      "type": "number",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_min_edit": [
+    {
+      "type": "number",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_min_edit_sites": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_mock": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_parse_min_coverage": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_quant_coverage": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_r_container": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_rac_remove_seq": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "bullseye_replicates_min": [
+    {
+      "type": "integer",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
   "busco": [
     {
       "type": "boolean",
@@ -10805,7 +11106,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     }
@@ -12595,7 +12896,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -12644,6 +12945,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -12855,7 +13160,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -12907,7 +13212,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -12935,7 +13240,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -13003,7 +13308,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -13167,7 +13472,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -13216,6 +13521,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -13427,7 +13736,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -13479,7 +13788,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -13507,7 +13816,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -13575,7 +13884,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -13726,7 +14035,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -13771,6 +14080,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -13974,7 +14287,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -14026,7 +14339,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -14054,7 +14367,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -14118,7 +14431,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -14282,7 +14595,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -14331,6 +14644,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -14542,7 +14859,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -14594,7 +14911,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -14622,7 +14939,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -14690,7 +15007,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -15234,7 +15551,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -15267,7 +15584,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -15434,7 +15751,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -15709,7 +16026,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -15770,7 +16087,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -15819,6 +16136,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -16030,7 +16351,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -16082,7 +16403,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -16110,7 +16431,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -16178,7 +16499,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -16337,7 +16658,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -16386,6 +16707,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -16597,7 +16922,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -16649,7 +16974,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -16677,7 +17002,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -16745,7 +17070,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -17708,7 +18033,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -17763,7 +18088,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -18303,7 +18628,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -18314,7 +18639,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -18325,7 +18650,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -18336,7 +18661,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -18347,7 +18672,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -18358,7 +18683,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -19068,7 +19393,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -19310,7 +19635,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -19321,7 +19646,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -19332,7 +19657,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -19343,7 +19668,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -19354,7 +19679,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -20104,7 +20429,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -20153,6 +20478,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -20364,7 +20693,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -20416,7 +20745,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -20444,7 +20773,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -20512,7 +20841,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -20676,7 +21005,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -20725,6 +21054,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -20936,7 +21269,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -20988,7 +21321,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -21016,7 +21349,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -21084,7 +21417,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -21526,7 +21859,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -21556,7 +21889,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -21567,7 +21900,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -21578,7 +21911,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -21589,7 +21922,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -22018,7 +22351,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -22150,7 +22483,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -22540,7 +22873,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "sammyseq",
@@ -22582,7 +22915,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -22619,6 +22952,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -22698,7 +23035,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -22726,7 +23063,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "panoramaseq",
@@ -22754,7 +23091,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -22881,7 +23218,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "fastquorum",
@@ -23248,7 +23585,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -23259,7 +23596,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -23281,7 +23618,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -23671,7 +24008,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -24060,7 +24397,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -24314,7 +24651,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -24325,7 +24662,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -24668,7 +25005,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24679,7 +25016,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24690,7 +25027,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24701,7 +25038,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24712,7 +25049,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24723,7 +25060,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -24734,7 +25071,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -25600,7 +25937,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -25789,7 +26126,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -25826,6 +26163,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -25949,7 +26290,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "panoramaseq",
@@ -25981,7 +26322,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -26083,7 +26424,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -26228,7 +26569,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -26243,7 +26584,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -26600,7 +26941,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -27489,6 +27830,10 @@
           "version": "3.2.2"
         },
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "denovotranscript",
           "version": "1.2.1"
         },
@@ -27526,7 +27871,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -28489,6 +28834,10 @@
           "version": "1.0.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.2.1"
+        },
+        {
           "name": "cageseq",
           "version": "1.0.2"
         },
@@ -28531,6 +28880,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "demo",
@@ -28587,6 +28940,10 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "genephylomodeler",
@@ -28694,7 +29051,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "molkart",
@@ -28726,7 +29083,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pathogensurveillance",
@@ -28742,7 +29099,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -28928,6 +29285,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.2.1"
+        },
+        {
           "name": "cellpainting",
           "version": "dev"
         },
@@ -28946,6 +29307,10 @@
         {
           "name": "createtaxdb",
           "version": "3.0.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "deepmutscan",
@@ -28982,6 +29347,10 @@
         {
           "name": "epitopeprediction",
           "version": "3.1.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "genephylomodeler",
@@ -29041,7 +29410,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "molkart",
@@ -29065,7 +29434,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pathogensurveillance",
@@ -29077,7 +29446,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -29110,6 +29479,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -29211,7 +29584,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -29222,7 +29595,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -29339,6 +29712,10 @@
           "version": "dev"
         },
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "raredisease",
           "version": "3.0.0"
         },
@@ -29358,6 +29735,10 @@
       "type": "string",
       "pipelines": [
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -29372,6 +29753,17 @@
         {
           "name": "rnaseq",
           "version": "3.26.0"
+        }
+      ]
+    }
+  ],
+  "hisat2_splicesites": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
         }
       ]
     }
@@ -29603,10 +29995,6 @@
           "version": "2.6.0"
         },
         {
-          "name": "bamtofastq",
-          "version": "2.2.0"
-        },
-        {
           "name": "callingcards",
           "version": "1.0.0"
         },
@@ -29635,15 +30023,15 @@
           "version": "3.2.2"
         },
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "datasync",
           "version": "dev"
         },
         {
           "name": "deepmodeloptim",
-          "version": "dev"
-        },
-        {
-          "name": "deepmutscan",
           "version": "dev"
         },
         {
@@ -29697,10 +30085,6 @@
         {
           "name": "fetchngs",
           "version": "1.12.0"
-        },
-        {
-          "name": "funcprofiler",
-          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -29796,7 +30180,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -29843,10 +30227,6 @@
           "version": "1.0.1"
         },
         {
-          "name": "pairgenomealign",
-          "version": "2.2.2"
-        },
-        {
           "name": "pangenome",
           "version": "1.1.3"
         },
@@ -29869,10 +30249,6 @@
         {
           "name": "phyloplace",
           "version": "2.0.0"
-        },
-        {
-          "name": "pixelator",
-          "version": "3.0.1"
         },
         {
           "name": "proteinfold",
@@ -29917,10 +30293,6 @@
         {
           "name": "rnadnavar",
           "version": "dev"
-        },
-        {
-          "name": "rnafusion",
-          "version": "4.1.0"
         },
         {
           "name": "rnasplice",
@@ -30674,7 +31046,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -30703,6 +31075,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -30814,7 +31190,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "panoramaseq",
@@ -30941,7 +31317,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -30982,6 +31358,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -31105,7 +31485,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "panoramaseq",
@@ -31630,7 +32010,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -31679,6 +32059,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -31874,7 +32258,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -31926,7 +32310,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -31950,7 +32334,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -32010,7 +32394,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -32148,7 +32532,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -32427,7 +32811,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -34457,7 +34841,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -34468,7 +34852,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -34479,7 +34863,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -34490,7 +34874,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -35289,7 +35673,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -36918,7 +37302,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -36967,6 +37351,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -37138,7 +37526,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -37178,7 +37566,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -37262,7 +37650,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -37561,7 +37949,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -39759,7 +40147,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -41023,6 +41411,10 @@
           "version": "dev"
         },
         {
+          "name": "pixelator",
+          "version": "4.0.0"
+        },
+        {
           "name": "proteinannotator",
           "version": "1.1.0"
         },
@@ -41117,7 +41509,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -41166,6 +41558,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -41377,7 +41773,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -41429,7 +41825,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -41457,7 +41853,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -41525,7 +41921,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -41858,7 +42254,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -41869,7 +42265,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -42304,7 +42700,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -42353,6 +42749,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -42524,7 +42924,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -42564,7 +42964,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -42640,7 +43040,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -42779,7 +43179,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -42820,6 +43220,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -42963,7 +43367,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -42999,7 +43403,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -43071,7 +43475,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -43198,7 +43602,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -43239,6 +43643,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -43382,7 +43790,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -43418,7 +43826,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -43490,7 +43898,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -43685,7 +44093,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -43726,6 +44134,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -43881,7 +44293,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -43921,7 +44333,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -43997,7 +44409,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -44207,6 +44619,17 @@
       "pipelines": [
         {
           "name": "pacsomatic",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "mutect2_intervals_num": [
+    {
+      "type": "number",
+      "pipelines": [
+        {
+          "name": "createpanelrefs",
           "version": "dev"
         }
       ]
@@ -44966,7 +45389,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -45029,7 +45452,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     }
@@ -45051,7 +45474,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     }
@@ -45332,7 +45755,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -45384,7 +45807,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -45878,7 +46301,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -45927,6 +46350,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -46138,7 +46565,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -46190,7 +46617,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -46218,7 +46645,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -46286,7 +46713,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -46984,7 +47411,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -46995,7 +47422,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -47164,7 +47591,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -47186,7 +47613,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -47362,7 +47789,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -47499,7 +47926,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -47532,6 +47959,10 @@
         {
           "name": "crisprseq",
           "version": "2.3.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -47679,7 +48110,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -47723,7 +48154,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -47747,7 +48178,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -47795,7 +48226,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -47942,7 +48373,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -47981,7 +48412,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -48030,6 +48461,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -48241,7 +48676,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -48293,7 +48728,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -48321,7 +48756,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -48389,7 +48824,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -48697,7 +49132,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48708,7 +49143,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48719,7 +49154,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48730,7 +49165,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48741,7 +49176,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48752,7 +49187,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48763,7 +49198,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48774,7 +49209,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48785,7 +49220,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48796,7 +49231,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48807,7 +49242,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48818,7 +49253,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48829,7 +49264,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48840,7 +49275,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48851,7 +49286,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48862,7 +49297,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48873,7 +49308,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48884,7 +49319,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48895,7 +49330,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48906,7 +49341,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48917,7 +49352,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48928,7 +49363,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48939,18 +49374,18 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
   ],
-  "pna_graph_graph_min_component_size_to_prune": [
+  "pna_graph_edge_cycle_verification": [
     {
-      "type": "integer",
+      "type": "boolean",
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48961,7 +49396,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48972,7 +49407,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -48983,18 +49418,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
-        }
-      ]
-    }
-  ],
-  "pna_graph_leiden_iterations": [
-    {
-      "type": "integer",
-      "pipelines": [
-        {
-          "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49005,18 +49429,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
-        }
-      ]
-    }
-  ],
-  "pna_graph_min_component_size_in_refinement": [
-    {
-      "type": "integer",
-      "pipelines": [
-        {
-          "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49027,7 +49440,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49038,7 +49451,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49049,7 +49462,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49060,7 +49473,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49071,7 +49484,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49082,7 +49495,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49093,7 +49506,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49104,7 +49517,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -49115,7 +49528,40 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
+        }
+      ]
+    }
+  ],
+  "pna_sample_calling_confidence_threshold": [
+    {
+      "type": "number",
+      "pipelines": [
+        {
+          "name": "pixelator",
+          "version": "4.0.0"
+        }
+      ]
+    }
+  ],
+  "pna_sample_calling_remove_incompatible": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "pixelator",
+          "version": "4.0.0"
+        }
+      ]
+    }
+  ],
+  "pna_sample_calling_save_undetermined": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "pixelator",
+          "version": "4.0.0"
         }
       ]
     }
@@ -49428,7 +49874,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -49450,7 +49896,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -49472,7 +49918,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -50832,7 +51278,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cageseq",
@@ -50881,6 +51327,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -51092,7 +51542,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -51140,7 +51590,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -51168,7 +51618,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -51232,7 +51682,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -51906,7 +52356,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -52016,7 +52466,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52027,7 +52477,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52057,7 +52507,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52068,7 +52518,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52079,7 +52529,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52090,7 +52540,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52101,7 +52551,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52134,7 +52584,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -52513,7 +52963,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "slamseq",
@@ -52629,7 +53079,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     }
@@ -53441,7 +53891,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -53452,7 +53902,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -53717,7 +54167,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -54154,7 +54604,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -54197,17 +54647,6 @@
         {
           "name": "drugresponseeval",
           "version": "1.2.0"
-        }
-      ]
-    }
-  ],
-  "restrict_concurrency": [
-    {
-      "type": "boolean",
-      "pipelines": [
-        {
-          "name": "spatialxe",
-          "version": "dev"
         }
       ]
     }
@@ -54942,7 +55381,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -55131,6 +55570,50 @@
       ]
     }
   ],
+  "run_bullseye": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "run_bullseye_gather_sites": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "run_bullseye_glm": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "run_bullseye_racfilter": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
   "run_busco": [
     {
       "type": "boolean",
@@ -55159,7 +55642,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -55817,6 +56300,17 @@
       ]
     }
   ],
+  "run_rustqc": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
   "run_sage": [
     {
       "type": "boolean",
@@ -56026,6 +56520,39 @@
       ]
     }
   ],
+  "rustqc_cmd": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "rustqc_container": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
+  "rustqc_mock": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        }
+      ]
+    }
+  ],
   "rwr_r": [
     {
       "type": "number",
@@ -56216,7 +56743,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -56465,7 +56992,7 @@
       "pipelines": [
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         }
       ]
     }
@@ -56593,7 +57120,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57231,7 +57758,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57331,7 +57858,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "smrnaseq",
@@ -57585,7 +58112,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57596,7 +58123,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57607,7 +58134,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57618,7 +58145,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57629,7 +58156,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57640,7 +58167,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57651,7 +58178,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -57662,7 +58189,18 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
+        }
+      ]
+    }
+  ],
+  "save_pna_sample_calling_pixelfile": [
+    {
+      "type": "boolean",
+      "pipelines": [
+        {
+          "name": "pixelator",
+          "version": "4.0.0"
         }
       ]
     }
@@ -57995,7 +58533,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "smrnaseq",
@@ -58543,6 +59081,17 @@
       ]
     }
   ],
+  "search_presets": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "mhcquant",
+          "version": "3.2.0"
+        }
+      ]
+    }
+  ],
   "secondary_findings": [
     {
       "type": "boolean",
@@ -58573,7 +59122,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -58887,7 +59436,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -58933,7 +59482,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -59437,6 +59986,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "bamtofastq",
+          "version": "2.2.1"
+        },
+        {
           "name": "cellpainting",
           "version": "dev"
         },
@@ -59455,6 +60008,10 @@
         {
           "name": "createtaxdb",
           "version": "3.0.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "deepmutscan",
@@ -59491,6 +60048,10 @@
         {
           "name": "epitopeprediction",
           "version": "3.1.0"
+        },
+        {
+          "name": "funcprofiler",
+          "version": "dev"
         },
         {
           "name": "genephylomodeler",
@@ -59550,7 +60111,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "molkart",
@@ -59574,7 +60135,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pathogensurveillance",
@@ -59586,7 +60147,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -59619,6 +60180,10 @@
         {
           "name": "rnadnavar",
           "version": "dev"
+        },
+        {
+          "name": "rnafusion",
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -60597,6 +61162,10 @@
           "version": "1.0.2"
         },
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -60688,7 +61257,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -60770,7 +61339,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -61422,7 +61991,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mspepid",
@@ -61489,7 +62058,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -61662,7 +62231,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -61673,7 +62242,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -61684,7 +62253,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -61695,7 +62264,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -61853,7 +62422,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -62454,7 +63023,7 @@
       "pipelines": [
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         }
       ]
     }
@@ -63404,7 +63973,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -64367,7 +64936,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -64411,7 +64980,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -64878,7 +65447,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -65485,7 +66054,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "scdownstream",
@@ -65607,7 +66176,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -66070,6 +66639,10 @@
       "type": "boolean",
       "pipelines": [
         {
+          "name": "dartseq",
+          "version": "dev"
+        },
+        {
           "name": "lncpipe",
           "version": "dev"
         },
@@ -66083,7 +66656,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -66132,6 +66705,10 @@
         {
           "name": "clipseq",
           "version": "1.0.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "lncpipe",
@@ -66189,7 +66766,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -66392,7 +66969,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -66403,7 +66980,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -66414,7 +66991,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -66736,7 +67313,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -67023,7 +67600,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -67034,7 +67611,7 @@
       "pipelines": [
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         }
       ]
     }
@@ -67606,6 +68183,10 @@
       "type": "string",
       "pipelines": [
         {
+          "name": "pixelator",
+          "version": "4.0.0"
+        },
+        {
           "name": "sopa",
           "version": "dev"
         }
@@ -67758,6 +68339,17 @@
         {
           "name": "drugresponseeval",
           "version": "1.2.0"
+        }
+      ]
+    }
+  ],
+  "test_root": [
+    {
+      "type": "string",
+      "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
         }
       ]
     }
@@ -68126,7 +68718,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnavar",
@@ -68149,7 +68741,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -68242,7 +68834,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "cellpainting",
@@ -68263,6 +68855,10 @@
         {
           "name": "createtaxdb",
           "version": "3.0.0"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "deepmodeloptim",
@@ -68390,7 +68986,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -68434,7 +69030,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -68458,7 +69054,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -68502,7 +69098,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -69172,7 +69768,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -69183,7 +69779,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         }
       ]
     }
@@ -69203,6 +69799,10 @@
     {
       "type": "string",
       "pipelines": [
+        {
+          "name": "dartseq",
+          "version": "dev"
+        },
         {
           "name": "lncpipe",
           "version": "dev"
@@ -70150,7 +70750,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -70161,7 +70761,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -70205,7 +70805,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -70540,7 +71140,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -70551,7 +71151,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         }
       ]
     }
@@ -70722,7 +71322,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -70767,6 +71367,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -70970,7 +71574,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -71022,7 +71626,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -71050,7 +71654,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -71114,7 +71718,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -71512,7 +72116,7 @@
       "pipelines": [
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "proteomicslfq",
@@ -72434,7 +73038,7 @@
         },
         {
           "name": "bamtofastq",
-          "version": "2.2.0"
+          "version": "2.2.1"
         },
         {
           "name": "callingcards",
@@ -72475,6 +73079,10 @@
         {
           "name": "cutandrun",
           "version": "3.2.2"
+        },
+        {
+          "name": "dartseq",
+          "version": "dev"
         },
         {
           "name": "datasync",
@@ -72650,7 +73258,7 @@
         },
         {
           "name": "mhcquant",
-          "version": "3.1.0"
+          "version": "3.2.0"
         },
         {
           "name": "mitodetect",
@@ -72702,7 +73310,7 @@
         },
         {
           "name": "pairgenomealign",
-          "version": "2.2.2"
+          "version": "2.2.3"
         },
         {
           "name": "pangenome",
@@ -72730,7 +73338,7 @@
         },
         {
           "name": "pixelator",
-          "version": "3.0.1"
+          "version": "4.0.0"
         },
         {
           "name": "proteinannotator",
@@ -72786,7 +73394,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "rnaseq",
@@ -73306,17 +73914,6 @@
       ]
     }
   ],
-  "webin_cli_version": [
-    {
-      "type": "string",
-      "pipelines": [
-        {
-          "name": "seqsubmit",
-          "version": "dev"
-        }
-      ]
-    }
-  ],
   "webincli_mode": [
     {
       "type": "string",
@@ -73507,7 +74104,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.0"
+          "version": "4.1.2"
         },
         {
           "name": "scnanoseq",
