@@ -129798,7 +129798,14 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "output_suffix": {
+              "type": "string",
+              "description": "Output file suffix used to choose the GLIMPSE2 output format. Defaults to `vcf.gz` when empty. Supported values: `vcf`, `vcf.gz`, `bcf`, `bgen`.\n",
+              "pattern": "vcf|vcf.gz|bcf|bgen"
+            }
+          }
         ],
         "output": {
           "phased_variants": [
@@ -129812,8 +129819,8 @@
               {
                 "*.{vcf,vcf.gz,bcf,bgen}": {
                   "type": "file",
-                  "description": "Output VCF/BCF file containing genotype probabilities (GP field), imputed dosages (DS field), best guess genotypes (GT field), sampled haplotypes in the last (max 16) main iterations (HS field) and info-score.\n",
-                  "pattern": "*.{vcf,bcf,vcf.gz,bcf.gz}",
+                  "description": "Output VCF/BCF/BGEN file containing genotype probabilities (GP field), imputed dosages (DS field), best guess genotypes (GT field), sampled haplotypes in the last (max 16) main iterations (HS field) and info-score.\n",
+                  "pattern": "*.{vcf,vcf.gz,bcf,bgen}",
                   "ontologies": []
                 }
               }
@@ -295126,6 +295133,12 @@
               }
             },
             {
+              "buffer": {
+                "type": "integer",
+                "description": "Buffer, in base pairs, around the region to impute."
+              }
+            },
+            {
               "K": {
                 "type": "integer",
                 "description": "Number of ancestral haplotypes to use for imputation. Refer to the documentation for the `--K` argument of STITCH for more information."
@@ -335507,6 +335520,12 @@
             "n_gen": {
               "type": "integer",
               "description": "Number of generations for STITCH imputation"
+            }
+          },
+          {
+            "buffer": {
+              "type": "integer",
+              "description": "Buffer size around each chunk for STITCH imputation"
             }
           },
           {
