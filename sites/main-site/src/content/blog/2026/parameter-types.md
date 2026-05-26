@@ -72,11 +72,12 @@ As a developer you can migrate your pipeline to start using [parameter types](ht
 1. Open your pipeline directory in VS Code or similar.
 1. Make sure the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is installed
 1. Open the `main.nf` file located in the root of the repository
-1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kdb>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
+1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
 1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans will always be `false`.
 1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects. (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions)
 1. Make sure all parameters without a default that are optional have a `?` after the type. e.g. for an optional string parameter you would use the `String?` type if it has no default value. This will automatically assign `null` to that parameter.
 1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in the following [section](#remove-parameters-from-nextflowconfig).
+1. Bump the minimal Nextflow version of the pipeline to 26.04.0 using `nf-core pipelines bump-version --nextflow 26.04.0{:bash}`
 
 Ideally, the conversion is done now and your pipeline will be fully working again when users use syntax parser v2. There are however some caveats that you will need to take into account to make sure everything works as expected. The following sections explain these caveats and how to resolve them.
 
@@ -160,3 +161,19 @@ params.genomes = [
     ]
 ]
 ```
+
+### nf-core linting is complaining
+
+The tooling does not officially support parameter types at the moment this article was written (tools version 4.0.2). Please check first if the latest available version of nf-core/tools already works with parameter types before implementing the following fix.
+
+To fix the linting failures you need to entirely disable the linting for `nextflow.config` and `nextflow_schema.json`. This can be done by adding the following lines to the `.nf-core.yml` file in the root of the pipeline directory. 
+
+```yaml title=".nf-core.yml"
+lint:
+  nextflow_config: false # TODO: Remove when tools supports parameter types
+  schema_params: false # TODO: Remove when tools supports parameter types
+```
+
+## Still having some issues?
+
+Feel free to reach out on Slack in the `#help` channel if something is still not working after this migration.
