@@ -5,9 +5,9 @@ pubDate: 2026-05-26T09:00:00+01:00
 headerImage: "https://images.unsplash.com/photo-1656711081969-9d16ebc2d210?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 headerImageAlt: "An RGB keyboard, because it's cool"
 authors:
-  - nvnieuwk
+    - nvnieuwk
 label:
-  - pipelines
+    - pipelines
 ---
 
 import bicycle from "../../../assets/images/blog/parameter-types/parameter-types-bicycle.jpg";
@@ -55,6 +55,7 @@ answer_to_everything: 42,
 am_i_a_teapot: false,
 hotel: "trivago",
 ```
+
 This file can then be used with `nextflow run .  -params-file params.yml {:bash}`.
 
 You can read more about the parameters file in the [Nextflow documentation](https://docs.seqera.io/nextflow/cli#pipeline-parameters).
@@ -146,7 +147,7 @@ This is a non-exhaustive list of parameters that belong to this category. This w
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-```groovy title="conf/igenomes.config"
+````groovy title="conf/igenomes.config"
 params.genomes {
     'GRCh38' {
         fasta = "..."
@@ -171,18 +172,18 @@ params.genomes = [
         fai: "..."
     ]
 ]
-```
+````
 
 ### nf-core linting is complaining
 
 The tooling does not officially support parameter types at the moment this article was written (tools version 4.0.2). Please check first if the latest available version of nf-core/tools already works with parameter types before implementing the following fix.
 
-To fix the linting failures you need to entirely disable the linting for `nextflow.config` and `nextflow_schema.json`. This can be done by adding the following lines to the `.nf-core.yml` file in the root of the pipeline directory. 
+To fix the linting failures you need to entirely disable the linting for `nextflow.config` and `nextflow_schema.json`. This can be done by adding the following lines to the `.nf-core.yml` file in the root of the pipeline directory.
 
 ```yaml title=".nf-core.yml"
 lint:
-  nextflow_config: false # TODO: Remove when tools supports parameter types
-  schema_params: false # TODO: Remove when tools supports parameter types
+    nextflow_config: false # TODO: Remove when tools supports parameter types
+    schema_params: false # TODO: Remove when tools supports parameter types
 ```
 
 ## Still having some issues?
