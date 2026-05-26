@@ -10,9 +10,21 @@ label:
   - pipelines
 ---
 
+import bicycle from "../../../assets/images/blog/parameter-types/parameter-types-bicycle.jpg";
+import frog from "../../../assets/images/blog/parameter-types/parameter-types-frog.jpg";
+import { Image } from "astro:assets";
+
 ## Introduction
 
 With the release of Nextflow 26.04.0, the default syntax parser has been set to v2. The new syntax parser will make it easier for Nextflow to throw useful errors whenever something breaks in your pipeline. Naturally with any change of this magnitude, stuff will start breaking. One of the most common issues reported in the last couple of weeks is that boolean parameter suddenly are only recognized as string values. In this blog post I will go over some ways to overcome this issue, from simple plugin updates to full parameter typing.
+
+<Image
+    src={bicycle}
+    class="d-block m-auto mb-2"
+    width={400}
+    density={[1.5, 2]}
+    alt="A meme showing a man riding a bicycle and putting a stick in his wheel. This symbolizes the experience of bumping to Nextflow 26.04.0"
+/>
 
 ## Background
 
@@ -177,3 +189,13 @@ lint:
 ## Still having some issues?
 
 Feel free to reach out on Slack in the `#help` channel if something is still not working after this migration.
+
+After all the hard work done migrating your pipeline to parameter types, you deserve a copy of this meme!
+
+<Image
+    src={frog}
+    class="d-block m-auto mb-2"
+    width={400}
+    density={[1.5, 2]}
+    alt="A toad wearing a tuxedo proudly announcing that this pipeline uses parameter types"
+/>
