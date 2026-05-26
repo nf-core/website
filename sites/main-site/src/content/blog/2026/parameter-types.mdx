@@ -16,7 +16,7 @@ import { Image } from "astro:assets";
 
 ## Introduction
 
-With the release of Nextflow 26.04.0, the default syntax parser has been set to v2. The new syntax parser will make it easier for Nextflow to throw useful errors whenever something breaks in your pipeline. Naturally with any change of this magnitude, stuff will start breaking. One of the most common issues reported in the last couple of weeks is that boolean parameter suddenly are only recognized as string values. In this blog post I will go over some ways to overcome this issue, from simple plugin updates to full parameter typing.
+With the release of Nextflow 26.04.0, the default syntax parser has been set to v2. The new syntax parser will make it easier for Nextflow to throw useful errors whenever something breaks in your pipeline. Naturally with any change of this magnitude, stuff will start breaking. One of the most common issues reported in the last couple of weeks is that boolean parameters are suddenly only recognized as string values. In this blog post I will go over some ways to overcome this issue, from simple plugin updates to full parameter typing.
 
 <Image
     src={bicycle}
@@ -86,7 +86,7 @@ As a developer you can migrate your pipeline to start using [parameter types](ht
 1. Open the `main.nf` file located in the root of the repository
 1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kbd>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
 1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans will always be `false`.
-1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects. (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions)
+1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions).
 1. Make sure all parameters without a default that are optional have a `?` after the type. e.g. for an optional string parameter you would use the `String?` type if it has no default value. This will automatically assign `null` to that parameter.
 1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in the following [section](#remove-parameters-from-nextflowconfig).
 1. Bump the minimal Nextflow version of the pipeline to 26.04.0 using `nf-core pipelines bump-version --nextflow 26.04.0{:bash}`
@@ -95,7 +95,7 @@ Ideally, the conversion is done now and your pipeline will be fully working agai
 
 ### StackoverflowError
 
-When using the `Path` type, you will most likely start seeing a `StackoverlflowError` when running your pipeline after the initial conversion. This is caused by a bug in older versions of the nf-schema plugin and `utils_nextflow_pipeline` subworkflow. You can fix this issue by bumping nf-schema to 2.7.1 or higher and by updating the `utils_nextflow_pipeline` and `utils_nfschema_plugin` subworkflows:
+When using the `Path` type, you will most likely start seeing a `StackoverflowError` when running your pipeline after the initial conversion. This is caused by a bug in older versions of the nf-schema plugin and `utils_nextflow_pipeline` subworkflow. You can fix this issue by bumping nf-schema to 2.7.1 or higher and by updating the `utils_nextflow_pipeline` and `utils_nfschema_plugin` subworkflows:
 
 ```bash
 nf-core subworkflows update utils_nextflow_pipeline
