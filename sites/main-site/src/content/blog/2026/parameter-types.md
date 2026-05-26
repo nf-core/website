@@ -18,9 +18,9 @@ With the release of Nextflow 26.04.0, the default syntax parser has been set to 
 
 In syntax parser v1, Nextflow would automatically infer the type of all parameters given via the CLI. For example:
 
-- `--answer_to_everything 42` will result in `params.answer_to_everything` to be an integer
-- `--am_i_a_teapot false` will result in `params.am_i_a_teapot` to be a boolean
-- `--hotel trivago` will result in `params.hotel` to be a string
+- `--answer_to_everything 42{:bash}` will result in `params.answer_to_everything` to be an integer
+- `--am_i_a_teapot false{:bash}` will result in `params.am_i_a_teapot` to be a boolean
+- `--hotel trivago{:bash}` will result in `params.hotel` to be a string
 
 In syntax parser v2, this system has been removed and all parameters given via the CLI are now always string values. This is causing some unexpected behaviour in pipelines (especially when using type validation in nf-schema for example). The following error is thus quite common after updating Nextflow to 26.04.0 or higher:
 
@@ -28,7 +28,6 @@ In syntax parser v2, this system has been removed and all parameters given via t
 * --am_i_a_teapot (false): Value is [string] but should be [boolean]
 ```
 
-So next, I will explain what to do as a pipeline user and what you can do as a pipeline developer to mitigate these issues.
 
 ## What to do as a pipeline user
 
@@ -37,12 +36,13 @@ As a user you have two options to mitigate the error when bumping Nextflow versi
 ### Stop using CLI parameters
 
 The best option as a pipeline user is to not pass any parameters to Nextflow via the CLI, but use a parameters file instead. A parameters file is a JSON or YAML file in which you can specify the parameters to be used by the pipeline. These files have support for simple types (strings, integers, booleans, floats...), thus making sure that Nextflow uses the expected types out of the box.
+For example:
 
 You can read more about the parameters file in the [Nextflow documentation](https://docs.seqera.io/nextflow/cli#pipeline-parameters)
 
 ### Bump nf-schema
 
-nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen for the validation of the parameters and can still cause some unexpected issues in the pipeline. 
+nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen for the validation of the parameters and can still cause some unexpected issues downstream in the pipeline. 
 
 You can bump the plugin via a configuration file:
 
@@ -55,23 +55,23 @@ plugins {
 or via the CLI with the following option:
 
 ```bash
--plugins nf-schema@2.7.2
+nextflow run . -plugins nf-schema@2.7.2
 ```
 
 ## What to do as a pipeline developer
 
 As a developer you can migrate your pipeline to start using [parameter types](https://docs.seqera.io/nextflow/workflow-typed#typed-parameters). Follow these steps to get an overview of how to do the migration:
 
-1. Open your pipeline directory in VScode
+1. Open your pipeline directory in VS Code or similar.
 1. Make sure the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is installed
 1. Open the `main.nf` file located in the root of the repository
-1. Open the command options (CTRL+SHIFT+P or CMD+SHIFT+P for mac users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
+1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kdb>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
 1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans always will be `false`. 
 1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects. (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions)
 1. Make sure all parameters without a default that are optional have a `?` after the type. e.g. for an optional string parameter you would use the `String?` type if it has no default value. This will automatically assign `null` to that parameter.
-1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in it's [chapter](#remove-parameters-from-nextflowconfig).
+1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in the following [section](#remove-parameters-from-nextflowconfig).
 
-Ideally, the conversion is done now and your pipeline will be fully working again when users use syntax parser v2. There are however some caveats that you will need to account for to make sure everything works as expected. The following chapters explain these caveats and how to resolve them
+Ideally, the conversion is done now and your pipeline will be fully working again when users use syntax parser v2. There are however some caveats that you will need into account to make sure everything works as expected. The following sections explain these caveats and how to resolve them.
 
 ### StackoverflowError
 
@@ -126,22 +126,9 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-```groovy
-params.genomes {
-    'GRCh38' {
-        fasta = "...",
-        fai = "..."
-    }
-    'hg19' {
-        fasta = "...",
-        fai = "..."
-    }
-}
-```
 
 should become:
 
-```groovy
 params.genomes = [
     'GRCh38': [
         fasta: "...",
