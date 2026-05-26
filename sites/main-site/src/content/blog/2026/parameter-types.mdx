@@ -62,7 +62,7 @@ You can read more about the parameters file in the [Nextflow documentation](http
 
 ### Bump nf-schema
 
-nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen inside `validateParameters()`  during validation. This function does not write the coerced values back into params. After validation, `params.my_int` is still the string "42", not the integer 42. Code that does arithmetic on `params.my_int`, or relies on `params.my_bool` being a real boolean in a Groovy truthiness check, will still misbehave under syntax parser v2. The nf-schema plugin catches schema violations for you, but it does not restore the old auto-typing of params.
+nf-schema 2.7.2 and higher automatically converts CLI parameters to their correct types as it used to be in syntax parser v1. Keep in mind however that this conversion will only happen inside `validateParameters()` during validation. This function does not write the coerced values back into params. After validation, `params.my_int` is still the string "42", not the integer 42. Code that does arithmetic on `params.my_int`, or relies on `params.my_bool` being a real boolean in a Groovy truthiness check, will still misbehave under syntax parser v2. The nf-schema plugin catches schema violations for you, but it does not restore the old auto-typing of params.
 
 You can bump the plugin via a configuration file:
 
