@@ -2,7 +2,7 @@
 title: "Why parameters are strings all of a sudden"
 subtitle: "A guide to mitigating typing issues in strict syntax"
 pubDate: 2026-03-05T09:00:00+01:00
-headerImage: "assets/images/blog/parameter-types/keyboard.jpg"
+headerImage: "assets/images/blog/parameter-types/gavin-phillips-LCfJhyLHl1U-unsplash.jpg"
 headerImageAlt: "An RGB keyboard, because it's cool"
 authors:
   - nvnieuwk
