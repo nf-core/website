@@ -5,9 +5,9 @@ pubDate: 2026-05-26T09:00:00+01:00
 headerImage: "https://images.unsplash.com/photo-1656711081969-9d16ebc2d210?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
 headerImageAlt: "An RGB keyboard, because it's cool"
 authors:
-    - nvnieuwk
+  - nvnieuwk
 label:
-    - pipelines
+  - pipelines
 ---
 
 ## Introduction
@@ -172,8 +172,8 @@ To fix the linting failures you need to entirely disable the linting for `nextfl
 
 ```yaml title=".nf-core.yml"
 lint:
-    nextflow_config: false # TODO: Remove when tools supports parameter types
-    schema_params: false # TODO: Remove when tools supports parameter types
+  nextflow_config: false # TODO: Remove when tools supports parameter types
+  schema_params: false # TODO: Remove when tools supports parameter types
 ```
 
 ## Still having some issues?
