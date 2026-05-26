@@ -137,7 +137,7 @@ This is a non-exhaustive list of parameters that belong to this category. This w
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-````groovy title="conf/igenomes.config"
+```groovy title="conf/igenomes.config"
 params.genomes {
     'GRCh38' {
         fasta = "..."
@@ -148,6 +148,7 @@ params.genomes {
         fai: "..."
     }
 }
+```
 
 should become:
 
@@ -162,7 +163,7 @@ params.genomes = [
         fai: "..."
     ]
 ]
-````
+```
 
 ### nf-core linting is complaining
 
