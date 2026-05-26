@@ -43,9 +43,9 @@ answer_to_everything: 42,
 am_i_a_teapot: false,
 hotel: "trivago",
 ```
-can then be used with `nextflow run .  -params-file params.yml {:bash}`
+This file can then be used with `nextflow run .  -params-file params.yml {:bash}`.
 
-You can read more about the parameters file in the [Nextflow documentation](https://docs.seqera.io/nextflow/cli#pipeline-parameters)
+You can read more about the parameters file in the [Nextflow documentation](https://docs.seqera.io/nextflow/cli#pipeline-parameters).
 
 ### Bump nf-schema
 
@@ -73,12 +73,12 @@ As a developer you can migrate your pipeline to start using [parameter types](ht
 1. Make sure the [Nextflow extension](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) is installed
 1. Open the `main.nf` file located in the root of the repository
 1. Open the command options (<kbd>CTRL</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> or <kdb>CMD</kbd>+<kbd>SHIFT</kbd>+<kbd>P</kbd> for macOS users), search for the `Nextflow: Convert script to static types` options and run it. This will create a `params` block with all types inferred from the `nextflow_schema.json` file
-1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans always will be `false`.
+1. Check that all types are correct and that all defaults have been correctly filled in. Boolean values don't need a default as missing booleans will always be `false`.
 1. Optionally: Convert the type of all file parameters from `String` to `Path` to let Nextflow automatically convert these parameters to file objects. (This will probably need some tweaking in your pipeline code to remove unnecessary `file()` functions)
 1. Make sure all parameters without a default that are optional have a `?` after the type. e.g. for an optional string parameter you would use the `String?` type if it has no default value. This will automatically assign `null` to that parameter.
 1. Remove all parameters that are not used in configs or to define defaults for other parameters from the `nextflow.config` file. Read more about this in the following [section](#remove-parameters-from-nextflowconfig).
 
-Ideally, the conversion is done now and your pipeline will be fully working again when users use syntax parser v2. There are however some caveats that you will need into account to make sure everything works as expected. The following sections explain these caveats and how to resolve them.
+Ideally, the conversion is done now and your pipeline will be fully working again when users use syntax parser v2. There are however some caveats that you will need to take into account to make sure everything works as expected. The following sections explain these caveats and how to resolve them.
 
 ### StackoverflowError
 
@@ -103,11 +103,11 @@ Don't specify defaults in `main.nf` for these parameters since these will never 
 
 #### Parameters that are used for configuration options
 
-These parameters should still be defined in `nextflow.config` as parameter types are only applied after configuration resolution. Keep in mind that no typecasting has been done during config resolution to you should add `.toBoolean()`, `.toInteger()` or `.toFloat()` to all parameters that you do not expect to be string values.
+These parameters should still be defined in `nextflow.config` as parameter types are only applied after configuration resolution. Keep in mind that no typecasting has been done during config resolution so you should add `.toBoolean()`, `.toInteger()` or `.toFloat()` to all parameters that you do not expect to be string values.
 
 This a non-exhaustive list of parameters that belong to this list. This depends a lot from pipeline to pipeline of course:
 
-- `outdir`: used to define the `outputDir` option
+- `outdir`: used to define the `outputDir` option and set the output directory in `publishDir`
 - `publish_dir_mode`: used to define the `workflow.output.mode` and `publishDir mode` options
 - `pipelines_testdata_base_path`: used in profiles to define test data
 - `trace_report_suffix`: used to define the name of the pipeline reports
@@ -117,7 +117,7 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 - `monochrome_logs`: used for the `validation.monochromeLogs` option
 
 :::note
-Parameters used in `modules.config` should not have defaults in `nextflow.config` as these can be accessed during the pipeline run using closures (`{}`).
+Parameters used for process configuration in `modules.config` should not have defaults in `nextflow.config` as these can be accessed during the pipeline run using closures (`{}`).
 :::
 
 #### Parameters that are used to define defaults for other parameters
@@ -133,7 +133,7 @@ This a non-exhaustive list of parameters that belong to this list. This depends 
 
 Support for nested parameters has been silently 'deprecated' with the introduction of parameter types. This issue can be resolved by migrating `genomes` parameter in `conf/igenomes.config` to a `Map` structure instead of using nested parameters. e.g.:
 
-```groovy title="igenomes.conf"
+```groovy title="conf/igenomes.config"
 params.genomes {
     'GRCh38' {
         fasta = "..."
@@ -148,7 +148,7 @@ params.genomes {
 should become:
 
 
-```groovy title="igenomes.conf"
+```groovy title="conf/igenomes.config"
 params.genomes = [
     'GRCh38': [
         fasta: "...",
