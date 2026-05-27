@@ -19,7 +19,7 @@ jobs:
     runs-on:
       - runs-on=${{ github.run_id }}
       - runner=4cpu-linux-x64
-      - volume=60gb
+      - volume=40gb
 ```
 
 See the [RunsOn volume documentation](https://runs-on.com/configuration/job-labels/#volume) for full details.
