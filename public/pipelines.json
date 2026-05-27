@@ -23051,12 +23051,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/mag",
             "created_at": "2018-05-22T06:06:58Z",
-            "updated_at": "2026-05-24T22:40:12Z",
-            "pushed_at": "2026-05-26T15:02:36Z",
+            "updated_at": "2026-05-27T03:17:55Z",
+            "pushed_at": "2026-05-27T11:20:26Z",
             "homepage": "https://nf-co.re/mag",
             "size": 48714,
-            "stargazers_count": 299,
-            "watchers_count": 299,
+            "stargazers_count": 300,
+            "watchers_count": 300,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -23086,7 +23086,7 @@
             "visibility": "public",
             "forks": 152,
             "open_issues": 80,
-            "watchers": 299,
+            "watchers": 300,
             "default_branch": "main",
             "temp_clone_token": "",
             "allow_squash_merge": false,
@@ -57528,6 +57528,187 @@
             ]
         },
         {
+            "id": 772004240,
+            "node_id": "R_kgDOLgPZkA",
+            "name": "spatialaxe",
+            "full_name": "nf-core/spatialaxe",
+            "private": false,
+            "description": null,
+            "fork": false,
+            "url": "https://api.github.com/repos/nf-core/spatialaxe",
+            "created_at": "2024-03-14T10:57:36Z",
+            "updated_at": "2026-05-15T23:10:34Z",
+            "pushed_at": "2026-05-21T08:01:31Z",
+            "homepage": "https://nf-co.re/spatialaxe",
+            "size": 34103,
+            "stargazers_count": 31,
+            "watchers_count": 31,
+            "language": "Nextflow",
+            "has_issues": true,
+            "has_projects": true,
+            "has_downloads": true,
+            "has_wiki": false,
+            "has_pages": false,
+            "has_discussions": false,
+            "forks_count": 21,
+            "archived": false,
+            "disabled": false,
+            "open_issues_count": 40,
+            "allow_forking": true,
+            "is_template": false,
+            "web_commit_signoff_required": false,
+            "has_pull_requests": true,
+            "pull_request_creation_policy": "all",
+            "topics": [
+                "10x-genomics",
+                "image-processing",
+                "spatial",
+                "spatial-data-analysis",
+                "spatial-transcriptomics",
+                "transcriptomics",
+                "xenium"
+            ],
+            "visibility": "public",
+            "forks": 21,
+            "open_issues": 40,
+            "watchers": 31,
+            "default_branch": "master",
+            "temp_clone_token": "",
+            "allow_squash_merge": true,
+            "allow_merge_commit": true,
+            "allow_rebase_merge": true,
+            "allow_auto_merge": false,
+            "delete_branch_on_merge": false,
+            "allow_update_branch": false,
+            "use_squash_pr_title_as_default": false,
+            "squash_merge_commit_message": "COMMIT_MESSAGES",
+            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
+            "merge_commit_message": "PR_TITLE",
+            "merge_commit_title": "MERGE_MESSAGE",
+            "custom_properties": {},
+            "security_and_analysis": {
+                "secret_scanning": {
+                    "status": "enabled"
+                },
+                "secret_scanning_push_protection": {
+                    "status": "enabled"
+                },
+                "dependabot_security_updates": {
+                    "status": "disabled"
+                },
+                "secret_scanning_non_provider_patterns": {
+                    "status": "enabled"
+                },
+                "secret_scanning_ai_detection": {
+                    "status": "disabled"
+                },
+                "secret_scanning_validity_checks": {
+                    "status": "enabled"
+                },
+                "secret_scanning_delegated_alert_dismissal": {
+                    "status": "disabled"
+                },
+                "secret_scanning_delegated_bypass": {
+                    "status": "disabled"
+                }
+            },
+            "network_count": 21,
+            "subscribers_count": 175,
+            "team_contributors_permission_push": true,
+            "team_contributors_permission_admin": false,
+            "team_core_permission_push": true,
+            "team_core_permission_admin": true,
+            "master_branch_exists": true,
+            "master_branch_protection_up_to_date": -1,
+            "master_branch_protection_status_checks": [
+                "nf-core",
+                "pre-commit"
+            ],
+            "master_branch_protection_required_reviews": 2,
+            "master_branch_protection_require_codeowner_review": false,
+            "master_branch_protection_require_non_stale_review": false,
+            "master_branch_protection_enforce_admins": false,
+            "main_branch_exists": false,
+            "dev_branch_exists": true,
+            "dev_branch_protection_up_to_date": -1,
+            "dev_branch_protection_status_checks": [
+                "nf-core",
+                "pre-commit"
+            ],
+            "dev_branch_protection_required_reviews": 1,
+            "dev_branch_protection_require_codeowner_review": false,
+            "dev_branch_protection_require_non_stale_review": false,
+            "dev_branch_protection_enforce_admins": false,
+            "TEMPLATE_branch_exists": true,
+            "has_required_topics": true,
+            "open_pr_count": 6,
+            "repository_url": "https://github.com/nf-core/spatialaxe",
+            "contributors": [
+                {
+                    "name": "khersameesh24",
+                    "count": 28,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/58815690?v=4"
+                },
+                {
+                    "name": "heylf",
+                    "count": 8,
+                    "avatar_url": "https://avatars.githubusercontent.com/u/8162688?v=4"
+                }
+            ],
+            "released_after_tools": false,
+            "head_sha": "10bec305b92b20fe45eeb570dc0d4e0e164375c3",
+            "last_release_is_head": false,
+            "last_release_vs_default_compare_url": "",
+            "commits_to_dev": 30,
+            "is_DSL2": true,
+            "has_nf_test": false,
+            "has_nf_test_dev": true,
+            "master_nextflow_config_plugins": [],
+            "master_nextflow_config_manifest": {},
+            "dev_nextflow_config_plugins": [
+                "nf-schema@2.5.1"
+            ],
+            "dev_nextflow_config_manifest": {
+                "defaultBranch": "master"
+            },
+            "releases": [
+                {
+                    "tag_name": "dev",
+                    "published_at": "2026-05-21T08:01:30Z",
+                    "tag_sha": "2af78b179cc4aed3524e2feae90c12a81feb1b9e",
+                    "has_schema": true,
+                    "doc_files": [
+                        "docs/output.md",
+                        "docs/usage.md"
+                    ],
+                    "components": {
+                        "modules": [
+                            "cellpose",
+                            "multiqc",
+                            "opt_flip",
+                            "opt_stat",
+                            "opt_track",
+                            "stardist",
+                            "untar",
+                            "unzip",
+                            "xeniumranger_import-segmentation",
+                            "xeniumranger_relabel",
+                            "xeniumranger_resegment"
+                        ],
+                        "subworkflows": [
+                            "utils_nextflow_pipeline",
+                            "utils_nfcore_pipeline",
+                            "utils_nfschema_plugin"
+                        ]
+                    },
+                    "nextflow_version": "!>=25.04.0",
+                    "nf_core_version": "3.5.2",
+                    "plugins": [],
+                    "co2footprint_files": null
+                }
+            ]
+        },
+        {
             "id": 462899606,
             "node_id": "R_kgDOG5dJlg",
             "name": "spatialvi",
@@ -57732,187 +57913,6 @@
                     },
                     "nextflow_version": "!>=25.10.4",
                     "nf_core_version": "4.0.2",
-                    "plugins": [],
-                    "co2footprint_files": null
-                }
-            ]
-        },
-        {
-            "id": 772004240,
-            "node_id": "R_kgDOLgPZkA",
-            "name": "spatialaxe",
-            "full_name": "nf-core/spatialaxe",
-            "private": false,
-            "description": null,
-            "fork": false,
-            "url": "https://api.github.com/repos/nf-core/spatialaxe",
-            "created_at": "2024-03-14T10:57:36Z",
-            "updated_at": "2026-05-15T23:10:34Z",
-            "pushed_at": "2026-05-21T08:01:31Z",
-            "homepage": "https://nf-co.re/spatialaxe",
-            "size": 34103,
-            "stargazers_count": 31,
-            "watchers_count": 31,
-            "language": "Nextflow",
-            "has_issues": true,
-            "has_projects": true,
-            "has_downloads": true,
-            "has_wiki": false,
-            "has_pages": false,
-            "has_discussions": false,
-            "forks_count": 21,
-            "archived": false,
-            "disabled": false,
-            "open_issues_count": 40,
-            "allow_forking": true,
-            "is_template": false,
-            "web_commit_signoff_required": false,
-            "has_pull_requests": true,
-            "pull_request_creation_policy": "all",
-            "topics": [
-                "10x-genomics",
-                "image-processing",
-                "spatial",
-                "spatial-data-analysis",
-                "spatial-transcriptomics",
-                "transcriptomics",
-                "xenium"
-            ],
-            "visibility": "public",
-            "forks": 21,
-            "open_issues": 40,
-            "watchers": 31,
-            "default_branch": "master",
-            "temp_clone_token": "",
-            "allow_squash_merge": true,
-            "allow_merge_commit": true,
-            "allow_rebase_merge": true,
-            "allow_auto_merge": false,
-            "delete_branch_on_merge": false,
-            "allow_update_branch": false,
-            "use_squash_pr_title_as_default": false,
-            "squash_merge_commit_message": "COMMIT_MESSAGES",
-            "squash_merge_commit_title": "COMMIT_OR_PR_TITLE",
-            "merge_commit_message": "PR_TITLE",
-            "merge_commit_title": "MERGE_MESSAGE",
-            "custom_properties": {},
-            "security_and_analysis": {
-                "secret_scanning": {
-                    "status": "enabled"
-                },
-                "secret_scanning_push_protection": {
-                    "status": "enabled"
-                },
-                "dependabot_security_updates": {
-                    "status": "disabled"
-                },
-                "secret_scanning_non_provider_patterns": {
-                    "status": "enabled"
-                },
-                "secret_scanning_ai_detection": {
-                    "status": "disabled"
-                },
-                "secret_scanning_validity_checks": {
-                    "status": "enabled"
-                },
-                "secret_scanning_delegated_alert_dismissal": {
-                    "status": "disabled"
-                },
-                "secret_scanning_delegated_bypass": {
-                    "status": "disabled"
-                }
-            },
-            "network_count": 21,
-            "subscribers_count": 175,
-            "team_contributors_permission_push": true,
-            "team_contributors_permission_admin": false,
-            "team_core_permission_push": true,
-            "team_core_permission_admin": true,
-            "master_branch_exists": true,
-            "master_branch_protection_up_to_date": -1,
-            "master_branch_protection_status_checks": [
-                "nf-core",
-                "pre-commit"
-            ],
-            "master_branch_protection_required_reviews": 2,
-            "master_branch_protection_require_codeowner_review": false,
-            "master_branch_protection_require_non_stale_review": false,
-            "master_branch_protection_enforce_admins": false,
-            "main_branch_exists": false,
-            "dev_branch_exists": true,
-            "dev_branch_protection_up_to_date": -1,
-            "dev_branch_protection_status_checks": [
-                "nf-core",
-                "pre-commit"
-            ],
-            "dev_branch_protection_required_reviews": 1,
-            "dev_branch_protection_require_codeowner_review": false,
-            "dev_branch_protection_require_non_stale_review": false,
-            "dev_branch_protection_enforce_admins": false,
-            "TEMPLATE_branch_exists": true,
-            "has_required_topics": true,
-            "open_pr_count": 6,
-            "repository_url": "https://github.com/nf-core/spatialaxe",
-            "contributors": [
-                {
-                    "name": "khersameesh24",
-                    "count": 28,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/58815690?v=4"
-                },
-                {
-                    "name": "heylf",
-                    "count": 8,
-                    "avatar_url": "https://avatars.githubusercontent.com/u/8162688?v=4"
-                }
-            ],
-            "released_after_tools": false,
-            "head_sha": "10bec305b92b20fe45eeb570dc0d4e0e164375c3",
-            "last_release_is_head": false,
-            "last_release_vs_default_compare_url": "",
-            "commits_to_dev": 30,
-            "is_DSL2": true,
-            "has_nf_test": false,
-            "has_nf_test_dev": true,
-            "master_nextflow_config_plugins": [],
-            "master_nextflow_config_manifest": {},
-            "dev_nextflow_config_plugins": [
-                "nf-schema@2.5.1"
-            ],
-            "dev_nextflow_config_manifest": {
-                "defaultBranch": "master"
-            },
-            "releases": [
-                {
-                    "tag_name": "dev",
-                    "published_at": "2026-05-21T08:01:30Z",
-                    "tag_sha": "2af78b179cc4aed3524e2feae90c12a81feb1b9e",
-                    "has_schema": true,
-                    "doc_files": [
-                        "docs/output.md",
-                        "docs/usage.md"
-                    ],
-                    "components": {
-                        "modules": [
-                            "cellpose",
-                            "multiqc",
-                            "opt_flip",
-                            "opt_stat",
-                            "opt_track",
-                            "stardist",
-                            "untar",
-                            "unzip",
-                            "xeniumranger_import-segmentation",
-                            "xeniumranger_relabel",
-                            "xeniumranger_resegment"
-                        ],
-                        "subworkflows": [
-                            "utils_nextflow_pipeline",
-                            "utils_nfcore_pipeline",
-                            "utils_nfschema_plugin"
-                        ]
-                    },
-                    "nextflow_version": "!>=25.04.0",
-                    "nf_core_version": "3.5.2",
                     "plugins": [],
                     "co2footprint_files": null
                 }
