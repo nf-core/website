@@ -11,7 +11,6 @@ embedAt: "mag"
 locations:
   - name: Online
     links:
-      - https://kth-se.zoom.us/j/68390542812
       - https://www.youtube.com/watch?v=EwgW4USjYhY
 ---
 
