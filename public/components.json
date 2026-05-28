@@ -149184,6 +149184,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@LuisHeinzlmeier"
         ],
@@ -265539,7 +265555,8 @@
               "doi": "10.1186/s13059-017-1382-0",
               "licence": [
                 "BSD-3-Clause"
-              ]
+              ],
+              "identifier": "biotools:scanpy"
             }
           }
         ],
@@ -265552,94 +265569,111 @@
               }
             },
             {
-              "h5ad": {
+              "anndata": {
                 "type": "file",
-                "description": "AnnData object in h5ad format",
-                "pattern": "*.{h5ad}",
+                "description": "AnnData object in h5ad or zarr format",
+                "pattern": "*.{h5ad,zarr}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3590"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3915"
                   }
                 ]
               }
             }
           ],
-          [
-            {
-              "min_genes": {
-                "type": "integer",
-                "description": "Minimum number of genes expressed per cell"
-              }
+          {
+            "min_genes": {
+              "type": "integer",
+              "description": "Minimum number of genes expressed per cell"
             }
-          ],
-          [
-            {
-              "min_cells": {
-                "type": "integer",
-                "description": "Minimum number of cells expressing each gene"
-              }
+          },
+          {
+            "min_cells": {
+              "type": "integer",
+              "description": "Minimum number of cells expressing each gene"
             }
-          ],
-          [
-            {
-              "min_counts_gene": {
-                "type": "integer",
-                "description": "Minimum number of counts per gene"
-              }
+          },
+          {
+            "min_counts_gene": {
+              "type": "integer",
+              "description": "Minimum number of counts per gene"
             }
-          ],
-          [
-            {
-              "min_counts_cell": {
-                "type": "integer",
-                "description": "Minimum number of counts per cell"
-              }
+          },
+          {
+            "min_counts_cell": {
+              "type": "integer",
+              "description": "Minimum number of counts per cell"
             }
-          ],
-          [
-            {
-              "max_mito_percentage": {
-                "type": "integer",
-                "description": "Maximum percentage of mitochondrial genes per cell"
-              }
+          },
+          {
+            "max_mito_percentage": {
+              "type": "integer",
+              "description": "Maximum percentage of mitochondrial genes per cell"
             }
-          ],
-          [
-            {
-              "symbol_col": {
-                "type": "string",
-                "description": "Column name of the gene symbols in the `var` of the AnnData object. Use `index` if the gene symbols are the row names."
-              }
+          },
+          {
+            "symbol_col": {
+              "type": "string",
+              "description": "Column name of the gene symbols in the `var` of the AnnData object. Use `index` if the gene symbols are the row names."
             }
-          ]
+          }
         ],
         "output": {
-          "h5ad": [
-            {
-              "meta": {
-                "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+          "anndata": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "*.{h5ad,zarr}": {
+                  "type": "file",
+                  "description": "Filtered AnnData object in h5ad or zarr format",
+                  "pattern": "*.{h5ad,zarr}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3590"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3915"
+                    }
+                  ]
+                }
               }
-            },
-            {
-              "*.h5ad": {
-                "type": "file",
-                "description": "Filtered AnnData object",
-                "pattern": "*.h5ad",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3590"
-                  }
-                ]
-              }
-            }
+            ]
           ],
           "versions": [
             {
               "versions.yml": {
                 "type": "file",
                 "description": "File containing software versions",
-                "pattern": "versions.yml"
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
             }
           ]
