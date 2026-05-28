@@ -45958,7 +45958,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "raredisease",
@@ -265872,13 +265872,16 @@
               }
             },
             {
-              "h5ad": {
+              "anndata": {
                 "type": "file",
-                "description": "AnnData object in h5ad format",
-                "pattern": "*.{h5ad}",
+                "description": "AnnData object in h5ad or zarr format",
+                "pattern": "*.{h5ad,zarr}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_3590"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3915"
                   }
                 ]
               }
@@ -265892,7 +265895,7 @@
           }
         ],
         "output": {
-          "h5ad": [
+          "anndata": [
             [
               {
                 "meta": {
@@ -265901,13 +265904,16 @@
                 }
               },
               {
-                "*.h5ad": {
+                "*.{h5ad,zarr}": {
                   "type": "file",
-                  "description": "AnnData object with PCA coordinates added",
-                  "pattern": "*.h5ad",
+                  "description": "AnnData object with PCA coordinates added in h5ad or zarr format",
+                  "pattern": "*.{h5ad,zarr}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3590"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3915"
                     }
                   ]
                 }
@@ -265936,6 +265942,22 @@
               }
             ]
           ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -340150,6 +340172,50 @@
       ]
     },
     {
+      "name": "fasta_bgzip_index_dict_samtools",
+      "path": "subworkflows/nf-core/fasta_bgzip_index_dict_samtools/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "fasta_bgzip_index_dict_samtools",
+        "description": "Ensure BGZF compression, index, and produce a sequence size summary and a sequence dictionary for each FASTA file.",
+        "keywords": [
+          "bgzip",
+          "faidx",
+          "dict",
+          "fasta"
+        ],
+        "components": [
+          "htslib/bgziptabix",
+          "samtools/dict",
+          "samtools/faidx"
+        ],
+        "input": [
+          {
+            "ch_fasta": {
+              "type": "file",
+              "description": "FASTA file, compressed or not.\nStructure: [ val(meta), path(fasta) ]\n",
+              "pattern": "*.{fa,fa.gz,fa.bz2,fa.xz,fasta,fasta.gz,fasta.bz2,fasta.xz}"
+            }
+          }
+        ],
+        "output": [
+          {
+            "fasta_fai_gzi_dict": {
+              "type": "file",
+              "description": "Channel containing:\n  - BGZF-compressed FASTA\n  - FASTA index (.fai)\n  - BGZF index (.gzi)\n  - sequence size summary (.sizes)\n  - sequence dictionary (.dict)\nStructure:\n  [ val(meta), path(fasta_gz), path(fai), path(gzi), path(sizes), path(dict) ]\n",
+              "pattern": "*"
+            }
+          }
+        ],
+        "authors": [
+          "@charles-plessy"
+        ],
+        "maintainers": [
+          "@charles-plessy"
+        ]
+      }
+    },
+    {
       "name": "fasta_binning_concoct",
       "path": "subworkflows/nf-core/fasta_binning_concoct/meta.yml",
       "type": "subworkflow",
@@ -348392,7 +348458,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "proteinannotator",
@@ -348845,7 +348911,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "proteinannotator",
@@ -349332,7 +349398,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.0.0"
+          "version": "4.1.0"
         },
         {
           "name": "proteinannotator",
