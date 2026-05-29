@@ -21200,7 +21200,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -21209,28 +21209,10 @@
                 }
               },
               {
-                "${prefix}.${extension}.tbi": {
+                "${prefix}.${extension}.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.${extension}.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -21252,7 +21234,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21276,7 +21258,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21414,7 +21396,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -21423,29 +21405,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -21466,7 +21429,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21490,7 +21453,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21574,7 +21537,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -21583,27 +21546,11 @@
                 }
               },
               {
-                "${prefix}.${extension}.tbi": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.tbi"
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "${prefix}.${extension}.csi": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n",
-                  "pattern": "*.csi"
+                "${prefix}.${extension}.{tbi,csi}": {
+                  "type": "file",
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}",
+                  "ontologies": []
                 }
               }
             ]
@@ -21624,7 +21571,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21648,7 +21595,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21794,7 +21741,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21818,7 +21765,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -21963,7 +21910,11 @@
                   "type": "file",
                   "description": "VCF merged output file => when `--output-type v` is used",
                   "pattern": "*.vcf",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -22070,7 +22021,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -22079,29 +22030,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -22122,7 +22054,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22146,7 +22078,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22287,7 +22219,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -22296,28 +22228,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}",
                   "ontologies": []
                 }
               }
@@ -22339,7 +22253,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22363,7 +22277,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22449,7 +22363,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -22458,29 +22372,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -22501,7 +22396,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22525,7 +22420,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22613,7 +22508,7 @@
           ]
         ],
         "output": {
-          "csi": [
+          "index": [
             [
               {
                 "meta": {
@@ -22622,29 +22517,10 @@
                 }
               },
               {
-                "*.csi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Default VCF file index file",
-                  "pattern": "*.csi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "tbi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.tbi": {
-                  "type": "file",
-                  "description": "Alternative VCF file index file for larger files (activated with -t parameter)",
-                  "pattern": "*.tbi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -22665,7 +22541,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22689,7 +22565,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22877,7 +22753,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -22901,7 +22777,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23063,7 +22939,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23087,7 +22963,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23237,7 +23113,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -23246,11 +23122,10 @@
                 }
               },
               {
-                "*vcf.gz.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "tabix index file",
-                  "pattern": "*.{vcf.gz.tbi}",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -23307,7 +23182,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23331,7 +23206,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23456,7 +23331,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -23465,29 +23340,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -23508,7 +23364,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23532,7 +23388,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23840,7 +23696,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -23849,29 +23705,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file tabix index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file coordinate sorted index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -23892,7 +23729,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -23916,7 +23753,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24045,7 +23882,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -24054,29 +23891,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -24238,7 +24056,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -24247,29 +24065,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -24290,7 +24089,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24314,7 +24113,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24436,7 +24235,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -24445,29 +24244,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -24488,7 +24268,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24512,7 +24292,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24639,7 +24419,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -24648,29 +24428,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -24691,7 +24452,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24715,7 +24476,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24839,7 +24600,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -24848,29 +24609,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "TBI file",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "CSI file",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -24891,7 +24633,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -24915,7 +24657,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25019,7 +24761,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -25028,29 +24770,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -25071,7 +24794,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25095,7 +24818,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25401,7 +25124,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25425,7 +25148,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25589,7 +25312,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25613,7 +25336,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25774,7 +25497,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -25798,7 +25521,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26078,7 +25801,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -26087,29 +25810,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -26130,7 +25834,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26154,7 +25858,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26311,7 +26015,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26335,7 +26039,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26514,7 +26218,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26538,7 +26242,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26688,7 +26392,7 @@
               }
             ]
           ],
-          "tbi": [
+          "index": [
             [
               {
                 "meta": {
@@ -26697,29 +26401,10 @@
                 }
               },
               {
-                "*.tbi": {
+                "*.{tbi,csi}": {
                   "type": "file",
-                  "description": "Alternative VCF file index",
-                  "pattern": "*.tbi",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Default VCF file index",
-                  "pattern": "*.csi",
-                  "ontologies": []
+                  "description": "VCF file index",
+                  "pattern": "*.{tbi,csi}"
                 }
               }
             ]
@@ -26740,7 +26425,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -26764,7 +26449,7 @@
               },
               {
                 "bcftools --version | sed '1!d; s/^.*bcftools //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -338704,8 +338389,7 @@
         ],
         "components": [
           "freebayes",
-          "bcftools/sort",
-          "bcftools/index"
+          "bcftools/sort"
         ],
         "input": [
           {
@@ -338799,24 +338483,9 @@
             }
           },
           {
-            "vcf": {
+            "vcf_index": {
               "type": "file",
-              "description": "Sorted VCF file",
-              "pattern": "*.{vcf.gz}"
-            }
-          },
-          {
-            "csi": {
-              "type": "file",
-              "description": "Default VCF file index file",
-              "pattern": "*.csi"
-            }
-          },
-          {
-            "tbi": {
-              "type": "file",
-              "description": "Alternative VCF file index file (activated with -t parameter)",
-              "pattern": "*.tbi"
+              "description": "Sorted VCF file with index"
             }
           }
         ],
