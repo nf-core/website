@@ -1,0 +1,266 @@
+---
+title: Hackathon - August 2026
+subtitle: An in-person hackathon to develop nf-core and your projects together
+type: hackathon
+startDate: "2026-08-15"
+startTime: "10:00+02:00"
+endDate: "2026-08-16"
+endTime: "17:00+02:00"
+start: 2026-03-15T00:00:00+00:00
+end: 2026-03-16T00:00:00+00:00
+locations:
+    - name: In person
+importTypeform: true
+hackathonProjectListModals: hackathon-august-2026
+markdownPlugin: checklist
+announcement:
+    text: "Registration for the in-person August 2026 hackathon is now open!"
+    start: 2026-06-08T00:00:00+01:00
+    end: 2026-08-15T00:00:00+01:00
+---
+
+import EventMap from "@components/event/EventMap.astro";
+import EventLocationsTable from "@components/event/EventLocationsTable.astro";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+import LocalDateTime from "@components/event/LocalDateTime.svelte";
+import { YouTube } from "@astro-community/astro-embed-youtube";
+
+# Welcome
+
+Join us in person **August 15-16, 2026**, for the nf-core hackathon! 🗓️
+
+:::info{title="Key dates"}
+
+- **June 9th 2026**: Project proposals open
+- **June 9th 2026**: Registration opens
+- **August 15th - 16th 2026**: Hackathon
+
+:::
+
+<YouTube id="ktn2SwKfRPs" poster="https://i.ytimg.com/vi/ktn2SwKfRPs/maxresdefault.jpg" />
+
+## Format: In-person
+
+This hackathon follows an **in-person** format.
+
+:::warning{title="Important: Choosing your project"}
+
+There are projects aimed at solving nf-core tasks and projects tailored for the needs of its participants.
+
+**Project participation:**
+
+- Project leaders will be present to help you settle
+
+**When choosing a project:**
+
+- Find a project that is interesting to you
+- Feel free to create your own if nothing suits your interests
+
+:::
+
+# Staying Connected
+
+There are a few platforms you'll use during the hackathon:
+
+## Slack
+
+Slack is our main communication tool. Join via [nf-co.re/join](https://nf-co.re/join) and make sure you're in these channels:
+
+- [`#hackathon-mar-2026`](https://nfcore.slack.com/channels/hackathon-mar-2026) - Main hackathon communication
+- [`#github-invitations`](https://nfcore.slack.com/channels/github-invitations) - Request access to the nf-core GitHub organization
+
+:::note{title="Stay online!"}
+Even if you're at an in-person site, please stay active on Slack. It's where all project communication happens and creates a record for those who can't attend live.
+:::
+
+
+### Slack Huddles
+
+If WorkAdventure has issues, fall back to Slack Huddles - click the headphones icon in the top-right of any channel. Use whatever works best for your group (Zoom, etc.).
+
+# Registration
+
+<div data-tf-live="01KH0XNB4C1V6T2WT6QM5ZGNDA"></div>
+
+# Schedule
+
+We've kept the main schedule intentionally light to accommodate different time zones and allow for flexibility. While we have a few key syncs and social events planned, individual sites may be following their own schedules as well. We’d love to see as many of you as possible at the daily wrap-ups and quiz—they’re a great chance to connect with the community, share progress, and have some fun. Happy hacking!
+
+- Daily wrap-up
+    - 5 pm (GMT-3)
+- Quiz social
+    - Sunday, August 16th, 1 pm GMT-3
+
+:::
+
+# How the Hackathon Works
+
+## Workflow
+
+1. **Pick a project** - Browse the projects below and find one that interests you
+2. **Join the Slack channel** - Say hello, introduce yourself, share your goals
+3. **Find a task** - Check the [GitHub project board](https://github.com/orgs/nf-core/projects/146/) for issues
+4. **Assign yourself** - Claim the issue in GitHub (one at a time to avoid duplicating work)
+5. **Hack!** - Write code, chat with your group, ask questions
+6. **Open a pull request** - When you're done, submit your changes
+7. **Celebrate!** - Share your progress with your group and at the daily wrap-up
+
+:::tip
+Don't feel tied to one project - it's fine to move between projects throughout the hackathon.
+:::
+
+## For Project Leads
+
+**Kick-off meetings:** Record a short intro video explaining your project's goals and post it in your Slack channel. This helps people who join later get up to speed quickly.
+
+**Daily wrap-ups:** Prepare 1 slide per location with a high-level summary, photos, or memes (max 1 minute). The sillier the better! Post memes to [`#nf-core-memes`](https://nfcore.slack.com/channels/nf-core-memes).
+
+## Collaboration Tools
+
+**Pair programming:** VS Code Live Share lets you code together in real-time - great for getting started or working through tricky problems. [Get the extension](https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare).
+
+**Pull request reviews:** Need a review? Post your PR in [`#request-review`](https://nfcore.slack.com/channels/request-review) and find a "review buddy" to swap reviews with.
+
+# Projects
+
+We'll work in projects during the hackathon. Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+If you are joining online, reach out to the online project leaders.
+
+## Submit a project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-march-2026` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-march-2026).
+
+**Important**: When submitting your project, specify its primary location (a specific in-person hub or "online"). This helps participants choose projects that match where they'll be attending.
+
+See existing files for examples, if you're unsure about anything please ask in Slack or in the pull-request.
+
+## Registered projects
+
+<HackathonModalProjectList eventPath="hackathon-march-2026" showCount={true} />
+
+# Hosting a local hub
+
+We are now accepting registrations from organisers interested in hosting local hackathon hubs!
+
+Anyone is welcome to host a hub - you don't need to be an expert or have prior experience with hackathons.
+
+What you'll need:
+
+- Access to a dedicated space during your local working hours (e.g., 09:00-17:00)
+- Decent Wi-FI and a bunch of extension cables
+- Enthusiasm!
+
+:::note{title="Flexibility welcomed"}
+You don't need to be open 24/7 or even for all three days! Most hubs operate during typical office hours.
+If you can only host for one or two days, that's absolutely fine - any in-person participation is valuable.
+Adapt the schedule to work for you and your attendees.
+:::
+
+Any space will do: be it a meeting room for 5-10 people through to larger spaces to accommodate more.
+
+In previous years, Seqera has sponsored pizza.
+We're not yet sure how much funding will be available in 2026 or what shape it will take, so please don't plan around this.
+
+## Submit a hub
+
+There is no closing date for local site registration, however the sooner you register your interest the better.
+We use the site names in the main registration form and it really helps with planning.
+Also if we know about your site we'll have more time to help advertise and get folks to join!
+
+The steps to host a hub are:
+
+1. Open a pull-request to add your hub-specific page to this website
+    - Create a [new hub-specific `.md` file](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/events/2026/hackathon-march-2026) (it will be automatically added to the map and the table).
+2. Advertise (locally and online)
+3. Ensure you have one (or more) [project](#Projects) leader available to your hub
+    - See [In-person local hubs](#in-person-local-hubs) for more details
+4. Act as a contact point with the hackathon organisers during the event
+
+If you have any questions, jump into the [`#hackathon-mar-2026` channel](https://nfcore.slack.com/channels/hackathon-mar-2026) on the [nf-core Slack](https://nf-co.re/join#slack) and we'll be happy to help.
+
+## Registered hubs
+
+<EventMap event={"2026/hackathon-march-2026"} />
+
+<EventLocationsTable eventPath="2026/hackathon-march-2026" showCount={true} />
+
+# Social Activities
+
+During the hackathon, we will have a bit of light-hearted fun and games for you to play!
+Special prizes are up for grabs for the winners!
+
+- **Scavenger hunt** - Challenges posted in [`#hackathon-march-2026-scavengerhunt`](https://nfcore.slack.com/channels/hackathon-march-2026-scavengerhunt). Snap creative photos and post them in the thread!
+- **Online quiz** - Thursday, join on Zoom for nf-core themed multiple-choice questions. Answer on your phone/laptop. APAC folks: async version will be provided.
+- **Connect game** - Post your high scores in [`#connectgame`](https://nfcore.slack.com/channels/connectgame)
+- **Easter eggs** - Hidden games at [summit.nextflow.io](https://summit.nextflow.io) (pong, pixel art...)
+- **Pizza & snacks** - Seqera is sponsoring food at local sites. Talk to your site coordinator.
+
+# Safety & Etiquette
+
+- Ask before taking screenshots or photos of people
+- Don't troll
+- Take breaks!
+- Review and follow our [Code of Conduct](https://nf-co.re/code_of_conduct)
+
+# Pre-hackathon checklist
+
+Ensure you have read/signed up/joined/installed the following resources before the hackathon.
+
+- [ ] Check you agree with the [Code of Conduct](https://nf-co.re/code_of_conduct) of the event
+- [ ] Set up a GitHub account and [join the nf-core GitHub organization](https://nf-co.re/join#github)
+- [ ] Join the [nf-core Slack](https://nf-co.re/join#slack) and the [`#hackathon-mar-2026` channel](https://nfcore.slack.com/channels/hackathon-mar-2026)
+- [ ] Log into [WorkAdventure](https://app.hackathon.nf-co.re) (requires nf-core GitHub org membership)
+- [ ] Install [Nextflow](https://nextflow.io/), [nf-core/tools](https://nf-co.re/tools/#installation), and one of [Docker](https://docs.docker.com/get-docker/), Singularity, or [Conda](https://conda.io/projects/conda/en/latest/user-guide/install/index.html)/[Mamba](https://mamba.readthedocs.io/en/latest/installation.html) on your computer
+    - _Or use [GitHub Codespaces](https://github.com/features/codespaces) for a cloud-based dev environment_
+- [ ] Familiarize yourself with the [documentation](https://nf-co.re/docs) and [training materials](https://training.nextflow.io/)
+
+# Hackathon playlist
+
+A community Spotify playlist was created during the first ever nf-core hackathon, and many songs have been added since.
+Feel free to tune in and enjoy the somewhat eclectic mix!
+
+<a href="https://open.spotify.com/playlist/6LyhtB3bllSwNbK9iDNVgH">
+    <picture>
+        <source
+            media="(prefers-color-scheme: dark)"
+            srcset="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_dark.png"
+        ></source>
+        <img
+            alt="nf-core/hackathon playlist"
+            src="https://raw.githubusercontent.com/nf-core/logos/master/nf-core-logos/nf-core-hackathon-playlist_light.png"
+        ></img>
+    </picture>
+</a>
+
+# Resources
+
+Whether you're new to Nextflow or just need a refresher, these resources can help:
+
+- **[Nextflow Training](https://training.nextflow.io/)** - Comprehensive courses including _Hello Nextflow_ (beginners) and _Hello nf-core_. Available in multiple languages.
+- **[nf-core YouTube](https://www.youtube.com/c/nf-core)** - Bytesize talks and tutorials on specific topics
+- **[Seqera Blog](https://seqera.io/blog/)** & **[Podcast](https://seqera.io/podcast/)** - Community posts and discussions
+
+# What's Next
+
+**[Nextflow Summit Boston](https://summit.nextflow.io/)** - April 28 - May 1, 2026
+
+- April 28-29: nf-core hackathon and Nextflow training
+- April 30 - May 1: Nextflow Summit (talks in person and live-streamed)
+
+The call for abstracts is open - we'd love to hear what you're working on!
