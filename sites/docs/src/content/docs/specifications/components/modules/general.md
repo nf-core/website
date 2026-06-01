@@ -50,7 +50,7 @@ fastqc \\
 Passing arguments via ext.args splits how information is passed to a module, making it harder to understand where module inputs are defined.
 
 Using `ext.args` provides more flexibility to users.
-As `ext.args` is derived from the configuration (e.g.,, `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module.
+As `ext.args` is derived from the configuration (e.g., `modules.config`), advanced users can overwrite the default `ext.args` and supply their own arguments to modify the behaviour of a module.
 This can increase the capabilities of a pipeline beyond what the original developers intended.
 
 Initially, these were passed via the main workflow script using custom functions (e.g., `addParams`) and other additional nf-core custom methods, but this syntax overhead and other limitations were more difficult for pipeline developers to use and understand.
@@ -72,7 +72,7 @@ Unless absolutely necessary, the finest level of granularity is `<tool>` or `<to
 
 This is reflected in the naming of modules:
 
-- A tool with a single execution command uses the naming pattern `<tool>` (or `<tool>/<tool>` if the tool also has subcommands).
+- A tool with a single execution command uses the naming pattern `<tool>` (or `<tool>/<subtool>` if the tool also has subcommands).
 - A tool with subcommands uses the naming pattern `<tool>/<subtool>`.
 - If a tool has mutually exclusive functionality controlled only by flags (rather than subcommands), the flag name can replace the subcommand in the module name.
 - If a tool has sub-sub-commands, each subcommand SHOULD be appended to the first subcommand.
