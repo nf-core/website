@@ -19404,7 +19404,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -19564,7 +19564,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -20564,7 +20564,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -45399,7 +45399,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "marsseq",
@@ -45627,7 +45627,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -70103,7 +70103,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "marsseq",
@@ -88053,6 +88053,155 @@
       }
     },
     {
+      "name": "eautils_fastqstats",
+      "path": "modules/nf-core/eautils/fastqstats/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "eautils_fastqstats",
+        "description": "Calculate general and per-base statistics from FASTQ files",
+        "keywords": [
+          "fastq",
+          "statistics",
+          "quality control",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "eautils": {
+              "description": "Command-line tools for processing biological sequencing data.",
+              "homepage": "https://expressionanalysis.github.io/ea-utils/",
+              "documentation": "https://expressionanalysis.github.io/ea-utils/",
+              "tool_dev_url": "https://github.com/ExpressionAnalysis/ea-utils",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "fastq": {
+                "type": "file",
+                "description": "Input FASTQ file",
+                "pattern": "*.{fastq,fq,fastq.gz,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "general_stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_general.tsv": {
+                  "type": "file",
+                  "description": "General FASTQ statistics in TSV format",
+                  "pattern": "*_general.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "per_base_stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_per_base.tsv": {
+                  "type": "file",
+                  "description": "Per-base FASTQ statistics in TSV format",
+                  "pattern": "*_per_base.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fastqstats": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fastq-stats": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fastq-stats": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.1.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@itrujnara"
+        ],
+        "maintainers": [
+          "@itrujnara"
+        ]
+      }
+    },
+    {
       "name": "ectyper",
       "path": "modules/nf-core/ectyper/meta.yml",
       "type": "module",
@@ -97231,7 +97380,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "marsseq",
@@ -149834,19 +149983,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_htseq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "htseq-count --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htseq": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "htseq-count --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -194140,7 +194321,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "marsseq",
@@ -224079,7 +224260,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -234458,7 +234639,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -261587,7 +261768,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -261959,7 +262140,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -262413,7 +262594,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -264163,7 +264344,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -264654,7 +264835,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -265370,6 +265551,261 @@
                 "python -c \"import importlib.metadata as m; print(m.version('savana'))\"": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      }
+    },
+    {
+      "name": "savana_run",
+      "path": "modules/nf-core/savana/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "savana_run",
+        "description": "Identify and cluster SV breakpoints from long-read alignments.",
+        "keywords": [
+          "structural variants",
+          "long read",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "savana": {
+              "description": "SAVANA: a somatic structural variant and copy-number caller for long-read data.",
+              "homepage": "https://github.com/cortes-ciriano-lab/savana",
+              "documentation": "https://github.com/cortes-ciriano-lab/savana",
+              "tool_dev_url": "https://github.com/cortes-ciriano-lab/savana",
+              "doi": "10.1038/s41592-025-02708-0",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "tumour": {
+                "type": "file",
+                "description": "Tumour BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "tumour_index": {
+                "type": "file",
+                "description": "Tumour BAM/CRAM index",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            },
+            {
+              "normal": {
+                "type": "file",
+                "description": "Normal BAM/CRAM file",
+                "pattern": "*.{bam,cram}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
+            },
+            {
+              "normal_index": {
+                "type": "file",
+                "description": "Normal BAM/CRAM index",
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. `[ id:'hg38' ]`\n"
+              }
+            },
+            {
+              "ref": {
+                "type": "file",
+                "description": "Reference genome FASTA file used to align tumor and normal BAM/CRAM files",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_index": {
+                "type": "file",
+                "description": "Reference FASTA index",
+                "pattern": "*.fai",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "sv_breakpoints_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.sv_breakpoints.vcf": {
+                  "type": "file",
+                  "description": "VCF file containing raw SV breakpoints",
+                  "pattern": "*.sv_breakpoints.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sv_breakpoints_bedpe": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.sv_breakpoints.bedpe": {
+                  "type": "file",
+                  "description": "BEDPE file containing SV breakpoints",
+                  "pattern": "*.sv_breakpoints.bedpe",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sv_breakpoints_read_support": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.sv_breakpoints_read_support.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing read support information for each SV breakpoint",
+                  "pattern": "*.sv_breakpoints_read_support.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "inserted_sequences": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Sample information"
+                }
+              },
+              {
+                "${prefix}.inserted_sequences.fa": {
+                  "type": "file",
+                  "description": "FASTA file containing inserted sequences",
+                  "pattern": "*.inserted_sequences.fa",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_savana": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "savana": {
+                  "type": "string",
+                  "description": "Tool version"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('savana'))\"": {
+                  "type": "eval",
+                  "description": "Command to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process name"
+                }
+              },
+              {
+                "savana": {
+                  "type": "string",
+                  "description": "Tool version"
+                }
+              },
+              {
+                "python -c \"import importlib.metadata as m; print(m.version('savana'))\"": {
+                  "type": "eval",
+                  "description": "Command to obtain the version of the tool"
                 }
               }
             ]
@@ -290128,7 +290564,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -290266,7 +290702,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -290403,7 +290839,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "pathogensurveillance",
@@ -299132,7 +299568,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -313422,7 +313858,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -330420,7 +330856,7 @@
       "pipelines": [
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         }
       ]
     },
@@ -338175,7 +338611,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -338465,7 +338901,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "metatdenovo",
@@ -349093,7 +349529,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "mcmicro",
@@ -349546,7 +349982,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "mcmicro",
@@ -350041,7 +350477,7 @@
         },
         {
           "name": "magmap",
-          "version": "1.0.0"
+          "version": "1.1.0"
         },
         {
           "name": "mcmicro",
