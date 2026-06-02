@@ -6,7 +6,23 @@ environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/main-site"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
+# Allow cross-origin reads of all resources (the whole site is public and unauthenticated).
+# Set Access-Control-Allow-Origin in exactly one rule to avoid duplicate/merged header values.
 [[headers]]
-for = "/_astro/*"
+for = "/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
+
+# Advertise machine-readable resources to agents/crawlers from the homepage (RFC 8288 / RFC 9727).
+# Expose-Headers lets cross-origin browser JS actually read the Link header (it is not CORS-safelisted).
+[[headers]]
+for = "/"
+[headers.values]
+Link = '''</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="describedby"; type="text/plain", </docs/>; rel="service-doc"; type="text/html", </sitemap-index.xml>; rel="sitemap"; type="application/xml"'''
+Access-Control-Expose-Headers = "Link"
+
+# Serve the API catalogue as an RFC 9727 link set (CORS comes from the /* rule above)
+[[headers]]
+for = "/.well-known/api-catalog"
+[headers.values]
+Content-Type = "application/linkset+json"
