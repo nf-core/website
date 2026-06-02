@@ -150376,19 +150376,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_htsnimtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htsnimtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hts_nim_tools | sed -n 's/version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "htsnimtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hts_nim_tools | sed -n 's/version: //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -151299,7 +151331,7 @@
       "type": "module",
       "meta": {
         "name": "humid",
-        "description": "HUMID is a tool to quickly and easily remove duplicate reads from FastQ files, with or without UMIs.",
+        "description": "HUMID is a tool to quickly and easily remove duplicate reads from FASTQ files, with or without UMIs.",
         "keywords": [
           "umi",
           "fastq",
@@ -151438,19 +151470,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_humid": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "humid": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "humid": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -151566,19 +151630,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_hypo": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hypo": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hypo": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.0.3": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -235664,7 +235760,8 @@
               "doi": "10.1038/s41592-025-02697-0",
               "licence": [
                 "GPLv3"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -235680,7 +235777,12 @@
               "transcripts": {
                 "type": "file",
                 "description": "Transcript ids, genes, revised positions, assignment probability, etc.",
-                "pattern": "*transcript-metadata.{csv.gz,csv,parquet}"
+                "pattern": "*transcript-metadata.{csv.gz,csv,parquet}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
               }
             }
           ],
@@ -235715,7 +235817,8 @@
                   "csv",
                   "csv.gz",
                   "parquet"
-                ]
+                ],
+                "ontologies": []
               }
             },
             {
@@ -235726,12 +235829,35 @@
                   "csv",
                   "csv.gz",
                   "parquet"
-                ]
+                ],
+                "ontologies": []
               }
             }
           ]
         ],
         "output": {
+          "zarr": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}.zarr": {
+                  "type": "file",
+                  "description": "Path to the output spatialdata Zarr file.",
+                  "pattern": "*.zarr",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3470"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "transcript_metadata": [
             [
               {
@@ -235741,35 +235867,15 @@
                 }
               },
               {
-                "*transcript-metadata.{csv,csv.gz,parquet}": {
+                "${prefix}_transcript-metadata.{csv,csv.gz,parquet}": {
                   "type": "file",
                   "description": "Transcript ids, genes, revised positions, assignment probability, etc.",
                   "pattern": "*transcript-metadata.{csv.gz,csv,parquet}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
-                }
-              }
-            ]
-          ],
-          "union_cell_polygons": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information"
-                }
-              },
-              {
-                "*cell-polygons-union.geojson.gz": {
-                  "type": "file",
-                  "description": "Union cell polygons",
-                  "pattern": "*cell-polygons-union.geojson.gz"
                 }
               }
             ]
@@ -235783,10 +235889,18 @@
                 }
               },
               {
-                "*cell-polygons.geojson.gz": {
+                "${prefix}_cell-polygons.geojson.gz": {
                   "type": "file",
-                  "description": "Cell polygons file",
-                  "pattern": "*cell-polygons.geojson.gz"
+                  "description": "Path to the cell polygons file.",
+                  "pattern": "*cell-polygons.geojson.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -235800,16 +235914,13 @@
                 }
               },
               {
-                "*cell-metadata.{csv,csv.gz,parquet}": {
+                "${prefix}_cell-metadata.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "Cell metadata file",
+                  "description": "Path to the cell metadata file.",
                   "pattern": "*cell-metadata.{csv.gz,csv,parquet}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235825,10 +235936,18 @@
                 }
               },
               {
-                "*cell-polygons-layers.geojson.gz": {
+                "${prefix}_cell-polygons-layers.geojson.gz": {
                   "type": "file",
-                  "description": "Cell polygon layers file",
-                  "pattern": "*cell-polygons-layers.geojson.gz"
+                  "description": "Path to the cell polygons layers file.",
+                  "pattern": "*cell-polygons-layers.geojson.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
@@ -235842,13 +235961,35 @@
                 }
               },
               {
-                "*expected-counts.{csv,csv.gz,parquet}": {
+                "${prefix}_expected-counts.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "Expected transcript counts file",
+                  "description": "Path to the expected counts file.",
                   "pattern": "*expected-counts.{csv.gz,csv,parquet}",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "union_cell_polygons": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}_cell-polygons-union.geojson.gz": {
+                  "type": "file",
+                  "description": "Path to the union cell polygons file.",
+                  "pattern": "*cell-polygons-union.geojson.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
                     },
                     {
                       "edam": "http://edamontology.org/format_3989"
@@ -235867,17 +236008,13 @@
                 }
               },
               {
-                "*maxpost-counts.{csv,csv.gz,parquet}": {
+                "${prefix}_maxpost-counts.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "point estimate of counts per cell",
+                  "description": "Path to the max posterior counts file.",
                   "pattern": "*maxpost-counts.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235893,17 +236030,13 @@
                 }
               },
               {
-                "*output-rates.{csv,csv.gz,parquet}": {
+                "${prefix}_output-rates.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "Estimated poisson expression rates for each cell",
+                  "description": "Path to the output rates file.",
                   "pattern": "*output-rates.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235919,17 +236052,13 @@
                 }
               },
               {
-                "*cell-hulls.{csv,csv.gz,parquet}": {
+                "${prefix}_cell-hulls.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "Cell convex hulls",
+                  "description": "Path to the cell hulls file.",
                   "pattern": "*cell-hulls.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235945,17 +236074,13 @@
                 }
               },
               {
-                "*gene-metadata.{csv,csv.gz,parquet}": {
+                "${prefix}_gene-metadata.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "gene metadata",
+                  "description": "Path to the gene metadata file.",
                   "pattern": "*gene-metadata.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235971,17 +236096,13 @@
                 }
               },
               {
-                "*metagene-rates.{csv,csv.gz,parquet}": {
+                "${prefix}_metagene-rates.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "metagene rates",
+                  "description": "Path to the metagene rates file.",
                   "pattern": "*metagene-rates.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -235997,17 +236118,13 @@
                 }
               },
               {
-                "*metagene-loadings.{csv,csv.gz,parquet}": {
+                "${prefix}_metagene-loadings.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "metagene loadings",
+                  "description": "Path to the metagene loadings file.",
                   "pattern": "*metagene-loadings.{csv.gz,csv,parquet}",
-                  "optional": true,
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
-                    },
-                    {
-                      "edam": "http://edamontology.org/format_3989"
                     }
                   ]
                 }
@@ -236023,11 +236140,164 @@
                 }
               },
               {
-                "*cell-voxels.{csv,csv.gz,parquet}": {
+                "${prefix}_cell-voxels.{csv,csv.gz,parquet}": {
                   "type": "file",
-                  "description": "table of each voxel in each cell",
+                  "description": "Path to the cell voxels file.",
                   "pattern": "*cell-voxels.{csv.gz,csv,parquet}",
-                  "optional": true,
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_proseg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "proseg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "proseg --version | sed 's/proseg //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "proseg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "proseg --version | sed 's/proseg //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@derrik-gratz",
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@derrik-gratz",
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "proseg_proseg2baysor",
+      "path": "modules/nf-core/proseg/proseg2baysor/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "proseg2baysor",
+        "description": "Convert proseg outputs to baysor format for import to Xenium explorer",
+        "keywords": [
+          "segmentation",
+          "spatial",
+          "transcriptomics"
+        ],
+        "tools": [
+          {
+            "proseg": {
+              "description": "Proseg (probabilistic segmentation) is a cell segmentation method for in situ spatial transcriptomics.",
+              "homepage": "https://github.com/dcjones/proseg",
+              "documentation": "https://github.com/dcjones/proseg",
+              "tool_dev_url": "https://github.com/dcjones/proseg",
+              "doi": "10.1038/s41592-025-02697-0",
+              "licence": [
+                "GPLv3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information"
+              }
+            },
+            {
+              "sd_zarr": {
+                "type": "file",
+                "description": "Path to the spatialdata Zarr file output by proseg.",
+                "pattern": "*.zarr",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3470"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "cell_polygons": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}_cell-polygons.geojson": {
+                  "type": "file",
+                  "description": "Path to the cell polygons file.",
+                  "pattern": "*cell-polygons.geojson.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "transcript_metadata": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information"
+                }
+              },
+              {
+                "${prefix}_transcript-metadata.csv": {
+                  "type": "file",
+                  "description": "Transcript ids, genes, revised positions, assignment probability, etc.",
+                  "pattern": "*transcript-metadata.csv.gz",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3752"
@@ -236040,26 +236310,60 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_proseg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "proseg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "proseg --version | sed 's/proseg //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "proseg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "proseg --version | sed 's/proseg //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
-          "@derrik-gratz"
+          "@derrik-gratz",
+          "@khersameesh24"
         ],
         "maintainers": [
-          "@derrik-gratz"
+          "@derrik-gratz",
+          "@khersameesh24"
         ]
       }
     },
