@@ -2163,7 +2163,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -2433,7 +2433,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -11684,7 +11684,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -12040,7 +12040,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -32360,7 +32360,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "smrnaseq",
@@ -45431,7 +45431,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "sarek",
@@ -45659,7 +45659,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -68482,7 +68482,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -68864,7 +68864,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -96800,7 +96800,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -97464,7 +97464,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -106290,7 +106290,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -106594,7 +106594,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -106880,7 +106880,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -106991,7 +106991,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -111252,7 +111252,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnavar",
@@ -113352,7 +113352,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnavar",
@@ -117281,7 +117281,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "sarek",
@@ -130063,7 +130063,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -151716,14 +151716,22 @@
           }
         ],
         "input": [
-          {
-            "wigs": {
-              "type": "file",
-              "description": "Any number of hmmcopy/readCounter processed .wig files giving the number of reads in the sample, in each genomic window. These will be averaged over to generate the panel of normals.",
-              "pattern": "*.{wig}",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+              }
+            },
+            {
+              "wigs": {
+                "type": "file",
+                "description": "Any number of hmmcopy/readCounter processed .wig files giving the number of reads in the sample, in each genomic window. These will be averaged over to generate the panel of normals.",
+                "pattern": "*.{wig}",
+                "ontologies": []
+              }
             }
-          },
+          ],
           {
             "gc_wig": {
               "type": "file",
@@ -151767,25 +151775,57 @@
         ],
         "output": {
           "rds": [
-            {
-              "${prefix}*.rds": {
-                "type": "file",
-                "description": "R data file (.rds) containing panel of normals data, medians of each bin.",
-                "pattern": "*.rds",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}*.rds": {
+                  "type": "file",
+                  "description": "Test",
+                  "pattern": "*.rds",
+                  "ontologies": []
+                }
               }
-            }
+            ]
           ],
           "txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'test', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}*.txt": {
+                  "type": "file",
+                  "description": "Text file containing panel of normals data, medians of each bin.",
+                  "pattern": "*.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions": [
             {
-              "${prefix}*.txt": {
+              "versions.yml": {
                 "type": "file",
-                "description": "Text file containing panel of normals data, medians of each bin.",
-                "pattern": "*.txt",
-                "ontologies": []
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
               }
             }
-          ],
+          ]
+        },
+        "topics": {
           "versions": [
             {
               "versions.yml": {
@@ -152072,6 +152112,22 @@
             }
           ]
         },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
         "authors": [
           "@sppearce",
           "@adamrtalbot"
@@ -152155,19 +152211,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_icount_mini": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -152258,19 +152346,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_icount_mini": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -152375,19 +152495,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_icount_mini": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -152497,19 +152649,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_icount_mini": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -152641,19 +152825,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_icount_mini": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iCount-Mini": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iCount-Mini -v": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -176036,7 +176252,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -194409,7 +194625,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -194577,7 +194793,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -202612,7 +202828,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -202755,7 +202971,7 @@
       "pipelines": [
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         }
       ]
     },
@@ -220639,7 +220855,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -221015,7 +221231,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -221394,7 +221610,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "variantcatalogue",
@@ -256045,7 +256261,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -256269,7 +256485,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -259979,7 +260195,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "sarek",
@@ -260379,7 +260595,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnavar",
@@ -261242,7 +261458,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -262116,7 +262332,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -262484,7 +262700,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -262966,7 +263182,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -264708,7 +264924,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -265183,7 +265399,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -295400,7 +295616,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -295684,7 +295900,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -296933,7 +297149,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -297076,7 +297292,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -298925,7 +299141,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -299121,7 +299337,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -317100,7 +317316,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         }
       ]
     },
@@ -318548,7 +318764,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -319666,7 +319882,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mspepid",
@@ -338947,7 +339163,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -339237,7 +339453,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -339337,7 +339553,7 @@
       "pipelines": [
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -344914,7 +345130,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnavar",
@@ -345766,7 +345982,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -349760,10 +349976,6 @@
           "version": "1.2.0"
         },
         {
-          "name": "epigenomesegmentation",
-          "version": "dev"
-        },
-        {
           "name": "epitopeprediction",
           "version": "3.1.0"
         },
@@ -349825,7 +350037,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -349989,7 +350201,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -350213,10 +350425,6 @@
           "version": "1.2.0"
         },
         {
-          "name": "epigenomesegmentation",
-          "version": "dev"
-        },
-        {
           "name": "epitopeprediction",
           "version": "3.1.0"
         },
@@ -350278,7 +350486,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -350442,7 +350650,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
@@ -350716,10 +350924,6 @@
           "version": "1.2.0"
         },
         {
-          "name": "epigenomesegmentation",
-          "version": "dev"
-        },
-        {
           "name": "epitopeprediction",
           "version": "3.1.0"
         },
@@ -350773,7 +350977,7 @@
         },
         {
           "name": "lsmquant",
-          "version": "1.0.0"
+          "version": "1.0.1"
         },
         {
           "name": "mag",
@@ -350925,7 +351129,7 @@
         },
         {
           "name": "rnafusion",
-          "version": "4.1.2"
+          "version": "4.1.3"
         },
         {
           "name": "rnaseq",
