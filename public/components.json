@@ -45635,7 +45635,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.1.1"
+          "version": "4.1.2"
         },
         {
           "name": "raredisease",
@@ -156411,19 +156411,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_irescue": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "irescue": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "irescue --version 2>&1 | sed '1!d ; s/IRescue //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "irescue": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "irescue --version 2>&1 | sed '1!d ; s/IRescue //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -156643,19 +156675,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ismapper": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ismapper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ismap --version 2>&1 | sed -n 's/^.*ismap //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ismapper": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "ismap --version 2>&1 | sed -n 's/^.*ismap //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -161975,19 +162039,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_kma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma_index -v 2>&1 | sed \"s/^KMA_index-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma_index -v 2>&1 | sed \"s/^KMA_index-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -162201,14 +162297,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml"
+          "versions_kma": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v 2>&1 | sed \"s/^KMA-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "kma": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "kma -v 2>&1 | sed \"s/^KMA-//\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -246438,6 +246571,266 @@
       ]
     },
     {
+      "name": "regenie_splitl0",
+      "path": "modules/nf-core/regenie/splitl0/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "regenie_splitl0",
+        "description": "Split REGENIE step 1 level-0 ridge-regression blocks into parallel jobs",
+        "keywords": [
+          "regenie",
+          "gwas",
+          "genome-wide association study",
+          "association",
+          "genomics",
+          "parallel"
+        ],
+        "tools": [
+          {
+            "regenie": {
+              "description": "Regenie is a C++ program for whole genome regression modelling of large genome-wide association studies (GWAS).",
+              "homepage": "https://rgcgithub.github.io/regenie/",
+              "documentation": "https://rgcgithub.github.io/regenie/options/",
+              "tool_dev_url": "https://github.com/rgcgithub/regenie",
+              "doi": "10.1038/s41588-021-00870-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:regenie"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genotype information\nKeep only the genotype analysis identifier in this map\nREGENIE consumes the staged basename of `plink_genotype_file` as the `--bed` or `--pgen` prefix, so the `.bed/.bim/.fam` or `.pgen/.pvar/.psam` files must share one basename\ne.g. `[ id:'cohort' ]`\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK primary genotype file in BED or PGEN format",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK variant metadata file in BIM or PVAR format",
+                "pattern": "*.{bim,pvar,zst}",
+                "ontologies": []
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample metadata file in FAM or PSAM format",
+                "pattern": "*.{fam,psam}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genotype/sample information associated with the phenotype file input\nUse the same phenotype file and phenotype-selection arguments for all `regenie/splitl0`, `regenie/runl0`, and `regenie/runl1` jobs in the same chunked step 1 analysis\ne.g. `[ id:'plink_simulated' ]`\n"
+              }
+            },
+            {
+              "pheno": {
+                "type": "file",
+                "description": "Phenotype file passed to `--phenoFile`",
+                "pattern": "*.{phe,pheno,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genotype/sample information associated with the covariate input\nUse compatible covariate inputs for all stages in the same chunked step 1 analysis\ne.g. `[ id:'plink_simulated' ]`\n"
+              }
+            },
+            {
+              "covar": {
+                "type": "file",
+                "optional": true,
+                "description": "Optional covariate file passed to `--covarFile`; provide `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "bsize": {
+              "type": "integer",
+              "description": "Optional block size passed to `--bsize`; pass `[]` to use the module default of `1000`"
+            }
+          },
+          {
+            "n_jobs": {
+              "type": "integer",
+              "description": "Number of level-0 jobs requested with `--split-l0`"
+            }
+          }
+        ],
+        "output": {
+          "master": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genotype/sample information\ne.g. `[ id:'plink_simulated' ]`\n"
+                }
+              },
+              {
+                "*.master": {
+                  "type": "file",
+                  "description": "REGENIE split level-0 master file",
+                  "pattern": "*.master",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "snplists": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genotype/sample information\ne.g. `[ id:'plink_simulated' ]`\n"
+                }
+              },
+              {
+                "*_job*.snplist": {
+                  "type": "file",
+                  "description": "REGENIE per-job variant list files referenced by the master file",
+                  "pattern": "*_job*.snplist",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genotype information\ne.g. `[ id:'plink_simulated' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "REGENIE split level-0 log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_regenie": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "regenie": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "regenie --version 2>&1 | sed -n \"1{s/^v//;s/\\.gz$//;p}\"": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "regenie": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "regenie --version 2>&1 | sed -n \"1{s/^v//;s/\\.gz$//;p}\"": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "notes": "`task.ext.args` is passed directly to REGENIE and can be used for stage-consistent options such as `--phenoColList`, `--bt`, `--loocv`, or `--keep-l0`.\nThe same phenotype file, phenotype-selection arguments, trait mode arguments such as `--bt`, and compatible genotype/covariate inputs must be used across `regenie/splitl0`, every matching `regenie/runl0` job, and `regenie/runl1`.\n",
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ],
+        "containers": {
+          "docker": {
+            "linux_amd64": {
+              "build_id": "bd-5d361f9fcb2f85cf_1",
+              "name": "community.wave.seqera.io/library/regenie:4.1.2--5d361f9fcb2f85cf",
+              "scanId": "sc-cc9eb5ed5eb381dd_2"
+            }
+          },
+          "singularity": {
+            "linux_amd64": {
+              "build_id": "bd-7c121fb4ecd57890_1",
+              "name": "oras://community.wave.seqera.io/library/regenie:4.1.2--7c121fb4ecd57890",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7a/7a05bf71ea09adc5ebf9f0c656c9b326c0f16ba8e4966914972e58313469a466/data"
+            }
+          }
+        }
+      }
+    },
+    {
       "name": "regenie_step1",
       "path": "modules/nf-core/regenie/step1/meta.yml",
       "type": "module",
@@ -257329,8 +257722,9 @@
           {
             "saltshaker": {
               "description": "A Python package for classifying and visualizing mitochondrial structural variants from MitoSAlt pipeline output.",
-              "homepage": "https://github.com/aksenia/saltshaker",
-              "documentation": "https://github.com/aksenia/saltshaker/tree/main/saltshaker/docs"
+              "homepage": "https://pypi.org/project/saltshaker",
+              "documentation": "https://pypi.org/project/saltshaker/",
+              "identifier": ""
             }
           }
         ],
@@ -257432,7 +257826,11 @@
                   "type": "file",
                   "description": "tsv with variant call metadata to be used in saltshaker_classify",
                   "pattern": "*_call_metadata.tsv",
-                  "ontologies": []
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
                 }
               }
             ]
@@ -257452,9 +257850,9 @@
                 }
               },
               {
-                "1.0.0": {
+                "1.1.1": {
                   "type": "string",
-                  "description": "Hardcoded version of saltshaker used in the module"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -257476,9 +257874,9 @@
                 }
               },
               {
-                "1.0.0": {
+                "1.1.1": {
                   "type": "string",
-                  "description": "Hardcoded version of saltshaker used in the module"
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -350768,7 +351166,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.1.1"
+          "version": "4.1.2"
         },
         {
           "name": "proteinannotator",
@@ -351217,7 +351615,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.1.1"
+          "version": "4.1.2"
         },
         {
           "name": "proteinannotator",
@@ -351700,7 +352098,7 @@
         },
         {
           "name": "pixelator",
-          "version": "4.1.1"
+          "version": "4.1.2"
         },
         {
           "name": "proteinannotator",
