@@ -6893,7 +6893,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -7323,7 +7323,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -16726,6 +16726,10 @@
           "version": "2.6.0"
         },
         {
+          "name": "bacmodel",
+          "version": "dev"
+        },
+        {
           "name": "funcscan",
           "version": "3.0.0"
         },
@@ -16836,6 +16840,10 @@
         {
           "name": "bacass",
           "version": "2.6.0"
+        },
+        {
+          "name": "bacmodel",
+          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -45256,7 +45264,13 @@
         "maintainers": [
           "@vagkaratzas"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "cat_cat",
@@ -45567,7 +45581,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "bacass",
@@ -49601,7 +49615,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "scrnaseq",
@@ -50162,7 +50176,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -59138,6 +59152,145 @@
           "version": "3.8.1"
         }
       ]
+    },
+    {
+      "name": "cnvkit_fix",
+      "path": "modules/nf-core/cnvkit/fix/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnvkit_fix",
+        "description": "Combine the uncorrected target and antitarget coverage tables (.cnn) and correct for biases in regional coverage and GC content, according to the given reference.",
+        "keywords": [
+          "cnvkit",
+          "fix",
+          "cnn",
+          "GC content",
+          "bias",
+          "RepeatMasker",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cnvkit": {
+              "description": "Copy number variant detection from high-throughput sequencing.",
+              "homepage": "https://cnvkit.readthedocs.io/en/stable",
+              "documentation": "https://cnvkit.readthedocs.io/en/stable",
+              "tool_dev_url": "https://github.com/etal/cnvkit",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:cnvkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "targetcoverage": {
+                "type": "file",
+                "description": "target coverage table. Output of the cnvkit coverage command.",
+                "pattern": "*.{targetcoverage.cnn}",
+                "ontologies": []
+              }
+            },
+            {
+              "antitargetcoverage": {
+                "type": "file",
+                "description": "antitarget coverage table. Output of the cnvkit coverage command.",
+                "pattern": "*.{antitargetcoverage.cnn}",
+                "ontologies": []
+              }
+            },
+            {
+              "reference": {
+                "type": "file",
+                "description": "copy-number reference.",
+                "pattern": "*{.cnn}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "copy_number_ratio": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.cnr": {
+                  "type": "file",
+                  "description": "table of bias corrected copy number ratios.",
+                  "pattern": "*.{cnr}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_cnvkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@aadecock"
+        ],
+        "maintainers": [
+          "@aadecock"
+        ]
+      }
     },
     {
       "name": "cnvkit_genemetrics",
@@ -89120,26 +89273,59 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_eklipse": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eklipse": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eKLIPse.py 2>&1 | sed -n 's/.*\\[v\\([^]]*\\)\\].*/\\1/p' | tr '-' '.'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "eklipse": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "eKLIPse.py 2>&1 | sed -n 's/.*\\[v\\([^]]*\\)\\].*/\\1/p' | tr '-' '.'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
           "@Lucpen"
         ],
         "maintainers": [
-          "@Lucpen"
+          "@Lucpen",
+          "@EfraMP"
         ]
       }
     },
@@ -96923,7 +97109,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "bacass",
@@ -97435,7 +97621,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "alleleexpression",
@@ -109448,7 +109634,13 @@
         "maintainers": [
           "@copilot"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "gapseq_draft",
@@ -155839,19 +156031,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_iphop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iphop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iphop --version 2>&1 | sed '1!d;s/iPHoP v//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iphop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iphop --version 2>&1 | sed '1!d;s/iPHoP v//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -155990,19 +156214,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_iphop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iphop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iphop --version 2>&1 | sed '1!d;s/iPHoP v//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "iphop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "iphop --version 2>&1 | sed '1!d;s/iPHoP v//;s/:.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173644,7 +173900,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "macsyfinder_search",
@@ -173917,7 +174179,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "mafft_align",
@@ -196183,7 +196451,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "alleleexpression",
@@ -236921,6 +237189,10 @@
         {
           "name": "bacass",
           "version": "2.6.0"
+        },
+        {
+          "name": "bacmodel",
+          "version": "dev"
         },
         {
           "name": "funcscan",
@@ -315652,7 +315924,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "traitar_run",
@@ -315873,7 +316151,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "transdecoder_longorf",
@@ -318115,7 +318399,7 @@
       "pipelines": [
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         }
       ]
     },
@@ -352746,7 +353030,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "ampliseq",
@@ -352755,6 +353039,10 @@
         {
           "name": "bacass",
           "version": "2.6.0"
+        },
+        {
+          "name": "bacmodel",
+          "version": "dev"
         },
         {
           "name": "bamtofastq",
@@ -353195,7 +353483,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "ampliseq",
@@ -353204,6 +353492,10 @@
         {
           "name": "bacass",
           "version": "2.6.0"
+        },
+        {
+          "name": "bacmodel",
+          "version": "dev"
         },
         {
           "name": "bamtofastq",
@@ -353702,7 +353994,7 @@
         },
         {
           "name": "airrflow",
-          "version": "5.0.0"
+          "version": "5.1.0"
         },
         {
           "name": "ampliseq",
@@ -353711,6 +354003,10 @@
         {
           "name": "bacass",
           "version": "2.6.0"
+        },
+        {
+          "name": "bacmodel",
+          "version": "dev"
         },
         {
           "name": "bamtofastq",
