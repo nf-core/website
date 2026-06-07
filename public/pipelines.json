@@ -22820,10 +22820,10 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/longraredisease",
             "created_at": "2025-05-06T09:43:19Z",
-            "updated_at": "2026-03-25T13:20:49Z",
-            "pushed_at": "2026-04-30T13:33:38Z",
+            "updated_at": "2026-06-06T21:25:53Z",
+            "pushed_at": "2026-06-06T21:25:49Z",
             "homepage": "https://nf-co.re/longraredisease/",
-            "size": 441478,
+            "size": 441865,
             "stargazers_count": 9,
             "watchers_count": 9,
             "language": "Nextflow",
@@ -22923,12 +22923,12 @@
             "contributors": [
                 {
                     "name": "nourmahfel",
-                    "count": 226,
+                    "count": 297,
                     "avatar_url": "https://avatars.githubusercontent.com/u/104623680?v=4"
                 }
             ],
             "released_after_tools": false,
-            "head_sha": "d6e1a120a696d2de5b5b3bef5ca93210131d2002",
+            "head_sha": "cd4df8a3647476325595f929336dd11ac044195f",
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
@@ -22942,7 +22942,7 @@
                 "defaultBranch": "master"
             },
             "dev_nextflow_config_plugins": [
-                "nf-schema@2.5.1"
+                "nf-schema@2.7.2"
             ],
             "dev_nextflow_config_manifest": {
                 "defaultBranch": "master"
@@ -22959,8 +22959,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-03-25T13:20:43Z",
-                    "tag_sha": "d6e1a120a696d2de5b5b3bef5ca93210131d2002",
+                    "published_at": "2026-06-06T21:25:49Z",
+                    "tag_sha": "cd4df8a3647476325595f929336dd11ac044195f",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -22988,6 +22988,7 @@
                             "gunzip",
                             "hificnv",
                             "jasminesv",
+                            "knotannotsv",
                             "longphase_haplotag",
                             "longphase_phase",
                             "minimap2_align",
@@ -23015,7 +23016,6 @@
                             "tabix_bgziptabix",
                             "tabix_tabix",
                             "trgt_genotype",
-                            "truvari_bench",
                             "untar"
                         ],
                         "subworkflows": [
@@ -23025,7 +23025,7 @@
                             "utils_nfschema_plugin"
                         ]
                     },
-                    "nextflow_version": "!>=25.04.6",
+                    "nextflow_version": "!>=26.04.3",
                     "nf_core_version": "3.5.1",
                     "plugins": [
                         "nf-schema@2.5.1"
@@ -37416,9 +37416,9 @@
             "url": "https://api.github.com/repos/nf-core/proteinfamilies",
             "created_at": "2024-11-04T15:37:09Z",
             "updated_at": "2026-05-06T06:37:29Z",
-            "pushed_at": "2026-05-06T08:16:17Z",
+            "pushed_at": "2026-06-06T16:53:36Z",
             "homepage": "https://nf-co.re/proteinfamilies",
-            "size": 10021,
+            "size": 10071,
             "stargazers_count": 22,
             "watchers_count": 22,
             "language": "Nextflow",
@@ -37431,7 +37431,7 @@
             "forks_count": 4,
             "archived": false,
             "disabled": false,
-            "open_issues_count": 10,
+            "open_issues_count": 11,
             "allow_forking": true,
             "is_template": false,
             "web_commit_signoff_required": false,
@@ -37443,7 +37443,7 @@
             ],
             "visibility": "public",
             "forks": 4,
-            "open_issues": 10,
+            "open_issues": 11,
             "watchers": 22,
             "default_branch": "main",
             "temp_clone_token": "",
@@ -37516,7 +37516,7 @@
             "dev_branch_protection_enforce_admins": false,
             "TEMPLATE_branch_exists": true,
             "has_required_topics": true,
-            "open_pr_count": 0,
+            "open_pr_count": 1,
             "repository_url": "https://github.com/nf-core/proteinfamilies",
             "contributors": [
                 {
@@ -37994,8 +37994,8 @@
                 },
                 {
                     "tag_name": "dev",
-                    "published_at": "2026-05-06T08:16:17Z",
-                    "tag_sha": "86be6d21e8c30fcb70e4fe54af1b27c3da2888a3",
+                    "published_at": "2026-06-06T15:24:30Z",
+                    "tag_sha": "9482f6deb7349e3f792abbdabbba2976042db94e",
                     "has_schema": true,
                     "doc_files": [
                         "docs/output.md",
@@ -42354,7 +42354,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/reportho/compare/9e8ae5a07ddb5ccd34bb01c72e70e390d97d1cb7...9e8ae5a07ddb5ccd34bb01c72e70e390d97d1cb7",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -42842,7 +42842,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/riboseq/compare/74ab1ea2668ee9a221a5c96c86b2a6ee1b2d2f2f...74ab1ea2668ee9a221a5c96c86b2a6ee1b2d2f2f",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -45341,7 +45341,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/rnaseq/compare/e7ca46272c8f9d5ceee3f71759f4ba551d3217a4...e7ca46272c8f9d5ceee3f71759f4ba551d3217a4",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -48962,7 +48962,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/rnavar/compare/a0e4641409eb7aed4b325e543d20577f9c08e437...a0e4641409eb7aed4b325e543d20577f9c08e437",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -49755,7 +49755,7 @@
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -53675,12 +53675,12 @@
             "fork": false,
             "url": "https://api.github.com/repos/nf-core/scdownstream",
             "created_at": "2024-06-11T06:38:31Z",
-            "updated_at": "2026-06-06T14:37:37Z",
+            "updated_at": "2026-06-06T18:54:12Z",
             "pushed_at": "2026-06-06T14:37:36Z",
             "homepage": "https://nf-co.re/scdownstream",
-            "size": 5181,
-            "stargazers_count": 104,
-            "watchers_count": 104,
+            "size": 5182,
+            "stargazers_count": 106,
+            "watchers_count": 106,
             "language": "Nextflow",
             "has_issues": true,
             "has_projects": true,
@@ -53708,7 +53708,7 @@
             "visibility": "public",
             "forks": 63,
             "open_issues": 26,
-            "watchers": 104,
+            "watchers": 106,
             "default_branch": "dev",
             "temp_clone_token": "",
             "allow_squash_merge": true,
@@ -53912,7 +53912,7 @@
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -55143,7 +55143,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/scrnaseq/compare/f7bf36d7c7e4bddc5302c3facd8d19ca83e22226...f7bf36d7c7e4bddc5302c3facd8d19ca83e22226",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -57388,7 +57388,7 @@
             "last_release_is_head": true,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/smrnaseq/compare/cb0af579b24cb8d5a3accd87b2f14ea93fe04832...cb0af579b24cb8d5a3accd87b2f14ea93fe04832",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -60976,7 +60976,7 @@
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "master_nextflow_config_plugins": [
@@ -62345,7 +62345,7 @@
             "last_release_is_head": false,
             "last_release_vs_default_compare_url": "https://github.com/nf-core/variantprioritization/compare/78965115c68ca58847b69c607a354f12094762e2...8ba629c53dbdb65057c85a3b0a76a7eb2e8688ef",
             "commits_to_dev": 30,
-            "is_DSL2": false,
+            "is_DSL2": true,
             "has_nf_test": true,
             "has_nf_test_dev": true,
             "main_nextflow_config_plugins": [
