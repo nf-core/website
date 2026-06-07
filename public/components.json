@@ -101448,6 +101448,184 @@
       ]
     },
     {
+      "name": "fgumi_duplex",
+      "path": "modules/nf-core/fgumi/duplex/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgumi_duplex",
+        "description": "Calls duplex consensus sequences from reads generated from the same double-stranded\nsource molecule. This is a high-performance replacement for fgbio CallDuplexConsensusReads.\n",
+        "keywords": [
+          "umi",
+          "duplex",
+          "consensus",
+          "bam"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for working with UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://docs.rs/fgumi",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "grouped_bam": {
+                "type": "file",
+                "description": "Grouped BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "min_reads": {
+              "type": "string",
+              "description": "Minimum number of raw/original reads to build each consensus read.\nCan be 1-3 values, e.g. [3 1 1] or 1\n"
+            }
+          },
+          {
+            "keep_rejected": {
+              "type": "boolean",
+              "description": "If true, output rejected reads to a separate BAM file"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Duplex consensus BAM file",
+                  "pattern": "${prefix}.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rejects": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.rejects.bam": {
+                  "type": "file",
+                  "description": "Optional BAM file containing reads that were rejected",
+                  "pattern": "*.rejects.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.stats.txt": {
+                  "type": "file",
+                  "description": "Optional text file containing consensus statistics",
+                  "pattern": "*.stats.txt"
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
       "name": "fgumi_extract",
       "path": "modules/nf-core/fgumi/extract/meta.yml",
       "type": "module",
@@ -101577,6 +101755,205 @@
       }
     },
     {
+      "name": "fgumi_filter",
+      "path": "modules/nf-core/fgumi/filter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgumi_filter",
+        "description": "Filters consensus reads generated by simplex or duplex consensus calling.\nThis is a high-performance replacement for fgbio FilterConsensusReads.\n",
+        "keywords": [
+          "umi",
+          "filter",
+          "consensus",
+          "bam"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for working with UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://docs.rs/fgumi",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Consensus BAM file to be filtered",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genome information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference genome FASTA file",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "min_reads": {
+              "type": "integer",
+              "description": "Minimum number of reads required to keep a consensus read"
+            }
+          },
+          {
+            "keep_rejected": {
+              "type": "boolean",
+              "description": "Whether to keep rejected reads in a separate BAM file"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Filtered consensus BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rejects": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.rejects.bam": {
+                  "type": "file",
+                  "description": "Optional BAM file containing reads that were filtered out",
+                  "pattern": "*.rejects.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.stats.txt": {
+                  "type": "file",
+                  "description": "Optional text file containing filtering statistics",
+                  "pattern": "*.stats.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
       "name": "fgumi_group",
       "path": "modules/nf-core/fgumi/group/meta.yml",
       "type": "module",
@@ -101655,6 +102032,218 @@
                       "edam": "http://edamontology.org/format_2572"
                     }
                   ]
+                }
+              }
+            ]
+          ],
+          "histogram": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.family_size_histogram.txt": {
+                  "type": "file",
+                  "description": "Optional output of tag family size counts",
+                  "pattern": "*.family_size_histogram.txt"
+                }
+              }
+            ]
+          ],
+          "metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.grouping_metrics.txt": {
+                  "type": "file",
+                  "description": "Optional output of UMI grouping metrics",
+                  "pattern": "*.grouping_metrics.txt"
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
+      "name": "fgumi_simplex",
+      "path": "modules/nf-core/fgumi/simplex/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgumi_simplex",
+        "description": "Calls simplex consensus sequences from reads with the same unique molecular tag.\nThis is a high-performance replacement for fgbio CallMolecularConsensusReads.\n",
+        "keywords": [
+          "umi",
+          "consensus",
+          "simplex",
+          "bam"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for working with UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://docs.rs/fgumi",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "grouped_bam": {
+                "type": "file",
+                "description": "The input SAM or BAM file, grouped by UMIs\n",
+                "pattern": "*.{bam,sam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "min_reads": {
+              "type": "integer",
+              "description": "Minimum number of original reads to build each consensus read."
+            }
+          },
+          {
+            "keep_rejected": {
+              "type": "boolean",
+              "description": "If true, output rejected reads to a separate BAM file"
+            }
+          }
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.bam": {
+                  "type": "file",
+                  "description": "Output SAM or BAM file with simplex consensus reads.\n",
+                  "pattern": "*.{bam,sam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "rejects": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.rejects.bam": {
+                  "type": "file",
+                  "description": "Optional BAM file containing reads that were rejected",
+                  "pattern": "*.rejects.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "${prefix}.stats.txt": {
+                  "type": "file",
+                  "description": "Optional text file containing consensus statistics",
+                  "pattern": "*.stats.txt"
                 }
               }
             ]
@@ -231583,7 +232172,7 @@
             "plink": {
               "description": "Whole genome association analysis toolset, designed to perform a range of basic, large-scale analyses in a computationally efficient manner.",
               "homepage": "https://www.cog-genomics.org/plink",
-              "documentation": "https://www.cog-genomics.org/plink/1.9/data#recode",
+              "documentation": "https://www.cog-genomics.org/plink/1.9/assoc",
               "tool_dev_url": "https://www.cog-genomics.org/plink/1.9/dev",
               "licence": [
                 "GPL"
@@ -231597,7 +232186,7 @@
             {
               "meta": {
                 "type": "map",
-                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\nmeta is associated to the PLINK native file input\n"
+                "description": "Groovy Map containing genotype sample information for PLINK BED/BIM/FAM input\ne.g. [ id:'test' ]\n"
               }
             },
             {
@@ -231629,14 +232218,14 @@
             {
               "meta2": {
                 "type": "map",
-                "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta2 is associated to VCF file input\n"
+                "description": "Groovy Map containing genotype sample information for VCF input\ne.g. [ id:'test' ]\n"
               }
             },
             {
               "vcf": {
                 "type": "file",
-                "description": "Variant calling file (vcf)",
-                "pattern": "*.{vcf}",
+                "description": "Variant calling file (vcf), optionally gzip-compressed",
+                "pattern": "*.{vcf,vcf.gz}",
                 "ontologies": []
               }
             }
@@ -231645,14 +232234,14 @@
             {
               "meta3": {
                 "type": "map",
-                "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta3 is associated to BCF file input\n"
+                "description": "Groovy Map containing genotype sample information for BCF input\ne.g. [ id:'test' ]\n"
               }
             },
             {
               "bcf": {
                 "type": "file",
                 "description": "PLINK variant information + sample ID + genotype call binary file",
-                "pattern": "*.{bcf}",
+                "pattern": "*.{bcf,bcf.gz}",
                 "ontologies": []
               }
             }
@@ -231661,13 +232250,13 @@
             {
               "meta4": {
                 "type": "map",
-                "description": "Groovy Map containing sample information,\ne.g. [ id:'test', single_end:false ]\nmeta4 is associated to phenotype file input\n"
+                "description": "Groovy Map containing phenotype information for `--pheno`\ne.g. [ id:'test' ]\nThe phenotype file can be paired with BED/BIM/FAM, VCF, or BCF genotype inputs\n"
               }
             },
             {
               "phe": {
                 "type": "file",
-                "description": "PLINK file containing phenotype information. This phenotype information can be read from the third column with the --pheno option or from a specific column with the --pheno-name option",
+                "description": "PLINK phenotype file passed with `--pheno` for BED/BIM/FAM, VCF, or BCF input modes. Phenotypes can be read from the third column by default or from a named column with `--pheno-name` via module arguments",
                 "pattern": "*.{phe}",
                 "ontologies": []
               }
@@ -231684,10 +232273,10 @@
                 }
               },
               {
-                "*.assoc": {
+                "*.{assoc,qassoc}": {
                   "type": "file",
-                  "description": "PLINK GWAS association file",
-                  "pattern": "*.{assoc}",
+                  "description": "PLINK GWAS association output file (`.assoc` for case/control traits, `.qassoc` for quantitative traits)",
+                  "pattern": "*.{assoc,qassoc}",
                   "ontologies": []
                 }
               }
@@ -231756,7 +232345,8 @@
           "@LorenzoS96"
         ],
         "maintainers": [
-          "@LorenzoS96"
+          "@LorenzoS96",
+          "@lyh970817"
         ],
         "topics": {
           "versions": [
@@ -248865,6 +249455,265 @@
               "lock_file": "modules/nf-core/regenie/step1/.conda-lock/linux_amd64-bd-5d361f9fcb2f85cf_1.txt"
             }
           },
+          "docker": {
+            "linux_amd64": {
+              "build_id": "bd-5d361f9fcb2f85cf_1",
+              "name": "community.wave.seqera.io/library/regenie:4.1.2--5d361f9fcb2f85cf",
+              "scanId": "sc-cc9eb5ed5eb381dd_2"
+            }
+          },
+          "singularity": {
+            "linux_amd64": {
+              "build_id": "bd-7c121fb4ecd57890_1",
+              "name": "oras://community.wave.seqera.io/library/regenie:4.1.2--7c121fb4ecd57890",
+              "https": "https://community-cr-prod.seqera.io/docker/registry/v2/blobs/sha256/7a/7a05bf71ea09adc5ebf9f0c656c9b326c0f16ba8e4966914972e58313469a466/data"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "regenie_step2",
+      "path": "modules/nf-core/regenie/step2/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "regenie_step2",
+        "description": "Run REGENIE step 2 association testing from precomputed step 1 predictions",
+        "keywords": [
+          "regenie",
+          "gwas",
+          "genome-wide association study",
+          "association",
+          "burden test",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "regenie": {
+              "description": "Regenie is a C++ program for whole genome regression modelling of large genome-wide association studies (GWAS).",
+              "homepage": "https://rgcgithub.github.io/regenie/",
+              "documentation": "https://rgcgithub.github.io/regenie/options/",
+              "tool_dev_url": "https://github.com/rgcgithub/regenie",
+              "doi": "10.1038/s41588-021-00870-7",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:regenie"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing genotype information\nKeep only the shared genotype analysis identifier in this map\nMulti-chromosome support is represented by emitting multiple PLINK bundles that share `meta.id`\nREGENIE consumes the staged basename of `plink_genotype_file` as the `--bed` or `--pgen` input prefix, so the `.bed/.bim/.fam` or `.pgen/.pvar/.psam` files for each shard must share one basename\nThe module output prefix defaults to `meta.id` unless `task.ext.prefix` is provided\ne.g. `[ id:'cohort' ]`\n"
+              }
+            },
+            {
+              "plink_genotype_file": {
+                "type": "file",
+                "description": "PLINK primary genotype file in BED or PGEN format",
+                "pattern": "*.{bed,pgen}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            },
+            {
+              "plink_variant_file": {
+                "type": "file",
+                "description": "PLINK variant metadata file in BIM or PVAR format",
+                "pattern": "*.{bim,pvar,zst}",
+                "ontologies": []
+              }
+            },
+            {
+              "plink_sample_file": {
+                "type": "file",
+                "description": "PLINK sample metadata file in FAM or PSAM format",
+                "pattern": "*.{fam,psam}",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing genotype/sample information associated with the step 1 predictions input\ne.g. `[ id:'plink_simulated' ]`\n"
+              }
+            },
+            {
+              "predictions": {
+                "type": "file",
+                "description": "REGENIE step 1 prediction list file passed to `--pred`",
+                "pattern": "*_pred.list",
+                "ontologies": []
+              }
+            },
+            {
+              "loco_files": {
+                "type": "file",
+                "description": "REGENIE step 1 LOCO prediction files staged alongside the prediction list",
+                "pattern": "*.loco.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3987"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing genotype/sample information associated with the phenotype file input\nKeep only the shared genotype/sample identifier in this map\ne.g. `[ id:'plink_simulated' ]`\n"
+              }
+            },
+            {
+              "pheno": {
+                "type": "file",
+                "description": "Phenotype file passed to `--phenoFile`",
+                "pattern": "*.{phe,pheno,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy Map containing genotype/sample information associated with the covariate input\ne.g. `[ id:'plink_simulated' ]`\n"
+              }
+            },
+            {
+              "covar": {
+                "type": "file",
+                "optional": true,
+                "description": "Optional covariate file passed to `--covarFile`; provide `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "bsize": {
+              "type": "integer",
+              "description": "Required genotype block size passed to `--bsize`"
+            }
+          }
+        ],
+        "output": {
+          "results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genotype information\ne.g. `[ id:'cohort' ]`\n"
+                }
+              },
+              {
+                "*.regenie.gz": {
+                  "type": "file",
+                  "description": "REGENIE step 2 association results",
+                  "pattern": "*.regenie.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3987"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing genotype information\ne.g. `[ id:'cohort' ]`\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "REGENIE step 2 log file",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_regenie": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "regenie": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "regenie --version 2>&1 | sed -n \"1{s/^v//;s/\\.gz$//;p}\"": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "regenie": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "regenie --version 2>&1 | sed -n \"1{s/^v//;s/\\.gz$//;p}\"": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ],
+        "containers": {
           "docker": {
             "linux_amd64": {
               "build_id": "bd-5d361f9fcb2f85cf_1",
