@@ -33,3 +33,7 @@ npm run test-all                         # Playwright tests across all sub-sites
 Tests are **Playwright** (`npm run test --workspace sites/<name>`, or `npx playwright test <file>` within a sub-site for a single test).
 
 **GitHub token:** the data-driven sub-sites (`pipelines`, `pipeline-results`, `configs`, `modules-subworkflows`, `stickers`) hit the GitHub API during the build. Add a `.env` at the repo root with a `GITHUB_TOKEN` (a personal access token with `public_repo` scope) to avoid rate limits.
+
+## Content & contribution guides
+
+See [`README.md`](README.md) for step-by-step instructions and examples on adding content, including: adding a blog post, event, security advisory, or announcement banner; updating the JSON files; adding a new sub-site to the monorepo; the file structure; and the blog post style/contribution guidelines.
