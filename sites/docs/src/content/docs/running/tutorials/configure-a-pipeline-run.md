@@ -77,12 +77,12 @@ CLI flags override values in a parameter file.
    nextflow run nf-core/demo -profile test,docker --outdir results_customcommandline
    ```
 
-   Output now goes to `results_customcommandline/` instead of `results/`.
+   Output now goes to `results_customparamsfile/` instead of `results/`.
 
 2. For longer parameter sets, create a `params.yaml` file:
 
    ```yaml title="params.yaml"
-   outdir: results_customcommandline
+   outdir: results_customparamsfile
    multiqc_title: "nf-core/demo parameter file configured run"
    ```
 
@@ -132,8 +132,8 @@ Add a `nextflow.config` in your current directory:
 
    outdir: results_customparamsfile
    multiqc_title: "nf-core/demo parameter file configured run"
-   cpus = 2
-   memory = 4.GB
+   cpus = 1
+   memory = 2.GB
 }
 ```
 
@@ -271,7 +271,7 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 Edit `custom.config` to switch to a SLURM executor with automatic retries and a scratch work directory:
 
 ```groovy title="custom.config"
-workDir = '/scratch/$USER/nf-work'
+workDir = '/tmp/foo'
 
 process {
   errorStrategy = 'retry'
@@ -323,7 +323,7 @@ process {
 
   withLabel: 'process_low' {
     cpus = 2
-    memory = 4.GB
+    memory = 2.GB
   }
 }
 ```
