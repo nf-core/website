@@ -155,6 +155,8 @@ dependencies:
 
 The `=6191=*cuda*` spec pins the backend version and matches a CUDA build of it (the `name=version=build` form is required to constrain the build string). It pulls in the corresponding `cuda-version`, `libcublas` and `cuda-cudart` packages and carries RPATHs in its binaries. The build glob targets the CUDA variant rather than a single build hash; pin `cuda-version` as well (see [CUDA version pinning](#cuda-version-pinning)) to fix the CUDA minor and the resulting driver floor. The container builds with Wave from `environment.gpu.yml` like any other conda environment, and no extra runtime configuration is required. A CUDA build resolves only where the `__cuda` virtual package is present, so `environment.gpu.yml` selects the `=*cuda*` build while a plain `environment.yml` selects the `=*cpu*` build of the same pinned version.
 
+The build glob is not optional. Without it the backend variant is chosen by whether the *build host* exposes `__cuda` (a CUDA driver), not by the environment file. A builder without a CUDA driver, which includes most CI runners and Wave's build environment, resolves the unqualified spec to the CPU backend and silently produces a non-accelerated container from `environment.gpu.yml`. Requesting `=*cuda*` explicitly forces the CUDA backend regardless of the builder and fails the solve outright if it cannot be satisfied, rather than degrading to CPU.
+
 When a tool has no conda packaging and is distributed only as a pre-built wheel from a custom pip index, pin the full wheel URL in a `pip:` block and pull the CUDA runtime from conda-forge alongside:
 
 ```yaml
