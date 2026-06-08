@@ -143,9 +143,19 @@ tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(
 
 This reports the actual CUDA minor the container was built with on the GPU path, and `no CUDA available` on the non-GPU path of dual-container modules. Prefer a descriptive string over something like `cpu`, which reviewers reasonably flag as not a version.
 
-### Pip-based GPU packages
+### GPU-enabled Python packages
 
-Some GPU-compiled Python tools ship only as pre-built wheels from custom pip indexes rather than conda (e.g. [`llama-cpp-python`](https://abetlen.github.io/llama-cpp-python/whl/)). Pin the full wheel URL in the `pip:` block and pull the CUDA runtime from conda-forge alongside:
+A Python tool may delegate GPU work to a separately-packaged backend whose CUDA build is selected on conda-forge with a build-string match. Pin the wrapper and request the CUDA build of the backend (for example [`llama-cpp-python`](https://github.com/abetlen/llama-cpp-python) over the `llama.cpp` backend):
+
+```yaml
+dependencies:
+  - "conda-forge::llama-cpp-python=0.3.16"
+  - "conda-forge::llama.cpp=*=*cuda*"
+```
+
+The `*=*cuda*` match selects a CUDA backend build, which pulls in the matching `cuda-version`, `libcublas` and `cuda-cudart` packages and carries RPATHs in its binaries. Every package stays pinned, the container builds with Wave from `environment.gpu.yml` like any other conda environment, and no extra runtime configuration is required. A CUDA backend build resolves only where the `__cuda` virtual package is present, so `environment.gpu.yml` requests `*=*cuda*` while a plain `environment.yml` requests the `*=*cpu*` build of the same backend.
+
+When a tool has no conda packaging and is distributed only as a pre-built wheel from a custom pip index, pin the full wheel URL in a `pip:` block and pull the CUDA runtime from conda-forge alongside:
 
 ```yaml
 dependencies:
@@ -157,15 +167,14 @@ dependencies:
       - "https://github.com/<owner>/<project>/releases/download/v<version>-cu124/<wheel>.whl"
 ```
 
-Build the container with Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libs at `dlopen` time:
+Build the container with Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libraries at `dlopen` time:
 
 ```bash
 wave --conda-file environment.gpu.yml --freeze --await --singularity \
      --config-env 'LD_LIBRARY_PATH=/opt/conda/lib'
 ```
 
-Conda's `activate.d` hooks don't fire under `docker run`, so the library path has to be set at image-build time.
-Conda-forge-native GPU packages (e.g. `pytorch-gpu`) ship RPATHs in their binaries and don't need this.
+`activate.d` hooks do not fire under `docker run`, so the library path is set at image-build time. Backends installed from conda-forge ship RPATHs in their binaries and do not need this.
 
 ### Binary and GPU count selection in scripts
 
