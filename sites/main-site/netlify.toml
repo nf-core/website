@@ -6,23 +6,50 @@ environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/main-site"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
-# Allow cross-origin reads of all resources (the whole site is public and unauthenticated).
-# Set Access-Control-Allow-Origin in exactly one rule to avoid duplicate/merged header values.
+# Cross-origin reads (Access-Control-Allow-Origin) are enabled only on the specific paths
+# that browser JS genuinely reads cross-origin, not site-wide:
+#   - /_astro/*  hashed JS/CSS modules, served from the netlify.app origin via assetsPrefix
+#   - the machine-readable discovery resources advertised in the homepage Link header below
+# The paths below are disjoint, so Access-Control-Allow-Origin is set by exactly one rule per
+# request and never merged into an invalid duplicate value (e.g. "*, *").
 [[headers]]
-for = "/*"
+for = "/_astro/*"
 [headers.values]
 Access-Control-Allow-Origin = "*"
 
-# Advertise machine-readable resources to agents/crawlers from the homepage (RFC 8288 / RFC 9727).
-# Expose-Headers lets cross-origin browser JS actually read the Link header (it is not CORS-safelisted).
+# Homepage: advertise machine-readable resources to agents/crawlers (RFC 8288 / RFC 9727).
+# Expose-Headers lets cross-origin browser JS read the Link header (it is not CORS-safelisted),
+# which in turn requires Access-Control-Allow-Origin on this same response.
 [[headers]]
 for = "/"
 [headers.values]
-Link = '''</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="describedby"; type="text/plain", </docs/>; rel="service-doc"; type="text/html", </sitemap-index.xml>; rel="sitemap"; type="application/xml"'''
+Access-Control-Allow-Origin = "*"
 Access-Control-Expose-Headers = "Link"
+Link = '''</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="describedby"; type="text/plain", </docs/>; rel="service-doc"; type="text/html", </sitemap-index.xml>; rel="sitemap"; type="application/xml"'''
 
-# Serve the API catalogue as an RFC 9727 link set (CORS comes from the /* rule above)
+# The discovery resources themselves, fetched cross-origin by agents.
 [[headers]]
 for = "/.well-known/api-catalog"
 [headers.values]
+Access-Control-Allow-Origin = "*"
 Content-Type = "application/linkset+json"
+
+[[headers]]
+for = "/llms.txt"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
+[[headers]]
+for = "/pipelines.json"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
+[[headers]]
+for = "/components.json"
+[headers.values]
+Access-Control-Allow-Origin = "*"
+
+[[headers]]
+for = "/pipeline_names.json"
+[headers.values]
+Access-Control-Allow-Origin = "*"
