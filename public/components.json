@@ -42016,6 +42016,212 @@
       ]
     },
     {
+      "name": "bwafastalign_index",
+      "path": "modules/nf-core/bwafastalign/index/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "bwafastalign_index",
+        "description": "Create BWA-FASTALIGN index for reference genome",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference"
+        ],
+        "tools": [
+          {
+            "bwafastalign": {
+              "description": "Faster and Cheaper Sequence Alignment on Commercial CPUs (A faster version of bwa-mem with identical outputs).",
+              "homepage": "https://github.com/zzhofict/BWA-FastAlign",
+              "documentation": "https://github.com/zzhofict/BWA-FastAlign",
+              "doi": "10.1145/3774934.3786421",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Input genome fasta file",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "bwafastalign": {
+                  "type": "string",
+                  "description": "BWA-FASTALIGN genome index files",
+                  "pattern": "*.{0123,amb,ann,pac,pos_packed,suffixarray_uint64,suffixarray_uint64_L0_PARAMETERS,suffixarray_uint64_L1_PARAMETERS,suffixarray_uint64_L2_PARAMETERS}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_bwafastalign": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwafastalign": {
+                  "type": "string",
+                  "description": "BWA-FASTALIGN genome index files",
+                  "pattern": "*.{0123,amb,ann,pac,pos_packed,suffixarray_uint64,suffixarray_uint64_L0_PARAMETERS,suffixarray_uint64_L1_PARAMETERS,suffixarray_uint64_L2_PARAMETERS}",
+                  "ontologies": []
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_samtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version 2>&1 | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_mbuffer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mbuffer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "bwafastalign": {
+                  "type": "string",
+                  "description": "BWA-FASTALIGN genome index files",
+                  "pattern": "*.{0123,amb,ann,pac,pos_packed,suffixarray_uint64,suffixarray_uint64_L0_PARAMETERS,suffixarray_uint64_L1_PARAMETERS,suffixarray_uint64_L2_PARAMETERS}",
+                  "ontologies": []
+                }
+              },
+              {
+                "1.0.0": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "samtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "samtools --version 2>&1 | sed '1!d;s/.* //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mbuffer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@peterpru"
+        ],
+        "maintainers": [
+          "@peterpru"
+        ]
+      }
+    },
+    {
       "name": "bwamem2_index",
       "path": "modules/nf-core/bwamem2/index/meta.yml",
       "type": "module",
@@ -58734,7 +58940,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "pacsomatic",
@@ -103804,7 +104010,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "createtaxdb",
@@ -111479,7 +111685,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -112498,7 +112704,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -113266,7 +113472,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -114453,7 +114659,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -114582,7 +114788,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "drop",
@@ -114808,7 +115014,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -115166,7 +115372,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -115612,7 +115818,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -116597,7 +116803,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -117054,7 +117260,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -117676,7 +117882,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -117936,7 +118142,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -118841,7 +119047,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnadnavar",
@@ -119026,7 +119232,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -119490,7 +119696,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -119884,7 +120090,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -121636,7 +121842,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "raredisease",
@@ -124507,7 +124713,7 @@
         },
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "deepmodeloptim",
@@ -124635,6 +124841,150 @@
                   "type": "file",
                   "description": "Combined dense GRM sidecar files",
                   "pattern": "*.grm.{id,bin,N.bin}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
+      "name": "gcta_grmcutoff",
+      "path": "modules/nf-core/gcta/grmcutoff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_grmcutoff",
+        "description": "Apply a genetic relationship cutoff to a dense GRM using `gcta --grm-cutoff`",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "grm",
+          "genetic relationship matrix",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing dense GRM metadata.\n`meta.id` is the required GRM basename consumed by `--grm` and must match\nthe staged dense GRM files.\ne.g. `[ id:'tiny_dense' ]` requires\n`tiny_dense.grm.id`, `tiny_dense.grm.bin`, and `tiny_dense.grm.N.bin`.\n"
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "Dense GRM file bundle with basename `${meta.id}`",
+                "pattern": "*.grm.*",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "cutoff": {
+              "type": "float",
+              "description": "Genetic relationship cutoff value passed to `gcta --grm-cutoff`."
+            }
+          }
+        ],
+        "output": {
+          "grm_files": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata.\n`meta.id` remains the dense-GRM basename contract used for `--grm`.\n"
+                }
+              },
+              {
+                "${prefix}.grm.*": {
+                  "type": "file",
+                  "description": "Relatedness-filtered GRM file bundle",
+                  "pattern": "${prefix}.grm.*",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "keep_file": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata.\n`meta.id` remains the dense-GRM basename contract used for `--grm`.\n"
+                }
+              },
+              {
+                "${prefix}.grm.id": {
+                  "type": "file",
+                  "description": "Keep file of unrelated individuals emitted by GCTA",
+                  "pattern": "${prefix}.grm.id",
                   "ontologies": []
                 }
               }
@@ -149378,6 +149728,137 @@
       ]
     },
     {
+      "name": "hmmer_hmmstat",
+      "path": "modules/nf-core/hmmer/hmmstat/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "hmmer_hmmstat",
+        "description": "display summary statistics for each profile HMM in an HMM database file",
+        "keywords": [
+          "hidden markov model",
+          "HMM",
+          "hmmer",
+          "statistics",
+          "profile",
+          "summary"
+        ],
+        "tools": [
+          {
+            "hmmer": {
+              "description": "Biosequence analysis using profile hidden Markov models",
+              "homepage": "http://hmmer.org",
+              "documentation": "http://hmmer.org/documentation.html",
+              "tool_dev_url": "https://github.com/EddyRivasLab/hmmer",
+              "doi": "10.1371/journal.pcbi.1002195",
+              "licence": [
+                "BSD"
+              ],
+              "identifier": "biotools:hmmer",
+              "args_id": "$args"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "hmm": {
+                "type": "file",
+                "description": "Mandatory. HMM database file containing one or more profile HMMs in plain text format",
+                "pattern": "*.hmm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_1364"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "stats": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.hmmstat.txt": {
+                  "type": "file",
+                  "description": "Plain text report containing per-profile summary statistics (name, accession, length, alphabet type, etc.) for each HMM in the database",
+                  "pattern": "*.hmmstat.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3671"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_hmmer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmstat -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "hmmer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "hmmstat -h | sed '2!d;s/^# HMMER *//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@vagkaratzas"
+        ],
+        "maintainers": [
+          "@vagkaratzas"
+        ]
+      }
+    },
+    {
       "name": "hmmer_jackhmmer",
       "path": "modules/nf-core/hmmer/jackhmmer/meta.yml",
       "type": "module",
@@ -166321,19 +166802,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_krakentools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -166452,19 +166965,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_krakentools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -166537,19 +167082,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_krakentools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "krakentools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -194647,7 +195224,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -197080,7 +197657,7 @@
         },
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "createtaxdb",
@@ -265601,7 +266178,7 @@
         },
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "cutandrun",
@@ -267281,7 +267858,7 @@
         },
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "crisprseq",
@@ -270015,7 +270592,7 @@
         },
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "cutandrun",
@@ -340780,7 +341357,7 @@
       "pipelines": [
         {
           "name": "createpanelrefs",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -349980,13 +350557,6 @@
               "description": "FASTQ or FASTA file of just reads assigned to the requested taxonomic IDs.\n",
               "pattern": "*.{fastq.gz,fasta.gz}"
             }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
-            }
           }
         ],
         "authors": [
@@ -354212,10 +354782,6 @@
           "version": "2.0.1"
         },
         {
-          "name": "createpanelrefs",
-          "version": "dev"
-        },
-        {
           "name": "createtaxdb",
           "version": "3.0.0"
         },
@@ -354663,10 +355229,6 @@
         {
           "name": "coproid",
           "version": "2.0.1"
-        },
-        {
-          "name": "createpanelrefs",
-          "version": "dev"
         },
         {
           "name": "createtaxdb",
@@ -355170,10 +355732,6 @@
         {
           "name": "coproid",
           "version": "2.0.1"
-        },
-        {
-          "name": "createpanelrefs",
-          "version": "dev"
         },
         {
           "name": "createtaxdb",
