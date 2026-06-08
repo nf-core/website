@@ -341540,7 +341540,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "BAM_IMPUTE_QUILT",
-        "description": "Subworkflow to impute BAM files using QUILT software.\nVariants location to impute are obtain through the tsv file given\n",
+        "description": "Subworkflow to impute BAM files using QUILT software.\nVariants location to impute are obtain through the tsv file given.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "BAM",
           "imputation",
@@ -341761,7 +341761,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "bam_impute_quilt2",
-        "description": "Impute low-coverage BAM or CRAM inputs with QUILT2 and ligate chunked outputs per chromosome. 'regionout' key will be used to store temporarily the region and therefore shouldn't be used in the meta maps.\n",
+        "description": "Impute low-coverage BAM or CRAM inputs with QUILT2 and ligate chunked outputs per chromosome.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "bam",
           "cram",
@@ -341978,7 +341978,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "BAM_IMPUTE_STITCH",
-        "description": "Subworkflow to impute BAM files using STITCH software.\nVariants location to impute are obtain through the legend file given\n",
+        "description": "Subworkflow to impute BAM files using STITCH software.\nVariants location to impute are obtain through the legend file given.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "BAM",
           "imputation",
@@ -344884,7 +344884,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "bam_vcf_impute_glimpse2",
-        "description": "Impute VCF/BCF files, but also CRAM and BAM files with Glimpse2",
+        "description": "Subworkflow to impute VCF and BAM files using GLIMPSE V2 software. The subworkflow\ntakes VCF files, phased reference panel, and genetic maps to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "glimpse",
           "chunk",
@@ -356226,7 +356226,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "VCF_IMPUTE_BEAGLE5",
-        "description": "Subworkflow to impute VCF files using BEAGLE5 software. The subworkflow\ntakes VCF files, phased reference panel, genetic maps and chunks region to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\" and \"regionsize\" keys will be added to the meta map to distinguish the different\nfile before ligation and therefore should not be used.\n",
+        "description": "Subworkflow to impute VCF files using BEAGLE5 software. The subworkflow\ntakes VCF files, phased reference panel, genetic maps and chunks region to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "VCF",
           "imputation",
@@ -356379,7 +356379,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "vcf_impute_glimpse",
-        "description": "Impute VCF/BCF files with Glimpse",
+        "description": "Subworkflow to impute VCF files using GLIMPSE V1 software. The subworkflow\ntakes VCF files, phased reference panel, and genetic maps to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "glimpse",
           "chunk",
@@ -356536,7 +356536,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "VCF_IMPUTE_MINIMAC4",
-        "description": "Subworkflow to impute VCF files using MINIMAC4 software. The subworkflow\ntakes VCF files, phased reference panel, and genetic maps to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\" key will be added to the meta map to distinguish the different file\nbefore ligation and therefore should not be used.\n",
+        "description": "Subworkflow to impute VCF files using MINIMAC4 software. The subworkflow\ntakes VCF files, phased reference panel, and genetic maps to perform imputation\nand outputs phased and imputed VCF files.\nMeta map of all channels, except ch_input, will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "VCF",
           "imputation",
@@ -356715,7 +356715,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "VCF_PHASE_SHAPEIT5",
-        "description": "Subworkflow to phase a reference panel VCF file using SHAPEIT5.\nThe panel is first chunked by chromosome by glimpse2/chunk,\nthen genotypes are phased with shapeit5/phasecommon and\nfinally the chunks are merged back together by shapeit5/ligate by chromosomes.\nMeta map of all channels will be used to perform joint operations.\n\"regionout\" key will be added to the meta map to distinguish the different file\nbefore ligation and therefore should not be used.\n",
+        "description": "Subworkflow to phase a reference panel VCF file using SHAPEIT5.\nThe panel is first chunked by chromosome by glimpse2/chunk,\nthen genotypes are phased with shapeit5/phasecommon and\nfinally the chunks are merged back together by shapeit5/ligate by chromosomes.\nMeta map of all channels will be used to perform joint operations.\n\"regionout\", \"regionoutPadded\", \"regionSize\" keys will be added to the meta map to distinguish\nthe different files before ligation and therefore should not be used.\n",
         "keywords": [
           "VCF",
           "phase",
