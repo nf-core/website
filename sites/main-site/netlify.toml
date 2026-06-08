@@ -6,12 +6,13 @@ environment = { NODE_VERSION = "22" }
 command = "npm run build -w sites/main-site"
 [images]
 remote_images = ["https://raw.githubusercontent.com/.*", "https://images.unsplash.com/.*", "https://avatars.githubusercontent.com/.*"]
-# Cross-origin reads (Access-Control-Allow-Origin) are enabled only on the specific paths
-# that browser JS genuinely reads cross-origin, not site-wide:
+# Cross-origin reads (Access-Control-Allow-Origin) are enabled only where browser JS genuinely
+# reads cross-origin, not site-wide:
 #   - /_astro/*  hashed JS/CSS modules, served from the netlify.app origin via assetsPrefix
-#   - the machine-readable discovery resources advertised in the homepage Link header below
-# The paths below are disjoint, so Access-Control-Allow-Origin is set by exactly one rule per
-# request and never merged into an invalid duplicate value (e.g. "*, *").
+#   - / and /.well-known/api-catalog, so a browser-based agent can follow the Link header to
+#     the catalog and read it. The catalog is the single entry point; the individual resources
+#     it lists (llms.txt, the *.json catalogues) don't need their own CORS — they're served
+#     same-origin from every sub-site and crawlers read them server-side, where CORS is moot.
 [[headers]]
 for = "/_astro/*"
 [headers.values]
@@ -27,29 +28,9 @@ Access-Control-Allow-Origin = "*"
 Access-Control-Expose-Headers = "Link"
 Link = '''</.well-known/api-catalog>; rel="api-catalog"; type="application/linkset+json", </llms.txt>; rel="describedby"; type="text/plain", </docs/>; rel="service-doc"; type="text/html", </sitemap-index.xml>; rel="sitemap"; type="application/xml"'''
 
-# The discovery resources themselves, fetched cross-origin by agents.
+# The catalog itself, fetched cross-origin by agents.
 [[headers]]
 for = "/.well-known/api-catalog"
 [headers.values]
 Access-Control-Allow-Origin = "*"
 Content-Type = "application/linkset+json"
-
-[[headers]]
-for = "/llms.txt"
-[headers.values]
-Access-Control-Allow-Origin = "*"
-
-[[headers]]
-for = "/pipelines.json"
-[headers.values]
-Access-Control-Allow-Origin = "*"
-
-[[headers]]
-for = "/components.json"
-[headers.values]
-Access-Control-Allow-Origin = "*"
-
-[[headers]]
-for = "/pipeline_names.json"
-[headers.values]
-Access-Control-Allow-Origin = "*"

@@ -6,9 +6,10 @@
 //   1. Drift    — every static file the catalog links to actually exists.
 //   2. Coverage — every static discovery file in public/ is listed in the catalog, so a
 //                 newly-added .json can't end up silently undiscoverable.
-//   3. CORS     — every static discovery resource has an Access-Control-Allow-Origin rule in
-//                 netlify.toml (else browser-based agents can't read it cross-origin), and no
-//                 stale discovery CORS rules linger. Same resource list, kept in two files.
+//   3. CORS     — the api-catalog has an Access-Control-Allow-Origin rule in netlify.toml, so
+//                 a browser-based agent can fetch it cross-origin. The catalog is the single
+//                 entry point; the resources it lists are served same-origin everywhere and
+//                 read server-side by crawlers, so they don't need their own CORS rules.
 //
 // Only .json/.txt files are checked, since those are the discovery resources that exist as
 // static source. Page routes (/docs/) and build-generated files (sitemap-index.xml) aren't
@@ -27,11 +28,8 @@ const NETLIFY = path.join(PUBLIC, '..', 'netlify.toml');
 const STATIC_EXTS = new Set(['.json', '.txt']);
 // public/ files that needn't appear in the catalog (not machine-readable resources).
 const IGNORE = new Set(['robots.txt']);
-// The catalog's own path — a discovery resource, but not listed inside its own linkset.
+// The catalog's served path — must be cross-origin readable so agents can fetch it.
 const CATALOG_PATH = '/.well-known/api-catalog';
-// netlify.toml CORS rules that aren't discovery resources: the asset modules, and the
-// homepage (whose ACAO exists so cross-origin JS can read its Link header).
-const CORS_INFRA = new Set(['/_astro/*', '/']);
 
 const isStatic = (p) => STATIC_EXTS.has(path.extname(p));
 const errors = [];
@@ -70,8 +68,7 @@ for (const name of readdirSync(PUBLIC)) {
   }
 }
 
-// 3. CORS: the catalog's static resources and netlify.toml's CORS rules are the same list.
-const needsCors = new Set([CATALOG_PATH, ...[...linked].filter(isStatic)]);
+// 3. CORS: the api-catalog must be cross-origin readable so browser-based agents can fetch it.
 const corsPaths = new Set();
 const tomlCode = readFileSync(NETLIFY, 'utf8')
   .split('\n')
@@ -81,18 +78,8 @@ for (const block of tomlCode.split('[[headers]]').slice(1)) {
   const forPath = block.match(/for\s*=\s*"([^"]+)"/)?.[1];
   if (forPath && /Access-Control-Allow-Origin/.test(block)) corsPaths.add(forPath);
 }
-for (const r of needsCors) {
-  if (!corsPaths.has(r)) {
-    errors.push(`${r} is a discovery resource but has no Access-Control-Allow-Origin rule in netlify.toml.`);
-  }
-}
-for (const p of corsPaths) {
-  if (!CORS_INFRA.has(p) && !needsCors.has(p)) {
-    errors.push(
-      `netlify.toml grants CORS to ${p}, which isn't a discovery resource in the api-catalog ` +
-        `(remove the rule, add the resource to the catalog, or list it in CORS_INFRA).`,
-    );
-  }
+if (!corsPaths.has(CATALOG_PATH)) {
+  errors.push(`${CATALOG_PATH} has no Access-Control-Allow-Origin rule in netlify.toml; agents can't fetch it cross-origin.`);
 }
 
 if (errors.length) {
