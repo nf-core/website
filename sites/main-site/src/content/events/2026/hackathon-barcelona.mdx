@@ -1,0 +1,131 @@
+---
+title: Hackathon - October 2026 (Barcelona)
+subtitle: An in-person hackathon held in Barcelona
+type: hackathon
+announcement:
+    start: 2026-08-01T09:00:00+02:00
+startDate: "2026-10-15"
+startTime: "09:00+02:00"
+endDate: "2026-10-16"
+endTime: "17:00+02:00"
+locations:
+    - name: SB Glow, Barcelona
+      geoCoordinates: [41.402176, 2.191152]
+hackathonProjectListModals: hackathon-barcelona-2026
+---
+
+import { Image } from "astro:assets";
+import summitCard from "@assets/images/events/2026/hackathon-barcelona/summit-2026-barcelona.png";
+import HackathonModalProjectList from "@components/event/HackathonProjects/ListProjects.astro";
+
+# Welcome
+
+Join us in person for the October 2026 nf-core hackathon in Barcelona!
+
+This hackathon will be held as part of the **Nextflow Summit 2026** in Barcelona, Spain and is organised jointly.
+
+- **Summit website**: https://summit.nextflow.io/2026/barcelona/
+- **Dates**: 15th - 16th October 2026
+- **Registration**: Opening soon — _registration link coming soon_
+- **Location**: [SB Glow, Barcelona](https://www.sb-hotels.com/en/hotels/barcelona/glow/) at Carrer de Badajoz, 148, 154, Sant Martí, 08018, Barcelona.
+
+<a href="https://summit.nextflow.io/2026/barcelona/">
+    <Image class="mb-5" src={summitCard} alt="Nextflow Summit 2026 - Barcelona" />
+</a>
+
+:::note
+This page is a work in progress — more details will be added closer to the event.
+:::
+
+# Staying Connected
+
+Even though it's an in-person hackathon, communication tools can be quite useful!
+
+## Slack
+
+Slack is our official online communication tool. Join via [nf-co.re/join](https://nf-co.re/join) and make sure you're in these channels:
+
+- `#hackathon-oct-2026` - Main hackathon communication _(channel link coming soon)_
+- [`#github-invitations`](https://nfcore.slack.com/channels/github-invitations) - Request access to the nf-core GitHub organization
+
+# How the Hackathon Works
+
+## Workflow
+
+1. **Pick a project** - Browse the projects below and find one that interests you
+2. **Join a project** - Joining a project is as simple as turning up and sitting down at the table of the project you're interested in.
+3. **Find a task** - Check the GitHub project board for issues _(link coming soon)_
+4. **Assign yourself** - Claim the issue in GitHub (one at a time to avoid duplicating work)
+5. **Hack!** - Write code, chat with your group, ask questions
+6. **Open a pull request** - When you're done, submit your changes
+7. **Pull request reviews** - Need a review? Post your PR in [`#request-review`](https://nfcore.slack.com/channels/request-review) and find a "review buddy" to swap reviews with.
+8. **Celebrate!** - Share your progress with your group and at the daily wrap-up
+
+:::tip
+Don't feel tied to one project - it's fine to move between projects throughout the hackathon.
+:::
+
+## For Project Leads
+
+**Daily wrap-ups:** Prepare 1 slide per project with a high-level summary, photos, or memes (max 1 minute). The sillier the better! Post memes to [`#nf-core-memes`](https://nfcore.slack.com/channels/nf-core-memes).
+
+# Schedule
+
+A detailed schedule will be shared closer to the event. More information can be found on the [summit agenda page](https://summit.nextflow.io/2026/barcelona/agenda/).
+
+# Projects
+
+We'll work in projects during the hackathon. Projects can be anything from:
+
+- Adding new features to existing pipelines
+- Adding and improving components (modules / subworkflows)
+- Improving the website and nf-core tooling
+- Creating entirely new pipelines
+- Discussion and planning community initiatives
+- Working on special interest group topics
+- _...anything else_
+
+You can bring your own favourite topic or choose from a list of open issues in the community.
+Each project has a lead person who can point you in the right direction.
+
+## Submit a new project
+
+If you have an idea for a project that you think would be fun to do during the hackathon,
+please add it to the website by submitting a pull-request to the `nf-core/website` repository.
+
+You need to add a new markdown file to the
+[`sites/main-site/src/content/hackathon-projects/hackathon-barcelona-2026` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/content/hackathon-projects/hackathon-barcelona-2026).
+
+The front-matter YAML at the top of the file should be filled in as follows:
+
+- `title`: Short and self-descriptive name for the project
+- `category`: One of `pipelines`, `components`, `tooling`
+- `slack`: If your project already has an obvious Slack channel (eg. a pipeline) then right click
+  it and _Copy link_ and fill in here. Otherwise, create a hackathon-specific
+  channel for your project with the pattern `#hack-barcelona-2026-<project-name>`.
+- `image`: A meme, silly picture or any other image to make your project more memorable.
+  Add to the [`sites/main-site/src/assets/images/events/2026/hackathon-barcelona` directory](https://github.com/nf-core/website/tree/main/sites/main-site/src/assets/images/events/2026/hackathon-barcelona)
+  as part of your PR.
+- `image_alt`: Text description of your image.
+- `leaders`: One or more contact people for your project (array)
+    - Each key under `leaders`: Your GitHub username
+        - `name`: Your name
+        - `slack`: Link to your Slack user. Find this by right clicking your name in Slack and selecting _Copy link_
+
+The body text can provide any context and background.
+Projects should have at least one goal mentioned in the body text under a `## Goal` heading that you want to
+try to achieve by the end of the hackathon.
+
+## List of projects
+
+<HackathonModalProjectList eventPath="hackathon-barcelona-2026" />
+
+# Code of conduct
+
+Please note that our [Code of Conduct](https://nf-co.re/code_of_conduct) applies to the Hackathon, and all participants need to abide by our guidelines to participate.
+We should all feel responsible for making nf-core events safe and fun for everyone.
+
+You can also report any CoC violations directly to [safety@nf-co.re](mailto:safety@nf-co.re).
+Our safety officers will contact you to follow up on your report.
+
+In case of an immediate perceived threat at the hackathon, please reach out to any of staff or organizers on site.
