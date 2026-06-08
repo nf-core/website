@@ -145,15 +145,15 @@ This reports the actual CUDA minor the container was built with on the GPU path,
 
 ### GPU-enabled Python packages
 
-A Python tool may delegate GPU work to a separately-packaged backend whose CUDA build is selected on conda-forge with a build-string match. Pin the wrapper and request the CUDA build of the backend (for example [`llama-cpp-python`](https://github.com/abetlen/llama-cpp-python) over the `llama.cpp` backend):
+A Python tool may delegate GPU work to a separately-packaged backend whose CUDA build is selected on conda-forge with a build-string match. Pin both the wrapper and the backend version, and select the CUDA build of the backend with a build glob (for example [`llama-cpp-python`](https://github.com/abetlen/llama-cpp-python) over the `llama.cpp` backend):
 
 ```yaml
 dependencies:
   - "conda-forge::llama-cpp-python=0.3.16"
-  - "conda-forge::llama.cpp=*=*cuda*"
+  - "conda-forge::llama.cpp=6191=*cuda*"
 ```
 
-The `*=*cuda*` match selects a CUDA backend build, which pulls in the matching `cuda-version`, `libcublas` and `cuda-cudart` packages and carries RPATHs in its binaries. Every package stays pinned, the container builds with Wave from `environment.gpu.yml` like any other conda environment, and no extra runtime configuration is required. A CUDA backend build resolves only where the `__cuda` virtual package is present, so `environment.gpu.yml` requests `*=*cuda*` while a plain `environment.yml` requests the `*=*cpu*` build of the same backend.
+The `=6191=*cuda*` spec pins the backend version and matches a CUDA build of it (the `name=version=build` form is required to constrain the build string). It pulls in the corresponding `cuda-version`, `libcublas` and `cuda-cudart` packages and carries RPATHs in its binaries. The build glob targets the CUDA variant rather than a single build hash; pin `cuda-version` as well (see [CUDA version pinning](#cuda-version-pinning)) to fix the CUDA minor and the resulting driver floor. The container builds with Wave from `environment.gpu.yml` like any other conda environment, and no extra runtime configuration is required. A CUDA build resolves only where the `__cuda` virtual package is present, so `environment.gpu.yml` selects the `=*cuda*` build while a plain `environment.yml` selects the `=*cpu*` build of the same pinned version.
 
 When a tool has no conda packaging and is distributed only as a pre-built wheel from a custom pip index, pin the full wheel URL in a `pip:` block and pull the CUDA runtime from conda-forge alongside:
 
