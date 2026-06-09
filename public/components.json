@@ -7900,6 +7900,21 @@
                   }
                 ]
               }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "A list of BAM or CRAM indices",
+                "pattern": "*.{bam.bai,cram.crai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3462"
+                  }
+                ]
+              }
             }
           ],
           [
@@ -7914,6 +7929,18 @@
                 "type": "file",
                 "description": "A reference genome in FASTA format",
                 "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fai": {
+                "type": "file",
+                "description": "Index of the reference genome FASTA file",
+                "pattern": "*.{fasta,fa}.fai",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1929"
@@ -8012,6 +8039,9 @@
         "maintainers": [
           "@apeltzer",
           "@TCLamnidis"
+        ],
+        "contributors": [
+          "@ASendellPrice"
         ]
       }
     },
@@ -56752,7 +56782,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -57921,7 +57951,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -94526,7 +94556,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -104018,7 +104048,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "seqsubmit",
@@ -110322,6 +110352,28 @@
               }
             ]
           ],
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.xml": {
+                  "type": "file",
+                  "description": "Gap-filled metabolic model in SBML XML format",
+                  "pattern": "*.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2585"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "tbl": [
             [
               {
@@ -110424,10 +110476,10 @@
           ]
         },
         "authors": [
-          "@copilot"
+          "@brovolia"
         ],
         "maintainers": [
-          "@copilot"
+          "@brovolia"
         ]
       },
       "pipelines": [
@@ -110518,6 +110570,28 @@
               }
             ]
           ],
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.xml": {
+                  "type": "file",
+                  "description": "Draft metabolic model in SBML XML format",
+                  "pattern": "*.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2585"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "log": [
             [
               {
@@ -110584,10 +110658,10 @@
           ]
         },
         "authors": [
-          "@copilot"
+          "@brovolia"
         ],
         "maintainers": [
-          "@copilot"
+          "@brovolia"
         ]
       }
     },
@@ -110668,6 +110742,28 @@
               }
             ]
           ],
+          "xml": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*-filled.xml": {
+                  "type": "file",
+                  "description": "Gap-filled metabolic model in SBML XML format",
+                  "pattern": "*-filled.xml",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2585"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "log": [
             [
               {
@@ -110734,10 +110830,10 @@
           ]
         },
         "authors": [
-          "@copilot"
+          "@brovolia"
         ],
         "maintainers": [
-          "@copilot"
+          "@brovolia"
         ]
       }
     },
@@ -110912,10 +111008,10 @@
           ]
         },
         "authors": [
-          "@copilot"
+          "@brovolia"
         ],
         "maintainers": [
-          "@copilot"
+          "@brovolia"
         ]
       }
     },
@@ -111072,10 +111168,10 @@
           ]
         },
         "authors": [
-          "@copilot"
+          "@brovolia"
         ],
         "maintainers": [
-          "@copilot"
+          "@brovolia"
         ]
       }
     },
@@ -144266,7 +144362,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -148904,7 +149000,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -149069,7 +149165,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -149723,7 +149819,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -169726,19 +169822,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_last": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.15": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "last": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "1.2.15": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -175711,7 +175839,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -192037,7 +192165,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -192176,7 +192304,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -192619,7 +192747,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -193171,7 +193299,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -196499,7 +196627,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -196523,7 +196651,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -196730,7 +196858,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -196754,7 +196882,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -196849,7 +196977,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -196873,7 +197001,7 @@
                 }
               },
               {
-                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*//p'": {
+                "msisensor-pro --version 2>&1 | sed -nE 's/Version:\\s*v//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -197925,7 +198053,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
@@ -201771,6 +201899,364 @@
           "version": "3.1.0"
         }
       ]
+    },
+    {
+      "name": "nanomonsv_get",
+      "path": "modules/nf-core/nanomonsv/get/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "nanomonsv_get",
+        "description": "Call somatic structural variants with nanomonsv get using tumor/control\nparse outputs and a reference genome.\n",
+        "keywords": [
+          "structural variants",
+          "nanopore",
+          "cancer genome",
+          "somatic structural variations",
+          "long reads"
+        ],
+        "tools": [
+          {
+            "nanomonsv": {
+              "description": "nanomonsv is a software for detecting somatic structural variations\nfrom paired (tumor and matched control) cancer genome sequence data.\n",
+              "homepage": "https://github.com/friend1ws/nanomonsv",
+              "documentation": "https://github.com/friend1ws/nanomonsv#commands",
+              "tool_dev_url": "https://github.com/friend1ws/nanomonsv",
+              "doi": "10.1093/nar/gkad526",
+              "licence": [
+                "GPL v3"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample.tumor' ]\n"
+              }
+            },
+            {
+              "tumor_bam": {
+                "type": "file",
+                "description": "Tumor aligned BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "tumor_bai": {
+                "type": "file",
+                "description": "Tumor BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            },
+            {
+              "tumor_parse_files": {
+                "type": "file",
+                "description": "Tumor nanomonsv parse outputs in order:\ninsertion, insertion index, deletion, deletion index,\nrearrangement, rearrangement index, bp_info, bp_info index.\n",
+                "pattern": "*.{bed.gz,bed.gz.tbi,bedpe.gz,bedpe.gz.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3615"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'sample.control' ]\n"
+              }
+            },
+            {
+              "control_bam": {
+                "type": "file",
+                "description": "Control aligned BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "control_bai": {
+                "type": "file",
+                "description": "Control BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": []
+              }
+            },
+            {
+              "control_parse_files": {
+                "type": "file",
+                "description": "Control nanomonsv parse outputs in order:\ninsertion, insertion index, deletion, deletion index,\nrearrangement, rearrangement index, bp_info, bp_info index.\nThe parse prefix defaults to `meta2.id` and can be overridden with\n`task.ext.prefix2`.\n",
+                "pattern": "*.{bed.gz,bed.gz.tbi,bedpe.gz,bedpe.gz.tbi}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3615"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3616"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map containing reference information\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "ref": {
+                "type": "file",
+                "description": "Reference FASTA",
+                "pattern": "*.{fa,fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "ref_index": {
+                "type": "file",
+                "description": "Reference FASTA index",
+                "pattern": "*.{fai}",
+                "ontologies": []
+              }
+            }
+          ],
+          {
+            "simple_repeat_bed": {
+              "type": "file",
+              "description": "Simple repeat BED (bgzipped)",
+              "pattern": "*.{bed.gz}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3003"
+                },
+                {
+                  "edam": "http://edamontology.org/format_3615"
+                }
+              ]
+            }
+          },
+          {
+            "simple_repeat_bed_index": {
+              "type": "file",
+              "description": "Index for simple repeat BED",
+              "pattern": "*.{bed.gz.tbi}",
+              "ontologies": []
+            }
+          },
+          {
+            "control_panel_files": {
+              "type": "file",
+              "description": "Optional control panel nanomonsv parse outputs in order:\ninsertion, insertion index, deletion, deletion index,\nrearrangement, rearrangement index, bp_info, bp_info index.\nThe optional control panel prefix can be set with `task.ext.args`\nusing `--control_panel_prefix`.\n",
+              "pattern": "*.{bed.gz,bed.gz.tbi,bedpe.gz,bedpe.gz.tbi}",
+              "ontologies": [
+                {
+                  "edam": "http://edamontology.org/format_3003"
+                },
+                {
+                  "edam": "http://edamontology.org/format_3615"
+                },
+                {
+                  "edam": "http://edamontology.org/format_3616"
+                }
+              ]
+            }
+          }
+        ],
+        "output": {
+          "result_txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "${prefix}.nanomonsv.result.txt": {
+                  "type": "file",
+                  "description": "Output variants in text format",
+                  "pattern": "*.nanomonsv.result.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "result_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "${prefix}.nanomonsv.result.vcf": {
+                  "type": "file",
+                  "description": "Output variants in VCF format",
+                  "pattern": "*.nanomonsv.result.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "supporting_read": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "${prefix}.nanomonsv.supporting_read.txt": {
+                  "type": "file",
+                  "description": "Supporting read summary",
+                  "pattern": "*.nanomonsv.supporting_read.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sbnd_result_txt": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "${prefix}.nanomonsv.sbnd.result.txt": {
+                  "type": "file",
+                  "description": "Optional SBND results (text)",
+                  "pattern": "*.nanomonsv.sbnd.result.txt",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "sbnd_result_vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'sample' ]\n"
+                }
+              },
+              {
+                "${prefix}.nanomonsv.sbnd.result.vcf": {
+                  "type": "file",
+                  "description": "Optional SBND results (VCF)",
+                  "pattern": "*.nanomonsv.sbnd.result.vcf",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_nanomonsv": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nanomonsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nanomonsv --version 2>&1 | sed 's/^nanomonsv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "nanomonsv": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "nanomonsv --version 2>&1 | sed 's/^nanomonsv //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@manascripts"
+        ],
+        "maintainers": [
+          "@manascripts"
+        ]
+      }
     },
     {
       "name": "nanomonsv_parse",
@@ -280944,7 +281430,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "seqinspector",
@@ -281901,7 +282387,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "rnaseq",
@@ -282066,7 +282552,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -282491,7 +282977,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -324409,7 +324895,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
@@ -346696,7 +347182,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         }
       ]
     },
@@ -352364,13 +352850,6 @@
             }
           },
           {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
-            }
-          },
-          {
             "multiqc_files": {
               "type": "file",
               "description": "MultiQC-compatible output files from tools used in preprocessing\n(trimmomatic, cutadapt, bbduk, leehom, fastp, adapterremoval)\n"
@@ -352841,13 +353320,6 @@
             "multiqc_files": {
               "type": "file",
               "description": "MultiQC compatible files for aggregated reporting\nStructure: [ path(files) ]\n"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
             }
           }
         ],
@@ -353683,7 +354155,7 @@
       "pipelines": [
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "viralmetagenome",
@@ -355051,7 +355523,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
@@ -355500,7 +355972,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
@@ -355983,7 +356455,7 @@
         },
         {
           "name": "proteinfamilies",
-          "version": "2.3.0"
+          "version": "2.4.0"
         },
         {
           "name": "proteinfold",
