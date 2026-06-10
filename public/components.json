@@ -101862,6 +101862,228 @@
       }
     },
     {
+      "name": "fgumi_duplexmetrics",
+      "path": "modules/nf-core/fgumi/duplexmetrics/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgumi_duplexmetrics",
+        "description": "Collects a suite of metrics to QC duplex sequencing data",
+        "keywords": [
+          "UMIs",
+          "QC",
+          "bam",
+          "duplex",
+          "metrics"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://fgumi.readthedocs.io/",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fgumi"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "UMI-grouped BAM file (from fgumi group) in template-coordinate order with MI tags",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "description": "Optional intervals file to restrict analysis (BED or Picard interval list format)",
+                "pattern": "*.{bed,interval_list,txt}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "family_sizes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.family_sizes.txt": {
+                  "type": "file",
+                  "description": "Metrics on the frequency of different types of families of different sizes",
+                  "pattern": "*.family_sizes.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "duplex_family_sizes": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.duplex_family_sizes.txt": {
+                  "type": "file",
+                  "description": "Metrics on the frequency of duplex tag families by the number of observations from each strand",
+                  "pattern": "*.duplex_family_sizes.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "duplex_yield_metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.duplex_yield_metrics.txt": {
+                  "type": "file",
+                  "description": "Summary QC metrics produced using 5%, 10%, 15%...100% of the data",
+                  "pattern": "*.duplex_yield_metrics.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "umi_counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.umi_counts.txt": {
+                  "type": "file",
+                  "description": "Metrics on the frequency of observations of UMIs within reads and tag families",
+                  "pattern": "*.umi_counts.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "pdf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.duplex_qc.pdf": {
+                  "type": "file",
+                  "description": "Optional plots generated from the metrics files (requires R with ggplot2 and scales)",
+                  "pattern": "*.duplex_qc.pdf",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "duplex_umi_counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.duplex_umi_counts.txt": {
+                  "type": "file",
+                  "description": "Optional metrics on duplex UMI pairs (enabled with --duplex-umi-counts, memory intensive)",
+                  "pattern": "*.duplex_umi_counts.txt",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fgumi --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fgumi --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nf-core"
+        ],
+        "maintainers": [
+          "@nf-core"
+        ]
+      }
+    },
+    {
       "name": "fgumi_extract",
       "path": "modules/nf-core/fgumi/extract/meta.yml",
       "type": "module",
@@ -102342,6 +102564,133 @@
                 "fgumi": {
                   "type": "string",
                   "description": "The tool name"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sppearce"
+        ],
+        "maintainers": [
+          "@sppearce"
+        ]
+      }
+    },
+    {
+      "name": "fgumi_merge",
+      "path": "modules/nf-core/fgumi/merge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "fgumi_merge",
+        "description": "Merge pre-sorted BAM files into a single sorted BAM",
+        "keywords": [
+          "merge",
+          "bam",
+          "alignment",
+          "sort"
+        ],
+        "tools": [
+          {
+            "fgumi": {
+              "description": "High-performance tools for UMI-tagged sequencing data.",
+              "homepage": "https://github.com/fulcrumgenomics/fgumi",
+              "documentation": "https://fgumi.readthedocs.io/",
+              "tool_dev_url": "https://github.com/fulcrumgenomics/fgumi",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:fgumi"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bams": {
+                "type": "file",
+                "description": "Multiple sorted BAM files to merge (all must be sorted in the same order)",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Merged BAM file",
+                  "pattern": "*.bam",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_fgumi": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "fgumi --version | sed \"s/^fgumi //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "fgumi": {
+                  "type": "string",
+                  "description": "The name of the tool"
                 }
               },
               {
@@ -124938,6 +125287,227 @@
                   "description": "Combined dense GRM sidecar files",
                   "pattern": "*.grm.{id,bin,N.bin}",
                   "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
+      "name": "gcta_bivariatereml",
+      "path": "modules/nf-core/gcta/bivariatereml/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_bivariatereml",
+        "description": "Run bivariate REML analysis with a single dense GRM",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "reml",
+          "restricted maximum likelihood",
+          "bivariate",
+          "grm",
+          "genetic relationship matrix",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing dense GRM metadata\n`meta.id` must be the GRM basename passed to `--grm`\n(for example `plink_simulated_dense` for `plink_simulated_dense.grm.{id,bin,N.bin}`)\n"
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "Dense GRM bundle containing sample identifier, binary matrix, and sample-count matrix files",
+                "pattern": "*.grm.*",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing phenotype file metadata for the same analysis\nunit as the primary GRM metadata\ne.g. `[ id:'plink_simulated_dense' ]`\n"
+              }
+            },
+            {
+              "phenotype_file": {
+                "type": "file",
+                "description": "Shared bivariate phenotype file passed to `--pheno`",
+                "pattern": "*.{phe,pheno,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "phenotype_col1": {
+                "type": "integer",
+                "description": "First phenotype column passed to `--reml-bivar` (for example `1`).\nPass an empty value together with `phenotype_col2` to use GCTA's\ndefault bivariate phenotype columns.\n"
+              }
+            },
+            {
+              "phenotype_col2": {
+                "type": "integer",
+                "description": "Second phenotype column passed to `--reml-bivar` (for example `2`).\nPass an empty value together with `phenotype_col1` to use GCTA's\ndefault bivariate phenotype columns.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy map containing quantitative covariate metadata for the same\nanalysis unit as the primary GRM metadata\ne.g. `[ id:'plink_simulated_dense' ]`\n"
+              }
+            },
+            {
+              "quant_covariates_file": {
+                "type": "file",
+                "description": "Quantitative covariates file, pass `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy map containing categorical covariate metadata for the same\nanalysis unit as the primary GRM metadata\ne.g. `[ id:'plink_simulated_dense' ]`\n"
+              }
+            },
+            {
+              "cat_covariates_file": {
+                "type": "file",
+                "description": "Categorical covariates file, pass `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bivariate_results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata\n`meta.id` is used as the default output prefix\n"
+                }
+              },
+              {
+                "*.hsq": {
+                  "type": "file",
+                  "description": "Bivariate REML result file",
+                  "pattern": "*.{hsq}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log_file": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata\n`meta.id` is used as the default output prefix\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Bivariate REML log file",
+                  "pattern": "*.{log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
                 }
               }
             ]
@@ -189840,19 +190410,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_miranda": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "miranda": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "miranda -v | grep 'miranda v' | sed 's/.*v\\([0-9]\\.[0-9][a-z]\\).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "miranda": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "miranda -v | grep 'miranda v' | sed 's/.*v\\([0-9]\\.[0-9][a-z]\\).*/\\1/'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190244,19 +190846,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mirtop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190415,19 +191049,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mirtop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190546,19 +191212,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mirtop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190657,19 +191355,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mirtop": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mirtop": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mirtop --version 2>&1 | sed -n 's/^mirtop //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -238530,19 +239260,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_prodigal": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prodigal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prodigal -v 2>&1 | sed -n \"s/Prodigal V\\(.*\\):.*/\\1/p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "prodigal": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "prodigal -v 2>&1 | sed -n \"s/Prodigal V\\(.*\\):.*/\\1/p\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -344616,13 +345378,6 @@
               "type": "file",
               "description": "Channel containing log files in JSON format with the same information as stats_txt\nStructure: [ val(meta), path(log) ]\n",
               "pattern": "*.log"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
             }
           }
         ],
