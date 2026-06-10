@@ -3,10 +3,13 @@ import type { MarkdownHeading } from "astro";
 import { sharedMarkdownConfig } from "@root/bin/markdownConfig.ts";
 import remarkGitHubMarkdown from "@root/bin/remark-github-markdown.js";
 
+const { remarkPlugins, rehypePlugins } = sharedMarkdownConfig.processor.options;
+
 // Created once for the entire build — Shiki grammars and plugin instances are reused.
 const processorPromise = createMarkdownProcessor({
-    ...sharedMarkdownConfig,
-    remarkPlugins: [remarkGitHubMarkdown, ...sharedMarkdownConfig.remarkPlugins],
+    syntaxHighlight: sharedMarkdownConfig.syntaxHighlight,
+    remarkPlugins: [remarkGitHubMarkdown, ...remarkPlugins],
+    rehypePlugins,
 });
 
 export async function renderPipelineMarkdown(
