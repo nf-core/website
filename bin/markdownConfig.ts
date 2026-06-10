@@ -10,12 +10,13 @@ import remarkDirective from "remark-directive";
 import emoji from "remark-emoji";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
-import type { AstroMarkdownOptions } from "@astrojs/markdown-remark";
+import type { AstroUserConfig } from "astro";
 import { transformerNotationDiff } from "@shikijs/transformers";
 import admonitionsPlugin from "./remark-admonitions.js";
 import { rehypeCheckboxParser } from "./rehype-checkbox-parser.ts";
 import { rehypeHeadingNumbers } from "./rehype-heading-numbers.ts";
 import { mermaid } from "./remark-mermaid.ts";
+import { unified } from '@astrojs/markdown-remark';
 
 function urlTransformer(url: any) {
     const regex = /^https:\/\/(raw\.)*github/;
@@ -32,24 +33,26 @@ function urlTransformer(url: any) {
 
 export const sharedMarkdownConfig = {
     syntaxHighlight: false as const,
-    remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
-    rehypePlugins: [
-        rehypeSlug,
-        [rehypeAutolinkHeadings, { behavior: "append", content: h("i.ms-1.fas.fa-link.fa-xs.invisible") }],
-        [addClasses, { table: "table table-hover table-sm small" }],
-        [rehypeWrap, { selector: "table", wrapper: "div.table-responsive" }],
-        [urls, urlTransformer],
-        rehypeCheckboxParser,
-        rehypeHeadingNumbers,
-        [
-            rehypePrettyCode,
-            {
-                defaultLang: "plaintext",
-                keepBackground: true,
-                theme: { dark: "github-dark-dimmed", light: "github-light" },
-                transformers: [transformerNotationDiff()],
-            },
+    processor: unified({
+        remarkPlugins: [emoji, remarkGfm, remarkDirective, admonitionsPlugin, mermaid, remarkMath],
+        rehypePlugins: [
+            rehypeSlug,
+            [rehypeAutolinkHeadings, { behavior: "append", content: h("i.ms-1.fas.fa-link.fa-xs.invisible") }],
+            [addClasses, { table: "table table-hover table-sm small" }],
+            [rehypeWrap, { selector: "table", wrapper: "div.table-responsive" }],
+            [urls, urlTransformer],
+            rehypeCheckboxParser,
+            rehypeHeadingNumbers,
+            [
+                rehypePrettyCode,
+                {
+                    defaultLang: "plaintext",
+                    keepBackground: true,
+                    theme: { dark: "github-dark-dimmed", light: "github-light" },
+                    transformers: [transformerNotationDiff()],
+                },
+            ],
+            [rehypeKatex, { strict: false }],
         ],
-        [rehypeKatex, { strict: false }],
-    ],
-} satisfies AstroMarkdownOptions;
+    }),
+} satisfies AstroUserConfig['markdown'];
