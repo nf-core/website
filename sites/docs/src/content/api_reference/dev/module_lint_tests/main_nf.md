@@ -1,6 +1,6 @@
 # main_nf
 
-#### `ModuleLint.main_nf(module: NFCoreComponent, fix_version: bool, registry: str, progress_bar: Progress) → tuple[list[str], list[str]]{:python}`
+#### `ModuleLint.main_nf(module: NFCoreComponent, fix_version: bool, registry: tuple[str, ...], progress_bar: Progress) → tuple[list[str], list[str]]{:python}`
 
 Lint a `main.nf` module file
 
