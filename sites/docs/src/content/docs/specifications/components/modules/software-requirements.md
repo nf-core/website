@@ -81,120 +81,18 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 ## GPU-capable modules
 
-GPU-enabled software has two properties that make it awkward to package the same way as CPU-only tools: GPU builds (e.g., CUDA PyTorch) can be several GB larger than their CPU counterparts, and some vendor containers (e.g., NVIDIA Parabricks) are proprietary with no conda equivalent.
-The specification therefore allows three container approaches, chosen according to the tool:
+Modules MAY provide GPU-accelerated containers. One of three container approaches SHOULD be chosen according to the tool:
 
-- **Dual CPU/GPU variants of a tool**, where the GPU build has significant overhead (e.g., CUDA PyTorch adds ~3 GB): use the [dual-container pattern](#dual-container-pattern) below so CPU-only users are not penalised.
-  For example, [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector).
-- **Minimal GPU overhead or CPU fallback within one container**: a single container is simpler and preferred.
-- **Vendor-provided GPU containers** with no conda equivalent.
-  For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/tree/master/modules/nf-core/parabricks/rnafq2bam) uses NVIDIA's container.
-  Vendor-provided container modules SHOULD guard against conda/mamba profiles:
+- A **single container**, when GPU overhead is minimal or a CPU fallback fits in one image. This is simplest and preferred.
+- A **dual CPU/GPU container**, when the GPU build is substantially larger (e.g., CUDA PyTorch). The module SHOULD switch containers based on `task.accelerator{:groovy}`, and a separate `environment.gpu.yml` SHOULD be provided for the GPU dependencies. The CPU `environment.yml` MUST remain unchanged.
+- A **vendor-provided GPU container**, when no conda equivalent exists (e.g., NVIDIA Parabricks). These modules SHOULD guard against conda/mamba profiles.
 
-  ```groovy
-  if (workflow.profile.tokenize(',').intersect(['conda', 'mamba']).size() >= 1) {
-      error("This module does not support Conda. Please use Docker / Singularity / Podman instead.")
-  }
-  ```
+GPU containers SHOULD be built with [Wave](https://wave.seqera.io), and both Docker and Singularity URLs MUST be provided.
+`cuda-version` MUST be pinned exactly; version ranges are not allowed.
+GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel.
+Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator{:groovy}`.
 
-### Dual-container pattern
-
-When the GPU container is substantially larger, modules SHOULD switch between containers based on `task.accelerator`:
-
-```groovy
-conda "${ task.accelerator ? "${moduleDir}/environment.gpu.yml" : "${moduleDir}/environment.yml" }"
-container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-    (task.accelerator ? '<singularity-gpu-url>' : '<singularity-cpu-url>') :
-    (task.accelerator ? '<docker-gpu-url>' : '<docker-cpu-url>') }"
-```
-
-A separate `environment.gpu.yml` SHOULD be provided for GPU-specific dependencies.
-The CPU `environment.yml` MUST remain unchanged so that non-GPU users are unaffected.
-
-GPU containers SHOULD be built using [Wave](https://wave.seqera.io) from the `environment.gpu.yml` file.
-Both Docker and Singularity URLs MUST be provided.
-
-:::note{title="Wave build template"}
-Pass `--build-template conda/micromamba:v2` to Wave when building GPU environments. Required for now until it becomes the default.
-:::
-
-### CUDA version pinning
-
-Pin `cuda-version` exactly (nf-core does not allow version ranges). The pin sets the minimum NVIDIA driver version required on hosts, so pick the lowest value the GPU package actually supports on conda-forge - that gives the widest host compatibility.
-
-```yaml
-dependencies:
-  - "bioconda::ribodetector=0.3.3"
-  - "conda-forge::pytorch-gpu=2.1.0"
-  - "conda-forge::cuda-version=11.2"
-```
-
-Use `micromamba search -c conda-forge '<package>=<version>'` to see which CUDA minor versions the GPU package was built against on conda-forge - this is usually the real floor. For instance `pytorch-gpu=2.1.0` has `cuda112` builds, while `pytorch-gpu=2.10.0` only has `cuda128`/`cuda129`/`cuda130` builds, raising the driver floor accordingly.
-
-NVIDIA drivers are backward compatible with older CUDA versions, so pinning lower widens host reach. The reverse is not true: a CUDA 12.x container cannot run on a host with a CUDA 11.x-only driver. Modules that specifically want broader reach on legacy hosts MAY provide an alternative `environment.gpu.yml` pinned to CUDA 11.
-
-### Capturing the CUDA runtime version
-
-GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel so it appears in provenance reports alongside the tool version. One simple pattern, using the pytorch dependency that most CUDA-aware conda envs already pull in:
-
-```groovy
-tuple val("${task.process}"), val('cuda'), eval('python -c "import torch; print(torch.version.cuda or \'no CUDA available\')"'), emit: versions_cuda, topic: versions
-```
-
-This reports the actual CUDA minor the container was built with on the GPU path, and `no CUDA available` on the non-GPU path of dual-container modules. Prefer a descriptive string over something like `cpu`, which reviewers reasonably flag as not a version.
-
-### GPU-enabled Python packages
-
-A Python tool may delegate GPU work to a separately-packaged backend whose CUDA build is selected on conda-forge with a build-string match. Pin both the wrapper and the backend version, and select the CUDA build of the backend with a build glob (for example [`llama-cpp-python`](https://github.com/abetlen/llama-cpp-python) over the `llama.cpp` backend):
-
-```yaml
-dependencies:
-  - "conda-forge::llama-cpp-python=0.3.16"
-  - "conda-forge::llama.cpp=6191=*cuda*"
-```
-
-The `=6191=*cuda*` spec pins the backend version and matches a CUDA build of it (the `name=version=build` form is required to constrain the build string). It pulls in the corresponding `cuda-version`, `libcublas` and `cuda-cudart` packages and carries RPATHs in its binaries, so it needs no extra runtime configuration. The build glob targets the CUDA variant rather than a single build hash; pin `cuda-version` as well (see [CUDA version pinning](#cuda-version-pinning)) to fix the CUDA minor and the resulting driver floor. `environment.gpu.yml` requests the `=*cuda*` build while a plain `environment.yml` requests the `=*cpu*` build of the same pinned version.
-
-The build glob is not optional: without it the solver selects the CPU backend of the same version and silently produces a non-accelerated container from `environment.gpu.yml`. The explicit `=*cuda*` match is what pins the variant to the CUDA backend. Building a CUDA backend with Wave requires the v2 build template (`--build-template conda/micromamba:v2`) noted above, because the stock build image cannot resolve the `__cuda`-gated CUDA packages.
-
-When a tool has no conda packaging and is distributed only as a pre-built wheel from a custom pip index, pin the full wheel URL in a `pip:` block and pull the CUDA runtime from conda-forge alongside:
-
-```yaml
-dependencies:
-  - python=3.11
-  - pip
-  - "conda-forge::cuda-version=12.4"
-  - "conda-forge::cuda-runtime"
-  - pip:
-      - "https://github.com/<owner>/<project>/releases/download/v<version>-cu124/<wheel>.whl"
-```
-
-Build the container with Wave's `--config-env` so the wheel's binary can resolve the conda-provided CUDA libraries at `dlopen` time:
-
-```bash
-wave --conda-file environment.gpu.yml --freeze --await --singularity \
-     --config-env 'LD_LIBRARY_PATH=/opt/conda/lib'
-```
-
-`activate.d` hooks do not fire under `docker run`, so the library path is set at image-build time. Backends installed from conda-forge ship RPATHs in their binaries and do not need this.
-
-### Binary and GPU count selection in scripts
-
-Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator`.
-For example, [`ribodetector`](https://github.com/nf-core/modules/blob/20423f58f6ff54c4bc851dfd143d75f9b9f86f41/modules/nf-core/ribodetector/main.nf):
-
-```groovy
-def binary = task.accelerator ? "ribodetector" : "ribodetector_cpu"
-```
-
-Tools that accept a GPU count SHOULD specify this in the command using `task.accelerator.request`, allowing users to override via their pipeline config (e.g., `accelerator = 2`).
-This parameter SHOULD NOT be hardcoded.
-
-For example, [`parabricks/rnafq2bam`](https://github.com/nf-core/modules/blob/0c44f69eefe8a8c373c7cdd9528b3e1d60cb895f/modules/nf-core/parabricks/rnafq2bam/main.nf):
-
-```groovy
-def num_gpus = task.accelerator ? "--num-gpus ${task.accelerator.request}" : ''
-```
+For the dual-container pattern, CUDA version pinning strategy, runtime configuration, GPU-enabled Python packages, and worked examples, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
 
 ## Software not on Bioconda
 

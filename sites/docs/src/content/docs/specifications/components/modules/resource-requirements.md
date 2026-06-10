@@ -23,27 +23,12 @@ If the tool does not support multi-threading, consider `process_single` unless l
 ## GPU acceleration
 
 Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
-Pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config (e.g., via a `process_gpu` label or a `withName` block).
+The module SHOULD NOT set the `accelerator` directive itself; pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config.
 
-The module SHOULD NOT set the `accelerator` directive itself.
+Tools that accept a GPU count SHOULD pass `task.accelerator.request{:groovy}` in the command so users can override it via their pipeline config.
+This value SHOULD NOT be hardcoded.
 
-:::info{title="Rationale" collapse}
-Placing GPU allocation in the pipeline config lets users control it through their pipeline config or profiles.
-A label-only alternative (e.g., requiring a `process_gpu` label) would not work for modules that support both CPU and GPU modes (e.g., [`ribodetector`](https://github.com/nf-core/modules/tree/master/modules/nf-core/ribodetector)), so the specification leaves this to the pipeline author.
-:::
-
-See [Software requirements: GPU-capable modules](/docs/specifications/components/modules/software-requirements#gpu-capable-modules) for container patterns based on `task.accelerator`.
-
-:::tip{title="Pipeline-side GPU configuration"}
-Pipelines set `accelerator = 1{:groovy}` and GPU container flags via `containerOptions` in their process config.
-Use `containerOptions` (not global `docker.runOptions`) to scope GPU flags to GPU processes only.
-:::
-
-:::caution{title="GPU concurrency under Singularity"}
-Multiple concurrent GPU processes sharing a single GPU can deadlock under Singularity.
-Docker's NVIDIA runtime handles GPU memory arbitration, but Singularity does not.
-When GPU tasks may land on the same machine (CI, local executor, shared HPC nodes), set `maxForks = 1` on GPU processes to serialise access.
-:::
+For container patterns, CUDA version pinning, runtime configuration, and worked examples, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
 
 ## Specifying multiple threads for piped commands
 
