@@ -6,7 +6,7 @@ weight: 123
 
 The keywords "MUST", "MUST NOT", "SHOULD", etc. are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
-The nf-core community encourages wider dissemination of nf-core pipelines via publications and presentations.
+**The nf-core community encourages wider dissemination of nf-core pipelines via publications and presentations.**
 
 All pipeline publications and presentations, or those that describe pipelines, SHOULD give attribution to the nf-core community.
 
