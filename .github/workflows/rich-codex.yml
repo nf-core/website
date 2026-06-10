@@ -13,7 +13,7 @@ jobs:
 
       # Add Node.js setup step
       - name: Setup Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6
         with:
           node-version: "24"
 
@@ -30,10 +30,10 @@ jobs:
           fi
 
       - name: Install Nextflow
-        uses: nf-core/setup-nextflow@v2
+        uses: nf-core/setup-nextflow@b4ec1bc7c16a94435159de94a05253542fddf6ef # v3
 
       - name: Install nf-test
-        uses: nf-core/setup-nf-test@ce65500579e8587607aab289ecb3a9c343c32e79 # v2
+        uses: nf-core/setup-nf-test@4069fbbaabe94c08faba4ad261bfa88225ba133f # v2
 
       - name: Install nf-core/tools
         run: pip install nf-core

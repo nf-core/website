@@ -49,6 +49,7 @@ Tests capture output snapshots and run automatically on every pull request, help
 - **[Overview](testing/overview):** Introduction to the nf-test framework and snapshot-based testing for Nextflow components
 - **[Assertions](testing/assertions):** Best practices for writing assertions in nf-test, including snapshot capture and encapsulation requirements
 - **[Advanced techniques](testing/advanced):** Advanced assertion patterns for handling complex testing scenarios beyond standard snapshot comparisons
+- **[CI runners](testing/ci-runners):** Configure RunsOn self-hosted runners and troubleshoot CI failures such as insufficient disk space
 
 ## Template syncs
 
@@ -90,6 +91,7 @@ As Nextflow and nf-core evolve, pipelines and components occasionally need updat
 These guides walk through specific migrations step by step.
 
 - **[Migrating to topic channels](migration-guides/update-pipelines):** Update modules and pipelines to use Nextflow topic channels for version tracking
+- **[Migrating to strict syntax](migration-guides/strict-syntax)**: Update nf-core/configs for Nextflow strict syntax compliance
 
 ## External documentation
 

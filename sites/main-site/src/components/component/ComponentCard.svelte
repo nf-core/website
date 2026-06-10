@@ -13,6 +13,7 @@
                 keywords?: string[];
                 modules?: string[];
                 components?: string[];
+                deprecated?: boolean;
             };
             pipelines?: {
                 name: string;
@@ -28,14 +29,18 @@
     }
 
     let { component }: Props = $props();
-    const href = "/" + component.type + "s/" + component.name + "/";
+    const href = $derived("/" + component.type + "s/" + component.name + "/");
 </script>
 
 <ListingCard>
     {#snippet cardHeader()}
         <div>
-            <a class="text-decoration-none" {href}>{@html component.name.replace("_", "_<wbr>")} </a>
-            <small class="gh-stats text-small"></small>
+            <a class="text-decoration-none d-flex align-items-center" {href}
+                >{@html component.name.replace("_", "_<wbr>")}
+                {#if component.meta.deprecated}
+                    <small class="badge text-bg-danger text-small ms-auto">deprecated</small>
+                {/if}</a
+            >
         </div>
     {/snippet}
 

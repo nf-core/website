@@ -185,12 +185,25 @@ It's recommended that a core team member transfers the DOI to the nf-core Zenodo
 
 ## Add new community members to the GitHub organisation
 
-To add a member to the nf-core GitHub organisation via the #github-invitations` channel
+New members request access to the nf-core GitHub organisation via a Slack workflow in the [#github-invitations](https://nfcore.slack.com/archives/CEB982K2T) channel.
+The **nf-core-bot** can process these requests directly from Slack:
 
 1.  Verify the request is reasonable (i.e., clearly not spam)
-1.  Send an invitation via [nf-core github teams](https://github.com/orgs/nf-core/teams)
-1.  Add new member to the [nf-core contributors team](https://github.com/orgs/nf-core/teams/contributors)
-1.  Respond to the #github-invitations channel request by reacting with the ✅ emoji
+2.  Click the **more actions** menu (three dots **⋮**) on the workflow message
+3.  Select **Connect to apps** > **Add to GitHub org nf-core-bot**
+    - This might be buried the first time. Once you've done it once, it'll float to the top in future.
+
+![Screenshot showing the Slack workflow message context menu: (1) click the more actions button, (2) select Connect to apps, (3) select Add to GitHub org nf-core-bot](../../../../assets/images/governance/slack-github-invite.png)
+
+The bot automatically extracts the GitHub username from the workflow message and sends them an organisation invitation with membership in the **Collaborators** team.
+The bot will post a visible reply in the message thread confirming the invitation.
+
+Alternatively, you can use the slash command anywhere in Slack:
+
+```
+/nf-core github add @slack-user
+/nf-core github add github-username
+```
 
 ## Updating online bingo cards
 
