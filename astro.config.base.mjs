@@ -7,7 +7,7 @@ import yaml from "@rollup/plugin-yaml";
 import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import markdownIntegration from "@mashehu/astropub-md";
 import icon from "astro-icon";
-import { sharedMarkdownConfig } from "./bin/markdownConfig.ts";
+import { satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
 /**
  * Base Astro configuration shared across all nf-core subsites.
@@ -131,5 +131,5 @@ export default {
             entrypoint: "astro/assets/services/sharp",
         },
     },
-    markdown: sharedMarkdownConfig,
+    markdown: satteriSharedMarkdownConfig(),
 };
