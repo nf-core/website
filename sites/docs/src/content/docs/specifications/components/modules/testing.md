@@ -170,7 +170,7 @@ when {
 ```groovy {3} title="nextflow.config"
 process {
   withName: 'MODULE' {
-    ext.args = params.module_args
+    ext.args = { params.module_args ?: '' }
   }
 }
 ```

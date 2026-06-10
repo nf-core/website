@@ -14,7 +14,7 @@ maxHeadingDepth: 3
 
 ## Upcoming changes to Nextflow syntax
 
-During the Nextflow Summit 2025, Ben Sherman introduced all the changes that are comming to Nextflow with the next versions.
+During the Nextflow Summit 2025, Ben Sherman introduced all the changes that are coming to Nextflow with the next versions.
 There is also a [Nextflow blogpost](https://seqera.io/blog/nextflow-updates-strict-syntax-data-lineage/) talking about the changes that we will start seeing within the next Nextflow releases.
 
 As always, in nf-core, we try to keep up-to-date with the latest Nextflow features and standards.
@@ -80,7 +80,7 @@ we have implemented a couple of new changes to the pipeline template sync proces
      to have smaller changes and make the update and review process smother.
 2. All sync PRs will include a direct link to the nf-core/tools release blog post.
    - This blog posts include a description of the changes made in this release,
-     and a list of tips on how to implemente these changes to your pipeline,
+     and a list of tips on how to implement these changes to your pipeline,
      as well as guidance on how to resolve merge conflicts.
 
 ## Where to ask for help

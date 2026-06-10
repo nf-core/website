@@ -164,7 +164,7 @@ const md_github_url =
 // remove leading and trailing slash
 const splitUrl = `${Astro.url.pathname}/`.replace(/^\/|\/$/g, "").split("/");
 // check if markdown file starts with a heading (markdown or html)
-const firstHeading = Astro.props.doc.body.trim().match(/^(#|<h1)/);
+const firstHeading = Astro.props.doc.body?.trim().match(/^(#|<h1)/);
 
 let extendedHeadings = headings.map((heading) => {
     heading.checkboxes = remarkPluginFrontmatter.checkboxes

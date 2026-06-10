@@ -5,7 +5,7 @@
 
     let { schema } = $props();
 
-    const schemaDefs = schema.definitions || schema.$defs || schema.properties;
+    const schemaDefs = $derived(schema.definitions || schema.$defs || schema.properties);
     onMount(() => {
         const observer = new IntersectionObserver(
             (entries) => {

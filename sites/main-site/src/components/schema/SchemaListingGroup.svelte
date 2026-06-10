@@ -5,7 +5,7 @@
 
     let { definition = $bindable(), id } = $props();
 
-    let processedProperties = $derived(() => {
+    let processedProperties = $derived.by(() => {
         if (!definition.properties) return {};
 
         const properties = { ...definition.properties };
@@ -48,9 +48,9 @@
                 {@html definition.description_rendered}
             {/if}
         </p>
-        {#if processedProperties()}
+        {#if processedProperties}
             <div class="properties">
-                {#each Object.entries(processedProperties()) as [title, property] (title)}
+                {#each Object.entries(processedProperties) as [title, property] (title)}
                     <SchemaListingElement {title} {property} />
                 {/each}
             </div>

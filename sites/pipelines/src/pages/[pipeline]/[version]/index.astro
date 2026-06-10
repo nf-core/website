@@ -4,6 +4,7 @@ import pipelines_json from "@public/pipelines.json";
 import { getEntry } from "astro:content";
 import PipelineSidebar from "@components/pipeline/PipelineSidebar.astro";
 import MarkdownWrapper from "@components/markdown/MarkdownWrapper.svelte";
+import { renderPipelineMarkdown } from "@utils/pipelineMarkdown";
 
 export function getStaticPaths() {
     var paths: { params: { pipeline: string; version: string }; props: { versions: string[]; md_files; meta } }[] = [];
@@ -37,8 +38,7 @@ const is_archived = meta.archived;
 const version_tag_name = version === "latest" ? versions[0] : version;
 let entry = await getEntry("pipelines", pipeline + "/" + version_tag_name + "/README");
 
-const headings = entry?.rendered?.metadata?.headings;
-const Content = entry?.rendered?.html;
+const { html: Content, headings } = await renderPipelineMarkdown(entry?.body ?? "", pipeline, version_tag_name, "");
 if (version_tag_name !== "dev") {
     meta.doi = entry?.data?.doi;
 }

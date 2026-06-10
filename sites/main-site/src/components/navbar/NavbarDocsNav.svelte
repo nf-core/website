@@ -41,7 +41,7 @@
         margin-top: 3rem;
     }
     .side-nav {
-        padding-top: 3rem; //offset for navbar + sectionNavbar from sidebarNav
+        padding-top: 3rem; /* offset for navbar + sectionNavbar from sidebarNav */
         max-height: calc(100dvh - 3rem);
         width: 100vw;
     }

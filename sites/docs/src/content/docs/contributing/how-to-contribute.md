@@ -142,6 +142,19 @@ See the following for general reviewing checklists:
 - [Reviewing pipeline releases](../contributing/reviewing-pull-requests/review_checklists/pipeline-releases)
 - [Reviewing nf-core/tools](../contributing/reviewing-pull-requests/review_checklists/nf-core-tools.md)
 
+## Use of AI and LLMs
+
+The nf-core stance on the use of AI and LLMs is that humans are still ultimately responsible for their submitted code, regardless of the tools they use.
+
+If you’re using AI tools, try to stick by these guidelines:
+
+- Keep PRs as small and focussed as possible
+- Avoid any unnecessary changes, such as moving or refactoring code (unless that is the explicit intention of the PR)
+- Review all generated code yourself before opening a PR, and ensure that you understand it
+- Engage with the community review process and expect to make revisions
+
+For more detail, see the the [blog post](https://nf-co.re/blog/2026/statement-on-ai) for a statement from the nf-core/core team.
+
 ## When everything else fails
 
 As a general rule, ask the wider community first.

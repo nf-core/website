@@ -1,8 +1,9 @@
-import { z, defineCollection } from 'astro:content';
-import { glob } from 'astro/loaders';
+import { defineCollection } from "astro:content";
+import { z } from "astro/zod";
+import { glob } from "astro/loaders";
 
 const docs = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/docs' }),
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/docs" }),
     schema: z.object({
         title: z.string(),
         subtitle: z.string().optional(),
@@ -10,13 +11,13 @@ const docs = defineCollection({
         weight: z.number().optional(),
         parent: z.string().optional(),
         parentWeight: z.number().optional(),
-        type: z.enum(['tutorial']).optional(),
-        markdownPlugin: z.enum(['checklist', 'addNumbersToHeadings']).optional(),
+        type: z.enum(["tutorial"]).optional(),
+        markdownPlugin: z.enum(["checklist", "addNumbersToHeadings"]).optional(),
     }),
 });
 
 const api_reference = defineCollection({
-    loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/api_reference' }),
+    loader: glob({ pattern: "**/[^_]*.{md,mdx}", base: "./src/content/api_reference" }),
 });
 
 export const collections = {
