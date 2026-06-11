@@ -52,3 +52,5 @@ Output file (and/or directory) names SHOULD consist of only `${prefix}` and the 
   ```nextflow
   def prefix = task.ext.prefix ?: "${meta.id}_sorted"
   ```
+
+- When the output format suffix is generic (e.g. `.csv.gz`, `.tsv`, `.bed.gz`) and the module receives input files with the same suffix, include a type descriptor in the output glob pattern rather than relying solely on the default prefix. For example, prefer `path("${prefix}.metagene.csv.gz")` over `path("${prefix}.csv.gz")`. Without a descriptor, a user setting `ext.prefix` to a value that matches an input filename stem will produce a glob that captures the staged input file as output. In these cases the descriptor SHOULD be baked into the default prefix as a fallback (e.g. `task.ext.prefix ?: "${meta.id}.metagene"`), but kept in the glob pattern too for safety.
