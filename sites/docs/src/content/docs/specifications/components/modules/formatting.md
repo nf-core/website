@@ -23,7 +23,7 @@ The version two the of Nextflow strict syntax will be made default in Nextflow v
 
 Common issues within nf-core components to avoid:
 
-| Old syntax                                               | Prefered syntax                                                              |
+| Old syntax                                             | Prefered syntax                                                              |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Unused `def args = task.ext.args ?: ''{:groovy}` in stub | Delete the variable definition in the stub block                             |
 | Undeclared variable `my_variable{:groovy}`               | Specify `def` before the variable: `def my_variable{:groovy}`                |
@@ -32,4 +32,4 @@ Common issues within nf-core components to avoid:
 
 ## General module code formatting
 
-All code SHOULD otherwise be aligned to follow the '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)' format, if it does not violate the Nextflow strict syntax specifications.
+All code SHOULD otherwise be aligned to follow the automated Nextflow lint formatting (`nextflow lint -format -harshil-alignment`) or manually formatted '[Harshil Alignment™️](/docs/contributing/code_editors_and_styling/harshil_alignment)', if it does not violate the Nextflow strict syntax specifications.
