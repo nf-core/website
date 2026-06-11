@@ -23,7 +23,7 @@ The version two the of Nextflow strict syntax will be made default in Nextflow v
 
 Common issues within nf-core components to avoid:
 
-| Old syntax                                             | Prefered syntax                                                              |
+| Old syntax                                               | Prefered syntax                                                              |
 | -------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Unused `def args = task.ext.args ?: ''{:groovy}` in stub | Delete the variable definition in the stub block                             |
 | Undeclared variable `my_variable{:groovy}`               | Specify `def` before the variable: `def my_variable{:groovy}`                |
