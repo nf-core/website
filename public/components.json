@@ -42169,7 +42169,7 @@
                 }
               },
               {
-                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -42235,7 +42235,7 @@
                 }
               },
               {
-                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -42435,7 +42435,7 @@
                 }
               },
               {
-                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -42499,7 +42499,7 @@
                 }
               },
               {
-                "mbuffer --version 2>&1 | sed -n 's/mbuffer //p'": {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version//p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -43276,22 +43276,10 @@
               "description": "use samtools sort (true) or samtools view (false)",
               "pattern": "true or false"
             }
-          },
-          {
-            "mbuffer": {
-              "type": "integer",
-              "description": "memory for mbuffer in megabytes (default 3072)"
-            }
-          },
-          {
-            "samtools_threads": {
-              "type": "integer",
-              "description": "number of threads for samtools (default 2)"
-            }
           }
         ],
         "output": {
-          "sam": [
+          "output": [
             [
               {
                 "meta": {
@@ -43300,16 +43288,16 @@
                 }
               },
               {
-                "*.sam": {
+                "${prefix}.{sam,bam,cram}": {
                   "type": "file",
-                  "description": "Output SAM file containing read alignments",
-                  "pattern": "*.{sam}",
+                  "description": "Output alignment file (SAM, BAM, or CRAM)",
+                  "pattern": "*.{sam,bam,cram}",
                   "ontologies": []
                 }
               }
             ]
           ],
-          "bam": [
+          "index": [
             [
               {
                 "meta": {
@@ -43318,64 +43306,10 @@
                 }
               },
               {
-                "*.bam": {
+                "${prefix}.{csi,crai}": {
                   "type": "file",
-                  "description": "Output BAM file containing read alignments",
-                  "pattern": "*.{bam}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "cram": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.cram": {
-                  "type": "file",
-                  "description": "Output CRAM file containing read alignments",
-                  "pattern": "*.{cram}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "crai": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.crai": {
-                  "type": "file",
-                  "description": "Index file for CRAM file",
-                  "pattern": "*.{crai}",
-                  "ontologies": []
-                }
-              }
-            ]
-          ],
-          "csi": [
-            [
-              {
-                "meta": {
-                  "type": "map",
-                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
-                }
-              },
-              {
-                "*.csi": {
-                  "type": "file",
-                  "description": "Index file for BAM file",
-                  "pattern": "*.{csi}",
+                  "description": "Index file for BAM (.csi) or CRAM (.crai) output",
+                  "pattern": "*.{csi,crai}",
                   "ontologies": []
                 }
               }
@@ -43408,7 +43342,7 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "Name of the process"
+                  "description": "The name of the process"
                 }
               },
               {
@@ -43419,6 +43353,28 @@
               },
               {
                 "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_mbuffer": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mbuffer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -43452,7 +43408,7 @@
               {
                 "${task.process}": {
                   "type": "string",
-                  "description": "Name of the process"
+                  "description": "The name of the process"
                 }
               },
               {
@@ -43463,6 +43419,26 @@
               },
               {
                 "samtools version | sed \"1!d;s/.* //\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mbuffer": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mbuffer --version 2>&1 | sed -n 's/mbuffer version //p'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -54322,6 +54298,188 @@
         ],
         "maintainers": [
           "@Joon-Klaps"
+        ]
+      }
+    },
+    {
+      "name": "chelae_trim",
+      "path": "modules/nf-core/chelae/trim/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "chelae_trim",
+        "description": "Adapter and quality trimming of short-read FASTQ data using chelae.",
+        "keywords": [
+          "trimming",
+          "quality control",
+          "fastq",
+          "adapter",
+          "umi"
+        ],
+        "tools": [
+          {
+            "chelae": {
+              "description": "A fast, accurate, multi-threaded toolkit for trimming and filtering short-read\nFASTQ data, written in Rust. Outputs BGZF-compressed FASTQ and a fastp-compatible\nJSON report suitable for MultiQC.\n",
+              "homepage": "https://github.com/fulcrumgenomics/chelae",
+              "documentation": "https://github.com/fulcrumgenomics/chelae",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information. Use 'single_end: true' to specify\nsingle-end FASTQs, or 'single_end: false' for paired-end reads.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "reads": {
+                "type": "file",
+                "description": "List of input FastQ files. One file for single-end data, two files for\npaired-end data (R1 and R2).\n",
+                "pattern": "*.{fastq,fastq.gz,fq,fq.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1930"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "adapter_fasta": {
+              "type": "file",
+              "description": "Optional FASTA file of adapter sequences. The best-matching adapter will\nbe trimmed. Use an empty list [] when not supplying an adapter file;\nadapter kits can be specified via ext.args using --kit instead.\n",
+              "pattern": "*.{fasta,fna,fas,fa}",
+              "ontologies": []
+            }
+          }
+        ],
+        "output": {
+          "reads": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.chelae.fastq.gz": {
+                  "type": "file",
+                  "description": "Trimmed FASTQ file(s), BGZF-compressed. Single file for SE; R1 and R2\nfiles for PE.\n",
+                  "pattern": "*.chelae.fastq.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1930"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "json": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.chelae.json": {
+                  "type": "file",
+                  "description": "fastp-compatible JSON trimming report, consumable by MultiQC.",
+                  "pattern": "*.chelae.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "metrics": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.chelae.tsv": {
+                  "type": "file",
+                  "description": "Tab-separated trimming metrics summary.",
+                  "pattern": "*.chelae.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_chelae": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "chelae": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "chelae --version 2>&1 | sed 's/chelae //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "chelae": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "chelae --version 2>&1 | sed 's/chelae //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@emmcauley"
+        ],
+        "maintainers": [
+          "@emmcauley"
         ]
       }
     },
@@ -71895,6 +72053,402 @@
           "version": "3.26.0"
         }
       ]
+    },
+    {
+      "name": "custom_orfmerge",
+      "path": "modules/nf-core/custom/orfmerge/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_orfmerge",
+        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n",
+        "keywords": [
+          "orf",
+          "ribo-seq",
+          "catalogue",
+          "merge",
+          "clustering"
+        ],
+        "tools": [
+          {
+            "orfmerge": {
+              "description": "Python helper that clusters normalised ORF BED12+TSV pairs across\ncallers and samples into one unified catalogue, recording per-caller\nprovenance and best score in the output table.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/orfmerge/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map. Typically a cohort-level `[ id: 'allsamples' ]`.\n"
+              }
+            },
+            {
+              "bed12s": {
+                "type": "file",
+                "description": "One or more normalised BED12 files (output of `custom/orfnormalise`).\nFiles are co-indexed with `tsvs` only via shared `orf_id`s; per-row\nalignment is not required.\n",
+                "pattern": "*.bed12",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            },
+            {
+              "tsvs": {
+                "type": "file",
+                "description": "One or more normalised sidecar TSV files (output of\n`custom/orfnormalise`).\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.catalogue.bed12": {
+                  "type": "file",
+                  "description": "Merged ORF catalogue as BED12 (genomic blocks).",
+                  "pattern": "*.catalogue.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "catalogue_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.catalogue.tsv": {
+                  "type": "file",
+                  "description": "Per-ORF table with `called_by_<caller>` and `score_<caller>`\ncolumns for each supported caller, `n_samples` / `samples`\ncross-sample recurrence columns, plus orf_class, aa_length,\nand host gene_id / transcript_id.\n",
+                  "pattern": "*.catalogue.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "One row per (orf_id, gene_id, transcript_id) mapping. An ORF can\nmap to multiple host transcripts/genes when callers picked\ndifferent annotated isoforms; downstream gene-level aggregation\ncollapses these.\n",
+                  "pattern": "*.orf_to_gene.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "multiqc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.catalogue.mqc.tsv": {
+                  "type": "file",
+                  "description": "MultiQC custom-content TSV (per-class ORF counts).\n",
+                  "pattern": "*.catalogue.mqc.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "custom_orfnormalise",
+      "path": "modules/nf-core/custom/orfnormalise/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_orfnormalise",
+        "description": "Convert one ORF caller's per-sample output table into a unified BED12 plus a\nsidecar metadata TSV, ready for cross-caller merging.\n\nAn \"ORF caller\" is a tool that scans ribosome-profiling (Ribo-seq) data and\npredicts which open reading frames are being translated. Each caller writes\nits own table format and uses its own location encoding, classification\nvocabulary, and confidence score. This module reconciles five callers into\none harmonised schema. The `caller` val input selects the parser;\nsupported values:\n\n  - ribocode    (RiboCode predicted ORF table; transcript-coord input,\n                 lifted to genomic blocks against the GTF)\n  - ribotish    (Ribo-TISH predict output; GenomePos + optional Blocks)\n  - ribotricer  (Ribotricer detect-orfs translating ORFs TSV; ORF span\n                 parsed from ORF_ID, multi-exon blocks recovered by\n                 intersecting with host-transcript exon structure from\n                 the GTF)\n  - rpbp        (Rp-Bp predicted-orfs BED12 with extra columns)\n  - price       (PRICE orfs.tsv; Gedi-style Location field, already genomic)\n\nOutput BED12 column order:\n  chrom start end name score strand thickStart thickEnd itemRgb\n  blockCount blockSizes blockStarts\nThe BED `name` column carries `<caller>|<caller-native-id>`. The BED `score`\ncolumn is the caller's native score rescaled to 0-1000 (higher == more\nconfident regardless of native direction).\n\nOutput sidecar TSV columns:\n  orf_id caller sample_id chrom start end strand gene_id transcript_id\n  orf_class aa_length score\n\nHarmonised `orf_class` vocabulary written into the sidecar TSV:\n\n  - canonical_cds: ORF maps to an annotated CDS (including truncated /\n                   extended variants of one).\n  - uORF:          upstream ORF (5'UTR-resident).\n  - dORF:          downstream ORF (3'UTR-resident).\n  - novel_u:       novel / intergenic ORF not assigned to an annotated CDS.\n  - smORF:         small ORF (aa_length <= 100); promoted regardless of\n                   location-based class so downstream tools can treat\n                   smORFs uniformly.\n  - other:         internal / overlap / frame variants and anything else.\n\nPer-caller mapping notes (lossy collapses):\n\n  - PRICE `iORF` (internal ORF), `intronic`, and `orphan` map to `other`.\n    Cross-caller catalogue tracking still flags these via\n    `called_by_price`, but the specific PRICE sub-type is not preserved.\n  - Rp-Bp's predicted-orfs BED carries no ORF-type column; this module\n    defaults every Rp-Bp call to `canonical_cds` (the post-\n    selectfinalpredictionset curated set is dominated by canonical\n    CDSs). uORF/dORF/novel calls present in Rp-Bp's separate\n    `.tab.gz` / `extracted-orfs.bed.gz` files are not propagated here.\n\nEach caller's native confidence score has a \"direction\" - some are\nlower-is-better (p-values), some are higher-is-better (Bayes factors,\nphase scores):\n\n  ribocode:   min  (combined p-value)\n  ribotish:   min  (combined p-value)\n  ribotricer: max  (phase_score)\n  rpbp:       max  (Bayes factor mean)\n  price:      min  (p-value)\n\nDownstream merging uses this to pick the best per-ORF call.\n",
+        "keywords": [
+          "orf",
+          "ribo-seq",
+          "normalisation",
+          "bed12",
+          "translation"
+        ],
+        "tools": [
+          {
+            "orfnormalise": {
+              "description": "Python helper that parses any of five Ribo-seq ORF caller output\ntables and emits a unified BED12 + sidecar TSV. Caller is selected\nby the `caller` val input.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/orfnormalise/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "ribocode": {
+              "description": "Identifying genome-wide translated ORFs from Ribo-seq data",
+              "homepage": "https://github.com/xryanglab/RiboCode",
+              "documentation": "https://github.com/xryanglab/RiboCode",
+              "doi": "10.1093/nar/gky179",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "ribotish": {
+              "description": "Ribo-seq based ORF prediction with Ribo-TISH",
+              "homepage": "https://github.com/zhpn1024/ribotish",
+              "documentation": "https://github.com/zhpn1024/ribotish",
+              "doi": "10.1038/s41467-017-01981-8",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "ribotricer": {
+              "description": "Ribosome profiling P-site phasing-based ORF detection",
+              "homepage": "https://github.com/smithlabcode/ribotricer",
+              "documentation": "https://github.com/smithlabcode/ribotricer",
+              "doi": "10.1093/bioinformatics/btz878",
+              "licence": [
+                "GPL-3.0"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "rpbp": {
+              "description": "Translated ORF identification with Rp-Bp",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1141",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          },
+          {
+            "price": {
+              "description": "Probabilistic inference of codon activities by an EM algorithm (PRICE)",
+              "homepage": "https://github.com/erhard-lab/price",
+              "documentation": "https://github.com/erhard-lab/price",
+              "doi": "10.1038/nmeth.4631",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map. Must include `id` (sample identifier; for PRICE this\nis typically the cohort id).\n"
+              }
+            },
+            {
+              "orfs_table": {
+                "type": "file",
+                "description": "Per-sample (or per-cohort, for PRICE) ORF caller output. The\nformat must match the `caller` val input.\n",
+                "pattern": "*"
+              }
+            },
+            {
+              "caller": {
+                "type": "string",
+                "description": "ORF caller that produced `orfs_table`. Selects the parser,\nclassifier and score-direction inside the module.\n",
+                "enum": [
+                  "ribocode",
+                  "ribotish",
+                  "ribotricer",
+                  "rpbp",
+                  "price"
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map for the annotation (typically `[ id: 'reference' ]`).\n"
+              }
+            },
+            {
+              "gtf": {
+                "type": "file",
+                "description": "Annotation GTF. Required for ribocode (transcript-relative\ncoordinates → genomic lift) and strongly recommended for\nribotish (multi-exon block recovery from GenomePos) and\nribotricer (multi-exon block recovery from ORF_ID span). For\nrpbp and price (genomic coordinates emitted directly by the\ntool) the GTF is unused; pass `[ [:], [] ]` if you only run\nthose callers.\n",
+                "pattern": "*.gtf",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2306"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.bed12": {
+                  "type": "file",
+                  "description": "Normalised BED12 with genomic ORF blocks. `name` column encodes\n`<caller>|<caller-native-id>`; `score` is the caller's native\nscore remapped to 0-1000.\n",
+                  "pattern": "*.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Per-ORF metadata sidecar with columns: orf_id, caller,\nsample_id, chrom, start, end, strand, gene_id, transcript_id,\norf_class, aa_length, score (native).\n",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
     },
     {
       "name": "custom_pcaclustering",
@@ -104169,6 +104723,153 @@
       }
     },
     {
+      "name": "finaletoolkit_aggbw",
+      "path": "modules/nf-core/finaletoolkit/aggbw/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "finaletoolkit_aggbw",
+        "description": "Aggregates a bigWig signal over constant-length intervals\ndefined in a BED file.\n",
+        "keywords": [
+          "genomics",
+          "aggregation",
+          "fragmentomics"
+        ],
+        "tools": [
+          {
+            "finaletoolkit": {
+              "description": "Extract cfDNA fragmentation features from sequencing data.",
+              "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
+              "doi": "10.1093/bioadv/vbaf236",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:finaletoolkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bigwig": {
+                "type": "file",
+                "description": "BigWig file containing signals to aggregate",
+                "pattern": "*.bw",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3006"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "intervals": {
+                "type": "file",
+                "pattern": "*.bed",
+                "description": "BED file containing intervals to aggregate for\n",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "wig": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.wig": {
+                  "type": "file",
+                  "pattern": "*.wig",
+                  "description": "Wiggle file containing aggregated scores over the itnervals\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3005"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_finaletoolkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
+    },
+    {
       "name": "finaletoolkit_delfi",
       "path": "modules/nf-core/finaletoolkit/delfi/meta.yml",
       "type": "module",
@@ -126100,6 +126801,241 @@
       }
     },
     {
+      "name": "gcta_bivariateremlldms",
+      "path": "modules/nf-core/gcta/bivariateremlldms/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_bivariateremlldms",
+        "description": "Run bivariate REML-LDMS analysis with an MGRM manifest",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "reml",
+          "restricted maximum likelihood",
+          "bivariate",
+          "ldms",
+          "linkage disequilibrium and minor allele frequency stratification",
+          "grm",
+          "genetic relationship matrix",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing MGRM metadata\n`meta.id` should match the MGRM manifest basename, for example\n`plink_simulated_ldms` for `plink_simulated_ldms.mgrm`\n"
+              }
+            },
+            {
+              "mgrm_file": {
+                "type": "file",
+                "description": "MGRM manifest file",
+                "pattern": "*.mgrm",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "GRM bundles referenced by `mgrm_file`; each manifest entry should have matching `*.grm.{id,bin,N.bin}` files in this bundle",
+                "pattern": "*.grm.*",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing phenotype file metadata for the same analysis\nunit as the primary MGRM metadata\ne.g. `[ id:'plink_simulated_ldms' ]`\n"
+              }
+            },
+            {
+              "phenotype_file": {
+                "type": "file",
+                "description": "Shared bivariate phenotype file passed to `--pheno`",
+                "pattern": "*.{phe,pheno,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "phenotype_col1": {
+                "type": "integer",
+                "description": "First phenotype column passed to `--reml-bivar` (for example `1`).\nPass an empty value together with `phenotype_col2` to use GCTA's\ndefault bivariate phenotype columns.\n"
+              }
+            },
+            {
+              "phenotype_col2": {
+                "type": "integer",
+                "description": "Second phenotype column passed to `--reml-bivar` (for example `2`).\nPass an empty value together with `phenotype_col1` to use GCTA's\ndefault bivariate phenotype columns.\n"
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy map containing quantitative covariate metadata for the same\nanalysis unit as the primary MGRM metadata\ne.g. `[ id:'plink_simulated_ldms' ]`\n"
+              }
+            },
+            {
+              "quant_covariates_file": {
+                "type": "file",
+                "description": "Quantitative covariates file, pass `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta4": {
+                "type": "map",
+                "description": "Groovy map containing categorical covariate metadata for the same\nanalysis unit as the primary MGRM metadata\ne.g. `[ id:'plink_simulated_ldms' ]`\n"
+              }
+            },
+            {
+              "cat_covariates_file": {
+                "type": "file",
+                "description": "Categorical covariates file, pass `[]` when absent",
+                "pattern": "*.{covar,cov,txt,tsv}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bivariate_results": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing MGRM metadata\n`meta.id` is used as the default output prefix\n"
+                }
+              },
+              {
+                "*.hsq": {
+                  "type": "file",
+                  "description": "Bivariate REML-LDMS result file",
+                  "pattern": "*.{hsq}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "log_file": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing MGRM metadata\n`meta.id` is used as the default output prefix\n"
+                }
+              },
+              {
+                "*.log": {
+                  "type": "file",
+                  "description": "Bivariate REML-LDMS log file",
+                  "pattern": "*.{log}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
       "name": "gcta_grmcutoff",
       "path": "modules/nf-core/gcta/grmcutoff/meta.yml",
       "type": "module",
@@ -126183,6 +127119,146 @@
                   "type": "file",
                   "description": "Keep file of unrelated individuals emitted by GCTA",
                   "pattern": "${prefix}.grm.id",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
+      "name": "gcta_keep",
+      "path": "modules/nf-core/gcta/keep/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_keep",
+        "description": "Apply a keep file to a dense GRM using `gcta --keep`",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "grm",
+          "genetic relationship matrix",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing dense GRM metadata\ne.g. `[ id:'plink_simulated' ]`\n`meta.id` is required and is the dense GRM basename contract used by `gcta --grm`.\nInput files must therefore be staged as `<meta.id>.grm.id`, `<meta.id>.grm.bin`, and `<meta.id>.grm.N.bin`.\n"
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "Dense GRM file bundle",
+                "pattern": "*.grm.*",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy map containing keep-file metadata\ne.g. `[ id:'plink_simulated_keep' ]`\n"
+              }
+            },
+            {
+              "keep_file": {
+                "type": "file",
+                "description": "Keep file listing the individuals to retain",
+                "pattern": "*.{keep,txt,id}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2330"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "filtered_grm": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata\ne.g. `[ id:'plink_simulated' ]`\n`meta.id` is preserved from the input dense GRM basename contract.\n"
+                }
+              },
+              {
+                "${prefix}.grm.*": {
+                  "type": "file",
+                  "description": "Filtered GRM file bundle",
+                  "pattern": "${prefix}.grm.*",
                   "ontologies": []
                 }
               }
@@ -173115,19 +174191,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173217,19 +174325,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173376,19 +174516,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173474,19 +174646,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173583,19 +174787,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173742,19 +174978,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -173847,19 +175115,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lofreq": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "Process which generated the version"
+                }
+              },
+              {
+                "lofreq": {
+                  "type": "string",
+                  "description": "Tool name"
+                }
+              },
+              {
+                "lofreq version | sed -n '1s/^.* //p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -183025,7 +184325,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "memote_run",
@@ -183171,7 +184477,13 @@
         "maintainers": [
           "@brovolia"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "bacmodel",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "meningotype",
@@ -257861,6 +259173,682 @@
       }
     },
     {
+      "name": "rpbp_estimatemetagenebayesfactors",
+      "path": "modules/nf-core/rpbp/estimatemetagenebayesfactors/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_estimatemetagenebayesfactors",
+        "description": "Score how strongly each per-read-length metagene profile shows the\n3-nucleotide periodicity expected of actively translating ribosomes.\nFor each candidate (read length, P-site offset) pair, Rp-Bp fits two\ncompeting Bayesian models to the count window around annotated start\ncodons: a \"periodic\" model whose signal repeats every three\nnucleotides, and a \"non-periodic\" background model. The Bayes factor\n(ratio of the two marginal likelihoods) quantifies how much the data\nprefer the periodic explanation.\n\nReturns one row per (length, offset) pair with the mean and variance of\nthe log Bayes factor across MCMC samples. Downstream,\n`rpbp/selectperiodicoffsets` picks the best offset per length from\nthis table, and `rpbp/getperiodiclengthsoffsets` filters to the\nhigh-confidence pairs that drive ORF-level scoring.\n\nUses the Stan models bundled inside the rpbp Python package.\n",
+        "keywords": [
+          "rpbp",
+          "metagene",
+          "bayes",
+          "orf",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "profile_csv": {
+                "type": "file",
+                "description": "Metagene profile CSV produced by `rpbp/extractmetageneprofiles`.",
+                "pattern": "*.metagene-profile.csv.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bayes_factors": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.csv.gz": {
+                  "type": "file",
+                  "description": "Per-read-length metagene periodicity Bayes factors.",
+                  "pattern": "*.csv.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_estimateorfbayesfactors",
+      "path": "modules/nf-core/rpbp/estimateorfbayesfactors/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_estimateorfbayesfactors",
+        "description": "Score every candidate ORF for evidence of active translation. For\neach ORF, Rp-Bp fits two competing Bayesian models to its per-codon\nP-site count vector: a \"translated\" model that expects P-site density\nto concentrate at codon-start positions (the in-frame signal a\ntranslating ribosome produces), and an \"untranslated\" / noise model\nfor the same data. The Bayes factor (ratio of marginal likelihoods)\nquantifies how much the data favour the translated hypothesis.\n\nEmits a BED-style table with one row per ORF carrying genomic\ncoordinates plus the mean and variance of the log Bayes factor across\nMCMC samples. Downstream, `rpbp/selectfinalpredictionset` applies\nBayes-factor, length and overlap rules to this table to produce the\nfinal filtered prediction set.\n\nUses the Stan models bundled inside the rpbp Python package.\n",
+        "keywords": [
+          "rpbp",
+          "orf",
+          "bayes",
+          "translation",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "profiles": {
+                "type": "file",
+                "description": "Per-ORF P-site profile matrix from `rpbp/extractorfprofiles`.",
+                "pattern": "*.profiles.mtx.gz",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map identifying the reference (e.g. `[ id:'reference' ]`).\n"
+              }
+            },
+            {
+              "orfs_genomic_bed": {
+                "type": "file",
+                "description": "Per-ORF genomic BED from `rpbp/preparegenome`.",
+                "pattern": "*.orfs-genomic.annotated.bed.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bayes_factors": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.bed.gz": {
+                  "type": "file",
+                  "description": "Per-ORF translation Bayes factors (BED).",
+                  "pattern": "*.bed.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_extractmetageneprofiles",
+      "path": "modules/nf-core/rpbp/extractmetageneprofiles/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_extractmetageneprofiles",
+        "description": "Build per-read-length pileups of Ribo-seq read 5'-ends around annotated\nstart codons - the \"metagene profile\". For each read length, the profile\ncounts how many reads of that length have their 5' end at each position\nin a window around every annotated start codon, summed across all\ntranscripts. Looking at the profile across the window reveals whether\nreads of that length show the 3-nucleotide periodicity characteristic\nof translating ribosomes.\n\nThis per-length view matters because different ribosome footprint\nlengths place the ribosomal P-site (the codon being decoded) at\ndifferent offsets from the read's 5' end, so each length needs its\nown offset calibration. Output is consumed by\n`rpbp/estimatemetagenebayesfactors`, which scores each (length, offset)\ncombination for periodicity.\n",
+        "keywords": [
+          "rpbp",
+          "metagene",
+          "orf",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted Ribo-seq BAM.",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index.",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map identifying the reference (e.g. `[ id:'reference' ]`).\n"
+              }
+            },
+            {
+              "transcript_bed": {
+                "type": "file",
+                "description": "Annotated transcripts BED produced by `rpbp/preparegenome`.",
+                "pattern": "*.annotated.bed.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "metagene": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.csv.gz": {
+                  "type": "file",
+                  "description": "Per-read-length 5'-end metagene profile counts.",
+                  "pattern": "*.csv.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_extractorfprofiles",
+      "path": "modules/nf-core/rpbp/extractorfprofiles/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_extractorfprofiles",
+        "description": "Build a per-ORF P-site count vector for every candidate open reading\nframe (ORF) in the catalogue. For each ORF, walks the spliced exons\nin 3-nucleotide codon steps and counts the P-site positions\n(read 5'-end coordinate plus the length-specific offset selected\nupstream) that fall in each codon. Counts are summed across all read\nlengths that passed the periodicity filter from\n`rpbp/getperiodiclengthsoffsets`.\n\nThe resulting per-ORF vectors are the input to Bayesian translation\nscoring in `rpbp/estimateorfbayesfactors`: a translated ORF should\nshow P-site density concentrated at codon-start positions, while a\nnon-translated region should look flat or noisy. Emitted as a sparse\nmatrix (one row per ORF, columns indexed by codon position).\n",
+        "keywords": [
+          "rpbp",
+          "orf",
+          "psite",
+          "profile",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted Ribo-seq BAM.",
+                "pattern": "*.bam",
+                "ontologies": []
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index.",
+                "pattern": "*.bai",
+                "ontologies": []
+              }
+            },
+            {
+              "lengths_offsets": {
+                "type": "file",
+                "description": "Per-read-length offsets TSV from `rpbp/getperiodiclengthsoffsets`.",
+                "pattern": "*.periodic_lengths_offsets.tsv",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map identifying the reference (e.g. `[ id:'reference' ]`).\n"
+              }
+            },
+            {
+              "orfs_genomic_bed": {
+                "type": "file",
+                "description": "Per-ORF genomic BED from `rpbp/preparegenome`.",
+                "pattern": "*.orfs-genomic.annotated.bed.gz",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta3": {
+                "type": "map",
+                "description": "Groovy Map identifying the reference (e.g. `[ id:'reference' ]`).\n"
+              }
+            },
+            {
+              "exons_bed": {
+                "type": "file",
+                "description": "Per-ORF exons BED from `rpbp/preparegenome`.",
+                "pattern": "*.orfs-exons.annotated.bed.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "profiles": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.mtx.gz": {
+                  "type": "file",
+                  "description": "Per-ORF P-site profile sparse matrix.",
+                  "pattern": "*.mtx.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_getperiodiclengthsoffsets",
+      "path": "modules/nf-core/rpbp/getperiodiclengthsoffsets/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_getperiodiclengthsoffsets",
+        "description": "Filter the per-read-length P-site offset table down to the\n(length, offset) pairs that will actually drive ORF-level scoring.\nDrops read lengths whose metagene profile is too sparsely populated,\nor whose periodicity Bayes factor is too low / too uncertain, so that\ndownstream P-site counting only uses read lengths with a clean\n3-nucleotide signal.\n\nWraps Rp-Bp's `get_periodic_lengths_and_offsets` Python helper directly.\nThresholds are configured via named flags in `ext.args`:\n`--min-count` (default: 1000), `--min-bf-mean` (default: 5),\n`--max-bf-var` (default: no limit), `--min-bf-likelihood` (default: 0.5).\nDefaults mirror `rpbp.defaults.metagene_options`.\n",
+        "keywords": [
+          "rpbp",
+          "psite",
+          "offset",
+          "filter",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "periodic_offsets": {
+                "type": "file",
+                "description": "Selected periodic offsets CSV from `rpbp/selectperiodicoffsets`.",
+                "pattern": "*.periodic-offsets.csv.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "lengths_offsets": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Per-read-length offsets (length, offset) that pass the periodicity filter.",
+                  "pattern": "*.tsv",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions.",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions.",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "rpbp_preparegenome",
       "path": "modules/nf-core/rpbp/preparegenome/meta.yml",
       "type": "module",
@@ -258000,6 +259988,300 @@
                 ]
               }
             }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_selectfinalpredictionset",
+      "path": "modules/nf-core/rpbp/selectfinalpredictionset/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_selectfinalpredictionset",
+        "description": "Produce the final filtered set of predicted translated ORFs from the\nper-ORF Bayes factor table. Applies the standard Rp-Bp prediction\nrules: a minimum Bayes-factor cutoff (favouring translated over\nuntranslated), a minimum ORF length, and overlap resolution so that\namong overlapping candidates only the highest-scoring representative\nis kept.\n\nEmits three files describing the same prediction set: a BED of ORF\ngenomic coordinates plus score, a FASTA of ORF DNA sequences\n(extracted from the genome FASTA), and a FASTA of the corresponding\ntranslated protein sequences. This is the terminal step of the Rp-Bp\nper-sample chain.\n",
+        "keywords": [
+          "rpbp",
+          "orf",
+          "bayes",
+          "prediction",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "bayes_factors": {
+                "type": "file",
+                "description": "Per-ORF Bayes factor BED from `rpbp/estimateorfbayesfactors`.",
+                "pattern": "*.bayes-factors.bed.gz",
+                "ontologies": []
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map identifying the reference (e.g. `[ id:'reference' ]`).\n"
+              }
+            },
+            {
+              "genome_fasta": {
+                "type": "file",
+                "description": "Genome FASTA (matching the one used at `rpbp/preparegenome`).",
+                "pattern": "*.{fa,fasta,fna}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predicted": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.bed.gz": {
+                  "type": "file",
+                  "description": "Final filtered predicted-ORF BED.",
+                  "pattern": "*.bed.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "dna_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.dna.fa": {
+                  "type": "file",
+                  "description": "DNA FASTA of predicted ORFs.",
+                  "pattern": "*.dna.fa",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "protein_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.protein.fa": {
+                  "type": "file",
+                  "description": "Protein FASTA of predicted ORFs.",
+                  "pattern": "*.protein.fa",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
+      "name": "rpbp_selectperiodicoffsets",
+      "path": "modules/nf-core/rpbp/selectperiodicoffsets/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "rpbp_selectperiodicoffsets",
+        "description": "Pick the single best P-site offset for each read length from the\nper-(length, offset) Bayes factor table produced upstream. For each\nread length, the offset with the highest periodicity Bayes-factor mean\nis selected - this is the offset that, when added to a read's 5' end,\nis estimated to land closest to the ribosomal P-site (the codon being\ndecoded). Downstream, these offsets are used to convert raw read\n5'-end coordinates into P-site positions when counting reads against\ncandidate ORFs.\n\nEmits one row per read length (length, best offset, supporting Bayes\nfactor statistics). The next step\n(`rpbp/getperiodiclengthsoffsets`) filters this table to the high-quality\npairs that pass user-specified count / signal thresholds before\nP-site counting in `rpbp/extractorfprofiles`.\n",
+        "keywords": [
+          "rpbp",
+          "psite",
+          "offset",
+          "orf",
+          "riboseq"
+        ],
+        "tools": [
+          {
+            "rpbp": {
+              "description": "Rp-Bp - Bayesian inference of ribosome profiling data for identifying translated open reading frames",
+              "homepage": "https://github.com/dieterich-lab/rp-bp",
+              "documentation": "https://rp-bp.readthedocs.io",
+              "tool_dev_url": "https://github.com/dieterich-lab/rp-bp",
+              "doi": "10.1093/nar/gkw1350",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information, e.g. `[ id:'sample1' ]`.\n"
+              }
+            },
+            {
+              "bayes_factors": {
+                "type": "file",
+                "description": "Metagene periodicity Bayes factors CSV from `rpbp/estimatemetagenebayesfactors`.",
+                "pattern": "*.metagene-periodicity-bayes-factors.csv.gz",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "periodic": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map inherited from input meta."
+                }
+              },
+              {
+                "${prefix}.csv.gz": {
+                  "type": "file",
+                  "description": "Selected periodic offsets per read length.",
+                  "pattern": "*.csv.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_rpbp": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rpbp": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "python -c \"import rpbp; print(rpbp.__version__)\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -322539,6 +324821,223 @@
       ]
     },
     {
+      "name": "trtools_dumpstr",
+      "path": "modules/nf-core/trtools/dumpstr/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "trtools_dumpstr",
+        "description": "DumpSTR filters VCF files with TR genotypes, performing call-level and locus-level filtering, and outputs a filtered VCF file.",
+        "keywords": [
+          "tandem repeats",
+          "str",
+          "vcf",
+          "filtering",
+          "trtools"
+        ],
+        "tools": [
+          {
+            "trtools": {
+              "description": "Toolkit for genome-wide analysis of tandem repeats",
+              "homepage": "https://trtools.readthedocs.io/",
+              "documentation": "https://trtools.readthedocs.io/",
+              "tool_dev_url": "https://github.com/gymrek-lab/TRTools",
+              "doi": "10.1093/bioinformatics/btaa736",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:trtools"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "Tandem repeat VCF file",
+                "pattern": "*.{vcf,vcf.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "filter_regions": {
+                "type": "file",
+                "description": "bgzip-compressed BED file(s) containing filter regions used by dumpSTR.",
+                "pattern": "*.bed.gz",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3989"
+                  }
+                ]
+              }
+            },
+            {
+              "filter_regions_tbi": {
+                "type": "file",
+                "description": "Tabix index file(s) for the bgzip-compressed BED filter region file(s).",
+                "pattern": "*.bed.gz.tbi",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3700"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz": {
+                  "type": "file",
+                  "description": "Filtered tandem repeat VCF file",
+                  "pattern": "*.vcf.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "tbi": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.vcf.gz.tbi": {
+                  "type": "file",
+                  "description": "Tabix index for the filtered VCF file",
+                  "pattern": "*.vcf.gz.tbi",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3700"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "samplog": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.samplog.tab": {
+                  "type": "file",
+                  "description": "Sample-level dumpSTR filtering log file",
+                  "pattern": "*.samplog.tab"
+                }
+              }
+            ]
+          ],
+          "loclog": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.loclog.tab": {
+                  "type": "file",
+                  "description": "Locus-level dumpSTR filtering log file",
+                  "pattern": "*.loclog.tab"
+                }
+              }
+            ]
+          ],
+          "versions_trtools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dumpSTR --version | sed 's/dumpSTR //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "trtools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "dumpSTR --version | sed 's/dumpSTR //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@KondratievaOlesya"
+        ],
+        "maintainers": [
+          "@KondratievaOlesya"
+        ]
+      }
+    },
+    {
       "name": "trust4",
       "path": "modules/nf-core/trust4/meta.yml",
       "type": "module",
@@ -356690,6 +359189,78 @@
         ],
         "maintainers": [
           "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "orftable_fasta_gtf_buildorfcatalogue",
+      "path": "subworkflows/nf-core/orftable_fasta_gtf_buildorfcatalogue/meta.yml",
+      "type": "subworkflow",
+      "meta": {
+        "name": "orftable_fasta_gtf_buildorfcatalogue",
+        "description": "Build a multi-caller Ribo-seq ORF catalogue from per-sample, per-caller\nORF prediction tables. Chains:\n\n  1. `custom/orfnormalise` (one invocation per caller-tagged input;\n     dispatch by the per-record `caller` val) - reconciles each\n     caller's native output table into a unified BED12 + sidecar TSV.\n  2. `custom/orfmerge` (one cohort-level invocation) - class-aware\n     clustering of normalised calls across callers and samples.\n  3. `bedtools/getfasta` + `seqkit/translate` - lifts the merged BED12\n     into a catalogue AA FASTA.\n\nSupports five callers via the per-record `caller` val: ribocode, ribotish,\nribotricer, rpbp, price. Any subset can be supplied. When `ch_orf_tables` is empty\nthe subworkflow short-circuits the merge + FASTA chain and the output\nchannels are empty.\n\nOutput meta is hardcoded to `[ id: 'cohort' ]`; downstream consumers that\nwant a different cohort id should `.map` the emitted channels or\noverride `ext.prefix` on `CUSTOM_ORFMERGE` / `BEDTOOLS_GETFASTA` /\n`SEQKIT_TRANSLATE` to control output filenames.\n",
+        "keywords": [
+          "orf",
+          "ribo-seq",
+          "catalogue",
+          "merge",
+          "translation"
+        ],
+        "components": [
+          "custom/orfnormalise",
+          "custom/orfmerge",
+          "bedtools/getfasta",
+          "seqkit/translate"
+        ],
+        "input": [
+          {
+            "ch_orf_tables": {
+              "description": "Per-sample, per-caller ORF prediction tables. All callers share a\nsingle channel; the caller id is carried as a per-record `val`\n(one of: ribocode, ribotish, ribotricer, rpbp, price) and selects\nthe parser inside the normaliser.\nStructure: [ val(meta), path(orf_table), val(caller) ]\n"
+            }
+          },
+          {
+            "ch_fasta": {
+              "description": "Reference genome FASTA used by bedtools/getfasta to extract\ncatalogue nucleotide sequences.\nStructure: [ val(meta), path(fasta) ]\n"
+            }
+          },
+          {
+            "ch_gtf": {
+              "description": "Reference annotation GTF. Used by the ribocode and ribotish\nnormalisers to lift transcript coordinates to genomic blocks;\nignored by callers that already emit genomic coordinates\n(ribotricer, rpbp, price). Pass `[ [:], [] ]` if no GTF is\navailable (caller subset must then exclude ribocode and ribotish).\nStructure: [ val(meta), path(gtf) ]\n"
+            }
+          }
+        ],
+        "output": [
+          {
+            "catalogue_bed12": {
+              "description": "Merged ORF catalogue as BED12.\nStructure: [ val(meta), path(bed12) ]\n"
+            }
+          },
+          {
+            "catalogue_tsv": {
+              "description": "Per-ORF table with `called_by_<caller>` / `score_<caller>` and\n`n_samples` / `samples` provenance columns.\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          },
+          {
+            "orf_to_gene_tsv": {
+              "description": "One row per (orf_id, gene_id, transcript_id) mapping; an ORF can\nmap to multiple host transcripts/genes.\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          },
+          {
+            "catalogue_aa_fasta": {
+              "description": "Catalogue amino-acid FASTA produced by seqkit translate from the\nnucleotide extract of the merged BED12.\nStructure: [ val(meta), path(faa) ]\n"
+            }
+          },
+          {
+            "multiqc": {
+              "description": "MultiQC custom-content sidecar (per-class ORF counts).\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          }
+        ],
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
         ]
       }
     },
