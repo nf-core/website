@@ -5352,6 +5352,28 @@
               }
             ]
           ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1', single_end:false ]`\n"
+                }
+              },
+              {
+                "${prefix}/${prefix}_ampcombi.tsv": {
+                  "type": "file",
+                  "description": "A TSV file containing the summary of the AMP detection results for one sample.",
+                  "pattern": "/*_ampcombi.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "full_log": [
             [
               {
