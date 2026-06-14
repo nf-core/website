@@ -24,7 +24,7 @@ As always, if you have any problems or run into any bugs, reach out on the [#too
 
 ## Refactored download command
 
-The `nf-core download` command has received a major overhaul (see the [blog post](/blog/2025/refurbushing-the-pipeline-download) for more details about the motivation and new approach), bringing several powerful new features and improvements:
+The `nf-core pipelines download` command has received a major overhaul (see the [blog post](/blog/2025/refurbushing-the-pipeline-download) for more details about the motivation and new approach), bringing several powerful new features and improvements:
 
 #### Nextflow inspect for container discovery
 
@@ -43,7 +43,7 @@ With `nextflow inspect`, Nextflow itself tells us exactly which containers are u
 You can now download Docker images directly into tar archives, making it easier to transfer and deploy pipelines in air-gapped environments:
 
 ```bash /--compress tar/
-nf-core download <pipeline> --container-system docker --compress tar
+nf-core pipelines download <pipeline> --container-system docker --compress tar
 ```
 
 ## New devcontainer setup
@@ -73,7 +73,7 @@ If you want to bump the version of a series of modules which are based on the sa
 
 ```bash
 nf-core modules lint samtools
-nf-core bump-versions samtools
+nf-core modules bump-versions samtools
 ```
 
 Thank you [@nh13](https://github.com/nh13) for adding this feature!
