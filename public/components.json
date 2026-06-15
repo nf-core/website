@@ -1416,7 +1416,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -19319,6 +19319,466 @@
       ]
     },
     {
+      "name": "baysor_preview",
+      "path": "modules/nf-core/baysor/preview/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "baysor_preview",
+        "description": "Extract neighborhood composition vectors (NVCs) from a dataset.",
+        "keywords": [
+          "preview",
+          "preview_dataset",
+          "preview_html"
+        ],
+        "tools": [
+          {
+            "baysor": {
+              "description": "Baysor is a tool that segments cells using spatial gene expression maps. Optionally, segmentation masks can be given as additional input.",
+              "homepage": "https://kharchenkolab.github.io/Baysor/dev/",
+              "documentation": "https://kharchenkolab.github.io/Baysor/dev/",
+              "tool_dev_url": "https://github.com/kharchenkolab/Baysor",
+              "doi": "10.1038/s41587-021-01044-w",
+              "licence": [
+                "MIT license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "transcripts": {
+                "type": "file",
+                "description": "Tab-delimited file with transcript information. Must contain the following columns:\n- x: x-coordinate of the transcript\n- y: y-coordinate of the transcript\n- gene: gene name of the transcript\n",
+                "pattern": "transcripts.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "config": {
+                "type": "file",
+                "description": "YAML configuration file for Baysor. Must contain the following fields:\n- baysor_config: Baysor configuration parameters (see Baysor documentation for details)\n",
+                "pattern": "xenium.toml",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "html": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}_preview.html": {
+                  "type": "file",
+                  "description": "HTML file with the preview of the Baysor segmentation",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2330"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_baysor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "baysor_run",
+      "path": "modules/nf-core/baysor/run/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "baysor_run",
+        "description": "Bayesian segmentation of spatial transcriptomics data.",
+        "keywords": [
+          "segmentation",
+          "spatial transcriptomics",
+          "cell clustering",
+          "imaging"
+        ],
+        "tools": [
+          {
+            "baysor": {
+              "description": "Baysor is a tool that segments cells using spatial gene expression maps. Optionally, segmentation masks can be given as additional input.",
+              "homepage": "https://kharchenkolab.github.io/Baysor/dev/",
+              "documentation": "https://kharchenkolab.github.io/Baysor/dev/",
+              "tool_dev_url": "https://github.com/kharchenkolab/Baysor",
+              "doi": "10.1038/s41587-021-01044-w",
+              "licence": [
+                "MIT license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "transcripts": {
+                "type": "file",
+                "description": "CSV file",
+                "pattern": "*.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            },
+            {
+              "prior_segmentation": {
+                "type": "file",
+                "description": "CSV file with segmentation mask (optional)",
+                "pattern": "*_segmentation.csv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3752"
+                  }
+                ]
+              }
+            },
+            {
+              "config": {
+                "type": "file",
+                "description": "TOML file with config arguments",
+                "pattern": "*.toml",
+                "ontologies": []
+              }
+            },
+            {
+              "scale": {
+                "type": "float",
+                "description": "Scale factor for the segmentation"
+              }
+            }
+          ],
+          {
+            "prior_confidence": {
+              "type": "float",
+              "description": "Confidence of the prior segmentation (optional)"
+            }
+          },
+          {
+            "prior_column": {
+              "type": "string",
+              "description": "Column name in the prior segmentation file that contains the segmentation mask (optional)"
+            }
+          },
+          {
+            "polygon_format": {
+              "type": "string",
+              "description": "Format for output segmentation polygons (default: FeatureCollection)\n",
+              "enum": [
+                "GeometryCollectionLegacy",
+                "GeometryCollection",
+                "FeatureCollection"
+              ]
+            }
+          }
+        ],
+        "output": {
+          "segmentation": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}_segmentation.csv": {
+                  "type": "file",
+                  "description": "CSV file with segmentation mask",
+                  "pattern": "*_segmentation.csv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    }
+                  ]
+                }
+              },
+              {
+                "${prefix}_segmentation_polygons_2d.json": {
+                  "type": "file",
+                  "description": "JSON file with segmentation polygons",
+                  "pattern": "*_segmentation_polygons_2d.json",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3752"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3464"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_baysor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
+      "name": "baysor_segfree",
+      "path": "modules/nf-core/baysor/segfree/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "baysor_segfree",
+        "description": "Extract neighborhood composition vectors (NVCs) from a dataset.",
+        "keywords": [
+          "neighborhood",
+          "segmentation-free",
+          "ncvs-looms"
+        ],
+        "tools": [
+          {
+            "baysor": {
+              "description": "Baysor is a tool that segments cells using spatial gene expression maps. Optionally, segmentation masks can be given as additional input.",
+              "homepage": "https://kharchenkolab.github.io/Baysor/dev/",
+              "documentation": "https://kharchenkolab.github.io/Baysor/dev/",
+              "tool_dev_url": "https://github.com/kharchenkolab/Baysor",
+              "doi": "10.1038/s41587-021-01044-w",
+              "licence": [
+                "MIT license"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+              }
+            },
+            {
+              "transcripts": {
+                "type": "file",
+                "description": "Tab-delimited file with transcript information. Must contain the following columns:\n- x: x-coordinate of the transcript\n- y: y-coordinate of the transcript\n- gene: gene name of the transcript\n",
+                "pattern": "transcripts.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "config": {
+                "type": "file",
+                "description": "YAML configuration file for Baysor. Must contain the following fields:\n- baysor_config: Baysor configuration parameters (see Baysor documentation for details)\n",
+                "pattern": "xenium.toml",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "ncvs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}_ncvs.loom": {
+                  "type": "file",
+                  "description": "Loom file containing neighborhood composition vectors (NVCs)",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3602"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_baysor": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "baysor": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "baysor --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@khersameesh24"
+        ],
+        "maintainers": [
+          "@khersameesh24"
+        ]
+      }
+    },
+    {
       "name": "bbmap_align",
       "path": "modules/nf-core/bbmap/align/meta.yml",
       "type": "module",
@@ -19632,7 +20092,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -38560,7 +39020,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -38764,7 +39224,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -39354,7 +39814,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -39688,7 +40148,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -46290,7 +46750,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -52393,7 +52853,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -52528,7 +52988,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -70351,6 +70811,110 @@
       }
     },
     {
+      "name": "custom_bed12codonpositions",
+      "path": "modules/nf-core/custom/bed12codonpositions/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_bed12codonpositions",
+        "description": "Expand a BED12 into a BED6 of in-frame mRNA positions, projected back\nto genomic coordinates. Default behaviour emits one row per codon (the\n5' nucleotide); --step / --width / --frame control the stride, span\nand offset on the spliced mRNA. Useful for codon-level work on\nspliced features (e.g. ribo-seq P-site counts per codon, frame /\nperiodicity QC, novel-ORF tiling).\n",
+        "keywords": [
+          "bed12",
+          "bed6",
+          "codon",
+          "splicing",
+          "coordinates"
+        ],
+        "tools": [
+          {
+            "bed12codonpositions": {
+              "description": "Python helper that expands a BED12 into per-codon BED6\npositions along the spliced feature, with configurable frame,\nstep and span width via `ext.args`.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/bed12codonpositions/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample/feature-set information\ne.g. `[ id:'catalogue' ]`\n"
+              }
+            },
+            {
+              "bed12": {
+                "type": "file",
+                "description": "BED12 file with one record per multi-block feature. blockStarts\nare offsets from column 2 (start); blockSizes are in nt; blocks\nmust be in ascending genomic-coordinate order.\n",
+                "pattern": "*.{bed,bed12}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.bed": {
+                  "type": "file",
+                  "description": "BED6 file with one row per in-frame mRNA position projected\nback to genomic coordinates. Columns are chrom, start, end,\nname (from BED12 column 4), score (preserved from BED12\ncolumn 5), strand. Sorted in mRNA-traversal order, which\nmeans descending genomic order on '-' strand records.\n",
+                  "pattern": "*.bed",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "custom_catadditionalfasta",
       "path": "modules/nf-core/custom/catadditionalfasta/meta.yml",
       "type": "module",
@@ -71358,7 +71922,8 @@
                 "${prefix}.glimpse.map": {
                   "type": "file",
                   "description": "File containing the map in Glimpse format:\ntab-delimited file with header and columns:\npos, chr, cM\n",
-                  "pattern": "*.glimpse.map"
+                  "pattern": "*.glimpse.map",
+                  "ontologies": []
                 }
               }
             ]
@@ -71375,7 +71940,8 @@
                 "${prefix}.plink.map": {
                   "type": "file",
                   "description": "File containing the map in PLINK format:\nspace-delimited file without header and columns:\nchr, id, cM, pos\n",
-                  "pattern": "*.plink.map"
+                  "pattern": "*.plink.map",
+                  "ontologies": []
                 }
               }
             ]
@@ -71392,7 +71958,8 @@
                 "${prefix}.stitch.map": {
                   "type": "file",
                   "description": "File containing the map in STITCH format:\nspace-delimited file with header and columns:\npos, rate, cM\n",
-                  "pattern": "*.stitch.map"
+                  "pattern": "*.stitch.map",
+                  "ontologies": []
                 }
               }
             ]
@@ -71409,7 +71976,8 @@
                 "${prefix}.minimac.map": {
                   "type": "file",
                   "description": "File containing the map in Minimac format:\ntab-delimited file with header and columns:\nchr, pos, cM\n",
-                  "pattern": "*.minimac.map"
+                  "pattern": "*.minimac.map",
+                  "ontologies": []
                 }
               }
             ]
@@ -71427,6 +71995,28 @@
                 ]
               }
             }
+          ],
+          "session_info": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test' ]\n"
+                }
+              },
+              {
+                "${prefix}.R_sessionInfo.log": {
+                  "type": "file",
+                  "description": "dump of R SessionInfo",
+                  "pattern": "*.log",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_1678"
+                    }
+                  ]
+                }
+              }
+            ]
           ]
         },
         "topics": {
@@ -81866,7 +82456,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -95552,7 +96142,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -98742,7 +99332,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -99442,7 +100032,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -104949,7 +105539,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -111408,7 +111998,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -111545,7 +112135,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -111675,7 +112265,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -126917,6 +127507,132 @@
                   "type": "file",
                   "description": "Combined dense GRM sidecar files",
                   "pattern": "*.grm.{id,bin,N.bin}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_gcta": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "gcta": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gcta --version | sed -En 's/^[*] version v([0-9.]*).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The command used to retrieve the GCTA version"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lyh970817"
+        ],
+        "maintainers": [
+          "@lyh970817"
+        ]
+      }
+    },
+    {
+      "name": "gcta_adjustgrm",
+      "path": "modules/nf-core/gcta/adjustgrm/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gcta_adjustgrm",
+        "description": "Adjust a dense GRM for incomplete tagging using `gcta --grm-adj`",
+        "keywords": [
+          "gcta",
+          "genome-wide complex trait analysis",
+          "grm",
+          "genetic relationship matrix",
+          "genetics"
+        ],
+        "tools": [
+          {
+            "gcta": {
+              "description": "Genome-wide Complex Trait Analysis (GCTA) estimates genetic relationships, variance components, and association statistics from genome-wide data.",
+              "homepage": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "documentation": "https://yanglab.westlake.edu.cn/software/gcta/static/gcta_doc_latest.pdf",
+              "tool_dev_url": "https://yanglab.westlake.edu.cn/software/gcta/",
+              "licence": [
+                "GPL-3.0-only"
+              ],
+              "identifier": "biotools:gcta"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy map containing dense GRM metadata.\n`meta.id` is the required GRM basename consumed by `--grm` and must match\nthe staged dense GRM files.\ne.g. `[ id:'tiny_dense' ]` requires\n`tiny_dense.grm.id`, `tiny_dense.grm.bin`, and `tiny_dense.grm.N.bin`.\n"
+              }
+            },
+            {
+              "grm_files": {
+                "type": "file",
+                "description": "Dense GRM file bundle with basename `${meta.id}`",
+                "pattern": "*.grm.*",
+                "ontologies": []
+              }
+            },
+            {
+              "grm_adj": {
+                "type": "integer",
+                "description": "Required GRM adjustment value passed to `--grm-adj`.\n"
+              }
+            }
+          ]
+        ],
+        "output": {
+          "grm_files": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy map containing dense GRM metadata.\n`meta.id` remains the dense-GRM basename contract used for `--grm`.\n"
+                }
+              },
+              {
+                "*_adj.grm.*": {
+                  "type": "file",
+                  "description": "Adjusted GRM file bundle",
+                  "pattern": "*_adj.grm.*",
                   "ontologies": []
                 }
               }
@@ -143146,7 +143862,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tfactivity",
@@ -164780,7 +165496,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -164921,7 +165637,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -165066,7 +165782,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -168072,7 +168788,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -168211,7 +168927,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -169557,7 +170273,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -169690,7 +170406,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -169970,7 +170686,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -170447,7 +171163,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -170752,7 +171468,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -170881,7 +171597,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -179935,7 +180651,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -184483,7 +185199,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -184638,7 +185354,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -188284,7 +189000,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -189493,7 +190209,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -189697,7 +190413,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -192818,7 +193534,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -192966,7 +193682,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -199269,7 +199985,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -199377,7 +200093,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -199535,7 +200251,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -201803,7 +202519,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -206464,7 +207180,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -208336,6 +209052,164 @@
       }
     },
     {
+      "name": "ngsbits_rohhunter",
+      "path": "modules/nf-core/ngsbits/rohhunter/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "ngsbits_rohhunter",
+        "description": "RohHunter is a tool for run of homozygosity (ROH) detection based on a variant list in VCF format.",
+        "keywords": [
+          "roh",
+          "homozygosity",
+          "allele frequency"
+        ],
+        "tools": [
+          {
+            "ngsbits": {
+              "description": "Short-read sequencing tools",
+              "homepage": "https://github.com/imgag/ngs-bits",
+              "documentation": "https://github.com/imgag/ngs-bits",
+              "tool_dev_url": "https://github.com/imgag/ngs-bits",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF file containing variants for ROH detection",
+                "pattern": "*.vcf{,.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  }
+                ]
+              }
+            },
+            {
+              "exclude_bed": {
+                "type": "file",
+                "description": "BED file with regions to exclude from ROH detection",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing annotation information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation_beds": {
+                "type": "file",
+                "description": "BED file with annotation regions for ROH detection",
+                "pattern": "*.bed",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3003"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "versions_ngsbits": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngsbits": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "RohHunter --version | sed 's/RohHunter //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing the detected ROHs",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "ngsbits": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "RohHunter --version | sed 's/RohHunter //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@nvnieuwk"
+        ],
+        "maintainers": [
+          "@nvnieuwk"
+        ]
+      }
+    },
+    {
       "name": "ngsbits_samplegender",
       "path": "modules/nf-core/ngsbits/samplegender/meta.yml",
       "type": "module",
@@ -209468,7 +210342,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -209668,7 +210542,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -209867,7 +210741,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -209996,7 +210870,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -240310,7 +241184,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -240457,7 +241331,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -242485,7 +243359,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralmetagenome",
@@ -268145,19 +269019,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sambamba": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sambamba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sambamba --version 2>&1 | grep -oPm1 'sambamba \\\\K[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sambamba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sambamba --version 2>&1 | grep -oPm1 'sambamba \\\\K[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -268249,19 +269155,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_sambamba": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sambamba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sambamba --version 2>&1 | grep -oPm1 'sambamba \\\\K[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "sambamba": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "sambamba --version 2>&1 | grep -oPm1 'sambamba \\\\K[0-9.]+'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -272445,7 +273383,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -273764,7 +274702,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -275977,7 +276915,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -276402,7 +277340,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "viralrecon",
@@ -286979,7 +287917,13 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "out_ext": {
+              "type": "string",
+              "description": "Output file extension (for example `txt.zst`)"
+            }
+          }
         ],
         "output": {
           "text": [
@@ -287120,6 +288064,12 @@
                   "edam": "http://edamontology.org/format_3475"
                 }
               ]
+            }
+          },
+          {
+            "out_ext": {
+              "type": "string",
+              "description": "Output file extension. Leave empty to auto-detect from input (for example `fa` or `fq`)\n"
             }
           }
         ],
@@ -287537,7 +288487,13 @@
                 ]
               }
             }
-          ]
+          ],
+          {
+            "out_ext": {
+              "type": "string",
+              "description": "Output file extension. Leave empty to auto-detect from input (for example `.fasta`, `.fasta.gz`)\n"
+            }
+          }
         ],
         "output": {
           "fastx": [
@@ -288794,7 +289750,13 @@
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "out_ext": {
+              "type": "string",
+              "description": "Output file extension (for example `fa.zst`, `fq.gz`)"
+            }
+          }
         ],
         "output": {
           "fastx": [
@@ -314946,7 +315908,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -315482,7 +316444,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -315624,7 +316586,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -317853,7 +318815,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -317980,7 +318942,7 @@
       "pipelines": [
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -330416,7 +331378,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tfactivity",
@@ -338150,19 +339112,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -338258,19 +339252,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -338361,19 +339387,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vg": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vg": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "vg 2>&1 | sed -n 's/.*version v\\([0-9.]*\\).*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -343698,22 +344756,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_2330"
-                  },
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wipertools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqgather --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqgather --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -343814,19 +344901,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wipertools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqscatter --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqscatter --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -343946,19 +345065,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wipertools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqwiper --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools fastqwiper --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -344049,22 +345200,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_2330"
-                  },
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_wipertools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools reportgather --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "wipertools": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "wipertools reportgather --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -361468,7 +362648,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -361921,7 +363101,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
@@ -362404,7 +363584,7 @@
         },
         {
           "name": "taxprofiler",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "tbanalyzer",
