@@ -505,7 +505,7 @@ A rule of thumb for where each setting belongs:
 - **`params.yaml`** for any setting the pipeline exposes as a parameter.
 - **Profiles** for reusable bundles you switch on by name (container engine, test data, institutional cluster).
 - **`custom.config`** for one-off or team-specific overrides that don't warrant a profile.
-:::
+  :::
 
 ## Next steps
 
