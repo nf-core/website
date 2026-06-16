@@ -18,5 +18,3 @@ export const markdownLinksPlugin = defineHastPlugin({
         },
     },
 });
-
-export default markdownLinksPlugin;

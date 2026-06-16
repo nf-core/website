@@ -12,8 +12,8 @@ export async function renderPipelineMarkdown(
     const { features, mdastPlugins, hastPlugins } = createSatteriPluginSets();
     // The processor is created per call: the GitHub URL rewriting is parameterised by
     // repo/ref, and the shared hast plugins carry per-document state. Creation is
-    // cheap — satteri loads once and syntaxHighlight is off (hast-pretty-code.ts
-    // does the highlighting, with Shiki's shared singleton).
+    // cheap — satteri loads once and syntaxHighlight is off (hast-expressive-code.ts
+    // renders the code blocks, with a shared Expressive Code engine).
     const processor = await createSatteriMarkdownProcessor({
         syntaxHighlight: false,
         features,

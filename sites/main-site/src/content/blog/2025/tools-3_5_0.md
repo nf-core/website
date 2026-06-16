@@ -22,17 +22,17 @@ This means we don't write the tool versions to a `versions.yml` file anymore, bu
 
 The main change happens in the `main.nf` files:
 
-```groovy title="main.nf"
+```groovy title="main.nf" del={4,7-10} ins={5}
 output:
 tuple val(meta), path("*.html"), emit: html
 tuple val(meta), path("*.zip") , emit: zip
-path  "versions.yml"           , emit: versions // [!code --]
-tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions // [!code ++]
+path  "versions.yml"           , emit: versions
+tuple val("${task.process}"), val('fastqc'), eval('fastqc --version | sed "/FastQC v/!d; s/.*v//"'), emit: versions_fastqc, topic: versions
 ︙
-cat <<-END_VERSIONS > versions.yml // [!code --]
-"${task.process}": // [!code --]
-    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' ) // [!code --]
-END_VERSIONS // [!code --]
+cat <<-END_VERSIONS > versions.yml
+"${task.process}":
+    fastqc: \$( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
+END_VERSIONS
 ```
 
 We updated the modules template, so if you run `nf-core modules create{:bash}` you will get the new syntax.

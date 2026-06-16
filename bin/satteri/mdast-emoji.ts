@@ -12,5 +12,3 @@ export const emojiPlugin = defineMdastPlugin({
         }
     },
 });
-
-export default emojiPlugin;

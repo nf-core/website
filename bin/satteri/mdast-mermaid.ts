@@ -26,5 +26,3 @@ export const mermaidPlugin = defineMdastPlugin({
         };
     },
 });
-
-export default mermaidPlugin;

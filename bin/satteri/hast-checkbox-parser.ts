@@ -2,10 +2,10 @@
 // Turns GFM task-list checkboxes into Bootstrap form-checks and collects them for
 // the page (the old plugin wrote them to file.data.astro.frontmatter.checkboxes;
 // here the caller reads them via getCheckboxes() after rendering).
-// Only active when the document frontmatter opts in via markdownPlugin: checklist.
+// Only included in the pipeline of documents that opt in via markdownPlugin:
+// checklist — see markdownConfig.ts.
 import { h } from "hastscript";
 import { defineHastPlugin } from "satteri";
-import type { MarkdownFlags } from "./frontmatter-flags.ts";
 
 export interface CheckboxEntry {
     id: string;
@@ -16,7 +16,7 @@ export interface CheckboxEntry {
 const isElement = (node: any, tagName?: string) =>
     node?.type === "element" && (tagName === undefined || node.tagName === tagName);
 
-export function createCheckboxParser(flags: MarkdownFlags) {
+export function createCheckboxParser() {
     let checkboxes: CheckboxEntry[] = [];
 
     const plugin = () => {
@@ -44,8 +44,6 @@ export function createCheckboxParser(flags: MarkdownFlags) {
             element: {
                 filter: ["h1", "h2", "h3", "h4", "h5", "h6", "li", "p"],
                 visit(node: any) {
-                    if (!flags.checklist) return;
-
                     if (/^h[1-6]$/.test(node.tagName)) {
                         lastHeadingId = node.properties?.id;
                         return;

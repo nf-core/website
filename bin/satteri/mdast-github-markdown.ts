@@ -145,13 +145,14 @@ function findHeadings(lines: string[]): HeadingLine[] {
  */
 export function trimGitHubReadme(source: string): string {
     let lines = source.split("\n");
+    let headings = findHeadings(lines);
 
-    const intro = findHeadings(lines).find((h) => h.depth === 2 && h.text === "Introduction");
+    const intro = headings.find((h) => h.depth === 2 && h.text === "Introduction");
     if (intro && intro.line > 0) {
         lines = lines.slice(intro.line);
+        headings = headings.filter((h) => h.line >= intro.line).map((h) => ({ ...h, line: h.line - intro.line }));
     }
 
-    const headings = findHeadings(lines);
     const warning = headings.find((h) => h.depth === 2 && h.text.includes(":warning:"));
     if (warning) {
         const next = headings.find((h) => h.line > warning.line);

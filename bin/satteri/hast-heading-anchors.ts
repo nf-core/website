@@ -17,10 +17,11 @@ export function headingAnchorsPlugin() {
                     id = slugger.slug(ctx.textContent(node));
                     ctx.setProperty(node, "id", id);
                 }
-                ctx.appendChild(node, h("a", { href: `#${id}` }, [h("i", { class: "ms-1 fas fa-link fa-xs invisible" })]));
+                ctx.appendChild(
+                    node,
+                    h("a", { href: `#${id}` }, [h("i", { class: "ms-1 fas fa-link fa-xs invisible" })]),
+                );
             },
         },
     });
 }
-
-export default headingAnchorsPlugin;

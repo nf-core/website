@@ -19,5 +19,3 @@ export const mathKatexPlugin = defineMdastPlugin({
         return { type: "html", value: render(node.value, false) };
     },
 });
-
-export default mathKatexPlugin;
