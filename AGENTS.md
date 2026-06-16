@@ -32,7 +32,7 @@ Astro syncs content and optimizes deps.
 The CI lint gate is **prettier driven by prek** (the `@j178/prek` binary), only over
 `*.astro,*.svelte,*.mdx,*.md,*.yml,*.yaml`. Run it with
 `./node_modules/.bin/prek run --all-files`.
-Note: the per-workspace `npm run lint` (`prettier --check .`) scans *all* files
+Note: the per-workspace `npm run lint` (`prettier --check .`) scans _all_ files
 including vendored FontAwesome CSS and reports long-standing warnings that are NOT
 part of the CI gate — prefer `prek` to judge lint status.
 
