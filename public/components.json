@@ -253326,7 +253326,8 @@
               "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
               "licence": [
                 "GPL-3.0"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -253342,7 +253343,8 @@
               "bam": {
                 "type": "file",
                 "description": "BAM/CRAM file",
-                "pattern": "*.{bam,cram}"
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
               }
             }
           ],
@@ -253357,7 +253359,8 @@
               "bai": {
                 "type": "file",
                 "description": "BAM/CRAM index file",
-                "pattern": "*.{bai,crai}"
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
               }
             }
           ],
@@ -253372,7 +253375,8 @@
               "fasta": {
                 "type": "file",
                 "description": "Input genome fasta file",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
               }
             }
           ],
@@ -253387,7 +253391,8 @@
               "fai": {
                 "type": "file",
                 "description": "FASTA index file",
-                "pattern": "*.fai"
+                "pattern": "*.fai",
+                "ontologies": []
               }
             }
           ],
@@ -253433,24 +253438,57 @@
                 "*.rastair_call.txt": {
                   "type": "file",
                   "description": "Text file from Rastair call containing C->T conversion metrics",
-                  "pattern": "*.rastair_call.txt"
+                  "pattern": "*.rastair_call.txt",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rastair": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -253493,7 +253531,8 @@
               "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
               "licence": [
                 "GPL-3.0"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -253509,7 +253548,8 @@
               "bam": {
                 "type": "file",
                 "description": "BAM/CRAM file",
-                "pattern": "*.{bam,cram}"
+                "pattern": "*.{bam,cram}",
+                "ontologies": []
               }
             }
           ],
@@ -253524,7 +253564,8 @@
               "bai": {
                 "type": "file",
                 "description": "BAM/CRAM index file",
-                "pattern": "*.{bai,crai}"
+                "pattern": "*.{bai,crai}",
+                "ontologies": []
               }
             }
           ],
@@ -253539,7 +253580,8 @@
               "fasta": {
                 "type": "file",
                 "description": "Input genome fasta file",
-                "pattern": "*.{fasta,fa}"
+                "pattern": "*.{fasta,fa}",
+                "ontologies": []
               }
             }
           ],
@@ -253554,7 +253596,8 @@
               "fai": {
                 "type": "file",
                 "description": "FASTA index file",
-                "pattern": "*.fai"
+                "pattern": "*.fai",
+                "ontologies": []
               }
             }
           ]
@@ -253572,24 +253615,57 @@
                 "*.rastair_mbias.txt": {
                   "type": "file",
                   "description": "Text file from Rastair mbias containing per-read-position C->T conversion metrics.",
-                  "pattern": "*.rastair_mbias.txt"
+                  "pattern": "*.rastair_mbias.txt",
+                  "ontologies": []
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rastair": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -253849,19 +253925,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rastair": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -253904,7 +254012,8 @@
               "documentation": "https://bitbucket.org/bsblabludwig/rastair/src/master/README.md",
               "licence": [
                 "GPL-3.0"
-              ]
+              ],
+              "identifier": ""
             }
           }
         ],
@@ -253920,7 +254029,8 @@
               "rastair_call_txt": {
                 "type": "file",
                 "description": "Text file from `rastair call`",
-                "pattern": "*.rastair_call.txt"
+                "pattern": "*.rastair_call.txt",
+                "ontologies": []
               }
             }
           ]
@@ -253938,24 +254048,61 @@
                 "*methylkit.txt.gz": {
                   "type": "file",
                   "description": "Gzipped text file in MethylKit format.",
-                  "pattern": "*methylkit.txt.gz"
+                  "pattern": "*methylkit.txt.gz",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3989"
+                    }
+                  ]
                 }
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_rastair": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "rastair": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "rastair --version | sed 's/rastair //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -342726,19 +342873,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -342856,19 +343035,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "Version of vt (WARN - Version information not provided by tool on CLI)"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "Version of vt (WARN - Version information not provided by tool on CLI)"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -343013,19 +343224,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_vt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "vt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "2015.11.10": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -351853,13 +352096,6 @@
               "type": "file",
               "description": "Rastair call output files in MethylKit format (similar to bed format, genome-wide)\nStructure: [ val(meta), path(methylkit) ]\n",
               "pattern": "*.gz"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions\nStructure: [ path(versions.yml) ]\n",
-              "pattern": "versions.yml"
             }
           }
         ],
