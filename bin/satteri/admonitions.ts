@@ -74,7 +74,8 @@ export const directiveTextMergePlugin = defineMdastPlugin({
 });
 
 // Tag admonition directives so they survive the mdast → hast conversion (satteri
-// drops directives without data.hName) and carry their options over to the hast pass.
+// drops directives without data.hName) and carry their options over to the hast
+// pass, which owns the final markup and classes.
 function tagDirective(node: any) {
     const tagName = node.type === "textDirective" ? "span" : "div";
     const boxInfo = acceptableAdmonitionTypes[node.name];
@@ -90,7 +91,6 @@ function tagDirective(node: any) {
             ...node.data,
             hName: tagName,
             hProperties: {
-                className: ["admonition", `admonition-${boxInfo.id}`, "mb-4"],
                 dataAdmonition: node.name,
                 ...(node.attributes?.title ? { dataAdmonitionTitle: node.attributes.title } : {}),
                 ...(node.attributes?.class ? { dataAdmonitionIcon: node.attributes.class } : {}),
@@ -124,7 +124,9 @@ export function admonitionsHastPlugin() {
 
                 const titleText = node.properties.dataAdmonitionTitle || boxInfo.title;
                 const iconClass = node.properties.dataAdmonitionIcon;
-                const collapse = node.properties.dataAdmonitionCollapse !== undefined && node.properties.dataAdmonitionCollapse !== null;
+                const collapse =
+                    node.properties.dataAdmonitionCollapse !== undefined &&
+                    node.properties.dataAdmonitionCollapse !== null;
                 const collapseId = `admonition-${collapseCounter++}`;
 
                 const icon = iconClass

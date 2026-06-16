@@ -10,12 +10,8 @@ export const tablesPlugin = defineHastPlugin({
     element: {
         filter: ["table"],
         visit(node: any, ctx) {
-            const existing = node.properties?.className;
-            const classes = Array.isArray(existing) ? existing : typeof existing === "string" ? existing.split(" ") : [];
-            ctx.setProperty(node, "className", [...classes, ...TABLE_CLASSES.filter((c) => !classes.includes(c))]);
+            ctx.setProperty(node, "className", TABLE_CLASSES);
             ctx.wrapNode(node, h("div", { class: "table-responsive" }));
         },
     },
 });
-
-export default tablesPlugin;

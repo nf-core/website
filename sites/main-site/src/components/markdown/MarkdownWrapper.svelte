@@ -2,8 +2,7 @@
     import { currentHeading, Checkboxes } from "@components/store";
     import * as icons from "file-icons-js";
     import "file-icons-js/css/style.css";
-    import { onMount, mount } from "svelte";
-    import CopyButton from "@components/CopyButton.svelte";
+    import { onMount } from "svelte";
 
     interface Props {
         headings?: { text: string; slug: string; depth: number; fa_icon?: string }[];
@@ -64,49 +63,25 @@
             }
         });
 
-        // Add "Copy code" button in code blocks
-        const copyButtonLabel = "<i class='fa-regular fa-clipboard'></i>";
-        const copiedButtonLabel = `<span class='font-sans-serif'>Copied </span><i class='fa-regular fa-clipboard-check'></i>`;
+        // Add file icon to Expressive Code editor frame titles
         document
-            .querySelectorAll(
-                "figure[data-rehype-pretty-code-figure] pre:not([data-language='console']):not([data-language='tree']):not([data-language='plaintext'])",
-            )
+            .querySelectorAll(".expressive-code figure.has-title:not(.is-terminal) figcaption .title")
             .forEach((block) => {
-                block.classList.add("position-relative");
-                const copyText = block.querySelector("code")?.innerText;
-                if (copyText) {
-                    // check if block has only one child, i.e. is a single line code block, so we need less top and bottom margin for button
-                    const SingleLine = block.children[0].childElementCount === 1 ? "single-line" : "";
-                    mount(CopyButton, {
-                        target: block, // Specify the target element for the Svelte component
-                        props: {
-                            text: copyText,
-                            label: copyButtonLabel,
-                            copiedLabel: copiedButtonLabel,
-                            classes:
-                                SingleLine +
-                                " copy-code-button btn btn-sm btn-outline-secondary position-absolute top-0 end-0 opacity-50",
-                            copiedClasses:
-                                SingleLine +
-                                " copy-code-button btn btn-sm btn-outline-success position-absolute top-0 end-0",
-                        },
-                    });
+                // Skip blocks that already got a build-time icon (e.g. the
+                // Nextflow logo injected by the file-icons EC plugin).
+                if (block.querySelector("svg")) return;
+                const title = block.textContent;
+                const fileIcon = icons.getClass(title);
+                let icon: HTMLElement;
+                if (fileIcon) {
+                    icon = document.createElement("span");
+                    icon.classList.add("ms-1", "me-2", fileIcon);
+                } else {
+                    icon = document.createElement("i");
+                    icon.classList.add("fa-regular", "fa-file-code", "ms-1", "me-2");
                 }
+                block.prepend(icon);
             });
-        // Add file icon to code block titles
-        document.querySelectorAll("[data-rehype-pretty-code-title]").forEach((block) => {
-            const title = block.textContent;
-            const fileIcon = icons.getClass(title);
-            let icon: HTMLElement;
-            if (fileIcon) {
-                icon = document.createElement("span");
-                icon.classList.add("ms-1", "me-2", fileIcon);
-            } else {
-                icon = document.createElement("i");
-                icon.classList.add("fa-regular", "fa-file-code", "ms-1", "me-2");
-            }
-            block.prepend(icon);
-        });
         // change stored Checkboxes to checked
         $Checkboxes.forEach((checkbox) => {
             const element = document.getElementById(checkbox.id);

@@ -44,7 +44,7 @@ To migrate a module to use topic channels for version outputs:
 
 1. Add outputs for each tool in the module:
 
-   ```groovy
+   ```groovy title="main.nf"
    tuple val("${task.process}"), val('<tool1>'), eval('tool1 --version'), emit: versions_tool1, topic: versions
    ```
 
@@ -53,12 +53,12 @@ To migrate a module to use topic channels for version outputs:
 
 :::note{title="Hard-coded version"}
 
-If your tool has no '--version' available or if you need to override it, replace `eval('tool1 --version')` in the example above with `val("1.2.3")`.
-`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'`).
+If your tool has no `--version` available or if you need to override it, replace `eval('tool1 --version'){:nxtflow}` in the example above with `val("1.2.3")`.
+`topic` does not allow to use version value defined by an intermediate variable (eg: `def tool_version = '1.2.3'{:nxtflow}`).
 
 :::
 
-1. Run `nf-core modules lint <module-name> --fix` to migrate the `meta.yml` file with the new topic outputs.
+1. Run `nf-core modules lint <module-name> --fix{:bash}` to migrate the `meta.yml` file with the new topic outputs.
 
 1. Add a `type` and `description` for each field in the versions output:
 
@@ -95,7 +95,7 @@ If your tool has no '--version' available or if you need to override it, replace
 
 1. Update the `main.nf.test` file to check for the new version outputs.
    - If the test runs on all process output (`snapshot(process.out).match()`), do nothing.
-   - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }`.
+   - If the test checks for specific outputs, update it to check for the new version outputs. `process.out.versions` should be changed to `process.out.findAll { key, val -> key.startsWith('versions') }{:nxtflow}`.
 
 1. Run tests to regenerate the snapshots:
 
@@ -143,27 +143,27 @@ To migrate a pipelines to use topic channels for version outputs:
 
    The main change in the template include:
 
-   ```groovy title="$PIPELINE_NAME.nf"
-     def topic_versions = channel.topic("versions")// [!code ++]
-         .distinct()// [!code ++]
-         .branch { entry ->// [!code ++]
-             versions_file: entry instanceof Path// [!code ++]
-             versions_tuple: true// [!code ++]
-         }// [!code ++]
-   // [!code ++]
-     def topic_versions_string = topic_versions.versions_tuple// [!code ++]
-         .map { process, tool, version ->// [!code ++]
-             [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]// [!code ++]
-         }// [!code ++]
-         .groupTuple(by:0)// [!code ++]
-         .map { process, tool_versions ->// [!code ++]
-             tool_versions.unique().sort()// [!code ++]
-             "${process}:\n${tool_versions.join('\n')}"// [!code ++]
-         }// [!code ++]
-   // [!code ++]
-     ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))// [!code ++]
-         .mix(topic_versions_string)// [!code ++]
-     ch_collated_versions = softwareVersionsToYAML(ch_versions)// [!code --]
+   ```groovy title="$PIPELINE_NAME.nf" del={20} ins={1-19}
+     def topic_versions = channel.topic("versions")
+         .distinct()
+         .branch { entry ->
+             versions_file: entry instanceof Path
+             versions_tuple: true
+         }
+
+     def topic_versions_string = topic_versions.versions_tuple
+         .map { process, tool, version ->
+             [ process[process.lastIndexOf(':')+1..-1], "  ${tool}: ${version}" ]
+         }
+         .groupTuple(by:0)
+         .map { process, tool_versions ->
+             tool_versions.unique().sort()
+             "${process}:\n${tool_versions.join('\n')}"
+         }
+
+     ch_collated_versions = softwareVersionsToYAML(ch_versions.mix(topic_versions.versions_file))
+         .mix(topic_versions_string)
+     ch_collated_versions = softwareVersionsToYAML(ch_versions)
    ```
 
 1. Run `nf-core modules update` to pull the latest changes.
@@ -188,7 +188,7 @@ To migrate a pipelines to use topic channels for version outputs:
 
    **Fix**: Remove the line referencing `SAMTOOLS_SORT.out.versions`:
 
-   ```groovy title="main.nf"
+   ```groovy title="main.nf" del={2}
    SAMTOOLS_SORT(input)
-   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions) // [!code --]
+   ch_versions = ch_versions.mix(SAMTOOLS_SORT.out.versions)
    ```

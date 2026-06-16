@@ -148,7 +148,7 @@ Don't use it in markdown files in the website repo.
 ```
 
 This renders in the same way as regular admonitions on the nf-core website,
-but has the bonus of also rendering nicely when viewing the rendered markdown on [github.com](https://github.com):
+but has the bonus of also rendering nicely when viewing the rendered markdown on github.com:
 
 ## Dark mode images
 
@@ -189,11 +189,11 @@ On the nf-core website, relative `srcset` and `src` paths in pipeline documentat
 
 ## Code
 
-We use [rehype-pretty-code](https://rehype-pretty.pages.dev/) to generate syntax highlighting on the website.
-This allows us to add inline code highlighting, line numbers, highlighted lines, file names to code blocks, and more.
+We use [Expressive Code](https://expressive-code.com/) to render code blocks on the website.
+This allows us to add line numbers, highlighted/inserted/deleted lines, file names and editor or terminal frames to code blocks, and more.
 These directives can be mixed and matched.
 
-See the [rehype-pretty-code documentation](https://rehype-pretty.pages.dev/) for more information.
+See the [Expressive Code documentation](https://expressive-code.com/) for more information.
 
 ### Inline code
 
@@ -216,8 +216,7 @@ Run `echo "Hello, world!"{:bash}`
 ### Code blocks
 
 Code blocks are rendered using the "```" character.
-If the specified language is not `plain-text`or`console`.
-A copy button will be added to the code block.
+A copy button is added to every code block automatically.
 
 #### Line numbers
 
@@ -290,7 +289,7 @@ The icon next to the title is based on the file extension.
 #### Putting it all together
 
 ````md
-```groovy showLineNumbers {1, 5-7} title="main.nf" caption="This one is really special"
+```groovy showLineNumbers startLineNumber=1989 {1,5-7} title="main.nf"
 // My awesome workflow
 
 process {
@@ -302,7 +301,7 @@ process {
 ```
 ````
 
-```groovy showLineNumbers{1989} {1, 5-7} title="main.nf" caption="This one is really special"
+```groovy showLineNumbers startLineNumber=1989 {1,5-7} title="main.nf"
 // My awesome workflow
 
 process {

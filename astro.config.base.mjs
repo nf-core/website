@@ -6,7 +6,9 @@ import svelte from "@astrojs/svelte";
 import yaml from "@rollup/plugin-yaml";
 import { envField, fontProviders, svgoOptimizer } from "astro/config";
 import markdownIntegration from "@mashehu/astropub-md";
+import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
+import { createEcConfig } from "./bin/satteri/hast-expressive-code.ts";
 import { satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
 /**
@@ -87,6 +89,9 @@ export default {
                 forward: ["dataLayer.push"],
             },
         }),
+        // Renders all markdown code blocks by pushing its satteri plugin into the
+        // shared processor below; must come before mdx().
+        expressiveCode(createEcConfig()),
         mdx(),
         markdownIntegration(),
     ],
