@@ -21805,7 +21805,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnavar",
@@ -22150,7 +22150,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -22959,7 +22959,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -23510,7 +23510,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -23939,7 +23939,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -25013,7 +25013,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -25877,7 +25877,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -26058,7 +26058,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -26415,7 +26415,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -27006,7 +27006,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -29099,7 +29099,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnaseq",
@@ -30995,7 +30995,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "tfactivity",
@@ -41691,7 +41691,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -42073,7 +42073,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -42731,7 +42731,13 @@
         "maintainers": [
           "@peterpru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "3.1.0"
+        }
+      ]
     },
     {
       "name": "bwafastalign_mem",
@@ -42995,7 +43001,13 @@
         "maintainers": [
           "@peterpru"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "raredisease",
+          "version": "3.1.0"
+        }
+      ]
     },
     {
       "name": "bwamem2_index",
@@ -43163,7 +43175,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -43519,7 +43531,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -43667,7 +43679,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -43938,7 +43950,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -44987,7 +44999,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -46478,7 +46490,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "reportho",
@@ -46706,7 +46718,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "riboseq",
@@ -53249,7 +53261,7 @@
                 "*.tsv": {
                   "type": "file",
                   "description": "File containing classification results\n",
-                  "pattern": "${prefix}.tsv",
+                  "pattern": "*.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -53455,10 +53467,10 @@
                 }
               },
               {
-                "${meta.id}.tsv": {
+                "*.tsv": {
                   "type": "file",
                   "description": "File containing taxonomic profiling results\n",
-                  "pattern": "${prefix}.tsv"
+                  "pattern": "*.tsv"
                 }
               }
             ]
@@ -56238,7 +56250,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -58474,7 +58486,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -61139,7 +61151,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -61267,7 +61279,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -80968,7 +80980,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -93404,13 +93416,7 @@
         "maintainers": [
           "@ramprasadn"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "raredisease",
-          "version": "3.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "ensemblvep_vep",
@@ -93812,7 +93818,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -94427,7 +94433,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -94580,7 +94586,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -95374,7 +95380,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -99304,7 +99310,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "riboseq",
@@ -99968,7 +99974,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "readsimulator",
@@ -112486,7 +112492,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -112615,7 +112621,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -112835,7 +112841,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -115374,7 +115380,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -116142,7 +116148,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -117470,7 +117476,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -117851,7 +117857,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -118042,7 +118048,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -118775,7 +118781,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -119930,7 +119936,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -120812,7 +120818,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnavar",
@@ -121587,7 +121593,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -121906,7 +121912,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -122366,7 +122372,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -122563,7 +122569,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -122974,7 +122980,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -123463,7 +123469,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -123591,7 +123597,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -123762,7 +123768,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "tbanalyzer",
@@ -124015,7 +124021,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -124512,7 +124518,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -125508,7 +125514,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -127407,7 +127413,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -131666,7 +131672,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -131790,7 +131796,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -131933,7 +131939,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -132072,7 +132078,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -133401,7 +133407,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -137268,7 +137274,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantcatalogue",
@@ -150404,7 +150410,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -152113,7 +152119,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -152294,7 +152300,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -152443,7 +152449,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "proteinfamilies",
@@ -152608,7 +152614,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "proteinfamilies",
@@ -153040,7 +153046,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -153258,7 +153264,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "proteinannotator",
@@ -172162,7 +172168,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -179569,7 +179575,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "proteinfamilies",
@@ -181285,7 +181291,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -199750,7 +199756,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -202399,7 +202405,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "proteinannotator",
@@ -202427,7 +202433,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "readsimulator",
@@ -209381,7 +209387,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -226291,7 +226297,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -229003,7 +229009,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -229628,7 +229634,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "seqinspector",
@@ -229975,7 +229981,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "seqinspector",
@@ -230531,7 +230537,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnafusion",
@@ -231600,7 +231606,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -231836,7 +231842,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnaseq",
@@ -232409,7 +232415,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -233021,7 +233027,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -257548,7 +257554,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -257706,7 +257712,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -265186,7 +265192,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -266043,7 +266049,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "variantbenchmarking",
@@ -268447,7 +268453,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -268637,7 +268643,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -268772,7 +268778,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -269099,7 +269105,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -271593,7 +271599,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -273073,7 +273079,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -274793,7 +274799,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "readsimulator",
@@ -275298,7 +275304,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -276543,7 +276549,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "riboseq",
@@ -277018,7 +277024,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "riboseq",
@@ -277459,7 +277465,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -281542,7 +281548,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -281764,7 +281770,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -282591,7 +282597,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -282866,7 +282872,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -283065,7 +283071,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -283369,7 +283375,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -284555,7 +284561,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -286903,7 +286909,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -290912,7 +290918,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "seqinspector",
@@ -291194,7 +291200,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -297949,7 +297955,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -304694,7 +304700,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -309659,7 +309665,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -314115,7 +314121,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -314279,7 +314285,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -317631,7 +317637,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -317844,7 +317850,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rnadnavar",
@@ -318048,7 +318054,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "references",
@@ -323014,7 +323020,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -323204,7 +323210,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "sarek",
@@ -329481,7 +329487,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -331469,7 +331475,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "riboseq",
@@ -332016,7 +332022,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -334569,7 +334575,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -335410,7 +335416,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -339144,7 +339150,7 @@
       "pipelines": [
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         }
       ]
     },
@@ -346432,19 +346438,51 @@
               }
             }
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_xengsort": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "xengsort": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "xengsort --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "xengsort": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "xengsort --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -355405,7 +355443,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -355877,7 +355915,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         }
       ]
     },
@@ -362768,7 +362806,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "pixelator",
@@ -362796,7 +362834,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rarevariantburden",
@@ -363221,7 +363259,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "pixelator",
@@ -363249,7 +363287,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rarevariantburden",
@@ -363708,7 +363746,7 @@
         },
         {
           "name": "phyloplace",
-          "version": "2.0.0"
+          "version": "2.0.1"
         },
         {
           "name": "pixelator",
@@ -363736,7 +363774,7 @@
         },
         {
           "name": "raredisease",
-          "version": "3.0.0"
+          "version": "3.1.0"
         },
         {
           "name": "rarevariantburden",
@@ -364462,13 +364500,7 @@
           "@fellen31",
           "@ramprasadn"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "raredisease",
-          "version": "3.0.0"
-        }
-      ]
+      }
     },
     {
       "name": "vcf_gather_bcftools",
