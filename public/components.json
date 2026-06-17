@@ -173625,7 +173625,7 @@
           ],
           [
             {
-              "meta_ref": {
+              "meta2": {
                 "type": "map",
                 "description": "Groovy Map containing reference information\ne.g. `[ id:'reference' ]`\n"
               }
@@ -173659,19 +173659,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_leviosam2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leviosam2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "leviosam2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leviosam2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "leviosam2 --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -184468,6 +184500,10 @@
         ]
       },
       "pipelines": [
+        {
+          "name": "datasync",
+          "version": "dev"
+        },
         {
           "name": "demultiplex",
           "version": "1.7.1"
@@ -250176,19 +250212,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions\n",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_qcatch": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qcatch": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qcatch --version | sed -e 's/qcatch //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "qcatch": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "qcatch --version | sed -e 's/qcatch //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -293800,7 +293868,13 @@
         "maintainers": [
           "@matthdsm"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "datasync",
+          "version": "dev"
+        }
+      ]
     },
     {
       "name": "shigapass",
