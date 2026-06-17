@@ -49950,7 +49950,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -58478,7 +58478,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "multiplesequencealign",
@@ -72679,6 +72679,246 @@
       ]
     },
     {
+      "name": "custom_orfcollapse",
+      "path": "modules/nf-core/custom/orfcollapse/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "custom_orfcollapse",
+        "description": "Collapse small ORFs that share an amino-acid sequence cluster into a single\ncatalogue entry. Pair with `custom/orfmerge` (coordinate-based catalogue),\n`bedtools/getfasta` + `seqkit/translate` (AA FASTA keyed by orf_id), and\n`mmseqs/easycluster` (AA clusters) upstream.\n\nThe coordinate-based merge in `custom/orfmerge` only groups ORFs that overlap\non the genome, so the same micropeptide encoded at several distinct,\nnon-overlapping loci (typically repetitive regions) survives as separate rows.\nThis adopts the peptide-level deduplication and 0.9 amino-acid-similarity\nthreshold of the GENCODE Ribo-seq ORF consolidation (Mudge et al. 2022,\nNat Biotechnol, doi:10.1038/s41587-022-01369-0; gencode-riboseqORFs\ncollapse_cutoff 0.9), implemented here with MMseqs2 sequence-identity\nclustering rather than that tool's longest-shared-string / P-site-overlap\nmetric. Small ORFs (orf_class \"smORF\", i.e. aa_length <= 100) are clustered by\namino-acid identity upstream and this module folds each multi-member cluster\ndown to one representative.\n\nOnly smORF rows are collapsed; larger ORFs and transcript-anchored classes are\npassed through untouched. Among the smORF members of a cluster the\nrepresentative is chosen by longest aa_length (ties broken by orf_id), so the\nresult does not depend on which sequence MMseqs2 labelled the cluster\nrepresentative. Catalogue row order is preserved; dropped members fold their\n`called_by_<caller>` / `score_<caller>` evidence, `n_samples` / `samples`\nrecurrence and gene mappings into the survivor.\n",
+        "keywords": [
+          "orf",
+          "ribo-seq",
+          "catalogue",
+          "smorf",
+          "deduplication"
+        ],
+        "tools": [
+          {
+            "orfcollapse": {
+              "description": "Python helper that folds small-ORF catalogue rows sharing an MMseqs2\namino-acid cluster into a single representative, merging cross-caller\nprovenance, cross-sample recurrence and gene mappings.\n",
+              "tool_dev_url": "https://github.com/nf-core/modules/blob/master/modules/nf-core/custom/orfcollapse/main.nf",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map. Typically a cohort-level `[ id: 'cohort' ]`.\n"
+              }
+            },
+            {
+              "bed12": {
+                "type": "file",
+                "description": "Merged ORF catalogue BED12 (output of `custom/orfmerge`).",
+                "pattern": "*.bed12",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3586"
+                  }
+                ]
+              }
+            },
+            {
+              "catalogue_tsv": {
+                "type": "file",
+                "description": "Merged ORF catalogue TSV (output of `custom/orfmerge`).",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "orf_to_gene_tsv": {
+                "type": "file",
+                "description": "ORF-to-gene mapping TSV (output of `custom/orfmerge`).",
+                "pattern": "*.orf_to_gene.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "aa_fasta": {
+                "type": "file",
+                "description": "Catalogue amino-acid FASTA keyed by orf_id (output of\n`bedtools/getfasta -split -s -nameOnly` then `seqkit/translate`).\n",
+                "pattern": "*.fasta",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "cluster_tsv": {
+                "type": "file",
+                "description": "Two-column MMseqs2 cluster TSV (representative<TAB>member), output of\n`mmseqs/easycluster` run on the catalogue AA FASTA.\n",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.bed12": {
+                  "type": "file",
+                  "description": "Deduplicated ORF catalogue as BED12 (genomic blocks).",
+                  "pattern": "*.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "catalogue_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "description": "Deduplicated per-ORF catalogue table.",
+                  "pattern": "*.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "ORF-to-gene mapping with collapsed members remapped to the survivor.",
+                  "pattern": "*.orf_to_gene.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "multiqc": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.mqc.tsv": {
+                  "type": "file",
+                  "description": "MultiQC custom-content TSV (per-class ORF counts, post-collapse).",
+                  "pattern": "*.mqc.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "aa_fasta": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.fasta": {
+                  "type": "file",
+                  "description": "Amino-acid FASTA of the surviving catalogue ORFs.",
+                  "pattern": "*.fasta",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_1929"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "file",
+                "description": "File containing software versions",
+                "pattern": "versions.yml",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3750"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "topics": {
+          "versions": [
+            {
+              "versions.yml": {
+                "type": "string",
+                "description": "The name of the process"
+              }
+            }
+          ]
+        },
+        "authors": [
+          "@pinin4fjords"
+        ],
+        "maintainers": [
+          "@pinin4fjords"
+        ]
+      }
+    },
+    {
       "name": "custom_orfmerge",
       "path": "modules/nf-core/custom/orfmerge/meta.yml",
       "type": "module",
@@ -72748,10 +72988,10 @@
                 }
               },
               {
-                "${prefix}.catalogue.bed12": {
+                "${prefix}.bed12": {
                   "type": "file",
                   "description": "Merged ORF catalogue as BED12 (genomic blocks).",
-                  "pattern": "*.catalogue.bed12",
+                  "pattern": "*.bed12",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3586"
@@ -72770,10 +73010,10 @@
                 }
               },
               {
-                "${prefix}.catalogue.tsv": {
+                "${prefix}.tsv": {
                   "type": "file",
                   "description": "Per-ORF table with `called_by_<caller>` and `score_<caller>`\ncolumns for each supported caller, `n_samples` / `samples`\ncross-sample recurrence columns, plus orf_class, aa_length,\nand host gene_id / transcript_id.\n",
-                  "pattern": "*.catalogue.tsv",
+                  "pattern": "*.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -72814,10 +73054,10 @@
                 }
               },
               {
-                "${prefix}.catalogue.mqc.tsv": {
+                "${prefix}.mqc.tsv": {
                   "type": "file",
                   "description": "MultiQC custom-content TSV (per-class ORF counts).\n",
-                  "pattern": "*.catalogue.mqc.tsv",
+                  "pattern": "*.mqc.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -74388,7 +74628,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "crisprseq",
@@ -77184,6 +77424,408 @@
           "version": "1.2.0"
         }
       ]
+    },
+    {
+      "name": "deepmased_features",
+      "path": "modules/nf-core/deepmased/features/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepmased_features",
+        "description": "DeepMAsED features subcommand: extracts alignment-based features from BAM and assembly FASTA for each contig, producing feature tables used as input for DeepMAsED predict.",
+        "keywords": [
+          "metagenomics",
+          "assembly",
+          "quality control",
+          "error detection",
+          "deep learning",
+          "features"
+        ],
+        "tools": [
+          {
+            "deepmased": {
+              "description": "Deep learning for Metagenome Assembly Error Detection",
+              "homepage": "https://github.com/leylabmpi/DeepMAsED",
+              "documentation": "https://github.com/leylabmpi/DeepMAsED",
+              "tool_dev_url": "https://github.com/leylabmpi/DeepMAsED",
+              "doi": "10.1093/bioinformatics/btaa386",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file of reads mapped to the assembly",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM index file",
+                "pattern": "*.{bai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Assembly in FASTA format",
+                "pattern": "*.{fasta,fa,fna}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "feature_table": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_feature_file_paths.tsv": {
+                  "type": "file",
+                  "description": "Index file listing all generated feature table files",
+                  "pattern": "*_feature_file_paths.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "feature_files": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_feats.tsv": {
+                  "type": "file",
+                  "description": "Per-contig feature tables (one per parallel bin)",
+                  "pattern": "*_feats.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deepmased": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "deepmased": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.3.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_setuptools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "setuptools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "78.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "deepmased": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.3.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "setuptools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "78.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@SkyLexS"
+        ],
+        "maintainers": [
+          "@SkyLexS"
+        ]
+      }
+    },
+    {
+      "name": "deepmased_predict",
+      "path": "modules/nf-core/deepmased/predict/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deepmased_predict",
+        "description": "DeepMAsED predict subcommand: runs the pre-trained deep learning model on feature tables produced by DeepMAsED features to predict per-contig assembly error scores.",
+        "keywords": [
+          "metagenomics",
+          "assembly",
+          "quality control",
+          "error detection",
+          "deep learning",
+          "prediction"
+        ],
+        "tools": [
+          {
+            "deepmased": {
+              "description": "Deep learning for Metagenome Assembly Error Detection",
+              "homepage": "https://github.com/leylabmpi/DeepMAsED",
+              "documentation": "https://github.com/leylabmpi/DeepMAsED",
+              "tool_dev_url": "https://github.com/leylabmpi/DeepMAsED",
+              "doi": "10.1093/bioinformatics/btaa386",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "feature_file_table": {
+                "type": "file",
+                "description": "Index TSV file listing all feature table files (output of deepmased/features)",
+                "pattern": "*_feature_file_paths.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            },
+            {
+              "feature_files": {
+                "type": "file",
+                "description": "Per-contig feature table files (output of deepmased/features)",
+                "pattern": "*_feats.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "predictions": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*_predictions.tsv": {
+                  "type": "file",
+                  "description": "TSV file containing per-contig assembly error predictions (score 0=correct, 1=misassembly)",
+                  "pattern": "*_predictions.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deepmased": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "deepmased": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.3.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ],
+          "versions_setuptools": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "setuptools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "78.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "deepmased": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "0.3.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ],
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the version was collected from"
+                }
+              },
+              {
+                "setuptools": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "78.1": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@SkyLexS"
+        ],
+        "maintainers": [
+          "@SkyLexS"
+        ]
+      }
     },
     {
       "name": "deepsomatic",
@@ -94429,7 +95071,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -94582,7 +95224,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -99774,7 +100416,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "atacseq",
@@ -112488,7 +113130,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -112617,7 +113259,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -112837,7 +113479,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -115720,6 +116362,210 @@
         ],
         "maintainers": [
           "@nvnieuwk"
+        ]
+      }
+    },
+    {
+      "name": "gatk4_cleansam",
+      "path": "modules/nf-core/gatk4/cleansam/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "gatk4_cleansam",
+        "description": "Cleans the provided BAM, soft-clipping beyond-end-of-reference alignments and setting MAPQ to 0 for unmapped reads",
+        "keywords": [
+          "clean",
+          "bam",
+          "gatk",
+          "sam",
+          "clipping"
+        ],
+        "tools": [
+          {
+            "gatk": {
+              "description": "Developed in the Data Sciences Platform at the Broad Institute, the toolkit offers a wide variety of tools\nwith a primary focus on variant discovery and genotyping. Its powerful processing engine\nand high-performance computing features make it capable of taking on projects of any size.\n",
+              "homepage": "https://gatk.broadinstitute.org/hc/en-us",
+              "documentation": "https://gatk.broadinstitute.org/hc/en-us/categories/360002369672s",
+              "doi": "10.1158/1538-7445.AM2017-3590",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": ""
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "BAM file",
+                "pattern": "*.{bam}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fasta": {
+                "type": "file",
+                "description": "Reference FASTA file",
+                "pattern": "*.{fasta}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            },
+            {
+              "fasta_index": {
+                "type": "file",
+                "description": "Index file for the reference FASTA",
+                "pattern": "*.{fai}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3703"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "bam": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bam": {
+                  "type": "file",
+                  "description": "Cleaned BAM file",
+                  "pattern": "*.{bam}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_2572"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "bai": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.bai": {
+                  "type": "file",
+                  "description": "Index file for the cleaned BAM file",
+                  "pattern": "*.{bai}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3327"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "md5": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.md5": {
+                  "type": "file",
+                  "description": "MD5 checksum for the cleaned BAM file",
+                  "pattern": "*.{md5}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3823"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_gatk": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gatk": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gatk CleanSam --version | grep GATK | sed 's/.*(GATK) v//'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The process the versions were collected from"
+                }
+              },
+              {
+                "gatk": {
+                  "type": "string",
+                  "description": "The tool name"
+                }
+              },
+              {
+                "gatk CleanSam --version | grep GATK | sed 's/.*(GATK) v//'": {
+                  "type": "eval",
+                  "description": "The command used to generate the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sofiademmou"
+        ],
+        "maintainers": [
+          "@sofiademmou"
         ]
       }
     },
@@ -152115,7 +152961,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -152296,7 +153142,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -152445,7 +153291,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -152610,7 +153456,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -153042,7 +153888,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -153252,7 +154098,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "funcscan",
@@ -170251,7 +171097,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "bacass",
@@ -172915,6 +173761,198 @@
           "version": "2.3.0"
         }
       ]
+    },
+    {
+      "name": "leafcutter_clusterregtools",
+      "path": "modules/nf-core/leafcutter/clusterregtools/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "leafcutter_clusterregtools",
+        "description": "Cluster RNA-seq junction reads extracted by regtools and refine them based on read counts and ratios for alternative splicing analysis",
+        "keywords": [
+          "splicing",
+          "RNA-seq",
+          "clustering",
+          "junctions"
+        ],
+        "tools": [
+          {
+            "leafcutter": {
+              "description": "Annotation-free quantification of RNA splicing",
+              "homepage": "https://leafcutter2.github.io/leafcutter-ds/",
+              "documentation": "https://leafcutter2.github.io/leafcutter-ds/tutorials/clustering/",
+              "tool_dev_url": "https://github.com/leafcutter2/leafcutter-ds",
+              "doi": "10.1038/s41588-017-0004-9",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:leafcutter"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1', single_end:false ]`\n"
+              }
+            },
+            {
+              "juncfiles": {
+                "type": "file",
+                "description": "Text file listing paths to junction files (one per line), where junction files contain chromosome, start, end, strand, and read count information extracted by regtools",
+                "pattern": "*.{txt,junc}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "pooled": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1' ]`\n"
+                }
+              },
+              {
+                "*_pooled": {
+                  "type": "file",
+                  "description": "Initial pooled junction file containing aggregated junction information across all samples",
+                  "pattern": "*_pooled",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "refined": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1' ]`\n"
+                }
+              },
+              {
+                "*_refined": {
+                  "type": "file",
+                  "description": "Refined cluster definitions after filtering based on minimum reads and junction ratios",
+                  "pattern": "*_refined",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "sortedlibs": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1' ]`\n"
+                }
+              },
+              {
+                "*_sortedlibs": {
+                  "type": "file",
+                  "description": "List of sorted junction files processed during clustering",
+                  "pattern": "*_sortedlibs",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "counts": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1' ]`\n"
+                }
+              },
+              {
+                "*_perind*.counts.gz": {
+                  "type": "file",
+                  "description": "Compressed per-individual junction counts matrix (includes constitutive introns if -C flag used)",
+                  "pattern": "*_perind{.const,}counts.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "numers": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'experiment1' ]`\n"
+                }
+              },
+              {
+                "*_perind_numers*.counts.gz": {
+                  "type": "file",
+                  "description": "Compressed numerator counts for junction usage ratios (includes constitutive introns if -C flag used)",
+                  "pattern": "*_perind_numers{.const,}counts.gz",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_leafcutter": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leafcutter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 'leafcutter 2.0.3'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "leafcutter": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echo 'leafcutter 2.0.3'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@JTL-lab"
+        ],
+        "maintainers": [
+          "@JTL-lab"
+        ]
+      }
     },
     {
       "name": "learnmsa_align",
@@ -179595,7 +180633,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "multiplesequencealign",
@@ -202181,7 +203219,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "bacass",
@@ -202545,7 +203583,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -215988,7 +217026,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -216152,7 +217190,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -216307,7 +217345,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -233679,7 +234717,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "genomeqc",
@@ -291264,7 +292302,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -308524,7 +309562,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -331441,7 +332479,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "atacseq",
@@ -331597,7 +332635,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -331805,19 +332843,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_7za": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "7za": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za 2>&1 | sed -n '2s/^.* \\([0-9.]*\\) .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "7za": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za 2>&1 | sed -n '2s/^.* \\([0-9.]*\\) .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -331866,7 +332936,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -331937,19 +333007,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_7za": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "7za": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za 2>&1 | sed -n '2s/^.* \\([0-9.]*\\) .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "7za": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "7za 2>&1 | sed -n '2s/^.* \\([0-9.]*\\) .*/\\1/p'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -341959,7 +343061,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "crisprseq",
@@ -342410,7 +343512,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         }
       ]
     },
@@ -342872,7 +343974,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         }
       ]
     },
@@ -346772,7 +347874,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -346909,7 +348011,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -347165,7 +348267,7 @@
       "pipelines": [
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -348853,13 +349955,6 @@
                   "description": "Structure: [path]\nFile(s) not extracted\n"
                 }
               ]
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
             }
           }
         ],
@@ -355513,7 +356608,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -355985,7 +357080,7 @@
       "pipelines": [
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "phyloplace",
@@ -361199,13 +362294,6 @@
               "description": "A BED file of the found peaks",
               "pattern": "*.bed"
             }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
-            }
           }
         ],
         "authors": [
@@ -361609,7 +362697,7 @@
       "type": "subworkflow",
       "meta": {
         "name": "orftable_fasta_gtf_buildorfcatalogue",
-        "description": "Build a multi-caller Ribo-seq ORF catalogue from per-sample, per-caller\nORF prediction tables. Chains:\n\n  1. `custom/orfnormalise` (one invocation per caller-tagged input;\n     dispatch by the per-record `caller` val) - reconciles each\n     caller's native output table into a unified BED12 + sidecar TSV.\n  2. `custom/orfmerge` (one cohort-level invocation) - class-aware\n     clustering of normalised calls across callers and samples.\n  3. `bedtools/getfasta` + `seqkit/translate` - lifts the merged BED12\n     into a catalogue AA FASTA.\n\nSupports five callers via the per-record `caller` val: ribocode, ribotish,\nribotricer, rpbp, price. Any subset can be supplied. When `ch_orf_tables` is empty\nthe subworkflow short-circuits the merge + FASTA chain and the output\nchannels are empty.\n\nOutput meta is hardcoded to `[ id: 'cohort' ]`; downstream consumers that\nwant a different cohort id should `.map` the emitted channels or\noverride `ext.prefix` on `CUSTOM_ORFMERGE` / `BEDTOOLS_GETFASTA` /\n`SEQKIT_TRANSLATE` to control output filenames.\n",
+        "description": "Build a multi-caller Ribo-seq ORF catalogue from per-sample, per-caller\nORF prediction tables. Chains:\n\n  1. `custom/orfnormalise` (one invocation per caller-tagged input;\n     dispatch by the per-record `caller` val) - reconciles each\n     caller's native output table into a unified BED12 + sidecar TSV.\n  2. `custom/orfmerge` (one cohort-level invocation) - class-aware\n     clustering of normalised calls across callers and samples.\n  3. `bedtools/getfasta` + `seqkit/translate` - lifts the merged BED12\n     into a catalogue AA FASTA.\n  4. `mmseqs/easycluster` + `custom/orfcollapse` (optional, `val_collapse`) -\n     clusters catalogue peptides by amino-acid identity and folds duplicate\n     small ORFs to one representative each.\n\nThe collapse identity threshold defaults to `--min-seq-id 0.9` (the GENCODE\nRibo-seq ORF catalogue convention; Mudge et al. 2022), set on\n`MMSEQS_EASYCLUSTER` in this subworkflow's `nextflow.config`. Override it via\n`ext.args` on `MMSEQS_EASYCLUSTER` in the consuming pipeline's config if a\ndifferent cutoff is wanted.\n\nSupports five callers via the per-record `caller` val: ribocode, ribotish,\nribotricer, rpbp, price. Any subset can be supplied. When `ch_orf_tables` is empty\nthe subworkflow short-circuits the merge + FASTA chain and the output\nchannels are empty.\n\nOutput meta is hardcoded to `[ id: 'cohort' ]`; downstream consumers that\nwant a different cohort id should `.map` the emitted channels or\noverride `ext.prefix` on `CUSTOM_ORFMERGE` / `BEDTOOLS_GETFASTA` /\n`SEQKIT_TRANSLATE` to control output filenames.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -361621,7 +362709,9 @@
           "custom/orfnormalise",
           "custom/orfmerge",
           "bedtools/getfasta",
-          "seqkit/translate"
+          "seqkit/translate",
+          "mmseqs/easycluster",
+          "custom/orfcollapse"
         ],
         "input": [
           {
@@ -361637,6 +362727,11 @@
           {
             "ch_gtf": {
               "description": "Reference annotation GTF. Used by the ribocode and ribotish\nnormalisers to lift transcript coordinates to genomic blocks;\nignored by callers that already emit genomic coordinates\n(ribotricer, rpbp, price). Pass `[ [:], [] ]` if no GTF is\navailable (caller subset must then exclude ribocode and ribotish).\nStructure: [ val(meta), path(gtf) ]\n"
+            }
+          },
+          {
+            "val_collapse": {
+              "description": "Cluster catalogue peptides by amino-acid identity (mmseqs/easycluster)\nand fold each multi-member small-ORF cluster to one representative\n(custom/orfcollapse). When false the merged catalogue is emitted\nunchanged and the clustering modules do not run.\nStructure: val(collapse)\n"
             }
           }
         ],
@@ -362624,7 +363719,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "bacass",
@@ -362984,7 +364079,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -363077,7 +364172,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "bacass",
@@ -363437,7 +364532,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -363588,7 +364683,7 @@
         },
         {
           "name": "ampliseq",
-          "version": "2.17.0"
+          "version": "2.18.0"
         },
         {
           "name": "bacass",
@@ -363920,7 +365015,7 @@
         },
         {
           "name": "spatialaxe",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "spatialvi",
@@ -364311,13 +365406,6 @@
           {
             "snpeff_genes": {
               "description": "txt (tab separated) file having counts of the number of variants\naffecting each transcript and gene\nStructure: [ val(meta), path(txt) ]\n"
-            }
-          },
-          {
-            "versions": {
-              "type": "file",
-              "description": "File containing software versions",
-              "pattern": "versions.yml"
             }
           }
         ],
