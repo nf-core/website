@@ -10,7 +10,7 @@ Class to provide a single session for interacting with the GitHub API for a run.
 Inherits the requests_cache.CachedSession and adds additional functionality,
 such as automatically setting up GitHub authentication if we can.
 
-#### `get(url, **kwargs){:python}`
+#### `get(url, params=None, **kwargs){:python}`
 
 Initialise the session if we haven’t already, then call the superclass get method.
 
@@ -473,7 +473,7 @@ Validator for file path specified as –singularity-cache-index argument in nf-c
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
-#### `validate(value){:python}`
+#### `validate(document) → None{:python}`
 
 Validate the input.
 If invalid, this should raise a `ValidationError`.
