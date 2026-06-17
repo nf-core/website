@@ -54,10 +54,10 @@ Whether to try to automatically make a PR on GitHub.com
 
 #### `required_config_vars{:python}`
 
-List of nextflow variables required to make template pipeline
+Nextflow config variables required to make template pipeline, keyed by section
 
 - **Type:**
-  list
+  dict
 
 #### `gh_username{:python}`
 
