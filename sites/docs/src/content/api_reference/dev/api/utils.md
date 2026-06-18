@@ -10,7 +10,7 @@ Class to provide a single session for interacting with the GitHub API for a run.
 Inherits the requests_cache.CachedSession and adds additional functionality,
 such as automatically setting up GitHub authentication if we can.
 
-#### `get(url, **kwargs){:python}`
+#### `get(url, params=None, **kwargs){:python}`
 
 Initialise the session if we haven’t already, then call the superclass get method.
 
@@ -65,7 +65,7 @@ Force overwrite of existing files
 
 Whether the pipeline is an nf-core pipeline.
 
-#### `model_config{:python}`_= {}_
+#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {}_
 
 Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
 
@@ -94,7 +94,7 @@ Output directory
 
 Pipeline version
 
-### _`class{:python}`_`nf_core.utils.NFCoreYamlConfig(, repository_type: Literal['pipeline', 'modules'] | None = None, nf_core_version: str | None = None, org_path: str | None = None, lint:{:python}`[`NFCoreYamlLintConfig{:python}`](#nf_core.utils.NFCoreYamlLintConfig)`| None = None, template:{:python}`[`NFCoreTemplateConfig{:python}`](#nf_core.utils.NFCoreTemplateConfig)`| None = None, bump_version: dict[str, bool] | None = None, update: dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None = None){:python}`
+### _`class{:python}`_`nf_core.utils.NFCoreYamlConfig(, repository_type: Literal['pipeline', 'modules'] | None = None, nf_core_version: str | None = None, org_path: str | None = None, lint:{:python}`[`NFCoreYamlLintConfig{:python}`](#nf_core.utils.NFCoreYamlLintConfig)`| None = None, template:{:python}`[`NFCoreTemplateConfig{:python}`](#nf_core.utils.NFCoreTemplateConfig)`| None = None, bump_version: dict[str, bool] | None = None, update: dict[str, str | bool | dict[str, str | dict[str, str | bool]]] | None = None, container_registry: list[str] | None = None){:python}`
 
 Bases: `BaseModel`
 
@@ -109,6 +109,10 @@ Bases: `BaseModel`
 - **Type:**
   Disable bumping of the version for a module/subworkflow (when repository_type is modules). See https
 
+#### `container_registry{:python}`_: list\[str] | None_
+
+Additional container registry prefixes allowed when linting container directives.
+
 #### `get(item: str, default: Any = None) → Any{:python}`
 
 #### `lint{:python}`_: [NFCoreYamlLintConfig](#nf_core.utils.NFCoreYamlLintConfig) | None_
@@ -118,7 +122,7 @@ Bases: `BaseModel`
 - **Type:**
   Pipeline linting configuration, see https
 
-#### `model_config{:python}`_= {}_
+#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {'populate_by_name': True, 'validate_by_alias': True, 'validate_by_name': True}_
 
 Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
 
@@ -263,7 +267,7 @@ Lint local components use correct structure mirroring remote
 
 List of files that should not contain merge markers
 
-#### `model_config{:python}`_= {}_
+#### `model_config{:python}`_: ClassVar\[ConfigDict]_ _= {}_
 
 Configuration for the model, should be a dictionary conforming to \[ConfigDict]\[pydantic.config.ConfigDict].
 
@@ -469,7 +473,7 @@ Validator for file path specified as –singularity-cache-index argument in nf-c
 
 #### `_abc_impl{:python}`_= <\_abc.\_abc_data object>_
 
-#### `validate(value){:python}`
+#### `validate(document) → None{:python}`
 
 Validate the input.
 If invalid, this should raise a `ValidationError`.

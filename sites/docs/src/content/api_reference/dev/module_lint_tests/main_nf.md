@@ -1,6 +1,6 @@
 # main_nf
 
-#### `ModuleLint.main_nf(module: NFCoreComponent, fix_version: bool, registry: str, progress_bar: Progress) → tuple[list[str], list[str]]{:python}`
+#### `ModuleLint.main_nf(module: NFCoreComponent, fix_version: bool, registry: tuple[str, ...], progress_bar: Progress) → tuple[list[str], list[str]]{:python}`
 
 Lint a `main.nf` module file
 
@@ -9,6 +9,9 @@ in which case failures will be reported as warnings.
 
 The following checks are performed:
 
+- `main_nf_module_granularity`: The module must represent a single command
+  as `<tool>` or single subcommand with distinct functionality as
+  `<tool/subtool>`.
 - `main_nf_exists`: The `main.nf` file must exist.
 - `deprecated_dsl2`: The file must not contain deprecated DSL2 identifiers
   (`initOptions`, `saveFiles`, `getSoftwareName`, `getProcessName`,
