@@ -34,13 +34,12 @@ This baseline run relies entirely on `nf-core/demo`'s built-in defaults.
 No environment variables, no custom parameters, and no extra config files are set.
 In each of the following steps you will replace one of these defaults and observe the effect.
 
-Start with a plain test invocation as your reference point:
+Start with a plain test invocation as your reference point, replacing `docker` with your preferred software dependency manager (for example, `singularity` or `conda`).
 
 ```bash
 nextflow run nf-core/demo -profile test,docker --outdir results
 ```
 
-Replace `docker` with your preferred software dependency manager (for example, `singularity` or `conda`).
 
 In the background, this run uses three defaults that you will override in the next steps:
 
@@ -92,7 +91,7 @@ CLI flags override values in a parameter file.
    nextflow run nf-core/demo -profile test,docker -params-file params.yaml
    ```
 
-   Open `results_customparamsfile/multiqc/multiqc_report.html` to confirm the report title was set.
+   Open `results_customparamsfile/multiqc/nf-coredemo-parameter-file-configured-run_multiqc_report.html` to confirm the report title was set.
 
 :::tip
 Both JSON and YAML formats are supported for parameter files.
@@ -143,7 +142,7 @@ nextflow run nf-core/demo -profile test,docker --outdir results_customnextflowco
 
 :::tip
 Use `$HOME/.nextflow/config` for personal defaults that follow you across machines, and a launch-directory `nextflow.config` for project-specific settings.
-Reserve `-c` (covered below) for one-off overrides and shared team configs that should live alongside your pipeline command.
+Reserve `-c` (covered below) for one-off overrides and shared project configs that should live alongside your pipeline command.
 :::
 
 ### Activate bundled settings with profiles
@@ -205,13 +204,6 @@ The [nf-core/configs](https://github.com/nf-core/configs) repository collects ov
 
 Every nf-core pipeline loads these configs automatically — there's nothing to download or copy yourself.
 At run time, each pipeline fetches the [`nfcore_custom.config`](https://github.com/nf-core/configs/blob/master/nfcore_custom.config) from the `nf-core/configs` repository and makes every profile in it available alongside the pipeline's own profiles.
-You activate one the same way you activate any other profile:
-
-```bash
-nextflow run nf-core/demo -profile test,docker,<institution> --outdir results
-```
-
-Replace `<institution>` with the profile name for your environment.
 A handful of examples from the [configs directory](https://github.com/nf-core/configs/tree/master/conf):
 
 - [`uppmax`](https://github.com/nf-core/configs/blob/master/conf/uppmax.config) — UPPMAX (Sweden)
@@ -220,6 +212,9 @@ A handful of examples from the [configs directory](https://github.com/nf-core/co
 - [`crick`](https://github.com/nf-core/configs/blob/master/conf/crick.config) — Francis Crick Institute
 
 Browse the full list at [nf-co.re/configs](https://nf-co.re/configs).
+
+You activate one the same way you activate any other profile. If your institution's infrastructure is supported by nf-core/configs, replace `<institution>` with the profile name for your environment to try it out.
+
 
 Some institutions also contribute **pipeline-specific** overrides — a profile that further tunes resources for a particular pipeline on a particular cluster.
 These live under [`conf/pipeline/<pipeline>/<institution>.config`](https://github.com/nf-core/configs/tree/master/conf/pipeline) in the repository and are picked up automatically when you run that pipeline with the matching `-profile`.
@@ -271,6 +266,9 @@ Edit `custom.config` to add automatic retries and redirect the work directory:
 workDir = 'nf-work'
 
 process {
+
+  cpus = 3
+  memory = 6.GB
   errorStrategy = 'retry'
   maxRetries    = 2
 }
@@ -279,7 +277,7 @@ process {
 Apply it the same way as before:
 
 ```bash
-nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results
+nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results_customconfig
 ```
 
 :::note
@@ -294,7 +292,9 @@ Common settings are:
 - **`process.errorStrategy`** with **`process.maxRetries`**: retry transient failures (for example, a node going down or a timeout) instead of failing the whole run.
 - **`workDir`**: where Nextflow stages intermediate files — point it at fast scratch storage on HPC to keep your home filesystem clean.
 
-:::tip
+:::info
+The syntax
+
 For the full list of config scopes and options (`process`, `executor`, `docker`, `singularity`, `aws`, `azure`, `google`, `report`, `trace`, `timeline`, and more), see the [Nextflow config reference](https://docs.seqera.io/nextflow/reference/config).
 nf-core pipelines already enable the standard execution reports under `pipeline_info/`, so you only need to override those if you want custom paths.
 :::
@@ -327,9 +327,6 @@ process {
 
 Re-run with `-c custom.config` and check `pipeline_info/execution_report.html` in your output directory.
 FASTQC should report the resources you set, and every other low-tier process should pick up the `process_low` block.
-
-:::tip
-Find the full process name for `withName` in the console during a run, or `.nextflow.log` or in `pipeline_info/execution_trace.txt` after a run.
 Process labels are declared on each `process` definition inside the module.
 For example, [`FASTQC`'s `main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf) declares `label 'process_medium'` on its second line.
 The size labels (`process_low`, `process_medium`, `process_high`, `process_high_memory`) are standard across all nf-core pipelines.
@@ -371,7 +368,6 @@ process {
 ```
 
 Re-run with `-c custom.config` and FASTQC will pick up the new flags through `task.ext.args` inside its [`main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf).
-
 :::danger
 Customising `ext.args` is generally not recommended, and may break the pipeline as the changes have not been tested by the developer.
 It is recommended to request official support for a new tool option or argument from the pipeline developer.
@@ -436,7 +432,9 @@ For the full list, see the [Nextflow environment variables reference](https://do
 :::
 
 :::note
-`NXF_*` variables are distinct from pipeline parameters. They configure how Nextflow runs, not what the pipeline does. You cannot set `--input` or `--outdir` with an environment variable.
+`NXF_*` variables are distinct from pipeline parameters.
+They configure how Nextflow runs, not what the pipeline does.
+You cannot set `--input` or `--outdir` with an environment variable.
 :::
 
 ## Put it all together
