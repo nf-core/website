@@ -7,10 +7,11 @@ startDate: "2026-06-17"
 startTime: "16:00+02:00"
 endDate: "2026-06-17"
 endTime: "17:00+02:00"
+youtubeEmbed: https://youtu.be/ftu419rixfQ
 locations:
   - name: Online
     links:
-      - https://rediris.zoom.us/j/94803529514
+      - https://youtu.be/ftu419rixfQ
 ---
 
 June 2026 talk of the monthly meeting of the [_#animal-genomics_ special interest group](/special-interest-groups/animal-genomics).
