@@ -60810,6 +60810,132 @@
       ]
     },
     {
+      "name": "cnvkit_segment",
+      "path": "modules/nf-core/cnvkit/segment/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "cnvkit_segment",
+        "description": "Infer discrete copy number segments from the given coverage table.",
+        "keywords": [
+          "cnvkit",
+          "segment",
+          "cbs",
+          "haar",
+          "hmm",
+          "hmm-tumor",
+          "hmm-germline",
+          "none",
+          "cnr",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "cnvkit": {
+              "description": "Copy number variant detection from high-throughput sequencing.",
+              "homepage": "https://cnvkit.readthedocs.io/en/stable",
+              "documentation": "https://cnvkit.readthedocs.io/en/stable",
+              "tool_dev_url": "https://github.com/etal/cnvkit",
+              "doi": "10.1371/journal.pcbi.1004873",
+              "licence": [
+                "Apache-2.0"
+              ],
+              "identifier": "biotools:cnvkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "cnr": {
+                "type": "file",
+                "description": "coverage table",
+                "pattern": "*.{cnr}",
+                "ontologies": []
+              }
+            }
+          ]
+        ],
+        "output": {
+          "segments": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.cns": {
+                  "type": "file",
+                  "description": "table of copy number segments.",
+                  "pattern": "*.{cns}",
+                  "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_cnvkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "cnvkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "cnvkit.py version | sed -e \"s/cnvkit v//g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@aadecock"
+        ],
+        "maintainers": [
+          "@aadecock"
+        ]
+      }
+    },
+    {
       "name": "cnvkit_target",
       "path": "modules/nf-core/cnvkit/target/meta.yml",
       "type": "module",
@@ -164509,8 +164635,8 @@
             {
               "fasta": {
                 "type": "file",
-                "description": "Nucleotide sequences in FASTA format",
-                "pattern": "*.{fasta,fa,fna,faa}",
+                "description": "Nucleotide sequences in FASTA format, can be gzipped.",
+                "pattern": "*.{fasta,fa,fna,faa,gz}",
                 "ontologies": [
                   {
                     "edam": "http://edamontology.org/format_1929"
@@ -173415,7 +173541,7 @@
               {
                 "*.{bai,crai,csi}": {
                   "type": "file",
-                  "description": "Optional index for the BAM, BCF or CRAM files. Pass `--with-index`\nto `samtools` via `task.ext.args2`, or BAM and CRAM, and to\n`bcftools call` via `task.ext.arg4` for BCF.\n",
+                  "description": "Optional index for the BAM, BCF or CRAM files. Pass `--write-index`\nto `samtools` via `task.ext.args2`, or BAM and CRAM, and to\n`bcftools call` via `task.ext.arg4` for BCF.\n",
                   "pattern": "*.{bai,crai,csi}",
                   "ontologies": []
                 }
@@ -173431,10 +173557,10 @@
                 }
               },
               {
-                "*.{stats}": {
+                "*.stats": {
                   "type": "file",
                   "description": "Statistics on the BCF files.",
-                  "pattern": "*.{stats}",
+                  "pattern": "*.stats",
                   "ontologies": []
                 }
               }
@@ -179385,19 +179511,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_lai": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "lai": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "beta3.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "lai": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "beta3.2": {
+                  "type": "string",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -179596,19 +179754,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_ltr_retriever": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "LTR_retriever": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "LTR_retriever -h 2>&1 | sed '/### LTR_retriever v/!d;s/.*v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "LTR_retriever": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "LTR_retriever -h 2>&1 | sed '/### LTR_retriever v/!d;s/.*v//;s/ .*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -179896,20 +180086,6 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software version",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
-          ],
           "gapped": [
             [
               {
@@ -179966,6 +180142,52 @@
                   "description": "Optional bedGraph files for input and treatment input samples",
                   "pattern": "*.bdg",
                   "ontologies": []
+                }
+              }
+            ]
+          ],
+          "versions_macs2": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macs2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macs2 --version | sed 's/macs2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "macs2": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "macs2 --version | sed 's/macs2 //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -295397,14 +295619,20 @@
               }
             },
             {
-              "file": {
+              "files": {
                 "type": "file",
-                "description": "Any file",
+                "description": "Any number of files",
                 "pattern": "*.*",
                 "ontologies": []
               }
             }
-          ]
+          ],
+          {
+            "as_separate_files": {
+              "type": "boolean",
+              "description": "If true, each file will have its own shasum file. If false, all files will be\nchecksummed into a single shasum file.\n"
+            }
+          }
         ],
         "output": {
           "checksum": [
@@ -362078,6 +362306,46 @@
                   "reads": {
                     "type": "file",
                     "description": "Preprocessed FastQ files",
+                    "pattern": "*.{fq,fastq},{,.gz}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "reads_cat": {
+              "description": "Channel snapshot of reads before adapter trimming",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information"
+                  }
+                },
+                {
+                  "reads": {
+                    "type": "file",
+                    "description": "Pre-trimming FastQ files",
+                    "pattern": "*.{fq,fastq},{,.gz}"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "reads_trimmed": {
+              "description": "Channel snapshot of reads after adapter trimming but before BBSplit/rRNA removal",
+              "structure": [
+                {
+                  "meta": {
+                    "type": "map",
+                    "description": "Groovy Map containing sample information"
+                  }
+                },
+                {
+                  "reads": {
+                    "type": "file",
+                    "description": "Trimmed FastQ files prior to BBSplit/rRNA removal",
                     "pattern": "*.{fq,fastq},{,.gz}"
                   }
                 }
