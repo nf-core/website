@@ -39,7 +39,7 @@ Replace the following:
   :::warning
   If you still wish to use the `nf-core tools` linting functionality, this may cause linting failures.
   Create a `.nf-core.yml` file that allows you to ignore or skip certain lint tests.
-  See [linting config](../../nf-core-tools/CLI/pipelines/lint#linting-config) for more information.
+  See [linting config](../nf-core-tools/CLI/pipelines/lint#linting-config) for more information.
   :::
 
 ### `README`
@@ -111,4 +111,4 @@ Rename the following:
 
 - `ci.yml`: The name of your pipeline (rather than `nf-core CI tests`)
 
-See [Setting custom remotes](../../developing/components/custom-remotes).
+See [Setting custom remotes](./components/custom-remotes).
