@@ -4,8 +4,6 @@ subtitle: "Core team statement on AI within nf-core"
 headerImage: "/assets/images/blog/statement-on-ai/maxime-pigeon.png"
 headerImageAlt: "Badly photoshopped image of a pigeon developing code on a laptop"
 pubDate: 2026-01-14T10:00:00+01:00
-headerImage: "/assets/images/blog/statement-on-ai/maxime-pigeon.png"
-headerImageAlt: Image of a pigeon developing code on a laptop, and Maxime Garcia giving a thumbs up from the laptop screen
 embedHeaderImage: true
 authors:
   - "jfy133"
