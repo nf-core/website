@@ -107,6 +107,11 @@ function getAdvisoryBadgeColors(severity: string) {
     };
 }
 
+// Accepted proposals before new ones
+function sortByStatus(a: { status: string }, b: { status: string }): number {
+    return a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1;
+}
+
 function formatAdvisoryTypes(type: string | string[]): string[] {
     const types = Array.isArray(type) ? type : [type];
     return types.map((t) =>
@@ -563,7 +568,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 </p>
                 <div style="font-size: 0; margin-bottom: 16px;">
                     {pipelineProposals
-                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .sort(sortByStatus)
                         .map((p) => (
                             <div
                                 class="nl-col"
@@ -599,7 +604,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
                 <div style="font-size: 0; margin-bottom: 16px;">
                     {otherProposals
-                        .sort((a, b) => (a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1))
+                        .sort(sortByStatus)
                         .map((p) => (
                             <div
                                 class="nl-col"

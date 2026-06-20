@@ -442,7 +442,7 @@ export async function getNewsletterStaticPathsData(
     const advisories = await getCollectionFn("advisories");
     const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
 
-    let allProposals: any[] = [];
+    let allProposals: RawProposal[] = [];
     try {
         allProposals = await fetchAllProposals();
     } catch (e) {
@@ -461,7 +461,7 @@ export async function getNewsletterContentData(
     pipelines: PipelineWorkflow[],
     year: number,
     month: number,
-    allProposals: any[],
+    allProposals: RawProposal[],
     images: Record<string, () => Promise<any>>,
 ) {
     const monthName = getMonthName(month);
@@ -520,16 +520,23 @@ export async function getNewsletterContentData(
         return headerImage;
     }
 
-    const blogImageSrcs = new Map<string, any>();
-    for (const post of [...thisMonthBlogPosts, ...olderBlogPosts]) {
-        blogImageSrcs.set(post.id, await resolveImageSrc((post as any).data.headerImage));
-    }
-    const eventImageSrcs = new Map<string, any>();
-    for (const event of upcomingEvents) {
-        if ((event as any).data.headerImage) {
-            eventImageSrcs.set(event.id, await resolveImageSrc((event as any).data.headerImage));
-        }
-    }
+    const blogImageSrcs = new Map<string, any>(
+        await Promise.all(
+            [...thisMonthBlogPosts, ...olderBlogPosts].map(
+                async (post) => [post.id, await resolveImageSrc((post as any).data.headerImage)] as [string, any],
+            ),
+        ),
+    );
+    const eventImageSrcs = new Map<string, any>(
+        await Promise.all(
+            upcomingEvents
+                .filter((event) => (event as any).data.headerImage)
+                .map(
+                    async (event) =>
+                        [event.id, await resolveImageSrc((event as any).data.headerImage)] as [string, any],
+                ),
+        ),
+    );
 
     return {
         year,

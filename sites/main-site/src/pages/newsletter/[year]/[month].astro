@@ -3,7 +3,7 @@ import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
 import { getNewsletterStaticPathsData, getNewsletterContentData, getMonthName } from "@utils/newsletter";
-import type { NewsletterMonth } from "@utils/newsletter";
+import type { NewsletterMonth, RawProposal } from "@utils/newsletter";
 import NewsletterContent from "@components/newsletter/NewsletterContent.astro";
 
 const images = import.meta.glob("/src/assets/**");
@@ -31,7 +31,7 @@ const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.pro
     year: number;
     month: number;
     allMonths: NewsletterMonth[];
-    allProposals: any[];
+    allProposals: RawProposal[];
     prevMonth: NewsletterMonth | null;
     nextMonth: NewsletterMonth | null;
 };
