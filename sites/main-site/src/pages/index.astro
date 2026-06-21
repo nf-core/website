@@ -3,6 +3,7 @@ import { Icon } from "astro-icon/components";
 import NfCoreLogoDarkbg from "../assets/images/logo/nf-core-logo-darkbg.svg";
 import NfCoreLogo from "../assets/images/logo/nf-core-logo.svg";
 import ContributorCarousel from "@components/ContributorCarousel.svelte";
+import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
 import EventBanner from "@components/event/EventBanner.astro";
 import HomepageCard from "@components/homepage/HomepageCard.astro";
 import HomepageVideosEvents from "@components/homepage/HomepageVideosEvents.astro";
@@ -273,6 +274,23 @@ nf-core pipelines list`}
                     <a class="btn btn-lg btn-success arrow-hover" href="/docs/tutorials/adding_a_pipeline/overview"
                         ><span><i class="fa-duotone fa-code me-1"></i> Developer docs</span>
                     </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-success bg-opacity-10 py-5">
+        <div class="container text-center">
+            <div class="row justify-content-center">
+                <div class="col-lg-7">
+                    <h3 class="mb-2"><i class="fas fa-envelope-open-text me-2"></i>Stay in the loop</h3>
+                    <p class="text-body-secondary mb-3">
+                        Get the nf-core newsletter — community news, pipeline releases, and events, once a month.
+                    </p>
+                    <NewsletterSignup compact={true} />
+                    <p class="small text-body-secondary mt-2 mb-0">
+                        <a href="/newsletter/subscribe">More about the newsletter</a>
+                    </p>
                 </div>
             </div>
         </div>
