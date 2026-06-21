@@ -40,7 +40,10 @@ const contentData = await getNewsletterContentData(getCollection, pipelines, yea
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>nf-core Newsletter - {monthName} {year}</title>
-        <style>
+        <!-- is:inline keeps this verbatim + inline + unscoped: email clients drop
+             external stylesheets, and Astro scoping would stop the responsive
+             rules from matching the NewsletterContent elements. -->
+        <style is:inline>
             body {
                 margin: 0;
                 padding: 20px;
