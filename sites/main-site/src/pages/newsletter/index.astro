@@ -1,5 +1,6 @@
 ---
 import PageLayout from "@layouts/PageLayout.astro";
+import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
 import { getNewsletterMonths, getMonthName } from "@utils/newsletter";
@@ -32,6 +33,12 @@ const latest = months[0];
     mainpage_container={true}
     subfooter={false}
 >
+    <div class="card border-secondary mb-4">
+        <div class="card-body p-4">
+            <NewsletterSignup />
+        </div>
+    </div>
+
     {
         latest && (
             <div class="alert alert-success mb-4">
