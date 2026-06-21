@@ -24,9 +24,15 @@ interface Props {
         blogImageSrcs: Map<string, any>;
         eventImageSrcs: Map<string, any>;
     };
+    // When true (email build only), render the SES unsubscribe link in the footer.
+    email?: boolean;
 }
 
-const { data } = Astro.props;
+const { data, email = false } = Astro.props;
+
+// SES replaces this placeholder with the hosted unsubscribe URL when the email
+// is sent with ListManagementOptions. Kept out of the public web page (email-only).
+const unsubscribeUrl = "{{amazonSESUnsubscribeUrl}}";
 const {
     year,
     month,
@@ -567,31 +573,29 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     </a>
                 </p>
                 <div style="font-size: 0; margin-bottom: 16px;">
-                    {pipelineProposals
-                        .sort(sortByStatus)
-                        .map((p) => (
-                            <div
-                                class="nl-col"
-                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                            >
-                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                    <a
-                                        href={p.url}
-                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {p.displayTitle}
-                                    </a>
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                    >
-                                        {p.status === "accepted" ? "Accepted" : "New"}
-                                    </span>
-                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
-                                        #{p.number}
-                                    </span>
-                                </div>
+                    {pipelineProposals.sort(sortByStatus).map((p) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                <a
+                                    href={p.url}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                >
+                                    {p.displayTitle}
+                                </a>
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                >
+                                    {p.status === "accepted" ? "Accepted" : "New"}
+                                </span>
+                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                    #{p.number}
+                                </span>
                             </div>
-                        ))}
+                        </div>
+                    ))}
                 </div>
             </>
         )
@@ -603,31 +607,29 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
             <>
                 <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
                 <div style="font-size: 0; margin-bottom: 16px;">
-                    {otherProposals
-                        .sort(sortByStatus)
-                        .map((p) => (
-                            <div
-                                class="nl-col"
-                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                            >
-                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                    <a
-                                        href={p.url}
-                                        style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {p.displayTitle}
-                                    </a>
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                    >
-                                        {p.status === "accepted" ? "Accepted" : "New"}
-                                    </span>
-                                    <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
-                                        #{p.number}
-                                    </span>
-                                </div>
+                    {otherProposals.sort(sortByStatus).map((p) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                <a
+                                    href={p.url}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                >
+                                    {p.displayTitle}
+                                </a>
+                                <span
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                >
+                                    {p.status === "accepted" ? "Accepted" : "New"}
+                                </span>
+                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                    #{p.number}
+                                </span>
                             </div>
-                        ))}
+                        </div>
+                    ))}
                 </div>
             </>
         )
@@ -644,7 +646,17 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     This newsletter is brought to you by the <a
                         href="https://nf-co.re"
                         style="color: #22ae63; text-decoration: none; font-weight: 600;">nf-core</a
-                    > community.
+                    > community.{
+                        email && (
+                            <Fragment>
+                                {" "}
+                                <a href={unsubscribeUrl} style="color: #22ae63;">
+                                    Unsubscribe here
+                                </a>
+                                .
+                            </Fragment>
+                        )
+                    }
                 </p>
                 <p class="nl-muted" style="font-size: 13px; color: #999999; margin: 8px 0 0;">
                     <a href="https://nf-co.re/join" style="color: #22ae63;">Join us</a> &middot;
