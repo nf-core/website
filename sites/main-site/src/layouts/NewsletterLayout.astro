@@ -99,6 +99,56 @@ function getAdvisoryBadgeColors(severity: string) {
         text: severityTextColors[severity] || "#fefefe",
     };
 }
+
+// Inline style for an advisory severity badge. `small` is the compact variant used
+// in the "in case you missed it" grid; the main Advisories list uses the larger one.
+function advisoryBadgeStyle(severity: string, small = false): string {
+    const { bg, text } = getAdvisoryBadgeColors(severity);
+    const [fontSize, padding, marginRight] = small ? ["10px", "2px 6px", "4px"] : ["11px", "2px 8px", "8px"];
+    return `display: inline-block; font-size: ${fontSize}; padding: ${padding}; border-radius: 3px; margin-right: ${marginRight}; color: ${text}; background-color: ${bg}; font-weight: 700; text-transform: uppercase;`;
+}
+
+// "In case you missed it" merges recent events, earlier blog posts and earlier
+// advisories into a single list, rendered as one grid so the two columns fill
+// row-by-row without leaving a gap when a group has an odd number of items.
+const icymiItems: { kind: "event" | "blog" | "advisory"; item: any }[] = [
+    ...recentEvents.map((item: any) => ({ kind: "event" as const, item })),
+    ...olderBlogPosts.map((item: any) => ({ kind: "blog" as const, item })),
+    ...olderAdvisories.map((item: any) => ({ kind: "advisory" as const, item })),
+];
+
+// "New pipelines & proposals" is one flat list. Rather than separate subheadings,
+// each row carries badge labels for its type (and, for proposals, its status).
+type Label = { text: string; bg: string; color: string };
+const TYPE_LABEL = { bg: "#f0f0f0", color: "#666666" };
+const statusLabel = (status: string): Label =>
+    status === "accepted"
+        ? { text: "Accepted", bg: "#22ae63", color: "#fefefe" }
+        : { text: "New", bg: "#0d6efd", color: "#fefefe" };
+
+// RFCs are titled "RFC: …" / "New RFC: …".
+const RFC_TITLE_PATTERN = /^\s*(new\s+)?rfc\b/i;
+
+const pipelinesAndProposals: { title: string; url: string; sub: string; labels: Label[] }[] = [
+    ...newPipelines.map((p: any) => ({
+        title: `nf-core/${p.name}`,
+        url: pipelineUrl(p.name),
+        sub: p.description,
+        labels: [{ text: "New repo", ...TYPE_LABEL }],
+    })),
+    ...[...pipelineProposals].sort(sortByStatus).map((p: any) => ({
+        title: p.displayTitle,
+        url: p.url,
+        sub: `Pipeline proposal #${p.number}`,
+        labels: [statusLabel(p.status)],
+    })),
+    ...[...otherProposals].sort(sortByStatus).map((p: any) => ({
+        title: p.displayTitle,
+        url: p.url,
+        sub: `${RFC_TITLE_PATTERN.test(p.title ?? "") ? "RFC proposal" : "Other proposal"} #${p.number}`,
+        labels: [statusLabel(p.status)],
+    })),
+];
 ---
 
 <div id="newsletter-content">
@@ -197,11 +247,7 @@ function getAdvisoryBadgeColors(severity: string) {
                     {monthAdvisories.map((advisory) => (
                         <tr>
                             <td style="padding: 12px 0; border-bottom: 1px solid #eeeeee;">
-                                <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${getAdvisoryBadgeColors(advisory.data.severity).text}; background-color: ${getAdvisoryBadgeColors(advisory.data.severity).bg}; font-weight: 700; text-transform: uppercase;`}
-                                >
-                                    {advisory.data.severity}
-                                </span>
+                                <span style={advisoryBadgeStyle(advisory.data.severity)}>{advisory.data.severity}</span>
                                 {formatAdvisoryTypes(advisory.data.type).map((label: string) => (
                                     <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; color: #666666; background-color: #f0f0f0;">
                                         {label}
@@ -272,7 +318,7 @@ function getAdvisoryBadgeColors(severity: string) {
                 <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
                     Pipeline releases
                 </h2>
-                <div style="font-size: 0; margin-bottom: 16px;">
+                <div class="nl-grid" style="font-size: 0; margin-bottom: 16px;">
                     {otherReleases.map((release) => (
                         <div
                             class="nl-col"
@@ -373,73 +419,60 @@ function getAdvisoryBadgeColors(severity: string) {
 
     {/* ----- 5. IN CASE YOU MISSED IT (recent events + older blog posts + older advisories) ----- */}
     {
-        (recentEvents.length > 0 || olderBlogPosts.length > 0 || olderAdvisories.length > 0) && (
+        icymiItems.length > 0 && (
             <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
+                <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
                     In case you missed it
                 </h2>
-
-                {/* Recent events (secondary, 2-column) */}
-                {recentEvents.length > 0 && (
-                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
-                        {recentEvents.map((event: any) => (
-                            <div
-                                class="nl-col"
-                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                            >
-                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                    <a
-                                        href={eventUrl(event.id)}
-                                        style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                    >
-                                        {event.data.title}
-                                    </a>
-                                    <br />
-                                    <span class="nl-muted" style="font-size: 12px; color: #888888;">
-                                        {formatDate(event.data.start)}
-                                        {event.data.start.toDateString() !== event.data.end.toDateString() && (
-                                            <> &ndash; {formatDate(event.data.end)}</>
-                                        )}
-                                    </span>
-                                    <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
-                                    >
-                                        {eventTypeLabel[event.data.type] || event.data.type}
-                                    </span>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Older blog posts (secondary, 2-column) */}
-                {olderBlogPosts.length > 0 && (
-                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
-                        {olderBlogPosts.map((post: any) => (
-                            <div
-                                class="nl-col"
-                                style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                            >
-                                <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                <div class="nl-grid" style="font-size: 0; margin-top: 16px; margin-bottom: 16px;">
+                    {icymiItems.map(({ kind, item }) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                {kind === "event" && (
+                                    <>
+                                        <a
+                                            href={eventUrl(item.id)}
+                                            style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {item.data.title}
+                                        </a>
+                                        <br />
+                                        <span class="nl-muted" style="font-size: 12px; color: #888888;">
+                                            {formatDate(item.data.start)}
+                                            {item.data.start.toDateString() !== item.data.end.toDateString() && (
+                                                <> &ndash; {formatDate(item.data.end)}</>
+                                            )}
+                                        </span>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[item.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[item.data.type]?.color || "#6c757d"};`}
+                                        >
+                                            {eventTypeLabel[item.data.type] || item.data.type}
+                                        </span>
+                                    </>
+                                )}
+                                {kind === "blog" && (
                                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                                         <tr>
                                             <td style="vertical-align: top; padding-right: 8px;">
                                                 <a
-                                                    href={blogUrl(post.id)}
+                                                    href={blogUrl(item.id)}
                                                     style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
                                                 >
-                                                    {post.data.title}
+                                                    {item.data.title}
                                                 </a>
                                                 <br />
                                                 <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                                    {formatDate(post.data.pubDate)}
+                                                    {formatDate(item.data.pubDate)}
                                                 </span>
                                             </td>
                                             <td style="vertical-align: middle; width: 80px;">
-                                                <a href={blogUrl(post.id)} style="text-decoration: none;">
+                                                <a href={blogUrl(item.id)} style="text-decoration: none;">
                                                     <img
-                                                        src={imgSrc(blogImageSrcs.get(post.id))}
-                                                        alt={post.data.headerImageAlt}
+                                                        src={imgSrc(blogImageSrcs.get(item.id))}
+                                                        alt={item.data.headerImageAlt}
                                                         width="80"
                                                         height="45"
                                                         style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
@@ -448,142 +481,77 @@ function getAdvisoryBadgeColors(severity: string) {
                                             </td>
                                         </tr>
                                     </table>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                )}
-
-                {/* Older advisories (secondary, 2-column) */}
-                {olderAdvisories.length > 0 && (
-                    <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
-                        {olderAdvisories.map((advisory: any) => {
-                            const colors = getAdvisoryBadgeColors(advisory.data.severity);
-                            return (
-                                <div
-                                    class="nl-col"
-                                    style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                                >
-                                    <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                        <span
-                                            style={`display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; margin-right: 4px; color: ${colors.text}; background-color: ${colors.bg}; font-weight: 700; text-transform: uppercase;`}
-                                        >
-                                            {advisory.data.severity}
+                                )}
+                                {kind === "advisory" && (
+                                    <>
+                                        <span style={advisoryBadgeStyle(item.data.severity, true)}>
+                                            {item.data.severity}
                                         </span>
                                         <a
-                                            href={advisoryUrl(advisory.id)}
+                                            href={advisoryUrl(item.id)}
                                             style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
                                         >
-                                            {advisory.data.title}
+                                            {item.data.title}
                                         </a>
                                         <br />
                                         <span class="nl-muted" style="font-size: 12px; color: #999999;">
-                                            {formatDate(advisory.data.publishedDate)}
+                                            {formatDate(item.data.publishedDate)}
                                         </span>
-                                    </div>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </>
         )
     }
 
-    {/* ----- 7. NEW PIPELINES & PROPOSALS ----- */}
+    {/* ----- 7. NEW PIPELINES & PROPOSALS (single list; type shown via labels) ----- */}
     {
-        (newPipelines.length > 0 || pipelineProposals.length > 0 || otherProposals.length > 0) && (
+        pipelinesAndProposals.length > 0 && (
             <>
                 <h2 style="font-size: 26px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 6px; margin-top: 44px;">
                     New pipelines &amp; proposals
                 </h2>
-            </>
-        )
-    }
-
-    {
-        newPipelines.length > 0 && (
-            <>
-                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">New pipeline repositories</h3>
-                <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin-bottom: 16px;">
-                    {newPipelines.map((p) => (
-                        <tr>
-                            <td style="padding: 10px 0; border-bottom: 1px solid #eeeeee;">
+                {(pipelineProposals.length > 0 || otherProposals.length > 0) && (
+                    <p class="nl-muted" style="font-size: 13px; color: #888888; margin: 8px 0 0;">
+                        Proposals from{" "}
+                        <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
+                            nf-core/proposals
+                        </a>
+                        .
+                    </p>
+                )}
+                <div class="nl-grid" style="font-size: 0; margin-top: 12px; margin-bottom: 16px;">
+                    {pipelinesAndProposals.map((item) => (
+                        <div
+                            class="nl-col"
+                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
+                        >
+                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
                                 <a
-                                    href={pipelineUrl(p.name)}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 15px;"
+                                    href={item.url}
+                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
                                 >
-                                    nf-core/{p.name}
+                                    {item.title}
                                 </a>
-                                {p.isDevOnly && (
-                                    <span style="display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #856404; background-color: #fff3cd;">
-                                        In Development
+                                {item.labels.map((label) => (
+                                    <span
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: ${label.color}; background-color: ${label.bg};`}
+                                    >
+                                        {label.text}
                                     </span>
-                                )}
+                                ))}
                                 <br />
-                                <span class="nl-muted" style="font-size: 14px; color: #555555;">
-                                    {p.description}
+                                <span class="nl-muted" style="font-size: 12px; color: #999999;">
+                                    {item.sub}
                                 </span>
-                            </td>
-                        </tr>
-                    ))}
-                </table>
-            </>
-        )
-    }
-
-    {/* Proposals (secondary, 2-column). Pipeline proposals also link the source repo. */}
-    {
-        [
-            { title: "Pipeline proposals", items: pipelineProposals, withSource: true },
-            { title: "Other proposals", items: otherProposals, withSource: false },
-        ].map(
-            (section) =>
-                section.items.length > 0 && (
-                    <>
-                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">{section.title}</h3>
-                        {section.withSource && (
-                            <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                                From{" "}
-                                <a
-                                    class="nl-green"
-                                    href="https://github.com/nf-core/proposals/issues"
-                                    style="color: #22ae63;"
-                                >
-                                    nf-core/proposals
-                                </a>
-                            </p>
-                        )}
-                        <div style="font-size: 0; margin-bottom: 16px;">
-                            {section.items.sort(sortByStatus).map((p) => (
-                                <div
-                                    class="nl-col"
-                                    style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                                >
-                                    <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                        <a
-                                            href={p.url}
-                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                        >
-                                            {p.displayTitle}
-                                        </a>
-                                        <span
-                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                        >
-                                            {p.status === "accepted" ? "Accepted" : "New"}
-                                        </span>
-                                        <span
-                                            class="nl-muted"
-                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
-                                        >
-                                            #{p.number}
-                                        </span>
-                                    </div>
-                                </div>
-                            ))}
+                            </div>
                         </div>
-                    </>
-                ),
+                    ))}
+                </div>
+            </>
         )
     }
 
@@ -655,6 +623,28 @@ function getAdvisoryBadgeColors(severity: string) {
         #newsletter-content :global(.nl-blog-img) {
             max-width: 100% !important;
             display: block !important;
+        }
+    }
+
+    /* On wider screens, lay the 2-column sections out as a real grid so each row
+     * is equal-height and the card dividers line up across both columns. The
+     * inline-block + max-width:50% inline styles remain the fallback for email
+     * clients that don't support grid (they keep the current behaviour). */
+    @media screen and (min-width: 601px) {
+        #newsletter-content :global(.nl-grid) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 16px;
+        }
+        #newsletter-content :global(.nl-grid) > :global(.nl-col) {
+            max-width: none !important;
+            padding-right: 0 !important;
+        }
+        /* Stretch each card to its row height so its bottom border aligns with
+         * the neighbouring column's. */
+        #newsletter-content :global(.nl-grid) > :global(.nl-col) > div {
+            height: 100%;
+            box-sizing: border-box;
         }
     }
 
