@@ -63,13 +63,6 @@ blockquote {
   }
 }
 
-.main-content figure pre:has(+ figcaption) {
-  margin-bottom: 0;
-}
-.main-content figure pre:has(+ figcaption) code {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .main-content figure img:has(+ figcaption) {
   border: 1px solid $border-color;
   border-bottom: 0;
@@ -78,7 +71,11 @@ blockquote {
   border-top-right-radius: 3px;
 }
 
-.main-content figcaption {
+// Generic figure caption (images / standalone figures). Code blocks are rendered
+// by Expressive Code, which adds its own `figcaption.header` above the `<pre>`
+// (and a `figcaption.ec-caption` below) — exclude both so we don't override the
+// EC frame header styling.
+.main-content figcaption:not(.header):not(.ec-caption) {
   font-size: 0.9rem;
   color: $body-secondary-color;
   padding: 0.2rem 0.5rem;
@@ -91,16 +88,6 @@ blockquote {
   font-style: italic;
   text-align: center;
   color: var(--bs-secondary-color);
-}
-
-.main-content pre figcaption {
-  border: 1px solid $border-color;
-  border-top: 0;
-}
-.main-content pre figcaption:last-child {
-  margin-bottom: 1.5rem;
-  border-bottom-left-radius: 3px;
-  border-bottom-right-radius: 3px;
 }
 
 mark,
@@ -1218,6 +1205,11 @@ div.mermaid {
   }
 }
 
+// give code blocks some breathing room below them
+.main-content .expressive-code {
+  margin-bottom: 1rem;
+}
+
 // add margin to codeblocks wedged in between ol/ul
 .main-content ol + .expressive-code,
 .main-content ul + .expressive-code {
@@ -1356,7 +1348,7 @@ div.mermaid {
     color: $white;
     font-weight: 400;
   }
-  .main-content figcaption,
+  .main-content figcaption:not(.header):not(.ec-caption),
   .main-content figure img {
     border-color: $border-color-dark;
     color: $body-secondary-color-dark;
