@@ -69,15 +69,37 @@ function monthUrl(m: NewsletterMonth): string {
             }
 
             <div class="d-flex align-items-center gap-2">
-                <a href="/newsletter/rss.xml" class="btn btn-outline-secondary btn-sm" title="RSS Feed">
+                <a
+                    href="/newsletter/rss.xml"
+                    class="btn btn-outline-secondary btn-sm"
+                    data-bs-toggle="tooltip"
+                    title="RSS feed"
+                >
                     <i class="fa-solid fa-rss"></i>
                 </a>
                 <a
                     href={`${monthUrl({ year, month })}/email`}
                     class="btn btn-outline-secondary btn-sm"
+                    data-bs-toggle="tooltip"
                     title="Email HTML version"
                 >
                     <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a
+                    href={`${monthUrl({ year, month })}/markdown`}
+                    class="btn btn-outline-secondary btn-sm"
+                    data-bs-toggle="tooltip"
+                    title="Markdown version (for AI agents)"
+                >
+                    <i class="fa-brands fa-markdown"></i>
+                </a>
+                <a
+                    href={`${monthUrl({ year, month })}/simple`}
+                    class="btn btn-outline-secondary btn-sm"
+                    data-bs-toggle="tooltip"
+                    title="Plain HTML version"
+                >
+                    <i class="fa-solid fa-code"></i>
                 </a>
                 <select class="newsletter-month-select form-select form-select-sm w-auto">
                     {
