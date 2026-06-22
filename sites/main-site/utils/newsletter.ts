@@ -1,4 +1,5 @@
 import { octokit } from "@components/octokit.js";
+import { getImage } from "astro:assets";
 import { addMonths } from "date-fns";
 
 // ========================================
@@ -515,17 +516,37 @@ export async function getNewsletterContentData(
         previewParts.length > 0 ? previewParts.join(", ") + "." : `Community news for ${monthName} ${year}.`;
     const newsletterUrl = `${baseUrl}/newsletter/${year}/${String(month).padStart(2, "0")}`;
 
-    // Pre-resolve all image sources
-    async function resolveImageSrc(headerImage: string): Promise<any> {
+    // Pre-resolve all image sources to a cropped 16:9 thumbnail. Header images
+    // come in any aspect ratio, and email clients ignore `object-fit`, so we crop
+    // the actual file here (works for both bundled /assets images and whitelisted
+    // remote URLs). Falls back to the original src if optimisation fails (e.g. a
+    // non-whitelisted domain), which still renders — just uncropped.
+    async function resolveImageSrc(headerImage: string): Promise<string> {
+        // `/assets/…` blog/event images are bundled (src/assets); resolve them to
+        // their bundled asset. Anything not in the bundle (e.g. a /public path) or a
+        // remote URL is used as-is.
+        let src: any = headerImage;
         if (headerImage.startsWith("/assets/")) {
-            const key = "/src" + headerImage;
-            const loader = images[key];
-            if (loader) {
-                const mod = (await loader()) as any;
-                return mod.default;
-            }
+            const loader = images["/src" + headerImage];
+            if (!loader) return headerImage;
+            src = ((await loader()) as any).default;
         }
-        return headerImage;
+        try {
+            // JPEG (not WebP) for broad email-client support, incl. Outlook on Windows.
+            const thumb = await getImage({
+                src,
+                width: 480,
+                height: 270,
+                fit: "cover",
+                position: "center",
+                format: "jpeg",
+            });
+            return thumb.src;
+        } catch {
+            // If optimisation fails, fall back to the *un-cropped* image that still
+            // loads — the bundled asset src for local images, the URL for remote.
+            return typeof src === "string" ? src : src.src;
+        }
     }
 
     const blogImageSrcs = new Map<string, any>(
