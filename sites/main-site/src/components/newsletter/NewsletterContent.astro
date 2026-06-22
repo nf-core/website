@@ -5,6 +5,19 @@
 const logoLightUrl = "/images/logo/nf-core-newsletter-lightbg.png";
 const logoDarkUrl = "/images/logo/nf-core-newsletter-darkbg.png";
 
+// Shared formatting / URL helpers — same implementations used by the
+// /markdown and /simple renderings (newsletter-render.ts) so all variants stay
+// consistent. The URL helpers there take baseUrl as an argument; we bind it below.
+import {
+    blogUrl as blogUrlBase,
+    eventUrl as eventUrlBase,
+    pipelineUrl as pipelineUrlBase,
+    eventTypeLabel,
+    formatDate,
+    formatAdvisoryTypes,
+    sortByStatus,
+} from "@utils/newsletter-render";
+
 interface Props {
     data: {
         year: number;
@@ -58,77 +71,50 @@ const {
     eventImageSrcs,
 } = data;
 
-// Helper functions
+// Event type badge background colours (web/email only — the markdown variant
+// uses text labels). TODO: move this to content collections.
 const eventTypeColor: Record<string, string> = {
     bytesize: "#22ae63",
     hackathon: "#0d6efd",
     talk: "#0dcaf0",
     training: "#ffc107",
 };
-const eventTypeLabel: Record<string, string> = {
-    bytesize: "Bytesize",
-    hackathon: "Hackathon",
-    talk: "Talk",
-    training: "Training",
+// Matching text colours: dark text on the light (cyan/yellow) badges, near-white
+// on the darker (green/blue) ones, so the label stays legible on each colour.
+const eventTypeTextColor: Record<string, string> = {
+    bytesize: "#fefefe",
+    hackathon: "#fefefe",
+    talk: "#212529",
+    training: "#212529",
 };
-
-function formatDate(date: Date): string {
-    return new Date(date).toLocaleDateString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-    });
-}
-
-function blogUrl(postId: string): string {
-    return `${baseUrl}/blog/${postId.replace(/\.[^/.]+$/, "")}`;
-}
-
-function eventUrl(eventId: string): string {
-    return `${baseUrl}/events/${eventId.replace(/\.[^/.]+$/, "")}`;
-}
-
-function pipelineUrl(name: string): string {
-    return `${baseUrl}/${name}`;
-}
 
 function imgSrc(src: any): string {
     return typeof src === "string" ? src : src.src;
 }
 
-const severityColors: Record<string, string> = {
+// baseUrl-bound wrappers around the shared URL helpers (which take baseUrl).
+const blogUrl = (id: string): string => blogUrlBase(baseUrl, id);
+const eventUrl = (id: string): string => eventUrlBase(baseUrl, id);
+const pipelineUrl = (name: string): string => pipelineUrlBase(baseUrl, name);
+
+const severityBackGroundColors: Record<string, string> = {
     low: "#0d6efd",
     medium: "#ffc107",
     high: "#dc3545",
-    critical: "#dc3545",
+    critical: "#842029",
 };
 const severityTextColors: Record<string, string> = {
-    low: "#ffffff",
-    medium: "#333333",
-    high: "#ffffff",
-    critical: "#ffffff",
+    low: "#fefefe",
+    medium: "#212529",
+    high: "#fefefe",
+    critical: "#fefefe",
 };
 
 function getAdvisoryBadgeColors(severity: string) {
     return {
-        bg: severityColors[severity] || "#6c757d",
-        text: severityTextColors[severity] || "#ffffff",
+        bg: severityBackGroundColors[severity] || "#6c757d",
+        text: severityTextColors[severity] || "#fefefe",
     };
-}
-
-// Accepted proposals before new ones
-function sortByStatus(a: { status: string }, b: { status: string }): number {
-    return a.status === b.status ? 0 : a.status === "accepted" ? -1 : 1;
-}
-
-function formatAdvisoryTypes(type: string | string[]): string[] {
-    const types = Array.isArray(type) ? type : [type];
-    return types.map((t) =>
-        t
-            .split("_")
-            .map((w: string) => w.charAt(0).toUpperCase() + w.slice(1))
-            .join(" "),
-    );
 }
 ---
 
@@ -150,14 +136,14 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                 <img
                     class="nl-logo-light"
                     src={logoLightUrl}
-                    alt="nf-core newsletter"
+                    alt="nf-core newsletter logo"
                     width="400"
                     style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
                 />
                 <img
                     class="nl-logo-dark"
                     src={logoDarkUrl}
-                    alt="nf-core newsletter"
+                    alt="nf-core newsletter logo"
                     width="400"
                     style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
                 />
@@ -180,7 +166,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                     <div style="font-size: 0; padding: 12px 0; border-bottom: 1px solid #eeeeee; margin-bottom: 16px;">
                         <div
                             class="nl-blog-text"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
+                            style="display: inline-block; vertical-align: middle; width: 100%; max-width: calc(100% - 256px); font-size: 14px;"
                         >
                             <a
                                 href={blogUrl(post.id)}
@@ -204,7 +190,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             <a href={blogUrl(post.id)} style="text-decoration: none;">
                                 <img
                                     src={imgSrc(blogImageSrcs.get(post.id))}
-                                    alt={post.data.title}
+                                    alt={post.data.headerImageAlt}
                                     width="240"
                                     height="135"
                                     style="width: 100%; height: auto; display: block; border-radius: 6px; object-fit: cover;"
@@ -280,7 +266,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                     nf-core/{release.pipelineName}
                                 </a>
                                 {release.tagNames.map((tag: string) => (
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: #22ae63;">
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: #22ae63;">
                                         v{tag}
                                     </span>
                                 ))}
@@ -318,7 +304,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                 </a>
                                 <br />
                                 {release.tagNames.map((tag: string) => (
-                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #ffffff; background-color: #6c757d;">
+                                    <span style="display: inline-block; font-size: 12px; padding: 2px 8px; border-radius: 3px; margin-right: 4px; margin-top: 4px; color: #fefefe; background-color: #6c757d;">
                                         v{tag}
                                     </span>
                                 ))}
@@ -346,7 +332,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                             {/* Row 1: tag + title + date right-aligned */}
                             <td style="padding: 12px 0 0; vertical-align: middle;">
                                 <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${eventTypeTextColor[event.data.type] || "#fefefe"}; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
                                 >
                                     {eventTypeLabel[event.data.type] || event.data.type}
                                 </span>
@@ -406,7 +392,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     {
         (recentEvents.length > 0 || olderBlogPosts.length > 0 || olderAdvisories.length > 0) && (
             <>
-                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 24px;">
+                <h2 style="font-size: 22px; color: #22ae63; border-bottom: 2px solid #22ae63; padding-bottom: 8px; margin-top: 32px;">
                     In case you missed it
                 </h2>
 
@@ -433,7 +419,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                         )}
                                     </span>
                                     <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: #ffffff; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${eventTypeTextColor[event.data.type] || "#fefefe"}; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
                                     >
                                         {eventTypeLabel[event.data.type] || event.data.type}
                                     </span>
@@ -470,7 +456,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                                 <a href={blogUrl(post.id)} style="text-decoration: none;">
                                                     <img
                                                         src={imgSrc(blogImageSrcs.get(post.id))}
-                                                        alt={post.data.title}
+                                                        alt={post.data.headerImageAlt}
                                                         width="80"
                                                         height="45"
                                                         style="width: 80px; height: 45px; display: block; border-radius: 4px; object-fit: cover;"
@@ -589,11 +575,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                     {p.displayTitle}
                                 </a>
                                 <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
                                 >
                                     {p.status === "accepted" ? "Accepted" : "New"}
                                 </span>
-                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
                                     #{p.number}
                                 </span>
                             </div>
@@ -623,11 +609,11 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
                                     {p.displayTitle}
                                 </a>
                                 <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #ffffff; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
                                 >
                                     {p.status === "accepted" ? "Accepted" : "New"}
                                 </span>
-                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 4px;">
+                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
                                     #{p.number}
                                 </span>
                             </div>
@@ -677,9 +663,9 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         max-width: 800px;
         margin: 0 auto;
         padding: 16px;
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-family: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         /* Light mode base */
-        background-color: #ffffff;
+        background-color: #fefefe;
         color: #333333;
         border-radius: 8px;
     }
@@ -703,7 +689,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).
      * Needs !important to beat inline styles on email-friendly elements. */
     :global([data-bs-theme="dark"]) #newsletter-content {
-        background-color: #1e1e2e !important;
+        background-color: #212529 !important;
         color: #e0e0e0 !important;
     }
     :global([data-bs-theme="dark"]) :global(.nl-logo-light) {
@@ -713,8 +699,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         display: block !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h2 {
-        color: #4ade80 !important;
-        border-bottom-color: #4ade80 !important;
+        color: #1a9655 !important;
+        border-bottom-color: #1a9655 !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h3 {
         color: #cccccc !important;
@@ -724,7 +710,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     }
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-green) a,
     :global([data-bs-theme="dark"]) #newsletter-content a:global(.nl-green) {
-        color: #4ade80 !important;
+        color: #1a9655 !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
         color: #aaaaaa !important;
@@ -742,7 +728,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
      */
     @media (prefers-color-scheme: dark) {
         #newsletter-content {
-            background-color: #1e1e2e !important;
+            background-color: #212529 !important;
             color: #e0e0e0 !important;
         }
         #newsletter-content .nl-logo-light {
@@ -752,8 +738,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
             display: block !important;
         }
         #newsletter-content h2 {
-            color: #4ade80 !important;
-            border-bottom-color: #4ade80 !important;
+            color: #1a9655 !important;
+            border-bottom-color: #1a9655 !important;
         }
         #newsletter-content h3 {
             color: #cccccc !important;
@@ -763,7 +749,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         }
         #newsletter-content .nl-green a,
         #newsletter-content a.nl-green {
-            color: #4ade80 !important;
+            color: #1a9655 !important;
         }
         #newsletter-content .nl-muted {
             color: #aaaaaa !important;
@@ -775,7 +761,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     }
 
     [data-ogsc] #newsletter-content {
-        background-color: #1e1e2e !important;
+        background-color: #212529 !important;
         color: #e0e0e0 !important;
     }
     [data-ogsc] #newsletter-content .nl-logo-light {
@@ -785,8 +771,8 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
         display: block !important;
     }
     [data-ogsc] #newsletter-content h2 {
-        color: #4ade80 !important;
-        border-bottom-color: #4ade80 !important;
+        color: #1a9655 !important;
+        border-bottom-color: #1a9655 !important;
     }
     [data-ogsc] #newsletter-content h3 {
         color: #cccccc !important;
@@ -796,7 +782,7 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
     }
     [data-ogsc] #newsletter-content .nl-green a,
     [data-ogsc] #newsletter-content a.nl-green {
-        color: #4ade80 !important;
+        color: #1a9655 !important;
     }
     [data-ogsc] #newsletter-content .nl-muted {
         color: #aaaaaa !important;

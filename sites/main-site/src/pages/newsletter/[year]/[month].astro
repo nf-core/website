@@ -56,12 +56,13 @@ function monthUrl(m: NewsletterMonth): string {
     </p>
 
     {/* ===== NAVIGATION (excluded from email) ===== */}
-    <nav class="mb-4 newsletter-nav">
+    <nav class="mb-4 border-bottom pb-3">
         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
             {
                 prevMonth ? (
                     <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
-                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                        <i class="fa-solid fa-arrow-left" /> {getMonthName(prevMonth.month)}{" "}
+                        <span class="d-none d-md-inline">{prevMonth.year}</span>
                     </a>
                 ) : (
                     <span />
@@ -76,6 +77,7 @@ function monthUrl(m: NewsletterMonth): string {
                     title="RSS feed"
                 >
                     <i class="fa-solid fa-rss"></i>
+                    <span class="d-none d-md-inline">RSS Feed</span>
                 </a>
                 <a
                     href={`${monthUrl({ year, month })}/email`}
@@ -84,6 +86,7 @@ function monthUrl(m: NewsletterMonth): string {
                     title="Email HTML version"
                 >
                     <i class="fa-solid fa-envelope"></i>
+                    <span class="d-none d-md-inline">Email</span>
                 </a>
                 <a
                     href={`${monthUrl({ year, month })}/markdown`}
@@ -92,6 +95,7 @@ function monthUrl(m: NewsletterMonth): string {
                     title="Markdown version (for AI agents)"
                 >
                     <i class="fa-brands fa-markdown"></i>
+                    <span class="d-none d-md-inline">Markdown</span>
                 </a>
                 <a
                     href={`${monthUrl({ year, month })}/simple`}
@@ -100,6 +104,7 @@ function monthUrl(m: NewsletterMonth): string {
                     title="Plain HTML version"
                 >
                     <i class="fa-solid fa-code"></i>
+                    <span class="d-none d-md-inline">Plain HTML</span>
                 </a>
                 <select class="newsletter-month-select form-select form-select-sm w-auto">
                     {
@@ -115,7 +120,8 @@ function monthUrl(m: NewsletterMonth): string {
             {
                 nextMonth ? (
                     <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
-                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                        {getMonthName(nextMonth.month)} <span class="d-none d-md-inline">{nextMonth.year}</span>{" "}
+                        <i class="fa-solid fa-arrow-right" />
                     </a>
                 ) : (
                     <span />
@@ -134,7 +140,8 @@ function monthUrl(m: NewsletterMonth): string {
             {
                 prevMonth ? (
                     <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
-                        &larr; {getMonthName(prevMonth.month)} {prevMonth.year}
+                        <i class="fa-solid fa-arrow-left" /> {getMonthName(prevMonth.month)}{" "}
+                        <span class="d-none d-md-inline">{prevMonth.year}</span>
                     </a>
                 ) : (
                     <span />
@@ -154,7 +161,8 @@ function monthUrl(m: NewsletterMonth): string {
             {
                 nextMonth ? (
                     <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
-                        {getMonthName(nextMonth.month)} {nextMonth.year} &rarr;
+                        {getMonthName(nextMonth.month)} <span class="d-none d-md-inline">{nextMonth.year}</span>{" "}
+                        <i class="fa-solid fa-arrow-right" />
                     </a>
                 ) : (
                     <span />
@@ -171,10 +179,3 @@ function monthUrl(m: NewsletterMonth): string {
         });
     });
 </script>
-
-<style>
-    .newsletter-nav {
-        border-bottom: 1px solid var(--bs-border-color);
-        padding-bottom: 1rem;
-    }
-</style>

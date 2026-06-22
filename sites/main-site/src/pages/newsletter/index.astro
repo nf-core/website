@@ -58,10 +58,9 @@ const latest = months[0];
                     {byYear.get(year)!.map((m) => (
                         <a
                             href={`/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`}
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                            class="list-group-item list-group-item-action"
                         >
                             {getMonthName(m.month)} {m.year}
-                            <span class="badge bg-success rounded-pill">&rarr;</span>
                         </a>
                     ))}
                 </div>
