@@ -59,6 +59,11 @@ export function createEcConfig() {
         shiki: {
             langAlias: LANG_ALIAS,
         },
+        overridesByLang: {
+            'bash,sh': {
+              frame: 'none',
+            },
+          },
     };
 }
 
