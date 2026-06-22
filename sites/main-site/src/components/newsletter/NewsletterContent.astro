@@ -1,6 +1,9 @@
 ---
-import newsletterLogoLight from "@assets/images/logo/nf-core-newsletter-lightbg.png";
-import newsletterLogoDark from "@assets/images/logo/nf-core-newsletter-darkbg.png";
+// Logos are served from public/ (stable URLs, usable from email) rather than
+// bundled assets. The light logo has a white background baked into the PNG so it
+// stays readable in email dark mode (where CSS logo-swapping doesn't apply).
+const logoLightUrl = "/images/logo/nf-core-newsletter-lightbg.png";
+const logoDarkUrl = "/images/logo/nf-core-newsletter-darkbg.png";
 
 interface Props {
     data: {
@@ -146,14 +149,14 @@ function formatAdvisoryTypes(type: string | string[]): string[] {
             <td style="text-align: center; padding: 20px 0;">
                 <img
                     class="nl-logo-light"
-                    src={newsletterLogoLight.src}
+                    src={logoLightUrl}
                     alt="nf-core newsletter"
                     width="400"
-                    style="max-width: 100%; height: auto; display: block; margin: 0 auto; background-color: #ffffff; border-radius: 8px; padding: 12px; box-sizing: border-box;"
+                    style="max-width: 100%; height: auto; display: block; margin: 0 auto;"
                 />
                 <img
                     class="nl-logo-dark"
-                    src={newsletterLogoDark.src}
+                    src={logoDarkUrl}
                     alt="nf-core newsletter"
                     width="400"
                     style="max-width: 100%; height: auto; display: none; margin: 0 auto;"
