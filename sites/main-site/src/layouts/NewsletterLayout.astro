@@ -11,7 +11,10 @@ const logoDarkUrl = "/images/logo/nf-core-newsletter-darkbg.png";
 import {
     blogUrl as blogUrlBase,
     eventUrl as eventUrlBase,
+    advisoryUrl as advisoryUrlBase,
     pipelineUrl as pipelineUrlBase,
+    imgSrc,
+    EVENT_TYPES,
     eventTypeLabel,
     formatDate,
     formatAdvisoryTypes,
@@ -71,30 +74,10 @@ const {
     eventImageSrcs,
 } = data;
 
-// Event type badge background colours (web/email only — the markdown variant
-// uses text labels). TODO: move this to content collections.
-const eventTypeColor: Record<string, string> = {
-    bytesize: "#22ae63",
-    hackathon: "#0d6efd",
-    talk: "#0dcaf0",
-    training: "#ffc107",
-};
-// Matching text colours: dark text on the light (cyan/yellow) badges, near-white
-// on the darker (green/blue) ones, so the label stays legible on each colour.
-const eventTypeTextColor: Record<string, string> = {
-    bytesize: "#fefefe",
-    hackathon: "#fefefe",
-    talk: "#212529",
-    training: "#212529",
-};
-
-function imgSrc(src: any): string {
-    return typeof src === "string" ? src : src.src;
-}
-
 // baseUrl-bound wrappers around the shared URL helpers (which take baseUrl).
 const blogUrl = (id: string): string => blogUrlBase(baseUrl, id);
 const eventUrl = (id: string): string => eventUrlBase(baseUrl, id);
+const advisoryUrl = (id: string): string => advisoryUrlBase(baseUrl, id);
 const pipelineUrl = (name: string): string => pipelineUrlBase(baseUrl, name);
 
 const severityBackGroundColors: Record<string, string> = {
@@ -227,7 +210,7 @@ function getAdvisoryBadgeColors(severity: string) {
                                 <br />
                                 <a
                                     class="nl-green"
-                                    href={`${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`}
+                                    href={advisoryUrl(advisory.id)}
                                     style="color: #22ae63; text-decoration: none; font-weight: 600; font-size: 16px;"
                                 >
                                     {advisory.data.title}
@@ -332,7 +315,7 @@ function getAdvisoryBadgeColors(severity: string) {
                             {/* Row 1: tag + title + date right-aligned */}
                             <td style="padding: 12px 0 0; vertical-align: middle;">
                                 <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${eventTypeTextColor[event.data.type] || "#fefefe"}; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-right: 8px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
                                 >
                                     {eventTypeLabel[event.data.type] || event.data.type}
                                 </span>
@@ -419,7 +402,7 @@ function getAdvisoryBadgeColors(severity: string) {
                                         )}
                                     </span>
                                     <span
-                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${eventTypeTextColor[event.data.type] || "#fefefe"}; background-color: ${eventTypeColor[event.data.type] || "#6c757d"};`}
+                                        style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 4px; color: ${EVENT_TYPES[event.data.type]?.textColor || "#fefefe"}; background-color: ${EVENT_TYPES[event.data.type]?.color || "#6c757d"};`}
                                     >
                                         {eventTypeLabel[event.data.type] || event.data.type}
                                     </span>
@@ -476,7 +459,6 @@ function getAdvisoryBadgeColors(severity: string) {
                     <div style="font-size: 0; margin-bottom: 16px; margin-top: 16px;">
                         {olderAdvisories.map((advisory: any) => {
                             const colors = getAdvisoryBadgeColors(advisory.data.severity);
-                            const advisoryUrl = `${baseUrl}/advisories/${advisory.id.replace(/\.[^/.]+$/, "")}`;
                             return (
                                 <div
                                     class="nl-col"
@@ -489,7 +471,7 @@ function getAdvisoryBadgeColors(severity: string) {
                                             {advisory.data.severity}
                                         </span>
                                         <a
-                                            href={advisoryUrl}
+                                            href={advisoryUrl(advisory.id)}
                                             style="color: #555555; text-decoration: none; font-weight: 600; font-size: 14px;"
                                         >
                                             {advisory.data.title}
@@ -550,77 +532,58 @@ function getAdvisoryBadgeColors(severity: string) {
         )
     }
 
-    {/* Pipeline proposals (secondary, 2-column) */}
+    {/* Proposals (secondary, 2-column). Pipeline proposals also link the source repo. */}
     {
-        pipelineProposals.length > 0 && (
-            <>
-                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Pipeline proposals</h3>
-                <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
-                    From{" "}
-                    <a class="nl-green" href="https://github.com/nf-core/proposals/issues" style="color: #22ae63;">
-                        nf-core/proposals
-                    </a>
-                </p>
-                <div style="font-size: 0; margin-bottom: 16px;">
-                    {pipelineProposals.sort(sortByStatus).map((p) => (
-                        <div
-                            class="nl-col"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                        >
-                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+        [
+            { title: "Pipeline proposals", items: pipelineProposals, withSource: true },
+            { title: "Other proposals", items: otherProposals, withSource: false },
+        ].map(
+            (section) =>
+                section.items.length > 0 && (
+                    <>
+                        <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">{section.title}</h3>
+                        {section.withSource && (
+                            <p class="nl-muted" style="font-size: 13px; color: #888888; margin-bottom: 12px;">
+                                From{" "}
                                 <a
-                                    href={p.url}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                    class="nl-green"
+                                    href="https://github.com/nf-core/proposals/issues"
+                                    style="color: #22ae63;"
                                 >
-                                    {p.displayTitle}
+                                    nf-core/proposals
                                 </a>
-                                <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                            </p>
+                        )}
+                        <div style="font-size: 0; margin-bottom: 16px;">
+                            {section.items.sort(sortByStatus).map((p) => (
+                                <div
+                                    class="nl-col"
+                                    style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
                                 >
-                                    {p.status === "accepted" ? "Accepted" : "New"}
-                                </span>
-                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                    #{p.number}
-                                </span>
-                            </div>
+                                    <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
+                                        <a
+                                            href={p.url}
+                                            style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
+                                        >
+                                            {p.displayTitle}
+                                        </a>
+                                        <span
+                                            style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
+                                        >
+                                            {p.status === "accepted" ? "Accepted" : "New"}
+                                        </span>
+                                        <span
+                                            class="nl-muted"
+                                            style="font-size: 12px; color: #999999; margin-left: 8px;"
+                                        >
+                                            #{p.number}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </>
-        )
-    }
-
-    {/* Other proposals (secondary, 2-column) */}
-    {
-        otherProposals.length > 0 && (
-            <>
-                <h3 style="font-size: 20px; color: #333333; margin-top: 16px;">Other proposals</h3>
-                <div style="font-size: 0; margin-bottom: 16px;">
-                    {otherProposals.sort(sortByStatus).map((p) => (
-                        <div
-                            class="nl-col"
-                            style="display: inline-block; vertical-align: top; width: 100%; max-width: 50%; font-size: 14px; box-sizing: border-box; padding-right: 8px;"
-                        >
-                            <div style="padding: 8px 12px; border-bottom: 1px solid #f0f0f0;">
-                                <a
-                                    href={p.url}
-                                    style="color: #333333; text-decoration: none; font-weight: 600; font-size: 14px;"
-                                >
-                                    {p.displayTitle}
-                                </a>
-                                <span
-                                    style={`display: inline-block; font-size: 11px; padding: 2px 8px; border-radius: 3px; margin-left: 8px; color: #fefefe; background-color: ${p.status === "accepted" ? "#22ae63" : "#0d6efd"};`}
-                                >
-                                    {p.status === "accepted" ? "Accepted" : "New"}
-                                </span>
-                                <span class="nl-muted" style="font-size: 12px; color: #999999; margin-left: 8px;">
-                                    #{p.number}
-                                </span>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </>
+                    </>
+                ),
         )
     }
 
@@ -659,6 +622,15 @@ function getAdvisoryBadgeColors(severity: string) {
 </div>
 
 <style lang="scss">
+    // Dark-mode palette, shared by the three dark blocks below (web theme toggle,
+    // email prefers-color-scheme, and Outlook-mobile [data-ogsc]).
+    $nl-dark-bg: #212529;
+    $nl-dark-text: #e0e0e0;
+    $nl-dark-green: #1a9655;
+    $nl-dark-h3: #cccccc;
+    $nl-dark-muted: #aaaaaa;
+    $nl-dark-border: #333344;
+
     #newsletter-content {
         max-width: 800px;
         margin: 0 auto;
@@ -689,8 +661,8 @@ function getAdvisoryBadgeColors(severity: string) {
     /* Web dark mode: matches nf-core site theme toggle (data-bs-theme).
      * Needs !important to beat inline styles on email-friendly elements. */
     :global([data-bs-theme="dark"]) #newsletter-content {
-        background-color: #212529 !important;
-        color: #e0e0e0 !important;
+        background-color: $nl-dark-bg !important;
+        color: $nl-dark-text !important;
     }
     :global([data-bs-theme="dark"]) :global(.nl-logo-light) {
         display: none !important;
@@ -699,25 +671,25 @@ function getAdvisoryBadgeColors(severity: string) {
         display: block !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h2 {
-        color: #1a9655 !important;
-        border-bottom-color: #1a9655 !important;
+        color: $nl-dark-green !important;
+        border-bottom-color: $nl-dark-green !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content h3 {
-        color: #cccccc !important;
+        color: $nl-dark-h3 !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content a {
-        color: #e0e0e0 !important;
+        color: $nl-dark-text !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-green) a,
     :global([data-bs-theme="dark"]) #newsletter-content a:global(.nl-green) {
-        color: #1a9655 !important;
+        color: $nl-dark-green !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content :global(.nl-muted) {
-        color: #aaaaaa !important;
+        color: $nl-dark-muted !important;
     }
     :global([data-bs-theme="dark"]) #newsletter-content td,
     :global([data-bs-theme="dark"]) #newsletter-content div {
-        border-bottom-color: #333344 !important;
+        border-bottom-color: $nl-dark-border !important;
     }
 
     /*
@@ -728,8 +700,8 @@ function getAdvisoryBadgeColors(severity: string) {
      */
     @media (prefers-color-scheme: dark) {
         #newsletter-content {
-            background-color: #212529 !important;
-            color: #e0e0e0 !important;
+            background-color: $nl-dark-bg !important;
+            color: $nl-dark-text !important;
         }
         #newsletter-content .nl-logo-light {
             display: none !important;
@@ -738,31 +710,31 @@ function getAdvisoryBadgeColors(severity: string) {
             display: block !important;
         }
         #newsletter-content h2 {
-            color: #1a9655 !important;
-            border-bottom-color: #1a9655 !important;
+            color: $nl-dark-green !important;
+            border-bottom-color: $nl-dark-green !important;
         }
         #newsletter-content h3 {
-            color: #cccccc !important;
+            color: $nl-dark-h3 !important;
         }
         #newsletter-content a {
-            color: #e0e0e0 !important;
+            color: $nl-dark-text !important;
         }
         #newsletter-content .nl-green a,
         #newsletter-content a.nl-green {
-            color: #1a9655 !important;
+            color: $nl-dark-green !important;
         }
         #newsletter-content .nl-muted {
-            color: #aaaaaa !important;
+            color: $nl-dark-muted !important;
         }
         #newsletter-content td,
         #newsletter-content div {
-            border-bottom-color: #333344 !important;
+            border-bottom-color: $nl-dark-border !important;
         }
     }
 
     [data-ogsc] #newsletter-content {
-        background-color: #212529 !important;
-        color: #e0e0e0 !important;
+        background-color: $nl-dark-bg !important;
+        color: $nl-dark-text !important;
     }
     [data-ogsc] #newsletter-content .nl-logo-light {
         display: none !important;
@@ -771,24 +743,24 @@ function getAdvisoryBadgeColors(severity: string) {
         display: block !important;
     }
     [data-ogsc] #newsletter-content h2 {
-        color: #1a9655 !important;
-        border-bottom-color: #1a9655 !important;
+        color: $nl-dark-green !important;
+        border-bottom-color: $nl-dark-green !important;
     }
     [data-ogsc] #newsletter-content h3 {
-        color: #cccccc !important;
+        color: $nl-dark-h3 !important;
     }
     [data-ogsc] #newsletter-content a {
-        color: #e0e0e0 !important;
+        color: $nl-dark-text !important;
     }
     [data-ogsc] #newsletter-content .nl-green a,
     [data-ogsc] #newsletter-content a.nl-green {
-        color: #1a9655 !important;
+        color: $nl-dark-green !important;
     }
     [data-ogsc] #newsletter-content .nl-muted {
-        color: #aaaaaa !important;
+        color: $nl-dark-muted !important;
     }
     [data-ogsc] #newsletter-content td,
     [data-ogsc] #newsletter-content div {
-        border-bottom-color: #333344 !important;
+        border-bottom-color: $nl-dark-border !important;
     }
 </style>

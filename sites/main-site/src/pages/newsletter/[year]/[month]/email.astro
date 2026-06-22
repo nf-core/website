@@ -1,26 +1,13 @@
 ---
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterStaticPathsData, getNewsletterContentData, getMonthName } from "@utils/newsletter";
+import { getNewsletterStaticPaths, getNewsletterContentData, getMonthName } from "@utils/newsletter";
 import NewsletterLayout from "@layouts/NewsletterLayout.astro";
 
 const images = import.meta.glob("/src/assets/**");
 
 export async function getStaticPaths() {
-    const pipelines = pipelines_json.remote_workflows;
-    const { months, allProposals } = await getNewsletterStaticPathsData(getCollection, pipelines);
-
-    return months.map(({ year, month }) => ({
-        params: {
-            year: String(year),
-            month: String(month).padStart(2, "0"),
-        },
-        props: {
-            year,
-            month,
-            allProposals,
-        },
-    }));
+    return getNewsletterStaticPaths(getCollection, pipelines_json.remote_workflows);
 }
 
 const { year, month, allProposals } = Astro.props as {

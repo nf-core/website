@@ -411,8 +411,8 @@ export function getProposalsForMonth(proposals: RawProposal[], year: number, mon
 // ========================================
 
 /**
- * Shared getStaticPaths data for newsletter pages.
- * Both [month].astro and [month]/email.astro call this.
+ * Shared getStaticPaths data for newsletter pages: the list of months plus all
+ * proposals (fetched once).
  */
 export async function getNewsletterStaticPathsData(
     getCollectionFn: (name: string) => Promise<any[]>,
@@ -435,6 +435,30 @@ export async function getNewsletterStaticPathsData(
     }
 
     return { months, allProposals };
+}
+
+/**
+ * The full Astro getStaticPaths array for every newsletter month route
+ * (the page, /email, /simple, /markdown). Each entry carries the month plus
+ * its neighbours and the month list — the email/simple/markdown routes simply
+ * ignore the nav props they don't use.
+ */
+export async function getNewsletterStaticPaths(
+    getCollectionFn: (name: string) => Promise<any[]>,
+    pipelines: PipelineWorkflow[],
+) {
+    const { months, allProposals } = await getNewsletterStaticPathsData(getCollectionFn, pipelines);
+    return months.map(({ year, month }, index) => ({
+        params: { year: String(year), month: String(month).padStart(2, "0") },
+        props: {
+            year,
+            month,
+            allMonths: months,
+            allProposals,
+            prevMonth: months[index + 1] || null,
+            nextMonth: months[index - 1] || null,
+        },
+    }));
 }
 
 /**

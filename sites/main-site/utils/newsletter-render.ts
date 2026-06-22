@@ -1,9 +1,15 @@
-// Shared helpers for the alternate newsletter renderings (markdown + simple HTML).
-// These mirror the URL/format helpers in NewsletterContent.astro so the /markdown
-// and /simple variants stay consistent with the styled /email version.
+// Shared helpers for the newsletter renderings. The styled email/web layout
+// (NewsletterLayout.astro), the plain-HTML layout (NewsletterSimpleLayout.astro)
+// and the markdown renderer below all use these, so the formatting, URLs and
+// event-type data stay consistent across every variant.
 
 function stripExt(id: string): string {
     return id.replace(/\.[^/.]+$/, "");
+}
+
+/** Normalise an image source: Astro image objects expose `.src`, raw paths are strings. */
+export function imgSrc(src: any): string {
+    return typeof src === "string" ? src : src?.src;
 }
 
 export function blogUrl(baseUrl: string, id: string): string {
@@ -28,12 +34,19 @@ export function eventDateRange(start: Date, end: Date): string {
     return start.toDateString() !== end.toDateString() ? `${s} – ${formatDate(end)}` : s;
 }
 
-export const eventTypeLabel: Record<string, string> = {
-    bytesize: "Bytesize",
-    hackathon: "Hackathon",
-    talk: "Talk",
-    training: "Training",
+// Single source of truth for event types: label + badge colours (the colours are
+// only used by the styled layout; the markdown/plain variants use the label).
+// TODO: move this to content collections.
+export const EVENT_TYPES: Record<string, { label: string; color: string; textColor: string }> = {
+    bytesize: { label: "Bytesize", color: "#22ae63", textColor: "#fefefe" },
+    hackathon: { label: "Hackathon", color: "#0d6efd", textColor: "#fefefe" },
+    talk: { label: "Talk", color: "#0dcaf0", textColor: "#212529" },
+    training: { label: "Training", color: "#ffc107", textColor: "#212529" },
 };
+
+export const eventTypeLabel: Record<string, string> = Object.fromEntries(
+    Object.entries(EVENT_TYPES).map(([type, { label }]) => [type, label]),
+);
 
 export function formatAdvisoryTypes(type: string | string[]): string[] {
     const types = Array.isArray(type) ? type : [type];

@@ -10,16 +10,13 @@ import {
     eventUrl,
     formatAdvisoryTypes,
     formatDate,
+    imgSrc,
     pipelineUrl,
     sortByStatus,
 } from "@utils/newsletter-render";
 
 const { data } = Astro.props;
 const baseUrl = data.baseUrl;
-
-function imgSrc(src: any): string {
-    return typeof src === "string" ? src : src?.src;
-}
 ---
 
 <h1>nf-core/newsletter, {data.monthName} {data.year}</h1>

@@ -1,18 +1,13 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterContentData, getNewsletterStaticPathsData } from "@utils/newsletter";
+import { getNewsletterContentData, getNewsletterStaticPaths } from "@utils/newsletter";
 import { renderNewsletterMarkdown } from "@utils/newsletter-render";
 
 const images = import.meta.glob("/src/assets/**");
 
 export async function getStaticPaths() {
-    const pipelines = pipelines_json.remote_workflows;
-    const { months, allProposals } = await getNewsletterStaticPathsData(getCollection, pipelines);
-    return months.map(({ year, month }) => ({
-        params: { year: String(year), month: String(month).padStart(2, "0") },
-        props: { year, month, allProposals },
-    }));
+    return getNewsletterStaticPaths(getCollection, pipelines_json.remote_workflows);
 }
 
 export const GET: APIRoute = async ({ props }) => {
