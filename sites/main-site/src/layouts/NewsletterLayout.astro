@@ -80,6 +80,10 @@ const eventUrl = (id: string): string => eventUrlBase(baseUrl, id);
 const advisoryUrl = (id: string): string => advisoryUrlBase(baseUrl, id);
 const pipelineUrl = (name: string): string => pipelineUrlBase(baseUrl, name);
 
+// Cropped thumbnails are relative (/.netlify/images?…); make them absolute for the
+// email build, since a mail client can't resolve a root-relative URL.
+const imageUrl = (src: string): string => (email && src?.startsWith("/") ? `${baseUrl}${src}` : src);
+
 const severityBackGroundColors: Record<string, string> = {
     low: "#0d6efd",
     medium: "#ffc107",
@@ -222,7 +226,7 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
                         >
                             <a href={blogUrl(post.id)} style="text-decoration: none;">
                                 <img
-                                    src={imgSrc(blogImageSrcs.get(post.id))}
+                                    src={imageUrl(imgSrc(blogImageSrcs.get(post.id)))}
                                     alt={post.data.headerImageAlt}
                                     width="240"
                                     height="135"
@@ -398,7 +402,7 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
                                 <td colspan={2} style="padding: 8px 0 0;">
                                     <a href={eventUrl(event.id)} style="text-decoration: none;">
                                         <img
-                                            src={imgSrc(eventImageSrcs.get(event.id))}
+                                            src={imageUrl(imgSrc(eventImageSrcs.get(event.id)))}
                                             alt={event.data.title}
                                             width="240"
                                             height="135"
@@ -471,7 +475,7 @@ const pipelinesAndProposals: { title: string; url: string; sub: string; labels: 
                                             <td style="vertical-align: middle; width: 80px;">
                                                 <a href={blogUrl(item.id)} style="text-decoration: none;">
                                                     <img
-                                                        src={imgSrc(blogImageSrcs.get(item.id))}
+                                                        src={imageUrl(imgSrc(blogImageSrcs.get(item.id)))}
                                                         alt={item.data.headerImageAlt}
                                                         width="80"
                                                         height="45"

@@ -82,13 +82,14 @@ export async function getNewsletterContentData(
         }
         try {
             // JPEG (not WebP) for broad email-client support, incl. Outlook on Windows.
+            // JPG (not WebP) for broad email-client support, incl. Outlook on Windows.
             const thumb = await getImage({
                 src,
                 width: 480,
                 height: 270,
                 fit: "cover",
                 position: "center",
-                format: "jpeg",
+                format: "jpg",
             });
             return thumb.src;
         } catch {
@@ -96,23 +97,19 @@ export async function getNewsletterContentData(
         }
     }
 
-    const blogImageSrcs = new Map<string, any>(
-        await Promise.all(
-            [...thisMonthBlogPosts, ...olderBlogPosts].map(
-                async (post) => [post.id, await resolveImageSrc((post as any).data.headerImage)] as [string, any],
-            ),
-        ),
-    );
-    const eventImageSrcs = new Map<string, any>(
-        await Promise.all(
-            upcomingEvents
-                .filter((event) => (event as any).data.headerImage)
-                .map(
-                    async (event) =>
-                        [event.id, await resolveImageSrc((event as any).data.headerImage)] as [string, any],
-                ),
-        ),
-    );
+    // Resolve sequentially, not via Promise.all: getImage lazily imports and
+    // caches the image service on first use, and firing the whole batch
+    // concurrently races that init (some calls get an undefined service).
+    const blogImageSrcs = new Map<string, any>();
+    for (const post of [...thisMonthBlogPosts, ...olderBlogPosts]) {
+        blogImageSrcs.set(post.id, await resolveImageSrc((post as any).data.headerImage));
+    }
+    const eventImageSrcs = new Map<string, any>();
+    for (const event of upcomingEvents) {
+        if ((event as any).data.headerImage) {
+            eventImageSrcs.set(event.id, await resolveImageSrc((event as any).data.headerImage));
+        }
+    }
 
     return {
         year,
