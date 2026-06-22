@@ -1,4 +1,5 @@
 import { octokit } from "@components/octokit.js";
+import { addMonths } from "date-fns";
 
 // ========================================
 // TYPE DEFINITIONS
@@ -76,6 +77,19 @@ function isInMonth(date: Date, year: number, month: number): boolean {
     return date >= start && date < end;
 }
 
+/**
+ * The `count` calendar months adjacent to (year, month): `step` of -1 walks
+ * backwards (preceding months), +1 walks forwards. Anchored at noon UTC so
+ * date-fns month maths stays on the right month regardless of host timezone.
+ */
+function adjacentMonths(year: number, month: number, count: number, step: 1 | -1): NewsletterMonth[] {
+    const anchor = new Date(Date.UTC(year, month - 1, 1, 12));
+    return Array.from({ length: count }, (_, i) => {
+        const d = addMonths(anchor, step * (i + 1));
+        return { year: d.getUTCFullYear(), month: d.getUTCMonth() + 1 };
+    });
+}
+
 // ========================================
 // DATA FILTERING
 // ========================================
@@ -135,42 +149,57 @@ export function getNewsletterMonths(
     return months.filter((m) => m.year < currentYear || (m.year === currentYear && m.month <= currentMonth));
 }
 
-/**
- * Blog posts published in the given month.
- */
-export function getBlogPostsForMonth(
-    posts: { id: string; data: { pubDate: Date; title: string; subtitle: string; authors: string[] } }[],
+// The blog / events / advisories collections all share the same "filter to a
+// month, sorted by date" and "collect across N adjacent months" shapes. These
+// two generics implement that once; each collection only supplies its date
+// accessor and sort direction below.
+type SortDir = "asc" | "desc";
+
+/** Items whose date falls in the given calendar month, sorted by that date. */
+function itemsInMonth<T>(items: T[], getDate: (item: T) => Date, year: number, month: number, dir: SortDir): T[] {
+    const sign = dir === "asc" ? 1 : -1;
+    return items
+        .filter((item) => isInMonth(getDate(item), year, month))
+        .sort((a, b) => sign * (getDate(a).getTime() - getDate(b).getTime()));
+}
+
+/** Items collected across `count` months adjacent to (year, month), re-sorted as one list. */
+function itemsInAdjacentMonths<T>(
+    items: T[],
+    getDate: (item: T) => Date,
+    year: number,
+    month: number,
+    count: number,
+    step: 1 | -1,
+    dir: SortDir,
+): T[] {
+    const sign = dir === "asc" ? 1 : -1;
+    return adjacentMonths(year, month, count, step)
+        .flatMap(({ year: y, month: m }) => itemsInMonth(items, getDate, y, m, dir))
+        .sort((a, b) => sign * (getDate(a).getTime() - getDate(b).getTime()));
+}
+
+const blogDate = (post: { data: { pubDate: Date } }) => new Date(post.data.pubDate);
+const eventDate = (event: { data: { start: Date } }) => new Date(event.data.start);
+const advisoryDate = (advisory: { data: { publishedDate: Date } }) => new Date(advisory.data.publishedDate);
+
+/** Blog posts published in the given month (newest first). */
+export function getBlogPostsForMonth<T extends { id: string; data: { pubDate: Date } }>(
+    posts: T[],
     year: number,
     month: number,
 ) {
-    return posts
-        .filter((post) => isInMonth(new Date(post.data.pubDate), year, month))
-        .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+    return itemsInMonth<T>(posts, blogDate, year, month, "desc");
 }
 
-/**
- * Blog posts from the previous N months (for "in case you missed it").
- */
-export function getBlogPostsForPreviousMonths(
-    posts: { id: string; data: { pubDate: Date; title: string; subtitle: string; authors: string[] } }[],
+/** Blog posts from the previous N months (for "in case you missed it"). */
+export function getBlogPostsForPreviousMonths<T extends { id: string; data: { pubDate: Date } }>(
+    posts: T[],
     year: number,
     month: number,
     count: number = 2,
 ) {
-    const results: typeof posts = [];
-    let y = year;
-    let m = month;
-
-    for (let i = 0; i < count; i++) {
-        m--;
-        if (m === 0) {
-            m = 12;
-            y--;
-        }
-        results.push(...getBlogPostsForMonth(posts, y, m));
-    }
-
-    return results.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+    return itemsInAdjacentMonths<T>(posts, blogDate, year, month, count, -1, "desc");
 }
 
 /**
@@ -263,86 +292,42 @@ export function getNewPipelines(pipelines: PipelineWorkflow[], year: number, mon
         .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-/**
- * Advisories from the previous N months (for "in case you missed it").
- */
-export function getAdvisoriesForPreviousMonths(
-    advisories: {
-        id: string;
-        data: { publishedDate: Date; title: string; subtitle: string; severity: string; type: string[] };
-    }[],
+/** Advisories published in the given month (newest first). */
+export function getAdvisoriesForMonth<T extends { id: string; data: { publishedDate: Date } }>(
+    advisories: T[],
+    year: number,
+    month: number,
+) {
+    return itemsInMonth<T>(advisories, advisoryDate, year, month, "desc");
+}
+
+/** Advisories from the previous N months (for "in case you missed it"). */
+export function getAdvisoriesForPreviousMonths<T extends { id: string; data: { publishedDate: Date } }>(
+    advisories: T[],
     year: number,
     month: number,
     count: number = 2,
 ) {
-    const results: typeof advisories = [];
-    let y = year;
-    let m = month;
-
-    for (let i = 0; i < count; i++) {
-        m--;
-        if (m === 0) {
-            m = 12;
-            y--;
-        }
-        results.push(...getAdvisoriesForMonth(advisories, y, m));
-    }
-
-    return results.sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
+    return itemsInAdjacentMonths<T>(advisories, advisoryDate, year, month, count, -1, "desc");
 }
 
-/**
- * Events starting in the given month.
- */
-export function getEventsForMonth(
-    events: { id: string; data: { start: Date; end: Date; title: string; subtitle: string; type: string } }[],
+/** Events starting in the given month (chronological). */
+export function getEventsForMonth<T extends { id: string; data: { start: Date } }>(
+    events: T[],
     year: number,
     month: number,
 ) {
-    return events
-        .filter((e) => isInMonth(new Date(e.data.start), year, month))
-        .sort((a, b) => new Date(a.data.start).getTime() - new Date(b.data.start).getTime());
+    return itemsInMonth<T>(events, eventDate, year, month, "asc");
 }
 
-/**
- * Advisories published in the given month.
- */
-export function getAdvisoriesForMonth(
-    advisories: {
-        id: string;
-        data: { publishedDate: Date; title: string; subtitle: string; severity: string; type: string[] };
-    }[],
-    year: number,
-    month: number,
-) {
-    return advisories
-        .filter((a) => isInMonth(new Date(a.data.publishedDate), year, month))
-        .sort((a, b) => new Date(b.data.publishedDate).getTime() - new Date(a.data.publishedDate).getTime());
-}
-
-/**
- * Events starting in the next N months after the given month.
- */
-export function getFutureEvents(
-    events: { id: string; data: { start: Date; end: Date; title: string; subtitle: string; type: string } }[],
+/** Events starting in the next N months after the given month (chronological). */
+export function getFutureEvents<T extends { id: string; data: { start: Date } }>(
+    events: T[],
     year: number,
     month: number,
     monthsAhead: number = 2,
 ) {
-    const results: typeof events = [];
-    let y = year;
-    let m = month;
-
-    for (let i = 0; i < monthsAhead; i++) {
-        m++;
-        if (m === 13) {
-            m = 1;
-            y++;
-        }
-        results.push(...getEventsForMonth(events, y, m));
-    }
-
-    return results.sort((a, b) => new Date(a.data.start).getTime() - new Date(b.data.start).getTime());
+    return itemsInAdjacentMonths<T>(events, eventDate, year, month, monthsAhead, 1, "asc");
 }
 
 /**
@@ -499,8 +484,7 @@ export async function getNewsletterContentData(
         previewParts.push(`${thisMonthBlogPosts.length} blog post${thisMonthBlogPosts.length > 1 ? "s" : ""}`);
     if (monthAdvisories.length > 0)
         previewParts.push(`${monthAdvisories.length} advisor${monthAdvisories.length > 1 ? "ies" : "y"}`);
-    if (releases.length > 0)
-        previewParts.push(`${releases.length} pipeline release${releases.length > 1 ? "s" : ""}`);
+    if (releases.length > 0) previewParts.push(`${releases.length} pipeline release${releases.length > 1 ? "s" : ""}`);
     if (upcomingEvents.length > 0)
         previewParts.push(`${upcomingEvents.length} upcoming event${upcomingEvents.length > 1 ? "s" : ""}`);
     const previewText =

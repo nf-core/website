@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
 import { getNewsletterStaticPathsData, getNewsletterContentData, getMonthName } from "@utils/newsletter";
-import NewsletterContent from "@components/newsletter/NewsletterContent.astro";
+import NewsletterLayout from "@layouts/NewsletterLayout.astro";
 
 const images = import.meta.glob("/src/assets/**");
 
@@ -66,6 +66,6 @@ const contentData = await getNewsletterContentData(getCollection, pipelines, yea
         </style>
     </head>
     <body style="margin: 0; padding: 0;">
-        <NewsletterContent data={contentData} email={true} />
+        <NewsletterLayout data={contentData} email={true} />
     </body>
 </html>

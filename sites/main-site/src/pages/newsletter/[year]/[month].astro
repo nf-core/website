@@ -2,9 +2,10 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterStaticPathsData, getNewsletterContentData, getMonthName } from "@utils/newsletter";
+import { getNewsletterStaticPathsData, getNewsletterContentData } from "@utils/newsletter";
 import type { NewsletterMonth, RawProposal } from "@utils/newsletter";
-import NewsletterContent from "@components/newsletter/NewsletterContent.astro";
+import NewsletterLayout from "@layouts/NewsletterLayout.astro";
+import NewsletterNav from "@components/newsletter/NewsletterNav.astro";
 
 const images = import.meta.glob("/src/assets/**");
 export async function getStaticPaths() {
@@ -38,10 +39,6 @@ const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.pro
 
 const pipelines = pipelines_json.remote_workflows;
 const contentData = await getNewsletterContentData(getCollection, pipelines, year, month, allProposals, images);
-
-function monthUrl(m: NewsletterMonth): string {
-    return `/newsletter/${m.year}/${String(m.month).padStart(2, "0")}`;
-}
 ---
 
 <PageLayout
@@ -56,120 +53,14 @@ function monthUrl(m: NewsletterMonth): string {
     </p>
 
     {/* ===== NAVIGATION (excluded from email) ===== */}
-    <nav class="mb-4 border-bottom pb-3">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            {
-                prevMonth ? (
-                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
-                        <i class="fa-solid fa-arrow-left" /> {getMonthName(prevMonth.month)}{" "}
-                        <span class="d-none d-md-inline">{prevMonth.year}</span>
-                    </a>
-                ) : (
-                    <span />
-                )
-            }
-
-            <div class="d-flex align-items-center gap-2">
-                <a
-                    href="/newsletter/rss.xml"
-                    class="btn btn-outline-secondary btn-sm"
-                    data-bs-toggle="tooltip"
-                    title="RSS feed"
-                >
-                    <i class="fa-solid fa-rss"></i>
-                    <span class="d-none d-md-inline">RSS Feed</span>
-                </a>
-                <a
-                    href={`${monthUrl({ year, month })}/email`}
-                    class="btn btn-outline-secondary btn-sm"
-                    data-bs-toggle="tooltip"
-                    title="Email HTML version"
-                >
-                    <i class="fa-solid fa-envelope"></i>
-                    <span class="d-none d-md-inline">Email</span>
-                </a>
-                <a
-                    href={`${monthUrl({ year, month })}/markdown`}
-                    class="btn btn-outline-secondary btn-sm"
-                    data-bs-toggle="tooltip"
-                    title="Markdown version (for AI agents)"
-                >
-                    <i class="fa-brands fa-markdown"></i>
-                    <span class="d-none d-md-inline">Markdown</span>
-                </a>
-                <a
-                    href={`${monthUrl({ year, month })}/simple`}
-                    class="btn btn-outline-secondary btn-sm"
-                    data-bs-toggle="tooltip"
-                    title="Plain HTML version"
-                >
-                    <i class="fa-solid fa-code"></i>
-                    <span class="d-none d-md-inline">Plain HTML</span>
-                </a>
-                <select class="newsletter-month-select form-select form-select-sm w-auto">
-                    {
-                        allMonths.map((m) => (
-                            <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
-                                {getMonthName(m.month)} {m.year}
-                            </option>
-                        ))
-                    }
-                </select>
-            </div>
-
-            {
-                nextMonth ? (
-                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
-                        {getMonthName(nextMonth.month)} <span class="d-none d-md-inline">{nextMonth.year}</span>{" "}
-                        <i class="fa-solid fa-arrow-right" />
-                    </a>
-                ) : (
-                    <span />
-                )
-            }
-        </div>
-    </nav>
+    <NewsletterNav {year} {month} {prevMonth} {nextMonth} {allMonths} showFormats navClass="mb-4 border-bottom pb-3" />
 
     {/* ===== NEWSLETTER CONTENT ===== */}
-    <NewsletterContent data={contentData} />
+    <NewsletterLayout data={contentData} />
 
     {/* ===== BOTTOM NAVIGATION (excluded from email) ===== */}
     <hr class="my-4" />
-    <nav class="mb-4">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
-            {
-                prevMonth ? (
-                    <a href={monthUrl(prevMonth)} class="btn btn-outline-secondary btn-sm">
-                        <i class="fa-solid fa-arrow-left" /> {getMonthName(prevMonth.month)}{" "}
-                        <span class="d-none d-md-inline">{prevMonth.year}</span>
-                    </a>
-                ) : (
-                    <span />
-                )
-            }
-
-            <select class="newsletter-month-select form-select form-select-sm w-auto">
-                {
-                    allMonths.map((m) => (
-                        <option value={monthUrl(m)} selected={m.year === year && m.month === month}>
-                            {getMonthName(m.month)} {m.year}
-                        </option>
-                    ))
-                }
-            </select>
-
-            {
-                nextMonth ? (
-                    <a href={monthUrl(nextMonth)} class="btn btn-outline-secondary btn-sm">
-                        {getMonthName(nextMonth.month)} <span class="d-none d-md-inline">{nextMonth.year}</span>{" "}
-                        <i class="fa-solid fa-arrow-right" />
-                    </a>
-                ) : (
-                    <span />
-                )
-            }
-        </div>
-    </nav>
+    <NewsletterNav {year} {month} {prevMonth} {nextMonth} {allMonths} />
 </PageLayout>
 
 <script>

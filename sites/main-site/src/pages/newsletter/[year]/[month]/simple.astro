@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
 import { getNewsletterContentData, getNewsletterStaticPathsData } from "@utils/newsletter";
-import NewsletterSimple from "@components/newsletter/NewsletterSimple.astro";
+import NewsletterSimpleLayout from "@layouts/NewsletterSimpleLayout.astro";
 
 const images = import.meta.glob("/src/assets/**");
 
@@ -31,6 +31,6 @@ const data = await getNewsletterContentData(getCollection, pipelines, year, mont
         <title>nf-core Newsletter - {data.monthName} {year}</title>
     </head>
     <body>
-        <NewsletterSimple data={data} />
+        <NewsletterSimpleLayout data={data} />
     </body>
 </html>
