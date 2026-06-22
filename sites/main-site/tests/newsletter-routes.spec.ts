@@ -29,9 +29,11 @@ test("listing and month page render", async ({ page }) => {
 test("alternate formats (markdown / simple / rss) render", async ({ request }) => {
     const month = await latestMonthPath(request);
 
+    // NB: assert on the body, not the content-type — the GET handler sets
+    // text/markdown in `astro dev`, but the route is prerendered to a static file
+    // that Netlify serves as text/plain, so the header isn't reliable in prod.
     const md = await request.get(`${month}/markdown`);
     expect(md.ok()).toBeTruthy();
-    expect(md.headers()["content-type"]).toContain("text/markdown");
     expect(await md.text()).toMatch(/^# nf-core\/newsletter,/);
 
     const simple = await request.get(`${month}/simple`);
