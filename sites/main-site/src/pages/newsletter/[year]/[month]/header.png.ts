@@ -5,7 +5,7 @@ import sharp from "sharp";
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterContentData } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
 
 export const prerender = false;
 

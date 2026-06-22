@@ -2,7 +2,8 @@
 import PageLayout from "@layouts/PageLayout.astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterStaticPaths, getNewsletterContentData } from "@utils/newsletter";
+import { getNewsletterStaticPaths } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
 import type { NewsletterMonth, RawProposal } from "@utils/newsletter";
 import NewsletterLayout from "@layouts/NewsletterLayout.astro";
 import NewsletterNav from "@components/newsletter/NewsletterNav.astro";

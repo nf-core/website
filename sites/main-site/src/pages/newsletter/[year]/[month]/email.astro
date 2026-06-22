@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterStaticPaths, getNewsletterContentData, getMonthName } from "@utils/newsletter";
+import { getNewsletterStaticPaths, getMonthName } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
 import NewsletterLayout from "@layouts/NewsletterLayout.astro";
 
 const images = import.meta.glob("/src/assets/**");

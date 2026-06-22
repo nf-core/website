@@ -1,7 +1,8 @@
 import type { APIRoute } from "astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterContentData, getNewsletterStaticPaths } from "@utils/newsletter";
+import { getNewsletterStaticPaths } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
 import { renderNewsletterMarkdown } from "@utils/newsletter-render";
 
 const images = import.meta.glob("/src/assets/**");
