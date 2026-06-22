@@ -36,7 +36,6 @@ export function eventDateRange(start: Date, end: Date): string {
 
 // Single source of truth for event types: label + badge colours (the colours are
 // only used by the styled layout; the markdown/plain variants use the label).
-// TODO: move this to content collections.
 export const EVENT_TYPES: Record<string, { label: string; color: string; textColor: string }> = {
     bytesize: { label: "Bytesize", color: "#22ae63", textColor: "#fefefe" },
     hackathon: { label: "Hackathon", color: "#0d6efd", textColor: "#fefefe" },
