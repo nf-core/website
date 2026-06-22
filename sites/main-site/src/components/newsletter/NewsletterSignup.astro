@@ -26,7 +26,13 @@ const SUBSCRIBE_URL = "https://e5veor8z45.execute-api.eu-west-1.amazonaws.com/su
 
 <div class="nl-signup">
     {!compact && <h3 class="mb-2">{heading}</h3>}
-    {!compact && <p class="text-body-secondary mb-3">{description}</p>}
+    {
+        !compact && (
+            <p class="text-body-secondary mb-3">
+                {description} <a href="/newsletter/subscribe">See details</a>.
+            </p>
+        )
+    }
     <form class="nl-signup-form" data-endpoint={SUBSCRIBE_URL} novalidate>
         <div class="input-group">
             <input
