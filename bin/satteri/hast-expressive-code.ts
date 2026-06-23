@@ -10,8 +10,8 @@
 //
 // Use the exported factory directly in `hastPlugins` so the per-document
 // style/script bookkeeping resets on every compile.
-import { fileURLToPath } from "node:url";
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
+import nextflowSvg from "../../sites/main-site/src/icons/logos/nextflow.svg?raw";
 import { createRenderer } from "rehype-expressive-code";
 import { defineHastPlugin } from "satteri";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
@@ -49,9 +49,7 @@ export function createEcConfig() {
             pluginFileIcons([
                 {
                     name: "nextflow",
-                    path: fileURLToPath(
-                        new URL("../../sites/main-site/src/icons/logos/nextflow.svg", import.meta.url),
-                    ),
+                    svg: nextflowSvg,
                     extensions: [".nf", ".nf.test", ".config"],
                 },
             ]),

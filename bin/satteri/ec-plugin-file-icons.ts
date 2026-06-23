@@ -13,8 +13,8 @@ import { fromHtml } from "hast-util-from-html";
 export interface FileIcon {
     /** Identifier used for the injected SVG's CSS class (`<name>-file-icon`). */
     name: string;
-    /** Path to the SVG file to inline. Read once when the plugin is created. */
-    path: string;
+    /** SVG file contents, inlined at bundle time (e.g. via `import svg from "...svg?raw"`). */
+    svg: string;
     /** File-name suffixes that map to this icon, e.g. `[".nf", ".config"]`. */
     extensions: string[];
 }
@@ -25,8 +25,7 @@ type LoadedIcon = {
     template: any;
 };
 
-function loadIcon({ name, path, extensions }: FileIcon): LoadedIcon {
-    const svg = readFileSync(path, "utf8");
+function loadIcon({ name, svg, extensions }: FileIcon): LoadedIcon {
     const template = fromHtml(svg, { fragment: true, space: "svg" }).children.find(
         (node: any) => node.type === "element",
     );
