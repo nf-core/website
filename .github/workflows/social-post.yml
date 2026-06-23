@@ -1,0 +1,81 @@
+name: Social media auto-post
+# Posts newly published blog posts & advisories, and upcoming events (the day
+# before / day of), to Bluesky and Mastodon. The record of what has already been
+# posted lives on the dedicated `social-bot-state` branch, so updating it never
+# triggers a production rebuild of the main site.
+on:
+  schedule:
+    # Hourly: fast for blog/advisory, and catches the event day-before window
+    - cron: "0 * * * *"
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "Print what would be posted without posting"
+        type: boolean
+        default: false
+      seed:
+        description: "Mark everything currently in the feed as already posted (run once at rollout)"
+        type: boolean
+        default: false
+
+permissions: {}
+
+jobs:
+  social-post:
+    runs-on: ubuntu-latest
+    if: github.repository == 'nf-core/website'
+    permissions:
+      contents: write
+    steps:
+      - name: Check out code
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        with:
+          persist-credentials: false
+
+      - name: Restore post log from state branch
+        run: |
+          curl -fsSL "https://raw.githubusercontent.com/${{ github.repository }}/social-bot-state/social-posts.json" \
+            -o social-posts.json || echo '{}' > social-posts.json
+          cp social-posts.json previous.json
+
+      - name: Set up Node.js
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --omit=dev --ignore-scripts
+
+      - name: Post to social media
+        env:
+          BSKY_IDENTIFIER: nf-co.re
+          BSKY_PASSWORD: ${{ secrets.FEED_TO_BLUESKY }}
+          MASTODON_URL: https://mstdn.science
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          SEED: ${{ inputs.seed }}
+        run: |
+          args=()
+          [ "$DRY_RUN" = "true" ] && args+=(--dry-run)
+          [ "$SEED" = "true" ] && args+=(--seed)
+          node bin/social-post.js "${args[@]}"
+
+      - name: Persist post log to state branch
+        if: ${{ !inputs.dry_run }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if diff -q previous.json social-posts.json >/dev/null 2>&1; then
+            echo "No changes to the post log."
+            exit 0
+          fi
+          state=$(mktemp -d)
+          cp social-posts.json "$state/"
+          cd "$state"
+          git init -q
+          git checkout -q -b social-bot-state
+          git add social-posts.json
+          git -c user.name="nf-core-bot" -c user.email="core@nf-co.re" \
+            commit -q -m "chore: update social post log [skip ci]"
+          git push -qf "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git" social-bot-state
