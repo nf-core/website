@@ -10,3 +10,11 @@ repos:
           - prettier-plugin-svelte@3.5.1
           - prettier-plugin-astro@0.14.1
         files: \.(astro|svelte|mdx|md|yml|yaml)$
+  - repo: local
+    hooks:
+      - id: check-api-catalog
+        name: Check api-catalog discovery files
+        entry: node bin/check-api-catalog.js
+        language: system
+        pass_filenames: false
+        files: ^(sites/main-site/(public/.*|netlify\.toml)|bin/check-api-catalog\.js)$
