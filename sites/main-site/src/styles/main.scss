@@ -82,6 +82,11 @@ blockquote {
 }
 
 // Caption rendered below a code block by pluginCaptions (`caption="..."`).
+// The caption is appended inside the EC `.frame`, so the frame's box-shadow
+// wraps around it — drop it on captioned frames for a flat caption look.
+.expressive-code .frame:has(figcaption.ec-caption) {
+  box-shadow: none;
+}
 .expressive-code figcaption.ec-caption {
   margin-top: 0.4rem;
   font-size: 0.85rem;
