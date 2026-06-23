@@ -12,20 +12,8 @@ label:
 ---
 
 import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
-import promoVideo from "@assets/images/blog/newsletter-launch/newsletter-promo.mp4";
 
 # Introducing the nf-core newsletter
-
-<video
-    src={promoVideo}
-    autoplay
-    loop
-    muted
-    playsinline
-    controls
-    class="img-fluid rounded shadow-sm my-3 d-block mx-auto"
-    aria-label="The May 2026 nf-core newsletter email scrolling from the masthead down to the pipeline releases"
-></video>
 
 The nf-core community moves fast.
 In a normal month there are a handful of pipelines with new releases, one or two typically ship their very first release, there are new blog posts, bytesize talks, training events, hackathons and all sorts.
@@ -64,13 +52,11 @@ If you're viewing the newsletter on the website, you'll find a few links at the 
 
 ## Get it by email
 
-The emails go out on the first Wednesday of every month. Sign up here:
-
-<NewsletterSignup compact={true} />
+The emails go out on the first Wednesday of every month.
 
 A few details:
 
-- Signing up is double opt-in. You enter your address, we email you a confirmation link, and you join the list only once you click it.
+- [Signing up](/newsletter/subscribe) is double opt-in. You enter your address, we email you a confirmation link, and you join the list only once you click it.
 - We keep your email address and the date you subscribed, and nothing else. Sending runs on [Amazon SES](https://aws.amazon.com/ses/) in the EU (`eu-west-1`).
 - Every email carries an in-body unsubscribe link and the standard `List-Unsubscribe` headers, so Gmail, Apple Mail and similar clients show their own one-click unsubscribe button next to the sender. Leaving the list takes a single click, wherever you read your mail.
 
