@@ -1,0 +1,168 @@
+---
+title: "Citations on the Fly: Automatic Citation Management for nf-core pipelines"
+subtitle: "Generate accurate citations only for the tools that ran in your pipeline, no maintenance required"
+pubDate: 2026-06-24T09:00:00+02:00
+authors:
+  - maxulysse
+  - emiller
+label:
+  - citations
+  - nf-core-utils
+  - plugin
+---
+
+## Introduction
+
+Accurate citations are not only a chore, but a pain to maintain in a pipeline.
+Yet, we all love to have a nice dedicated section in our MultiQC report that serves as a cornerstone of reproducible science.
+Lists of tools and their references quickly become outdated as modules are added, removed, or updated.
+
+Today, we're excited to announce **citations on the fly** — a new feature in [nf-core-utils](https://github.com/nf-core/nf-core-utils) that generates citations automatically from the tools that actually ran in your pipeline.
+No manual lists, no maintenance, just accurate citations every time.
+
+## The Problem
+
+Traditional citation management in pipelines has several pain points:
+
+1. **Manual maintenance**: Someone has to keep a list of tools and their citations up-to-date
+2. **Stale citations**: Tools that didn't run still get cited, or new tools are missing
+3. **Inconsistent formats**: Different pipelines format citations differently
+4. **Developer burden**: Module developers have to add citation logic to every pipeline
+
+## The Solution: Citations on the Fly
+
+The `citationsOnTheFly()` function in nf-core-utils solves these problems by leveraging what's already there: the `versions` topic.
+
+Every nf-core module already emits a `[process, tool, version]` tuple to the `versions` topic when it executes. This topic **is** the list of tools that ran. `citationsOnTheFly()` intersects this list with citation metadata from each module's `meta.yml` file, producing citations for only the tools that actually executed.
+
+### How It Works
+
+```nextflow
+include { citationsOnTheFly; methodsDescriptionText } from 'plugin/nf-core-utils'
+
+// Collect all module meta.yml paths (citation metadata source)
+def meta_yml_paths = files("${projectDir}/modules/**/meta.yml").collect { it.toString() }
+
+// Build citations from the tools that actually ran
+ch_methods_description = channel.topic('versions')
+    .collect(flat: false)
+    .map { versions ->
+        def citations = citationsOnTheFly(versions, meta_yml_paths)
+        methodsDescriptionText(
+            "${projectDir}/assets/methods_description_template.yml",
+            citations,
+            [:]
+        )
+    }
+```
+
+That's it. No hand-maintained lists, no per-module changes.
+
+### Harvard Style Citations
+
+Citations follow the [Harvard style](https://en.wikipedia.org/wiki/Harvard_referencing_style) recommended by nf-core/modules:
+
+| Tools that ran | Citation |
+|----------------|----------|
+| Single author | `fastqc (0.12.1, Andrews (2010))` |
+| Multiple authors | `samtools (1.21, Danecek et al. (2021))` |
+| DOI only | `multiqc (1.21, doi: 10.1093/bioinformatics/btw354)` |
+
+The format degrades gracefully based on what metadata is available in `meta.yml` — richer metadata produces richer citations.
+
+### Adding Publication Metadata
+
+To get the best citations, add a `publication` object to your module's `meta.yml`:
+
+```yaml
+tools:
+  - fastqc:
+      doi: "10.1093/bioinformatics/btv033"
+      homepage: "https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"
+      publication:
+        author: "Andrews S."
+        year: 2010
+        title: "FastQC: A Quality Control Tool for High Throughput Sequence Data"
+        source: "Bioinformatics"
+```
+
+The `author` field should follow Harvard style: `Last, F. M.` format (e.g., `Einstein, A., Feynman, R. P. & Hawking, S.`).
+
+### Tools Without Versions
+
+Some tools (like MultiQC plugins) don't emit to the versions topic. You can add them manually:
+
+```nextflow
+def citations = citationsOnTheFly(versions, meta_yml_paths, ['multiqcsav'])
+```
+
+## Migration Guide
+
+### From Static Lists
+
+**Before:**
+```nextflow
+def toolReferencesMap = [
+    'fastqc': 'Andrews S. (2010). FastQC...',
+    'samtools': 'Li H. et al. (2009). The Sequence Alignment/Map format...',
+    // ...one line per tool, forever...
+]
+def citation_text = toolCitationText(toolReferencesMap)
+```
+
+**After:**
+```nextflow
+def citations = citationsOnTheFly(versions, meta_yml_paths)
+def citation_text = toolCitationText(citations)
+```
+
+### From Topic Channel Citations
+
+If you're already using the `citations` topic approach, `citationsOnTheFly()` is even simpler — no need to add `getCitation()` emissions to every module.
+
+## Benefits
+
+- **Zero maintenance**: Citations update automatically when modules change
+- **Runtime accuracy**: Only tools that actually ran are cited
+- **Consistent format**: Harvard style across all nf-core pipelines
+- **Developer friendly**: No per-module changes required
+- **Backwards compatible**: Works with existing `meta.yml` files
+
+## Getting Started
+
+Update your pipeline to use citations on the fly:
+
+1. Add the import: `include { citationsOnTheFly } from 'plugin/nf-core-utils'`
+2. Collect meta.yml paths: `def meta_yml_paths = files("${projectDir}/modules/**/meta.yml").collect { it.toString() }`
+3. Wire it up: Use `citationsOnTheFly(versions, meta_yml_paths)` in your methods description channel
+
+For complete documentation, see [NfcoreCitationUtils](https://nf-co.re utilities/utilities/NfcoreCitationUtils).
+
+## Module Updates
+
+We've added Harvard-style publication metadata to 73 modules across 12 PRs to ensure consistent citation formatting:
+
+| PR | Tool | Modules | Changes |
+|----|------|---------|---------|
+| [#12139](https://github.com/nf-core/modules/pull/12139) | bwamem2 | 2 | Added publication metadata |
+| [#12140](https://github.com/nf-core/modules/pull/12140) | kraken2 | 4 | Added publication metadata |
+| [#12141](https://github.com/nf-core/modules/pull/12141) | krona | 5 | Added publication metadata + licence |
+| [#12142](https://github.com/nf-core/modules/pull/12142) | seqfu | 3 | Added publication metadata |
+| [#12143](https://github.com/nf-core/modules/pull/12143) | samtools | 35 | Added publication metadata |
+| [#12144](https://github.com/nf-core/modules/pull/12144) | seqkit | 17 | Added publication metadata |
+| [#12145](https://github.com/nf-core/modules/pull/12145) | sequali | 1 | Added publication metadata |
+| [#12146](https://github.com/nf-core/modules/pull/12146) | checkqc | 1 | Added publication metadata |
+| [#12147](https://github.com/nf-core/modules/pull/12147) | fastp | 1 | Added publication metadata |
+| [#12148](https://github.com/nf-core/modules/pull/12148) | fastqe | 1 | Added publication metadata |
+| [#12149](https://github.com/nf-core/modules/pull/12149) | multiqc | 1 | Added publication metadata + updated URLs |
+| [#12151](https://github.com/nf-core/modules/pull/12151) | multiqcsav | 1 | Added publication metadata + updated URLs |
+
+## Acknowledgments
+
+This feature was developed as part of the nf-core-utils plugin, with contributions from the nf-core community. Special thanks to everyone who helped test and refine the citation format.
+
+## Feedback
+
+We'd love to hear your feedback! Join the discussion on:
+- Slack: [#nf-core-utils](https://nfcore.slack.com/channels/nf-core-utils)
+- GitHub: [nf-core/nf-core-utils](https://github.com/nf-core/nf-core-utils/issues)
