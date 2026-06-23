@@ -170,21 +170,24 @@ export function newsletterMonthHasContent(
     year: number,
     month: number,
 ): boolean {
-    const contentMonth = month === 1 ? 12 : month - 1;
-    const contentYear = month === 1 ? year - 1 : year;
+    // Previous calendar month, via the date-fns helper so the year boundary is
+    // handled the same way as everywhere else (no manual `month === 1 ? …` maths).
+    const [{ year: contentYear, month: contentMonth }] = adjacentMonths(year, month, 1, -1);
 
-    return (
-        getBlogPostsForMonth(blogPosts, contentYear, contentMonth).length > 0 ||
-        getBlogPostsForPreviousMonths(blogPosts, contentYear, contentMonth, 2).length > 0 ||
-        getAdvisoriesForMonth(advisories, contentYear, contentMonth).length > 0 ||
-        getAdvisoriesForPreviousMonths(advisories, contentYear, contentMonth, 2).length > 0 ||
-        getPipelineReleasesForMonth(pipelines, contentYear, contentMonth).length > 0 ||
-        getNewPipelines(pipelines, contentYear, contentMonth).length > 0 ||
-        getEventsForMonth(events, contentYear, contentMonth).length > 0 ||
-        getEventsForMonth(events, year, month).length > 0 ||
-        getFutureEvents(events, year, month, 1).length > 0 ||
-        getProposalsForMonth(proposals, contentYear, contentMonth).length > 0
-    );
+    const checks = [
+        () => getBlogPostsForMonth(blogPosts, contentYear, contentMonth),
+        () => getBlogPostsForPreviousMonths(blogPosts, contentYear, contentMonth, 2),
+        () => getAdvisoriesForMonth(advisories, contentYear, contentMonth),
+        () => getAdvisoriesForPreviousMonths(advisories, contentYear, contentMonth, 2),
+        () => getPipelineReleasesForMonth(pipelines, contentYear, contentMonth),
+        () => getNewPipelines(pipelines, contentYear, contentMonth),
+        () => getEventsForMonth(events, contentYear, contentMonth),
+        () => getEventsForMonth(events, year, month),
+        () => getFutureEvents(events, year, month, 1),
+        () => getProposalsForMonth(proposals, contentYear, contentMonth),
+    ];
+
+    return checks.some((check) => check().length > 0);
 }
 
 // The blog / events / advisories collections all share the same "filter to a
