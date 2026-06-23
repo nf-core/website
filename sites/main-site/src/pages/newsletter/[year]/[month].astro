@@ -1,0 +1,58 @@
+---
+import PageLayout from "@layouts/PageLayout.astro";
+import { getCollection } from "astro:content";
+import pipelines_json from "@public/pipelines.json";
+import { getNewsletterStaticPaths } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
+import type { NewsletterMonth, RawProposal } from "@utils/newsletter";
+import NewsletterLayout from "@layouts/NewsletterLayout.astro";
+import NewsletterNav from "@components/newsletter/NewsletterNav.astro";
+
+const images = import.meta.glob("/src/assets/**");
+export async function getStaticPaths() {
+    return getNewsletterStaticPaths(getCollection, pipelines_json.remote_workflows);
+}
+
+const { year, month, allMonths, allProposals, prevMonth, nextMonth } = Astro.props as {
+    year: number;
+    month: number;
+    allMonths: NewsletterMonth[];
+    allProposals: RawProposal[];
+    prevMonth: NewsletterMonth | null;
+    nextMonth: NewsletterMonth | null;
+};
+
+const pipelines = pipelines_json.remote_workflows;
+const contentData = await getNewsletterContentData(getCollection, pipelines, year, month, allProposals, images);
+---
+
+<PageLayout
+    title={`Newsletter - ${contentData.monthName} ${year}`}
+    meta_title={`Newsletter - ${contentData.monthName} ${year}`}
+    subtitle={`nf-core community newsletter for ${contentData.monthName} ${year}`}
+    mainpage_container={true}
+    subfooter={false}
+>
+    {/* ===== SUBSCRIBE LINK ===== */}
+    <p class="text-center text-body-secondary small mb-3">
+        Want nf-core news in your inbox? <a href="/newsletter/subscribe">Subscribe to the newsletter</a>.
+    </p>
+
+    {/* ===== NAVIGATION (excluded from email) ===== */}
+    <NewsletterNav {year} {month} {prevMonth} {nextMonth} {allMonths} showFormats navClass="mb-4 border-bottom pb-3" />
+
+    {/* ===== NEWSLETTER CONTENT ===== */}
+    <NewsletterLayout data={contentData} />
+
+    {/* ===== BOTTOM NAVIGATION (excluded from email) ===== */}
+    <hr class="my-4" />
+    <NewsletterNav {year} {month} {prevMonth} {nextMonth} {allMonths} />
+</PageLayout>
+
+<script>
+    document.querySelectorAll<HTMLSelectElement>(".newsletter-month-select").forEach((select) => {
+        select.addEventListener("change", () => {
+            window.location.href = select.value;
+        });
+    });
+</script>
