@@ -42,7 +42,15 @@ export function createEcConfig() {
         // the prefers-color-scheme media query covers pages before the attribute is set.
         themeCssSelector: (theme: { type: string }) => `[data-bs-theme='${theme.type}']`,
         // Line numbers stay opt-in via `showLineNumbers`, as with rehype-pretty-code.
-        defaultProps: { showLineNumbers: false },
+        defaultProps: {
+            showLineNumbers: false,
+            // EC auto-detects a terminal frame for shell languages; opt out so
+            // bash/sh blocks render as plain code frames. `overridesByLang` is a
+            // `defaultProps` key, not a top-level EC option.
+            overridesByLang: {
+                "bash,sh": { frame: "none" },
+            },
+        },
         plugins: [
             pluginLineNumbers(),
             pluginCaptions(),
@@ -57,11 +65,6 @@ export function createEcConfig() {
         shiki: {
             langAlias: LANG_ALIAS,
         },
-        overridesByLang: {
-            'bash,sh': {
-              frame: 'none',
-            },
-          },
     };
 }
 
