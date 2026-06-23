@@ -1,0 +1,29 @@
+---
+import { getCollection } from "astro:content";
+import pipelines_json from "@public/pipelines.json";
+import { getNewsletterStaticPaths } from "@utils/newsletter";
+import { getNewsletterContentData } from "@utils/newsletter-content";
+import NewsletterSimpleLayout from "@layouts/NewsletterSimpleLayout.astro";
+
+const images = import.meta.glob("/src/assets/**");
+
+export async function getStaticPaths() {
+    return getNewsletterStaticPaths(getCollection, pipelines_json.remote_workflows);
+}
+
+const { year, month, allProposals } = Astro.props as { year: number; month: number; allProposals: any[] };
+const pipelines = pipelines_json.remote_workflows;
+const data = await getNewsletterContentData(getCollection, pipelines, year, month, allProposals, images);
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>nf-core Newsletter - {data.monthName} {year}</title>
+    </head>
+    <body>
+        <NewsletterSimpleLayout data={data} />
+    </body>
+</html>
