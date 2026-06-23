@@ -1895,7 +1895,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -10923,9 +10923,9 @@
                 }
               },
               {
-                "echo 0.5.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -10947,9 +10947,9 @@
                 }
               },
               {
-                "echo 0.5.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "0.5.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -13763,7 +13763,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13787,7 +13787,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13875,7 +13875,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -13921,7 +13921,7 @@
                 }
               },
               {
-                "echo \\$(ataqv --version)": {
+                "ataqv --version 2>&1 || true": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -14834,7 +14834,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -14952,7 +14952,7 @@
                 }
               },
               {
-                "echo \\$(AuthentiCT --version 2>&1)": {
+                "AuthentiCT --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -14998,7 +14998,7 @@
                 }
               },
               {
-                "echo \\$(AuthentiCT --version 2>&1)": {
+                "AuthentiCT --version": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -17461,9 +17461,9 @@
                 }
               },
               {
-                "echo 2.2": {
+                "2.2": {
                   "type": "string",
-                  "description": "The version used (constant)"
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -17484,7 +17484,7 @@
               },
               {
                 "samtools version | sed '1!d;s/.* //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -17507,9 +17507,9 @@
                 }
               },
               {
-                "echo 2.2": {
+                "2.2": {
                   "type": "string",
-                  "description": "The version used (constant)"
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -17528,7 +17528,7 @@
               },
               {
                 "samtools version | sed '1!d;s/.* //'": {
-                  "type": "string",
+                  "type": "eval",
                   "description": "The command used to generate the version of the tool"
                 }
               }
@@ -41298,9 +41298,9 @@
                 }
               },
               {
-                "echo 20240919": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "20240919": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -41322,9 +41322,9 @@
                 }
               },
               {
-                "echo 20240919": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "20240919": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -43028,6 +43028,13 @@
               "description": "BWA-mem2 is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/bwa-mem2/bwa-mem2",
               "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
+              "doi": "10.1109/IPDPS.2019.00041",
+              "publication": {
+                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "year": 2018,
+                "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
+                "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
+              },
               "licence": [
                 "MIT"
               ],
@@ -43221,11 +43228,17 @@
         ],
         "tools": [
           {
-            "bwa": {
+            "bwamem2": {
               "description": "BWA-mem2 is a software package for mapping DNA sequences against\na large reference genome, such as the human genome.\n",
               "homepage": "https://github.com/bwa-mem2/bwa-mem2",
-              "documentation": "http://www.htslib.org/doc/samtools.html",
-              "arxiv": "arXiv:1303.3997",
+              "documentation": "https://github.com/bwa-mem2/bwa-mem2#usage",
+              "doi": "10.1109/IPDPS.2019.00041",
+              "publication": {
+                "author": "Vasimuddin M., Misra S., Li H. & Aluru S.",
+                "year": 2018,
+                "source": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
+                "title": "Efficient Architecture-Aware Acceleration of BWA-MEM for Multicore Systems"
+              },
               "licence": [
                 "MIT"
               ],
@@ -45235,9 +45248,9 @@
                 }
               },
               {
-                "echo 5.1.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "5.1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -45259,9 +45272,9 @@
                 }
               },
               {
-                "echo 5.1.0": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "5.1.0": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -58738,9 +58751,9 @@
                 }
               },
               {
-                "echo $(clusty --version 2>&1": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "clusty --version 2>&1 || true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -58762,9 +58775,9 @@
                 }
               },
               {
-                "echo $(clusty --version 2>&1": {
-                  "type": "string",
-                  "description": "The version of the tool"
+                "clusty --version 2>&1 || true": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
                 }
               }
             ]
@@ -69436,6 +69449,10 @@
           "version": "dev"
         },
         {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        },
+        {
           "name": "multiplesequencealign",
           "version": "1.1.1"
         },
@@ -71719,7 +71736,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "genomeannotator",
@@ -72003,7 +72020,13 @@
           "@pinin4fjords",
           "@WackerO"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_geneticmapconvert",
@@ -72664,7 +72687,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -74197,7 +74220,13 @@
         "maintainers": [
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "custom_tabulartogseacls",
@@ -74321,7 +74350,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -74447,7 +74476,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -76343,7 +76372,13 @@
           "@vicpaton",
           "@Nic-Nic"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "dedup",
@@ -82636,7 +82671,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -91284,6 +91319,167 @@
         ],
         "maintainers": [
           "@itrujnara"
+        ]
+      }
+    },
+    {
+      "name": "echtvar_anno",
+      "path": "modules/nf-core/echtvar/anno/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "echtvar_anno",
+        "description": "Annotate a decomposed (and normalized) VCF with an echtvar file",
+        "keywords": [
+          "echtvar",
+          "vcf",
+          "annotate",
+          "filter",
+          "genomics"
+        ],
+        "tools": [
+          {
+            "echtvar": {
+              "description": "Using all the bits for echt rapid variant annotation and filtering.",
+              "homepage": "https://github.com/brentp/echtvar/blob/v0.2.2/README.md",
+              "documentation": "https://github.com/brentp/echtvar/blob/v0.2.2/README.md",
+              "tool_dev_url": "https://github.com/brentp/echtvar",
+              "doi": "10.1093/nar/gkac931",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:echtvar"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "vcf": {
+                "type": "file",
+                "description": "VCF input file",
+                "pattern": "*.{vcf,bcf}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3016"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_3020"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "annotation_files": {
+                "type": "file",
+                "description": "List of echtvar annotation files to be used for annotation",
+                "pattern": "*.{zip}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3987"
+                  }
+                ]
+              }
+            }
+          ],
+          {
+            "output_suffix": {
+              "type": "string",
+              "description": "The suffix for the output file, e.g. \"vcf.gz\" or \"bcf\""
+            }
+          }
+        ],
+        "output": {
+          "vcf": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "*.{vcf.gz,bcf}": {
+                  "type": "file",
+                  "description": "Compressed VCF file",
+                  "pattern": "*.{vcf.gz,bcf}",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3016"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3020"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_echtvar": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "echtvar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echtvar --version | sed 's/echtvar //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "echtvar": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "echtvar --version | sed 's/echtvar //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@sofiademmou"
+        ],
+        "maintainers": [
+          "@sofiademmou"
         ]
       }
     },
@@ -106918,6 +107114,168 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3003"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_finaletoolkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
+    },
+    {
+      "name": "finaletoolkit_endmotifs",
+      "path": "modules/nf-core/finaletoolkit/endmotifs/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "finaletoolkit_endmotifs",
+        "description": "Measure the frequency of 5' k-mer end motifs.\n",
+        "keywords": [
+          "end-motifs",
+          "genomics",
+          "fragmentomics"
+        ],
+        "tools": [
+          {
+            "finaletoolkit": {
+              "description": "Extract cfDNA fragmentation features from sequencing data.",
+              "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
+              "doi": "10.1093/bioadv/vbaf236",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:finaletoolkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "bam": {
+                "type": "file",
+                "description": "Sorted BAM file",
+                "pattern": "*.bam",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_2572"
+                  }
+                ]
+              }
+            },
+            {
+              "bai": {
+                "type": "file",
+                "description": "BAM file index",
+                "pattern": "*.bai",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3327"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "genome": {
+                "type": "file",
+                "description": "FASTA or 2bit compressed genome file (must be the same as the one used for the\nBAM file)\n",
+                "pattern": "*.2bit|*.fasta|*.fa",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3009"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "pattern": "*.tsv",
+                  "description": "TSV file containing k-mer frequencies\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
                     }
                   ]
                 }
@@ -135055,7 +135413,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -140226,7 +140584,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -142264,7 +142622,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -145121,7 +145479,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "epitopeprediction",
@@ -152330,9 +152688,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152354,9 +152712,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152627,9 +152985,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -152651,9 +153009,9 @@
                 }
               },
               {
-                "echo 1.0.4": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.0.4": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -157388,6 +157746,10 @@
         {
           "name": "pairgenomealign",
           "version": "2.3.0"
+        },
+        {
+          "name": "rnadnavar",
+          "version": "dev"
         },
         {
           "name": "rnavar",
@@ -171266,6 +171628,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171497,6 +171865,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171754,6 +172128,12 @@
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "tool_dev_url": "https://github.com/DerrickWood/kraken2",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -171860,6 +172240,12 @@
               "homepage": "https://ccb.jhu.edu/software/kraken2/",
               "documentation": "https://github.com/DerrickWood/kraken2/wiki/Manual",
               "doi": "10.1186/s13059-019-1891-0",
+              "publication": {
+                "author": "Wood D.E., Lu J. & Langmead B.",
+                "year": 2019,
+                "title": "Improved metagenomic analysis with Kraken 2",
+                "source": "Genome Biology"
+              },
               "licence": [
                 "MIT"
               ],
@@ -173017,6 +173403,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173081,6 +173476,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173182,6 +173586,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -173326,6 +173739,12 @@
               "documentation": "http://manpages.ubuntu.com/manpages/impish/man1/ktImportTaxonomy.1.html",
               "tool_dev_url": "https://github.com/marbl/Krona",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
               "licence": [
                 "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
               ],
@@ -173455,6 +173874,15 @@
               "homepage": "https://github.com/marbl/Krona/wiki/KronaTools",
               "documentation": "https://github.com/marbl/Krona/wiki/Installing",
               "doi": "10.1186/1471-2105-12-385",
+              "publication": {
+                "author": "Ondov B.D., Bergman N.H. & Phillippy A.M.",
+                "year": 2011,
+                "title": "Interactive metagenomic visualization in a Web browser",
+                "source": "BMC Bioinformatics"
+              },
+              "licence": [
+                "https://raw.githubusercontent.com/marbl/Krona/master/KronaTools/LICENSE.txt"
+              ],
               "identifier": "biotools:krona"
             }
           }
@@ -174912,9 +175340,9 @@
                 }
               },
               {
-                "echo 'leafcutter 2.0.3'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -174936,9 +175364,9 @@
                 }
               },
               {
-                "echo 'leafcutter 2.0.3'": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.0.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -176568,7 +176996,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -176849,7 +177277,7 @@
                 }
               },
               {
-                "echo \\$(LINKS | grep -o 'LINKS v.*' | sed 's/LINKS v//')": {
+                "LINKS | sed '/LINKS/!d;s/.*LINKS v//;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -176873,7 +177301,7 @@
                 }
               },
               {
-                "echo \\$(LINKS | grep -o 'LINKS v.*' | sed 's/LINKS v//')": {
+                "LINKS | sed '/LINKS/!d;s/.*LINKS v//;s/ .*//'": {
                   "type": "eval",
                   "description": "The expression to obtain the version of the tool"
                 }
@@ -182937,19 +183365,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_magus": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "magus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "magus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "magus": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "magus --version": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -182990,14 +183450,22 @@
           }
         ],
         "input": [
-          {
-            "fastas": {
-              "type": "file",
-              "description": "Directory of, or list of FASTA reference files for indexing",
-              "pattern": "*/|*.fasta",
-              "ontologies": []
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "fastas": {
+                "type": "file",
+                "description": "Directory of, or list of FASTA reference files for indexing",
+                "pattern": "*/|*.fasta",
+                "ontologies": []
+              }
             }
-          },
+          ],
           {
             "gff": {
               "type": "file",
@@ -183024,37 +183492,85 @@
         ],
         "output": {
           "index": [
-            {
-              "malt_index/": {
-                "type": "directory",
-                "description": "Directory containing MALT database index directory",
-                "pattern": "malt_index/"
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "malt_index/": {
+                  "type": "directory",
+                  "description": "Directory containing MALT database index directory",
+                  "pattern": "malt_index/"
+                }
               }
-            }
-          ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
-              }
-            }
+            ]
           ],
           "log": [
-            {
-              "malt-build.log": {
-                "type": "file",
-                "description": "Log file from STD out of malt-build",
-                "pattern": "malt-build.log",
-                "ontologies": []
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "malt-build.log": {
+                  "type": "file",
+                  "description": "Log file from STD out of malt-build",
+                  "pattern": "malt-build.log",
+                  "ontologies": []
+                }
               }
-            }
+            ]
+          ],
+          "versions_malt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-build --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-build --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -183121,13 +183637,21 @@
               }
             }
           ],
-          {
-            "index": {
-              "type": "directory",
-              "description": "Index/database directory from malt-build",
-              "pattern": "*/"
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "directory",
+                "description": "Index/database directory from malt-build",
+                "pattern": "*/"
+              }
             }
-          }
+          ]
         ],
         "output": {
           "rma6": [
@@ -183194,19 +183718,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_malt": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-run --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "malt": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "malt-run --help |& sed '/version/!d;s/.*version //;s/,.*//'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -184550,19 +185106,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mapad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -184718,19 +185306,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mapad": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mapad": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mapad --version | sed 's/^mapAD //'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185246,19 +185866,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185359,19 +186011,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -185477,19 +186161,51 @@
               }
             ]
           ],
-          "versions": [
-            {
-              "versions.yml": {
-                "type": "file",
-                "description": "File containing software versions",
-                "pattern": "versions.yml",
-                "ontologies": [
-                  {
-                    "edam": "http://edamontology.org/format_3750"
-                  }
-                ]
+          "versions_mash": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
               }
-            }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "mash": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "mash --version 2>&1": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
           ]
         },
         "authors": [
@@ -190205,9 +190921,9 @@
                 }
               },
               {
-                "echo 1.1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -190227,9 +190943,9 @@
                 }
               },
               {
-                "echo 1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -190273,9 +190989,9 @@
                 }
               },
               {
-                "echo 1.1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -190293,9 +191009,9 @@
                 }
               },
               {
-                "echo 1.1": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "1.1": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -197897,9 +198613,9 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "3.2.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -197921,9 +198637,9 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "3.2.3": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -198408,8 +199124,8 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
+                "3.2.3": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -198432,8 +199148,8 @@
                 }
               },
               {
-                "echo 3.2.3": {
-                  "type": "eval",
+                "3.2.3": {
+                  "type": "string",
                   "description": "The expression to obtain the version of the tool"
                 }
               }
@@ -246994,7 +247710,13 @@
           "@caraiz2001",
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "propr_logratio",
@@ -247428,7 +248150,13 @@
         "maintainers": [
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "propr_propr",
@@ -248791,7 +249519,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -254246,6 +254974,10 @@
           "version": "2.0.1"
         },
         {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        },
+        {
           "name": "scdownstream",
           "version": "dev"
         },
@@ -255948,9 +256680,9 @@
                 }
               },
               {
-                "echo 2.3.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.3.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -255994,9 +256726,9 @@
                 }
               },
               {
-                "echo 2.3.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.3.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -263280,13 +264012,7 @@
         "maintainers": [
           "@grst"
         ]
-      },
-      "pipelines": [
-        {
-          "name": "differentialabundance",
-          "version": "1.5.0"
-        }
-      ]
+      }
     },
     {
       "name": "rmats_prep",
@@ -297070,7 +297796,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297239,7 +297965,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297565,7 +298291,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -297797,7 +298523,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         }
       ]
     },
@@ -300494,9 +301220,9 @@
                 }
               },
               {
-                "echo 2.04": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.04": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -300518,9 +301244,9 @@
                 }
               },
               {
-                "echo 2.04": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of the tool"
+                "2.04": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -320376,10 +321102,6 @@
           "version": "3.1.0"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "tbanalyzer",
           "version": "dev"
         },
@@ -320589,10 +321311,6 @@
           "version": "3.1.0"
         },
         {
-          "name": "rnadnavar",
-          "version": "dev"
-        },
-        {
           "name": "sarek",
           "version": "3.8.1"
         },
@@ -320795,10 +321513,6 @@
         {
           "name": "references",
           "version": "0.1"
-        },
-        {
-          "name": "rnadnavar",
-          "version": "dev"
         },
         {
           "name": "sarek",
@@ -324726,9 +325440,9 @@
                 }
               },
               {
-                "echo 0.0.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of telseq"
+                "0.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ]
@@ -324772,9 +325486,9 @@
                 }
               },
               {
-                "echo 0.0.2": {
-                  "type": "eval",
-                  "description": "The expression to obtain the version of telseq"
+                "0.0.2": {
+                  "type": "string",
+                  "description": "The version of the tool"
                 }
               }
             ],
@@ -334385,7 +335099,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "drop",
@@ -334782,7 +335496,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "lsmquant",
@@ -336052,7 +336766,13 @@
           "@nschcolnicov",
           "@atrigila"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "variantbam",
@@ -351831,7 +352551,7 @@
       "pipelines": [
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "tfactivity",
@@ -352194,7 +352914,13 @@
           "@pinin4fjords",
           "@suzannejin"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "archive_extract",
@@ -357713,7 +358439,13 @@
           "@suzannejin",
           "@pinin4fjords"
         ]
-      }
+      },
+      "pipelines": [
+        {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        }
+      ]
     },
     {
       "name": "faa_seqfu_seqkit",
@@ -360961,11 +361693,6 @@
           {
             "idxstats": {
               "description": "File containing samtools idxstats output\nStructure: [ val(meta), path(idxstats) ]\n"
-            }
-          },
-          {
-            "versions": {
-              "description": "Files containing software versions\nStructure: [ path(versions.yml) ]\n"
             }
           }
         ],
@@ -366145,7 +366872,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -366157,7 +366884,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -366598,7 +367325,7 @@
         },
         {
           "name": "differentialabundance",
-          "version": "1.5.0"
+          "version": "2.0.0"
         },
         {
           "name": "diseasemodulediscovery",
@@ -366610,7 +367337,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -367104,6 +367831,10 @@
           "version": "1.3.0"
         },
         {
+          "name": "differentialabundance",
+          "version": "2.0.0"
+        },
+        {
           "name": "diseasemodulediscovery",
           "version": "dev"
         },
@@ -367113,7 +367844,7 @@
         },
         {
           "name": "drugresponseeval",
-          "version": "1.2.1"
+          "version": "1.2.2"
         },
         {
           "name": "epitopeprediction",
@@ -367489,10 +368220,6 @@
         {
           "name": "chipseq",
           "version": "2.1.0"
-        },
-        {
-          "name": "differentialabundance",
-          "version": "1.5.0"
         },
         {
           "name": "fetchngs",
