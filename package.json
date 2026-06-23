@@ -14,6 +14,11 @@
     "workspaces": [
         "sites/*"
     ],
+    "overrides": {
+        "astro-expressive-code": {
+            "astro": "$astro"
+        }
+    },
     "dependencies": {
         "@astrojs/compiler-rs": "^0.2.2",
         "@astrojs/netlify": "^8.0.0",
