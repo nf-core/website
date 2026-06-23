@@ -1,4 +1,4 @@
-import mdx from "@astrojs/mdx";
+import { resolve } from "node:path";
 import netlify from "@astrojs/netlify";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
@@ -89,10 +89,7 @@ export default {
                 forward: ["dataLayer.push"],
             },
         }),
-        // Renders all markdown code blocks by pushing its satteri plugin into the
-        // shared processor below; must come before mdx().
         expressiveCode(createEcConfig()),
-        mdx(),
         markdownIntegration(),
     ],
     build: {
@@ -108,6 +105,9 @@ export default {
             preserveSymlinks: true,
             browser: true,
             noExternal: ["@popperjs/core", "svelte-exmarkdown", "svelte-confetti", "@mashehu/astropub-md"],
+            alias: {
+                "@styles": resolve(process.cwd(), "../main-site/src/styles"),
+            },
         },
         css: {
             preprocessorOptions: {
