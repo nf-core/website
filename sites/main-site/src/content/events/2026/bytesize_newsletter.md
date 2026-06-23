@@ -6,10 +6,7 @@ startDate: "2026-06-23"
 startTime: "13:00+02:00"
 endDate: "2026-06-23"
 endTime: "13:30+02:00"
-locations:
-  - name: Online
-    links:
-      - https://stockholmuniversity.zoom.us/j/66855293599
+youtubeEmbed: https://youtu.be/xACxeNzWGQ4
 ---
 
 This week, Phil Ewels ([@ewels](https://github.com/ewels)) will talk about the new nf-core newsletter.
