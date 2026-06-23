@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
 import {
-    getNewsletterMonths,
+    getPublishedNewsletterMonths,
     getBlogPostsForMonth,
     getPipelineReleasesForMonth,
     getEventsForMonth,
@@ -20,7 +20,7 @@ export async function GET(context) {
 
     const pipelines = pipelines_json.remote_workflows;
     const advisories = await getCollection("advisories");
-    const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
+    const months = await getPublishedNewsletterMonths(getCollection, pipelines);
 
     const items = months.map(({ year, month }) => {
         const monthName = getMonthName(month);

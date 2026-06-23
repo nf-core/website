@@ -149,6 +149,44 @@ export function getNewsletterMonths(
     return months.filter((m) => m.year < currentYear || (m.year === currentYear && m.month <= currentMonth));
 }
 
+/**
+ * Whether the newsletter dated the 1st of (year, month) would render any content.
+ *
+ * The candidate-month set above is seeded from the months that content lands in,
+ * but a newsletter looks *back* at the previous calendar month (blog posts,
+ * advisories, releases, new pipelines, recent events, proposals) and *forward* at
+ * this + next month (upcoming events). That offset means a seeded month can end up
+ * with every section empty — e.g. a lone advisory dated in a month whose preceding
+ * month has nothing. This mirrors the section gating in NewsletterLayout so we only
+ * keep months where at least one section would actually render, and never publish a
+ * page that is just the header and footer.
+ */
+export function newsletterMonthHasContent(
+    blogPosts: { id: string; data: { pubDate: Date } }[],
+    events: { id: string; data: { start: Date } }[],
+    pipelines: PipelineWorkflow[],
+    advisories: { id: string; data: { publishedDate: Date } }[],
+    proposals: RawProposal[],
+    year: number,
+    month: number,
+): boolean {
+    const contentMonth = month === 1 ? 12 : month - 1;
+    const contentYear = month === 1 ? year - 1 : year;
+
+    return (
+        getBlogPostsForMonth(blogPosts, contentYear, contentMonth).length > 0 ||
+        getBlogPostsForPreviousMonths(blogPosts, contentYear, contentMonth, 2).length > 0 ||
+        getAdvisoriesForMonth(advisories, contentYear, contentMonth).length > 0 ||
+        getAdvisoriesForPreviousMonths(advisories, contentYear, contentMonth, 2).length > 0 ||
+        getPipelineReleasesForMonth(pipelines, contentYear, contentMonth).length > 0 ||
+        getNewPipelines(pipelines, contentYear, contentMonth).length > 0 ||
+        getEventsForMonth(events, contentYear, contentMonth).length > 0 ||
+        getEventsForMonth(events, year, month).length > 0 ||
+        getFutureEvents(events, year, month, 1).length > 0 ||
+        getProposalsForMonth(proposals, contentYear, contentMonth).length > 0
+    );
+}
+
 // The blog / events / advisories collections all share the same "filter to a
 // month, sorted by date" and "collect across N adjacent months" shapes. These
 // two generics implement that once; each collection only supplies its date
@@ -425,7 +463,6 @@ export async function getNewsletterStaticPathsData(
     events = events.filter((e: any) => e.id.split("/").length === 2);
 
     const advisories = await getCollectionFn("advisories");
-    const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
 
     let allProposals: RawProposal[] = [];
     try {
@@ -434,7 +471,25 @@ export async function getNewsletterStaticPathsData(
         console.warn("Could not fetch proposals:", e);
     }
 
+    // Drop any candidate month whose newsletter would render no content (see
+    // newsletterMonthHasContent) so we never publish an empty page.
+    const months = getNewsletterMonths(blogPosts, events, pipelines, advisories).filter((m) =>
+        newsletterMonthHasContent(blogPosts, events, pipelines, advisories, allProposals, m.year, m.month),
+    );
+
     return { months, allProposals };
+}
+
+/**
+ * The canonical list of newsletter months that actually have content, shared by the
+ * listing page and the RSS feed so they stay in lock-step with the generated pages.
+ */
+export async function getPublishedNewsletterMonths(
+    getCollectionFn: (name: string) => Promise<any[]>,
+    pipelines: PipelineWorkflow[],
+): Promise<NewsletterMonth[]> {
+    const { months } = await getNewsletterStaticPathsData(getCollectionFn, pipelines);
+    return months;
 }
 
 /**
