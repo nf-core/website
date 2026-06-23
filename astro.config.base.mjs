@@ -1,4 +1,5 @@
 import { resolve } from "node:path";
+import mdx from '@astrojs/mdx';
 import netlify from "@astrojs/netlify";
 import partytown from "@astrojs/partytown";
 import sitemap from "@astrojs/sitemap";
@@ -90,6 +91,7 @@ export default {
             },
         }),
         expressiveCode(createEcConfig()),
+        mdx(),
         markdownIntegration(),
     ],
     build: {
