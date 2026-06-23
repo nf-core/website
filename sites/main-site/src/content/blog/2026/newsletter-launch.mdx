@@ -1,0 +1,66 @@
+---
+title: Introducing the nf-core newsletter
+subtitle: "Community news, pipeline releases and events, gathered once a month and emailed to you if you want it"
+pubDate: 2026-06-23T09:00:00+01:00
+headerImage: /assets/images/blog/newsletter-launch/newsletter-banner.jpg
+headerImageAlt: A blue rounded button with a white envelope icon, representing email
+authors:
+    - ewels
+label:
+    - community
+---
+
+import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
+
+# Introducing the nf-core newsletter
+
+The nf-core community moves fast.
+In a normal month there are a handful of pipelines with new releases, one or two typically have their very first release, there are new blog posts, bytesize talks, training events, hackathons and all sorts.
+If you don't follow Slack and the website every day, it's easy to lose track of all of it.
+
+To try to help with this, we built a newsletter.
+Once a month it gathers up what happened across nf-core onto a single page, and then emails that to you.
+You can sign up below:
+
+<NewsletterSignup compact={true} />
+
+We'll also publish the newsletter [on LinkedIn](https://www.linkedin.com/newsletters/nf-core-7474718981564706816/), and via an [RSS feed](/newsletter/rss.xml).
+
+The whole thing is rendered on the website, so you can read the latest edition and browse previous months at [nf-co.re/newsletter](/newsletter).
+
+## What's in an edition
+
+Each month the newsletter pulls together:
+
+- New blog posts
+- Security advisories
+- Pipeline releases (with brand-new pipelines' first releases highlighted)
+- Upcoming bytesize talks, trainings, and hackathons
+- Newly minted pipeline repos, plus pipeline and RFC proposals from [nf-core/proposals](https://github.com/nf-core/proposals/issues)
+
+There's also an "in case you missed it" section that shows blog posts and other things from the past couple of months, in case something slipped past you the first time.
+
+## Get it by email
+
+The emails go out on the first Wednesday of every month. Once you [sign up](/newsletter/subscribe) you'll need to confirm your email.
+
+We store your email address and the date you subscribed.
+Emails are sent using [Amazon SES (Simple Email Service)](https://aws.amazon.com/ses/), which runs in the EU (`eu-west-1`).
+Every email carries an in-body unsubscribe link and the standard `List-Unsubscribe` headers, so Gmail, Apple Mail and similar clients show their own one-click unsubscribe button next to the sender.
+
+## Get it on LinkedIn
+
+We know that people's inboxes are already full, so if you prefer you can also get the newsletter [on LinkedIn](https://www.linkedin.com/newsletters/nf-core-7474718981564706816/).
+
+We'll do our best to publish it there each month (it's impossible to automate, so some clicking is required), but it'll be the same content in both places.
+
+## Read it on the website
+
+The newsletter is built using the website, you can view every month going back to the start of nf-core via the [Newsletter](/newsletter) link under "Community" in the navbar.
+
+Each month has a few buttons at the top with the newsletter in different formats:
+
+- An [RSS feed](/newsletter/rss.xml) you can follow in a reader
+- Markdown, suitable for LLMs or reading in other clients
+- The email-friendly HTML version
+- A plain HTML version which we use to copy the newsletter into LinkedIn
