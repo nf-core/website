@@ -12431,6 +12431,56 @@
               }
             ]
           ],
+          "pre_normalisation_coverage_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.pre-normalisation.coverage.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing per-base coverage depth before normalisation",
+                  "pattern": "*.pre-normalisation.coverage.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "post_normalisation_coverage_report": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.post-normalisation.coverage.tsv": {
+                  "type": "file",
+                  "description": "TSV report containing per-base coverage depth after normalisation",
+                  "pattern": "*.post-normalisation.coverage.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3750"
+                    },
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions_align_trim": [
             [
               {
@@ -41659,7 +41709,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "hgtseq",
@@ -100934,10 +100984,6 @@
           "version": "dev"
         },
         {
-          "name": "datasync",
-          "version": "dev"
-        },
-        {
           "name": "deepmutscan",
           "version": "dev"
         },
@@ -100967,7 +101013,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
@@ -205519,7 +205565,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
@@ -276244,7 +276290,7 @@
       "pipelines": [
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "oncoanalyser",
@@ -276477,7 +276523,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -278726,7 +278772,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "genomicrelatedness",
@@ -290823,6 +290869,12 @@
               "documentation": "https://telatin.github.io/seqfu2/tools/check.html#usage",
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "MIT"
               ],
@@ -290953,6 +291005,12 @@
               "documentation": "https://telatin.github.io/seqfu2/",
               "tool_dev_url": "https://telatin.github.io/seqfu2/tools/derep.html",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -291076,6 +291134,12 @@
               "documentation": "https://telatin.github.io/seqfu2/",
               "tool_dev_url": "https://github.com/telatin/seqfu2",
               "doi": "10.3390/bioengineering8050059",
+              "publication": {
+                "author": "Telatin A., Fariselli P. & Birolo G.",
+                "year": 2021,
+                "title": "SeqFu: A Suite of Utilities for the Robust and Reproducible Manipulation of Sequence Files",
+                "source": "Bioengineering"
+              },
               "licence": [
                 "GPL v3"
               ],
@@ -366900,7 +366964,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "fetchngs",
@@ -367353,7 +367417,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "fetchngs",
@@ -367860,7 +367924,7 @@
         },
         {
           "name": "fastquorum",
-          "version": "1.2.0"
+          "version": "2.0.0"
         },
         {
           "name": "funcprofiler",
