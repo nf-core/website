@@ -2,7 +2,7 @@
 title: Overview
 subtitle: Test components with nf-test
 shortTitle: Overview
-weight:
+weight: 1
 ---
 
 nf-test provides a testing framework for Nextflow pipelines, modules, and workflows.
