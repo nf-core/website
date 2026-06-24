@@ -53,7 +53,7 @@ Selecting the file will then print different variants of URLs of the test data f
 
 ### Uploading new data
 
-If you cannot generate test data on the fly, or reuse existing data, you can upload new compliant test data to the `modules` branch.
+If you cannot generate [test data on the fly quickly](https://www.nf-test.com/docs/testcases/setup/?h=setup), or reuse existing data, you can upload new compliant test data to the `modules` branch.
 
 If you need to create a derivative file, use existing test data as a source.
 For example, if you need to test a new bioinformatic short-read aligner that requires a genome file index, use an existing `genome.fasta` file on nf-core/test-datasets to generate the index, rather than using your own reference genome.
