@@ -471,7 +471,7 @@ nf-core modules test <tool>/<subcommand>
 ```
 
 :::warning
-The `nf-core` tools test commands only work on modules repositories.
+The `nf-core modules test` command only works on modules repositories.
 They will not work on installed modules within a pipeline.
 :::
 
