@@ -1,9 +1,18 @@
 ---
 import ListingLayout from "@layouts/ListingLayout.astro";
 import ComponentListing from "@components/component/ComponentListing.svelte";
+import { renderMarkdown } from "@root/bin/satteri/markdownConfig.ts";
 
 import components from "@public/components.json";
-const modules = components.modules;
+
+const modules = await Promise.all(
+    components.modules.map(async (module) => {
+        if (!module.meta.description) return module;
+        const { html } = await renderMarkdown(module.meta.description);
+        return { ...module, meta: { ...module.meta, description_rendered: html } };
+    }),
+);
+
 const title = "nf-core/modules";
 const description = "Browse the " + modules.length + " modules that are currently available as part of nf-core.";
 ---
