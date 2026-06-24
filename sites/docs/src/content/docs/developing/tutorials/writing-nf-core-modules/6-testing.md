@@ -470,6 +470,11 @@ Generate it with:
 nf-core modules test <tool>/<subcommand>
 ```
 
+:::warning
+The `nf-core` tools test commands only work on modules repositories.
+They will not work on installed modules within a pipeline.
+:::
+
 Set the prompts, and the tests run twice.
 nf-test reports whether the outputs match and creates the snapshot on the first run.
 
