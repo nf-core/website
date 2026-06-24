@@ -150,6 +150,11 @@ Before contributing your component, thoroughly test it to ensure it meets nf-cor
 GitHub Actions automatically runs these tests when you submit a pull request, but running them locally first helps catch issues early.
 :::
 
+:::warning
+The `nf-core` tools test commands only work on modules repositories.
+They will not work on installed modules within a pipeline.
+:::
+
 ## Next steps
 
 Once your component is written and all tests pass, you can contribute it to nf-core:

@@ -5,7 +5,7 @@ shortTitle: update
 weight: 40
 ---
 
-You can update modules installed from a remote repository in your pipeline using `nf-core modules update`.
+You can update modules in your pipeline installed from a remote repository using `nf-core modules update`.
 
 <!-- RICH-CODEX
 working_dir: tmp/nf-core-nextbigthing
