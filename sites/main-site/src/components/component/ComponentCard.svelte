@@ -9,6 +9,7 @@
             type: string;
             meta: {
                 description: string;
+                description_rendered?: string;
                 name: string;
                 keywords?: string[];
                 modules?: string[];
@@ -46,7 +47,11 @@
 
     {#snippet cardBody()}
         <div class="d-flex flex-column justify-content-between h-100">
-            <p class="description flex-grow-1 mb-3">{component.meta.description}</p>
+            {#if component.meta.description_rendered}
+                <div class="description flex-grow-1 mb-3">{@html component.meta.description_rendered}</div>
+            {:else}
+                <p class="description flex-grow-1 mb-3">{component.meta.description}</p>
+            {/if}
             {#if component.meta.keywords}
                 <TagSection tags={component.meta.keywords} type="keywords" />
             {/if}
