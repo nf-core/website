@@ -46,10 +46,10 @@ Existing nf-core test data can be explored using nf-core/tools.
 nf-core test-datasets search --branch modules
 ```
 
-You can then type in the search bar for contents of file paths of existing data, such as for file formats or extensions.
+Type in the search bar keywords such as for file formats or extensions to find potentially relevant files.
 To get more information about the context of the data, see the [nf-core/test-datasets README](https://github.com/nf-core/test-datasets/tree/modules#data-description) file.
 
-Selecting the file will then print different variants of URLs of the test data file for use in tests.
+Selecting a file to print different variants of URLs to the test data file for use in tests.
 
 ### Uploading new data
 
@@ -58,19 +58,19 @@ If you cannot generate [test data on the fly quickly](https://www.nf-test.com/do
 If you need to create a derivative file, use existing test data as a source.
 For example, if you need to test a new bioinformatic short-read aligner that requires a genome file index, use an existing `genome.fasta` file on nf-core/test-datasets to generate the index, rather than using your own reference genome.
 
-:::warning
-Do not clone the nf-core/test-datasets repository because it is extremely large.
-If you must clone it, we highly recommend using [single-branch clones](https://github.com/nf-core/test-datasets#downloading-test-data).
+:::danger
+Do not clone the nf-core/test-datasets repository: it is extremely large and will take a long time to download.
+If a local copy is required, we highly recommend using [single-branch clones](https://github.com/nf-core/test-datasets#downloading-test-data).
 :::
 
 1. Verify your new test-data file complies with the [nf-core test-datasets specifications](../../specifications/test-data/overview.md).
-2. Fork the nf-core/test-datasets repository.
-3. Upload to the `modules` branch in a suitable location.
+2. Fork the nf-core/test-datasets repository including all branches.
+3. Upload to the `modules` branch on your fork in a suitable location.
    - (Recommended) Use the GitHub website upload function.
    - If you are unsure of the suitable location, ask on the nf-core [#test-data](https://nfcore.slack.com/archives/C02L5UB4Y9G) Slack channel.
 4. Edit the README of the `modules` branch to add a short entry describing the new test data file.
-   - Include as much information as possible that could allow reconstruction of the file (for example, original source accession numbers or URLs, tool name and version used to generate).
-   - (Optional) Add a dedicated README markdown file alongside the test-data file itself if the description required for reconstruction requires more than one or two sentences.
+   - Include as much information as possible to support reconstruction of the file (for example, original source accession numbers or URLs, tool name and version used to generate).
+   - (Optional) If a description requires more than one or two sentences Additionally add a dedicated README markdown file alongside the test-data file itself.
 5. Open a pull request and request a review on the nf-core [#request-review](https://nfcore.slack.com/archives/CQY2U5QU9) Slack channel.
 
 ### Research domain specific guidance
@@ -78,25 +78,24 @@ If you must clone it, we highly recommend using [single-branch clones](https://g
 #### Biology
 
 Avoid adding test data of new organisms as far as possible, and reuse existing files.
+
 SARS-CoV-2 and _Homo sapiens_ (Chr 21) are the best supported organisms and should be used where possible.
 If a new organism is absolutely required for a tool, first propose the addition on the [#test-data](https://nfcore.slack.com/archives/C02L5UB4Y9G) Slack channel.
 
 ## Pipelines
 
-Each pipeline has its own dedicated branch on the test-datasets repository, for example, [nf-core/rnaseq](https://github.com/nf-core/test-datasets/tree/rnaseq).
+Each official nf-core pipeline has a dedicated branch on the test-datasets repository, for example, [nf-core/rnaseq](https://github.com/nf-core/test-datasets/tree/rnaseq).
 
 Reusability principles are less strict for pipeline test data.
 Test data should not be reused across pipelines for stability purposes.
-Reusing test data from modules is possible due to the greater stability of these files.
+Reusing test data from modules for pipeline tests is possible due to the greater stability of these files.
 
 A pipeline-specific nf-core/test-datasets branch will generally consist of:
 
-- Small raw input files (FASTQ, FASTA etc.)
+- Small raw input files (for example, FASTQ, FASTA etc. for bioinformatics)
 - Samplesheets
 
 ### Adding new test data
-
-Files in a pipeline-specific branch should comply with the [nf-core test-datasets specifications](../../specifications/test-data/overview.md).
 
 1. Verify your new test-data file complies with the [nf-core test-datasets specifications](../../specifications/test-data/overview.md).
 2. Fork the nf-core/test-datasets repository.
