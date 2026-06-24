@@ -2,7 +2,7 @@
 title: Overview
 subtitle: Test components with nf-test
 shortTitle: Overview
-weight: 1
+weight:
 ---
 
 nf-test provides a testing framework for Nextflow pipelines, modules, and workflows.
@@ -55,6 +55,11 @@ Both directives work within their defined scope: either for all tests within the
 ### File paths
 
 nf-test replaces paths in snapshots with a unique fingerprint (MD5 sum by default) to ensure file content consistency.
+
+:::note
+nf-core pipelines, modules, and subworkflows should specify input files from nf-core/test-datasets.
+See the [test-data](./test-data.md) page for more information.
+:::
 
 ### Asserting channel item presence with `contains`
 
@@ -132,6 +137,7 @@ The nf-test documentation provides additional information on:
 
 Learn how to write effective test assertions following nf-core guidelines:
 
+- [Test data](./test-data) covers how to find and prepare test-data files
 - [Writing assertions](./assertions.md) covers nf-core guidelines and common assertion patterns
 - [Advanced techniques](./advanced.md) covers complex patterns and troubleshooting
 - [CI runners](./ci-runners.md) covers RunsOn configuration and CI disk space issues

@@ -2,7 +2,7 @@
 title: CI runners
 subtitle: Configure RunsOn and fix CI disk space issues
 shortTitle: CI runners
-weight: 4
+weight: 5
 ---
 
 nf-core uses [RunsOn](https://runs-on.com/) for self-hosted AWS runners that run GitHub Actions.
