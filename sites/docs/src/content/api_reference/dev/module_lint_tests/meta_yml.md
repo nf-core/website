@@ -32,6 +32,12 @@ The following checks are performed:
 - `correct_meta_topics`: The topics listed in `meta.yml` must exactly
   match those parsed from `main.nf`. Run `nf-core modules lint --fix`
   to auto-correct.
+- `has_meta_containers`: If `main.nf` declares containers, `meta.yml`
+  must also contain a non-empty `containers:` block. Run
+  `nf-core modules lint --fix` to auto-correct.
+- `correct_meta_containers`: The containers listed in `meta.yml` must
+  exactly match those parsed from `main.nf`. Run
+  `nf-core modules lint --fix` to auto-correct.
 
 If the module has inputs or outputs, they are expected to be formatted as:
 
