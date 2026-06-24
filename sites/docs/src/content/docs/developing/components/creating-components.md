@@ -151,7 +151,7 @@ GitHub Actions automatically runs these tests when you submit a pull request, bu
 :::
 
 :::warning
-The `nf-core` tools test commands only work on modules repositories.
+The `nf-core <modules|subworkflows> test` commands only work on modules repositories.
 They will not work on installed modules within a pipeline.
 :::
 
