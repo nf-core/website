@@ -5,12 +5,10 @@
     interface Props {
         component: {
             name: string;
-            path: string;
             type: string;
             meta: {
                 description: string;
                 description_rendered?: string;
-                name: string;
                 keywords?: string[];
                 modules?: string[];
                 components?: string[];
@@ -22,22 +20,19 @@
             }[];
             subworkflows?: string[];
         };
-        pipelines?: {
-            name: string;
-            version: string;
-        }[];
-        subworkflows?: string[];
     }
 
     let { component }: Props = $props();
     const href = $derived("/" + component.type + "s/" + component.name + "/");
+    const displayName = $derived(component.name.replaceAll("_", "_<wbr>"));
+    const pipelineNames = $derived(component.pipelines?.map((p) => p.name));
 </script>
 
 <ListingCard>
     {#snippet cardHeader()}
         <div>
             <a class="text-decoration-none d-flex align-items-center" {href}
-                >{@html component.name.replace("_", "_<wbr>")}
+                >{@html displayName}
                 {#if component.meta.deprecated}
                     <small class="badge text-bg-danger text-small ms-auto">deprecated</small>
                 {/if}</a
@@ -47,22 +42,18 @@
 
     {#snippet cardBody()}
         <div class="d-flex flex-column justify-content-between h-100">
-            {#if component.meta.description_rendered}
-                <div class="description flex-grow-1 mb-3">{@html component.meta.description_rendered}</div>
-            {:else}
-                <p class="description flex-grow-1 mb-3">{component.meta.description}</p>
-            {/if}
+            <div class="description flex-grow-1 mb-3">
+                {#if component.meta.description_rendered}
+                    {@html component.meta.description_rendered}
+                {:else}
+                    {component.meta.description}
+                {/if}
+            </div>
             {#if component.meta.keywords}
                 <TagSection tags={component.meta.keywords} type="keywords" />
             {/if}
-            {#if component.pipelines}
-                <TagSection
-                    tags={component.pipelines.map((x) => x.name)}
-                    type="pipelines"
-                    maxShown={3}
-                    included
-                    inline
-                />
+            {#if pipelineNames}
+                <TagSection tags={pipelineNames} type="pipelines" maxShown={3} included inline />
             {/if}
             {#if component.type !== "module" && component.meta.components}
                 <TagSection tags={component.meta.components} type="modules" maxShown={3} includes inline />
