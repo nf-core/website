@@ -150,6 +150,43 @@ Don't use it in markdown files in the website repo.
 This renders in the same way as regular admonitions on the nf-core website,
 but has the bonus of also rendering nicely when viewing the rendered markdown on [github.com](https://github.com):
 
+## Dark mode images
+
+The nf-core website has a light and a dark theme, controlled by the theme switcher in the top navigation.
+For some images, it's good to show different versions depending on the active theme.
+
+### nf-core website only
+
+If the markdown is only ever shown on the nf-core website, use the `hide-light` and `hide-dark` CSS classes.
+The website will hide whichever one doesn't match the current theme:
+
+```md
+<img src="/path/to/image-light.png" class="hide-dark" /> # Hidden in dark mode, use with light backgrounds
+<img src="/path/to/image-dark.png" class="hide-light" /> # Hidden in light mode, use with dark backgrounds
+```
+
+:::warning
+This approach relies on nf-core website CSS, so both images will be shown when the markdown is viewed anywhere else.
+:::
+
+### GitHub and the nf-core website
+
+For markdown that is shown on both GitHub and the nf-core website, use a `<picture>` element with a `prefers-color-scheme` media query
+(see [GitHub docs](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to)):
+
+```md
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/metro_map_dark.png" />
+  <img alt="My pipeline metro map is the bestest" src="docs/images/metro_map_light.png" />
+</picture>
+```
+
+The `<img>` tag is the default light image, and the `<source>` provides the dark variant.
+
+:::tip
+On the nf-core website, relative `srcset` and `src` paths in pipeline documentation are automatically rewritten to point at the raw files on GitHub, so you can use the same paths that work in the repository.
+:::
+
 ## Code
 
 We use [rehype-pretty-code](https://rehype-pretty.pages.dev/) to generate syntax highlighting on the website.
