@@ -153,64 +153,37 @@ but has the bonus of also rendering nicely when viewing the rendered markdown on
 ## Dark mode images
 
 The nf-core website has a light and a dark theme, controlled by the theme switcher in the top navigation.
-For images such as logos, diagrams or metro maps, it's often nice to show a different version depending on the active theme (for example, a version with dark text on light backgrounds, and another with light text on dark backgrounds).
-
-There are two ways to do this, depending on where the markdown will be displayed.
+For some images, it's good to show different versions depending on the active theme.
 
 ### nf-core website only
 
-If the markdown is only ever shown on the nf-core website (i.e. files in this website repository, not pipeline `README.md` files), use the `hide-light` and `hide-dark` CSS classes.
-Add both images and let the website hide whichever one doesn't match the current theme:
-
-- `hide-dark` — hidden in dark mode, so use it for the **light** image.
-- `hide-light` — hidden in light mode, so use it for the **dark** image.
+If the markdown is only ever shown on the nf-core website, use the `hide-light` and `hide-dark` CSS classes.
+The website will hide whichever one doesn't match the current theme:
 
 ```md
-<img src="/path/to/image-light.png" class="hide-dark" alt="My image" />
-<img src="/path/to/image-dark.png" class="hide-light" alt="My image" />
-```
-
-In `.mdx` files you can instead use the `DarkModeImage` component, which renders both images for you.
-If your light image lives in a `/colour/` directory and the dark image in a matching `/white/` directory, you can pass a single `src` and it will work out both paths automatically:
-
-```mdx
-import DarkModeImage from "@components/DarkModeImage.astro";
-
-<DarkModeImage src="/images/contributors/colour/seqera.svg" alt="Seqera logo" width={200} height={100} />
-```
-
-Otherwise, pass the two paths explicitly:
-
-```mdx
-<DarkModeImage
-  lightSrc="/path/to/image-light.png"
-  darkSrc="/path/to/image-dark.png"
-  alt="My image"
-  width={200}
-  height={100}
-/>
+<img src="/path/to/image-light.png" class="hide-dark" /> # Hidden in dark mode, use with light backgrounds
+<img src="/path/to/image-dark.png" class="hide-light" /> # Hidden in light mode, use with dark backgrounds
 ```
 
 :::warning
-This approach relies on nf-core website CSS, so the images **will not** switch (and both may be shown) when the markdown is viewed anywhere else, such as on [github.com](https://github.com).
+This approach relies on nf-core website CSS, so both images will be shown when the markdown is viewed anywhere else.
 :::
 
 ### GitHub and the nf-core website
 
-For markdown that is shown on both GitHub and the nf-core website — most importantly pipeline `README.md` files — use a `<picture>` element with a `prefers-color-scheme` media query.
-This is the [approach GitHub documents](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to) for theme-aware images:
+For markdown that is shown on both GitHub and the nf-core website, use a `<picture>` element with a `prefers-color-scheme` media query
+(see [GitHub docs](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#specifying-the-theme-an-image-is-shown-to)):
 
 ```md
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="docs/images/metro_map_dark.png" />
-  <img alt="My pipeline metro map" src="docs/images/metro_map_light.png" />
+  <img alt="My pipeline metro map is the bestest" src="docs/images/metro_map_light.png" />
 </picture>
 ```
 
-The `<img>` tag is the fallback (light) image, and the `<source>` provides the dark variant.
-This follows the viewer's theme on both GitHub and the nf-core website, so it stays in sync even when the chosen theme differs from the operating system setting.
+The `<img>` tag is the default light image, and the `<source>` provides the dark variant.
 
-:::note
+:::tip
 On the nf-core website, relative `srcset` and `src` paths in pipeline documentation are automatically rewritten to point at the raw files on GitHub, so you can use the same paths that work in the repository.
 :::
 
