@@ -76225,7 +76225,415 @@
           "@mberacochea"
         ],
         "maintainers": [
-          "@mberacochea"
+          "@mberacochea",
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexdiff",
+      "path": "modules/nf-core/deacon/indexdiff/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexdiff",
+        "description": "Subtract minimizers in deacon index (or fasta file) from another index (A - B)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "index": {
+                "type": "file",
+                "description": "Deacon .idx index file to perform the diff operation on\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ],
+          [
+            {
+              "meta2": {
+                "type": "map",
+                "description": "Groovy Map containing metadata for the genome to subtract from the index (deacon .idx index or fasta file).\ne.g. [ id:'genome' ]\n"
+              }
+            },
+            {
+              "genome": {
+                "type": "file",
+                "description": "A single .idx or fasta file to subtract from the main reference index.\n",
+                "pattern": "*.{idx,fasta,fasta.gz,fas,fas.gz,fa,fa.gz,fna,fna.gz}",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  },
+                  {
+                    "edam": "http://edamontology.org/data_2044"
+                  },
+                  {
+                    "edam": "http://edamontology.org/format_1929"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexintersect",
+      "path": "modules/nf-core/deacon/indexintersect/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexintersect",
+        "description": "Intersect multiple deacon indexes (A ∩ B ...)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "indices": {
+                "type": "file",
+                "description": "One or more deacon .idx index files to intersect\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
+        ]
+      }
+    },
+    {
+      "name": "deacon_indexunion",
+      "path": "modules/nf-core/deacon/indexunion/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "deacon_indexunion",
+        "description": "Combine multiple deacon indexes (A ∪ B ...)",
+        "keywords": [
+          "index",
+          "fasta",
+          "genome",
+          "reference",
+          "minimizer",
+          "decontamination"
+        ],
+        "tools": [
+          {
+            "deacon": {
+              "description": "Fast alignment-free sequence filter",
+              "homepage": "https://github.com/bede/deacon",
+              "documentation": "https://github.com/bede/deacon#readme",
+              "tool_dev_url": "https://github.com/bede/deacon",
+              "doi": "10.1093/bioinformatics/btae004",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:deacon"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+              }
+            },
+            {
+              "indices": {
+                "type": "file",
+                "description": "One or more deacon .idx index files to combine\n",
+                "pattern": "*.idx",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/data_3210"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "index": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing reference index information.\ne.g. [ id:'test', single_end:false ]\n"
+                }
+              },
+              {
+                "*.idx": {
+                  "type": "file",
+                  "description": "Deacon minimizer index file",
+                  "pattern": "*.idx",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/data_3210"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_deacon": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "deacon": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "deacon --version | head -n1 | sed \"s/deacon //g\"": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@pmoris"
         ]
       }
     },
@@ -147743,7 +148151,7 @@
             "happy": {
               "description": "Haplotype VCF comparison tools",
               "homepage": "https://www.illumina.com/products/by-type/informatics-products/basespace-sequence-hub/apps/hap-py-benchmarking.html",
-              "documentation": "https://github.com/Illumina/hap.py",
+              "documentation": "https://github.com/Illumina/hap.py/blob/master/doc/happy.md",
               "tool_dev_url": "https://github.com/Illumina/hap.py",
               "licence": [
                 "BSD-2-clause"
