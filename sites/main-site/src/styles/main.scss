@@ -94,6 +94,19 @@ blockquote {
   text-align: center;
   color: var(--bs-secondary-color);
 }
+// EC core resets every element inside the frame with `all: revert` (selector
+// `.expressive-code *:not(:is(svg, svg *))`, specificity 0,1,1), which strips
+// Font Awesome's element-level `font-family` off the runtime fallback file icon
+// in MarkdownWrapper.svelte — the `::before` glyph then inherits the page font
+// and renders as tofu. (file-icons-js icons survive because they set the icon
+// font on `::before` directly; SVGs survive because the reset excludes them.)
+// Re-apply FA here with higher specificity than the reset.
+.expressive-code figcaption .title i.fa-file-code {
+  font-family: "Font Awesome 6 Pro";
+  font-weight: 400;
+  font-style: normal;
+  display: inline-block;
+}
 
 mark,
 .mark {
