@@ -267,29 +267,24 @@ These settings sit alongside the `process` scope you used above, with a few sibl
 
 Edit `custom.config` to add automatic retries and redirect the work directory:
 
-```groovy title="custom.config"
+```groovy title="custom.config" {1,6-7}
 workDir = 'nf-work'
 
 process {
-
-  cpus = 3
-  memory = 6.GB
+  memory = 3.GB
+  cpus = 1
   errorStrategy = 'retry'
   maxRetries    = 2
 }
 ```
 
-<!-- TODO JAMES TO HERE -->
-
 Apply it the same way as before:
 
 ```bash
-nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig2
 ```
 
-:::note
 You will now see that an `nf-work/` directory specified in the config was generated in the directory where you executed the command, alongside the results directory.
-:::
 
 Each setting controls a different aspect of the run.
 Common settings are:
@@ -316,26 +311,43 @@ Nextflow gives you two selectors for this:
 - **`withName`** matches a specific process by its fully qualified name. `nf-core/demo` runs three processes — [`FASTQC`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf), [`SEQTK_TRIM`](https://github.com/nf-core/demo/blob/master/modules/nf-core/seqtk/trim/main.nf), and [`MULTIQC`](https://github.com/nf-core/demo/blob/master/modules/nf-core/multiqc/main.nf) — and each has a name you can see in `.nextflow.log` or in `pipeline_info/execution_trace.txt` after a run.
 - **`withLabel`** matches every process that carries a given label. All nf-core pipelines tag their processes with size labels (`process_low`, `process_medium`, `process_high`, `process_high_memory`) — see how they map to resource requests in [`nf-core/demo`'s `conf/base.config`](https://github.com/nf-core/demo/blob/master/conf/base.config). A single `withLabel` block can adjust whole resource tiers at once.
 
-Edit your `custom.config` to use both:
+Edit your `custom.config` to include both in the `process block:
 
-```groovy title="custom.config"
+```groovy title="custom.config" {8-16}
+workDir = 'nf-work'
+
 process {
+  memory = 3.GB
+  cpus = 1
+  errorStrategy = 'retry'
+  maxRetries    = 2
+
   withName: 'NFCORE_DEMO:DEMO:FASTQC' {
-    cpus = 4
-    memory = 8.GB
+    cpus = 1
+    memory = 3.GB
   }
 
   withLabel: 'process_low' {
-    cpus = 2
-    memory = 2.GB
+    cpus = 1
+    memory = 1.GB
   }
 }
 ```
 
-Re-run with `-c custom.config` and check `pipeline_info/execution_report.html` in your output directory.
-FASTQC should report the resources you set, and every other low-tier process should pick up the `process_low` block.
+Re-run with the `-c custom.config`.
+
+```bash
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig3
+```
+
+Compare `results_customconfig2/pipeline_info/execution_report_<datetimestamp>.html` with `results_customconfig3/pipeline_info/execution_report_<datetimestamp>.html`.
+FASTQC should report requesting 1 CPU and 3 GB memory instead of 2 and 4 GB.
+
+`SEQTK_TRIM` has also changed, with now at 1 GB of memory and 1 CPU instead of 2 and 4 GB.
 Process labels are declared on each `process` definition inside the module.
-For example, [`FASTQC`'s `main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf) declares `label 'process_medium'` on its second line.
+For example, [`SEQTK_TRIM`'s `main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/seqtk/trim/main.nf) declares `label 'process_low'` on its second line.
+
+:::note
 The size labels (`process_low`, `process_medium`, `process_high`, `process_high_memory`) are standard across all nf-core pipelines.
 :::
 
@@ -348,7 +360,7 @@ By convention, nf-core pipelines collect every per-process option in a dedicated
 It is another source of configuration loaded automatically through the pipeline's `nextflow.config`.
 Open `nf-core/demo`'s [`conf/modules.config`](https://github.com/nf-core/demo/blob/45904cb9d12db3d89900e6c479fe604ef71b297b/conf/modules.config#L21-L28) to see two real uses of `ext.args`:
 
-```groovy
+```groovy {2,7}
 withName: FASTQC {
     ext.args = '--quiet'
     // ...
@@ -366,15 +378,42 @@ This is why the `multiqc_title` value from your `params.yaml` flowed through int
 
 To pass your own flags without forking the module, override `ext.args` in `custom.config`:
 
-```groovy title="custom.config"
+```groovy title="custom.config" {12,19-21}
+workDir = 'nf-work'
+
 process {
+  memory = 3.GB
+  cpus = 1
+  errorStrategy = 'retry'
+  maxRetries    = 2
+
   withName: 'NFCORE_DEMO:DEMO:FASTQC' {
-    ext.args = '--quiet --noextract'
+    memory = 3.GB
+    cpus = 1
+    ext.args = '--quiet  --nogroup'
+  }
+
+  withLabel: 'process_low' {
+    memory = 1.GB
+    cpus = 1
+  }
+
+  withName: 'MULTIQC' {
+      ext.args = { params.multiqc_title ? "--title \"$params.multiqc_title\"" : '' }
   }
 }
 ```
 
-Re-run with `-c custom.config` and FASTQC will pick up the new flags through `task.ext.args` inside its [`main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf).
+Re-run with the `-c custom.config`.
+
+```bash
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig4
+```
+
+FASTQC will pick up the new flags through `task.ext.args` inside its [`main.nf`](https://github.com/nf-core/demo/blob/master/modules/nf-core/fastqc/main.nf).
+Compare in your web browser `results_customconfig3/fastqc/SAMPLE1_PE/SAMPLE1_PE_1_fastqc.html` and `results_customconfig4/fastqc/SAMPLE1_PE/SAMPLE1_PE_1_fastqc.html`.
+You will see the 'Per base sequence quality' plot has changed, due to addition of the `--nogroup` option.
+
 :::danger
 Customising `ext.args` is generally not recommended, and may break the pipeline as the changes have not been tested by the developer.
 It is recommended to request official support for a new tool option or argument from the pipeline developer.
@@ -396,6 +435,8 @@ For profile precedence and shared institutional configs, see [Configuration opti
 
 ## Configure with environment variables
 
+<!-- TODO JAMES UP TO HERE -->
+
 `NXF_*` environment variables are the outermost configuration layer.
 Nextflow reads them from your shell as it starts, before any config file or parameter is parsed, so they're the right place for settings that don't change between runs.
 For example, which Nextflow version to use, where the work directory and container cache live, and whether to operate offline.
@@ -409,7 +450,7 @@ You set them like any other shell variable: with `export`, inline before a singl
    ```bash
    export NXF_VER=25.10.4
    export NXF_WORK=$HOME/nf-demo-work
-   nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
+   nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results_customenv
    ```
 
    The version line at the top of stdout (and in `.nextflow.log`) should now report `25.10.4`, and intermediate files should appear under `$HOME/nf-demo-work/` instead of `./work/`.
@@ -417,7 +458,7 @@ You set them like any other shell variable: with `export`, inline before a singl
 2. To set a variable for a single command without exporting it, prefix the invocation:
 
    ```bash
-   NXF_VER=25.10.4 nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
+   NXF_VER=25.10.4 nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results_customenv2
    ```
 
 3. To persist a variable across sessions, add the export to your shell config:
@@ -471,7 +512,7 @@ This step combines them into one invocation so you can see how they interact.
      withName: 'NFCORE_DEMO:DEMO:FASTQC' {
        cpus = 4
        memory = 8.GB
-       ext.args = '--quiet --noextract'
+       ext.args = '--quiet --nogroup'
      }
 
      withLabel: 'process_low' {
