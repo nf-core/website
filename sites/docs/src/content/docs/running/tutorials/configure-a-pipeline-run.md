@@ -37,9 +37,8 @@ In each of the following steps you will replace one of these defaults and observ
 Start with a plain test invocation as your reference point, replacing `docker` with your preferred software dependency manager (for example, `singularity` or `conda`).
 
 ```bash
-nextflow run nf-core/demo -profile test,docker --outdir results
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
 ```
-
 
 In the background, this run uses three defaults that you will override in the next steps:
 
@@ -73,7 +72,7 @@ CLI flags override values in a parameter file.
 1. Override a single parameter on the command line:
 
    ```bash
-   nextflow run nf-core/demo -profile test,docker --outdir results_customcommandline
+   nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results_customcommandline
    ```
 
    Output now goes to `results_customcommandline/` instead of `results/`.
@@ -88,10 +87,11 @@ CLI flags override values in a parameter file.
 3. Apply it with `-params-file`:
 
    ```bash
-   nextflow run nf-core/demo -profile test,docker -params-file params.yaml
+   nextflow run nf-core/demo -r 1.2.0 -profile test,docker -params-file params.yaml
    ```
 
-   Open `results_customparamsfile/multiqc/nf-coredemo-parameter-file-configured-run_multiqc_report.html` to confirm the report title was set.
+   Output now goes to `results_customparamsfile/` instead of `results/`.
+   Open `results_customparamsfile/multiqc/nf-coredemo-parameter-file-configured-run_multiqc_report.html` in a web browser to confirm the report title was set.
 
 :::tip
 Both JSON and YAML formats are supported for parameter files.
@@ -137,8 +137,11 @@ process {
 Re-run the baseline command. No `-c` flag is needed, Nextflow picks the file up automatically:
 
 ```bash
-nextflow run nf-core/demo -profile test,docker --outdir results_customnextflowconfig
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results_customnextflowconfig
 ```
+
+Compare between the 'Tasks' section `results/pipeline_info/results/execution_report_<datetimestamp>.html` and `results_customnextflowconfig/pipeline_info/results/execution_report_<datetimestamp>.html`.
+Observe that the process `NFCORE_DEMO:DEMO:COWPY` has changed it's memory from `4.GB` to `2.GB`, as specified in the new `nextflow.config`.
 
 :::tip
 Use `$HOME/.nextflow/config` for personal defaults that follow you across machines, and a launch-directory `nextflow.config` for project-specific settings.
@@ -164,10 +167,10 @@ Every nf-core pipeline comes with a standard set of profiles:
 
 - **Institutional profiles**: contributed to [nf-core/configs](https://github.com/nf-core/configs) and loaded automatically by every nf-core pipeline. Activate one with `-profile <institution>` if your cluster has one - see [Use shared institutional configs](#use-shared-institutional-configs).
 
-Combine profiles with commas, and remember that order matters — later profiles override earlier ones where they overlap:
+Combine profiles with commas, and remember that order matters - later profiles override earlier ones where they overlap:
 
 ```bash
-nextflow run nf-core/demo -profile test,docker --outdir results
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
 ```
 
 In this example, options in the `docker` profile will override any of the options with the same name as in `test`.
@@ -179,8 +182,7 @@ Add a `mymachine` profile to your existing launch-directory `nextflow.config`:
 profiles {
   mymachine {
     process {
-      cpus     = 4
-      memory   = 8.GB
+      cpus = 2
     }
   }
 }
@@ -189,8 +191,11 @@ profiles {
 Activate it alongside the existing profiles:
 
 ```bash
-nextflow run nf-core/demo -profile test,docker,mymachine --outdir results_customprofile
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker,mymachine --outdir results_customprofile
 ```
+
+Compare between the 'Tasks' section `results_customnextflowconfig/pipeline_info/results/execution_report_<datetimestamp>.html` and `results_customprofile/pipeline_info/results/execution_report_<datetimestamp>.html`.
+Observe that the process `NFCORE_DEMO:DEMO:COWPY` has changed the CPUs from `1` to `2`, as specified in the new `nextflow.config`.
 
 :::note
 The `mymachine` profile is illustrative — it requests more CPUs and memory than the `test` profile's small dataset needs.
@@ -215,7 +220,6 @@ Browse the full list at [nf-co.re/configs](https://nf-co.re/configs).
 
 You activate one the same way you activate any other profile. If your institution's infrastructure is supported by nf-core/configs, replace `<institution>` with the profile name for your environment to try it out.
 
-
 Some institutions also contribute **pipeline-specific** overrides — a profile that further tunes resources for a particular pipeline on a particular cluster.
 These live under [`conf/pipeline/<pipeline>/<institution>.config`](https://github.com/nf-core/configs/tree/master/conf/pipeline) in the repository and are picked up automatically when you run that pipeline with the matching `-profile`.
 
@@ -238,18 +242,19 @@ For example, a one-off resource bump, a shared institutional config, or an exper
 
    ```groovy title="custom.config"
    process {
-     cpus = 3
-     memory = 6.GB
+     memory = 3.GB
    }
    ```
 
 2. Apply it with `-c`:
 
    ```bash
-   nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results_customconfig
+   nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig
    ```
 
-3. Open `results_customconfig/pipeline_info/execution_report_<timestamp>.html` and inspect the resource columns to confirm the new requests were applied
+Compare between the 'Tasks' section `results_customprofile/pipeline_info/results/execution_report_<datetimestamp>.html` and `results_customcontig/pipeline_info/results/execution_report_<datetimestamp>.html`
+Observe that the process `NFCORE_DEMO:DEMO:COWPY` has changed the memory from `2` to `3`, as specified in the new `custom.config`.
+Furthermore, the CPUs have gone back from 2 to 1 as we did not specify the `mymachine` profile, thus falling back to the value in `nextflow.config`.
 
 You can pass `-c` more than once.
 Files are applied in order, so later ones override earlier ones.
@@ -274,10 +279,12 @@ process {
 }
 ```
 
+<!-- TODO JAMES TO HERE -->
+
 Apply it the same way as before:
 
 ```bash
-nextflow run nf-core/demo -profile test,docker -c custom.config --outdir results_customconfig
+nextflow run nf-core/demo -r 1.2.0 -profile test,docker -c custom.config --outdir results_customconfig
 ```
 
 :::note
@@ -402,7 +409,7 @@ You set them like any other shell variable: with `export`, inline before a singl
    ```bash
    export NXF_VER=25.10.4
    export NXF_WORK=$HOME/nf-demo-work
-   nextflow run nf-core/demo -profile test,docker --outdir results
+   nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
    ```
 
    The version line at the top of stdout (and in `.nextflow.log`) should now report `25.10.4`, and intermediate files should appear under `$HOME/nf-demo-work/` instead of `./work/`.
@@ -410,7 +417,7 @@ You set them like any other shell variable: with `export`, inline before a singl
 2. To set a variable for a single command without exporting it, prefix the invocation:
 
    ```bash
-   NXF_VER=25.10.4 nextflow run nf-core/demo -profile test,docker --outdir results
+   NXF_VER=25.10.4 nextflow run nf-core/demo -r 1.2.0 -profile test,docker --outdir results
    ```
 
 3. To persist a variable across sessions, add the export to your shell config:
@@ -477,7 +484,7 @@ This step combines them into one invocation so you can see how they interact.
 4. Launch the run, activating the `test` and `docker` profiles and passing the parameter and config files:
 
    ```bash
-   nextflow run nf-core/demo \
+   nextflow run nf-core/demo -r 1.2.0 \
      -profile test,docker \
      -params-file params.yaml \
      -c custom.config
