@@ -10,7 +10,7 @@ import markdownIntegration from "@mashehu/astropub-md";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { createEcConfig } from "./bin/satteri/hast-expressive-code.ts";
-import { satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
+import { createSatteriPluginSets, satteriSharedMarkdownConfig } from "./bin/satteri/markdownConfig.ts";
 
 /**
  * Base Astro configuration shared across all nf-core subsites.
@@ -92,7 +92,10 @@ export default {
         }),
         expressiveCode(createEcConfig()),
         mdx(),
-        markdownIntegration(),
+        // The <Markdown> component renders through a standalone Sätteri call that
+        // reads only shared.markdownConfig (set by this integration) — it does NOT
+        // use Astro's `markdown` processor below.
+        markdownIntegration(createSatteriPluginSets()),
     ],
     build: {
         inlineStylesheets: "auto",
