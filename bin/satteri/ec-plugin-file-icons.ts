@@ -6,7 +6,6 @@
 // `postprocessRenderedBlock`, finds the frame's `<span class="title">` and
 // prepends the inline logo. Registered once in createEcConfig() so it applies
 // to both the astro-expressive-code integration and the standalone satteri path.
-import { readFileSync } from "node:fs";
 import { definePlugin } from "@expressive-code/core";
 import { fromHtml } from "hast-util-from-html";
 

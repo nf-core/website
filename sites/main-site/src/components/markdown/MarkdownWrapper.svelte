@@ -78,7 +78,7 @@
                     icon.classList.add("ms-1", "me-2", fileIcon);
                 } else {
                     icon = document.createElement("i");
-                    icon.classList.add("fa-regular", "fa-file-code", "ms-1", "me-2");
+                    icon.classList.add("fa", "fa-regular", "fa-file-code", "ms-1", "me-2");
                 }
                 block.prepend(icon);
             });
