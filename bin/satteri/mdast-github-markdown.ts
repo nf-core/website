@@ -1,14 +1,17 @@
-// Satteri port of bin/remark-github-markdown.js (which is still used by the unified
-// pipeline in sites/main-site/utils/loaders.ts).
+// GitHub-markdown transformations for pipeline READMEs/docs, rendered via
+// renderPipelineMarkdown (sites/main-site/utils/pipelineMarkdown.ts). Originally
+// a remark plugin (bin/remark-github-markdown.js, since removed); this is the
+// satteri port that replaced it.
 // - Fixes image URLs
 // - Fixes link URLs
+// - Rewrites theme-aware <picture> into hide-dark/hide-light <img> pairs
 // - Converts GitHub admonitions ([!NOTE] etc.) into directives for admonitions.ts
 // - Cleans up headers
 // - Fixes code blocks
 //
 // The README trimming (cut everything before "## Introduction", drop ":warning:"
-// sections) worked on root.children in remark; satteri has no root visitor, so it is
-// done on the markdown source instead — see trimGitHubReadme below.
+// sections) worked on root.children in the old remark plugin; satteri has no root
+// visitor, so it is done on the markdown source instead — see trimGitHubReadme below.
 import { defineMdastPlugin } from "satteri";
 
 const SPECIAL_FILES_REGEX = /^(\.github\/CONTRIBUTING\.md|CITATIONS\.md|CHANGELOG\.md|\.config)$/;
@@ -16,6 +19,56 @@ const MDX_ANCHOR_REGEX = /\.mdx?#/;
 const ADMONITION_REGEX = /^\[!(NOTE|TIP|IMPORTANT|WARNING|CAUTION)\]\s*(.*)/;
 const IMG_SRC_REGEX = /<img(.*?)src="(.*?)"/g;
 const SOURCE_SRCSET_REGEX = /<source(.*?)srcset="(.*?)"/g;
+const PICTURE_REGEX = /<picture\b[^>]*>([\s\S]*?)<\/picture>/gi;
+const SOURCE_TAG_REGEX = /<source\b([^>]*?)\/?>/gi;
+const IMG_TAG_REGEX = /<img\b([^>]*?)\/?>/i;
+
+function getHtmlAttr(attrs: string, name: string): string | undefined {
+    const match = attrs.match(new RegExp(`\\b${name}\\s*=\\s*"([^"]*)"`, "i"));
+    return match ? match[1] : undefined;
+}
+
+/**
+ * Rewrite GitHub-style theme-aware <picture> elements into the dual-<img>
+ * `hide-dark`/`hide-light` pattern used elsewhere on the website (see
+ * DarkModeImage.astro), so they follow the site theme switcher (data-bs-theme)
+ * via CSS rather than only the OS `prefers-color-scheme`.
+ *
+ * A native <picture> picks its <source> from the *OS* colour scheme, which the
+ * website's theme switcher can't override without client JS. On GitHub the
+ * plugin doesn't run, so the original <picture> is left intact and still works.
+ *
+ * Only <picture> elements whose <source> uses a prefers-color-scheme media
+ * query are converted; width-based art direction is left untouched.
+ */
+function rewriteThemedPictures(value: string): string {
+    return value.replace(PICTURE_REGEX, (whole: string, inner: string) => {
+        // Collect srcsets keyed by the prefers-color-scheme they target.
+        const sources: Record<string, string> = {};
+        for (const [, attrs] of inner.matchAll(SOURCE_TAG_REGEX)) {
+            const srcset = getHtmlAttr(attrs, "srcset");
+            const scheme = (getHtmlAttr(attrs, "media") || "").match(/prefers-color-scheme\s*:\s*(dark|light)/i)?.[1];
+            if (srcset && scheme) sources[scheme.toLowerCase()] = srcset;
+        }
+        const imgAttrs = inner.match(IMG_TAG_REGEX)?.[1];
+        if (imgAttrs === undefined || (!sources.dark && !sources.light)) return whole;
+
+        // The fallback <img> fills whichever variant has no explicit <source>.
+        const fallback = getHtmlAttr(imgAttrs, "src");
+        const light = sources.light ?? fallback;
+        const dark = sources.dark ?? fallback;
+        if (!light || !dark) return whole;
+
+        // Carry over the fallback <img>'s other attributes (alt, width, …),
+        // setting src/class explicitly per variant.
+        const cls = getHtmlAttr(imgAttrs, "class");
+        const base = imgAttrs.replace(/\b(?:src|class)\s*=\s*"[^"]*"/gi, "").replace(/\s+/g, " ").trim();
+        const img = (src: string, hide: string) =>
+            `<img ${base ? base + " " : ""}src="${src}" class="${[hide, cls].filter(Boolean).join(" ")}" />`;
+
+        return img(light, "hide-dark") + img(dark, "hide-light");
+    });
+}
 
 export interface GitHubMarkdownOptions {
     org?: string;
@@ -109,6 +162,11 @@ export function createGitHubMarkdownPlugin(options: GitHubMarkdownOptions) {
                     (_match: string, attrs: string, src: string) =>
                         `<source${attrs}srcset="${baseRawUrl}${parentDirectory}/${src}"`,
                 );
+            }
+            // Convert theme-aware <picture> elements (now with absolute srcset/src)
+            // into the CSS hide-dark/hide-light pattern so they follow the site theme.
+            if (value.includes("<picture")) {
+                value = rewriteThemedPictures(value);
             }
             if (value !== node.value) {
                 ctx.setProperty(node, "value", value);
