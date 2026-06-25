@@ -12,7 +12,7 @@
 // style/script bookkeeping resets on every compile.
 import { pluginLineNumbers } from "@expressive-code/plugin-line-numbers";
 import nextflowSvg from "../../sites/main-site/src/icons/logos/nextflow.svg?raw";
-import { createRenderer } from "rehype-expressive-code";
+import { ExpressiveCode, ExpressiveCodeTheme, loadShikiTheme } from "expressive-code";
 import { defineHastPlugin } from "satteri";
 import { pluginCaptions } from "./ec-plugin-captions.ts";
 import { pluginFileIcons } from "./ec-plugin-file-icons.ts";
@@ -68,12 +68,33 @@ export function createEcConfig() {
     };
 }
 
+// Build the EC engine and pre-compute its base/theme styles + JS modules, the
+// way rehype-expressive-code's `createRenderer` does — inlined here so the
+// satteri path depends only on `expressive-code`, not the rehype wrapper.
+async function createRenderer() {
+    const { themes, ...ecOptions } = createEcConfig();
+    const loadedThemes = await Promise.all(
+        themes.map(async (theme: any) =>
+            theme instanceof ExpressiveCodeTheme
+                ? theme
+                : new ExpressiveCodeTheme(typeof theme === "string" ? await loadShikiTheme(theme) : theme),
+        ),
+    );
+    const ec = new ExpressiveCode({ themes: loadedThemes, ...ecOptions } as any);
+    return {
+        ec,
+        baseStyles: await ec.getBaseStyles(),
+        themeStyles: await ec.getThemeStyles(),
+        jsModules: await ec.getJsModules(),
+    };
+}
+
 // One engine for all documents: theme loading is expensive and the output only
 // depends on the block, not the document.
 let rendererPromise: ReturnType<typeof createRenderer> | undefined;
 
 function getRenderer() {
-    rendererPromise ??= createRenderer(createEcConfig());
+    rendererPromise ??= createRenderer();
     return rendererPromise;
 }
 
