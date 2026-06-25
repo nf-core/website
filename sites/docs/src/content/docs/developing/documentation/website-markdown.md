@@ -182,7 +182,13 @@ import DarkModeImage from "@components/DarkModeImage.astro";
 Otherwise, pass the two paths explicitly:
 
 ```mdx
-<DarkModeImage lightSrc="/path/to/image-light.png" darkSrc="/path/to/image-dark.png" alt="My image" width={200} height={100} />
+<DarkModeImage
+  lightSrc="/path/to/image-light.png"
+  darkSrc="/path/to/image-dark.png"
+  alt="My image"
+  width={200}
+  height={100}
+/>
 ```
 
 :::warning
