@@ -103,6 +103,48 @@ description = description?.replaceAll(/<[^>]*>?/g, "");
         });
     }
 </script>
+<!-- Make <picture> dark/light images follow the site theme (data-bs-theme) instead of the OS.
+     Pipeline READMEs (e.g. metromaps) use <source media="(prefers-color-scheme: dark)">, which
+     natively only honours the OS setting. We rewrite the media query to match the chosen theme. -->
+<script is:inline>
+    (() => {
+        function syncThemedPictures() {
+            const theme = document.documentElement.getAttribute("data-bs-theme") || "light";
+            document.querySelectorAll("picture > source[media]").forEach((source) => {
+                let original = source.getAttribute("data-original-media");
+                if (original === null) {
+                    const current = source.getAttribute("media") || "";
+                    if (!/prefers-color-scheme/.test(current)) {
+                        return;
+                    }
+                    original = current;
+                    source.setAttribute("data-original-media", original);
+                }
+                const targetsDark = /prefers-color-scheme\s*:\s*dark/.test(original);
+                const targetsLight = /prefers-color-scheme\s*:\s*light/.test(original);
+                if (!targetsDark && !targetsLight) {
+                    return;
+                }
+                const matches = (targetsDark && theme === "dark") || (targetsLight && theme === "light");
+                // A query that matches regardless of the OS scheme (like GitHub's <themed-picture>),
+                // rather than "all", so the source still reads as a prefers-color-scheme source.
+                const media = matches ? "(prefers-color-scheme: light),(prefers-color-scheme: dark)" : "not all";
+                if (source.getAttribute("media") !== media) {
+                    source.setAttribute("media", media);
+                }
+            });
+        }
+
+        // Run as soon as the DOM is ready, after view-transition swaps, and whenever the theme changes.
+        if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", syncThemedPictures);
+        } else {
+            syncThemedPictures();
+        }
+        document.addEventListener("astro:after-swap", syncThemedPictures);
+        window.addEventListener("theme-changed", syncThemedPictures);
+    })();
+</script>
 <script>
     import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
     const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
