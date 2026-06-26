@@ -73084,6 +73084,72 @@
               }
             ]
           ],
+          "consensus_bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.bed12": {
+                  "type": "file",
+                  "description": "Consensus view as BED12: the collapsed catalogue filtered to ORFs\nsupported by at least `--min-callers` distinct callers and recurring\nin at least `--min-samples` samples (identical to the full collapsed\ncatalogue at the defaults of 1/1).\n",
+                  "pattern": "*.consensus.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.tsv": {
+                  "type": "file",
+                  "description": "Consensus-filtered per-ORF table, same columns as the collapsed catalogue.",
+                  "pattern": "*.consensus.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta."
+                }
+              },
+              {
+                "${prefix}.consensus.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.",
+                  "pattern": "*.consensus.orf_to_gene.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
           "versions": [
             {
               "versions.yml": {
@@ -73123,7 +73189,7 @@
       "type": "module",
       "meta": {
         "name": "custom_orfmerge",
-        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n",
+        "description": "Cluster normalised per-sample, per-caller ORF predictions into a single\ncohort-level catalogue. Pair with `custom/orfnormalise` upstream and\n(typically) `bedtools/getfasta` + `seqkit/translate` downstream to obtain\nthe AA FASTA.\n\nStrategy is class-aware (operating on the harmonised `orf_class` written\nby `custom/orfnormalise`):\n\n  - canonical_cds:        collapse by (transcript_id, strand). One\n                          canonical CDS per transcript by definition.\n  - uORF, dORF, other:    collapse by (transcript_id, strand, start,\n                          end). A single transcript can host multiple\n                          distinct uORFs / dORFs / internal ORFs, so\n                          keying on the outer span keeps them in\n                          separate clusters while still merging\n                          cross-caller calls that agree on coordinates.\n  - novel_u, smORF:       greedy reciprocal-overlap clustering on the\n                          outer genomic span at `--reciprocal-overlap`\n                          (default 0.8). Catches fuzzy cross-caller\n                          matches and exact-coordinate collapses in\n                          one pass. Order-dependent at the boundary:\n                          a chain A-B-C where A-B and B-C overlap at\n                          ~0.85 but A-C only at ~0.75 may cluster as\n                          {A,B,C} or {A,B}+{C} depending on iteration\n                          order. Rare in practice at 0.8.\n\nCross-caller consensus is recorded in two column families on the\ncatalogue TSV:\n\n  - `called_by_<caller>`: 0/1 indicator per supported caller\n                          (ribotish, ribocode, ribotricer, rpbp, price).\n  - `score_<caller>`:     best score from that caller within the cluster.\n                          Score direction is per-caller (p-values are\n                          minimised; Bayes factors / phase scores are\n                          maximised).\n\nCross-sample recurrence is recorded in two further columns:\n\n  - `n_samples`:          number of distinct samples contributing to the\n                          cluster (a cohort recurrence metric).\n  - `samples`:            sorted, comma-separated list of those sample ids.\n\nEmits a small MultiQC custom-content TSV (per-class counts) for\ninclusion in downstream MultiQC reports.\n\nAlongside the full catalogue, emits a consensus view (`*.consensus.*`)\nfiltered to ORFs supported by at least `--min-callers` distinct callers\nand recurring in at least `--min-samples` samples (both default 1, i.e.\nno filtering, so the consensus view equals the full catalogue). Raising\neither threshold yields a higher-confidence catalogue without altering\nthe full one.\n",
         "keywords": [
           "orf",
           "ribo-seq",
@@ -73257,6 +73323,72 @@
                   "type": "file",
                   "description": "MultiQC custom-content TSV (per-class ORF counts).\n",
                   "pattern": "*.mqc.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_bed12": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.bed12": {
+                  "type": "file",
+                  "description": "Consensus-filtered catalogue as BED12 (ORFs meeting the\n`--min-callers` / `--min-samples` thresholds).\n",
+                  "pattern": "*.consensus.bed12",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3586"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.tsv": {
+                  "type": "file",
+                  "description": "Consensus-filtered per-ORF table, same columns as the full\ncatalogue TSV.\n",
+                  "pattern": "*.consensus.tsv",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "consensus_orf_to_gene_tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map matching the input meta.\n"
+                }
+              },
+              {
+                "${prefix}.consensus.orf_to_gene.tsv": {
+                  "type": "file",
+                  "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.\n",
+                  "pattern": "*.consensus.orf_to_gene.tsv",
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3475"
@@ -261207,6 +261339,10 @@
       },
       "pipelines": [
         {
+          "name": "funcprofiler",
+          "version": "dev"
+        },
+        {
           "name": "funcscan",
           "version": "3.0.0"
         }
@@ -366394,6 +366530,21 @@
           {
             "multiqc": {
               "description": "MultiQC custom-content sidecar (per-class ORF counts).\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          },
+          {
+            "consensus_bed12": {
+              "description": "Consensus view of the catalogue as BED12 (ORFs meeting the\n--min-callers / --min-samples thresholds; identical to the full\ncatalogue at the defaults of 1/1). Taken from the amino-acid collapse\nwhen it runs, otherwise from the merger.\nStructure: [ val(meta), path(bed12) ]\n"
+            }
+          },
+          {
+            "consensus_tsv": {
+              "description": "Consensus-filtered per-ORF table, same columns as the full catalogue.\nStructure: [ val(meta), path(tsv) ]\n"
+            }
+          },
+          {
+            "consensus_orf_to_gene_tsv": {
+              "description": "ORF-to-gene mapping restricted to the consensus-filtered ORFs.\nStructure: [ val(meta), path(tsv) ]\n"
             }
           }
         ],
