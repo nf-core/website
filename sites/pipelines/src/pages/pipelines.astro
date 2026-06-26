@@ -2,8 +2,17 @@
 import pipelines_json from "@public/pipelines.json";
 import ListingLayout from "@layouts/ListingLayout.astro";
 import PipelinesListing from "@components/pipeline/PipelinesListing.svelte";
+import { renderMarkdown } from "@root/bin/satteri/markdownConfig.ts";
 
-const pipelines = pipelines_json.remote_workflows.sort((a, b) => {
+// Render the pipeline descriptions server-side, so the cards only need {@html}
+// instead of shipping a markdown parser to the browser.
+const pipelines = await Promise.all(
+    pipelines_json.remote_workflows.map(async (pipeline) => ({
+        ...pipeline,
+        description_rendered: pipeline.description ? (await renderMarkdown(pipeline.description)).html : "",
+    })),
+);
+pipelines.sort((a, b) => {
     if (a.releases.length == 1 && b.releases.length > 1) return 1;
     if (a.releases.length > 1 && b.releases.length == 1) return -1;
     if (a.releases.length == 1 && b.releases.length == 1) return 0;
