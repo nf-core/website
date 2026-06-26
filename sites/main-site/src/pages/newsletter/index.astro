@@ -3,17 +3,10 @@ import PageLayout from "@layouts/PageLayout.astro";
 import NewsletterSignup from "@components/newsletter/NewsletterSignup.astro";
 import { getCollection } from "astro:content";
 import pipelines_json from "@public/pipelines.json";
-import { getNewsletterMonths, getMonthName } from "@utils/newsletter";
-
-let blogPosts = await getCollection("blog");
-blogPosts = blogPosts.filter((post) => new Date(post.data.pubDate) < new Date());
-
-let events = await getCollection("events");
-events = events.filter((e) => e.id.split("/").length === 2);
+import { getPublishedNewsletterMonths, getMonthName } from "@utils/newsletter";
 
 const pipelines = pipelines_json.remote_workflows;
-const advisories = await getCollection("advisories");
-const months = getNewsletterMonths(blogPosts, events, pipelines, advisories);
+const months = await getPublishedNewsletterMonths(getCollection, pipelines);
 
 // Group by year
 const byYear = new Map<number, { year: number; month: number }[]>();
@@ -37,6 +30,14 @@ const latest = months[0];
     <div class="card border-secondary mb-4">
         <div class="card-body p-4">
             <NewsletterSignup />
+            <p class="small text-body-secondary mt-3 mb-0">
+                If you prefer, you can read and subscribe to the newsletter on
+                <a
+                    href="https://www.linkedin.com/newsletters/nf-core-7474718981564706816/"
+                    target="_blank"
+                    rel="noopener"><i class="fab fa-linkedin me-1"></i>LinkedIn</a
+                >.
+            </p>
         </div>
     </div>
 

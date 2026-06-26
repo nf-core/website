@@ -2,6 +2,16 @@
 
 Common utility functions for the nf-core python package.
 
+### _`class{:python}`_`nf_core.utils.ContainerRegistryUrls(*values){:python}`
+
+Bases: `Enum`
+
+#### `GALAXY_SINGULARITY{:python}`_= 'depot.galaxyproject.org/singularity'_
+
+#### `SEQERA_DOCKER{:python}`_= 'community.wave.seqera.io/library'_
+
+#### `SEQERA_SINGULARITY{:python}`_= 'community-cr-prod.seqera.io/docker/registry/v2'_
+
 ### _`class{:python}`_`nf_core.utils.GitHubAPISession{:python}`
 
 Bases: `CachedSession`
@@ -10,9 +20,13 @@ Class to provide a single session for interacting with the GitHub API for a run.
 Inherits the requests_cache.CachedSession and adds additional functionality,
 such as automatically setting up GitHub authentication if we can.
 
+#### `auth_mode{:python}`_: str | None_
+
 #### `get(url, params=None, **kwargs){:python}`
 
 Initialise the session if we haven’t already, then call the superclass get method.
+
+#### `has_init{:python}`_: bool_
 
 #### `lazy_init() → None{:python}`
 
@@ -30,6 +44,12 @@ Try to fetch a URL, keep retrying if we get a certain return code.
 
 Used in nf-core pipelines sync code because we get 403 errors: too many simultaneous requests
 See <https://github.com/nf-core/tools/issues/911>
+
+#### `return_ok{:python}`_: list\[int]_
+
+#### `return_retry{:python}`_: list\[int]_
+
+#### `return_unauthorised{:python}`_: list\[int]_
 
 #### `safe_get(url){:python}`
 
@@ -557,7 +577,7 @@ Returns the most recent container versions by default.
 
 ### `nf_core.utils.get_nf_version() → tuple[int, int, int, bool] | None{:python}`
 
-Get the version of Nextflow installed on the system.
+Get the version of Nextflow installed on the system. Cached for the lifetime of the process.
 
 ### `nf_core.utils.get_repo_commit(pipeline, commit_id){:python}`
 
@@ -728,6 +748,14 @@ Sets the working directory for this context.
 
 - **Parameters:**
   **path** (_Path_) – Path to the working directory to be used inside this context.
+
+### `nf_core.utils.set_wd_tempdir(base_dir: Path | None = None) → Generator[Path, None, None]{:python}`
+
+Context manager to create a tempdir and change into it, ensuring its removal and a return to
+the original working directory on exit (including exceptions).
+
+- **Parameters:**
+  **base_dir** – Directory in which to create the tempdir. Defaults to the system temp location.
 
 ### `nf_core.utils.setup_nfcore_cachedir(cache_fn: str | Path) → Path{:python}`
 

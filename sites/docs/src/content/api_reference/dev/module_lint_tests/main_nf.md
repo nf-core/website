@@ -17,9 +17,10 @@ The following checks are performed:
   (`initOptions`, `saveFiles`, `getSoftwareName`, `getProcessName`,
   `publishDir`).
 - `main_nf_script_outputs`: The process must have an `output:` block.
-- `main_nf_container`: Container tags across the `singularity`, `docker`,
-  and `conda` directives must reference the same software version. A warning
-  is issued if they do not match.
+- `main_nf_container`: When both a `singularity` and a `docker` container
+  are specified, their tags must reference the same software version. A warning
+  is issued if they do not match. Modules using the newer docker-only format
+  (no singularity container) skip this check.
 - `main_nf_script_shell`: Exactly one of `script:`, `shell:`, or `exec:`
   blocks must be present.
 - `main_nf_shell_template`: If a `shell:` block is used, it must call

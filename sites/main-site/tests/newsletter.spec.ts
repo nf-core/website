@@ -6,6 +6,7 @@ import {
     getBlogPostsForPreviousMonths,
     getPipelineReleasesForMonth,
     getProposalsForMonth,
+    newsletterMonthHasContent,
 } from "@utils/newsletter";
 
 // Unit tests for the newsletter data/date logic. These functions are pure and
@@ -41,6 +42,29 @@ test("getNewsletterMonths dedupes, sorts newest-first, and drops future months",
     // Sorted strictly newest-first.
     const ordinals = months.map((m) => m.year * 12 + m.month);
     expect(ordinals).toEqual([...ordinals].sort((a, b) => b - a));
+});
+
+test("newsletterMonthHasContent gates on the content the newsletter actually renders", () => {
+    // A newsletter dated the 1st of a month looks back at the *previous* calendar
+    // month. A blog post in March 2020 therefore belongs in the April 2020 newsletter,
+    // not March's.
+    const blogPosts = [blog("a", "2020-03-10")];
+
+    // April 2020 shows March's content -> has content.
+    expect(newsletterMonthHasContent(blogPosts, [], [], [], [], 2020, 4)).toBe(true);
+    // March 2020 shows February's content (empty) -> no content.
+    expect(newsletterMonthHasContent(blogPosts, [], [], [], [], 2020, 3)).toBe(false);
+
+    // A lone advisory dated May 2020 surfaces in the June 2020 newsletter, leaving
+    // May's own page empty (the bug behind the orphaned /newsletter/2001/05 page).
+    const advisories = [advisory("adv", "2020-05-25")];
+    expect(newsletterMonthHasContent([], [], [], advisories, [], 2020, 5)).toBe(false);
+    expect(newsletterMonthHasContent([], [], [], advisories, [], 2020, 6)).toBe(true);
+
+    // Upcoming events count for the current and next month's newsletter.
+    const events = [evt("e", "2020-05-20")];
+    expect(newsletterMonthHasContent([], events, [], [], [], 2020, 5)).toBe(true); // event this month
+    expect(newsletterMonthHasContent([], events, [], [], [], 2020, 4)).toBe(true); // event next month
 });
 
 test("getBlogPostsForMonth keeps only that month, newest first", () => {
