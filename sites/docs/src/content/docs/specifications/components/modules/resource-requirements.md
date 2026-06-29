@@ -27,6 +27,16 @@ For example, `--threads $task.cpus`.
 
 If the tool does not support multi-threading, consider `process_single` unless large amounts of RAM are required.
 
+## GPU acceleration
+
+Modules that support GPU acceleration SHOULD use `task.accelerator{:groovy}` to detect whether a GPU has been requested.
+The module SHOULD NOT set the `accelerator` directive itself; pipelines control GPU allocation by setting `accelerator = 1{:groovy}` in their process config.
+
+Tools that accept a GPU count SHOULD pass `task.accelerator.request{:groovy}` in the command so users can override it via their pipeline config.
+This value SHOULD NOT be hardcoded.
+
+For container patterns, CUDA version pinning, runtime configuration, and worked examples, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
+
 ## Specifying multiple threads for piped commands
 
 If a module contains _multiple_ tools that support multi-threading (e.g., [piping output into a samtools command](https://github.com/nf-core/modules/blob/c4cc1db284faba9fc4896f64bddf7703cedc7430/modules/nf-core/bowtie2/align/main.nf#L47-L54)), assign CPUs per tool:

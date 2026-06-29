@@ -79,6 +79,21 @@ It is also possible for a new multi-tool container to be built and added to BioC
 
 - If the multi-tool container already exists, use [this](https://midnighter.github.io/mulled) helper tool to obtain the `mulled-*` path.
 
+## GPU-capable modules
+
+Modules MAY provide GPU-accelerated containers. One of three container approaches SHOULD be chosen according to the tool:
+
+- A **single container**, when GPU overhead is minimal or a CPU fallback fits in one image. This is simplest and preferred.
+- A **dual CPU/GPU container**, when the GPU build is substantially larger (e.g., CUDA PyTorch). The module SHOULD switch containers based on `task.accelerator{:groovy}`, and a separate `environment.gpu.yml` SHOULD be provided for the GPU dependencies. The CPU `environment.yml` MUST remain unchanged.
+- A **vendor-provided GPU container**, when no conda equivalent exists (e.g., NVIDIA Parabricks). These modules SHOULD guard against conda/mamba profiles.
+
+GPU containers SHOULD be built with [Wave](https://wave.seqera.io), and both Docker and Singularity URLs MUST be provided.
+`cuda-version` MUST be pinned exactly; version ranges are not allowed.
+GPU modules SHOULD emit the CUDA runtime version on the `versions` topic channel.
+Tools that provide separate GPU and CPU binaries SHOULD select between them based on `task.accelerator{:groovy}`.
+
+For the dual-container pattern, CUDA version pinning strategy, runtime configuration, GPU-enabled Python packages, and worked examples, see the [GPU-capable modules](/docs/developing/components/gpu-modules) guide.
+
 ## Software not on Bioconda
 
 If the software is not available on Bioconda a `Dockerfile` MUST be provided within the module directory. nf-core will use GitHub Actions to auto-build the containers on the [GitHub Packages registry](https://github.com/features/packages).

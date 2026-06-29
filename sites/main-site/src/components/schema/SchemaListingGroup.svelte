@@ -1,7 +1,6 @@
 <script>
     import SchemaListingElement from "@components/schema/SchemaListingElement.svelte";
     import { showHidden } from "@components/store";
-    import Markdown from "@components/markdown/Markdown.svelte";
 
     let { definition = $bindable(), id } = $props();
 
