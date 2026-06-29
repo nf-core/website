@@ -178,31 +178,6 @@ There is currently no clean solution for this case because of a conflict with nf
 For now, reimplement the code at each use of the function within a closure.
 :::
 
-~~All functions should be converted to callable closures that are assigned to a parameter.
-For example, the following function:~~
-
-```groovy
-def calculate_something(memory, time) {
-    def output = null
-    // function code
-    return output
-}
-```
-
-~~Becomes:~~
-
-```groovy
-params.calculate_something = { memory, time ->
-    def output = null
-    // function code
-    return output
-}
-```
-
-~~Calling the function can then be done via `params.calculate_something(memory, time)` instead of `calculate_something(memory, time)`.~~
-
-~~For a real-world example, see [nf-core/configs PR #1015](https://github.com/nf-core/configs/pull/1015/changes#diff-c60bd9c6097498d07b2f2eb3937b7d4ab3cb15e9167bacf80cb49c9848806e6fR117-R119).~~
-
 ### Basic if-statements
 
 The strict syntax no longer allows full if-else statements, so you will see an error like this:
