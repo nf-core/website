@@ -26505,7 +26505,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -26887,7 +26887,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -41801,7 +41801,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -42179,7 +42179,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -43292,7 +43292,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -43650,7 +43650,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -46609,7 +46609,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -46841,7 +46841,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -89292,7 +89292,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sammyseq",
@@ -89440,7 +89440,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -95010,7 +95010,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -95615,7 +95615,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -101111,7 +101111,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -101779,7 +101779,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -108129,6 +108129,133 @@
                   "ontologies": [
                     {
                       "edam": "http://edamontology.org/format_3603"
+                    }
+                  ]
+                }
+              }
+            ]
+          ],
+          "versions_finaletoolkit": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "topics": {
+          "versions": [
+            [
+              {
+                "${task.process}": {
+                  "type": "string",
+                  "description": "The name of the process"
+                }
+              },
+              {
+                "finaletoolkit": {
+                  "type": "string",
+                  "description": "The name of the tool"
+                }
+              },
+              {
+                "finaletoolkit --version | sed 's/FinaleToolkit //g'": {
+                  "type": "eval",
+                  "description": "The expression to obtain the version of the tool"
+                }
+              }
+            ]
+          ]
+        },
+        "authors": [
+          "@lbeltrame"
+        ],
+        "maintainers": [
+          "@lbeltrame"
+        ]
+      }
+    },
+    {
+      "name": "finaletoolkit_mds",
+      "path": "modules/nf-core/finaletoolkit/mds/meta.yml",
+      "type": "module",
+      "meta": {
+        "name": "finaletoolkit_mds",
+        "description": "Comnpute the Motif Diversity Score using normalized Shannon entropy\n(Jiang et al., 2020).\n",
+        "keywords": [
+          "end-motifs",
+          "genomics",
+          "fragmentomics"
+        ],
+        "tools": [
+          {
+            "finaletoolkit": {
+              "description": "Extract cfDNA fragmentation features from sequencing data.",
+              "homepage": "https://epifluidlab.github.io/FinaleToolkit/",
+              "documentation": "https://epifluidlab.github.io/FinaleToolkit/documentation/index.html",
+              "tool_dev_url": "https://github.com/epifluidlab/FinaleToolkit",
+              "doi": "10.1093/bioadv/vbaf236",
+              "licence": [
+                "MIT"
+              ],
+              "identifier": "biotools:finaletoolkit"
+            }
+          }
+        ],
+        "input": [
+          [
+            {
+              "meta": {
+                "type": "map",
+                "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+              }
+            },
+            {
+              "motifs": {
+                "type": "file",
+                "description": "TSV file containing k-mer frequencies for end motifs",
+                "pattern": "*.tsv",
+                "ontologies": [
+                  {
+                    "edam": "http://edamontology.org/format_3475"
+                  }
+                ]
+              }
+            }
+          ]
+        ],
+        "output": {
+          "tsv": [
+            [
+              {
+                "meta": {
+                  "type": "map",
+                  "description": "Groovy Map containing sample information\ne.g. `[ id:'sample1' ]`\n"
+                }
+              },
+              {
+                "${prefix}.tsv": {
+                  "type": "file",
+                  "pattern": "*.tsv",
+                  "description": "Two-column TSV file containing the MDS for the sample.\n",
+                  "ontologies": [
+                    {
+                      "edam": "http://edamontology.org/format_3475"
                     }
                   ]
                 }
@@ -117013,7 +117140,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -117665,7 +117792,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -117826,7 +117953,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -117992,7 +118119,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -120130,7 +120257,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -121431,7 +121558,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -121772,7 +121899,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -121910,7 +122037,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -122791,7 +122918,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -123204,7 +123331,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "tbanalyzer",
@@ -123332,7 +123459,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -123602,7 +123729,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -124055,7 +124182,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -124369,7 +124496,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -124562,7 +124689,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -125022,7 +125149,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -127351,7 +127478,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -128164,7 +128291,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -128423,7 +128550,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -137925,7 +138052,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -146716,7 +146843,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -153121,7 +153248,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -153304,7 +153431,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -153451,7 +153578,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -158888,7 +159015,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -175621,7 +175748,7 @@
             {
               "format": {
                 "type": "string",
-                "description": "Output format (one of axt, bam, blast, blasttab, cram, chain, gff, html, psl, sam, or tab)"
+                "description": "Output format (one of axt, bam, blast, blasttab, blasttab+, cram, chain, gff, html, psl, sam, or tab)"
               }
             }
           ],
@@ -175684,10 +175811,10 @@
                 }
               },
               {
-                "*.{axt.gz,bam,bcf,bed.gz,blast.gz,blasttab.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}": {
+                "*.{axt.gz,bam,bcf,bed.gz,blast.gz,blasttab.gz,blasttabplus.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}": {
                   "type": "file",
                   "description": "Pairwise alignment exported to Axt, BAM, BCF, BED, BLAST, Chain,\nCRAM, GFF, HTML PSL, SAM or Tab format.  For BCF generation, pass\noptions to `bcftools merge` with `task.ext.args3` and to `bcftools\ncall` via `task.ext.args4`.\n",
-                  "pattern": "*.{axt.gz,bam,bcf,bed.gz,blast.gz,blasttab.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}",
+                  "pattern": "*.{axt.gz,bam,bcf,bed.gz,blast.gz,blasttab.gz,blasttabplus.gz,chain.gz,cram,gff.gz,html.gz,psl.gz,sam.gz,tab.gz}",
                   "ontologies": []
                 }
               }
@@ -185913,7 +186040,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -204420,7 +204547,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -207121,7 +207248,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -236251,7 +236378,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -274477,7 +274604,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -275827,7 +275954,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -276853,7 +276980,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -277253,7 +277380,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -278116,7 +278243,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -278998,7 +279125,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -279370,7 +279497,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -279856,7 +279983,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -280357,7 +280484,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
@@ -280541,7 +280668,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -281610,7 +281737,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -282089,7 +282216,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -282530,7 +282657,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -312394,7 +312521,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -312678,7 +312805,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -315761,7 +315888,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -336880,7 +337007,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -337209,7 +337336,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -340446,7 +340573,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "tumourevo",
@@ -343042,7 +343169,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "sarek",
@@ -348811,7 +348938,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -349162,7 +349289,7 @@
       "pipelines": [
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         }
       ]
     },
@@ -357507,7 +357634,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -357794,7 +357921,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -363263,7 +363390,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnaseq",
@@ -363583,7 +363710,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -368832,7 +368959,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -369289,7 +369416,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -369780,7 +369907,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnafusion",
@@ -370099,7 +370226,7 @@
         },
         {
           "name": "rnadnavar",
-          "version": "dev"
+          "version": "1.0.0"
         },
         {
           "name": "rnavar",
